@@ -1,0 +1,48 @@
+{% extends 'WebProfiler:Profiler:base.html.twig' %}
+
+{% block body %}
+
+    {% render 'WebProfiler:Profiler:toolbar' with { 'token': token, 'position': 'normal' } %}
+
+    <div id="content">
+        {% include 'WebProfiler:Profiler:header.html.twig' only %}
+
+        {% if not profiler.isempty %}
+            <div id="resume">
+                <p>
+                    <strong><a href="{{ profiler.url }}">{{ profiler.url }}</a></strong>
+                    <span class="date">
+                        <strong>by {{ profiler.ip }}</strong> at <strong>{{ profiler.time|date('r') }}</strong>
+                    </span>
+                </p>
+            </div>
+        {% endif %}
+
+        <div id="main">
+    
+            <div class="clear_fix">
+                <div id="collector_wrapper">
+                    <div id="collector_content">
+                        {% block panel '' %}
+                    </div>
+                </div>
+                <div id="navigation">
+                    {% if templates is defined %}
+                        <ul id="menu_profiler">
+                            {% for name, template in templates %}
+                                {% set menu %}{{ template.renderBlock('menu', { 'collector': profiler.get(name)}) }}{% endset %}
+                                {% if menu != '' %}
+                                    <li class="{{ name }}{% if name == panel %} selected{% endif %}">
+                                        <a href="{{ path('_profiler', { 'token': token, 'panel': name }) }}">{{ menu|raw }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% render 'WebProfiler:Profiler:searchBar' %}
+                    {% include 'WebProfiler:Profiler:admin.html.twig' with { 'token': token } only %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

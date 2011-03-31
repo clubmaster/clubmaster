@@ -1,0 +1,18 @@
+_assetic:
+    resource: .
+    type:     assetic
+
+_wdt:
+    resource: "@WebProfiler/Resources/config/routing/wdt.xml"
+    prefix:   /_wdt
+
+_profiler:
+    resource: "@WebProfiler/Resources/config/routing/profiler.xml"
+    prefix:   /_profiler
+
+_configurator:
+    resource: "@SymfonyWebConfigurator/Resources/config/routing/configurator.xml"
+    prefix:   /_configurator
+
+_main:
+    resource: routing.yml
