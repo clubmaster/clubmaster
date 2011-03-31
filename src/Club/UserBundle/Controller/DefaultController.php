@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('ClubUserBundle:Default:index.html.twig');
+        return $this->render('ClubUser:Default:index.html.twig');
     }
 }

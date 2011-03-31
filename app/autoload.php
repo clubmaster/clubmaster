@@ -12,7 +12,7 @@ $loader->registerNamespaces(array(
     'Doctrine'         => __DIR__.'/../vendor/doctrine/lib',
     'Zend\\Log'        => __DIR__.'/../vendor/zend-log',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
-    'Acme'             => __DIR__.'/../src',
+    'Club'             => __DIR__.'/../src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
