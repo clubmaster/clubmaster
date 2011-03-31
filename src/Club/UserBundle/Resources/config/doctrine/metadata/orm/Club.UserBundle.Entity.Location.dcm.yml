@@ -1,6 +1,6 @@
 Club\UserBundle\Entity\Location:
   type: entity
-  table: null
+  table: club_location
   fields:
     id:
       type: integer

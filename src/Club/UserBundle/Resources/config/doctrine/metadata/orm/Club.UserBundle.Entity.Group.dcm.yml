@@ -1,6 +1,6 @@
 Club\UserBundle\Entity\Group:
   type: entity
-  table: null
+  table: club_group
   fields:
     id:
       type: integer

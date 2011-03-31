@@ -1,6 +1,6 @@
 Club\UserBundle\Entity\ProfileEmail:
   type: entity
-  table: null
+  table: club_profile_email
   fields:
     id:
       type: integer

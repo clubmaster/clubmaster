@@ -1,6 +1,6 @@
 Club\UserBundle\Entity\ProfilePhone:
   type: entity
-  table: null
+  table: club_profile_phone
   fields:
     id:
       type: integer

@@ -1,10 +1,26 @@
 Club\UserBundle\Entity\User:
   type: entity
-  table: null
+  table: club_user
   fields:
     id:
       type: integer
       id: true
       generator:
         strategy: AUTO
+    profile_id:
+      type: integer
+      nullable: false
+    username:
+      type: string
+      length: '255'
+      notnull: true
+    password:
+      type: string
+      length: '255'
+  oneToOne:
+    profile:
+      targetEntity: Club\UserBundle\Entity\Profile
+      joinColumns:
+        profile_id:
+          referencedColumnName: id
   lifecycleCallbacks: {  }

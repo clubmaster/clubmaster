@@ -1,6 +1,6 @@
 Club\UserBundle\Entity\Ban:
   type: entity
-  table: null
+  table: club_ban
   fields:
     id:
       type: integer
