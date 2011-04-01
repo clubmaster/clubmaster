@@ -3,4 +3,8 @@ homepage:
   defaults: { _controller: ClubUser:Default:index }
 
 user:
-        resource: "@ClubUser/Resources/config/routing.yml"
+  resource: "@ClubUser/Resources/config/routing.yml"
+
+_user:
+  resource: "@ClubUser/Controller/DefaultController.php"
+  type: annotation

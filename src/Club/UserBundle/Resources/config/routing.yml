@@ -1,27 +1,3 @@
-user:
-  pattern:  /user
-  defaults: { _controller: ClubUser:Default:index }
-
-user_new:
-  pattern: /user/new
-  defaults: { _controller: ClubUser:Default:new }
-
-user_edit:
-  pattern: /user/edit/{id}
-  defaults: { _controller: ClubUser:Default:edit }
-
-user_delete:
-  pattern: /user/delete/{id}
-  defaults: { _controller: ClubUser:Default:delete }
-
-user_batch:
-  pattern: /user/batch
-  defaults: { _controller: ClubUser:Default:batch }
-
-user_ban:
-  pattern: /user/ban/{id}
-  defaults: { _controller: ClubUser:Default:ban }
-
 group:
   pattern:  /group
   defaults: { _controller: ClubUser:Group:index }
@@ -81,3 +57,19 @@ location_delete:
 location_batch:
   pattern: /location/batch
   defaults: { _controller: ClubUser:Location:batch }
+
+login:
+  pattern: /login
+  defaults: { _controller: ClubUser:Auth:login }
+
+logout:
+  pattern: /logout
+  defaults: { _controller: ClubUser:Auth:logout }
+
+register:
+  pattern: /register
+  defaults: { _controller: ClubUser:Auth:register }
+
+forgot:
+  pattern: /forgot
+  defaults: { _controller: ClubUser:Auth:forgot }

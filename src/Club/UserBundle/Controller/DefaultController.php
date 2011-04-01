@@ -12,6 +12,10 @@ use DateTime;
 
 class DefaultController extends Controller
 {
+  /**
+   * @extra:Template()
+   * @extra:Route("/user", name="user")
+   */
   public function indexAction()
   {
     $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.username";
@@ -20,12 +24,16 @@ class DefaultController extends Controller
     $query = $em->createQuery($dql);
     $users = $query->getResult();
 
-    return $this->render('ClubUser:Default:index.html.twig',array(
+    return array(
       'page' => array('header' => 'User'),
       'users' => $users
-    ));
+    );
   }
 
+  /**
+   * @extra:Template()
+   * @extra:Route("/user/new", name="user_new")
+   */
   public function newAction()
   {
     $user = new User();
@@ -45,20 +53,27 @@ class DefaultController extends Controller
       $this->get('session')->setFlash('notice','Your changes were saved!');
     }
 
-    return $this->render('ClubUser:Default:index.html.twig',array(
+    return array(
       'page' => array('header' => 'User'),
       'form' => $form
-    ));
+    );
   }
 
-  public function editAction()
+  /**
+   * @extra:Template()
+   * @extra:Route("/user/edit/{id}", name="user_edit")
+   */
+  public function editAction($id)
   {
   }
 
-  public function deleteAction()
+  /**
+   * @extra:Route("/user/delete/{id}", name="user_delete")
+   */
+  public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $user = $em->find('ClubUser:User',$this->get('request')->get('id'));
+    $user = $em->find('ClubUser:User',$id);
 
     $em->remove($user);
     $em->flush();
@@ -68,14 +83,20 @@ class DefaultController extends Controller
     return new RedirectResponse($this->generateUrl('user'));
   }
 
+  /**
+   * @extra:Route("/user/batch", name="user_batch")
+   */
   public function batchAction()
   {
   }
 
-  public function banAction()
+  /**
+   * @extra:Route("/user/ban/{id}", name="user_ban")
+   */
+  public function banAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $user = $em->find('ClubUser:User',$this->get('request')->get('id'));
+    $user = $em->find('ClubUser:User',$id);
 
     $ban = new Ban();
     $ban->setUserId(1);
