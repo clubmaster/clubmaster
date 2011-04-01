@@ -1,2 +1,6 @@
+homepage:
+  pattern: /
+  defaults: { _controller: ClubUser:Default:index }
+
 user:
         resource: "@ClubUser/Resources/config/routing.yml"

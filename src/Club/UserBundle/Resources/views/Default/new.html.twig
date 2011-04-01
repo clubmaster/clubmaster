@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+{{ app.session.flash('notice') }}
+<form method="post" action="{{ path('user_create') }}">
+
+{{ form_field(form) }}
+<div><input type="submit" /></div>
+
+</form>
+{% endblock %}

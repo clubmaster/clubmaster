@@ -1,3 +1,27 @@
-homepage:
-    pattern:  /
-    defaults: { _controller: ClubUser:Default:index }
+user:
+  pattern:  /user
+  defaults: { _controller: ClubUser:Default:index }
+
+user_new:
+  pattern: /user/new
+  defaults: { _controller: ClubUser:Default:new }
+
+user_create:
+  pattern: /user/create
+  defaults: { _controller: ClubUser:Default:create }
+
+user_edit:
+  pattern: /user/edit/{id}
+  defaults: { _controller: ClubUser:Default:edit }
+
+user_delete:
+  pattern: /user/delete/{id}
+  defaults: { _controller: ClubUser:Default:delete }
+
+user_batch:
+  pattern: /user/batch
+  defaults: { _controller: ClubUser:Default:batch }
+
+user_ban:
+  pattern: /user/ban/{id}
+  defaults: { _controller: ClubUser:Default:ban }

@@ -1,28 +1,48 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+<form method="post" action="{{ path('user_batch') }}">
 <table>
-  <tr>
-    <th>Username</th>
-    <th>Created At</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <th><input type="checkbox" /></th>
+      <th>Username</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th colspan="4">x Results</th>
+    </tr>
+  </tfoot>
+  <tbody>
   {% for user in users %}
-  <tr>
-    <td>{{ user.username }}</td>
-    <td>{{ user.created_at }}</td>
-    <td><ul>
-      <li>Edit</li>
-      <li>Delete</li>
-      <li>Subscription</li>
-      <li>Ticket</li>
-      <li>Ban</li>
-    </ul></td>
-  </tr>
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.created_at }}</td>
+      <td><ul>
+        <li><a href="{{ path('user_edit', { 'id':1 }) }}Edit</li>
+        <li><a href="{{ path('user_delete', { 'id':1 }) }}">Delete</a></li>
+        <li>Subscription</li>
+        <li>Ticket</li>
+        <li><a href="{{ path('user_ban', { 'id':1 }) }}">Ban</a></li>
+      </ul></td>
+    </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no users at the time</td>
+    <td colspan="4">There are no users at the time</td>
   </tr>
   {% endfor %}
+  </tbody>
 </table>
+<ul>
+  <li><select name="batch_action">
+    <option value="batchDelete">Delete</option>
+  </select>
+  <input type="submit" /></li>
+  <li><a href="{{ path('user_new') }}">New</a></li>
+</ul>
+</form>
 {% endblock %}

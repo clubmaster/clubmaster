@@ -23,7 +23,7 @@ Club\UserBundle\Entity\User:
     last_login_time:
       type: date
     last_login_ip:
-      type:
+      type: string
       string: '100'
     login_count:
       type: integer

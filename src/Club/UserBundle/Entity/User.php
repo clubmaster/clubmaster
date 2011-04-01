@@ -147,4 +147,104 @@ class User
     {
         return $this->profile;
     }
+    /**
+     * @var string $language_id
+     */
+    private $language_id;
+
+    /**
+     * @var date $last_login_time
+     */
+    private $last_login_time;
+
+    /**
+     * @var string $last_login_ip
+     */
+    private $last_login_ip;
+
+    /**
+     * @var integer $login_count
+     */
+    private $login_count;
+
+
+    /**
+     * Set language_id
+     *
+     * @param string $languageId
+     */
+    public function setLanguageId($languageId)
+    {
+        $this->language_id = $languageId;
+    }
+
+    /**
+     * Get language_id
+     *
+     * @return string $languageId
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
+    }
+
+    /**
+     * Set last_login_time
+     *
+     * @param date $lastLoginTime
+     */
+    public function setLastLoginTime($lastLoginTime)
+    {
+        $this->last_login_time = $lastLoginTime;
+    }
+
+    /**
+     * Get last_login_time
+     *
+     * @return date $lastLoginTime
+     */
+    public function getLastLoginTime()
+    {
+        return $this->last_login_time;
+    }
+
+    /**
+     * Set last_login_ip
+     *
+     * @param string $lastLoginIp
+     */
+    public function setLastLoginIp($lastLoginIp)
+    {
+        $this->last_login_ip = $lastLoginIp;
+    }
+
+    /**
+     * Get last_login_ip
+     *
+     * @return string $lastLoginIp
+     */
+    public function getLastLoginIp()
+    {
+        return $this->last_login_ip;
+    }
+
+    /**
+     * Set login_count
+     *
+     * @param integer $loginCount
+     */
+    public function setLoginCount($loginCount)
+    {
+        $this->login_count = $loginCount;
+    }
+
+    /**
+     * Get login_count
+     *
+     * @return integer $loginCount
+     */
+    public function getLoginCount()
+    {
+        return $this->login_count;
+    }
 }
