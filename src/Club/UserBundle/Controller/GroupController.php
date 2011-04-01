@@ -9,6 +9,10 @@ use Club\UserBundle\Form\GroupForm;
 
 class GroupController extends Controller
 {
+  /**
+   * @extra:Template()
+   * @extra:Route("/group", name="group")
+   */
   public function indexAction()
   {
     $dql = "SELECT g FROM Club\UserBundle\Entity\Group g ORDER BY g.group_name";
@@ -23,6 +27,10 @@ class GroupController extends Controller
     ));
   }
 
+  /**
+   * @extra:Template()
+   * @extra:Route("/group/new", name="group_new")
+   */
   public function newAction()
   {
     $group = new Group();
@@ -47,14 +55,21 @@ class GroupController extends Controller
     ));
   }
 
-  public function editAction()
+  /**
+   * @extra:Template()
+   * @extra:Route("/group/edit/{id}", name="group_edit")
+   */
+  public function editAction($id)
   {
   }
 
-  public function deleteAction()
+  /**
+   * @extra:Route("/group/delete/{id}", name="group_delete")
+   */
+  public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $group = $em->find('ClubUser:Group',$this->get('request')->get('id'));
+    $group = $em->find('ClubUser:Group',$id);
 
     $em->remove($group);
     $em->flush();
@@ -64,6 +79,9 @@ class GroupController extends Controller
     return new RedirectResponse($this->generateUrl('group'));
   }
 
+  /**
+   * @extra:Route("/group/batch", name="group_batch")
+   */
   public function batchAction()
   {
   }

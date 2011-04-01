@@ -9,6 +9,10 @@ use Club\UserBundle\Form\LocationForm;
 
 class LocationController extends Controller
 {
+  /**
+   * @extra:Template()
+   * @extra:Route("/location", name="location")
+   */
   public function indexAction()
   {
     $dql = "SELECT r FROM Club\UserBundle\Entity\Location r ORDER BY r.location_name";
@@ -23,6 +27,10 @@ class LocationController extends Controller
     ));
   }
 
+  /**
+   * @extra:Template()
+   * @extra:Route("/location/new", name="location_new")
+   */
   public function newAction()
   {
     $location = new Location();
@@ -45,11 +53,18 @@ class LocationController extends Controller
     ));
   }
 
-  public function editAction()
+  /**
+   * @extra:Template()
+   * @extra:Route("/location/edit/{id}", name="location_edit")
+   */
+  public function editAction($id)
   {
   }
 
-  public function deleteAction()
+  /**
+   * @extra:Route("/location/delete/{id}", name="location_delete")
+   */
+  public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $location = $em->find('ClubUser:Location',$this->get('request')->get('id'));
@@ -62,6 +77,9 @@ class LocationController extends Controller
     return new RedirectResponse($this->generateUrl('location'));
   }
 
+  /**
+   * @extra:Route("/location/batch", name="location_batch")
+   */
   public function batchAction()
   {
   }

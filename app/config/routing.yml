@@ -2,9 +2,22 @@ homepage:
   pattern: /
   defaults: { _controller: ClubUser:User:index }
 
-user:
-  resource: "@ClubUser/Resources/config/routing.yml"
-
 _user:
   resource: "@ClubUser/Controller/UserController.php"
+  type: annotation
+
+_group:
+  resource: "@ClubUser/Controller/GroupController.php"
+  type: annotation
+
+_location:
+  resource: "@ClubUser/Controller/LocationController.php"
+  type: annotation
+
+_role:
+  resource: "@ClubUser/Controller/RoleController.php"
+  type: annotation
+
+_auth:
+  resource: "@ClubUser/Controller/AuthController.php"
   type: annotation

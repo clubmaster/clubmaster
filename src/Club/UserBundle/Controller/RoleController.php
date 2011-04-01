@@ -9,6 +9,10 @@ use Club\UserBundle\Form\RoleForm;
 
 class RoleController extends Controller
 {
+  /**
+   * @extra:Template()
+   * @extra:Route("/role", name="role")
+   */
   public function indexAction()
   {
     $dql = "SELECT r FROM Club\UserBundle\Entity\Role r ORDER BY r.role_name";
@@ -23,6 +27,10 @@ class RoleController extends Controller
     ));
   }
 
+  /**
+   * @extra:Template()
+   * @extra:Route("/role/new", name="role_new")
+   */
   public function newAction()
   {
     $role = new Role();
@@ -45,14 +53,21 @@ class RoleController extends Controller
     ));
   }
 
-  public function editAction()
+  /**
+   * @extra:Template()
+   * @extra:Route("/role/edit/{id}", name="role_edit")
+   */
+  public function editAction($id)
   {
   }
 
-  public function deleteAction()
+  /**
+   * @extra:Route("/role/delete/{id}", name="role_delete")
+   */
+  public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $role = $em->find('ClubUser:Role',$this->get('request')->get('id'));
+    $role = $em->find('ClubUser:Role',$id);
 
     $em->remove($role);
     $em->flush();
@@ -62,6 +77,9 @@ class RoleController extends Controller
     return new RedirectResponse($this->generateUrl('role'));
   }
 
+  /**
+   * @extra:Route("/role/batch", name="role_batch")
+   */
   public function batchAction()
   {
   }
