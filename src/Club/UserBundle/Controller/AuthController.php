@@ -3,12 +3,29 @@
 namespace Club\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\UserBundle\Form\LoginForm;
 
 class AuthController extends Controller
 {
+  /**
+   * @extra:Template()
+   * @extra:Route("/login",name="login")
+   */
   public function loginAction()
   {
-    return $this->render('ClubUser:Auth:login.html.twig');
+    $form = LoginForm::create($this->get('form.context','login'));
+    return array(
+      'form' => $form
+    );
+  }
+
+  /**
+   * @extra:Template()
+   * @extra:Route("/login_check",name="login_check")
+   */
+  public function loginCheckAction()
+  {
+    die('die fucker...');
   }
 
   public function logoutAction()

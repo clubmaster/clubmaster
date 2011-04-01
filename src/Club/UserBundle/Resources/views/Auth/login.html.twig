@@ -2,5 +2,9 @@
 
 {% block body %}
 {{ app.session.flash('notice') }}
-im logging in :p
+<form method="post" action="{{ path('login') }}">
+  <input type="text" name="_username" />
+  <input type="password" name="_password" />
+<input type="submit" />
+</form>
 {% endblock %}
