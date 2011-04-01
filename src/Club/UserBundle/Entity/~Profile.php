@@ -12,16 +12,6 @@ class Profile
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer $user_id
      */
@@ -42,6 +32,16 @@ class Profile
      */
     private $user;
 
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set user_id

@@ -12,16 +12,6 @@ class User
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer $profile_id
      */
@@ -33,20 +23,40 @@ class User
     private $username;
 
     /**
-     * @var email $email_address
-     */
-    private $email_address;
-
-    /**
      * @var string $password
      */
     private $password;
+
+    /**
+     * @var string $language_id
+     */
+    private $language_id;
+
+    /**
+     * @var date $last_login_time
+     */
+    private $last_login_time;
+
+    /**
+     * @var string $last_login_ip
+     */
+    private $last_login_ip;
 
     /**
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
 
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set profile_id
@@ -89,26 +99,6 @@ class User
     }
 
     /**
-     * Set email_address
-     *
-     * @param email $emailAddress
-     */
-    public function setEmailAddress(\email $emailAddress)
-    {
-        $this->email_address = $emailAddress;
-    }
-
-    /**
-     * Get email_address
-     *
-     * @return email $emailAddress
-     */
-    public function getEmailAddress()
-    {
-        return $this->email_address;
-    }
-
-    /**
      * Set password
      *
      * @param string $password
@@ -126,6 +116,66 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set language_id
+     *
+     * @param string $languageId
+     */
+    public function setLanguageId($languageId)
+    {
+        $this->language_id = $languageId;
+    }
+
+    /**
+     * Get language_id
+     *
+     * @return string $languageId
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
+    }
+
+    /**
+     * Set last_login_time
+     *
+     * @param date $lastLoginTime
+     */
+    public function setLastLoginTime($lastLoginTime)
+    {
+        $this->last_login_time = $lastLoginTime;
+    }
+
+    /**
+     * Get last_login_time
+     *
+     * @return date $lastLoginTime
+     */
+    public function getLastLoginTime()
+    {
+        return $this->last_login_time;
+    }
+
+    /**
+     * Set last_login_ip
+     *
+     * @param string $lastLoginIp
+     */
+    public function setLastLoginIp($lastLoginIp)
+    {
+        $this->last_login_ip = $lastLoginIp;
+    }
+
+    /**
+     * Get last_login_ip
+     *
+     * @return string $lastLoginIp
+     */
+    public function getLastLoginIp()
+    {
+        return $this->last_login_ip;
     }
 
     /**

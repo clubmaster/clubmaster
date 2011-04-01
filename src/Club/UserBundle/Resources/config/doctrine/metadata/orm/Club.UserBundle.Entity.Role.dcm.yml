@@ -7,4 +7,8 @@ Club\UserBundle\Entity\Role:
       id: true
       generator:
         strategy: AUTO
+    role_name:
+      type: string
+      length: '255'
+      nullable: false
   lifecycleCallbacks: {  }

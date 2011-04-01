@@ -12,16 +12,6 @@ class User
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer $profile_id
      */
@@ -33,20 +23,40 @@ class User
     private $username;
 
     /**
-     * @var email $email_address
-     */
-    private $email_address;
-
-    /**
      * @var string $password
      */
     private $password;
+
+    /**
+     * @var string $language_id
+     */
+    private $language_id;
+
+    /**
+     * @var date $last_login_time
+     */
+    private $last_login_time;
+
+    /**
+     * @var string $last_login_ip
+     */
+    private $last_login_ip;
 
     /**
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
 
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set profile_id
@@ -89,26 +99,6 @@ class User
     }
 
     /**
-     * Set email_address
-     *
-     * @param email $emailAddress
-     */
-    public function setEmailAddress(\email $emailAddress)
-    {
-        $this->email_address = $emailAddress;
-    }
-
-    /**
-     * Get email_address
-     *
-     * @return email $emailAddress
-     */
-    public function getEmailAddress()
-    {
-        return $this->email_address;
-    }
-
-    /**
      * Set password
      *
      * @param string $password
@@ -127,46 +117,6 @@ class User
     {
         return $this->password;
     }
-
-    /**
-     * Set profile
-     *
-     * @param Club\UserBundle\Entity\Profile $profile
-     */
-    public function setProfile(\Club\UserBundle\Entity\Profile $profile)
-    {
-        $this->profile = $profile;
-    }
-
-    /**
-     * Get profile
-     *
-     * @return Club\UserBundle\Entity\Profile $profile
-     */
-    public function getProfile()
-    {
-        return $this->profile;
-    }
-    /**
-     * @var string $language_id
-     */
-    private $language_id;
-
-    /**
-     * @var date $last_login_time
-     */
-    private $last_login_time;
-
-    /**
-     * @var string $last_login_ip
-     */
-    private $last_login_ip;
-
-    /**
-     * @var integer $login_count
-     */
-    private $login_count;
-
 
     /**
      * Set language_id
@@ -229,22 +179,22 @@ class User
     }
 
     /**
-     * Set login_count
+     * Set profile
      *
-     * @param integer $loginCount
+     * @param Club\UserBundle\Entity\Profile $profile
      */
-    public function setLoginCount($loginCount)
+    public function setProfile(\Club\UserBundle\Entity\Profile $profile)
     {
-        $this->login_count = $loginCount;
+        $this->profile = $profile;
     }
 
     /**
-     * Get login_count
+     * Get profile
      *
-     * @return integer $loginCount
+     * @return Club\UserBundle\Entity\Profile $profile
      */
-    public function getLoginCount()
+    public function getProfile()
     {
-        return $this->login_count;
+        return $this->profile;
     }
 }

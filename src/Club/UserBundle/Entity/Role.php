@@ -12,6 +12,11 @@ class Role
      */
     private $id;
 
+    /**
+     * @var string $role_name
+     */
+    private $role_name;
+
 
     /**
      * Get id
@@ -21,5 +26,25 @@ class Role
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set role_name
+     *
+     * @param string $roleName
+     */
+    public function setRoleName($roleName)
+    {
+        $this->role_name = $roleName;
+    }
+
+    /**
+     * Get role_name
+     *
+     * @return string $roleName
+     */
+    public function getRoleName()
+    {
+        return $this->role_name;
     }
 }

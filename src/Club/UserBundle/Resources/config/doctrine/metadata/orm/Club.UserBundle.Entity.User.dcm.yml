@@ -7,28 +7,12 @@ Club\UserBundle\Entity\User:
       id: true
       generator:
         strategy: AUTO
-    profile_id:
-      type: integer
-      nullable: false
-    username:
-      type: string
-      length: '255'
-      notnull: true
-    password:
-      type: string
-      length: '255'
-    language_id:
-      type: string
-      length: '255'
-    last_login_time:
-      type: date
-    last_login_ip:
-      type: string
-      string: '100'
-    login_count:
-      type: integer
-      nullable: false
-      default: 0
+    profile_id: { type: integer, nullable: false }
+    username: { type: string(255), nullable: false }
+    password: { type: string(255) }
+    language_id: { type: string(255) }
+    last_login_time: { type: date }
+    last_login_ip: { type: string, string: '100' }
   oneToOne:
     profile:
       targetEntity: Club\UserBundle\Entity\Profile
