@@ -47,7 +47,7 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ClubUser: ~
+                    ClubUser: { type: yml }
 
 # Swiftmailer Configuration
 swiftmailer:

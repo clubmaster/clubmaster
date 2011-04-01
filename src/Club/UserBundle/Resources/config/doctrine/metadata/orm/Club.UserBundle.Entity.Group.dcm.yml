@@ -7,10 +7,10 @@ Club\UserBundle\Entity\Group:
       id: true
       generator:
         strategy: AUTO
-    grup_name: { type: string, lenght: 255, nullable: false }
+    group_name: { type: string, lenght: 255, nullable: false }
     group_type: { type: string, length: 255, nullable: false }
-    sex: { type: string, length: 255 }
-    min_age: { type: integer }
-    max_age: { type: integer }
+    sex: { type: string, length: 255, nullable: true }
+    min_age: { type: integer, nullable: true }
+    max_age: { type: integer, nullable: true }
     is_active: { type: boolean, nullable: false, default: true }
   lifecycleCallbacks: {  }

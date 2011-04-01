@@ -7,19 +7,13 @@ Club\UserBundle\Entity\Profile:
       id: true
       generator:
         strategy: AUTO
-    user_id:
-      type: integer
-      nullable: false
-    first_name:
-      type: string
-      length: '255'
-    last_name:
-      type: string
-      length: '255'
+    first_name: { type: string(255), nullable: true }
+    last_name: { type: string(255), nullable: true }
   oneToOne:
     user:
       targetEntity: Club\UserBundle\Entity\User
-      joinColumns:
-        user_id:
-          referencedColumnName: id
+      cascade: [remove]
+      joinColumn:
+        name: user_id
+        referencedColumnName: id
   lifecycleCallbacks: {  }

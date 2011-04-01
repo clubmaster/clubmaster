@@ -8,58 +8,12 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <!-- Header -->
-        <div id="header">
-                <div class="shell">
-
-                        <div id="head">
-                                <h1><a href="#">ClubMaster</a></h1>
-                                <div class="right">
-                                  Welcome Admin |
-                                  <a href="#">Logout</a>
-                                </div>
-                        </div>
-
-                        <!-- Navigation -->
-                        <div id="navigation">
-                                <ul>
-                                    <li><a href="#"><span>Location</span></a></li>
-                                    <li><a href="#" class="active"><span>User</span></a></li>
-                                    <li><a href="#"><span>Company</span></a></li>
-                                    <li><a href="#"><span>Mail</span></a></li>
-                                    <li><a href="#"><span>Shop</span></a></li>
-                                    <li><a href="#"><span>Administration</span></a></li>
-
-                                </ul>
-                        </div>
-                        <!-- End Navigation -->
-
-                </div>
-        </div>
-        <!-- End Header -->
-
-        <!-- Content -->
-        <div id="content" class="contentshell">
-
-                <!-- Help Navigation -->
-                <div id="help-nav">
-                  <a href="#">User</a> &gt;
-                  Current Article
-                </div>
-                <!-- End Help Navigation -->
-
-                <h1>{{ page.header }}</h1>
-                {% block body %}{% endblock %}
-
-        </div>
-        <!-- End Content -->
-
-        <!-- Footer -->
-        <div id="footer">
-            <p>ClubMaster</p>
-        </div>
-        <!-- End Footer -->
-
-        {% block javascripts %}{% endblock %}
+      <p>
+        <a href="{{ path('user') }}">User</a> |
+        <a href="{{ path('location') }}">Location</a> |
+        <a href="{{ path('role') }}">Role</a> |
+        <a href="{{ path('group') }}">Group</a>
+        </p>
+        {% block body %}{% endblock %}
     </body>
 </html>

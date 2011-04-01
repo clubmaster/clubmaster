@@ -12,16 +12,6 @@ class ProfileAddress
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer $profile_id
      */
@@ -67,6 +57,16 @@ class ProfileAddress
      */
     private $is_default;
 
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set profile_id

@@ -13,11 +13,6 @@ class Profile
     private $id;
 
     /**
-     * @var integer $user_id
-     */
-    private $user_id;
-
-    /**
      * @var string $first_name
      */
     private $first_name;
@@ -41,26 +36,6 @@ class Profile
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user_id
-     *
-     * @param integer $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-    }
-
-    /**
-     * Get user_id
-     *
-     * @return integer $userId
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 
     /**

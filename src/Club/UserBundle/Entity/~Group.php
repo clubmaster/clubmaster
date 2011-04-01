@@ -172,4 +172,29 @@ class Group
     {
         return $this->is_active;
     }
+    /**
+     * @var string $group_name
+     */
+    private $group_name;
+
+
+    /**
+     * Set group_name
+     *
+     * @param string $groupName
+     */
+    public function setGroupName($groupName)
+    {
+        $this->group_name = $groupName;
+    }
+
+    /**
+     * Get group_name
+     *
+     * @return string $groupName
+     */
+    public function getGroupName()
+    {
+        return $this->group_name;
+    }
 }

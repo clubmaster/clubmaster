@@ -6,10 +6,6 @@ user_new:
   pattern: /user/new
   defaults: { _controller: ClubUser:Default:new }
 
-user_create:
-  pattern: /user/create
-  defaults: { _controller: ClubUser:Default:create }
-
 user_edit:
   pattern: /user/edit/{id}
   defaults: { _controller: ClubUser:Default:edit }
@@ -25,3 +21,63 @@ user_batch:
 user_ban:
   pattern: /user/ban/{id}
   defaults: { _controller: ClubUser:Default:ban }
+
+group:
+  pattern:  /group
+  defaults: { _controller: ClubUser:Group:index }
+
+group_new:
+  pattern: /group/new
+  defaults: { _controller: ClubUser:Group:new }
+
+group_edit:
+  pattern: /group/edit/{id}
+  defaults: { _controller: ClubUser:Group:edit }
+
+group_delete:
+  pattern: /group/delete/{id}
+  defaults: { _controller: ClubUser:Group:delete }
+
+group_batch:
+  pattern: /group/batch
+  defaults: { _controller: ClubUser:Group:batch }
+
+role:
+  pattern:  /role
+  defaults: { _controller: ClubUser:Role:index }
+
+role_new:
+  pattern: /role/new
+  defaults: { _controller: ClubUser:Role:new }
+
+role_edit:
+  pattern: /role/edit/{id}
+  defaults: { _controller: ClubUser:Role:edit }
+
+role_delete:
+  pattern: /role/delete/{id}
+  defaults: { _controller: ClubUser:Role:delete }
+
+role_batch:
+  pattern: /role/batch
+  defaults: { _controller: ClubUser:Role:batch }
+
+location:
+  pattern:  /location
+  defaults: { _controller: ClubUser:Location:index }
+
+location_new:
+  pattern: /location/new
+  defaults: { _controller: ClubUser:Location:new }
+
+location_edit:
+  pattern: /location/edit/{id}
+  defaults: { _controller: ClubUser:Location:edit }
+
+location_delete:
+  pattern: /location/delete/{id}
+  defaults: { _controller: ClubUser:Location:delete }
+
+location_batch:
+  pattern: /location/batch
+  defaults: { _controller: ClubUser:Location:batch }

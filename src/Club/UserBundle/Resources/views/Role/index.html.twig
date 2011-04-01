@@ -4,7 +4,7 @@
 
 {{ app.session.flash('notice') }}
 
-<form method="post" action="{{ path('user_batch') }}">
+<form method="post" action="{{ path('role_batch') }}">
 <table>
   <thead>
     <tr>
@@ -21,23 +21,19 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for user in users %}
+  {% for role in roles %}
     <tr>
       <td><input type="checkbox" /></td>
-      <td>{{ user.id }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.createdAt }}</td>
+      <td>{{ role.id }}</td>
+      <td>{{ role.roleName }}</td>
       <td><ul>
-        <li><a href="{{ path('user_edit', { 'id':user.id }) }}">Edit</a></li>
-        <li><a href="{{ path('user_delete', { 'id':user.id }) }}">Delete</a></li>
-        <li>Subscription</li>
-        <li>Ticket</li>
-        <li><a href="{{ path('user_ban', { 'id':user.id }) }}">Ban</a></li>
+        <li><a href="{{ path('role_edit', { 'id':role.id }) }}">Edit</a></li>
+        <li><a href="{{ path('role_delete', { 'id':role.id }) }}">Delete</a></li>
       </ul></td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="5">There are no users at the time</td>
+    <td colspan="5">There are no roles at the time</td>
   </tr>
   {% endfor %}
   </tbody>
@@ -47,7 +43,7 @@
     <option value="batchDelete">Delete</option>
   </select>
   <input type="submit" /></li>
-  <li><a href="{{ path('user_new') }}">New</a></li>
+  <li><a href="{{ path('role_new') }}">New</a></li>
 </ul>
 </form>
 {% endblock %}

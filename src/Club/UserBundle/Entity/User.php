@@ -13,11 +13,6 @@ class User
     private $id;
 
     /**
-     * @var integer $profile_id
-     */
-    private $profile_id;
-
-    /**
      * @var string $username
      */
     private $username;
@@ -43,6 +38,16 @@ class User
     private $last_login_ip;
 
     /**
+     * @var date $created_at
+     */
+    private $created_at;
+
+    /**
+     * @var date $updated_at
+     */
+    private $updated_at;
+
+    /**
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
@@ -56,26 +61,6 @@ class User
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set profile_id
-     *
-     * @param integer $profileId
-     */
-    public function setProfileId($profileId)
-    {
-        $this->profile_id = $profileId;
-    }
-
-    /**
-     * Get profile_id
-     *
-     * @return integer $profileId
-     */
-    public function getProfileId()
-    {
-        return $this->profile_id;
     }
 
     /**
@@ -176,6 +161,46 @@ class User
     public function getLastLoginIp()
     {
         return $this->last_login_ip;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param date $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return date $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param date $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return date $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 
     /**

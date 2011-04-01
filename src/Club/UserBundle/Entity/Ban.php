@@ -12,16 +12,6 @@ class Ban
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer $user_id
      */
@@ -47,6 +37,16 @@ class Ban
      */
     private $note;
 
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set user_id

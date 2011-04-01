@@ -2,7 +2,7 @@
 
 {% block body %}
 {{ app.session.flash('notice') }}
-<form method="post" action="{{ path('user_new') }}">
+<form method="post" action="{{ path('location_new') }}">
 
 {{ form_field(form) }}
 <div><input type="submit" /></div>
