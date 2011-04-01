@@ -1,10 +1,10 @@
 homepage:
   pattern: /
-  defaults: { _controller: ClubUser:Default:index }
+  defaults: { _controller: ClubUser:User:index }
 
 user:
   resource: "@ClubUser/Resources/config/routing.yml"
 
 _user:
-  resource: "@ClubUser/Controller/DefaultController.php"
+  resource: "@ClubUser/Controller/UserController.php"
   type: annotation
