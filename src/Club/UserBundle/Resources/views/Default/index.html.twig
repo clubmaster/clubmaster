@@ -1,5 +1,28 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-Hello!
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Created At</th>
+    <th>Actions</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td>{{ user.username }}</td>
+    <td>{{ user.created_at }}</td>
+    <td><ul>
+      <li>Edit</li>
+      <li>Delete</li>
+      <li>Subscription</li>
+      <li>Ticket</li>
+      <li>Ban</li>
+    </ul></td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">There are no users at the time</td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

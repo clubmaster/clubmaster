@@ -17,6 +17,18 @@ Club\UserBundle\Entity\User:
     password:
       type: string
       length: '255'
+    language_id:
+      type: string
+      length: '255'
+    last_login_time:
+      type: date
+    last_login_ip:
+      type:
+      string: '100'
+    login_count:
+      type: integer
+      nullable: false
+      default: 0
   oneToOne:
     profile:
       targetEntity: Club\UserBundle\Entity\Profile
