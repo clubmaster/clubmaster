@@ -20,10 +20,9 @@ security:
             form_login:
                 check_path: /login_check
                 login_path: /login
-            #http_basic: true
             logout: true
             security: true
             anonymous: true
     access_control:
-        #- { path: /admin/.*, role: ROLE_ADMIN }
-        #- { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /login.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /.*, role: ROLE_ADMIN }
