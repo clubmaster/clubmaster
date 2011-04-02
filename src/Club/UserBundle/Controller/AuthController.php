@@ -3,6 +3,7 @@
 namespace Club\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\SecurityContext;
 use Club\UserBundle\Form\LoginForm;
 
 class AuthController extends Controller
@@ -13,24 +14,16 @@ class AuthController extends Controller
    */
   public function loginAction()
   {
+    if ($this->get('request')->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+      $error = $this->get('request')->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+    } else {
+      $error = $this->get('request')->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
+    }
+
     $form = LoginForm::create($this->get('form.context','login'));
     return array(
       'form' => $form
     );
-  }
-
-  /**
-   * @extra:Template()
-   * @extra:Route("/login_check",name="login_check")
-   */
-  public function loginCheckAction()
-  {
-    die('die fucker...');
-  }
-
-  public function logoutAction()
-  {
-    return $this->render('ClubUser:Auth:logout.html.twig');
   }
 
   public function registerAction()

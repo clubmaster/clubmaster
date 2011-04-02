@@ -2,10 +2,12 @@
 
 namespace Club\UserBundle\Entity;
 
+use Symfony\Component\Security\Core\Role\RoleInterface;
+
 /**
  * Club\UserBundle\Entity\Role
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var integer $id
@@ -46,5 +48,15 @@ class Role
     public function getRoleName()
     {
         return $this->role_name;
+    }
+
+    /**
+     * Implementation of getRole for the RoleInterface.
+     * 
+     * @return string The role.
+     */
+    public function getRole()
+    {
+      return $this->getRoleName();
     }
 }

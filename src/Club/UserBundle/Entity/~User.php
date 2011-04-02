@@ -2,10 +2,12 @@
 
 namespace Club\UserBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Club\UserBundle\Entity\User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer $id
@@ -38,6 +40,36 @@ class User
     private $last_login_ip;
 
     /**
+     * @var boolean $enabled
+     */
+    private $enabled;
+
+    /**
+     * @var string $algorithm
+     */
+    private $algorithm;
+
+    /**
+     * @var string $salt
+     */
+    private $salt;
+
+    /**
+     * @var boolean $locked
+     */
+    private $locked;
+
+    /**
+     * @var boolean $expired
+     */
+    private $expired;
+
+    /**
+     * @var date $expires_at
+     */
+    private $expires_at;
+
+    /**
      * @var date $created_at
      */
     private $created_at;
@@ -52,6 +84,15 @@ class User
      */
     private $profile;
 
+    /**
+     * @var Club\UserBundle\Entity\Role
+     */
+    private $roles;
+
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -164,6 +205,126 @@ class User
     }
 
     /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean $enabled
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set algorithm
+     *
+     * @param string $algorithm
+     */
+    public function setAlgorithm($algorithm)
+    {
+        $this->algorithm = $algorithm;
+    }
+
+    /**
+     * Get algorithm
+     *
+     * @return string $algorithm
+     */
+    public function getAlgorithm()
+    {
+        return $this->algorithm;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string $salt
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set locked
+     *
+     * @param boolean $locked
+     */
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+    }
+
+    /**
+     * Get locked
+     *
+     * @return boolean $locked
+     */
+    public function getLocked()
+    {
+        return $this->locked;
+    }
+
+    /**
+     * Set expired
+     *
+     * @param boolean $expired
+     */
+    public function setExpired($expired)
+    {
+        $this->expired = $expired;
+    }
+
+    /**
+     * Get expired
+     *
+     * @return boolean $expired
+     */
+    public function getExpired()
+    {
+        return $this->expired;
+    }
+
+    /**
+     * Set expires_at
+     *
+     * @param date $expiresAt
+     */
+    public function setExpiresAt($expiresAt)
+    {
+        $this->expires_at = $expiresAt;
+    }
+
+    /**
+     * Get expires_at
+     *
+     * @return date $expiresAt
+     */
+    public function getExpiresAt()
+    {
+        return $this->expires_at;
+    }
+
+    /**
      * Set created_at
      *
      * @param date $createdAt
@@ -221,5 +382,44 @@ class User
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param Club\UserBundle\Entity\Role $roles
+     */
+    public function addRoles(\Club\UserBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return Doctrine\Common\Collections\Collection $roles
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Erases the user credentials.
+     */
+    public function eraseCredentials()
+    {
+ 
+    }
+
+    /**
+     * Compares this user to another to determine if they are the same.
+     * 
+     * @param UserInterface $user The user
+     * @return boolean True if equal, false othwerwise.
+     */
+    public function equals(UserInterface $user)
+    {
+        return md5($this->getUsername()) == md5($user->getUsername());
     }
 }

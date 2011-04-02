@@ -1,3 +1,13 @@
+_security_login:
+    pattern:  /login
+    defaults: { _controller: ClubUser:Auth:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
+
 homepage:
   pattern: /
   defaults: { _controller: ClubUser:User:index }
@@ -21,3 +31,4 @@ _role:
 _auth:
   resource: "@ClubUser/Controller/AuthController.php"
   type: annotation
+

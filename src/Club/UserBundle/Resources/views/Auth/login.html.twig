@@ -2,7 +2,7 @@
 
 {% block body %}
 {{ app.session.flash('notice') }}
-<form method="post" action="{{ path('login') }}">
+<form method="post" action="{{ path('_security_check') }}">
   <input type="text" name="_username" />
   <input type="password" name="_password" />
 <input type="submit" />
