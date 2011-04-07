@@ -27,7 +27,6 @@ assetic:
     use_controller: false
     filters:
         cssrewrite: ~
-        closure:    ~
 
 # Doctrine Configuration
 doctrine:
@@ -47,9 +46,9 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ClubUser: ~
-                    ClubMail: ~
-                    ClubShop: ~
+                    ClubUserBundle: ~
+                    ClubMailBundle: ~
+                    ClubShopBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

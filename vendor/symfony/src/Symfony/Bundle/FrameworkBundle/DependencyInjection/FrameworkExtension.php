@@ -74,24 +74,14 @@ class FrameworkExtension extends Extension
             if (false === $config['error_handler']) {
                 $container->getDefinition('error_handler')->setMethodCalls(array());
             } else {
-                $container->getDefinition('error_handler')->addMethodCall('register', array());
-                $container->setParameter('error_handler.level', $config['error_handler']);
+                $container
+                    ->getDefinition('error_handler')->addMethodCall('register', array())
+                    ->setArgument(0, $config['error_handler'])
+                ;
             }
         }
 
-        if (isset($config['exception_controller'])) {
-            $container->setParameter('exception_listener.controller', $config['exception_controller']);
-        }
-
-        $pattern = '';
-        if (isset($config['ide'])) {
-            $patterns = array(
-                'textmate' => 'txmt://open?url=file://%%f&line=%%l',
-                'macvim'   => 'mvim://open?url=file://%%f&line=%%l',
-            );
-            $pattern = isset($patterns[$config['ide']]) ? $patterns[$config['ide']] : $config['ide'];
-        }
-        $container->setParameter('debug.file_link_format', $pattern);
+        $container->getDefinition('exception_listener')->setArgument(0, $config['exception_controller']);
 
         if (!empty($config['test'])) {
             $loader->load('test.xml');
@@ -119,7 +109,7 @@ class FrameworkExtension extends Extension
         }
 
         if (isset($config['templating'])) {
-            $this->registerTemplatingConfiguration($config['templating'], $container, $loader);
+            $this->registerTemplatingConfiguration($config['templating'], $config['ide'], $container, $loader);
         }
 
         if (isset($config['translator'])) {
@@ -204,6 +194,7 @@ class FrameworkExtension extends Extension
 
         $container->getDefinition('profiler_listener')
             ->setArgument(2, $config['only_exceptions'])
+            ->setArgument(3, $config['only_master_requests'])
         ;
 
         // Choose storage class based on the DSN
@@ -293,9 +284,7 @@ class FrameworkExtension extends Extension
             $container->setParameter('session.class', $config['class']);
         }
 
-        if (isset($config['default_locale'])) {
-            $container->setParameter('session.default_locale', $config['default_locale']);
-        }
+        $container->getDefinition('session')->setArgument(1, $config['default_locale']);
 
         $container->setAlias('session.storage', 'session.storage.'.$config['storage_id']);
 
@@ -321,21 +310,23 @@ class FrameworkExtension extends Extension
      * @param ContainerBuilder $container A ContainerBuilder instance
      * @param XmlFileLoader    $loader    An XmlFileLoader instance
      */
-    private function registerTemplatingConfiguration(array $config, ContainerBuilder $container, XmlFileLoader $loader)
+    private function registerTemplatingConfiguration(array $config, $ide, ContainerBuilder $container, XmlFileLoader $loader)
     {
         $loader->load('templating.xml');
         $loader->load('templating_php.xml');
 
+        $links = array(
+            'textmate' => 'txmt://open?url=file://%f&line=%l',
+            'macvim'   => 'mvim://open?url=file://%f&line=%l',
+        );
+
+        $container
+            ->getDefinition('templating.helper.code')
+            ->setArgument(0, str_replace('%', '%%', isset($links[$ide]) ? $links[$ide] : $ide))
+        ;
+
         if ($container->getParameter('kernel.debug')) {
             $loader->load('templating_debug.xml');
-        }
-
-        if (isset($config['assets_version'])) {
-            $container->setParameter('templating.assets.version', $config['assets_version']);
-        }
-
-        if (isset($config['assets_base_urls'])) {
-            $container->setParameter('templating.assets.base_urls', $config['assets_base_urls']);
         }
 
         $packages = array();
@@ -345,7 +336,12 @@ class FrameworkExtension extends Extension
                 $package['version'],
             ));
         }
-        $container->getDefinition('templating.helper.assets')->setArgument(3, $packages);
+        $container
+            ->getDefinition('templating.helper.assets')
+            ->setArgument(1, isset($config['assets_base_urls']) ? $config['assets_base_urls'] : array())
+            ->setArgument(2, $config['assets_version'])
+            ->setArgument(3, $packages)
+        ;
 
         if (!empty($config['loaders'])) {
             $loaders = array_map(function($loader) { return new Reference($loader); }, $config['loaders']);
@@ -362,10 +358,10 @@ class FrameworkExtension extends Extension
         if (isset($config['cache'])) {
             // Wrap the existing loader with cache (must happen after loaders are registered)
             $container->setDefinition('templating.loader.wrapped', $container->findDefinition('templating.loader'));
-            $container->setDefinition('templating.loader', $container->getDefinition('templating.loader.cache'));
-            $container->setParameter('templating.loader.cache.path', $config['cache']);
-        } else {
-            $container->setParameter('templating.loader.cache.path', null);
+            $loaderCache = $container->getDefinition('templating.loader.cache');
+            $loaderCache->setArgument(1, $config['cache']);
+
+            $container->setDefinition('templating.loader', $loaderCache);
         }
 
         if ($config['cache_warmer']) {
@@ -419,7 +415,8 @@ class FrameworkExtension extends Extension
     {
         if (!empty($config['enabled'])) {
             // Use the "real" translator instead of the identity default
-            $container->setDefinition('translator', $container->findDefinition('translator.real'));
+            $container->setDefinition('translator', $translator = $container->findDefinition('translator.real'));
+            $translator->addMethodCall('setFallbackLocale', array($config['fallback']));
 
             // Discover translation directories
             $dirs = array();
@@ -447,10 +444,6 @@ class FrameworkExtension extends Extension
             }
             $container->setParameter('translation.resources', $resources);
         }
-
-        if (isset($config['fallback'])) {
-            $container->setParameter('translator.fallback_locale', $config['fallback']);
-        }
     }
 
     /**
@@ -468,60 +461,65 @@ class FrameworkExtension extends Extension
 
         $loader->load('validator.xml');
 
-        $xmlMappingFiles = array();
-        $yamlMappingFiles = array();
+        $container
+            ->getDefinition('validator.mapping.loader.xml_files_loader')
+            ->setArgument(0, $this->getValidatorXmlMappingFiles($container))
+        ;
 
-        // Include default entries from the framework
-        $xmlMappingFiles[] = __DIR__.'/../../../Component/Form/Resources/config/validation.xml';
-
-        foreach ($container->getParameter('kernel.bundles') as $bundle) {
-            $reflection = new \ReflectionClass($bundle);
-            if (file_exists($file = dirname($reflection->getFilename()).'/Resources/config/validation.xml')) {
-                $xmlMappingFiles[] = realpath($file);
-            }
-            if (file_exists($file = dirname($reflection->getFilename()).'/Resources/config/validation.yml')) {
-                $yamlMappingFiles[] = realpath($file);
-            }
-        }
-
-        $xmlFilesLoader = new Definition('%validator.mapping.loader.xml_files_loader.class%', array($xmlMappingFiles));
-        $xmlFilesLoader->setPublic(false);
-
-        $yamlFilesLoader = new Definition('%validator.mapping.loader.yaml_files_loader.class%', array($yamlMappingFiles));
-        $yamlFilesLoader->setPublic(false);
-
-        $container->setDefinition('validator.mapping.loader.xml_files_loader', $xmlFilesLoader);
-        $container->setDefinition('validator.mapping.loader.yaml_files_loader', $yamlFilesLoader);
-
-        foreach ($xmlMappingFiles as $file) {
-            $container->addResource(new FileResource($file));
-        }
-
-        foreach ($yamlMappingFiles as $file) {
-            $container->addResource(new FileResource($file));
-        }
+        $container
+            ->getDefinition('validator.mapping.loader.yaml_files_loader')
+            ->setArgument(0, $this->getValidatorYamlMappingFiles($container))
+        ;
 
         if (isset($config['annotations'])) {
+            $namespaces = array('assert' => 'Symfony\\Component\\Validator\\Constraints\\');
             // Register prefixes for constraint namespaces
             if (!empty($config['annotations']['namespaces'])) {
-                $container->setParameter('validator.annotations.namespaces', array_merge(
-                    $container->getParameter('validator.annotations.namespaces'),
-                    $config['annotations']['namespaces']
-                ));
+                $namespaces = array_merge($namespaces, $config['annotations']['namespaces']);
             }
 
             // Register annotation loader
-            $annotationLoader = new Definition('%validator.mapping.loader.annotation_loader.class%');
-            $annotationLoader->setPublic(false);
-            $annotationLoader->addArgument(new Parameter('validator.annotations.namespaces'));
-
-            $container->setDefinition('validator.mapping.loader.annotation_loader', $annotationLoader);
+            $container
+                ->getDefinition('validator.mapping.loader.annotation_loader')
+                ->setArgument(0, $namespaces)
+            ;
 
             $loaderChain = $container->getDefinition('validator.mapping.loader.loader_chain');
             $arguments = $loaderChain->getArguments();
             array_unshift($arguments[0], new Reference('validator.mapping.loader.annotation_loader'));
             $loaderChain->setArguments($arguments);
         }
+    }
+
+    private function getValidatorXmlMappingFiles(ContainerBuilder $container)
+    {
+        $files = array(__DIR__.'/../../../Component/Form/Resources/config/validation.xml');
+        $container->addResource(new FileResource($files[0]));
+
+        foreach ($container->getParameter('kernel.bundles') as $bundle) {
+            $reflection = new \ReflectionClass($bundle);
+            if (file_exists($file = dirname($reflection->getFilename()).'/Resources/config/validation.xml')) {
+                $files[] = realpath($file);
+                $container->addResource(new FileResource($file));
+            }
+        }
+
+        return $files;
+    }
+
+    private function getValidatorYamlMappingFiles(ContainerBuilder $container)
+    {
+        $files = array();
+
+        foreach ($container->getParameter('kernel.bundles') as $bundle) {
+            $reflection = new \ReflectionClass($bundle);
+            if (file_exists($file = dirname($reflection->getFilename()).'/Resources/config/validation.yml')) {
+                $yamlMappingFiles[] = realpath($file);
+                $container->addResource(new FileResource($file));
+            }
+        }
+
+        return $files;
     }
 
     /**

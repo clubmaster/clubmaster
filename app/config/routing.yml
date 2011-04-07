@@ -1,6 +1,6 @@
 _security_login:
     pattern:  /login
-    defaults: { _controller: ClubUser:Auth:login }
+    defaults: { _controller: ClubUserBundle:Auth:login }
 
 _security_check:
     pattern:  /login_check
@@ -10,25 +10,25 @@ _security_logout:
 
 homepage:
   pattern: /
-  defaults: { _controller: ClubUser:User:index }
+  defaults: { _controller: ClubUserBundle:User:index }
 
 _user:
-  resource: "@ClubUser/Controller/UserController.php"
+  resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation
 
 _group:
-  resource: "@ClubUser/Controller/GroupController.php"
+  resource: "@ClubUserBundle/Controller/GroupController.php"
   type: annotation
 
 _location:
-  resource: "@ClubUser/Controller/LocationController.php"
+  resource: "@ClubUserBundle/Controller/LocationController.php"
   type: annotation
 
 _role:
-  resource: "@ClubUser/Controller/RoleController.php"
+  resource: "@ClubUserBundle/Controller/RoleController.php"
   type: annotation
 
 _auth:
-  resource: "@ClubUser/Controller/AuthController.php"
+  resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
 

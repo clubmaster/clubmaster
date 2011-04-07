@@ -73,7 +73,7 @@ class UserController extends Controller
   public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $user = $em->find('ClubUser:User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $em->remove($user);
     $em->flush();
@@ -96,7 +96,7 @@ class UserController extends Controller
   public function banAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $user = $em->find('ClubUser:User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $ban = new Ban();
     $ban->setUserId(1);

@@ -28,11 +28,11 @@ class AuthController extends Controller
 
   public function registerAction()
   {
-    return $this->render('ClubUser:Auth:register.html.twig');
+    return $this->render('ClubUserBundle:Auth:register.html.twig');
   }
 
   public function forgotAction()
   {
-    return $this->render('ClubUser:Auth:forgot.html.twig');
+    return $this->render('ClubUserBundle:Auth:forgot.html.twig');
   }
 }

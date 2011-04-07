@@ -21,7 +21,7 @@ class GroupController extends Controller
     $query = $em->createQuery($dql);
     $groups = $query->getResult();
 
-    return $this->render('ClubUser:Group:index.html.twig',array(
+    return $this->render('ClubUserBundle:Group:index.html.twig',array(
       'page' => array('header' => 'User'),
       'groups' => $groups
     ));
@@ -49,7 +49,7 @@ class GroupController extends Controller
       return new RedirectResponse($this->generateUrl('group'));
     }
 
-    return $this->render('ClubUser:Group:new.html.twig',array(
+    return $this->render('ClubUserBundle:Group:new.html.twig',array(
       'page' => array('header' => 'Group'),
       'form' => $form
     ));
@@ -69,7 +69,7 @@ class GroupController extends Controller
   public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $group = $em->find('ClubUser:Group',$id);
+    $group = $em->find('ClubUserBundle:Group',$id);
 
     $em->remove($group);
     $em->flush();

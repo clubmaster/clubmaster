@@ -21,7 +21,7 @@ class LocationController extends Controller
     $query = $em->createQuery($dql);
     $locations = $query->getResult();
 
-    return $this->render('ClubUser:Location:index.html.twig',array(
+    return $this->render('ClubUserBundle:Location:index.html.twig',array(
       'page' => array('header' => 'User'),
       'locations' => $locations
     ));
@@ -47,7 +47,7 @@ class LocationController extends Controller
       return new RedirectResponse($this->generateUrl('location'));
     }
 
-    return $this->render('ClubUser:Location:new.html.twig',array(
+    return $this->render('ClubUserBundle:Location:new.html.twig',array(
       'page' => array('header' => 'Location'),
       'form' => $form
     ));
@@ -67,7 +67,7 @@ class LocationController extends Controller
   public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $location = $em->find('ClubUser:Location',$this->get('request')->get('id'));
+    $location = $em->find('ClubUserBundle:Location',$this->get('request')->get('id'));
 
     $em->remove($location);
     $em->flush();

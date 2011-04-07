@@ -21,7 +21,7 @@ class RoleController extends Controller
     $query = $em->createQuery($dql);
     $roles = $query->getResult();
 
-    return $this->render('ClubUser:Role:index.html.twig',array(
+    return $this->render('ClubUserBundle:Role:index.html.twig',array(
       'page' => array('header' => 'User'),
       'roles' => $roles
     ));
@@ -47,7 +47,7 @@ class RoleController extends Controller
       return new RedirectResponse($this->generateUrl('role'));
     }
 
-    return $this->render('ClubUser:Role:new.html.twig',array(
+    return $this->render('ClubUserBundle:Role:new.html.twig',array(
       'page' => array('header' => 'Role'),
       'form' => $form
     ));
@@ -67,7 +67,7 @@ class RoleController extends Controller
   public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $role = $em->find('ClubUser:Role',$id);
+    $role = $em->find('ClubUserBundle:Role',$id);
 
     $em->remove($role);
     $em->flush();
