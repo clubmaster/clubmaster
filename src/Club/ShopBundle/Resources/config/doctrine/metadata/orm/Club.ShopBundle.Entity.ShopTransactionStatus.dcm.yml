@@ -1,0 +1,11 @@
+Club\ShopBundle\Entity\ShopTransactionStatus:
+  type: entity
+  table: club_shop_transaction_status
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    status_name: { type: string }
+  lifecycleCallbacks: {  }

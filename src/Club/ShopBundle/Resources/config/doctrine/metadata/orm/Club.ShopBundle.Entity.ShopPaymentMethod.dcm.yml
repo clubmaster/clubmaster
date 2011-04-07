@@ -1,0 +1,11 @@
+Club\ShopBundle\Entity\ShopPaymentMethod:
+  type: entity
+  table: club_shop_payment_method
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    payment_method: { type: string }
+  lifecycleCallbacks: {  }

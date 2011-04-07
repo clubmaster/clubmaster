@@ -1,0 +1,13 @@
+Club\ShopBundle\Entity\ShopModule:
+  type: entity
+  table: club_shop_module
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name: { type: string }
+    description: { type: text }
+    path: { type: string }
+  lifecycleCallbacks: {  }

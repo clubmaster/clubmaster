@@ -13,11 +13,6 @@ class ProfileCompany
     private $id;
 
     /**
-     * @var integer $profile_id
-     */
-    private $profile_id;
-
-    /**
      * @var string $company_name
      */
     private $company_name;
@@ -32,6 +27,11 @@ class ProfileCompany
      */
     private $is_default;
 
+    /**
+     * @var Club\UserBundle\Entity\Profile
+     */
+    private $profile;
+
 
     /**
      * Get id
@@ -41,26 +41,6 @@ class ProfileCompany
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set profile_id
-     *
-     * @param integer $profileId
-     */
-    public function setProfileId($profileId)
-    {
-        $this->profile_id = $profileId;
-    }
-
-    /**
-     * Get profile_id
-     *
-     * @return integer $profileId
-     */
-    public function getProfileId()
-    {
-        return $this->profile_id;
     }
 
     /**
@@ -121,5 +101,25 @@ class ProfileCompany
     public function getIsDefault()
     {
         return $this->is_default;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param Club\UserBundle\Entity\Profile $profile
+     */
+    public function setProfile(\Club\UserBundle\Entity\Profile $profile)
+    {
+        $this->profile = $profile;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return Club\UserBundle\Entity\Profile $profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

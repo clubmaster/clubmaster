@@ -2,12 +2,10 @@
 
 namespace Club\UserBundle\Entity;
 
-use Symfony\Component\Security\Core\Role\RoleInterface;
-
 /**
  * Club\UserBundle\Entity\Role
  */
-class Role implements RoleInterface
+class Role
 {
     /**
      * @var integer $id
@@ -19,7 +17,16 @@ class Role implements RoleInterface
      */
     private $role_name;
 
+    /**
+     * @var Club\ShopBundle\Entity\ShopProduct
+     */
+    private $products;
 
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -51,12 +58,22 @@ class Role implements RoleInterface
     }
 
     /**
-     * Implementation of getRole for the RoleInterface.
-     * 
-     * @return string The role.
+     * Add products
+     *
+     * @param Club\ShopBundle\Entity\ShopProduct $products
      */
-    public function getRole()
+    public function addProducts(\Club\ShopBundle\Entity\ShopProduct $products)
     {
-      return $this->getRoleName();
+        $this->products[] = $products;
+    }
+
+    /**
+     * Get products
+     *
+     * @return Doctrine\Common\Collections\Collection $products
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

@@ -1,0 +1,13 @@
+Club\ShopBundle\Entity\ShopOrderStatus:
+  type: entity
+  table: club_shop_order_status
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    status: { type: string }
+    open: { type: boolean }
+    complete: { type: boolean }
+  lifecycleCallbacks: {  }

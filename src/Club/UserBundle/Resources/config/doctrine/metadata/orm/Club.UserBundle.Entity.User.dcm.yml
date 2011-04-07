@@ -9,7 +9,6 @@ Club\UserBundle\Entity\User:
         strategy: AUTO
     username: { type: string(255) }
     password: { type: string(255) }
-    language_id: { type: string(255), nullable: true }
     last_login_time: { type: date, nullable: true }
     last_login_ip: { type: string, string: '100', nullable: true }
     enabled: { type: boolean }
@@ -22,20 +21,14 @@ Club\UserBundle\Entity\User:
     updated_at: { type: date, nullable: true }
   oneToOne:
     profile:
-      targetEntity: Club\UserBundle\Entity\Profile
-      cascade: [remove]
-      joinColumn:
-        name: profile_id
-        referencedColumnName: id
+      targetEntity: Profile
   manyToMany:
-    user_roles:
-      targetEntity: Club\UserBundle\Entity\Role
-      joinTable:
-        name: club_user_role
-        joinColumns:
-          role_id:
-            referencedColumnName: id
-        inverseJoinColumns:
-          user_id:
-            referencedColumnName: id
+    roles:
+      targetEntity: Role
+  manyToOne:
+    language:
+      targetEntity: Language
+  manyToMany:
+    mails:
+      targetEntity: Club\MailBundle\Entity\Mail
   lifecycleCallbacks: {  }

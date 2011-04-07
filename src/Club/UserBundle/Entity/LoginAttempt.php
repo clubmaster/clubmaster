@@ -13,11 +13,6 @@ class LoginAttempt
     private $id;
 
     /**
-     * @var integer $user_id
-     */
-    private $user_id;
-
-    /**
      * @var string $username
      */
     private $username;
@@ -42,6 +37,11 @@ class LoginAttempt
      */
     private $login_failed;
 
+    /**
+     * @var Club\UserBundle\Entity\User
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -51,26 +51,6 @@ class LoginAttempt
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user_id
-     *
-     * @param integer $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-    }
-
-    /**
-     * Get user_id
-     *
-     * @return integer $userId
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 
     /**
@@ -171,5 +151,25 @@ class LoginAttempt
     public function getLoginFailed()
     {
         return $this->login_failed;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

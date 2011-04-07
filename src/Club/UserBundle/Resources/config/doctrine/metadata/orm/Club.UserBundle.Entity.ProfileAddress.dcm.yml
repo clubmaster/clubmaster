@@ -7,7 +7,6 @@ Club\UserBundle\Entity\ProfileAddress:
       id: true
       generator:
         strategy: AUTO
-    profile_id: { type: integer, nullable: false }
     street: { type: string(255) }
     suburl: { type: string(255) }
     postal_code: { type: string(255) }
@@ -16,4 +15,7 @@ Club\UserBundle\Entity\ProfileAddress:
     country: { type: string(255) }
     contact_type: { type: string(20), nullable: false }
     is_default: { type: boolean, nullable: false }
+  manyToOne:
+    profile:
+      targetEntity: Profile
   lifecycleCallbacks: {  }

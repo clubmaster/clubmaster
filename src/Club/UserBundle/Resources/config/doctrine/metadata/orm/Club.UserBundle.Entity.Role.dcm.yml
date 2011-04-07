@@ -8,4 +8,13 @@ Club\UserBundle\Entity\Role:
       generator:
         strategy: AUTO
     role_name: { type: string(255), nullable: false }
+  manyToMany:
+    users:
+      targetEntity: User
+  manyToMany:
+    groups:
+      targetEntity: Group
+  manyToMany:
+    products:
+      targetEntity: Club\ShopBundle\Entity\ShopProduct
   lifecycleCallbacks: {  }

@@ -1,0 +1,16 @@
+Club\UserBundle\Entity\Currency:
+  type: entity
+  table: club_currency
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name: { type: string }
+    code: { type: string }
+    symbol_left: { type: string }
+    symbol_right: { type: string }
+    decimal_places: { type: string }
+    value: { type: float }
+  lifecycleCallbacks: {  }

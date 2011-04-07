@@ -2,12 +2,10 @@
 
 namespace Club\UserBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * Club\UserBundle\Entity\User
  */
-class User implements UserInterface
+class User
 {
     /**
      * @var integer $id
@@ -23,11 +21,6 @@ class User implements UserInterface
      * @var string $password
      */
     private $password;
-
-    /**
-     * @var string $language_id
-     */
-    private $language_id;
 
     /**
      * @var date $last_login_time
@@ -85,15 +78,20 @@ class User implements UserInterface
     private $profile;
 
     /**
-     * @var Club\UserBundle\Entity\Role
+     * @var Club\UserBundle\Entity\Language
      */
-    private $user_roles;
+    private $language;
+
+    /**
+     * @var Club\MailBundle\Entity\Mail
+     */
+    private $mails;
 
     public function __construct()
     {
-        $this->user_roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -142,26 +140,6 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Set language_id
-     *
-     * @param string $languageId
-     */
-    public function setLanguageId($languageId)
-    {
-        $this->language_id = $languageId;
-    }
-
-    /**
-     * Get language_id
-     *
-     * @return string $languageId
-     */
-    public function getLanguageId()
-    {
-        return $this->language_id;
     }
 
     /**
@@ -385,51 +363,42 @@ class User implements UserInterface
     }
 
     /**
-     * Add user_roles
+     * Set language
      *
-     * @param Club\UserBundle\Entity\Role $userRoles
+     * @param Club\UserBundle\Entity\Language $language
      */
-    public function addUserRoles(\Club\UserBundle\Entity\Role $userRoles)
+    public function setLanguage(\Club\UserBundle\Entity\Language $language)
     {
-        $this->user_roles[] = $userRoles;
+        $this->language = $language;
     }
 
     /**
-     * Get user_roles
+     * Get language
      *
-     * @return Doctrine\Common\Collections\Collection $userRoles
+     * @return Club\UserBundle\Entity\Language $language
      */
-    public function getUserRoles()
+    public function getLanguage()
     {
-        return $this->user_roles;
+        return $this->language;
     }
 
     /**
-     * Erases the user credentials.
+     * Add mails
+     *
+     * @param Club\MailBundle\Entity\Mail $mails
      */
-    public function eraseCredentials()
+    public function addMails(\Club\MailBundle\Entity\Mail $mails)
     {
-
+        $this->mails[] = $mails;
     }
 
     /**
-     * Gets an array of roles.
-     * 
-     * @return array An array of Role objects
+     * Get mails
+     *
+     * @return Doctrine\Common\Collections\Collection $mails
      */
-    public function getRoles()
+    public function getMails()
     {
-      return $this->getUserRoles()->toArray();
-    }
-
-    /**
-     * Compares this user to another to determine if they are the same.
-     * 
-     * @param UserInterface $user The user
-     * @return boolean True if equal, false othwerwise.
-     */
-    public function equals(UserInterface $user)
-    {
-      return md5($this->getUsername()) == md5($user->getUsername());
+        return $this->mails;
     }
 }

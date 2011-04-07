@@ -48,6 +48,8 @@ doctrine:
             default:
                 mappings:
                     ClubUser: ~
+                    ClubMail: ~
+                    ClubShop: ~
 
 # Swiftmailer Configuration
 swiftmailer:

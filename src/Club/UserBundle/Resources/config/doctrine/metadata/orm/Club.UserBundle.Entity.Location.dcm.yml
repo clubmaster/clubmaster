@@ -8,4 +8,13 @@ Club\UserBundle\Entity\Location:
       generator:
         strategy: AUTO
     location_name: { type: string(255), nullable: false }
+  manyToOne:
+    location:
+      targetEntity: Location
+  manyToMany:
+    mails:
+      targetEntity: Club\ShopBundle\Entity\Mail
+  manyToMany:
+    groups:
+      targetEntity: Group
   lifecycleCallbacks: {  }

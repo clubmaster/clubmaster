@@ -13,9 +13,9 @@ class Group
     private $id;
 
     /**
-     * @var string $grup_name
+     * @var string $group_name
      */
-    private $grup_name;
+    private $group_name;
 
     /**
      * @var string $group_type
@@ -42,7 +42,21 @@ class Group
      */
     private $is_active;
 
+    /**
+     * @var Club\UserBundle\Entity\Group
+     */
+    private $group;
 
+    /**
+     * @var Club\UserBundle\Entity\Role
+     */
+    private $role;
+
+    public function __construct()
+    {
+        $this->role = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -54,23 +68,23 @@ class Group
     }
 
     /**
-     * Set grup_name
+     * Set group_name
      *
-     * @param string $grupName
+     * @param string $groupName
      */
-    public function setGrupName($grupName)
+    public function setGroupName($groupName)
     {
-        $this->grup_name = $grupName;
+        $this->group_name = $groupName;
     }
 
     /**
-     * Get grup_name
+     * Get group_name
      *
-     * @return string $grupName
+     * @return string $groupName
      */
-    public function getGrupName()
+    public function getGroupName()
     {
-        return $this->grup_name;
+        return $this->group_name;
     }
 
     /**
@@ -172,29 +186,44 @@ class Group
     {
         return $this->is_active;
     }
-    /**
-     * @var string $group_name
-     */
-    private $group_name;
-
 
     /**
-     * Set group_name
+     * Set group
      *
-     * @param string $groupName
+     * @param Club\UserBundle\Entity\Group $group
      */
-    public function setGroupName($groupName)
+    public function setGroup(\Club\UserBundle\Entity\Group $group)
     {
-        $this->group_name = $groupName;
+        $this->group = $group;
     }
 
     /**
-     * Get group_name
+     * Get group
      *
-     * @return string $groupName
+     * @return Club\UserBundle\Entity\Group $group
      */
-    public function getGroupName()
+    public function getGroup()
     {
-        return $this->group_name;
+        return $this->group;
+    }
+
+    /**
+     * Add role
+     *
+     * @param Club\UserBundle\Entity\Role $role
+     */
+    public function addRole(\Club\UserBundle\Entity\Role $role)
+    {
+        $this->role[] = $role;
+    }
+
+    /**
+     * Get role
+     *
+     * @return Doctrine\Common\Collections\Collection $role
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

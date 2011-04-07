@@ -1,0 +1,15 @@
+Club\UserBundle\Entity\WhoisOnline:
+  type: entity
+  table: club_whois_online
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+      ip_address: { type: string }
+      url: { type: string }
+  manyToOne:
+    user:
+      targetEntity: User
+  lifecycleCallbacks: {  }

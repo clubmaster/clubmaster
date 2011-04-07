@@ -17,7 +17,21 @@ class Location
      */
     private $location_name;
 
+    /**
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
 
+    /**
+     * @var Club\UserBundle\Entity\Group
+     */
+    private $groups;
+
+    public function __construct()
+    {
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -46,5 +60,45 @@ class Location
     public function getLocationName()
     {
         return $this->location_name;
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location $location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroups(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return Doctrine\Common\Collections\Collection $groups
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

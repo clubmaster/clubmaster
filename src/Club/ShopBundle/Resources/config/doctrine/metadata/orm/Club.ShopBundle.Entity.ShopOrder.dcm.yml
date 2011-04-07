@@ -1,0 +1,25 @@
+Club\ShopBundle\Entity\ShopOrder:
+  type: entity
+  table: club_shop_order
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    order_memo: { type: string }
+    order_currency: { type: string }
+    order_currency_value: { type: string }
+  manyToOne:
+    user:
+      targetEntity: Club\UserBundle\Entity\User
+  manyToOne:
+    shop_shipping:
+      targetEntity: ShopShipping
+  manyToOne:
+    shop_order_status_id:
+      targetEntity: ShopOrderStatus
+  manyToOne:
+    shop_payment_method:
+      targetEntity: ShopPaymentMethod
+  lifecycleCallbacks: {  }

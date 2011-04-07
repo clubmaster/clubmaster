@@ -7,10 +7,12 @@ Club\UserBundle\Entity\LoginAttempt:
       id: true
       generator:
         strategy: AUTO
-    user_id: { type: integer }
     username: { type: string(255) }
     session: { type: string(255) }
     ip_address: { type: string(100), nullable: false }
     hostname: { type: string(100) }
     login_failed: { type: boolean, nullable: false }
+  manyToOne:
+    user:
+      targetEntity: User
   lifecycleCallbacks: {  }

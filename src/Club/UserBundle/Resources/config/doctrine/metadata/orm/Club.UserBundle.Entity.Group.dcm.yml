@@ -13,4 +13,16 @@ Club\UserBundle\Entity\Group:
     min_age: { type: integer, nullable: true }
     max_age: { type: integer, nullable: true }
     is_active: { type: boolean, nullable: false, default: true }
+  manyToOne:
+    group:
+      targetEntity: Group
+  manyToMany:
+    users:
+      targetEntity: User
+  manyToMany:
+    location:
+      targetEntity: Location
+  manyToMany:
+    role:
+      targetEntity: Role
   lifecycleCallbacks: {  }

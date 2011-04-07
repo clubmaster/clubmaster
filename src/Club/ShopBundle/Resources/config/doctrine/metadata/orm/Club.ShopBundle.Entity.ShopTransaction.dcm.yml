@@ -1,0 +1,18 @@
+Club\ShopBundle\Entity\ShopTransaction:
+  type: entity
+  table: club_shop_transaction
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    transaction_code: { type: string }
+    transaction_return_value: { type: string }
+  manyToOne:
+    shop_order:
+      targetEntity: ShopOrder
+  manyToOne:
+    shop_transaction_status:
+      targetEntity: ShopTransactionStatus
+  lifecycleCallbacks: {  }

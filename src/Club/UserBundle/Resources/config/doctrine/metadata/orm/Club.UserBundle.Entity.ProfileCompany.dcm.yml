@@ -7,8 +7,10 @@ Club\UserBundle\Entity\ProfileCompany:
       id: true
       generator:
         strategy: AUTO
-    profile_id: { type: integer, nullable: false }
     company_name: { type: string(255), nullable: false }
     cvr: { type: string(50) }
     is_default: { type: boolean, nullable: false }
+  manyToOne:
+    profile:
+      targetEntity: Profile
   lifecycleCallbacks: {  }

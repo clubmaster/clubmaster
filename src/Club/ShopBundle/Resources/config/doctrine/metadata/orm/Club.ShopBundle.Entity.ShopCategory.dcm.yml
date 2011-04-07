@@ -1,0 +1,24 @@
+Club\ShopBundle\Entity\ShopCategory:
+  type: entity
+  table: club_shop_category
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name: { type: string }
+    description: { type: text }
+  manyToOne:
+    image:
+      targetEntity: Image
+  manyToOne:
+    shop_category:
+      targetEntity: ShopCategory
+  manyToMany:
+    shop_product:
+      targetEntity: ShopProduct
+  manyToOne:
+    shop_module:
+      targetEntity: ShopModule
+  lifecycleCallbacks: {  }

@@ -7,8 +7,10 @@ Club\UserBundle\Entity\ProfileEmail:
       id: true
       generator:
         strategy: AUTO
-    profile_id: { type: integer, nullable: false }
     email_address: { type: string(255), nullable: false }
     contact_type: { type: string(20), nullable: false }
     is_default: { type: boolean, nullable: false }
+  manyToOne:
+    profile:
+      targetEntity: Profile
   lifecycleCallbacks: {  }

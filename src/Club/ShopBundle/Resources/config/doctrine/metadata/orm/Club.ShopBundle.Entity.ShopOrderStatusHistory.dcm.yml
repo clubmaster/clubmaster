@@ -1,0 +1,17 @@
+Club\ShopBundle\Entity\ShopOrderStatusHistory:
+  type: entity
+  table: club_shop_order_status_history
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    note: { type: text }
+  manyToOne:
+    shop_order_id:
+      targetEntity: ShopOrder
+  manyToOne:
+    shop_order_status:
+      targetEntity: ShopOrderStatus
+  lifecycleCallbacks: {  }

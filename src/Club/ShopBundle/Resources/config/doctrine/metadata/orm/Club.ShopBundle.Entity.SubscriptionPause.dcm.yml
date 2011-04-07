@@ -1,0 +1,15 @@
+Club\ShopBundle\Entity\SubscriptionPause:
+  type: entity
+  table: club_subscription_pause
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    start_date: { type: datetime }
+    expire_date: { type: datetime }
+  manyToOne:
+    subscription:
+      targetEntity: Subscription
+  lifecycleCallbacks: {  }

@@ -1,0 +1,18 @@
+Club\MailBundle\Entity\MailAttachment:
+  type: entity
+  table: club_mail_attachment
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    file_path: { type: string }
+    file_name: { type: string }
+    file_type: { type: string }
+    file_size: { type: string }
+    file_hash: { type: string }
+  manyToOne:
+    mail:
+      targetEntity: Mail
+  lifecycleCallbacks: {  }

@@ -11,9 +11,5 @@ Club\UserBundle\Entity\Profile:
     last_name: { type: string(255), nullable: true }
   oneToOne:
     user:
-      targetEntity: Club\UserBundle\Entity\User
-      cascade: [remove]
-      joinColumn:
-        name: user_id
-        referencedColumnName: id
+      targetEntity: User
   lifecycleCallbacks: {  }
