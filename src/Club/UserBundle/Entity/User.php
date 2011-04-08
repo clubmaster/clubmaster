@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Entity;
 
+use DateTime;
+
 /**
  * Club\UserBundle\Entity\User
  */
@@ -91,7 +93,7 @@ class User
     {
         $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -400,5 +402,21 @@ class User
     public function getMails()
     {
         return $this->mails;
+    }
+    /**
+     * @orm:prePersist
+     */
+    public function prePersist()
+    {
+      // Add your code here
+      $this->setPassword('1234');
+      $this->setSalt(hash('sha1',uniqid()));
+      $this->setUsername(1);
+      $this->setEnabled(1);
+      $this->setAlgorithm('sha512');
+      $this->setLocked(0);
+      $this->setExpired(0);
+      $this->setCreatedAt(new DateTime());
+      $this->setUpdatedAt(new DateTime());
     }
 }

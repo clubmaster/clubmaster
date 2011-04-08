@@ -4,6 +4,8 @@ namespace Club\RestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Club\UserBundle\Entity\User;
+use Club\UserBundle\Entity\Profile;
 
 class DefaultController extends Controller
 {
@@ -13,6 +15,24 @@ class DefaultController extends Controller
    */
   public function addUserAction()
   {
+    $user = new User();
+
+    $em = $this->get('doctrine.orm.entity_manager');
+    $em->persist($user);
+    $em->flush();
+
+    $profile = new Profile();
+    $profile->setUser($user);
+    $profile->setFirstName($this->get('request')->get('first_name'));
+    $profile->setLastName($this->get('request')->get('last_name'));
+
+    $em->persist($profile);
+    $em->flush();
+
+    $user->setProfile($profile);
+    $em->persist($user);
+    $em->flush();
+
     return $this->renderJSon();
   }
 

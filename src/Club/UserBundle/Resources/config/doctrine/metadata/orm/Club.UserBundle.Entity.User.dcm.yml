@@ -31,4 +31,5 @@ Club\UserBundle\Entity\User:
   manyToMany:
     mails:
       targetEntity: Club\MailBundle\Entity\Mail
-  lifecycleCallbacks: {  }
+  lifecycleCallbacks:
+    prePersist: [ prePersist ]
