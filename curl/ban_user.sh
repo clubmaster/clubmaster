@@ -5,4 +5,4 @@ if [ -z $1 ]; then
   exit
 fi
 
-curl http://localhost/clubmaster_v2/web/app_dev.php/rest/get/user/$1
+curl http://localhost/clubmaster_v2/web/app_dev.php/rest/ban/user/$1

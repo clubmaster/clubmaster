@@ -14,4 +14,5 @@ Club\UserBundle\Entity\Ban:
   manyToOne:
     user:
       targetEntity: User
-  lifecycleCallbacks: {  }
+  lifecycleCallbacks:
+    prePersist: [ prePersist ]

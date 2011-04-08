@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Entity;
 
+use DateTime;
+
 /**
  * Club\UserBundle\Entity\Ban
  */
@@ -146,5 +148,13 @@ class Ban
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @orm:prePersist
+     */
+    public function prePersist()
+    {
+      $this->setExpireDate(new DateTime(date('Y-m-d H:i:s',strtotime("+1 month"))));
     }
 }

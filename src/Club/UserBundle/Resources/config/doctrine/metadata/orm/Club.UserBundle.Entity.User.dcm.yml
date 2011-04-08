@@ -1,6 +1,7 @@
 Club\UserBundle\Entity\User:
   type: entity
   table: club_user
+  repositoryClass: Club\UserBundle\Repository\User
   fields:
     id:
       type: integer

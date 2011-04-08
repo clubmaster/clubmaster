@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Club\UserBundle\Entity\User;
 use Club\UserBundle\Entity\Profile;
+use Club\UserBundle\Entity\Ban;
 
 class DefaultController extends Controller
 {
@@ -63,11 +64,38 @@ class DefaultController extends Controller
   }
 
   /**
-   * @Route("/get/user")
+   * @Route("/get/users")
    */
   public function getUsersAction()
   {
-    return $this->renderJSon();
+    $em = $this->get('doctrine.orm.entity_manager');
+    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAll();
+
+    $res = array();
+    foreach ($users as $user) {
+      $res[] = $user->toArray();
+    }
+
+    return $this->renderJSon($res);
+  }
+
+  /**
+   * @Route("/ban/user/{id}")
+   */
+  public function banUserAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $user = $em->find('Club\UserBundle\Entity\User',$id);
+
+    $ban = new Ban();
+    $ban->setUser($user);
+    $ban->setType('user');
+    $ban->setValue($user->getId());
+
+    $em->persist($ban);
+    $em->flush();
+
+    return $this->renderJSon($user->toArray());
   }
 
   private function renderJSon($array=array(),$status_code="200")
@@ -78,5 +106,4 @@ class DefaultController extends Controller
 
     return $response;
   }
-
 }
