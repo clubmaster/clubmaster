@@ -22,6 +22,10 @@ Club\UserBundle\Entity\User:
   oneToOne:
     profile:
       targetEntity: Profile
+      joinColumn:
+        name: profile_id
+        referencedColumnName: id
+        onDelete: cascade
   manyToMany:
     roles:
       targetEntity: Role

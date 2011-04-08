@@ -419,4 +419,18 @@ class User
       $this->setCreatedAt(new DateTime());
       $this->setUpdatedAt(new DateTime());
     }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'username' => $this->getUsername(),
+        'created_at' => $this->getCreatedAt(),
+        'updated_at' => $this->getUpdatedAt(),
+        'profile' => array(
+          'first_name' => $this->getProfile()->getFirstName(),
+          'last_name' => $this->getProfile()->getLastName()
+        )
+      );
+    }
 }

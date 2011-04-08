@@ -12,4 +12,8 @@ Club\UserBundle\Entity\Profile:
   oneToOne:
     user:
       targetEntity: User
+      joinColumn:
+        name: user_id
+        referencedColumnName: id
+        onDelete: cascade
   lifecycleCallbacks: {  }

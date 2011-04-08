@@ -33,7 +33,7 @@ class DefaultController extends Controller
     $em->persist($user);
     $em->flush();
 
-    return $this->renderJSon();
+    return $this->renderJSon($user->toArray());
   }
 
   /**
@@ -44,15 +44,21 @@ class DefaultController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('Club\UserBundle\Entity\User',$id);
 
-    return $this->renderJSon($user);
+    return $this->renderJSon($user->toArray());
   }
 
   /**
    * @Route("/delete/user/{id}")
    * @Method("DELETE")
    */
-  public function deleteUserAction()
+  public function deleteUserAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $user = $em->find('Club\UserBundle\Entity\User',$id);
+
+    $em->remove($user);
+    $em->flush();
+
     return $this->renderJSon();
   }
 
