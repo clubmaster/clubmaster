@@ -147,4 +147,43 @@ class Subscription
     {
         return $this->user;
     }
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function addUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+    }
+    /**
+     * @var Club\UserBundle\Entity\User
+     */
+    private $users;
+
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUsers(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection $users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

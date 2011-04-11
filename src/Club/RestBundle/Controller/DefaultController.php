@@ -98,6 +98,23 @@ class DefaultController extends Controller
     return $this->renderJSon($user->toArray());
   }
 
+  /**
+   * @Route("/add/order")
+   * @Method("POST")
+   */
+  public function addOrder()
+  {
+    $order = new \Club\ShopBundle\Entity\ShopOrder();
+
+    $errors = $this->get('validator')->validate($order);
+
+    if (count($errors) > 0) {
+      return $this->renderJSon($errors,403);
+    }
+
+    return $this->renderJSon($order->toArray());
+  }
+
   private function renderJSon($array=array(),$status_code="200")
   {
     $response = new Response(json_encode($array));

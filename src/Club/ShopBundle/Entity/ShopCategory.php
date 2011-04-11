@@ -8,21 +8,30 @@ namespace Club\ShopBundle\Entity;
 class ShopCategory
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $name
      */
     private $name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var text $description
      */
     private $description;
 
     /**
+     *
      * @var Club\ShopBundle\Entity\ShopModule
      */
     private $shop_module;
@@ -36,7 +45,7 @@ class ShopCategory
     {
         $this->shop_product = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *

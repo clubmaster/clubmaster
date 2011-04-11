@@ -3,26 +3,36 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopCart
+ * @orm:Entity
  */
 class ShopCart
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="integer")
+     *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $session
      */
     private $session;
 
     /**
+     * @orm:ManyToOne(targetEntity("ShopCart"))
+     *
      * @var Club\ShopBundle\Entity\ShopProduct
      */
     private $product;

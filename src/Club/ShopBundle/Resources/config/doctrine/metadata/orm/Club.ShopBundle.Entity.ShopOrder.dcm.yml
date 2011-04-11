@@ -22,4 +22,5 @@ Club\ShopBundle\Entity\ShopOrder:
   manyToOne:
     shop_payment_method:
       targetEntity: ShopPaymentMethod
-  lifecycleCallbacks: {  }
+  lifecycleCallbacks:
+    prePersist: [ prePersist ]

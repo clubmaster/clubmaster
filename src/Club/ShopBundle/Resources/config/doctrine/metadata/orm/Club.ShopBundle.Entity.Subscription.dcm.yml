@@ -11,7 +11,7 @@ Club\ShopBundle\Entity\Subscription:
     expire_date: { type: datetime }
     allowed_pauses: { type: integer }
     auto_renewal: { type: boolean }
-  manyToOne:
-    user:
+  manyToMany:
+    users:
       targetEntity: Club\UserBundle\Entity\User
   lifecycleCallbacks: {  }
