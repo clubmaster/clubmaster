@@ -1,8 +1,8 @@
 INSERT INTO club_shop_order_status (status_name) VALUES \
-  ('Afventer'),
-  ('Behandler'),
-  ('Afsendt'),
-  ('Modtaget');
+  ('Pending'),
+  ('Processing'),
+  ('Preparing'),
+  ('Delivered');
 
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES \
   ('Fri fragt','Fri fragt',0);
