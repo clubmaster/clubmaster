@@ -3,31 +3,44 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\ProfilePhone
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\ProfilePhone")
+ * @orm:Table(name="club_profile_phone")
  */
 class ProfilePhone
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $number
      */
     private $number;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $contact_type
      */
     private $contact_type;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $is_default
      */
     private $is_default;
 
     /**
+     * @orm:ManyToOne(targetEntity="Profile")
+     *
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;

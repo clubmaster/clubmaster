@@ -3,41 +3,57 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\Currency
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Currency")
+ * @orm:Table(name="club_currency")
  */
 class Currency
 {
     /**
+     * @orm:id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $name
      */
     private $name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $code
      */
     private $code;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $symbol_left
      */
     private $symbol_left;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $symbol_right
      */
     private $symbol_right;
 
     /**
+     * @orm:Column(type="string")
      * @var string $decimal_places
      */
     private $decimal_places;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $value
      */
     private $value;

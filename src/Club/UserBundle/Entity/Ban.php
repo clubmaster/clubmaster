@@ -5,36 +5,50 @@ namespace Club\UserBundle\Entity;
 use DateTime;
 
 /**
- * Club\UserBundle\Entity\Ban
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Ban")
+ * @orm:Table(name="club_ban")
  */
 class Ban
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneradValue(strategy="AUTH")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $type
      */
     private $type;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $value
      */
     private $value;
 
     /**
+     * @orm:Column(type="datetime")
+     *
      * @var date $expire_date
      */
     private $expire_date;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var string $note
      */
     private $note;
 
     /**
+     * @orm:ManyToOne(targetEntity="User")
      * @var Club\UserBundle\Entity\User
      */
     private $user;

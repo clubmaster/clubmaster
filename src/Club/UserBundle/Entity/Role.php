@@ -3,30 +3,37 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\Role
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Role")
+ * @orm:Table(name="club_role")
  */
 class Role
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $role_name
      */
     private $role_name;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @orm:ManyToMany(targetEntity="User")
      */
-    private $products;
+    private $users;
 
-    public function __construct()
-    {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+    /**
+     * @orm:ManyToMany(targetEntity="Group")
+     */
+    private $groups;
+
     /**
      * Get id
      *
@@ -55,25 +62,5 @@ class Role
     public function getRoleName()
     {
         return $this->role_name;
-    }
-
-    /**
-     * Add products
-     *
-     * @param Club\ShopBundle\Entity\ShopProduct $products
-     */
-    public function addProducts(\Club\ShopBundle\Entity\ShopProduct $products)
-    {
-        $this->products[] = $products;
-    }
-
-    /**
-     * Get products
-     *
-     * @return Doctrine\Common\Collections\Collection $products
-     */
-    public function getProducts()
-    {
-        return $this->products;
     }
 }

@@ -3,56 +3,79 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\ProfileAddress
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\ProfileAddress")
+ * @orm:Table(name="club_profile_address")
  */
 class ProfileAddress
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $street
      */
     private $street;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $suburl
      */
     private $suburl;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $postal_code
      */
     private $postal_code;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $city
      */
     private $city;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $state
      */
     private $state;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $country
      */
     private $country;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $contact_type
      */
     private $contact_type;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $is_default
      */
     private $is_default;
 
     /**
+     * @orm:ManyToOne(targetEntity="Profile")
+     *
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;

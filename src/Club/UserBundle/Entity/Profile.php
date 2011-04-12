@@ -3,26 +3,37 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\Profile
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Profile")
+ * @orm:Table(name="club_profile")
  */
 class Profile
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $first_name
      */
     private $first_name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $last_name
      */
     private $last_name;
 
     /**
+     * @orm:OneToOne(targetEntity="User")
+     *
      * @var Club\UserBundle\Entity\User
      */
     private $user;

@@ -3,11 +3,15 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\WhoisOnline
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\WhoisOnline")
  */
 class WhoisOnline
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;

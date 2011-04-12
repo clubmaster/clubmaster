@@ -2,96 +2,128 @@
 
 namespace Club\UserBundle\Entity;
 
-use DateTime;
-
 /**
- * Club\UserBundle\Entity\User
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
+ * @orm:Table(name="club_user")
  */
 class User
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $username
      */
     private $username;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $password
      */
     private $password;
 
     /**
+     * @orm:Column(type="datetime")
+     *
      * @var date $last_login_time
      */
     private $last_login_time;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $last_login_ip
      */
     private $last_login_ip;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $enabled
      */
     private $enabled;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $algorithm
      */
     private $algorithm;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $salt
      */
     private $salt;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $locked
      */
     private $locked;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $expired
      */
     private $expired;
 
     /**
+     * @orm:Column(type="datetime")
+     *
      * @var date $expires_at
      */
     private $expires_at;
 
     /**
+     * @orm:Column(type="datetime")
+     *
      * @var date $created_at
      */
     private $created_at;
 
     /**
+     * @orm:Column(type="datetime")
+     *
      * @var date $updated_at
      */
     private $updated_at;
 
     /**
+     * @orm:OneToOne(targetEntity="Profile")
+     *
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
 
     /**
+     * @orm:ManyToOne(targetEntity="Language")
+     *
      * @var Club\UserBundle\Entity\Language
      */
     private $language;
 
     /**
-     * @var Club\MailBundle\Entity\Mail
+     * @orm:ManyToMany(targetEntity="Role")
+     *
+     * @var Club\UserBundle\Entity\Role
      */
-    private $mails;
+    private $roles;
 
     public function __construct()
     {
-        $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -385,25 +417,6 @@ class User
     }
 
     /**
-     * Add mails
-     *
-     * @param Club\MailBundle\Entity\Mail $mails
-     */
-    public function addMails(\Club\MailBundle\Entity\Mail $mails)
-    {
-        $this->mails[] = $mails;
-    }
-
-    /**
-     * Get mails
-     *
-     * @return Doctrine\Common\Collections\Collection $mails
-     */
-    public function getMails()
-    {
-        return $this->mails;
-    }
-    /**
      * @orm:prePersist
      */
     public function prePersist()
@@ -416,8 +429,8 @@ class User
       $this->setAlgorithm('sha512');
       $this->setLocked(0);
       $this->setExpired(0);
-      $this->setCreatedAt(new DateTime());
-      $this->setUpdatedAt(new DateTime());
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
     }
 
     public function toArray()

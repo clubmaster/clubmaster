@@ -3,45 +3,54 @@
 namespace Club\UserBundle\Entity;
 
 /**
- * Club\UserBundle\Entity\LoginAttempt
+ * @orm:Entity(repositoryClass="Club\UserBundle\Repository\LoginAttempt")
+ * @orm:Table(name="club_login_attempt")
  */
 class LoginAttempt
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $username
      */
     private $username;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $session
      */
     private $session;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $ip_address
      */
     private $ip_address;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $hostname
      */
     private $hostname;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $login_failed
      */
     private $login_failed;
-
-    /**
-     * @var Club\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -151,25 +160,5 @@ class LoginAttempt
     public function getLoginFailed()
     {
         return $this->login_failed;
-    }
-
-    /**
-     * Set user
-     *
-     * @param Club\UserBundle\Entity\User $user
-     */
-    public function setUser(\Club\UserBundle\Entity\User $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return Club\UserBundle\Entity\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }
