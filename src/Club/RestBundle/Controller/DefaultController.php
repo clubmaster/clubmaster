@@ -112,16 +112,7 @@ class DefaultController extends Controller
     return $this->renderJSon($order->toArray());
   }
 
-  private function renderJSon($array=array(),$status_code="200")
-  {
-    $response = new Response(json_encode($array));
-    $response->setStatusCode($status_code);
-    $response->headers->set('Content-Type','application/json');
-
-    return $response;
-  }
-
-  private function renderError($errors,$status_code="403")
+  protected function renderError($errors,$status_code="403")
   {
     $res = array();
     foreach ($errors as $error) {
@@ -133,5 +124,14 @@ class DefaultController extends Controller
     }
 
     return $this->renderJSon($res,$status_code);
+  }
+
+  protected function renderJSon($array=array(),$status_code="200")
+  {
+    $response = new Response(json_encode($array));
+    $response->setStatusCode($status_code);
+    $response->headers->set('Content-Type','application/json');
+
+    return $response;
   }
 }

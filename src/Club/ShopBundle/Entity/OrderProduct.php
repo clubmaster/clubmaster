@@ -3,10 +3,10 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderItem")
- * @orm:Table(name="club_shop_order_item")
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderProduct")
+ * @orm:Table(name="club_shop_order_product")
  */
-class OrderItem
+class OrderProduct
 {
     /**
      * @orm:Id

@@ -5,6 +5,7 @@ namespace Club\ShopBundle\Entity;
 /**
  * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Order")
  * @orm:Table(name="club_shop_order")
+ * @orm:HasLifecycleCallbacks
  */
 class Order
 {
@@ -56,7 +57,6 @@ class Order
 
     /**
      * @orm:ManyToOne(targetEntity="OrderStatus")
-     * @assert:NotBlank()
      *
      * @var Club\ShopBundle\Entity\OrderStatus
      */
@@ -71,11 +71,11 @@ class Order
     private $user;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderItem")
+     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderProduct")
      *
-     * @var Club\ShopBundle\Entity\OrderItem
+     * @var Club\ShopBundle\Entity\OrderProduct
      */
-    private $items;
+    private $products;
 
     /**
      * Get id
@@ -206,10 +206,9 @@ class Order
     }
 
     /**
-     * @orm:prePersist
+     * @orm:PrePersist
      */
     public function prePersist()
     {
-        // Add your code here
     }
 }

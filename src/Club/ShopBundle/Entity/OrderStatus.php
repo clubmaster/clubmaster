@@ -4,7 +4,7 @@ namespace Club\ShopBundle\Entity;
 
 /**
  * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderStatus")
- * @orm:Table(name="club_shop_order_statu")
+ * @orm:Table(name="club_shop_order_status")
  */
 class OrderStatus
 {
@@ -20,24 +20,9 @@ class OrderStatus
     /**
      * @orm:Column(type="string")
      *
-     * @var string $status
+     * @var string $status_name
      */
-    private $status;
-
-    /**
-     * @orm:Column(type="boolean")
-     *
-     * @var boolean $open
-     */
-    private $open;
-
-    /**
-     * @orm:Column(type="boolean")
-     *
-     * @var boolean $complete
-     */
-    private $complete;
-
+    private $status_name;
 
     /**
      * Get id
@@ -50,62 +35,22 @@ class OrderStatus
     }
 
     /**
-     * Set status
+     * Set status_name
      *
-     * @param string $status
+     * @param string $status_name
      */
-    public function setStatus($status)
+    public function setStatusName($statusName)
     {
-        $this->status = $status;
+        $this->status_name = $statusName;
     }
 
     /**
-     * Get status
+     * Get status_name
      *
-     * @return string $status
+     * @return string $status_name
      */
-    public function getStatus()
+    public function getStatusName()
     {
-        return $this->status;
-    }
-
-    /**
-     * Set open
-     *
-     * @param boolean $open
-     */
-    public function setOpen($open)
-    {
-        $this->open = $open;
-    }
-
-    /**
-     * Get open
-     *
-     * @return boolean $open
-     */
-    public function getOpen()
-    {
-        return $this->open;
-    }
-
-    /**
-     * Set complete
-     *
-     * @param boolean $complete
-     */
-    public function setComplete($complete)
-    {
-        $this->complete = $complete;
-    }
-
-    /**
-     * Get complete
-     *
-     * @return boolean $complete
-     */
-    public function getComplete()
-    {
-        return $this->complete;
+        return $this->status_name;
     }
 }

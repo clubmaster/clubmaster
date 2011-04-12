@@ -20,9 +20,9 @@ class Category
     /**
      * @orm:Column(type="string")
      *
-     * @var string $name
+     * @var string $category_name
      */
-    private $name;
+    private $category_name;
 
     /**
      * @orm:Column(type="string")
@@ -73,23 +73,23 @@ class Category
     }
 
     /**
-     * Set name
+     * Set categoryName
      *
-     * @param string $name
+     * @param string $categoryName
      */
-    public function setName($name)
+    public function setCategoryName($categoryName)
     {
-        $this->name = $name;
+        $this->category_name = $categoryName;
     }
 
     /**
-     * Get name
+     * Get categoryName
      *
-     * @return string $name
+     * @return string $categoryName
      */
-    public function getName()
+    public function getCategoryName()
     {
-        return $this->name;
+        return $this->category_name;
     }
 
     /**

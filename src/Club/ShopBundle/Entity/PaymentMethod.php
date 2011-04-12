@@ -20,9 +20,9 @@ class PaymentMethod
     /**
      * @orm:Column(type="string")
      *
-     * @var string $payment_method
+     * @var string $payment_method_name
      */
-    private $payment_method;
+    private $payment_method_name;
 
 
     /**
@@ -36,22 +36,22 @@ class PaymentMethod
     }
 
     /**
-     * Set payment_method
+     * Set payment_method_name
      *
-     * @param string $paymentMethod
+     * @param string $paymentMethodName
      */
-    public function setPaymentMethod($paymentMethod)
+    public function setPaymentMethodName($paymentMethodName)
     {
-        $this->payment_method = $paymentMethod;
+        $this->payment_method_name= $paymentMethodName;
     }
 
     /**
-     * Get payment_method
+     * Get payment_method_name
      *
-     * @return string $paymentMethod
+     * @return string $paymentMethodName
      */
-    public function getPaymentMethod()
+    public function getPaymentMethodName()
     {
-        return $this->payment_method;
+        return $this->payment_method_name;
     }
 }
