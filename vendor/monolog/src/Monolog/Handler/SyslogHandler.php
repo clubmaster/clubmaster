@@ -30,7 +30,7 @@ use Monolog\Logger;
 class SyslogHandler extends AbstractHandler
 {
     /**
-     * Translate Monolog log levels to syslog log priorities.
+     * Translates Monolog log levels to syslog log priorities.
      */
     private $logLevels = array(
         Logger::DEBUG   => LOG_DEBUG,
@@ -56,6 +56,12 @@ class SyslogHandler extends AbstractHandler
         'uucp'     => LOG_UUCP,
     );
 
+    /**
+     * @param string $ident
+     * @param mixed $facility
+     * @param integer $level The minimum logging level at which this handler will be triggered
+     * @param Boolean $bubble Whether the messages that are handled can bubble up the stack or not
+     */
     public function __construct($ident, $facility = LOG_USER, $level = Logger::DEBUG, $bubble = true)
     {
         parent::__construct($level, $bubble);
@@ -83,13 +89,19 @@ class SyslogHandler extends AbstractHandler
         }
     }
 
-    public function write(array $record)
-    {
-        syslog($this->logLevels[$record['level']], (string) $record['message']);
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function close()
     {
         closelog();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function write(array $record)
+    {
+        syslog($this->logLevels[$record['level']], (string) $record['message']);
     }
 }

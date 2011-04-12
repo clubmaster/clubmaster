@@ -23,15 +23,22 @@ use Monolog\Logger;
  */
 class NullHandler extends AbstractHandler
 {
+    /**
+     * {@inheritdoc}
+     */
     public function handle(array $record)
     {
         if ($record['level'] < $this->level) {
             return false;
         }
+
         return false === $this->bubble;
     }
 
-    public function write(array $record)
+    /**
+     * {@inheritdoc}
+     */
+    protected function write(array $record)
     {
     }
 }

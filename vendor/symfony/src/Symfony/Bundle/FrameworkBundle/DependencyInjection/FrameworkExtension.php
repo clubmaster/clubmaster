@@ -15,12 +15,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  * FrameworkExtension.
@@ -56,9 +56,8 @@ class FrameworkExtension extends Extension
         }
 
         $processor = new Processor();
-        $configuration = new Configuration();
-
-        $config = $processor->process($configuration->getConfigTree($container->getParameter('kernel.debug')), $configs);
+        $configuration = new Configuration($container->getParameter('kernel.debug'));
+        $config = $processor->processConfiguration($configuration, $configs);
 
         $container->setParameter('kernel.cache_warmup', $config['cache_warmer']);
 
@@ -85,7 +84,9 @@ class FrameworkExtension extends Extension
 
         if (!empty($config['test'])) {
             $loader->load('test.xml');
-            $config['session']['storage_id'] = 'array';
+            if (isset($config['session'])) {
+                $config['session']['storage_id'] = 'array';
+            }
         }
 
         if (isset($config['csrf_protection'])) {
@@ -489,6 +490,15 @@ class FrameworkExtension extends Extension
             array_unshift($arguments[0], new Reference('validator.mapping.loader.annotation_loader'));
             $loaderChain->setArguments($arguments);
         }
+
+        if (isset($config['cache'])) {
+            $container->getDefinition('validator.mapping.class_metadata_factory')
+                ->setArgument(1, new Reference('validator.mapping.cache.'.$config['cache']));
+            $container->setParameter(
+                'validator.mapping.cache.prefix',
+                'validator_'.md5($container->getParameter('kernel.root_dir'))
+            );
+        }
     }
 
     private function getValidatorXmlMappingFiles(ContainerBuilder $container)
@@ -514,7 +524,7 @@ class FrameworkExtension extends Extension
         foreach ($container->getParameter('kernel.bundles') as $bundle) {
             $reflection = new \ReflectionClass($bundle);
             if (file_exists($file = dirname($reflection->getFilename()).'/Resources/config/validation.yml')) {
-                $yamlMappingFiles[] = realpath($file);
+                $files[] = realpath($file);
                 $container->addResource(new FileResource($file));
             }
         }

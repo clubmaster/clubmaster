@@ -18,7 +18,12 @@ namespace Monolog\Processor;
  */
 class WebProcessor
 {
-    public function __invoke($record, $handler)
+    /**
+     * @param array $record
+     * @param HandlerInterface $handler
+     * @return array
+     */
+    public function __invoke(array $record)
     {
         $record['extra'] = array_merge(
             $record['extra'],
@@ -28,6 +33,7 @@ class WebProcessor
                 'method' => $_SERVER['REQUEST_METHOD'],
             )
         );
+
         return $record;
     }
 }

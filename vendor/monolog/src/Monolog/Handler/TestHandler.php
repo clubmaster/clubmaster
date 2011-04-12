@@ -82,10 +82,14 @@ class TestHandler extends AbstractHandler
                 return true;
             }
         }
+
         return false;
     }
 
-    public function write(array $record)
+    /**
+     * {@inheritdoc}
+     */
+    protected function write(array $record)
     {
         $this->recordsByLevel[$record['level']][] = $record;
         $this->records[] = $record;
