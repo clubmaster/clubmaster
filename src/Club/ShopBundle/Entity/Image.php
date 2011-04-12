@@ -3,36 +3,51 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopImage
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Image")
+ * @orm:Table(name="club_shop_image")
  */
-class ShopImage
+class Image
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_path
      */
     private $file_path;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_name
      */
     private $file_name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_type
      */
     private $file_type;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_size
      */
     private $file_size;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_hash
      */
     private $file_hash;

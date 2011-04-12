@@ -3,45 +3,74 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopProduct
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Product")
+ * @orm:Table(name="club_shop_product")
  */
-class ShopProduct
+class Product
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $product_name
      */
     private $product_name;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var text $description
      */
     private $description;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $price
      */
     private $price;
 
     /**
+     * @orm:Column(type="integer")
+     *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
+     * @orm:ManyToMany(targetEntity="Club\UserBundle\Entity\Role")
+     *
      * @var Club\UserBundle\Entity\Role
      */
     private $roles;
+
+    /**
+     * @orm:ManyToMany(targetEntity="Category")
+     *
+     * @var Club\ShopBundle\Entity\Category
+     */
+    private $categories;
+
+    /**
+     * @orm:ManyToMany(targetEntity="Value")
+     *
+     * @var Club\ShopBundle\Entity\Value
+     */
+    private $values;
 
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *

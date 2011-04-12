@@ -3,26 +3,37 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\SubscriptionPause
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\SubscriptionPause")
+ * @orm:Table(name="club_shop_subscription_pause")
  */
 class SubscriptionPause
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
+     * @orm:ManyToOne(targetEntity="Subscription")
+     *
      * @var Club\ShopBundle\Entity\Subscription
      */
     private $subscription;

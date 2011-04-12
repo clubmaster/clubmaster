@@ -3,40 +3,54 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\Subscription
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
+ * @orm:Table(name="club_shop_subscription")
  */
 class Subscription
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var integer $allowed_pauses
      */
     private $allowed_pauses;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $auto_renewal
      */
     private $auto_renewal;
 
     /**
+     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     *
      * @var Club\UserBundle\Entity\User
      */
     private $user;
-
 
     /**
      * Get id
@@ -126,64 +140,5 @@ class Subscription
     public function getAutoRenewal()
     {
         return $this->auto_renewal;
-    }
-
-    /**
-     * Set user
-     *
-     * @param Club\UserBundle\Entity\User $user
-     */
-    public function setUser(\Club\UserBundle\Entity\User $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return Club\UserBundle\Entity\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-    public function __construct()
-    {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add user
-     *
-     * @param Club\UserBundle\Entity\User $user
-     */
-    public function addUser(\Club\UserBundle\Entity\User $user)
-    {
-        $this->user[] = $user;
-    }
-    /**
-     * @var Club\UserBundle\Entity\User
-     */
-    private $users;
-
-
-    /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUsers(\Club\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection $users
-     */
-    public function getUsers()
-    {
-        return $this->users;
     }
 }

@@ -3,34 +3,48 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopSpecial
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Special")
+ * @orm:Table(name="club_shop_special")
+ *
  */
-class ShopSpecial
+class Special
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $price
      */
     private $price;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @orm:ManyToOne(targetEntity="Product")
+     *
+     * @var Club\ShopBundle\Entity\Product
      */
-    private $shop_product;
+    private $product;
 
 
     /**
@@ -104,22 +118,22 @@ class ShopSpecial
     }
 
     /**
-     * Set shop_product
+     * Set product
      *
-     * @param Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @param Club\ShopBundle\Entity\Product $Product
      */
-    public function setShopProduct(\Club\ShopBundle\Entity\ShopProduct $shopProduct)
+    public function setProduct(\Club\ShopBundle\Entity\Product $Product)
     {
-        $this->shop_product = $shopProduct;
+        $this->product = $Product;
     }
 
     /**
-     * Get shop_product
+     * Get product
      *
-     * @return Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @return Club\ShopBundle\Entity\Product $Product
      */
-    public function getShopProduct()
+    public function getProduct()
     {
-        return $this->shop_product;
+        return $this->product;
     }
 }

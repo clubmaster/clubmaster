@@ -3,29 +3,40 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopTransaction
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Transaction")
+ * @orm:Table(name="club_shop_transaction")
  */
-class ShopTransaction
+class Transaction
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $transaction_code
      */
     private $transaction_code;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $transaction_return_value
      */
     private $transaction_return_value;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopTransactionStatus
+     * @orm:ManyToOne(targetEntity="TransactionStatus")
+     *
+     * @var Club\ShopBundle\Entity\TransactionStatus
      */
-    private $shop_transaction_status;
+    private $transaction_status;
 
 
     /**
@@ -79,22 +90,22 @@ class ShopTransaction
     }
 
     /**
-     * Set shop_transaction_status
+     * Set transaction_status
      *
-     * @param Club\ShopBundle\Entity\ShopTransactionStatus $shopTransactionStatus
+     * @param Club\ShopBundle\Entity\TransactionStatus $TransactionStatus
      */
-    public function setShopTransactionStatus(\Club\ShopBundle\Entity\ShopTransactionStatus $shopTransactionStatus)
+    public function setTransactionStatus(\Club\ShopBundle\Entity\TransactionStatus $TransactionStatus)
     {
-        $this->shop_transaction_status = $shopTransactionStatus;
+        $this->transaction_status = $TransactionStatus;
     }
 
     /**
-     * Get shop_transaction_status
+     * Get transaction_status
      *
-     * @return Club\ShopBundle\Entity\ShopTransactionStatus $shopTransactionStatus
+     * @return Club\ShopBundle\Entity\TransactionStatus $TransactionStatus
      */
-    public function getShopTransactionStatus()
+    public function getTransactionStatus()
     {
-        return $this->shop_transaction_status;
+        return $this->transaction_status;
     }
 }

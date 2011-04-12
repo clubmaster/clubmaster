@@ -3,31 +3,44 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\TicketCoupon
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\TicketCoupon")
+ * @orm:Table(name="club_shop_ticket_coupon")
  */
 class TicketCoupon
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="integer")
+     *
      * @var integer $tickets
      */
     private $tickets;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
+     * @orm:Column(type="date")
+     *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
+     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     *
      * @var Club\UserBundle\Entity\User
      */
     private $user;

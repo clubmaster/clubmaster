@@ -3,26 +3,37 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopModule
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Module")
+ * @orm:Table(name="club_shop_module")
  */
-class ShopModule
+class Module
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $name
      */
     private $name;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var text $description
      */
     private $description;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $path
      */
     private $path;

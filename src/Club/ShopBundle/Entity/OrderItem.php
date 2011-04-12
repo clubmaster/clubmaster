@@ -3,44 +3,68 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopOrderItem
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderItem")
+ * @orm:Table(name="club_shop_order_item")
  */
-class ShopOrderItem
+class OrderItem
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="integer")
+     *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $price
      */
     private $price;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $tax
      */
     private $tax;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $name
      */
     private $name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $model
      */
     private $model;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @orm:ManyToOne(targetEntity="Product")
+     *
+     * @var Club\ShopBundle\Entity\Product
      */
-    private $shop_product;
+    private $product;
+
+    /**
+     * @orm:ManyToOne(targetEntity="Order")
+     *
+     * @var Club\ShopBundle\Entity\Order
+     */
+    private $order;
 
 
     /**
@@ -154,22 +178,22 @@ class ShopOrderItem
     }
 
     /**
-     * Set shop_product
+     * Set product
      *
-     * @param Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @param Club\ShopBundle\Entity\Product $Product
      */
-    public function setShopProduct(\Club\ShopBundle\Entity\ShopProduct $shopProduct)
+    public function setProduct(\Club\ShopBundle\Entity\Product $Product)
     {
-        $this->shop_product = $shopProduct;
+        $this->product = $Product;
     }
 
     /**
-     * Get shop_product
+     * Get product
      *
-     * @return Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @return Club\ShopBundle\Entity\Product $Product
      */
-    public function getShopProduct()
+    public function getProduct()
     {
-        return $this->shop_product;
+        return $this->product;
     }
 }

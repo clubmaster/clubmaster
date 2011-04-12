@@ -3,9 +3,10 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopCategory
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Category")
+ * @orm:Table(name="club_shop_category")
  */
-class ShopCategory
+class Category
 {
     /**
      * @orm:Id
@@ -31,19 +32,34 @@ class ShopCategory
     private $description;
 
     /**
+     * @orm:ManyToOne(targetEntity="Module")
      *
-     * @var Club\ShopBundle\Entity\ShopModule
+     * @var Club\ShopBundle\Entity\Module
      */
-    private $shop_module;
+    private $module;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @orm:ManyToOne(targetEntity="Image")
+     *
+     * @var Club\ShopBundle\Entity\Image
      */
-    private $shop_product;
+    private $image;
+
+    /**
+     * @orm:ManyToOne(targetEntity="Category")
+     *
+     * @var Club\ShopBundle\Entity\Category
+     */
+    private $category;
+
+    /**
+     * @var Club\ShopBundle\Entity\Product
+     */
+    private $products;
 
     public function __construct()
     {
-        $this->shop_product = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -97,42 +113,42 @@ class ShopCategory
     }
 
     /**
-     * Set shop_module
+     * Set module
      *
-     * @param Club\ShopBundle\Entity\ShopModule $shopModule
+     * @param Club\ShopBundle\Entity\Module $Module
      */
-    public function setShopModule(\Club\ShopBundle\Entity\ShopModule $shopModule)
+    public function setModule(\Club\ShopBundle\Entity\Module $Module)
     {
-        $this->shop_module = $shopModule;
+        $this->module = $Module;
     }
 
     /**
-     * Get shop_module
+     * Get module
      *
-     * @return Club\ShopBundle\Entity\ShopModule $shopModule
+     * @return Club\ShopBundle\Entity\Module $Module
      */
-    public function getShopModule()
+    public function getModule()
     {
-        return $this->shop_module;
+        return $this->module;
     }
 
     /**
-     * Add shop_product
+     * Add products
      *
-     * @param Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @param Club\ShopBundle\Entity\Product $Product
      */
-    public function addShopProduct(\Club\ShopBundle\Entity\ShopProduct $shopProduct)
+    public function addProduct(\Club\ShopBundle\Entity\Product $Product)
     {
-        $this->shop_product[] = $shopProduct;
+        $this->products[] = $Product;
     }
 
     /**
-     * Get shop_product
+     * Get products
      *
-     * @return Doctrine\Common\Collections\Collection $shopProduct
+     * @return Doctrine\Common\Collections\Collection $Product
      */
-    public function getShopProduct()
+    public function getProduct()
     {
-        return $this->shop_product;
+        return $this->products;
     }
 }

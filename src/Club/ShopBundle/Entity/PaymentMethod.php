@@ -3,16 +3,23 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopPaymentMethod
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\PaymentMethod")
+ * @orm:Table(name="club_shop_payment_method")
  */
-class ShopPaymentMethod
+class PaymentMethod
 {
     /**
+     * @orm:id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $payment_method
      */
     private $payment_method;

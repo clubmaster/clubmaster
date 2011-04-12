@@ -3,26 +3,38 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopShipping
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Shipping")
+ * @orm:Table(name="club_shop_shipping")
+ *
  */
-class ShopShipping
+class Shipping
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $shipping_name
      */
     private $shipping_name;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var text $description
      */
     private $description;
 
     /**
+     * @orm:Column(type="decimal")
+     *
      * @var float $price
      */
     private $price;

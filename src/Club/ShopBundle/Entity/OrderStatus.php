@@ -3,26 +3,37 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopOrderStatus
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderStatus")
+ * @orm:Table(name="club_shop_order_statu")
  */
-class ShopOrderStatus
+class OrderStatus
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $status
      */
     private $status;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $open
      */
     private $open;
 
     /**
+     * @orm:Column(type="boolean")
+     *
      * @var boolean $complete
      */
     private $complete;

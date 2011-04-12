@@ -3,16 +3,23 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopTransactionStatus
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\TransactionStatus")
+ * @orm:Table(name="club_shop_transaction_status")
  */
-class ShopTransactionStatus
+class TransactionStatus
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $status_name
      */
     private $status_name;

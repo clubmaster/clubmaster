@@ -3,35 +3,46 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * Club\ShopBundle\Entity\ShopValue
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Value")
+ * @orm:Table(name="club_shop_value")
  */
-class ShopValue
+class Value
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $product_key
      */
     private $product_key;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $product_value
      */
     private $product_value;
 
     /**
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @orm:manyToMany(targetEntity="Product")
+     *
+     * @var Club\ShopBundle\Entity\Product
      */
-    private $shop_product;
+    private $product;
 
     public function __construct()
     {
-        $this->shop_product = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -83,22 +94,22 @@ class ShopValue
     }
 
     /**
-     * Add shop_product
+     * Add product
      *
-     * @param Club\ShopBundle\Entity\ShopProduct $shopProduct
+     * @param Club\ShopBundle\Entity\Product $Product
      */
-    public function addShopProduct(\Club\ShopBundle\Entity\ShopProduct $shopProduct)
+    public function addProduct(\Club\ShopBundle\Entity\Product $Product)
     {
-        $this->shop_product[] = $shopProduct;
+        $this->product[] = $Product;
     }
 
     /**
-     * Get shop_product
+     * Get product
      *
-     * @return Doctrine\Common\Collections\Collection $shopProduct
+     * @return Doctrine\Common\Collections\Collection $Product
      */
-    public function getShopProduct()
+    public function getProduct()
     {
-        return $this->shop_product;
+        return $this->product;
     }
 }

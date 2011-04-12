@@ -3,9 +3,10 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * @orm:Entity
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Cart")
+ * @orm:Table(name="club_shop_cart")
  */
-class ShopCart
+class Cart
 {
     /**
      * @orm:Id
@@ -31,9 +32,9 @@ class ShopCart
     private $session;
 
     /**
-     * @orm:ManyToOne(targetEntity("ShopCart"))
+     * @orm:ManyToOne(targetEntity="Product")
      *
-     * @var Club\ShopBundle\Entity\ShopProduct
+     * @var Club\ShopBundle\Entity\Product
      */
     private $product;
 
@@ -91,9 +92,9 @@ class ShopCart
     /**
      * Set product
      *
-     * @param Club\ShopBundle\Entity\ShopProduct $product
+     * @param Club\ShopBundle\Entity\Product $product
      */
-    public function setProduct(\Club\ShopBundle\Entity\ShopProduct $product)
+    public function setProduct(\Club\ShopBundle\Entity\Product $product)
     {
         $this->product = $product;
     }
@@ -101,7 +102,7 @@ class ShopCart
     /**
      * Get product
      *
-     * @return Club\ShopBundle\Entity\ShopProduct $product
+     * @return Club\ShopBundle\Entity\Product $product
      */
     public function getProduct()
     {

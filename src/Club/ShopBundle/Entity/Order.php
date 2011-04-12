@@ -3,13 +3,15 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * @orm:Entity
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Order")
+ * @orm:Table(name="club_shop_order")
  */
-class ShopOrder
+class Order
 {
     /**
      * @orm:Id
      * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
      * @var integer $id
      */
     private $id;
@@ -36,25 +38,32 @@ class ShopOrder
     private $order_currency_value;
 
     /**
-     * @orm:ManyToOne(targetEntity="ShopPaymentMethod")
+     * @orm:ManyToOne(targetEntity="PaymentMethod")
      *
-     * @var Club\ShopBundle\Entity\ShopPaymentMethod
+     * @var Club\ShopBundle\Entity\PaymentMethod
      */
-    private $shop_payment_method;
+    private $payment_method;
 
     /**
-     * @orm:ManyToOne(targetEntity="ShopShipping")
+     * @orm:ManyToOne(targetEntity="Shipping")
      *
-     * @var Club\ShopBundle\Entity\ShopShipping
+     * @var Club\ShopBundle\Entity\Shipping
      */
     private $shop_shipping;
 
     /**
-     * @orm:ManyToOne(targetEntity="ShopOrderStatus")
+     * @orm:ManyToOne(targetEntity="OrderStatus")
      *
-     * @var Club\ShopBundle\Entity\ShopOrderStatus
+     * @var Club\ShopBundle\Entity\OrderStatus
      */
-    private $shop_order_status;
+    private $order_status;
+
+    /**
+     * @orm:ManyToOne(targetEntity="Shipping")
+     *
+     * @var Club\ShopBundle\Entity\Shipping
+     */
+    private $shipping;
 
     /**
      * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
@@ -64,9 +73,9 @@ class ShopOrder
     private $user;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\ShopItem")
+     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderItem")
      *
-     * @var Club\ShopBundle\Entity\ShopItem
+     * @var Club\ShopBundle\Entity\OrderItem
      */
     private $items;
 
@@ -141,23 +150,23 @@ class ShopOrder
     }
 
     /**
-     * Set shop_payment_method
+     * Set payment_method
      *
-     * @param Club\ShopBundle\Entity\ShopPaymentMethod $shopPaymentMethod
+     * @param Club\ShopBundle\Entity\PaymentMethod $PaymentMethod
      */
-    public function setShopPaymentMethod(\Club\ShopBundle\Entity\ShopPaymentMethod $shopPaymentMethod)
+    public function setPaymentMethod(\Club\ShopBundle\Entity\PaymentMethod $PaymentMethod)
     {
-        $this->shop_payment_method = $shopPaymentMethod;
+        $this->payment_method = $PaymentMethod;
     }
 
     /**
-     * Get shop_payment_method
+     * Get payment_method
      *
-     * @return Club\ShopBundle\Entity\ShopPaymentMethod $shopPaymentMethod
+     * @return Club\ShopBundle\Entity\PaymentMethod $PaymentMethod
      */
-    public function getShopPaymentMethod()
+    public function getPaymentMethod()
     {
-        return $this->shop_payment_method;
+        return $this->payment_method;
     }
 
     public function setUser(\Club\UserBundle\Entity\User $user)
@@ -170,24 +179,24 @@ class ShopOrder
         return $this->user;
     }
 
-    public function setShopShipping(\Club\ShopBundle\Entity\ShopShipping $shop_shipping)
+    public function setShipping(\Club\ShopBundle\Entity\Shipping $shop_shipping)
     {
         $this->shop_shipping = $shop_shipping;
     }
 
-    public function getShopShipping()
+    public function getShipping()
     {
         return $this->shop_shipping;
     }
 
-    public function setShopOrderStatus(\Club\ShopBundle\Entity\ShopOrderStatus $shop_order_status)
+    public function setOrderStatus(\Club\ShopBundle\Entity\OrderStatus $order_status)
     {
-        $this->shop_order_status = $shop_order_status;
+        $this->order_status = $order_status;
     }
 
-    public function getShopOrderStatus()
+    public function getOrderStatus()
     {
-        return $this->shop_order_status;
+        return $this->order_status;
     }
 
     public function toArray()
