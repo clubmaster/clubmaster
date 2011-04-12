@@ -12,6 +12,7 @@ class Order
      * @orm:Id
      * @orm:Column(type="integer")
      * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
@@ -39,6 +40,7 @@ class Order
 
     /**
      * @orm:ManyToOne(targetEntity="PaymentMethod")
+     * @assert:Notblank()
      *
      * @var Club\ShopBundle\Entity\PaymentMethod
      */
@@ -46,27 +48,23 @@ class Order
 
     /**
      * @orm:ManyToOne(targetEntity="Shipping")
-     *
-     * @var Club\ShopBundle\Entity\Shipping
-     */
-    private $shop_shipping;
-
-    /**
-     * @orm:ManyToOne(targetEntity="OrderStatus")
-     *
-     * @var Club\ShopBundle\Entity\OrderStatus
-     */
-    private $order_status;
-
-    /**
-     * @orm:ManyToOne(targetEntity="Shipping")
+     * @assert:NotBlank()
      *
      * @var Club\ShopBundle\Entity\Shipping
      */
     private $shipping;
 
     /**
+     * @orm:ManyToOne(targetEntity="OrderStatus")
+     * @assert:NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\OrderStatus
+     */
+    private $order_status;
+
+    /**
      * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @assert:NotBlank()
      *
      * @var Club\UserBundle\Entity\User
      */
@@ -179,14 +177,14 @@ class Order
         return $this->user;
     }
 
-    public function setShipping(\Club\ShopBundle\Entity\Shipping $shop_shipping)
+    public function setShipping(\Club\ShopBundle\Entity\Shipping $shipping)
     {
-        $this->shop_shipping = $shop_shipping;
+        $this->shipping = $shipping;
     }
 
     public function getShipping()
     {
-        return $this->shop_shipping;
+        return $this->shipping;
     }
 
     public function setOrderStatus(\Club\ShopBundle\Entity\OrderStatus $order_status)
