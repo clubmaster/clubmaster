@@ -4,9 +4,6 @@ namespace Club\RestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Club\UserBundle\Entity\User;
-use Club\UserBundle\Entity\Profile;
-use Club\UserBundle\Entity\Ban;
 
 class DefaultController extends Controller
 {
@@ -16,13 +13,13 @@ class DefaultController extends Controller
    */
   public function addUserAction()
   {
-    $user = new User();
+    $user = new \Club\UserBundle\Entity\User();
 
     $em = $this->get('doctrine.orm.entity_manager');
     $em->persist($user);
     $em->flush();
 
-    $profile = new Profile();
+    $profile = new \Club\UserBundle\Entity\Profile();
     $profile->setUser($user);
     $profile->setFirstName($this->get('request')->get('first_name'));
     $profile->setLastName($this->get('request')->get('last_name'));
@@ -87,7 +84,7 @@ class DefaultController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('Club\UserBundle\Entity\User',$id);
 
-    $ban = new Ban();
+    $ban = new \Club\UserBundle\Entity\Ban();
     $ban->setUser($user);
     $ban->setType('user');
     $ban->setValue($user->getId());
@@ -104,12 +101,12 @@ class DefaultController extends Controller
    */
   public function addOrder()
   {
-    $order = new \Club\ShopBundle\Entity\ShopOrder();
+    $order = new \Club\ShopBundle\Entity\Order();
 
     $errors = $this->get('validator')->validate($order);
 
     if (count($errors) > 0) {
-      return $this->renderJSon($errors,403);
+      return $this->renderError($errors);
     }
 
     return $this->renderJSon($order->toArray());
@@ -122,5 +119,19 @@ class DefaultController extends Controller
     $response->headers->set('Content-Type','application/json');
 
     return $response;
+  }
+
+  private function renderError($errors,$status_code="403")
+  {
+    $res = array();
+    foreach ($errors as $error) {
+      var_dump($error);
+      $res[] = array(
+        'field' => $error->getPropertyPath(),
+        'message' => $error->getMessage()
+      );
+    }
+
+    return $this->renderJSon($res,$status_code);
   }
 }
