@@ -3,26 +3,37 @@
 namespace Club\MailBundle\Entity;
 
 /**
- * Club\MailBundle\Entity\MailQueue
+ * @orm:Entity(repositoryClass="Club\MailBundle\Repository\MailQueue")
+ * @orm:Table(name="club_mail_queue")
  */
 class MailQueue
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var text $message
      */
     private $message;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $error_message
      */
     private $error_message;
 
     /**
+     * @orm:Column(type="integer")
+     *
      * @var integer $priority
      */
     private $priority;

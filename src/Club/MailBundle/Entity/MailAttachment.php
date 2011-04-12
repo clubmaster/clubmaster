@@ -3,41 +3,58 @@
 namespace Club\MailBundle\Entity;
 
 /**
- * Club\MailBundle\Entity\MailAttachment
+ * @orm:Entity(repositoryClass="Club\MailBundle\Repository\MailAttachment")
+ * @orm:Table(name="club_mail_attachment")
  */
 class MailAttachment
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_path
      */
     private $file_path;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_name
      */
     private $file_name;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_type
      */
     private $file_type;
 
     /**
+     * @orm:Column(type="string")
+     * 
      * @var string $file_size
      */
     private $file_size;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $file_hash
      */
     private $file_hash;
 
     /**
+     * @orm:ManyToOne(targetEntity="Mail")
+     *
      * @var Club\MailBundle\Entity\Mail
      */
     private $mail;

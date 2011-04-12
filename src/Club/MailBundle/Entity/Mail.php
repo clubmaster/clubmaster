@@ -3,35 +3,60 @@
 namespace Club\MailBundle\Entity;
 
 /**
- * Club\MailBundle\Entity\Mail
+ * @orm:Entity(repositoryClass="Club\MailBundle\Repository\Mail")
+ * @orm:Table(name="club_mail")
  */
 class Mail
 {
     /**
+     * @orm:Id
+     * @orm:Column(type="integer")
+     * @orm:GeneratedValue(strategy="AUTO")
+     *
      * @var integer $id
      */
     private $id;
 
     /**
+     * @orm:Column(type="string")
+     *
      * @var string $subject
      */
     private $subject;
 
     /**
+     * @orm:Column(type="text")
+     *
      * @var text $body
      */
     private $body;
 
     /**
+     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
+     *
      * @var Club\UserBundle\Entity\Location
      */
     private $locations;
+
+    /**
+     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
+     *
+     * @var Club\UserBundle\Entity\Group
+     */
+    private $groups;
+
+    /**
+     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\User")
+     *
+     * @var Club\UserBundle\Entity\User
+     */
+    private $users;
 
     public function __construct()
     {
         $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
