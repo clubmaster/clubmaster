@@ -31,7 +31,7 @@ class DefaultController extends Controller
     $em->persist($user);
     $em->flush();
 
-    return $this->renderJSon($user->toArray());
+    return ($r = $this->hasErrors($user)) ? $r : $this->renderJSon($user->toArray());
   }
 
   /**
@@ -101,22 +101,45 @@ class DefaultController extends Controller
    */
   public function addOrder()
   {
-    $order = new \Club\ShopBundle\Entity\Order();
+    $em = $this->get('doctrine.orm.entity_manager');
 
-    $errors = $this->get('validator')->validate($order);
+    $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
+    $payment = $em->find('Club\ShopBundle\Entity\PaymentMethod',$this->get('request')->get('payment_method'));
+    $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$this->get('request')->get('shipping'));
+    $currency = $em->find('Club\ShopBundle\Entity\Currency',$this->get('request')->get('currency'));
+
+    $order = new \Club\ShopBundle\Entity\Order();
+    $order->setUser($user);
+    $order->setPaymentMethod($payment);
+    $order->setShipping($shipping);
+    $order->setCurrency($currency->getCurrencyName());
+    $order->setCurrencyValue($currency->getValue());
+    $order->setOrderMemo($this->get('request')->get('order_memo'));
+
+    if ($r = $this->hasErrors($order))
+      return $r;
+
+    $em->persist($order);
+    $em->flush();
+
+    $this->renderJSon($order->toArray());
+  }
+
+  protected function hasErrors($object)
+  {
+    $errors = $this->get('validator')->validate($object);
 
     if (count($errors) > 0) {
       return $this->renderError($errors);
     }
 
-    return $this->renderJSon($order->toArray());
+    return false;
   }
 
   protected function renderError($errors,$status_code="403")
   {
     $res = array();
     foreach ($errors as $error) {
-      var_dump($error);
       $res[] = array(
         'field' => $error->getPropertyPath(),
         'message' => $error->getMessage()

@@ -31,3 +31,9 @@ INSERT INTO product_category (product_id,category_id) VALUES \
   (1,1),
   (2,1),
   (3,5);
+
+INSERT INTO club_shop_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES \
+  ('Danish Krone','DKK',null,'DK',2,1);
+
+INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES \
+  ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);

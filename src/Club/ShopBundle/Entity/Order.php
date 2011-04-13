@@ -19,7 +19,7 @@ class Order
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $order_memo
      */
@@ -28,16 +28,16 @@ class Order
     /**
      * @orm:Column(type="string")
      *
-     * @var string $order_currency
+     * @var string $currency
      */
-    private $order_currency;
+    private $currency;
 
     /**
      * @orm:Column(type="decimal")
      *
-     * @var string $order_currency_value
+     * @var string $currency_value
      */
-    private $order_currency_value;
+    private $currency_value;
 
     /**
      * @orm:ManyToOne(targetEntity="PaymentMethod")
@@ -108,43 +108,43 @@ class Order
     }
 
     /**
-     * Set order_currency
+     * Set currency
      *
-     * @param string $orderCurrency
+     * @param string $currency
      */
-    public function setOrderCurrency($orderCurrency)
+    public function setCurrency($currency)
     {
-        $this->order_currency = $orderCurrency;
+        $this->currency = $currency;
     }
 
     /**
-     * Get order_currency
+     * Get currency
      *
-     * @return string $orderCurrency
+     * @return string $currency
      */
-    public function getOrderCurrency()
+    public function getCurrency()
     {
-        return $this->order_currency;
+        return $this->currency;
     }
 
     /**
-     * Set order_currency_value
+     * Set currency_value
      *
-     * @param string $orderCurrencyValue
+     * @param string $currencyValue
      */
-    public function setOrderCurrencyValue($orderCurrencyValue)
+    public function setCurrencyValue($currencyValue)
     {
-        $this->order_currency_value = $orderCurrencyValue;
+        $this->currency_value = $currencyValue;
     }
 
     /**
-     * Get order_currency_value
+     * Get currency_value
      *
-     * @return string $orderCurrencyValue
+     * @return string $currencyValue
      */
-    public function getOrderCurrencyValue()
+    public function getCurrencyValue()
     {
-        return $this->order_currency_value;
+        return $this->currency_value;
     }
 
     /**

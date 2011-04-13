@@ -1,10 +1,10 @@
 <?php
 
-namespace Club\UserBundle\Entity;
+namespace Club\ShopBundle\Entity;
 
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Currency")
- * @orm:Table(name="club_currency")
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Currency")
+ * @orm:Table(name="club_shop_currency")
  */
 class Currency
 {
@@ -20,9 +20,9 @@ class Currency
     /**
      * @orm:Column(type="string")
      *
-     * @var string $name
+     * @var string $currency_name
      */
-    private $name;
+    private $currency_name;
 
     /**
      * @orm:Column(type="string")
@@ -32,14 +32,14 @@ class Currency
     private $code;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $symbol_left
      */
     private $symbol_left;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $symbol_right
      */
@@ -70,23 +70,23 @@ class Currency
     }
 
     /**
-     * Set name
+     * Set currency_name
      *
-     * @param string $name
+     * @param string $currency_name
      */
-    public function setName($name)
+    public function setCurrencyName($currencyName)
     {
-        $this->name = $name;
+        $this->currency_name = $currencyName;
     }
 
     /**
-     * Get name
+     * Get currencyName
      *
-     * @return string $name
+     * @return string $currency_name
      */
-    public function getName()
+    public function getCurrencyName()
     {
-        return $this->name;
+        return $this->currency_name;
     }
 
     /**

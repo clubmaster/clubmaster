@@ -88,9 +88,9 @@ class Language
     private $numeric_separator_thousands;
 
     /**
-     * @orm:ManyToOne(targetEntity="Currency")
+     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Currency")
      *
-     * @var Club\UserBundle\Entity\Currency
+     * @var Club\ShopBundle\Entity\Currency
      */
     private $currency;
 
@@ -308,9 +308,9 @@ class Language
     /**
      * Set currency
      *
-     * @param Club\UserBundle\Entity\Currency $currency
+     * @param Club\ShopBundle\Entity\Currency $currency
      */
-    public function setCurrency(\Club\UserBundle\Entity\Currency $currency)
+    public function setCurrency(\Club\ShopBundle\Entity\Currency $currency)
     {
         $this->currency = $currency;
     }
@@ -318,7 +318,7 @@ class Language
     /**
      * Get currency
      *
-     * @return Club\UserBundle\Entity\Currency $currency
+     * @return Club\ShopBundle\Entity\Currency $currency
      */
     public function getCurrency()
     {

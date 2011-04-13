@@ -5,6 +5,7 @@ namespace Club\UserBundle\Entity;
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
  * @orm:Table(name="club_user")
+ * @orm:HasLifecycleCallbacks()
  */
 class User
 {
@@ -32,14 +33,14 @@ class User
     private $password;
 
     /**
-     * @orm:Column(type="datetime")
+     * @orm:Column(type="datetime", nullable="true")
      *
      * @var date $last_login_time
      */
     private $last_login_time;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $last_login_ip
      */
@@ -81,7 +82,7 @@ class User
     private $expired;
 
     /**
-     * @orm:Column(type="datetime")
+     * @orm:Column(type="datetime", nullable="true")
      *
      * @var date $expires_at
      */
