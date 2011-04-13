@@ -18,11 +18,11 @@ class OrderProduct
     private $id;
 
     /**
-     * @orm:Column(type="integer")
+     * @orm:Column(type="string")
      *
-     * @var integer $quantity
+     * @var string $product_name
      */
-    private $quantity;
+    private $product_name;
 
     /**
      * @orm:Column(type="decimal")
@@ -39,33 +39,23 @@ class OrderProduct
     private $tax;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="integer")
      *
-     * @var string $name
+     * @var integer $quantity
      */
-    private $name;
+    private $quantity;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
      *
-     * @var string $model
-     */
-    private $model;
-
-    /**
-     * @orm:ManyToOne(targetEntity="Product")
-     *
-     * @var Club\ShopBundle\Entity\Product
-     */
-    private $product;
-
-    /**
-     * @orm:ManyToOne(targetEntity="Order")
-     *
-     * @var Club\ShopBundle\Entity\Order
+     * @var Club\UserBundle\Entity\Order
      */
     private $order;
 
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -75,6 +65,66 @@ class OrderProduct
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set product_name
+     *
+     * @param string $productName
+     */
+    public function setProductName($productName)
+    {
+        $this->product_name = $productName;
+    }
+
+    /**
+     * Get product_name
+     *
+     * @return string $productName
+     */
+    public function getProductName()
+    {
+        return $this->product_name;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * Get tax
+     * *
+     * @return float $price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set tax
+     *
+     * @param float $tax
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+    }
+
+    /**
+     * Get tax
+     * *
+     * @return float $tax
+     */
+    public function getTax()
+    {
+        return $this->tax;
     }
 
     /**
@@ -98,102 +148,24 @@ class OrderProduct
     }
 
     /**
-     * Set price
+     * Set order
      *
-     * @param float $price
+     * @param string $order
      */
-    public function setPrice($price)
+    public function setOrder($oder)
     {
-        $this->price = $price;
+        $this->order = $order;
     }
 
     /**
-     * Get price
+     * Get order
      *
-     * @return float $price
+     * @return string $order
      */
-    public function getPrice()
+    public function getOrder()
     {
-        return $this->price;
+        return $this->order;
     }
 
-    /**
-     * Set tax
-     *
-     * @param float $tax
-     */
-    public function setTax($tax)
-    {
-        $this->tax = $tax;
-    }
 
-    /**
-     * Get tax
-     *
-     * @return float $tax
-     */
-    public function getTax()
-    {
-        return $this->tax;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set model
-     *
-     * @param string $model
-     */
-    public function setModel($model)
-    {
-        $this->model = $model;
-    }
-
-    /**
-     * Get model
-     *
-     * @return string $model
-     */
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    /**
-     * Set product
-     *
-     * @param Club\ShopBundle\Entity\Product $Product
-     */
-    public function setProduct(\Club\ShopBundle\Entity\Product $Product)
-    {
-        $this->product = $Product;
-    }
-
-    /**
-     * Get product
-     *
-     * @return Club\ShopBundle\Entity\Product $Product
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
 }

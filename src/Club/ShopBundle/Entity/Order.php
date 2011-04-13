@@ -71,11 +71,11 @@ class Order
     private $user;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderProduct")
+     * @orm:ManyToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct")
      *
      * @var Club\ShopBundle\Entity\OrderProduct
      */
-    private $products;
+    private $order_products;
 
     /**
      * Get id
@@ -203,6 +203,26 @@ class Order
         'id' => $this->getId(),
         'user_id' => $this->getUser()->getId()
       );
+    }
+
+    /**
+     * Add orderProduct
+     *
+     * @param Club\ShopBundle\Entity\OrderProduct $order_product
+     */
+    public function addOrderProduct(\Club\ShopBundle\Entity\OrderProduct $orderProduct)
+    {
+        $this->order_products[] = $orderProduct;
+    }
+
+    /**
+     * Get orderProduct
+     *
+     * @return Doctrine\Common\Collections\Collection $order_product
+     */
+    public function getOrderProduct()
+    {
+        return $this->order_products;
     }
 
     /**

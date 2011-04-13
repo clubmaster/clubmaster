@@ -19,7 +19,7 @@ class User
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $username
      */
@@ -425,7 +425,6 @@ class User
       // Add your code here
       $this->setPassword('1234');
       $this->setSalt(hash('sha1',uniqid()));
-      $this->setUsername(1);
       $this->setEnabled(1);
       $this->setAlgorithm('sha512');
       $this->setLocked(0);

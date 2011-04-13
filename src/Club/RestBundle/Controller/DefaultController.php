@@ -116,13 +116,19 @@ class DefaultController extends Controller
     $order->setCurrencyValue($currency->getValue());
     $order->setOrderMemo($this->get('request')->get('order_memo'));
 
+    $products = preg_split("/,/",$this->get('request')->get('products'));
+    foreach ($products as $product) {
+      $prod = $em->find('Club\ShopBundle\Entity\Product',$product);
+      $order->addOrderProduct($prod);
+    }
+
     if ($r = $this->hasErrors($order))
       return $r;
 
     $em->persist($order);
     $em->flush();
 
-    $this->renderJSon($order->toArray());
+    return $this->renderJSon($order->toArray());
   }
 
   protected function hasErrors($object)
