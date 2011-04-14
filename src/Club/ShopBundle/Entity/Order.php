@@ -71,11 +71,15 @@ class Order
     private $user;
 
     /**
-     * @orm:ManyToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct")
+     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct", mappedBy="order")
      *
      * @var Club\ShopBundle\Entity\OrderProduct
      */
     private $order_products;
+
+    public function __construct() {
+      $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -105,6 +109,26 @@ class Order
     public function getOrderMemo()
     {
         return $this->order_memo;
+    }
+
+    /**
+     * Set tax
+     *
+     * @param string $tax
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+    }
+
+    /**
+     * Get tax
+     *
+     * @return string $tax
+     */
+    public function getTax()
+    {
+        return $this->tax;
     }
 
     /**
@@ -208,7 +232,7 @@ class Order
     /**
      * Add orderProduct
      *
-     * @param Club\ShopBundle\Entity\OrderProduct $order_product
+     * @param Club\ShopBundle\Entity\OrderProduct $order_products
      */
     public function addOrderProduct(\Club\ShopBundle\Entity\OrderProduct $orderProduct)
     {
@@ -218,7 +242,7 @@ class Order
     /**
      * Get orderProduct
      *
-     * @return Doctrine\Common\Collections\Collection $order_product
+     * @return Doctrine\Common\Collections\Collection $order_products
      */
     public function getOrderProduct()
     {

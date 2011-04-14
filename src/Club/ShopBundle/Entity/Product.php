@@ -60,6 +60,13 @@ class Product
     private $categories;
 
     /**
+     * @orm:ManyToOne(targetEntity="Tax")
+     *
+     * @var Club\ShopBundle\Entity\Tax
+     */
+    private $tax;
+
+    /**
      * @orm:ManyToMany(targetEntity="Value")
      *
      * @var Club\ShopBundle\Entity\Value
@@ -180,4 +187,25 @@ class Product
     {
         return $this->roles;
     }
+
+    /**
+     * Set tax
+     *
+     * @param float $tax
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+    }
+
+    /**
+     * Get tax
+     *
+     * @return float $tax
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
 }

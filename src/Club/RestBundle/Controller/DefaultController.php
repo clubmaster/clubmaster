@@ -107,25 +107,40 @@ class DefaultController extends Controller
     $payment = $em->find('Club\ShopBundle\Entity\PaymentMethod',$this->get('request')->get('payment_method'));
     $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$this->get('request')->get('shipping'));
     $currency = $em->find('Club\ShopBundle\Entity\Currency',$this->get('request')->get('currency'));
+    $status = $em->find('Club\ShopBundle\Entity\OrderStatus',1);
 
     $order = new \Club\ShopBundle\Entity\Order();
     $order->setUser($user);
     $order->setPaymentMethod($payment);
     $order->setShipping($shipping);
-    $order->setCurrency($currency->getCurrencyName());
+    $order->setCurrency($currency->getCode());
     $order->setCurrencyValue($currency->getValue());
     $order->setOrderMemo($this->get('request')->get('order_memo'));
-
-    $products = preg_split("/,/",$this->get('request')->get('products'));
-    foreach ($products as $product) {
-      $prod = $em->find('Club\ShopBundle\Entity\Product',$product);
-      $order->addOrderProduct($prod);
-    }
+    $order->setOrderStatus($status);
 
     if ($r = $this->hasErrors($order))
       return $r;
 
     $em->persist($order);
+    $em->flush();
+
+    $products = json_decode($this->get('request')->get('products'));
+    foreach ($products as $product) {
+      $prod = $em->find('Club\ShopBundle\Entity\Product',$product->product);
+
+      $op = new \Club\ShopBundle\Entity\OrderProduct();
+      $op->setProductName($prod->getProductName());
+      $op->setPrice($prod->getPrice());
+      $op->setTax($prod->getTax()->getRate());
+      $op->setQuantity($product->quantity);
+      $op->setOrder($order);
+
+      if ($r = $this->hasErrors($op))
+        return $r;
+
+      $em->persist($op);
+    }
+
     $em->flush();
 
     return $this->renderJSon($order->toArray());

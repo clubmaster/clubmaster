@@ -54,7 +54,7 @@ class OrderProduct
 
     public function __construct()
     {
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->order = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -152,7 +152,7 @@ class OrderProduct
      *
      * @param string $order
      */
-    public function setOrder($oder)
+    public function setOrder($order)
     {
         $this->order = $order;
     }
