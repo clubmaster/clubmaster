@@ -39,7 +39,7 @@ class Product
     private $price;
 
     /**
-     * @orm:Column(type="integer")
+     * @orm:Column(type="integer", nullable="true")
      *
      * @var integer $quantity
      */

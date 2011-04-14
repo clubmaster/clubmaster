@@ -1,3 +1,7 @@
+INSERT INTO club_role (role_name) VALUES
+  ('ROLE_ADMIN'),
+  ('ROLE_USER');
+
 INSERT INTO club_shop_tax (tax_name,rate) VALUES
   ('Tax free',0),
   ('Danish tax','25');
@@ -41,5 +45,3 @@ INSERT INTO club_shop_currency (currency_name,code,symbol_left,symbol_right,deci
 
 INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
-
-
