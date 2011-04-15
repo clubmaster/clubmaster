@@ -32,7 +32,7 @@ class Subscription
     private $expire_date;
 
     /**
-     * @orm:Column(type="boolean")
+     * @orm:Column(type="integer")
      *
      * @var integer $allowed_pauses
      */
@@ -140,5 +140,15 @@ class Subscription
     public function getAutoRenewal()
     {
         return $this->auto_renewal;
+    }
+
+    public function setUser($user)
+    {
+      $this->user = $user;
+    }
+
+    public function getUser($user)
+    {
+      return $this->user;
     }
 }

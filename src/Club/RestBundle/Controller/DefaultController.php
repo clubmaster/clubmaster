@@ -176,12 +176,19 @@ class DefaultController extends Controller
       $products = $order->getOrderProducts();
 
       foreach ($products as $product) {
-
         foreach ($product->getOrderProductAttributes() as $attr) {
           switch ($attr->getAttributeName()) {
           case 'Month':
-          case 'Season':
-          case 'Lifetime':
+            $subscription = new \Club\ShopBundle\Entity\Subscription;
+            $subscription->setStartDate(new \DateTime());
+            $subscription->setExpireDate(new \DateTime());
+            $subscription->setAllowedPauses(3);
+            $subscription->setAutoRenewal(1);
+            $subscription->setUser($order->getUser());
+
+            if ($r = $this->hasErrors($subscription)) return $r;
+
+            $em->persist($subscription);
             break;
           case 'Ticket':
             $ticket = new \Club\ShopBundle\Entity\TicketCoupon;
@@ -191,14 +198,14 @@ class DefaultController extends Controller
             if ($r = $this->hasErrors($ticket)) return $r;
 
             $em->persist($ticket);
-            $em->flush();
             break;
           }
         }
+        $em->flush();
       }
 
-      return $this->renderJSon($order->toArray());
     }
+    return $this->renderJSon($order->toArray());
   }
 
   protected function hasErrors($object)

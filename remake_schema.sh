@@ -8,3 +8,4 @@ mysql -u root clubmaster_v2 < fixtures.sql
 
 sh curl/add_user.sh
 sh curl/add_order.sh
+curl/change_status.php
