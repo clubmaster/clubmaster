@@ -7,3 +7,4 @@ php app/console doctrine:schema:create
 mysql -u root clubmaster_v2 < fixtures.sql
 
 sh curl/add_user.sh
+sh curl/add_order.sh

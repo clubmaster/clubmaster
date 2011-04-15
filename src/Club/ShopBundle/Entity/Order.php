@@ -244,7 +244,7 @@ class Order
      *
      * @return Doctrine\Common\Collections\Collection $order_products
      */
-    public function getOrderProduct()
+    public function getOrderProducts()
     {
         return $this->order_products;
     }

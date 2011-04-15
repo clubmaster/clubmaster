@@ -118,8 +118,7 @@ class DefaultController extends Controller
     $order->setOrderMemo($this->get('request')->get('order_memo'));
     $order->setOrderStatus($status);
 
-    if ($r = $this->hasErrors($order))
-      return $r;
+    if ($r = $this->hasErrors($order)) return $r;
 
     $em->persist($order);
     $em->flush();
@@ -128,15 +127,14 @@ class DefaultController extends Controller
     foreach ($products as $product) {
       $prod = $em->find('Club\ShopBundle\Entity\Product',$product->product);
 
-      $op = new \Club\ShopBundle\Entity\OrderProduct();
+      $op = new \Club\ShopBundle\Entity\OrderProduct;
       $op->setProductName($prod->getProductName());
       $op->setPrice($prod->getPrice());
       $op->setTax($prod->getTax()->getRate());
       $op->setQuantity($product->quantity);
       $op->setOrder($order);
 
-      if ($r = $this->hasErrors($op))
-        return $r;
+      if ($r = $this->hasErrors($op)) return $r;
 
       $em->persist($op);
       $em->flush();
@@ -147,6 +145,7 @@ class DefaultController extends Controller
         $opa->setAttributeName($attr->getAttribute()->getAttributeName());
         $opa->setValue($attr->getValue());
 
+        if ($r = $this->hasErrors($op)) return $r;
         $em->persist($opa);
       }
 
@@ -154,6 +153,52 @@ class DefaultController extends Controller
     }
 
     return $this->renderJSon($order->toArray());
+  }
+
+  /**
+   * @Route("/update/order")
+   */
+  public function updateOrderAction()
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $order = $em->find('Club\ShopBundle\Entity\Order',$this->get('request')->get('order'));
+    $status = $em->find('Club\ShopBundle\Entity\OrderStatus',$this->get('request')->get('status'));
+
+    $order->setOrderStatus($status);
+
+    if ($r = $this->hasErrors($status)) return $r;
+
+    $em->persist($order);
+    $em->flush();
+
+    if ($order->getOrderStatus()->getIsComplete()) {
+      $products = $order->getOrderProducts();
+
+      foreach ($products as $product) {
+
+        foreach ($product->getOrderProductAttributes() as $attr) {
+          switch ($attr->getAttributeName()) {
+          case 'Month':
+          case 'Season':
+          case 'Lifetime':
+            break;
+          case 'Ticket':
+            $ticket = new \Club\ShopBundle\Entity\TicketCoupon;
+            $ticket->setTicket($attr->getValue());
+            $ticket->setUser($order->getUser());
+
+            if ($r = $this->hasErrors($ticket)) return $r;
+
+            $em->persist($ticket);
+            $em->flush();
+            break;
+          }
+        }
+      }
+
+      return $this->renderJSon($order->toArray());
+    }
   }
 
   protected function hasErrors($object)

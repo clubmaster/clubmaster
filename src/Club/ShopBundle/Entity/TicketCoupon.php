@@ -5,6 +5,7 @@ namespace Club\ShopBundle\Entity;
 /**
  * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\TicketCoupon")
  * @orm:Table(name="club_shop_ticket_coupon")
+ * @orm:HasLifecycleCallbacks()
  */
 class TicketCoupon
 {
@@ -20,9 +21,9 @@ class TicketCoupon
     /**
      * @orm:Column(type="integer")
      *
-     * @var integer $tickets
+     * @var integer $ticket
      */
-    private $tickets;
+    private $ticket;
 
     /**
      * @orm:Column(type="date")
@@ -57,23 +58,23 @@ class TicketCoupon
     }
 
     /**
-     * Set tickets
+     * Set ticket
      *
-     * @param integer $tickets
+     * @param integer $ticket
      */
-    public function setTickets($tickets)
+    public function setTicket($ticket)
     {
-        $this->tickets = $tickets;
+        $this->ticket = $ticket;
     }
 
     /**
-     * Get tickets
+     * Get ticket
      *
-     * @return integer $tickets
+     * @return integer $ticket
      */
-    public function getTickets()
+    public function getTicket()
     {
-        return $this->tickets;
+        return $this->ticket;
     }
 
     /**
@@ -134,5 +135,14 @@ class TicketCoupon
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @orm:prePersist()
+     */
+    public function prePersist()
+    {
+      $this->setStartDate(new \DateTime());
+      $this->setExpireDate(new \DateTime());
     }
 }

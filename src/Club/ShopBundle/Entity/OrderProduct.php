@@ -52,9 +52,15 @@ class OrderProduct
      */
     private $order;
 
+    /**
+     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProductAttribute", mappedBy="order_product")
+     */
+    private $order_product_attributes;
+
+
     public function __construct()
     {
-        $this->order = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->order_product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -167,5 +173,8 @@ class OrderProduct
         return $this->order;
     }
 
-
+    public function getOrderProductAttributes()
+    {
+        return $this->order_product_attributes;
+    }
 }

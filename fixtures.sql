@@ -6,11 +6,11 @@ INSERT INTO club_shop_tax (tax_name,rate) VALUES
   ('Tax free',0),
   ('Danish tax','25');
 
-INSERT INTO club_shop_order_status (status_name) VALUES
-  ('Pending'),
-  ('Processing'),
-  ('Preparing'),
-  ('Delivered');
+INSERT INTO club_shop_order_status (status_name,is_complete) VALUES
+  ('Pending',0),
+  ('Processing',0),
+  ('Preparing',0),
+  ('Delivered',1);
 
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
@@ -79,7 +79,7 @@ INSERT INTO product_variantgroup (product_id,variantgroup_id) VALUES
 INSERT INTO club_shop_attribute (attribute_name) VALUES
   ('Month'),
   ('Ticket'),
-  ('Renewal'),
+  ('AutoRenewal'),
   ('Lifetime'),
   ('Season'),
   ('StartDate'),
@@ -92,6 +92,6 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (4,5,2),
   (5,4,1),
   (6,2,10),
-  (6,2,20),
+  (7,2,20),
   (10,6,'2011-04-16'),
   (10,7,'2011-04-30');

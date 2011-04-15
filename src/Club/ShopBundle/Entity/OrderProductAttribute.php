@@ -57,53 +57,23 @@ class OrderProductAttribute
         $this->order_product = $orderProduct;
     }
 
-    /**
-     * Get shipping_name
-     *
-     * @return string $shippingName
-     */
-    public function getShippingName()
+    public function getAttributeName()
     {
-        return $this->shipping_name;
+        return $this->attribute_name;
     }
 
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
     public function setAttributeName($attributeName)
     {
         $this->attribute_name = $attributeName;
     }
 
-    /**
-     * Get description
-     *
-     * @return text $description
-     */
-    public function getDescription()
+    public function getValue()
     {
-        return $this->description;
+      return $this->value;
     }
 
-    /**
-     * Set price
-     *
-     * @param float $value
-     */
     public function setValue($value)
     {
         $this->value = $value;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float $price
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
 }

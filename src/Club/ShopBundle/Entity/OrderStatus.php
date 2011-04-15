@@ -25,6 +25,14 @@ class OrderStatus
     private $status_name;
 
     /**
+     * @orm:Column(type="boolean")
+     *
+     * var boolean $is_complete
+     */
+    private $is_complete;
+
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -53,4 +61,25 @@ class OrderStatus
     {
         return $this->status_name;
     }
+
+    /**
+     * Set is_complete
+     *
+     * @param string $is_complete
+     */
+    public function setIsComplete($isComplete)
+    {
+        $this->is_complete = $isComplete;
+    }
+
+    /**
+     * Get is_complete
+     *
+     * @return string $is_complete
+     */
+    public function getIsComplete()
+    {
+        return $this->is_complete;
+    }
+
 }
