@@ -74,15 +74,17 @@ class Product
     private $tax;
 
     /**
-     * @orm:OneToMany(targetEntity="ProductAttribute", mappedBy="product_id")
+     * @orm:OneToMany(targetEntity="ProductAttribute", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\ProductAttribute
      */
-    private $product_attribute;
+    private $product_attributes;
+
 
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -193,6 +195,16 @@ class Product
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Get product_attributes
+     *
+     * @return Doctrine\Common\Collections\Collection $product_attributes
+     */
+    public function getProductAttributes()
+    {
+        return $this->product_attributes;
     }
 
     /**

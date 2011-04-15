@@ -139,9 +139,19 @@ class DefaultController extends Controller
         return $r;
 
       $em->persist($op);
-    }
+      $em->flush();
 
-    $em->flush();
+      foreach ($prod->getProductAttributes() as $attr) {
+        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
+        $opa->setOrderProduct($op);
+        $opa->setAttributeName($attr->getAttribute()->getAttributeName());
+        $opa->setValue($attr->getValue());
+
+        $em->persist($opa);
+      }
+
+      $em->flush();
+    }
 
     return $this->renderJSon($order->toArray());
   }

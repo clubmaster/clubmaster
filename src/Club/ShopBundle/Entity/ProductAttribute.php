@@ -46,62 +46,32 @@ class ProductAttribute
     }
 
     /**
-     * Set shipping_name
+     * Set value
      *
-     * @param string $shippingName
+     * @param float $value
      */
-    public function setShippingName($shippingName)
+    public function setValue($value)
     {
-        $this->shipping_name = $shippingName;
+        $this->value = $value;
     }
 
     /**
-     * Get shipping_name
+     * Get value
      *
-     * @return string $shippingName
+     * @return float $value
      */
-    public function getShippingName()
+    public function getValue()
     {
-        return $this->shipping_name;
+        return $this->value;
     }
 
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
+    public function getProduct()
     {
-        $this->description = $description;
+        return $this->product;
     }
 
-    /**
-     * Get description
-     *
-     * @return text $description
-     */
-    public function getDescription()
+    public function getAttribute()
     {
-        return $this->description;
-    }
-
-    /**
-     * Set price
-     *
-     * @param float $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float $price
-     */
-    public function getPrice()
-    {
-        return $this->price;
+        return $this->attribute;
     }
 }

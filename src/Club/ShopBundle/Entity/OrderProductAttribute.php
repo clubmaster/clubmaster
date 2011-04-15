@@ -3,11 +3,11 @@
 namespace Club\ShopBundle\Entity;
 
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Attribute")
- * @orm:Table(name="club_shop_attribute")
+ * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderProductAttribute")
+ * @orm:Table(name="club_shop_order_product_attribute")
  *
  */
-class Attribute
+class OrderProductAttribute
 {
     /**
      * @orm:Id
@@ -26,6 +26,18 @@ class Attribute
     private $attribute_name;
 
     /**
+     * @orm:Column(type="string")
+     *
+     * @var string $value
+     */
+    private $value;
+
+    /**
+     * @orm:ManyToOne(targetEntity="OrderProduct")
+     */
+    private $order_product;
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -40,9 +52,9 @@ class Attribute
      *
      * @param string $shippingName
      */
-    public function setShippingName($shippingName)
+    public function setOrderProduct($orderProduct)
     {
-        $this->shipping_name = $shippingName;
+        $this->order_product = $orderProduct;
     }
 
     /**
@@ -60,9 +72,9 @@ class Attribute
      *
      * @param text $description
      */
-    public function setDescription($description)
+    public function setAttributeName($attributeName)
     {
-        $this->description = $description;
+        $this->attribute_name = $attributeName;
     }
 
     /**
@@ -75,13 +87,23 @@ class Attribute
         return $this->description;
     }
 
-    public function setAttributeName($attribute_name)
+    /**
+     * Set price
+     *
+     * @param float $value
+     */
+    public function setValue($value)
     {
-        $this->attribute_name = $attribute_name;
+        $this->value = $value;
     }
 
-    public function getAttributeName()
+    /**
+     * Get price
+     *
+     * @return float $price
+     */
+    public function getPrice()
     {
-        return $this->attribute_name;
+        return $this->price;
     }
 }
