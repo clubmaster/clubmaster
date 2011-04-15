@@ -15,6 +15,17 @@ INSERT INTO club_shop_order_status (status_name) VALUES
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
 
+INSERT INTO club_shop_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
+  ('Danish Krone','DKK',null,'DK',2,1);
+
+INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
+  ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
+
+INSERT INTO club_shop_payment_method (payment_method_name) VALUES
+  ('Kontant'),
+  ('Kredit kort'),
+  ('Bankoverførsel');
+
 INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
   (1,null,'Abonnementer','Abonnementer'),
   (2,null,'Klippekort','Klippekort'),
@@ -25,35 +36,62 @@ INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
   (7,5,'Tasker','Tasker'),
   (8,5,'Ketcher','Ketcher');
 
-INSERT INTO club_shop_payment_method (payment_method_name) VALUES
-  ('Kontant'),
-  ('Kredit kort'),
-  ('Bankoverførsel');
-
 INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
-  ('1 md.','1 md.',100,2),
-  ('2 md.','2 md.',150,2),
-  ('Season subscription',200,2),
-  ('10 balls','10 balls',50,2);
+  ('1. md, subscription','1. md, subscription',100,2),
+  ('2. md, subscription','2. md, subscription',100,2),
+  ('1. season subscription','1. season subscription',1000,2),
+  ('2. seasons subscription','2. season subscription',1700,2),
+  ('Lifetime membership','Lifetime membership',5000,2),
+  ('10 clip','10 clip',100,2),
+  ('20 clip','20 clip',175,2),
+  ('Tennis Balls','Tennis Balls',50,2),
+  ('Club t-shirt','Club t-shirt',200,2),
+  ('Easter subscription','Easter subscription',50,2),
 
 INSERT INTO product_category (product_id,category_id) VALUES
   (1,1),
   (2,1),
-  (3,5);
+  (3,1),
+  (4,1),
+  (5,1),
+  (6,2),
+  (7,2),
+  (8,5),
+  (9,6);
 
-INSERT INTO club_shop_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
-  ('Danish Krone','DKK',null,'DK',2,1);
+INSERT INTO club_shop_variant_group (title) VALUES
+  ('Color'),
+  ('Size');
 
-INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
-  ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
+INSERT INTO club_shop_variant_value (product_variant_group_id,title) VALUES
+  (1,'Green'),
+  (1,'Orange'),
+  (1,'Yellow'),
+  (2,'Small'),
+  (2,'Medium'),
+  (2,'Large'),
+  (2,'XLarge');
 
-INSERT INTO club_shop_product_variant_group (title,module) VALUES
-  ('Subscription month','Subscription'),
-  ('Ticket','TicketCoupon');
+INSERT INTO club_shop_product_variant_group (product_id,product_variant_group_id) VALUES
+  (8,1),
+  (9,2);
 
-INSERT INTO club_shop_product_variant_value (product_variant_group_id,title) VALUES
-  (1,1),
-  (1,'TicketCoupon');
+INSERT INTO club_shop_attribute VALUES (attribute_name) VALUES (
+  ('Month'),
+  ('Ticket'),
+  ('Renewal'),
+  ('Lifetime'),
+  ('Season'),
+  ('StartDate'),
+  ('ExpireDate');
 
-INSERT INTO club_shop_product_variant (product_id,product_variant_value_id) VALUES
-  (1,1
+INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
+  (1,1,1),
+  (2,1,2),
+  (3,5,1),
+  (4,5,2),
+  (5,4,1),
+  (6,2,10),
+  (6,2,20),
+  (10,6,'2011-04-16'),
+  (10,7,'2011-04-30');
