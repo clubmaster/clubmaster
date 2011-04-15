@@ -32,13 +32,6 @@ class Category
     private $description;
 
     /**
-     * @orm:ManyToOne(targetEntity="Module")
-     *
-     * @var Club\ShopBundle\Entity\Module
-     */
-    private $module;
-
-    /**
      * @orm:ManyToOne(targetEntity="Image")
      *
      * @var Club\ShopBundle\Entity\Image
@@ -110,26 +103,6 @@ class Category
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set module
-     *
-     * @param Club\ShopBundle\Entity\Module $Module
-     */
-    public function setModule(\Club\ShopBundle\Entity\Module $Module)
-    {
-        $this->module = $Module;
-    }
-
-    /**
-     * Get module
-     *
-     * @return Club\ShopBundle\Entity\Module $Module
-     */
-    public function getModule()
-    {
-        return $this->module;
     }
 
     /**
