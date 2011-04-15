@@ -4,6 +4,7 @@ namespace Club\UserBundle\Entity;
 
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\WhoisOnline")
+ * @orm:Table(name="club_whois_online")
  */
 class WhoisOnline
 {
