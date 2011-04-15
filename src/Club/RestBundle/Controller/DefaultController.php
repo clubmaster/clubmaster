@@ -176,7 +176,11 @@ class DefaultController extends Controller
       $products = $order->getOrderProducts();
 
       foreach ($products as $product) {
+
+        $res = array();
         foreach ($product->getOrderProductAttributes() as $attr) {
+          $res[$attr->getAttributeName()] = $attr->getValue();
+
           switch ($attr->getAttributeName()) {
           case 'Month':
             $subscription = new \Club\ShopBundle\Entity\Subscription;
