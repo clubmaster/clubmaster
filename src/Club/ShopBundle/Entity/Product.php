@@ -53,6 +53,13 @@ class Product
     private $roles;
 
     /**
+     * @orm:ManyToMany(targetEntity="VariantGroup")
+     *
+     * @var VariantGroup
+     */
+    private $variant_groups;
+
+    /**
      * @orm:ManyToMany(targetEntity="Category")
      *
      * @var Club\ShopBundle\Entity\Category
@@ -67,11 +74,11 @@ class Product
     private $tax;
 
     /**
-     * @orm:ManyToMany(targetEntity="Value")
+     * @orm:OneToMany(targetEntity="ProductAttribute", mappedBy="product_id")
      *
-     * @var Club\ShopBundle\Entity\Value
+     * @var Club\ShopBundle\Entity\ProductAttribute
      */
-    private $values;
+    private $product_attribute;
 
     public function __construct()
     {

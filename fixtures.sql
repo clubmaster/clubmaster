@@ -46,7 +46,7 @@ INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('20 clip','20 clip',175,2),
   ('Tennis Balls','Tennis Balls',50,2),
   ('Club t-shirt','Club t-shirt',200,2),
-  ('Easter subscription','Easter subscription',50,2),
+  ('Easter subscription','Easter subscription',50,2);
 
 INSERT INTO product_category (product_id,category_id) VALUES
   (1,1),
@@ -59,11 +59,11 @@ INSERT INTO product_category (product_id,category_id) VALUES
   (8,5),
   (9,6);
 
-INSERT INTO club_shop_variant_group (title) VALUES
+INSERT INTO club_shop_variant_group (variant_group_name) VALUES
   ('Color'),
   ('Size');
 
-INSERT INTO club_shop_variant_value (product_variant_group_id,title) VALUES
+INSERT INTO club_shop_variant_value (variant_group_id,value) VALUES
   (1,'Green'),
   (1,'Orange'),
   (1,'Yellow'),
@@ -72,11 +72,11 @@ INSERT INTO club_shop_variant_value (product_variant_group_id,title) VALUES
   (2,'Large'),
   (2,'XLarge');
 
-INSERT INTO club_shop_product_variant_group (product_id,product_variant_group_id) VALUES
+INSERT INTO product_variantgroup (product_id,variantgroup_id) VALUES
   (8,1),
   (9,2);
 
-INSERT INTO club_shop_attribute VALUES (attribute_name) VALUES (
+INSERT INTO club_shop_attribute (attribute_name) VALUES
   ('Month'),
   ('Ticket'),
   ('Renewal'),
