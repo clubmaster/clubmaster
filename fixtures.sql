@@ -83,7 +83,8 @@ INSERT INTO club_shop_attribute (attribute_name) VALUES
   ('Lifetime'),
   ('Season'),
   ('StartDate'),
-  ('ExpireDate');
+  ('ExpireDate'),
+  ('AllowedPauses');
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
@@ -93,6 +94,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (5,4,1),
   (6,2,10),
   (7,2,20),
+  (1,6,'2011-06-01'),
   (7,6,'2011-06-01'),
   (10,6,'2011-04-16'),
   (10,7,'2011-04-30');
