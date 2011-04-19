@@ -23,6 +23,7 @@ class DefaultController extends Controller
     $profile->setUser($user);
     $profile->setFirstName($this->get('request')->get('first_name'));
     $profile->setLastName($this->get('request')->get('last_name'));
+    $profile->setGender($this->get('request')->get('gender'));
 
     $em->persist($profile);
     $em->flush();
@@ -67,6 +68,22 @@ class DefaultController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $users = $em->getRepository('Club\UserBundle\Entity\User')->findAll();
+
+    $res = array();
+    foreach ($users as $user) {
+      $res[] = $user->toArray();
+    }
+
+    return $this->renderJSon($res);
+  }
+
+  /**
+   * @Route("/get/users/active")
+   */
+  public function getUsersActive()
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllActive();
 
     $res = array();
     foreach ($users as $user) {
