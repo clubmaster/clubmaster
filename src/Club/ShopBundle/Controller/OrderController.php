@@ -12,6 +12,11 @@ class OrderController extends Controller
      */
     public function orderAction()
     {
-      return array();
+      $em = $this->get('doctrine.orm.entity_manager');
+
+      $orders = $em->getRepository('Club\ShopBundle\Entity\Order')->findAll();
+      return array(
+        'orders' => $orders
+      );
     }
 }

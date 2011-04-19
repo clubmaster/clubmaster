@@ -2,4 +2,25 @@
 
 {% block body %}
 
+<table>
+  <tr>
+    <th>Order Id</th>
+    <th>User</th>
+    <th>Order memo</th>
+    <th>Date</th>
+  </tr>
+  {% for order in orders %}
+  <tr>
+    <td>{{ order.id }}</td>
+    <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
+    <td>{{ order.orderMemo }}</td>
+    <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There is not orders at the time.</td>
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}

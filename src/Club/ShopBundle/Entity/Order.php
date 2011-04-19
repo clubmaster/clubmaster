@@ -77,6 +77,11 @@ class Order
      */
     private $order_products;
 
+    /**
+     * @orm:Column(type="datetime")
+     */
+    private $created_at;
+
     public function __construct() {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -249,10 +254,21 @@ class Order
         return $this->order_products;
     }
 
+    public function setCreatedAt($createdAt)
+    {
+      $this->created_at = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+      return $this->created_at;
+    }
+
     /**
      * @orm:PrePersist
      */
     public function prePersist()
     {
+      $this->setCreatedAt(new \DateTime());
     }
 }
