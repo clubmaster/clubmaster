@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<table>
+  <tr>
+    <th>Product Id</th>
+    <th>Product name</th>
+    <th>Actions</th>
+  </tr>
+{% for product in products %}
+  <tr>
+    <td>{{ product.id }}</td>
+    <td>{{ product.productName }}</td>
+    <td><ul>
+      <li><a href="{{ path("shop_product_edit",{"id":product.id}) }}">Edit</li>
+      <li><a href="{{ path("shop_product_delete",{"id":product.id}) }}">Delete</li>
+    </ul></td>
+  </tr>
+{% else %}
+  <tr>
+    <td colspan="3">There is no such products.</td>
+  </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -32,8 +32,12 @@ _auth:
   resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
 
-_shop:
-  resource: "@ClubShopBundle/Controller/ShopController.php"
+_shop_category:
+  resource: "@ClubShopBundle/Controller/CategoryController.php"
+  type: annotation
+
+_shop_product:
+  resource: "@ClubShopBundle/Controller/ProductController.php"
   type: annotation
 
 _order:

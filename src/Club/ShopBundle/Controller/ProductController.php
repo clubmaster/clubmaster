@@ -5,27 +5,27 @@ namespace Club\ShopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class ShopController extends Controller
+class ProductController extends Controller
 {
   /**
-   * @extra:Route("/shop/category", name="shop_category")
+   * @extra:Route("/shop/product/{category}", name="shop_product")
    * @extra:Template()
    */
-  public function categoryAction()
+  public function indexAction($category)
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
+    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findAll();
 
     return array(
-      'categories' => $categories
+      'products' => $products
     );
   }
 
   /**
-   * @extra:Route("/shop/category/delete/{id}", name="shop_category_delete")
+   * @extra:Route("/shop/product/delete/{id}", name="shop_product_delete")
    */
-  public function categoryDeleteAction($id)
+  public function deleteAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
@@ -37,9 +37,9 @@ class ShopController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/category/edit/{id}", name="shop_category_edit")
+   * @extra:Route("/shop/product/edit/{id}", name="shop_product_edit")
    */
-  public function categoryEditAction($id)
+  public function editAction($id)
   {
     return array();
   }
