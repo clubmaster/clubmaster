@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class User extends EntityRepository
 {
+  public function findAllActive()
+  {
+    $dql =
+      "SELECT u,s ".
+      "FROM Club\UserBundle\Entity\User u ".
+      "JOIN u.subscriptions s ".
+      "WHERE s.start_date <= :start AND s.expire_date <= :expire";
+
+    $query = $this->_em->createQuery($dql);
+    $query->setParameters(array(
+      'start' => date('Y-m-d'),
+      'expire' => date('Y-m-d')
+    ));
+
+    return $query->getResult();
+  }
 }

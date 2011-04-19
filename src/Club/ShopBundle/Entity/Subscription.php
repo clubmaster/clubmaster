@@ -46,7 +46,7 @@ class Subscription
     private $auto_renewal;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
      *
      * @var Club\UserBundle\Entity\User
      */

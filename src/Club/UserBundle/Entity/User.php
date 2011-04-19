@@ -123,8 +123,14 @@ class User
      */
     private $roles;
 
+    /**
+     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
+     */
+    private $subscriptions;
+
     public function __construct()
     {
+      $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -417,6 +423,11 @@ class User
         return $this->language;
     }
 
+    public function getSubscriptions()
+    {
+      return $this->subscriptions;
+    }
+
     /**
      * @orm:prePersist
      */
@@ -442,7 +453,8 @@ class User
         'updated_at' => $this->getUpdatedAt(),
         'profile' => array(
           'first_name' => $this->getProfile()->getFirstName(),
-          'last_name' => $this->getProfile()->getLastName()
+          'last_name' => $this->getProfile()->getLastName(),
+          'gender' => $this->getProfile()->getGender()
         )
       );
     }

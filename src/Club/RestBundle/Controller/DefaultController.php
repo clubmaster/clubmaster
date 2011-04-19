@@ -80,7 +80,7 @@ class DefaultController extends Controller
   /**
    * @Route("/get/users/active")
    */
-  public function getUsersActive()
+  public function getUsersActiveAction()
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllActive();
