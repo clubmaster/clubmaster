@@ -26,7 +26,7 @@
       <td><input type="checkbox" /></td>
       <td>{{ user.id }}</td>
       <td>{{ user.username }}</td>
-      <td>{{ user.createdAt }}</td>
+      <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td><ul>
         <li><a href="{{ path('user_edit', { 'id':user.id }) }}">Edit</a></li>
         <li><a href="{{ path('user_delete', { 'id':user.id }) }}">Delete</a></li>

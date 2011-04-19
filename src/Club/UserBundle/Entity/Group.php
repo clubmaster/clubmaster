@@ -32,21 +32,21 @@ class Group
     private $group_type;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
-     * @var string $sex
+     * @var string $gender
      */
-    private $sex;
+    private $gender;
 
     /**
-     * @orm:Column(type="integer")
+     * @orm:Column(type="integer", nullable="true")
      *
      * @var integer $min_age
      */
     private $min_age;
 
     /**
-     * @orm:Column(type="integer")
+     * @orm:Column(type="integer", nullable="true")
      *
      * @var integer $max_age
      */
@@ -145,23 +145,23 @@ class Group
     }
 
     /**
-     * Set sex
+     * Set gender
      *
-     * @param string $sex
+     * @param string $gender
      */
-    public function setSex($sex)
+    public function setGender($gender)
     {
-        $this->sex = $sex;
+        $this->gender = $gender;
     }
 
     /**
-     * Get sex
+     * Get gender
      *
-     * @return string $sex
+     * @return string $gender
      */
-    public function getSex()
+    public function getGender()
     {
-        return $this->sex;
+        return $this->gender;
     }
 
     /**

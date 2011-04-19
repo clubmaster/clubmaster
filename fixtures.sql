@@ -1,3 +1,15 @@
+INSERT INTO club_location (location_id,location_name) VALUES
+  (null,'Danmark'),
+  (1,'Aalborg'),
+  (1,'Copenhagen'),
+  (2,'Aalborg Tennis Klub'),
+  (2,'Gug Tennisklub');
+
+INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is_active) VALUES
+  (null,'Senior','dynamic',null,18,45,1),
+  (null,'Junior','dynamic',null,0,17,1),
+  (null,'Members of honor','static',null,null,null,1);
+
 INSERT INTO club_role (role_name) VALUES
   ('ROLE_ADMIN'),
   ('ROLE_USER');
