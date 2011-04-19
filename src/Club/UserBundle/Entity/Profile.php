@@ -32,6 +32,13 @@ class Profile
     private $last_name;
 
     /**
+     * @orm:Column(type="string")
+     *
+     * var string $gender
+     */
+    private $gender;
+
+    /**
      * @orm:OneToOne(targetEntity="User")
      *
      * @var Club\UserBundle\Entity\User
@@ -67,6 +74,16 @@ class Profile
     public function getFirstName()
     {
         return $this->first_name;
+    }
+
+    public function getGender()
+    {
+      return $this->gender;
+    }
+
+    public function setGender($gender)
+    {
+      $this->gender = $gender;
     }
 
     /**
