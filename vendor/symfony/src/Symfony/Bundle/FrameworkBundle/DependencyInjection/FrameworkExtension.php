@@ -85,7 +85,7 @@ class FrameworkExtension extends Extension
         if (!empty($config['test'])) {
             $loader->load('test.xml');
             if (isset($config['session'])) {
-                $config['session']['storage_id'] = 'array';
+                $config['session']['storage_id'] = 'filesystem';
             }
         }
 
@@ -368,6 +368,8 @@ class FrameworkExtension extends Extension
         if ($config['cache_warmer']) {
             $container->getDefinition('templating.cache_warmer.template_paths')->addTag('kernel.cache_warmer');
             $container->setAlias('templating.locator', 'templating.locator.cached');
+        } else {
+            $container->setAlias('templating.locator', 'templating.locator.uncached');
         }
 
         $this->addClassesToCompile(array(

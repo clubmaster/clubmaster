@@ -136,9 +136,8 @@ abstract class Kernel implements KernelInterface
         }
         if (true === $first) {
             return $this->bundleMap[$name][0];
-        } elseif (false === $first) {
-            return $this->bundleMap[$name];
         }
+        return $this->bundleMap[$name];
     }
     public function locateResource($name, $dir = null, $first = true)
     {
@@ -263,6 +262,10 @@ abstract class Kernel implements KernelInterface
     {
         return $this->name.ucfirst($this->environment).($this->debug ? 'Debug' : '').'ProjectContainer';
     }
+    protected function getContainerBaseClass()
+    {
+        return 'Container';
+    }
     protected function initializeContainer()
     {
         $class = $this->getContainerClass();
@@ -270,7 +273,7 @@ abstract class Kernel implements KernelInterface
         $fresh = true;
         if (!$cache->isFresh()) {
             $container = $this->buildContainer();
-            $this->dumpContainer($cache, $container, $class);
+            $this->dumpContainer($cache, $container, $class, $this->getContainerBaseClass());
             $fresh = false;
         }
         require_once $cache;
@@ -339,10 +342,10 @@ abstract class Kernel implements KernelInterface
         $container->compile();
         return $container;
     }
-    protected function dumpContainer(ConfigCache $cache, ContainerBuilder $container, $class)
+    protected function dumpContainer(ConfigCache $cache, ContainerBuilder $container, $class, $baseClass)
     {
                 $dumper = new PhpDumper($container);
-        $content = $dumper->dump(array('class' => $class));
+        $content = $dumper->dump(array('class' => $class, 'base_class' => $baseClass));
         if (!$this->debug) {
             $content = self::stripComments($content);
         }
@@ -425,6 +428,7 @@ class HttpCache implements HttpKernelInterface
             'stale_if_error'         => 60,
         ), $options);
         $this->esi = $esi;
+        $this->traces = array();
     }
     public function getTraces()
     {
@@ -1086,6 +1090,45 @@ class ParameterBag
     {
         return array_key_exists($key, $this->parameters) ? $this->parameters[$key] : $default;
     }
+    public function getDeep($path, $default = null)
+    {
+        if (false === $pos = strpos($path, '[')) {
+            return $this->get($path, $default);
+        }
+        $root = substr($path, 0, $pos);
+        if (!array_key_exists($root, $this->parameters)) {
+            return $default;
+        }
+        $value = $this->parameters[$root];
+        $currentKey = null;
+        for ($i=$pos,$c=strlen($path); $i<$c; $i++) {
+            $char = $path[$i];
+            if ('[' === $char) {
+                if (null !== $currentKey) {
+                    throw new \InvalidArgumentException(sprintf('Malformed path. Unexpected "[" at position %d.', $i));
+                }
+                $currentKey = '';
+            } else if (']' === $char) {
+                if (null === $currentKey) {
+                    throw new \InvalidArgumentException(sprintf('Malformed path. Unexpected "]" at position %d.', $i));
+                }
+                if (!is_array($value) || !array_key_exists($currentKey, $value)) {
+                    return $default;
+                }
+                $value = $value[$currentKey];
+                $currentKey = null;
+            } else {
+                if (null === $currentKey) {
+                    throw new \InvalidArgumentException(sprintf('Malformed path. Unexpected "%s" at position %d.', $char, $i));
+                }
+                $currentKey .= $char;
+            }
+        }
+        if (null !== $currentKey) {
+            throw new \InvalidArgumentException(sprintf('Malformed path. Path must end with "]".'));
+        }
+        return $value;
+    }
     public function set($key, $value)
     {
         $this->parameters[$key] = $value;
@@ -1413,7 +1456,7 @@ class Request
         $this->method = null;
         $this->format = null;
     }
-    static public function createfromGlobals()
+    static public function createFromGlobals()
     {
         return new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
     }
@@ -2110,7 +2153,7 @@ class Response
             }
         }
                 foreach ($this->headers->getCookies() as $cookie) {
-            setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpire(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
+            setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
         }
     }
     public function sendContent()
@@ -2244,6 +2287,7 @@ class Response
     }
     public function setSharedMaxAge($value)
     {
+        $this->setPublic();
         $this->headers->addCacheControlDirective('s-maxage', $value);
     }
     public function getTtl()

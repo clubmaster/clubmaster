@@ -6,13 +6,39 @@ one. It only discusses changes that need to be done when using the "public"
 API of the framework. If you "hack" the core, you should probably follow the
 timeline closely anyway.
 
+PR11 to PR12
+------------
+
+* HttpFoundation\Cookie::getExpire() was renamed to getExpiresTime()
+
+* XML configurations have been normalized. All tags with only one attribute
+  have been converted to tag content:
+
+  Before:
+
+        <bundle name="MyBundle" />
+        <app:engine id="twig" />
+        <twig:extension id="twig.extension.debug" />
+
+  After:
+
+        <bundle>MyBundle</bundle>
+        <app:engine>twig</app:engine>
+        <twig:extension>twig.extension.debug</twig:extension>
+
+* Fixes a critical security issue which allowed all users to switch to 
+  arbitrary accounts when the SwitchUserListener was activated. Configurations
+  which do not use the SwitchUserListener are not affected.
+
 PR10 to PR11
 ------------
 
 * Extension configuration classes should now implement the
-`Symfony\Component\Config\Definition\ConfigurationInterface` interface. Note that
-the BC is kept but implementing this interface in your extensions will allow for
-further developments.
+  `Symfony\Component\Config\Definition\ConfigurationInterface` interface. Note
+  that the BC is kept but implementing this interface in your extensions will
+  allow for further developments.
+
+* The "fingerscrossed" Monolog option has been renamed to "fingers_crossed".
 
 PR9 to PR10
 -----------
