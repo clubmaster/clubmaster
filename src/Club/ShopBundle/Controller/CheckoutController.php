@@ -21,4 +21,13 @@ class CheckoutController extends Controller
       'basket_items' => $basket_items
     );
   }
+
+  /**
+   * @extra:Route("/shop/basket/empty", name="shop_checkout_empty")
+   */
+  public function emptyBasketAction()
+  {
+    $this->get('basket')->emptyBasket();
+    return new RedirectResponse($this->generateUrl('shop_checkout'));
+  }
 }

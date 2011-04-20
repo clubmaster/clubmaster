@@ -21,8 +21,7 @@ class Basket
     $basket_items = $this->getBasketItems();
     $basket_items[] = $product;
 
-    $this->session->set('basket_items',$basket_items);
-
+    $this->setBasketItems($basket_items);
     $this->updateBasket($product);
   }
 
@@ -31,11 +30,7 @@ class Basket
     $basket = $this->session->get('basket');
 
     if (!is_array($basket)) {
-      $basket = array(
-        'price' => 0,
-        'tax' => 0,
-        'user_id' => 0
-      );
+      $basket = $this->getEmptyBasket();
     }
 
     return $basket;
@@ -52,6 +47,15 @@ class Basket
     return $basket_items;
   }
 
+  public function emptyBasket()
+  {
+    $basket = $this->getEmptyBasket();
+    $this->setBasket($basket);
+
+    $basket_items = array();
+    $this->setBasketItems($basket_items);
+  }
+
   private function updateBasket($product)
   {
     $basket = $this->getBasket();
@@ -63,5 +67,21 @@ class Basket
   private function setBasket($basket)
   {
     $this->session->set('basket',$basket);
+  }
+
+  private function setBasketItems($basket_items)
+  {
+    $this->session->set('basket_items',$basket_items);
+  }
+
+  private function getEmptyBasket()
+  {
+    $basket = array(
+      'price' => 0,
+      'tax' => 0,
+      'user_id' => 0
+    );
+
+    return $basket;
   }
 }
