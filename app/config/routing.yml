@@ -40,8 +40,12 @@ _shop_product:
   resource: "@ClubShopBundle/Controller/ProductController.php"
   type: annotation
 
-_order:
+_shop_order:
   resource: "@ClubShopBundle/Controller/OrderController.php"
+  type: annotation
+
+_shop_checkout:
+  resource: "@ClubShopBundle/Controller/CheckoutController.php"
   type: annotation
 
 _rest:

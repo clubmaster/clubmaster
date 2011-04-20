@@ -50,8 +50,17 @@ class ProductController extends Controller
    */
   public function basketAction($id)
   {
-    $basket = $this->get('basket');
-    var_dump($basket->getBasket());
-    die();
+    $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
+
+    $param = array(
+      'id' => $product->getId(),
+      'name' => $product->getProductName(),
+      'qty' => 1,
+      'price' => $product->getPrice()
+    );
+
+    $basket = $this->get('basket')->addToBasket($param);
+
+    return new RedirectResponse($this->generateUrl('shop_checkout'));
   }
 }
