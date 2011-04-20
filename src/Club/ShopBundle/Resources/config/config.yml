@@ -1,0 +1,3 @@
+services:
+  basket:
+    class: Club\ShopBundle\Util\Basket

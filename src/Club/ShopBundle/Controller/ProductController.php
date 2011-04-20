@@ -43,4 +43,15 @@ class ProductController extends Controller
   {
     return array();
   }
+
+  /**
+   * @extra:Route("/shop/product/basket/{id}", name="shop_product_basket")
+   * @extra:Template()
+   */
+  public function basketAction($id)
+  {
+    $basket = $this->get('basket');
+    var_dump($basket->getBasket());
+    die();
+  }
 }
