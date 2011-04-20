@@ -15,7 +15,7 @@ class ProductController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findAll();
+    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findByCategories(array($category));
 
     return array(
       'products' => $products
