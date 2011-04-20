@@ -56,6 +56,14 @@ class Basket
     $this->setBasketItems($basket_items);
   }
 
+  public function setUserId($id)
+  {
+    $basket = $this->getBasket();
+    $basket['user_id'] = $id;
+
+    $this->setBasket($basket);
+  }
+
   private function updateBasket($product)
   {
     $basket = $this->getBasket();
@@ -79,7 +87,9 @@ class Basket
     $basket = array(
       'price' => 0,
       'tax' => 0,
-      'user_id' => 0
+      'user_id' => 0,
+      'shipping_id' => 0,
+      'payment_id' => 0
     );
 
     return $basket;

@@ -146,6 +146,10 @@ class UserController extends Controller
    */
   public function shopAction($id)
   {
-    return array();
+    $basket = $this->get('basket');
+    $basket->emptyBasket();
+    $basket->setUserId($id);
+
+    return new RedirectResponse($this->generateUrl('shop_category'));
   }
 }
