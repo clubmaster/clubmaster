@@ -10,7 +10,7 @@
     <tr>
       <th><input type="checkbox" /></th>
       <th>Id</th>
-      <th>Username</th>
+      <th>Name</th>
       <th>Created At</th>
       <th>Actions</th>
     </tr>
@@ -25,13 +25,14 @@
     <tr>
       <td><input type="checkbox" /></td>
       <td>{{ user.id }}</td>
-      <td>{{ user.username }}</td>
+      <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td><ul>
         <li><a href="{{ path('user_edit', { 'id':user.id }) }}">Edit</a></li>
         <li><a href="{{ path('user_delete', { 'id':user.id }) }}">Delete</a></li>
-        <li>Subscription</li>
-        <li>Ticket</li>
+        <li><a href="{{ path('user_subscription', { 'id':user.id }) }}">Subscription</a></li>
+        <li><a href="{{ path('user_ticket', { 'id':user.id }) }}">Ticket</a></li>
+        <li><a href="{{ path('user_shop', { 'id':user.id }) }}">Shop as</a></li>
         <li><a href="{{ path('user_ban', { 'id':user.id }) }}">Ban</a></li>
       </ul></td>
     </tr>

@@ -128,6 +128,11 @@ class User
      */
     private $subscriptions;
 
+    /**
+     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\TicketCoupon", mappedBy="user")
+     */
+    private $ticket_coupons;
+
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
@@ -426,6 +431,11 @@ class User
     public function getSubscriptions()
     {
       return $this->subscriptions;
+    }
+
+    public function getTicketCoupons()
+    {
+      return $this->ticket_coupons;
     }
 
     /**

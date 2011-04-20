@@ -111,4 +111,41 @@ class UserController extends Controller
 
     return new RedirectResponse($this->generateUrl('user'));
   }
+
+  /**
+   * @extra:Route("/user/subscription/{id}",name="user_subscription")
+   * @extra:Template()
+   */
+  public function subscriptionAction($id)
+  {
+    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
+
+    $subscriptions = $user->getSubscriptions();
+    return array(
+      'subscriptions' => $subscriptions
+    );
+  }
+
+  /**
+   * @extra:Route("/user/ticket/{id}", name="user_ticket")
+   * @extra:Template()
+   */
+  public function ticketAction($id)
+  {
+    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
+
+    $tickets = $user->getTicketCoupons();
+
+    return array(
+      'tickets' => $tickets
+    );
+  }
+
+  /**
+   * @extra:Route("/user/shop/{id}", name="user_shop")
+   */
+  public function shopAction($id)
+  {
+    return array();
+  }
 }
