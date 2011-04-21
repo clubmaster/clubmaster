@@ -4,6 +4,8 @@ namespace Club\ShopBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\ShopBundle\Entity\PaymentMethod;
+use Club\ShopBundle\Form\PaymentMethodForm;
 
 class CheckoutController extends Controller
 {
@@ -19,6 +21,20 @@ class CheckoutController extends Controller
     return array(
       'basket' => $basket,
       'basket_items' => $basket_items
+    );
+  }
+
+  /**
+   * @extra:Route("/shop/checkout/payment", name="shop_checkout_payment")
+   * @extra:Template()
+   */
+  public function paymentAction()
+  {
+    $payment = new PaymentMethod();
+    $form = PaymentMethodForm::create($this->get('form.context'),'payment_method');
+
+    return array(
+      'form' => $form
     );
   }
 

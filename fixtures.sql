@@ -50,7 +50,7 @@ INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
 
 INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('1. md, subscription','1. md, subscription',100,2),
-  ('2. md, subscription','2. md, subscription',100,2),
+  ('2. md, subscription','2. md, subscription',175,2),
   ('1. season subscription','1. season subscription',1000,2),
   ('2. seasons subscription','2. season subscription',1700,2),
   ('Lifetime membership','Lifetime membership',5000,2),
