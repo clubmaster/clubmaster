@@ -13,7 +13,3 @@ _shop_order:
 _shop_checkout:
   resource: "@ClubShopBundle/Controller/CheckoutController.php"
   type: annotation
-
-_shop_payment:
-  resource: "@ClubShopBundle/Controller/PaymentMethodController.php"
-  type: annotation
