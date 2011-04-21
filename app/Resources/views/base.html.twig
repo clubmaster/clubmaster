@@ -12,7 +12,9 @@
         <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/main-ie6.css') }}" /><![endif]--> <!-- MSIE6 -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/style.css') }}" /> <!-- GRAPHIC THEME -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
         <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.slimbox2.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.tablesorter.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.switcher.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/toggle.js') }}"></script>
@@ -61,16 +63,7 @@
 
         <!-- Menu -->
         <div id="menu" class="box">
-
-                <ul class="box f-right">
-                        <li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li>
-                </ul>
-
-                <ul class="box">
-                  <li id="menu-active"><a href="{{ path('user') }}"><span>User</span></a></li> <!-- Active -->
-                        <li><a href="{{ path('shop_category') }}"><span>Shop</span></a></li>
-                </ul>
-
+          {% include "::top_menu.html.twig" %}
         </div> <!-- /header -->
 
         <hr class="noscreen" />
@@ -113,27 +106,7 @@
 
                         </div> <!-- /padding -->
 
-                        <ul class="box">
-                                <li><a href="{{ path('user') }}">User</a>
-                                      <ul>
-                                            <li><a href="{{ path('user') }}">Ban</a></li>
-                                      </ul>
-                                <li>
-                                <li><a href="{{ path('location') }}">Location</a></li>
-                                <li id="submenu-active"><a href="{{ path('group') }}">Group</a></li>
-                                <li><a href="{{ path('user') }}">Company</a></li>
-                                <li><a href="{{ path('user') }}">Company config</a></li>
-                                <li><a href="{{ path('user') }}">Mail</a></li>
-                                <li><a href="{{ path('shop_category') }}">Category</a></li>
-                                <li><a href="{{ path('shop_order') }}">Order</a></li>
-                                <li><a href="{{ path('shop_checkout') }}">Basket</a></li>
-                                <li><a href="{{ path('user') }}">Order Status</a></li>
-                                <li><a href="{{ path('user') }}">Transaction</a></li>
-                                <li><a href="{{ path('user') }}">Config Group</a></li>
-                                <li><a href="{{ path('user') }}">Config</a></li>
-                                <li><a href="{{ path('user') }}">Language</a></li>
-                                <li><a href="{{ path('user') }}">Role</a></li>
-                        </ul>
+                        {% include "::right_menu.html.twig" %}
 
                 </div> <!-- /aside -->
 

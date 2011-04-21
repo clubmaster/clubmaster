@@ -1,3 +1,7 @@
+_shop:
+  resource: "@ClubShopBundle/Controller/ShopController.php"
+  type: annotation
+
 _shop_category:
   resource: "@ClubShopBundle/Controller/CategoryController.php"
   type: annotation

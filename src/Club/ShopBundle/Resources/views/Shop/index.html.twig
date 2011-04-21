@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Shop</h1>
+
+<h2>Categories</h2>
+
+{% for category in categories %}
+<!-- Button -->
+<div class="btn-box">
+<div class="btn-top"></div>
+<div class="btn">
+  <dl>
+    <dt><a href="#">{{ category.categoryName }}</a></dt>
+    <dd>{{ category.description }}</dd>
+  </dl>
+</div> <!-- /btn -->
+<div class="btn-bottom"></div>
+</div> <!-- /btn-box -->
+{% endfor %}
+
+{% endblock %}
