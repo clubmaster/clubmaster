@@ -2,6 +2,17 @@
 
 {% block body %}
 
+<h1>Shop</h1>
+
+<p class="box">
+  <a href="{{ path('shop_checkout_empty') }}" class="btn-info"><span>Empty basket</span></a>
+  <a href="{{ path('shop_category') }}" class="btn-info"><span>Continue shopping</span></a>
+  <a href="{{ path('shop_category') }}" class="btn-info"><span>To payment</span></a>
+</p>
+
+
+<h3>Checkout</h3>
+
 <div id="sf_admin_container">
 <table>
   <thead>
@@ -44,10 +55,5 @@
   </tr>
   </tfoot>
 </table>
-<ul>
-  <li><a href="{{ path("shop_checkout_empty") }}">Empty basket</a></li>
-  <li><a href="{{ path("shop_category") }}">Continue shopping</a></li>
-  <li><a href="{{ path("shop_pategory") }}">Continue to payment</a></li>
-</ul>
 
 {% endblock %}

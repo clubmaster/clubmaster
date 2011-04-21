@@ -10,7 +10,7 @@ class ShopController extends Controller
   /**
    * @extra:Routes({
    *   @extra:Route("/shop", name="shop"),
-   *   @extra:Route("/shop/{id}",name="shop_prod_view")
+   *   @extra:Route("/shop/category/{id}",name="shop_prod_view")
    * })
    * @extra:Template()
    */
