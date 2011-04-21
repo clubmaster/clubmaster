@@ -150,6 +150,6 @@ class UserController extends Controller
     $basket->emptyBasket();
     $basket->setUserId($id);
 
-    return new RedirectResponse($this->generateUrl('shop_category'));
+    return new RedirectResponse($this->generateUrl('shop'));
   }
 }

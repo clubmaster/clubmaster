@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Club\UserBundle\Entity\UserManager;
+use Club\UserBundle\Entity\User;
 
 class CreateUserCommand extends Command
 {
@@ -44,17 +44,20 @@ EOF
 
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $um = new UserManager($this->container->get('doctrine.orm.entity_manager'));
-    $user = $um->createUser();
+    $user = new User();
 
     $user->setUsername($input->getArgument('username'));
     $user->setEnabled($input->getOption('inactive'));
+
+    $em = $this->container->get('doctrine.orm.entity_manager');
+    $em->persist($user);
 
     $encoder = new MessageDigestPasswordEncoder('sha512', true, 10);
     $password = $encoder->encodePassword($input->getArgument('password'), $user->getSalt());
     $user->setPassword($password);
 
-    $um->updateUser($user);
+    $em->persist($user);
+    $em->flush();
 
 
     $output->writeln(sprintf('Created user <command>%s</command>',$user->getUsername()));

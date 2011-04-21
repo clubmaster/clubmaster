@@ -30,14 +30,15 @@
                 <p class="msg info">Enter your username and password.</p>
 
                 <!-- Form -->
+                <form method="POST" action="{{ path('_security_check') }}">
                 <table class="nom nostyle">
                         <tr>
                                 <td style="width:75px;"><label for="login-user"><strong>Username:</strong></label></td>
-                                <td><input type="text" size="45" name="" class="input-text" id="login-user" /></td>
+                                <td><input type="text" size="45" name="_username" class="input-text" id="login-user" /></td>
                         </tr>
                         <tr>
                                 <td><label for="login-pass"><strong>Password:</strong></label></td>
-                                <td><input type="password" size="45" name="" class="input-text" id="login-pass" /></td>
+                                <td><input type="password" size="45" name="_password" class="input-text" id="login-pass" /></td>
                         </tr>
                         <tr>
                                 <td></td>
@@ -58,6 +59,7 @@
                                 <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Sign In &raquo;" /></td>
                         </tr>
                 </table>
+                </form>
 
         </div> <!-- /login-box -->
 

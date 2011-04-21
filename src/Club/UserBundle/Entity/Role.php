@@ -2,11 +2,13 @@
 
 namespace Club\UserBundle\Entity;
 
+use Symfony\Component\Security\Core\Role\RoleInterface;
+
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Role")
  * @orm:Table(name="club_role")
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @orm:Id
@@ -62,5 +64,10 @@ class Role
     public function getRoleName()
     {
         return $this->role_name;
+    }
+
+    public function getRole()
+    {
+      return $this->getRoleName();
     }
 }

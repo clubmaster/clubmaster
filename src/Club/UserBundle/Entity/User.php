@@ -2,12 +2,14 @@
 
 namespace Club\UserBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
  * @orm:Table(name="club_user")
  * @orm:HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @orm:Id
@@ -136,6 +138,7 @@ class User
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -444,7 +447,6 @@ class User
     public function prePersist()
     {
       // Add your code here
-      $this->setPassword('1234');
       $this->setSalt(hash('sha1',uniqid()));
       $this->setEnabled(1);
       $this->setAlgorithm('sha512');
@@ -467,5 +469,19 @@ class User
           'gender' => $this->getProfile()->getGender()
         )
       );
+    }
+
+    public function getRoles()
+    {
+      return $this->roles->toArray();
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function equals(UserInterface $user)
+    {
+      return md5($this->getUsername()) == md5($user->getUsername());
     }
 }
