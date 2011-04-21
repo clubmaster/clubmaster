@@ -1,32 +1,157 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-language" content="en" />
+        <meta name="robots" content="noindex,nofollow" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/reset.css') }}" /> <!-- RESET -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/main.css') }}" /> <!-- MAIN STYLE SHEET -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/2col.css') }}" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+        <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/1col.css') }}" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+        <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/main-ie6.css') }}" /><![endif]--> <!-- MSIE6 -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/style.css') }}" /> <!-- GRAPHIC THEME -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/toggle.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/ui.core.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/ui.tabs.js') }}"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+                $(".tabs > ul").tabs();
+        });
+        </script>
+
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    </head>
+        {% block javascripts %}{% endblock %}
+          <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+      </head>
     <body>
-      <p>
-        <a href="{{ path('location') }}">Location</a> |
-        <a href="{{ path('group') }}">Group</a> |
-        <a href="{{ path('user') }}">User</a> |
-        <a href="{{ path('user') }}">Ban</a> |
-        <a href="{{ path('user') }}">Company</a> |
-        <a href="{{ path('user') }}">Company config</a> |
-        <a href="{{ path('user') }}">Mail</a> |
-        <a href="{{ path('shop_category') }}">Category</a> |
-        <a href="{{ path('shop_order') }}">Order</a> |
-        <a href="{{ path('shop_checkout') }}">Basket</a> |
-        <a href="{{ path('user') }}">Order Status</a> |
-        <a href="{{ path('user') }}">Transaction</a> |
-        <a href="{{ path('user') }}">Config Group</a> |
-        <a href="{{ path('user') }}">Config</a> |
-        <a href="{{ path('user') }}">Language</a> |
-        <a href="{{ path('user') }}">Role</a> |
-        <a href="{{ path('_security_logout') }}">Logout</a> |
-        </p>
-        {% block body %}{% endblock %}
+<div id="main">
+
+        <!-- Tray -->
+        <div id="tray" class="box">
+
+                <p class="f-left box">
+
+                        <!-- Switcher -->
+                        <span class="f-left" id="switcher">
+                          <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ asset('images/switcher-1col.gif') }}" alt="1 Column" /></a>
+                          <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('images/switcher-2col.gif') }}" alt="2 Columns" /></a>
+                        </span>
+
+                        Project: <strong>ClubMaster</strong>
+
+                </p>
+
+                <p class="f-right">User: <strong><a href="#">Administrator</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+
+        </div> <!--  /tray -->
+
+        <hr class="noscreen" />
+
+        <!-- Menu -->
+        <div id="menu" class="box">
+
+                <ul class="box f-right">
+                        <li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li>
+                </ul>
+
+                <ul class="box">
+                  <li id="menu-active"><a href="{{ path('user') }}"><span>User</span></a></li> <!-- Active -->
+                        <li><a href="{{ path('shop_category') }}"><span>Shop</span></a></li>
+                </ul>
+
+        </div> <!-- /header -->
+
+        <hr class="noscreen" />
+
+        <!-- Columns -->
+        <div id="cols" class="box">
+
+                <!-- Aside (Left Column) -->
+                <div id="aside" class="box">
+
+                        <div class="padding box">
+
+                                <!-- Logo (Max. width = 200px) -->
+                                <p id="logo"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
+
+                                <!-- Search -->
+                                <form action="#" method="get" id="search">
+                                        <fieldset>
+                                                <legend>Search</legend>
+
+                                                <p><input type="text" size="17" name="" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
+                                                <a href="javascript:toggle('search-options');" class="ico-drop">Advanced search</a></p>
+
+                                                <!-- Advanced search -->
+                                                <div id="search-options" style="display:none;">
+
+                                                        <p>
+                                                                <label><input type="checkbox" name="" checked="checked" /> Option I.</label><br />
+                                                                <label><input type="checkbox" name="" /> Option II.</label><br />
+                                                                <label><input type="checkbox" name="" /> Option III.</label>
+                                                        </p>
+
+                                                </div> <!-- /search-options -->
+
+                                        </fieldset>
+                                </form>
+
+                                <!-- Create a new project -->
+                                <p id="btn-create" class="box"><a href="#"><span>Create a new project</span></a></p>
+
+                        </div> <!-- /padding -->
+
+                        <ul class="box">
+                                <li><a href="{{ path('user') }}">User</a>
+                                      <ul>
+                                            <li><a href="{{ path('user') }}">Ban</a></li>
+                                      </ul>
+                                <li>
+                                <li><a href="{{ path('location') }}">Location</a></li>
+                                <li><a id="submenu-active" href="{{ path('group') }}">Group</a></li>
+                                <li><a href="{{ path('user') }}">Company</a></li>
+                                <li><a href="{{ path('user') }}">Company config</a></li>
+                                <li><a href="{{ path('user') }}">Mail</a></li>
+                                <li><a href="{{ path('shop_category') }}">Category</a></li>
+                                <li><a href="{{ path('shop_order') }}">Order</a></li>
+                                <li><a href="{{ path('shop_checkout') }}">Basket</a></li>
+                                <li><a href="{{ path('user') }}">Order Status</a></li>
+                                <li><a href="{{ path('user') }}">Transaction</a></li>
+                                <li><a href="{{ path('user') }}">Config Group</a></li>
+                                <li><a href="{{ path('user') }}">Config</a></li>
+                                <li><a href="{{ path('user') }}">Language</a></li>
+                                <li><a href="{{ path('user') }}">Role</a></li>
+                        </ul>
+
+                </div> <!-- /aside -->
+
+                <hr class="noscreen" />
+
+                <!-- Content (Right Column) -->
+                <div id="content" class="box">
+
+                        {% block body %}{% endblock %}
+
+                </div> <!-- /content -->
+
+        </div> <!-- /cols -->
+
+        <hr class="noscreen" />
+
+        <!-- Footer -->
+        <div id="footer" class="box">
+
+                <p class="f-left">&copy; 2011 <a href="#">ClubMaster</a>, All Rights Reserved &reg;</p>
+
+                <p class="f-right">Templates by <a href="http://www.adminizio.com/">Adminizio</a></p>
+
+        </div> <!-- /footer -->
+
+</div> <!-- /main -->
+
     </body>
 </html>

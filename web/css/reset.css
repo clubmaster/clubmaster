@@ -1,0 +1,31 @@
+/* =============================================================================
+
+	RESET.CSS
+	version: 1.0
+	updated: 2009-02-02, 11:47 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+RESET
+============================================================================= */
+
+* {margin:0; padding:0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {border:0; outline:0; vertical-align:baseline; background:transparent;}
+.hidden {position:absolute; left:-1000em; top:-1000em; width:1px; height:1px; overflow:hidden;}
+.noscreen {display:none;}
+.box {min-height:1px;}
+.box:after {display:block; visibility:hidden; clear:both; line-height:0; font-size:0; content:".";}
+.fix {float:none; clear:both; width:0; height:0; margin:0; padding:0; border:0; line-height:0; font-size:0;}
+.f-left {float:left !important;}
+.f-right {float:right !important;}
+.t-left {text-align:left !important;}
+.t-center {text-align:center !important;}
+.t-right {text-align:right !important;}
+.t-justify {text-align:justify !important;}
+.va-top {vertical-align:top !important;}
+.va-middle {vertical-align:middle !important;}
+.va-bottom {vertical-align:bottom !important;}
+.nom {margin:0 !important;}
+.nomt {margin-top:0 !important;}
+.nomb {margin-bottom:0 !important;}

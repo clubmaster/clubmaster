@@ -1,74 +1,85 @@
-* { padding:0; margin:0; outline:0; }
-body {
-	font-family: Verdana, Arial, sans-serif;
-	font-size:12px;
-	line-height:20px;
-	color:#666;
-	background:#eeefef;
-}
+/* =============================================================================
 
-.left { float:left; display:inline; }
-.right { float:right; display:inline; }
+	STYLE.CSS
+	version: 1.6
+	updated: 2009-03-06, 13:00 GMT+1
 
-a { color:#364f86; text-decoration: none; cursor:pointer; }
-a:hover { color:#000; }
+============================================================================= */
 
-.orange { color:#d96a02; }
-.red { color:#be4856; }
+/* =============================================================================
+HTML - styles
+============================================================================= */
 
-.shell { width:980px; margin:0 auto; }
-.contentshell { width:auto; margin-left: 20px; margin-right: 20px; }
+body {background-color:#eaeaea; color:#303030;}
+a {color:#0085cc;}
+a:hover, a:active, a:focus {color:#df0000;}
+#content h2 {color:#0085cc;}
+#content table {border:2px solid #cfcfcf;}
+#content table th {border-right:1px solid #0074B3; background-color:#0085cc; color:#fff;}
+#content table td {border:1px solid #cfcfcf;}
+#content table tr.bg td {background-color:#e8f6ff;}
+#content dl dt {color:#df0000;}
+#content fieldset {border:1px solid #ccc;}
+#content legend {background:#FFF; color:#0085cc;}
+#content acronym, #content abbr, #content .help {border-bottom:1px dotted #cfcfcf;}
 
+/* =============================================================================
+HTML - without styles
+============================================================================= */
 
-h1, h2, h3, h4, h5 { font-family: "Trebuchet MS", Arial, sans-serif; padding-bottom:8px; }
-h1 { font-size:18px; line-height:22px; }
-h2 { font-size:17px; line-height:21px; }
-h3 { font-size:16px; line-height:20px; }
-h4 { font-size:15px; line-height:19px; }
-h5 { font-size:14px; line-height:18px; }
-h6 { font-size:12px; line-height:16px; padding-bottom:5px; }
+table.nostyle th, dl.nostyle dt {color:#303030 !important;}
 
-#header { background:#364f86; height:82px; }
-#header h1{ float:left; white-space:nowrap; padding-top:8px; font-size:25px; line-height:35px; color:#fff;}
-#header a{ color:#fff }
-#header a:hover{ color:#a1adc7; }
+/* =============================================================================
+LAYOUT
+============================================================================= */
 
-#header #head { height:43px; overflow:hidden; }
-#header .right { color:#fff; white-space:nowrap; font-size:10px; }
-#header .right p{ padding-top:12px;}
-#header .right a strong{ text-decoration: underline; }
+#tray {background-color:#303030; color:#cfcfcf;}
+#tray a, #tray strong {color:#fff;}
+#tray a:hover, #tray a:active, #tray a:focus {color:#b4e3ff;}
+#menu {background-color:#0085cc;}
+#menu ul li a {background-color:#fff; color:#303030;}
+#menu ul li a span {background-color:#FFF;}
+#menu ul li a:hover, #menu ul li a:active, #menu ul li a:focus, #menu ul li#menu-active a {background-color:#FFF; color:#df0000;}
+#menu ul li a:hover span, #menu ul li#menu-active a span {background-color:#FFF;}
+#menu ul li#menu-active a {color:#0085cc;}
+#menu ul.f-right a {color:#df0000;}
+#content {border:1px solid #afafaf; background:#fff;}
+#footer {color:#707070;}
+#footer a {color:#707070;}
+#footer a:hover, #footer a:active, #footer a:focus {color:#303030;}
 
+/* =============================================================================
+OTHERS
+============================================================================= */
 
-#navigation { height:31px; }
-#navigation ul{ list-style-type: none; padding-top:8px; font-size:11px; }
-#navigation ul li{ float:left; display:inline; margin-right:5px;}
-#navigation ul li a,
-#navigation ul li a span { float:left; display:inline; height:31px; padding:0 0 0 8px; background:url(/clubmaster_v2/web/images/nav.gif) no-repeat 0 0; }
-#navigation ul li a span { padding:0 8px 0 0; background-position:right 0; }
-#navigation ul li a { color:#ddadab; line-height:29px;}
-#navigation ul li a.active { font-weight: bold;}
+#aside #logo img {border:1px solid #bfbfbf;}
+#aside #search fieldset a {color:#303030;}
+#aside #search fieldset {border:1px solid #bfbfbf;}
+#aside #search fieldset a:hover, #aside #search fieldset a:active, #aside #search fieldset a:focus {color:#df0000;}
+#aside #btn-create a {background-color:#fff; color:#303030;}
+#aside #btn-create a span {background-color:#fff;}
+#aside ul li a {border-bottom:1px solid #cfcfcf; color:#303030;}
+#aside ul li#submenu-active a {background-color:#df0000; color:#fff;}
+#aside ul li a:hover, #aside ul li a:active, #aside ul li a:focus {color:#df0000;}
+#aside ul ul li a, #aside ul li#submenu-active ul li a {border-bottom:1px solid #cfcfcf; background-color:#f5f5f5; color:#303030;}
+#aside ul li ul li a {background-color:#e3e3e3;}
+#aside ul ul li a:hover, #aside ul ul li a:active, #aside ul ul li a:focus, #aside ul li#submenu-active ul li a:hover, #aside ul li#submenu-active ul li a:active, #aside ul li#submenu-active ul li a:focus {color:#df0000;}
+#content h1 {background-color:#303030; color:#fff;}
+#content .tabs {border-bottom:1px solid #cfcfcf;}
+#content .tabs a {color:#303030;}
+#content .tabs a span {color:#303030;}
+#content .tabs .ui-tabs-selected a {color:#fff;}
+#content .tabs .ui-tabs-selected a span {color:#fff;}
+.high {color:#df0000;}
+.high-bg {background:#FFB;}
+.low {color:#707070;}
 
-#navigation ul li a:hover,
-#navigation ul li a.active { background-position:0 bottom; color:#887e42; }
+/* =============================================================================
+MESSAGES
+============================================================================= */
 
-#navigation ul li a:hover span,
-#navigation ul li a.active span{ background-position:right bottom; }
-
-
-#help-nav { font-size:10px; line-height:15px; height:15px; padding-bottom:20px;}
-
-#content { padding:10px 0 20px 0;}
-#content p{ padding-bottom:15px;}
-#content ol,
-#content ul{ padding: 0 0 15px 25px;}
-#content li{ padding-bottom:3px; }
-#content a { text-decoration: underline;}
-#content a:hover { text-decoration: none;}
-
-#footer { text-align: center; font-size:11px; padding:10px 0 0 0; color:#666; background:url(/clubmaster_v2/web/images/footer.gif) repeat-x 0 0; height:148px; }
-#footer a{ color:#333; }
-
-.message { width:630px; height:50px; background-repeat:no-repeat; background-position:0 0; text-align: center; margin:0 auto 15px auto; font-size:13px;}
-.message p{ padding-top:14px;}
-.error-message { background-image:url(/clubmaster_v2/web/images/error.gif); color:#973729; }
-.thank-message { background-image:url(/clubmaster_v2/web/images/thank.gif); color:#3d8b26; }
+.msg.warning {border:2px solid #F2DD8C; background-color:#FFF5CC;}
+.msg.warning a {color:#df0000;} .msg.warning a:hover, .msg.warning a:active, .msg.warning a:focus {color:#303030;}
+.msg.info {border:2px solid #B8E2FB; background-color:#E8F6FF;}
+.msg.done {border:2px solid #BBDF8D; background-color:#EAF7D9;}
+.msg.error {border:2px solid #FFAEAE; background-color:#FEEBEB;}

@@ -1,0 +1,35 @@
+/* =============================================================================
+
+	MAIN-IE6.CSS
+	version: 1.7
+	updated: 2009-03-14, 12:44 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+RESET
+============================================================================= */
+
+.box {height:1%;}
+
+/* =============================================================================
+HTML
+============================================================================= */
+
+table {font-size:100%;}
+table th, table td {padding:6px 6px !important;}
+code {font-size:105%;}
+
+/* =============================================================================
+OTHERS
+============================================================================= */
+
+#aside ul li#submenu-active a {width:228px;}
+#aside ul li a, #aside ul ul li a, #aside ul li#submenu-active ul li a {width:215px;}
+#aside #btn-create a span {width:175px; background-position:0 0;}
+#aside #search fieldset .input-text {width:145px;}
+#content .col33.center {width:36%;}
+#content .tabs a {cursor:hand;}
+#content .tabs {height:30px;}
+.input-text-02 {height:39px;}
+.input-submit-02 {padding:0;}

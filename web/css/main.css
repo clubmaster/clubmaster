@@ -1,0 +1,130 @@
+/* =============================================================================
+
+	MAIN.CSS
+	version: 1.7
+	updated: 2009-03-14, 12:44 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+HTML - styles
+============================================================================= */
+
+body {font:0.8em/1.5 "arial", sans-serif;}
+h1, h2, h3, h4, h5, h6, address, blockquote, dl, fieldset, ol, p, table, ul {margin:15px 0;}
+#content h1 {font-size:180%;}
+#content h2 {font-size:160%;}
+#content h3 {font-size:140%;}
+#content h4 {font-size:120%;}
+#content h5, h6 {font-size:100%;}
+#content table {margin:0; border-collapse:collapse;}
+#content table.width100 {width:100%;}
+#content table th, #content table td {padding:5px 5px;}
+#content table th {text-align:left; vertical-align:middle; font-weight:bold;}
+#content ul {margin:15px 0; list-style:none;}
+#content ul li {padding-left:15px; background:url("../images/ul.gif") 0 4px no-repeat;}
+#content ul ul {margin:0 0 0 10px;}
+#content ul ul li {padding-left:15px; background:url("../images/ul-ul.gif") 0 4px no-repeat;}
+#content ol {margin:15px 0 15px 30px; list-style-type:decimal;}
+#content ol ol {margin:0 0 0 20px;}
+#content ol ol li {list-style-type:lower-alpha;}
+#content dl {clear:both;}
+#content dl dt {font-weight:bold;}
+#content dl dd {margin:0 0 5px 0;}
+#content fieldset {position:relative; margin:10px 0; padding:10px;}
+#content legend {font-size:120%; font-weight:bold;}
+#content code {font-family:"",monospace;}
+#content .help {cursor:help;}
+
+/* =============================================================================
+HTML - without styles
+============================================================================= */
+
+table.nostyle, table.nostyle th, table.nostyle td {border:0 !important;}
+table.nostyle th {background:none !important; text-align:left !important;}
+table.nostyle th, table.nostyle td {padding:3px 5px !important;}
+ul.nostyle {margin:15px 0 15px 20px !important; list-style-type:square !important;}
+ul.nostyle ul {margin:0 0 0 25px !important; list-style-type:square !important;}
+ul.nostyle li {padding:0 !important; background:none !important;}
+dl.nostyle dt {font-weight:bold !important;}
+dl.nostyle dd {margin:0 !important;}
+
+/* =============================================================================
+LAYOUT
+============================================================================= */
+
+#main {min-width:980px; width:expression(document.body.clientWidth < 980? "980px" : "auto" );}
+#tray {padding:12px 15px; background:url("../images/tray.gif") 0 0 repeat-x; font:85%/1.2 "tahoma",sans-serif;}
+#tray p {margin:0;}
+#tray p.f-left {width:50%;}
+#tray #logout {padding-left:18px; background:url("../images/tray-logout.gif") 0 50% no-repeat; text-transform:uppercase;}
+#tray #switcher {margin-right:15px;}
+#tray #switcher img {display:block; float:left; width:16px; height:16px; border:0;}
+#menu {padding:15px 15px 13px 15px; background:url("../images/menu.gif") 0 0 repeat-x;}
+#menu ul {margin:0; padding:0; list-style-type:none;}
+#menu ul li {display:inline; margin:0; padding:0;}
+#menu ul li a {float:left; margin-right:5px; padding-left:5px; background:url("../images/menu-left.gif") 0 0 no-repeat; text-decoration:none; cursor:pointer;}
+#menu ul li a span {float:left; display:block; padding:7px 15px 9px 8px; background:url("../images/menu-right.gif") 100% 0 no-repeat;}
+#menu ul li a:hover, #menu ul li#menu-active a {background:url("../images/menu-left.gif") 0 -35px no-repeat;}
+#menu ul li a:hover span, #menu ul li#menu-active a span {background:url("../images/menu-right.gif") 100% -35px no-repeat;}
+#menu ul li#menu-active a {font-weight:bold;}
+#content {padding:20px; overflow:hidden;}
+#footer {clear:both; padding:15px; background:url("../images/separator.gif") 0 0 repeat-x; font:85%/1.2 "tahoma",sans-serif;}
+#footer p {margin:0;}
+
+/* =============================================================================
+/* =============================================================================
+OTHERS
+============================================================================= */
+
+#aside .padding {padding-left:15px;}
+#aside #logo {margin:0 0 15px 0;}
+#aside #logo img {display:block; width:200px;}
+#aside #search fieldset {padding:7px 10px;}
+#aside #search fieldset p {margin:0;}
+#aside #search fieldset legend {font-weight:bold;}
+#aside #search fieldset .input-text {width:130px;}
+#aside #search fieldset #search-options {margin-top:10px;}
+#aside #btn-create {margin:0 0 15px 0;}
+#aside #btn-create a {float:left; padding-left:27px; height:37px; overflow:hidden; background:url("../images/btn-create-left.gif") 0 0 no-repeat; text-decoration:none; font-weight:bold; cursor:pointer;}
+#aside #btn-create a span {float:left; display:block; width:163px; padding:8px 0 10px 10px; background:url("../images/btn-create-right.gif") -2px 0 no-repeat;}
+#aside #btn-create a:hover {background-position:0 -37px;}
+#aside ul {width:215px; margin:0 0 15px 0; list-style:none;}
+#aside ul li {display:inline;}
+#aside ul li a {display:block; width:185px; padding:4px 15px; text-decoration:none;}
+#aside ul li#submenu-active a {width:198px; border:0; background:url("../images/submenu-active.gif") 100% 50% no-repeat; font-weight:bold; z-index:999;}
+#aside ul ul {margin:0; position:static;}
+#aside ul ul li a, #aside ul li#submenu-active ul li a {width:170px; padding:5px 15px 5px 30px; background:url("../images/submenu-sub.gif") 15px 7px no-repeat; font:85%/1.2 "tahoma",sans-serif; font-weight:normal;}
+#content h1 {margin:0; padding:10px 15px; background:url("../images/content-h1.gif") 0 0 repeat-x; letter-spacing:-1px;}
+#content .col50 {float:left; width:49%;}
+#content .col33 {float:left; width:32%;}
+#content .col33.center {padding:0 2%;}
+#content .tabs {margin:15px 0;}
+#content .tabs ul {margin:0; padding:0; list-style-type:none;}
+#content .tabs ul li {display:inline; margin:0; padding:0;}
+#content .tabs a {float:left; margin-right:3px; padding-left:4px; background:url("../images/tabs-l.gif") 0 -100px no-repeat; text-decoration:none;}
+#content .tabs a span {float:left; display:block; padding:8px 15px 6px 11px; background:url("../images/tabs-r.gif") 100% -100px no-repeat;}
+#content .tabs a:hover, .tabs a:hover span {text-decoration:underline;}
+#content .tabs .ui-tabs-selected a {background:url("../images/tabs-l.gif") 0 0 no-repeat; font-weight:bold;}
+#content .tabs .ui-tabs-selected a span  {background:url("../images/tabs-r.gif") 100% 0 no-repeat;}
+#content .tabs .ui-tabs-selected a:hover, #content .tabs .ui-tabs-selected a:hover span {text-decoration:none;}
+#content .ui-tabs-hide {display: none !important;}
+.input-text {padding:3px; font:100%/1.5 "arial", sans-serif;}
+.input-text-02 {padding:5px; font:140%/1.5 "arial", sans-serif;}
+.input-submit {padding:5px; font-size:120%;}
+.input-submit-02 {padding:1px; font-size:100%;}
+.msg {padding:10px; padding-left:35px;}
+.msg.warning {background:url("../images/ico-warning.gif") 10px 50% no-repeat;}
+.msg.info {background:url("../images/ico-info.gif") 10px 50% no-repeat;}
+.msg.done {background:url("../images/ico-done.gif") 10px 50% no-repeat;}
+.msg.error {background:url("../images/ico-delete.gif") 10px 50% no-repeat;}
+
+/* =============================================================================
+FONT STYLES
+============================================================================= */
+
+.bigger {font-size:120%;}
+.smaller {font:85%/1.2 "tahoma",sans-serif;}
+
+/* This line can be deleted */
+.tit {padding:10px; background:#f5f5f5;} .tag {background:#ffa;}
