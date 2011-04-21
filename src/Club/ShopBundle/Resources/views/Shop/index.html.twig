@@ -4,20 +4,49 @@
 
 <h1>Shop</h1>
 
-<h2>Categories</h2>
+<h3>Categories</h3>
 
-{% for category in categories %}
+{% for cat in categories %}
 <!-- Button -->
 <div class="btn-box">
 <div class="btn-top"></div>
 <div class="btn">
   <dl>
-    <dt><a href="#">{{ category.categoryName }}</a></dt>
-    <dd>{{ category.description }}</dd>
+    <dt><a href="{{ path('shop_prod_view', {'id':cat.id}) }}">{{ cat.categoryName }}</a> ({{ cat.getProducts|length }})</dt>
+    <dd>{{ cat.description }}</dd>
   </dl>
 </div> <!-- /btn -->
 <div class="btn-bottom"></div>
 </div> <!-- /btn-box -->
 {% endfor %}
+
+<div class="fix"></div>
+
+{% if category %}
+<h3>Products</h3>
+
+<table>
+  <thead>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+    {% for product in category.getProducts %}
+    <tr>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.price }}</td>
+      <td></td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">There is no products in this category.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
 
 {% endblock %}

@@ -60,7 +60,7 @@ INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('Club t-shirt','Club t-shirt',200,2),
   ('Easter subscription','Easter subscription',50,2);
 
-INSERT INTO product_category (product_id,category_id) VALUES
+INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
   (2,1),
   (3,1),

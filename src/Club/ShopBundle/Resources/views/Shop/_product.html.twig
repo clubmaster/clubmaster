@@ -1,0 +1,24 @@
+<h3>Products</h3>
+<table>
+  <thead>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+    {% for product in category.findAllProducts %}
+    <tr>
+      <td>meh</td>
+      <td>meh</td>
+      <td>meh</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">There is no products in this category.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+

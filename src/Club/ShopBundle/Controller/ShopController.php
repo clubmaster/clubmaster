@@ -8,17 +8,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ShopController extends Controller
 {
   /**
-   * @extra:Route("/shop", name="shop")
+   * @extra:Routes({
+   *   @extra:Route("/shop", name="shop"),
+   *   @extra:Route("/shop/{id}",name="shop_prod_view")
+   * })
    * @extra:Template()
    */
-  public function indexAction()
+  public function indexAction($id=null)
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
     $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
+    $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     return array(
-      'categories' => $categories
+      'categories' => $categories,
+      'category' => $category
     );
   }
 

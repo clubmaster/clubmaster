@@ -61,6 +61,10 @@ class Product
 
     /**
      * @orm:ManyToMany(targetEntity="Category")
+     * @orm:JoinTable(name="club_shop_category_product",
+     *   joinColumns={@orm:JoinColumn(name="product_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\ShopBundle\Entity\Category
      */
