@@ -6,7 +6,7 @@
 
 <p class="box">
   <a href="{{ path('shop_checkout_empty') }}" class="btn-info"><span>Empty basket</span></a>
-  <a href="{{ path('shop_category') }}" class="btn-info"><span>Continue shopping</span></a>
+  <a href="{{ path('shop') }}" class="btn-info"><span>Continue shopping</span></a>
   <a href="{{ path('shop_category') }}" class="btn-info"><span>To payment</span></a>
 </p>
 
@@ -33,7 +33,7 @@
   </tr>
   {% else %}
   <tr>
-    <td colspan="4">Din kurv er tom.</td>
+    <td colspan="4">Your basket is empty.</td>
   </tr>
   {% endfor %}
   </tbody>
@@ -46,7 +46,7 @@
     <td>{{ basket.price }}</td>
   </tr>
   <tr>
-    <td style="text-align: right; padding-right: 20px;" colspan="3">MOMS</td>
+    <td style="text-align: right; padding-right: 20px;" colspan="3">VAT</td>
     <td>0%</td>
   </tr>
   <tr>

@@ -3,7 +3,31 @@
 </ul>
 
 <ul class="box">
-  <li id="menu-active"><a href="{{ path('user') }}"><span>User</span></a></li> <!-- Active -->
-  <li><a href="{{ path('shop') }}"><span>Shop</span></a></li>
+  <li id="menu-active"><a href="{{ path('user') }}"><span>User</span></a></li>
+  <li><a href="{{ path('user') }}"><span>Mail</span></a></li>
+  <li onmouseover="this.className = 'dropdown-on'" onmouseout="this.className = 'dropdown-off'"><div><a href="{{ path('shop') }}"><span>Shop</span></a>
+  <!-- Dropdown menu -->
+    <div class="drop">
+      <ul class="box">
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Transactions</a></li>
+      </ul>
+    </div> <!-- /drop -->
+  </div></li>
+
+  <li onmouseover="this.className = 'dropdown-on'" onmouseout="this.className = 'dropdown-off'"><div><a href="#"><span>Admin</span></a>
+  <!-- Dropdown menu -->
+    <div class="drop">
+      <ul class="box">
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Groups</a></li>
+        <li><a href="#">Roles</a></li>
+        <li><a href="#">Configuration</a></li>
+      </ul>
+    </div> <!-- /drop -->
+  </div></li>
+
 </ul>
 
