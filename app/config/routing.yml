@@ -1,54 +1,12 @@
-_security_login:
-    pattern:  /login
-    defaults: { _controller: ClubUserBundle:Auth:login }
-
-_security_check:
-    pattern:  /login_check
-
-_security_logout:
-    pattern:  /logout
-
 homepage:
   pattern: /
   defaults: { _controller: ClubUserBundle:User:index }
 
+_shop:
+  resource: "@ClubShopBundle/Resources/config/routing.yml"
+
 _user:
-  resource: "@ClubUserBundle/Controller/UserController.php"
-  type: annotation
-
-_group:
-  resource: "@ClubUserBundle/Controller/GroupController.php"
-  type: annotation
-
-_location:
-  resource: "@ClubUserBundle/Controller/LocationController.php"
-  type: annotation
-
-_role:
-  resource: "@ClubUserBundle/Controller/RoleController.php"
-  type: annotation
-
-_auth:
-  resource: "@ClubUserBundle/Controller/AuthController.php"
-  type: annotation
-
-_shop_category:
-  resource: "@ClubShopBundle/Controller/CategoryController.php"
-  type: annotation
-
-_shop_product:
-  resource: "@ClubShopBundle/Controller/ProductController.php"
-  type: annotation
-
-_shop_order:
-  resource: "@ClubShopBundle/Controller/OrderController.php"
-  type: annotation
-
-_shop_checkout:
-  resource: "@ClubShopBundle/Controller/CheckoutController.php"
-  type: annotation
+  resource: "@ClubUserBundle/Resources/config/routing.yml"
 
 _rest:
-  resource: "@ClubRestBundle/Controller/DefaultController.php"
-  type: annotation
-  prefix: /rest
+  resource: "@ClubRestBundle/Resources/config/routing.yml"
