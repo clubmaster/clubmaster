@@ -1,7 +1,7 @@
 <ul class="box">
-  <li><a href="{{ path('user') }}">User</a></li>
-  <li><a href="{{ path('user') }}">Mail</a></li>
-  <li id="submenu-active"><a href="{{ path('shop') }}">Shop</a></li>
-  <li><a href="{{ path('user') }}">Admin</a></li>
+  <li {% if app.request.attributes.get('_route') == 'user' %} id="submenu-active"{% endif %}><a href="{{ path('user') }}">User</a></li>
+  <li {% if app.request.attributes.get('_route') == 'mail' %} id="submenu-active"{% endif %}><a href="{{ path('user') }}">Mail</a></li>
+  <li {% if app.request.attributes.get('_route') == 'shop' %} id="submenu-active"{% endif %}><a href="{{ path('shop') }}">Shop</a></li>
+  <li {% if app.request.attributes.get('_route') == 'admin' %} id="submenu-active"{% endif %}><a href="{{ path('user') }}">Admin</a></li>
 </ul>
 
