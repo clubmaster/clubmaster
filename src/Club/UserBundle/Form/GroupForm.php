@@ -9,5 +9,6 @@ class GroupForm extends Form
   {
     $this->setDataClass('Club\\UserBundle\\Entity\\Group');
     $this->add('group_name');
+    $this->add('group');
   }
 }

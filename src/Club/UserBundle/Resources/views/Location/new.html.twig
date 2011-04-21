@@ -3,16 +3,9 @@
 {% block body %}
 <h1>Location</h1>
 
-{{ app.session.flash('notice') }}
-
 <form method="post" action="{{ path('location_new') }}">
-
   <p>{{ form_field(form) }}</p>
-
-  <hr class="noscreen" />
-  <div class="box-01">
-    <p class="nom"><input type="submit" value="Save" class="input-submit" /></p>
-  </div> <!-- /box-01 -->
+  {% include "::submit_button.html.twig" %}
 </form>
 
 {% endblock %}

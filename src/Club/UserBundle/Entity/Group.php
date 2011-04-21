@@ -94,6 +94,11 @@ class Group
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+      return $this->getGroupName();
+    }
+
     /**
      * Get id
      *
