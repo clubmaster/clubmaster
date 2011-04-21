@@ -36,8 +36,8 @@
       <td>{{ location.id }}</td>
       <td>{{ location.locationName }}</td>
       <td>
-        <a href="{{ path('location_edit', { 'id':location.id }) }}"><img src="{{ asset('images/ico-edit.gif') }}" class="ico" alt="Edit" /></a>
-        <a href="{{ path('location_delete', { 'id':location.id }) }}"><img src="{{ asset('images/ico-delete.gif') }}" class="ico" alt="Delete" /></a>
+        {% include "::edit_link.html.twig" with {'url':path('location_edit', { 'id':location.id })} %}
+        {% include "::delete_link.html.twig" with {'url':path('location_delete', { 'id':location.id })} %}
       </td>
     </tr>
   {% else %}
