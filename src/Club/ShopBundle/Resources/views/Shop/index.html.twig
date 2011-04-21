@@ -4,6 +4,7 @@
 
 <h1>Shop</h1>
 
+{% if categories|length > 0 %}
 <h3>Categories</h3>
 
 {% for cat in categories %}
@@ -21,6 +22,7 @@
 {% endfor %}
 
 <div class="fix"></div>
+{% endif %}
 
 {% if category %}
 <h3>Products</h3>
@@ -38,7 +40,7 @@
     <tr>
       <td>{{ product.productName }}</td>
       <td>{{ product.price }}</td>
-      <td></td>
+      <td><a href="{{ path('shop_product_basket', {'id':product.id}) }}">Put in basket</a></td>
     </tr>
     {% else %}
     <tr>

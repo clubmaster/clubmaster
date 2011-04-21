@@ -18,7 +18,9 @@ class ShopController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
+    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
+      'category' => $id
+    ));
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     return array(
