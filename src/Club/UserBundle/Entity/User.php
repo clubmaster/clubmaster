@@ -3,6 +3,7 @@
 namespace Club\UserBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
@@ -178,7 +179,10 @@ class User implements UserInterface
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+      $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
+      $password = $encoder->encodePassword($password,$this->getSalt());
+
+      $this->password = $password;
     }
 
     /**
