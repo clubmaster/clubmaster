@@ -1,14 +1,16 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+<h1>User</h1>
+<p class="box"><a href="{{ path('user_new') }}" class="btn-create"><span>Create user</span></a></p>
 
 {{ app.session.flash('notice') }}
 
 <form method="post" action="{{ path('user_batch') }}">
-<table>
+<table class="tablesorter">
   <thead>
     <tr>
-      <th><input type="checkbox" /></th>
+      <th>[x]</th>
       <th>Id</th>
       <th>Name</th>
       <th>Created At</th>
@@ -16,8 +18,15 @@
     </tr>
   </thead>
   <tfoot>
-    <tr>
-      <th colspan="5">x Results</th>
+    <tr class="bg">
+      <td colspan="7" class="arrow-01">
+        <select name="" class="input-text">
+          <option value="">Delete selected</option>
+          <option value="">Remove selected</option>
+          <option value="">Rename selected</option>
+          <option value="">Copy selected</option>
+        </select>&nbsp;<input type="submit" value="OK" />
+      </td>
     </tr>
   </tfoot>
   <tbody>
@@ -27,14 +36,14 @@
       <td>{{ user.id }}</td>
       <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
-      <td><ul>
-        <li><a href="{{ path('user_edit', { 'id':user.id }) }}">Edit</a></li>
-        <li><a href="{{ path('user_delete', { 'id':user.id }) }}">Delete</a></li>
-        <li><a href="{{ path('user_subscription', { 'id':user.id }) }}">Subscription</a></li>
-        <li><a href="{{ path('user_ticket', { 'id':user.id }) }}">Ticket</a></li>
-        <li><a href="{{ path('user_shop', { 'id':user.id }) }}">Shop as</a></li>
-        <li><a href="{{ path('user_ban', { 'id':user.id }) }}">Ban</a></li>
-      </ul></td>
+      <td>
+        <a href="{{ path('user_edit', { 'id':user.id }) }}"><img src="{{ asset('images/ico-edit.gif') }}" class="ico" alt="Edit" /></a>
+        <a href="{{ path('user_delete', { 'id':user.id }) }}"><img src="{{ asset('images/ico-delete.gif') }}" class="ico" alt="Delete" /></a>
+        <a href="{{ path('user_subscription', { 'id':user.id }) }}">Subscription</a>
+        <a href="{{ path('user_ticket', { 'id':user.id }) }}">Ticket</a>
+        <a href="{{ path('user_shop', { 'id':user.id }) }}">Shop as</a>
+        <a href="{{ path('user_ban', { 'id':user.id }) }}">Ban</a>
+      </td>
     </tr>
   {% else %}
   <tr>
@@ -43,12 +52,5 @@
   {% endfor %}
   </tbody>
 </table>
-<ul>
-  <li><select name="batch_action">
-    <option value="batchDelete">Delete</option>
-  </select>
-  <input type="submit" /></li>
-  <li><a href="{{ path('user_new') }}">New</a></li>
-</ul>
 </form>
 {% endblock %}
