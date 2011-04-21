@@ -1,8 +1,7 @@
 /* =============================================================================
 
 	MAIN-IE6.CSS
-	version: 1.7
-	updated: 2009-03-14, 12:44 GMT+1
+	updated: 2009-03-20, 12:24 GMT+1
 
 ============================================================================= */
 
@@ -19,6 +18,46 @@ HTML
 table {font-size:100%;}
 table th, table td {padding:6px 6px !important;}
 code {font-size:105%;}
+
+/* =============================================================================
+LAYOUT
+============================================================================= */
+
+#menu ul li.dropdown-on div.drop ul li a {width:200px;}
+
+/* =============================================================================
+PAGE: INDEX
+============================================================================= */
+
+#content .btn-box .btn {width:342px;}
+
+/* =============================================================================
+PAGE: GALLERY
+============================================================================= */
+
+.gallery {width:222px;}
+.gallery {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: CALENDAR
+============================================================================= */
+
+#calendar td {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: CALENDAR-02
+============================================================================= */
+
+#calendar-02 th, #calendar-02 td {padding:10px !important;}
+#calendar-02 td {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: LOGIN
+============================================================================= */
+
+#login {text-align:center;}
+#main-02 {text-align:left;}
+#login-box {width:452px !important;}
 
 /* =============================================================================
 OTHERS
