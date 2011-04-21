@@ -55,7 +55,7 @@
 
                 </p>
 
-                <p class="f-right">User: <strong><a href="#">Administrator</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                <p class="f-right">User: <strong>{% render "ClubUserBundle:User:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
 
         </div> <!--  /tray -->
 

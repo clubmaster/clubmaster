@@ -125,4 +125,9 @@ class Profile
     {
         return $this->user;
     }
+
+    public function getName()
+    {
+      return $this->getFirstName().' '.$this->getLastName();
+    }
 }

@@ -4,6 +4,7 @@ namespace Club\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Club\UserBundle\Entity\User;
 use Club\UserBundle\Entity\Profile;
 use Club\UserBundle\Form\UserForm;
@@ -151,5 +152,11 @@ class UserController extends Controller
     $basket->setUserId($id);
 
     return new RedirectResponse($this->generateUrl('shop'));
+  }
+
+  public function getUsernameAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    return new Response($user->getProfile()->getName());
   }
 }
