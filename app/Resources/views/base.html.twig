@@ -13,19 +13,27 @@
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/style.css') }}" /> <!-- GRAPHIC THEME -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
         <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.tablesorter.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.switcher.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/toggle.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/ui.core.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/ui.tabs.js') }}"></script>
         <script type="text/javascript">
         $(document).ready(function(){
                 $(".tabs > ul").tabs();
+                $.tablesorter.defaults.sortList = [[1,0]];
+                $("table").tablesorter({
+                        headers: {
+                                0: { sorter: false },
+                                7: { sorter: false }
+                        }
+                });
         });
         </script>
 
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}{% endblock %}
-          <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
       </head>
     <body>
 <div id="main">
@@ -112,7 +120,7 @@
                                       </ul>
                                 <li>
                                 <li><a href="{{ path('location') }}">Location</a></li>
-                                <li><a id="submenu-active" href="{{ path('group') }}">Group</a></li>
+                                <li id="submenu-active"><a href="{{ path('group') }}">Group</a></li>
                                 <li><a href="{{ path('user') }}">Company</a></li>
                                 <li><a href="{{ path('user') }}">Company config</a></li>
                                 <li><a href="{{ path('user') }}">Mail</a></li>
