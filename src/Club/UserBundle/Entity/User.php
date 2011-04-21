@@ -23,6 +23,7 @@ class User implements UserInterface
 
     /**
      * @orm:Column(type="string", nullable="true")
+     * @assert:NotBlank()
      *
      * @var string $username
      */
@@ -106,7 +107,7 @@ class User implements UserInterface
     private $updated_at;
 
     /**
-     * @orm:OneToOne(targetEntity="Profile")
+     * @orm:OneToOne(targetEntity="Profile", fetch="EAGER")
      *
      * @var Club\UserBundle\Entity\Profile
      */
@@ -120,7 +121,7 @@ class User implements UserInterface
     private $language;
 
     /**
-     * @orm:ManyToMany(targetEntity="Role")
+     * @orm:ManyToMany(targetEntity="Role", mappedBy="users", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\Role
      */
@@ -450,13 +451,20 @@ class User implements UserInterface
      */
     public function prePersist()
     {
-      // Add your code here
       $this->setSalt(hash('sha1',uniqid()));
       $this->setEnabled(1);
       $this->setAlgorithm('sha512');
       $this->setLocked(0);
       $this->setExpired(0);
       $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @orm:preUpdate
+     */
+    public function preUpdate()
+    {
       $this->setUpdatedAt(new \DateTime());
     }
 
@@ -473,6 +481,16 @@ class User implements UserInterface
           'gender' => $this->getProfile()->getGender()
         )
       );
+    }
+
+    public function addRole($Role)
+    {
+      $this->roles[] = $Role;
+    }
+
+    public function getUserRoles()
+    {
+      return $this->roles;
     }
 
     public function getRoles()

@@ -28,4 +28,17 @@ class User extends EntityRepository
 
     return $query->getResult();
   }
+
+  public function getNextUsername()
+  {
+    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.username DESC";
+
+    $query = $this->_em->createQuery($dql);
+    $query->setMaxResults(1);
+
+    $r = $query->getResult();
+
+    if (!count($r)) return 1;
+    return $r[0]->getUsername()+1;
+  }
 }

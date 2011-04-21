@@ -28,6 +28,10 @@ class Role implements RoleInterface
 
     /**
      * @orm:ManyToMany(targetEntity="User")
+     * @orm:JoinTable(name="club_user_role",
+     *   joinColumns={@orm:JoinColumn(name="role_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
      */
     private $users;
 
@@ -35,6 +39,11 @@ class Role implements RoleInterface
      * @orm:ManyToMany(targetEntity="Group")
      */
     private $groups;
+
+    public function __construct()
+    {
+      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -69,5 +78,15 @@ class Role implements RoleInterface
     public function getRole()
     {
       return $this->getRoleName();
+    }
+
+    public function getUsers()
+    {
+      return $this->users;
+    }
+
+    public function addUser($user)
+    {
+      $this->users[] = $user;
     }
 }

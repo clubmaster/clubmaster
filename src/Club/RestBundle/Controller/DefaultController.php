@@ -13,9 +13,11 @@ class DefaultController extends Controller
    */
   public function addUserAction()
   {
-    $user = new \Club\UserBundle\Entity\User();
-
     $em = $this->get('doctrine.orm.entity_manager');
+
+    $user = new \Club\UserBundle\Entity\User();
+    $user->setUsername($em->getRepository('Club\UserBundle\Entity\User')->getNextUsername());
+
     $em->persist($user);
 
     $user->setPassword(1234);
@@ -110,6 +112,24 @@ class DefaultController extends Controller
     $ban->setValue($user->getId());
 
     $em->persist($ban);
+    $em->flush();
+
+    return $this->renderJSon($user->toArray());
+  }
+
+  /**
+   * @Route("/add/user_role")
+   */
+  public function addUserRole()
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
+    $role = $em->find('Club\UserBundle\Entity\Role',$this->get('request')->get('role'));
+
+    $role->addUser($user);
+
+    $em->persist($role);
     $em->flush();
 
     return $this->renderJSon($user->toArray());
