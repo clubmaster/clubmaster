@@ -34,7 +34,7 @@ INSERT INTO club_language (name,code,locale,charset,date_format_short,date_forma
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
 
 INSERT INTO club_shop_payment_method (payment_method_name) VALUES
-  ('Cash'),
+  ('Check / Money order'),
   ('Credit card'),
   ('Wire transfer');
 

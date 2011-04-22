@@ -2,7 +2,10 @@
 
 {% block body %}
 <h1>Checkout</h1>
+
 <h3>Payment Information</h3>
+
+{% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
 
 <form method="POST" action="{{ path('shop_checkout_payment') }}">
 <fieldset>

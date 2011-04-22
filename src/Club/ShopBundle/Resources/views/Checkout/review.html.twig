@@ -1,14 +1,13 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+<h1>Checkout</h1>
 
-<h1>Shop</h1>
-
-<h3>Basket</h3>
+<h3>Review order</h3>
 
 {% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
 
-<p>&#160;</p>
+<h3>Order</h3>
 
 <div id="sf_admin_container">
 <table>
@@ -53,10 +52,16 @@
   </tfoot>
 </table>
 
-<p class="box">
-  <a href="{{ path('shop_checkout_empty') }}" class="btn-info"><span>Empty basket</span></a>
-  <a href="{{ path('shop') }}" class="btn-info"><span>Continue shopping</span></a>
-  <a href="{{ path('shop_checkout_payment') }}" class="btn-info"><span>Checkout</span></a>
-</p>
+<h3>Billing information</h3>
+<p>{{ user.profile.name }}</p>
+
+<h3>Payment information</h3>
+<p>{{ payment.paymentMethodName }}</p>
+
+<form method="POST" action="{{ path('shop_checkout_payment') }}">
+  <div class="box-01">
+    <p class="nom"><input type="submit" value="Place Order" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+</form>
 
 {% endblock %}

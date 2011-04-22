@@ -25,6 +25,11 @@ class PaymentMethod
     private $payment_method_name;
 
 
+    public function __toString()
+    {
+      return $this->getPaymentMethodName();
+    }
+
     /**
      * Get id
      *
