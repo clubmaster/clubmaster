@@ -49,10 +49,10 @@ class GroupController extends Controller
       return new RedirectResponse($this->generateUrl('group'));
     }
 
-    return $this->render('ClubUserBundle:Group:new.html.twig',array(
+    return array(
       'page' => array('header' => 'Group'),
       'form' => $form
-    ));
+    );
   }
 
   /**
@@ -61,6 +61,28 @@ class GroupController extends Controller
    */
   public function editAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $group = $em->find('Club\UserBundle\Entity\Group',$id);
+
+    $form = GroupForm::create($this->get('form.context'),'group');
+
+    $form->bind($this->get('request'),$group);
+    if ($form->isValid()) {
+      $group->setGroupType('static');
+      $group->setIsActive(true);
+      $em->persist($group);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice','Your changes were saved!');
+
+      return new RedirectResponse($this->generateUrl('group'));
+    }
+
+    return array(
+      'group' => $group,
+      'page' => array('header' => 'Group'),
+      'form' => $form
+    );
   }
 
   /**

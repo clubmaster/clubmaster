@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Group</h1>
+
+<form method="post" action="{{ path('group_edit', {'id':group.id}) }}">
+  <p>{{ form_field(form) }}</p>
+  {% include "::submit_button.html.twig" %}
+</form>
+
+{% endblock %}
