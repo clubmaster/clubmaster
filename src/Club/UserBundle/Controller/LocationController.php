@@ -47,10 +47,10 @@ class LocationController extends Controller
       return new RedirectResponse($this->generateUrl('location'));
     }
 
-    return $this->render('ClubUserBundle:Location:new.html.twig',array(
+    return array(
       'page' => array('header' => 'Location'),
       'form' => $form
-    ));
+    );
   }
 
   /**
@@ -59,6 +59,26 @@ class LocationController extends Controller
    */
   public function editAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $location = $em->find('Club\UserBundle\Entity\Location',$id);
+
+    $form = LocationForm::create($this->get('form.context'),'location');
+
+    $form->bind($this->get('request'),$location);
+    if ($form->isValid()) {
+      $em->persist($location);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice','Your changes were saved!');
+
+      return new RedirectResponse($this->generateUrl('location'));
+    }
+
+    return array(
+      'location' => $location,
+      'page' => array('header' => 'Location'),
+      'form' => $form
+    );
   }
 
   /**

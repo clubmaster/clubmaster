@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class Product extends EntityRepository
 {
+  public function findByCategories($categories)
+  {
+    $dql = 'SELECT p FROM Club\ShopBundle\Entity\Product p JOIN p.categories c WHERE c.id IN ('.join(",", $categories).')';
+
+    return $this->_em->createQuery($dql)->getResult();
+  }
 }

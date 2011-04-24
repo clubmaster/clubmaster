@@ -46,6 +46,8 @@ class Category
     private $category;
 
     /**
+     * @orm:ManyToMany(targetEntity="Product", mappedBy="categories")
+     *
      * @var Club\ShopBundle\Entity\Product
      */
     private $products;
@@ -120,7 +122,7 @@ class Category
      *
      * @return Doctrine\Common\Collections\Collection $Product
      */
-    public function getProduct()
+    public function getProducts()
     {
         return $this->products;
     }

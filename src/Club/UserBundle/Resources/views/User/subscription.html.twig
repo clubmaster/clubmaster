@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start date</th>
+    <th>Expire date</th>
+    <th>Action</th>
+  </tr>
+  {% for subscription in subscriptions %}
+  <tr>
+    <td>{{ subscription.id }}</td>
+    <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
+    <td>{{ subscription.startDate|date('Y-m-d') }}</td>
+    <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
+    <td><ul>
+      <li><a href="#">Renew</a></li>
+      <li><a href="#">Cancel</a></li>
+      <li><a href="#">Pause</a></li>
+    </ul></td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">There is no subscriptions for this user.</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

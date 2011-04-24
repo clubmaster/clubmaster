@@ -34,9 +34,9 @@ INSERT INTO club_language (name,code,locale,charset,date_format_short,date_forma
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
 
 INSERT INTO club_shop_payment_method (payment_method_name) VALUES
-  ('Kontant'),
-  ('Kredit kort'),
-  ('Bankoverførsel');
+  ('Check / Money order'),
+  ('Credit card'),
+  ('Wire transfer');
 
 INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
   (1,null,'Abonnementer','Abonnementer'),
@@ -50,7 +50,7 @@ INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
 
 INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('1. md, subscription','1. md, subscription',100,2),
-  ('2. md, subscription','2. md, subscription',100,2),
+  ('2. md, subscription','2. md, subscription',175,2),
   ('1. season subscription','1. season subscription',1000,2),
   ('2. seasons subscription','2. season subscription',1700,2),
   ('Lifetime membership','Lifetime membership',5000,2),
@@ -60,7 +60,7 @@ INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('Club t-shirt','Club t-shirt',200,2),
   ('Easter subscription','Easter subscription',50,2);
 
-INSERT INTO product_category (product_id,category_id) VALUES
+INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
   (2,1),
   (3,1),

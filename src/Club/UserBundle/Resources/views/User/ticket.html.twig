@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Tickets</th>
+    <th>Start date</th>
+    <th>Expire date</th>
+    <th>Action</th>
+  </tr>
+  {% for ticket in tickets %}
+  <tr>
+    <td>{{ ticket.id }}</td>
+    <td>{{ ticket.user.profile.firstName }} {{ ticket.user.profile.lastName }}</td>
+    <td>{{ ticket.ticket }}</td>
+    <td>{{ ticket.startDate|date('Y-m-d') }}</td>
+    <td>{{ ticket.expireDate|date('Y-m-d') }}</td>
+    <td><ul>
+      <li><a href="#">Renew</a></li>
+      <li><a href="#">Cancel</a></li>
+      <li><a href="#">Pause</a></li>
+    </ul></td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There is no tickets for this user.</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -15,7 +15,7 @@ class ProductController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findAll();
+    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findByCategories(array($category));
 
     return array(
       'products' => $products
@@ -42,5 +42,25 @@ class ProductController extends Controller
   public function editAction($id)
   {
     return array();
+  }
+
+  /**
+   * @extra:Route("/shop/product/basket/{id}", name="shop_product_basket")
+   * @extra:Template()
+   */
+  public function basketAction($id)
+  {
+    $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
+
+    $param = array(
+      'id' => $product->getId(),
+      'name' => $product->getProductName(),
+      'qty' => 1,
+      'price' => $product->getPrice()
+    );
+
+    $basket = $this->get('basket')->addToBasket($param);
+
+    return new RedirectResponse($this->generateUrl('shop_checkout'));
   }
 }

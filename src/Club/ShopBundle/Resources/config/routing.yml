@@ -1,3 +1,19 @@
-#homepage:
-#    pattern:  /
-#    defaults: { _controller: ClubShopBundle:Default:index }
+_shop:
+  resource: "@ClubShopBundle/Controller/ShopController.php"
+  type: annotation
+
+_shop_category:
+  resource: "@ClubShopBundle/Controller/CategoryController.php"
+  type: annotation
+
+_shop_product:
+  resource: "@ClubShopBundle/Controller/ProductController.php"
+  type: annotation
+
+_shop_order:
+  resource: "@ClubShopBundle/Controller/OrderController.php"
+  type: annotation
+
+_shop_checkout:
+  resource: "@ClubShopBundle/Controller/CheckoutController.php"
+  type: annotation

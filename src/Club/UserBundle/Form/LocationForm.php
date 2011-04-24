@@ -9,5 +9,6 @@ class LocationForm extends Form
   {
     $this->setDataClass('Club\\UserBundle\\Entity\\Location');
     $this->add('location_name');
+    $this->add('location');
   }
 }

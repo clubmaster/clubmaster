@@ -6,20 +6,23 @@
   <tr>
     <th>Product Id</th>
     <th>Product name</th>
+    <th>Price</th>
     <th>Actions</th>
   </tr>
 {% for product in products %}
   <tr>
     <td>{{ product.id }}</td>
     <td>{{ product.productName }}</td>
+    <td>{{ product.price }}</td>
     <td><ul>
       <li><a href="{{ path("shop_product_edit",{"id":product.id}) }}">Edit</li>
       <li><a href="{{ path("shop_product_delete",{"id":product.id}) }}">Delete</li>
+      <li><a href="{{ path("shop_product_basket",{"id":product.id}) }}">Put in basket</li>
     </ul></td>
   </tr>
 {% else %}
   <tr>
-    <td colspan="3">There is no such products.</td>
+    <td colspan="4">There is no such products.</td>
   </tr>
 {% endfor %}
 </table>

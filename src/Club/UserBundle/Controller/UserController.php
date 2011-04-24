@@ -4,6 +4,7 @@ namespace Club\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Club\UserBundle\Entity\User;
 use Club\UserBundle\Entity\Profile;
 use Club\UserBundle\Form\UserForm;
@@ -110,5 +111,52 @@ class UserController extends Controller
     $this->get('session')->setFlash('notice',sprintf('User %s banned.',$user->getUsername()));
 
     return new RedirectResponse($this->generateUrl('user'));
+  }
+
+  /**
+   * @extra:Route("/user/subscription/{id}",name="user_subscription")
+   * @extra:Template()
+   */
+  public function subscriptionAction($id)
+  {
+    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
+
+    $subscriptions = $user->getSubscriptions();
+    return array(
+      'subscriptions' => $subscriptions
+    );
+  }
+
+  /**
+   * @extra:Route("/user/ticket/{id}", name="user_ticket")
+   * @extra:Template()
+   */
+  public function ticketAction($id)
+  {
+    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
+
+    $tickets = $user->getTicketCoupons();
+
+    return array(
+      'tickets' => $tickets
+    );
+  }
+
+  /**
+   * @extra:Route("/user/shop/{id}", name="user_shop")
+   */
+  public function shopAction($id)
+  {
+    $basket = $this->get('basket');
+    $basket->emptyBasket();
+    $basket->setUserId($id);
+
+    return new RedirectResponse($this->generateUrl('shop'));
+  }
+
+  public function getUsernameAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    return new Response($user->getProfile()->getName());
   }
 }

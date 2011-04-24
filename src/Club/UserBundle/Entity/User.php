@@ -2,12 +2,15 @@
 
 namespace Club\UserBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+
 /**
  * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
  * @orm:Table(name="club_user")
  * @orm:HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @orm:Id
@@ -20,6 +23,7 @@ class User
 
     /**
      * @orm:Column(type="string", nullable="true")
+     * @assert:NotBlank()
      *
      * @var string $username
      */
@@ -103,7 +107,7 @@ class User
     private $updated_at;
 
     /**
-     * @orm:OneToOne(targetEntity="Profile")
+     * @orm:OneToOne(targetEntity="Profile", fetch="EAGER")
      *
      * @var Club\UserBundle\Entity\Profile
      */
@@ -117,7 +121,7 @@ class User
     private $language;
 
     /**
-     * @orm:ManyToMany(targetEntity="Role")
+     * @orm:ManyToMany(targetEntity="Role", mappedBy="users", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\Role
      */
@@ -128,9 +132,15 @@ class User
      */
     private $subscriptions;
 
+    /**
+     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\TicketCoupon", mappedBy="user")
+     */
+    private $ticket_coupons;
+
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -170,7 +180,10 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+      $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
+      $password = $encoder->encodePassword($password,$this->getSalt());
+
+      $this->password = $password;
     }
 
     /**
@@ -428,19 +441,30 @@ class User
       return $this->subscriptions;
     }
 
+    public function getTicketCoupons()
+    {
+      return $this->ticket_coupons;
+    }
+
     /**
      * @orm:prePersist
      */
     public function prePersist()
     {
-      // Add your code here
-      $this->setPassword('1234');
       $this->setSalt(hash('sha1',uniqid()));
       $this->setEnabled(1);
       $this->setAlgorithm('sha512');
       $this->setLocked(0);
       $this->setExpired(0);
       $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @orm:preUpdate
+     */
+    public function preUpdate()
+    {
       $this->setUpdatedAt(new \DateTime());
     }
 
@@ -457,5 +481,29 @@ class User
           'gender' => $this->getProfile()->getGender()
         )
       );
+    }
+
+    public function addRole($Role)
+    {
+      $this->roles[] = $Role;
+    }
+
+    public function getUserRoles()
+    {
+      return $this->roles;
+    }
+
+    public function getRoles()
+    {
+      return $this->roles->toArray();
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function equals(UserInterface $user)
+    {
+      return md5($this->getUsername()) == md5($user->getUsername());
     }
 }

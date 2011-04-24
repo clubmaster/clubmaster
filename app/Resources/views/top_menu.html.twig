@@ -1,0 +1,33 @@
+<ul class="box f-right">
+  <li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li>
+</ul>
+
+<ul class="box">
+  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>User</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'mail' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>Mail</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %} onmouseover="this.className = 'dropdown-on'" onmouseout="this.className = 'dropdown-off'"><div><a href="{{ path('shop') }}"><span>Shop</span></a>
+  <!-- Dropdown menu -->
+    <div class="drop">
+      <ul class="box">
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Transactions</a></li>
+      </ul>
+    </div> <!-- /drop -->
+  </div></li>
+
+  <li {% if app.request.attributes.get('_route') == 'admin' %} id="menu-active"{% endif %} onmouseover="this.className = 'dropdown-on'" onmouseout="this.className = 'dropdown-off'"><div><a href="#"><span>Admin</span></a>
+  <!-- Dropdown menu -->
+    <div class="drop">
+      <ul class="box">
+        <li><a href="{{ path('location') }}">Locations</a></li>
+        <li><a href="{{ path('group') }}">Groups</a></li>
+        <li><a href="{{ path('role') }}">Roles</a></li>
+        <li><a href="#">Configuration</a></li>
+      </ul>
+    </div> <!-- /drop -->
+  </div></li>
+
+</ul>
+

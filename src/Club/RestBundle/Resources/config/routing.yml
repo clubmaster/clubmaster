@@ -1,0 +1,4 @@
+_rest:
+  resource: "@ClubRestBundle/Controller/DefaultController.php"
+  type: annotation
+  prefix: /rest

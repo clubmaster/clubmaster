@@ -24,5 +24,6 @@ security:
             security: true
             anonymous: true
     access_control:
-        #- { path: /login.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: /.*, role: ROLE_ADMIN }
+        - { path: /login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /rest.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /.*, role: ROLE_ADMIN }

@@ -19,6 +19,7 @@ class Location
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $location_name
      */
@@ -49,6 +50,11 @@ class Location
     {
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+      return $this->getLocationName();
     }
 
     /**
