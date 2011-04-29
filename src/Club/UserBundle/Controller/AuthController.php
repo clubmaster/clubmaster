@@ -20,7 +20,7 @@ class AuthController extends Controller
       $error = $this->get('request')->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
     }
 
-    $form = LoginForm::create($this->get('form.context','login'));
+    $form = $this->get('form.factory')->create(new LoginForm());
     return array(
       'form' => $form
     );

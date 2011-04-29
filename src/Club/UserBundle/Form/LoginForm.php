@@ -2,15 +2,14 @@
 
 namespace Club\UserBundle\Form;
 
-use Symfony\Component\Form\Form;
-use Symfony\Component\Form\TextField;
-use Symfony\Component\Form\PasswordField;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilder;
 
-class LoginForm extends Form
+class LoginForm extends AbstractType
 {
-  public function configure()
+  public function buildForm(FormBuilder $builder, array $options)
   {
-    $this->add(new TextField('_username'));
-    $this->add(new PasswordField('_password'));
+    $builder->add('username','text');
+    $builder->add('password','password');
   }
 }
