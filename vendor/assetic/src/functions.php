@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use Assetic\Asset\UrlCollection;
 use Assetic\Factory\AssetFactory;
 
 /**
@@ -73,7 +74,7 @@ function assetic_stylesheets($inputs = array(), $filters = array(), array $optio
  *
  * @return string An image URL
  */
-function assetic_image($input, $filters = array(), array $options)
+function assetic_image($input, $filters = array(), array $options = array())
 {
     global $_assetic;
 
@@ -108,14 +109,7 @@ function _assetic_assets($inputs = array(), $filters = array(), array $options =
     }
 
     $coll = $_assetic->factory->createAsset($inputs, $filters, $options);
-    if (!$_assetic->factory->isDebug()) {
-        return array($coll->getTargetUrl());
-    }
+    $debug = isset($options['debug']) ? $options['debug'] : $_assetic->factory->isDebug();
 
-    $urls = array();
-    foreach ($coll as $leaf) {
-        $urls[] = $leaf->getTargetUrl();
-    }
-
-    return $urls;
+    return UrlCollection::createFromAssetCollection($coll, $debug);
 }

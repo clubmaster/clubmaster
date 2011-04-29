@@ -1,10 +1,10 @@
 <?php
 
 $container->loadFromExtension('framework', array(
+    'secret' => 's3cr3t',
     'csrf_protection' => array(
         'enabled'    => true,
         'field_name' => '_csrf',
-        'secret'     => 's3cr3t',
     ),
     'esi' => array(
         'enabled' => true,
@@ -19,9 +19,8 @@ $container->loadFromExtension('framework', array(
     ),
     'session' => array(
         'auto_start'     => true,
-        'class'          => 'Session',
         'default_locale' => 'fr',
-        'storage_id'     => 'native',
+        'storage_id'     => 'session.storage.native',
         'name'           => '_SYMFONY',
         'lifetime'       => 86400,
         'path'           => '/',

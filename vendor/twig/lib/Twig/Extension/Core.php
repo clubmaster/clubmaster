@@ -23,6 +23,7 @@ class Twig_Extension_Core extends Twig_Extension
             new Twig_TokenParser_Extends(),
             new Twig_TokenParser_Include(),
             new Twig_TokenParser_Block(),
+            new Twig_TokenParser_Use(),
             new Twig_TokenParser_Filter(),
             new Twig_TokenParser_Macro(),
             new Twig_TokenParser_Import(),
@@ -495,5 +496,5 @@ function twig_test_defined($name, $context)
 
 function twig_test_empty($value)
 {
-    return null === $value || false === $value || '' === (string) $value;
+    return false === $value || (empty($value) && '0' != $value);
 }

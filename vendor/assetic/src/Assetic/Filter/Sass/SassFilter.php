@@ -37,6 +37,7 @@ class SassFilter implements FilterInterface
     private $loadPaths = array();
     private $cacheLocation;
     private $noCache;
+    private $compass;
 
     public function __construct($sassPath = '/usr/bin/sass')
     {
@@ -89,6 +90,11 @@ class SassFilter implements FilterInterface
         $this->noCache = $noCache;
     }
 
+    public function setCompass($compass)
+    {
+        $this->compass = $compass;
+    }
+
     public function filterLoad(AssetInterface $asset)
     {
         $options = array($this->sassPath);
@@ -132,10 +138,15 @@ class SassFilter implements FilterInterface
             $options[] = '--no-cache';
         }
 
-        // finally
+        if ($this->compass) {
+            $options[] = '--compass';
+        }
+
+        // input
         $options[] = $input = tempnam(sys_get_temp_dir(), 'assetic_sass');
         file_put_contents($input, $asset->getContent());
 
+        // output
         $options[] = $output = tempnam(sys_get_temp_dir(), 'assetic_sass');
 
         $proc = new Process(implode(' ', array_map('escapeshellarg', $options)));
