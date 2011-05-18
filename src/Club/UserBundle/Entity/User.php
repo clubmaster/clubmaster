@@ -30,7 +30,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $password
      */

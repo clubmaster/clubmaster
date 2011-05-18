@@ -60,6 +60,29 @@ class UserController extends Controller
    */
   public function editAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $user = $em->find('Club\UserBundle\Entity\User',$id);
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(),$user);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+
+        return new RedirectResponse($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'page' => array('header' => 'User'),
+      'user' => $user,
+      'form' => $form->createView()
+    );
+
   }
 
   /**
