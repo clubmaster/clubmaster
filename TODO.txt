@@ -1,0 +1,8 @@
+- Add item to basket
+- Remove item from basket
+- Update basket
+- Checkout basket with cash
+- Show list of members with active membership
+- Renew memberships
+- Create categories
+- Create product any kind of membership
