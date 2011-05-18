@@ -48,6 +48,26 @@ class Profile
      */
     private $user;
 
+    /**
+     * @orm:OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id")
+     *
+     * @var Club\UserBundle\Entity\ProfileAddress
+     */
+    private $profile_address;
+
+    /**
+     * @orm:OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id")
+     *
+     * @var Club\UserBundle\Entity\ProfilePhone
+     */
+    private $profile_phone;
+
+    /**
+     * @orm:OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id")
+     *
+     * @var Club\UserBundle\Entity\ProfileEmail
+     */
+    private $profile_email;
 
     /**
      * Get id
@@ -132,5 +152,35 @@ class Profile
     public function getName()
     {
       return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    public function getProfileAddress()
+    {
+      return $this->profile_address;
+    }
+
+    public function setProfileAddress($profile_address)
+    {
+      $this->profile_address[] = $profile_address;
+    }
+
+    public function getProfilePhone()
+    {
+      return $this->profile_phone;
+    }
+
+    public function setProfilePhone($profile_phone)
+    {
+      $this->profile_phone[] = $profile_phone;
+    }
+
+    public function getProfileEmail()
+    {
+      return $this->profile_phone;
+    }
+
+    public function setProfileEmail($profile_email)
+    {
+      $this->profile_email[] = $profile_email;
     }
 }
