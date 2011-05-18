@@ -107,7 +107,7 @@ class User implements UserInterface
     private $updated_at;
 
     /**
-     * @orm:OneToOne(targetEntity="Profile", fetch="EAGER")
+     * @orm:OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\Profile
      */
@@ -141,6 +141,13 @@ class User implements UserInterface
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
       $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+
+      $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+      $this->algorithm = 'sha512';
+      $this->enabled = false;
+      $this->locked = false;
+      $this->expired = false;
+      $this->roles = array();
     }
 
     /**
@@ -451,11 +458,6 @@ class User implements UserInterface
      */
     public function prePersist()
     {
-      $this->setSalt(hash('sha1',uniqid()));
-      $this->setEnabled(1);
-      $this->setAlgorithm('sha512');
-      $this->setLocked(0);
-      $this->setExpired(0);
       $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
     }

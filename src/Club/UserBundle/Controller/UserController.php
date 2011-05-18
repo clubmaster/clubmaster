@@ -5,11 +5,6 @@ namespace Club\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Club\UserBundle\Entity\User;
-use Club\UserBundle\Entity\Profile;
-use Club\UserBundle\Form\UserForm;
-use Club\UserBundle\Entity\Ban;
-use DateTime;
 
 class UserController extends Controller
 {
@@ -37,26 +32,25 @@ class UserController extends Controller
    */
   public function newAction()
   {
-    $user = new User();
-    $form = UserForm::create($this->get('form.context'),'user');
+    $user = new \Club\UserBundle\Entity\User();
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(),$user);
 
-    $form->bind($this->get('request'),$user);
-    if ($form->isValid()) {
-      $profile = new Profile();
-      $profile->setUser($user);
-      $user->setProfile($profile);
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($user);
+        $em->flush();
 
-      $em = $this->get('doctrine.orm.entity_manager');
-      $em->persist($user);
-      $em->persist($profile);
-      $em->flush();
+        $this->get('session')->setFlash('notice','Your changes were saved!');
 
-      $this->get('session')->setFlash('notice','Your changes were saved!');
+        return new RedirectResponse($this->generateUrl('user'));
+      }
     }
 
     return array(
       'page' => array('header' => 'User'),
-      'form' => $form
+      'form' => $form->createView()
     );
   }
 
@@ -99,11 +93,11 @@ class UserController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('ClubUserBundle:User',$id);
 
-    $ban = new Ban();
+    $ban = new \Club\UserBundle\Entity\Ban();
     $ban->setUserId(1);
     $ban->setType('user');
     $ban->setValue($user->getId());
-    $ban->setExpireDate(new DateTime(date('Y-m-d')));
+    $ban->setExpireDate(new \DateTime(date('Y-m-d')));
 
     $em->persist($ban);
     $em->flush();

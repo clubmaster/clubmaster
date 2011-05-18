@@ -19,6 +19,7 @@ class Profile
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $first_name
      */
@@ -26,6 +27,7 @@ class Profile
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $last_name
      */
@@ -33,6 +35,7 @@ class Profile
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * var string $gender
      */
