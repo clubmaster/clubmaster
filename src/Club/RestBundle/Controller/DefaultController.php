@@ -161,11 +161,13 @@ class DefaultController extends Controller
     if ($r = $this->hasErrors($order)) return $r;
 
     $em->persist($order);
-    $em->flush();
 
     $products = json_decode($this->get('request')->get('products'));
+    $price = 0;
     foreach ($products as $product) {
       $prod = $em->find('Club\ShopBundle\Entity\Product',$product->product);
+
+      $price += $prod->getPrice();
 
       $op = new \Club\ShopBundle\Entity\OrderProduct;
       $op->setProductName($prod->getProductName());
@@ -177,7 +179,6 @@ class DefaultController extends Controller
       if ($r = $this->hasErrors($op)) return $r;
 
       $em->persist($op);
-      $em->flush();
 
       foreach ($prod->getProductAttributes() as $attr) {
         $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
@@ -189,8 +190,9 @@ class DefaultController extends Controller
         $em->persist($opa);
       }
 
-      $em->flush();
     }
+    $order->setPrice($price);
+    $em->flush();
 
     return $this->renderJSon($order->toArray());
   }
