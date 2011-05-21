@@ -46,6 +46,13 @@ class OrderProduct
     private $quantity;
 
     /**
+     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
+     *
+     * @var Club\UserBundle\Entity\Product
+     */
+    private $product;
+
+    /**
      * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
      *
      * @var Club\UserBundle\Entity\Order
@@ -171,6 +178,21 @@ class OrderProduct
     public function getOrder()
     {
         return $this->order;
+    }
+
+    public function setProduct($product)
+    {
+      $this->product = $product;
+    }
+
+    public function getProduct()
+    {
+      return $this->product;
+    }
+
+    public function addOrderProductAttribute(\Club\ShopBundle\Entity\OrderProductAttribute $orderProductAttribute)
+    {
+      $this->order_product_attributes[] = $orderProductAttribute;
     }
 
     public function getOrderProductAttributes()

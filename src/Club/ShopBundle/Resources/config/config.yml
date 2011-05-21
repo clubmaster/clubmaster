@@ -1,3 +1,4 @@
 services:
   basket:
     class: Club\ShopBundle\Util\Basket
+    arguments: [@doctrine.orm.entity_manager,@session]

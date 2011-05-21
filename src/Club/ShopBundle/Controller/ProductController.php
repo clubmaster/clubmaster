@@ -52,14 +52,7 @@ class ProductController extends Controller
   {
     $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
 
-    $param = array(
-      'id' => $product->getId(),
-      'name' => $product->getProductName(),
-      'qty' => 1,
-      'price' => $product->getPrice()
-    );
-
-    $basket = $this->get('basket')->addToBasket($param);
+    $this->get('basket')->addToBasket($product);
 
     return new RedirectResponse($this->generateUrl('shop_checkout'));
   }

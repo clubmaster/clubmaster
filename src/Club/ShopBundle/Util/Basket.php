@@ -7,53 +7,59 @@ use Symfony\Component\HttpFoundation\SessionStorage\NativeSessionStorage;
 
 class Basket
 {
-  public function __construct()
+  protected $session;
+  protected $em;
+
+  public function __construct($em,$session)
   {
-    $this->session = new Session(new NativeSessionStorage());
-    $this->session->start();
+    $this->em = $em;
+    $this->session = $session;
+
+    $this->order = unserialize($this->session->get('order'));
+    if (!$this->order) {
+      $this->order = new \Club\ShopBundle\Entity\Order();
+    }
   }
 
-  /**
-   * @var product ("id" => "", "name" => "", "price" => "", "qty" => "")
-   */
   public function addToBasket($product)
   {
-    $basket_items = $this->getBasketItems();
-    $basket_items[] = $product;
-
-    $this->setBasketItems($basket_items);
-    $this->updateBasket($product);
-  }
-
-  public function getBasket()
-  {
-    $basket = $this->session->get('basket');
-
-    if (!is_array($basket)) {
-      $basket = $this->getEmptyBasket();
+    $trigger = 0;
+    // check if its already in the basket
+    foreach ($this->order->getOrderProducts() as $prod) {
+      if ($prod->getProduct()->getId() == $product->getId()) {
+        $prod->setQuantity($prod->getQuantity()+1);
+        $this->order->setPrice($this->order->getPrice()+$prod->getPrice());
+        $trigger = 1;
+      }
     }
 
-    return $basket;
-  }
+    if (!$trigger) {
+      $op = new \Club\ShopBundle\Entity\OrderProduct();
+      $op->setProduct($product);
+      $op->setProductName($product->getProductName());
+      $op->setPrice($product->getPrice());
+      $op->setTax($product->getTax());
+      $op->setQuantity(1);
 
-  public function getBasketItems()
-  {
-    $basket_items = $this->session->get('basket_items');
+      foreach ($product->getProductAttributes() as $attr) {
+        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
+        $opa->setOrderProduct($op);
+        $opa->setValue($attr->getValue());
+        $opa->setAttributeName($attr->getAttribute()->getAttributeName());
 
-    if (!is_array($basket_items)) {
-      $basket_items = array();
+        $op->addOrderProductAttribute($opa);
+      }
+
+      $this->order->addOrderProduct($op);
+      $this->order->setPrice($this->order->getPrice()+$op->getPrice());
     }
-
-    return $basket_items;
+    $this->setOrder();
   }
 
   public function emptyBasket()
   {
-    $basket = $this->getEmptyBasket();
-    $this->setBasket($basket);
-
-    $basket_items = array();
-    $this->setBasketItems($basket_items);
+    $this->order = new \Club\ShopBundle\Entity\Order();
+    $this->setOrder();
   }
 
   public function setUserId($id)
@@ -64,44 +70,14 @@ class Basket
     $this->setBasket($basket);
   }
 
-  public function setOrder($order)
+  protected function setOrder()
   {
-    $this->session->set('order', serialize($order));
+    $order = serialize($this->order);
+    $this->session->set('order', $order);
   }
 
   public function getOrder()
   {
-    return unserialize($this->session->get('order'));
-  }
-
-  private function updateBasket($product)
-  {
-    $basket = $this->getBasket();
-    $basket['price'] += $product['price'];
-
-    $this->setBasket($basket);
-  }
-
-  private function setBasket($basket)
-  {
-    $this->session->set('basket',$basket);
-  }
-
-  private function setBasketItems($basket_items)
-  {
-    $this->session->set('basket_items',$basket_items);
-  }
-
-  private function getEmptyBasket()
-  {
-    $basket = array(
-      'price' => 0,
-      'tax' => 0,
-      'user_id' => 0,
-      'shipping_id' => 0,
-      'payment_id' => 0
-    );
-
-    return $basket;
+    return $this->order;
   }
 }

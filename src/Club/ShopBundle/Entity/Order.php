@@ -40,6 +40,13 @@ class Order
     private $currency_value;
 
     /**
+     * @orm:Column(type="decimal")
+     *
+     * @var string $price
+     */
+    private $price;
+
+    /**
      * @orm:ManyToOne(targetEntity="PaymentMethod")
      * @assert:Notblank()
      * @assert:NotBlank(groups={"PaymentMethod"})
@@ -155,6 +162,16 @@ class Order
     public function getCurrency()
     {
         return $this->currency;
+    }
+
+    public function setPrice($price)
+    {
+      $this->price = $price;
+    }
+
+    public function getPrice()
+    {
+      return $this->price;
     }
 
     /**

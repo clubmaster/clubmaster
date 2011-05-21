@@ -15,12 +15,10 @@ class CheckoutController extends Controller
    */
   public function indexAction()
   {
-    $basket = $this->get('basket')->getBasket();
-    $basket_items = $this->get('basket')->getBasketItems();
+    $order = $this->get('basket')->getOrder();
 
     return array(
-      'basket' => $basket,
-      'basket_items' => $basket_items
+      'order' => $order
     );
   }
 
@@ -126,6 +124,15 @@ class CheckoutController extends Controller
       'basket_items' => $basket_items,
       'order' => $order
     );
+  }
+
+  /**
+   * @extra:Route("/shop/checkout/confirm", name="shop_checkout_confirm")
+   * @extra:Template()
+   */
+  public function confirmAction()
+  {
+    return array();
   }
 
   /**
