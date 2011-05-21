@@ -42,6 +42,7 @@ class Order
     /**
      * @orm:ManyToOne(targetEntity="PaymentMethod")
      * @assert:Notblank()
+     * @assert:NotBlank(groups={"PaymentMethod"})
      *
      * @var Club\ShopBundle\Entity\PaymentMethod
      */

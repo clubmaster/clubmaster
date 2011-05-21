@@ -64,6 +64,16 @@ class Basket
     $this->setBasket($basket);
   }
 
+  public function setOrder($order)
+  {
+    $this->session->set('order', serialize($order));
+  }
+
+  public function getOrder()
+  {
+    return unserialize($this->session->get('order'));
+  }
+
   private function updateBasket($product)
   {
     $basket = $this->getBasket();

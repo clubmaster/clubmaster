@@ -24,7 +24,6 @@ class PaymentMethod
      */
     private $payment_method_name;
 
-
     public function __toString()
     {
       return $this->getPaymentMethodName();
@@ -38,6 +37,11 @@ class PaymentMethod
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+      $this->id = $id;
     }
 
     /**

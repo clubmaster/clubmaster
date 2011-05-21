@@ -10,58 +10,19 @@
 <h3>Order</h3>
 
 <div id="sf_admin_container">
-<table>
-  <thead>
-  <tr>
-    <th width="250">Produkt</th>
-    <th width="80">Pris</th>
-    <th width="80">Antal</th>
-    <th width="70">Total</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for item in basket_items %}
-  <tr>
-    <td>{{ item.name }}</td>
-    <td>{{ item.price }}</td>
-    <td>{{ item.qty }}</td>
-    <td>{{ item.qty*item.price }}</td>
-  </tr>
-  {% else %}
-  <tr>
-    <td colspan="4">Your basket is empty.</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-  <tfoot>
-  <tr>
-    <td colspan="4">&#160;</td>
-  </tr>
-  <tr>
-    <td style="text-align: right; padding-right: 20px;" colspan="3">Sub total</td>
-    <td>{{ basket.price }}</td>
-  </tr>
-  <tr>
-    <td style="text-align: right; padding-right: 20px;" colspan="3">VAT</td>
-    <td>0%</td>
-  </tr>
-  <tr>
-    <td style="text-align: right; padding-right: 20px;" colspan="3"><b>Total</b></td>
-    <td>{{ basket.price }}</td>
-  </tr>
-  </tfoot>
-</table>
+{% include "ClubShopBundle:Checkout:order_form.html.twig" %}
 
 <h3>Billing information</h3>
 <p>{{ user.profile.name }}</p>
 
 <h3>Payment information</h3>
-<p>{{ payment.paymentMethodName }}</p>
+<p>{{ order.paymentMethod }}</p>
 
 <form method="POST" action="{{ path('shop_checkout_payment') }}">
   <div class="box-01">
     <p class="nom"><input type="submit" value="Place Order" class="input-submit" /></p>
   </div> <!-- /box-01 -->
 </form>
+</div>
 
 {% endblock %}
