@@ -53,13 +53,25 @@ class Basket
       $this->order->addOrderProduct($op);
       $this->order->setPrice($this->order->getPrice()+$op->getPrice());
     }
-    $this->setOrder();
+    $this->save();
   }
 
   public function emptyBasket()
   {
     $this->order = new \Club\ShopBundle\Entity\Order();
-    $this->setOrder();
+    $this->save();
+  }
+
+  public function setShipping($shipping)
+  {
+    $this->order->setShipping($shipping);
+    $this->save();
+  }
+
+  public function setPayment($payment)
+  {
+    $this->order->setPayment($payment);
+    $this->save();
   }
 
   public function setUserId($id)
@@ -70,14 +82,19 @@ class Basket
     $this->setBasket($basket);
   }
 
-  protected function setOrder()
+  public function setOrder($order)
   {
-    $order = serialize($this->order);
-    $this->session->set('order', $order);
+    $this->order = $order;
+    $this->save();
   }
 
   public function getOrder()
   {
     return $this->order;
+  }
+
+  protected function save()
+  {
+    $this->session->set('order', serialize($this->order));
   }
 }

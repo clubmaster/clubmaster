@@ -35,27 +35,12 @@ class CheckoutController extends Controller
       throw new Exception('You need to have a least one shipping method');
     }
 
-    $order = new \Club\ShopBundle\Entity\Order();
+    $basket = $this->get('basket')->getOrder();
     if (count($shippings) == 1) {
-      $basket = $this->get('basket');
-      $basket->setOrder($order);
+      $basket->setShipping($shippings[0]);
 
       return new RedirectResponse($this->generateUrl('shop_checkout_payment'));
     }
-
-    $form = CheckoutPaymentForm::create($this->get('form.context'),'shipping_method',array(
-      'em' => $this->get('doctrine.orm.entity_manager')
-    ));
-
-    if (is_array($this->get('request')->get('shipping_method'))) {
-      $request = $this->get('request')->get('shipping_method');
-      $this->get('request')->getSession()->set('order_shipping',$request['shipping']);
-
-      return new RedirectResponse($this->generateUrl('shop_checkout_payment'));
-    }
-    return array(
-      'form' => $form
-    );
   }
 
   /**
@@ -73,15 +58,7 @@ class CheckoutController extends Controller
 
     $basket = $this->get('basket');
     $order = $basket->getOrder();
-    $order = $em->merge($order);
-
-    if (count($payments) == 1) {
-      $basket = $this->get('basket');
-      $order->setPaymentMethod($payments[0]);
-      $basket->setOrder($order);
-
-      return new RedirectResponse($this->generateUrl('shop_checkout_review'));
-    }
+    //$order = $em->merge($order);
 
     $form = $this->get('form.factory')
       ->createBuilder('form',$order,array('validation_groups' => 'PaymentMethod'))
@@ -91,8 +68,6 @@ class CheckoutController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-
-        $basket = $this->get('basket');
         $basket->setOrder($order);
 
         return new RedirectResponse($this->generateUrl('shop_checkout_review'));
@@ -109,19 +84,12 @@ class CheckoutController extends Controller
    */
   public function reviewAction()
   {
-    $basket = $this->get('basket')->getBasket();
-    $basket_items = $this->get('basket')->getBasketItems();
-
     $order = $this->get('basket')->getOrder();
 
     $user = $this->get('security.context')->getToken()->getUser();
-    $payment = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\PaymentMethod',$this->get('request')->getSession()->get('order_payment'));
 
     return array(
       'user' => $user,
-      'payment' => $payment,
-      'basket' => $basket,
-      'basket_items' => $basket_items,
       'order' => $order
     );
   }
