@@ -15,7 +15,7 @@ class Ban
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneradValue(strategy="AUTH")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
