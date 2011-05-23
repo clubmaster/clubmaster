@@ -2,37 +2,40 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Transaction")
- * @orm:Table(name="club_shop_transaction")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Transaction")
+ * @ORM\Table(name="club_shop_transaction")
  */
 class Transaction
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $transaction_code
      */
     private $transaction_code;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $transaction_return_value
      */
     private $transaction_return_value;
 
     /**
-     * @orm:ManyToOne(targetEntity="TransactionStatus")
+     * @ORM\ManyToOne(targetEntity="TransactionStatus")
      *
      * @var Club\ShopBundle\Entity\TransactionStatus
      */

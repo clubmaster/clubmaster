@@ -26,4 +26,31 @@
 <div class="fix"></div>
 {% endif %}
 
+{% if category %}
+<h3>Products</h3>
+
+<table>
+  <thead>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </thead>
+  <tfoot>
+  </tfoot>
+  <tbody>
+    {% for product in category.getProducts %}
+    <tr>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.price }}</td>
+      <td><a href="{{ path('shop_product_basket', {'id':product.id}) }}">Put in basket</a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">There is no products in this category.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
 {% endblock %}

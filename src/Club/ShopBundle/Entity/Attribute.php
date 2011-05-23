@@ -2,24 +2,27 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Attribute")
- * @orm:Table(name="club_shop_attribute")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Attribute")
+ * @ORM\Table(name="club_shop_attribute")
  *
  */
 class Attribute
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $attribute_name
      */

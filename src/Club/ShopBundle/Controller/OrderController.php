@@ -2,13 +2,15 @@
 
 namespace Club\ShopBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OrderController extends Controller
 {
     /**
-     * @extra:Route("/shop/order", name="shop_order")
-     * @extra:Template()
+     * @Route("/shop/order", name="shop_order")
+     * @Template()
      */
     public function orderAction()
     {

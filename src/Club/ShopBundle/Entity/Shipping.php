@@ -2,38 +2,41 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Shipping")
- * @orm:Table(name="club_shop_shipping")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Shipping")
+ * @ORM\Table(name="club_shop_shipping")
  *
  */
 class Shipping
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $shipping_name
      */
     private $shipping_name;
 
     /**
-     * @orm:Column(type="text")
+     * @ORM\Column(type="text")
      *
      * @var text $description
      */
     private $description;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $price
      */

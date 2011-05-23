@@ -2,137 +2,139 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\User")
- * @orm:Table(name="club_user")
- * @orm:HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\User")
+ * @ORM\Table(name="club_user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $member_number
      */
     private $member_number;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $password
      */
     private $password;
 
     /**
-     * @orm:Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $last_login_time
      */
     private $last_login_time;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $last_login_ip
      */
     private $last_login_ip;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $enabled
      */
     private $enabled;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $algorithm
      */
     private $algorithm;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $salt
      */
     private $salt;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $locked
      */
     private $locked;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $expired
      */
     private $expired;
 
     /**
-     * @orm:Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $expires_at
      */
     private $expires_at;
 
     /**
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      *
      * @var date $created_at
      */
     private $created_at;
 
     /**
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      *
      * @var date $updated_at
      */
     private $updated_at;
 
     /**
-     * @orm:OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
 
     /**
-     * @orm:ManyToOne(targetEntity="Language")
+     * @ORM\ManyToOne(targetEntity="Language")
      *
      * @var Club\UserBundle\Entity\Language
      */
     private $language;
 
     /**
-     * @orm:ManyToMany(targetEntity="Role", mappedBy="users", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Role", mappedBy="users", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\Role
      */
     private $roles;
 
     /**
-     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
      */
     private $subscriptions;
 
     /**
-     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\TicketCoupon", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\TicketCoupon", mappedBy="user")
      */
     private $ticket_coupons;
 
@@ -453,7 +455,7 @@ class User implements UserInterface
     }
 
     /**
-     * @orm:prePersist
+     * @ORM\prePersist
      */
     public function prePersist()
     {
@@ -462,7 +464,7 @@ class User implements UserInterface
     }
 
     /**
-     * @orm:preUpdate
+     * @ORM\preUpdate
      */
     public function preUpdate()
     {

@@ -2,6 +2,8 @@
 
 namespace Club\ShopBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\ShopBundle\Entity\PaymentMethod;
@@ -10,8 +12,8 @@ use Club\ShopBundle\Form\CheckoutPaymentForm;
 class CheckoutController extends Controller
 {
   /**
-   * @extra:Route("/shop/checkout", name="shop_checkout")
-   * @extra:Template()
+   * @Route("/shop/checkout", name="shop_checkout")
+   * @Template()
    */
   public function indexAction()
   {
@@ -23,8 +25,8 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/checkout/shipping", name="shop_checkout_shipping")
-   * @extra:Template()
+   * @Route("/shop/checkout/shipping", name="shop_checkout_shipping")
+   * @Template()
    */
   public function shippingAction()
   {
@@ -44,8 +46,8 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/checkout/payment", name="shop_checkout_payment")
-   * @extra:Template()
+   * @Route("/shop/checkout/payment", name="shop_checkout_payment")
+   * @Template()
    */
   public function paymentAction()
   {
@@ -79,8 +81,8 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/checkout/review", name="shop_checkout_review")
-   * @extra:Template()
+   * @Route("/shop/checkout/review", name="shop_checkout_review")
+   * @Template()
    */
   public function reviewAction()
   {
@@ -95,8 +97,8 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/checkout/confirm", name="shop_checkout_confirm")
-   * @extra:Template()
+   * @Route("/shop/checkout/confirm", name="shop_checkout_confirm")
+   * @Template()
    */
   public function confirmAction()
   {
@@ -104,7 +106,7 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/basket/empty", name="shop_checkout_empty")
+   * @Route("/shop/basket/empty", name="shop_checkout_empty")
    */
   public function emptyBasketAction()
   {

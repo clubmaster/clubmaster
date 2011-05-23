@@ -2,45 +2,48 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\TicketCoupon")
- * @orm:Table(name="club_shop_ticket_coupon")
- * @orm:HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\TicketCoupon")
+ * @ORM\Table(name="club_shop_ticket_coupon")
+ * @ORM\HasLifecycleCallbacks()
  */
 class TicketCoupon
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $ticket
      */
     private $ticket;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
      */
@@ -138,7 +141,7 @@ class TicketCoupon
     }
 
     /**
-     * @orm:prePersist()
+     * @ORM\prePersist()
      */
     public function prePersist()
     {

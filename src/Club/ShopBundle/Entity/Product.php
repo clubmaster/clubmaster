@@ -2,68 +2,71 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Product")
- * @orm:Table(name="club_shop_product")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Product")
+ * @ORM\Table(name="club_shop_product")
  */
 class Product
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $product_name
      */
     private $product_name;
 
     /**
-     * @orm:Column(type="text")
+     * @ORM\Column(type="text")
      *
      * @var text $description
      */
     private $description;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $price
      */
     private $price;
 
     /**
-     * @orm:Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
-     * @orm:ManyToMany(targetEntity="Club\UserBundle\Entity\Role")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Role")
      *
      * @var Club\UserBundle\Entity\Role
      */
     private $roles;
 
     /**
-     * @orm:ManyToMany(targetEntity="VariantGroup")
+     * @ORM\ManyToMany(targetEntity="VariantGroup")
      *
      * @var VariantGroup
      */
     private $variant_groups;
 
     /**
-     * @orm:ManyToMany(targetEntity="Category")
-     * @orm:JoinTable(name="club_shop_category_product",
-     *   joinColumns={@orm:JoinColumn(name="product_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@orm:JoinColumn(name="category_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\JoinTable(name="club_shop_category_product",
+     *   joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
      *
      * @var Club\ShopBundle\Entity\Category
@@ -71,14 +74,14 @@ class Product
     private $categories;
 
     /**
-     * @orm:ManyToOne(targetEntity="Tax")
+     * @ORM\ManyToOne(targetEntity="Tax")
      *
      * @var Club\ShopBundle\Entity\Tax
      */
     private $tax;
 
     /**
-     * @orm:OneToMany(targetEntity="ProductAttribute", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="ProductAttribute", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\ProductAttribute
      */

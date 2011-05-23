@@ -2,86 +2,89 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Group")
- * @orm:Table(name="club_group")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Group")
+ * @ORM\Table(name="club_group")
  */
 class Group
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $group_name
      */
     private $group_name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $group_type
      */
     private $group_type;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $gender
      */
     private $gender;
 
     /**
-     * @orm:Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $min_age
      */
     private $min_age;
 
     /**
-     * @orm:Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $max_age
      */
     private $max_age;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $is_active
      */
     private $is_active;
 
     /**
-     * @orm:ManyToOne(targetEntity="Group")
+     * @ORM\ManyToOne(targetEntity="Group")
      *
      * @var Club\UserBundle\Entity\Group
      */
     private $group;
 
     /**
-     * @orm:ManyToMany(targetEntity="Role")
+     * @ORM\ManyToMany(targetEntity="Role")
      *
      * @var Club\UserBundle\Entity\Role
      */
     private $role;
 
     /**
-     * @orm:ManyToMany(targetEntity="Location")
+     * @ORM\ManyToMany(targetEntity="Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
     private $location;
 
     /**
-     * @orm:ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User")
      *
      * @var Club\UserBundle\Entity\User
      */

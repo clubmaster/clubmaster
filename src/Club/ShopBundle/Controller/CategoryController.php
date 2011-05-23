@@ -2,14 +2,16 @@
 
 namespace Club\ShopBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CategoryController extends Controller
 {
   /**
-   * @extra:Route("/shop/category", name="shop_category")
-   * @extra:Template()
+   * @Route("/shop/category", name="shop_category")
+   * @Template()
    */
   public function indexAction()
   {
@@ -23,7 +25,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/category/delete/{id}", name="shop_category_delete")
+   * @Route("/shop/category/delete/{id}", name="shop_category_delete")
    */
   public function deleteAction($id)
   {
@@ -37,7 +39,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/category/edit/{id}", name="shop_category_edit")
+   * @Route("/shop/category/edit/{id}", name="shop_category_edit")
    */
   public function editAction($id)
   {

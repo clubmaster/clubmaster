@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Role;
@@ -10,8 +12,8 @@ use Club\UserBundle\Form\RoleForm;
 class RoleController extends Controller
 {
   /**
-   * @extra:Template()
-   * @extra:Route("/role", name="role")
+   * @Template()
+   * @Route("/role", name="role")
    */
   public function indexAction()
   {
@@ -28,8 +30,8 @@ class RoleController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/role/new", name="role_new")
+   * @Template()
+   * @Route("/role/new", name="role_new")
    */
   public function newAction()
   {
@@ -54,15 +56,15 @@ class RoleController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/role/edit/{id}", name="role_edit")
+   * @Template()
+   * @Route("/role/edit/{id}", name="role_edit")
    */
   public function editAction($id)
   {
   }
 
   /**
-   * @extra:Route("/role/delete/{id}", name="role_delete")
+   * @Route("/role/delete/{id}", name="role_delete")
    */
   public function deleteAction($id)
   {
@@ -78,7 +80,7 @@ class RoleController extends Controller
   }
 
   /**
-   * @extra:Route("/role/batch", name="role_batch")
+   * @Route("/role/batch", name="role_batch")
    */
   public function batchAction()
   {

@@ -2,38 +2,41 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderProductAttribute")
- * @orm:Table(name="club_shop_order_product_attribute")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderProductAttribute")
+ * @ORM\Table(name="club_shop_order_product_attribute")
  *
  */
 class OrderProductAttribute
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $attribute_name
      */
     private $attribute_name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $value
      */
     private $value;
 
     /**
-     * @orm:ManyToOne(targetEntity="OrderProduct")
+     * @ORM\ManyToOne(targetEntity="OrderProduct")
      */
     private $order_product;
 

@@ -2,57 +2,60 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Currency")
- * @orm:Table(name="club_shop_currency")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Currency")
+ * @ORM\Table(name="club_shop_currency")
  */
 class Currency
 {
     /**
-     * @orm:id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $currency_name
      */
     private $currency_name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $code
      */
     private $code;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $symbol_left
      */
     private $symbol_left;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $symbol_right
      */
     private $symbol_right;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      * @var string $decimal_places
      */
     private $decimal_places;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $value
      */

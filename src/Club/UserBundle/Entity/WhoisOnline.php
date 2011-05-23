@@ -2,16 +2,19 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\WhoisOnline")
- * @orm:Table(name="club_whois_online")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\WhoisOnline")
+ * @ORM\Table(name="club_whois_online")
  */
 class WhoisOnline
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */

@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 use Club\UserBundle\Form\LoginForm;
@@ -9,8 +11,8 @@ use Club\UserBundle\Form\LoginForm;
 class AuthController extends Controller
 {
   /**
-   * @extra:Template()
-   * @extra:Route("/login",name="login")
+   * @Route("/login",name="login")
+   * @Template()
    */
   public function loginAction()
   {

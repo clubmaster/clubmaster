@@ -2,51 +2,54 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
- * @orm:Table(name="club_shop_subscription")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
+ * @ORM\Table(name="club_shop_subscription")
  */
 class Subscription
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $allowed_pauses
      */
     private $allowed_pauses;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $auto_renewal
      */
     private $auto_renewal;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
      *
      * @var Club\UserBundle\Entity\User
      */

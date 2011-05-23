@@ -2,45 +2,48 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Special")
- * @orm:Table(name="club_shop_special")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Special")
+ * @ORM\Table(name="club_shop_special")
  *
  */
 class Special
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      *
      * @var datetime $expire_date
      */
     private $expire_date;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $price
      */
     private $price;
 
     /**
-     * @orm:ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product")
      *
      * @var Club\ShopBundle\Entity\Product
      */

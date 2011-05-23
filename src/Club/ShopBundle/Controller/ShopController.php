@@ -2,19 +2,33 @@
 
 namespace Club\ShopBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ShopController extends Controller
 {
   /**
-   * @extra:Routes({
-   *   @extra:Route("/shop", name="shop"),
-   *   @extra:Route("/shop/category/{id}",name="shop_prod_view")
-   * })
-   * @extra:Template()
+   * @Route("/shop", name="shop")
+   * @Template()
    */
-  public function indexAction($id=null)
+  public function indexAction()
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
+
+    return array(
+      'categories' => $categories
+    );
+  }
+
+  /**
+   * @Route("/shop/category/{id}",name="shop_prod_view")
+   * @Template()
+   */
+  public function categoryAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
@@ -30,7 +44,7 @@ class ShopController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/category/delete/{id}", name="shop_category_delete")
+   * @Route("/shop/category/delete/{id}", name="shop_category_delete")
    */
   public function deleteAction($id)
   {
@@ -44,7 +58,7 @@ class ShopController extends Controller
   }
 
   /**
-   * @extra:Route("/shop/category/edit/{id}", name="shop_category_edit")
+   * @Route("/shop/category/edit/{id}", name="shop_category_edit")
    */
   public function editAction($id)
   {

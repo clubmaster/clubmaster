@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Location;
@@ -10,8 +12,8 @@ use Club\UserBundle\Form\LocationForm;
 class LocationController extends Controller
 {
   /**
-   * @extra:Template()
-   * @extra:Route("/location", name="location")
+   * @Template()
+   * @Route("/location", name="location")
    */
   public function indexAction()
   {
@@ -28,8 +30,8 @@ class LocationController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/location/new", name="location_new")
+   * @Template()
+   * @Route("/location/new", name="location_new")
    */
   public function newAction()
   {
@@ -54,8 +56,8 @@ class LocationController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/location/edit/{id}", name="location_edit")
+   * @Template()
+   * @Route("/location/edit/{id}", name="location_edit")
    */
   public function editAction($id)
   {
@@ -82,7 +84,7 @@ class LocationController extends Controller
   }
 
   /**
-   * @extra:Route("/location/delete/{id}", name="location_delete")
+   * @Route("/location/delete/{id}", name="location_delete")
    */
   public function deleteAction($id)
   {
@@ -98,7 +100,7 @@ class LocationController extends Controller
   }
 
   /**
-   * @extra:Route("/location/batch", name="location_batch")
+   * @Route("/location/batch", name="location_batch")
    */
   public function batchAction()
   {

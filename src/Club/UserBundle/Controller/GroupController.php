@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
@@ -10,8 +12,8 @@ use Club\UserBundle\Form\GroupForm;
 class GroupController extends Controller
 {
   /**
-   * @extra:Template()
-   * @extra:Route("/group", name="group")
+   * @Route("/group", name="group")
+   * @Template()
    */
   public function indexAction()
   {
@@ -28,8 +30,8 @@ class GroupController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/group/new", name="group_new")
+   * @Route("/group/new", name="group_new")
+   * @Template()
    */
   public function newAction()
   {
@@ -56,8 +58,8 @@ class GroupController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/group/edit/{id}", name="group_edit")
+   * @Route("/group/edit/{id}", name="group_edit")
+   * @Template()
    */
   public function editAction($id)
   {
@@ -86,7 +88,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @extra:Route("/group/delete/{id}", name="group_delete")
+   * @Route("/group/delete/{id}", name="group_delete")
    */
   public function deleteAction($id)
   {
@@ -102,7 +104,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @extra:Route("/group/batch", name="group_batch")
+   * @Route("/group/batch", name="group_batch")
    */
   public function batchAction()
   {

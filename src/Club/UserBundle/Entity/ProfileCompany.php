@@ -2,44 +2,47 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\ProfileCompany")
- * @orm:Table(name="club_profile_company")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\ProfileCompany")
+ * @ORM\Table(name="club_profile_company")
  */
 class ProfileCompany
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $company_name
      */
     private $company_name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $cvr
      */
     private $cvr;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $is_default
      */
     private $is_default;
 
     /**
-     * @orm:ManyToOne(targetEntity="Profile")
+     * @ORM\ManyToOne(targetEntity="Profile")
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;

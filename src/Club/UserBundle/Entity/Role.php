@@ -2,41 +2,43 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Role")
- * @orm:Table(name="club_role")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Role")
+ * @ORM\Table(name="club_role")
  */
 class Role implements RoleInterface
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $role_name
      */
     private $role_name;
 
     /**
-     * @orm:ManyToMany(targetEntity="User")
-     * @orm:JoinTable(name="club_user_role",
-     *   joinColumns={@orm:JoinColumn(name="role_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@orm:JoinColumn(name="user_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="club_user_role",
+     *   joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      */
     private $users;
 
     /**
-     * @orm:ManyToMany(targetEntity="Group")
+     * @ORM\ManyToMany(targetEntity="Group")
      */
     private $groups;
 

@@ -2,51 +2,54 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Category")
- * @orm:Table(name="club_shop_category")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Category")
+ * @ORM\Table(name="club_shop_category")
  */
 class Category
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $category_name
      */
     private $category_name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var text $description
      */
     private $description;
 
     /**
-     * @orm:ManyToOne(targetEntity="Image")
+     * @ORM\ManyToOne(targetEntity="Image")
      *
      * @var Club\ShopBundle\Entity\Image
      */
     private $image;
 
     /**
-     * @orm:ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Category")
      *
      * @var Club\ShopBundle\Entity\Category
      */
     private $category;
 
     /**
-     * @orm:ManyToMany(targetEntity="Product", mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
      *
      * @var Club\ShopBundle\Entity\Product
      */

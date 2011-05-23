@@ -2,30 +2,33 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderStatus")
- * @orm:Table(name="club_shop_order_status")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderStatus")
+ * @ORM\Table(name="club_shop_order_status")
  */
 class OrderStatus
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $status_name
      */
     private $status_name;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * var boolean $is_complete
      */

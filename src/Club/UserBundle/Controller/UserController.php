@@ -2,6 +2,8 @@
 
 namespace Club\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,8 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
   /**
-   * @extra:Template()
-   * @extra:Route("/user", name="user")
+   * @Template()
+   * @Route("/user", name="user")
    */
   public function indexAction()
   {
@@ -24,8 +26,8 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/user/new", name="user_new")
+   * @Template()
+   * @Route("/user/new", name="user_new")
    */
   public function newAction()
   {
@@ -59,8 +61,8 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Template()
-   * @extra:Route("/user/edit/{id}", name="user_edit")
+   * @Template()
+   * @Route("/user/edit/{id}", name="user_edit")
    */
   public function editAction($id)
   {
@@ -90,7 +92,7 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Route("/user/delete/{id}", name="user_delete")
+   * @Route("/user/delete/{id}", name="user_delete")
    */
   public function deleteAction($id)
   {
@@ -106,14 +108,14 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Route("/user/batch", name="user_batch")
+   * @Route("/user/batch", name="user_batch")
    */
   public function batchAction()
   {
   }
 
   /**
-   * @extra:Route("/user/ban/{id}", name="user_ban")
+   * @Route("/user/ban/{id}", name="user_ban")
    */
   public function banAction($id)
   {
@@ -135,8 +137,8 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Route("/user/subscription/{id}",name="user_subscription")
-   * @extra:Template()
+   * @Route("/user/subscription/{id}",name="user_subscription")
+   * @Template()
    */
   public function subscriptionAction($id)
   {
@@ -149,8 +151,8 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Route("/user/ticket/{id}", name="user_ticket")
-   * @extra:Template()
+   * @Route("/user/ticket/{id}", name="user_ticket")
+   * @Template()
    */
   public function ticketAction($id)
   {
@@ -164,7 +166,7 @@ class UserController extends Controller
   }
 
   /**
-   * @extra:Route("/user/shop/{id}", name="user_shop")
+   * @Route("/user/shop/{id}", name="user_shop")
    */
   public function shopAction($id)
   {

@@ -2,37 +2,40 @@
 
 namespace Club\MailBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\MailBundle\Repository\MailQueue")
- * @orm:Table(name="club_mail_queue")
+ * @ORM\Entity(repositoryClass="Club\MailBundle\Repository\MailQueue")
+ * @ORM\Table(name="club_mail_queue")
  */
 class MailQueue
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="text")
+     * @ORM\Column(type="text")
      *
      * @var text $message
      */
     private $message;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $error_message
      */
     private $error_message;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $priority
      */

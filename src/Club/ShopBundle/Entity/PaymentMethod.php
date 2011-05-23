@@ -2,23 +2,26 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\PaymentMethod")
- * @orm:Table(name="club_shop_payment_method")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\PaymentMethod")
+ * @ORM\Table(name="club_shop_payment_method")
  */
 class PaymentMethod
 {
     /**
-     * @orm:id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $payment_method_name
      */

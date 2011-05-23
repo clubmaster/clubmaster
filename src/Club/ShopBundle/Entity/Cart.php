@@ -2,37 +2,40 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Cart")
- * @orm:Table(name="club_shop_cart")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Cart")
+ * @ORM\Table(name="club_shop_cart")
  */
 class Cart
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $session
      */
     private $session;
 
     /**
-     * @orm:ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product")
      *
      * @var Club\ShopBundle\Entity\Product
      */

@@ -2,93 +2,96 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Language")
- * @orm:Table(name="club_language")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Language")
+ * @ORM\Table(name="club_language")
  */
 class Language
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $name
      */
     private $name;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $code
      */
     private $code;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $locale
      */
     private $locale;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $charset
      */
     private $charset;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $date_format_short
      */
     private $date_format_short;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $date_format_long
      */
     private $date_format_long;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $time_format
      */
     private $time_format;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $text_direction
      */
     private $text_direction;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $numeric_separator_decimal
      */
     private $numeric_separator_decimal;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $numeric_separator_thousands
      */
     private $numeric_separator_thousands;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Currency")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Currency")
      *
      * @var Club\ShopBundle\Entity\Currency
      */

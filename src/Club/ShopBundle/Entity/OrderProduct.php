@@ -2,65 +2,68 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderProduct")
- * @orm:Table(name="club_shop_order_product")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderProduct")
+ * @ORM\Table(name="club_shop_order_product")
  */
 class OrderProduct
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $product_name
      */
     private $product_name;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $price
      */
     private $price;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var float $tax
      */
     private $tax;
 
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      *
      * @var integer $quantity
      */
     private $quantity;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\UserBundle\Entity\Product
      */
     private $product;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
      *
      * @var Club\UserBundle\Entity\Order
      */
     private $order;
 
     /**
-     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProductAttribute", mappedBy="order_product")
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProductAttribute", mappedBy="order_product")
      */
     private $order_product_attributes;
 

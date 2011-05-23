@@ -2,75 +2,78 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Profile")
- * @orm:Table(name="club_profile")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Profile")
+ * @ORM\Table(name="club_profile")
  */
 class Profile
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $first_name
      */
     private $first_name;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $last_name
      */
     private $last_name;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * var string $gender
      */
     private $gender;
 
     /**
-     * @orm:OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User")
      *
      * @var Club\UserBundle\Entity\User
      */
     private $user;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileAddress
      */
     private $profile_address;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfilePhone
      */
     private $profile_phone;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */
     private $profile_email;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfileCompany", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileCompany", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileCompany
      */

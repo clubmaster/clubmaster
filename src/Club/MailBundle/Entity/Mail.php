@@ -2,51 +2,54 @@
 
 namespace Club\MailBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\MailBundle\Repository\Mail")
- * @orm:Table(name="club_mail")
+ * @ORM\Entity(repositoryClass="Club\MailBundle\Repository\Mail")
+ * @ORM\Table(name="club_mail")
  */
 class Mail
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $subject
      */
     private $subject;
 
     /**
-     * @orm:Column(type="text")
+     * @ORM\Column(type="text")
      *
      * @var text $body
      */
     private $body;
 
     /**
-     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
     private $locations;
 
     /**
-     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
+     * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
      *
      * @var Club\UserBundle\Entity\Group
      */
     private $groups;
 
     /**
-     * @orm:ManytoMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
      */

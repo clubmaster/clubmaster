@@ -2,16 +2,19 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\OrderAddress")
- * @orm:Table(name="club_shop_order_address")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderAddress")
+ * @ORM\Table(name="club_shop_order_address")
  */
 class OrderAddress
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */

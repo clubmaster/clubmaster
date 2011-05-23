@@ -2,84 +2,87 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\ProfileAddress")
- * @orm:Table(name="club_profile_address")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\ProfileAddress")
+ * @ORM\Table(name="club_profile_address")
  */
 class ProfileAddress
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $street
      */
     private $street;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $suburl
      */
     private $suburl;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $postal_code
      */
     private $postal_code;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $city
      */
     private $city;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $state
      */
     private $state;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $country
      */
     private $country;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
      *
      * @var string $contact_type
      */
     private $contact_type;
 
     /**
-     * @orm:Column(type="boolean")
+     * @ORM\Column(type="boolean")
      *
      * @var boolean $is_default
      */
     private $is_default;
 
     /**
-     * @orm:ManyToOne(targetEntity="Profile")
+     * @ORM\ManyToOne(targetEntity="Profile")
      *
      * @var Club\UserBundle\Entity\Profile
      */

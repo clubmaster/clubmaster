@@ -2,53 +2,55 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Ban")
- * @orm:Table(name="club_ban")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Ban")
+ * @ORM\Table(name="club_ban")
  */
 class Ban
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneradValue(strategy="AUTH")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneradValue(strategy="AUTH")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $type
      */
     private $type;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $value
      */
     private $value;
 
     /**
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      *
      * @var date $expire_date
      */
     private $expire_date;
 
     /**
-     * @orm:Column(type="text")
+     * @ORM\Column(type="text")
      *
      * @var string $note
      */
     private $note;
 
     /**
-     * @orm:ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      * @var Club\UserBundle\Entity\User
      */
     private $user;
@@ -165,7 +167,7 @@ class Ban
     }
 
     /**
-     * @orm:prePersist
+     * @ORM\prePersist
      */
     public function prePersist()
     {
