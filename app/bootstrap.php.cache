@@ -27,7 +27,7 @@ interface ContainerInterface
 }
 namespace Symfony\Component\DependencyInjection
 {
-use Symfony\Component\DependencyInjection\Exception\NonExistentServiceException;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Exception\CircularReferenceException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -116,7 +116,7 @@ class Container implements ContainerInterface
             return $service;
         }
         if (self::EXCEPTION_ON_INVALID_REFERENCE === $invalidBehavior) {
-            throw new NonExistentServiceException($id);
+            throw new ServiceNotFoundException($id);
         }
     }
     public function getServiceIds()
@@ -362,13 +362,16 @@ class ErrorHandler
         E_RECOVERABLE_ERROR => 'Catchable Fatal Error',
     );
     private $level;
-    public function __construct($level = null)
+    static public function register($level = null)
+    {
+        $handler = new static();
+        $handler->setLevel($level);
+        set_error_handler(array($handler, 'handle'));
+        return $handler;
+    }
+    public function setLevel($level)
     {
         $this->level = null === $level ? error_reporting() : $level;
-    }
-    public function register()
-    {
-        set_error_handler(array($this, 'handle'));
     }
     public function handle($level, $message, $file, $line, $context)
     {
@@ -568,12 +571,9 @@ abstract class Kernel implements KernelInterface
         $this->name = preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->rootDir));
         $this->classes = array();
         if ($this->debug) {
-            ini_set('display_errors', 1);
-            error_reporting(-1);
             $this->startTime = microtime(true);
-        } else {
-            ini_set('display_errors', 0);
         }
+        $this->init();
     }
     public function __clone()
     {
@@ -582,6 +582,9 @@ abstract class Kernel implements KernelInterface
         }
         $this->booted = false;
         $this->container = null;
+    }
+    public function init()
+    {
     }
     public function boot()
     {
@@ -598,6 +601,9 @@ abstract class Kernel implements KernelInterface
     }
     public function shutdown()
     {
+        if (false === $this->booted) {
+            return;
+        }
         $this->booted = false;
         foreach ($this->getBundles() as $bundle) {
             $bundle->shutdown();
@@ -647,8 +653,11 @@ abstract class Kernel implements KernelInterface
         if (false !== strpos($name, '..')) {
             throw new \RuntimeException(sprintf('File name "%s" contains invalid characters (..).', $name));
         }
-        $name = substr($name, 1);
-        list($bundleName, $path) = explode('/', $name, 2);
+        $bundleName = substr($name, 1);
+        $path = '';
+        if (false !== strpos($bundleName, '/')) {
+            list($bundleName, $path) = explode('/', $bundleName, 2);
+        }
         $isResource = 0 === strpos($path, 'Resources') && null !== $dir;
         $overridePath = substr($path, 9);
         $resourceBundle = null;
@@ -679,7 +688,7 @@ abstract class Kernel implements KernelInterface
         if (count($files) > 0) {
             return $first && $isResource ? $files[0] : $files;
         }
-        throw new \InvalidArgumentException(sprintf('Unable to find file "@%s".', $name));
+        throw new \InvalidArgumentException(sprintf('Unable to find file "%s".', $name));
     }
     public function getName()
     {
@@ -829,6 +838,15 @@ abstract class Kernel implements KernelInterface
     }
     protected function buildContainer()
     {
+        foreach (array('cache' => $this->getCacheDir(), 'logs' => $this->getLogDir()) as $name => $dir) {
+            if (!is_dir($dir)) {
+                if (false === @mkdir($dir, 0777, true)) {
+                    throw new \RuntimeException(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
+                }
+            } elseif (!is_writable($dir)) {
+                throw new \RuntimeException(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
+            }
+        }
         $container = new ContainerBuilder(new ParameterBag($this->getKernelParameters()));
         $extensions = array();
         foreach ($this->bundles as $bundle) {
@@ -845,16 +863,6 @@ abstract class Kernel implements KernelInterface
                 $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfigurationPass($extensions));
         if (null !== $cont = $this->registerContainerConfiguration($this->getContainerLoader($container))) {
             $container->merge($cont);
-        }
-        foreach (array('cache', 'logs') as $name) {
-            $dir = $container->getParameter(sprintf('kernel.%s_dir', $name));
-            if (!is_dir($dir)) {
-                if (false === @mkdir($dir, 0777, true)) {
-                    exit(sprintf("Unable to create the %s directory (%s)\n", $name, dirname($dir)));
-                }
-            } elseif (!is_writable($dir)) {
-                exit(sprintf("Unable to write in the %s directory (%s)\n", $name, $dir));
-            }
         }
         $container->addCompilerPass(new AddClassesToCachePass($this));
         $container->compile();
@@ -934,14 +942,10 @@ class ParameterBag
     {
         $this->parameters = array_replace($this->parameters, $parameters);
     }
-    public function get($key, $default = null)
+    public function get($path, $default = null, $deep = false)
     {
-        return array_key_exists($key, $this->parameters) ? $this->parameters[$key] : $default;
-    }
-    public function getDeep($path, $default = null)
-    {
-        if (false === $pos = strpos($path, '[')) {
-            return $this->get($path, $default);
+        if (!$deep || false === $pos = strpos($path, '[')) {
+            return array_key_exists($path, $this->parameters) ? $this->parameters[$path] : $default;
         }
         $root = substr($path, 0, $pos);
         if (!array_key_exists($root, $this->parameters)) {
@@ -989,21 +993,21 @@ class ParameterBag
     {
         unset($this->parameters[$key]);
     }
-    public function getAlpha($key, $default = '')
+    public function getAlpha($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:alpha:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:alpha:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getAlnum($key, $default = '')
+    public function getAlnum($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:alnum:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:alnum:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getDigits($key, $default = '')
+    public function getDigits($key, $default = '', $deep = false)
     {
-        return preg_replace('/[^[:digit:]]/', '', $this->get($key, $default));
+        return preg_replace('/[^[:digit:]]/', '', $this->get($key, $default, $deep));
     }
-    public function getInt($key, $default = 0)
+    public function getInt($key, $default = 0, $deep = false)
     {
-        return (int) $this->get($key, $default);
+        return (int) $this->get($key, $default, $deep);
     }
 }
 }
@@ -1113,6 +1117,24 @@ class HeaderBag
         foreach ($headers as $key => $values) {
             $this->set($key, $values);
         }
+    }
+    public function __toString()
+    {
+        if (!$this->headers) {
+            return '';
+        }
+        $beautifier = function ($name) {
+            return preg_replace('/\-(.)/e', "'-'.strtoupper('\\1')", ucfirst($name));
+        };
+        $max = max(array_map('strlen', array_keys($this->headers))) + 1;
+        $content = '';
+        ksort($this->headers);
+        foreach ($this->headers as $name => $values) {
+            foreach ($values as $value) {
+                $content .= sprintf("%-{$max}s %s\r\n", $beautifier($name).':', $value);
+            }
+        }
+        return $content;
     }
     public function all()
     {
@@ -1304,7 +1326,14 @@ class Request
     }
     static public function createFromGlobals()
     {
-        return new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+        $request = new static($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+        if (0 === strpos($request->server->get('CONTENT_TYPE'), 'application/x-www-form-urlencoded')
+            && in_array(strtoupper($request->server->get('REQUEST_METHOD', 'GET')), array('PUT', 'DELETE'))
+        ) {
+            parse_str($request->getContent(), $data);
+            $request->request = new ParameterBag($data);
+        }
+        return $request;
     }
     static public function create($uri, $method = 'GET', $parameters = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
     {
@@ -1319,6 +1348,7 @@ class Request
             'REMOTE_ADDR'          => '127.0.0.1',
             'SCRIPT_NAME'          => '',
             'SCRIPT_FILENAME'      => '',
+            'SERVER_PROTOCOL'      => 'HTTP/1.1',
         );
         $components = parse_url($uri);
         if (isset($components['host'])) {
@@ -1405,6 +1435,13 @@ class Request
         $this->server     = clone $this->server;
         $this->headers    = clone $this->headers;
     }
+    public function __toString()
+    {
+        return
+            sprintf('%s %s %s', $this->getMethod(), $this->getRequestUri(), $this->server->get('SERVER_PROTOCOL'))."\r\n".
+            $this->headers."\r\n".
+            $this->getContent();
+    }
     public function overrideGlobals()
     {
         $_GET = $this->query->all();
@@ -1416,17 +1453,21 @@ class Request
         }
                         $_REQUEST = array_merge($_GET, $_POST);
     }
-                        public function get($key, $default = null)
+                        public function get($key, $default = null, $deep = false)
     {
-        return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default)));
+        return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default, $deep), $deep), $deep);
     }
     public function getSession()
     {
         return $this->session;
     }
-    public function hasSession()
+    public function hasPreviousSession()
     {
                 return $this->cookies->has(session_name()) && null !== $this->session;
+    }
+    public function hasSession()
+    {
+        return null !== $this->session;
     }
     public function setSession(Session $session)
     {
@@ -1474,14 +1515,11 @@ class Request
     }
     public function getPort()
     {
-        return $this->server->get('SERVER_PORT');
+        return $this->headers->get('X-Forwarded-Port') ?: $this->server->get('SERVER_PORT');
     }
     public function getHttpHost()
     {
-        $host = $this->headers->get('HOST');
-        if (!empty($host)) {
-            return $host;
-        }
+        $host   = $this->getHost();
         $scheme = $this->getScheme();
         $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
@@ -1521,8 +1559,8 @@ class Request
                 $parts[] = $segment;
                 $order[] = $segment;
             } else {
-                $tmp = explode('=', urldecode($segment), 2);
-                $parts[] = urlencode($tmp[0]).'='.urlencode($tmp[1]);
+                $tmp = explode('=', rawurldecode($segment), 2);
+                $parts[] = rawurlencode($tmp[0]).'='.rawurlencode($tmp[1]);
                 $order[] = $tmp[0];
             }
         }
@@ -1564,7 +1602,7 @@ class Request
         if (null === $this->method) {
             $this->method = strtoupper($this->server->get('REQUEST_METHOD', 'GET'));
             if ('POST' === $this->method) {
-                $this->method = strtoupper($this->request->get('_method', 'POST'));
+                $this->method = strtoupper($this->server->get('X-HTTP-METHOD-OVERRIDE', $this->request->get('_method', 'POST')));
             }
         }
         return $this->method;
@@ -1795,14 +1833,14 @@ class Request
     {
         $baseUrl = $this->getBaseUrl();
         if (null === ($requestUri = $this->getRequestUri())) {
-            return '';
+            return '/';
         }
-        $pathInfo = '';
+        $pathInfo = '/';
                 if ($pos = strpos($requestUri, '?')) {
             $requestUri = substr($requestUri, 0, $pos);
         }
         if ((null !== $baseUrl) && (false === ($pathInfo = substr($requestUri, strlen($baseUrl))))) {
-                        return '';
+                        return '/';
         } elseif (null === $baseUrl) {
             return $requestUri;
         }

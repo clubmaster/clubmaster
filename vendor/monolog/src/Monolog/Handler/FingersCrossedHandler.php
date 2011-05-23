@@ -29,19 +29,30 @@ class FingersCrossedHandler extends AbstractHandler
     protected $buffering = true;
     protected $bufferSize;
     protected $buffer = array();
+    protected $stopBuffering;
 
     /**
      * @param callback|HandlerInterface $handler Handler or factory callback($record, $fingersCrossedHandler).
      * @param int $actionLevel The minimum logging level at which this handler will be triggered
      * @param int $bufferSize How many entries should be buffered at most, beyond that the oldest items are removed from the buffer.
      * @param Boolean $bubble Whether the messages that are handled can bubble up the stack or not
+     * @param Boolean $stopBuffering Whether the handler should stop buffering after being triggered (default true)
      */
-    public function __construct($handler, $actionLevel = Logger::WARNING, $bufferSize = 0, $bubble = false)
+    public function __construct($handler, $actionLevel = Logger::WARNING, $bufferSize = 0, $bubble = false, $stopBuffering = true)
     {
         $this->handler = $handler;
         $this->actionLevel = $actionLevel;
         $this->bufferSize = $bufferSize;
         $this->bubble = $bubble;
+        $this->stopBuffering = $stopBuffering;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isHandling(array $record)
+    {
+        return true;
     }
 
     /**
@@ -55,16 +66,16 @@ class FingersCrossedHandler extends AbstractHandler
                 array_shift($this->buffer);
             }
             if ($record['level'] >= $this->actionLevel) {
-                $this->buffering = false;
+                if ($this->stopBuffering) {
+                    $this->buffering = false;
+                }
                 if (!$this->handler instanceof HandlerInterface) {
                     $this->handler = call_user_func($this->handler, $record, $this);
                 }
                 if (!$this->handler instanceof HandlerInterface) {
                     throw new \RuntimeException("The factory callback should return a HandlerInterface");
                 }
-                foreach ($this->buffer as $record) {
-                    $this->handler->handle($record);
-                }
+                $this->handler->handleBatch($this->buffer);
                 $this->buffer = array();
             }
         } else {
@@ -80,13 +91,5 @@ class FingersCrossedHandler extends AbstractHandler
     public function reset()
     {
         $this->buffering = true;
-    }
-
-    /**
-     * Implemented to comply with the AbstractHandler requirements. Can not be called.
-     */
-    protected function write(array $record)
-    {
-        throw new \BadMethodCallException('This method should not be called directly on the FingersCrossedHandler.');
     }
 }

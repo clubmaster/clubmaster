@@ -54,9 +54,10 @@ class TwigFormulaLoader implements FormulaLoaderInterface
                 $node->getAttribute('inputs'),
                 $node->getAttribute('filters'),
                 array(
-                    'output' => $node->getAttribute('asset')->getTargetUrl(),
-                    'name'   => $node->getAttribute('name'),
-                    'debug'  => $node->getAttribute('debug'),
+                    'output'  => $node->getAttribute('asset')->getTargetPath(),
+                    'name'    => $node->getAttribute('name'),
+                    'debug'   => $node->getAttribute('debug'),
+                    'combine' => $node->getAttribute('combine'),
                 ),
             );
         } elseif ($node instanceof \Twig_Node_Expression_Function) {
@@ -74,7 +75,7 @@ class TwigFormulaLoader implements FormulaLoaderInterface
                 $options = array_replace($invoker->getOptions(), isset($arguments[1]) ? $arguments[1] : array());
 
                 if (!isset($options['name'])) {
-                    $options['name'] = $invoker->getFactory()->generateAssetName($inputs, $filters);
+                    $options['name'] = $invoker->getFactory()->generateAssetName($inputs, $filters, $options);
                 }
 
                 $formulae[$options['name']] = array($inputs, $filters, $options);

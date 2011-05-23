@@ -34,16 +34,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class FrameworkBundle extends Bundle
 {
-    /**
-     * Boots the Bundle.
-     */
-    public function boot()
-    {
-        if ($this->container->has('error_handler')) {
-            $this->container->get('error_handler');
-        }
-    }
-
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
@@ -60,7 +50,7 @@ class FrameworkBundle extends Bundle
         $container->addCompilerPass(new AddCacheWarmerPass());
 
         if ($container->getParameter('kernel.debug')) {
-            $container->addCompilerPass(new ContainerBuilderDebugDumpPass(), PassConfig::TYPE_BEFORE_REMOVING);
+            $container->addCompilerPass(new ContainerBuilderDebugDumpPass(), PassConfig::TYPE_AFTER_REMOVING);
             $container->addCompilerPass(new CompilerDebugDumpPass(), PassConfig::TYPE_AFTER_REMOVING);
         }
     }

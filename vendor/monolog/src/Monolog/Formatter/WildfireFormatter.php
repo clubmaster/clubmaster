@@ -18,7 +18,7 @@ use Monolog\Logger;
  *
  * @author Eric Clemmons (@ericclemmons) <eric@uxdriven.com>
  */
-class WildfireFormatter extends LineFormatter implements FormatterInterface
+class WildfireFormatter extends LineFormatter
 {
     /**
      * Similar to LineFormatter::SIMPLE_FORMAT, except without the "[%datetime%]"
@@ -29,28 +29,21 @@ class WildfireFormatter extends LineFormatter implements FormatterInterface
      * Translates Monolog log levels to Wildfire levels.
      */
     private $logLevels = array(
-        Logger::DEBUG   => 'LOG',
-        Logger::INFO    => 'INFO',
-        Logger::WARNING => 'WARN',
-        Logger::ERROR   => 'ERROR',
+        Logger::DEBUG    => 'LOG',
+        Logger::INFO     => 'INFO',
+        Logger::WARNING  => 'WARN',
+        Logger::ERROR    => 'ERROR',
+        Logger::CRITICAL => 'ERROR',
+        Logger::ALERT    => 'ERROR',
     );
 
     /**
      * {@inheritdoc}
      */
-    public function __construct($format = null, $dateFormat = null)
-    {
-        $this->format = $format ?: self::SIMPLE_FORMAT;
-        $this->dateFormat = $dateFormat ?: self::SIMPLE_DATE;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function format(Array $record)
+    public function format(array $record)
     {
         // Format record according with LineFormatter
-        $formatted = parent::format($record);
+        $message = parent::format($record);
 
         // Create JSON object describing the appearance of the message in the console
         $json = json_encode(array(
@@ -59,17 +52,19 @@ class WildfireFormatter extends LineFormatter implements FormatterInterface
                 'File'  =>  '',
                 'Line'  =>  '',
             ),
-            $formatted['message'],
+            $message,
         ));
 
         // The message itself is a serialization of the above JSON object + it's length
-        $formatted['message'] = sprintf(
+        return sprintf(
             '%s|%s|',
             strlen($json),
             $json
         );
-
-        return $formatted;
     }
 
+    public function formatBatch(array $records)
+    {
+        throw new \BadMethodCallException('Batch formatting does not make sense for the WildfireFormatter');
+    }
 }

@@ -20,7 +20,7 @@ use Monolog\Logger;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-class TestHandler extends AbstractHandler
+class TestHandler extends AbstractProcessingHandler
 {
     protected $records;
     protected $recordsByLevel;
@@ -28,6 +28,16 @@ class TestHandler extends AbstractHandler
     public function getRecords()
     {
         return $this->records;
+    }
+
+    public function hasAlert($record)
+    {
+        return $this->hasRecord($record, Logger::ALERT);
+    }
+
+    public function hasCritical($record)
+    {
+        return $this->hasRecord($record, Logger::CRITICAL);
     }
 
     public function hasError($record)
@@ -48,6 +58,16 @@ class TestHandler extends AbstractHandler
     public function hasDebug($record)
     {
         return $this->hasRecord($record, Logger::DEBUG);
+    }
+
+    public function hasAlertRecords()
+    {
+        return isset($this->recordsByLevel[Logger::ALERT]);
+    }
+
+    public function hasCriticalRecords()
+    {
+        return isset($this->recordsByLevel[Logger::CRITICAL]);
     }
 
     public function hasErrorRecords()

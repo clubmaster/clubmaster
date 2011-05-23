@@ -83,6 +83,11 @@ class AsseticTokenParser extends \Twig_TokenParser
                 $stream->next();
                 $stream->expect(\Twig_Token::OPERATOR_TYPE, '=');
                 $attributes['debug'] = 'true' == $stream->expect(\Twig_Token::NAME_TYPE, array('true', 'false'))->getValue();
+            } elseif ($stream->test(\Twig_Token::NAME_TYPE, 'combine')) {
+                // combine=true
+                $stream->next();
+                $stream->expect(\Twig_Token::OPERATOR_TYPE, '=');
+                $attributes['combine'] = 'true' == $stream->expect(\Twig_Token::NAME_TYPE, array('true', 'false'))->getValue();
             } elseif ($stream->test(\Twig_Token::NAME_TYPE, $this->extensions)) {
                 // an arbitrary configured attribute
                 $key = $stream->next()->getValue();
@@ -107,7 +112,7 @@ class AsseticTokenParser extends \Twig_TokenParser
         }
 
         if (!$name) {
-            $name = $this->factory->generateAssetName($inputs, $filters);
+            $name = $this->factory->generateAssetName($inputs, $filters, $attributes);
         }
 
         $asset = $this->factory->createAsset($inputs, $filters, $attributes + array('name' => $name));

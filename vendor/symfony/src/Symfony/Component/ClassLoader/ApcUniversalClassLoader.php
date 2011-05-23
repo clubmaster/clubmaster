@@ -56,7 +56,7 @@ namespace Symfony\Component\ClassLoader;
  * found before giving up.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- * @author Kris Wallsmith <kris.wallsmith@symfony.com>
+ * @author Kris Wallsmith <kris@symfony.com>
  *
  * @api
  */
@@ -73,6 +73,10 @@ class ApcUniversalClassLoader extends UniversalClassLoader
      */
     public function __construct($prefix)
     {
+        if (!extension_loaded('apc')) {
+            throw new \RuntimeException('Unable to use ApcUniversalClassLoader as APC is not enabled.');
+        }
+
         $this->prefix = $prefix;
     }
 

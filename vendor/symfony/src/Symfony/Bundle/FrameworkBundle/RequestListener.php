@@ -18,8 +18,8 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Routing\Matcher\Exception\MethodNotAllowedException;
-use Symfony\Component\Routing\Matcher\Exception\NotFoundException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\RequestContext;
 
@@ -67,7 +67,7 @@ class RequestListener
         }
 
         // starts the session if a session cookie already exists in the request...
-        if ($request->hasSession()) {
+        if ($request->hasPreviousSession()) {
             $request->getSession()->start();
         }
     }
@@ -82,8 +82,8 @@ class RequestListener
                 $request->getMethod(),
                 $request->getHost(),
                 $request->getScheme(),
-                $this->httpPort,
-                $this->httpsPort
+                $request->isSecure() ? $this->httpPort : $request->getPort(),
+                $request->isSecure() ? $request->getPort() : $this->httpsPort
             );
 
             if ($session = $request->getSession()) {
@@ -107,7 +107,7 @@ class RequestListener
             }
 
             $request->attributes->add($parameters);
-        } catch (NotFoundException $e) {
+        } catch (ResourceNotFoundException $e) {
             $message = sprintf('No route found for "%s %s"', $request->getMethod(), $request->getPathInfo());
             if (null !== $this->logger) {
                 $this->logger->err($message);

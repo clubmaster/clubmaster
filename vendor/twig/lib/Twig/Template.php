@@ -14,7 +14,7 @@
  * Default base class for compiled templates.
  *
  * @package twig
- * @author  Fabien Potencier <fabien.potencier@symfony-project.com>
+ * @author  Fabien Potencier <fabien@symfony.com>
  */
 abstract class Twig_Template implements Twig_TemplateInterface
 {
@@ -114,7 +114,7 @@ abstract class Twig_Template implements Twig_TemplateInterface
         ob_start();
         $this->displayParentBlock($name, $context, $blocks);
 
-        return new Twig_Markup(ob_get_clean());
+        return ob_get_clean();
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class Twig_Template implements Twig_TemplateInterface
         ob_start();
         $this->displayBlock($name, $context, $blocks);
 
-        return new Twig_Markup(ob_get_clean());
+        return ob_get_clean();
     }
 
     /**

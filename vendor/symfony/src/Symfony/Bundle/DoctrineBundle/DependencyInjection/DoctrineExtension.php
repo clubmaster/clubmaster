@@ -64,12 +64,19 @@ class DoctrineExtension extends AbstractDoctrineExtension
             $keys = array_keys($config['connections']);
             $config['default_connection'] = reset($keys);
         }
+        $this->defaultConnection = $config['default_connection'];
 
-        $container->setAlias('database_connection', sprintf('doctrine.dbal.%s_connection', $config['default_connection']));
-        $container->setAlias('doctrine.dbal.event_manager', new Alias(sprintf('doctrine.dbal.%s_connection.event_manager', $config['default_connection']), false));
-        $container->setParameter('doctrine.dbal.default_connection', $config['default_connection']);
+        $container->setAlias('database_connection', sprintf('doctrine.dbal.%s_connection', $this->defaultConnection));
+        $container->setAlias('doctrine.dbal.event_manager', new Alias(sprintf('doctrine.dbal.%s_connection.event_manager', $this->defaultConnection), false));
 
-        $container->getDefinition('doctrine.dbal.connection_factory')->replaceArgument(0, $config['types']);
+        $container->setParameter('doctrine.dbal.connection_factory.types', $config['types']);
+
+        $connections = array();
+        foreach (array_keys($config['connections']) as $name) {
+            $connections[$name] = sprintf('doctrine.dbal.%s_connection', $name);
+        }
+        $container->setParameter('doctrine.connections', $connections);
+        $container->setParameter('doctrine.default_connection', $this->defaultConnection);
 
         foreach ($config['connections'] as $name => $connection) {
             $this->loadDbalConnection($name, $connection, $container);
@@ -93,16 +100,16 @@ class DoctrineExtension extends AbstractDoctrineExtension
         }
 
         // event manager
-        $container->setDefinition(sprintf('doctrine.dbal.%s_connection.event_manager', $name), new DefinitionDecorator('doctrine.dbal.connection.event_manager'));
+        $def = $container->setDefinition(sprintf('doctrine.dbal.%s_connection.event_manager', $name), new DefinitionDecorator('doctrine.dbal.connection.event_manager'));
 
         // connection
         if (isset($connection['charset'])) {
             if ((isset($connection['driver']) && stripos($connection['driver'], 'mysql') !== false) ||
-                 (isset($connection['driverClass']) && stripos($connection['driverClass'], 'mysql') !== false)) {
+                 (isset($connection['driver_class']) && stripos($connection['driver_class'], 'mysql') !== false)) {
                 $mysqlSessionInit = new Definition('%doctrine.dbal.events.mysql_session_init.class%');
                 $mysqlSessionInit->setArguments(array($connection['charset']));
                 $mysqlSessionInit->setPublic(false);
-                $mysqlSessionInit->addTag(sprintf('doctrine.dbal.%s_event_subscriber', $name));
+                $mysqlSessionInit->addTag('doctrine.event_subscriber', array('connection' => $name));
 
                 $container->setDefinition(
                     sprintf('doctrine.dbal.%s_connection.events.mysqlsessioninit', $name),
@@ -112,19 +119,39 @@ class DoctrineExtension extends AbstractDoctrineExtension
             }
         }
 
-        if (isset($connection['platform_service'])) {
-            $connection['platform'] = new Reference($connection['platform_service']);
-            unset($connection['platform_service']);
-        }
+        $options = $this->getConnectionOptions($connection);
 
         $container
             ->setDefinition(sprintf('doctrine.dbal.%s_connection', $name), new DefinitionDecorator('doctrine.dbal.connection'))
             ->setArguments(array(
-                $connection,
+                $options,
                 new Reference(sprintf('doctrine.dbal.%s_connection.configuration', $name)),
                 new Reference(sprintf('doctrine.dbal.%s_connection.event_manager', $name)),
             ))
         ;
+    }
+
+    protected function getConnectionOptions($connection)
+    {
+        $options = $connection;
+
+        if (isset($options['platform_service'])) {
+            $options['platform'] = new Reference($options['platform_service']);
+            unset($options['platform_service']);
+        }
+
+        foreach (array(
+            'options' => 'driverOptions',
+            'driver_class' => 'driverClass',
+            'wrapper_class' => 'wrapperClass',
+        ) as $old => $new) {
+            if (isset($options[$old])) {
+                $options[$new] = $options[$old];
+                unset($options[$old]);
+            }
+        }
+
+        return $options;
     }
 
     /**
@@ -142,13 +169,19 @@ class DoctrineExtension extends AbstractDoctrineExtension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('orm.xml');
 
-        $container->setParameter('doctrine.orm.entity_managers', $entityManagers = array_keys($config['entity_managers']));
+        $this->entityManagers = array();
+        foreach (array_keys($config['entity_managers']) as $name) {
+            $this->entityManagers[$name] = sprintf('doctrine.orm.%s_entity_manager', $name);
+        }
+        $container->setParameter('doctrine.entity_managers', $this->entityManagers);
 
         if (empty($config['default_entity_manager'])) {
-            $config['default_entity_manager'] = reset($entityManagers);
+            $tmp = array_keys($this->entityManagers);
+            $config['default_entity_manager'] = reset($tmp);
         }
+        $container->setParameter('doctrine.default_entity_manager', $config['default_entity_manager']);
 
-        $options = array('default_entity_manager', 'auto_generate_proxy_classes', 'proxy_dir', 'proxy_namespace');
+        $options = array('auto_generate_proxy_classes', 'proxy_dir', 'proxy_namespace');
         foreach ($options as $key) {
             $container->setParameter('doctrine.orm.'.$key, $config[$key]);
         }
@@ -169,7 +202,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
      */
     protected function loadOrmEntityManager(array $entityManager, ContainerBuilder $container)
     {
-        if ($entityManager['auto_mapping'] && count($container->getParameter('doctrine.orm.entity_managers')) > 1) {
+        if ($entityManager['auto_mapping'] && count($this->entityManagers) > 1) {
             throw new \LogicException('You cannot enable "auto_mapping" when several entity managers are defined.');
         }
 
@@ -208,23 +241,21 @@ class DoctrineExtension extends AbstractDoctrineExtension
             }
         }
 
-        $entityManagerService = sprintf('doctrine.orm.%s_entity_manager', $entityManager['name']);
-        $connectionId = isset($entityManager['connection']) ? sprintf('doctrine.dbal.%s_connection', $entityManager['connection']) : 'database_connection';
-        $eventManagerID = isset($entityManager['connection']) ? sprintf('doctrine.dbal.%s_connection.event_manager', $entityManager['connection']) : 'doctrine.dbal.event_manager';
+        if (!isset($entityManager['connection'])) {
+            $entityManager['connection'] = $this->defaultConnection;
+        }
 
-        $ormEmArgs = array(
-            new Reference($connectionId),
-            new Reference(sprintf('doctrine.orm.%s_configuration', $entityManager['name']))
-        );
-        $ormEmDef = new Definition('%doctrine.orm.entity_manager.class%', $ormEmArgs);
-        $ormEmDef->setFactoryClass('%doctrine.orm.entity_manager.class%');
-        $ormEmDef->setFactoryMethod('create');
-        $ormEmDef->addTag('doctrine.orm.entity_manager');
-        $container->setDefinition($entityManagerService, $ormEmDef);
+        $container
+            ->setDefinition(sprintf('doctrine.orm.%s_entity_manager', $entityManager['name']), new DefinitionDecorator('doctrine.orm.entity_manager.abstract'))
+            ->setArguments(array(
+                new Reference(sprintf('doctrine.dbal.%s_connection', $entityManager['connection'])),
+                new Reference(sprintf('doctrine.orm.%s_configuration', $entityManager['name']))
+            ))
+        ;
 
         $container->setAlias(
             sprintf('doctrine.orm.%s_entity_manager.event_manager', $entityManager['name']),
-            new Alias($eventManagerID, false)
+            new Alias(sprintf('doctrine.dbal.%s_connection.event_manager', $entityManager['connection']), false)
         );
     }
 
@@ -284,7 +315,12 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
     protected function getMappingResourceConfigDirectory()
     {
-        return 'Resources/config/doctrine/metadata/orm';
+        return 'Resources/config/doctrine';
+    }
+
+    protected function getMappingResourceExtension()
+    {
+        return 'orm';
     }
 
     /**

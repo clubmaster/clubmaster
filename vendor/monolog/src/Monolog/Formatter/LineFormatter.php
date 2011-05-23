@@ -34,8 +34,8 @@ class LineFormatter implements FormatterInterface
      */
     public function __construct($format = null, $dateFormat = null)
     {
-        $this->format = $format ?: self::SIMPLE_FORMAT;
-        $this->dateFormat = $dateFormat ?: self::SIMPLE_DATE;
+        $this->format = $format ?: static::SIMPLE_FORMAT;
+        $this->dateFormat = $dateFormat ?: static::SIMPLE_DATE;
     }
 
     /**
@@ -51,19 +51,37 @@ class LineFormatter implements FormatterInterface
             if (is_array($val)) {
                 $strval = array();
                 foreach ($val as $subvar => $subval) {
-                    $strval[] = $subvar.': '.$subval;
+                    $strval[] = $subvar.': '.$this->convertToString($subval);
                 }
                 $replacement = $strval ? $var.'('.implode(', ', $strval).')' : '';
                 $output = str_replace('%'.$var.'%', $replacement, $output);
             } else {
-                $output = str_replace('%'.$var.'%', $val, $output);
+                $output = str_replace('%'.$var.'%', $this->convertToString($val), $output);
             }
         }
         foreach ($vars['extra'] as $var => $val) {
-            $output = str_replace('%extra.'.$var.'%', $val, $output);
+            $output = str_replace('%extra.'.$var.'%', $this->convertToString($val), $output);
         }
-        $record['message'] = $output;
 
-        return $record;
+        return $output;
+    }
+
+    public function formatBatch(array $records)
+    {
+        $message = '';
+        foreach ($records as $record) {
+            $message .= $this->format($record);
+        }
+
+        return $message;
+    }
+
+    private function convertToString($data)
+    {
+        if (is_scalar($data) || (is_object($data) && method_exists($data, '__toString'))) {
+            return (string) $data;
+        }
+
+        return serialize($data);
     }
 }

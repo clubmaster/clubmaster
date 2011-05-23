@@ -71,7 +71,8 @@ class UploadedFile extends File
      * @throws FileException         If file_uploads is disabled
      * @throws FileNotFoundException If the file does not exist
      */
-    public function __construct($path, $originalName, $mimeType, $size, $error, $moved = false)
+    public function __construct($path, $originalName, $mimeType = null,
+            $size = null, $error = null, $moved = false)
     {
         if (!ini_get('file_uploads')) {
             throw new FileException(sprintf('Unable to create UploadedFile because "file_uploads" is disabled in your php.ini file (%s)', get_cfg_var('cfg_file_path')));
@@ -82,7 +83,7 @@ class UploadedFile extends File
         }
 
         $this->path = realpath($path);
-        $this->originalName = $originalName;
+        $this->originalName = basename($originalName);
         $this->mimeType = $mimeType ?: 'application/octet-stream';
         $this->size = $size;
         $this->error = $error ?: UPLOAD_ERR_OK;

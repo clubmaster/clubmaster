@@ -13,7 +13,7 @@ namespace Assetic\Filter\Sass;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
-use Assetic\Filter\Process;
+use Assetic\Util\Process;
 
 /**
  * Loads SASS files.
@@ -99,11 +99,19 @@ class SassFilter implements FilterInterface
     {
         $options = array($this->sassPath);
 
+        $root = $asset->getSourceRoot();
+        $path = $asset->getSourcePath();
+
+        if ($root && $path) {
+            $options[] = '--load-path';
+            $options[] = dirname($root.'/'.$path);
+        }
+
         if ($this->unixNewlines) {
             $options[] = '--unix-newlines';
         }
 
-        if ($this->scss) {
+        if (true === $this->scss || (null === $this->scss && 'scss' == pathinfo($path, PATHINFO_EXTENSION))) {
             $options[] = '--scss';
         }
 

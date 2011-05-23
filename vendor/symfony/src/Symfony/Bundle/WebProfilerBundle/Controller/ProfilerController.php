@@ -163,7 +163,7 @@ class ProfilerController extends ContainerAware
             'profiler'     => $profiler,
             'templates'    => $this->getTemplates($profiler),
             'profiler_url' => $url,
-            'verbose'      => $this->container->get('web_profiler.debug.toolbar')->getVerbose()
+            'verbose'      => $this->container->get('web_profiler.debug_toolbar')->getVerbose()
         ));
     }
 
@@ -208,7 +208,7 @@ class ProfilerController extends ContainerAware
         $profiler = $this->container->get('profiler');
         $profiler->disable();
 
-        $pofiler = $profiler->loadFromToken($token);
+        $profiler = $profiler->loadFromToken($token);
 
         $ip    = $this->container->get('request')->query->get('ip');
         $url   = $this->container->get('request')->query->get('url');
