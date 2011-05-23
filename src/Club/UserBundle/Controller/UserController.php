@@ -14,11 +14,8 @@ class UserController extends Controller
    */
   public function indexAction()
   {
-    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.id";
     $em = $this->get('doctrine.orm.entity_manager');
-
-    $query = $em->createQuery($dql);
-    $users = $query->getResult();
+    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllUsersOrdered();
 
     return array(
       'page' => array('header' => 'User'),

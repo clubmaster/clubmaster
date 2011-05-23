@@ -41,4 +41,16 @@ class User extends EntityRepository
     if (!count($r)) return 1;
     return $r[0]->getMemberNumber()+1;
   }
+
+  public function findAllUsersOrdered()
+  {
+    $query = $this->_em->createQueryBuilder()
+      ->select('u')
+      ->from('\Club\UserBundle\Entity\User','u')
+      ->leftJoin('u.profile','p')
+      ->orderBy('p.first_name')
+      ->getQuery();
+
+    return $query->getResult();
+  }
 }
