@@ -21,6 +21,7 @@ class ProfileAddress extends AbstractType
         'work' => 'Work'
       )
     ));
+    $builder->add('is_default','hidden');
   }
 
   public function getDefaultOptions(array $options)

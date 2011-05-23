@@ -16,7 +16,7 @@ class DefaultController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
 
     $user = new \Club\UserBundle\Entity\User();
-    $user->setUsername($em->getRepository('Club\UserBundle\Entity\User')->getNextUsername());
+    $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
 
     $em->persist($user);
 

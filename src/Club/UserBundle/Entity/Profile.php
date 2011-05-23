@@ -49,25 +49,32 @@ class Profile
     private $user;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id")
+     * @orm:OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileAddress
      */
     private $profile_address;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id")
+     * @orm:OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfilePhone
      */
     private $profile_phone;
 
     /**
-     * @orm:OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id")
+     * @orm:OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */
     private $profile_email;
+
+    /**
+     * @orm:OneToMany(targetEntity="ProfileCompany", mappedBy="profile_id", cascade={"persist"})
+     *
+     * @var Club\UserBundle\Entity\ProfileCompany
+     */
+    private $profile_company;
 
     /**
      * Get id
@@ -176,11 +183,21 @@ class Profile
 
     public function getProfileEmail()
     {
-      return $this->profile_phone;
+      return $this->profile_email;
     }
 
     public function setProfileEmail($profile_email)
     {
       $this->profile_email[] = $profile_email;
+    }
+
+    public function getProfileCompany()
+    {
+      return $this->profile_company;
+    }
+
+    public function setProfileCompany($profile_company)
+    {
+      $this->profile_company[] = $profile_company;
     }
 }

@@ -19,13 +19,14 @@ class ProfileAddress
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $street
      */
     private $street;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $suburl
      */
@@ -33,6 +34,7 @@ class ProfileAddress
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $postal_code
      */
@@ -40,13 +42,14 @@ class ProfileAddress
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $city
      */
     private $city;
 
     /**
-     * @orm:Column(type="string")
+     * @orm:Column(type="string", nullable="true")
      *
      * @var string $state
      */
@@ -54,6 +57,7 @@ class ProfileAddress
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $country
      */
@@ -61,6 +65,7 @@ class ProfileAddress
 
     /**
      * @orm:Column(type="string")
+     * @assert:NotBlank()
      *
      * @var string $contact_type
      */

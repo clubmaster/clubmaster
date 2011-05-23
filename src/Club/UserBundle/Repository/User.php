@@ -29,9 +29,9 @@ class User extends EntityRepository
     return $query->getResult();
   }
 
-  public function getNextUsername()
+  public function findNextMemberNumber()
   {
-    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.username DESC";
+    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.member_number DESC";
 
     $query = $this->_em->createQuery($dql);
     $query->setMaxResults(1);
@@ -39,6 +39,6 @@ class User extends EntityRepository
     $r = $query->getResult();
 
     if (!count($r)) return 1;
-    return $r[0]->getUsername()+1;
+    return $r[0]->getMemberNumber()+1;
   }
 }

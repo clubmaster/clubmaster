@@ -7,7 +7,7 @@ security:
 
     providers:
         main:
-          entity: { class: Club\UserBundle\Entity\User, property: username }
+          entity: { class: Club\UserBundle\Entity\User, property: member_number }
 
     firewalls:
         profiler:

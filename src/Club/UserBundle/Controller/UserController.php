@@ -14,7 +14,7 @@ class UserController extends Controller
    */
   public function indexAction()
   {
-    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.username";
+    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.id";
     $em = $this->get('doctrine.orm.entity_manager');
 
     $query = $em->createQuery($dql);
@@ -32,13 +32,20 @@ class UserController extends Controller
    */
   public function newAction()
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+
     $user = new \Club\UserBundle\Entity\User();
+
+    $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(),$user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+
+        $profile = $user->getProfile()->getProfileAddress();
+        $profile[0]->setIsDefault(1);
+
         $em->persist($user);
         $em->flush();
 

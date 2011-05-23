@@ -22,12 +22,11 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @orm:Column(type="string", nullable="true")
-     * @assert:NotBlank()
+     * @orm:Column(type="integer")
      *
-     * @var string $username
+     * @var integer $member_number
      */
-    private $username;
+    private $member_number;
 
     /**
      * @orm:Column(type="string", nullable="true")
@@ -161,23 +160,23 @@ class User implements UserInterface
     }
 
     /**
-     * Set username
+     * Set member_number
      *
-     * @param string $username
+     * @param string $member_number
      */
-    public function setUsername($username)
+    public function setMemberNumber($member_number)
     {
-        $this->username = $username;
+        $this->member_number = $member_number;
     }
 
     /**
-     * Get username
+     * Get member_number
      *
-     * @return string $username
+     * @return string $member_number
      */
-    public function getUsername()
+    public function getMemberNumber()
     {
-        return $this->username;
+        return $this->member_number;
     }
 
     /**
@@ -474,7 +473,7 @@ class User implements UserInterface
     {
       return array(
         'id' => $this->getId(),
-        'username' => $this->getUsername(),
+        'member_number' => $this->getMemberNumber(),
         'created_at' => $this->getCreatedAt(),
         'updated_at' => $this->getUpdatedAt(),
         'profile' => array(
@@ -506,6 +505,11 @@ class User implements UserInterface
 
     public function equals(UserInterface $user)
     {
-      return md5($this->getUsername()) == md5($user->getUsername());
+      return md5($this->getMemberNumber()) == md5($user->getMemberNumber());
+    }
+
+    public function getUsername()
+    {
+      return $this->getMemberNumber();
     }
 }
