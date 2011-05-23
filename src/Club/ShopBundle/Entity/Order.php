@@ -2,93 +2,96 @@
 
 namespace Club\ShopBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\ShopBundle\Repository\Order")
- * @orm:Table(name="club_shop_order")
- * @orm:HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Order")
+ * @ORM\Table(name="club_shop_order")
+ * @ORM\HasLifecycleCallbacks
  */
 class Order
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
-     * @orm:Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable="true")
      *
      * @var string $order_memo
      */
-    private $order_memo;
+    protected $order_memo;
 
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
      * @var string $currency
      */
-    private $currency;
+    protected $currency;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var string $currency_value
      */
-    private $currency_value;
+    protected $currency_value;
 
     /**
-     * @orm:Column(type="decimal")
+     * @ORM\Column(type="decimal")
      *
      * @var string $price
      */
-    private $price;
+    protected $price;
 
     /**
-     * @orm:ManyToOne(targetEntity="PaymentMethod")
-     * @assert:Notblank()
-     * @assert:NotBlank(groups={"PaymentMethod"})
+     * @ORM\ManyToOne(targetEntity="PaymentMethod")
+     * @Assert\Notblank()
+     * @Assert\NotBlank(groups={"PaymentMethod"})
      *
      * @var Club\ShopBundle\Entity\PaymentMethod
      */
-    private $payment_method;
+    protected $payment_method;
 
     /**
-     * @orm:ManyToOne(targetEntity="Shipping")
-     * @assert:NotBlank()
+     * @ORM\ManyToOne(targetEntity="Shipping")
+     * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\Shipping
      */
-    private $shipping;
+    protected $shipping;
 
     /**
-     * @orm:ManyToOne(targetEntity="OrderStatus")
+     * @ORM\ManyToOne(targetEntity="OrderStatus")
      *
      * @var Club\ShopBundle\Entity\OrderStatus
      */
-    private $order_status;
+    protected $order_status;
 
     /**
-     * @orm:ManyToOne(targetEntity="Club\UserBundle\Entity\User")
-     * @assert:NotBlank()
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @Assert\NotBlank()
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     /**
-     * @orm:OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct", mappedBy="order", cascade={"persist"})
      *
      * @var Club\ShopBundle\Entity\OrderProduct
      */
-    private $order_products;
+    protected $order_products;
 
     /**
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     public function __construct() {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
@@ -283,7 +286,7 @@ class Order
     }
 
     /**
-     * @orm:PrePersist
+     * @ORM\PrePersist
      */
     public function prePersist()
     {
