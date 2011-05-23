@@ -1,3 +1,5 @@
+- use git more proper:
+  - add the club as a gitmodule
 - Add item to basket
 - Remove item from basket
 - Update basket

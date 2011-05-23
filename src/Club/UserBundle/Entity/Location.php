@@ -2,45 +2,48 @@
 
 namespace Club\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity(repositoryClass="Club\UserBundle\Repository\Location")
- * @orm:Table(name="club_location")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Location")
+ * @ORM\Table(name="club_location")
  */
 class Location
 {
     /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @var integer $id
      */
     private $id;
 
     /**
-     * @orm:Column(type="string")
-     * @assert:NotBlank()
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $location_name
      */
     private $location_name;
 
     /**
-     * @orm:ManyToOne(targetEntity="Location")
+     * @ORM\ManyToOne(targetEntity="Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
     private $location;
 
     /**
-     * @orm:ManyToMany(targetEntity="Group")
+     * @ORM\ManyToMany(targetEntity="Group")
      *
      * @var Club\UserBundle\Entity\Group
      */
     private $groups;
 
     /**
-     * @orm:ManyToMany(targetEntity="Club\MailBundle\Entity\Mail")
+     * @ORM\ManyToMany(targetEntity="Club\MailBundle\Entity\Mail")
      *
      * @var Club\MailBundle\Entity\Mail
      */
