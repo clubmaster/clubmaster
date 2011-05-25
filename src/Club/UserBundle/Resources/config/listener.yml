@@ -1,0 +1,5 @@
+services:
+  club.userbundle.listener.request:
+    class: Club\UserBundle\Listener\RequestListener
+    tags:
+      - { name: kernel.listener, event: onCoreRequest }
