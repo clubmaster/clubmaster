@@ -96,6 +96,20 @@ class Cart
     return $this->cart;
   }
 
+  public function convertToOrder()
+  {
+    $order = new \Club\ShopBundle\Entity\Order();
+    $order->setCurrency();
+    $order->setCurrencyValue();
+    $order->setPrice($this->cart->getPrice());
+    $order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$this->cart->getPaymentMethod()->getId());
+    $order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$this->cart->getShipping()->getId());
+    $order->setOrderStatus();
+    $order->setUser();
+
+    $this->save();
+  }
+
   protected function save()
   {
     $this->em->persist($this->cart);
