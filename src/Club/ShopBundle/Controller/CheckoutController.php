@@ -37,12 +37,13 @@ class CheckoutController extends Controller
       throw new Exception('You need to have a least one shipping method');
     }
 
-    $cart = $this->get('cart')->getCart();
     if (count($shippings) == 1) {
-      $cart->setShipping($shippings[0]);
+      $this->get('cart')->setShipping($shippings[0]);
 
       return new RedirectResponse($this->generateUrl('shop_checkout_payment'));
     }
+
+    return array();
   }
 
   /**
