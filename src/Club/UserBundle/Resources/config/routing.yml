@@ -27,3 +27,7 @@ _role:
 _auth:
   resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
+
+_ban:
+  resource: "@ClubUserBundle/Controller/BanController.php"
+  type: annotation
