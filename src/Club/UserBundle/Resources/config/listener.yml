@@ -1,5 +1,6 @@
 services:
   club.userbundle.listener.request:
     class: Club\UserBundle\Listener\RequestListener
+    arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.listener, event: onCoreRequest }
