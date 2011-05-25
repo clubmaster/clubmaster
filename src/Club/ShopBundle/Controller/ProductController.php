@@ -47,14 +47,14 @@ class ProductController extends Controller
   }
 
   /**
-   * @Route("/shop/product/basket/{id}", name="shop_product_basket")
+   * @Route("/shop/product/cart/{id}", name="shop_product_cart")
    * @Template()
    */
-  public function basketAction($id)
+  public function cartAction($id)
   {
     $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
 
-    $this->get('basket')->addToBasket($product);
+    $this->get('cart')->addToCart($product);
 
     return new RedirectResponse($this->generateUrl('shop_checkout'));
   }

@@ -170,9 +170,9 @@ class UserController extends Controller
    */
   public function shopAction($id)
   {
-    $basket = $this->get('basket');
-    $basket->emptyBasket();
-    $basket->setUserId($id);
+    $cart = $this->get('cart');
+    $cart->emptyCart();
+    $cart->setUserId($id);
 
     return new RedirectResponse($this->generateUrl('shop'));
   }

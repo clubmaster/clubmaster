@@ -11,4 +11,6 @@ sh curl/add_order.sh
 sh curl/change_status.php
 sh curl/add_user_role.sh
 
-chmod -R 777 app/logs app/cache
+echo ""
+
+sudo chmod -R 777 app/logs app/cache

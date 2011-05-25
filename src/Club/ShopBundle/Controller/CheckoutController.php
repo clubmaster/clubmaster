@@ -17,10 +17,10 @@ class CheckoutController extends Controller
    */
   public function indexAction()
   {
-    $order = $this->get('basket')->getOrder();
+    $cart = $this->get('cart')->getCart();
 
     return array(
-      'order' => $order
+      'cart' => $cart
     );
   }
 
@@ -37,9 +37,9 @@ class CheckoutController extends Controller
       throw new Exception('You need to have a least one shipping method');
     }
 
-    $basket = $this->get('basket')->getOrder();
+    $cart = $this->get('cart')->getOrder();
     if (count($shippings) == 1) {
-      $basket->setShipping($shippings[0]);
+      $cart->setShipping($shippings[0]);
 
       return new RedirectResponse($this->generateUrl('shop_checkout_payment'));
     }
@@ -58,8 +58,8 @@ class CheckoutController extends Controller
       throw new Exception('You need to have at leats one payment method');
     }
 
-    $basket = $this->get('basket');
-    $order = $basket->getOrder();
+    $cart = $this->get('cart');
+    $order = $cart->getOrder();
     //$order = $em->merge($order);
 
     $form = $this->get('form.factory')
@@ -70,7 +70,7 @@ class CheckoutController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $basket->setOrder($order);
+        $cart->setOrder($order);
 
         return new RedirectResponse($this->generateUrl('shop_checkout_review'));
       }
@@ -86,7 +86,7 @@ class CheckoutController extends Controller
    */
   public function reviewAction()
   {
-    $order = $this->get('basket')->getOrder();
+    $order = $this->get('cart')->getOrder();
 
     $user = $this->get('security.context')->getToken()->getUser();
 
@@ -106,11 +106,11 @@ class CheckoutController extends Controller
   }
 
   /**
-   * @Route("/shop/basket/empty", name="shop_checkout_empty")
+   * @Route("/shop/cart/empty", name="shop_checkout_empty")
    */
-  public function emptyBasketAction()
+  public function emptyCartAction()
   {
-    $this->get('basket')->emptyBasket();
+    $this->get('cart')->emptyCart();
     return new RedirectResponse($this->generateUrl('shop_checkout'));
   }
 }

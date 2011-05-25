@@ -1,4 +1,4 @@
 services:
-  basket:
-    class: Club\ShopBundle\Util\Basket
-    arguments: [@doctrine.orm.entity_manager,@session]
+  cart:
+    class: Club\ShopBundle\Util\Cart
+    arguments: [@doctrine.orm.entity_manager,@session,@security.context]

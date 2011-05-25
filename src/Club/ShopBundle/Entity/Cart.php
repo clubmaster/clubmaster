@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Cart")
  * @ORM\Table(name="club_shop_cart")
+ * @ORM\HasLifecycleCallbacks
  */
 class Cart
 {
@@ -18,29 +19,38 @@ class Cart
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal")
      *
-     * @var integer $quantity
+     * @var string $price
      */
-    private $quantity;
+    protected $price;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @Assert\NotBlank()
      *
-     * @var string $session
+     * @var Club\UserBundle\Entity\User
      */
-    private $session;
+    protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProduct", mappedBy="cart", cascade={"persist"})
      *
-     * @var Club\ShopBundle\Entity\Product
+     * @var Club\ShopBundle\Entity\CartProduct
      */
-    private $product;
+    protected $cart_products;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created_at;
+
+    public function __construct() {
+      $this->cart_products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -52,63 +62,61 @@ class Cart
         return $this->id;
     }
 
-    /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     */
-    public function setQuantity($quantity)
+    public function setPrice($price)
     {
-        $this->quantity = $quantity;
+      $this->price = $price;
+    }
+
+    public function getPrice()
+    {
+      return $this->price;
+    }
+
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
-     * Get quantity
+     * Add cartProduct
      *
-     * @return integer $quantity
+     * @param Club\ShopBundle\Entity\CartProduct $cart_products
      */
-    public function getQuantity()
+    public function addCartProduct(\Club\ShopBundle\Entity\CartProduct $cartProduct)
     {
-        return $this->quantity;
+        $this->cart_products[] = $cartProduct;
     }
 
     /**
-     * Set session
+     * Get cartProduct
      *
-     * @param string $session
+     * @return Doctrine\Common\Collections\Collection $cart_products
      */
-    public function setSession($session)
+    public function getCartProducts()
     {
-        $this->session = $session;
+        return $this->cart_products;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+      $this->created_at = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+      return $this->created_at;
     }
 
     /**
-     * Get session
-     *
-     * @return string $session
+     * @ORM\PrePersist
      */
-    public function getSession()
+    public function prePersist()
     {
-        return $this->session;
-    }
-
-    /**
-     * Set product
-     *
-     * @param Club\ShopBundle\Entity\Product $product
-     */
-    public function setProduct(\Club\ShopBundle\Entity\Product $product)
-    {
-        $this->product = $product;
-    }
-
-    /**
-     * Get product
-     *
-     * @return Club\ShopBundle\Entity\Product $product
-     */
-    public function getProduct()
-    {
-        return $this->product;
+      $this->setCreatedAt(new \DateTime());
     }
 }
