@@ -102,14 +102,15 @@ class Cart
   public function convertToOrder()
   {
     $order = new \Club\ShopBundle\Entity\Order();
-    $order->setCurrency($this->cart->getCurrency()->getCurrencyName());
-    $order->setCurrencyValue($this->cart->getCurrency()->getValue());
+    $order->setCurrency($this->cart->getCurrency());
+    $order->setCurrencyValue($this->cart->getCurrencyValue());
     $order->setPrice($this->cart->getPrice());
     $order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$this->cart->getPaymentMethod()->getId()));
     $order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$this->cart->getShipping()->getId()));
     $order->setOrderStatus($this->em->getRepository('\Club\ShopBundle\Entity\OrderStatus')->getDefaultStatus());
     $order->setUser($this->user);
 
+    $this->em->persist($order);
     $this->save();
   }
 

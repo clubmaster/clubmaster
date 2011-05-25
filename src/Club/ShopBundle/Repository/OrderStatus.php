@@ -16,11 +16,11 @@ class OrderStatus extends EntityRepository
   {
     $query = $this->_em->createQueryBuilder()
       ->select('s')
-      ->from('\Club\ShopBundle\Entity\OrderStatus')
+      ->from('\Club\ShopBundle\Entity\OrderStatus','s')
       ->orderBy('s.priority')
+      ->setMaxResults(1)
       ->getQuery();
 
-    echo $query;
-    die();
+    return $query->getSingleResult();
   }
 }
