@@ -1,3 +1,3 @@
-#homepage:
-#    pattern:  /
-#    defaults: { _controller: ClubMailBundle:Default:index }
+_mail:
+  resource: "@ClubMailBundle/Controller/DefaultController.php"
+  type: annotation

@@ -8,5 +8,8 @@ _shop:
 _user:
   resource: "@ClubUserBundle/Resources/config/routing.yml"
 
+_mail:
+  resource: "@ClubMailBundle/Resources/config/routing.yml"
+
 _rest:
   resource: "@ClubRestBundle/Resources/config/routing.yml"

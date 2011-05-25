@@ -8,8 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('ClubMailBundle:Default:index.html.twig');
-    }
+  /**
+   * @Route("/mail",name="mail")
+   * @Template()
+   */
+  public function indexAction()
+  {
+    return $this->render('ClubMailBundle:Default:index.html.twig');
+  }
 }
