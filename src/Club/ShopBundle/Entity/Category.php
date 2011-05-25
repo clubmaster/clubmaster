@@ -49,6 +49,13 @@ class Category
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
      *
      * @var Club\ShopBundle\Entity\Product
@@ -128,5 +135,45 @@ class Category
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $categor
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string $category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string $location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
