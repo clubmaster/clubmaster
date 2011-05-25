@@ -37,6 +37,7 @@ class CartProductAttribute
 
     /**
      * @ORM\ManyToOne(targetEntity="CartProduct")
+     * @ORM\JoinColumn(name="cart_product_id", referencedColumnName="id", onDelete="cascade")
      */
     private $cart_product;
 
