@@ -27,8 +27,9 @@ class Cart
       if (!$this->cart) {
         $this->cart = new \Club\ShopBundle\Entity\Cart();
         $this->cart->setUser($this->user);
-        $this->cart->setCurrency();
-        $this->cart->setCurrencyValue();
+        $location = $this->em->find('\Club\UserBundle\Entity\Location',$this->session->get('location_id'));
+        $this->cart->setCurrency($location->getCurrency()->getCode());
+        $this->cart->setCurrencyValue($location->getCurrency()->getValue());
       }
     }
   }
