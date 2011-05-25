@@ -31,3 +31,7 @@ _auth:
 _ban:
   resource: "@ClubUserBundle/Controller/BanController.php"
   type: annotation
+
+_config:
+  resource: "@ClubUserBundle/Controller/ConfigController.php"
+  type: annotation
