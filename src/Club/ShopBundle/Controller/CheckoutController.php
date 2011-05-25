@@ -37,7 +37,7 @@ class CheckoutController extends Controller
       throw new Exception('You need to have a least one shipping method');
     }
 
-    $cart = $this->get('cart')->getOrder();
+    $cart = $this->get('cart')->getCart();
     if (count($shippings) == 1) {
       $cart->setShipping($shippings[0]);
 
@@ -58,19 +58,18 @@ class CheckoutController extends Controller
       throw new Exception('You need to have at leats one payment method');
     }
 
-    $cart = $this->get('cart');
-    $order = $cart->getOrder();
+    $cart = $this->get('cart')->getCart();
     //$order = $em->merge($order);
 
     $form = $this->get('form.factory')
-      ->createBuilder('form',$order,array('validation_groups' => 'PaymentMethod'))
+      ->createBuilder('form',$cart,array('validation_groups' => 'PaymentMethod'))
       ->add('payment_method','entity',array('class' => 'Club\ShopBundle\Entity\PaymentMethod'))
       ->getForm();
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $cart->setOrder($order);
+        $this->get('cart')->setCart($cart);
 
         return new RedirectResponse($this->generateUrl('shop_checkout_review'));
       }
@@ -86,13 +85,11 @@ class CheckoutController extends Controller
    */
   public function reviewAction()
   {
-    $order = $this->get('cart')->getOrder();
-
     $user = $this->get('security.context')->getToken()->getUser();
 
     return array(
       'user' => $user,
-      'order' => $order
+      'cart' => $this->get('cart')->getCart()
     );
   }
 

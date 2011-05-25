@@ -29,6 +29,23 @@ class Cart
     protected $price;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Shipping")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\Shipping
+     */
+    protected $shipping;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PaymentMethod")
+     * @Assert\Notblank()
+     * @Assert\NotBlank(groups={"PaymentMethod"})
+     *
+     * @var Club\ShopBundle\Entity\PaymentMethod
+     */
+    protected $payment_method;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      * @Assert\NotBlank()
      *
@@ -110,6 +127,36 @@ class Cart
     public function getCreatedAt()
     {
       return $this->created_at;
+    }
+
+    public function setShipping(\Club\ShopBundle\Entity\Shipping $shipping)
+    {
+        $this->shipping = $shipping;
+    }
+
+    public function getShipping()
+    {
+        return $this->shipping;
+    }
+
+    /**
+     * Set payment_method
+     *
+     * @param Club\ShopBundle\Entity\PaymentMethod $PaymentMethod
+     */
+    public function setPaymentMethod(\Club\ShopBundle\Entity\PaymentMethod $PaymentMethod)
+    {
+        $this->payment_method = $PaymentMethod;
+    }
+
+    /**
+     * Get payment_method
+     *
+     * @return Club\ShopBundle\Entity\PaymentMethod $PaymentMethod
+     */
+    public function getPaymentMethod()
+    {
+        return $this->payment_method;
     }
 
     /**
