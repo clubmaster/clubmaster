@@ -27,6 +27,8 @@ class Cart
       if (!$this->cart) {
         $this->cart = new \Club\ShopBundle\Entity\Cart();
         $this->cart->setUser($this->user);
+        $this->cart->setCurrency();
+        $this->cart->setCurrencyValue();
       }
     }
   }
@@ -99,13 +101,13 @@ class Cart
   public function convertToOrder()
   {
     $order = new \Club\ShopBundle\Entity\Order();
-    $order->setCurrency();
-    $order->setCurrencyValue();
+    $order->setCurrency($this->cart->getCurrency()->getCurrencyName());
+    $order->setCurrencyValue($this->cart->getCurrency()->getValue());
     $order->setPrice($this->cart->getPrice());
-    $order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$this->cart->getPaymentMethod()->getId());
-    $order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$this->cart->getShipping()->getId());
-    $order->setOrderStatus();
-    $order->setUser();
+    $order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$this->cart->getPaymentMethod()->getId()));
+    $order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$this->cart->getShipping()->getId()));
+    $order->setOrderStatus($this->em->getRepository('\Club\ShopBundle\Entity\OrderStatus')->getDefaultStatus());
+    $order->setUser($this->user);
 
     $this->save();
   }

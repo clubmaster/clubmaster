@@ -1,13 +1,13 @@
 <?php
 
-namespace Club\ShopBundle\Entity;
+namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Currency")
- * @ORM\Table(name="club_shop_currency")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Currency")
+ * @ORM\Table(name="club_currency")
  */
 class Currency
 {

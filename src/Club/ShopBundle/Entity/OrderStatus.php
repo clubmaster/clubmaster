@@ -34,6 +34,13 @@ class OrderStatus
      */
     private $is_complete;
 
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * var boolean $priority
+     */
+    private $priority;
+
 
     /**
      * Get id
@@ -85,4 +92,23 @@ class OrderStatus
         return $this->is_complete;
     }
 
+    /**
+     * Set priority
+     *
+     * @param string $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return string $priority
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 }

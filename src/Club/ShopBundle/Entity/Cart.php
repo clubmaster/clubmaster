@@ -22,6 +22,20 @@ class Cart
     protected $id;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $currency
+     */
+    protected $currency;
+
+    /**
+     * @ORM\Column(type="decimal")
+     *
+     * @var string $currency_value
+     */
+    protected $currency_value;
+
+    /**
      * @ORM\Column(type="decimal")
      *
      * @var string $price
@@ -77,6 +91,26 @@ class Cart
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setCurrency($currency)
+    {
+      $this->currency = $currency;
+    }
+
+    public function getCurrency()
+    {
+      return $this->currency;
+    }
+
+    public function setCurrencyValue($currency_value)
+    {
+      $this->currency_value = $currency_value;
+    }
+
+    public function getCurrencyValue()
+    {
+      return $this->currency_value;
     }
 
     public function setPrice($price)

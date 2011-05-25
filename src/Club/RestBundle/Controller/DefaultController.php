@@ -149,7 +149,7 @@ class DefaultController extends Controller
     $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
     $payment = $em->find('Club\ShopBundle\Entity\PaymentMethod',$this->get('request')->get('payment_method'));
     $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$this->get('request')->get('shipping'));
-    $currency = $em->find('Club\ShopBundle\Entity\Currency',$this->get('request')->get('currency'));
+    $currency = $em->find('Club\UserBundle\Entity\Currency',$this->get('request')->get('currency'));
     $status = $em->find('Club\ShopBundle\Entity\OrderStatus',1);
 
     $order = new \Club\ShopBundle\Entity\Order();

@@ -100,7 +100,7 @@ class CheckoutController extends Controller
    */
   public function confirmAction()
   {
-    $this->get('basket')->convertToOrder();
+    $this->get('cart')->convertToOrder();
     return array();
   }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\ShopBundle\Repository;
+namespace Club\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

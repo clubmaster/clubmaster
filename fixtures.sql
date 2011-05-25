@@ -1,9 +1,12 @@
-INSERT INTO club_location (location_id,location_name) VALUES
-  (null,'Danmark'),
-  (1,'Aalborg'),
-  (1,'Copenhagen'),
-  (2,'Aalborg Tennis Klub'),
-  (2,'Gug Tennisklub');
+INSERT INTO club_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
+  ('Danish Krone','DKK',null,'DK',2,1);
+
+INSERT INTO club_location (location_id,location_name,currency_id) VALUES
+  (null,'Danmark',1),
+  (1,'Aalborg',1),
+  (1,'Copenhagen',1),
+  (2,'Aalborg Tennis Klub',1),
+  (2,'Gug Tennisklub',1);
 
 INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is_active) VALUES
   (null,'Senior','dynamic',null,18,45,1),
@@ -18,17 +21,14 @@ INSERT INTO club_shop_tax (tax_name,rate) VALUES
   ('Tax free',0),
   ('Danish tax','25');
 
-INSERT INTO club_shop_order_status (status_name,is_complete) VALUES
-  ('Pending',0),
-  ('Processing',0),
-  ('Preparing',0),
-  ('Delivered',1);
+INSERT INTO club_shop_order_status (status_name,is_complete,priority) VALUES
+  ('Pending',0,1),
+  ('Processing',0,2),
+  ('Preparing',0,3),
+  ('Delivered',1,4);
 
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
-
-INSERT INTO club_shop_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
-  ('Danish Krone','DKK',null,'DK',2,1);
 
 INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);

@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrderStatus extends EntityRepository
 {
+  public function getDefaultStatus()
+  {
+    $query = $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('\Club\ShopBundle\Entity\OrderStatus')
+      ->orderBy('s.priority')
+      ->getQuery();
+
+    echo $query;
+    die();
+  }
 }
