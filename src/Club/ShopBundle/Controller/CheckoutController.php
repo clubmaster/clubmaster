@@ -95,12 +95,24 @@ class CheckoutController extends Controller
   }
 
   /**
+   * @Route("/shop/checkout/process", name="shop_checkout_process")
+   * @Template()
+   */
+  public function processAction()
+  {
+    if ($this->get('cart')->getCart()) {
+      $this->get('cart')->convertToOrder();
+    }
+
+    return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
+  }
+
+  /**
    * @Route("/shop/checkout/confirm", name="shop_checkout_confirm")
    * @Template()
    */
   public function confirmAction()
   {
-    $this->get('cart')->convertToOrder();
     return array();
   }
 

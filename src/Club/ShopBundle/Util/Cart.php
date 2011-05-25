@@ -111,7 +111,30 @@ class Cart
     $order->setUser($this->user);
 
     $this->em->persist($order);
-    $this->save();
+
+    foreach ($this->cart->getCartProducts() as $product) {
+      $op = new \Club\ShopBundle\Entity\OrderProduct();
+      $op->setOrder($order);
+      $op->setPrice($product->getPrice());
+      $op->setProductName($product->getProductName());
+      $op->setTax($product->getTax());
+      $op->setQuantity($product->getQuantity());
+      $op->setProduct($product);
+
+      $this->em->persist($op);
+
+      foreach ($product->getCartProductAttributes() as $attr) {
+        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
+        $opa->setOrderProduct($op);
+        $opa->setAttributeName($attr->getAttributeName());
+        $opa->setValue($attr->getValue());
+
+        $this->em->persist($opa);
+      }
+    }
+
+    $this->em->remove($this->cart);
+    $this->em->flush();
   }
 
   protected function save()
