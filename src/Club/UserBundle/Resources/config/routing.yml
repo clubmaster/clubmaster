@@ -12,26 +12,41 @@ _user:
   resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation
 
-_group:
-  resource: "@ClubUserBundle/Controller/GroupController.php"
-  type: annotation
-
-_location:
-  resource: "@ClubUserBundle/Controller/LocationController.php"
-  type: annotation
-
-_role:
-  resource: "@ClubUserBundle/Controller/RoleController.php"
-  type: annotation
-
 _auth:
   resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
 
+_group:
+  resource: "@ClubUserBundle/Controller/GroupController.php"
+  type: annotation
+  prefix: /admin
+
+_location:
+  resource: "@ClubUserBundle/Controller/LocationController.php"
+  type: annotation
+  prefix: /admin
+
+_role:
+  resource: "@ClubUserBundle/Controller/RoleController.php"
+  type: annotation
+  prefix: /admin
+
 _ban:
   resource: "@ClubUserBundle/Controller/BanController.php"
   type: annotation
+  prefix: /admin
 
 _config:
   resource: "@ClubUserBundle/Controller/ConfigController.php"
   type: annotation
+  prefix: /admin
+
+_currency:
+  resource: "@ClubUserBundle/Controller/CurrencyController.php"
+  type: annotation
+  prefix: /admin
+
+_language:
+  resource: "@ClubUserBundle/Controller/LanguageController.php"
+  type: annotation
+  prefix: /admin

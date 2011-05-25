@@ -1,16 +1,17 @@
 <?php
 
-namespace Club\UserBundle\Controller;
+namespace Club\ShopBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class ConfigController extends Controller
+class AdminTransactionController extends Controller
 {
   /**
+   * @Route("/shop/transaction", name="admin_shop_transaction")
    * @Template()
-   * @Route("/config", name="admin_config")
    */
   public function indexAction()
   {

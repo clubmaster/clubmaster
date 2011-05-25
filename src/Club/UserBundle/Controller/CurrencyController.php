@@ -6,11 +6,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ConfigController extends Controller
+class CurrencyController extends Controller
 {
   /**
    * @Template()
-   * @Route("/config", name="admin_config")
+   * @Route("/currency", name="admin_currency")
    */
   public function indexAction()
   {

@@ -13,7 +13,7 @@ class RoleController extends Controller
 {
   /**
    * @Template()
-   * @Route("/role", name="role")
+   * @Route("/role", name="admin_role")
    */
   public function indexAction()
   {
@@ -31,7 +31,7 @@ class RoleController extends Controller
 
   /**
    * @Template()
-   * @Route("/role/new", name="role_new")
+   * @Route("/role/new", name="admin_role_new")
    */
   public function newAction()
   {
@@ -57,14 +57,14 @@ class RoleController extends Controller
 
   /**
    * @Template()
-   * @Route("/role/edit/{id}", name="role_edit")
+   * @Route("/role/edit/{id}", name="admin_role_edit")
    */
   public function editAction($id)
   {
   }
 
   /**
-   * @Route("/role/delete/{id}", name="role_delete")
+   * @Route("/role/delete/{id}", name="admin_role_delete")
    */
   public function deleteAction($id)
   {
@@ -80,7 +80,7 @@ class RoleController extends Controller
   }
 
   /**
-   * @Route("/role/batch", name="role_batch")
+   * @Route("/role/batch", name="admin_role_batch")
    */
   public function batchAction()
   {

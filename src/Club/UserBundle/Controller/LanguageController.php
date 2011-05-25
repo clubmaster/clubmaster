@@ -6,11 +6,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ConfigController extends Controller
+class LanguageController extends Controller
 {
   /**
    * @Template()
-   * @Route("/config", name="admin_config")
+   * @Route("/language", name="admin_language")
    */
   public function indexAction()
   {

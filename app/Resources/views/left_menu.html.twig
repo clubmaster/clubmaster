@@ -7,22 +7,23 @@
   <li><a href="{{ path('mail') }}">Mail</a></li>
   <li><a href="{{ path('shop') }}">Shop</a>
     <ul>
-      <li><a href="">Product</a></li>
-      <li><a href="">Category</a></li>
-      <li><a href="">Order</a></li>
-      <li><a href="">Currency</a></li>
-      <li><a href="">Payment Method</a></li>
-      <li><a href="">Shipping</a></li>
-      <li><a href="">Special</a></li>
-      <li><a href="">Transaction</a></li>
+      <li><a href="{{ path('admin_shop_product') }}">Product</a></li>
+      <li><a href="{{ path('admin_shop_category') }}">Category</a></li>
+      <li><a href="{{ path('admin_shop_order') }}">Order</a></li>
+      <li><a href="{{ path('admin_shop_payment_method') }}">Payment Method</a></li>
+      <li><a href="{{ path('admin_shop_shipping') }}">Shipping</a></li>
+      <li><a href="{{ path('admin_shop_special') }}">Special</a></li>
+      <li><a href="{{ path('admin_shop_transaction') }}">Transaction</a></li>
     </ul>
   </li>
   <li><a href="">Admin</a>
     <ul>
-      <li><a href="{{ path('location') }}">Location</a></li>
-      <li><a href="{{ path('group') }}">Group</a></li>
-      <li><a href="{{ path('role') }}">Role</a></li>
-      <li><a href="{{ path('config') }}">Configuration</a></li>
+      <li><a href="{{ path('admin_location') }}">Location</a></li>
+      <li><a href="{{ path('admin_group') }}">Group</a></li>
+      <li><a href="{{ path('admin_role') }}">Role</a></li>
+      <li><a href="{{ path('admin_config') }}">Configuration</a></li>
+      <li><a href="{{ path('admin_currency') }}">Currency</a></li>
+      <li><a href="{{ path('admin_language') }}">Language</a></li>
     </ul>
   </li>
 </ul>

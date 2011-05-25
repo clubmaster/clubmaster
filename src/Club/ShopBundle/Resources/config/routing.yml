@@ -17,3 +17,38 @@ _shop_order:
 _shop_checkout:
   resource: "@ClubShopBundle/Controller/CheckoutController.php"
   type: annotation
+
+_admin_shop_product:
+  resource: "@ClubShopBundle/Controller/AdminProductController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_category:
+  resource: "@ClubShopBundle/Controller/AdminCategoryController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_order:
+  resource: "@ClubShopBundle/Controller/AdminOrderController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_payment_method:
+  resource: "@ClubShopBundle/Controller/AdminPaymentMethodController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_shipping:
+  resource: "@ClubShopBundle/Controller/AdminShippingController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_special:
+  resource: "@ClubShopBundle/Controller/AdminSpecialController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_shop_transaction:
+  resource: "@ClubShopBundle/Controller/AdminTransactionController.php"
+  type: annotation
+  prefix: /admin

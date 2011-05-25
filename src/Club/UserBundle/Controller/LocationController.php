@@ -13,7 +13,7 @@ class LocationController extends Controller
 {
   /**
    * @Template()
-   * @Route("/location", name="location")
+   * @Route("/location", name="admin_location")
    */
   public function indexAction()
   {
@@ -31,7 +31,7 @@ class LocationController extends Controller
 
   /**
    * @Template()
-   * @Route("/location/new", name="location_new")
+   * @Route("/location/new", name="admin_location_new")
    */
   public function newAction()
   {
@@ -57,7 +57,7 @@ class LocationController extends Controller
 
   /**
    * @Template()
-   * @Route("/location/edit/{id}", name="location_edit")
+   * @Route("/location/edit/{id}", name="admin_location_edit")
    */
   public function editAction($id)
   {
@@ -84,7 +84,7 @@ class LocationController extends Controller
   }
 
   /**
-   * @Route("/location/delete/{id}", name="location_delete")
+   * @Route("/location/delete/{id}", name="admin_location_delete")
    */
   public function deleteAction($id)
   {
@@ -100,7 +100,7 @@ class LocationController extends Controller
   }
 
   /**
-   * @Route("/location/batch", name="location_batch")
+   * @Route("/location/batch", name="admin_location_batch")
    */
   public function batchAction()
   {

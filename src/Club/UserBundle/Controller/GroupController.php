@@ -12,7 +12,7 @@ use Club\UserBundle\Form\GroupForm;
 class GroupController extends Controller
 {
   /**
-   * @Route("/group", name="group")
+   * @Route("/group", name="admin_group")
    * @Template()
    */
   public function indexAction()
@@ -30,7 +30,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @Route("/group/new", name="group_new")
+   * @Route("/group/new", name="admin_group_new")
    * @Template()
    */
   public function newAction()
@@ -58,7 +58,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @Route("/group/edit/{id}", name="group_edit")
+   * @Route("/group/edit/{id}", name="admin_group_edit")
    * @Template()
    */
   public function editAction($id)
@@ -88,7 +88,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @Route("/group/delete/{id}", name="group_delete")
+   * @Route("/group/delete/{id}", name="admin_group_delete")
    */
   public function deleteAction($id)
   {
@@ -104,7 +104,7 @@ class GroupController extends Controller
   }
 
   /**
-   * @Route("/group/batch", name="group_batch")
+   * @Route("/group/batch", name="admin_group_batch")
    */
   public function batchAction()
   {
