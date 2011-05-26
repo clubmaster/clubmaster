@@ -62,6 +62,11 @@ class Currency
     private $value;
 
 
+    public function __toString()
+    {
+      return $this->getCurrencyName();
+    }
+
     /**
      * Get id
      *
