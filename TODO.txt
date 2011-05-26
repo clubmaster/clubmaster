@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Shipping
   - System Configuration
   - Product
   - Category

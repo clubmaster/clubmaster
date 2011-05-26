@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminPaymentMethodController extends Controller
 {
   /**
-   * @Route("/payment_method", name="admin_shop_payment_method")
+   * @Route("/shop/payment_method", name="admin_shop_payment_method")
    * @Template()
    */
   public function indexAction()
@@ -24,7 +24,7 @@ class AdminPaymentMethodController extends Controller
   }
 
   /**
-   * @Route("/payment_method/new", name="admin_shop_payment_method_new")
+   * @Route("/shop/payment_method/new", name="admin_shop_payment_method_new")
    * @Template()
    */
   public function newAction()
@@ -42,7 +42,7 @@ class AdminPaymentMethodController extends Controller
   }
 
   /**
-   * @Route("/payment_method/edit/{id}", name="admin_shop_payment_method_edit")
+   * @Route("/shop/payment_method/edit/{id}", name="admin_shop_payment_method_edit")
    * @Template()
    */
   public function editAction($id)
@@ -63,7 +63,7 @@ class AdminPaymentMethodController extends Controller
   }
 
   /**
-   * @Route("/payment_method/delete/{id}", name="admin_shop_payment_method_delete")
+   * @Route("/shop/payment_method/delete/{id}", name="admin_shop_payment_method_delete")
    */
   public function deleteAction($id)
   {
@@ -79,7 +79,7 @@ class AdminPaymentMethodController extends Controller
   }
 
   /**
-   * @Route("/payment_method/batch", name="admin_shop_payment_method_batch")
+   * @Route("/shop/payment_method/batch", name="admin_shop_payment_method_batch")
    */
   public function batchAction()
   {
