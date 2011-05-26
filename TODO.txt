@@ -1,7 +1,6 @@
 - build CRUD for:
   - System Configuration
   - Product
-  - Category
   - Order
   - Special
   - Transaction
