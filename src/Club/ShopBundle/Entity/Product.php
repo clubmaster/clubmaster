@@ -91,6 +91,7 @@ class Product
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -202,6 +203,26 @@ class Product
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Club\ShopBundle\Entity\Category $categories
+     */
+    public function addCategories(\Club\ShopBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Doctrine\Common\Collections\Collection $categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 
     /**

@@ -36,6 +36,11 @@ class Tax
     private $rate;
 
 
+    public function __toString()
+    {
+      return $this->getTaxName();
+    }
+
     /**
      * Get id
      *
