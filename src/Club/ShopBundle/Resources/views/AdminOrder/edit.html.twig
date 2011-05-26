@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Order</h1>
+
+<form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
+{% include "ClubShopBundle:AdminOrder:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

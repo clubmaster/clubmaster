@@ -1,6 +1,6 @@
 - build CRUD for:
-  - Order
   - System Configuration
+  - Order
   - Product
 - move users to groups
 - add location configuration
