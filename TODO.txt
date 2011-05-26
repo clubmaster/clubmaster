@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Payment Method
   - Shipping
   - System Configuration
   - Product
