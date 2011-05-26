@@ -1,24 +1,22 @@
 - build CRUD for:
-  - Product
-  - Category
-  - Order
-  - Payment Method
-  - Shipping
-  - Special
-  - Transaction
   - Location
   - Group
   - Role
-  - Configuration
+  - Payment Method
+  - Shipping
   - Currency
   - Language
-- build dynamic groups
+  - Configuration
+  - Product
+  - Category
+  - Order
+  - Special
+  - Transaction
 - move users to groups
-- use git more proper:
-  - add the club as a gitmodule
+- build dynamic groups
 - Remove item from basket
 - Update basket
-- Show list of members with active membership
-- Renew memberships
-- Create categories
-- Create product any kind of membership
+- Renew memberships/ticket
+- Cancel membership/ticket
+- use git more proper:
+  - add the club as a gitmodule
