@@ -19,7 +19,6 @@ class LocationController extends Controller
     $locations = $em->getRepository('\Club\UserBundle\Entity\Location')->findAll();
 
     return array(
-      'page' => array('header' => 'User'),
       'locations' => $locations
     );
   }
@@ -37,7 +36,6 @@ class LocationController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Location'),
       'form' => $res->createView()
     );
   }
@@ -58,8 +56,34 @@ class LocationController extends Controller
 
     return array(
       'location' => $location,
-      'page' => array('header' => 'Location'),
       'form' => $res->createView()
+    );
+  }
+
+  /**
+   * @Template()
+   * @Route("/location/config/{id}", name="admin_location_config")
+   */
+  public function configAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $location = $em->find('Club\UserBundle\Entity\Location',$id);
+    $configs = $em->getRepository('Club\UserBundle\Entity\LocationConfig')->findBy(array(
+      'location' => $id
+    ));
+
+    $fb = $this->get('form.factory')
+      ->createBuilder('form',$configs);
+
+    foreach ($configs as $config) {
+      $fb->add($config->getValue(),'text');
+    }
+    $form = $fb->getForm();
+
+    return array(
+      'location' => $location,
+      'form' => $form->createView()
     );
   }
 
