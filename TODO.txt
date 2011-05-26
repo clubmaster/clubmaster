@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Transaction
   - Special
   - Order
   - System Configuration

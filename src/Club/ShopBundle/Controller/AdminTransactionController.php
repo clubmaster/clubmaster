@@ -15,5 +15,11 @@ class AdminTransactionController extends Controller
    */
   public function indexAction()
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $transactions = $em->getRepository('\Club\ShopBundle\Entity\Transaction')->findAll();
+
+    return array(
+      'transactions' => $transactions
+    );
   }
 }
