@@ -3,9 +3,8 @@
 {% block body %}
 <h1>Location</h1>
 
-<form method="post" action="{{ path('location_new') }}">
-  <p>{{ form_field(form) }}</p>
-  {% include "::submit_button.html.twig" %}
+<form method="post" action="{{ path('admin_location_new') }}">
+{% include "ClubUserBundle:Location:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}

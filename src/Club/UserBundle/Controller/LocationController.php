@@ -6,8 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Club\UserBundle\Entity\Location;
-use Club\UserBundle\Form\LocationForm;
 
 class LocationController extends Controller
 {
@@ -35,23 +33,15 @@ class LocationController extends Controller
    */
   public function newAction()
   {
-    $location = new Location();
-    $form = LocationForm::create($this->get('form.context'),'location');
+    $location = new \Club\UserBundle\Entity\Location();
+    $res = $this->process($location);
 
-    $form->bind($this->get('request'),$location);
-    if ($form->isValid()) {
-      $em = $this->get('doctrine.orm.entity_manager');
-      $em->persist($location);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice','Your changes were saved!');
-
-      return new RedirectResponse($this->generateUrl('location'));
-    }
+    if ($res instanceOf RedirectResponse)
+      return $res;
 
     return array(
       'page' => array('header' => 'Location'),
-      'form' => $form
+      'form' => $res->createView()
     );
   }
 
@@ -64,22 +54,15 @@ class LocationController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $location = $em->find('Club\UserBundle\Entity\Location',$id);
 
-    $form = LocationForm::create($this->get('form.context'),'location');
+    $res = $this->process($location);
 
-    $form->bind($this->get('request'),$location);
-    if ($form->isValid()) {
-      $em->persist($location);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice','Your changes were saved!');
-
-      return new RedirectResponse($this->generateUrl('location'));
-    }
+    if ($res instanceOf RedirectResponse)
+      return $res;
 
     return array(
       'location' => $location,
       'page' => array('header' => 'Location'),
-      'form' => $form
+      'form' => $res->createView()
     );
   }
 
@@ -96,7 +79,7 @@ class LocationController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Location %s deleted.',$location->getLocationName()));
 
-    return new RedirectResponse($this->generateUrl('location'));
+    return new RedirectResponse($this->generateUrl('admin_location'));
   }
 
   /**
@@ -104,5 +87,25 @@ class LocationController extends Controller
    */
   public function batchAction()
   {
+  }
+
+  protected function process($location)
+  {
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Location(), $location);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($location);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+
+        return new RedirectResponse($this->generateUrl('admin_location'));
+      }
+    }
+
+    return $form;
   }
 }

@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Location
   - Group
   - Role
   - Payment Method
