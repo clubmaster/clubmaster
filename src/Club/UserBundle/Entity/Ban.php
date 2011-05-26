@@ -4,7 +4,6 @@ namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Ban")
@@ -171,6 +170,6 @@ class Ban
      */
     public function prePersist()
     {
-      $this->setExpireDate(new DateTime(date('Y-m-d H:i:s',strtotime("+1 month"))));
+      $this->setExpireDate(new \DateTime(date('Y-m-d H:i:s',strtotime("+1 month"))));
     }
 }
