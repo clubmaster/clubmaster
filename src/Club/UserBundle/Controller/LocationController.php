@@ -15,16 +15,13 @@ class LocationController extends Controller
    */
   public function indexAction()
   {
-    $dql = "SELECT r FROM Club\UserBundle\Entity\Location r ORDER BY r.location_name";
     $em = $this->get('doctrine.orm.entity_manager');
+    $locations = $em->getRepository('\Club\UserBundle\Entity\Location')->findAll();
 
-    $query = $em->createQuery($dql);
-    $locations = $query->getResult();
-
-    return $this->render('ClubUserBundle:Location:index.html.twig',array(
+    return array(
       'page' => array('header' => 'User'),
       'locations' => $locations
-    ));
+    );
   }
 
   /**

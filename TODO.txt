@@ -1,15 +1,15 @@
 - build CRUD for:
+  - Language
   - Payment Method
   - Shipping
-  - Currency
-  - Language
-  - Configuration
+  - System Configuration
   - Product
   - Category
   - Order
   - Special
   - Transaction
 - move users to groups
+- add location configuration
 - build dynamic groups
 - Remove item from basket
 - Update basket
