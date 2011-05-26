@@ -4,11 +4,11 @@
 
 {{ app.session.flash('notice') }}
 <h1>Group</h1>
-<p class="box"><a href="{{ path('group_new') }}" class="btn-create"><span>Create group</span></a></p>
+<p class="box"><a href="{{ path('admin_group_new') }}" class="btn-create"><span>Create group</span></a></p>
 
 {% include "::flash.html.twig" %}
 
-<form method="post" action="{{ path('group_batch') }}">
+<form method="post" action="{{ path('admin_group_batch') }}">
 <table>
   <thead>
     <tr>
@@ -37,8 +37,8 @@
       <td>{{ group.id }}</td>
       <td>{{ group.groupName }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('group_edit', { 'id':group.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('group_delete', { 'id':group.id })} %}
+        {% include "::edit_link.html.twig" with {'url':path('admin_group_edit', { 'id':group.id })} %}
+        {% include "::delete_link.html.twig" with {'url':path('admin_group_delete', { 'id':group.id })} %}
       </td>
     </tr>
   {% else %}

@@ -3,9 +3,8 @@
 {% block body %}
 <h1>Group</h1>
 
-<form method="post" action="{{ path('group_new') }}">
-  <p>{{ form_field(form) }}</p>
-  {% include "::submit_button.html.twig" %}
+<form method="post" action="{{ path('admin_group_new') }}">
+{% include "ClubUserBundle:Group:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}

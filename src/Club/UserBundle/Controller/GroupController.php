@@ -36,24 +36,15 @@ class GroupController extends Controller
   public function newAction()
   {
     $group = new Group();
-    $form = GroupForm::create($this->get('form.context'),'group');
+    $group->setIsActive(1);
+    $res = $this->process($group);
 
-    $form->bind($this->get('request'),$group);
-    if ($form->isValid()) {
-      $group->setGroupType('static');
-      $group->setIsActive(true);
-      $em = $this->get('doctrine.orm.entity_manager');
-      $em->persist($group);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice','Your changes were saved!');
-
-      return new RedirectResponse($this->generateUrl('group'));
-    }
+    if ($res instanceOf RedirectResponse)
+      return $res;
 
     return array(
       'page' => array('header' => 'Group'),
-      'form' => $form
+      'form' => $res->createView()
     );
   }
 
@@ -65,25 +56,15 @@ class GroupController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $group = $em->find('Club\UserBundle\Entity\Group',$id);
+    $res = $this->process($group);
 
-    $form = GroupForm::create($this->get('form.context'),'group');
-
-    $form->bind($this->get('request'),$group);
-    if ($form->isValid()) {
-      $group->setGroupType('static');
-      $group->setIsActive(true);
-      $em->persist($group);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice','Your changes were saved!');
-
-      return new RedirectResponse($this->generateUrl('group'));
-    }
+    if ($res instanceOf RedirectResponse)
+      return $res;
 
     return array(
       'group' => $group,
       'page' => array('header' => 'Group'),
-      'form' => $form
+      'form' => $res->createView()
     );
   }
 
@@ -100,7 +81,7 @@ class GroupController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Group %s deleted.',$group->getGroupName()));
 
-    return new RedirectResponse($this->generateUrl('group'));
+    return new RedirectResponse($this->generateUrl('admin_group'));
   }
 
   /**
@@ -108,5 +89,25 @@ class GroupController extends Controller
    */
   public function batchAction()
   {
+  }
+
+  protected function process($group)
+  {
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Group(), $group);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($group);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+
+        return new RedirectResponse($this->generateUrl('admin_group'));
+      }
+    }
+
+    return $form;
   }
 }
