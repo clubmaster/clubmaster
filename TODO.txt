@@ -1,9 +1,9 @@
 - build CRUD for:
+  - Transaction
+  - Special
+  - Order
   - System Configuration
   - Product
-  - Order
-  - Special
-  - Transaction
 - move users to groups
 - add location configuration
 - build dynamic groups
