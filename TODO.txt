@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Role
   - Payment Method
   - Shipping
   - Currency

@@ -6,8 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Club\UserBundle\Entity\Role;
-use Club\UserBundle\Form\RoleForm;
 
 class RoleController extends Controller
 {
@@ -27,56 +25,6 @@ class RoleController extends Controller
       'page' => array('header' => 'User'),
       'roles' => $roles
     ));
-  }
-
-  /**
-   * @Template()
-   * @Route("/role/new", name="admin_role_new")
-   */
-  public function newAction()
-  {
-    $role = new Role();
-    $form = RoleForm::create($this->get('form.context'),'role');
-
-    $form->bind($this->get('request'),$role);
-    if ($form->isValid()) {
-      $em = $this->get('doctrine.orm.entity_manager');
-      $em->persist($role);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice','Your changes were saved!');
-
-      return new RedirectResponse($this->generateUrl('role'));
-    }
-
-    return $this->render('ClubUserBundle:Role:new.html.twig',array(
-      'page' => array('header' => 'Role'),
-      'form' => $form
-    ));
-  }
-
-  /**
-   * @Template()
-   * @Route("/role/edit/{id}", name="admin_role_edit")
-   */
-  public function editAction($id)
-  {
-  }
-
-  /**
-   * @Route("/role/delete/{id}", name="admin_role_delete")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-    $role = $em->find('ClubUserBundle:Role',$id);
-
-    $em->remove($role);
-    $em->flush();
-
-    $this->get('session')->setFlash('notify',sprintf('Role %s deleted.',$role->getRoleName()));
-
-    return new RedirectResponse($this->generateUrl('role'));
   }
 
   /**
