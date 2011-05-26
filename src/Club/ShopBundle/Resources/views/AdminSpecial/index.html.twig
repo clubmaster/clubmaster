@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Special</h1>
+<p class="box"><a href="{{ path('admin_shop_special_new') }}" class="btn-create"><span>Create special</span></a></p>
+
+{% include "::flash.html.twig" %}
+
+<form method="post" action="{{ path('admin_shop_special_batch') }}">
+<table>
+  <thead>
+    <tr>
+      <th>[x]</th>
+      <th>Id</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5" class="arrow-01">
+        <select name="" class="input-text">
+          <option value="">Delete selected</option>
+          <option value="">Remove selected</option>
+          <option value="">Rename selected</option>
+          <option value="">Copy selected</option>
+        </select>&nbsp;<input type="submit" value="OK" />
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for special in specials %}
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{{ special.id }}</td>
+      <td>{{ special.product.productName }}</td>
+      <td>{{ special.price }}</td>
+      <td>
+        {% include "::edit_link.html.twig" with {'url':path('admin_shop_special_edit', { 'id':special.id })} %}
+        {% include "::delete_link.html.twig" with {'url':path('admin_shop_special_delete', { 'id':special.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">There are no specials at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+{% endblock %}

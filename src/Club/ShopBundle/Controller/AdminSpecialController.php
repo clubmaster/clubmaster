@@ -15,5 +15,93 @@ class AdminSpecialController extends Controller
    */
   public function indexAction()
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $specials = $em->getRepository('\Club\ShopBundle\Entity\Special')->findAll();
+
+    return array(
+      'specials' => $specials
+    );
+  }
+
+  /**
+   * @Route("/shop/special/new", name="admin_shop_special_new")
+   * @Template()
+   */
+  public function newAction()
+  {
+    $special = new \Club\ShopBundle\Entity\Special();
+    $res = $this->process($special);
+
+    if ($res instanceOf RedirectResponse)
+      return $res;
+
+    return array(
+      'page' => array('header' => 'Special'),
+      'form' => $res->createView()
+    );
+  }
+
+  /**
+   * @Route("/shop/special/edit/{id}", name="admin_shop_special_edit")
+   * @Template()
+   */
+  public function editAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $special = $em->find('Club\ShopBundle\Entity\Special',$id);
+
+    $res = $this->process($special);
+
+    if ($res instanceOf RedirectResponse)
+      return $res;
+
+    return array(
+      'special' => $special,
+      'page' => array('header' => 'Special'),
+      'form' => $res->createView()
+    );
+  }
+
+  /**
+   * @Route("/shop/special/delete/{id}", name="admin_shop_special_delete")
+   */
+  public function deleteAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $special = $em->find('ClubShopBundle:Special',$this->get('request')->get('id'));
+
+    $em->remove($special);
+    $em->flush();
+
+    $this->get('session')->setFlash('notify',sprintf('Special %s deleted.',$special->getProduct()->getProductName()));
+
+    return new RedirectResponse($this->generateUrl('admin_shop_special'));
+  }
+
+  /**
+   * @Route("/shop/special/batch", name="admin_shop_special_batch")
+   */
+  public function batchAction()
+  {
+  }
+
+  protected function process($special)
+  {
+    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Special(), $special);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($special);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+
+        return new RedirectResponse($this->generateUrl('admin_shop_special'));
+      }
+    }
+
+    return $form;
   }
 }

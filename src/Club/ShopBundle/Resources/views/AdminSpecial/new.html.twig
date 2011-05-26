@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Special</h1>
+
+<form method="post" action="{{ path('admin_shop_special_new') }}">
+{% include "ClubShopBundle:AdminSpecial:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

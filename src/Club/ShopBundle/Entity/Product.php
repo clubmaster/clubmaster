@@ -87,12 +87,16 @@ class Product
      */
     private $product_attributes;
 
-
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+      return $this->getProductName();
     }
 
     /**

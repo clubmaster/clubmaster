@@ -1,5 +1,4 @@
 - build CRUD for:
-  - Special
   - Order
   - System Configuration
   - Product
