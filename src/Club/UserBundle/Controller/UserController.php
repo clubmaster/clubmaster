@@ -123,10 +123,10 @@ class UserController extends Controller
     $user = $em->find('ClubUserBundle:User',$id);
 
     $ban = new \Club\UserBundle\Entity\Ban();
-    $ban->setUserId(1);
+    $ban->setUser($this->get('security.context')->getToken()->getUser());
     $ban->setType('user');
     $ban->setValue($user->getId());
-    $ban->setExpireDate(new \DateTime(date('Y-m-d')));
+    $ban->setExpireDate(new \DateTime(date('Y-m-d',strtotime("+1 month"))));
 
     $em->persist($ban);
     $em->flush();
