@@ -488,16 +488,14 @@ class Request
      */
     public function getHttpHost()
     {
-        $host   = $this->getHost();
         $scheme = $this->getScheme();
-        $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
 
         if (('http' == $scheme && $port == 80) || ('https' == $scheme && $port == 443)) {
-            return $name;
+            return $this->getHost();
         }
 
-        return $name.':'.$port;
+        return $this->getHost().':'.$port;
     }
 
     /**
