@@ -79,6 +79,7 @@ class Profile
      */
     private $profile_company;
 
+
     /**
      * Get id
      *

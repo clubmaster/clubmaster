@@ -17,7 +17,9 @@ class Profile extends AbstractType
         'female' => 'Female'
       )
     ));
-    $builder->add('profile_address',new \Club\UserBundle\Form\ProfileAddress());
+    $builder->add('profile_address','collection', array(
+      'type' => new \Club\UserBundle\Form\ProfileAddress()
+    ));
   }
 
   public function getDefaultOptions(array $options)

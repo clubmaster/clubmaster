@@ -77,7 +77,7 @@ class LocationController extends Controller
       ->createBuilder('form',$configs);
 
     foreach ($configs as $config) {
-      $fb->add($config->getValue(),'text');
+      $fb->add($config->getConfig()->getConfigKey(),'text');
     }
     $form = $fb->getForm();
 

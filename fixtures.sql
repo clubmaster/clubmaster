@@ -1,5 +1,8 @@
 INSERT INTO club_config (config_key) VALUES
-  ('smtp');
+  ('smtp'),
+  ('smtp_port'),
+  ('smtp_username'),
+  ('smtp_password');
 
 INSERT INTO club_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
   ('Danish Krone','DKK',null,'DK',2,1);
@@ -16,7 +19,22 @@ INSERT INTO club_location_config (location_id,config_id,value) VALUES
   (2,1,'localhost'),
   (3,1,'localhost'),
   (4,1,'localhost'),
-  (5,1,'localhost');
+  (5,1,'localhost'),
+  (1,2,25),
+  (2,2,25),
+  (3,2,25),
+  (4,2,25),
+  (5,2,25),
+  (1,3,null),
+  (2,3,null),
+  (3,3,null),
+  (4,3,null),
+  (5,3,null),
+  (1,4,null),
+  (2,4,null),
+  (3,4,null),
+  (4,4,null),
+  (5,4,null);
 
 INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is_active) VALUES
   (null,'Senior','dynamic',null,18,45,1),
