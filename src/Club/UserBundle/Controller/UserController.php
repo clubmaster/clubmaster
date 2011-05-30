@@ -215,6 +215,30 @@ class UserController extends Controller
    */
   public function phoneAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
+
+    $phone = new \Club\UserBundle\Entity\ProfilePhone();
+    $phone->setProfile($profile);
+    $phone->setIsDefault(1);
+
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfilePhone(), $phone);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em->persist($phone);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+        return new RedirectResponse($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'profile' => $profile,
+      'form' => $form->createView()
+    );
   }
 
   /**
@@ -223,6 +247,31 @@ class UserController extends Controller
    */
   public function emailAction($id)
   {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
+
+    $email = new \Club\UserBundle\Entity\ProfileEmail();
+    $email->setProfile($profile);
+    $email->setIsDefault(1);
+
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfileEmail(), $email);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em->persist($email);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+        return new RedirectResponse($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'profile' => $profile,
+      'form' => $form->createView()
+    );
+
   }
 
   public function getUsernameAction()
