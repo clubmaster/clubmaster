@@ -30,7 +30,7 @@ class AdminOrderController extends Controller
   public function editAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $order = $em->find('Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     $res = $this->process($order);
 

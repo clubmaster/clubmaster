@@ -104,7 +104,9 @@ class CheckoutController extends Controller
       $this->get('cart')->convertToOrder();
     }
 
-    return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
+    return $this->forward('ClubShopBundle:Checkout:confirm');
+
+    #return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
   }
 
   /**

@@ -13,5 +13,6 @@ class ClubShopExtension extends Extension
   {
     $loader = new YamlFileLoader($container,new FileLocator(__DIR__.'/../Resources/config'));
     $loader->load('config.yml');
+    $loader->load('listener.yml');
   }
 }

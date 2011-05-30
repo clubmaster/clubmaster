@@ -3,6 +3,21 @@
 {% block body %}
 <h1>Order</h1>
 
+<h2>Customer</h2>
+<p>Name: meh ;)</p>
+
+<h2>Shipping</h2>
+<p>Name: meeh ;)</p>
+<p>{{ order.shipping }}</p>
+
+<h2>Billing</h2>
+<p>Name: meeeh ;)</p>
+<p>{{ order.paymentMethod }}</p>
+
+<h2>Order history</h2>
+{% for status in order.orderStatusHistory %}
+{% endfor %}
+
 <form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
 {% include "ClubShopBundle:AdminOrder:form.html.twig" with {'form': form} %}
 </form>

@@ -43,6 +43,11 @@ class Shipping
     private $price;
 
 
+    public function __toString()
+    {
+      return $this->getShippingName();
+    }
+
     /**
      * Get id
      *

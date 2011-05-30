@@ -74,6 +74,13 @@ class Order
     protected $order_status;
 
     /**
+     * @var Club\ShopBundle\Entity\OrderStatusHistory
+     *
+     * @ORM\OneToMany(targetEntity="OrderStatusHistory", mappedBy="order")
+     */
+    protected $order_status_history;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      * @Assert\NotBlank()
      *
@@ -82,7 +89,7 @@ class Order
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProduct", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderProduct", mappedBy="order", cascade={"persist"})
      *
      * @var Club\ShopBundle\Entity\OrderProduct
      */
@@ -95,6 +102,7 @@ class Order
 
     public function __construct() {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->order_status_history = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -273,6 +281,16 @@ class Order
     public function getOrderProducts()
     {
         return $this->order_products;
+    }
+
+    /**
+     * Get order_status_history
+     *
+     * @return Doctrine\Common\Collections\Collection $order_status_history
+     */
+    public function getOrderStatusHistory()
+    {
+        return $this->order_status_history;
     }
 
     public function setCreatedAt($createdAt)

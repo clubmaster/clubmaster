@@ -42,6 +42,11 @@ class OrderStatus
     private $priority;
 
 
+    public function __toString()
+    {
+      return $this->getStatusName();
+    }
+
     /**
      * Get id
      *

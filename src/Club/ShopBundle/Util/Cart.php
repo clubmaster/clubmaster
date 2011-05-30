@@ -4,6 +4,8 @@ namespace Club\ShopBundle\Util;
 
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpFoundation\SessionStorage\NativeSessionStorage;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Club\ShopBundle\Events;
 
 class Cart
 {
@@ -11,12 +13,14 @@ class Cart
   protected $session;
   protected $em;
   protected $user;
+  protected $dispatcher;
 
-  public function __construct($em,$session,$security)
+  public function __construct($em,$session,$security,$dispatcher)
   {
     $this->session = $session;
     $this->em = $em;
     $this->user = $security->getToken()->getUser();
+    $this->dispatcher = $dispatcher;
 
     $this->cart = $this->session->get('cart');
     if (!$this->cart) {
@@ -132,6 +136,9 @@ class Cart
         $this->em->persist($opa);
       }
     }
+
+    $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
+    $this->dispatcher->dispatch(Events::onStoreOrder, $event);
 
     $this->em->remove($this->cart);
     $this->em->flush();
