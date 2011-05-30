@@ -26,7 +26,6 @@ class Profile extends AbstractType
     $builder->add('profile_email','collection', array(
       'type' => new \Club\UserBundle\Form\ProfileEmail()
     ));
-
   }
 
   public function getDefaultOptions(array $options)

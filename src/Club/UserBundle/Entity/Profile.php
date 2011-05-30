@@ -80,6 +80,14 @@ class Profile
     private $profile_company;
 
 
+    public function __construct()
+    {
+      $this->profile_address = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->profile_email = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->profile_phone = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->profile_company = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
