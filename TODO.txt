@@ -12,3 +12,6 @@
 - Put subscription or tickets in dynamic groups
 - use git more proper:
   - add the club as a gitmodule
+- fix link on image
+- make sure all pages are html validated
+- make sure css are validated
