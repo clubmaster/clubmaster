@@ -17,11 +17,8 @@ class GroupController extends Controller
    */
   public function indexAction()
   {
-    $dql = "SELECT g FROM Club\UserBundle\Entity\Group g ORDER BY g.group_name";
     $em = $this->get('doctrine.orm.entity_manager');
-
-    $query = $em->createQuery($dql);
-    $groups = $query->getResult();
+    $groups = $em->getRepository('\Club\UserBundle\Entity\Group')->findAll();
 
     return $this->render('ClubUserBundle:Group:index.html.twig',array(
       'page' => array('header' => 'User'),

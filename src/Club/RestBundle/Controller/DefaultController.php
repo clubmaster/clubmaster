@@ -32,6 +32,7 @@ class DefaultController extends Controller
     $profile->setFirstName($this->get('request')->get('first_name'));
     $profile->setLastName($this->get('request')->get('last_name'));
     $profile->setGender($this->get('request')->get('gender'));
+    $profile->setDayOfBirth(new \DateTime($this->get('request')->get('day_of_birth')));
 
     $em->persist($profile);
     $em->flush();

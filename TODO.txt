@@ -2,7 +2,6 @@
   - Location configuration
   - Order
   - Product
-- build dynamic groups
 - Remove item from basket
 - Update basket
 - Renew memberships/ticket

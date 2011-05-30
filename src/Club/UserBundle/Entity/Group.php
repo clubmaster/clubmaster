@@ -271,4 +271,14 @@ class Group
     {
         return $this->role;
     }
+
+    public function setUsers($users)
+    {
+      $this->users = $users;
+    }
+
+    public function getUsers()
+    {
+      return $this->users;
+    }
 }

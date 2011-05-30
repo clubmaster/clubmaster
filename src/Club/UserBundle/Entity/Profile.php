@@ -45,6 +45,11 @@ class Profile
     private $gender;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $day_of_birth;
+
+    /**
      * @ORM\OneToOne(targetEntity="User")
      *
      * @var Club\UserBundle\Entity\User
@@ -211,5 +216,15 @@ class Profile
     public function setProfileCompany($profile_company)
     {
       $this->profile_company[] = $profile_company;
+    }
+
+    public function setDayOfBirth($day_of_birth)
+    {
+      $this->day_of_birth = $day_of_birth;
+    }
+
+    public function getDayOfBirth()
+    {
+      return $this->day_of_birth;
     }
 }

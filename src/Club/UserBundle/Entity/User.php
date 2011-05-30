@@ -465,7 +465,7 @@ class User implements UserInterface
       return $this->ticket_coupons;
     }
 
-    public function addGroup(Club\UserBundle\Entity\Group $group)
+    public function addGroup(\Club\UserBundle\Entity\Group $group)
     {
       $this->groups[] = $group;
     }

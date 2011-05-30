@@ -12,4 +12,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class Group extends EntityRepository
 {
+  public function findAll()
+  {
+    $res = parent::findAll();
+
+    $groups = array();
+    foreach ($res as $group) {
+      if ($group->getGroupType() == 'dynamic') {
+        $users = $this->_em->createQueryBuilder()
+          ->select('u')
+          ->from('\Club\UserBundle\Entity\User','u')
+          ->leftJoin('u.profile','p')
+          ->where('p.gender = ?1')
+          ->andWhere('p.day_of_birth <= ?2')
+          ->andWhere('p.day_of_birth >= ?3')
+          ->setParameter(1, $group->getGender())
+          ->setParameter(2, date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$group->getMinAge())))
+          ->setParameter(3, date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$group->getMaxAge())))
+          ->getQuery()
+          ->getResult();
+
+        $group->setUsers($users);
+      }
+
+      $groups[] = $group;
+    }
+
+    return $groups;
+  }
 }
