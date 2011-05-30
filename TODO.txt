@@ -1,10 +1,14 @@
-- build CRUD for:
-  - Location configuration
-  - Order
-  - Product
-- Remove item from basket
-- Update basket
+- Build order handling
+  - make a listerner for completed orders
+  - build subscription or tickets to the orders
 - Renew memberships/ticket
 - Cancel membership/ticket
+- Create products
+- Location configuration
+- Remove item from basket
+- Update basket
+- Create mailer
+- Make a user interface
+- Put subscription or tickets in dynamic groups
 - use git more proper:
   - add the club as a gitmodule
