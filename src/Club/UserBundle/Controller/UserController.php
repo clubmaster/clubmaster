@@ -177,6 +177,54 @@ class UserController extends Controller
     return new RedirectResponse($this->generateUrl('shop'));
   }
 
+  /**
+   * @Route("/user/address/{id}", name="user_address")
+   * @Template()
+   */
+  public function addressAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
+
+    $address = new \Club\UserBundle\Entity\ProfileAddress();
+    $address->setProfile($profile);
+    $address->setIsDefault(1);
+
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfileAddress(), $address);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em->persist($address);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+        return new RedirectResponse($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'profile' => $profile,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Route("/user/phone/{id}", name="user_phone")
+   * @Template()
+   */
+  public function phoneAction($id)
+  {
+  }
+
+  /**
+   * @Route("/user/email/{id}", name="user_email")
+   * @Template()
+   */
+  public function emailAction($id)
+  {
+  }
+
   public function getUsernameAction()
   {
     $user = $this->get('security.context')->getToken()->getUser();

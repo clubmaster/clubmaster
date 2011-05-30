@@ -1,9 +1,8 @@
 - build CRUD for:
-  - System Configuration
+  - Location configuration
   - Order
   - Product
 - move users to groups
-- add location configuration
 - build dynamic groups
 - Remove item from basket
 - Update basket

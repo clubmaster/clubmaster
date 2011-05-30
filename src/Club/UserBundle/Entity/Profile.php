@@ -52,28 +52,28 @@ class Profile
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProfileAddress", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileAddress", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileAddress
      */
     private $profile_address;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProfilePhone", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfilePhone", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfilePhone
      */
     private $profile_phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */
     private $profile_email;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProfileCompany", mappedBy="profile_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProfileCompany", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileCompany
      */

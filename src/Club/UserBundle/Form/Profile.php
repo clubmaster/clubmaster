@@ -20,6 +20,13 @@ class Profile extends AbstractType
     $builder->add('profile_address','collection', array(
       'type' => new \Club\UserBundle\Form\ProfileAddress()
     ));
+    $builder->add('profile_phone','collection', array(
+      'type' => new \Club\UserBundle\Form\ProfilePhone()
+    ));
+    $builder->add('profile_email','collection', array(
+      'type' => new \Club\UserBundle\Form\ProfileEmail()
+    ));
+
   }
 
   public function getDefaultOptions(array $options)
