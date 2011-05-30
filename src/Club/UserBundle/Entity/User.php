@@ -139,7 +139,11 @@ class User implements UserInterface
     private $ticket_coupons;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Group")
+     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     * @ORM\JoinTable(name="club_user_group",
+     *  joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
      */
     private $groups;
 

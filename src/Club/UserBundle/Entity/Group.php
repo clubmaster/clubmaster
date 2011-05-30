@@ -84,7 +84,7 @@ class Group
     private $location;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
      *
      * @var Club\UserBundle\Entity\User
      */
@@ -94,7 +94,7 @@ class Group
     {
         $this->role = new \Doctrine\Common\Collections\ArrayCollection();
         $this->location = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
