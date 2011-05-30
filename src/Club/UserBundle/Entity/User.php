@@ -138,10 +138,17 @@ class User implements UserInterface
      */
     private $ticket_coupons;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Group")
+     */
+    private $groups;
+
+
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
       $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
 
       $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
       $this->algorithm = 'sha512';
@@ -452,6 +459,16 @@ class User implements UserInterface
     public function getTicketCoupons()
     {
       return $this->ticket_coupons;
+    }
+
+    public function addGroup(Club\UserBundle\Entity\Group $group)
+    {
+      $this->groups[] = $group;
+    }
+
+    public function getGroups()
+    {
+      return $this->groups;
     }
 
     /**

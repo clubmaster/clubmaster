@@ -88,7 +88,7 @@ class Group
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    private $users;
 
     public function __construct()
     {
