@@ -9,6 +9,7 @@ class UserGroup extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
+    $builder->add('groups');
   }
 
   public function getDefaultOptions(array $options)

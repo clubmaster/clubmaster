@@ -271,7 +271,34 @@ class UserController extends Controller
       'profile' => $profile,
       'form' => $form->createView()
     );
+  }
 
+  /**
+   * @Route("/user/group/{id}", name="user_group")
+   * @Template()
+   */
+  public function groupAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $user = $em->find('\Club\UserBundle\Entity\User',$id);
+
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\UserGroup(), $user);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+        return new RedirectResponse($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'user' => $user,
+      'form' => $form->createView()
+    );
   }
 
   public function getUsernameAction()

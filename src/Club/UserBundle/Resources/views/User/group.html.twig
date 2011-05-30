@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>{{ user.profile.name }}</h1>
+
+<form method="post" action="{{ path('user_group', {'id': user.id}) }}">
+{% include "ClubUserBundle:User:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

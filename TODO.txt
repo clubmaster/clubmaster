@@ -2,7 +2,6 @@
   - Location configuration
   - Order
   - Product
-- move users to groups
 - build dynamic groups
 - Remove item from basket
 - Update basket
