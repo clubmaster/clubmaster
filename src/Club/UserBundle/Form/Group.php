@@ -17,7 +17,18 @@ class Group extends AbstractType
       )
     ));
     $builder->add('is_active','hidden');
-    $builder->add('group');
+    $builder->add('group','entity',array(
+      'class' => 'Club\UserBundle\Entity\Group',
+      'required' => false
+    ));
+    $builder->add('min_age');
+    $builder->add('max_age');
+    $builder->add('gender','choice',array(
+      'choices' => array(
+        'male' => 'Male',
+        'female' => 'Female'
+      )
+    ));
   }
 
   public function getDefaultOptions(array $options)
