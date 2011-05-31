@@ -68,9 +68,19 @@ class ProductAttribute
         return $this->value;
     }
 
+    public function setProduct($product)
+    {
+      $this->product = $product;
+    }
+
     public function getProduct()
     {
         return $this->product;
+    }
+
+    public function setAttribute($attribute)
+    {
+      $this->attribute = $attribute;
     }
 
     public function getAttribute()

@@ -1,4 +1,3 @@
-- Create products
 - Location configuration
 - Remove item from basket
 - Update basket
@@ -15,3 +14,4 @@
   - cancel subscription
   - cancel tickets
   - change status on order
+- fix tax on products

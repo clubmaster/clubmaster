@@ -28,6 +28,11 @@ class Attribute
      */
     private $attribute_name;
 
+    public function __toString()
+    {
+      return $this->getAttributeName();
+    }
+
     /**
      * Get id
      *
@@ -36,46 +41,6 @@ class Attribute
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set shipping_name
-     *
-     * @param string $shippingName
-     */
-    public function setShippingName($shippingName)
-    {
-        $this->shipping_name = $shippingName;
-    }
-
-    /**
-     * Get shipping_name
-     *
-     * @return string $shippingName
-     */
-    public function getShippingName()
-    {
-        return $this->shipping_name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return text $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     public function setAttributeName($attribute_name)

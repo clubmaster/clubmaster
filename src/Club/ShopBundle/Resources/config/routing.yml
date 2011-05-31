@@ -19,6 +19,11 @@ _admin_shop_product:
   type: annotation
   prefix: /admin
 
+_admin_shop_product_attribute:
+  resource: "@ClubShopBundle/Controller/AdminProductAttributeController.php"
+  type: annotation
+  prefix: /admin
+
 _admin_shop_category:
   resource: "@ClubShopBundle/Controller/AdminCategoryController.php"
   type: annotation
