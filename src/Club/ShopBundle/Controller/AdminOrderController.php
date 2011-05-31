@@ -32,15 +32,28 @@ class AdminOrderController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
-    $res = $this->process($order);
+    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Order(), $order);
 
-    if ($res instanceOf RedirectResponse)
-      return $res;
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+      if ($form->isValid()) {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($order);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes were saved!');
+
+        $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
+        $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
+
+        return new RedirectResponse($this->generateUrl('admin_shop_order'));
+      }
+    }
 
     return array(
       'order' => $order,
       'page' => array('header' => 'Order'),
-      'form' => $res->createView()
+      'form' => $form->createView()
     );
   }
 
@@ -63,25 +76,5 @@ class AdminOrderController extends Controller
    */
   public function batchAction()
   {
-  }
-
-  protected function process($order)
-  {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Order(), $order);
-
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
-      if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $em->persist($order);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-
-        return new RedirectResponse($this->generateUrl('admin_shop_order'));
-      }
-    }
-
-    return $form;
   }
 }

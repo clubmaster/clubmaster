@@ -1,5 +1,4 @@
 - Build order handling
-  - make a listerner for completed orders
   - build subscription or tickets to the orders
 - Renew memberships/ticket
 - Cancel membership/ticket
