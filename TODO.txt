@@ -1,4 +1,7 @@
 - Location configuration
+- Add notes to order change history
+- Fix customer, shipping and billing information on order
+- Fix shop as user
 - Remove item from basket
 - Update basket
 - fix tax on products
@@ -16,3 +19,10 @@
 - make sure css are validated
 - use git more proper:
   - add the club as a gitmodule
+
+== modules ==
+- team tilmelding
+- banebooking
+- event plan
+  - export as ical/rss
+- integration til e-conomic
