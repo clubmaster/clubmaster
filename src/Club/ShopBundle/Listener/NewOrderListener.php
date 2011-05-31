@@ -2,7 +2,7 @@
 
 namespace Club\ShopBundle\Listener;
 
-class ChangeOrderStatusListener
+class NewOrderListener
 {
   protected $em;
 

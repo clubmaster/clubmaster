@@ -1,7 +1,6 @@
 services:
-  club.shopbundle.listener.order:
-    class: Club\ShopBundle\Listener\ChangeOrderStatusListener
+  club.shopbundle.listener.on_shop_order_listener:
+    class: Club\ShopBundle\Listener\NewOrderListener
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.listener, event: onShopOrder }
-
