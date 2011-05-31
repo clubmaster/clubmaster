@@ -9,3 +9,8 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.listener, event: onOrderChange }
+  club.shopbundle.listener.new_subscription_listener:
+    class: Club\ShopBundle\Listener\NewSubscriptionListener
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.listener, event: onOrderChange }

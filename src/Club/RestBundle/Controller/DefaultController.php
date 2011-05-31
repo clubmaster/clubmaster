@@ -218,64 +218,9 @@ class DefaultController extends Controller
     $em->persist($order);
     $em->flush();
 
-    if ($order->getOrderStatus()->getIsComplete()) {
-      $products = $order->getOrderProducts();
+    $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
+    $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
 
-      foreach ($products as $product) {
-
-        $res = array();
-        foreach ($product->getOrderProductAttributes() as $attr) {
-          $res[$attr->getAttributeName()] = $attr->getValue();
-        }
-
-        if (isset($res['Month'])) {
-          $subscription = new \Club\ShopBundle\Entity\Subscription;
-          $subscription->setUser($order->getUser());
-
-          $start_date = (isset($res['StartDate'])) ? new \DateTime($res['StartDate']) : new \DateTime();
-          $subscription->setStartDate($start_date);
-
-          if (isset($res['ExpireDate'])) {
-            $expire_date = new \DateTime($res['ExpireDate']);
-          } else {
-            $expire_date = new \DateTime($start_date->format('Y-m-d'));
-            $expire_date->add(new \DateInterval('P1Y'));
-          }
-          $subscription->setExpireDate($expire_date);
-
-          $allowed_pauses = (isset($res['AllowedPauses'])) ? $res['AllowedPauses'] : 0;
-          $subscription->setAllowedPauses($allowed_pauses);
-
-          $auto_renewal = (isset($res['AutoRenewal'])) ? $res['AutoRenewal'] : 0;
-          $subscription->setAutoRenewal($auto_renewal);
-
-          if ($r = $this->hasErrors($subscription)) return $r;
-          $em->persist($subscription);
-        }
-
-        if (isset($res['Ticket'])) {
-          $ticket = new \Club\ShopBundle\Entity\TicketCoupon;
-          $ticket->setTicket($attr->getValue());
-          $ticket->setUser($order->getUser());
-
-          $start_date = (isset($res['StartDate'])) ? new \DateTime($res['StartDate']) : new \DateTime();
-          $ticket->setStartDate($start_date);
-
-          if (isset($res['ExpireDate'])) {
-            $expire_date = new \DateTime($res['ExpireDate']);
-          } else {
-            $expire_date = new \DateTime($start_date->format('Y-m-d'));
-            $expire_date->add(new \DateInterval('P1Y'));
-          }
-          $ticket->setExpireDate($expire_date);
-
-          if ($r = $this->hasErrors($ticket)) return $r;
-          $em->persist($ticket);
-        }
-
-        $em->flush();
-      }
-    }
     return $this->renderJSon($order->toArray());
   }
 

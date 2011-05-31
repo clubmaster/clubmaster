@@ -1,5 +1,3 @@
-- Build order handling
-  - build subscription or tickets to the orders
 - Renew memberships/ticket
 - Cancel membership/ticket
 - Create products
