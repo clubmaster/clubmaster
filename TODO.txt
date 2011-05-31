@@ -9,6 +9,7 @@
   - cancel subscription
   - cancel tickets
   - change status on order
+- fix product variants
 - put images on links
 - Make a user interface
 - make sure all pages are html validated
