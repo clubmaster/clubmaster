@@ -150,6 +150,22 @@ class UserController extends Controller
   }
 
   /**
+   * @Route("/user/subscription/expire/{id}",name="user_subscription_expire")
+   */
+  public function subscriptionExpireAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $subscription = $em->find('\Club\ShopBundle\Entity\Subscription',$id);
+    $subscription->expire(new \DateTime());
+
+    $em->persist($subscription);
+    $em->flush();
+
+    return new RedirectResponse($this->generateUrl('user_subscription',array('id'=>$subscription->getUser()->getId())));
+  }
+
+  /**
    * @Route("/user/shop/{id}", name="user_shop")
    */
   public function shopAction($id)

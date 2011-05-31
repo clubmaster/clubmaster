@@ -1,4 +1,3 @@
-- Renew memberships/ticket
 - Cancel membership/ticket
 - Create products
 - Location configuration
@@ -13,3 +12,7 @@
 - fix link on image
 - make sure all pages are html validated
 - make sure css are validated
+- add logger for all activity by users
+  - cancel subscription
+  - cancel tickets
+  - change status on order

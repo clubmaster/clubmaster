@@ -1,7 +1,7 @@
 <h1>Subscriptions</h1>
 
 <table>
-  <thead> 
+  <thead>
     <tr>
       <th>Id</th>
       <th>Name</th>
@@ -18,8 +18,7 @@
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
       <td><ul>
-        <li><a href="#">Renew</a></li>
-        <li><a href="#">Cancel</a></li>
+        <li><a href="{{ path('user_subscription_expire', {'id': subscription.id}) }}">Cancel</a></li>
         <li><a href="#">Pause</a></li>
       </ul></td>
     </tr>

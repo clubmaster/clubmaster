@@ -154,4 +154,9 @@ class Subscription
     {
       return $this->user;
     }
+
+    public function expire(\DateTime $date)
+    {
+      $this->setExpireDate($date);
+    }
 }
