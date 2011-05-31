@@ -35,6 +35,7 @@ class OrderStatusHistory
 
     /**
      * @ORM\ManyToOne(targetEntity="Order")
+     * @ORM\JoinColumn(name="order_id", onDelete="cascade")
      *
      * @var Club\ShopBundle\Entity\Order
      */
