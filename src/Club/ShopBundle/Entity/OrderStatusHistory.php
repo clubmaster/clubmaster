@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderStatusHistory")
  * @ORM\Table(name="club_shop_order_status_history")
+ * @ORM\HasLifecycleCallbacks()
  */
 class OrderStatusHistory
 {
@@ -40,6 +41,12 @@ class OrderStatusHistory
      * @var Club\ShopBundle\Entity\Order
      */
     private $order;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
 
     /**
      * Get id
@@ -99,5 +106,24 @@ class OrderStatusHistory
     public function getOrderStatus()
     {
         return $this->order_status;
+    }
+
+    public function setCreatedAt($created_at)
+    {
+      $this->created_at = $created_at;
+    }
+
+    public function getCreatedAt()
+    {
+      return $this->created_at;
+    }
+
+    /**
+     * @ORM\prePersist()
+     */
+    public function prePersist()
+    {
+      if (!is_numeric($this->getId()))
+        $this->setCreatedAt(new \DateTime());
     }
 }
