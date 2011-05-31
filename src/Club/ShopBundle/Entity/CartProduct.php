@@ -64,7 +64,7 @@ class CartProduct
     private $cart;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProductAttribute", mappedBy="cart_product", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProductAttribute", mappedBy="cart_product", cascade={"persist","remove"})
      */
     private $cart_product_attributes;
 

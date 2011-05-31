@@ -137,6 +137,7 @@ class Cart
     }
 
     $this->em->remove($this->cart);
+    $this->em->flush();
 
     $this->setOrder($order);
   }

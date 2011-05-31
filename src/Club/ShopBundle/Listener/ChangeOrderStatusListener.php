@@ -20,5 +20,6 @@ class ChangeOrderStatusListener
     $status->setOrderStatus($order->getOrderStatus());
 
     $this->em->persist($status);
+    $this->em->flush();
   }
 }

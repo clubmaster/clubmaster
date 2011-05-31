@@ -108,7 +108,6 @@ class CheckoutController extends Controller
       $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
     }
 
-    $this->get('doctrine.orm.entity_manager')->flush();
     return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
   }
 

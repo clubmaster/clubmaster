@@ -68,7 +68,7 @@ class Cart
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProduct", mappedBy="cart", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProduct", mappedBy="cart", cascade={"persist","remove"})
      *
      * @var Club\ShopBundle\Entity\CartProduct
      */
