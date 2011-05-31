@@ -13,14 +13,13 @@ class Cart
   protected $session;
   protected $em;
   protected $user;
-  protected $dispatcher;
+  protected $order;
 
-  public function __construct($em,$session,$security,$dispatcher)
+  public function __construct($em,$session,$security)
   {
     $this->session = $session;
     $this->em = $em;
     $this->user = $security->getToken()->getUser();
-    $this->dispatcher = $dispatcher;
 
     $this->cart = $this->session->get('cart');
     if (!$this->cart) {
@@ -123,7 +122,7 @@ class Cart
       $op->setProductName($product->getProductName());
       $op->setTax($product->getTax());
       $op->setQuantity($product->getQuantity());
-      $op->setProduct($product);
+      $op->setProduct($product->getProduct());
 
       $this->em->persist($op);
 
@@ -137,11 +136,19 @@ class Cart
       }
     }
 
-    $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
-    $this->dispatcher->dispatch(Events::onStoreOrder, $event);
-
     $this->em->remove($this->cart);
-    $this->em->flush();
+
+    $this->setOrder($order);
+  }
+
+  public function setOrder($order)
+  {
+    $this->order = $order;
+  }
+
+  public function getOrder()
+  {
+    return $this->order;
   }
 
   protected function save()

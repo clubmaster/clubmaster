@@ -102,11 +102,14 @@ class CheckoutController extends Controller
   {
     if ($this->get('cart')->getCart()) {
       $this->get('cart')->convertToOrder();
+
+      $order = $this->get('cart')->getOrder();
+      $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
+      $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
     }
 
-    return $this->forward('ClubShopBundle:Checkout:confirm');
-
-    #return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
+    $this->get('doctrine.orm.entity_manager')->flush();
+    return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
   }
 
   /**

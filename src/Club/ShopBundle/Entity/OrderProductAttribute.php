@@ -37,6 +37,7 @@ class OrderProductAttribute
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderProduct")
+     * @ORM\JoinColumn(name="order_product_id", onDelete="cascade")
      */
     private $order_product;
 

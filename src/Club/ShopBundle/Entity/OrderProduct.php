@@ -57,6 +57,7 @@ class OrderProduct
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
+     * @ORM\JoinColumn(name="order_id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Order
      */

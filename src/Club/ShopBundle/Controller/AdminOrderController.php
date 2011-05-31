@@ -45,6 +45,20 @@ class AdminOrderController extends Controller
   }
 
   /**
+   * @Route("/shop/order/delete/{id}", name="admin_shop_order_delete")
+   */
+  public function deleteAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+
+    $em->remove($order);
+    $em->flush();
+
+    return new RedirectResponse($this->generateUrl('admin_shop_order'));
+  }
+
+  /**
    * @Route("/shop/order/batch", name="admin_shop_order_batch")
    */
   public function batchAction()

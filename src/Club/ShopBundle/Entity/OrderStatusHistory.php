@@ -21,7 +21,7 @@ class OrderStatusHistory
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable="true")
      * @var text $note
      */
     private $note;
@@ -68,6 +68,16 @@ class OrderStatusHistory
     public function getNote()
     {
         return $this->note;
+    }
+
+    public function setOrder($order)
+    {
+      $this->order = $order;
+    }
+
+    public function getOrder()
+    {
+      return $this->order;
     }
 
     /**
