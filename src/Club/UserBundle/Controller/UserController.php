@@ -144,8 +144,6 @@ class UserController extends Controller
   {
     $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
 
-    $tickets = $user->getTicketCoupons();
-
     return array(
       'user' => $user
     );
