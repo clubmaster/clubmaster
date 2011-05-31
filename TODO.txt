@@ -1,17 +1,17 @@
 - Location configuration
 - Remove item from basket
 - Update basket
+- fix tax on products
 - Add payments to transaction
 - Create mailer
-- Make a user interface
 - Put subscription or tickets in dynamic groups
-- use git more proper:
-  - add the club as a gitmodule
-- fix link on image
-- make sure all pages are html validated
-- make sure css are validated
 - add logger for all activity by users
   - cancel subscription
   - cancel tickets
   - change status on order
-- fix tax on products
+- put images on links
+- Make a user interface
+- make sure all pages are html validated
+- make sure css are validated
+- use git more proper:
+  - add the club as a gitmodule
