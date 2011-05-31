@@ -166,6 +166,22 @@ class UserController extends Controller
   }
 
   /**
+   * @Route("/user/ticket/expire/{id}",name="user_ticket_expire")
+   */
+  public function ticketExpireAction($id)
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+
+    $ticket = $em->find('\Club\ShopBundle\Entity\TicketCoupon',$id);
+    $ticket->expire(new \DateTime());
+
+    $em->persist($ticket);
+    $em->flush();
+
+    return new RedirectResponse($this->generateUrl('user_subscription',array('id'=>$ticket->getUser()->getId())));
+  }
+
+  /**
    * @Route("/user/shop/{id}", name="user_shop")
    */
   public function shopAction($id)

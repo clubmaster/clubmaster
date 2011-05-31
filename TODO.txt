@@ -1,4 +1,3 @@
-- Cancel membership/ticket
 - Create products
 - Location configuration
 - Remove item from basket

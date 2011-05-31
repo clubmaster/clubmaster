@@ -148,4 +148,9 @@ class TicketCoupon
       $this->setStartDate(new \DateTime());
       $this->setExpireDate(new \DateTime());
     }
+
+    public function expire(\DateTime $date)
+    {
+      $this->setExpireDate($date);
+    }
 }
