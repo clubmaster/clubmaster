@@ -4,6 +4,7 @@
 - Location configuration
 - Remove item from basket
 - Update basket
+- Add payments to transaction
 - Create mailer
 - Make a user interface
 - Put subscription or tickets in dynamic groups
