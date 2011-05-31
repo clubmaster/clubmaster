@@ -144,24 +144,10 @@ class UserController extends Controller
   {
     $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
 
-    $subscriptions = $user->getSubscriptions();
-    return array(
-      'subscriptions' => $subscriptions
-    );
-  }
-
-  /**
-   * @Route("/user/ticket/{id}", name="user_ticket")
-   * @Template()
-   */
-  public function ticketAction($id)
-  {
-    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
-
     $tickets = $user->getTicketCoupons();
 
     return array(
-      'tickets' => $tickets
+      'user' => $user
     );
   }
 
