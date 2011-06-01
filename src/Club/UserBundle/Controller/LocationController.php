@@ -61,33 +61,6 @@ class LocationController extends Controller
   }
 
   /**
-   * @Template()
-   * @Route("/location/config/{id}", name="admin_location_config")
-   */
-  public function configAction($id)
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $location = $em->find('Club\UserBundle\Entity\Location',$id);
-    $configs = $em->getRepository('Club\UserBundle\Entity\LocationConfig')->findBy(array(
-      'location' => $id
-    ));
-
-    $fb = $this->get('form.factory')
-      ->createBuilder('form',$configs);
-
-    foreach ($configs as $config) {
-      $fb->add($config->getConfig()->getConfigKey(),'text');
-    }
-    $form = $fb->getForm();
-
-    return array(
-      'location' => $location,
-      'form' => $form->createView()
-    );
-  }
-
-  /**
    * @Route("/location/delete/{id}", name="admin_location_delete")
    */
   public function deleteAction($id)

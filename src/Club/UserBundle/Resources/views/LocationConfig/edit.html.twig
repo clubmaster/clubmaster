@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Location</h1>
+
+<form method="post" action="{{ path('admin_location_config_edit', {'id':config.id}) }}">
+{% include "ClubUserBundle:LocationConfig:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

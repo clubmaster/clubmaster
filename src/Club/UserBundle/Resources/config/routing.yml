@@ -26,6 +26,11 @@ _location:
   type: annotation
   prefix: /admin
 
+_location_config:
+  resource: "@ClubUserBundle/Controller/LocationConfigController.php"
+  type: annotation
+  prefix: /admin
+
 _role:
   resource: "@ClubUserBundle/Controller/RoleController.php"
   type: annotation

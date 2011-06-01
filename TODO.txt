@@ -1,4 +1,3 @@
-- Location configuration
 - Add notes to order change history
 - Fix customer, shipping and billing information on order
 - Fix shop as user
@@ -19,6 +18,7 @@
 - make sure css are validated
 - use git more proper:
   - add the club as a gitmodule
+- add notes to users
 
 == modules ==
 - team tilmelding

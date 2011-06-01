@@ -3,17 +3,16 @@
 {% block body %}
 
 <h1>Location</h1>
-<p class="box"><a href="{{ path('admin_location_new') }}" class="btn-create"><span>Create location</span></a></p>
 
 {% include "::flash.html.twig" %}
 
-<form method="post" action="{{ path('admin_location_batch') }}">
+<form method="post" action="{{ path('admin_location_config_batch') }}">
 <table>
   <thead>
     <tr>
       <th>[x]</th>
-      <th>Id</th>
-      <th>Location</th>
+      <th>Key</th>
+      <th>Value</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -30,20 +29,18 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for location in locations %}
+  {% for config in configs %}
     <tr>
       <td><input type="checkbox" /></td>
-      <td>{{ location.id }}</td>
-      <td>{{ location.locationName }}</td>
+      <td>{{ config.config.configKey }}</td>
+      <td>{{ config.value }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('admin_location_delete', { 'id':location.id })} %}
-        <a href="{{ path('admin_location_config', {'id':location.id}) }}">Config</a>
+        {% include "::edit_link.html.twig" with {'url':path('admin_location_config_edit', { 'id':config.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no locations at the time</td>
+    <td colspan="4">There are no configs for this location./td>
   </tr>
   {% endfor %}
   </tbody>
