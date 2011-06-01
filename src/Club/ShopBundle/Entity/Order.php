@@ -96,6 +96,30 @@ class Order
     protected $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\OrderAddress
+     */
+    protected $customer_address;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\OrderAddress
+     */
+    protected $shipping_address;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\OrderAddress
+     */
+    protected $billing_address;
+
+    /**
      * @ORM\OneToMany(targetEntity="OrderProduct", mappedBy="order", cascade={"persist"})
      *
      * @var Club\ShopBundle\Entity\OrderProduct

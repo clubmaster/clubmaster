@@ -75,6 +75,30 @@ class Cart
     protected $cart_products;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\CartAddress
+     */
+    protected $customer_address;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\CartAddress
+     */
+    protected $shipping_address;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @Assert\NotBlank()
+     *
+     * @var Club\ShopBundle\Entity\CartAddress
+     */
+    protected $billing_address;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created_at;

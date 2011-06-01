@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderAddress")
- * @ORM\Table(name="club_shop_order_address")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\CartAddress")
+ * @ORM\Table(name="club_shop_cart_address")
  */
-class OrderAddress
+class CartAddress
 {
     /**
      * @ORM\Id
@@ -93,13 +93,6 @@ class OrderAddress
      * @var string $country
      */
     private $country;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Order")
-     *
-     * @var Club\ShopBundle\Entity\Order
-     */
-    private $order;
 
 
     /**
@@ -350,25 +343,5 @@ class OrderAddress
     public function getIsDefault()
     {
         return $this->is_default;
-    }
-
-    /**
-     * Set order
-     *
-     * @param Club\ShopBundle\Entity\Order $order
-     */
-    public function setOrder(\Club\ShopBundle\Entity\Order $order)
-    {
-        $this->order = $order;
-    }
-
-    /**
-     * Get order
-     *
-     * @return Club\ShopBundle\Entity\Order $order
-     */
-    public function getOrder()
-    {
-        return $this->order;
     }
 }
