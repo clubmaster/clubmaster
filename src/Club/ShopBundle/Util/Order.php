@@ -18,6 +18,7 @@ class Order
     $this->order->setCurrency($cart->getCurrency());
     $this->order->setCurrencyValue($cart->getCurrencyValue());
     $this->order->setPrice($cart->getPrice());
+    $this->order->setVatPrice($cart->getVatPrice());
     $this->order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$cart->getPaymentMethod()->getId()));
     $this->order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$cart->getShipping()->getId()));
     $this->order->setOrderStatus($this->em->getRepository('\Club\ShopBundle\Entity\OrderStatus')->getDefaultStatus());

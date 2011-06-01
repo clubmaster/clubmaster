@@ -50,11 +50,18 @@ class Order
     protected $currency_value;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
      * @var string $price
      */
     protected $price;
+
+    /**
+     * @ORM\Column(type="decimal", scale="2")
+     *
+     * @var string $vat_price
+     */
+    protected $vat_price;
 
     /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
@@ -236,6 +243,16 @@ class Order
       return $this->price;
     }
 
+    public function setVatPrice($vat_price)
+    {
+      $this->vat_price = $vat_price;
+    }
+
+    public function getVatPrice()
+    {
+      return $this->vat_price;
+    }
+
     /**
      * Set currency_value
      *
@@ -391,5 +408,4 @@ class Order
     {
       return $this->billing_address;
     }
-
 }
