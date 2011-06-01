@@ -33,6 +33,11 @@ class Cart
         $location = $this->em->find('\Club\UserBundle\Entity\Location',$this->session->get('location_id'));
         $this->cart->setCurrency($location->getCurrency()->getCode());
         $this->cart->setCurrencyValue($location->getCurrency()->getValue());
+        $this->cart->setPrice(0);
+
+        $this->setCustomerAddress($this->user);
+        $this->setShippingAddress($this->user);
+        $this->setBillingAddress($this->user);
       }
     }
   }
@@ -150,6 +155,60 @@ class Cart
   public function getOrder()
   {
     return $this->order;
+  }
+
+  public function setCustomerAddress(\Club\UserBundle\Entity\User $user)
+  {
+    $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setFirstName($user->getProfile()->getFirstName());
+    $address->setLastName($user->getProfile()->getLastName());
+
+    $addr = $this->em->getRepository('\Club\UserBundle\Entity\Profile')->getDefaultAddress($user->getProfile());
+
+    $address->setStreet($addr->getStreet());
+    $address->setPostalCode($addr->getPostalCode());
+    $address->setCity($addr->getCity());
+    $address->setCountry($addr->getCountry());
+
+    $this->cart->setCustomerAddress($address);
+
+    $this->save();
+  }
+
+  public function setShippingAddress(\Club\UserBundle\Entity\User $user)
+  {
+    $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setFirstName($user->getProfile()->getFirstName());
+    $address->setLastName($user->getProfile()->getLastName());
+
+    $addr = $this->em->getRepository('\Club\UserBundle\Entity\Profile')->getDefaultAddress($user->getProfile());
+
+    $address->setStreet($addr->getStreet());
+    $address->setPostalCode($addr->getPostalCode());
+    $address->setCity($addr->getCity());
+    $address->setCountry($addr->getCountry());
+
+    $this->cart->setShippingAddress($address);
+
+    $this->save();
+  }
+
+  public function setBillingAddress(\Club\UserBundle\Entity\User $user)
+  {
+    $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setFirstName($user->getProfile()->getFirstName());
+    $address->setLastName($user->getProfile()->getLastName());
+
+    $addr = $this->em->getRepository('\Club\UserBundle\Entity\Profile')->getDefaultAddress($user->getProfile());
+
+    $address->setStreet($addr->getStreet());
+    $address->setPostalCode($addr->getPostalCode());
+    $address->setCity($addr->getCity());
+    $address->setCountry($addr->getCountry());
+
+    $this->cart->setBillingAddress($address);
+
+    $this->save();
   }
 
   protected function save()

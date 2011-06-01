@@ -18,7 +18,7 @@ class Profile extends EntityRepository
       'profile' => $profile->getId(),
       'is_default' => 1
     ));
-    echo count($address);
-    die();
+
+    return $address;
   }
 }

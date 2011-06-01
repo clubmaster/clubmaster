@@ -75,7 +75,7 @@ class Cart
     protected $cart_products;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress
@@ -83,7 +83,7 @@ class Cart
     protected $customer_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress
@@ -91,7 +91,7 @@ class Cart
     protected $shipping_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress
@@ -215,6 +215,36 @@ class Cart
     public function getPaymentMethod()
     {
         return $this->payment_method;
+    }
+
+    public function setCustomerAddress($customer_address)
+    {
+      $this->customer_address = $customer_address;
+    }
+
+    public function getCustomerAddress()
+    {
+      return $this->customer_address;
+    }
+
+    public function setShippingAddress($shipping_address)
+    {
+      $this->shipping_address = $shipping_address;
+    }
+
+    public function getShippingAddress()
+    {
+      return $this->shipping_address;
+    }
+
+    public function setBillingAddress($billing_address)
+    {
+      $this->billing_address = $billing_address;
+    }
+
+    public function getBillingAddress()
+    {
+      return $this->billing_address;
     }
 
     /**
