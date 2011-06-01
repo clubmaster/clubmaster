@@ -1,4 +1,5 @@
 - Add payments to transaction
+- add notes to users
 - Create mailer
 - Update basket
 - Put subscription or tickets in dynamic groups
@@ -13,7 +14,6 @@
 - make sure css are validated
 - use git more proper:
   - add the club as a gitmodule
-- add notes to users
 - Fix shop as user
 - make sure subscription or ticket or whatever will be added to the right users, i mean.. customer address, or the owner of the cart/order?
 
