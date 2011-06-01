@@ -32,6 +32,8 @@ class Cart
         $this->setCustomerAddress($this->user);
         $this->setShippingAddress($this->user);
         $this->setBillingAddress($this->user);
+
+        $this->save();
       }
     }
   }
@@ -104,25 +106,19 @@ class Cart
   public function setCustomerAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = $this->getAddress($user);
-
     $this->cart->setCustomerAddress($address);
-    $this->save();
   }
 
   public function setShippingAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = $this->getAddress($user);
-
     $this->cart->setShippingAddress($address);
-    $this->save();
   }
 
   public function setBillingAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = $this->getAddress($user);
-
     $this->cart->setBillingAddress($address);
-    $this->save();
   }
 
   protected function save()

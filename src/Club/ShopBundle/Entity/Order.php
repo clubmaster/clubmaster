@@ -96,7 +96,7 @@ class Order
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\OrderAddress
@@ -104,7 +104,7 @@ class Order
     protected $customer_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\OrderAddress
@@ -112,7 +112,7 @@ class Order
     protected $shipping_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\OrderAddress", cascade={"persist"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\OrderAddress
@@ -361,4 +361,35 @@ class Order
     {
       $this->setCreatedAt(new \DateTime());
     }
+
+    public function setCustomerAddress($customer_address)
+    {
+      $this->customer_address = $customer_address;
+    }
+
+    public function getCustomerAddress()
+    {
+      return $this->customer_address;
+    }
+
+    public function setShippingAddress($shipping_address)
+    {
+      $this->shipping_address = $shipping_address;
+    }
+
+    public function getShippingAddress()
+    {
+      return $this->shipping_address;
+    }
+
+    public function setBillingAddress($billing_address)
+    {
+      $this->billing_address = $billing_address;
+    }
+
+    public function getBillingAddress()
+    {
+      return $this->billing_address;
+    }
+
 }
