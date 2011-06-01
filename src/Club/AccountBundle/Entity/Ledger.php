@@ -46,6 +46,11 @@ class Ledger
      */
     private $account;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     */
+    private $user;
+
 
     public function __construct()
     {
@@ -101,5 +106,15 @@ class Ledger
     public function getAccount()
     {
       return $this->account;
+    }
+
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+      $this->user = $user;
+    }
+
+    public function getUser()
+    {
+      return $this->user;
     }
 }
