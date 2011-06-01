@@ -1,4 +1,3 @@
-- add notes to users
 - Create mailer
 - Update basket
 - Put subscription or tickets in dynamic groups

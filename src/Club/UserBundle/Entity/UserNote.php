@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\UserNote")
  * @ORM\Table(name="club_user_note")
+ * @ORM\HasLifecycleCallbacks()
  */
 class UserNote
 {

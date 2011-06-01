@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+{{ app.session.flash('notice') }}
+<h1>User notes</h1>
+<p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
+
+{% include "::flash.html.twig" %}
+
+<form method="post" action="{{ path('admin_user_note_batch') }}">
+<table>
+  <thead>
+    <tr>
+      <th>[x]</th>
+      <th>Id</th>
+      <th>Note</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4" class="arrow-01">
+        <select name="" class="input-text">
+          <option value="">Delete selected</option>
+          <option value="">Remove selected</option>
+          <option value="">Rename selected</option>
+          <option value="">Copy selected</option>
+        </select>&nbsp;<input type="submit" value="OK" />
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for user_note in user_notes %}
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{{ user_note.id }}</td>
+      <td>{{ user_note.note }}</td>
+      <td>
+        {% include "::edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
+        {% include "::delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no notes at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+
+{% endblock %}

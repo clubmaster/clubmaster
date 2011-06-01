@@ -12,6 +12,11 @@ _user:
   resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation
 
+_user_note:
+  resource: "@ClubUserBundle/Controller/UserNoteController.php"
+  type: annotation
+  prefix: /admin
+
 _auth:
   resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
