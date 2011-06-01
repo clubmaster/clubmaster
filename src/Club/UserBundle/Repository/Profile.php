@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class Profile extends EntityRepository
 {
+  public function getDefaultAddress(\Club\UserBundle\Entity\Profile $profile)
+  {
+    $address = $this->_em->getRepository('\Club\UserBundle\Entity\ProfileAddress')->findOneBy(array(
+      'profile' => $profile->getId(),
+      'is_default' => 1
+    ));
+    echo count($address);
+    die();
+  }
 }
