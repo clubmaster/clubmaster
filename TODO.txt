@@ -1,10 +1,5 @@
-- Create mailer
-- Update basket
 - Put subscription or tickets in dynamic groups
-- add logger for all activity by users
-  - cancel subscription
-  - cancel tickets
-  - change status on order
+- Update basket
 - fix product variants
 - put images on links
 - Make a user interface
@@ -16,8 +11,13 @@
 - make sure subscription or ticket or whatever will be added to the right users, i mean.. customer address, or the owner of the cart/order?
 
 == modules ==
-- team tilmelding
-- banebooking
-- event plan
+- mailer bundle
+- team bundle
+- booking bundle
+- logger bundle (log users activity)
+  - cancel subscription
+  - cancel tickets
+  - change status on order
+- event bundle
   - export as ical/rss
 - integration til e-conomic
