@@ -1,5 +1,3 @@
-- Fix shop as user
-- Remove item from basket
 - Update basket
 - fix tax on products
 - Add payments to transaction
@@ -17,6 +15,8 @@
 - use git more proper:
   - add the club as a gitmodule
 - add notes to users
+- Fix shop as user
+- make sure subscription or ticket or whatever will be added to the right users, i mean.. customer address, or the owner of the cart/order?
 
 == modules ==
 - team tilmelding
