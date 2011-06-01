@@ -343,14 +343,4 @@ class CartAddress
     {
         return $this->is_default;
     }
-
-    public function setCart($cart)
-    {
-      $this->cart = $cart;
-    }
-
-    public function getCart()
-    {
-      return $this->cart;
-    }
 }
