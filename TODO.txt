@@ -1,7 +1,6 @@
-- Update basket
-- fix tax on products
 - Add payments to transaction
 - Create mailer
+- Update basket
 - Put subscription or tickets in dynamic groups
 - add logger for all activity by users
   - cancel subscription

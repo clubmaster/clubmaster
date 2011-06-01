@@ -203,4 +203,14 @@ class CartProduct
     {
         return $this->cart_product_attributes;
     }
+
+    public function getVatPrice()
+    {
+      return $this->getPrice()*(1+$this->getTax()/100);
+    }
+
+    public function getVatSummary()
+    {
+      return $this->getVatPrice()*$this->getQuantity();
+    }
 }

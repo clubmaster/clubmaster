@@ -41,7 +41,7 @@
     {% for product in category.getProducts %}
     <tr>
       <td>{{ product.productName }}</td>
-      <td>{{ product.price }}</td>
+      <td>{{ product.vatPrice }}</td>
       <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('images/icons/16/shopping-cart-insert-icon.png') }}" alt="Put in cart" title="Put in cart" /></a></td>
     </tr>
     {% else %}

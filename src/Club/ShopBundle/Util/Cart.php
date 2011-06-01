@@ -28,6 +28,7 @@ class Cart
         $this->cart->setCurrency($location->getCurrency()->getCode());
         $this->cart->setCurrencyValue($location->getCurrency()->getValue());
         $this->cart->setPrice(0);
+        $this->cart->setVatPrice(0);
 
         $this->setCustomerAddress($this->user);
         $this->setShippingAddress($this->user);
@@ -46,6 +47,7 @@ class Cart
       if ($prod->getProduct()->getId() == $product->getId()) {
         $prod->setQuantity($prod->getQuantity()+1);
         $this->cart->setPrice($this->cart->getPrice()+$prod->getPrice());
+        $this->cart->setVatPrice($this->cart->getVatPrice()+$prod->getVatPrice());
         $trigger = 1;
       }
     }
@@ -70,6 +72,7 @@ class Cart
 
       $this->cart->addCartProduct($op);
       $this->cart->setPrice($this->cart->getPrice()+$op->getPrice());
+      $this->cart->setVatPrice($this->cart->getVatPrice()+$op->getVatPrice());
     }
     $this->save();
   }

@@ -259,4 +259,8 @@ class Product
         return $this->tax;
     }
 
+    public function getVatPrice()
+    {
+      return $this->getPrice()*(1+$this->getTax()->getRate()/100);
+    }
 }
