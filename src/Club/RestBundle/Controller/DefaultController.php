@@ -34,7 +34,17 @@ class DefaultController extends Controller
     $profile->setGender($this->get('request')->get('gender'));
     $profile->setDayOfBirth(new \DateTime($this->get('request')->get('day_of_birth')));
 
+    $address = new \Club\UserBundle\Entity\ProfileAddress();
+    $address->setProfile($profile);
+    $address->setContactType('home');
+    $address->setIsDefault(1);
+    $address->setStreet($this->get('request')->get('street'));
+    $address->setPostalCode($this->get('request')->get('postal_code'));
+    $address->setCity($this->get('request')->get('city'));
+    $address->setCountry($this->get('request')->get('country'));
+
     $em->persist($profile);
+    $em->persist($address);
     $em->flush();
 
     $user->setProfile($profile);
@@ -137,91 +147,6 @@ class DefaultController extends Controller
     $em->flush();
 
     return $this->renderJSon($user->toArray());
-  }
-
-  /**
-   * @Route("/add/order")
-   * @Method("POST")
-   */
-  public function addOrder()
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
-    $payment = $em->find('Club\ShopBundle\Entity\PaymentMethod',$this->get('request')->get('payment_method'));
-    $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$this->get('request')->get('shipping'));
-    $currency = $em->find('Club\UserBundle\Entity\Currency',$this->get('request')->get('currency'));
-    $status = $em->find('Club\ShopBundle\Entity\OrderStatus',1);
-
-    $order = new \Club\ShopBundle\Entity\Order();
-    $order->setUser($user);
-    $order->setPaymentMethod($payment);
-    $order->setShipping($shipping);
-    $order->setCurrency($currency->getCode());
-    $order->setCurrencyValue($currency->getValue());
-    $order->setOrderMemo($this->get('request')->get('order_memo'));
-    $order->setOrderStatus($status);
-
-    if ($r = $this->hasErrors($order)) return $r;
-
-    $em->persist($order);
-
-    $products = json_decode($this->get('request')->get('products'));
-    $price = 0;
-    foreach ($products as $product) {
-      $prod = $em->find('Club\ShopBundle\Entity\Product',$product->product);
-
-      $price += $prod->getPrice();
-
-      $op = new \Club\ShopBundle\Entity\OrderProduct;
-      $op->setProductName($prod->getProductName());
-      $op->setPrice($prod->getPrice());
-      $op->setTax($prod->getTax()->getRate());
-      $op->setQuantity($product->quantity);
-      $op->setOrder($order);
-
-      if ($r = $this->hasErrors($op)) return $r;
-
-      $em->persist($op);
-
-      foreach ($prod->getProductAttributes() as $attr) {
-        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
-        $opa->setOrderProduct($op);
-        $opa->setAttributeName($attr->getAttribute()->getAttributeName());
-        $opa->setValue($attr->getValue());
-
-        if ($r = $this->hasErrors($op)) return $r;
-        $em->persist($opa);
-      }
-
-    }
-    $order->setPrice($price);
-    $em->flush();
-
-    return $this->renderJSon($order->toArray());
-  }
-
-  /**
-   * @Route("/update/order")
-   */
-  public function updateOrderAction()
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $order = $em->find('Club\ShopBundle\Entity\Order',$this->get('request')->get('order'));
-    $status = $em->find('Club\ShopBundle\Entity\OrderStatus',$this->get('request')->get('status'));
-
-    $order->setOrderStatus($status);
-
-    if ($r = $this->hasErrors($status)) return $r;
-
-    $em->persist($order);
-    $em->flush();
-
-    $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
-    $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
-
-    return $this->renderJSon($order->toArray());
   }
 
   protected function hasErrors($object)
