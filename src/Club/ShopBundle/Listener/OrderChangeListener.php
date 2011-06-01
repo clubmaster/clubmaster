@@ -18,6 +18,7 @@ class OrderChangeListener
     $status = new \Club\ShopBundle\Entity\OrderStatusHistory();
     $status->setOrder($order);
     $status->setOrderStatus($order->getOrderStatus());
+    $status->setNote($order->getNote());
 
     $this->em->persist($status);
     $this->em->flush();

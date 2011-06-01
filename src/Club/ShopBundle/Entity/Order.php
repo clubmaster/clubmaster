@@ -29,6 +29,13 @@ class Order
     protected $order_memo;
 
     /**
+     * @ORM\Column(type="text", nullable="true")
+     *
+     * @var string $note
+     */
+    protected $note;
+
+    /**
      * @ORM\Column(type="string")
      *
      * @var string $currency
@@ -133,6 +140,26 @@ class Order
     public function getOrderMemo()
     {
         return $this->order_memo;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string $note
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 
     /**
