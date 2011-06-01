@@ -1,3 +1,6 @@
+INSERT INTO club_account_account (account_name,account_number,account_type) VALUES
+  ('Cash In Bank','1010','asset');
+
 INSERT INTO club_config (config_key) VALUES
   ('smtp'),
   ('smtp_port'),
