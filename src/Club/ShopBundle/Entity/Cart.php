@@ -75,7 +75,7 @@ class Cart
     protected $cart_products;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist","remove"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress
@@ -83,7 +83,7 @@ class Cart
     protected $customer_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist","remove"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress
@@ -91,7 +91,7 @@ class Cart
     protected $shipping_address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\CartAddress", cascade={"persist","remove"})
      * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\CartAddress

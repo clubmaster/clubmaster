@@ -2,3 +2,6 @@ services:
   cart:
     class: Club\ShopBundle\Util\Cart
     arguments: [@doctrine.orm.entity_manager,@session,@security.context]
+  order:
+    class: Club\ShopBundle\Util\Order
+    arguments: [@doctrine.orm.entity_manager]

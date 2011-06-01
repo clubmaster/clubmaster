@@ -101,10 +101,9 @@ class CheckoutController extends Controller
   public function processAction()
   {
     if ($this->get('cart')->getCart()) {
-      $this->get('cart')->convertToOrder();
+      $this->get('order')->convertToOrder($this->get('cart')->getCart());
 
-      $order = $this->get('cart')->getOrder();
-      $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
+      $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->get('order')->getOrder());
       $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
     }
 

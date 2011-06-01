@@ -94,7 +94,6 @@ class CartAddress
      */
     private $country;
 
-
     /**
      * Get id
      *
@@ -343,5 +342,15 @@ class CartAddress
     public function getIsDefault()
     {
         return $this->is_default;
+    }
+
+    public function setCart($cart)
+    {
+      $this->cart = $cart;
+    }
+
+    public function getCart()
+    {
+      return $this->cart;
     }
 }

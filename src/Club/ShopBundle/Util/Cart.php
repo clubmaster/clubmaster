@@ -2,18 +2,12 @@
 
 namespace Club\ShopBundle\Util;
 
-use Symfony\Component\HttpFoundation\Session;
-use Symfony\Component\HttpFoundation\SessionStorage\NativeSessionStorage;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Club\ShopBundle\Events;
-
 class Cart
 {
   protected $cart;
   protected $session;
   protected $em;
   protected $user;
-  protected $order;
 
   public function __construct($em,$session,$security)
   {
@@ -107,59 +101,10 @@ class Cart
     return $this->cart;
   }
 
-  public function convertToOrder()
-  {
-    $order = new \Club\ShopBundle\Entity\Order();
-    $order->setCurrency($this->cart->getCurrency());
-    $order->setCurrencyValue($this->cart->getCurrencyValue());
-    $order->setPrice($this->cart->getPrice());
-    $order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$this->cart->getPaymentMethod()->getId()));
-    $order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$this->cart->getShipping()->getId()));
-    $order->setOrderStatus($this->em->getRepository('\Club\ShopBundle\Entity\OrderStatus')->getDefaultStatus());
-    $order->setUser($this->user);
-
-    $this->em->persist($order);
-
-    foreach ($this->cart->getCartProducts() as $product) {
-      $op = new \Club\ShopBundle\Entity\OrderProduct();
-      $op->setOrder($order);
-      $op->setPrice($product->getPrice());
-      $op->setProductName($product->getProductName());
-      $op->setTax($product->getTax());
-      $op->setQuantity($product->getQuantity());
-      $op->setProduct($product->getProduct());
-
-      $this->em->persist($op);
-
-      foreach ($product->getCartProductAttributes() as $attr) {
-        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
-        $opa->setOrderProduct($op);
-        $opa->setAttributeName($attr->getAttributeName());
-        $opa->setValue($attr->getValue());
-
-        $this->em->persist($opa);
-      }
-    }
-
-    $this->em->remove($this->cart);
-    $this->em->flush();
-
-    $this->setOrder($order);
-  }
-
-  public function setOrder($order)
-  {
-    $this->order = $order;
-  }
-
-  public function getOrder()
-  {
-    return $this->order;
-  }
-
   public function setCustomerAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setCart($this->cart);
     $address->setFirstName($user->getProfile()->getFirstName());
     $address->setLastName($user->getProfile()->getLastName());
 
@@ -178,6 +123,7 @@ class Cart
   public function setShippingAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setCart($this->cart);
     $address->setFirstName($user->getProfile()->getFirstName());
     $address->setLastName($user->getProfile()->getLastName());
 
@@ -196,6 +142,7 @@ class Cart
   public function setBillingAddress(\Club\UserBundle\Entity\User $user)
   {
     $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setCart($this->cart);
     $address->setFirstName($user->getProfile()->getFirstName());
     $address->setLastName($user->getProfile()->getLastName());
 
