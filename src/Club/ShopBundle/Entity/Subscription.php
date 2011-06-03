@@ -56,7 +56,7 @@ class Subscription
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Location")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
      * @ORM\JoinTable(name="club_shop_subscription_location",
      *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
@@ -177,7 +177,7 @@ class Subscription
       $this->setExpireDate($date);
     }
 
-    public function setLocations($location)
+    public function addLocations($location)
     {
       $this->locations[] = $location;
     }

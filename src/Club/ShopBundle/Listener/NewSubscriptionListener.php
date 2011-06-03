@@ -46,6 +46,13 @@ class NewSubscriptionListener
           $auto_renewal = (isset($res['AutoRenewal'])) ? $res['AutoRenewal'] : 0;
           $subscription->setAutoRenewal($auto_renewal);
 
+          if (isset($res['Location'])) {
+            $locations = preg_split("/,/", $res['Location']);
+            foreach ($locations as $location) {
+              $l = $this->em->find('\Club\UserBundle\Entity\Location',$location);
+              $subscription->addLocations($l);
+            }
+          }
           $this->em->persist($subscription);
         }
 

@@ -1,4 +1,4 @@
-- Put location on subscriptions
+- make sure cancelled product does not mean OK
 - Browse users from groups
 - Obey pauses
 - Obey auto renewal
