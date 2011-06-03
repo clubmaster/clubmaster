@@ -101,12 +101,16 @@
                                         </fieldset>
                                 </form>
 
+                                {% if is_granted('ROLE_ADMIN') %}
                                 <!-- Create a new user -->
                                 <p id="btn-create" class="box"><a href="{{ path('admin_user_new') }}"><span>Create a new user</span></a></p>
+                                {% endif %}
 
                         </div> <!-- /padding -->
 
+                        {% if is_granted('ROLE_ADMIN') %}
                         {% include "::left_menu.html.twig" %}
+                        {% endif %}
 
                 </div> <!-- /aside -->
 

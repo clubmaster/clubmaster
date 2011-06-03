@@ -3,7 +3,7 @@
 </ul>
 
 <ul class="box">
-  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('admin_user') }}"><span>User</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>User</span></a></li>
   <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>Shop</span></a></li>
 </ul>
 
