@@ -15,7 +15,7 @@ class NewSubscriptionListener
   {
     $order = $event->getOrder();
 
-    if ($order->getOrderStatus()->getIsComplete()) {
+    if ($order->getOrderStatus()->getIsAccepted()) {
       $products = $order->getOrderProducts();
 
       foreach ($products as $product) {
