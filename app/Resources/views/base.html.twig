@@ -79,6 +79,7 @@
                                 <!-- Logo (Max. width = 200px) -->
                                 <p id="logo"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
 
+                                {% if is_granted('ROLE_ADMIN') %}
                                 <!-- Search -->
                                 <form action="#" method="get" id="search">
                                         <fieldset>
@@ -101,7 +102,6 @@
                                         </fieldset>
                                 </form>
 
-                                {% if is_granted('ROLE_ADMIN') %}
                                 <!-- Create a new user -->
                                 <p id="btn-create" class="box"><a href="{{ path('admin_user_new') }}"><span>Create a new user</span></a></p>
                                 {% endif %}
