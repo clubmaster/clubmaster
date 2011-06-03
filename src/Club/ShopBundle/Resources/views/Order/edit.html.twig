@@ -36,6 +36,9 @@ City: {{ order.billingAddress.city }}<br />
 Country: {{ order.billingAddress.country }}</p>
 <p>{{ order.paymentMethod }}</p>
 
+<h2>Products</h2>
+{% include "ClubShopBundle:AdminOrder:order_form.html.twig" with {'order':order} %}
+
 <h2>Order history</h2>
 <table>
   <thead>

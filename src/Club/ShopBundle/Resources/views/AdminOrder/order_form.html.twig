@@ -1,0 +1,34 @@
+<table>
+  <thead>
+  <tr>
+    <th width="250">Produkt</th>
+    <th width="80">Pris</th>
+    <th width="80">Antal</th>
+    <th width="70">Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for item in order.orderProducts %}
+  <tr>
+    <td>{{ item.productName }}</td>
+    <td>{{ item.price }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.price }}</td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">You have no products.</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="4">&#160;</td>
+  </tr>
+  <tr>
+    <td style="text-align: right; padding-right: 20px;" colspan="3"><b>Total</b></td>
+    <td>{{ order.vatPrice }}</td>
+  </tr>
+  </tfoot>
+</table>
+

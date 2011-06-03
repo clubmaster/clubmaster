@@ -1,4 +1,3 @@
-- Check products in order view
 - Put subscription or tickets in dynamic groups
 
 - Update basket
