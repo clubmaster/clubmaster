@@ -1,7 +1,10 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
+<h1>User</h1>
 
-meh
+<form method="post" action="{{ path('user', {'id':user.id}) }}">
+{% include "ClubUserBundle:User:form.html.twig" with {'form': form} %}
+</form>
 
 {% endblock %}
