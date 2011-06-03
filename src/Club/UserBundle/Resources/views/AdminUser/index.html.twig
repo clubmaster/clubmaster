@@ -2,11 +2,11 @@
 
 {% block search %}
 <!-- Search -->
-<form action="#" method="get" id="search">
+<form action="{{ path('admin_user_filter') }}" method="post" id="search">
   <fieldset>
     <legend>Search</legend>
 
-    <p><input type="text" size="17" name="" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
+    <p><input type="text" size="17" name="name" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
     <a href="javascript:toggle('search-options');" class="ico-drop">Advanced search</a></p>
 
     <!-- Advanced search -->

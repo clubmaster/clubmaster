@@ -1,4 +1,3 @@
-- Default search from frontpage
 - Create search fields for user admin page
 - Obey pauses
 - Obey auto renewal

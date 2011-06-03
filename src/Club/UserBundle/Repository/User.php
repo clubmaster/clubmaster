@@ -42,15 +42,15 @@ class User extends EntityRepository
     return $r[0]->getMemberNumber()+1;
   }
 
-  public function findAllUsersOrdered()
+  public function getUsers($filter)
   {
-    $query = $this->_em->createQueryBuilder()
-      ->select('u')
-      ->from('\Club\UserBundle\Entity\User','u')
-      ->leftJoin('u.profile','p')
-      ->orderBy('p.first_name')
-      ->getQuery();
+    $dql = "SELECT u FROM Club\UserBundle\Entity\User u LEFT JOIN u.profile p WHERE (CONCAT(p.first_name,p.last_name) LIKE ?1 OR u.member_number = ?2)";
 
-    return $query->getResult();
+    $users = $this->_em->createQuery($dql)
+      ->setParameter(1,'%'.preg_replace("/\s/","",$filter['name']).'%')
+      ->setParameter(2,$filter['name'])
+      ->getResult();
+
+    return $users;
   }
 }

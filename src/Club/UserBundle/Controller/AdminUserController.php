@@ -17,11 +17,24 @@ class AdminUserController extends Controller
   public function indexAction()
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllUsersOrdered();
+    $users = $em->getRepository('Club\UserBundle\Entity\User')->getUsers($this->get('session')->get('filter.admin_user_controller'));
 
     return array(
       'users' => $users
     );
+  }
+
+  /**
+   * @Template()
+   * @Route("/user/filter", name="admin_user_filter")
+   */
+  public function filterAction()
+  {
+    $this->get('session')->set('filter.admin_user_controller',array(
+      'name' => $this->get('request')->get('name')
+    ));
+
+    return $this->forward('ClubUserBundle:AdminUser:index');
   }
 
   /**
