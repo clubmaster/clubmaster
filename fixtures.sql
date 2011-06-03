@@ -128,7 +128,8 @@ INSERT INTO club_shop_attribute (attribute_name) VALUES
   ('Season'),
   ('StartDate'),
   ('ExpireDate'),
-  ('AllowedPauses');
+  ('AllowedPauses'),
+  ('Location');
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
