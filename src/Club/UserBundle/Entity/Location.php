@@ -42,14 +42,6 @@ class Location
      */
     private $currency;
 
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Group")
-     *
-     * @var Club\UserBundle\Entity\Group
-     */
-    private $groups;
-
     /**
      * @ORM\ManyToMany(targetEntity="Club\MailBundle\Entity\Mail")
      *
@@ -59,7 +51,6 @@ class Location
 
     public function __construct()
     {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -136,25 +127,5 @@ class Location
     public function getCurrency()
     {
         return $this->currency;
-    }
-
-    /**
-     * Add groups
-     *
-     * @param Club\UserBundle\Entity\Group $groups
-     */
-    public function addGroups(\Club\UserBundle\Entity\Group $groups)
-    {
-        $this->groups[] = $groups;
-    }
-
-    /**
-     * Get groups
-     *
-     * @return Doctrine\Common\Collections\Collection $groups
-     */
-    public function getGroups()
-    {
-        return $this->groups;
     }
 }

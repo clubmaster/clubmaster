@@ -22,6 +22,7 @@ class Group
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $group_name
      */
@@ -58,9 +59,9 @@ class Group
     /**
      * @ORM\Column(type="boolean")
      *
-     * @var boolean $is_active
+     * @var boolean $is_active_member
      */
-    private $is_active;
+    private $is_active_member;
 
     /**
      * @ORM\ManyToOne(targetEntity="Group")
@@ -77,11 +78,11 @@ class Group
     private $role;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Location")
+     * @ORM\ManyToMany(targetEntity="Club\ShopBundle\Entity\Product")
      *
-     * @var Club\UserBundle\Entity\Location
+     * @var Club\ShopBundle\Entity\Product
      */
-    private $location;
+    private $product;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
@@ -94,6 +95,7 @@ class Group
     {
         $this->role = new \Doctrine\Common\Collections\ArrayCollection();
         $this->location = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -213,23 +215,23 @@ class Group
     }
 
     /**
-     * Set is_active
+     * Set is_active_member
      *
-     * @param boolean $isActive
+     * @param boolean $isActiveMember
      */
-    public function setIsActive($isActive)
+    public function setIsActiveMember($isActiveMember)
     {
-        $this->is_active = $isActive;
+        $this->is_active_member = $isActiveMember;
     }
 
     /**
-     * Get is_active
+     * Get is_active_member
      *
-     * @return boolean $isActive
+     * @return boolean $isActiveMember
      */
-    public function getIsActive()
+    public function getIsActiveMember()
     {
-        return $this->is_active;
+        return $this->is_active_member;
     }
 
     /**
@@ -281,4 +283,15 @@ class Group
     {
       return $this->users;
     }
+
+    public function setProduct($location)
+    {
+      $this->product[] = $product;
+    }
+
+    public function getProduct()
+    {
+      return $this->product;
+    }
+
 }

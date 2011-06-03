@@ -32,7 +32,6 @@ class GroupController extends Controller
   public function newAction()
   {
     $group = new Group();
-    $group->setIsActive(1);
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)

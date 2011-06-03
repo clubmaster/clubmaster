@@ -16,19 +16,18 @@ class Group extends AbstractType
         'dynamic' => 'Dynamic'
       )
     ));
-    $builder->add('is_active','hidden');
-    $builder->add('group','entity',array(
-      'class' => 'Club\UserBundle\Entity\Group',
-      'required' => false
-    ));
+    $builder->add('is_active_member');
     $builder->add('min_age');
     $builder->add('max_age');
     $builder->add('gender','choice',array(
       'choices' => array(
         'male' => 'Male',
         'female' => 'Female'
-      )
+      ),
+      'required' => false
     ));
+    $builder->add('product');
+    $builder->add('role');
   }
 
   public function getDefaultOptions(array $options)

@@ -38,6 +38,12 @@ class Role implements RoleInterface
      */
     private $groups;
 
+
+    public function __toString()
+    {
+      return $this->getRoleName();
+    }
+
     public function __construct()
     {
       $this->users = new \Doctrine\Common\Collections\ArrayCollection();

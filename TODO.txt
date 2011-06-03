@@ -1,5 +1,3 @@
-- Put subscription or tickets in dynamic groups
-
 - Update basket
 - fix product variants
 - put images on links
@@ -14,6 +12,7 @@
 
 == modules ==
 - mailer bundle
+- sms bundle
 - team bundle
 - booking bundle
 - logger bundle (log users activity)
@@ -23,3 +22,6 @@
 - event bundle
   - export as ical/rss
 - integration til e-conomic
+- forum bundle
+- weather bundle
+- dashboard bundle
