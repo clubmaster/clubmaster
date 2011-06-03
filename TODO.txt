@@ -1,5 +1,9 @@
 - Make a user interface
+  - check transactions
+  - check subscription status
+- Check products in order view
 - Put subscription or tickets in dynamic groups
+
 - Update basket
 - fix product variants
 - put images on links
@@ -8,7 +12,6 @@
 - use git more proper:
   - add the club as a gitmodule
 - Fix shop as user
-- make sure subscription or ticket or whatever will be added to the right users, i mean.. customer address, or the owner of the cart/order?
 
 == modules ==
 - mailer bundle

@@ -56,7 +56,8 @@ INSERT INTO club_shop_order_status (status_name,is_complete,priority) VALUES
   ('Pending',0,1),
   ('Processing',0,2),
   ('Preparing',0,3),
-  ('Delivered',1,4);
+  ('Delivered',1,4),
+  ('Cancelled',1,5);
 
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
