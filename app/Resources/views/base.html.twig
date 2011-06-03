@@ -80,30 +80,18 @@
                                 <p id="logo"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
 
                                 {% if is_granted('ROLE_ADMIN') %}
+
+                                {% block search %}
                                 <!-- Search -->
-                                <form action="#" method="get" id="search">
+                                <form action="{{ path('admin_user') }}" method="post" id="search">
                                         <fieldset>
                                                 <legend>Search</legend>
 
                                                 <p><input type="text" size="17" name="" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
-                                                <a href="javascript:toggle('search-options');" class="ico-drop">Advanced search</a></p>
-
-                                                <!-- Advanced search -->
-                                                <div id="search-options" style="display:none;">
-
-                                                        <p>
-                                                                <label><input type="checkbox" name="" checked="checked" /> Option I.</label><br />
-                                                                <label><input type="checkbox" name="" /> Option II.</label><br />
-                                                                <label><input type="checkbox" name="" /> Option III.</label>
-                                                        </p>
-
-                                                </div> <!-- /search-options -->
-
                                         </fieldset>
                                 </form>
 
-                                <!-- Create a new user -->
-                                <p id="btn-create" class="box"><a href="{{ path('admin_user_new') }}"><span>Create a new user</span></a></p>
+                                {% endblock %}
                                 {% endif %}
 
                         </div> <!-- /padding -->
