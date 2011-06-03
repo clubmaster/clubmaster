@@ -22,7 +22,6 @@ class RoleController extends Controller
     $roles = $query->getResult();
 
     return $this->render('ClubUserBundle:Role:index.html.twig',array(
-      'page' => array('header' => 'User'),
       'roles' => $roles
     ));
   }

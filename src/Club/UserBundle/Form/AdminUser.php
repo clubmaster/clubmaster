@@ -5,7 +5,7 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class User extends AbstractType
+class AdminUser extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {

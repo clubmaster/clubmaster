@@ -36,7 +36,6 @@ class AdminShippingController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Shipping'),
       'form' => $res->createView()
     );
   }
@@ -57,7 +56,6 @@ class AdminShippingController extends Controller
 
     return array(
       'shipping' => $shipping,
-      'page' => array('header' => 'Shipping'),
       'form' => $res->createView()
     );
   }

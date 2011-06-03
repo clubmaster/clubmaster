@@ -41,7 +41,6 @@ class AdminProductAttributeController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Product'),
       'form' => $res->createView(),
       'product' => $product
     );
@@ -63,7 +62,6 @@ class AdminProductAttributeController extends Controller
 
     return array(
       'attr' => $attr,
-      'page' => array('header' => 'Product'),
       'form' => $res->createView()
     );
   }

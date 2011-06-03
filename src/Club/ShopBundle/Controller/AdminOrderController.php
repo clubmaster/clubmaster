@@ -52,7 +52,6 @@ class AdminOrderController extends Controller
 
     return array(
       'order' => $order,
-      'page' => array('header' => 'Order'),
       'form' => $form->createView()
     );
   }

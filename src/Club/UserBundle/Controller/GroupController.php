@@ -21,7 +21,6 @@ class GroupController extends Controller
     $groups = $em->getRepository('\Club\UserBundle\Entity\Group')->findAll();
 
     return $this->render('ClubUserBundle:Group:index.html.twig',array(
-      'page' => array('header' => 'User'),
       'groups' => $groups
     ));
   }
@@ -40,7 +39,6 @@ class GroupController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Group'),
       'form' => $res->createView()
     );
   }
@@ -60,7 +58,6 @@ class GroupController extends Controller
 
     return array(
       'group' => $group,
-      'page' => array('header' => 'Group'),
       'form' => $res->createView()
     );
   }

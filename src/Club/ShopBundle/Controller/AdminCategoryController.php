@@ -36,7 +36,6 @@ class AdminCategoryController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Category'),
       'form' => $res->createView()
     );
   }
@@ -57,7 +56,6 @@ class AdminCategoryController extends Controller
 
     return array(
       'category' => $category,
-      'page' => array('header' => 'Category'),
       'form' => $res->createView()
     );
   }

@@ -16,12 +16,10 @@ class UserController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
-    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllUsersOrdered();
+    $user = $this->get('security.context')->getToken()->getUser();
 
     return array(
-      'page' => array('header' => 'User'),
-      'users' => $users
+      'user' => $user
     );
   }
 }

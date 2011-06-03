@@ -36,7 +36,6 @@ class AdminPaymentMethodController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'PaymentMethod'),
       'form' => $res->createView()
     );
   }
@@ -57,7 +56,6 @@ class AdminPaymentMethodController extends Controller
 
     return array(
       'payment_method' => $payment_method,
-      'page' => array('header' => 'PaymentMethod'),
       'form' => $res->createView()
     );
   }

@@ -36,7 +36,6 @@ class AdminSpecialController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Special'),
       'form' => $res->createView()
     );
   }
@@ -57,7 +56,6 @@ class AdminSpecialController extends Controller
 
     return array(
       'special' => $special,
-      'page' => array('header' => 'Special'),
       'form' => $res->createView()
     );
   }

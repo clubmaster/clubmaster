@@ -20,7 +20,6 @@ class AdminUserController extends Controller
     $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllUsersOrdered();
 
     return array(
-      'page' => array('header' => 'User'),
       'users' => $users
     );
   }
@@ -36,7 +35,7 @@ class AdminUserController extends Controller
     $user = new \Club\UserBundle\Entity\User();
 
     $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(),$user);
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -55,7 +54,6 @@ class AdminUserController extends Controller
     }
 
     return array(
-      'page' => array('header' => 'User'),
       'form' => $form->createView()
     );
   }
@@ -68,7 +66,7 @@ class AdminUserController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('Club\UserBundle\Entity\User',$id);
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(),$user);
+    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -84,7 +82,6 @@ class AdminUserController extends Controller
     }
 
     return array(
-      'page' => array('header' => 'User'),
       'user' => $user,
       'form' => $form->createView()
     );

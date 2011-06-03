@@ -36,7 +36,6 @@ class AdminProductController extends Controller
       return $res;
 
     return array(
-      'page' => array('header' => 'Product'),
       'form' => $res->createView()
     );
   }
@@ -57,7 +56,6 @@ class AdminProductController extends Controller
 
     return array(
       'product' => $product,
-      'page' => array('header' => 'Product'),
       'form' => $res->createView()
     );
   }
