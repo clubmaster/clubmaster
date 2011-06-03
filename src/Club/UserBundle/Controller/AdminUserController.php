@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
   /**
    * @Template()
-   * @Route("/user", name="user")
+   * @Route("/user", name="admin_user")
    */
   public function indexAction()
   {
@@ -27,7 +27,7 @@ class UserController extends Controller
 
   /**
    * @Template()
-   * @Route("/user/new", name="user_new")
+   * @Route("/user/new", name="admin_user_new")
    */
   public function newAction()
   {
@@ -62,7 +62,7 @@ class UserController extends Controller
 
   /**
    * @Template()
-   * @Route("/user/edit/{id}", name="user_edit")
+   * @Route("/user/edit/{id}", name="admin_user_edit")
    */
   public function editAction($id)
   {
@@ -92,7 +92,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/delete/{id}", name="user_delete")
+   * @Route("/user/delete/{id}", name="admin_user_delete")
    */
   public function deleteAction($id)
   {
@@ -108,14 +108,14 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/batch", name="user_batch")
+   * @Route("/user/batch", name="admin_user_batch")
    */
   public function batchAction()
   {
   }
 
   /**
-   * @Route("/user/ban/{id}", name="user_ban")
+   * @Route("/user/ban/{id}", name="admin_user_ban")
    */
   public function banAction($id)
   {
@@ -137,7 +137,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/subscription/{id}",name="user_subscription")
+   * @Route("/user/subscription/{id}",name="admin_user_subscription")
    * @Template()
    */
   public function subscriptionAction($id)
@@ -150,7 +150,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/subscription/expire/{id}",name="user_subscription_expire")
+   * @Route("/user/subscription/expire/{id}",name="admin_user_subscription_expire")
    */
   public function subscriptionExpireAction($id)
   {
@@ -166,7 +166,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/ticket/expire/{id}",name="user_ticket_expire")
+   * @Route("/user/ticket/expire/{id}",name="admin_user_ticket_expire")
    */
   public function ticketExpireAction($id)
   {
@@ -182,7 +182,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/shop/{id}", name="user_shop")
+   * @Route("/user/shop/{id}", name="admin_user_shop")
    */
   public function shopAction($id)
   {
@@ -194,7 +194,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/address/{id}", name="user_address")
+   * @Route("/user/address/{id}", name="admin_user_address")
    * @Template()
    */
   public function addressAction($id)
@@ -226,7 +226,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/phone/{id}", name="user_phone")
+   * @Route("/user/phone/{id}", name="admin_user_phone")
    * @Template()
    */
   public function phoneAction($id)
@@ -258,7 +258,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/email/{id}", name="user_email")
+   * @Route("/user/email/{id}", name="admin_user_email")
    * @Template()
    */
   public function emailAction($id)
@@ -290,7 +290,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/user/group/{id}", name="user_group")
+   * @Route("/user/group/{id}", name="admin_user_group")
    * @Template()
    */
   public function groupAction($id)

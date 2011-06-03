@@ -2,11 +2,11 @@
 
 {% block body %}
 <h1>User</h1>
-<p class="box"><a href="{{ path('user_new') }}" class="btn-create"><span>Create user</span></a></p>
+<p class="box"><a href="{{ path('admin_user_new') }}" class="btn-create"><span>Create user</span></a></p>
 
 {{ app.session.flash('notice') }}
 
-<form method="post" action="{{ path('user_batch') }}">
+<form method="post" action="{{ path('admin_user_batch') }}">
 <table class="tablesorter">
   <thead>
     <tr>
@@ -37,15 +37,15 @@
       <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td>
-        <a href="{{ path('user_edit', { 'id':user.id }) }}"><img src="{{ asset('images/ico-edit.gif') }}" class="ico" alt="Edit" /></a>
-        <a href="{{ path('user_delete', { 'id':user.id }) }}"><img src="{{ asset('images/ico-delete.gif') }}" class="ico" alt="Delete" /></a>
-        <a href="{{ path('user_subscription', { 'id':user.id }) }}">Subscription</a>
-        <a href="{{ path('user_shop', { 'id':user.id }) }}">Shop as</a>
-        <a href="{{ path('user_ban', { 'id':user.id }) }}">Ban</a>
-        <a href="{{ path('user_address', { 'id':user.id }) }}">Address</a>
-        <a href="{{ path('user_phone', { 'id':user.id }) }}">Phone</a>
-        <a href="{{ path('user_email', { 'id':user.id }) }}">Email</a>
-        <a href="{{ path('user_group', { 'id':user.id }) }}">Group</a>
+        <a href="{{ path('admin_user_edit', { 'id':user.id }) }}"><img src="{{ asset('images/ico-edit.gif') }}" class="ico" alt="Edit" /></a>
+        <a href="{{ path('admin_user_delete', { 'id':user.id }) }}"><img src="{{ asset('images/ico-delete.gif') }}" class="ico" alt="Delete" /></a>
+        <a href="{{ path('admin_user_subscription', { 'id':user.id }) }}">Subscription</a>
+        <a href="{{ path('admin_user_shop', { 'id':user.id }) }}">Shop as</a>
+        <a href="{{ path('admin_user_ban', { 'id':user.id }) }}">Ban</a>
+        <a href="{{ path('admin_user_address', { 'id':user.id }) }}">Address</a>
+        <a href="{{ path('admin_user_phone', { 'id':user.id }) }}">Phone</a>
+        <a href="{{ path('admin_user_email', { 'id':user.id }) }}">Email</a>
+        <a href="{{ path('admin_user_group', { 'id':user.id }) }}">Group</a>
         <a href="{{ path('admin_user_note', { 'id':user.id }) }}">Note</a>
       </td>
     </tr>

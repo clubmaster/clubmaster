@@ -3,8 +3,8 @@
 {% block body %}
 <h1>User</h1>
 
-<form method="post" action="{{ path('user_edit', {'id':user.id}) }}">
-{% include "ClubUserBundle:User:form.html.twig" with {'form': form} %}
+<form method="post" action="{{ path('admin_user_edit', {'id':user.id}) }}">
+{% include "ClubUserBundle:AdminUser:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}

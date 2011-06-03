@@ -8,18 +8,19 @@ _security_check:
 _security_logout:
     pattern:  /logout
 
-_user:
-  resource: "@ClubUserBundle/Controller/UserController.php"
+_auth:
+  resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
+
+_user:
+  resource: "@ClubUserBundle/Controller/AdminUserController.php"
+  type: annotation
+  prefix: /admin
 
 _user_note:
   resource: "@ClubUserBundle/Controller/UserNoteController.php"
   type: annotation
   prefix: /admin
-
-_auth:
-  resource: "@ClubUserBundle/Controller/AuthController.php"
-  type: annotation
 
 _group:
   resource: "@ClubUserBundle/Controller/GroupController.php"

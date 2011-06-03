@@ -55,7 +55,7 @@
 
                 </p>
 
-                <p class="f-right">User: <strong>{% render "ClubUserBundle:User:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                <p class="f-right">User: <strong>{% render "ClubUserBundle:AdminUser:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
 
         </div> <!--  /tray -->
 
@@ -102,7 +102,7 @@
                                 </form>
 
                                 <!-- Create a new user -->
-                                <p id="btn-create" class="box"><a href="{{ path('user_new') }}"><span>Create a new user</span></a></p>
+                                <p id="btn-create" class="box"><a href="{{ path('admin_user_new') }}"><span>Create a new user</span></a></p>
 
                         </div> <!-- /padding -->
 

@@ -1,8 +1,8 @@
+- Make a user interface
 - Put subscription or tickets in dynamic groups
 - Update basket
 - fix product variants
 - put images on links
-- Make a user interface
 - make sure all pages are html validated
 - make sure css are validated
 - use git more proper:
