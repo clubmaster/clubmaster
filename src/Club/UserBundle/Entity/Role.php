@@ -29,11 +29,7 @@ class Role implements RoleInterface
     private $role_name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User")
-     * @ORM\JoinTable(name="club_user_role",
-     *   joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
     private $users;
 

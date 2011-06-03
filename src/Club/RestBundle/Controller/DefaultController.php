@@ -20,9 +20,6 @@ class DefaultController extends Controller
 
     $user = new \Club\UserBundle\Entity\User();
     $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
-
-    $em->persist($user);
-
     $user->setPassword(1234);
     $em->persist($user);
     $em->flush();
@@ -45,10 +42,12 @@ class DefaultController extends Controller
 
     $em->persist($profile);
     $em->persist($address);
-    $em->flush();
 
     $user->setProfile($profile);
+    $role = $em->find('Club\UserBundle\Entity\Role',2);
+    $user->addRole($role);
     $em->persist($user);
+
     $em->flush();
 
     return ($r = $this->hasErrors($user)) ? $r : $this->renderJSon($user->toArray());
@@ -141,9 +140,9 @@ class DefaultController extends Controller
     $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
     $role = $em->find('Club\UserBundle\Entity\Role',$this->get('request')->get('role'));
 
-    $role->addUser($user);
+    $user->addRole($role);
 
-    $em->persist($role);
+    $em->persist($user);
     $em->flush();
 
     return $this->renderJSon($user->toArray());

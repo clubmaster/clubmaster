@@ -122,9 +122,11 @@ class User implements UserInterface
     private $language;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role", mappedBy="users", cascade={"persist"})
-     *
-     * @var Club\UserBundle\Entity\Role
+     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\JoinTable(name="club_user_role",
+     *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * )
      */
     private $roles;
 
@@ -507,9 +509,9 @@ class User implements UserInterface
       );
     }
 
-    public function addRole($Role)
+    public function addRole($role)
     {
-      $this->roles[] = $Role;
+      $this->roles[] = $role;
     }
 
     public function getUserRoles()
