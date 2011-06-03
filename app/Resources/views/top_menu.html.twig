@@ -7,5 +7,6 @@
   <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>Shop</span></a></li>
   <li {% if app.request.attributes.get('_route') == 'order' %} id="menu-active"{% endif %}><a href="{{ path('shop_order') }}"><span>Order</span></a></li>
   <li {% if app.request.attributes.get('_route') == 'ledger' %} id="menu-active"{% endif %}><a href="{{ path('account_ledger') }}"><span>Ledger</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'subscription' %} id="menu-active"{% endif %}><a href="{{ path('shop_subscription') }}"><span>Subscription</span></a></li>
 </ul>
 

@@ -18,6 +18,10 @@ _shop_order:
   resource: "@ClubShopBundle/Controller/OrderController.php"
   type: annotation
 
+_shop_subscription:
+  resource: "@ClubShopBundle/Controller/SubscriptionController.php"
+  type: annotation
+
 _admin_shop_product:
   resource: "@ClubShopBundle/Controller/AdminProductController.php"
   type: annotation
