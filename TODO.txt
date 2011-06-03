@@ -3,6 +3,7 @@
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
+- Only show categories in shops they apply
 - Update basket
 - fix product variants
 - put images on links
