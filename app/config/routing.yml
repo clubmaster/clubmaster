@@ -13,3 +13,6 @@ _mail:
 
 _rest:
   resource: "@ClubRestBundle/Resources/config/routing.yml"
+
+_account:
+  resource: "@ClubAccountBundle/Resources/config/routing.yml"

@@ -1,5 +1,4 @@
 - Make a user interface
-  - check transactions
   - check subscription status
 - Check products in order view
 - Put subscription or tickets in dynamic groups

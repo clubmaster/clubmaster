@@ -1,0 +1,3 @@
+_ledger:
+  resource: "@ClubAccountBundle/Controller/LedgerController.php"
+  type: annotation
