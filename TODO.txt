@@ -1,10 +1,15 @@
-- Create search fields for user admin page
+- event bundle
+  - export as ical/rss
+- team bundle
+- mailer bundle
+
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
 - Only show categories in shops they apply
 - Browse users from groups
 - Update basket
+- Create search fields for user admin page
 - fix product variants
 - put images on links
 - make sure all pages are html validated
@@ -17,16 +22,12 @@
 - cannot edit orders that you do not own
 
 == modules ==
-- mailer bundle
 - sms bundle
-- team bundle
 - booking bundle
 - logger bundle (log users activity)
   - cancel subscription
   - cancel tickets
   - change status on order
-- event bundle
-  - export as ical/rss
 - integration til e-conomic
 - forum bundle
 - weather bundle
