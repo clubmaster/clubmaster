@@ -1,3 +1,7 @@
+- Browse users from groups
+- Obey pauses
+- Obey auto renewal
+- Obey lifetime membership
 - Update basket
 - fix product variants
 - put images on links

@@ -49,13 +49,6 @@ class Product
     private $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Role")
-     *
-     * @var Club\UserBundle\Entity\Role
-     */
-    private $roles;
-
-    /**
      * @ORM\ManyToMany(targetEntity="VariantGroup")
      *
      * @var VariantGroup
@@ -89,7 +82,6 @@ class Product
 
     public function __construct()
     {
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -187,26 +179,6 @@ class Product
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-    /**
-     * Add roles
-     *
-     * @param Club\UserBundle\Entity\Role $roles
-     */
-    public function addRoles(\Club\UserBundle\Entity\Role $roles)
-    {
-        $this->roles[] = $roles;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return Doctrine\Common\Collections\Collection $roles
-     */
-    public function getRoles()
-    {
-        return $this->roles;
     }
 
     /**
