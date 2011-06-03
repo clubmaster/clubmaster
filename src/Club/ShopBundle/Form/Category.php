@@ -12,6 +12,7 @@ class Category extends AbstractType
     $builder->add('category_name');
     $builder->add('description');
     $builder->add('category');
+    $builder->add('location');
   }
 
   public function getDefaultOptions(array $options)

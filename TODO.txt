@@ -1,3 +1,4 @@
+- Put location on subscriptions
 - Browse users from groups
 - Obey pauses
 - Obey auto renewal

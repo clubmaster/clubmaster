@@ -56,6 +56,23 @@ class Subscription
     private $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Location")
+     * @ORM\JoinTable(name="club_shop_subscription_location",
+     *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     * )
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $locations;
+
+
+    public function __construct()
+    {
+      $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -158,5 +175,15 @@ class Subscription
     public function expire(\DateTime $date)
     {
       $this->setExpireDate($date);
+    }
+
+    public function setLocations($location)
+    {
+      $this->locations[] = $location;
+    }
+
+    public function getLocations()
+    {
+      return $this->locations;
     }
 }
