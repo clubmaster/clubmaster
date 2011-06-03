@@ -26,7 +26,6 @@ class Group extends AbstractType
       ),
       'required' => false
     ));
-    $builder->add('product');
     $builder->add('role');
   }
 
