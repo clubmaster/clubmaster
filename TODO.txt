@@ -13,6 +13,9 @@
   - add the club as a gitmodule
 - Fix shop as user
 
+== security ==
+- cannot edit orders that you do not own
+
 == modules ==
 - mailer bundle
 - team bundle
