@@ -332,4 +332,13 @@ class AdminUserController extends Controller
     $user = $this->get('security.context')->getToken()->getUser();
     return new Response($user->getProfile()->getName());
   }
+
+  public function getCurrentLocationAction()
+  {
+    $em = $this->get('doctrine.orm.entity_manager');
+    $location = $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id'));
+
+    return new Response($location->getLocationName());
+  }
+
 }

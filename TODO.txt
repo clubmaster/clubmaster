@@ -1,3 +1,5 @@
+- switch location
+- never show all users, make a search page
 - event bundle
   - export as ical/rss
 - team bundle
@@ -17,6 +19,7 @@
 - use git more proper:
   - add the club as a gitmodule
 - Fix shop as user
+- Shop coupons
 
 == security ==
 - cannot edit orders that you do not own
@@ -32,3 +35,5 @@
 - forum bundle
 - weather bundle
 - dashboard bundle
+- internal message bundle
+- export / import bundle
