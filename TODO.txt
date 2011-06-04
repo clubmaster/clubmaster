@@ -1,17 +1,23 @@
+- advanced search user page
 - switch location
 - never show all users, make a search page
-- event bundle
-  - export as ical/rss
-- team bundle
-- mailer bundle
+- fix forms
+- make it clear which shop (location) you visit
+- groups has to have subscription locations
+- create user
+- user allocate groups roles
+- add batch
+- add paginator
+- view product page
+- fix quickpay payment
+- dynamic text after placed order
+- add better note in ledger after payment: "Order #123"
 
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
 - Only show categories in shops they apply
-- Browse users from groups
 - Update basket
-- Create search fields for user admin page
 - fix product variants
 - put images on links
 - make sure all pages are html validated
@@ -25,6 +31,10 @@
 - cannot edit orders that you do not own
 
 == modules ==
+- event bundle
+  - export as ical/rss
+- team bundle
+- mailer bundle
 - sms bundle
 - booking bundle
 - logger bundle (log users activity)
