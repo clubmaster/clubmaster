@@ -1,5 +1,15 @@
+- user needs to be able to edit own information
+- fix forgot password
+- fix wrong password
+- fix sort order for:
+  - orders
+  - subscription expire dates
+  - ledger
+  - users
+- fix icons for subscriptions
 - advanced search user page
 - switch location
+- fix headers
 - never show all users, make a search page
 - fix forms
 - make it clear which shop (location) you visit
