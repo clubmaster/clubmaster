@@ -24,6 +24,7 @@ class AuthController extends Controller
 
     $form = $this->get('form.factory')->create(new LoginForm());
     return array(
+      'error' => $error,
       'form' => $form
     );
   }

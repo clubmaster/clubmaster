@@ -25,7 +25,9 @@
                 <p class="nom t-center"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
 
                 <!-- Messages -->
-                <p class="msg error">The password you have entered is incorrect. <a href="#">Forgot password?</a></p>
+                {% if error %}
+                <p class="msg error">{{ error.message }}</p>
+                {% endif %}
 
                 <p class="msg info">Enter your username and password.</p>
 

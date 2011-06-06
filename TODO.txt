@@ -1,5 +1,4 @@
 - fix forgot password
-- fix wrong password
 - fix sort order for:
   - orders
   - subscription expire dates
