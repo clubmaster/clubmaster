@@ -10,40 +10,18 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ProductController extends Controller
 {
   /**
-   * @Route("/shop/product/{category}", name="shop_product")
+   * @Route("/shop/product/{id}", name="shop_product")
    * @Template()
    */
-  public function indexAction($category)
+  public function indexAction($id)
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $products = $em->getRepository('Club\ShopBundle\Entity\Product')->findByCategories(array($category));
+    $product = $em->find('Club\ShopBundle\Entity\Product',$id);
 
     return array(
-      'products' => $products
+      'product' => $product
     );
-  }
-
-  /**
-   * @Route("/shop/product/delete/{id}", name="shop_product_delete")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-    $category = $em->find('Club\ShopBundle\Entity\Category',$id);
-
-    $em->remove($category);
-    $em->flush();
-
-    return new RedirectResponse($this->generateUrl('shop_category'));
-  }
-
-  /**
-   * @Route("/shop/product/edit/{id}", name="shop_product_edit")
-   */
-  public function editAction($id)
-  {
-    return array();
   }
 
   /**

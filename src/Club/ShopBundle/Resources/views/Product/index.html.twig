@@ -2,29 +2,13 @@
 
 {% block body %}
 
-<table>
-  <tr>
-    <th>Product Id</th>
-    <th>Product name</th>
-    <th>Price</th>
-    <th>Actions</th>
-  </tr>
-{% for product in products %}
-  <tr>
-    <td>{{ product.id }}</td>
-    <td>{{ product.productName }}</td>
-    <td>{{ product.price }}</td>
-    <td><ul>
-      <li><a href="{{ path("shop_product_edit",{"id":product.id}) }}">Edit</li>
-      <li><a href="{{ path("shop_product_delete",{"id":product.id}) }}">Delete</li>
-      <li><a href="{{ path("shop_product_cart",{"id":product.id}) }}">Put in cart</li>
-    </ul></td>
-  </tr>
-{% else %}
-  <tr>
-    <td colspan="4">There is no such products.</td>
-  </tr>
-{% endfor %}
-</table>
+<h1>Product</h1>
+<h2>{{ product.productName }}</h2>
+
+<p>
+Product Name: {{ product.productName }}<br />
+Price: {{ product.price }}<br />
+</p>
+<p><a href="{{ path("shop_product_cart",{"id":product.id}) }}">Add to cart</a></p>
 
 {% endblock %}

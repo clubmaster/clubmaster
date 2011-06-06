@@ -6,7 +6,6 @@
 - groups has to have subscription locations
 - user allocate groups roles
 - add paginator
-- view product page
 - never show all users, make a search page
 
 - fix forgot password
