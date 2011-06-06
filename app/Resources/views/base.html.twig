@@ -51,11 +51,11 @@
                           <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('images/switcher-2col.gif') }}" alt="2 Columns" /></a>
                         </span>
 
-                        Location: <strong>{% render "ClubUserBundle:AdminUser:getCurrentLocation" %}</strong>
+                        Location: <strong>{% render "ClubUserBundle:Misc:getCurrentLocation" %}</strong>
 
                 </p>
 
-                <p class="f-right">User: <strong>{% render "ClubUserBundle:AdminUser:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                <p class="f-right">User: <strong>{% render "ClubUserBundle:Misc:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
 
         </div> <!--  /tray -->
 
