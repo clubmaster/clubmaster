@@ -1,25 +1,26 @@
-- fix forgot password
+- never show all users, make a search page
+- make it clear which shop (location) you visit
+- cannot shop in multiple shops at the time
 - fix sort order for:
   - orders
   - subscription expire dates
   - ledger
   - users
+- groups has to have subscription locations
+- user allocate groups roles
+- add paginator
+- dynamic text after placed order
+- view product page
+- add better note in ledger after payment: "Order #123"
+
+- fix forgot password
 - fix icons for subscriptions
 - advanced search user page
 - switch location
 - fix headers
-- never show all users, make a search page
 - fix forms
-- make it clear which shop (location) you visit
-- groups has to have subscription locations
-- create user
-- user allocate groups roles
 - add batch
-- add paginator
-- view product page
 - fix quickpay payment
-- dynamic text after placed order
-- add better note in ledger after payment: "Order #123"
 
 - Obey pauses
 - Obey auto renewal
