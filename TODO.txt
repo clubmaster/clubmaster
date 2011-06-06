@@ -1,3 +1,5 @@
+- fix forgot password
+- fix events from Beta3
 - fix sort order for:
   - orders
   - subscription expire dates
@@ -8,7 +10,6 @@
 - add paginator
 - never show all users, make a search page
 
-- fix forgot password
 - fix icons for subscriptions
 - advanced search user page
 - switch location

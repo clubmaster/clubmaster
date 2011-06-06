@@ -21,4 +21,15 @@ class Profile extends EntityRepository
 
     return $address;
   }
+
+  public function getDefaultEmail(\Club\UserBundle\Entity\Profile $profile)
+  {
+    $email = $this->_em->getRepository('\Club\UserBundle\Entity\ProfileEmail')->findOneBy(array(
+      'profile' => $profile->getId(),
+      'is_default' => 1
+    ));
+
+    return $email;
+  }
+
 }

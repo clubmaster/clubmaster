@@ -25,7 +25,7 @@
                 <p class="nom t-center"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
 
                 <!-- Messages -->
-                {% if error %}
+                {% if error is defined %}
                 <p class="msg error">{{ error.message }}</p>
                 {% endif %}
 
@@ -45,16 +45,8 @@
                         <tr>
                                 <td></td>
                                 <td>
-                                        <span class="f-right"><a href="javascript:toggle('sendpass');">Forgot password?</a></span>
+                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">Forgot password?</a></span>
                                         <span class="f-left low"><input type="checkbox" name="" value="" id="login-remember" /> <label for="login-remember">Remember me</label></span>
-                                </td>
-                        </tr>
-                        <!-- Show/Hide -->
-                        <tr id="sendpass" style="display:none;">
-                                <td><label for="login-sendpass"><strong>E-mail:</strong></label></td>
-                                <td>
-                                        <input type="text" size="35" name="" class="input-text f-left" id="login-sendpass" />
-                                        <span class="f-right"><input type="submit" value="Send" /></span>
                                 </td>
                         </tr>
                         <tr>
