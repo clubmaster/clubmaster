@@ -6,7 +6,6 @@
 - groups has to have subscription locations
 - user allocate groups roles
 - add paginator
-- dynamic text after placed order
 - view product page
 - add better note in ledger after payment: "Order #123"
 - never show all users, make a search page

@@ -65,10 +65,10 @@ INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
 INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
 
-INSERT INTO club_shop_payment_method (payment_method_name) VALUES
-  ('Check / Money order'),
-  ('Credit card'),
-  ('Wire transfer');
+INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES
+  ('Check / Money order','<p>Tillykke din order er blevet gennemført</p>'),
+  ('Credit card','<p>Tillykke din order er blevet gennemført</p>'),
+  ('Wire transfer','<p>Tillykke din order er blevet gennemført</p>');
 
 INSERT INTO club_shop_category (id,category_id,category_name,description,location_id) VALUES
   (1,null,'Abonnementer','Abonnementer',1),

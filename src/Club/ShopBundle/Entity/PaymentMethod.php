@@ -27,6 +27,14 @@ class PaymentMethod
      */
     private $payment_method_name;
 
+    /**
+     * @ORM\Column(type="text")
+     *
+     * @var string $page
+     */
+    private $page;
+
+
     public function __toString()
     {
       return $this->getPaymentMethodName();
@@ -65,5 +73,15 @@ class PaymentMethod
     public function getPaymentMethodName()
     {
         return $this->payment_method_name;
+    }
+
+    public function setPage($page)
+    {
+      $this->page = $page;
+    }
+
+    public function getPage()
+    {
+      return $this->page;
     }
 }

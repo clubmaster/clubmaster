@@ -3,5 +3,6 @@
 {% block body %}
 <h1>Checkout</h1>
 
-<p>You order is now complete.</p>
+{{ order.paymentmethod.page|raw }}
+
 {% endblock %}

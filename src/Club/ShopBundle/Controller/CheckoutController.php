@@ -107,16 +107,23 @@ class CheckoutController extends Controller
       $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
     }
 
-    return new RedirectResponse($this->generateUrl('shop_checkout_confirm'));
+    return new RedirectResponse($this->generateUrl('shop_checkout_confirm',array(
+      'id' => $this->get('order')->getOrder()->getId()
+    )));
   }
 
   /**
-   * @Route("/shop/checkout/confirm", name="shop_checkout_confirm")
+   * @Route("/shop/checkout/confirm/{id}", name="shop_checkout_confirm")
    * @Template()
    */
-  public function confirmAction()
+  public function confirmAction($id)
   {
-    return array();
+    $em = $this->get('doctrine.orm.entity_manager');
+    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+
+    return array(
+      'order' => $order
+    );
   }
 
   /**
