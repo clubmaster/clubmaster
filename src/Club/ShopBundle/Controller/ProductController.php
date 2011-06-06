@@ -52,9 +52,13 @@ class ProductController extends Controller
    */
   public function cartAction($id)
   {
-    $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
+    try {
+      $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
+      $this->get('cart')->addToCart($product);
 
-    $this->get('cart')->addToCart($product);
+    } catch (\Exception $e) {
+      $this->get('session')->setFlash('notice',$e->getMessage());
+    }
 
     return new RedirectResponse($this->generateUrl('shop_checkout'));
   }

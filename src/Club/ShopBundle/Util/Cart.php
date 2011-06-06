@@ -29,6 +29,7 @@ class Cart
         $this->cart->setCurrencyValue($location->getCurrency()->getValue());
         $this->cart->setPrice(0);
         $this->cart->setVatPrice(0);
+        $this->cart->setLocation($location);
 
         $this->setCustomerAddress($this->user);
         $this->setShippingAddress($this->user);
@@ -39,8 +40,22 @@ class Cart
     }
   }
 
+  public function checkLocation($product)
+  {
+    $trigger = 0;
+    foreach ($product->getCategories() as $category) {
+      if ($this->cart->getLocation()->getId() == $category->getLocation()->getId())
+        $trigger = 1;
+    }
+
+    if (!$trigger)
+      throw new \Exception('This product does not exists in this shop');
+  }
+
   public function addToCart($product)
   {
+    $this->checkLocation($product);
+
     $trigger = 0;
     // check if its already in the cart
     foreach ($this->cart->getCartProducts() as $prod) {

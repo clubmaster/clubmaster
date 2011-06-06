@@ -1,4 +1,3 @@
-- cannot shop in multiple shops at the time
 - fix sort order for:
   - orders
   - subscription expire dates

@@ -58,6 +58,14 @@ class Cart
     protected $shipping;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     * @Assert\NotBlank()
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    protected $location;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
      * @Assert\Notblank()
      * @Assert\NotBlank(groups={"PaymentMethod"})
@@ -212,6 +220,16 @@ class Cart
     public function getShipping()
     {
         return $this->shipping;
+    }
+
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
     }
 
     /**

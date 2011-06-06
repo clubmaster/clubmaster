@@ -17,3 +17,5 @@ sudo chown www-data.www-data -R app/cache app/logs
 
 sh curl/add_user.sh
 sh curl/add_user_role.sh
+
+sudo chmod 777 app/logs app/cache
