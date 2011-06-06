@@ -1,4 +1,3 @@
-- user needs to be able to edit own information
 - fix forgot password
 - fix wrong password
 - fix sort order for:
