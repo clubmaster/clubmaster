@@ -7,7 +7,6 @@
 - user allocate groups roles
 - add paginator
 - view product page
-- add better note in ledger after payment: "Order #123"
 - never show all users, make a search page
 
 - fix forgot password

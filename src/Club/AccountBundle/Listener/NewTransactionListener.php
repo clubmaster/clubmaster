@@ -19,7 +19,7 @@ class NewTransactionListener
 
     $ledger = new \Club\AccountBundle\Entity\Ledger();
     $ledger->setValue($order->getVatPrice());
-    $ledger->setNote($order->getId());
+    $ledger->setNote('Order #'.$order->getId());
     $ledger->setAccount($account);
     $ledger->setUser($order->getUser());
 
