@@ -70,15 +70,15 @@ INSERT INTO club_shop_payment_method (payment_method_name) VALUES
   ('Credit card'),
   ('Wire transfer');
 
-INSERT INTO club_shop_category (id,category_id,category_name,description) VALUES
-  (1,null,'Abonnementer','Abonnementer'),
-  (2,null,'Klippekort','Klippekort'),
-  (3,null,'Mad','Mad'),
-  (4,null,'Drikke','Drikke'),
-  (5,null,'Sportsudstyr','Sportsudstyr'),
-  (6,null,'Andet','Andet'),
-  (7,5,'Tasker','Tasker'),
-  (8,5,'Ketcher','Ketcher');
+INSERT INTO club_shop_category (id,category_id,category_name,description,location_id) VALUES
+  (1,null,'Abonnementer','Abonnementer',1),
+  (2,null,'Klippekort','Klippekort',1),
+  (3,null,'Mad','Mad',1),
+  (4,null,'Drikke','Drikke',1),
+  (5,null,'Sportsudstyr','Sportsudstyr',1),
+  (6,null,'Andet','Andet',1),
+  (7,5,'Tasker','Tasker',1),
+  (8,5,'Ketcher','Ketcher',1);
 
 INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('1. md, subscription','1. md, subscription',100,2),
