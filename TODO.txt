@@ -1,4 +1,3 @@
-- fix forgot password
 - fix events from Beta3
 - fix sort order for:
   - orders

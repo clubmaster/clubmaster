@@ -20,12 +20,17 @@ class PasswordResetListener
     $user = $event->getUser();
     $email = $this->em->getRepository('\Club\UserBundle\Entity\Profile')->getDefaultEmail($user->getProfile());
 
-    $message = \Swift_Message::newInstance()
-      ->setSubject('Reset Password')
-      ->setFrom('noreply@clubmaster.dk')
-      ->setTo($email->getEmailAddress())
-      ->setBody($this->templating->render('ClubMailBundle:Default:password_reset.html.twig'));
+    if (count($email) > 0) {
+      $message = \Swift_Message::newInstance()
+        ->setSubject('Reset Password')
+        ->setFrom('noreply@clubmaster.dk')
+        ->setTo($email->getEmailAddress())
+        ->setBody($this->templating->render('ClubMailBundle:Default:password_reset.html.twig',array(
+          'user' => $user,
+          'forgot' => $event->getForgotPassword()
+        )));
 
-    $this->mailer->send($message);
+      $this->mailer->send($message);
+    }
   }
 }

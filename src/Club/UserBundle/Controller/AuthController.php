@@ -19,7 +19,7 @@ class AuthController extends Controller
   }
 
   /**
-   * @Route("/forgot", name="auth_forgot")
+   * @Route("/auth/forgot", name="auth_forgot")
    * @Template()
    */
   public function forgotAction()
@@ -50,7 +50,12 @@ class AuthController extends Controller
       }
 
       if ($user instanceOf \Club\UserBundle\Entity\User) {
-        $event = new \Club\UserBundle\Event\FilterUserEvent($user);
+        $forgot = new \Club\UserBundle\Entity\ForgotPassword();
+        $forgot->setUser($user);
+        $em->persist($forgot);
+        $em->flush();
+
+        $event = new \Club\UserBundle\Event\FilterUserEvent($user, $forgot);
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onPasswordReset, $event);
       }
 
@@ -60,5 +65,44 @@ class AuthController extends Controller
     return array(
       'form' => $form->createView()
     );
+  }
+
+  /**
+   * @Route("/auth/reset/{hash}", name="auth_reset")
+   * @Template()
+   */
+  public function resetPasswordAction($hash)
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+    $forgot = $em->getRepository('\Club\UserBundle\Entity\ForgotPassword')->findOneByHash($hash);
+
+    if ($forgot instanceOf \Club\UserBundle\Entity\ForgotPassword) {
+      if ($this->get('request')->getMethod() == 'POST') {
+        $user = $forgot->getUser();
+      } else {
+        $user = new \Club\UserBundle\Entity\User();
+      }
+      $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ForgotPassword(), $user);
+
+      if ($this->get('request')->getMethod() == 'POST') {
+        $form->bindRequest($this->get('request'));
+
+        if ($form->isValid()) {
+          $forgot->setExpireDate(new \DateTime());
+
+          $em->persist($user);
+          $em->persist($forgot);
+          $em->flush();
+
+          $this->get('session')->set('notice','Your password has been set.');
+          return new RedirectResponse($this->generateUrl('homepage'));
+        }
+      }
+
+      return array(
+        'form' => $form->createView(),
+        'forgot' => $forgot
+      );
+    }
   }
 }
