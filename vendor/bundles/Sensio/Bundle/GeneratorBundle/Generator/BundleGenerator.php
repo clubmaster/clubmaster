@@ -31,18 +31,28 @@ class BundleGenerator extends Generator
         $this->skeletonDir = $skeletonDir;
     }
 
-    public function generate($namespace, $bundle, $dir, $format)
+    public function generate($namespace, $bundle, $dir, $format, $structure)
     {
         $dir .= strtr($namespace, '\\', '/');
         if (file_exists($dir)) {
-            throw new \RuntimeException(sprintf('The directory "%s" is not empty.', $dir));
+            throw new \RuntimeException(sprintf('Unable to generate the bundle as the target directory "%s" is not empty.', realpath($dir)));
         }
 
-        $this->filesystem->mirror($this->skeletonDir.'/bundle/generic', $dir);
+        $this->filesystem->mirror($this->skeletonDir.'/generic', $dir);
         if ('annotation' != $format) {
-            $this->filesystem->mirror($this->skeletonDir.'/bundle/'.$format, $dir);
+            $this->filesystem->mirror($this->skeletonDir.'/'.$format, $dir);
         }
         rename($dir.'/Bundle.php', $dir.'/'.$bundle.'.php');
+
+        if ($structure) {
+            $this->filesystem->mkdir($dir.'/Resources/doc');
+            $this->filesystem->touch($dir.'/Resources/doc/index.rst');
+            $this->filesystem->mkdir($dir.'/Resources/translations');
+            $this->filesystem->copy($this->skeletonDir.'/structure/messages.fr.xliff', $dir.'/Resources/translations/messages.fr.xliff');
+            $this->filesystem->mkdir($dir.'/Resources/public/css');
+            $this->filesystem->mkdir($dir.'/Resources/public/images');
+            $this->filesystem->mkdir($dir.'/Resources/public/js');
+        }
 
         $this->renderDir($dir, array(
             'namespace' => $namespace,

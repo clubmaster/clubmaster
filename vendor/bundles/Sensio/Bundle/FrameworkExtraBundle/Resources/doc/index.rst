@@ -1,16 +1,14 @@
-FrameworkExtraBundle
-====================
+SensioFrameworkExtraBundle
+==========================
 
 The default Symfony2 ``FrameworkBundle`` implements a basic but robust and
-flexible MVC framework. ``FrameworkExtraBundle`` extends it to add sweet
-conventions and annotations. It allows for more concise controllers. *Be
-warned* that this bundle is an experiment and that things will change/break
-over time.
+flexible MVC framework. ``SensioFrameworkExtraBundle`` extends it to add sweet
+conventions and annotations. It allows for more concise controllers.
 
 Installation
 ------------
 
-`Download`_ the bundle and put it under the ``Bundle\\Sensio\\`` namespace.
+`Download`_ the bundle and put it under the ``Sensio\\Bundle\\`` namespace.
 Then, like for any other bundle, include it in your Kernel class::
 
     public function registerBundles()
@@ -80,9 +78,9 @@ settings:
             'cache'   => array('converters' => false),
         ));
 
-.. _Download: http://github.com/fabpot/FrameworkExtraBundle
+.. _Download: http://github.com/sensio/SensioFrameworkExtraBundle
 
-Annotations For Controllers
+Annotations for Controllers
 ---------------------------
 
 Annotations are a great way to easily configure your controllers, from the
@@ -98,6 +96,7 @@ advantages over the classic Symfony2 configuration methods:
   the Model).
 
 .. tip::
+
    If you use view classes, annotations are a great way to avoid creating
    view classes for simple and common use cases.
 
@@ -136,7 +135,7 @@ This example shows all the available annotations in action::
         }
 
         /**
-         * @Route("/:id")
+         * @Route("/{id}")
          * @ParamConverter("post", class="SensioBlogBundle:Post")
          * @Template("SensioBlogBundle:Annot:post", vars={"post"})
          * @Cache(smaxage="15")
@@ -150,7 +149,7 @@ As the ``showAction`` method follows some conventions, you can omit some
 annotations::
 
     /**
-     * @Route("/:id")
+     * @Route("/{id}")
      * @Cache(smaxage="15")
      */
     public function showAction(Post $post)

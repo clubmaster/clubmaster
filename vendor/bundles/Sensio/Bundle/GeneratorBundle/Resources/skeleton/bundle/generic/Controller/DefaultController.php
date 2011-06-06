@@ -13,17 +13,17 @@ class DefaultController extends Controller
 {
     {% if 'annotation' == format -%}
     /**
-     * @Route("/")
-     * @Template
+     * @Route("/{name}")
+     * @Template()
      */
     {%- endif %}
 
-    public function indexAction()
+    public function indexAction($name)
     {
         {% if 'annotation' != format -%}
-        return $this->render('{{ bundle }}:Default:index.html.twig');
+        return $this->render('{{ bundle }}:Default:index.html.twig', array('name' => $name));
         {%- else -%}
-        return array();
+        return array('name' => $name);
         {%- endif %}
 
     }

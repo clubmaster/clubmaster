@@ -1698,14 +1698,12 @@ class Request
     }
     public function getHttpHost()
     {
-        $host   = $this->getHost();
         $scheme = $this->getScheme();
-        $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
         if (('http' == $scheme && $port == 80) || ('https' == $scheme && $port == 443)) {
-            return $name;
+            return $this->getHost();
         }
-        return $name.':'.$port;
+        return $this->getHost().':'.$port;
     }
     public function getRequestUri()
     {
@@ -2536,8 +2534,8 @@ class UniversalClassLoader
 {
     private $namespaces = array();
     private $prefixes = array();
-    private $namespaceFallback = array();
-    private $prefixFallback = array();
+    private $namespaceFallbacks = array();
+    private $prefixFallbacks = array();
     public function getNamespaces()
     {
         return $this->namespaces;
@@ -2546,21 +2544,21 @@ class UniversalClassLoader
     {
         return $this->prefixes;
     }
-    public function getNamespaceFallback()
+    public function getNamespaceFallbacks()
     {
-        return $this->namespaceFallback;
+        return $this->namespaceFallbacks;
     }
-    public function getPrefixFallback()
+    public function getPrefixFallbacks()
     {
-        return $this->prefixFallback;
+        return $this->prefixFallbacks;
     }
-    public function registerNamespaceFallback($dirs)
+    public function registerNamespaceFallbacks(array $dirs)
     {
-        $this->namespaceFallback = (array) $dirs;
+        $this->namespaceFallbacks = $dirs;
     }
-    public function registerPrefixFallback($dirs)
+    public function registerPrefixFallbacks(array $dirs)
     {
-        $this->prefixFallback = (array) $dirs;
+        $this->prefixFallbacks = $dirs;
     }
     public function registerNamespaces(array $namespaces)
     {
@@ -2610,7 +2608,7 @@ class UniversalClassLoader
                     }
                 }
             }
-            foreach ($this->namespaceFallback as $dir) {
+            foreach ($this->namespaceFallbacks as $dir) {
                 $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     return $file;
@@ -2627,7 +2625,7 @@ class UniversalClassLoader
                     }
                 }
             }
-            foreach ($this->prefixFallback as $dir) {
+            foreach ($this->prefixFallbacks as $dir) {
                 $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     return $file;

@@ -29,45 +29,10 @@ class Manipulator
      * @param array   $tokens An array of PHP tokens
      * @param integer $line   The start line of the code
      */
-    public function setCode(array $tokens, $line = 0)
+    protected function setCode(array $tokens, $line = 0)
     {
         $this->tokens = $tokens;
         $this->line = $line;
-    }
-
-    /**
-     * Parses an array.
-     */
-    public function parseArray($token)
-    {
-        if (T_ARRAY !== $token[0]) {
-            throw new \LogicException('An array must starts with "array".');
-        }
-
-        if ('(' !== $this->value($this->next())) {
-            throw new \LogicException('An array must starts with "array(".');
-        }
-
-        $array = array();
-        while ($token = $this->next()) {
-            // look for )
-            if (')' !== $this->value($token)) {
-                continue;
-            }
-
-            // ;
-            $this->next();
-        }
-
-        return $array;
-    }
-
-    /**
-     * Parses a hash.
-     */
-    public function parseHash()
-    {
-        
     }
 
     /**
@@ -75,7 +40,7 @@ class Manipulator
      *
      * @param mixed A PHP token
      */
-    public function next()
+    protected function next()
     {
         while ($token = array_shift($this->tokens)) {
             $this->line += substr_count($this->value($token), "\n");
@@ -93,7 +58,7 @@ class Manipulator
      *
      * @param mixed A PHP token
      */
-    public function peek($nb = 1)
+    protected function peek($nb = 1)
     {
         $i = 0;
         $tokens = $this->tokens;
@@ -114,7 +79,7 @@ class Manipulator
      *
      * @param string The token value
      */
-    public function value($token)
+    protected function value($token)
     {
         return is_array($token) ? $token[1] : $token;
     }

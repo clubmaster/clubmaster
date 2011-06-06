@@ -28,7 +28,7 @@ interface ContainerInterface
 namespace Symfony\Component\DependencyInjection
 {
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use Symfony\Component\DependencyInjection\Exception\CircularReferenceException;
+use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
@@ -102,7 +102,7 @@ class Container implements ContainerInterface
             return $this->services[$id];
         }
         if (isset($this->loading[$id])) {
-            throw new CircularReferenceException($id, array_keys($this->loading));
+            throw new ServiceCircularReferenceException($id, array_keys($this->loading));
         }
         if (method_exists($this, $method = 'get'.strtr($id, array('_' => '', '.' => '_')).'Service')) {
             $this->loading[$id] = true;
@@ -153,13 +153,6 @@ class Container implements ContainerInterface
             $this->scopeStacks[$name]->push($services);
         }
         $this->scopedServices[$name] = array();
-    }
-    public function getCurrentScopedStack($name)
-    {
-        if (!isset($this->scopeStacks[$name]) || 0 === $this->scopeStacks[$name]->count()) {
-            return null;
-        }
-        return $this->scopeStacks[$name]->top();
     }
     public function leaveScope($name)
     {
@@ -431,7 +424,7 @@ class HttpKernel implements HttpKernelInterface
     private function handleRaw(Request $request, $type = self::MASTER_REQUEST)
     {
                 $event = new GetResponseEvent($this, $request, $type);
-        $this->dispatcher->dispatch(Events::onCoreRequest, $event);
+        $this->dispatcher->dispatch(CoreEvents::REQUEST, $event);
         if ($event->hasResponse()) {
             return $this->filterResponse($event->getResponse(), $request, $type);
         }
@@ -439,13 +432,13 @@ class HttpKernel implements HttpKernelInterface
             throw new NotFoundHttpException(sprintf('Unable to find the controller for path "%s". Maybe you forgot to add the matching route in your routing configuration?', $request->getPathInfo()));
         }
         $event = new FilterControllerEvent($this, $controller, $request, $type);
-        $this->dispatcher->dispatch(Events::onCoreController, $event);
+        $this->dispatcher->dispatch(CoreEvents::CONTROLLER, $event);
         $controller = $event->getController();
                 $arguments = $this->resolver->getArguments($request, $controller);
                 $response = call_user_func_array($controller, $arguments);
                 if (!$response instanceof Response) {
             $event = new GetResponseForControllerResultEvent($this, $request, $type, $response);
-            $this->dispatcher->dispatch(Events::onCoreView, $event);
+            $this->dispatcher->dispatch(CoreEvents::VIEW, $event);
             if ($event->hasResponse()) {
                 $response = $event->getResponse();
             }
@@ -462,13 +455,13 @@ class HttpKernel implements HttpKernelInterface
     private function filterResponse(Response $response, Request $request, $type)
     {
         $event = new FilterResponseEvent($this, $request, $type, $response);
-        $this->dispatcher->dispatch(Events::onCoreResponse, $event);
+        $this->dispatcher->dispatch(CoreEvents::RESPONSE, $event);
         return $event->getResponse();
     }
     private function handleException(\Exception $e, $request, $type)
     {
         $event = new GetResponseForExceptionEvent($this, $request, $type, $e);
-        $this->dispatcher->dispatch(Events::onCoreException, $event);
+        $this->dispatcher->dispatch(CoreEvents::EXCEPTION, $event);
         if (!$event->hasResponse()) {
             throw $e;
         }
@@ -1519,14 +1512,12 @@ class Request
     }
     public function getHttpHost()
     {
-        $host   = $this->getHost();
         $scheme = $this->getScheme();
-        $name   = $this->server->get('SERVER_NAME');
         $port   = $this->getPort();
         if (('http' == $scheme && $port == 80) || ('https' == $scheme && $port == 443)) {
-            return $name;
+            return $this->getHost();
         }
-        return $name.':'.$port;
+        return $this->getHost().':'.$port;
     }
     public function getRequestUri()
     {
@@ -2017,8 +2008,8 @@ class UniversalClassLoader
 {
     private $namespaces = array();
     private $prefixes = array();
-    private $namespaceFallback = array();
-    private $prefixFallback = array();
+    private $namespaceFallbacks = array();
+    private $prefixFallbacks = array();
     public function getNamespaces()
     {
         return $this->namespaces;
@@ -2027,21 +2018,21 @@ class UniversalClassLoader
     {
         return $this->prefixes;
     }
-    public function getNamespaceFallback()
+    public function getNamespaceFallbacks()
     {
-        return $this->namespaceFallback;
+        return $this->namespaceFallbacks;
     }
-    public function getPrefixFallback()
+    public function getPrefixFallbacks()
     {
-        return $this->prefixFallback;
+        return $this->prefixFallbacks;
     }
-    public function registerNamespaceFallback($dirs)
+    public function registerNamespaceFallbacks(array $dirs)
     {
-        $this->namespaceFallback = (array) $dirs;
+        $this->namespaceFallbacks = $dirs;
     }
-    public function registerPrefixFallback($dirs)
+    public function registerPrefixFallbacks(array $dirs)
     {
-        $this->prefixFallback = (array) $dirs;
+        $this->prefixFallbacks = $dirs;
     }
     public function registerNamespaces(array $namespaces)
     {
@@ -2091,7 +2082,7 @@ class UniversalClassLoader
                     }
                 }
             }
-            foreach ($this->namespaceFallback as $dir) {
+            foreach ($this->namespaceFallbacks as $dir) {
                 $file = $dir.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     return $file;
@@ -2108,7 +2099,7 @@ class UniversalClassLoader
                     }
                 }
             }
-            foreach ($this->prefixFallback as $dir) {
+            foreach ($this->prefixFallbacks as $dir) {
                 $file = $dir.DIRECTORY_SEPARATOR.str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
                 if (file_exists($file)) {
                     return $file;

@@ -221,7 +221,7 @@ class EntityChoiceList extends ArrayChoiceList
      * Returns the entity for the given key
      *
      * If the underlying entities have composite identifiers, the choices
-     * are intialized. The key is expected to be the index in the choices
+     * are initialized. The key is expected to be the index in the choices
      * array in this case.
      *
      * If they have single identifiers, they are either fetched from the
@@ -264,7 +264,7 @@ class EntityChoiceList extends ArrayChoiceList
      * underlying class
      *
      * @param  string $property     The name of the property
-     * @return \ReflectionProperty  The reflection instsance
+     * @return \ReflectionProperty  The reflection instance
      */
     private function getReflProperty($property)
     {

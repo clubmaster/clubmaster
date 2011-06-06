@@ -13,30 +13,20 @@ $loader->registerNamespaces(array(
     'Monolog'          => __DIR__.'/../vendor/monolog/src',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../vendor/metadata/src',
-    'Club'             => __DIR__.'/../src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
     'Twig_'            => __DIR__.'/../vendor/twig/lib',
 ));
-$loader->register();
-$loader->registerPrefixFallback(array(
+$loader->registerPrefixFallbacks(array(
     __DIR__.'/../vendor/symfony/src/Symfony/Component/Locale/Resources/stubs',
 ));
+$loader->registerNamespaceFallbacks(array(
+    __DIR__.'/../src',
+));
+$loader->register();
 
 // Swiftmailer needs a special autoloader to allow
 // the lazy loading of the init file (which is expensive)
-spl_autoload_register(function ($class) {
-    static $initialized = false;
-
-    $src = __DIR__.'/../vendor/swiftmailer/lib';
-
-    if (0 === strpos($class, 'Swift_') && file_exists($path = $src.'/classes/'.str_replace('_', '/', $class).'.php')) {
-        if (!$initialized) {
-            $initialized = true;
-            require $src.'/swift_init.php';
-        }
-
-        require $path;
-    }
-});
+require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
+Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
