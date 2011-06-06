@@ -1,5 +1,3 @@
-- never show all users, make a search page
-- make it clear which shop (location) you visit
 - cannot shop in multiple shops at the time
 - fix sort order for:
   - orders
@@ -12,6 +10,7 @@
 - dynamic text after placed order
 - view product page
 - add better note in ledger after payment: "Order #123"
+- never show all users, make a search page
 
 - fix forgot password
 - fix icons for subscriptions

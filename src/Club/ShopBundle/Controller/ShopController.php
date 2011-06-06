@@ -20,6 +20,7 @@ class ShopController extends Controller
     $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
 
     return array(
+      'location' => $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id')),
       'categories' => $categories
     );
   }
@@ -38,6 +39,7 @@ class ShopController extends Controller
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     return array(
+      'location' => $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id')),
       'categories' => $categories,
       'category' => $category
     );
