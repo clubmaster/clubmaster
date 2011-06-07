@@ -1,18 +1,16 @@
+- advanced search user page
+- add paginator
+- switch location
+- Only show categories in shops they apply
+
 - groups has to have subscription locations
 - user allocate groups roles
-- add paginator
-
 - fix icons for subscriptions
-- advanced search user page
-- switch location
-- fix forms
 - add batch
 - fix quickpay payment
-
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
-- Only show categories in shops they apply
 - Update basket
 - fix product variants
 - put images on links

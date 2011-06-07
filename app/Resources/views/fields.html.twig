@@ -1,0 +1,42 @@
+{% extends 'TwigBundle:Form:div_layout.html.twig' %}
+
+{% block field_row %}
+{% spaceless %}
+    <p>
+        {{ form_label(form) }}<br />
+        {{ form_widget(form, {'attr': {'class':'input-text err' }}) }}
+        {{ form_errors(form) }}<br />
+    </p>
+{% endspaceless %}
+{% endblock field_row %}
+
+{% block field_label %}
+{% spaceless %}
+    <label class="req" for="{{ id }}"{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ label|trans }}:</label>
+{% endspaceless %}
+{% endblock field_label %}
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul>
+        {% for error in errors %}
+            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+
+{% block textarea_widget %}
+{% spaceless %}
+    <textarea cols="70" rows="10" {{ block('attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block field_widget %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input size="40" type="{{ type }}" {{ block('attributes') }} value="{{ value }}" />
+{% endspaceless %}
+{% endblock field_widget %}
