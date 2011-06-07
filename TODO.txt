@@ -1,9 +1,4 @@
 - fix events from Beta3
-- fix sort order for:
-  - orders
-  - subscription expire dates
-  - ledger
-  - users
 - groups has to have subscription locations
 - user allocate groups roles
 - add paginator
