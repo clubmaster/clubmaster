@@ -1,7 +1,6 @@
 - groups has to have subscription locations
 - user allocate groups roles
 - add paginator
-- never show all users, make a search page
 
 - fix icons for subscriptions
 - advanced search user page
