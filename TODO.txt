@@ -7,7 +7,6 @@
 - fix icons for subscriptions
 - advanced search user page
 - switch location
-- fix headers
 - fix forms
 - add batch
 - fix quickpay payment
