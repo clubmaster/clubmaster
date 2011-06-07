@@ -1,4 +1,3 @@
-- fix events from Beta3
 - groups has to have subscription locations
 - user allocate groups roles
 - add paginator
