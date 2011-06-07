@@ -2,6 +2,7 @@
 - add paginator
 - switch location
 - Only show categories in shops they apply
+- Rename html size to stylesheet width in pixels
 
 - groups has to have subscription locations
 - user allocate groups roles
