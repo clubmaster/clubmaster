@@ -1,3 +1,10 @@
+INSERT INTO club_country (country) VALUES
+  ('Denmark'),
+  ('Sweden'),
+  ('Norway'),
+  ('Germany'),
+  ('Finland');
+
 INSERT INTO club_account_account (account_name,account_number,account_type) VALUES
   ('Cash In Bank','1010','asset');
 

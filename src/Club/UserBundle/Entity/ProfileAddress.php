@@ -62,14 +62,6 @@ class ProfileAddress
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      *
-     * @var string $country
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank
-     *
      * @var string $contact_type
      */
     private $contact_type;
@@ -87,6 +79,11 @@ class ProfileAddress
      * @var Club\UserBundle\Entity\Profile
      */
     private $profile;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country")
+     */
+    private $country;
 
 
     /**
