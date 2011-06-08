@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
  * @ORM\Table(name="club_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -536,5 +536,16 @@ class User implements UserInterface
     public function getUsername()
     {
       return $this->getMemberNumber();
+    }
+
+    public function serialize()
+    {
+      return serialize(array($this->getMemberNumber()));
+    }
+
+    public function unserialize($serialized)
+    {
+      $data = unserialize($serialized);
+      $this->setMemberNumber($data[0]);
     }
 }
