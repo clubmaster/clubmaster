@@ -27,6 +27,11 @@ class Country
      */
     private $country;
 
+    public function __toString()
+    {
+      return $this->getCountry();
+    }
+
     /**
      * Get id
      *
