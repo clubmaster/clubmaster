@@ -30,6 +30,7 @@ class DefaultController extends Controller
     $profile->setLastName($this->get('request')->get('last_name'));
     $profile->setGender($this->get('request')->get('gender'));
     $profile->setDayOfBirth(new \DateTime($this->get('request')->get('day_of_birth')));
+    $em->persist($profile);
 
     $address = new \Club\UserBundle\Entity\ProfileAddress();
     $address->setProfile($profile);
@@ -38,9 +39,9 @@ class DefaultController extends Controller
     $address->setStreet($this->get('request')->get('street'));
     $address->setPostalCode($this->get('request')->get('postal_code'));
     $address->setCity($this->get('request')->get('city'));
-    $address->setCountry($this->get('request')->get('country'));
+    $country = $em->getRepository('\Club\UserBundle\Entity\Country')->findOneByCountry($this->get('request')->get('country'));
+    $address->setCountry($country);
 
-    $em->persist($profile);
     $em->persist($address);
 
     $user->setProfile($profile);
