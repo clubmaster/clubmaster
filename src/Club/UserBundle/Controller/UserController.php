@@ -16,7 +16,6 @@ class UserController extends Controller
    */
   public function indexAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();
       $address->setIsDefault(1);

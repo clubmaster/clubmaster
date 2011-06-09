@@ -56,8 +56,7 @@ INSERT INTO club_group_location (group_id,location_id) VALUES
   (4,1);
 
 INSERT INTO club_role (role_name) VALUES
-  ('ROLE_ADMIN'),
-  ('ROLE_USER');
+  ('ROLE_ADMIN');
 
 INSERT INTO club_shop_tax (tax_name,rate) VALUES
   ('Tax free',0),
