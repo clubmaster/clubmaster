@@ -122,6 +122,13 @@ class User implements UserInterface, \Serializable
     private $language;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Role")
      * @ORM\JoinTable(name="club_user_role",
      *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -547,5 +554,65 @@ class User implements UserInterface, \Serializable
     {
       $data = unserialize($serialized);
       $this->setMemberNumber($data[0]);
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location $location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Add roles
+     *
+     * @param Club\UserBundle\Entity\Role $roles
+     */
+    public function addRoles(\Club\UserBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+    }
+
+    /**
+     * Add subscriptions
+     *
+     * @param Club\ShopBundle\Entity\Subscription $subscriptions
+     */
+    public function addSubscriptions(\Club\ShopBundle\Entity\Subscription $subscriptions)
+    {
+        $this->subscriptions[] = $subscriptions;
+    }
+
+    /**
+     * Add ticket_coupons
+     *
+     * @param Club\ShopBundle\Entity\TicketCoupon $ticketCoupons
+     */
+    public function addTicketCoupons(\Club\ShopBundle\Entity\TicketCoupon $ticketCoupons)
+    {
+        $this->ticket_coupons[] = $ticketCoupons;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroups(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
     }
 }

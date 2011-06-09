@@ -12,6 +12,10 @@ _auth:
   resource: "@ClubUserBundle/Controller/AuthController.php"
   type: annotation
 
+_misc:
+  resource: "@ClubUserBundle/Controller/MiscController.php"
+  type: annotation
+
 _user:
   resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation

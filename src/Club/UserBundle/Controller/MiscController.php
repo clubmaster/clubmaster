@@ -23,4 +23,34 @@ class MiscController extends Controller
 
     return new Response($location->getLocationName());
   }
+
+  public function getSwitchLocationAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation());
+    $form->setData($user);
+
+    return $this->render('ClubUserBundle:Misc:switchLocation.html.twig', array(
+      'form' => $form->createView()
+    ));
+  }
+
+  /**
+   * @Route("/location_switch", name="switch_location")
+   */
+  public function switchLocationAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation());
+    $form->setData($user);
+    $form->bindRequest($this->get('request'));
+
+    if ($form->isValid()) {
+      $em = $this->get('doctrine')->getEntityManager();
+      $em->persist($user);
+      $em->flush();
+
+      return new RedirectResponse($this->generateUrl('homepage'));
+    }
+  }
 }
