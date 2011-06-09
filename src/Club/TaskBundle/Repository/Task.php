@@ -18,6 +18,7 @@ class Task extends EntityRepository
       ->select('t')
       ->from('\Club\TaskBundle\Entity\Task','t')
       ->where('t.next_run_at < ?1')
+      ->andWhere('t.locked = 0')
       ->setParameter(1,date('Y-m-d H:i:s'))
       ->getQuery()
       ->getResult();

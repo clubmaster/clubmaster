@@ -12,25 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class Group extends EntityRepository
 {
-  public function findAll()
-  {
-    $res = parent::findAll();
-
-    $groups = array();
-    foreach ($res as $group) {
-      if ($group->getGroupType() == 'dynamic') {
-        $query = $this->getDynamicQuery($group);
-
-        $users = $query->getQuery()->getResult();
-        $group->setUsers($users);
-      }
-
-      $groups[] = $group;
-    }
-
-    return $groups;
-  }
-
   public function getDynamicQuery(\Club\UserBundle\Entity\Group $group)
   {
     $query = $this->_em->createQueryBuilder()

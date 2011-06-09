@@ -21,16 +21,14 @@ class GroupRecalcListener
     ));
 
     foreach ($groups as $group) {
-      foreach ($group->getUsers() as $user) {
-        $this->em->remove($user);
+      $query = $this->em->getRepository('\Club\UserBundle\Entity\Group')->getDynamicQuery($group);
+      $users = $query->getQuery()->getResult();
+
+      foreach ($users as $user) {
+        $user->addGroup($group);
+        $this->em->persist($user);
       }
-      $users = $this->em->getRepository('\Club\UserBundle\Entity\Group')->getDynamicQuery($group)->getQuery()->getResult();
-      $group->setUsers($users);
-
-      $this->em->persist($group);
+      $this->em->flush();
     }
-
-
-    $this->em->flush();
   }
 }

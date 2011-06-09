@@ -1,5 +1,4 @@
 - task bundle
-- update dynamic groups as a task
 - logger bundle (log users activity)
   - cancel subscription
   - cancel tickets
