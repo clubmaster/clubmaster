@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\ShopBundle\Util;
+namespace Club\ShopBundle\Helper;
 
 class Order
 {

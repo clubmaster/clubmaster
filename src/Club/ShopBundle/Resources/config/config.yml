@@ -1,7 +1,7 @@
 services:
   cart:
-    class: Club\ShopBundle\Util\Cart
+    class: Club\ShopBundle\Helper\Cart
     arguments: [@doctrine.orm.entity_manager,@session,@security.context]
   order:
-    class: Club\ShopBundle\Util\Order
+    class: Club\ShopBundle\Helper\Order
     arguments: [@doctrine.orm.entity_manager]
