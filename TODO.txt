@@ -1,12 +1,11 @@
+- update dynamic groups with a batch job
 - advanced search user page
 - Rename html size to stylesheet width in pixels
 - fix icons for subscriptions
 - add batch
-- update dynamic groups with a batch job
 
 - ticket coupon as group location
 - fix season subscription
-- fix quickpay payment
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
@@ -40,3 +39,4 @@
 - dashboard bundle
 - internal message bundle
 - export / import bundle
+- payment gateway bundle
