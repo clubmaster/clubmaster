@@ -2,6 +2,7 @@
 - add paginator
 - Rename html size to stylesheet width in pixels
 
+- fix season subscription
 - groups has to have subscription locations
 - user allocate groups roles
 - fix icons for subscriptions

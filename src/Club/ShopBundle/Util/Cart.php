@@ -24,7 +24,7 @@ class Cart
       if (!$this->cart) {
         $this->cart = new \Club\ShopBundle\Entity\Cart();
         $this->cart->setUser($this->user);
-        $location = $this->em->find('\Club\UserBundle\Entity\Location',$this->session->get('location_id'));
+        $location = $this->user->getLocation();
         $this->cart->setCurrency($location->getCurrency()->getCode());
         $this->cart->setCurrencyValue($location->getCurrency()->getValue());
         $this->cart->setPrice(0);
@@ -155,7 +155,7 @@ class Cart
     $address->setStreet($addr->getStreet());
     $address->setPostalCode($addr->getPostalCode());
     $address->setCity($addr->getCity());
-    $address->setCountry($addr->getCountry());
+    $address->setCountry($addr->getCountry()->getCountry());
 
     return $address;
   }

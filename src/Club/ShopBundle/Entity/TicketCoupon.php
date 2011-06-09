@@ -49,6 +49,22 @@ class TicketCoupon
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\JoinTable(name="club_shop_ticket_coupon_location",
+     *   joinColumns={@ORM\JoinColumn(name="ticket_coupon_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     * )
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $locations;
+
+
+    public function __construct()
+    {
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -152,5 +168,25 @@ class TicketCoupon
     public function expire(\DateTime $date)
     {
       $this->setExpireDate($date);
+    }
+
+    /**
+     * Add locations
+     *
+     * @param Club\UserBundle\Entity\Location $locations
+     */
+    public function addLocations(\Club\UserBundle\Entity\Location $locations)
+    {
+        $this->locations[] = $locations;
+    }
+
+    /**
+     * Get locations
+     *
+     * @return Doctrine\Common\Collections\Collection $locations
+     */
+    public function getLocations()
+    {
+        return $this->locations;
     }
 }

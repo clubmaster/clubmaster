@@ -26,6 +26,7 @@ class Group extends AbstractType
       ),
       'required' => false
     ));
+    $builder->add('location');
     $builder->add('role');
   }
 

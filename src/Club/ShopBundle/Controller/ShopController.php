@@ -41,7 +41,7 @@ class ShopController extends Controller
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     return array(
-      'location' => $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id')),
+      'location' => $this->get('security.context')->getToken()->getUser()->getLocation(),
       'categories' => $categories,
       'category' => $category
     );

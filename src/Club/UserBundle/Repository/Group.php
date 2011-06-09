@@ -67,6 +67,18 @@ class Group extends EntityRepository
         ->setParameter(6,0);
     }
 
+    if (count($group->getLocation()) > 0) {
+      foreach ($group->getLocation() as $location) {
+        $query
+          ->leftJoin('u.subscriptions','s')
+          ->leftJoin('s.locations','l')
+          ->andWhere('s.expire_date >= ?7')
+          ->andWhere('l.location = ?8')
+          ->setParameter(7,date('Y-m-d'))
+          ->setParameter(8,$location);
+      }
+    }
+
     return $query;
   }
 }
