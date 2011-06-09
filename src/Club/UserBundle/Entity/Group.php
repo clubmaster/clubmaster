@@ -78,6 +78,13 @@ class Group
     private $role;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\ShopBundle\Entity\Product
@@ -294,4 +301,43 @@ class Group
       return $this->product;
     }
 
+    /**
+     * Add location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function addLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location[] = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Doctrine\Common\Collections\Collection $location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Add product
+     *
+     * @param Club\ShopBundle\Entity\Product $product
+     */
+    public function addProduct(\Club\ShopBundle\Entity\Product $product)
+    {
+        $this->product[] = $product;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUsers(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
 }
