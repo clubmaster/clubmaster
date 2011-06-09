@@ -16,6 +16,36 @@ class AdminUserController extends Controller
    */
   public function indexAction()
   {
+    $order_by = array();
+    $em = $this->get('doctrine.orm.entity_manager');
+    $repository = $em->getRepository('\Club\UserBundle\Entity\User');
+    $usersCount = $repository->getUsersCount();
+    $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
+
+    if ('POST' === $this->get('request')->getMethod()) {
+        $order_by = array($_POST['filter_order'] => $_POST['filter_order_Dir']);
+        $sort_direction = $_POST['filter_order_Dir'] == 'asc' ? 'desc' : 'asc';
+ 
+        $this->get('session')->set('lang_list_order_by', $order_by);
+        $this->get('session')->set('lang_list_sort_dir', $sort_direction);
+    } else {
+ 
+        if ($this->get('session')->get('admin_user_list_order_by') != null) {
+            $order_by = $this->get('session')->get('admin_user_list_order_by');
+        } else {
+            $order_by = array('sort_order' => 'asc', 'id' => 'asc');
+        }
+        if ($this->get('session')->get('admin_user_list_sort_dir') != null) {
+            $sort_direction = $this->get('session')->get('admin_user_list_sort_dir');
+        } else {
+            $sort_direction = 'desc';
+        }
+    }
+    $users = $repository->getUsersListWithPagination($order_by, $paginator->getOffset(), $paginator->getLimit());
+
+    return array('users' => $users, 'sort_dir' => $sort_direction, 'paginator' => $paginator);
+
+    /*
     $filter = $this->createForm(new \Club\UserBundle\Filter\User());
     $data = unserialize($this->get('session')->get('filter.admin_user'));
     $data = ($data) ? $data : new \Club\UserBundle\Entity\User();
@@ -29,6 +59,7 @@ class AdminUserController extends Controller
       'users' => $users,
       'filter_form' => $filter->createView()
     );
+     */
   }
 
   /**

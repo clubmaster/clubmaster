@@ -1,5 +1,4 @@
 - advanced search user page
-- add paginator
 - Rename html size to stylesheet width in pixels
 - user allocate groups roles
 - fix icons for subscriptions
