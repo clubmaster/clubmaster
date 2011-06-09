@@ -42,6 +42,13 @@ class Task
     private $locked;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $event
+     */
+    private $event;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
@@ -245,5 +252,25 @@ class Task
     public function getTaskInterval()
     {
         return $this->task_interval;
+    }
+
+    /**
+     * Set event
+     *
+     * @param string $event
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
+    }
+
+    /**
+     * Get event
+     *
+     * @return string $event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

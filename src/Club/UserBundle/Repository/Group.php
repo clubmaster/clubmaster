@@ -31,7 +31,7 @@ class Group extends EntityRepository
     return $groups;
   }
 
-  protected function getDynamicQuery(\Club\UserBundle\Entity\Group $group)
+  public function getDynamicQuery(\Club\UserBundle\Entity\Group $group)
   {
     $query = $this->_em->createQueryBuilder()
       ->select('u')

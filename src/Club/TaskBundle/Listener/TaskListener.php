@@ -8,10 +8,12 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 class TaskListener
 {
   protected $em;
+  protected $event_dispatcher;
 
-  public function __construct($em)
+  public function __construct($em, $event_dispatcher)
   {
     $this->em = $em;
+    $this->event_dispatcher = $event_dispatcher;
   }
 
   public function onCoreRequest(GetResponseEvent $event)
@@ -20,6 +22,10 @@ class TaskListener
 
     foreach ($tasks as $task) {
       $task = $this->startTask($task);
+
+      $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
+      $this->event_dispatcher->dispatch(\Club\TaskBundle\Event\Events::onGroupTask, $event);
+
       $task = $this->stopTask($task);
     }
   }
