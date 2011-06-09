@@ -8,19 +8,23 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 class RequestListener
 {
   protected $em;
-  protected $session;
+  protected $security_context;
 
-  public function __construct($em,$session)
+  public function __construct($em,$security_context)
   {
     $this->em = $em;
-    $this->session = $session;
+    $this->security_context = $security_context;
   }
 
   public function onCoreRequest(GetResponseEvent $event)
   {
-    if (!$this->session->get('location_id')) {
+    $user = $this->security_context->getToken()->getUser();
+    if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLocation()) {
       $location = $this->em->getRepository('\Club\UserBundle\Entity\Location')->getDefault();
-      $this->session->set('location_id',$location->getId());
+      $user->setLocation($location);
+
+      $this->em->persist($user);
+      $this->em->flush();
     }
   }
 }

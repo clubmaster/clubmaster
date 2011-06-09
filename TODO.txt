@@ -1,6 +1,5 @@
 - advanced search user page
 - add paginator
-- Only show categories in shops they apply
 - Rename html size to stylesheet width in pixels
 
 - groups has to have subscription locations

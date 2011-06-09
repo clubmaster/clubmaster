@@ -17,10 +17,12 @@ class ShopController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
 
-    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
+    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
+      'location' => $this->get('security.context')->getToken()->getUser()->getLocation()->getId()
+    ));
 
     return array(
-      'location' => $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id')),
+      'location' => $this->get('security.context')->getToken()->getUser()->getLocation(),
       'categories' => $categories
     );
   }
