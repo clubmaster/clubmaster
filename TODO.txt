@@ -4,7 +4,6 @@
 
 - ticket coupon as group location
 - fix season subscription
-- groups has to have subscription locations
 - user allocate groups roles
 - fix icons for subscriptions
 - add batch
