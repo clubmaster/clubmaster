@@ -70,12 +70,12 @@ class Group extends EntityRepository
     if (count($group->getLocation()) > 0) {
       foreach ($group->getLocation() as $location) {
         $query
-          ->leftJoin('u.subscriptions','s')
-          ->leftJoin('s.locations','l')
-          ->andWhere('s.expire_date >= ?7')
-          ->andWhere('l.location = ?8')
+          ->leftJoin('u.subscriptions','s2')
+          ->leftJoin('s2.locations','l')
+          ->andWhere('s2.expire_date >= ?7')
+          ->andWhere('l.id = ?8')
           ->setParameter(7,date('Y-m-d'))
-          ->setParameter(8,$location);
+          ->setParameter(8,$location->getId());
       }
     }
 

@@ -72,6 +72,14 @@ class NewSubscriptionListener
           }
           $ticket->setExpireDate($expire_date);
 
+          if (isset($res['Location'])) {
+            $locations = preg_split("/,/", $res['Location']);
+            foreach ($locations as $location) {
+              $l = $this->em->find('\Club\UserBundle\Entity\Location',$location);
+              $ticket->addLocations($l);
+            }
+          }
+
           $this->em->persist($ticket);
         }
 

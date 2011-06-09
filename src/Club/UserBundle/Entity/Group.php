@@ -79,6 +79,10 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity="Location")
+     * @ORM\JoinTable(name="club_group_location",
+     *   joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\UserBundle\Entity\Location
      */

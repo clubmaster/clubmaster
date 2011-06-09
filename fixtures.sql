@@ -49,7 +49,11 @@ INSERT INTO club_location_config (location_id,config_id,value) VALUES
 INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is_active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),
   (null,'Junior','dynamic',null,0,17,1),
-  (null,'Members of honor','static',null,null,null,1);
+  (null,'Members of honor','static',null,null,null,1),
+  (null,'DK - Members','dynamic',null,null,null,1);
+
+INSERT INTO club_group_location (group_id,location_id) VALUES
+  (4,1);
 
 INSERT INTO club_role (role_name) VALUES
   ('ROLE_ADMIN'),
@@ -140,12 +144,16 @@ INSERT INTO club_shop_attribute (attribute_name) VALUES
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
+  (1,9,1),
   (2,1,2),
+  (2,9,1),
   (3,5,1),
   (4,5,2),
   (5,4,1),
   (6,2,10),
+  (6,9,1),
   (7,2,20),
+  (7,9,1),
   (1,6,'2011-06-01'),
   (7,6,'2011-06-01'),
   (10,6,'2011-04-16'),

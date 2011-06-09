@@ -2,6 +2,7 @@
 - add paginator
 - Rename html size to stylesheet width in pixels
 
+- ticket coupon as group location
 - fix season subscription
 - groups has to have subscription locations
 - user allocate groups roles
