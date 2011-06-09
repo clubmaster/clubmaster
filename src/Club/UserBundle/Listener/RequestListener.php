@@ -18,6 +18,8 @@ class RequestListener
 
   public function onCoreRequest(GetResponseEvent $event)
   {
+    if (!$this->security_context->getToken()) return;
+
     $user = $this->security_context->getToken()->getUser();
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLocation()) {
       $location = $this->em->getRepository('\Club\UserBundle\Entity\Location')->getDefault();

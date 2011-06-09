@@ -1,3 +1,4 @@
-#homepage:
-#    pattern:  /
-#    defaults: { _controller: ClubTaskBundle:Default:index }
+_task:
+  resource: "@ClubTaskBundle/Controller/TaskController.php"
+  type: annotation
+  prefix: /admin
