@@ -45,8 +45,6 @@ class DefaultController extends Controller
     $em->persist($address);
 
     $user->setProfile($profile);
-    $role = $em->find('Club\UserBundle\Entity\Role',2);
-    $user->addRole($role);
     $em->persist($user);
 
     $em->flush();

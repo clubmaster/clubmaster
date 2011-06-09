@@ -1,6 +1,6 @@
+- user allocate groups roles
 - advanced search user page
 - Rename html size to stylesheet width in pixels
-- user allocate groups roles
 - fix icons for subscriptions
 - add batch
 

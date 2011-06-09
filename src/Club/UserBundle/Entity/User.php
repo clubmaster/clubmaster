@@ -528,7 +528,15 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-      return $this->roles->toArray();
+      $roles = $this->roles->toArray();
+
+      foreach ($this->getGroups() as $group) {
+        $roles = array_merge($roles, $group->getRole()->toArray());
+      }
+
+      $roles[] = 'ROLE_USER';
+
+      return array_unique($roles);
     }
 
     public function eraseCredentials()
