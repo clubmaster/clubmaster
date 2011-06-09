@@ -1,3 +1,6 @@
+INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval) VALUES
+  ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','1 hour');
+
 INSERT INTO club_country (country) VALUES
   ('Denmark'),
   ('Sweden'),

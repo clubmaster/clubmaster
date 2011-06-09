@@ -56,7 +56,7 @@ class Task
     private $updated_at;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $last_run_at
      */
