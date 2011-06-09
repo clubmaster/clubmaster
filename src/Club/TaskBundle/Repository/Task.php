@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class Task extends EntityRepository
 {
+  public function getTasksToExecute()
+  {
+    $tasks = $this->_em->createQueryBuilder()
+      ->select('t')
+      ->from('\Club\TaskBundle\Entity\Task','t')
+      ->where('t.next_run_at < ?1')
+      ->setParameter(1,date('Y-m-d H:i:s'))
+      ->getQuery()
+      ->getResult();
+
+    return $tasks;
+  }
 }
