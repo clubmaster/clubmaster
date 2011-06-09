@@ -72,9 +72,9 @@ class Task
     /**
      * @ORM\Column(type="string")
      *
-     * @var date $interval
+     * @var date $task_interval
      */
-    private $interval;
+    private $task_interval;
 
     /**
      * Get id
@@ -226,23 +226,24 @@ class Task
         return $this->next_run_at;
     }
 
+
     /**
-     * Set interval
+     * Set task_interval
      *
-     * @param string $interval
+     * @param string $taskInterval
      */
-    public function setInterval($interval)
+    public function setTaskInterval($taskInterval)
     {
-        $this->interval = $interval;
+        $this->task_interval = $taskInterval;
     }
 
     /**
-     * Get interval
+     * Get task_interval
      *
-     * @return string $interval
+     * @return string $taskInterval
      */
-    public function getInterval()
+    public function getTaskInterval()
     {
-        return $this->interval;
+        return $this->task_interval;
     }
 }
