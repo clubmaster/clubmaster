@@ -16,23 +16,34 @@ class AdminUserController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
-    $users = $em->getRepository('Club\UserBundle\Entity\User')->getUsers($this->get('session')->get('filter.admin_user_controller'));
+    $filter = $this->createForm(new \Club\UserBundle\Filter\User());
+    $data = unserialize($this->get('session')->get('filter.admin_user'));
+    $data = ($data) ? $data : new \Club\UserBundle\Entity\User();
+
+    $filter->setData($data);
+
+    $em = $this->get('doctrine')->getEntityManager();
+    $users = $em->getRepository('Club\UserBundle\Entity\User')->getUsers($data);
 
     return array(
-      'users' => $users
+      'users' => $users,
+      'filter_form' => $filter->createView()
     );
   }
 
   /**
-   * @Template()
    * @Route("/user/filter", name="admin_user_filter")
    */
   public function filterAction()
   {
-    $this->get('session')->set('filter.admin_user_controller',array(
-      'name' => $this->get('request')->get('name')
-    ));
+    $filter = new \Club\UserBundle\Entity\User();
+
+    $form = $this->createForm(new \Club\UserBundle\Filter\User($filter));
+    $form->bindRequest($this->get('request'));
+
+    if ($form->isValid()) {
+      $this->get('session')->set('filter.admin_user',serialize($form->getData()));
+    }
 
     return $this->forward('ClubUserBundle:AdminUser:index');
   }

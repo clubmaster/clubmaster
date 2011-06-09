@@ -611,7 +611,7 @@ class User implements UserInterface, \Serializable
      *
      * @param Club\UserBundle\Entity\Group $groups
      */
-    public function addGroups(\Club\UserBundle\Entity\Group $groups)
+    public function setGroups($groups)
     {
         $this->groups[] = $groups;
     }

@@ -47,8 +47,8 @@ class User extends EntityRepository
     $dql = "SELECT u FROM Club\UserBundle\Entity\User u LEFT JOIN u.profile p WHERE (CONCAT(p.first_name,p.last_name) LIKE ?1 OR u.member_number = ?2)";
 
     $users = $this->_em->createQuery($dql)
-      ->setParameter(1,'%'.preg_replace("/\s/","",$filter['name']).'%')
-      ->setParameter(2,$filter['name'])
+      ->setParameter(1,'%'.preg_replace("/\s/","",$filter->getMemberNumber().'%'))
+      ->setParameter(2,$filter->getMemberNumber())
       ->getResult();
 
     return $users;

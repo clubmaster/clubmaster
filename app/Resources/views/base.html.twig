@@ -81,17 +81,7 @@
 
                                 {% if is_granted('ROLE_ADMIN') %}
 
-                                {% block search %}
-                                <!-- Search -->
-                                <form action="{{ path('admin_user_filter') }}" method="post" id="search">
-                                        <fieldset>
-                                                <legend>Search</legend>
-
-                                                <p><input type="text" size="17" name="name" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
-                                        </fieldset>
-                                </form>
-
-                                {% endblock %}
+                                {% block search %}{% endblock %}
                                 {% endif %}
 
                         </div> <!-- /padding -->

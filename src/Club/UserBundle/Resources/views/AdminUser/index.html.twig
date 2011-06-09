@@ -6,19 +6,12 @@
   <fieldset>
     <legend>Search</legend>
 
-    <p><input type="text" size="17" name="name" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
-    <a href="javascript:toggle('search-options');" class="ico-drop">Advanced search</a></p>
+    <div id="search-options">
 
-    <!-- Advanced search -->
-    <div id="search-options" style="display:none;">
+      {{ form_widget(filter_form) }}
+      <p><input type="submit" value="Search" /></p>
 
-      <p>
-        <label><input type="checkbox" name="" checked="checked" /> Option I.</label><br />
-        <label><input type="checkbox" name="" /> Option II.</label><br />
-        <label><input type="checkbox" name="" /> Option III.</label>
-      </p>
-
-    </div> <!-- /search-options -->
+    </div>
 
   </fieldset>
 </form>

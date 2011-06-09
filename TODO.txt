@@ -1,12 +1,12 @@
 - advanced search user page
 - add paginator
 - Rename html size to stylesheet width in pixels
-
-- ticket coupon as group location
-- fix season subscription
 - user allocate groups roles
 - fix icons for subscriptions
 - add batch
+
+- ticket coupon as group location
+- fix season subscription
 - fix quickpay payment
 - Obey pauses
 - Obey auto renewal
