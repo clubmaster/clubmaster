@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Club\ShopBundle\ClubShopBundle(),
             new Club\RestBundle\ClubRestBundle(),
             new Club\AccountBundle\ClubAccountBundle(),
+            new Club\TaskBundle\ClubTaskBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
