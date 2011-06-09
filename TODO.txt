@@ -1,4 +1,9 @@
-- update dynamic groups with a batch job
+- task bundle
+- update dynamic groups as a task
+- logger bundle (log users activity)
+  - cancel subscription
+  - cancel tickets
+  - change status on order
 - advanced search user page
 - Rename html size to stylesheet width in pixels
 - fix icons for subscriptions
@@ -29,10 +34,6 @@
 - mailer bundle
 - sms bundle
 - booking bundle
-- logger bundle (log users activity)
-  - cancel subscription
-  - cancel tickets
-  - change status on order
 - integration til e-conomic
 - forum bundle
 - weather bundle
