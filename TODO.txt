@@ -1,12 +1,10 @@
-- logger bundle (log users activity)
-  - cancel subscription
-  - cancel tickets
-  - change status on order
+- fix 100 neasted problems
 - advanced search user page
-- Rename html size to stylesheet width in pixels
-- fix icons for subscriptions
-- add batch
+  - list users in a group
 
+- Rename html size to stylesheet width in pixels
+- add batch
+- fix icons for subscriptions
 - ticket coupon as group location
 - fix season subscription
 - Obey pauses
@@ -24,6 +22,7 @@
 
 == security ==
 - cannot edit orders that you do not own
+- make sure the firewall actually does work
 
 == modules ==
 - event bundle
@@ -39,3 +38,4 @@
 - internal message bundle
 - export / import bundle
 - payment gateway bundle
+- logger bundle (log users activity)
