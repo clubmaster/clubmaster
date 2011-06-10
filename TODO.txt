@@ -5,7 +5,6 @@
 - add batch
 - fix icons for subscriptions
 - ticket coupon as group location
-- fix season subscription
 - Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
@@ -20,6 +19,7 @@
 - Shop coupons
 - if twig has no date, it prints current timestamp (tasks last run at)
 - make a task that remove from logging table
+- translation
 
 == security ==
 - cannot edit orders that you do not own
