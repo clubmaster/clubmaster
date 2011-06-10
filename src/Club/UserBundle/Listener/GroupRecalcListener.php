@@ -25,8 +25,10 @@ class GroupRecalcListener
       $users = $query->getQuery()->getResult();
 
       foreach ($users as $user) {
-        $user->addGroup($group);
-        $this->em->persist($user);
+        if (!$user->inGroup($group)) {
+          $user->addGroup($group);
+          $this->em->persist($user);
+        }
       }
       $this->em->flush();
     }

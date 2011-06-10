@@ -623,4 +623,13 @@ class User implements UserInterface, \Serializable
     {
         $this->groups[] = $groups;
     }
+
+    public function inGroup(\Club\UserBundle\Entity\Group $group)
+    {
+      foreach ($this->getGroups() as $g) {
+        if ($group === $g) return true;
+      }
+
+      return false;
+    }
 }

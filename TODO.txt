@@ -1,6 +1,5 @@
 - advanced search user page
   - list users in a group
-
 - Rename html size to stylesheet width in pixels
 - add batch
 - fix icons for subscriptions
@@ -20,6 +19,8 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 - make a task that remove from logging table
 - translation
+- database email delivery strategy
+- make sure user see if a task has been locked
 
 == security ==
 - cannot edit orders that you do not own
@@ -29,6 +30,7 @@
 - event bundle
   - export as ical/rss
 - team bundle
+- payment gateway bundle
 - mailer bundle
 - sms bundle
 - booking bundle
@@ -38,4 +40,3 @@
 - dashboard bundle
 - internal message bundle
 - export / import bundle
-- payment gateway bundle
