@@ -1,5 +1,10 @@
+== todo ==
+- event bundle
+  - export as ical/rss
 - advanced search user page
   - list users in a group
+- users should be able to add and remove address, email and phone
+- find a way to make company users
 - Rename html size to stylesheet width in pixels
 - add batch
 - fix icons for subscriptions
@@ -21,14 +26,14 @@
 - translation
 - database email delivery strategy
 - make sure user see if a task has been locked
+- flag if we run backend script for tasks (to avoid long wait periods for the users)
+- unit test
 
 == security ==
 - cannot edit orders that you do not own
 - make sure the firewall actually does work
 
 == modules ==
-- event bundle
-  - export as ical/rss
 - team bundle
 - payment gateway bundle
 - mailer bundle
