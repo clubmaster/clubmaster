@@ -7,6 +7,7 @@
 - find a way to make company users
 - Rename html size to stylesheet width in pixels
 - add batch
+- add table prefix on user bundle
 - fix icons for subscriptions
 - ticket coupon as group location
 - Obey pauses
@@ -35,13 +36,13 @@
 
 == modules ==
 - team bundle
+- forum bundle
+- weather bundle
 - payment gateway bundle
 - mailer bundle
 - sms bundle
 - booking bundle
 - integration til e-conomic
-- forum bundle
-- weather bundle
 - dashboard bundle
 - internal message bundle
 - export / import bundle
