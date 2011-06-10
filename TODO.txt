@@ -1,4 +1,3 @@
-- logger bundle (log users activity)
 - advanced search user page
   - list users in a group
 
@@ -20,6 +19,7 @@
 - Fix shop as user
 - Shop coupons
 - if twig has no date, it prints current timestamp (tasks last run at)
+- make a task that remove from logging table
 
 == security ==
 - cannot edit orders that you do not own

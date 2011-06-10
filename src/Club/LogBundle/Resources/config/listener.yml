@@ -1,0 +1,11 @@
+services:
+  club.logbundle.listener.on_shop_order_listener:
+    class: Club\LogBundle\Listener\NewOrderListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: shop.order, method: onShopOrder }
+  club.logbundle.listener.on_order_change_listener:
+    class: Club\LogBundle\Listener\OrderChangeListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: order.change, method: onOrderChange }
