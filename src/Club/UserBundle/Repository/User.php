@@ -54,9 +54,9 @@ class User extends EntityRepository
     return $users;
   }
 
-  public function getUsersListWithPagination($order_by = array(), $offset = 0, $limit = 0) {
+  public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
     //Create query builder for languages table
-    $qb = $this->createQueryBuilder('l');
+    $qb = $this->getQuery($filter);
 
     //Show all if offset and limit not set, also show all when limit is 0
     if ((isset($offset)) && (isset($limit))) {
@@ -68,7 +68,7 @@ class User extends EntityRepository
     }
     //Adding defined sorting parameters from variable into query
     foreach ($order_by as $key => $value) {
-      $qb->add('orderBy', 'l.' . $key . ' ' . $value);
+      $qb->add('orderBy', 'u.' . $key . ' ' . $value);
     }
     //Get our query
     $q = $qb->getQuery();
@@ -76,10 +76,22 @@ class User extends EntityRepository
     return $q->getResult();
   }
 
-  public function getUsersCount() {
-    $qb = $this->createQueryBuilder('u');
-    $qb->add('select', $qb->expr()->count('u'));
+  public function getUsersCount($filter) {
+    $qb = $this->getQuery($filter);
+
+    $qb->select($qb->expr()->count('u'));
     $q = $qb->getQuery();
     return $q->getSingleScalarResult();
+  }
+
+  protected function getQuery($filter)
+  {
+    $qb = $this->createQueryBuilder('u');
+
+    if ($filter->getMemberNumber()) {
+      $qb->andWhere('u.member_number = ?1')->setParameter(1,$filter->getMemberNumber());
+    }
+
+    return $qb;
   }
 }
