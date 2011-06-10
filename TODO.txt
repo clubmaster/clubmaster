@@ -18,6 +18,7 @@
   - add the club as a gitmodule
 - Fix shop as user
 - Shop coupons
+- if twig has no date, it prints current timestamp (tasks last run at)
 
 == security ==
 - cannot edit orders that you do not own
