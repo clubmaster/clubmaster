@@ -1,4 +1,3 @@
-- fix 100 neasted problems
 - advanced search user page
   - list users in a group
 
