@@ -9,7 +9,9 @@ class User extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('member_number');
+    $builder->add('member_number','text',array(
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)
