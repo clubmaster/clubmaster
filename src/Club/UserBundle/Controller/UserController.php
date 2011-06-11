@@ -43,8 +43,11 @@ class UserController extends Controller
       $form->bindRequest($this->get('request'));
 
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
         $em->persist($user);
+        $em->persist($address);
+        $em->persist($phone);
+        $em->persist($email);
         $em->flush();
 
         return new RedirectResponse($this->generateUrl('user'));

@@ -171,7 +171,7 @@ class AdminUserController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('user'));
+        return new RedirectResponse($this->generateUrl('admin_user'));
       }
     }
 
@@ -195,7 +195,7 @@ class AdminUserController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('User %s deleted.',$user->getUsername()));
 
-    return new RedirectResponse($this->generateUrl('user'));
+    return new RedirectResponse($this->generateUrl('admin_user'));
   }
 
   /**
@@ -224,7 +224,7 @@ class AdminUserController extends Controller
 
     $this->get('session')->setFlash('notice',sprintf('User %s banned.',$user->getUsername()));
 
-    return new RedirectResponse($this->generateUrl('user'));
+    return new RedirectResponse($this->generateUrl('admin_user'));
   }
 
   /**
@@ -306,7 +306,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('user'));
+        return new RedirectResponse($this->generateUrl('admin_user'));
       }
     }
 
@@ -338,7 +338,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('user'));
+        return new RedirectResponse($this->generateUrl('admin_user'));
       }
     }
 
@@ -370,7 +370,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('user'));
+        return new RedirectResponse($this->generateUrl('admin_user'));
       }
     }
 
@@ -398,7 +398,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('user'));
+        return new RedirectResponse($this->generateUrl('admin_user'));
       }
     }
 
