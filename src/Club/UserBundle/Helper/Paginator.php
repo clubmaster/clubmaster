@@ -112,4 +112,9 @@ class Paginator {
     public function getOffset() {
         return $this->offset;
     }
+
+    public function getItemsCount()
+    {
+      return $this->itemscount;
+    }
 }

@@ -1,23 +1,28 @@
-<div class="paginator">
-    <form id= "paginator" name="paginator" method="get" action="#" >
-        <label for="limit">Items to show on the page: </label>
-        <select name="limit" id="limit" onchange="javascript:document.forms.paginator.submit()">
-            {% for opt in paginator.options%}
-                {% if opt > 0 %}
-            <option value="{{opt}}" {% if paginator.limit == opt %}selected {% endif %}>{{opt}}</option>
-                {% endif %}
-            {% endfor %}
-        <option value="0" {% if paginator.limit==0 %}selected{% endif %}>All</option>
-        </select>
-    </form>
-    Go to page:<br />
-    <ul>
+      <!-- Pagination (Top) -->
+      <div class="pagination box">
+        <p class="f-right">
+          {% if paginator.currentPage > 1 %}
+          <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{ paginator.currentPage-1 }}">&laquo;</a>
+          {% else %}
+          &laquo;
+          {% endif %}
+
         {% for i in 1..paginator.numpages %}
             {% if i==paginator.currentpage %}
-            <li><a class="active" href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a></li>
+            <a class="pagination-active" href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a>
             {% else %}
-            <li><a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a></li>
+            <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a>
             {% endif %}
         {% endfor %}
-    </ul>
-</div>
+
+          {% if paginator.currentPage != paginator.numpages %}
+          <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{ paginator.currentPage+1 }}">&raquo;</a>
+          {% else %}
+          &raquo;
+          {% endif %}
+        </p>
+        <p class="f-left">Showing <strong>{{ paginator.offset }}&ndash;{{ paginator.offset+paginator.limit }}</strong> of <strong>{{ paginator.itemsCount }}</strong> Results</p>
+      </div> <!-- /pagination -->
+
+
+
