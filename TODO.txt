@@ -5,7 +5,6 @@
   - list users in a group
 - users should be able to add and remove address, email and phone
 - find a way to make company users
-- Rename html size to stylesheet width in pixels
 - add batch
 - add table prefix on user bundle
 - fix icons for subscriptions
