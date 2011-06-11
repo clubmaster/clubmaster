@@ -9,7 +9,7 @@ class AdminUser extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('member_number');
+    $builder->add('member_number','text');
     $builder->add('profile', new \Club\UserBundle\Form\Profile());
   }
 
