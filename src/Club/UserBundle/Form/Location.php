@@ -10,7 +10,10 @@ class Location extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('location_name');
-    $builder->add('location');
+    $builder->add('location','entity',array(
+      'class' => 'Club\UserBundle\Entity\Location',
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)

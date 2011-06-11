@@ -13,13 +13,14 @@
     <tr>
       <th>[x]</th>
       <th>Id</th>
+      <th>Parent</th>
       <th>Location</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4" class="arrow-01">
+      <td colspan="5" class="arrow-01">
         <select name="" class="input-text">
           <option value="">Delete selected</option>
           <option value="">Remove selected</option>
@@ -34,6 +35,7 @@
     <tr>
       <td><input type="checkbox" /></td>
       <td>{{ location.id }}</td>
+      <td>{{ location.location }}</td>
       <td>{{ location.locationName }}</td>
       <td>
         {% include "::edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
@@ -43,7 +45,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no locations at the time</td>
+    <td colspan="5">There are no locations at the time</td>
   </tr>
   {% endfor %}
   </tbody>
