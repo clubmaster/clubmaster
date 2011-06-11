@@ -4,7 +4,7 @@
 <h1>User</h1>
 
 <form method="post" action="{{ path('admin_user_edit', {'id':user.id}) }}">
-{% include "ClubUserBundle:AdminUser:form.html.twig" with {'form': form} %}
+  {% include "ClubUserBundle:AdminUser:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}

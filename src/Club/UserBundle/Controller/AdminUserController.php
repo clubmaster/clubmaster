@@ -140,6 +140,26 @@ class AdminUserController extends Controller
   {
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('Club\UserBundle\Entity\User',$id);
+
+    if (!count($user->getProfile()->getProfileAddress())) {
+      $address = new \Club\UserBundle\Entity\ProfileAddress();
+      $address->setIsDefault(1);
+      $address->setProfile($user->getProfile());
+      $user->getProfile()->setProfileAddress($address);
+    }
+    if (!count($user->getProfile()->getProfilePhone())) {
+      $phone = new \Club\UserBundle\Entity\ProfilePhone();
+      $phone->setIsDefault(1);
+      $phone->setProfile($user->getProfile());
+      $user->getProfile()->setProfilePhone($phone);
+    }
+    if (!count($user->getProfile()->getProfileEmail())) {
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setIsDefault(1);
+      $email->setProfile($user->getProfile());
+      $user->getProfile()->setProfileEmail($email);
+    }
+
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->get('request')->getMethod() == 'POST') {

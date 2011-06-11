@@ -1,3 +1,37 @@
-  <p>{{ form_widget(form) }}</p>
+  <fieldset>
+    <legend>Personal Information</legend>
+
+    <p>{{ form_row(form.member_number) }}</p>
+    <p>{{ form_row(form.profile.first_name) }}</p>
+    <p>{{ form_row(form.profile.last_name) }}</p>
+    <p>{{ form_row(form.profile.gender) }}</p>
+    <p>{{ form_row(form.profile.day_of_birth) }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Address Information</legend>
+
+    <p>{{ form_row(form.profile.profile_address.0.contact_type) }}</p>
+    <p>{{ form_row(form.profile.profile_address.0.street) }}</p>
+    <p>{{ form_row(form.profile.profile_address.0.suburl) }}</p>
+    <p>{{ form_row(form.profile.profile_address.0.postal_code) }}</p>
+    <p>{{ form_row(form.profile.profile_address.0.city) }}</p>
+    <p>{{ form_row(form.profile.profile_address.0.country) }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Email Information</legend>
+
+    <p>{{ form_row(form.profile.profile_email.0.contact_type) }}</p>
+    <p>{{ form_row(form.profile.profile_email.0.email_address) }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Phone Information</legend>
+
+    <p>{{ form_row(form.profile.profile_phone.0.contact_type) }}</p>
+    <p>{{ form_row(form.profile.profile_phone.0.number) }}</p>
+  </fieldset>
+
   {% include "::submit_button.html.twig" %}
 

@@ -36,7 +36,7 @@ class Shipping
     private $description;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */
