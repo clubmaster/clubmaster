@@ -19,10 +19,10 @@
       <td>{{ ticket.ticket }}</td>
       <td>{{ ticket.startDate|date('Y-m-d') }}</td>
       <td>{{ ticket.expireDate|date('Y-m-d') }}</td>
-      <td><ul>
-        <li><a href="{{ path('admin_user_ticket_expire', {'id':ticket.id}) }}">Cancel</a></li>
-        <li><a href="#">Pause</a></li>
-      </ul></td>
+      <td>
+        <a href="{{ path('admin_user_ticket_expire', {'id':ticket.id}) }}">Cancel</a>
+        <a href="#">Pause</a>
+      </td>
     </tr>
   {% else %}
     <tr>

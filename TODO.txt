@@ -6,7 +6,6 @@
 - users should be able to add and remove address, email and phone
 - find a way to make company users
 - add batch
-- fix icons for subscriptions
 - ticket coupon as group location
 - Obey pauses
 - Obey auto renewal
