@@ -1,1 +1,1 @@
-<form method="POST" action="{{ path('switch_location') }}">{{ form_widget(form) }} <input type="submit" /></form>
+<form method="POST" action="{{ path('switch_location') }}">{{ form_label(form.location) }} {{ form_widget(form.location) }} <input type="submit" /></form>
