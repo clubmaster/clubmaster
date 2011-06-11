@@ -17,7 +17,7 @@ class Profile extends AbstractType
         'female' => 'Female'
       )
     ));
-    $builder->add('day_of_birth');
+    $builder->add('day_of_birth','birthday');
     $builder->add('profile_address','collection', array(
       'type' => new \Club\UserBundle\Form\ProfileAddress()
     ));
