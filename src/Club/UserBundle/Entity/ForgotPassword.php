@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\ForgotPassword")
- * @ORM\Table(name="club_forgot_password")
+ * @ORM\Table(name="club_user_forgot_password")
  * @ORM\HasLifeCycleCallbacks()
  */
 class ForgotPassword

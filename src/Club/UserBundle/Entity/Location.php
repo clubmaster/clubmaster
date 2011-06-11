@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Location")
- * @ORM\Table(name="club_location")
+ * @ORM\Table(name="club_user_location")
  */
 class Location
 {

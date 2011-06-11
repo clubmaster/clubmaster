@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\User")
- * @ORM\Table(name="club_user")
+ * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, \Serializable
@@ -130,7 +130,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(name="club_user_role",
+     * @ORM\JoinTable(name="club_user_user_role",
      *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      * )
@@ -149,7 +149,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
-     * @ORM\JoinTable(name="club_user_group",
+     * @ORM\JoinTable(name="club_user_user_group",
      *  joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )

@@ -1,7 +1,7 @@
 INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval,event) VALUES
   ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask');
 
-INSERT INTO club_country (country) VALUES
+INSERT INTO club_user_country (country) VALUES
   ('Denmark'),
   ('Sweden'),
   ('Norway'),
@@ -11,23 +11,23 @@ INSERT INTO club_country (country) VALUES
 INSERT INTO club_account_account (account_name,account_number,account_type) VALUES
   ('Cash In Bank','1010','asset');
 
-INSERT INTO club_config (config_key) VALUES
+INSERT INTO club_user_config (config_key) VALUES
   ('smtp'),
   ('smtp_port'),
   ('smtp_username'),
   ('smtp_password');
 
-INSERT INTO club_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
+INSERT INTO club_user_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
   ('Danish Krone','DKK',null,'DK',2,1);
 
-INSERT INTO club_location (location_id,location_name,currency_id) VALUES
+INSERT INTO club_user_location (location_id,location_name,currency_id) VALUES
   (null,'Danmark',1),
   (1,'Aalborg',1),
   (1,'Copenhagen',1),
   (2,'Aalborg Tennis Klub',1),
   (2,'Gug Tennisklub',1);
 
-INSERT INTO club_location_config (location_id,config_id,value) VALUES
+INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (1,1,'localhost'),
   (2,1,'localhost'),
   (3,1,'localhost'),
@@ -49,7 +49,7 @@ INSERT INTO club_location_config (location_id,config_id,value) VALUES
   (4,4,null),
   (5,4,null);
 
-INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is_active_member) VALUES
+INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,is_active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),
   (null,'Junior','dynamic',null,0,17,1),
   (null,'Members of honor','static',null,null,null,1),
@@ -59,7 +59,7 @@ INSERT INTO club_group (group_id,group_name,group_type,gender,min_age,max_age,is
 INSERT INTO club_group_location (group_id,location_id) VALUES
   (4,1);
 
-INSERT INTO club_role (role_name) VALUES
+INSERT INTO club_user_role (role_name) VALUES
   ('ROLE_ADMIN');
 
 INSERT INTO club_shop_tax (tax_name,rate) VALUES
@@ -76,7 +76,7 @@ INSERT INTO club_shop_order_status (status_name,is_accepted,is_cancelled,priorit
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
 
-INSERT INTO club_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
+INSERT INTO club_user_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
   ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
 
 INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES

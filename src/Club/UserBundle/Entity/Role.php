@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Role")
- * @ORM\Table(name="club_role")
+ * @ORM\Table(name="club_user_role")
  */
 class Role implements RoleInterface
 {

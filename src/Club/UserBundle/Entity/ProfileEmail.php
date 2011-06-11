@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\ProfileEmail")
- * @ORM\Table(name="club_profile_email")
+ * @ORM\Table(name="club_user_profile_email")
  */
 class ProfileEmail
 {
