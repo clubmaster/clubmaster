@@ -27,6 +27,7 @@
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 - unit test
 - special products, whoisonline, login attempts
+- use syslog critical levels to logging system
 
 == security ==
 - cannot edit orders that you do not own
