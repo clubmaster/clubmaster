@@ -1,6 +1,5 @@
 == todo ==
-- event bundle
-  - export as ical/rss
+- events as ical/rss
 - advanced search user page
   - list users in a group
 - users should be able to add and remove address, email and phone
@@ -37,8 +36,8 @@
 == modules ==
 - team bundle
 - forum bundle
-- weather bundle
 - payment gateway bundle
+- weather bundle
 - mailer bundle
 - sms bundle
 - booking bundle
