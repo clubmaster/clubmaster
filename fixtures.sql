@@ -85,14 +85,14 @@ INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES
   ('Wire transfer','<p>Tillykke din order er blevet gennemført</p>');
 
 INSERT INTO club_shop_category (id,category_id,category_name,description,location_id) VALUES
-  (1,null,'Abonnementer','Abonnementer',1),
-  (2,null,'Klippekort','Klippekort',1),
-  (3,null,'Mad','Mad',1),
-  (4,null,'Drikke','Drikke',1),
-  (5,null,'Sportsudstyr','Sportsudstyr',1),
-  (6,null,'Andet','Andet',1),
-  (7,5,'Tasker','Tasker',1),
-  (8,5,'Ketcher','Ketcher',1);
+  (1,null,'Subscriptions','Subscriptions',1),
+  (2,null,'Ticket coupon','Ticket coupon',1),
+  (3,null,'Food','Food',1),
+  (4,null,'Liquid','Liquid',1),
+  (5,null,'Sport equipment','Sport equipment',1),
+  (6,null,'Other','Other',1),
+  (7,5,'Bags','Bags',1),
+  (8,5,'Rackets','Rackets',1);
 
 INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('1. md, subscription','1. md, subscription',100,2),
@@ -102,7 +102,7 @@ INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
   ('10 clip','10 clip',100,2),
   ('20 clip','20 clip',175,2),
   ('Tennis Balls','Tennis Balls',50,2),
-  ('Club t-shirt','Club t-shirt',200,2),
+  ('Club T-shirt','Club T-shirt',200,2),
   ('Easter subscription','Easter subscription',50,2);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
