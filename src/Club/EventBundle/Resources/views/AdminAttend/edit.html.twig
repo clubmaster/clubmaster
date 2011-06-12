@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Event</h1>
+
+<form method="post" action="{{ path('admin_event_event_edit', {'id':event.id}) }}">
+{% include "ClubEventBundle:AdminEvent:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

@@ -14,6 +14,7 @@
       <th>[x]</th>
       <th>Id</th>
       <th>Event</th>
+      <th>Attends</th>
       <th>Price</th>
       <th>Start date</th>
       <th>Stop date</th>
@@ -22,7 +23,7 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="7" class="arrow-01">
+      <td colspan="8" class="arrow-01">
         <select name="" class="input-text">
           <option value="">Delete selected</option>
           <option value="">Remove selected</option>
@@ -38,17 +39,19 @@
       <td><input type="checkbox" /></td>
       <td>{{ event.id }}</td>
       <td>{{ event.eventName }}</td>
+      <td>{{ event.attends|length }} / {% if event.maxAttends == 0 %}-{% else %}{{ event.maxAttends }}{% endif %}</td>
       <td>{{ event.price }}</td>
       <td>{{ event.startDate|date('Y-m-d H:i') }}</td>
       <td>{{ event.stopDate|date('Y-m-d H:i') }}</td>
       <td>
         {% include "::edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %}
         {% include "::delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %}
+        <a href="{{ path('admin_event_attend', {'id':event.id}) }}">Attends</a>
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no events at the time</td>
+    <td colspan="8">There are no events at the time</td>
   </tr>
   {% endfor %}
   </tbody>

@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Event</h1>
+
+{% include "::flash.html.twig" %}
+
+<form method="post" action="{{ path('admin_event_attend_batch') }}">
+<table>
+  <thead>
+    <tr>
+      <th>[x]</th>
+      <th>Id</th>
+      <th>Event</th>
+      <th>User</th>
+      <th>Paid</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="7" class="arrow-01">
+        <select name="" class="input-text">
+          <option value="">Delete selected</option>
+          <option value="">Remove selected</option>
+          <option value="">Rename selected</option>
+          <option value="">Copy selected</option>
+        </select>&nbsp;<input type="submit" value="OK" />
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for attend in attends %}
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{{ attend.id }}</td>
+      <td>{{ event.eventName }}</td>
+      <td>{{ attend.user.profile.name }}</td>
+      <td>{{ attend.paid }}</td>
+      <td>{{ attend.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% include "::delete_link.html.twig" with {'url':path('admin_event_attend_delete', {'id':attend.id})} %}
+        <a href="{{ path('admin_event_attend_paid', {'id':attend.id}) }}">Paid</a>
+        <a href="{{ path('admin_event_attend_unpaid', {'id':attend.id}) }}">Unpaid</a>
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="7">There are no attends at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+{% endblock %}

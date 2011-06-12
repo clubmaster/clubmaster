@@ -51,7 +51,12 @@ class EventController extends Controller
     $attend = new \Club\EventBundle\Entity\Attend();
     $attend->setUser($this->get('security.context')->getToken()->getUser());
     $attend->setEvent($event);
-    $attend->setPaid(0);
+
+    if ($event->getPrice() == 0) {
+      $attend->setPaid(1);
+    } else {
+      $attend->setPaid(0);
+    }
 
     $em->persist($attend);
     $em->flush();

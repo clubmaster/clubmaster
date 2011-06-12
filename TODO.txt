@@ -28,6 +28,7 @@
 - unit test
 - special products, whoisonline, login attempts
 - use syslog critical levels to logging system
+- event custom validator ( more attend than max attends )
 
 == security ==
 - cannot edit orders that you do not own
