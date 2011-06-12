@@ -34,14 +34,21 @@
 - make sure the firewall actually does work
 
 == modules ==
+- mailer bundle
 - team bundle
 - forum bundle
 - payment gateway bundle
 - weather bundle
-- mailer bundle
 - sms bundle
 - booking bundle
 - integration til e-conomic
 - dashboard bundle
 - internal message bundle
 - export / import bundle
+- ranking bundle
+- cup bundle
+- work schedule bundle
+- todo bundle
+- wordpress bundle
+- api bundle
+- request member bundle
