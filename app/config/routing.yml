@@ -19,3 +19,6 @@ _task:
 
 _log:
   resource: "@ClubLogBundle/Resources/config/routing.yml"
+
+_event:
+  resource: "@ClubEventBundle/Resources/config/routing.yml"

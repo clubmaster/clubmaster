@@ -1,17 +1,5 @@
 <ul class="box">
-  <li><a href="{{ path('admin_user') }}">User</a></li>
-  <li><a href="{{ path('shop') }}">Shop</a>
-    <ul>
-      <li><a href="{{ path('admin_shop_product') }}">Product</a></li>
-      <li><a href="{{ path('admin_shop_category') }}">Category</a></li>
-      <li><a href="{{ path('admin_shop_order') }}">Order</a></li>
-      <li><a href="{{ path('admin_shop_payment_method') }}">Payment Method</a></li>
-      <li><a href="{{ path('admin_shop_shipping') }}">Shipping</a></li>
-      <li><a href="{{ path('admin_shop_special') }}">Special</a></li>
-      <li><a href="{{ path('admin_shop_transaction') }}">Transaction</a></li>
-    </ul>
-  </li>
-  <li><a href="">Admin</a>
+  <li><a href="{{ path('admin_user') }}">User</a>
     <ul>
       <li><a href="{{ path('admin_location') }}">Location</a></li>
       <li><a href="{{ path('admin_group') }}">Group</a></li>
@@ -21,6 +9,18 @@
       <li><a href="{{ path('ban') }}">Ban</a></li>
       <li><a href="{{ path('admin_task') }}">Task</a></li>
       <li><a href="{{ path('admin_log') }}">Log</a></li>
+    </ul>
+  </li>
+  <li><a href="{{ path('admin_event_event') }}">Event</a></li>
+  <li><a href="{{ path('shop') }}">Shop</a>
+    <ul>
+      <li><a href="{{ path('admin_shop_product') }}">Product</a></li>
+      <li><a href="{{ path('admin_shop_category') }}">Category</a></li>
+      <li><a href="{{ path('admin_shop_order') }}">Order</a></li>
+      <li><a href="{{ path('admin_shop_payment_method') }}">Payment Method</a></li>
+      <li><a href="{{ path('admin_shop_shipping') }}">Shipping</a></li>
+      <li><a href="{{ path('admin_shop_special') }}">Special</a></li>
+      <li><a href="{{ path('admin_shop_transaction') }}">Transaction</a></li>
     </ul>
   </li>
 </ul>

@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>Event</h1>
+
+<h2>{{ event.eventName }}</h2>
+
+<p>Name: {{ event.eventName }}<br />
+Price: {{ event.price }}<br />
+Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
+Start date: {{ event.stopDate|date('Y-m-d H:i') }}</p>
+
+<p>{{ event.description|raw }}</p>
+
+{% if event.isAttending(user) %}
+<p><a href="{{ path('event_event_unattend', {'id':event.id}) }}">Unattend</a></p>
+{% else %}
+<p><a href="{{ path('event_event_attend', {'id':event.id}) }}">Attend</a></p>
+{% endif %}
+
+{% endblock %}

@@ -1,3 +1,8 @@
-#homepage:
-#    pattern:  /
-#    defaults: { _controller: ClubEventBundle:Default:index }
+_admin_event:
+  resource: "@ClubEventBundle/Controller/AdminEventController.php"
+  type: annotation
+  prefix: /admin
+
+_event:
+  resource: "@ClubEventBundle/Controller/EventController.php"
+  type: annotation

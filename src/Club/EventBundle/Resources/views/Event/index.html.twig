@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Event</h1>
+
+<h2>Event</h2>
+{% include "::flash.html.twig" %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Event</th>
+      <th>Price</th>
+      <th>Start date</th>
+      <th>Stop date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for event in events %}
+    <tr>
+      <td>{{ event.id }}</td>
+      <td><a href="{{ path('event_event_show', {'id':event.id}) }}">{{ event.eventName }}</a></td>
+      <td>{{ event.price }}</td>
+      <td>{{ event.startDate|date('Y-m-d H:i') }}</td>
+      <td>{{ event.stopDate|date('Y-m-d H:i') }}</td>
+      <td>
+        {% if event.isAttending(user) %}
+        <a href="{{ path('event_event_unattend', {'id':event.id}) }}">Unattend</a>
+        {% else %}
+        <a href="{{ path('event_event_attend', {'id':event.id}) }}">Attend</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There are no events at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

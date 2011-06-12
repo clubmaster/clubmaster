@@ -148,6 +148,11 @@ class User implements UserInterface, \Serializable
     private $ticket_coupons;
 
     /**
+     * @ORM\OneToMany(targetEntity="Club\EventBundle\Entity\Attend", mappedBy="user")
+     */
+    private $attends;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
      * @ORM\JoinTable(name="club_user_user_group",
      *  joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -631,5 +636,35 @@ class User implements UserInterface, \Serializable
       }
 
       return false;
+    }
+
+    /**
+     * Add attends
+     *
+     * @param Club\EventBundle\Entity\Attend $attends
+     */
+    public function addAttends(\Club\EventBundle\Entity\Attend $attends)
+    {
+        $this->attends[] = $attends;
+    }
+
+    /**
+     * Get attends
+     *
+     * @return Doctrine\Common\Collections\Collection $attends
+     */
+    public function getAttends()
+    {
+        return $this->attends;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroups(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
     }
 }
