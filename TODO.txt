@@ -11,15 +11,10 @@
 - Obey lifetime membership
 - Update basket
 - fix product variants
-- put images on links
-- make sure all pages are html validated
-- make sure css are validated
 - use git more proper:
   - add the club as a gitmodule
 - Fix shop as user
 - Shop coupons
-- if twig has no date, it prints current timestamp (tasks last run at)
-- make a task that remove from logging table
 - translation
 - database email delivery strategy
 - make sure user see if a task has been locked
@@ -28,6 +23,23 @@
 - special products, whoisonline, login attempts
 - use syslog critical levels to logging system
 - event custom validator ( more attend than max attends )
+- add flash on all pages with a form
+- add images to products
+
+== tasks ==
+- make a task that remove from logging table
+
+== graphics ==
+- style product page
+- make sure all pages are html validated
+- make sure css are validated
+- put images on links
+- if twig has no date, it prints current timestamp (tasks last run at)
+
+== logging ==
+- add event
+- user attend to event
+- user unattend event
 
 == security ==
 - cannot edit orders that you do not own
