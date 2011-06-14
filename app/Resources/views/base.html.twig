@@ -79,15 +79,10 @@
                                 <!-- Logo (Max. width = 200px) -->
                                 <p id="logo"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="Our logo" title="Visit Site" /></a></p>
 
-                                {% if is_granted('ROLE_ADMIN') %}
-
-                                {% block search %}{% endblock %}
-                                {% endif %}
-
                         </div> <!-- /padding -->
 
                         {% if is_granted('ROLE_ADMIN') %}
-                        {% include "::left_menu.html.twig" %}
+                          {% include "::left_menu.html.twig" %}
                         {% endif %}
 
                 </div> <!-- /aside -->
