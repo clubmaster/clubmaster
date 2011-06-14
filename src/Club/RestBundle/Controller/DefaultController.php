@@ -147,6 +147,25 @@ class DefaultController extends Controller
     return $this->renderJSon($user->toArray());
   }
 
+  /**
+   * @Route("/add/event")
+   */
+  public function addEventAction()
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    $event = new \Club\EventBundle\Entity\Event();
+    $event->setEventName($this->get('request')->get('event_name'));
+    $event->setDescription($this->get('request')->get('description'));
+    $event->setStartDate(new \DateTime($this->get('request')->get('start_date')));
+    $event->setStopDate(new \DateTime($this->get('request')->get('stop_date')));
+
+    $em->persist($event);
+    $em->flush();
+
+    return $this->renderJSon($event->toArray());
+  }
+
   protected function hasErrors($object)
   {
     $errors = $this->get('validator')->validate($object);

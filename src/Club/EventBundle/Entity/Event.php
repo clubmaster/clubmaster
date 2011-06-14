@@ -297,4 +297,18 @@ class Event
     {
         return $this->attends;
     }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'event_name' => $this->getEventName(),
+        'description' => $this->getDescription(),
+        'price' => $this->getPrice(),
+        'max_attends' => $this->getMaxAttends(),
+        'start_date' => $this->getStartDate(),
+        'stop_date' => $this->getStopDate(),
+        'created_at' => $this->getCreatedAt()
+      );
+    }
 }
