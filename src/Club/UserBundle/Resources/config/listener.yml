@@ -9,3 +9,8 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.listener, event: group.task, method: onGroupTask }
+  club.userbundle.listener.login_attempt.listener:
+    class: Club\UserBundle\Listener\CleanupLoginAttemptListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: login_attempt.task, method: onLoginAttemptTask }
