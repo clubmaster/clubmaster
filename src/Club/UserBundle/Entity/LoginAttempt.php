@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\LoginAttempt")
  * @ORM\Table(name="club_user_login_attempt")
+ * @ORM\HasLifecycleCallbacks()
  */
 class LoginAttempt
 {
@@ -54,6 +55,11 @@ class LoginAttempt
      * @var boolean $login_failed
      */
     private $login_failed;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
 
     /**
      * Get id
@@ -163,5 +169,35 @@ class LoginAttempt
     public function getLoginFailed()
     {
         return $this->login_failed;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @ORM\prePersist()
+     */
+    public function prePersist()
+    {
+      if (!$this->getId()) {
+        $this->setCreatedAt(new \DateTime());
+      }
     }
 }

@@ -1,0 +1,7 @@
+services:
+  failure.password.handler:
+    class: Club\UserBundle\Helper\FailurePasswordHandler
+    arguments: [@doctrine.orm.entity_manager]
+  success.password.handler:
+    class: Club\UserBundle\Helper\SuccessPasswordHandler
+    arguments: [@doctrine.orm.entity_manager]

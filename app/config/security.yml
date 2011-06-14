@@ -23,6 +23,8 @@ security:
             form_login:
                 check_path: /login_check
                 login_path: /login
+                failure_handler: failure.password.handler
+                success_handler: success.password.handler
             logout: true
             security: true
             anonymous: true
