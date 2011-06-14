@@ -28,6 +28,7 @@
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 - rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
 - success / failure handler has to be more dynamic
+- on success handler, consider forward and not redirect response?
 
 == tasks ==
 
