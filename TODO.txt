@@ -24,9 +24,10 @@
 - add flash on all pages with a form
 - add images to products
 - make a quick search field for users
+- rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
+- rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
 
 == tasks ==
-- make a task that remove from logging table
 
 == graphics ==
 - style product page

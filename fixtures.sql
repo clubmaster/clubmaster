@@ -1,5 +1,6 @@
 INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval,event) VALUES
-  ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask');
+  ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask'),
+  ('Cleanup logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLogTask');
 
 INSERT INTO club_user_country (country) VALUES
   ('Denmark'),

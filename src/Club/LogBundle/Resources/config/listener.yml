@@ -24,3 +24,8 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.listener, event: event.unattend, method: onEventUnattend }
+  club.logbundle.listener.cleanup_log_listener:
+    class: Club\LogBundle\Listener\CleanupLogListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: log.task, method: onLogTask }
