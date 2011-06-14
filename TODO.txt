@@ -37,13 +37,13 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 
 == logging ==
-- add event
 - user attend to event
 - user unattend event
 
 == security ==
 - cannot edit orders that you do not own
 - make sure the firewall actually does work
+- allow anonymous users to view ical file
 
 == modules ==
 - mailer bundle

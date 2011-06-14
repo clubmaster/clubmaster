@@ -90,7 +90,12 @@ class AdminEventController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        if (!$event->getId()) {
+          $e = new \Club\EventBundle\Event\FilterEventEvent($event);
+          $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAdd, $e);
+        }
+
+        $em = $this->get('doctrine')->getEntityManager();
         $em->persist($event);
         $em->flush();
 

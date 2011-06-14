@@ -9,3 +9,8 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.listener, event: order.change, method: onOrderChange }
+  club.logbundle.listener.on_event_add_listener:
+    class: Club\LogBundle\Listener\AddEventListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: event.add, method: onEventAdd }
