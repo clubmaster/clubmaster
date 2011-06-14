@@ -42,6 +42,7 @@ class Group extends EntityRepository
         ->leftJoin('u.subscriptions','s')
         ->leftJoin('u.ticket_coupons','t')
         ->andWhere('s.expire_date >= ?4')
+        ->andWhere('s.is_active = 1')
         ->orWhere('t.expire_date >= ?5 AND t.ticket > ?6')
         ->setParameter(4,date('Y-m-d'))
         ->setParameter(5,date('Y-m-d'))

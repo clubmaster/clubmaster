@@ -1,5 +1,4 @@
 == todo ==
-- Obey pauses
 - email and phone should not be mandatory
 - events as ical/rss
 - create user filter
@@ -29,6 +28,7 @@
 - rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
 - success / failure handler has to be more dynamic
 - on success handler, consider forward and not redirect response?
+- consider subscription attributes instead of multiple columns
 
 == tasks ==
 
@@ -48,6 +48,7 @@
 - cannot edit orders that you do not own
 - make sure the firewall actually does work
 - allow anonymous users to view ical file
+- only right user can pause and expire subscription (admin, owner)
 
 == modules ==
 - mailer bundle

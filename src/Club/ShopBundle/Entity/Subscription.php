@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
  * @ORM\Table(name="club_shop_subscription")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Subscription
 {
@@ -49,11 +50,23 @@ class Subscription
     private $auto_renewal;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean $is_active
+     */
+    private $is_active;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
      *
      * @var Club\UserBundle\Entity\User
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SubscriptionPause", mappedBy="subscription")
+     */
+    private $subscription_pauses;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
@@ -109,7 +122,7 @@ class Subscription
      */
     public function setExpireDate($expireDate)
     {
-        $this->expire_date = $expireDate;
+      $this->expire_date = $expireDate;
     }
 
     /**
@@ -185,5 +198,53 @@ class Subscription
     public function getLocations()
     {
       return $this->locations;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean $isActive
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Add subscription_pauses
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses
+     */
+    public function addSubscriptionPauses(\Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses)
+    {
+        $this->subscription_pauses[] = $subscriptionPauses;
+    }
+
+    /**
+     * Get subscription_pauses
+     *
+     * @return Doctrine\Common\Collections\Collection $subscriptionPauses
+     */
+    public function getSubscriptionPauses()
+    {
+        return $this->subscription_pauses;
+    }
+
+    /**
+     * @ORM\prePersist
+     */
+    public function prePersist()
+    {
+      echo $this->getExpireDate()->format('Y-m-d H:i:s');
     }
 }

@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class Subscription extends EntityRepository
 {
+  public function getActivePause($subscription)
+  {
+    $pause = $this->_em->createQueryBuilder()
+      ->select('sp')
+      ->from('ClubShopBundle:SubscriptionPause','sp')
+      ->where('sp.subscription = ?1')
+      ->andWhere('sp.expire_date IS NULL')
+      ->setParameter(1, $subscription->getId())
+      ->getQuery()
+      ->getSingleResult();
+
+    return $pause;
+  }
 }

@@ -28,6 +28,7 @@ class NewSubscriptionListener
         if (isset($res['Month'])) {
           $subscription = new \Club\ShopBundle\Entity\Subscription;
           $subscription->setUser($order->getUser());
+          $subscription->setIsActive(1);
 
           $start_date = (isset($res['StartDate'])) ? new \DateTime($res['StartDate']) : new \DateTime();
           $subscription->setStartDate($start_date);

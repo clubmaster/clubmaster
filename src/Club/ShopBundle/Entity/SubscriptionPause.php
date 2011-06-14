@@ -28,7 +28,7 @@ class SubscriptionPause
     private $start_date;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable="true")
      *
      * @var datetime $expire_date
      */
