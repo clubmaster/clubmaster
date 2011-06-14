@@ -37,8 +37,6 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 
 == logging ==
-- user attend to event
-- user unattend event
 
 == security ==
 - cannot edit orders that you do not own

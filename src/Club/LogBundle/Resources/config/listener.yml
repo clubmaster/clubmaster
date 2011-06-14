@@ -14,3 +14,13 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.listener, event: event.add, method: onEventAdd }
+  club.logbundle.listener.on_event_attend_listener:
+    class: Club\LogBundle\Listener\AttendEventListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: event.attend, method: onEventAttend }
+  club.logbundle.listener.on_event_unattend_listener:
+    class: Club\LogBundle\Listener\UnattendEventListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.listener, event: event.unattend, method: onEventUnattend }
