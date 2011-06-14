@@ -1,12 +1,26 @@
 == todo ==
+- make a quick search field for users
+- users should be able to disable types of email
+  - types (password,info)
+- fix cancel subscription
+- make sure both user subscription list and admin subscription list works
 - email and phone should not be mandatory
 - events as ical/rss
 - create user filter
+  - gender
+  - age
+  - city
+  - country
+  - active / inactive
+  - subscription
+  - ticket coupon
+  - location
 - users should be able to add and remove address, email and phone
 - sort user lists
 - find a way to make company users
-- add batch
+- add batch to user list
 - ticket coupon as group location
+- how does auto renewal works?
 - Obey auto renewal
 - Obey lifetime membership
 - Update basket
@@ -21,16 +35,13 @@
 - special products
 - use syslog critical levels to logging system
 - event custom validator ( more attend than max attends )
-- add flash on all pages with a form
+- add flash on all pages with a form or with an action
 - add images to products
-- make a quick search field for users
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 - rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
-- success / failure handler has to be more dynamic
+- success / failure handler has to be more dynamic (might wait for a symfony upgrade)
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
-
-== tasks ==
 
 == graphics ==
 - style product page
@@ -41,8 +52,7 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 - might be able to have a flash globally on all pages
 - remove table sorting
-
-== logging ==
+- remove batch on all pages except user list
 
 == security ==
 - cannot edit orders that you do not own
@@ -54,15 +64,7 @@
 - mailer bundle
   - send mails to specific user
   - send mails to specific group
-  - create a filter and send mails to filtered group
-    - gender
-    - age
-    - city
-    - country
-    - active / inactive
-    - subscription
-    - ticket coupon
-    - location
+  - send mail to user filters
 - team bundle
 - forum bundle
 - payment gateway bundle
