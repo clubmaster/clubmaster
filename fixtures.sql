@@ -1,6 +1,6 @@
 INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval,event) VALUES
   ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask'),
-  ('Cleanup logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLogTask');
+  ('Cleanup logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLogTask'),
   ('Cleanup login logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLoginAttemptTask');
 
 INSERT INTO club_user_country (country) VALUES
@@ -147,9 +147,11 @@ INSERT INTO club_shop_attribute (attribute_name) VALUES
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
+  (1,7,3),
   (1,8,1),
   (1,5,'2011-06-01'),
   (2,1,2),
+  (1,7,5),
   (2,8,1),
   (3,5,'2011-04-01'),
   (3,6,'2011-10-31'),

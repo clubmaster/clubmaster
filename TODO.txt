@@ -1,4 +1,5 @@
 == todo ==
+- Obey pauses
 - email and phone should not be mandatory
 - events as ical/rss
 - create user filter
@@ -7,7 +8,6 @@
 - find a way to make company users
 - add batch
 - ticket coupon as group location
-- Obey pauses
 - Obey auto renewal
 - Obey lifetime membership
 - Update basket
