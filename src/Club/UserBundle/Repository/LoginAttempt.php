@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class LoginAttempt extends EntityRepository
 {
+  public function findAll()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:LoginAttempt','l')
+      ->orderBy('l.id','DESC')
+      ->getQuery()
+      ->getResult();
+  }
 }

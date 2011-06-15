@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class Log extends EntityRepository
 {
+  public function findAll()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubLogBundle:Log','l')
+      ->orderBy('l.id','DESC')
+      ->getQuery()
+      ->getResult();
+  }
 }
