@@ -16,16 +16,10 @@ class AdminUserController extends Controller
    */
   public function indexAction()
   {
-    $filter = unserialize($this->get('session')->get('filter.admin_user'));
-    $filter = ($filter instanceOf \Club\UserBundle\Entity\User) ? $filter : new \Club\UserBundle\Entity\User();
-
-    $filter_form = $this->createForm(new \Club\UserBundle\Filter\User());
-    $filter_form->setData($filter);
-
     $order_by = array();
     $em = $this->get('doctrine.orm.entity_manager');
     $repository = $em->getRepository('\Club\UserBundle\Entity\User');
-    $usersCount = $repository->getUsersCount($filter);
+    $usersCount = $repository->getUsersCount();
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
     if ('POST' === $this->get('request')->getMethod() && isset($_POST['filter_order'])) {
@@ -47,31 +41,13 @@ class AdminUserController extends Controller
             $sort_direction = 'desc';
         }
     }
-    $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
+    $users = $repository->getUsersListWithPagination($order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
-      'filter_form' => $filter_form->createView(),
       'users' => $users,
       'sort_dir' => $sort_direction,
       'paginator' => $paginator
     );
-  }
-
-  /**
-   * @Route("/user/filter", name="admin_user_filter")
-   */
-  public function filterAction()
-  {
-    $filter = new \Club\UserBundle\Entity\User();
-
-    $form = $this->createForm(new \Club\UserBundle\Filter\User($filter));
-    $form->bindRequest($this->get('request'));
-
-    if ($form->isValid()) {
-      $this->get('session')->set('filter.admin_user',serialize($form->getData()));
-    }
-
-    return $this->forward('ClubUserBundle:AdminUser:index');
   }
 
   /**
@@ -225,51 +201,6 @@ class AdminUserController extends Controller
     $this->get('session')->setFlash('notice',sprintf('User %s banned.',$user->getUsername()));
 
     return new RedirectResponse($this->generateUrl('admin_user'));
-  }
-
-  /**
-   * @Route("/user/subscription/{id}",name="admin_user_subscription")
-   * @Template()
-   */
-  public function subscriptionAction($id)
-  {
-    $user = $this->get('doctrine.orm.entity_manager')->find('Club\UserBundle\Entity\User',$id);
-
-    return array(
-      'user' => $user
-    );
-  }
-
-  /**
-   * @Route("/user/subscription/expire/{id}",name="admin_user_subscription_expire")
-   */
-  public function subscriptionExpireAction($id)
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $subscription = $em->find('\Club\ShopBundle\Entity\Subscription',$id);
-    $subscription->expire(new \DateTime());
-
-    $em->persist($subscription);
-    $em->flush();
-
-    return new RedirectResponse($this->generateUrl('user_subscription',array('id'=>$subscription->getUser()->getId())));
-  }
-
-  /**
-   * @Route("/user/ticket/expire/{id}",name="admin_user_ticket_expire")
-   */
-  public function ticketExpireAction($id)
-  {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $ticket = $em->find('\Club\ShopBundle\Entity\TicketCoupon',$id);
-    $ticket->expire(new \DateTime());
-
-    $em->persist($ticket);
-    $em->flush();
-
-    return new RedirectResponse($this->generateUrl('user_subscription',array('id'=>$ticket->getUser()->getId())));
   }
 
   /**

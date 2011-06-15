@@ -18,6 +18,7 @@
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
       <td>
+        <a href="{{ path('shop_subscription_expire', {'id': subscription.id}) }}">Cancel</a>
         {% if subscription.isActive %}
         <a href="{{ path('shop_subscription_pause', {'id':subscription.id}) }}">Pause</a>
         {% else %}

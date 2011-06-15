@@ -8,6 +8,7 @@
       <th>Tickets</th>
       <th>Start date</th>
       <th>Expire date</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -18,10 +19,14 @@
       <td>{{ ticket.ticket }}</td>
       <td>{{ ticket.startDate|date('Y-m-d') }}</td>
       <td>{{ ticket.expireDate|date('Y-m-d') }}</td>
+      <td>
+        <a href="{{ path('admin_user_ticket_expire', {'id':ticket.id}) }}">Cancel</a>
+        <a href="#">Pause</a>
+      </td>
     </tr>
   {% else %}
     <tr>
-      <td colspan="5">There is no tickets for this user.</td>
+      <td colspan="6">There is no tickets for this user.</td>
     </tr>
   {% endfor %}
   </tbody>

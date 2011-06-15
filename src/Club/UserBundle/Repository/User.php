@@ -42,21 +42,9 @@ class User extends EntityRepository
     return $r[0]->getMemberNumber()+1;
   }
 
-  public function getUsers($filter)
-  {
-    $dql = "SELECT u FROM Club\UserBundle\Entity\User u LEFT JOIN u.profile p WHERE (CONCAT(p.first_name,p.last_name) LIKE ?1 OR u.member_number = ?2)";
-
-    $users = $this->_em->createQuery($dql)
-      ->setParameter(1,'%'.preg_replace("/\s/","",$filter->getMemberNumber().'%'))
-      ->setParameter(2,$filter->getMemberNumber())
-      ->getResult();
-
-    return $users;
-  }
-
-  public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
+  public function getUsersListWithPagination($order_by = array(), $offset = 0, $limit = 0) {
     //Create query builder for languages table
-    $qb = $this->getQuery($filter);
+    $qb = $this->getQuery();
 
     //Show all if offset and limit not set, also show all when limit is 0
     if ((isset($offset)) && (isset($limit))) {
@@ -76,21 +64,17 @@ class User extends EntityRepository
     return $q->getResult();
   }
 
-  public function getUsersCount($filter) {
-    $qb = $this->getQuery($filter);
+  public function getUsersCount() {
+    $qb = $this->getQuery();
 
     $qb->select($qb->expr()->count('u'));
     $q = $qb->getQuery();
     return $q->getSingleScalarResult();
   }
 
-  protected function getQuery($filter)
+  protected function getQuery()
   {
     $qb = $this->createQueryBuilder('u');
-
-    if ($filter->getMemberNumber()) {
-      $qb->andWhere('u.member_number = ?1')->setParameter(1,$filter->getMemberNumber());
-    }
 
     return $qb;
   }

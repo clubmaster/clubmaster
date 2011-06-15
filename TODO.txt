@@ -2,7 +2,6 @@
 - make a quick search field for users
 - users should be able to disable types of email
   - types (password,info)
-- fix cancel subscription
 - make sure both user subscription list and admin subscription list works
 - email and phone should not be mandatory
 - events as ical/rss

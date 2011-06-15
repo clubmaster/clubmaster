@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Subscriptions</h1>
+
+{% include "::flash.html.twig" %}
+
+{% include "ClubShopBundle:AdminSubscription:subscription_table.html.twig" with {'user': user} %}
+{% include "ClubShopBundle:AdminSubscription:ticket_coupon_table.html.twig" with {'user': user} %}
+
+{% endblock %}
