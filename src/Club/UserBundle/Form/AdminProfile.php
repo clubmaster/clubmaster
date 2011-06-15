@@ -5,7 +5,7 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class Profile extends AbstractType
+class AdminProfile extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
@@ -19,13 +19,13 @@ class Profile extends AbstractType
     ));
     $builder->add('day_of_birth','birthday');
     $builder->add('profile_address','collection', array(
-      'type' => new \Club\UserBundle\Form\ProfileAddress()
-    ));
-    $builder->add('profile_phone','collection', array(
-      'type' => new \Club\UserBundle\Form\ProfilePhone()
+      'type' => new \Club\UserBundle\Form\AdminProfileAddress()
     ));
     $builder->add('profile_email','collection', array(
-      'type' => new \Club\UserBundle\Form\ProfileEmail()
+      'type' => new \Club\UserBundle\Form\AdminProfileEmail()
+    ));
+    $builder->add('profile_phone','collection', array(
+      'type' => new \Club\UserBundle\Form\AdminProfilePhone()
     ));
   }
 

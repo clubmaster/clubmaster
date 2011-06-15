@@ -56,52 +56,8 @@ class AdminUserController extends Controller
    */
   public function newAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
-
-    $user = new \Club\UserBundle\Entity\User();
-
-    $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
-
-    $profile = new \Club\UserBundle\Entity\Profile();
-    $user->setProfile($profile);
-    $profile->setUser($user);
-
-    if (!count($user->getProfile()->getProfileAddress())) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setIsDefault(1);
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!count($user->getProfile()->getProfilePhone())) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setIsDefault(1);
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!count($user->getProfile()->getProfileEmail())) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setIsDefault(1);
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\AdminUser(),$user);
-
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
-      if ($form->isValid()) {
-
-        $profile = $user->getProfile()->getProfileAddress();
-        $profile[0]->setIsDefault(1);
-
-        $em->persist($user);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-
-        return new RedirectResponse($this->generateUrl('admin_user'));
-      }
-    }
+    $user = $this->initUser();
+    $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     return array(
       'form' => $form->createView()
@@ -109,53 +65,130 @@ class AdminUserController extends Controller
   }
 
   /**
+   * @Route("/user/create", name="admin_user_create")
    * @Template()
-   * @Route("/user/edit/{id}", name="admin_user_edit")
    */
-  public function editAction($id)
+  public function createAction()
   {
     $em = $this->get('doctrine.orm.entity_manager');
-    $user = $em->find('Club\UserBundle\Entity\User',$id);
 
-    if (!count($user->getProfile()->getProfileAddress())) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setIsDefault(1);
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!count($user->getProfile()->getProfilePhone())) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setIsDefault(1);
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!count($user->getProfile()->getProfileEmail())) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setIsDefault(1);
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\AdminUser(),$user);
+    $user = $this->initUser();
+    $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
-      if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $em->persist($user);
-        $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-
-        return new RedirectResponse($this->generateUrl('admin_user'));
+      // validate user
+      $errors = $this->get('validator')->validate($user);
+      if (count($errors) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
+          'form' => $form->createView()
+        ));
       }
+
+      // validate profile
+      $errors = $this->get('validator')->validate($user->getProfile());
+      if (count($errors) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
+
+      // validate address
+      $addresses = $user->getProfile()->getProfileAddress();
+      if (count($this->get('validator')->validate($addresses[0])) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
+
+      // validate email
+      $emails = $user->getProfile()->getProfileEmail();
+      if (count($this->get('validator')->validate($emails[0])) > 0) {
+        $user->getProfile()->getProfileEmail()->removeElement($emails[0]);
+      }
+
+      // validate phone
+      $phones = $user->getProfile()->getProfilePhone();
+      if (count($this->get('validator')->validate($phones[0])) > 0) {
+        $user->getProfile()->getProfilePhone()->removeElement($phones[0]);
+      }
+
+      $em->persist($user);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice','Your changes were saved!');
+      return new RedirectResponse($this->generateUrl('admin_user'));
+    }
+
+    return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
+      'form' => $form->createView()
+    ));
+  }
+
+  /**
+   * @Route("/user/edit/{id}", name="admin_user_edit")
+   * @Template()
+   */
+  public function editAction($id)
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    $user = $em->find('ClubUserBundle:User',$id);
+    $user = $this->getUser($user);
+
+    $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
+
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
+
+      // validate user
+      $errors = $this->get('validator')->validate($user);
+      if (count($errors) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
+
+      // validate profile
+      $errors = $this->get('validator')->validate($user->getProfile());
+      if (count($errors) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
+
+      // validate address
+      $addresses = $user->getProfile()->getProfileAddress();
+      if (count($this->get('validator')->validate($addresses[0])) > 0) {
+        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
+
+      // validate email
+      $emails = $user->getProfile()->getProfileEmail();
+      if (count($this->get('validator')->validate($emails[0])) > 0) {
+        $user->getProfile()->getProfileEmail()->removeElement($emails[0]);
+      }
+
+      // validate phone
+      $phones = $user->getProfile()->getProfilePhone();
+      if (count($this->get('validator')->validate($phones[0])) > 0) {
+        $user->getProfile()->getProfilePhone()->removeElement($phones[0]);
+      }
+
+      $em->persist($user);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice','Your changes were saved!');
+      return new RedirectResponse($this->generateUrl('admin_user'));
     }
 
     return array(
       'user' => $user,
       'form' => $form->createView()
     );
-
   }
 
   /**
@@ -228,7 +261,7 @@ class AdminUserController extends Controller
     $address->setProfile($profile);
     $address->setIsDefault(1);
 
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfileAddress(), $address);
+    $form = $this->createForm(new \Club\UserBundle\Form\ProfileAddress(), $address);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -260,7 +293,7 @@ class AdminUserController extends Controller
     $phone->setProfile($profile);
     $phone->setIsDefault(1);
 
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfilePhone(), $phone);
+    $form = $this->createForm(new \Club\UserBundle\Form\ProfilePhone(), $phone);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -292,7 +325,7 @@ class AdminUserController extends Controller
     $email->setProfile($profile);
     $email->setIsDefault(1);
 
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ProfileEmail(), $email);
+    $form = $this->createForm(new \Club\UserBundle\Form\ProfileEmail(), $email);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -320,7 +353,7 @@ class AdminUserController extends Controller
     $em = $this->get('doctrine.orm.entity_manager');
     $user = $em->find('\Club\UserBundle\Entity\User',$id);
 
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\UserGroup(), $user);
+    $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -337,5 +370,48 @@ class AdminUserController extends Controller
       'user' => $user,
       'form' => $form->createView()
     );
+  }
+
+  protected function initUser()
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    $user = new \Club\UserBundle\Entity\User();
+    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+    $profile = new \Club\UserBundle\Entity\Profile();
+
+    $user->setProfile($profile);
+    $profile->setUser($user);
+
+    return $this->getUser($user);
+  }
+
+  protected function getUser($user)
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    if (!count($user->getProfile()->getProfileAddress())) {
+      $address = new \Club\UserBundle\Entity\ProfileAddress();
+      $address->setIsDefault(1);
+      $address->setContactType('home');
+      $address->setProfile($user->getProfile());
+      $user->getProfile()->addProfileAddress($address);
+    }
+    if (!count($user->getProfile()->getProfilePhone())) {
+      $phone = new \Club\UserBundle\Entity\ProfilePhone();
+      $phone->setIsDefault(1);
+      $phone->setContactType('home');
+      $phone->setProfile($user->getProfile());
+      $user->getProfile()->addProfilePhone($phone);
+    }
+    if (!count($user->getProfile()->getProfileEmail())) {
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setIsDefault(1);
+      $email->setContactType('home');
+      $email->setProfile($user->getProfile());
+      $user->getProfile()->addProfileEmail($email);
+    }
+
+    return $user;
   }
 }

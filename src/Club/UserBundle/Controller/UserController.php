@@ -17,27 +17,9 @@ class UserController extends Controller
   public function indexAction()
   {
     $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser($user);
 
-    if (!count($user->getProfile()->getProfileAddress())) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setIsDefault(1);
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!count($user->getProfile()->getProfilePhone())) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setIsDefault(1);
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!count($user->getProfile()->getProfileEmail())) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setIsDefault(1);
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\User(), $user);
+    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
@@ -55,5 +37,34 @@ class UserController extends Controller
       'user' => $user,
       'form' => $form->createView()
     );
+  }
+
+  protected function getUser($user)
+  {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    if (!count($user->getProfile()->getProfileAddress())) {
+      $address = new \Club\UserBundle\Entity\ProfileAddress();
+      $address->setIsDefault(1);
+      $address->setContactType('home');
+      $address->setProfile($user->getProfile());
+      $user->getProfile()->addProfileAddress($address);
+    }
+    if (!count($user->getProfile()->getProfilePhone())) {
+      $phone = new \Club\UserBundle\Entity\ProfilePhone();
+      $phone->setIsDefault(1);
+      $phone->setContactType('home');
+      $phone->setProfile($user->getProfile());
+      $user->getProfile()->addProfilePhone($phone);
+    }
+    if (!count($user->getProfile()->getProfileEmail())) {
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setIsDefault(1);
+      $email->setContactType('home');
+      $email->setProfile($user->getProfile());
+      $user->getProfile()->addProfileEmail($email);
+    }
+
+    return $user;
   }
 }

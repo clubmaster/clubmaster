@@ -5,7 +5,7 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class ProfileAddress extends AbstractType
+class AdminProfileAddress extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
@@ -15,13 +15,6 @@ class ProfileAddress extends AbstractType
     $builder->add('city');
     $builder->add('state');
     $builder->add('country');
-    $builder->add('contact_type','choice',array(
-      'choices' => array(
-        'home' => 'Home',
-        'work' => 'Work'
-      )
-    ));
-    $builder->add('is_default','hidden');
   }
 
   public function getDefaultOptions(array $options)

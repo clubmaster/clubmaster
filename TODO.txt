@@ -2,8 +2,6 @@
 - make a quick search field for users
 - users should be able to disable types of email
   - types (password,info)
-- make sure both user subscription list and admin subscription list works
-- email and phone should not be mandatory
 - events as ical/rss
 - create user filter
   - gender
@@ -41,6 +39,9 @@
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade)
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
+- remove all names from route, and use defaults
+- rewrite prePersist to PrePersist?? Will this work?
+- rewrite form.factory to $this->createForm()
 
 == graphics ==
 - style product page

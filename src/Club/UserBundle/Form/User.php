@@ -9,7 +9,7 @@ class User extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('profile', new \Club\UserBundle\Form\Profile());
+    $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
 
   public function getDefaultOptions(array $options)

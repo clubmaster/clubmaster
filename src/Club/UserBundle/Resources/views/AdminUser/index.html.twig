@@ -11,7 +11,7 @@
   <thead>
     <tr>
       <th>[x]</th>
-      <th>Id</th>
+      <th>Number</th>
       <th>Name</th>
       <th>Created At</th>
       <th>Actions</th>
@@ -33,7 +33,7 @@
   {% for user in users %}
     <tr>
       <td><input type="checkbox" /></td>
-      <td>{{ user.id }}</td>
+      <td>{{ user.memberNumber }}</td>
       <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td>

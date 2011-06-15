@@ -173,58 +173,113 @@ class Profile
         return $this->user;
     }
 
+    /**
+     * Add profile_address
+     *
+     * @param Club\UserBundle\Entity\ProfileAddress $profileAddress
+     */
+    public function addProfileAddress(\Club\UserBundle\Entity\ProfileAddress $profileAddress)
+    {
+        $this->profile_address[] = $profileAddress;
+    }
+
+    /**
+     * Get profile_address
+     *
+     * @return Doctrine\Common\Collections\Collection $profileAddress
+     */
+    public function getProfileAddress()
+    {
+        return $this->profile_address;
+    }
+
+    /**
+     * Add profile_phone
+     *
+     * @param Club\UserBundle\Entity\ProfilePhone $profilePhone
+     */
+    public function addProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhone)
+    {
+        $this->profile_phone[] = $profilePhone;
+    }
+
+    /**
+     * Add profile_email
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmail
+     */
+    public function addProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmail)
+    {
+        $this->profile_email[] = $profileEmail;
+    }
+
+    /**
+     * Add profile_company
+     *
+     * @param Club\UserBundle\Entity\ProfileCompany $profileCompany
+     */
+    public function addProfileCompany(\Club\UserBundle\Entity\ProfileCompany $profileCompany)
+    {
+        $this->profile_company[] = $profileCompany;
+    }
+
+    /**
+     * Set day_of_birth
+     *
+     * @param date $dayOfBirth
+     */
+    public function setDayOfBirth($dayOfBirth)
+    {
+        $this->day_of_birth = $dayOfBirth;
+    }
+
+    /**
+     * Get day_of_birth
+     *
+     * @return date $dayOfBirth
+     */
+    public function getDayOfBirth()
+    {
+        return $this->day_of_birth;
+    }
+
+    /**
+     * Get profile_phone
+     *
+     * @return Doctrine\Common\Collections\Collection $profilePhone
+     */
+    public function getProfilePhone()
+    {
+        return $this->profile_phone;
+    }
+
+    /**
+     * Get profile_email
+     *
+     * @return Doctrine\Common\Collections\Collection $profileEmail
+     */
+    public function getProfileEmail()
+    {
+        return $this->profile_email;
+    }
+
+    /**
+     * Get profile_company
+     *
+     * @return Doctrine\Common\Collections\Collection $profileCompany
+     */
+    public function getProfileCompany()
+    {
+        return $this->profile_company;
+    }
+
     public function getName()
     {
       return $this->getFirstName().' '.$this->getLastName();
     }
 
-    public function getProfileAddress()
-    {
-      return $this->profile_address;
-    }
-
-    public function setProfileAddress($profile_address)
-    {
-      $this->profile_address[] = $profile_address;
-    }
-
-    public function getProfilePhone()
-    {
-      return $this->profile_phone;
-    }
-
     public function setProfilePhone($profile_phone)
     {
-      $this->profile_phone[] = $profile_phone;
-    }
-
-    public function getProfileEmail()
-    {
-      return $this->profile_email;
-    }
-
-    public function setProfileEmail($profile_email)
-    {
-      $this->profile_email[] = $profile_email;
-    }
-
-    public function getProfileCompany()
-    {
-      return $this->profile_company;
-    }
-
-    public function setProfileCompany($profile_company)
-    {
-      $this->profile_company[] = $profile_company;
-    }
-
-    public function setDayOfBirth($day_of_birth)
-    {
-      $this->day_of_birth = $day_of_birth;
-    }
-
-    public function getDayOfBirth()
-    {
-      return $this->day_of_birth;
+      $this->profile_phone = $profile_phone;
     }
 }
