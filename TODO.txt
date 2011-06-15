@@ -13,6 +13,7 @@
   - ticket coupon
   - location
 - users should be able to add and remove address, email and phone
+  - this will not work with our currently validation.. consider to remove this funcationality from the admin part
 - sort user lists
 - find a way to make company users
 - add batch to user list
@@ -34,11 +35,13 @@
 - event custom validator ( more attend than max attends )
 - add flash on all pages with a form or with an action
 - add images to products
+- on success handler, consider forward and not redirect response?
+- consider subscription attributes instead of multiple columns
+
+== rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 - rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade)
-- on success handler, consider forward and not redirect response?
-- consider subscription attributes instead of multiple columns
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
