@@ -1,18 +1,10 @@
 == todo ==
+- build better forms for filter
 - link on successpasswordhandler broken on demo.clubmaster.dk
 - make a quick search field for users
 - users should be able to disable types of email
   - types (password,info)
 - events as ical/rss
-- create user filter
-  - gender
-  - age
-  - city
-  - country
-  - active / inactive
-  - subscription
-  - ticket coupon
-  - location
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
 - sort user lists
@@ -38,6 +30,7 @@
 - add images to products
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
+- group and user filter, is_active (true, false, both)
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -77,6 +70,7 @@
 - booking bundle
 - integration til e-conomic
 - dashboard bundle
+  - open orders
 - export / import bundle
 - ranking bundle
 - cup bundle

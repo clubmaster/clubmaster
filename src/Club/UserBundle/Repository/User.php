@@ -76,22 +76,82 @@ class User extends EntityRepository
   {
     $qb = $this->createQueryBuilder('u');
 
-    foreach ($filter->getAttributes() as $attr) {
-      if ($attr->getValue() != '') {
-        switch ($attr->getAttribute()->getAttributeName()) {
-        case 'min_age':
-          $qb->leftJoin('u.profile','p1');
-          $qb->andWhere('p1.day_of_birth <= :min_age')->setParameter('min_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
-          break;
-        case 'max_age':
-          $qb->leftJoin('u.profile','p3');
-          $qb->andWhere('p3.day_of_birth >= :max_age')->setParameter('max_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
+    if ($filter) {
+      if (count($filter->getAttributes()) > 0) {
+        $qb->leftJoin('u.profile','p');
+        $qb->join('p.profile_address','pa');
+      }
+      foreach ($filter->getAttributes() as $attr) {
+        if ($attr->getValue() != '') {
+          switch ($attr->getAttribute()->getAttributeName()) {
+          case 'min_age':
+            $qb->andWhere(
+              $qb->expr()->lte('p.day_of_birth',':min_age')
+            );
+            $qb->setParameter('min_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
+            break;
+          case 'max_age':
+            $qb->andWhere(
+              $qb->expr()->gte('p.day_of_birth',':max_age')
+            );
+            $qb->setParameter('max_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
 
-          break;
-        case 'gender':
-          $qb->leftJoin('u.profile','p2');
-          $qb->andWhere('p2.gender = :gender')->setParameter('gender', $attr->getValue());
-          break;
+            break;
+          case 'gender':
+            $qb->andWhere(
+              $qb->expr()->eq('p.gender',':gender')
+            );
+            $qb->setParameter('gender', $attr->getValue());
+            break;
+          case 'postal_code':
+            $qb->andWhere(
+              $qb->expr()->eq('pa.postal_code',':postal_code')
+            );
+            $qb->setParameter('postal_code', $attr->getValue());
+            break;
+          case 'city':
+            $qb->andWhere(
+              $qb->expr()->eq('pa.city',':city')
+            );
+            $qb->setParameter('city', $attr->getValue());
+            break;
+          case 'country':
+            $qb->andWhere(
+              $qb->expr()->eq('pa.country',':country')
+            );
+            $qb->setParameter('country', $attr->getValue());
+            break;
+          case 'is_active':
+            if ($attr->getValue()) {
+              $qb->leftJoin('u.subscriptions','s');
+              $qb->leftJoin('u.ticket_coupons','t');
+              $qb->andWhere('((s.expire_date >= :eds AND s.is_active = :is_active) OR (t.expire_date >= :edt AND t.ticket > :tickets))');
+              $qb->setParameter('is_active',$attr->getValue());
+              $qb->setParameter('eds',date('Y-m-d'));
+              $qb->setParameter('edt',date('Y-m-d'));
+              $qb->setParameter('tickets',0);
+            }
+            break;
+          case 'has_ticket':
+            $qb->join('u.ticket_coupons','t');
+            break;
+          case 'has_subscription':
+            $qb->join('u.subscriptions','s');
+            break;
+          case 'location':
+            $qb
+              ->leftJoin('u.subscriptions','s2')
+              ->leftJoin('s2.locations','l1')
+              ->leftJoin('u.ticket_coupons','t2')
+              ->leftJoin('t2.locations','l2')
+              ->andWhere('((s2.expire_date >= :s2ed AND l1.id = :l1id) OR (t2.expire_date >= :t2ed AND l2.id = :l2id))')
+              ->setParameter('s2ed',date('Y-m-d'))
+              ->setParameter('l1id',$attr->getValue())
+              ->setParameter('t2ed',date('Y-m-d'))
+              ->setParameter('l2id',$attr->getValue());
+
+            break;
+          }
         }
       }
     }

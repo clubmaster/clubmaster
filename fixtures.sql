@@ -10,6 +10,8 @@ INSERT INTO club_user_attribute (attribute_name) VALUES
   ('city'),
   ('country'),
   ('is_active'),
+  ('has_ticket'),
+  ('has_subscription'),
   ('location');
 
 INSERT INTO club_user_filter_attribute (filter_id,attribute_id,value) VALUES

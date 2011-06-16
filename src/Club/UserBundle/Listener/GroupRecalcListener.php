@@ -23,14 +23,11 @@ class GroupRecalcListener
     foreach ($groups as $group) {
       $query = $this->em->getRepository('\Club\UserBundle\Entity\Group')->getDynamicQuery($group);
       $users = $query->getQuery()->getResult();
+      $group->setUsers($users);
 
-      foreach ($users as $user) {
-        if (!$user->inGroup($group)) {
-          $user->addGroup($group);
-          $this->em->persist($user);
-        }
-      }
-      $this->em->flush();
+      $this->em->persist($group);
     }
+
+    $this->em->flush();
   }
 }
