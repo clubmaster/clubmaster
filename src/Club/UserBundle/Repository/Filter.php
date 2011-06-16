@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class Filter extends EntityRepository
 {
+  public function findActive(\Club\UserBundle\Entity\User $user)
+  {
+    return $this->_em->getRepository('ClubUserBundle:Filter')->findOneBy(array(
+      'user' => $user->getId(),
+      'is_active' => 1
+    ));
+  }
 }

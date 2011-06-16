@@ -42,9 +42,9 @@ class User extends EntityRepository
     return $r[0]->getMemberNumber()+1;
   }
 
-  public function getUsersListWithPagination($order_by = array(), $offset = 0, $limit = 0) {
+  public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
     //Create query builder for languages table
-    $qb = $this->getQuery();
+    $qb = $this->getQuery($filter);
 
     //Show all if offset and limit not set, also show all when limit is 0
     if ((isset($offset)) && (isset($limit))) {
@@ -59,22 +59,42 @@ class User extends EntityRepository
       $qb->add('orderBy', 'u.' . $key . ' ' . $value);
     }
     //Get our query
-    $q = $qb->getQuery();
+    $q = $qb->getQuery($filter);
     //Return result
     return $q->getResult();
   }
 
-  public function getUsersCount() {
-    $qb = $this->getQuery();
+  public function getUsersCount($filter) {
+    $qb = $this->getQuery($filter);
 
     $qb->select($qb->expr()->count('u'));
-    $q = $qb->getQuery();
+    $q = $qb->getQuery($filter);
     return $q->getSingleScalarResult();
   }
 
-  protected function getQuery()
+  protected function getQuery($filter)
   {
     $qb = $this->createQueryBuilder('u');
+
+    foreach ($filter->getAttributes() as $attr) {
+      if ($attr->getValue() != '') {
+        switch ($attr->getAttribute()->getAttributeName()) {
+        case 'min_age':
+          $qb->leftJoin('u.profile','p1');
+          $qb->andWhere('p1.day_of_birth <= :min_age')->setParameter('min_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
+          break;
+        case 'max_age':
+          $qb->leftJoin('u.profile','p3');
+          $qb->andWhere('p3.day_of_birth >= :max_age')->setParameter('max_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
+
+          break;
+        case 'gender':
+          $qb->leftJoin('u.profile','p2');
+          $qb->andWhere('p2.gender = :gender')->setParameter('gender', $attr->getValue());
+          break;
+        }
+      }
+    }
 
     return $qb;
   }

@@ -29,9 +29,19 @@ class Filter
     private $filter_name;
 
     /**
-     * @ORM\OneToMany(targetEntity="FilterAttribute", mappedBy="filter")
+     * @ORM\Column(type="boolean")
+     */
+    private $is_active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FilterAttribute", mappedBy="filter", cascade={"persist"})
      */
     private $attributes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $user;
 
 
     public function __construct()
@@ -87,5 +97,45 @@ class Filter
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean $isActive
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
     }
 }

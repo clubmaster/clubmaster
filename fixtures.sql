@@ -3,17 +3,18 @@ INSERT INTO club_user_filter (filter_name) VALUES
   ('All from Denmark');
 
 INSERT INTO club_user_attribute (attribute_name) VALUES
-  ('age'),
+  ('min_age'),
+  ('max_age'),
   ('gender'),
   ('postal_code'),
   ('city'),
-  ('country','country'),
+  ('country'),
   ('is_active'),
-  ('location','location');
+  ('location');
 
 INSERT INTO club_user_filter_attribute (filter_id,attribute_id,value) VALUES
-  (1,2,'female'),
-  (2,5,1);
+  (1,3,'female'),
+  (2,6,1);
 
 INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval,event) VALUES
   ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask'),

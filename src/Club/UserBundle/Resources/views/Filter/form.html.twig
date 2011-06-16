@@ -1,0 +1,14 @@
+<form method="POST" action="{{ path('club_user_filter_filter') }}">
+  <fieldset>
+    <legend>Search</legend>
+
+    {% for items in form %}
+      {% for item in items %}
+        {{ form_label(item) }}
+        {{ form_widget(item) }}
+      {% endfor %}
+    {% endfor %}
+    <input type="submit" value="Filter" />
+
+  </fieldset>
+</form>

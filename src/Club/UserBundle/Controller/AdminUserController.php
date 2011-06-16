@@ -16,10 +16,13 @@ class AdminUserController extends Controller
    */
   public function indexAction()
   {
+    $em = $this->get('doctrine')->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+
     $order_by = array();
-    $em = $this->get('doctrine.orm.entity_manager');
     $repository = $em->getRepository('\Club\UserBundle\Entity\User');
-    $usersCount = $repository->getUsersCount();
+    $usersCount = $repository->getUsersCount($filter);
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
     if ('POST' === $this->get('request')->getMethod() && isset($_POST['filter_order'])) {
@@ -41,7 +44,7 @@ class AdminUserController extends Controller
             $sort_direction = 'desc';
         }
     }
-    $users = $repository->getUsersListWithPagination($order_by, $paginator->getOffset(), $paginator->getLimit());
+    $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
       'users' => $users,
