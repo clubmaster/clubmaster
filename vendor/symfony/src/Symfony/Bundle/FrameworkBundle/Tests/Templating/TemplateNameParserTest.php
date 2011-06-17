@@ -19,7 +19,7 @@ class TemplateNameParserTest extends TestCase
 {
     protected $parser;
 
-    protected function  setUp()
+    protected function setUp()
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
         $kernel
@@ -38,7 +38,7 @@ class TemplateNameParserTest extends TestCase
 
     protected function tearDown()
     {
-        unset($this->parser);
+        $this->parser = null;
     }
 
     /**
@@ -48,7 +48,6 @@ class TemplateNameParserTest extends TestCase
     {
         $template = $this->parser->parse($name);
 
-        $this->assertEquals($template->getSignature(), $ref->getSignature());
         $this->assertEquals($template->getLogicalName(), $ref->getLogicalName());
         $this->assertEquals($template->getLogicalName(), $name);
     }
@@ -96,7 +95,7 @@ class TemplateNameParserTest extends TestCase
         if ($ref === false) {
             $this->assertFalse($template);
         } else {
-            $this->assertEquals($template->getSignature(), $ref->getSignature());
+            $this->assertEquals($template->getLogicalName(), $ref->getLogicalName());
         }
     }
 

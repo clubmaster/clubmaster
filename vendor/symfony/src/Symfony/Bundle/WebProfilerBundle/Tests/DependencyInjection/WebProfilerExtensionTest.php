@@ -31,7 +31,7 @@ class WebProfilerExtensionTest extends TestCase
 {
     private $kernel;
     /**
-     * @var Symfony\Component\DependencyInjection\Container $container 
+     * @var Symfony\Component\DependencyInjection\Container $container
      */
     private $container;
 
@@ -71,6 +71,14 @@ class WebProfilerExtensionTest extends TestCase
         $this->container->setParameter('kernel.debug', false);
         $this->container->setParameter('kernel.root_dir', __DIR__);
         $this->container->set('kernel', $this->kernel);
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+
+        $this->container = null;
+        $this->kernel = null;
     }
 
     /**

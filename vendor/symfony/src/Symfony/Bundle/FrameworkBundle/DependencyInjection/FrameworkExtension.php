@@ -60,7 +60,6 @@ class FrameworkExtension extends Extension
         $configuration = new Configuration($container->getParameter('kernel.debug'));
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $container->setParameter('kernel.cache_warmup', $config['cache_warmer']);
         if (isset($config['charset'])) {
             $container->setParameter('kernel.charset', $config['charset']);
         }
@@ -157,14 +156,6 @@ class FrameworkExtension extends Extension
             $container->setParameter('form.type_extension.csrf.enabled', $config['csrf_protection']['enabled']);
             $container->setParameter('form.type_extension.csrf.field_name', $config['csrf_protection']['field_name']);
         }
-
-        if ($container->hasDefinition('session')) {
-            $container->removeDefinition('file.temporary_storage');
-            $container->setDefinition('file.temporary_storage', $container->getDefinition('file.temporary_storage.session'));
-            $container->removeDefinition('file.temporary_storage.session');
-        } else {
-            $container->removeDefinition('file.temporary_storage.session');
-        }
     }
 
     /**
@@ -242,17 +233,12 @@ class FrameworkExtension extends Extension
         $loader->load('routing.xml');
 
         $container->setParameter('router.resource', $config['resource']);
-        $router = $container->findDefinition('router.real');
+        $router = $container->findDefinition('router');
 
         if (isset($config['type'])) {
             $argument = $router->getArgument(2);
             $argument['resource_type'] = $config['type'];
             $router->replaceArgument(2, $argument);
-        }
-
-        if ($config['cache_warmer']) {
-            $container->getDefinition('router.cache_warmer')->addTag('kernel.cache_warmer');
-            $container->setAlias('router', 'router.cached');
         }
 
         $container->setParameter('request_listener.http_port', $config['http_port']);
@@ -367,16 +353,6 @@ class FrameworkExtension extends Extension
             $container->setParameter('templating.loader.cache.path', $config['cache']);
 
             $container->setDefinition('templating.loader', $loaderCache);
-        }
-
-        if ($config['cache_warmer']) {
-            $container
-                ->getDefinition('templating.cache_warmer.template_paths')
-                ->addTag('kernel.cache_warmer', array('priority' => 20))
-            ;
-            $container->setAlias('templating.locator', 'templating.locator.cached');
-        } else {
-            $container->setAlias('templating.locator', 'templating.locator.uncached');
         }
 
         $this->addClassesToCompile(array(

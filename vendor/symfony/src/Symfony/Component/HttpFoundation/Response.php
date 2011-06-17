@@ -89,7 +89,6 @@ class Response
         if (!$this->headers->has('Date')) {
             $this->setDate(new \DateTime(null, new \DateTimeZone('UTC')));
         }
-        $this->charset = 'UTF-8';
     }
 
     /**
@@ -128,7 +127,7 @@ class Response
         // headers
         foreach ($this->headers->all() as $name => $values) {
             foreach ($values as $value) {
-                header($name.': '.$value);
+                header($name.': '.$value, false);
             }
         }
 
@@ -153,6 +152,10 @@ class Response
     {
         $this->sendHeaders();
         $this->sendContent();
+
+        if (function_exists('fastcgi_finish_request')) {
+            fastcgi_finish_request();
+        }
     }
 
     /**
@@ -729,9 +732,9 @@ class Response
         return 404 === $this->statusCode;
     }
 
-    public function isRedirect()
+    public function isRedirect($location = null)
     {
-        return in_array($this->statusCode, array(201, 301, 302, 303, 307));
+        return in_array($this->statusCode, array(201, 301, 302, 303, 307)) && (null === $location ?: $location == $this->headers->get('Location'));
     }
 
     public function isEmpty()
@@ -739,18 +742,14 @@ class Response
         return in_array($this->statusCode, array(201, 204, 304));
     }
 
-    public function isRedirected($location)
-    {
-        return $this->isRedirect() && $location == $this->headers->get('Location');
-    }
-
     protected function fixContentType()
     {
+        $charset = $this->charset ?: 'UTF-8';
         if (!$this->headers->has('Content-Type')) {
-            $this->headers->set('Content-Type', 'text/html; charset='.$this->charset);
+            $this->headers->set('Content-Type', 'text/html; charset='.$charset);
         } elseif ('text/' === substr($this->headers->get('Content-Type'), 0, 5) && false === strpos($this->headers->get('Content-Type'), 'charset')) {
             // add the charset
-            $this->headers->set('Content-Type', $this->headers->get('Content-Type').'; charset='.$this->charset);
+            $this->headers->set('Content-Type', $this->headers->get('Content-Type').'; charset='.$charset);
         }
     }
 }

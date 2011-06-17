@@ -128,7 +128,7 @@ class ContextListener implements ListenerInterface
 
         foreach ($this->userProviders as $provider) {
             try {
-                $token->setUser($provider->loadUser($user));
+                $token->setUser($provider->refreshUser($user));
 
                 if (null !== $this->logger) {
                     $this->logger->debug(sprintf('Username "%s" was reloaded from user provider.', $user->getUsername()));
@@ -139,7 +139,7 @@ class ContextListener implements ListenerInterface
                 // let's try the next user provider
             } catch (UsernameNotFoundException $notFound) {
                 if (null !== $this->logger) {
-                    $this->logger->debug(sprintf('Username "%s" could not be found.', $user->getUsername()));
+                    $this->logger->warn(sprintf('Username "%s" could not be found.', $user->getUsername()));
                 }
 
                 return null;

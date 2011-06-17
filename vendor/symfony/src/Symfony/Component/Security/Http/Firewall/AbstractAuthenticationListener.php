@@ -166,7 +166,7 @@ abstract class AbstractAuthenticationListener implements ListenerInterface
      */
     protected function requiresAuthentication(Request $request)
     {
-        return $this->options['check_path'] === $request->getPathInfo();
+        return str_replace('{_locale}', $request->getSession()->getLocale(), $this->options['check_path']) === $request->getPathInfo();
     }
 
     /**
@@ -183,7 +183,7 @@ abstract class AbstractAuthenticationListener implements ListenerInterface
     private function onFailure(GetResponseEvent $event, Request $request, AuthenticationException $failed)
     {
         if (null !== $this->logger) {
-            $this->logger->debug(sprintf('Authentication request failed: %s', $failed->getMessage()));
+            $this->logger->info(sprintf('Authentication request failed: %s', $failed->getMessage()));
         }
 
         $this->securityContext->setToken(null);
@@ -196,30 +196,32 @@ abstract class AbstractAuthenticationListener implements ListenerInterface
             $this->options['failure_path'] = $this->options['login_path'];
         }
 
+        $path = str_replace('{_locale}', $request->getSession()->getLocale(), $this->options['failure_path']);
+
         if ($this->options['failure_forward']) {
             if (null !== $this->logger) {
-                $this->logger->debug(sprintf('Forwarding to %s', $this->options['failure_path']));
+                $this->logger->debug(sprintf('Forwarding to %s', $path));
             }
 
-            $subRequest = Request::create($this->options['failure_path']);
+            $subRequest = Request::create($path, 'get', array(), $request->cookies->all(), array(), $request->server->all());
             $subRequest->attributes->set(SecurityContextInterface::AUTHENTICATION_ERROR, $failed);
 
             return $event->getKernel()->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
         }
 
         if (null !== $this->logger) {
-            $this->logger->debug(sprintf('Redirecting to %s', $this->options['failure_path']));
+            $this->logger->debug(sprintf('Redirecting to %s', $path));
         }
 
         $request->getSession()->set(SecurityContextInterface::AUTHENTICATION_ERROR, $failed);
 
-        return new RedirectResponse(0 !== strpos($this->options['failure_path'], 'http') ? $request->getUriForPath($this->options['failure_path']) : $this->options['failure_path'], 302);
+        return new RedirectResponse(0 !== strpos($path, 'http') ? $request->getUriForPath($path) : $path, 302);
     }
 
     private function onSuccess(GetResponseEvent $event, Request $request, TokenInterface $token)
     {
         if (null !== $this->logger) {
-            $this->logger->debug('User has been authenticated successfully');
+            $this->logger->info(sprintf('User "%s" has been authenticated successfully', $token->getUsername()));
         }
 
         $this->securityContext->setToken($token);

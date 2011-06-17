@@ -19,8 +19,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    form:
-      resources:      ['::fields.html.twig']
+    #form:
+      #resources:      ['::fields.html.twig']
 
 # Assetic Configuration
 assetic:

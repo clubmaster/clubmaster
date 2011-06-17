@@ -32,30 +32,11 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('twig');
 
-        $rootNode
-            ->children()
-                ->scalarNode('cache_warmer')->defaultFalse()->end()
-            ->end();
-        ;
-
-        $this->addExtensionsSection($rootNode);
         $this->addFormSection($rootNode);
         $this->addGlobalsSection($rootNode);
         $this->addTwigOptions($rootNode);
 
         return $treeBuilder;
-    }
-
-    private function addExtensionsSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->fixXmlConfig('extension')
-            ->children()
-                ->arrayNode('extensions')
-                    ->prototype('scalar')->end()
-                ->end()
-            ->end()
-        ;
     }
 
     private function addFormSection(ArrayNodeDefinition $rootNode)
@@ -68,11 +49,11 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->arrayNode('resources')
                             ->addDefaultsIfNotSet()
-                            ->defaultValue(array('TwigBundle:Form:div_layout.html.twig'))
+                            ->defaultValue(array('form_div_layout.html.twig'))
                             ->validate()
                                 ->always()
                                 ->then(function($v){
-                                    return array_merge(array('TwigBundle:Form:div_layout.html.twig'), $v);
+                                    return array_merge(array('form_div_layout.html.twig'), $v);
                                 })
                             ->end()
                             ->prototype('scalar')->end()

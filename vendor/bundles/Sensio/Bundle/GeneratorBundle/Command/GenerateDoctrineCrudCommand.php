@@ -47,6 +47,7 @@ The <info>doctrine:generate:crud</info> command generates a CRUD based on a Doct
 EOT
             )
             ->setName('doctrine:generate:crud')
+            ->setAliases(array('generate:doctrine:crud'))
         ;
     }
 

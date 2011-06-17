@@ -26,6 +26,9 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\ArrayToBooleanChoicesT
 
 class ChoiceType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilder $builder, array $options)
     {
         if (!$options['choices'] && !$options['choice_list']) {
@@ -67,6 +70,7 @@ class ChoiceType extends AbstractType
             ->setAttribute('preferred_choices', $options['preferred_choices'])
             ->setAttribute('multiple', $options['multiple'])
             ->setAttribute('expanded', $options['expanded'])
+            ->setAttribute('required', $options['required'])
         ;
 
         if ($options['expanded']) {
@@ -88,6 +92,9 @@ class ChoiceType extends AbstractType
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form)
     {
         $choices = $form->getAttribute('choice_list')->getChoices();
@@ -99,7 +106,7 @@ class ChoiceType extends AbstractType
             ->set('preferred_choices', array_intersect_key($choices, $preferred))
             ->set('choices', array_diff_key($choices, $preferred))
             ->set('separator', '-------------------')
-            ->set('empty_value', '')
+            ->set('empty_value', !$form->getAttribute('multiple') && !$form->getAttribute('required') ? '' : null)
         ;
 
         if ($view->get('multiple') && !$view->get('expanded')) {
@@ -110,6 +117,9 @@ class ChoiceType extends AbstractType
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultOptions(array $options)
     {
         $multiple = isset($options['multiple']) && $options['multiple'];
@@ -126,11 +136,17 @@ class ChoiceType extends AbstractType
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent(array $options)
     {
         return $options['expanded'] ? 'form' : 'field';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'choice';

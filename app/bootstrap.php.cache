@@ -554,7 +554,7 @@ abstract class Kernel implements KernelInterface
     protected $name;
     protected $startTime;
     protected $classes;
-    const VERSION = '2.0.0-DEV';
+    const VERSION = '2.0.0-BETA5';
     public function __construct($environment, $debug)
     {
         $this->environment = $environment;
@@ -794,7 +794,7 @@ abstract class Kernel implements KernelInterface
         require_once $cache;
         $this->container = new $class();
         $this->container->set('kernel', $this);
-        if (!$fresh && 'cli' !== php_sapi_name()) {
+        if (!$fresh) {
             $this->container->get('cache_warmer')->warmUp($this->container->getParameter('kernel.cache_dir'));
         }
     }
@@ -1089,6 +1089,11 @@ class ServerBag extends ParameterBag
         foreach ($this->parameters as $key => $value) {
             if ('HTTP_' === substr($key, 0, 5)) {
                 $headers[substr($key, 5)] = $value;
+            }
+        }
+                foreach (array('CONTENT_TYPE', 'CONTENT_LENGTH') as $key) {
+            if (isset($this->parameters[$key])) {
+                $headers[$key] = $this->parameters[$key];
             }
         }
         return $headers;
@@ -1389,23 +1394,23 @@ class Request
     {
         $dup = clone $this;
         if ($query !== null) {
-          $dup->query = new ParameterBag($query);
+            $dup->query = new ParameterBag($query);
         }
         if ($request !== null) {
-          $dup->request = new ParameterBag($request);
+            $dup->request = new ParameterBag($request);
         }
         if ($attributes !== null) {
-          $dup->attributes = new ParameterBag($attributes);
+            $dup->attributes = new ParameterBag($attributes);
         }
         if ($cookies !== null) {
-          $dup->cookies = new ParameterBag($cookies);
+            $dup->cookies = new ParameterBag($cookies);
         }
         if ($files !== null) {
-          $dup->files = new FileBag($files);
+            $dup->files = new FileBag($files);
         }
         if ($server !== null) {
-          $dup->server = new ServerBag($server);
-          $dup->headers = new HeaderBag($dup->server->getHeaders());
+            $dup->server = new ServerBag($server);
+            $dup->headers = new HeaderBag($dup->server->getHeaders());
         }
         $this->languages = null;
         $this->charsets = null;
@@ -1442,11 +1447,16 @@ class Request
         $_SERVER = $this->server->all();
         $_COOKIE = $this->cookies->all();
         foreach ($this->headers->all() as $key => $value) {
-            $_SERVER['HTTP_'.strtoupper(str_replace('-', '_', $key))] = implode(', ', $value);
+            $key = strtoupper(str_replace('-', '_', $key));
+            if (in_array($key, array('CONTENT_TYPE', 'CONTENT_LENGTH'))) {
+                $_SERVER[$key] = implode(', ', $value);
+            } else {
+                $_SERVER['HTTP_'.$key] = implode(', ', $value);
+            }
         }
                         $_REQUEST = array_merge($_GET, $_POST);
     }
-                        public function get($key, $default = null, $deep = false)
+    public function get($key, $default = null, $deep = false)
     {
         return $this->query->get($key, $this->attributes->get($key, $this->request->get($key, $default, $deep), $deep), $deep);
     }
@@ -1607,6 +1617,9 @@ class Request
     }
     public function getFormat($mimeType)
     {
+        if (false !== $pos = strpos($mimeType, ';')) {
+            $mimeType = substr($mimeType, 0, $pos);
+        }
         if (null === static::$formats) {
             static::initializeFormats();
         }

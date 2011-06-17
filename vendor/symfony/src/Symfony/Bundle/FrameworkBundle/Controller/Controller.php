@@ -18,6 +18,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller is a simple implementation of a Controller.
@@ -111,7 +113,7 @@ class Controller extends ContainerAware
     }
 
     /**
-     * Creates and returns a Form instance from the type of the form
+     * Creates and returns a Form instance from the type of the form.
      *
      * @param string|FormTypeInterface $type    The built type of the form
      * @param mixed $data                       The initial data for the form
@@ -138,9 +140,19 @@ class Controller extends ContainerAware
     }
 
     /**
-     * Shortcut to return the Doctrine Registry class
+     * Shortcut to return the request service.
      *
-     * @return Symfony\Bundle\DoctrineBundle\Registry
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->get('request');
+    }
+
+    /**
+     * Shortcut to return the Doctrine Registry service.
+     *
+     * @return Registry
      */
     public function getDoctrine()
     {
