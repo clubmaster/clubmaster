@@ -31,6 +31,7 @@
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
+- form collection: allow_add, allow_delete does they work?
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
