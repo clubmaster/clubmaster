@@ -19,7 +19,6 @@
   <tbody>
   {% for attempt in login_attempts %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ attempt.username }}</td>
       <td>{{ attempt.session }}</td>
       <td>{{ attempt.ipAddress }}</td>

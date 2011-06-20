@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>User</th>
       <th>Event</th>
       <th>Log type</th>
@@ -14,13 +13,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="7">&#160;</td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for log in logs %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ log.user.profile.name }}</td>
       <td>{{ log.event }}</td>
       <td>{{ log.logType }}</td>
@@ -30,7 +28,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no logs at the time</td>
+    <td colspan="6">There are no logs at the time</td>
   </tr>
   {% endfor %}
   </tbody>
