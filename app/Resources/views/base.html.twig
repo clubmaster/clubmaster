@@ -15,7 +15,6 @@
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
         <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.slimbox2.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.tablesorter.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery.switcher.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/toggle.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/ui.core.js') }}"></script>
@@ -23,13 +22,6 @@
         <script type="text/javascript">
         $(document).ready(function(){
                 $(".tabs > ul").tabs();
-                $.tablesorter.defaults.sortList = [[1,0]];
-                $("table").tablesorter({
-                        headers: {
-                                0: { sorter: false },
-                                7: { sorter: false }
-                        }
-                });
         });
         </script>
 

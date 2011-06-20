@@ -1,29 +1,30 @@
 == todo ==
+- sort user lists
+- add batch to user list
+- how does auto renewal works?
+- Obey auto renewal
+- Obey lifetime membership
+- translation
+- make a task that check if a task has been running for more than 15 minutes
+- add images to products
+
 - build better forms for filter
 - make a quick search field for users
 - users should be able to disable types of email
   - types (password,info)
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
-- sort user lists
 - find a way to make company users
-- add batch to user list
-- how does auto renewal works?
-- Obey auto renewal
-- Obey lifetime membership
 - Update basket
 - fix product variants
 - Fix shop as user
 - Shop coupons
-- translation
 - database email delivery strategy
-- make a task that check if a task has been running for more than 15 minutes
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 - unit test
 - special products
 - event custom validator ( more attend than max attends )
 - add flash on all pages with a form or with an action
-- add images to products
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
@@ -50,7 +51,6 @@
 - put images on links
 - if twig has no date, it prints current timestamp (tasks last run at)
 - might be able to have a flash globally on all pages
-- remove table sorting, and class definition tablesorter
 - remove batch on all pages except user list
 
 == security ==
