@@ -90,4 +90,20 @@ class EventController extends Controller
     return new RedirectResponse($this->generateUrl('event_event'));
   }
 
+  /**
+   * @Route("/event/ical")
+   */
+  public function icalAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $events = $em->getRepository('ClubEventBundle:Event')->findAll();
+
+    $response = $this->render('ClubEventBundle:Event:ical.ics.twig', array(
+      'events' => $events
+    ));
+
+    $response->headers->set('Content-Type', 'text/calendar');
+
+    return $response;
+  }
 }

@@ -1,6 +1,4 @@
 == todo ==
-- events as ical/rss
-
 - build better forms for filter
 - make a quick search field for users
 - users should be able to disable types of email
