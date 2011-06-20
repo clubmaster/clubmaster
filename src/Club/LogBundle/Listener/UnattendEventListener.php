@@ -20,6 +20,7 @@ class UnattendEventListener
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onEventUnattend');
+    $log->setSeverity('informational');
     $log->setUser($user);
     $log->setLogType('event');
     $log->setLog('User unattend to event: '.$e->getEventName());

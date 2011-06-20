@@ -44,6 +44,12 @@ class Log
     private $log_type;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\Choice({ "debug", "informational", "warning", "critical" })
+     */
+    private $severity;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
@@ -173,5 +179,25 @@ class Log
       if (!$this->getId()) {
         $this->setCreatedAt(new \DateTime());
       }
+    }
+
+    /**
+     * Set severity
+     *
+     * @param string $severity
+     */
+    public function setSeverity($severity)
+    {
+        $this->severity = $severity;
+    }
+
+    /**
+     * Get severity
+     *
+     * @return string $severity
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
     }
 }

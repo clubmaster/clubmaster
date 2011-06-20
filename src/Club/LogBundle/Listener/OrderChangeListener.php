@@ -20,6 +20,7 @@ class OrderChangeListener
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onOrderChange');
+    $log->setSeverity('informational');
     $log->setUser($user);
     $log->setLogType('shop');
     $log->setLog('Changed order status on order #'.$order->getId());

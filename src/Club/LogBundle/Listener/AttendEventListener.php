@@ -20,6 +20,7 @@ class AttendEventListener
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onEventAttend');
+    $log->setSeverity('informational');
     $log->setUser($user);
     $log->setLogType('event');
     $log->setLog('User attend to event: '.$e->getEventName());

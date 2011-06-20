@@ -24,7 +24,6 @@
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 - unit test
 - special products
-- use syslog critical levels to logging system
 - event custom validator ( more attend than max attends )
 - add flash on all pages with a form or with an action
 - add images to products

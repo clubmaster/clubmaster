@@ -20,6 +20,7 @@ class AddEventListener
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onEventAdd');
+    $log->setSeverity('informational');
     $log->setUser($user);
     $log->setLogType('event');
     $log->setLog('Created a new event: '.$e->getEventName());

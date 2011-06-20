@@ -20,6 +20,7 @@ class NewOrderListener
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onShopOrder');
+    $log->setSeverity('informational');
     $log->setUser($user);
     $log->setLogType('general');
     $log->setLog('Created a new order #'.$order->getId());
