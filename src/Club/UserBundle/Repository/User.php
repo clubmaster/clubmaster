@@ -133,10 +133,10 @@ class User extends EntityRepository
             }
             break;
           case 'has_ticket':
-            $qb->join('u.ticket_coupons','t');
+            $qb->join('u.ticket_coupons','t3');
             break;
           case 'has_subscription':
-            $qb->join('u.subscriptions','s');
+            $qb->join('u.subscriptions','s3');
             break;
           case 'location':
             $qb
