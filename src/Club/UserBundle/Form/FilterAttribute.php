@@ -9,7 +9,9 @@ class FilterAttribute extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('value');
+    $builder->add('value','text',array(
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)
