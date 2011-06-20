@@ -14,3 +14,8 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.listener, event: order.change, method: onOrderChange }
+  club.shopbundle.listener.auto_renewal.listener:
+    class: Club\ShopBundle\Listener\AutoRenewalListener
+    arguments: [@doctrine.orm.entity_manager,@order,@event_dispatcher]
+    tags:
+      - { name: kernel.listener, event: auto_renewal.task, method: onAutoRenewalTask }

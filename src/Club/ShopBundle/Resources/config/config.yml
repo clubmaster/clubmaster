@@ -4,4 +4,4 @@ services:
     arguments: [@doctrine.orm.entity_manager,@session,@security.context]
   order:
     class: Club\ShopBundle\Helper\Order
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.entity_manager,@event_dispatcher]

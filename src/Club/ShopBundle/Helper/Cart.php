@@ -147,7 +147,7 @@ class Cart
 
   protected function getAddress(\Club\UserBundle\Entity\User $user)
   {
-    $addr = $this->em->getRepository('\Club\UserBundle\Entity\Profile')->getDefaultAddress($user->getProfile());
+    $addr = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultAddress($user->getProfile());
 
     $address = new \Club\ShopBundle\Entity\CartAddress();
     $address->setFirstName($user->getProfile()->getFirstName());

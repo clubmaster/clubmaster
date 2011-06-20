@@ -25,4 +25,16 @@ class Subscription extends EntityRepository
 
     return $pause;
   }
+
+  public function getExpiredAutoRenewalSubscriptions()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:Subscription','s')
+      ->where('s.auto_renewal = 1')
+      ->andWhere('s.expire_date >= :expire_date')
+      ->setParameter('expire_date',date('Y-m-d'))
+      ->getQuery()
+      ->getResult();
+  }
 }

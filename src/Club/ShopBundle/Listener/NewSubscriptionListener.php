@@ -27,6 +27,7 @@ class NewSubscriptionListener
 
         if (isset($res['Month'])) {
           $subscription = new \Club\ShopBundle\Entity\Subscription;
+          $subscription->setOrder($order);
           $subscription->setUser($order->getUser());
           $subscription->setIsActive(1);
 
@@ -59,6 +60,7 @@ class NewSubscriptionListener
 
         if (isset($res['Ticket'])) {
           $ticket = new \Club\ShopBundle\Entity\TicketCoupon;
+          $ticket->setOrder($order);
           $ticket->setTicket($attr->getValue());
           $ticket->setUser($order->getUser());
 

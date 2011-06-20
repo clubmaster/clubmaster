@@ -43,6 +43,13 @@ class TicketCoupon
     private $expire_date;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Order")
+     *
+     * @var Club\ShopBundle\Entity\Order
+     */
+    private $order;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
@@ -188,5 +195,25 @@ class TicketCoupon
     public function getLocations()
     {
         return $this->locations;
+    }
+
+    /**
+     * Set order
+     *
+     * @param Club\ShopBundle\Entity\Order $order
+     */
+    public function setOrder(\Club\ShopBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * Get order
+     *
+     * @return Club\ShopBundle\Entity\Order $order
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 }

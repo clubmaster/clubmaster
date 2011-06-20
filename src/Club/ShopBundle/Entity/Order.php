@@ -351,6 +351,11 @@ class Order
         return $this->order_products;
     }
 
+    public function getProducts()
+    {
+        return $this->order_products;
+    }
+
     /**
      * Get order_status_history
      *

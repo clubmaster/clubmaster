@@ -1,8 +1,8 @@
 == todo ==
+- fint a way to track payments
+- only make a single subscription when order gets delivered
 - sort user lists
 - add batch to user list
-- how does auto renewal works?
-- Obey auto renewal
 - Obey lifetime membership
 - translation
 - make a task that check if a task has been running for more than 15 minutes
@@ -29,6 +29,8 @@
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
 - add event managers to events, they should be able to see all events in the club
+- make sure tasks can by build with a dynamic event class
+- cannot have multiple is_cancelled or is_accepted status orders
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -40,6 +42,11 @@
 - rewrite all $this->get('request') to $this->getRequest()
 - rewrite all $this->get('doctrine') to $this->getDoctrine()
 - remove all RedirectResponse from controller, has function $this->redirect()
+- create an address interface for Order/Cart/ProfileAddress
+
+== schema ==
+- cascade delete key on order delete to subscription and ticket coupon
+- cascade delete key on subscription to subscription location
 
 == graphics ==
 - event calendar view
@@ -52,6 +59,7 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 - might be able to have a flash globally on all pages
 - remove batch on all pages except user list
+- move log viewer below header
 
 == security ==
 - cannot edit orders that you do not own

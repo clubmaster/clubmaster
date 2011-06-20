@@ -102,9 +102,6 @@ class CheckoutController extends Controller
   {
     if ($this->get('cart')->getCart()) {
       $this->get('order')->convertToOrder($this->get('cart')->getCart());
-
-      $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->get('order')->getOrder());
-      $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
     }
 
     return new RedirectResponse($this->generateUrl('shop_checkout_confirm',array(

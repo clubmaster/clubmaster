@@ -57,6 +57,13 @@ class Subscription
     private $is_active;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Order")
+     * 
+     * @var Club\ShopBundle\Entity\Order
+     */
+    private $order;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
      *
      * @var Club\UserBundle\Entity\User
@@ -246,5 +253,25 @@ class Subscription
     public function prePersist()
     {
       echo $this->getExpireDate()->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Set order
+     *
+     * @param Club\ShopBundle\Entity\Order $order
+     */
+    public function setOrder(\Club\ShopBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * Get order
+     *
+     * @return Club\ShopBundle\Entity\Order $order
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 }

@@ -16,7 +16,7 @@ class AdminUserController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 

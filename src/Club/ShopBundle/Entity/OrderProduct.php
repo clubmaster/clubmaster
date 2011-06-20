@@ -203,4 +203,9 @@ class OrderProduct
     {
         return $this->order_product_attributes;
     }
+
+    public function getProductAttributes()
+    {
+        return $this->order_product_attributes;
+    }
 }

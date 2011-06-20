@@ -202,6 +202,11 @@ class Cart
         return $this->cart_products;
     }
 
+    public function getProducts()
+    {
+        return $this->cart_products;
+    }
+
     public function setCreatedAt($createdAt)
     {
       $this->created_at = $createdAt;

@@ -14,13 +14,22 @@ class OrderStatus extends EntityRepository
 {
   public function getDefaultStatus()
   {
-    $query = $this->_em->createQueryBuilder()
+    return $this->_em->createQueryBuilder()
       ->select('s')
-      ->from('\Club\ShopBundle\Entity\OrderStatus','s')
+      ->from('ClubShopBundle:OrderStatus','s')
       ->orderBy('s.priority')
       ->setMaxResults(1)
-      ->getQuery();
+      ->getQuery()
+      ->getSingleResult();
+  }
 
-    return $query->getSingleResult();
+  public function getAcceptedStatus()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:OrderStatus','s')
+      ->where('s.is_accepted = 1')
+      ->getQuery()
+      ->getSingleResult();
   }
 }
