@@ -32,6 +32,7 @@
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
 - form collection: allow_add, allow_delete does they work?
+- add event managers to events, they should be able to see all events in the club
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -40,6 +41,9 @@
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
+- rewrite all $this->get('request') to $this->getRequest()
+- rewrite all $this->get('doctrine') to $this->getDoctrine()
+- remove all RedirectResponse from controller, has function $this->redirect()
 
 == graphics ==
 - style product page
