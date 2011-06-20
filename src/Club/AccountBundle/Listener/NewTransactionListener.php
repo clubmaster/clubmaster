@@ -15,7 +15,7 @@ class NewTransactionListener
   {
     $order = $event->getOrder();
 
-    $account = $this->em->find('\Club\AccountBundle\Entity\Account',1);
+    $account = $this->em->find('ClubAccountBundle:Account',1);
 
     $ledger = new \Club\AccountBundle\Entity\Ledger();
     $ledger->setValue($order->getVatPrice());
