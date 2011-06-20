@@ -1,10 +1,10 @@
 == todo ==
+- events as ical/rss
+
 - build better forms for filter
-- link on successpasswordhandler broken on demo.clubmaster.dk
 - make a quick search field for users
 - users should be able to disable types of email
   - types (password,info)
-- events as ical/rss
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
 - sort user lists
@@ -43,6 +43,8 @@
 - remove all RedirectResponse from controller, has function $this->redirect()
 
 == graphics ==
+- event calendar view
+- event agenda view
 - style product page
 - style product listing
 - make sure all pages are html validated
