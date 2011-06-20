@@ -50,6 +50,11 @@ class Log
     private $severity;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_read;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
@@ -178,6 +183,7 @@ class Log
     {
       if (!$this->getId()) {
         $this->setCreatedAt(new \DateTime());
+        $this->setIsRead(0);
       }
     }
 
@@ -199,5 +205,25 @@ class Log
     public function getSeverity()
     {
         return $this->severity;
+    }
+
+    /**
+     * Set is_read
+     *
+     * @param boolean $isRead
+     */
+    public function setIsRead($isRead)
+    {
+        $this->is_read = $isRead;
+    }
+
+    /**
+     * Get is_read
+     *
+     * @return boolean $isRead
+     */
+    public function getIsRead()
+    {
+        return $this->is_read;
     }
 }

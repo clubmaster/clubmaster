@@ -25,7 +25,7 @@ class LogController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $logs = $em->getRepository('ClubLogBundle:Log')->findAll();
     $login_attempts = $em->getRepository('ClubUserBundle:LoginAttempt')->findAll();
@@ -34,5 +34,38 @@ class LogController extends Controller
       'logs' => $logs,
       'login_attempts' => $login_attempts
     );
+  }
+
+  /**
+   * @Route("/log/{id}")
+   * @Template()
+   */
+  public function showAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $log = $em->find('ClubLogBundle:Log',$id);
+    $log->setIsRead(1);
+
+    $em->persist($log);
+    $em->flush();
+
+    return array(
+      'log' => $log
+    );
+  }
+
+  public function LogViewAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $logs = $em->getRepository('ClubLogBundle:Log')->findBy(array(
+      'is_read' => 0,
+      'severity' => 'critical'
+    ));
+
+    return $this->render('ClubLogBundle:Log:log_view.html.twig',array(
+      'logs' => $logs
+    ));
   }
 }

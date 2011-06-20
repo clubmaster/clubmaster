@@ -10,7 +10,6 @@
 - sort user lists
 - find a way to make company users
 - add batch to user list
-- ticket coupon as group location
 - how does auto renewal works?
 - Obey auto renewal
 - Obey lifetime membership
@@ -20,7 +19,7 @@
 - Shop coupons
 - translation
 - database email delivery strategy
-- make sure user see if a task has been locked
+- make a task that check if a task has been running for more than 15 minutes
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 - unit test
 - special products
@@ -30,7 +29,6 @@
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
-- form collection: allow_add, allow_delete does they work?
 - add event managers to events, they should be able to see all events in the club
 
 == rewrite stuff ==

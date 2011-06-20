@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Log</h1>
+
+<h2>Information</h2>
+<p>User: {{ log.user.getProfile.getName }}<br />
+Severity: {{ log.severity }}<br />
+Event: {{ log.event }}<br />
+Type: {{ log.logType }}<br />
+Created At: {{ log.createdAt|date('Y-m-d H:i:s') }}</p>
+
+<h2>Log message</h2>
+<p>{{ log.log }}</p>
+
+{% endblock %}
