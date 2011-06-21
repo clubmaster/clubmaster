@@ -41,7 +41,6 @@
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
-- remove all RedirectResponse from controller, has function $this->redirect()
 - create an address interface for Order/Cart/ProfileAddress
 
 == schema ==
