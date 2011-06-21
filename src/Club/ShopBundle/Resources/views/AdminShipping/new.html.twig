@@ -1,7 +1,8 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Shipping</h1>{% endblock %}
+
 {% block body %}
-<h1>Shipping</h1>
 
 <form method="post" action="{{ path('admin_shop_shipping_new') }}">
 {% include "ClubShopBundle:AdminShipping:form.html.twig" with {'form': form} %}

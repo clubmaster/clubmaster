@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Payment Method</h1>{% endblock %}
+
 {% block body %}
 
-<h1>Payment method</h1>
 <p class="box"><a href="{{ path('admin_shop_payment_method_new') }}" class="btn-create"><span>Create payment_method</span></a></p>
 
 {% include "::flash.html.twig" %}

@@ -1,7 +1,8 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Currency</h1>{% endblock %}
+
 {% block body %}
-<h1>Currency</h1>
 
 <form method="post" action="{{ path('admin_currency_edit', {'id':currency.id}) }}">
 {% include "ClubUserBundle:Currency:form.html.twig" with {'form': form} %}

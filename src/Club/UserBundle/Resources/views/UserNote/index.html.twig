@@ -1,9 +1,10 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>User Notes</h1>{% endblock %}
+
 {% block body %}
 
 {{ app.session.flash('notice') }}
-<h1>User notes</h1>
 <p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
 
 {% include "::flash.html.twig" %}

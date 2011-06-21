@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Product Attributes</h1>{% endblock %}
+
 {% block body %}
 
-<h1>Product attributes</h1>
 <p class="box"><a href="{{ path('admin_shop_product_attribute_new', {'id':product.id}) }}" class="btn-create"><span>Create attribute</span></a></p>
 
 {% include "::flash.html.twig" %}

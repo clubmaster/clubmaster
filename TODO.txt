@@ -31,6 +31,7 @@
 - cannot have multiple is_cancelled or is_accepted status orders
 - find a way the bundles can add menu items to the menus
   - menu, and priority
+- check all html.twig files for extends attribute but missing header block
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -43,6 +44,7 @@
 - rewrite all $this->get('doctrine') to $this->getDoctrine()
 - remove all RedirectResponse from controller, has function $this->redirect()
 - create an address interface for Order/Cart/ProfileAddress
+- move all html to layout bundle
 
 == schema ==
 - cascade delete key on order delete to subscription and ticket coupon
@@ -61,7 +63,7 @@
 - if twig has no date, it prints current timestamp (tasks last run at)
 - might be able to have a flash globally on all pages
 - remove batch on all pages except user list
-- move log viewer below header
+- fix layout, single and double column
 
 == security ==
 - cannot edit orders that you do not own

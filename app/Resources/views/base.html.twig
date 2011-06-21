@@ -84,6 +84,7 @@
                 <!-- Content (Right Column) -->
                 <div id="content" class="box">
 
+                        {% block header %}<h1>ClubMaster</h1>{% endblock %}
                         {% render "ClubLogBundle:Log:LogView" %}
 
                         {% block body %}{% endblock %}

@@ -1,7 +1,8 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Payment Method</h1>{% endblock %}
+
 {% block body %}
-<h1>Payment method</h1>
 
 <form method="post" action="{{ path('admin_shop_payment_method_edit', {'id':payment_method.id}) }}">
 {% include "ClubShopBundle:AdminPaymentMethod:form.html.twig" with {'form': form} %}

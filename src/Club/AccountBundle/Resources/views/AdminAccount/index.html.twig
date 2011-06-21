@@ -1,8 +1,8 @@
 {% extends "::base.html.twig" %}
 
-{% block body %}
+{% block header %}<h1>Account</h1>{% endblock %}
 
-<h1>Account</h1>
+{% block body %}
 
 <p class="box"><a href="{{ path('club_account_adminledger_new') }}" class="btn-create"><span>Create ledger</span></a></p>
 

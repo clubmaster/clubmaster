@@ -1,7 +1,8 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Category</h1>{% endblock %}
+
 {% block body %}
-<h1>Category</h1>
 
 <form method="post" action="{{ path('admin_shop_category_edit', {'id':category.id}) }}">
 {% include "ClubShopBundle:AdminCategory:form.html.twig" with {'form': form} %}

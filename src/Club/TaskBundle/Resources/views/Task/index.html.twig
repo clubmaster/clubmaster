@@ -1,9 +1,10 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Task</h1>{% endblock %}
+
 {% block body %}
 
 {{ app.session.flash('notice') }}
-<h1>Task</h1>
 
 {% include "::flash.html.twig" %}
 

@@ -1,8 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block header %}<h1>Event</h1>{% endblock %}
+
 {% block body %}
 
-<h1>Event</h1>
 <p class="box"><a href="{{ path('admin_event_event_new') }}" class="btn-create"><span>Create event</span></a></p>
 
 {% include "::flash.html.twig" %}
