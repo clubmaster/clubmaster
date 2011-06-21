@@ -23,6 +23,7 @@ class Shipping
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $shipping_name
      */
@@ -37,6 +38,7 @@ class Shipping
 
     /**
      * @ORM\Column(type="decimal", scale="2")
+     * @Assert\NotBlank()
      *
      * @var float $price
      */
