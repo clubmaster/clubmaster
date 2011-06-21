@@ -26,20 +26,20 @@ class DefaultController extends Controller
 
     $profile = new \Club\UserBundle\Entity\Profile();
     $profile->setUser($user);
-    $profile->setFirstName($this->get('request')->get('first_name'));
-    $profile->setLastName($this->get('request')->get('last_name'));
-    $profile->setGender($this->get('request')->get('gender'));
-    $profile->setDayOfBirth(new \DateTime($this->get('request')->get('day_of_birth')));
+    $profile->setFirstName($this->getRequest()->get('first_name'));
+    $profile->setLastName($this->getRequest()->get('last_name'));
+    $profile->setGender($this->getRequest()->get('gender'));
+    $profile->setDayOfBirth(new \DateTime($this->getRequest()->get('day_of_birth')));
     $em->persist($profile);
 
     $address = new \Club\UserBundle\Entity\ProfileAddress();
     $address->setProfile($profile);
     $address->setContactType('home');
     $address->setIsDefault(1);
-    $address->setStreet($this->get('request')->get('street'));
-    $address->setPostalCode($this->get('request')->get('postal_code'));
-    $address->setCity($this->get('request')->get('city'));
-    $country = $em->getRepository('\Club\UserBundle\Entity\Country')->findOneByCountry($this->get('request')->get('country'));
+    $address->setStreet($this->getRequest()->get('street'));
+    $address->setPostalCode($this->getRequest()->get('postal_code'));
+    $address->setCity($this->getRequest()->get('city'));
+    $country = $em->getRepository('\Club\UserBundle\Entity\Country')->findOneByCountry($this->getRequest()->get('country'));
     $address->setCountry($country);
 
     $em->persist($address);
@@ -136,8 +136,8 @@ class DefaultController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
-    $role = $em->find('Club\UserBundle\Entity\Role',$this->get('request')->get('role'));
+    $user = $em->find('Club\UserBundle\Entity\User',$this->getRequest()->get('user'));
+    $role = $em->find('Club\UserBundle\Entity\Role',$this->getRequest()->get('role'));
 
     $user->addRole($role);
 
@@ -155,10 +155,10 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $event = new \Club\EventBundle\Entity\Event();
-    $event->setEventName($this->get('request')->get('event_name'));
-    $event->setDescription($this->get('request')->get('description'));
-    $event->setStartDate(new \DateTime($this->get('request')->get('start_date')));
-    $event->setStopDate(new \DateTime($this->get('request')->get('stop_date')));
+    $event->setEventName($this->getRequest()->get('event_name'));
+    $event->setDescription($this->getRequest()->get('description'));
+    $event->setStartDate(new \DateTime($this->getRequest()->get('start_date')));
+    $event->setStopDate(new \DateTime($this->getRequest()->get('stop_date')));
 
     $em->persist($event);
     $em->flush();

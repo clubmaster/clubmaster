@@ -86,8 +86,8 @@ class AdminProductAttributeController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\ProductAttribute(), $attr);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($attr);

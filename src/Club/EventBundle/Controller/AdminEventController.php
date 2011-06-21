@@ -66,7 +66,7 @@ class AdminEventController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event',$this->get('request')->get('id'));
+    $event = $em->find('ClubEventBundle:Event',$this->getRequest()->get('id'));
 
     $em->remove($event);
     $em->flush();
@@ -80,8 +80,8 @@ class AdminEventController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\EventBundle\Form\Event(), $event);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         if (!$event->getId()) {
           $e = new \Club\EventBundle\Event\FilterEventEvent($event);

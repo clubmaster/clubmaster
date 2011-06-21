@@ -67,8 +67,8 @@ class CheckoutController extends Controller
       ->add('payment_method','entity',array('class' => 'Club\ShopBundle\Entity\PaymentMethod'))
       ->getForm();
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $this->get('cart')->setCart($cart);
 

@@ -66,7 +66,7 @@ class AdminShippingController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $shipping = $em->find('ClubShopBundle:Shipping',$this->get('request')->get('id'));
+    $shipping = $em->find('ClubShopBundle:Shipping',$this->getRequest()->get('id'));
 
     $em->remove($shipping);
     $em->flush();
@@ -80,8 +80,8 @@ class AdminShippingController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Shipping(), $shipping);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($shipping);

@@ -66,7 +66,7 @@ class AdminProductController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('ClubShopBundle:Product',$this->get('request')->get('id'));
+    $product = $em->find('ClubShopBundle:Product',$this->getRequest()->get('id'));
 
     $em->remove($product);
     $em->flush();
@@ -80,8 +80,8 @@ class AdminProductController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Product(), $product);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($product);

@@ -66,7 +66,7 @@ class LocationController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $location = $em->find('ClubUserBundle:Location',$this->get('request')->get('id'));
+    $location = $em->find('ClubUserBundle:Location',$this->getRequest()->get('id'));
 
     $em->remove($location);
     $em->flush();
@@ -80,8 +80,8 @@ class LocationController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Location(), $location);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($location);

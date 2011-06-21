@@ -81,8 +81,8 @@ class GroupController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Group(), $group);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($group);

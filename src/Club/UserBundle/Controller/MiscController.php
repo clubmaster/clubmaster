@@ -43,7 +43,7 @@ class MiscController extends Controller
     $user = $this->get('security.context')->getToken()->getUser();
     $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation());
     $form->setData($user);
-    $form->bindRequest($this->get('request'));
+    $form->bindRequest($this->getRequest());
 
     if ($form->isValid()) {
       $em = $this->getDoctrine()->getEntityManager();

@@ -25,7 +25,7 @@ class AdminUserController extends Controller
     $usersCount = $repository->getUsersCount($filter);
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
-    if ('POST' === $this->get('request')->getMethod() && isset($_POST['filter_order'])) {
+    if ('POST' === $this->getRequest()->getMethod() && isset($_POST['filter_order'])) {
         $order_by = array($_POST['filter_order'] => $_POST['filter_order_Dir']);
         $sort_direction = $_POST['filter_order_Dir'] == 'asc' ? 'desc' : 'asc';
 
@@ -78,8 +78,8 @@ class AdminUserController extends Controller
     $user = $this->initUser();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
 
       // validate user
       $errors = $this->get('validator')->validate($user);
@@ -142,8 +142,8 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
 
       // validate user
       $errors = $this->get('validator')->validate($user);
@@ -266,8 +266,8 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\ProfileAddress(), $address);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em->persist($address);
         $em->flush();
@@ -298,8 +298,8 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\ProfilePhone(), $phone);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em->persist($phone);
         $em->flush();
@@ -330,8 +330,8 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\ProfileEmail(), $email);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em->persist($email);
         $em->flush();
@@ -358,8 +358,8 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em->persist($user);
         $em->flush();

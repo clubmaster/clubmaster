@@ -29,8 +29,8 @@ class FilterController extends Controller
       ))
       ->getForm();
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
 
       $em->persist($filter);
       $em->flush();

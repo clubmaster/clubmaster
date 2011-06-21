@@ -29,8 +29,8 @@ class AuthController extends Controller
       ->add('email','text',array('required' => false))
       ->getForm();
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
 
       $post = $form->getData();
 
@@ -77,15 +77,15 @@ class AuthController extends Controller
     $forgot = $em->getRepository('\Club\UserBundle\Entity\ForgotPassword')->findOneByHash($hash);
 
     if ($forgot instanceOf \Club\UserBundle\Entity\ForgotPassword) {
-      if ($this->get('request')->getMethod() == 'POST') {
+      if ($this->getRequest()->getMethod() == 'POST') {
         $user = $forgot->getUser();
       } else {
         $user = new \Club\UserBundle\Entity\User();
       }
       $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ForgotPassword(), $user);
 
-      if ($this->get('request')->getMethod() == 'POST') {
-        $form->bindRequest($this->get('request'));
+      if ($this->getRequest()->getMethod() == 'POST') {
+        $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {
           $forgot->setExpireDate(new \DateTime());

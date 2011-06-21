@@ -66,7 +66,7 @@ class AdminCategoryController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $category = $em->find('ClubShopBundle:Category',$this->get('request')->get('id'));
+    $category = $em->find('ClubShopBundle:Category',$this->getRequest()->get('id'));
 
     $em->remove($category);
     $em->flush();
@@ -80,8 +80,8 @@ class AdminCategoryController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Category(), $category);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($category);

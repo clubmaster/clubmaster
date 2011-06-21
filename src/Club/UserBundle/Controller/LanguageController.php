@@ -78,8 +78,8 @@ class LanguageController extends Controller
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Language(), $language);
 
-    if ($this->get('request')->getMethod() == 'POST') {
-      $form->bindRequest($this->get('request'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($language);
