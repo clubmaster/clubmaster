@@ -43,8 +43,8 @@
       <td>{{ event.startDate|date('Y-m-d H:i') }}</td>
       <td>{{ event.stopDate|date('Y-m-d H:i') }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %}
         <a href="{{ path('admin_event_attend', {'id':event.id}) }}">Attends</a>
       </td>
     </tr>

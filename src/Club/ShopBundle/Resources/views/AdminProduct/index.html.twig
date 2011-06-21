@@ -35,8 +35,8 @@
       <td>{{ product.id }}</td>
       <td>{{ product.productName }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('admin_shop_product_delete', { 'id':product.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_product_delete', { 'id':product.id })} %}
         <a href="{{ path('admin_shop_product_attribute', {'id':product.id}) }}">Attributes</a>
       </td>
     </tr>

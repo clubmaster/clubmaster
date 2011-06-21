@@ -46,7 +46,6 @@
 - rewrite all $this->get('doctrine') to $this->getDoctrine()
 - remove all RedirectResponse from controller, has function $this->redirect()
 - create an address interface for Order/Cart/ProfileAddress
-- move all html to layout bundle
 
 == schema ==
 - cascade delete key on order delete to subscription and ticket coupon

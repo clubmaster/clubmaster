@@ -35,8 +35,8 @@
       <td>{{ user_note.id }}</td>
       <td>{{ user_note.note }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
       </td>
     </tr>
   {% else %}

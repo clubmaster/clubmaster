@@ -37,8 +37,8 @@
       <td>{{ special.product.productName }}</td>
       <td>{{ special.price }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('admin_shop_special_edit', { 'id':special.id })} %}
-        {% include "::delete_link.html.twig" with {'url':path('admin_shop_special_delete', { 'id':special.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_special_edit', { 'id':special.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_special_delete', { 'id':special.id })} %}
       </td>
     </tr>
   {% else %}

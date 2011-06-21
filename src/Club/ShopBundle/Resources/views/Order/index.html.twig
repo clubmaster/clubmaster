@@ -41,7 +41,7 @@
       <td>{{ order.orderStatus.statusName }}</td>
       <td>{{ order.createdAt|date('Y-m-d') }}</td>
       <td>
-        {% include "::edit_link.html.twig" with {'url':path('shop_order_edit', { 'id':order.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('shop_order_edit', { 'id':order.id })} %}
       </td>
     </tr>
   {% else %}
