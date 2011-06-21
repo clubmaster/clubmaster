@@ -1,6 +1,5 @@
 == todo ==
 - translation
-- make a task that check if a task has been running for more than 15 minutes
 - cannot have multiple is_cancelled or is_accepted status orders
 - sort user lists
 - add batch to user list
@@ -26,18 +25,21 @@
 - unit test
 - special products
 - event custom validator ( more attend than max attends )
-- on success handler, consider forward and not redirect response?
-- consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
 - add event managers to events, they should be able to see all events in the club
 - make sure tasks can by build with a dynamic event class
 - find a way the bundles can add menu items to the menus
   - menu, and priority
+
+== task ==
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
+- make a task that check if a task has been running for more than 15 minutes
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
+- consider subscription attributes instead of multiple columns
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
+- on success handler, consider forward and not redirect response?
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
