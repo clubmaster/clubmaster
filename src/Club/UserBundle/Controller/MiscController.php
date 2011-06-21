@@ -46,7 +46,7 @@ class MiscController extends Controller
     $form->bindRequest($this->get('request'));
 
     if ($form->isValid()) {
-      $em = $this->get('doctrine')->getEntityManager();
+      $em = $this->getDoctrine()->getEntityManager();
       $em->persist($user);
       $em->flush();
 

@@ -88,7 +88,7 @@ class AdminEventController extends Controller
           $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAdd, $e);
         }
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($event);
         $em->flush();
 

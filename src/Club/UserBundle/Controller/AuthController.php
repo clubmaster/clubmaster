@@ -34,7 +34,7 @@ class AuthController extends Controller
 
       $post = $form->getData();
 
-      $em = $this->get('doctrine')->getEntityManager();
+      $em = $this->getDoctrine()->getEntityManager();
       $user = $em->getRepository('\Club\UserBundle\Entity\User')->findOneBy(array(
         'member_number' => $post['username']
       ));
@@ -73,7 +73,7 @@ class AuthController extends Controller
    */
   public function resetPasswordAction($hash)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
     $forgot = $em->getRepository('\Club\UserBundle\Entity\ForgotPassword')->findOneByHash($hash);
 
     if ($forgot instanceOf \Club\UserBundle\Entity\ForgotPassword) {

@@ -25,7 +25,7 @@ class UserController extends Controller
       $form->bindRequest($this->get('request'));
 
       if ($form->isValid()) {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($user);
         $em->flush();
 
@@ -41,7 +41,7 @@ class UserController extends Controller
 
   protected function getUser($user)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();

@@ -28,7 +28,7 @@ class SubscriptionController extends Controller
    */
   public function pauseAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     // validate that the user is allowed to pause
@@ -58,7 +58,7 @@ class SubscriptionController extends Controller
    */
   public function resumeAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
     $subscription->setIsActive(1);

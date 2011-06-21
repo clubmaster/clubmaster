@@ -152,7 +152,7 @@ class DefaultController extends Controller
    */
   public function addEventAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $event = new \Club\EventBundle\Entity\Event();
     $event->setEventName($this->get('request')->get('event_name'));

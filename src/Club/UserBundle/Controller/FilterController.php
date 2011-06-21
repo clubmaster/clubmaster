@@ -15,7 +15,7 @@ class FilterController extends Controller
    */
   public function filterAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 
@@ -41,7 +41,7 @@ class FilterController extends Controller
 
   public function getFilterFormAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findOneBy(array(
       'user' => $this->get('security.context')->getToken()->getUser()->getId(),
@@ -65,7 +65,7 @@ class FilterController extends Controller
 
   protected function initFilter()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $filter = new \Club\UserBundle\Entity\Filter;
     $filter->setFilterName('Working');

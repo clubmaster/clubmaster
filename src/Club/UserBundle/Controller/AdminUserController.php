@@ -135,7 +135,7 @@ class AdminUserController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $user = $em->find('ClubUserBundle:User',$id);
     $user = $this->getUser($user);
@@ -377,7 +377,7 @@ class AdminUserController extends Controller
 
   protected function initUser()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $user = new \Club\UserBundle\Entity\User();
     $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
@@ -391,7 +391,7 @@ class AdminUserController extends Controller
 
   protected function getUser($user)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();

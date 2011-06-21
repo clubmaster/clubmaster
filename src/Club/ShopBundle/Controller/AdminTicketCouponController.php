@@ -14,7 +14,7 @@ class AdminTicketCouponController extends Controller
    */
   public function expireAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $ticket = $em->find('ClubShopBundle:TicketCoupon',$id);
     $ticket->expire(new \DateTime());

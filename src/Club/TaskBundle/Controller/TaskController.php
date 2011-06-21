@@ -25,7 +25,7 @@ class TaskController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $tasks = $em->getRepository('\Club\TaskBundle\Entity\Task')->findAll();
 
@@ -39,7 +39,7 @@ class TaskController extends Controller
    */
   public function disableAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
     $task->setEnabled(0);
@@ -55,7 +55,7 @@ class TaskController extends Controller
    */
   public function enableAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
     $task->setEnabled(1);
@@ -71,7 +71,7 @@ class TaskController extends Controller
    */
   public function runAction($id)
   {
-    $em = $this->get('doctrine')->getEntityManager();
+    $em = $this->getDoctrine()->getEntityManager();
 
     $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
     $task->setNextRunAt(new \DateTime());
