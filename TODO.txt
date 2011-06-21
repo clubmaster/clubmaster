@@ -1,27 +1,27 @@
 == before next release ==
-- doctrine migrations
 - doctrine fixtures
-- installer
-- build better forms for filter
-- cannot have multiple is_cancelled or is_accepted status orders
-- sort user lists
-- add batch to user list
 - add images to products
+- consider subscription attributes instead of multiple columns
+- cascade delete key on order delete to subscription and ticket coupon
+- cascade delete key on subscription to subscription location
+- unique config_key
+- rewrite default settings for language and accounts
+- build better forms for filter
+- sort user lists
+- cannot have multiple is_cancelled or is_accepted status orders
+- add batch to user list
 - add pager to logging
 - add pager to ledger
 - add pager to order
 - add search to order
 - event custom validator ( more attend than max attends )
 - make a task that check if a task has been running for more than 15 minutes
-- consider subscription attributes instead of multiple columns
-- rewrite default settings for language and accounts
-- cascade delete key on order delete to subscription and ticket coupon
-- cascade delete key on subscription to subscription location
-- unique config_key
 - style product page
 - style product listing
 - put images on links
 - fix layout, single and double column
+- doctrine migrations
+- installer
 
 == todo ==
 - translation

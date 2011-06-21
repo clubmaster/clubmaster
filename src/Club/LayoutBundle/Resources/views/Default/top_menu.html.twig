@@ -1,7 +1,3 @@
-<ul class="box f-right">
-  <li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li>
-</ul>
-
 <ul class="box">
   <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>{% trans %}User{% endtrans %}</span></a></li>
   <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>{% trans %}Shop{% endtrans %}</span></a></li>
