@@ -29,16 +29,6 @@ INSERT INTO club_account_account (account_name,account_number,account_type) VALU
   ('VAT','3001','income'),
   ('Income','5001','income');
 
-INSERT INTO club_user_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
-  ('Danish Krone','DKK',null,'DK',2,1);
-
-INSERT INTO club_user_location (location_id,location_name,currency_id) VALUES
-  (null,'Danmark',1),
-  (1,'Aalborg',1),
-  (1,'Copenhagen',1),
-  (2,'Aalborg Tennis Klub',1),
-  (2,'Gug Tennisklub',1);
-
 INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (1,1,'localhost'),
   (2,1,'localhost'),
