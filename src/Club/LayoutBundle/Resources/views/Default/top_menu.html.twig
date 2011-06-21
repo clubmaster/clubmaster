@@ -3,10 +3,10 @@
 </ul>
 
 <ul class="box">
-  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>User</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>Shop</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'order' %} id="menu-active"{% endif %}><a href="{{ path('shop_order') }}"><span>Order</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'subscription' %} id="menu-active"{% endif %}><a href="{{ path('shop_subscription') }}"><span>Subscription</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'event' %} id="menu-active"{% endif %}><a href="{{ path('event_event') }}"><span>Event</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>{% trans %}User{% endtrans %}</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>{% trans %}Shop{% endtrans %}</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'order' %} id="menu-active"{% endif %}><a href="{{ path('shop_order') }}"><span>{% trans %}Order{% endtrans %}</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'subscription' %} id="menu-active"{% endif %}><a href="{{ path('shop_subscription') }}"><span>{% trans %}Subscription{% endtrans %}</span></a></li>
+  <li {% if app.request.attributes.get('_route') == 'event' %} id="menu-active"{% endif %}><a href="{{ path('event_event') }}"><span>{% trans %}Event{% endtrans %}</span></a></li>
 </ul>
 

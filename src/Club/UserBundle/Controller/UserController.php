@@ -15,6 +15,8 @@ class UserController extends Controller
    */
   public function indexAction()
   {
+    $this->get('session')->setLocale('da_DK');
+
     $user = $this->get('security.context')->getToken()->getUser();
     $user = $this->getUser($user);
 

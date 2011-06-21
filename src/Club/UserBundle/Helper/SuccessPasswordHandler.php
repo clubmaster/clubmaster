@@ -28,6 +28,6 @@ class SuccessPasswordHandler implements AuthenticationSuccessHandlerInterface
     $this->em->persist($login);
     $this->em->flush();
 
-    return $this->redirect('user');
+    return new RedirectResponse('user');
   }
 }

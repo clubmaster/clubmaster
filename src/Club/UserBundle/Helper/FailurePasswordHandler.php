@@ -28,6 +28,6 @@ class FailurePasswordHandler implements AuthenticationFailureHandlerInterface
     $this->em->persist($login);
     $this->em->flush();
 
-    return $this->redirect('login');
+    return new RedirectResponse('login');
   }
 }

@@ -42,6 +42,7 @@
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
 - create an address interface for Order/Cart/ProfileAddress
+- rewrite default settings for language and accounts
 
 == schema ==
 - cascade delete key on order delete to subscription and ticket coupon

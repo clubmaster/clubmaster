@@ -42,7 +42,8 @@ INSERT INTO club_user_config (config_key) VALUES
   ('smtp_username'),
   ('smtp_password'),
   ('account_default_income'),
-  ('account_default_vat');
+  ('account_default_vat'),
+  ('default_language');
 
 INSERT INTO club_user_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
   ('Danish Krone','DKK',null,'DK',2,1);
@@ -84,8 +85,12 @@ INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (2,6,'3001'),
   (3,6,'3001'),
   (4,6,'3001'),
-  (5,6,'3001');
-
+  (5,6,'3001'),
+  (1,7,'da_DK'),
+  (2,7,'da_DK'),
+  (3,7,'da_DK'),
+  (4,7,'da_DK'),
+  (5,7,'da_DK');
 
 INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,is_active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),

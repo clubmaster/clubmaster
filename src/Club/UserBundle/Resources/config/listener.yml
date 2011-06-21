@@ -1,7 +1,7 @@
 services:
   club.userbundle.listener.request:
     class: Club\UserBundle\Listener\RequestListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.entity_manager,@security.context,@session]
     tags:
       - { name: kernel.listener, event: core.request, method: onCoreRequest }
   club.userbundle.listener.group.recalc:

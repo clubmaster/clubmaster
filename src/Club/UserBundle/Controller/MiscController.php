@@ -26,8 +26,7 @@ class MiscController extends Controller
   public function getSwitchLocationAction()
   {
     $user = $this->get('security.context')->getToken()->getUser();
-    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation());
-    $form->setData($user);
+    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation($user));
 
     return $this->render('ClubUserBundle:Misc:switchLocation.html.twig', array(
       'form' => $form->createView()
