@@ -86,11 +86,11 @@ INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (3,6,'3001'),
   (4,6,'3001'),
   (5,6,'3001'),
-  (1,7,'da_DK'),
-  (2,7,'da_DK'),
-  (3,7,'da_DK'),
-  (4,7,'da_DK'),
-  (5,7,'da_DK');
+  (1,7,'en_UK'),
+  (2,7,'en_UK'),
+  (3,7,'en_UK'),
+  (4,7,'en_UK'),
+  (5,7,'en_UK');
 
 INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,is_active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),
@@ -119,8 +119,9 @@ INSERT INTO club_shop_order_status (status_name,is_accepted,is_cancelled,priorit
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
 
-INSERT INTO club_user_language (name,code,locale,charset,date_format_short,date_format_long,time_format,text_direction,numeric_separator_decimal,numeric_separator_thousands,currency_id) VALUES
-  ('Danish','da_DK','da_DK.UTF-8,da_DK,danish','utf-8','%d/%m/%Y','%A %d %B, %Y','%H:%i:%s','ltr',',','.',1);
+INSERT INTO club_user_language (name,code) VALUES
+  ('English','en_UK'),
+  ('Danish','da_DK');
 
 INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES
   ('Check / Money order','<p>Tillykke din order er blevet gennemført</p>'),
