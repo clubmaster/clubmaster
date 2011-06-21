@@ -37,9 +37,9 @@ class CartProduct
     /**
      * @ORM\Column(type="decimal")
      *
-     * @var float $tax
+     * @var float $vat
      */
-    private $tax;
+    private $vat;
 
     /**
      * @ORM\Column(type="integer")
@@ -115,7 +115,7 @@ class CartProduct
     }
 
     /**
-     * Get tax
+     * Get vat
      * *
      * @return float $price
      */
@@ -125,23 +125,23 @@ class CartProduct
     }
 
     /**
-     * Set tax
+     * Set vat
      *
-     * @param float $tax
+     * @param float $vat
      */
-    public function setTax($tax)
+    public function setVat($vat)
     {
-        $this->tax = $tax;
+        $this->vat = $vat;
     }
 
     /**
-     * Get tax
+     * Get vat
      * *
-     * @return float $tax
+     * @return float $vat
      */
-    public function getTax()
+    public function getVat()
     {
-        return $this->tax;
+        return $this->vat;
     }
 
     /**
@@ -211,7 +211,7 @@ class CartProduct
 
     public function getVatPrice()
     {
-      return $this->getPrice()*(1+$this->getTax()/100);
+      return $this->getPrice()*(1+$this->getVat()/100);
     }
 
     public function getVatSummary()

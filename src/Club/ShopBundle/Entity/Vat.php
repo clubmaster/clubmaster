@@ -6,11 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Tax")
- * @ORM\Table(name="club_shop_tax")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Vat")
+ * @ORM\Table(name="club_shop_vat")
  *
  */
-class Tax
+class Vat
 {
     /**
      * @ORM\Id
@@ -24,9 +24,9 @@ class Tax
     /**
      * @ORM\Column(type="string")
      *
-     * @var string $tax_name
+     * @var string $vat_name
      */
-    private $tax_name;
+    private $vat_name;
 
     /**
      * @ORM\Column(type="decimal")
@@ -38,7 +38,7 @@ class Tax
 
     public function __toString()
     {
-      return $this->getTaxName();
+      return $this->getVatName();
     }
 
     /**
@@ -52,23 +52,23 @@ class Tax
     }
 
     /**
-     * Set tax_name
+     * Set vat_name
      *
-     * @param string $taxName
+     * @param string $vatName
      */
-    public function setTaxName($taxName)
+    public function setVatName($vatName)
     {
-        $this->tax_name = $taxName;
+        $this->vat_name = $vatName;
     }
 
     /**
-     * Get tax_name
+     * Get vat_name
      *
-     * @return string $taxName
+     * @return string $vatName
      */
-    public function getTaxName()
+    public function getVatName()
     {
-        return $this->tax_name;
+        return $this->vat_name;
     }
 
     /**

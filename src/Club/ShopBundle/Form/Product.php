@@ -12,7 +12,7 @@ class Product extends AbstractType
     $builder->add('product_name');
     $builder->add('description');
     $builder->add('price');
-    $builder->add('tax');
+    $builder->add('vat');
     $builder->add('categories');
   }
 

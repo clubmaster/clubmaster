@@ -143,7 +143,7 @@ class Order
       $op->setOrder($this->order);
       $op->setPrice($product->getPrice());
       $op->setProductName($product->getProductName());
-      $op->setTax($product->getTax());
+      $op->setVat($product->getVat());
       $op->setQuantity($product->getQuantity());
       $op->setProduct($product->getProduct());
 

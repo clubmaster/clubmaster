@@ -67,11 +67,11 @@ class Product
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tax")
+     * @ORM\ManyToOne(targetEntity="Vat")
      *
-     * @var Club\ShopBundle\Entity\Tax
+     * @var Club\ShopBundle\Entity\Vat
      */
-    private $tax;
+    private $vat;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductAttribute", mappedBy="product")
@@ -212,27 +212,27 @@ class Product
     }
 
     /**
-     * Set tax
+     * Set vat
      *
-     * @param float $tax
+     * @param float $vat
      */
-    public function setTax($tax)
+    public function setVat($vat)
     {
-        $this->tax = $tax;
+        $this->vat = $vat;
     }
 
     /**
-     * Get tax
+     * Get vat
      *
-     * @return float $tax
+     * @return float $vat
      */
-    public function getTax()
+    public function getVat()
     {
-        return $this->tax;
+        return $this->vat;
     }
 
     public function getVatPrice()
     {
-      return $this->getPrice()*(1+$this->getTax()->getRate()/100);
+      return $this->getPrice()*(1+$this->getVat()->getRate()/100);
     }
 }

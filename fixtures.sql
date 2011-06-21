@@ -100,9 +100,9 @@ INSERT INTO club_group_location (group_id,location_id) VALUES
 INSERT INTO club_user_role (role_name) VALUES
   ('ROLE_ADMIN');
 
-INSERT INTO club_shop_tax (tax_name,rate) VALUES
-  ('Tax free',0),
-  ('Danish tax','25');
+INSERT INTO club_shop_vat (vat_name,rate) VALUES
+  ('Vat free',0),
+  ('Danish vat','25');
 
 INSERT INTO club_shop_order_status (status_name,is_accepted,is_cancelled,priority) VALUES
   ('Pending',0,0,1),
@@ -132,7 +132,7 @@ INSERT INTO club_shop_category (id,category_id,category_name,description,locatio
   (7,5,'Bags','Bags',1),
   (8,5,'Rackets','Rackets',1);
 
-INSERT INTO club_shop_product (product_name,description,price,tax_id) VALUES
+INSERT INTO club_shop_product (product_name,description,price,vat_id) VALUES
   ('1. md, subscription','1. md, subscription',100,2),
   ('2. md, subscription','2. md, subscription',175,2),
   ('Period subscription','Period subscription',1000,2),

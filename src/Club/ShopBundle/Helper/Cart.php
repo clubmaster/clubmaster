@@ -73,7 +73,7 @@ class Cart
       $op->setProduct($product);
       $op->setProductName($product->getProductName());
       $op->setPrice($product->getPrice());
-      $op->setTax($product->getTax()->getRate());
+      $op->setVat($product->getVat()->getRate());
       $op->setQuantity(1);
 
       foreach ($product->getProductAttributes() as $attr) {

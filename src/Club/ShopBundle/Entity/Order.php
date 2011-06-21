@@ -194,23 +194,23 @@ class Order
     }
 
     /**
-     * Set tax
+     * Set vat
      *
-     * @param string $tax
+     * @param string $vat
      */
-    public function setTax($tax)
+    public function setVat($vat)
     {
-        $this->tax = $tax;
+        $this->vat = $vat;
     }
 
     /**
-     * Get tax
+     * Get vat
      *
-     * @return string $tax
+     * @return string $vat
      */
-    public function getTax()
+    public function getVat()
     {
-        return $this->tax;
+        return $this->vat;
     }
 
     /**
