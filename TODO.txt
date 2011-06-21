@@ -1,6 +1,5 @@
 == todo ==
 - seems like VAT calculation for order_products in wrong
-- find a way to track payments
 - only make a single subscription when order gets delivered
 - sort user lists
 - add batch to user list

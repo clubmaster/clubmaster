@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Ledger</h1>
+
+<form method="post" action="{{ path('club_account_adminledger_new') }}">
+{% include "ClubAccountBundle:AdminLedger:form.html.twig" %}
+</form>
+
+{% endblock %}

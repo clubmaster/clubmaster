@@ -43,6 +43,11 @@ class Account
     private $account_type;
 
 
+    public function __toString()
+    {
+      return $this->getAccountNumber(). ' ('.$this->getAccountName().')';
+    }
+
     /**
      * Get id
      *

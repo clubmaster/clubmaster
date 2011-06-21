@@ -162,6 +162,11 @@ class User implements UserInterface, \Serializable
     private $groups;
 
 
+    public function __toString()
+    {
+      return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
+    }
+
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
