@@ -15,7 +15,7 @@ class AdminShippingController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $shippings = $em->getRepository('\Club\ShopBundle\Entity\Shipping')->findAll();
 
     return array(
@@ -46,7 +46,7 @@ class AdminShippingController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$id);
 
     $res = $this->process($shipping);
@@ -65,7 +65,7 @@ class AdminShippingController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $shipping = $em->find('ClubShopBundle:Shipping',$this->get('request')->get('id'));
 
     $em->remove($shipping);
@@ -83,7 +83,7 @@ class AdminShippingController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($shipping);
         $em->flush();
 

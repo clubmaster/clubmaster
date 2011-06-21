@@ -30,7 +30,7 @@ class CheckoutController extends Controller
    */
   public function shippingAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $shippings = $em->getRepository('Club\ShopBundle\Entity\Shipping')->findAll();
     if (!count($shippings)) {
@@ -52,7 +52,7 @@ class CheckoutController extends Controller
    */
   public function paymentAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $payments = $em->getRepository('Club\ShopBundle\Entity\PaymentMethod')->findAll();
 
     if (!count($payments)) {
@@ -115,7 +115,7 @@ class CheckoutController extends Controller
    */
   public function confirmAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     return array(

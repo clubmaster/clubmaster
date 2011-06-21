@@ -73,7 +73,7 @@ class AdminUserController extends Controller
    */
   public function createAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $user = $this->initUser();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
@@ -199,7 +199,7 @@ class AdminUserController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $em->remove($user);
@@ -222,7 +222,7 @@ class AdminUserController extends Controller
    */
   public function banAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $ban = new \Club\UserBundle\Entity\Ban();
@@ -257,7 +257,7 @@ class AdminUserController extends Controller
    */
   public function addressAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
 
     $address = new \Club\UserBundle\Entity\ProfileAddress();
@@ -289,7 +289,7 @@ class AdminUserController extends Controller
    */
   public function phoneAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
 
     $phone = new \Club\UserBundle\Entity\ProfilePhone();
@@ -321,7 +321,7 @@ class AdminUserController extends Controller
    */
   public function emailAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
 
     $email = new \Club\UserBundle\Entity\ProfileEmail();
@@ -353,7 +353,7 @@ class AdminUserController extends Controller
    */
   public function groupAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('\Club\UserBundle\Entity\User',$id);
 
     $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);

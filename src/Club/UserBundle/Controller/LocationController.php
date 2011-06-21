@@ -15,7 +15,7 @@ class LocationController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $locations = $em->getRepository('\Club\UserBundle\Entity\Location')->findAll();
 
     return array(
@@ -46,7 +46,7 @@ class LocationController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('Club\UserBundle\Entity\Location',$id);
 
     $res = $this->process($location);
@@ -65,7 +65,7 @@ class LocationController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('ClubUserBundle:Location',$this->get('request')->get('id'));
 
     $em->remove($location);
@@ -83,7 +83,7 @@ class LocationController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($location);
         $em->flush();
 

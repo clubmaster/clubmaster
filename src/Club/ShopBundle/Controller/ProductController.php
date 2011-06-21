@@ -15,7 +15,7 @@ class ProductController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $product = $em->find('Club\ShopBundle\Entity\Product',$id);
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
   public function cartAction($id)
   {
     try {
-      $product = $this->get('doctrine.orm.entity_manager')->find('Club\ShopBundle\Entity\Product',$id);
+      $product = $this->getDoctrine()->getEntityManager()->find('Club\ShopBundle\Entity\Product',$id);
       $this->get('cart')->addToCart($product);
 
     } catch (\Exception $e) {

@@ -18,7 +18,7 @@ class MiscController extends Controller
 
   public function getCurrentLocationAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id'));
 
     return new Response($location->getLocationName());

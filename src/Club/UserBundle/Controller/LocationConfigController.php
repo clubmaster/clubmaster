@@ -15,7 +15,7 @@ class LocationConfigController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $configs = $em->getRepository('\Club\UserBundle\Entity\LocationConfig')->findBy(array(
       'location' => $id
     ));
@@ -31,7 +31,7 @@ class LocationConfigController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $config = $em->find('Club\UserBundle\Entity\LocationConfig',$id);
 
     $res = $this->process($config);
@@ -52,7 +52,7 @@ class LocationConfigController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($config);
         $em->flush();
 

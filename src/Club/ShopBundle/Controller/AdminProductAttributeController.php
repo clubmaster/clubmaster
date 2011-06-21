@@ -15,7 +15,7 @@ class AdminProductAttributeController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $product = $em->find('\Club\ShopBundle\Entity\Product',$id);
 
     return array(
@@ -29,7 +29,7 @@ class AdminProductAttributeController extends Controller
    */
   public function newAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $product = $em->find('\Club\ShopBundle\Entity\Product',$id);
 
     $attr = new \Club\ShopBundle\Entity\ProductAttribute();
@@ -52,7 +52,7 @@ class AdminProductAttributeController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $attr = $em->find('Club\ShopBundle\Entity\ProductAttribute',$id);
 
     $res = $this->process($attr);
@@ -71,7 +71,7 @@ class AdminProductAttributeController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $attr = $em->find('\Club\ShopBundle\Entity\ProductAttribute',$id);
 
     $em->remove($attr);
@@ -89,7 +89,7 @@ class AdminProductAttributeController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($attr);
         $em->flush();
 

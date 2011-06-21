@@ -15,7 +15,7 @@ class CategoryController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findAll();
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     $em->remove($category);

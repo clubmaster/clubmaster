@@ -15,7 +15,7 @@ class EventController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $events = $em->getRepository('\Club\EventBundle\Entity\Event')->findAll();
 
@@ -31,7 +31,7 @@ class EventController extends Controller
    */
   public function showAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('\Club\EventBundle\Entity\Event',$id);
 
     return array(
@@ -45,7 +45,7 @@ class EventController extends Controller
    */
   public function attendAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('\Club\EventBundle\Entity\Event',$id);
 
     $attend = new \Club\EventBundle\Entity\Attend();
@@ -72,7 +72,7 @@ class EventController extends Controller
    */
   public function unattendAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $event = $em->find('\Club\EventBundle\Entity\Event', $id);
 

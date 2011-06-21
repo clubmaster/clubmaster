@@ -15,7 +15,7 @@ class AdminEventController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $events = $em->getRepository('\Club\EventBundle\Entity\Event')->findAll();
 
     return array(
@@ -46,7 +46,7 @@ class AdminEventController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('Club\EventBundle\Entity\Event',$id);
 
     $res = $this->process($event);
@@ -65,7 +65,7 @@ class AdminEventController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('ClubEventBundle:Event',$this->get('request')->get('id'));
 
     $em->remove($event);

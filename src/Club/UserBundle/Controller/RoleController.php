@@ -16,7 +16,7 @@ class RoleController extends Controller
   public function indexAction()
   {
     $dql = "SELECT r FROM Club\UserBundle\Entity\Role r ORDER BY r.role_name";
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $query = $em->createQuery($dql);
     $roles = $query->getResult();

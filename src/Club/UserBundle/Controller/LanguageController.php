@@ -15,7 +15,7 @@ class LanguageController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $languages = $em->getRepository('\Club\UserBundle\Entity\Language')->findAll();
 
     return array(
@@ -46,7 +46,7 @@ class LanguageController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $language = $em->find('\Club\UserBundle\Entity\Language',$id);
     $res = $this->process($language);
 
@@ -65,7 +65,7 @@ class LanguageController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $language = $em->find('\Club\UserBundle\Entity\Language',$id);
 
     $em->remove($language);
@@ -81,7 +81,7 @@ class LanguageController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($language);
         $em->flush();
 

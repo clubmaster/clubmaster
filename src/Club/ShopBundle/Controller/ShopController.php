@@ -15,7 +15,7 @@ class ShopController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
       'location' => $this->get('security.context')->getToken()->getUser()->getLocation()->getId()
@@ -33,7 +33,7 @@ class ShopController extends Controller
    */
   public function categoryAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
       'category' => $id
@@ -52,7 +52,7 @@ class ShopController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $category = $em->find('Club\ShopBundle\Entity\Category',$id);
 
     $em->remove($category);

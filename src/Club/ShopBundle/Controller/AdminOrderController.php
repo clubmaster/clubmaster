@@ -15,7 +15,7 @@ class AdminOrderController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $orders = $em->getRepository('\Club\ShopBundle\Entity\Order')->findAll();
 
     return array(
@@ -29,7 +29,7 @@ class AdminOrderController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Order(), $order);
@@ -37,7 +37,7 @@ class AdminOrderController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($order);
         $em->flush();
 
@@ -61,7 +61,7 @@ class AdminOrderController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     $em->remove($order);

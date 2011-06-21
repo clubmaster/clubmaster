@@ -15,7 +15,7 @@ class BanController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $bans = $em->getRepository('\Club\UserBundle\Entity\Ban')->findAll();
 
     return array(
@@ -28,7 +28,7 @@ class BanController extends Controller
    */
   public function extendAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $ban = $em->find('\Club\UserBundle\Entity\Ban',$id);
     $ban->setExpireDate(new \DateTime(date('Y-m-d',strtotime('+1 month'))));
 
@@ -44,7 +44,7 @@ class BanController extends Controller
    */
   public function expireAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $ban = $em->find('\Club\UserBundle\Entity\Ban',$id);
 
     $em->remove($ban);

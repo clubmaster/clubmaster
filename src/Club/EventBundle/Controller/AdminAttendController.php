@@ -15,7 +15,7 @@ class AdminAttendController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('\Club\EventBundle\Entity\Event', $id);
 
     $attends = $em->getRepository('\Club\EventBundle\Entity\Attend')->findBy(array(
@@ -33,7 +33,7 @@ class AdminAttendController extends Controller
    */
   public function paidAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $attend = $em->find('ClubEventBundle:Attend',$id);
     $attend->setPaid(1);
 
@@ -50,7 +50,7 @@ class AdminAttendController extends Controller
    */
   public function unpaidAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $attend = $em->find('ClubEventBundle:Attend',$id);
     $attend->setPaid(0);
 
@@ -67,7 +67,7 @@ class AdminAttendController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $attend = $em->find('ClubEventBundle:Attend',$id);
 
     $em->remove($attend);
@@ -85,7 +85,7 @@ class AdminAttendController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($event);
         $em->flush();
 

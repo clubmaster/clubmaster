@@ -15,7 +15,7 @@ class UserNoteController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('\Club\UserBundle\Entity\User',$id);
 
     $user_notes = $em->getRepository('\Club\UserBundle\Entity\UserNote')->findBy(array(
@@ -34,7 +34,7 @@ class UserNoteController extends Controller
    */
   public function newAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('\Club\UserBundle\Entity\User',$id);
 
     $user_note = new \Club\UserBundle\Entity\UserNote();
@@ -57,7 +57,7 @@ class UserNoteController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user_note = $em->find('Club\UserBundle\Entity\UserNote',$id);
     $res = $this->process($user_note);
 
@@ -75,7 +75,7 @@ class UserNoteController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user_note = $em->find('\Club\UserBundle\Entity\UserNote',$id);
 
     $em->remove($user_note);
@@ -95,7 +95,7 @@ class UserNoteController extends Controller
     if ($this->get('request')->getMethod() == 'POST') {
       $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($user_note);
         $em->flush();
 

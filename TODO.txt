@@ -37,13 +37,11 @@
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
-- rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
 - rewrite all $this->get('request') to $this->getRequest()
-- rewrite all $this->get('doctrine') to $this->getDoctrine()
 - remove all RedirectResponse from controller, has function $this->redirect()
 - create an address interface for Order/Cart/ProfileAddress
 

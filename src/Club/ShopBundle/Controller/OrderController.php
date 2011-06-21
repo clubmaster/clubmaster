@@ -15,7 +15,7 @@ class OrderController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $this->get('security.context')->getToken()->getUser();
 
     $orders = $em->getRepository('\Club\ShopBundle\Entity\Order')->findBy(array(
@@ -33,7 +33,7 @@ class OrderController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     return array(
@@ -46,7 +46,7 @@ class OrderController extends Controller
    */
   public function cancelAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
     $status = $em->find('\Club\ShopBundle\Entity\OrderStatus',5);

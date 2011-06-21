@@ -16,7 +16,7 @@ class DefaultController extends Controller
    */
   public function addUserAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $user = new \Club\UserBundle\Entity\User();
     $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
@@ -57,7 +57,7 @@ class DefaultController extends Controller
    */
   public function getUserAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('Club\UserBundle\Entity\User',$id);
 
     return $this->renderJSon($user->toArray());
@@ -69,7 +69,7 @@ class DefaultController extends Controller
    */
   public function deleteUserAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('Club\UserBundle\Entity\User',$id);
 
     $em->remove($user);
@@ -83,7 +83,7 @@ class DefaultController extends Controller
    */
   public function getUsersAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $users = $em->getRepository('Club\UserBundle\Entity\User')->findAll();
 
     $res = array();
@@ -99,7 +99,7 @@ class DefaultController extends Controller
    */
   public function getUsersActiveAction()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllActive();
 
     $res = array();
@@ -115,7 +115,7 @@ class DefaultController extends Controller
    */
   public function banUserAction($id)
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('Club\UserBundle\Entity\User',$id);
 
     $ban = new \Club\UserBundle\Entity\Ban();
@@ -134,7 +134,7 @@ class DefaultController extends Controller
    */
   public function addUserRole()
   {
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->getDoctrine()->getEntityManager();
 
     $user = $em->find('Club\UserBundle\Entity\User',$this->get('request')->get('user'));
     $role = $em->find('Club\UserBundle\Entity\Role',$this->get('request')->get('role'));
