@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<h1>Account</h1>
+
+<h2>Account</h2>
+
+{% include "::flash.html.twig" %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Account Type</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for account in accounts %}
+    <tr>
+      <td>{{ account.accountNumber }}</td>
+      <td>{{ account.accountName }}</td>
+      <td>{{ account.accountType }}</td>
+      <td><a href="{{ path('club_account_adminledger_index', {'id':account.id}) }}">Ledger</a></td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no accounts at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+{% endblock %}

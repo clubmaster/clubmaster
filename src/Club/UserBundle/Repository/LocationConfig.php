@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationConfig extends EntityRepository
 {
+  public function getByKey(\Club\UserBundle\Entity\Location $location, $key)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('lc')
+      ->from('ClubUserBundle:LocationConfig','lc')
+      ->leftJoin('lc.config','c')
+      ->where('c.config_key = :key')
+      ->andWhere('lc.location = :location')
+      ->setParameter('key',$key)
+      ->setParameter('location',$location->getId())
+      ->getQuery()
+      ->getSingleResult();
+  }
 }

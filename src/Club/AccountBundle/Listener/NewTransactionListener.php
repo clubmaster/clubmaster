@@ -5,25 +5,49 @@ namespace Club\AccountBundle\Listener;
 class NewTransactionListener
 {
   protected $em;
+  protected $security_context;
 
-  public function __construct($em)
+  public function __construct($em, $security_context)
   {
     $this->em = $em;
+    $this->security_context = $security_context;
   }
 
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
+    $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $account = $this->em->find('ClubAccountBundle:Account',1);
+    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'account_default_income');
+    $income_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
+      'account_number' => $config->getValue()
+    ));
 
-    $ledger = new \Club\AccountBundle\Entity\Ledger();
-    $ledger->setValue($order->getVatPrice());
-    $ledger->setNote('Order #'.$order->getId());
-    $ledger->setAccount($account);
-    $ledger->setUser($order->getUser());
+    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'account_default_vat');
+    $vat_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
+      'account_number' => $config->getValue()
+    ));
 
-    $this->em->persist($ledger);
+    foreach ($order->getProducts() as $product) {
+      $ledger = new \Club\AccountBundle\Entity\Ledger();
+      $ledger->setValue($product->getPrice());
+      $ledger->setNote($product->getQuantity().'x '.$product->getProductName());
+      $ledger->setAccount($income_account);
+      $ledger->setUser($order->getUser());
+
+      $this->em->persist($ledger);
+
+      if ($product->getTax() > 0) {
+        $ledger = new \Club\AccountBundle\Entity\Ledger();
+        $ledger->setValue($product->getTax());
+        $ledger->setNote('VAT for order #'.$order->getId());
+        $ledger->setAccount($vat_account);
+        $ledger->setUser($order->getUser());
+
+        $this->em->persist($ledger);
+      }
+    }
+
     $this->em->flush();
   }
 }

@@ -21,7 +21,7 @@ class LocationConfig
   private $id;
 
   /**
-   * @ORM\Column(type="string")
+   * @ORM\Column(type="string", nullable="true")
    *
    * @var string $value
    */
