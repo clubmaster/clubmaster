@@ -61,7 +61,6 @@
 - make sure css are validated
 - put images on links
 - if twig has no date, it prints current timestamp (tasks last run at)
-- might be able to have a flash globally on all pages
 - remove batch on all pages except user list
 - fix layout, single and double column
 

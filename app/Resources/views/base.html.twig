@@ -86,6 +86,7 @@
 
                         {% block header %}<h1>ClubMaster</h1>{% endblock %}
                         {% render "ClubLogBundle:Log:LogView" %}
+                        {% include '::flash.html.twig' %}
 
                         {% block body %}{% endblock %}
 

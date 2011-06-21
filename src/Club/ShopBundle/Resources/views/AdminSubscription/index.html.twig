@@ -4,8 +4,6 @@
 
 {% block body %}
 
-{% include "::flash.html.twig" %}
-
 {% include "ClubShopBundle:AdminSubscription:subscription_table.html.twig" with {'user': user} %}
 {% include "ClubShopBundle:AdminSubscription:ticket_coupon_table.html.twig" with {'user': user} %}
 

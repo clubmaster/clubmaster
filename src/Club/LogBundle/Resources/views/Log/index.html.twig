@@ -4,8 +4,6 @@
 
 {% block body %}
 
-{% include "::flash.html.twig" %}
-
 {% include "ClubLogBundle:Log:logs.html.twig" with {'logs':logs} %}
 {% include "ClubLogBundle:Log:login_attempts.html.twig" with {'login_attempts':login_attempts} %}
 

@@ -4,10 +4,7 @@
 
 {% block body %}
 
-{{ app.session.flash('notice') }}
 <p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
-
-{% include "::flash.html.twig" %}
 
 <form method="post" action="{{ path('admin_user_note_batch') }}">
 <table>

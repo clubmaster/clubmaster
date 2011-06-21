@@ -6,8 +6,6 @@
 
 <p class="box"><a href="{{ path('admin_shop_product_attribute_new', {'id':product.id}) }}" class="btn-create"><span>Create attribute</span></a></p>
 
-{% include "::flash.html.twig" %}
-
 <form method="post" action="{{ path('admin_shop_product_batch') }}">
 <table>
   <thead>
