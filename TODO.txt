@@ -1,5 +1,4 @@
 == todo ==
-- debt account
 - sort user lists
 - add batch to user list
 - Obey lifetime membership
