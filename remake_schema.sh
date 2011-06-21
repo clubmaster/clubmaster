@@ -6,6 +6,7 @@ sudo chmod 777 app/logs app/cache
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
 php app/console doctrine:schema:create
+php app/console doctrine:fixtures:load
 
 mysql -u root clubmaster_v2 < fixtures.sql
 

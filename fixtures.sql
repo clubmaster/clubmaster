@@ -24,26 +24,10 @@ INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_
   ('Renewal memberships',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onAutoRenewalTask'),
   ('Cleanup login logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLoginAttemptTask');
 
-INSERT INTO club_user_country (country) VALUES
-  ('Denmark'),
-  ('Sweden'),
-  ('Norway'),
-  ('Germany'),
-  ('Finland');
-
 INSERT INTO club_account_account (account_name,account_number,account_type) VALUES
   ('Cash In Bank','1010','asset'),
   ('VAT','3001','income'),
   ('Income','5001','income');
-
-INSERT INTO club_user_config (config_key) VALUES
-  ('smtp'),
-  ('smtp_port'),
-  ('smtp_username'),
-  ('smtp_password'),
-  ('account_default_income'),
-  ('account_default_vat'),
-  ('default_language');
 
 INSERT INTO club_user_currency (currency_name,code,symbol_left,symbol_right,decimal_places,value) VALUES
   ('Danish Krone','DKK',null,'DK',2,1);
