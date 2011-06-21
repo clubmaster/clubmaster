@@ -69,11 +69,4 @@ class AdminOrderController extends Controller
 
     return new RedirectResponse($this->generateUrl('admin_shop_order'));
   }
-
-  /**
-   * @Route("/shop/order/batch", name="admin_shop_order_batch")
-   */
-  public function batchAction()
-  {
-  }
 }

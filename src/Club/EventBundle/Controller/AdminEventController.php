@@ -76,13 +76,6 @@ class AdminEventController extends Controller
     return new RedirectResponse($this->generateUrl('admin_event_event'));
   }
 
-  /**
-   * @Route("/event/event/batch", name="admin_event_event_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($event)
   {
     $form = $this->get('form.factory')->create(new \Club\EventBundle\Form\Event(), $event);

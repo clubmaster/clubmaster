@@ -88,13 +88,6 @@ class UserNoteController extends Controller
     )));
   }
 
-  /**
-   * @Route("/user_note/batch", name="admin_user_note_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($user_note)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\UserNote(), $user_note);

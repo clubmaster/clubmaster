@@ -25,11 +25,4 @@ class RoleController extends Controller
       'roles' => $roles
     ));
   }
-
-  /**
-   * @Route("/role/batch", name="admin_role_batch")
-   */
-  public function batchAction()
-  {
-  }
 }

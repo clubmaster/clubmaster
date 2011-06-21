@@ -76,13 +76,6 @@ class AdminSpecialController extends Controller
     return new RedirectResponse($this->generateUrl('admin_shop_special'));
   }
 
-  /**
-   * @Route("/shop/special/batch", name="admin_shop_special_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($special)
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Special(), $special);

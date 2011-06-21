@@ -3,14 +3,11 @@
 {% block header %}<h1>Order</h1>{% endblock %}
 
 {% block body %}
-
 <h2>Order</h2>
 
-<form method="post" action="{{ path('shop_order_batch') }}">
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Id</th>
       <th>User</th>
       <th>Price</th>
@@ -21,20 +18,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="7" class="arrow-01">
-        <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
-        </select>&nbsp;<input type="submit" value="OK" />
-      </td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for order in orders %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ order.id }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price }}</td>
@@ -46,10 +35,9 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no orders at the time</td>
+    <td colspan="6">There are no orders at the time</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-</form>
 {% endblock %}

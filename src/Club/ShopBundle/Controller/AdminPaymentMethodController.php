@@ -76,13 +76,6 @@ class AdminPaymentMethodController extends Controller
     return new RedirectResponse($this->generateUrl('admin_shop_payment_method'));
   }
 
-  /**
-   * @Route("/shop/payment_method/batch", name="admin_shop_payment_method_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($payment_method)
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\PaymentMethod(), $payment_method);

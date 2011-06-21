@@ -76,13 +76,6 @@ class AdminShippingController extends Controller
     return new RedirectResponse($this->generateUrl('admin_shop_shipping'));
   }
 
-  /**
-   * @Route("/shop/shipping/batch", name="admin_shop_shipping_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($shipping)
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Shipping(), $shipping);

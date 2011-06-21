@@ -74,13 +74,6 @@ class LanguageController extends Controller
     return new RedirectResponse($this->generateUrl('admin_language'));
   }
 
-  /**
-   * @Route("/language/batch", name="admin_language_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($language)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Language(), $language);

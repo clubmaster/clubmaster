@@ -77,13 +77,6 @@ class GroupController extends Controller
     return new RedirectResponse($this->generateUrl('admin_group'));
   }
 
-  /**
-   * @Route("/group/batch", name="admin_group_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($group)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Group(), $group);

@@ -76,13 +76,6 @@ class AdminCategoryController extends Controller
     return new RedirectResponse($this->generateUrl('admin_shop_category'));
   }
 
-  /**
-   * @Route("/shop/category/batch", name="admin_shop_category_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($category)
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Category(), $category);

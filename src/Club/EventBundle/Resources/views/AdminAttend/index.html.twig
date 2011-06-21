@@ -3,12 +3,9 @@
 {% block header %}<h1>Event</h1>{% endblock %}
 
 {% block body %}
-
-<form method="post" action="{{ path('admin_event_attend_batch') }}">
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Id</th>
       <th>Event</th>
       <th>User</th>
@@ -19,20 +16,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="7" class="arrow-01">
-        <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
-        </select>&nbsp;<input type="submit" value="OK" />
-      </td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for attend in attends %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ attend.id }}</td>
       <td>{{ event.eventName }}</td>
       <td>{{ attend.user.profile.name }}</td>
@@ -46,10 +35,9 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no attends at the time</td>
+    <td colspan="6">There are no attends at the time</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-</form>
 {% endblock %}

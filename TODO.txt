@@ -62,7 +62,6 @@
 - make sure css are validated
 - put images on links
 - if twig has no date, it prints current timestamp (tasks last run at)
-- remove batch on all pages except user list
 - fix layout, single and double column
 
 == security ==

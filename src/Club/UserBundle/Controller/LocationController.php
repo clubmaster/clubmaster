@@ -76,13 +76,6 @@ class LocationController extends Controller
     return new RedirectResponse($this->generateUrl('admin_location'));
   }
 
-  /**
-   * @Route("/location/batch", name="admin_location_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($location)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Location(), $location);

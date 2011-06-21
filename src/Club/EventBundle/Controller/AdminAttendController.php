@@ -78,13 +78,6 @@ class AdminAttendController extends Controller
     return new RedirectResponse($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
 
-  /**
-   * @Route("/event/attend/batch", name="admin_event_attend_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($event)
   {
     $form = $this->get('form.factory')->create(new \Club\EventBundle\Form\Event(), $event);

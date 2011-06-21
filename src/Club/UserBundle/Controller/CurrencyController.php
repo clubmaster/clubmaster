@@ -74,13 +74,6 @@ class CurrencyController extends Controller
     return new RedirectResponse($this->generateUrl('admin_currency'));
   }
 
-  /**
-   * @Route("/currency/batch", name="admin_currency_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($currency)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Currency(), $currency);

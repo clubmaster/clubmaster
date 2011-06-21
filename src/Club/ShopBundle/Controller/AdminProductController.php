@@ -76,13 +76,6 @@ class AdminProductController extends Controller
     return new RedirectResponse($this->generateUrl('admin_shop_product'));
   }
 
-  /**
-   * @Route("/shop/product/batch", name="admin_shop_product_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($product)
   {
     $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Product(), $product);

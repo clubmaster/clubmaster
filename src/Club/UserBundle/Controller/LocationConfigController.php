@@ -45,13 +45,6 @@ class LocationConfigController extends Controller
     );
   }
 
-  /**
-   * @Route("/location/batch", name="admin_location_config_batch")
-   */
-  public function batchAction()
-  {
-  }
-
   protected function process($config)
   {
     $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\LocationConfig(), $config);

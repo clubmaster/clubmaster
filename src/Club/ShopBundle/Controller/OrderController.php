@@ -60,11 +60,4 @@ class OrderController extends Controller
 
     return new RedirectResponse($this->generateUrl('shop_order'));
   }
-
-  /**
-   * @Route("/shop/order/batch", name="shop_order_batch")
-   */
-  public function batchAction()
-  {
-  }
 }

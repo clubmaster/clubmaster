@@ -3,14 +3,11 @@
 {% block header %}<h1>Event</h1>{% endblock %}
 
 {% block body %}
-
 <p class="box"><a href="{{ path('admin_event_event_new') }}" class="btn-create"><span>Create event</span></a></p>
 
-<form method="post" action="{{ path('admin_event_event_batch') }}">
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Id</th>
       <th>Event</th>
       <th>Attends</th>
@@ -22,20 +19,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="8" class="arrow-01">
-        <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
-        </select>&nbsp;<input type="submit" value="OK" />
-      </td>
+      <td colspan="7">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for event in events %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ event.id }}</td>
       <td>{{ event.eventName }}</td>
       <td>{{ event.attends|length }} / {% if event.maxAttends == 0 %}-{% else %}{{ event.maxAttends }}{% endif %}</td>
@@ -50,10 +39,9 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="8">There are no events at the time</td>
+    <td colspan="7">There are no events at the time</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-</form>
 {% endblock %}

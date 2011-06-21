@@ -3,14 +3,11 @@
 {% block header %}<h1>Special</h1>{% endblock %}
 
 {% block body %}
-
 <p class="box"><a href="{{ path('admin_shop_special_new') }}" class="btn-create"><span>Create special</span></a></p>
 
-<form method="post" action="{{ path('admin_shop_special_batch') }}">
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Id</th>
       <th>Product</th>
       <th>Price</th>
@@ -19,20 +16,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="5" class="arrow-01">
-        <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
-        </select>&nbsp;<input type="submit" value="OK" />
-      </td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for special in specials %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ special.id }}</td>
       <td>{{ special.product.productName }}</td>
       <td>{{ special.price }}</td>
@@ -43,7 +32,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="5">There are no specials at the time</td>
+    <td colspan="4">There are no specials at the time</td>
   </tr>
   {% endfor %}
   </tbody>

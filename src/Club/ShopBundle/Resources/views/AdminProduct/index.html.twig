@@ -6,11 +6,9 @@
 
 <p class="box"><a href="{{ path('admin_shop_product_new') }}" class="btn-create"><span>Create product</span></a></p>
 
-<form method="post" action="{{ path('admin_shop_product_batch') }}">
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Id</th>
       <th>Product</th>
       <th>Actions</th>
@@ -18,20 +16,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4" class="arrow-01">
-        <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
-        </select>&nbsp;<input type="submit" value="OK" />
-      </td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for product in products %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ product.id }}</td>
       <td>{{ product.productName }}</td>
       <td>
@@ -42,10 +32,9 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no products at the time</td>
+    <td colspan="3">There are no products at the time</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-</form>
 {% endblock %}
