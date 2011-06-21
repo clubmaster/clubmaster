@@ -1,10 +1,15 @@
 == todo ==
+- translation
+- make a task that check if a task has been running for more than 15 minutes
+- cannot have multiple is_cancelled or is_accepted status orders
 - sort user lists
 - add batch to user list
 - Obey lifetime membership
-- translation
-- make a task that check if a task has been running for more than 15 minutes
 - add images to products
+- add pager to logging
+- add pager to ledger
+- add pager to order
+- add search to order
 
 - build better forms for filter
 - make a quick search field for users
@@ -18,25 +23,22 @@
 - Fix shop as user
 - Shop coupons
 - database email delivery strategy
-- flag if we run backend script for tasks (to avoid long wait periods for the users)
 - unit test
 - special products
 - event custom validator ( more attend than max attends )
-- add flash on all pages with a form or with an action
 - on success handler, consider forward and not redirect response?
 - consider subscription attributes instead of multiple columns
 - group and user filter, is_active (true, false, both)
 - add event managers to events, they should be able to see all events in the club
 - make sure tasks can by build with a dynamic event class
-- cannot have multiple is_cancelled or is_accepted status orders
 - find a way the bundles can add menu items to the menus
   - menu, and priority
-- check all html.twig files for extends attribute but missing header block
+- flag if we run backend script for tasks (to avoid long wait periods for the users)
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 - rewrite all doctrine.orm.entity_manager to doctrine->getEntityManager()
-- success / failure handler has to be more dynamic (might wait for a symfony upgrade)
+- success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
@@ -67,7 +69,6 @@
 == security ==
 - cannot edit orders that you do not own
 - make sure the firewall actually does work
-- allow anonymous users to view ical file
 - only right user can pause and expire subscription (admin, owner)
 
 == modules ==
