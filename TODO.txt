@@ -1,6 +1,5 @@
 == todo ==
 - debt account
-- only make a single subscription when order gets delivered
 - sort user lists
 - add batch to user list
 - Obey lifetime membership

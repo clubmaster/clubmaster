@@ -15,6 +15,14 @@ class NewSubscriptionListener
   {
     $order = $event->getOrder();
 
+    $statuses = $this->em->getRepository('ClubShopBundle:OrderStatusHistory')->findBy(array(
+      'order' => $order->getId()
+    ));
+    foreach ($statuses as $status) {
+      // check if order already has been accepted
+      if ($status->getOrderStatus()->getIsAccepted()) return;
+    }
+
     if ($order->getOrderStatus()->getIsAccepted()) {
       $products = $order->getOrderProducts();
 
@@ -89,6 +97,5 @@ class NewSubscriptionListener
         $this->em->flush();
       }
     }
-
   }
 }

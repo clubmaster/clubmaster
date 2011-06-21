@@ -4,16 +4,16 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.listener, event: shop.order, method: onShopOrder }
-  club.shopbundle.listener.on_order_change_listener:
-    class: Club\ShopBundle\Listener\OrderChangeListener
-    arguments: [@doctrine.orm.entity_manager]
-    tags:
-      - { name: kernel.listener, event: order.change, method: onOrderChange }
   club.shopbundle.listener.new_subscription_listener:
     class: Club\ShopBundle\Listener\NewSubscriptionListener
     arguments: [@doctrine.orm.entity_manager]
     tags:
-      - { name: kernel.listener, event: order.change, method: onOrderChange }
+      - { name: kernel.listener, event: order.change, method: onOrderChange, priority: 10 }
+  club.shopbundle.listener.on_order_change_listener:
+    class: Club\ShopBundle\Listener\OrderChangeListener
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.listener, event: order.change, method: onOrderChange, priority: 5 }
   club.shopbundle.listener.auto_renewal.listener:
     class: Club\ShopBundle\Listener\AutoRenewalListener
     arguments: [@doctrine.orm.entity_manager,@order,@event_dispatcher]
