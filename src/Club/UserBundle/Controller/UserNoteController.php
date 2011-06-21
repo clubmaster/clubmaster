@@ -83,7 +83,7 @@ class UserNoteController extends Controller
 
     $this->get('session')->setFlash('notify','You changes has been saved.');
 
-    return new RedirectResponse($this->generateUrl('admin_user_note',array(
+    return $this->redirect($this->generateUrl('admin_user_note',array(
       'id' => $user_note->getUser()->getId()
     )));
   }
@@ -101,7 +101,7 @@ class UserNoteController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_user_note', array(
+        return $this->redirect($this->generateUrl('admin_user_note', array(
           'id' => $user_note->getUser()->getId()
         )));
       }

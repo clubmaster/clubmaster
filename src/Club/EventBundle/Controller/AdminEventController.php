@@ -73,7 +73,7 @@ class AdminEventController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Event %s deleted.',$event->getEventName()));
 
-    return new RedirectResponse($this->generateUrl('admin_event_event'));
+    return $this->redirect($this->generateUrl('admin_event_event'));
   }
 
   protected function process($event)
@@ -94,7 +94,7 @@ class AdminEventController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_event_event'));
+        return $this->redirect($this->generateUrl('admin_event_event'));
       }
     }
 

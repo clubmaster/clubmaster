@@ -73,7 +73,7 @@ class LocationController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Location %s deleted.',$location->getLocationName()));
 
-    return new RedirectResponse($this->generateUrl('admin_location'));
+    return $this->redirect($this->generateUrl('admin_location'));
   }
 
   protected function process($location)
@@ -89,7 +89,7 @@ class LocationController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_location'));
+        return $this->redirect($this->generateUrl('admin_location'));
       }
     }
 

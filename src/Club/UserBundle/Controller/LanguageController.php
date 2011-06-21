@@ -71,7 +71,7 @@ class LanguageController extends Controller
     $em->remove($language);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_language'));
+    return $this->redirect($this->generateUrl('admin_language'));
   }
 
   protected function process($language)
@@ -87,7 +87,7 @@ class LanguageController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_language'));
+        return $this->redirect($this->generateUrl('admin_language'));
       }
     }
 

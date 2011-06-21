@@ -73,7 +73,7 @@ class AdminShippingController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Shipping %s deleted.',$shipping->getShippingName()));
 
-    return new RedirectResponse($this->generateUrl('admin_shop_shipping'));
+    return $this->redirect($this->generateUrl('admin_shop_shipping'));
   }
 
   protected function process($shipping)
@@ -89,7 +89,7 @@ class AdminShippingController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_shipping'));
+        return $this->redirect($this->generateUrl('admin_shop_shipping'));
       }
     }
 

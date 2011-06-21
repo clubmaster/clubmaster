@@ -35,7 +35,7 @@ class AdminSubscriptionController extends Controller
     // validate that the user is allowed to pause
     if (count($subscription->getSubscriptionPauses()) >= $subscription->getAllowedPauses()) {
       $this->get('session')->setFlash('error','You cannot have anymore pauses.');
-      return new RedirectResponse($this->generateUrl('admin_shop_subscription'));
+      return $this->redirect($this->generateUrl('admin_shop_subscription'));
     }
 
     $subscription->setIsActive(0);
@@ -50,7 +50,7 @@ class AdminSubscriptionController extends Controller
 
     $this->get('session')->set('notice','Your subscription has been paused.');
 
-    return new RedirectResponse($this->generateUrl('admin_shop_subscription'));
+    return $this->redirect($this->generateUrl('admin_shop_subscription'));
   }
 
   /**
@@ -76,7 +76,7 @@ class AdminSubscriptionController extends Controller
     $em->persist($pause);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_shop_subscription'));
+    return $this->redirect($this->generateUrl('admin_shop_subscription'));
   }
 
   /**
@@ -92,7 +92,7 @@ class AdminSubscriptionController extends Controller
     $em->persist($subscription);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_shop_subscription',array(
+    return $this->redirect($this->generateUrl('admin_shop_subscription',array(
       'id' => $subscription->getUser()->getId()
     )));
   }

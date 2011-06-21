@@ -36,7 +36,7 @@ class BanController extends Controller
     $em->flush();
 
     $this->get('session')->setFlash('notice','You ban has been extended');
-    return new RedirectResponse($this->generateUrl('ban'));
+    return $this->redirect($this->generateUrl('ban'));
   }
 
   /**
@@ -51,6 +51,6 @@ class BanController extends Controller
     $em->flush();
 
     $this->get('session')->setFlash('notice','Ban has been expired');
-    return new RedirectResponse($this->generateUrl('ban'));
+    return $this->redirect($this->generateUrl('ban'));
   }
 }

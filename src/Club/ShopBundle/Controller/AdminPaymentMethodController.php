@@ -73,7 +73,7 @@ class AdminPaymentMethodController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('PaymentMethod %s deleted.',$payment_method->getPaymentMethodName()));
 
-    return new RedirectResponse($this->generateUrl('admin_shop_payment_method'));
+    return $this->redirect($this->generateUrl('admin_shop_payment_method'));
   }
 
   protected function process($payment_method)
@@ -89,7 +89,7 @@ class AdminPaymentMethodController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_payment_method'));
+        return $this->redirect($this->generateUrl('admin_shop_payment_method'));
       }
     }
 

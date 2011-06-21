@@ -71,7 +71,7 @@ class CurrencyController extends Controller
     $em->remove($currency);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_currency'));
+    return $this->redirect($this->generateUrl('admin_currency'));
   }
 
   protected function process($currency)
@@ -87,7 +87,7 @@ class CurrencyController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_currency'));
+        return $this->redirect($this->generateUrl('admin_currency'));
       }
     }
 

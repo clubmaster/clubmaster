@@ -47,7 +47,7 @@ class TaskController extends Controller
     $em->persist($task);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_task'));
+    return $this->redirect($this->generateUrl('admin_task'));
   }
 
   /**
@@ -63,7 +63,7 @@ class TaskController extends Controller
     $em->persist($task);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_task'));
+    return $this->redirect($this->generateUrl('admin_task'));
   }
 
   /**
@@ -79,6 +79,6 @@ class TaskController extends Controller
     $em->persist($task);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_task'));
+    return $this->redirect($this->generateUrl('admin_task'));
   }
 }

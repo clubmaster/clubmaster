@@ -40,7 +40,7 @@ class CheckoutController extends Controller
     if (count($shippings) == 1) {
       $this->get('cart')->setShipping($shippings[0]);
 
-      return new RedirectResponse($this->generateUrl('shop_checkout_payment'));
+      return $this->redirect($this->generateUrl('shop_checkout_payment'));
     }
 
     return array();
@@ -72,7 +72,7 @@ class CheckoutController extends Controller
       if ($form->isValid()) {
         $this->get('cart')->setCart($cart);
 
-        return new RedirectResponse($this->generateUrl('shop_checkout_review'));
+        return $this->redirect($this->generateUrl('shop_checkout_review'));
       }
     }
     return array(
@@ -104,7 +104,7 @@ class CheckoutController extends Controller
       $this->get('order')->convertToOrder($this->get('cart')->getCart());
     }
 
-    return new RedirectResponse($this->generateUrl('shop_checkout_confirm',array(
+    return $this->redirect($this->generateUrl('shop_checkout_confirm',array(
       'id' => $this->get('order')->getOrder()->getId()
     )));
   }
@@ -129,6 +129,6 @@ class CheckoutController extends Controller
   public function emptyCartAction()
   {
     $this->get('cart')->emptyCart();
-    return new RedirectResponse($this->generateUrl('shop_checkout'));
+    return $this->redirect($this->generateUrl('shop_checkout'));
   }
 }

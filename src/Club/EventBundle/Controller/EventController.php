@@ -64,7 +64,7 @@ class EventController extends Controller
     $e = new \Club\EventBundle\Event\FilterEventEvent($event);
     $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
 
-    return new RedirectResponse($this->generateUrl('event_event'));
+    return $this->redirect($this->generateUrl('event_event'));
   }
 
   /**
@@ -87,7 +87,7 @@ class EventController extends Controller
     $e = new \Club\EventBundle\Event\FilterEventEvent($event);
     $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);
 
-    return new RedirectResponse($this->generateUrl('event_event'));
+    return $this->redirect($this->generateUrl('event_event'));
   }
 
   /**

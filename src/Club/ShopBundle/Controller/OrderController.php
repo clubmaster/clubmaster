@@ -58,6 +58,6 @@ class OrderController extends Controller
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
     $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
 
-    return new RedirectResponse($this->generateUrl('shop_order'));
+    return $this->redirect($this->generateUrl('shop_order'));
   }
 }

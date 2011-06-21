@@ -73,7 +73,7 @@ class AdminSpecialController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Special %s deleted.',$special->getProduct()->getProductName()));
 
-    return new RedirectResponse($this->generateUrl('admin_shop_special'));
+    return $this->redirect($this->generateUrl('admin_shop_special'));
   }
 
   protected function process($special)
@@ -89,7 +89,7 @@ class AdminSpecialController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_special'));
+        return $this->redirect($this->generateUrl('admin_shop_special'));
       }
     }
 

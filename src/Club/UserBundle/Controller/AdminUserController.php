@@ -121,7 +121,7 @@ class AdminUserController extends Controller
       $em->flush();
 
       $this->get('session')->setFlash('notice','Your changes were saved!');
-      return new RedirectResponse($this->generateUrl('admin_user'));
+      return $this->redirect($this->generateUrl('admin_user'));
     }
 
     return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
@@ -185,7 +185,7 @@ class AdminUserController extends Controller
       $em->flush();
 
       $this->get('session')->setFlash('notice','Your changes were saved!');
-      return new RedirectResponse($this->generateUrl('admin_user'));
+      return $this->redirect($this->generateUrl('admin_user'));
     }
 
     return array(
@@ -207,7 +207,7 @@ class AdminUserController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('User %s deleted.',$user->getUsername()));
 
-    return new RedirectResponse($this->generateUrl('admin_user'));
+    return $this->redirect($this->generateUrl('admin_user'));
   }
 
   /**
@@ -236,7 +236,7 @@ class AdminUserController extends Controller
 
     $this->get('session')->setFlash('notice',sprintf('User %s banned.',$user->getUsername()));
 
-    return new RedirectResponse($this->generateUrl('admin_user'));
+    return $this->redirect($this->generateUrl('admin_user'));
   }
 
   /**
@@ -248,7 +248,7 @@ class AdminUserController extends Controller
     $cart->emptyCart();
     $cart->setUserId($id);
 
-    return new RedirectResponse($this->generateUrl('shop'));
+    return $this->redirect($this->generateUrl('shop'));
   }
 
   /**
@@ -273,7 +273,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('admin_user'));
       }
     }
 
@@ -305,7 +305,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('admin_user'));
       }
     }
 
@@ -337,7 +337,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('admin_user'));
       }
     }
 
@@ -365,7 +365,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
-        return new RedirectResponse($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('admin_user'));
       }
     }
 

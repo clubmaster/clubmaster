@@ -46,7 +46,7 @@ class AdminOrderController extends Controller
         $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
         $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
 
-        return new RedirectResponse($this->generateUrl('admin_shop_order'));
+        return $this->redirect($this->generateUrl('admin_shop_order'));
       }
     }
 
@@ -67,6 +67,6 @@ class AdminOrderController extends Controller
     $em->remove($order);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_shop_order'));
+    return $this->redirect($this->generateUrl('admin_shop_order'));
   }
 }

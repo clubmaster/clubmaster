@@ -22,7 +22,7 @@ class AdminTicketCouponController extends Controller
     $em->persist($ticket);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('admin_shop_subscription',array(
+    return $this->redirect($this->generateUrl('admin_shop_subscription',array(
       'id' => $ticket->getUser()->getId()
     )));
   }

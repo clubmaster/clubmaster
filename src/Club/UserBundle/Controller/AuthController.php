@@ -59,7 +59,7 @@ class AuthController extends Controller
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onPasswordReset, $event);
       }
 
-      return new RedirectResponse($this->generateUrl('login'));
+      return $this->redirect($this->generateUrl('login'));
     }
 
     return array(
@@ -95,7 +95,7 @@ class AuthController extends Controller
           $em->flush();
 
           $this->get('session')->set('notice','Your password has been set.');
-          return new RedirectResponse($this->generateUrl('homepage'));
+          return $this->redirect($this->generateUrl('homepage'));
         }
       }
 

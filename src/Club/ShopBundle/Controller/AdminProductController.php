@@ -73,7 +73,7 @@ class AdminProductController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Product %s deleted.',$product->getProductName()));
 
-    return new RedirectResponse($this->generateUrl('admin_shop_product'));
+    return $this->redirect($this->generateUrl('admin_shop_product'));
   }
 
   protected function process($product)
@@ -89,7 +89,7 @@ class AdminProductController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_product'));
+        return $this->redirect($this->generateUrl('admin_shop_product'));
       }
     }
 

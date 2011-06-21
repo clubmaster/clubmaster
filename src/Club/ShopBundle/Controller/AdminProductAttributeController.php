@@ -79,7 +79,7 @@ class AdminProductAttributeController extends Controller
 
     $this->get('session')->setFlash('notify','Changes has been saved.');
 
-    return new RedirectResponse($this->generateUrl('admin_shop_product_attribute',array('id'=>$attr->getProduct()->getId())));
+    return $this->redirect($this->generateUrl('admin_shop_product_attribute',array('id'=>$attr->getProduct()->getId())));
   }
 
   protected function process($attr)
@@ -95,7 +95,7 @@ class AdminProductAttributeController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_product_attribute',array('id'=>$attr->getProduct()->getId())));
+        return $this->redirect($this->generateUrl('admin_shop_product_attribute',array('id'=>$attr->getProduct()->getId())));
       }
     }
 

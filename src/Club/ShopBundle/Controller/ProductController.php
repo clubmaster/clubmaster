@@ -38,6 +38,6 @@ class ProductController extends Controller
       $this->get('session')->setFlash('notice',$e->getMessage());
     }
 
-    return new RedirectResponse($this->generateUrl('shop_checkout'));
+    return $this->redirect($this->generateUrl('shop_checkout'));
   }
 }

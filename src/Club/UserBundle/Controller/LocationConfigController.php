@@ -58,7 +58,7 @@ class LocationConfigController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_location_config',array('id'=>$config->getLocation()->getId())));
+        return $this->redirect($this->generateUrl('admin_location_config',array('id'=>$config->getLocation()->getId())));
       }
     }
 

@@ -74,7 +74,7 @@ class GroupController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Group %s deleted.',$group->getGroupName()));
 
-    return new RedirectResponse($this->generateUrl('admin_group'));
+    return $this->redirect($this->generateUrl('admin_group'));
   }
 
   protected function process($group)
@@ -90,7 +90,7 @@ class GroupController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_group'));
+        return $this->redirect($this->generateUrl('admin_group'));
       }
     }
 

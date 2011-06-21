@@ -29,7 +29,7 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
 
-        return new RedirectResponse($this->generateUrl('user'));
+        return $this->redirect($this->generateUrl('user'));
       }
     }
 

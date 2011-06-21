@@ -42,7 +42,7 @@ class AdminAttendController extends Controller
 
     $this->get('session')->setFlash('notice','You changes has been saved.');
 
-    return new RedirectResponse($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
+    return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
 
   /**
@@ -59,7 +59,7 @@ class AdminAttendController extends Controller
 
     $this->get('session')->setFlash('notice','You changes has been saved.');
 
-    return new RedirectResponse($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
+    return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
 
   /**
@@ -75,7 +75,7 @@ class AdminAttendController extends Controller
 
     $this->get('session')->setFlash('notice','You changes has been saved.');
 
-    return new RedirectResponse($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
+    return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
 
   protected function process($event)
@@ -91,7 +91,7 @@ class AdminAttendController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_event_event'));
+        return $this->redirect($this->generateUrl('admin_event_event'));
       }
     }
 

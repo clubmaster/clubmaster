@@ -73,7 +73,7 @@ class AdminCategoryController extends Controller
 
     $this->get('session')->setFlash('notify',sprintf('Category %s deleted.',$category->getCategoryName()));
 
-    return new RedirectResponse($this->generateUrl('admin_shop_category'));
+    return $this->redirect($this->generateUrl('admin_shop_category'));
   }
 
   protected function process($category)
@@ -89,7 +89,7 @@ class AdminCategoryController extends Controller
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
 
-        return new RedirectResponse($this->generateUrl('admin_shop_category'));
+        return $this->redirect($this->generateUrl('admin_shop_category'));
       }
     }
 

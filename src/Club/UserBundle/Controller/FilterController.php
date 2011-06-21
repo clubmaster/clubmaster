@@ -36,7 +36,7 @@ class FilterController extends Controller
       $em->flush();
     }
 
-    return new RedirectResponse($this->generateUrl('admin_user'));
+    return $this->redirect($this->generateUrl('admin_user'));
   }
 
   public function getFilterFormAction()

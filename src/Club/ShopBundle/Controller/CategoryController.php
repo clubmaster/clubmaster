@@ -35,7 +35,7 @@ class CategoryController extends Controller
     $em->remove($category);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('shop_category'));
+    return $this->redirect($this->generateUrl('shop_category'));
   }
 
   /**

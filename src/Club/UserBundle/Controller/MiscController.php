@@ -50,7 +50,7 @@ class MiscController extends Controller
       $em->persist($user);
       $em->flush();
 
-      return new RedirectResponse($this->generateUrl('homepage'));
+      return $this->redirect($this->generateUrl('homepage'));
     }
   }
 }

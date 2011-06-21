@@ -34,7 +34,7 @@ class SubscriptionController extends Controller
     // validate that the user is allowed to pause
     if (count($subscription->getSubscriptionPauses()) >= $subscription->getAllowedPauses()) {
       $this->get('session')->setFlash('error','You cannot have anymore pauses.');
-      return new RedirectResponse($this->generateUrl('shop_subscription'));
+      return $this->redirect($this->generateUrl('shop_subscription'));
     }
 
     $subscription->setIsActive(0);
@@ -49,7 +49,7 @@ class SubscriptionController extends Controller
 
     $this->get('session')->set('notice','Your subscription has been paused.');
 
-    return new RedirectResponse($this->generateUrl('shop_subscription'));
+    return $this->redirect($this->generateUrl('shop_subscription'));
   }
 
   /**
@@ -75,6 +75,6 @@ class SubscriptionController extends Controller
     $em->persist($pause);
     $em->flush();
 
-    return new RedirectResponse($this->generateUrl('shop_subscription'));
+    return $this->redirect($this->generateUrl('shop_subscription'));
   }
 }
