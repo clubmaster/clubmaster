@@ -1,4 +1,7 @@
 == before next release ==
+- make a test bundle for test fixtures
+- make sure email and phone is NOT mandatory
+- fix location dropdown to a prettier solution
 - doctrine fixtures
 - add images to products
 - consider subscription attributes instead of multiple columns
