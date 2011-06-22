@@ -5,3 +5,6 @@ services:
   order:
     class: Club\ShopBundle\Helper\Order
     arguments: [@doctrine.orm.entity_manager,@event_dispatcher]
+  subscription:
+    class: Club\ShopBundle\Helper\Subscription
+    arguments: [@doctrine.orm.entity_manager,@session]

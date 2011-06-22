@@ -30,24 +30,7 @@ class SubscriptionController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
-    // validate that the user is allowed to pause
-    $attr = $em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'AllowedPauses');
-    if (count($subscription->getSubscriptionPauses()) >= $attr->getValue()) {
-      $this->get('session')->setFlash('error','You cannot have anymore pauses.');
-      return $this->redirect($this->generateUrl('shop_subscription'));
-    }
-
-    $subscription->setIsActive(0);
-
-    $pause = new \Club\ShopBundle\Entity\SubscriptionPause();
-    $pause->setSubscription($subscription);
-    $pause->setStartDate(new \DateTime());
-
-    $em->persist($subscription);
-    $em->persist($pause);
-    $em->flush();
-
-    $this->get('session')->set('notice','Your subscription has been paused.');
+    $this->get('subscription')->pauseSubscription($subscription);
 
     return $this->redirect($this->generateUrl('shop_subscription'));
   }
@@ -59,21 +42,9 @@ class SubscriptionController extends Controller
   public function resumeAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
-    $subscription->setIsActive(1);
 
-    $pause = $em->getRepository('ClubShopBundle:Subscription')->getActivePause($subscription);
-    $pause->setExpireDate(new \DateTime());
-
-    $diff = $pause->getStartDate()->diff($pause->getExpireDate());
-    $new = new \DateTime($subscription->getExpireDate()->format('Y-m-d'));
-    $new->add($diff);
-    $subscription->setExpireDate($new);
-
-    $em->persist($subscription);
-    $em->persist($pause);
-    $em->flush();
+    $this->get('subscription')->resumeSubscription($subscription);
 
     return $this->redirect($this->generateUrl('shop_subscription'));
   }

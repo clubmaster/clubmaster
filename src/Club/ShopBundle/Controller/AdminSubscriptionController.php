@@ -31,25 +31,11 @@ class AdminSubscriptionController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
-    // validate that the user is allowed to pause
-    if (count($subscription->getSubscriptionPauses()) >= $subscription->getAllowedPauses()) {
-      $this->get('session')->setFlash('error','You cannot have anymore pauses.');
-      return $this->redirect($this->generateUrl('admin_shop_subscription'));
-    }
+    $this->get('subscription')->pauseSubscription($subscription);
 
-    $subscription->setIsActive(0);
-
-    $pause = new \Club\ShopBundle\Entity\SubscriptionPause();
-    $pause->setSubscription($subscription);
-    $pause->setStartDate(new \DateTime());
-
-    $em->persist($subscription);
-    $em->persist($pause);
-    $em->flush();
-
-    $this->get('session')->set('notice','Your subscription has been paused.');
-
-    return $this->redirect($this->generateUrl('admin_shop_subscription'));
+    return $this->redirect($this->generateUrl('admin_shop_subscription',array(
+      'id' => $subscription->getUser()->getId()
+    )));
   }
 
   /**
@@ -59,23 +45,13 @@ class AdminSubscriptionController extends Controller
   public function resumeAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
-    $subscription->setIsActive(1);
 
-    $pause = $em->getRepository('ClubShopBundle:Subscription')->getActivePause($subscription);
-    $pause->setExpireDate(new \DateTime());
+    $this->get('subscription')->resumeSubscription($subscription);
 
-    $diff = $pause->getStartDate()->diff($pause->getExpireDate());
-    $new = new \DateTime($subscription->getExpireDate()->format('Y-m-d'));
-    $new->add($diff);
-    $subscription->setExpireDate($new);
-
-    $em->persist($subscription);
-    $em->persist($pause);
-    $em->flush();
-
-    return $this->redirect($this->generateUrl('admin_shop_subscription'));
+    return $this->redirect($this->generateUrl('admin_shop_subscription',array(
+      'id' => $subscription->getUser()->getId()
+    )));
   }
 
   /**
@@ -84,12 +60,9 @@ class AdminSubscriptionController extends Controller
   public function expireAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
-    $subscription->expire(new \DateTime());
 
-    $em->persist($subscription);
-    $em->flush();
+    $this->get('subscription')->expireSubscription($subscription);
 
     return $this->redirect($this->generateUrl('admin_shop_subscription',array(
       'id' => $subscription->getUser()->getId()
