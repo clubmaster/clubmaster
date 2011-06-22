@@ -1,6 +1,4 @@
-{% extends "ClubLayoutBundle:Default:base.html.twig" %}
-
-{% block header %}<h1>User Notes</h1>{% endblock %}
+{% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
 <p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
@@ -24,8 +22,8 @@
       <td>{{ user_note.id }}</td>
       <td>{{ user_note.note }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
+        {% include "ClubUserBundle::edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
+        {% include "ClubUserBundle::delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
       </td>
     </tr>
   {% else %}

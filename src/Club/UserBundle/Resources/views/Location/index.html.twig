@@ -1,4 +1,4 @@
-{% extends "ClubLayoutBundle:Default:base.html.twig" %}
+{% extends "ClubUserBundle::base.html.twig" %}
 
 {% block header %}<h1>Location</h1>{% endblock %}
 
@@ -26,8 +26,8 @@
       <td>{{ location.location }}</td>
       <td>{{ location.locationName }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_location_delete', { 'id':location.id })} %}
+        {% include "ClubUserBundle::edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
+        {% include "ClubUserBundle::delete_link.html.twig" with {'url':path('admin_location_delete', { 'id':location.id })} %}
         <a href="{{ path('admin_location_config', {'id':location.id}) }}">Config</a>
       </td>
     </tr>
