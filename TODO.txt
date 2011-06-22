@@ -1,10 +1,8 @@
 == before next release ==
 - make the header h1 tag a module header
 - add a h2 on all pages too
-- make a test bundle for test fixtures
 - make sure email and phone is NOT mandatory
 - fix location dropdown to a prettier solution
-- doctrine fixtures
 - add images to products
 - consider subscription attributes instead of multiple columns
 - cascade delete key on order delete to subscription and ticket coupon
@@ -27,6 +25,7 @@
 - fix layout, single and double column
 - doctrine migrations
 - installer
+- what will happen if no shipping, vat, payment_methods or
 
 == todo ==
 - translation

@@ -67,10 +67,6 @@ INSERT INTO club_shop_vat (vat_name,rate) VALUES
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
 
-INSERT INTO club_user_language (name,code) VALUES
-  ('English','en_UK'),
-  ('Danish','da_DK');
-
 INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES
   ('Check / Money order','<p>Tillykke din order er blevet gennemført</p>'),
   ('Credit card','<p>Tillykke din order er blevet gennemført</p>'),
