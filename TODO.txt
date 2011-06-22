@@ -1,6 +1,4 @@
 == before next release ==
-- cascade delete key on order delete to subscription and ticket coupon
-- cascade delete key on subscription to subscription location
 - make sure email and phone is NOT mandatory
 - fix location dropdown to a prettier solution
 - add images to products

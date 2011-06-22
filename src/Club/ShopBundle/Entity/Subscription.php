@@ -58,7 +58,7 @@ class Subscription
 
     /**
      * @ORM\ManyToOne(targetEntity="Order")
-     * 
+     *
      * @var Club\ShopBundle\Entity\Order
      */
     private $order;
@@ -78,8 +78,8 @@ class Subscription
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
      * @ORM\JoinTable(name="club_shop_subscription_location",
-     *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id", onDelete="cascade")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="cascade")}
      * )
      *
      * @var Club\UserBundle\Entity\Location
