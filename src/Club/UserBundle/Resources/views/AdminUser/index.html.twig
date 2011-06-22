@@ -1,9 +1,6 @@
-{% extends "ClubLayoutBundle:Default:base.html.twig" %}
-
-{% block header %}<h1>User</h1>{% endblock %}
+{% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-
 {% render 'ClubUserBundle:Filter:getFilterForm' %}
 
 <p class="box"><a href="{{ path('admin_user_new') }}" class="btn-create"><span>Create user</span></a></p>

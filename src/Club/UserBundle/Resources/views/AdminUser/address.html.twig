@@ -1,9 +1,6 @@
-{% extends "ClubLayoutBundle:Default:base.html.twig" %}
-
-{% block header %}<h1>{{ profile.name }}</h1>{% endblock %}
+{% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-
 <form method="post" action="{{ path('admin_user_address', {'id': profile.id}) }}">
 {% include "ClubUserBundle:AdminUser:form.html.twig" with {'form': form} %}
 </form>
