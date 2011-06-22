@@ -7,7 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\SubscriptionAttribute")
- * @ORM\Table(name="club_shop_subscription_attribute")
+ * @ORM\Table(name="club_shop_subscription_attribute",
+ *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"subscription_id","attribute_name"})}
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class SubscriptionAttribute
