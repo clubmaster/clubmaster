@@ -18,17 +18,6 @@ INSERT INTO club_user_filter_attribute (filter_id,attribute_id,value) VALUES
   (1,3,'female'),
   (2,6,1);
 
-INSERT INTO club_task_task (task_name,enabled,locked,created_at,updated_at,last_run_at,next_run_at,task_interval,event) VALUES
-  ('Update dynamic groups',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onGroupTask'),
-  ('Cleanup logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLogTask'),
-  ('Renewal memberships',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onAutoRenewalTask'),
-  ('Cleanup login logs',1,0,NOW(),NOW(),NULL,'1970-01-01 00:00:00','+1 hour','onLoginAttemptTask');
-
-INSERT INTO club_account_account (account_name,account_number,account_type) VALUES
-  ('Cash In Bank','1010','asset'),
-  ('VAT','3001','income'),
-  ('Income','5001','income');
-
 INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (1,1,'localhost'),
   (2,1,'localhost'),
