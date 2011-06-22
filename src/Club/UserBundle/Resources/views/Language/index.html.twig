@@ -23,8 +23,8 @@
       <td>{{ language.id }}</td>
       <td>{{ language.name }}</td>
       <td>
-        {% include "ClubUserBundle::edit_link.html.twig" with {'url':path('admin_language_edit', { 'id':language.id })} %}
-        {% include "ClubUserBundle::delete_link.html.twig" with {'url':path('admin_language_delete', { 'id':language.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_language_edit', { 'id':language.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_language_delete', { 'id':language.id })} %}
       </td>
     </tr>
   {% else %}

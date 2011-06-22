@@ -21,7 +21,7 @@
       <td>{{ config.config.configKey }}</td>
       <td>{{ config.value }}</td>
       <td>
-        {% include "ClubUserBundle::edit_link.html.twig" with {'url':path('admin_location_config_edit', { 'id':config.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_config_edit', { 'id':config.id })} %}
       </td>
     </tr>
   {% else %}
