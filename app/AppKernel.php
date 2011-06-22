@@ -32,8 +32,8 @@ class AppKernel extends Kernel
             new Club\ForumBundle\ClubForumBundle(),
             new Club\WeatherBundle\ClubWeatherBundle(),
             new Club\LayoutBundle\ClubLayoutBundle(),
-            //new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
-            //new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
+            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+            new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
