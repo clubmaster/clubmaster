@@ -28,17 +28,16 @@ class SubscriptionAttribute
 
     /**
      * @ORM\ManyToOne(targetEntity="Subscription")
+     * @ORM\JoinColumn(name="subscription_id", onDelete="cascade")
      *
      * @var Club\ShopBundle\Entity\Subscription
      */
     private $subscription;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Attribute")
-     *
-     * @var Club\ShopBundle\Entity\Attribute
+     * @ORM\Column(type="string")
      */
-    private $attribute;
+    private $attribute_name;
 
 
     /**
@@ -92,22 +91,22 @@ class SubscriptionAttribute
     }
 
     /**
-     * Set attribute
+     * Set attribute_name
      *
-     * @param Club\ShopBundle\Entity\Attribute $attribute
+     * @param string $attributeName
      */
-    public function setAttribute(\Club\ShopBundle\Entity\Attribute $attribute)
+    public function setAttributeName($attributeName)
     {
-        $this->attribute = $attribute;
+        $this->attribute_name = $attributeName;
     }
 
     /**
-     * Get attribute
+     * Get attribute_name
      *
-     * @return Club\ShopBundle\Entity\Attribute $attribute
+     * @return string $attributeName
      */
-    public function getAttribute()
+    public function getAttributeName()
     {
-        return $this->attribute;
+        return $this->attribute_name;
     }
 }

@@ -82,27 +82,27 @@ INSERT INTO club_shop_category (id,category_id,category_name,description,locatio
   (7,5,'Bags','Bags',1),
   (8,5,'Rackets','Rackets',1);
 
-INSERT INTO club_shop_product (product_name,description,price,vat_id) VALUES
-  ('1. md, subscription','1. md, subscription',100,2),
-  ('2. md, subscription','2. md, subscription',175,2),
-  ('Period subscription','Period subscription',1000,2),
-  ('Lifetime membership','Lifetime membership',5000,2),
-  ('10 clip','10 clip',100,2),
-  ('20 clip','20 clip',175,2),
-  ('Tennis Balls','Tennis Balls',50,2),
-  ('Club T-shirt','Club T-shirt',200,2),
-  ('Easter subscription','Easter subscription',50,2);
+INSERT INTO club_shop_product (id,product_name,description,price,vat_id) VALUES
+  (1,'1. md, subscription','1. md, subscription',100,2),
+  (2,'2. md, subscription','2. md, subscription',175,2),
+  (3,'Period subscription','Period subscription',1000,2),
+  (4,'Lifetime membership','Lifetime membership',5000,2),
+  (5,'10 clip','10 clip',100,2),
+  (6,'20 clip','20 clip',175,2),
+  (7,'Tennis Balls','Tennis Balls',50,2),
+  (8,'Club T-shirt','Club T-shirt',200,2),
+  (9,'Easter subscription','Easter subscription',50,2);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
   (2,1),
   (3,1),
   (4,1),
-  (5,1),
+  (5,2),
   (6,2),
-  (7,2),
-  (8,5),
-  (9,6);
+  (7,5),
+  (8,6),
+  (9,1);
 
 INSERT INTO club_shop_variant_group (variant_group_name) VALUES
   ('Color'),
@@ -127,7 +127,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,8,1),
   (1,5,'2011-06-01'),
   (2,1,2),
-  (1,7,5),
+  (2,7,5),
   (2,8,1),
   (3,5,'2011-04-01'),
   (3,6,'2011-10-31'),

@@ -42,7 +42,7 @@ class Subscription
     private $start_date;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable="true")
      *
      * @var datetime $expire_date
      */
@@ -61,6 +61,11 @@ class Subscription
      * @var Club\UserBundle\Entity\User
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SubscriptionAttribute", mappedBy="subscription")
+     */
+    private $subscription_attributes;
 
     /**
      * @ORM\OneToMany(targetEntity="SubscriptionPause", mappedBy="subscription")
@@ -251,5 +256,25 @@ class Subscription
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Add subscription_attributes
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes
+     */
+    public function addSubscriptionAttributes(\Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes)
+    {
+        $this->subscription_attributes[] = $subscriptionAttributes;
+    }
+
+    /**
+     * Get subscription_attributes
+     *
+     * @return Doctrine\Common\Collections\Collection $subscriptionAttributes
+     */
+    public function getSubscriptionAttributes()
+    {
+        return $this->subscription_attributes;
     }
 }
