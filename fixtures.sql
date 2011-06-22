@@ -1,18 +1,13 @@
+INSERT INTO club_user_location (location_name,currency_id,location_id) VALUES
+  ('Denmark',1,null),
+  ('Aalborg',1,1),
+  ('Copenhagen',1,1),
+  ('Aalborg Tennis Club',1,2),
+  ('Gug Tennis Club',1,2);
+
 INSERT INTO club_user_filter (filter_name) VALUES
   ('All women'),
   ('All from Denmark');
-
-INSERT INTO club_user_attribute (attribute_name) VALUES
-  ('min_age'),
-  ('max_age'),
-  ('gender'),
-  ('postal_code'),
-  ('city'),
-  ('country'),
-  ('is_active'),
-  ('has_ticket'),
-  ('has_subscription'),
-  ('location');
 
 INSERT INTO club_user_filter_attribute (filter_id,attribute_id,value) VALUES
   (1,3,'female'),
@@ -129,16 +124,6 @@ INSERT INTO club_shop_variant_value (variant_group_id,value) VALUES
 INSERT INTO product_variantgroup (product_id,variantgroup_id) VALUES
   (8,1),
   (9,2);
-
-INSERT INTO club_shop_attribute (attribute_name) VALUES
-  ('Month'),
-  ('Ticket'),
-  ('AutoRenewal'),
-  ('Lifetime'),
-  ('StartDate'),
-  ('ExpireDate'),
-  ('AllowedPauses'),
-  ('Location');
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
