@@ -95,10 +95,13 @@ class Group
      */
     private $product;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
-     *
-     * @var Club\UserBundle\Entity\User
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="groups")
+     * @ORM\JoinTable(name="club_user_user_group",
+     *  joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
      */
     private $users;
 
@@ -285,11 +288,6 @@ class Group
         return $this->role;
     }
 
-    public function setUsers($users)
-    {
-      $this->users = $users;
-    }
-
     public function getUsers()
     {
       return $this->users;
@@ -342,6 +340,16 @@ class Group
      */
     public function addUsers(\Club\UserBundle\Entity\User $users)
     {
+      if (!$this->hasUser($users))
         $this->users[] = $users;
+    }
+
+    public function hasUser(\Club\UserBundle\Entity\User $user)
+    {
+      foreach ($this->getUsers() as $u) {
+        if ($u == $user) return true;
+      }
+
+      return false;
     }
 }

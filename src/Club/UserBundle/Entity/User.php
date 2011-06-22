@@ -148,11 +148,7 @@ class User implements UserInterface, \Serializable
     private $attends;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
-     * @ORM\JoinTable(name="club_user_user_group",
-     *  joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Group", mappedBy="users")
      */
     private $groups;
 
@@ -474,11 +470,6 @@ class User implements UserInterface, \Serializable
       return $this->subscriptions;
     }
 
-    public function addGroup(\Club\UserBundle\Entity\Group $group)
-    {
-      $this->groups[] = $group;
-    }
-
     public function getGroups()
     {
       return $this->groups;
@@ -617,7 +608,7 @@ class User implements UserInterface, \Serializable
     public function inGroup(\Club\UserBundle\Entity\Group $group)
     {
       foreach ($this->getGroups() as $g) {
-        if ($group === $g) return true;
+        if ($group->getId() === $g->getId()) return true;
       }
 
       return false;
@@ -650,6 +641,6 @@ class User implements UserInterface, \Serializable
      */
     public function addGroups(\Club\UserBundle\Entity\Group $groups)
     {
-        $this->groups[] = $groups;
+      $this->groups[] = $groups;
     }
 }

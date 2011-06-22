@@ -26,7 +26,6 @@ class AutoRenewalListener
 
       $this->order->copyOrder($old_order);
 
-      $subscription->setAutoRenewal(0);
       $subscription->setIsActive(0);
       $this->em->persist($subscription);
       $this->em->flush();

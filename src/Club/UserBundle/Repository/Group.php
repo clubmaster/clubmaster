@@ -16,22 +16,22 @@ class Group extends EntityRepository
   {
     $query = $this->_em->createQueryBuilder()
       ->select('u')
-      ->from('\Club\UserBundle\Entity\User','u')
+      ->from('ClubUserBundle:User','u')
       ->leftJoin('u.profile','p');
 
-    if ($group->getGender()) {
+    if ($group->getGender() != '') {
       $query
         ->andWhere('p.gender = ?1')
         ->setParameter(1, $group->getGender());
     }
 
-    if ($group->getMinAge()) {
+    if ($group->getMinAge() != '') {
       $query
         ->andWhere('p.day_of_birth <= ?2')
         ->setParameter(2, date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$group->getMinAge())));
     }
 
-    if ($group->getMaxAge()) {
+    if ($group->getMaxAge() != '') {
       $query
         ->andWhere('p.day_of_birth >= ?3')
         ->setParameter(3, date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$group->getMaxAge())));
@@ -40,8 +40,7 @@ class Group extends EntityRepository
     if ($group->getIsActiveMember()) {
       $query
         ->leftJoin('u.subscriptions','s')
-        ->andWhere('(s.expire_date >= ?4 AND s.is_active = 1)')
-        ->setParameter(4,date('Y-m-d'));
+        ->andWhere('s.is_active = 1');
     }
 
     if (count($group->getLocation()) > 0) {
@@ -49,7 +48,7 @@ class Group extends EntityRepository
         $query
           ->leftJoin('u.subscriptions','s2')
           ->leftJoin('s2.locations','l1')
-          ->andWhere('(s2.expire_date >= :s2ed AND l1.id = :l1id)')
+          ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND l1.id = :l1id)')
           ->setParameter('s2ed',date('Y-m-d'))
           ->setParameter('l1id',$location->getId());
       }

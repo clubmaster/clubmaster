@@ -124,7 +124,7 @@ class User extends EntityRepository
           case 'is_active':
             if ($attr->getValue()) {
               $qb->leftJoin('u.subscriptions','s');
-              $qb->andWhere('(s.expire_date >= :eds AND s.is_active = :is_active)');
+              $qb->andWhere('((s.expire_date >= :eds OR s.expire_date IS NULL) AND s.is_active = :is_active)');
               $qb->setParameter('is_active',$attr->getValue());
               $qb->setParameter('eds',date('Y-m-d'));
             }
@@ -138,7 +138,7 @@ class User extends EntityRepository
             $qb
               ->leftJoin('u.subscriptions','s2')
               ->leftJoin('s2.locations','l1')
-              ->andWhere('(s2.expire_date >= :s2ed AND l1.id = :l1id)')
+              ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND l1.id = :l1id)')
               ->setParameter('s2ed',date('Y-m-d'))
               ->setParameter('l1id',$attr->getValue());
 

@@ -16,16 +16,21 @@ class GroupRecalcListener
 
   public function onGroupTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
-    $groups = $this->em->getRepository('\Club\UserBundle\Entity\Group')->findBy(array(
+    $groups = $this->em->getRepository('ClubUserBundle:Group')->findBy(array(
       'group_type' => 'dynamic'
     ));
 
     foreach ($groups as $group) {
-      $query = $this->em->getRepository('\Club\UserBundle\Entity\Group')->getDynamicQuery($group);
-      $users = $query->getQuery()->getResult();
-      $group->setUsers($users);
+      $users = $group->getUsers();
+      foreach ($users as $user) {
+        $group->getUsers()->removeElement($user);
+      }
 
-      $this->em->persist($group);
+      $query = $this->em->getRepository('ClubUserBundle:Group')->getDynamicQuery($group);
+      $users = $query->getQuery()->getResult();
+      foreach ($users as $user) {
+        $group->addUsers($user);
+      }
     }
 
     $this->em->flush();

@@ -1,5 +1,5 @@
 == before next release ==
-- consider subscription attributes instead of multiple columns
+- have the same query builder to users, make a helper that we can use in the repository class
 - create unique (subscription_attribute; subscription_id, attribute_name)
 - make sure email and phone is NOT mandatory
 - fix location dropdown to a prettier solution
@@ -24,6 +24,8 @@
 - what will happen if no shipping, vat, payment_methods or
 
 == todo ==
+- remember to set a subscription to inactive when no more tickets
+- improve the way to recalc users of group
 - translation
 - Obey lifetime membership
 - make a quick search field for users
