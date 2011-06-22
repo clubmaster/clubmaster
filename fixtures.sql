@@ -65,19 +65,9 @@ INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_a
 INSERT INTO club_group_location (group_id,location_id) VALUES
   (4,1);
 
-INSERT INTO club_user_role (role_name) VALUES
-  ('ROLE_ADMIN');
-
 INSERT INTO club_shop_vat (vat_name,rate) VALUES
   ('Vat free',0),
   ('Danish vat','25');
-
-INSERT INTO club_shop_order_status (status_name,is_accepted,is_cancelled,priority) VALUES
-  ('Pending',0,0,1),
-  ('Processing',0,0,2),
-  ('Preparing',0,0,3),
-  ('Delivered',1,0,4),
-  ('Cancelled',0,1,5);
 
 INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
   ('Fri fragt','Fri fragt',0);
