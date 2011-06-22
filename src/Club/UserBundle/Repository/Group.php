@@ -40,11 +40,8 @@ class Group extends EntityRepository
     if ($group->getIsActiveMember()) {
       $query
         ->leftJoin('u.subscriptions','s')
-        ->leftJoin('u.ticket_coupons','t')
-        ->andWhere('((s.expire_date >= ?4 AND s.is_active = 1) OR (t.expire_date >= ?5 AND t.ticket > ?6))')
-        ->setParameter(4,date('Y-m-d'))
-        ->setParameter(5,date('Y-m-d'))
-        ->setParameter(6,0);
+        ->andWhere('(s.expire_date >= ?4 AND s.is_active = 1)')
+        ->setParameter(4,date('Y-m-d'));
     }
 
     if (count($group->getLocation()) > 0) {
@@ -52,13 +49,9 @@ class Group extends EntityRepository
         $query
           ->leftJoin('u.subscriptions','s2')
           ->leftJoin('s2.locations','l1')
-          ->leftJoin('u.ticket_coupons','t2')
-          ->leftJoin('t2.locations','l2')
-          ->andWhere('((s2.expire_date >= :s2ed AND l1.id = :l1id) OR (t2.expire_date >= :t2ed AND l2.id = :l2id))')
+          ->andWhere('(s2.expire_date >= :s2ed AND l1.id = :l1id)')
           ->setParameter('s2ed',date('Y-m-d'))
-          ->setParameter('l1id',$location->getId())
-          ->setParameter('t2ed',date('Y-m-d'))
-          ->setParameter('l2id',$location->getId());
+          ->setParameter('l1id',$location->getId());
       }
     }
 

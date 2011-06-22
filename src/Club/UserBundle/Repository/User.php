@@ -124,16 +124,12 @@ class User extends EntityRepository
           case 'is_active':
             if ($attr->getValue()) {
               $qb->leftJoin('u.subscriptions','s');
-              $qb->leftJoin('u.ticket_coupons','t');
-              $qb->andWhere('((s.expire_date >= :eds AND s.is_active = :is_active) OR (t.expire_date >= :edt AND t.ticket > :tickets))');
+              $qb->andWhere('(s.expire_date >= :eds AND s.is_active = :is_active)');
               $qb->setParameter('is_active',$attr->getValue());
               $qb->setParameter('eds',date('Y-m-d'));
-              $qb->setParameter('edt',date('Y-m-d'));
-              $qb->setParameter('tickets',0);
             }
             break;
           case 'has_ticket':
-            $qb->join('u.ticket_coupons','t3');
             break;
           case 'has_subscription':
             $qb->join('u.subscriptions','s3');
@@ -142,13 +138,9 @@ class User extends EntityRepository
             $qb
               ->leftJoin('u.subscriptions','s2')
               ->leftJoin('s2.locations','l1')
-              ->leftJoin('u.ticket_coupons','t2')
-              ->leftJoin('t2.locations','l2')
-              ->andWhere('((s2.expire_date >= :s2ed AND l1.id = :l1id) OR (t2.expire_date >= :t2ed AND l2.id = :l2id))')
+              ->andWhere('(s2.expire_date >= :s2ed AND l1.id = :l1id)')
               ->setParameter('s2ed',date('Y-m-d'))
-              ->setParameter('l1id',$attr->getValue())
-              ->setParameter('t2ed',date('Y-m-d'))
-              ->setParameter('l2id',$attr->getValue());
+              ->setParameter('l1id',$attr->getValue());
 
             break;
           }

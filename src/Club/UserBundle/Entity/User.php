@@ -143,11 +143,6 @@ class User implements UserInterface, \Serializable
     private $subscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\TicketCoupon", mappedBy="user")
-     */
-    private $ticket_coupons;
-
-    /**
      * @ORM\OneToMany(targetEntity="Club\EventBundle\Entity\Attend", mappedBy="user")
      */
     private $attends;
@@ -479,11 +474,6 @@ class User implements UserInterface, \Serializable
       return $this->subscriptions;
     }
 
-    public function getTicketCoupons()
-    {
-      return $this->ticket_coupons;
-    }
-
     public function addGroup(\Club\UserBundle\Entity\Group $group)
     {
       $this->groups[] = $group;
@@ -612,16 +602,6 @@ class User implements UserInterface, \Serializable
     public function addSubscriptions(\Club\ShopBundle\Entity\Subscription $subscriptions)
     {
         $this->subscriptions[] = $subscriptions;
-    }
-
-    /**
-     * Add ticket_coupons
-     *
-     * @param Club\ShopBundle\Entity\TicketCoupon $ticketCoupons
-     */
-    public function addTicketCoupons(\Club\ShopBundle\Entity\TicketCoupon $ticketCoupons)
-    {
-        $this->ticket_coupons[] = $ticketCoupons;
     }
 
     /**

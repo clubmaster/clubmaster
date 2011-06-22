@@ -1,8 +1,8 @@
 == before next release ==
+- consider subscription attributes instead of multiple columns
 - make sure email and phone is NOT mandatory
 - fix location dropdown to a prettier solution
 - add images to products
-- consider subscription attributes instead of multiple columns
 - rewrite default settings for language and accounts
 - build better forms for filter
 - sort user lists

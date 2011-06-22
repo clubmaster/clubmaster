@@ -22,6 +22,19 @@ class Subscription
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\Choice({ "subscription", "ticket_coupon" })
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean $is_active
+     */
+    private $is_active;
+
+    /**
      * @ORM\Column(type="date")
      *
      * @var datetime $start_date
@@ -34,27 +47,6 @@ class Subscription
      * @var datetime $expire_date
      */
     private $expire_date;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer $allowed_pauses
-     */
-    private $allowed_pauses;
-
-    /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var boolean $auto_renewal
-     */
-    private $auto_renewal;
-
-    /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var boolean $is_active
-     */
-    private $is_active;
 
     /**
      * @ORM\ManyToOne(targetEntity="Order")
@@ -85,11 +77,10 @@ class Subscription
      * @var Club\UserBundle\Entity\Location
      */
     private $locations;
-
-
     public function __construct()
     {
-      $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->subscription_pauses = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -100,111 +91,6 @@ class Subscription
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set start_date
-     *
-     * @param datetime $startDate
-     */
-    public function setStartDate($startDate)
-    {
-        $this->start_date = $startDate;
-    }
-
-    /**
-     * Get start_date
-     *
-     * @return datetime $startDate
-     */
-    public function getStartDate()
-    {
-        return $this->start_date;
-    }
-
-    /**
-     * Set expire_date
-     *
-     * @param datetime $expireDate
-     */
-    public function setExpireDate($expireDate)
-    {
-      $this->expire_date = $expireDate;
-    }
-
-    /**
-     * Get expire_date
-     *
-     * @return datetime $expireDate
-     */
-    public function getExpireDate()
-    {
-        return $this->expire_date;
-    }
-
-    /**
-     * Set allowed_pauses
-     *
-     * @param integer $allowedPauses
-     */
-    public function setAllowedPauses($allowedPauses)
-    {
-        $this->allowed_pauses = $allowedPauses;
-    }
-
-    /**
-     * Get allowed_pauses
-     *
-     * @return integer $allowedPauses
-     */
-    public function getAllowedPauses()
-    {
-        return $this->allowed_pauses;
-    }
-
-    /**
-     * Set auto_renewal
-     *
-     * @param boolean $autoRenewal
-     */
-    public function setAutoRenewal($autoRenewal)
-    {
-        $this->auto_renewal = $autoRenewal;
-    }
-
-    /**
-     * Get auto_renewal
-     *
-     * @return boolean $autoRenewal
-     */
-    public function getAutoRenewal()
-    {
-        return $this->auto_renewal;
-    }
-
-    public function setUser($user)
-    {
-      $this->user = $user;
-    }
-
-    public function getUser()
-    {
-      return $this->user;
-    }
-
-    public function expire(\DateTime $date)
-    {
-      $this->setExpireDate($date);
-    }
-
-    public function addLocations($location)
-    {
-      $this->locations[] = $location;
-    }
-
-    public function getLocations()
-    {
-      return $this->locations;
     }
 
     /**
@@ -228,6 +114,46 @@ class Subscription
     }
 
     /**
+     * Set order
+     *
+     * @param Club\ShopBundle\Entity\Order $order
+     */
+    public function setOrder(\Club\ShopBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * Get order
+     *
+     * @return Club\ShopBundle\Entity\Order $order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Add subscription_pauses
      *
      * @param Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses
@@ -248,30 +174,82 @@ class Subscription
     }
 
     /**
-     * @ORM\prePersist
+     * Add locations
+     *
+     * @param Club\UserBundle\Entity\Location $locations
      */
-    public function prePersist()
+    public function addLocations(\Club\UserBundle\Entity\Location $locations)
     {
-      echo $this->getExpireDate()->format('Y-m-d H:i:s');
+        $this->locations[] = $locations;
     }
 
     /**
-     * Set order
+     * Get locations
      *
-     * @param Club\ShopBundle\Entity\Order $order
+     * @return Doctrine\Common\Collections\Collection $locations
      */
-    public function setOrder(\Club\ShopBundle\Entity\Order $order)
+    public function getLocations()
     {
-        $this->order = $order;
+        return $this->locations;
     }
 
     /**
-     * Get order
+     * Set start_date
      *
-     * @return Club\ShopBundle\Entity\Order $order
+     * @param date $startDate
      */
-    public function getOrder()
+    public function setStartDate($startDate)
     {
-        return $this->order;
+        $this->start_date = $startDate;
+    }
+
+    /**
+     * Get start_date
+     *
+     * @return date $startDate
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set expire_date
+     *
+     * @param date $expireDate
+     */
+    public function setExpireDate($expireDate)
+    {
+        $this->expire_date = $expireDate;
+    }
+
+    /**
+     * Get expire_date
+     *
+     * @return date $expireDate
+     */
+    public function getExpireDate()
+    {
+        return $this->expire_date;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string $type
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
