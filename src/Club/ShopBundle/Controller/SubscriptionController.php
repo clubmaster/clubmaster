@@ -31,7 +31,8 @@ class SubscriptionController extends Controller
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     // validate that the user is allowed to pause
-    if (count($subscription->getSubscriptionPauses()) >= $subscription->getAllowedPauses()) {
+    $attr = $em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'AllowedPauses');
+    if (count($subscription->getSubscriptionPauses()) >= $attr->getValue()) {
       $this->get('session')->setFlash('error','You cannot have anymore pauses.');
       return $this->redirect($this->generateUrl('shop_subscription'));
     }

@@ -1,5 +1,6 @@
 == before next release ==
 - consider subscription attributes instead of multiple columns
+- create unique (subscription_attribute; subscription_id, attribute_name)
 - make sure email and phone is NOT mandatory
 - fix location dropdown to a prettier solution
 - add images to products
