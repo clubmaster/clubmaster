@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Type</th>
       <th>Name</th>
       <th>Start date</th>
       <th>Expire date</th>
@@ -14,6 +15,7 @@
   {% for subscription in user.subscriptions %}
     <tr>
       <td>{{ subscription.id }}</td>
+      <td>{{ subscription.type|capitalize }}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
