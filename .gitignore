@@ -2,3 +2,7 @@
 /app/logs/*
 *.swp
 *~
+vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle/
+vendor/bundles/Symfony/Bundle/DoctrineMigrationsBundle/
+vendor/doctrine-fixtures/
+vendor/doctrine-migrations/
