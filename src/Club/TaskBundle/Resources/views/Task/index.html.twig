@@ -10,6 +10,7 @@
       <th>[x]</th>
       <th>Task</th>
       <th>Enabled</th>
+      <th>Locked</th>
       <th>Last run at</th>
       <th>Next run at</th>
       <th>Task interval</th>
@@ -18,7 +19,7 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="7">&#160;</td>
+      <td colspan="8">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -27,6 +28,7 @@
       <td><input type="checkbox" /></td>
       <td>{{ task.taskName }}</td>
       <td>{{ task.enabled }}</td>
+      <td>{{ task.locked }}</td>
       <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.taskInterval }}</td>
@@ -38,7 +40,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no tasks at the time</td>
+    <td colspan="8">There are no tasks at the time</td>
   </tr>
   {% endfor %}
   </tbody>
