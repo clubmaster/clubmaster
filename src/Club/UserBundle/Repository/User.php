@@ -44,7 +44,7 @@ class User extends EntityRepository
 
   public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
     //Create query builder for languages table
-    $qb = $this->getQuery($filter);
+    $qb = $this->getQueryByFilter($filter);
 
     //Show all if offset and limit not set, also show all when limit is 0
     if ((isset($offset)) && (isset($limit))) {
@@ -59,94 +59,191 @@ class User extends EntityRepository
       $qb->add('orderBy', 'u.' . $key . ' ' . $value);
     }
     //Get our query
-    $q = $qb->getQuery($filter);
+    $q = $qb->getQueryByFilter($filter);
     //Return result
     return $q->getResult();
   }
 
   public function getUsersCount($filter) {
-    $qb = $this->getQuery($filter);
+    $qb = $this->getQueryByFilter($filter);
 
     $qb->select($qb->expr()->count('u'));
-    $q = $qb->getQuery($filter);
+    $q = $qb->getQueryByFilter($filter);
     return $q->getSingleScalarResult();
   }
 
-  protected function getQuery($filter)
+  protected function getQueryByFilter(\Club\UserBundle\Entity\Filter $filter)
   {
-    $qb = $this->createQueryBuilder('u');
+    $qb = $this->getQueryBuilder();
 
-    if ($filter) {
-      if (count($filter->getAttributes()) > 0) {
-        $qb->leftJoin('u.profile','p');
-        $qb->join('p.profile_address','pa');
-      }
-      foreach ($filter->getAttributes() as $attr) {
-        if ($attr->getValue() != '') {
-          switch ($attr->getAttribute()->getAttributeName()) {
-          case 'min_age':
-            $qb->andWhere(
-              $qb->expr()->lte('p.day_of_birth',':min_age')
-            );
-            $qb->setParameter('min_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
-            break;
-          case 'max_age':
-            $qb->andWhere(
-              $qb->expr()->gte('p.day_of_birth',':max_age')
-            );
-            $qb->setParameter('max_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$attr->getValue())));
-
-            break;
-          case 'gender':
-            $qb->andWhere(
-              $qb->expr()->eq('p.gender',':gender')
-            );
-            $qb->setParameter('gender', $attr->getValue());
-            break;
-          case 'postal_code':
-            $qb->andWhere(
-              $qb->expr()->eq('pa.postal_code',':postal_code')
-            );
-            $qb->setParameter('postal_code', $attr->getValue());
-            break;
-          case 'city':
-            $qb->andWhere(
-              $qb->expr()->eq('pa.city',':city')
-            );
-            $qb->setParameter('city', $attr->getValue());
-            break;
-          case 'country':
-            $qb->andWhere(
-              $qb->expr()->eq('pa.country',':country')
-            );
-            $qb->setParameter('country', $attr->getValue());
-            break;
-          case 'is_active':
-            if ($attr->getValue()) {
-              $qb->leftJoin('u.subscriptions','s');
-              $qb->andWhere('((s.expire_date >= :eds OR s.expire_date IS NULL) AND s.is_active = :is_active)');
-              $qb->setParameter('is_active',$attr->getValue());
-              $qb->setParameter('eds',date('Y-m-d'));
-            }
-            break;
-          case 'has_ticket':
-            break;
-          case 'has_subscription':
-            $qb->join('u.subscriptions','s3');
-            break;
-          case 'location':
-            $qb
-              ->leftJoin('u.subscriptions','s2')
-              ->leftJoin('s2.locations','l1')
-              ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND l1.id = :l1id)')
-              ->setParameter('s2ed',date('Y-m-d'))
-              ->setParameter('l1id',$attr->getValue());
-
-            break;
-          }
+    foreach ($filter->getAttributes() as $attr) {
+      if ($attr->getValue() != '') {
+        switch ($attr->getAttribute()->getAttributeName()) {
+        case 'min_age':
+          $qb = $this->filterMinAge($qb,$attr->getValue());
+          break;
+        case 'max_age':
+          $qb = $this->filterMaxAge($qb,$attr->getValue());
+          break;
+        case 'gender':
+          $qb = $this->filterGender($qb,$attr->getValue());
+          break;
+        case 'postal_code':
+          $qb = $this->filterPostalCode($qb,$attr->getValue());
+          break;
+        case 'city':
+          $qb = $this->filterCity($qb,$attr->getValue());
+          break;
+        case 'country':
+          $qb = $this->filterCountry($qb,$attr->getValue());
+          break;
+        case 'is_active':
+          $qb = $this->filterIsActive($qb);
+          break;
+        case 'has_ticket':
+          $qb = $this->filterHasTicket($qb);
+          break;
+        case 'has_subscription':
+          $qb = $this->filterHasSubscription($qb);
+          break;
+        case 'location':
+          $qb = $this->filterLocation($qb,$attr->getValue());
+          break;
         }
       }
     }
+
+    return $qb->getQuery();
+  }
+
+  public function getQueryByGroup(\Club\UserBundle\Entity\Group $group)
+  {
+    $qb = $this->getQueryBuilder();
+
+    if ($group->getGender() != '') {
+      $qb = $this->filterGender($qb,$group->getGender());
+    }
+
+    if ($group->getMinAge() != '') {
+      $qb = $this->filterMinAge($qb,$group->getMinAge());
+    }
+
+    if ($group->getMaxAge() != '') {
+      $qb = $this->filterMaxAge($qb,$group->getMaxAge());
+    }
+
+    if ($group->getIsActiveMember()) {
+      $qb = $this->filterIsActive($qb);
+    }
+
+    if (count($group->getLocation()) > 0) {
+      $location_str = '';
+      foreach ($group->getLocation() as $location) {
+      }
+      $qb = $this->filterLocation($qb,$location_str);
+    }
+
+    return $qb->getQuery();
+  }
+
+  protected function getQueryBuilder()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('u')
+      ->from('ClubUserBundle:User','u')
+      ->leftJoin('u.profile','p');
+  }
+
+  protected function filterMinAge($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->lte('p.day_of_birth',':min_age')
+    );
+    $qb->setParameter('min_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$value)));
+
+    return $qb;
+  }
+
+  protected function filterMaxAge($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->gte('p.day_of_birth',':max_age')
+    );
+    $qb->setParameter('max_age', date('Y-m-d',mktime(0,0,0,date('n'),date('j'),date('Y')-$value)));
+
+    return $qb;
+  }
+
+  protected function filterGender($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->eq('p.gender',':gender')
+    );
+    $qb->setParameter('gender', $value);
+
+    return $qb;
+  }
+
+  protected function filterPostalCode($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->eq('pa.postal_code',':postal_code')
+    );
+    $qb->setParameter('postal_code', $value);
+
+    return $qb;
+  }
+
+  protected function filterCity($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->eq('pa.city',':city')
+    );
+    $qb->setParameter('city', $value);
+
+    return $qb;
+  }
+
+  protected function filterCountry($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->eq('pa.country',':country')
+    );
+    $qb->setParameter('country', $value);
+
+    return $qb;
+  }
+
+  protected function filterIsActive($qb)
+  {
+    $qb->leftJoin('u.subscriptions','s1');
+    $qb->andWhere('((s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
+    $qb->setParameter('is_active',1);
+    $qb->setParameter('eds',date('Y-m-d'));
+
+    return $qb;
+  }
+
+  protected function filterHasTicket($qb)
+  {
+    // TODO, havent finished filter
+    return $qb;
+  }
+
+  protected function filterHasSubscription($qb)
+  {
+    // TODO, havent finished filter
+    return $qb;
+  }
+
+  protected function filterLocation($qb,$value)
+  {
+    $qb
+      ->leftJoin('u.subscriptions','s2')
+      ->leftJoin('s2.locations','l2')
+      ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND l2.id = :l2id)')
+      ->setParameter('s2ed',date('Y-m-d'))
+      ->setParameter('l2id',$value);
 
     return $qb;
   }

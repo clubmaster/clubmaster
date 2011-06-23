@@ -1,26 +1,25 @@
 == before next release ==
-- have the same query builder to users, make a helper that we can use in the repository class
 - make sure email and phone is NOT mandatory
+- make a task that check if a task has been running for more than 15 minutes
+- event custom validator ( more attend than max attends )
+- rewrite default settings for language and accounts
 - fix location dropdown to a prettier solution
 - add images to products
-- rewrite default settings for language and accounts
 - build better forms for filter
-- sort user lists
+  - also make sure the filters actually works
 - cannot have multiple is_cancelled or is_accepted status orders
+- sort user lists
 - add batch to user list
 - add pager to logging
 - add pager to ledger
 - add pager to order
 - add search to order
-- event custom validator ( more attend than max attends )
-- make a task that check if a task has been running for more than 15 minutes
 - style product page
 - style product listing
 - put images on links
 - fix layout, single and double column
 - doctrine migrations
 - installer
-- what will happen if no shipping, vat, payment_methods or
 
 == todo ==
 - remember to set a subscription to inactive when no more tickets

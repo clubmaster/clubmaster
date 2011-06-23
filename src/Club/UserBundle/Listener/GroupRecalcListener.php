@@ -8,10 +8,12 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 class GroupRecalcListener
 {
   protected $em;
+  protected $user;
 
-  public function __construct($em)
+  public function __construct($em, $user)
   {
     $this->em = $em;
+    $this->user = $user;
   }
 
   public function onGroupTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
@@ -26,8 +28,8 @@ class GroupRecalcListener
         $group->getUsers()->removeElement($user);
       }
 
-      $query = $this->em->getRepository('ClubUserBundle:Group')->getDynamicQuery($group);
-      $users = $query->getQuery()->getResult();
+      $query = $this->em->getRepository('ClubUserBundle:User')->getQueryByGroup($group);
+      $users = $query->getResult();
       foreach ($users as $user) {
         $group->addUsers($user);
       }

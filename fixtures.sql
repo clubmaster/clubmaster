@@ -60,18 +60,6 @@ INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_a
 INSERT INTO club_group_location (group_id,location_id) VALUES
   (4,1);
 
-INSERT INTO club_shop_vat (vat_name,rate) VALUES
-  ('Vat free',0),
-  ('Danish vat','25');
-
-INSERT INTO club_shop_shipping (shipping_name,description,price) VALUES
-  ('Fri fragt','Fri fragt',0);
-
-INSERT INTO club_shop_payment_method (payment_method_name,page) VALUES
-  ('Check / Money order','<p>Tillykke din order er blevet gennemført</p>'),
-  ('Credit card','<p>Tillykke din order er blevet gennemført</p>'),
-  ('Wire transfer','<p>Tillykke din order er blevet gennemført</p>');
-
 INSERT INTO club_shop_category (id,category_id,category_name,description,location_id) VALUES
   (1,null,'Subscriptions','Subscriptions',1),
   (2,null,'Ticket coupon','Ticket coupon',1),
@@ -83,15 +71,15 @@ INSERT INTO club_shop_category (id,category_id,category_name,description,locatio
   (8,5,'Rackets','Rackets',1);
 
 INSERT INTO club_shop_product (id,product_name,description,price,vat_id) VALUES
-  (1,'1. md, subscription','1. md, subscription',100,2),
-  (2,'2. md, subscription','2. md, subscription',175,2),
-  (3,'Period subscription','Period subscription',1000,2),
-  (4,'Lifetime membership','Lifetime membership',5000,2),
-  (5,'10 clip','10 clip',100,2),
-  (6,'20 clip','20 clip',175,2),
-  (7,'Tennis Balls','Tennis Balls',50,2),
-  (8,'Club T-shirt','Club T-shirt',200,2),
-  (9,'Easter subscription','Easter subscription',50,2);
+  (1,'1. md, subscription','1. md, subscription',100,1),
+  (2,'2. md, subscription','2. md, subscription',175,1),
+  (3,'Period subscription','Period subscription',1000,1),
+  (4,'Lifetime membership','Lifetime membership',5000,1),
+  (5,'10 clip','10 clip',100,1),
+  (6,'20 clip','20 clip',175,1),
+  (7,'Tennis Balls','Tennis Balls',50,1),
+  (8,'Club T-shirt','Club T-shirt',200,1),
+  (9,'Easter subscription','Easter subscription',50,1);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
