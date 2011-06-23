@@ -1,4 +1,5 @@
 == before next release ==
+- installer
 - create new user page
 - check forgot password works
 - event custom validator ( more attend than max attends )
@@ -7,7 +8,6 @@
 - add images to products
 - build better forms for filter
   - also make sure the filters actually works
-- cannot have multiple is_cancelled or is_accepted status orders
 - sort user lists
 - add batch to user list
 - add pager to logging
@@ -19,7 +19,6 @@
 - put images on links
 - fix layout, single and double column
 - doctrine migrations
-- installer
 
 == todo ==
 - remember to set a subscription to inactive when no more tickets
