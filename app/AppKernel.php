@@ -34,10 +34,10 @@ class AppKernel extends Kernel
             new Club\ForumBundle\ClubForumBundle(),
             new Club\WeatherBundle\ClubWeatherBundle(),
             new Club\LayoutBundle\ClubLayoutBundle(),
-            new Club\InstallerBundle\ClubInstallerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new Club\InstallerBundle\ClubInstallerBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Symfony\Bundle\WebConfiguratorBundle\SymfonyWebConfiguratorBundle();
         }
