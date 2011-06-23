@@ -25,6 +25,7 @@
 - doctrine migrations
 
 == todo ==
+- merge users
 - remember to set a subscription to inactive when no more tickets
 - improve the way to recalc users of group
 - translation

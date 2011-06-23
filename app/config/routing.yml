@@ -22,3 +22,6 @@ _log:
 
 _event:
   resource: "@ClubEventBundle/Resources/config/routing.yml"
+
+_installer:
+  resource: "@ClubInstallerBundle/Resources/config/routing.yml"

@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+            new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
             new Club\UserBundle\ClubUserBundle(),
             new Club\MailBundle\ClubMailBundle(),
             new Club\ShopBundle\ClubShopBundle(),
@@ -32,8 +34,7 @@ class AppKernel extends Kernel
             new Club\ForumBundle\ClubForumBundle(),
             new Club\WeatherBundle\ClubWeatherBundle(),
             new Club\LayoutBundle\ClubLayoutBundle(),
-            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
-            new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
+            new Club\InstallerBundle\ClubInstallerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
