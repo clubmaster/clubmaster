@@ -3,18 +3,49 @@
 {% block body %}
 <h2>ClubMaster Installer</h2>
 
-<p>This is the installer program of ClubMaster.</p>
+{% if majorProblems|length > 0 %}
+<h2><span>{{ majorProblems|length }} Major problems</span></h2>
+<p>Major problems have been detected and <strong>must</strong> be fixed before continuing :</p>
 
-<p>When you have completed the following list of steps, you are ready to start using ClubMaster.</p>
+<ol>
+  {% for problem in majorProblems %}
+  <li>{{ problem }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
 
-<ul>
-  <li>Check system requirement</li>
-  <li>Database configuration</li>
-  <li>Administrator setup</li>
-  <li>System settings</li>
-</ul>
+{% if minorProblems|length > 0 %}
+<h2>Recommendations</h2>
+<p>
+  {% if majorProblems|length > 0 %}
+  Additionally, to
+  {% else %}
+  To{% endif %}
+  enhance your ClubMaster experience, it’s recommended that you fix the following :
+</p>
+<ol>
+  {% for problem in minorProblems %}
+  <li>{{ problem }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
 
-<p>ClubMaster team</p>
+{% if phpini %}
+<a id="phpini"></a>
+<p>*
+  {% if php_ini_file %}
+  Changes to the <strong>php.ini</strong> file must be done in "<strong><{{ php_ini_file }}</strong>".
+  {% else %}
+  To change settings, create a "<strong>php.ini</strong>".
+  {% endif %}
+</p>
+</div>
+{% endif %}
 
-<p><a href="{{ path("club_installer_installer_check") }}">Start installer</a></p>
+<p>
+{% if majorProblems|length == 0 %}
+<a href="{{ path("club_installer_installer_database") }}">Database configuration</a><br />
+{% endif %}
+<a href="{{ path("club_installer_installer_check") }}">Recheck configuration</a></p>
+
 {% endblock %}
