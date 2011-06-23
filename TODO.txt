@@ -1,8 +1,6 @@
 == before next release ==
-- make sure email and phone is NOT mandatory
 - create new user page
 - check forgot password works
-- make a task that check if a task has been running for more than 15 minutes
 - event custom validator ( more attend than max attends )
 - rewrite default settings for language and accounts
 - fix location dropdown to a prettier solution
