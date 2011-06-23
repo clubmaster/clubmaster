@@ -14,9 +14,33 @@ class Filter extends EntityRepository
 {
   public function findActive(\Club\UserBundle\Entity\User $user)
   {
-    return $this->_em->getRepository('ClubUserBundle:Filter')->findOneBy(array(
+    $filter = $this->_em->getRepository('ClubUserBundle:Filter')->findOneBy(array(
       'user' => $user->getId(),
       'is_active' => 1
     ));
+
+    if (!$filter)
+      return $this->createFilter($user);
+
+    return $filter;
+  }
+
+  protected function createFilter(\Club\UserBundle\Entity\User $user)
+  {
+    $filter = new \Club\UserBundle\Entity\Filter;
+    $filter->setFilterName('Working');
+    $filter->setIsActive(1);
+    $filter->setUser($user);
+
+    $attributes = $this->_em->getRepository('ClubUserBundle:Attribute')->findAll();
+
+    foreach ($attributes as $attr) {
+      $filter_attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $filter_attr->setFilter($filter);
+      $filter_attr->setAttribute($attr);
+      $filter->addAttributes($filter_attr);
+    }
+
+    return $filter;
   }
 }

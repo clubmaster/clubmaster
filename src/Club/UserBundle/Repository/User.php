@@ -44,7 +44,7 @@ class User extends EntityRepository
 
   public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
     //Create query builder for languages table
-    $qb = $this->getQueryByFilter($filter);
+    $qb = $this->getQueryBuilderByFilter($filter);
 
     //Show all if offset and limit not set, also show all when limit is 0
     if ((isset($offset)) && (isset($limit))) {
@@ -59,20 +59,19 @@ class User extends EntityRepository
       $qb->add('orderBy', 'u.' . $key . ' ' . $value);
     }
     //Get our query
-    $q = $qb->getQueryByFilter($filter);
+    $q = $qb->getQuery();
     //Return result
     return $q->getResult();
   }
 
   public function getUsersCount($filter) {
-    $qb = $this->getQueryByFilter($filter);
+    $qb = $this->getQueryBuilderByFilter($filter);
 
     $qb->select($qb->expr()->count('u'));
-    $q = $qb->getQueryByFilter($filter);
-    return $q->getSingleScalarResult();
+    return $qb->getQuery()->getSingleScalarResult();
   }
 
-  protected function getQueryByFilter(\Club\UserBundle\Entity\Filter $filter)
+  protected function getQueryBuilderByFilter(\Club\UserBundle\Entity\Filter $filter)
   {
     $qb = $this->getQueryBuilder();
 
@@ -113,7 +112,12 @@ class User extends EntityRepository
       }
     }
 
-    return $qb->getQuery();
+    return $qb;
+  }
+
+  protected function getQueryByFilter(\Club\UserBundle\Entity\Filter $filter)
+  {
+    return $this->getQueryBuilderByFilter($filter)->getQuery();
   }
 
   public function getQueryByGroup(\Club\UserBundle\Entity\Group $group)

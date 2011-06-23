@@ -42,14 +42,7 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findOneBy(array(
-      'user' => $this->get('security.context')->getToken()->getUser()->getId(),
-      'is_active' => 1
-    ));
-
-    if (!$filter) {
-      $filter = $this->initFilter();
-    }
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 
     $form = $this->createFormBuilder($filter)
       ->add('attributes', 'collection', array(
@@ -60,26 +53,5 @@ class FilterController extends Controller
     return $this->render('ClubUserBundle:Filter:form.html.twig', array(
       'form' => $form->createView()
     ));
-  }
-
-  protected function initFilter()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $filter = new \Club\UserBundle\Entity\Filter;
-    $filter->setFilterName('Working');
-    $filter->setIsActive(1);
-    $filter->setUser($this->get('security.context')->getToken()->getUser());
-
-    $attributes = $em->getRepository('ClubUserBundle:Attribute')->findAll();
-
-    foreach ($attributes as $attr) {
-      $filter_attr = new \Club\UserBundle\Entity\FilterAttribute();
-      $filter_attr->setFilter($filter);
-      $filter_attr->setAttribute($attr);
-      $filter->addAttributes($filter_attr);
-    }
-
-    return $filter;
   }
 }
