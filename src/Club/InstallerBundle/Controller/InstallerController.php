@@ -31,11 +31,29 @@ class InstallerController extends Controller
 
       if ($form->isValid()) {
         // test database connection
-        $connection = array(
+        $params = array(
+          'host' => $step->host,
+          'user' => $step->user,
+          'password' => $step->password,
           'driver' => 'pdo_mysql',
-          'path' => 'database.'.$step->name
+          'port' => $step->port
         );
-        return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+
+        try {
+          $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+          $connection->getSchemaManager()->createDatabase($step->name);
+
+          $em = $this->getDoctrine()->getEntityManager();
+          $metadatas = $em->getMetadataFactory()->getAllMetadata();
+
+          $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+          $tool->createSchema($metadatas);
+
+          return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+
+        } catch (\Exception $e) {
+          $this->get('session')->setFlash('error',$e->getMessage());
+        }
       }
     }
 

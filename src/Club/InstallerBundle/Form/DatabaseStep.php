@@ -10,6 +10,7 @@ class DatabaseStep extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('host');
+    $builder->add('port');
     $builder->add('name');
     $builder->add('user');
     $builder->add('password','repeated', array(
