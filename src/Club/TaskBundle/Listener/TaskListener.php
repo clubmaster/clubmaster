@@ -18,15 +18,19 @@ class TaskListener
 
   public function onCoreRequest(GetResponseEvent $event)
   {
-    $tasks = $this->em->getRepository('ClubTaskBundle:Task')->getTasksToExecute();
+    try {
+      $tasks = $this->em->getRepository('ClubTaskBundle:Task')->getTasksToExecute();
 
-    foreach ($tasks as $task) {
-      $this->startTask($task);
+      foreach ($tasks as $task) {
+        $this->startTask($task);
 
-      $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
-      $this->event_dispatcher->dispatch(constant('\Club\TaskBundle\Event\Events::'.$task->getEvent()), $event);
+        $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
+        $this->event_dispatcher->dispatch(constant('\Club\TaskBundle\Event\Events::'.$task->getEvent()), $event);
 
-      $this->stopTask($task);
+        $this->stopTask($task);
+      }
+
+    } catch (\Exception $e) {
     }
   }
 

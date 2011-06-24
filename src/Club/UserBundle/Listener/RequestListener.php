@@ -20,7 +20,8 @@ class RequestListener
 
   public function onCoreRequest(GetResponseEvent $event)
   {
-    if (!$this->security_context->getToken()) return;
+    if ($this->security_context->isGranted('IS_AUTHENTICATED_ANONYMOUSLY'))
+      return;
 
     $user = $this->security_context->getToken()->getUser();
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLocation()) {
