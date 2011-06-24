@@ -21,8 +21,5 @@ class DatabaseStep
    */
   public $user;
 
-  /**
-   * @Assert\NotBlank()
-   */
   public $password;
 }

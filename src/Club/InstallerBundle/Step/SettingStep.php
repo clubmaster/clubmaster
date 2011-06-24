@@ -9,20 +9,36 @@ class SettingStep
   /**
    * @Assert\NotBlank()
    */
-  public $first_name;
+  public $location;
 
   /**
    * @Assert\NotBlank()
    */
-  public $last_name;
+  public $language;
 
   /**
    * @Assert\NotBlank()
    */
-  public $email_address;
+  public $currency;
 
   /**
    * @Assert\NotBlank()
    */
-  public $password;
+  public $smtp_host;
+
+  /**
+   * @Assert\NotBlank()
+   */
+  public $smtp_port;
+
+  /**
+   * @Assert\NotBlank()
+   */
+  public $smtp_username;
+
+  /**
+   * @Assert\NotBlank()
+   */
+  public $smtp_password;
+
 }

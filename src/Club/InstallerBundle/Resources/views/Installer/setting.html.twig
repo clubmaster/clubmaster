@@ -5,16 +5,11 @@
 
 <p>This is the installer program of ClubMaster.</p>
 
-<p>When you have completed the following list of steps, you are ready to start using ClubMaster.</p>
-
-<ul>
-  <li>Check system requirement</li>
-  <li>Database configuration</li>
-  <li>Administrator setup</li>
-  <li>System settings</li>
-</ul>
+<form method="post" action="">
+{{ form_widget(form) }}
+<input type="submit" />
+</form>
 
 <p>ClubMaster team</p>
 
-<p><a href="{{ path("club_installer_installer_confirm") }}">Start installer</a></p>
 {% endblock %}

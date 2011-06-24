@@ -30,6 +30,11 @@ class InstallerController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        // test database connection
+        $connection = array(
+          'driver' => 'pdo_mysql',
+          'path' => 'database.'.$step->name
+        );
         return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
       }
     }
@@ -67,7 +72,20 @@ class InstallerController extends Controller
    */
   public function settingAction()
   {
-    return array();
+    $step = new \Club\InstallerBundle\Step\SettingStep();
+    $form = $this->createForm(new \Club\InstallerBundle\Form\SettingStep(), $step);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
+      }
+    }
+
+    return array(
+      'form' => $form->createView()
+    );
   }
 
   /**
