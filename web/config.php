@@ -138,7 +138,7 @@ if (ini_get('session.auto_start')) {
             <div id="symfony-content">
                 <div class="symfony-blocks-install">
                 <div class="symfony-block-logo">
-                    <img src="bundles/symfonywebconfigurator/images/logo-big.gif" alt="sf_symfony" />
+                    <img src="bundles/symfonywebconfigurator/images/logo-big.gif" alt="ClubMaster" />
                 </div>
 
                 <div class="symfony-block-content">

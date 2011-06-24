@@ -18,34 +18,60 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/installer/database")
+   * @Route("/installer/step/1")
    * @Template()
    */
   public function databaseAction()
   {
-    return array();
+    $step = new \Club\InstallerBundle\Step\DatabaseStep();
+    $form = $this->createForm(new \Club\InstallerBundle\Form\DatabaseStep(), $step);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+      }
+    }
+
+    return array(
+      'form' => $form->createView()
+    );
   }
 
   /**
-   * @Route("/installer/administrator")
+   * @Route("/installer/step/2")
    * @Template()
    */
   public function administratorAction()
   {
-    return array();
+    $step = new \Club\InstallerBundle\Step\AdministratorStep();
+    $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $step);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        return $this->redirect($this->generateUrl('club_installer_installer_setting'));
+      }
+    }
+
+    return array(
+      'form' => $form->createView()
+    );
   }
 
   /**
-   * @Route("/installer/settings")
+   * @Route("/installer/step/3")
    * @Template()
    */
-  public function settingsAction()
+  public function settingAction()
   {
     return array();
   }
 
   /**
-   * @Route("/installer/confirm")
+   * @Route("/installer/step/4")
    * @Template()
    */
   public function confirmAction()
