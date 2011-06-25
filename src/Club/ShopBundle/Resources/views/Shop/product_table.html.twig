@@ -1,0 +1,29 @@
+<h3>Products</h3>
+
+<table>
+  <thead>
+    <th>&#160;</th>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    {% for product in category.getProducts %}
+    <tr>
+      <td><img src="{{ asset('images/icons/64/Status-image-missing-icon.png') }}" title="No image" alt="No image" />
+      <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a> <em>{{ product.description }}</em></td>
+      <td>{{ product.vatPrice }}</td>
+      <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('images/icons/48/shopping-cart-insert-icon.png') }}" alt="Put in cart" title="Put in cart" /></a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="3">There is no products in this category.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

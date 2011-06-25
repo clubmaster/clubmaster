@@ -26,30 +26,7 @@
 {% endif %}
 
 {% if category %}
-<h3>Products</h3>
-
-<table>
-  <thead>
-    <th>Product name</th>
-    <th>Price</th>
-    <th>Action</th>
-  </thead>
-  <tfoot>
-  </tfoot>
-  <tbody>
-    {% for product in category.getProducts %}
-    <tr>
-      <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a></td>
-      <td>{{ product.vatPrice }}</td>
-      <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('images/icons/16/shopping-cart-insert-icon.png') }}" alt="Put in cart" title="Put in cart" /></a></td>
-    </tr>
-    {% else %}
-    <tr>
-      <td colspan="3">There is no products in this category.</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'category':category} %}
 {% endif %}
 
 {% endblock %}

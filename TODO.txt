@@ -22,6 +22,7 @@
 - style product listing
 - put images on links
 - fix layout, single and double column
+- add twig truncate, add to shop product list
 - doctrine migrations
 
 == todo ==

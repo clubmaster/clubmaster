@@ -233,6 +233,6 @@ class Product
 
     public function getVatPrice()
     {
-      return $this->getPrice()*(1+$this->getVat()->getRate()/100);
+      return sprintf("%.2f",$this->getPrice()*(1+$this->getVat()->getRate()/100));
     }
 }
