@@ -26,9 +26,8 @@ class InstallerController extends Controller
     $step = new \Club\InstallerBundle\Step\DatabaseStep();
     $form = $this->createForm(new \Club\InstallerBundle\Form\DatabaseStep(), $step);
 
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-
+    if ($this->get('request')->getMethod() == 'POST') {
+      $form->bindRequest($this->get('request'));
       if ($form->isValid()) {
         // test database connection
         $params = array(
@@ -40,14 +39,22 @@ class InstallerController extends Controller
         );
 
         try {
-          $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
-          $connection->getSchemaManager()->createDatabase($step->name);
-
           $em = $this->getDoctrine()->getEntityManager();
           $metadatas = $em->getMetadataFactory()->getAllMetadata();
+          $connection = \Doctrine\DBAL\DriverManager::getConnection($params);
+          $connection->getSchemaManager()->createDatabase($step->dbname);
 
-          $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-          $tool->createSchema($metadatas);
+          $params['dbname'] = $step->dbname;
+          $config = new \Doctrine\ORM\Configuration();
+          $driverImpl = new \Doctrine\ORM\Mapping\Driver\DatabaseDriver($em->getConnection()->getSchemaManager());
+          $config->setMetadataDriverImpl($driverImpl);
+          $config->setProxyDir($em->getConfiguration()->getProxyDir());
+          $config->setProxyNamespace($em->getConfiguration()->getProxyNamespace());
+
+          $em2 = \Doctrine\ORM\EntityManager::create($params,$config);
+
+          $tool = new \Doctrine\ORM\Tools\SchemaTool($em2);
+          var_dump($tool->getCreateSchemaSql($metadatas));die();
 
           return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
 

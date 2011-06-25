@@ -5,13 +5,12 @@
 
 <p>This is the installer program of ClubMaster.</p>
 
-{% include "ClubLayoutBundle:Default:flash.html.twig" %}
-
-<form method="post" action="">
-{{ form_widget(form) }}
-<input type="submit" />
+<form method="post" action="{{ path('club_installer_installer_database') }}">
+  {{ form_row(form) }}
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 </form>
 
 <p>ClubMaster team</p>
+
 
 {% endblock %}

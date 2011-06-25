@@ -14,12 +14,12 @@ class DatabaseStep
   /**
    * @Assert\NotBlank()
    */
-  public $port;
+  public $port = '3306';
 
   /**
    * @Assert\NotBlank()
    */
-  public $name;
+  public $dbname;
 
   /**
    * @Assert\NotBlank()
@@ -27,9 +27,4 @@ class DatabaseStep
   public $user;
 
   public $password;
-
-  public function __construct()
-  {
-    $this->port = 3306;
-  }
 }

@@ -28,13 +28,14 @@
 
 {% block textarea_widget %}
 {% spaceless %}
-    <textarea cols="70" rows="10" {{ block('attributes') }}>{{ value }}</textarea>
+    <textarea cols="70" rows="10" {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
 
 {% block field_widget %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    <input size="40" type="{{ type }}" {{ block('attributes') }} value="{{ value }}" />
+    <input size="40" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
 {% endspaceless %}
 {% endblock field_widget %}
+

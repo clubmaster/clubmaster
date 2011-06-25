@@ -11,7 +11,7 @@ class DatabaseStep extends AbstractType
   {
     $builder->add('host');
     $builder->add('port');
-    $builder->add('name');
+    $builder->add('dbname');
     $builder->add('user');
     $builder->add('password','repeated', array(
       'required' => false,
