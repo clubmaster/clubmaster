@@ -2,19 +2,24 @@
 
 {% block body %}
 
-<h2>{{ event.eventName }}</h2>
-
-<p>Name: {{ event.eventName }}<br />
-Price: {{ event.price }}<br />
-Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
-Start date: {{ event.stopDate|date('Y-m-d H:i') }}</p>
-
-<p>{{ event.description|raw }}</p>
-
+<p class="box">
 {% if event.isAttending(user) %}
-<p><a href="{{ path('event_event_unattend', {'id':event.id}) }}">Unattend</a></p>
+<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-create"><span>Unattend</span></a>
 {% else %}
-<p><a href="{{ path('event_event_attend', {'id':event.id}) }}">Attend</a></p>
+<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>Attend</span></a>
 {% endif %}
+</p>
+
+      <div class="box-03 event box">
+
+        <h2 class="nomb">{{ event.eventName }}</h2>
+        <p class="nomt low">
+          Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
+          Start date: {{ event.stopDate|date('Y-m-d H:i') }}<br />
+          Price: {% if event.price == '' %}-{% else %}{{ event.price }}{% endif %}
+        </p>
+        <p class="nomt low">{{ event.description|raw }}</p>
+
+      </div> <!-- /box-03 -->
 
 {% endblock %}

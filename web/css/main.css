@@ -108,13 +108,14 @@ PAGE: FILES
 
 #content .box-03 {margin-bottom:15px; padding-left:70px;}
 #content .box-03 h2 {margin:0;}
-#content .box-03.doc {background:url("../img/ico-doc.gif") 0 3px no-repeat;}
-#content .box-03.img {background:url("../img/ico-img.gif") 0 3px no-repeat;}
-#content .box-03.pdf {background:url("../img/ico-pdf.gif") 0 3px no-repeat;}
-#content .box-03.xls {background:url("../img/ico-xls.gif") 0 3px no-repeat;}
-#content .box-03.mp3 {background:url("../img/ico-mp3.gif") 0 3px no-repeat;}
-#content .box-03.zip {background:url("../img/ico-zip.gif") 0 3px no-repeat;}
-#content .box-03.others {background:url("../img/ico-others.gif") 0 3px no-repeat;}
+#content .box-03.doc {background:url("../images/ico-doc.gif") 0 3px no-repeat;}
+#content .box-03.img {background:url("../images/ico-img.gif") 0 3px no-repeat;}
+#content .box-03.pdf {background:url("../images/ico-pdf.gif") 0 3px no-repeat;}
+#content .box-03.xls {background:url("../images/ico-xls.gif") 0 3px no-repeat;}
+#content .box-03.mp3 {background:url("../images/ico-mp3.gif") 0 3px no-repeat;}
+#content .box-03.zip {background:url("../images/ico-zip.gif") 0 3px no-repeat;}
+#content .box-03.others {background:url("../images/ico-others.gif") 0 3px no-repeat;}
+#content .box-03.event {background:url("../images/icons/50/Actions-view-calendar-upcoming-events-icon.png") 0 3px no-repeat;}
 
 /* =============================================================================
 PAGE: CALENDAR
