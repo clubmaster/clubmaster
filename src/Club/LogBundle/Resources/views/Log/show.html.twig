@@ -1,15 +1,22 @@
 {% extends "ClubLogBundle::base.html.twig" %}
 
 {% block body %}
+<h2>{{ log.logType|capitalize }} <em>({{ log.severity }})</em></h2>
 
-<h2>Information</h2>
-<p>User: {{ log.user.getProfile.getName }}<br />
-Severity: {{ log.severity }}<br />
-Event: {{ log.event }}<br />
-Type: {{ log.logType }}<br />
-Created At: {{ log.createdAt|date('Y-m-d H:i:s') }}</p>
+<div class="box-03 log box">
 
-<h2>Log message</h2>
-<p>{{ log.log }}</p>
+  <h2 class="nomb">{{ log.logType|capitalize }}</h2>
+  <p class="nomt low">
+    Created At: {{ log.createdAt|date('Y-m-d H:i:s') }}<br />
+    User: {{ log.user.getProfile.getName }}<br />
+    Severity: {{ log.severity }}<br />
+    Event: {{ log.event }}<br />
+    Type: {{ log.logType }}
+  </p>
+
+  <h2>Message</h2>
+  <p class="nomt low">{{ log.log|raw }}</p>
+
+</div> <!-- /box-03 -->
 
 {% endblock %}

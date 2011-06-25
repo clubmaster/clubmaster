@@ -10,16 +10,18 @@
 {% endif %}
 </p>
 
-      <div class="box-03 event box">
+<div class="box-03 event box">
 
-        <h2 class="nomb">{{ event.eventName }}</h2>
-        <p class="nomt low">
-          Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
-          Start date: {{ event.stopDate|date('Y-m-d H:i') }}<br />
-          Price: {% if event.price == '' %}-{% else %}{{ event.price }}{% endif %}
-        </p>
-        <p class="nomt low">{{ event.description|raw }}</p>
+  <h2 class="nomb">{{ event.eventName }}</h2>
+  <p class="nomt low">
+    Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
+    Start date: {{ event.stopDate|date('Y-m-d H:i') }}<br />
+    Price: {% if event.price == '' %}-{% else %}{{ event.price }}{% endif %}
+  </p>
 
-      </div> <!-- /box-03 -->
+  <h2>Description</h2>
+  <p class="nomt low">{{ event.description|raw }}</p>
+
+</div> <!-- /box-03 -->
 
 {% endblock %}
