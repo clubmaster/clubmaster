@@ -20,7 +20,7 @@ class RequestListener
 
   public function onKernelRequest(GetResponseEvent $event)
   {
-    if ($this->security_context->isGranted('IS_AUTHENTICATED_ANONYMOUSLY'))
+    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
       return;
 
     $user = $this->security_context->getToken()->getUser();
