@@ -32,7 +32,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %}
-        <a href="{{ path('admin_event_attend', {'id':event.id}) }}">Attends</a>
+        {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %}
       </td>
     </tr>
   {% else %}

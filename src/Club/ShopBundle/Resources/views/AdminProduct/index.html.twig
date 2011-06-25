@@ -26,7 +26,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_product_delete', { 'id':product.id })} %}
-        <a href="{{ path('admin_shop_product_attribute', {'id':product.id}) }}">Attributes</a>
+        {% include "ClubLayoutBundle:Default:attribute_link.html.twig" with {'url':path('admin_shop_product_attribute', {'id':product.id})} %}
       </td>
     </tr>
   {% else %}
