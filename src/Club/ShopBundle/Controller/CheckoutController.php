@@ -56,6 +56,12 @@ class CheckoutController extends Controller
       throw new Exception('You need to have at leats one payment method');
     }
 
+    if (count($payments) == 1) {
+      $this->get('cart')->setPayment($payments[0]);
+
+      return $this->redirect($this->generateUrl('shop_checkout_review'));
+    }
+
     $cart = $this->get('cart')->getCart();
     //$order = $em->merge($order);
 

@@ -106,7 +106,7 @@ class Cart
 
   public function setPayment($payment)
   {
-    $this->cart->setPayment($payment);
+    $this->cart->setPaymentMethod($payment);
     $this->save();
   }
 
