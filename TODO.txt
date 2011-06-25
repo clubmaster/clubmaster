@@ -8,7 +8,7 @@
 - check forgot password works
 - event custom validator ( more attend than max attends )
 - rewrite default settings for language and accounts
-- fix location dropdown to a prettier solution
+- change location
 - add images to products
 - build better forms for filter
   - also make sure the filters actually works

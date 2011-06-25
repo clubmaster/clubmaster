@@ -14,41 +14,4 @@ class MiscController extends Controller
     $user = $this->get('security.context')->getToken()->getUser();
     return new Response($user->getProfile()->getName());
   }
-
-  public function getCurrentLocationAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $location = $em->find('\Club\UserBundle\Entity\Location',$this->get('session')->get('location_id'));
-
-    return new Response($location->getLocationName());
-  }
-
-  public function getSwitchLocationAction()
-  {
-    $user = $this->get('security.context')->getToken()->getUser();
-    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation(),$user);
-
-    return $this->render('ClubUserBundle:Misc:switchLocation.html.twig', array(
-      'form' => $form->createView()
-    ));
-  }
-
-  /**
-   * @Route("/location_switch", name="switch_location")
-   */
-  public function switchLocationAction()
-  {
-    $user = $this->get('security.context')->getToken()->getUser();
-    $form = $this->createForm(new \Club\UserBundle\Form\SwitchLocation(),$user);
-
-    $form->bindRequest($this->getRequest());
-    if ($form->isValid()) {
-      $em = $this->getDoctrine()->getEntityManager();
-      $em->persist($user);
-      $em->flush();
-
-    }
-
-    return $this->redirect($this->generateUrl('homepage'));
-  }
 }

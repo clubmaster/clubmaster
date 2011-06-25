@@ -43,5 +43,7 @@ class RequestListener
       $this->em->persist($user);
       $this->em->flush();
     }
+
+    $this->session->set('current_user',$user);
   }
 }
