@@ -64,8 +64,3 @@ _filter:
   resource: "@ClubUserBundle/Controller/FilterController.php"
   type: annotation
   prefix: /admin
-
-_language:
-  resource: "@ClubUserBundle/Controller/LanguageController.php"
-  type: annotation
-  prefix: /admin
