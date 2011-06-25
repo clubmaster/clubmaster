@@ -27,7 +27,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_location_delete', { 'id':location.id })} %}
-        <a href="{{ path('admin_location_config', {'id':location.id}) }}">Config</a>
+        {% include "ClubLayoutBundle:Default:config_link.html.twig" with {'url':path('admin_location_config', {'id':location.id})} %}
       </td>
     </tr>
   {% else %}
