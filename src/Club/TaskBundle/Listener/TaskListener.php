@@ -16,7 +16,7 @@ class TaskListener
     $this->event_dispatcher = $event_dispatcher;
   }
 
-  public function onCoreRequest(GetResponseEvent $event)
+  public function onKernelRequest(GetResponseEvent $event)
   {
     try {
       $tasks = $this->em->getRepository('ClubTaskBundle:Task')->getTasksToExecute();

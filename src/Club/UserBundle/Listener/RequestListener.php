@@ -18,7 +18,7 @@ class RequestListener
     $this->session = $session;
   }
 
-  public function onCoreRequest(GetResponseEvent $event)
+  public function onKernelRequest(GetResponseEvent $event)
   {
     if ($this->security_context->isGranted('IS_AUTHENTICATED_ANONYMOUSLY'))
       return;
