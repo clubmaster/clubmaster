@@ -3,14 +3,14 @@ services:
     class: Club\UserBundle\Listener\RequestListener
     arguments: [@doctrine.orm.entity_manager,@security.context,@session]
     tags:
-      - { name: kernel.listener, event: core.request, method: onCoreRequest }
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
   club.userbundle.listener.group.recalc:
     class: Club\UserBundle\Listener\GroupRecalcListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: group.task, method: onGroupTask }
+      - { name: kernel.event_listener, event: group.task, method: onGroupTask }
   club.userbundle.listener.login_attempt.listener:
     class: Club\UserBundle\Listener\CleanupLoginAttemptListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: login_attempt.task, method: onLoginAttemptTask }
+      - { name: kernel.event_listener, event: login_attempt.task, method: onLoginAttemptTask }

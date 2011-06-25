@@ -6,3 +6,16 @@ vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle/
 vendor/bundles/Symfony/Bundle/DoctrineMigrationsBundle/
 vendor/doctrine-fixtures/
 vendor/doctrine-migrations/
+vendor/assetic/
+vendor/bundles/JMS/
+vendor/bundles/Sensio/
+vendor/bundles/Symfony/Bundle/AsseticBundle/
+vendor/doctrine-common/
+vendor/doctrine-dbal/
+vendor/doctrine/
+vendor/metadata/
+vendor/monolog/
+vendor/swiftmailer/
+vendor/symfony/
+vendor/twig-extensions/
+vendor/twig/

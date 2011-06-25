@@ -3,4 +3,4 @@ services:
     class: Club\MailBundle\Listener\PasswordResetListener
     arguments: [@doctrine.orm.entity_manager, @mailer, @templating]
     tags:
-      - { name: kernel.listener, event: password.reset, method: onPasswordReset }
+      - { name: kernel.event_listener, event: password.reset, method: onPasswordReset }

@@ -3,4 +3,4 @@ services:
     class: Club\AccountBundle\Listener\NewTransactionListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: shop.order, method: onShopOrder }
+      - { name: kernel.event_listener, event: shop.order, method: onShopOrder }

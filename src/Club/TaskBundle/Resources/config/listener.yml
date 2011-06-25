@@ -3,4 +3,4 @@ services:
     class: Club\TaskBundle\Listener\TaskListener
     arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
     tags:
-      - { name: kernel.listener, event: core.request, method: onCoreRequest }
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

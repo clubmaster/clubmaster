@@ -3,29 +3,29 @@ services:
     class: Club\LogBundle\Listener\NewOrderListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: shop.order, method: onShopOrder }
+      - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
   club.logbundle.listener.on_order_change_listener:
     class: Club\LogBundle\Listener\OrderChangeListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: order.change, method: onOrderChange }
+      - { name: kernel.event_listener, event: order.change, method: onOrderChange }
   club.logbundle.listener.on_event_add_listener:
     class: Club\LogBundle\Listener\AddEventListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: event.add, method: onEventAdd }
+      - { name: kernel.event_listener, event: event.add, method: onEventAdd }
   club.logbundle.listener.on_event_attend_listener:
     class: Club\LogBundle\Listener\AttendEventListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: event.attend, method: onEventAttend }
+      - { name: kernel.event_listener, event: event.attend, method: onEventAttend }
   club.logbundle.listener.on_event_unattend_listener:
     class: Club\LogBundle\Listener\UnattendEventListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: event.unattend, method: onEventUnattend }
+      - { name: kernel.event_listener, event: event.unattend, method: onEventUnattend }
   club.logbundle.listener.cleanup_log_listener:
     class: Club\LogBundle\Listener\CleanupLogListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.listener, event: log.task, method: onLogTask }
+      - { name: kernel.event_listener, event: log.task, method: onLogTask }
