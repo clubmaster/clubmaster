@@ -51,7 +51,7 @@ class AuthController extends Controller
         $em->persist($forgot);
         $em->flush();
 
-        $event = new \Club\UserBundle\Event\FilterUserEvent($user, $forgot);
+        $event = new \Club\UserBundle\Event\FilterForgotPasswordEvent($forgot);
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onPasswordReset, $event);
       }
 
@@ -100,5 +100,72 @@ class AuthController extends Controller
         'forgot' => $forgot
       );
     }
+  }
+
+  /**
+   * @Route("/auth/register")
+   * @Template()
+   */
+  public function registerAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $user = new \Club\UserBundle\Entity\User();
+    $profile = new \Club\UserBundle\Entity\Profile();
+    $user->setProfile($profile);
+    $profile->setUser($user);
+    $user = $this->getUser($user);
+    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+
+    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your account has been created');
+
+        $event = new \Club\UserBundle\Event\FilterUserEvent($user);
+        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
+
+        return $this->redirect($this->generateUrl('homepage'));
+      }
+    }
+
+    return array(
+      'form' => $form->createView()
+    );
+  }
+
+  protected function getUser($user)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    if (!count($user->getProfile()->getProfileAddress())) {
+      $address = new \Club\UserBundle\Entity\ProfileAddress();
+      $address->setIsDefault(1);
+      $address->setContactType('home');
+      $address->setProfile($user->getProfile());
+      $user->getProfile()->addProfileAddress($address);
+    }
+    if (!count($user->getProfile()->getProfilePhone())) {
+      $phone = new \Club\UserBundle\Entity\ProfilePhone();
+      $phone->setIsDefault(1);
+      $phone->setContactType('home');
+      $phone->setProfile($user->getProfile());
+      $user->getProfile()->addProfilePhone($phone);
+    }
+    if (!count($user->getProfile()->getProfileEmail())) {
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setIsDefault(1);
+      $email->setContactType('home');
+      $email->setProfile($user->getProfile());
+      $user->getProfile()->addProfileEmail($email);
+    }
+
+    return $user;
   }
 }

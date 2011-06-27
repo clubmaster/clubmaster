@@ -17,9 +17,9 @@ class PasswordResetListener
     $this->router = $router;
   }
 
-  public function onPasswordReset(\Club\UserBundle\Event\FilterUserEvent $event)
+  public function onPasswordReset(\Club\UserBundle\Event\FilterForgotPasswordEvent $event)
   {
-    $user = $event->getUser();
+    $user = $event->getForgotPassword()->getUser();
     $email = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultEmail($user->getProfile());
 
     if (count($email) > 0) {
@@ -29,7 +29,8 @@ class PasswordResetListener
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Default:password_reset.html.twig',array(
           'user' => $user,
-          'url' => $this->router->generate('auth_reset',array('hash'=>$event->getForgotPassword()->getHash()),1)
+          'url' => $this->router->generate('auth_reset',array(
+            'hash' => $event->getForgotPassword()->getHash()),1)
         )));
 
       $this->mailer->send($message);
