@@ -22,7 +22,6 @@
 - style product listing
 - put images on links
 - fix layout, single and double column
-- add twig truncate, add to shop product list
 - check symfony2 installer for checkout style
 - doctrine migrations
 
