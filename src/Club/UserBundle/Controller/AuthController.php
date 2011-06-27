@@ -24,23 +24,19 @@ class AuthController extends Controller
    */
   public function forgotAction()
   {
-    $form = $this->createFormBuilder()
-      ->add('username','text',array('required' => false))
-      ->add('email','text',array('required' => false))
-      ->getForm();
+    $form = $this->createForm(new \Club\UserBundle\Form\RequestPassword());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
-
       $post = $form->getData();
 
       $em = $this->getDoctrine()->getEntityManager();
-      $user = $em->getRepository('\Club\UserBundle\Entity\User')->findOneBy(array(
+      $user = $em->getRepository('ClubUserBundle:User')->findOneBy(array(
         'member_number' => $post['username']
       ));
 
       if (!($user instanceOf \Club\UserBundle\Entity\User)) {
-        $email = $em->getRepository('\Club\UserBundle\Entity\ProfileEmail')->findOneBy(array(
+        $email = $em->getRepository('ClubUserBundle:ProfileEmail')->findOneBy(array(
           'email_address' => $post['email']
         ));
 
@@ -74,7 +70,7 @@ class AuthController extends Controller
   public function resetPasswordAction($hash)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $forgot = $em->getRepository('\Club\UserBundle\Entity\ForgotPassword')->findOneByHash($hash);
+    $forgot = $em->getRepository('ClubUserBundle:ForgotPassword')->findOneByHash($hash);
 
     if ($forgot instanceOf \Club\UserBundle\Entity\ForgotPassword) {
       if ($this->getRequest()->getMethod() == 'POST') {

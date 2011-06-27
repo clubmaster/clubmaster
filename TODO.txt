@@ -1,11 +1,11 @@
 == before next release ==
+- cannot save user as admin without change language
 - installer
   - welcome
   - database config
   - administrator user
   - system settings
 - create new user page
-- check forgot password works
 - event custom validator ( more attend than max attends )
 - rewrite default settings for language and accounts
 - change location
