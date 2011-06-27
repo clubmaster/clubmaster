@@ -353,14 +353,18 @@ class AdminUserController extends Controller
   public function groupAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('\Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
-        $em->persist($user);
+        foreach ($user->getGroups() as $group) {
+          $group = $em->find('ClubUserBundle:Group',$group->getId());
+          $group->addUsers($user);
+          $em->persist($group);
+        }
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes were saved!');
