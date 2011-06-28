@@ -12,6 +12,8 @@
 - doctrine migrations
 
 == todo ==
+- add filter items (name, member_number)
+- find out the syntax for member_numbers
 - add images to products
 - sort user lists
 - add batch to user list
