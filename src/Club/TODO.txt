@@ -1,13 +1,17 @@
 == before next release ==
+- style create new user page
+- style filters
 - installer
   - welcome
   - database config
   - administrator user
   - system settings
 - make sure filter actually works and filter users correct
-- style filters
-- style create new user page
 - fix layout, single and double column
+
+== tests data ==
+- add some more test data
+- add some lorem ipsum data
 
 == todo ==
 - add filter items (name, member_number)
