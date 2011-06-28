@@ -1,0 +1,10 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Locations</h2>
+
+{% for location in locations %}
+  <p><a href="{{ path('club_user_location_switch', {'id':location.id}) }}">{{ location.locationName }}</a></p>
+{% endfor %}
+
+{% endblock %}

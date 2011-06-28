@@ -7,7 +7,6 @@
   - system settings
 - event custom validator ( more attend than max attends )
 - rewrite default settings for language and accounts
-- change location
 - add images to products
 - sort user lists
 - add batch to user list

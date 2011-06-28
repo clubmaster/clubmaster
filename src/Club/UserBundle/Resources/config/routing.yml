@@ -20,6 +20,10 @@ _user:
   resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation
 
+_location:
+  resource: "@ClubUserBundle/Controller/LocationController.php"
+  type: annotation
+
 _admin_user:
   resource: "@ClubUserBundle/Controller/AdminUserController.php"
   type: annotation
@@ -35,12 +39,12 @@ _group:
   type: annotation
   prefix: /admin
 
-_location:
+_admin_location:
   resource: "@ClubUserBundle/Controller/AdminLocationController.php"
   type: annotation
   prefix: /admin
 
-_location_config:
+_admin_location_config:
   resource: "@ClubUserBundle/Controller/AdminLocationConfigController.php"
   type: annotation
   prefix: /admin
