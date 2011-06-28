@@ -1,4 +1,5 @@
 == before next release ==
+- debug window gone?
 - style filters
 - installer
   - welcome
@@ -7,6 +8,7 @@
   - system settings
 - make sure filter actually works and filter users correct
 - fix layout, single and double column
+- configurable sender email
 
 == tests data ==
 - add some more test data

@@ -87,6 +87,13 @@ class User implements UserInterface, \Serializable
     private $expired;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean $activated
+     */
+    private $activated;
+
+    /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $expires_at
@@ -642,5 +649,30 @@ class User implements UserInterface, \Serializable
     public function addGroups(\Club\UserBundle\Entity\Group $groups)
     {
       $this->groups[] = $groups;
+    }
+
+    public function getActivationHash()
+    {
+      return hash('sha256',$this->getId().'-'.$this->getCreatedAt()->format('Y-m-d'));
+    }
+
+    /**
+     * Set activated
+     *
+     * @param boolean $activated
+     */
+    public function setActivated($activated)
+    {
+        $this->activated = $activated;
+    }
+
+    /**
+     * Get activated
+     *
+     * @return boolean $activated
+     */
+    public function getActivated()
+    {
+        return $this->activated;
     }
 }
