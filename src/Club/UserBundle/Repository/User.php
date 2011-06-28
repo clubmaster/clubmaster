@@ -75,6 +75,9 @@ class User extends EntityRepository
   {
     $qb = $this->getQueryBuilder();
 
+    // boolean to make sure we dont join address table twice
+    $this->has_joined_addr = false;
+
     foreach ($filter->getAttributes() as $attr) {
       if ($attr->getValue() != '') {
         switch ($attr->getAttribute()->getAttributeName()) {
@@ -190,6 +193,11 @@ class User extends EntityRepository
 
   protected function filterPostalCode($qb,$value)
   {
+    if (!$this->has_joined_addr) {
+      $qb->join('p.profile_address','pa');
+      $this->has_joined_addr = true;
+    }
+
     $qb->andWhere(
       $qb->expr()->eq('pa.postal_code',':postal_code')
     );
@@ -200,6 +208,11 @@ class User extends EntityRepository
 
   protected function filterCity($qb,$value)
   {
+    if (!$this->has_joined_addr) {
+      $qb->join('p.profile_address','pa');
+      $this->has_joined_addr = true;
+    }
+
     $qb->andWhere(
       $qb->expr()->eq('pa.city',':city')
     );
@@ -210,6 +223,11 @@ class User extends EntityRepository
 
   protected function filterCountry($qb,$value)
   {
+    if (!$this->has_joined_addr) {
+      $qb->join('p.profile_address','pa');
+      $this->has_joined_addr = true;
+    }
+
     $qb->andWhere(
       $qb->expr()->eq('pa.country',':country')
     );

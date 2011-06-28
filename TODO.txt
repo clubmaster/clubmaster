@@ -10,14 +10,13 @@
 - rewrite default settings for language and accounts
 - change location
 - add images to products
-- build better forms for filter
-  - also make sure the filters actually works
 - sort user lists
 - add batch to user list
 - add pager to logging
 - add pager to ledger
 - add pager to order
 - add search to order
+- style filters
 - style create new user page
 - style product page
 - style product listing

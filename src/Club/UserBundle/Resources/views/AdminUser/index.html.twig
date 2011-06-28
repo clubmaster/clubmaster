@@ -4,6 +4,8 @@
 
 <p class="box"><a href="{{ path('admin_user_new') }}" class="btn-create"><span>Create user</span></a></p>
 
+{% render "ClubUserBundle:Filter:getFilter" %}
+
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table>
   <thead>

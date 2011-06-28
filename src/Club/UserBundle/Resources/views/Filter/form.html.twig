@@ -2,12 +2,7 @@
   <fieldset>
     <legend>Search</legend>
 
-    {% for items in form %}
-      {% for item in items %}
-        {{ form_label(item) }}
-        {{ form_widget(item) }}
-      {% endfor %}
-    {% endfor %}
+    {{ form_row(form) }}
     <input type="submit" value="Filter" />
 
   </fieldset>

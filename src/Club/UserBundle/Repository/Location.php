@@ -16,11 +16,22 @@ class Location extends EntityRepository
   {
     $query = $this->_em->createQueryBuilder()
       ->select('l')
-      ->from('\Club\UserBundle\Entity\Location','l')
+      ->from('ClubUserBundle:Location','l')
       ->orderBy('l.id')
       ->setMaxResults(1)
       ->getQuery();
 
     return $query->getSingleResult();
+  }
+
+  public function getByIds($ids)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:Location','l')
+      ->where('l.id IN (:ids)')
+      ->setParameter('ids',$ids)
+      ->getQuery()
+      ->getResult();
   }
 }

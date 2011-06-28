@@ -39,7 +39,12 @@ class Filter extends EntityRepository
       $filter_attr->setFilter($filter);
       $filter_attr->setAttribute($attr);
       $filter->addAttributes($filter_attr);
+
+      $this->_em->persist($filter_attr);
     }
+
+    $this->_em->persist($filter);
+    $this->_em->flush();
 
     return $filter;
   }
