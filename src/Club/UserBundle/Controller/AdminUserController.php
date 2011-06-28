@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminUserController extends Controller
 {
   /**
-   * @Template()
    * @Route("/user", name="admin_user")
+   * @Template()
    */
   public function indexAction()
   {

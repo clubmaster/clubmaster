@@ -1,4 +1,4 @@
-_task:
+_log:
   resource: "@ClubLogBundle/Controller/LogController.php"
   type: annotation
   prefix: /admin

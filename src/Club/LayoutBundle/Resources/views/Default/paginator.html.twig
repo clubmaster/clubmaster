@@ -1,3 +1,4 @@
+{% if paginator.numpages > 1 %}
       <!-- Pagination (Top) -->
       <div class="pagination box">
         <p class="f-right">
@@ -23,6 +24,4 @@
         </p>
         <p class="f-left">Showing <strong>{{ paginator.offset+1 }}&ndash;{{ paginator.offset+paginator.limit }}</strong> of <strong>{{ paginator.itemsCount }}</strong> Results</p>
       </div> <!-- /pagination -->
-
-
-
+{% endif %}

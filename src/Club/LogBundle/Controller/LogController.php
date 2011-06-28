@@ -26,12 +26,13 @@ class LogController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $logs = $em->getRepository('ClubLogBundle:Log')->findAll();
-    $login_attempts = $em->getRepository('ClubUserBundle:LoginAttempt')->findAll();
+    $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
+    $paginator = new \Club\UserBundle\Helper\Paginator($logs_count, $this->generateUrl('admin_log'));
+    $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($paginator->getOffset(), $paginator->getLimit());
 
     return array(
       'logs' => $logs,
-      'login_attempts' => $login_attempts
+      'paginator' => $paginator,
     );
   }
 

@@ -17,7 +17,7 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for attempt in login_attempts %}
+  {% for attempt in logins %}
     <tr>
       <td>{{ attempt.username }}</td>
       <td>{{ attempt.session }}</td>
@@ -33,3 +33,5 @@
   {% endfor %}
   </tbody>
 </table>
+
+{% include "ClubLayoutBundle:Default:paginator.html.twig" with {'paginator':logins_paginator} %}
