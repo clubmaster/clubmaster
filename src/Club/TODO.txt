@@ -8,7 +8,6 @@
 - style filters
 - style create new user page
 - fix layout, single and double column
-- check symfony2 installer for checkout style
 
 == todo ==
 - add filter items (name, member_number)

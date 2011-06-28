@@ -25,14 +25,14 @@
                                 <td><input type="password" style="width: 300px;" name="_password" class="input-text" id="login-pass" /></td>
                         </tr>
                         <tr>
-                                <td></td>
-                                <td>
-                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">Forgot password?</a></span>
-                                  <span class="f-right"><a href="{{ path('club_user_auth_register') }}">New user?</a></span>
-                                </td>
+                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Sign In &raquo;" /></td>
                         </tr>
                         <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Sign In &raquo;" /></td>
+                                <td></td>
+                                <td>
+                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">Forgot password?</a></span><br />
+                                  <span class="f-right"><a href="{{ path('club_user_auth_register') }}">New user?</a></span>
+                                </td>
                         </tr>
                 </table>
                 </form>

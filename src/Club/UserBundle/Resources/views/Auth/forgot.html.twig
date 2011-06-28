@@ -22,15 +22,14 @@
                           <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.email) }}</strong></label></td>
                           <td>{{ form_widget(form.email) }}</td>
                         </tr>
-
+                        <tr>
+                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Send Password &raquo;" /></td>
+                        </tr>
                         <tr>
                                 <td></td>
                                 <td>
                                   <span class="f-right"><a href="{{ path('login') }}">Login</a></span>
                                 </td>
-                        </tr>
-                        <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Send Password &raquo;" /></td>
                         </tr>
                 </table>
                 </form>
