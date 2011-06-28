@@ -1,5 +1,5 @@
 == before next release ==
-- remove the remember button
+- make sure filter actually works and filter users correct
 - cannot save user as admin without change language
 - installer
   - welcome
