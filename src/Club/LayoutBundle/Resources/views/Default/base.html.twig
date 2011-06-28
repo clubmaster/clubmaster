@@ -5,20 +5,20 @@
         <meta http-equiv="content-language" content="en" />
         <meta name="robots" content="noindex,nofollow" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/reset.css') }}" /> <!-- RESET -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/main.css') }}" /> <!-- MAIN STYLE SHEET -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/2col.css') }}" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
-        <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/1col.css') }}" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
-        <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/main-ie6.css') }}" /><![endif]--> <!-- MSIE6 -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/style.css') }}" /> <!-- GRAPHIC THEME -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
-        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.slimbox2.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.switcher.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/toggle.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/ui.core.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/ui.tabs.js') }}"></script>
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/reset.css') }}" /> <!-- RESET -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/main.css') }}" /> <!-- MAIN STYLE SHEET -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/2col.css') }}" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+        <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/1col.css') }}" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+        <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/main-ie6.css') }}" /><![endif]--> <!-- MSIE6 -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/style.css') }}" /> <!-- GRAPHIC THEME -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.slimbox2.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.switcher.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/toggle.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/ui.core.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/ui.tabs.js') }}"></script>
         <script type="text/javascript">
         $(document).ready(function(){
                 $(".tabs > ul").tabs();
@@ -39,8 +39,8 @@
 
                         <!-- Switcher -->
                         <span class="f-left" id="switcher">
-                          <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ asset('images/switcher-1col.gif') }}" alt="1 Column" /></a>
-                          <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('images/switcher-2col.gif') }}" alt="2 Columns" /></a>
+                          <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ asset('bundles/clublayout/images/switcher-1col.gif') }}" alt="1 Column" /></a>
+                          <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('bundles/clublayout/images/switcher-2col.gif') }}" alt="2 Columns" /></a>
                         </span>
 
                         Project: <strong>ClubMaster</strong>
@@ -71,7 +71,7 @@
                         <div class="padding box">
 
                                 <!-- Logo (Max. width = 200px) -->
-                                <p id="logo"><a href="#"><img src="{{ asset('images/logo.gif') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
+                                <p id="logo"><a href="#"><img src="{{ asset('bundles/clublayout/images/logo.gif') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
 
                         </div> <!-- /padding -->
 

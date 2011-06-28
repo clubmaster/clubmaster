@@ -1,0 +1,74 @@
+/* =============================================================================
+
+	MAIN-IE6.CSS
+	updated: 2009-03-20, 12:24 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+RESET
+============================================================================= */
+
+.box {height:1%;}
+
+/* =============================================================================
+HTML
+============================================================================= */
+
+table {font-size:100%;}
+table th, table td {padding:6px 6px !important;}
+code {font-size:105%;}
+
+/* =============================================================================
+LAYOUT
+============================================================================= */
+
+#menu ul li.dropdown-on div.drop ul li a {width:200px;}
+
+/* =============================================================================
+PAGE: INDEX
+============================================================================= */
+
+#content .btn-box .btn {width:342px;}
+
+/* =============================================================================
+PAGE: GALLERY
+============================================================================= */
+
+.gallery {width:222px;}
+.gallery {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: CALENDAR
+============================================================================= */
+
+#calendar td {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: CALENDAR-02
+============================================================================= */
+
+#calendar-02 th, #calendar-02 td {padding:10px !important;}
+#calendar-02 td {background-color: expression(this.onmouseover = new Function("this.className += ' hover';"), this.onmouseout = new Function("this.className = this.className.replace(' hover', '')"));}
+
+/* =============================================================================
+PAGE: LOGIN
+============================================================================= */
+
+#login {text-align:center;}
+#main-02 {text-align:left;}
+#login-box {width:452px !important;}
+
+/* =============================================================================
+OTHERS
+============================================================================= */
+
+#aside ul li#submenu-active a {width:228px;}
+#aside ul li a, #aside ul ul li a, #aside ul li#submenu-active ul li a {width:215px;}
+#aside #btn-create a span {width:175px; background-position:0 0;}
+#aside #search fieldset .input-text {width:145px;}
+#content .col33.center {width:36%;}
+#content .tabs a {cursor:hand;}
+#content .tabs {height:30px;}
+.input-text-02 {height:39px;}
+.input-submit-02 {padding:0;}

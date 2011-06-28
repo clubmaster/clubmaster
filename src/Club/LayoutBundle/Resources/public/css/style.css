@@ -1,0 +1,163 @@
+/* =============================================================================
+
+	STYLE.CSS
+	updated: 2009-10-10, 18:30 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+HTML - styles
+============================================================================= */
+
+body {background-color:#eaeaea; color:#303030;}
+a {color:#0085cc;}
+a:hover, a:active, a:focus {color:#df0000;}
+#content h2 {color:#0085cc;}
+#content table {border:2px solid #cfcfcf;}
+#content table th {border-right:1px solid #0074B3; background-color:#0085cc; color:#fff;}
+#content table td {border:1px solid #cfcfcf;}
+#content table tr.bg td, #content table tr.odd td {background-color:#e8f6ff;}
+#content table.tablesorter th.headerSortUp, #content table.tablesorter th.headerSortDown {background-color:#0074B3;}
+#content dl dt {color:#df0000;}
+#content fieldset {border:1px solid #ccc;}
+#content legend {background:#FFF; color:#0085cc;}
+#content label.verror {color:#D00;}
+#content acronym, #content abbr, #content .help {border-bottom:1px dotted #cfcfcf;}
+
+/* =============================================================================
+HTML - without styles
+============================================================================= */
+
+table.nostyle th, dl.nostyle dt {color:#303030 !important;}
+
+/* =============================================================================
+LAYOUT
+============================================================================= */
+
+#tray {background-color:#303030; color:#cfcfcf;}
+#tray a, #tray strong {color:#fff;}
+#tray a:hover, #tray a:active, #tray a:focus {color:#b4e3ff;}
+#menu {background-color:#0085cc;}
+#menu ul li a {background-color:#fff; color:#303030;}
+#menu ul li a span {background-color:#FFF;}
+#menu ul li a:hover, #menu ul li a:active, #menu ul li a:focus, #menu ul li#menu-active a {background-color:#FFF; color:#df0000;}
+#menu ul li a:hover span, #menu ul li#menu-active a span {background-color:#FFF;}
+#menu ul li#menu-active a {color:#0085cc;}
+#menu ul.f-right a {color:#df0000;}
+#menu ul li.dropdown-on div.drop ul {border:1px solid #505050;}
+#menu ul li.dropdown-on div.drop ul li a, #menu ul li#menu-active.dropdown-on div.drop ul li a {border-bottom:1px solid #CFCFCF; background:#FFF; color:#303030;}
+#menu ul li.dropdown-on div.drop ul li a:hover, #menu ul li.dropdown-on div.drop ul li a:active, #menu ul li.dropdown-on div.drop ul li a:focus {background:#F7F7F7 !important; color:#DF0000 !important;}
+#content {border:1px solid #afafaf; background:#fff;}
+#footer {color:#707070;}
+#footer a {color:#707070;}
+#footer a:hover, #footer a:active, #footer a:focus {color:#303030;}
+
+/* =============================================================================
+PAGE: INDEX
+============================================================================= */
+
+#content .btn-box .btn {background-color:#E6E6E6;}
+#content .btn-box .btn dt {color:#000;}
+#content .btn-box .btn dt a {color:#df0000;}
+#content .btn-box .btn dt a:hover, .btn-box .btn dt a:active, .btn-box .btn dt a:focus {color:#df0000;}
+#content .btn-box .btn dd a {color:#000;}
+#content .btn-box .btn dd a:hover, #content .btn-box .btn dd a:active, #content .btn-box .btn dd a:focus {color:#df0000;}
+
+/* =============================================================================
+PAGE: GALLERY
+============================================================================= */
+
+#content .gallery {border:1px solid #B4E2FF; background:#e8f6ff;}
+#content .gallery:hover, #content .gallery.hover {border:1px solid #cfcfcf; background:#f5f5f5;}
+
+/* =============================================================================
+PAGE: CALENDAR
+============================================================================= */
+
+#content #calendar td.day:hover, #content #calendar td.day.hover {border:1px solid #cfcfcf; background:#F5F5F5;}
+#content #calendar td.today {border:3px solid #DF0000;}
+#content #calendar td.note-01 {background:#FFB;}
+#content #calendar td.note-02 {background:#DBF3FF;}
+#content #calendar td.note-03 {background:#DFF9D2;}
+#content #calendar td.note-04 {background:#FBEADF;}
+#content #calendar td.note-05 {background:#F5F5F5;}
+#content #calendar td .day-num {background:#FFF;}
+
+/* =============================================================================
+PAGE: CALENDAR-02
+============================================================================= */
+
+#content #calendar-02 th {border:0; border-bottom:1px solid #0074B3;}
+#content #calendar-02 td.day:hover, #content #calendar-02 td.day.hover {border:1px solid #cfcfcf; background:#F5F5F5;}
+#content #calendar-02 td.today {border:3px solid #DF0000;}
+#content #calendar-02 td.note-01 {background:#FFB;}
+#content #calendar-02 td.note-02 {background:#DBF3FF;}
+#content #calendar-02 td.note-03 {background:#DFF9D2;}
+#content #calendar-02 td.note-04 {background:#FBEADF;}
+#content #calendar-02 td.note-05 {background:#F5F5F5;}
+#content #calendar-02 td .day-actions {background:#FFF;}
+
+/* =============================================================================
+PAGE: FORMS
+============================================================================= */
+
+#content input.err, #content select.err, #content textarea.err {border:1px solid #DF0000; background:#FFB; color:#000;}
+#content .err {color:#DF0000;}
+
+/* =============================================================================
+PAGE: LOGIN
+============================================================================= */
+
+#main-02 {background-color:#fff;}
+
+/* =============================================================================
+OTHERS
+============================================================================= */
+
+#aside #logo img {border:1px solid #bfbfbf;}
+#aside #search fieldset a {color:#303030;}
+#aside #search fieldset {border:1px solid #bfbfbf;}
+#aside #search fieldset a:hover, #aside #search fieldset a:active, #aside #search fieldset a:focus {color:#df0000;}
+#aside #btn-create a {background-color:#fff; color:#303030;}
+#aside #btn-create a span {background-color:#fff;}
+#aside ul li a {border-bottom:1px solid #cfcfcf; color:#303030;}
+#aside ul li#submenu-active a {background-color:#df0000; color:#fff;}
+#aside ul li a:hover, #aside ul li a:active, #aside ul li a:focus {color:#df0000;}
+#aside ul ul li a, #aside ul li#submenu-active ul li a {border-bottom:1px solid #cfcfcf; background-color:#f5f5f5; color:#303030;}
+#aside ul li ul li a {background-color:#e3e3e3;}
+#aside ul ul li a:hover, #aside ul ul li a:active, #aside ul ul li a:focus, #aside ul li#submenu-active ul li a:hover, #aside ul li#submenu-active ul li a:active, #aside ul li#submenu-active ul li a:focus {color:#df0000;}
+#content h1 {background-color:#303030; color:#fff;}
+#content .box-01 {border:2px solid #F2DD8C; background:#FFF5CC;}
+#content .box-01 a {color:#303030;}
+#content .box-01 a:hover, #content .box-01 a:active, #content .box-01 a:focus {color:#df0000;}
+#content .box-02 {border:1px solid #FFCC9B; background:#FFF3E8;}
+#content a.btn, #content a.btn-create, #content a.btn-delete, #content a.btn-info, #content a.btn-list {background-color:#fff; color:#303030;}
+#content a.btn span, #content a.btn-create span, #content a.btn-delete span, #content a.btn-info span, #content a.btn-list span {background-color:#fff;}
+#content a.btn span {background-color:#fff;}
+#content .pagination .f-right a.pagination-active {background:#df0000; color:#fff;}
+#content .tabs {border-bottom:1px solid #cfcfcf;}
+#content .tabs a {color:#303030;}
+#content .tabs a span {color:#303030;}
+#content .tabs .ui-tabs-selected a {color:#fff;}
+#content .tabs .ui-tabs-selected a span {color:#fff;}
+#content .label {color:#FFF;}
+#content .label-01 {background-color:#D00;}
+#content .label-02 {background-color:#27AE0A;}
+#content .label-03 {background-color:#0A79AE;}
+#content .label-04 {background-color:#FC4; color:#000;}
+#content .label-05 {background-color:#555;}
+#content .label-06 {background-color:#555;}
+#content .label-06 a {color:#FFF;}
+.high {color:#df0000;}
+.high-bg {background:#FFB;}
+.low {color:#707070;}
+
+/* =============================================================================
+MESSAGES
+============================================================================= */
+
+.msg.warning {border:2px solid #F2DD8C; background-color:#FFF5CC;}
+.msg.warning a {color:#df0000;} .msg.warning a:hover, .msg.warning a:active, .msg.warning a:focus {color:#303030;}
+.msg.info {border:2px solid #B8E2FB; background-color:#E8F6FF;}
+.msg.done {border:2px solid #BBDF8D; background-color:#EAF7D9;}
+.msg.error {border:2px solid #FFAEAE; background-color:#FEEBEB;}
