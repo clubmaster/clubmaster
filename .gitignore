@@ -19,3 +19,4 @@ vendor/swiftmailer/
 vendor/symfony/
 vendor/twig-extensions/
 vendor/twig/
+web/bundles
