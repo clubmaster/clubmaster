@@ -1,5 +1,4 @@
 == before next release ==
-- style create new user page
 - style filters
 - installer
   - welcome

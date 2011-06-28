@@ -46,19 +46,23 @@
                         Project: <strong>ClubMaster</strong>
                 </p>
 
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <p class="f-right">
-                User: <strong>{% render "ClubUserBundle:Misc:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Location: <strong><a href="{{ path('club_user_location_index') }}">{% render "ClubUserBundle:Misc:getLocation" %}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                User: <strong>{{ app.user }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Location: <strong><a href="{{ path('club_user_location_index') }}">{{ app.user.location.locationName }}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                {% endif %}
 
         </div> <!--  /tray -->
 
         <hr class="noscreen" />
 
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <!-- Menu -->
         <div id="menu" class="box">
           {% include "ClubLayoutBundle:Default:top_menu.html.twig" %}
         </div> <!-- /header -->
+        {% endif %}
 
         <hr class="noscreen" />
 
