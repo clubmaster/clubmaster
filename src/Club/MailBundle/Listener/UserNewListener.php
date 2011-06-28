@@ -29,7 +29,7 @@ class UserNewListener
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Default:user_new.html.twig',array(
           'user' => $user,
-          'url' => $this->router->generate('club_user_auth_activate',array('hash' => $user->getActivationHash()),1)
+          'url' => $this->router->generate('club_user_auth_activate',array('hash' => $user->getActivationCode()),1)
         )));
 
       $this->mailer->send($message);

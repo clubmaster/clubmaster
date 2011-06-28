@@ -87,11 +87,11 @@ class User implements UserInterface, \Serializable
     private $expired;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", nullable="true")
      *
-     * @var boolean $activated
+     * @var boolean $activation_code
      */
-    private $activated;
+    private $activation_code;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
@@ -487,7 +487,11 @@ class User implements UserInterface, \Serializable
      */
     public function prePersist()
     {
-      $this->setCreatedAt(new \DateTime());
+      if (!$this->getId()) {
+        $this->setActivationCode(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        $this->setCreatedAt(new \DateTime());
+      }
+
       $this->setUpdatedAt(new \DateTime());
     }
 
@@ -657,22 +661,22 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set activated
+     * Set activation_code
      *
-     * @param boolean $activated
+     * @param string $activationCode
      */
-    public function setActivated($activated)
+    public function setActivationCode($activationCode)
     {
-        $this->activated = $activated;
+        $this->activation_code = $activationCode;
     }
 
     /**
-     * Get activated
+     * Get activation_code
      *
-     * @return boolean $activated
+     * @return string $activationCode
      */
-    public function getActivated()
+    public function getActivationCode()
     {
-        return $this->activated;
+        return $this->activation_code;
     }
 }

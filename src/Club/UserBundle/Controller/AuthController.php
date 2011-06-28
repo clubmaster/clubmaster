@@ -144,37 +144,39 @@ class AuthController extends Controller
    * @Route("/auth/activate/{hash}")
    * @Template()
    */
-  public function activateAction()
+  public function activateAction($hash)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = new \Club\UserBundle\Entity\User();
-    $profile = new \Club\UserBundle\Entity\Profile();
-    $user->setProfile($profile);
-    $profile->setUser($user);
-    $user = $this->getUser($user);
-    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+    $user = $em->getRepository('ClubUserBundle:User')->findOneBy(array(
+      'activation_code' => $hash
+    ));
 
-    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+    if (!$user)
+      return $this->redirect($this->generateUrl('homepage'));
+
+    $form = $this->createForm(new \Club\UserBundle\Form\ActivateUser(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
+        $user->setActivationCode(null);
         $em->persist($user);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your account has been created');
+        $this->get('session')->setFlash('notice','Your account has been activated');
 
         $event = new \Club\UserBundle\Event\FilterUserEvent($user);
-        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
+        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserActivate, $event);
 
         return $this->redirect($this->generateUrl('homepage'));
       }
     }
 
     return array(
-      'form' => $form->createView()
+      'form' => $form->createView(),
+      'user' => $user
     );
   }
 

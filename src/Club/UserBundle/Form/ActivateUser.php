@@ -5,11 +5,11 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class ForgotPassword extends AbstractType
+class ActivateUser extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('password', 'repeated', array(
+    $builder->add('password','repeated', array(
       'first_name' => 'Password',
       'second_name' => 'Password again',
       'type' => 'password'
