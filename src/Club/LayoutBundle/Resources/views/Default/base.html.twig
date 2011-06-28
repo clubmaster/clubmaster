@@ -46,7 +46,10 @@
                         Project: <strong>ClubMaster</strong>
                 </p>
 
-                <p class="f-right">User: <strong>{% render "ClubUserBundle:Misc:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                <p class="f-right">
+                User: <strong>{% render "ClubUserBundle:Misc:getUsername" %}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Location: <strong><a href="">{% render "ClubUserBundle:Misc:getLocation" %}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
 
         </div> <!--  /tray -->
 

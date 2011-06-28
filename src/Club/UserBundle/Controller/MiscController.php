@@ -14,4 +14,11 @@ class MiscController extends Controller
     $user = $this->get('security.context')->getToken()->getUser();
     return new Response($user->getProfile()->getName());
   }
+
+  public function getLocationAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    return new Response($user->getLocation()->getLocationName());
+  }
+
 }
