@@ -36,12 +36,12 @@ _group:
   prefix: /admin
 
 _location:
-  resource: "@ClubUserBundle/Controller/LocationController.php"
+  resource: "@ClubUserBundle/Controller/AdminLocationController.php"
   type: annotation
   prefix: /admin
 
 _location_config:
-  resource: "@ClubUserBundle/Controller/LocationConfigController.php"
+  resource: "@ClubUserBundle/Controller/AdminLocationConfigController.php"
   type: annotation
   prefix: /admin
 

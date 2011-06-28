@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class LocationController extends Controller
+class AdminLocationController extends Controller
 {
   /**
    * @Template()
@@ -16,7 +16,7 @@ class LocationController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $locations = $em->getRepository('\Club\UserBundle\Entity\Location')->findAll();
+    $locations = $em->getRepository('ClubUserBundle:Location')->findAll();
 
     return array(
       'locations' => $locations
@@ -47,7 +47,7 @@ class LocationController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $location = $em->find('Club\UserBundle\Entity\Location',$id);
+    $location = $em->find('ClubUserBundle:Location',$id);
 
     $res = $this->process($location);
 

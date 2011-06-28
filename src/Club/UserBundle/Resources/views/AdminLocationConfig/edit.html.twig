@@ -4,7 +4,7 @@
 {% block body %}
 
 <form method="post" action="{{ path('admin_location_config_edit', {'id':config.id}) }}">
-{% include "ClubUserBundle:LocationConfig:form.html.twig" with {'form': form} %}
+{% include "ClubUserBundle:AdminLocationConfig:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}
