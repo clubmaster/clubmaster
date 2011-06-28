@@ -14,6 +14,7 @@
 - put images on links
 - fix layout, single and double column
 - check symfony2 installer for checkout style
+- remove curl from install and add more to dev installer sql
 - doctrine migrations
 
 == todo ==
@@ -56,9 +57,6 @@
 - remove all names from route, and use defaults
 - rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
-- create an address interface for Order/Cart/ProfileAddress
-
-== schema ==
 
 == graphics ==
 - event calendar view

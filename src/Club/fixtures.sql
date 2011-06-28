@@ -5,14 +5,6 @@ INSERT INTO club_user_location (location_name,currency_id,location_id) VALUES
   ('Aalborg Tennis Club',1,2),
   ('Gug Tennis Club',1,2);
 
-INSERT INTO club_user_filter (filter_name) VALUES
-  ('All women'),
-  ('All from Denmark');
-
-INSERT INTO club_user_filter_attribute (filter_id,attribute_id,value) VALUES
-  (1,3,'female'),
-  (2,6,1);
-
 INSERT INTO club_user_location_config (location_id,config_id,value) VALUES
   (1,1,'localhost'),
   (2,1,'localhost'),
