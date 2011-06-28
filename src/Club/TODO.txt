@@ -8,7 +8,6 @@
 - rewrite default settings for language and accounts
 - style filters
 - style create new user page
-- put images on links
 - fix layout, single and double column
 - check symfony2 installer for checkout style
 - doctrine migrations
@@ -42,6 +41,7 @@
 - make sure tasks can by build with a dynamic event class
 - find a way the bundles can add menu items to the menus
   - menu, and priority
+- fix the menu and add active to right element
 
 == task ==
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
