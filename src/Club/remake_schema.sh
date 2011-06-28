@@ -7,6 +7,7 @@ php ../../app/console doctrine:database:drop --force
 php ../../app/console doctrine:database:create
 php ../../app/console doctrine:schema:create
 php ../../app/console doctrine:fixtures:load
+php ../../app/console assets:install ../../web
 
 mysql -u root clubmaster_v2 < fixtures.sql
 
