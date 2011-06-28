@@ -1,10 +1,10 @@
 == before next release ==
-- make sure filter actually works and filter users correct
 - installer
   - welcome
   - database config
   - administrator user
   - system settings
+- make sure filter actually works and filter users correct
 - rewrite default settings for language and accounts
 - style filters
 - style create new user page
