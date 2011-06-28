@@ -18,7 +18,9 @@ class GroupController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $groups = $em->getRepository('\Club\UserBundle\Entity\Group')->findAll();
+    $groups = $em->getRepository('ClubUserBundle:Group')->findBy(array(),
+      array('group_name'=>'ASC')
+    );
 
     return $this->render('ClubUserBundle:Group:index.html.twig',array(
       'groups' => $groups
@@ -49,7 +51,7 @@ class GroupController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $group = $em->find('Club\UserBundle\Entity\Group',$id);
+    $group = $em->find('ClubUserBundle:Group',$id);
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)
