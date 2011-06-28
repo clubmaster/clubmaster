@@ -57,13 +57,20 @@ class EventController extends Controller
       $attend->setPaid(0);
     }
 
-    $em->persist($attend);
-    $em->flush();
+    $errors = $this->get('validator')->validate($attend);
+    if (count($errors) > 0) {
+      foreach ($errors as $error) {
+        $this->get('session')->setFlash('error',$error->getMessage());
+      }
+    } else {
+      $em->persist($attend);
+      $em->flush();
 
-    $this->get('session')->setFlash('notice','You are now signup for this event.');
+      $this->get('session')->setFlash('notice','You are now signup for this event.');
 
-    $e = new \Club\EventBundle\Event\FilterEventEvent($event);
-    $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
+      $e = new \Club\EventBundle\Event\FilterEventEvent($event);
+      $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
+    }
 
     return $this->redirect($this->generateUrl('event_event'));
   }

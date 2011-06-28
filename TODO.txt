@@ -6,18 +6,18 @@
   - administrator user
   - system settings
 - rewrite default settings for language and accounts
-- event custom validator ( more attend than max attends )
-- add images to products
 - style filters
 - style create new user page
 - style product page
 - style product listing
+- style change location page
 - put images on links
 - fix layout, single and double column
 - check symfony2 installer for checkout style
 - doctrine migrations
 
 == todo ==
+- add images to products
 - sort user lists
 - add batch to user list
 - add search to order
