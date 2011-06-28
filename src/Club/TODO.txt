@@ -6,11 +6,8 @@
   - system settings
 - make sure filter actually works and filter users correct
 
-== tests data ==
-- add some more test data
-- add some lorem ipsum data
-
 == todo ==
+- add 365 date icons
 - fix layout, single and double column
 - configurable sender email
 - add filter items (name, member_number)
@@ -62,6 +59,10 @@
 - make sure all pages are html validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
+
+== tests data ==
+- add some more test data
+- add some lorem ipsum data
 
 == security ==
 - cannot edit orders that you do not own
