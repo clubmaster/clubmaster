@@ -12,4 +12,35 @@ use Doctrine\ORM\EntityRepository;
  */
 class Order extends EntityRepository
 {
+  public function getCount($filter = array())
+  {
+    $qb = $this->getQueryBuilder();
+
+    return $qb
+      ->select('COUNT(o)')
+      ->getQuery()
+      ->getSingleScalarResult();
+  }
+
+  public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0) {
+    $qb = $this->getQueryBuilder();
+
+    if ((isset($offset)) && (isset($limit))) {
+      if ($limit > 0) {
+        $qb->setFirstResult($offset);
+        $qb->setMaxResults($limit);
+      }
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
+
+  private function getQueryBuilder()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('o')
+      ->from('ClubShopBundle:Order','o');
+  }
 }

@@ -15,10 +15,14 @@ class AdminOrderController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $orders = $em->getRepository('\Club\ShopBundle\Entity\Order')->findAll();
+
+    $count = $em->getRepository('ClubShopBundle:Order')->getCount();
+    $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('admin_shop_order'));
+    $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination(null, null, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
-      'orders' => $orders
+      'orders' => $orders,
+      'paginator' => $paginator
     );
   }
 
