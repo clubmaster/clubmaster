@@ -1,5 +1,4 @@
 == before next release ==
-- debug window gone?
 - style filters
 - installer
   - welcome
@@ -7,14 +6,14 @@
   - administrator user
   - system settings
 - make sure filter actually works and filter users correct
-- fix layout, single and double column
-- configurable sender email
 
 == tests data ==
 - add some more test data
 - add some lorem ipsum data
 
 == todo ==
+- fix layout, single and double column
+- configurable sender email
 - add filter items (name, member_number)
 - find out the syntax for member_numbers
 - add images to products

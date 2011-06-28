@@ -14,12 +14,6 @@ security:
           entity: { class: Club\UserBundle\Entity\User, property: member_number }
 
     firewalls:
-        profiler:
-          pattern: ^/_profiler.*
-          security: false
-        wdt:
-          pattern: ^/_wdt
-          security: false
         main:
             form_login:
                 check_path: /login_check
@@ -31,6 +25,8 @@ security:
             anonymous: true
 
     access_control:
+        - { path: /_profiler.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /_wdt.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /auth/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /rest.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
