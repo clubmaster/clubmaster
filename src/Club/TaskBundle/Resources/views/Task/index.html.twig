@@ -7,7 +7,6 @@
 <table>
   <thead>
     <tr>
-      <th>[x]</th>
       <th>Task</th>
       <th>Enabled</th>
       <th>Locked</th>
@@ -19,28 +18,27 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="8">&#160;</td>
+      <td colspan="7">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for task in tasks %}
     <tr>
-      <td><input type="checkbox" /></td>
       <td>{{ task.taskName }}</td>
-      <td>{{ task.enabled }}</td>
-      <td>{{ task.locked }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':task.enabled} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':task.locked} %}</td>
       <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.taskInterval }}</td>
       <td>
-        <a href="{{ path('admin_task_disable', {'id':task.id}) }}">Disable</a>
-        <a href="{{ path('admin_task_enable', {'id':task.id}) }}">Enable</a>
-        <a href="{{ path('admin_task_run', {'id':task.id}) }}">Run</a>
+        <a href="{{ path('admin_task_disable', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-delete.gif') }}" title="Disable" alt="disable" /></a>
+        <a href="{{ path('admin_task_enable', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" title="Enable" alt="enable" /></a>
+        <a href="{{ path('admin_task_run', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-settings.gif') }}" title="Run" alt="run" /></a>
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="8">There are no tasks at the time</td>
+    <td colspan="7">There are no tasks at the time</td>
   </tr>
   {% endfor %}
   </tbody>
