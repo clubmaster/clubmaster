@@ -13,13 +13,5 @@ php ../../app/console assets:install ../../web
 
 mysql -u root clubmaster_v2 < fixtures.sql
 
-echo ""
-
-sudo chmod 777 -R ../../app/logs ../../app/cache
-
-sh curl/add_user.sh
-sh curl/add_user_role.sh
-sh curl/add_event.sh
-
 sudo chmod 777 -R ../../app/logs ../../app/cache
 sudo chown www-data:www-data ../../app/cache ../../app/logs
