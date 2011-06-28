@@ -3,6 +3,7 @@
 {% block body %}
 <h2>Locations</h2>
 
+<p>If you want to change your current location, just click on the location you want to go to.</p>
 {% for location in locations %}
   <p><a href="{{ path('club_user_location_switch', {'id':location.id}) }}">{{ location.locationName }}</a></p>
 {% endfor %}

@@ -8,7 +8,6 @@
 - rewrite default settings for language and accounts
 - style filters
 - style create new user page
-- style change location page
 - put images on links
 - fix layout, single and double column
 - check symfony2 installer for checkout style
