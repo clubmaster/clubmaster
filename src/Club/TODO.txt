@@ -1,5 +1,4 @@
 == before next release ==
-- style filters
 - installer
   - welcome
   - database config

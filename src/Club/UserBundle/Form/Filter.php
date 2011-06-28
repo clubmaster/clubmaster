@@ -30,8 +30,12 @@ class Filter extends AbstractType
       ),
       'required' => false
     ));
-    $builder->add('postal_code', 'text');
-    $builder->add('city', 'text');
+    $builder->add('postal_code', 'text', array(
+      'required' => false
+    ));
+    $builder->add('city', 'text', array(
+      'required' => false
+    ));
     $builder->add('country', 'entity', array(
       'class' => 'Club\UserBundle\Entity\Country',
       'required' => false
