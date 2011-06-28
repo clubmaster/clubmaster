@@ -1,6 +1,5 @@
 == before next release ==
 - make sure filter actually works and filter users correct
-- cannot save user as admin without change language
 - installer
   - welcome
   - database config
