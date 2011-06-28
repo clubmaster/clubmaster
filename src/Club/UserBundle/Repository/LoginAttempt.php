@@ -12,43 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class LoginAttempt extends EntityRepository
 {
-  public function findAll()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:LoginAttempt','l')
-      ->orderBy('l.id','DESC')
-      ->getQuery()
-      ->getResult();
-  }
-
-  public function getCount()
-  {
-    return $this->getQueryBuilder()
-      ->select('COUNT(l)')
-      ->getQuery()
-      ->getSingleScalarResult();
-  }
-
-  public function getWithPagination($offset = 0, $limit = 0) {
-    $qb = $this->getQueryBuilder();
-
-    if ((isset($offset)) && (isset($limit))) {
-      if ($limit > 0) {
-        $qb->setFirstResult($offset);
-        $qb->setMaxResults($limit);
-      }
-    }
-
-    return $qb
-      ->getQuery()
-      ->getResult();
-  }
-
-  private function getQueryBuilder()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:LoginAttempt','l');
-  }
 }
