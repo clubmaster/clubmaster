@@ -2,13 +2,20 @@
 
 
 {% block body %}
+<p class="box"><a class="btn-create" href="{{ path("shop_product_cart",{"id":product.id}) }}"><span>Add to cart</span></a></p>
 
-<h2>{{ product.productName }}</h2>
+<div class="box-03 noimage box">
 
-<p>
-Product Name: {{ product.productName }}<br />
-Price: {{ product.price }}<br />
-</p>
-<p><a href="{{ path("shop_product_cart",{"id":product.id}) }}">Add to cart</a></p>
+  <h2 class="nomb">{{ product.productName }}</h2>
+  <p class="nomt low">
+    Price: {{ product.price }}<br />
+    Vat price: {{ product.vatPrice }}<br />
+  </p>
+  <h2>Description</h2>
+  <p>{{ product.description|raw }}</p>
+
+</div> <!-- /box-03 -->
+
+
 
 {% endblock %}

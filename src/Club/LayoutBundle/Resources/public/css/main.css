@@ -117,6 +117,7 @@ PAGE: FILES
 #content .box-03.others {background:url("../images/ico-others.gif") 0 3px no-repeat;}
 #content .box-03.event {background:url("../images/icons/50/Actions-view-calendar-upcoming-events-icon.png") 0 3px no-repeat;}
 #content .box-03.log {background:url("../images/icons/50/Sign-Alert-icon.png") 0 3px no-repeat;}
+#content .box-03.noimage {background:url("../images/icons/50/Status-image-missing-icon.png") 0 3px no-repeat;}
 
 /* =============================================================================
 PAGE: CALENDAR

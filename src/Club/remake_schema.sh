@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 sudo rm -rf ../../app/cache/*
 sudo chmod 777 ../../app/logs ../../app/cache
+
+#php ../../bin/vendors install
 
 php ../../app/console doctrine:database:drop --force
 php ../../app/console doctrine:database:create
