@@ -5,12 +5,9 @@
   - database config
   - administrator user
   - system settings
-- event custom validator ( more attend than max attends )
 - rewrite default settings for language and accounts
+- event custom validator ( more attend than max attends )
 - add images to products
-- sort user lists
-- add batch to user list
-- add search to order
 - style filters
 - style create new user page
 - style product page
@@ -21,6 +18,9 @@
 - doctrine migrations
 
 == todo ==
+- sort user lists
+- add batch to user list
+- add search to order
 - member of a location will also be member to child locations
 - merge users
 - remember to set a subscription to inactive when no more tickets
