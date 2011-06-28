@@ -10,7 +10,6 @@
 - add images to products
 - sort user lists
 - add batch to user list
-- add pager to ledger
 - add pager to order
 - add search to order
 - style filters

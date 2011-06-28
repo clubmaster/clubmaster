@@ -9,6 +9,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminLedgerController extends Controller
 {
   /**
+   * @Route("/account/ledger/{id}")
+   * @Template()
+   */
+  public function indexAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = array(
+      'account' => $id
+    );
+    $count = $em->getRepository('ClubAccountBundle:Ledger')->getCount($filter);
+    $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('club_account_adminledger_index',
+      array('id' => $id
+    )));
+    $ledgers = $em->getRepository('ClubAccountBundle:Ledger')->getWithPagination($filter, null, $paginator->getOffset(), $paginator->getLimit());
+
+    return array(
+      'paginator' => $paginator,
+      'ledgers' => $ledgers
+    );
+  }
+
+  /**
    * @Route("/account/ledger/new")
    * @Template
    */
@@ -33,23 +56,6 @@ class AdminLedgerController extends Controller
 
     return array(
       'form' => $form->createView()
-    );
-  }
-
-  /**
-   * @Route("/account/ledger/{id}")
-   * @Template()
-   */
-  public function indexAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $ledgers = $em->getRepository('ClubAccountBundle:Ledger')->findBy(array(
-      'account' => $id
-    ));
-
-    return array(
-      'ledgers' => $ledgers
     );
   }
 }
