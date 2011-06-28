@@ -5,7 +5,6 @@
   - administrator user
   - system settings
 - make sure filter actually works and filter users correct
-- rewrite default settings for language and accounts
 - style filters
 - style create new user page
 - fix layout, single and double column

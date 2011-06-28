@@ -46,16 +46,16 @@ class Paginator {
         if (isset($_GET['limit'])) {
             $this->limit = $_GET['limit'];
         } else {   //else set default limit to 20
-            $this->limit = 10;
+            $this->limit = 50;
         }
         //If currentpage is set to null or is set to 0 or less
         //set it to default (1)
         if (($this->currentpage == null) || ($this->currentpage < 1)) {
             $this->currentpage = 1;
         }
-        //if limit is set to null set it to default (10)
+        //if limit is set to null set it to default (50)
         if (($this->limit == null)) {
-            $this->limit = 10;
+            $this->limit = 50;
             //if limit is any number less than 1 then set it to 0 for displaying
             //items without limit
         } else if ($this->limit < 1) {
