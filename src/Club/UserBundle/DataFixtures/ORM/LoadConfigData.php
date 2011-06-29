@@ -9,10 +9,6 @@ class LoadConfigData implements FixtureInterface
   public function load($manager)
   {
     $configs = array();
-    $configs[] = 'smtp_host';
-    $configs[] = 'smtp_port';
-    $configs[] = 'smtp_username';
-    $configs[] = 'smtp_password';
     $configs[] = 'account_default_income';
     $configs[] = 'account_default_vat';
     $configs[] = 'default_language';

@@ -46,6 +46,7 @@ class Profile
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
      */
     private $day_of_birth;
 

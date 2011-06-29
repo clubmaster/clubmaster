@@ -4,27 +4,20 @@ namespace Club\InstallerBundle\Step;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class DatabaseStep
+class LocationStep
 {
   /**
    * @Assert\NotBlank()
    */
-  public $host;
+  public $location;
 
   /**
    * @Assert\NotBlank()
    */
-  public $port = '3306';
+  public $language;
 
   /**
    * @Assert\NotBlank()
    */
-  public $dbname;
-
-  /**
-   * @Assert\NotBlank()
-   */
-  public $user;
-
-  public $password;
+  public $currency;
 }

@@ -5,18 +5,17 @@ namespace Club\InstallerBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class LocationStep extends AbstractType
+class AdministratorEmail extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('location_name');
-    $builder->add('currency');
+    $builder->add('email_address');
   }
 
   public function getDefaultOptions(array $options)
   {
     return array(
-      'data_class' => 'Club\UserBundle\Entity\Location'
+      'data_class' => 'Club\UserBundle\Entity\ProfileEmail'
     );
   }
 }

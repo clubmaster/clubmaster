@@ -13,6 +13,7 @@ TRUNK_PATH=`pwd`/../../
 
 cp -r ${TRUNK_PATH} ${BUILD_PATH}
 cp README ${BUILD_PATH}
+cp install.sh ${BUILD_PATH}
 
 rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/deps

@@ -23,13 +23,31 @@ class InstallerController extends Controller
    */
   public function administratorAction()
   {
-    $step = new \Club\InstallerBundle\Step\AdministratorStep();
-    $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $step);
+    $em = $this->getDoctrine()->getEntityManager();
+
+    if ($this->get('session')->get('installer_user_id')) {
+      $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
+    } else {
+      $user = new \Club\UserBundle\Entity\User();
+      $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+      $profile = new \Club\UserBundle\Entity\Profile();
+      $user->setProfile($profile);
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setContactType('home');
+      $email->setIsDefault(1);
+      $profile->addProfileEmail($email);
+    }
+
+    $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->set('installer_user_id',$user->getId());
         return $this->redirect($this->generateUrl('club_installer_installer_location'));
       }
     }
@@ -45,13 +63,22 @@ class InstallerController extends Controller
    */
   public function locationAction()
   {
-    $step = new \Club\InstallerBundle\Step\LocationStep();
-    $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $step);
+    $em = $this->getDoctrine()->getEntityManager();
+    if ($this->get('session')->get('installer_location_id')) {
+      $location = $em->find('ClubUserBundle:Location',$this->get('session')->get('installer_location_id'));
+    } else {
+      $location = new \Club\UserBundle\Entity\Location();
+    }
+    $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        $em->persist($location);
+        $em->flush();
+
+        $this->get('session')->set('installer_location_id',$location->getId());
         return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
       }
     }

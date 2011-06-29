@@ -1,8 +1,7 @@
 == before next release ==
 - installer
-  - welcome
   - administrator user
-  - system settings
+  - location settings
 - make sure filter actually works and filter users correct
 
 == todo ==
