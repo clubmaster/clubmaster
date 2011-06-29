@@ -6,8 +6,26 @@
 <p>This is the installer program of ClubMaster.</p>
 
 <form method="post" action="">
-{{ form_widget(form) }}
-<input type="submit" />
+  <fieldset>
+    <legend>Personal Information</legend>
+
+    <p>{{ form_row(form.profile.first_name) }}</p>
+    <p>{{ form_row(form.profile.last_name) }}</p>
+    <p>{{ form_row(form.profile.profile_email.0.email_address) }}</p>
+    <p>{{ form_row(form.profile.gender) }}</p>
+    <p>{{ form_row(form.profile.day_of_birth) }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Account Information</legend>
+
+    <p>{{ form_row(form.language) }}</p>
+    <p>{{ form_row(form.password) }}</p>
+
+    {{ form_row(form._token) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </fieldset>
 </form>
 
 <p>ClubMaster team</p>
