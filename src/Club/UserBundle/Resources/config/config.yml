@@ -5,3 +5,5 @@ services:
   success.password.handler:
     class: Club\UserBundle\Helper\SuccessPasswordHandler
     arguments: [@doctrine.orm.entity_manager]
+  clubmaster.version:
+    class: Club\UserBundle\Helper\Version
