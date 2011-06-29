@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VERSION=`cat UserBundle/Helper/Version.php  | grep "protected $version" | cut -d"'" -f2`
-BUILD_PATH=/tmp/clubmaster-${VERSION}
+BUILD_PATH=/tmp/clubmaster_${VERSION}
 
 if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
@@ -21,8 +21,6 @@ rm -rf ${BUILD_PATH}/deps.lock
 rm -rf ${BUILD_PATH}/app/cache/*
 rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
 rm -rf ${BUILD_PATH}/app/logs/*
-rm -rf ${BUILD_PATH}/app/config/*_dev.yml
-rm -rf ${BUILD_PATH}/app/config/*_test.yml
 rm -rf ${BUILD_PATH}/web/index_dev.php
 rm -rf ${BUILD_PATH}/src/Club/fixtures.sql
 rm -rf ${BUILD_PATH}/src/Club/build.sh
@@ -49,4 +47,4 @@ cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
 EOF
 
 cd /tmp
-tar czf clubmaster_${VERSION}.tgz clubmaster-${VERSION}
+tar czf clubmaster_${VERSION}.tgz clubmaster_${VERSION}

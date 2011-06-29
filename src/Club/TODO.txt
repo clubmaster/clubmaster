@@ -1,3 +1,6 @@
+== before next release ==
+- make sure user know how to login after confirmed page.
+
 == todo ==
 - add config keys for locations
 - make sure filter actually works and filter users correct
