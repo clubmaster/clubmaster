@@ -1,9 +1,7 @@
-== before next release ==
-- add config keys for locations
-- fix style on installer
-- make sure filter actually works and filter users correct
-
 == todo ==
+- add config keys for locations
+- make sure filter actually works and filter users correct
+- make sure nobody can access the installer after install
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - obey rules of club_user_currency

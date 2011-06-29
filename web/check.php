@@ -188,7 +188,7 @@ if (ini_get('session.auto_start')) {
 
                     <ul class="symfony-install-continue">
                         <?php if (!count($majorProblems)): ?>
-                            <li><a href="index_dev.php/installer">Configure your ClubMaster Application online</a></li>
+                            <li><a href="index.php/installer">Configure your ClubMaster Application online</a></li>
                         <?php endif ?>
                         <li><a href="check.php">Re-check configuration</a></li>
                     </ul>
