@@ -1,5 +1,4 @@
 == before next release ==
-- when adding locations, has to be a child of ClubMaster
 - check permissions in installer script
 - installer
   - administrator user
@@ -8,6 +7,9 @@
 - make sure filter actually works and filter users correct
 
 == todo ==
+- review the entire location overview, is it easy to understand by the user (config, parent and child)
+- add config keys for locations
+- on location config better widgets
 - add 365 date icons
 - fix layout, single and double column
 - configurable sender email
