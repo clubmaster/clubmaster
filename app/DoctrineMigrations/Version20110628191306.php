@@ -21,9 +21,9 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("CREATE TABLE club_user_user_note (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, note LONGTEXT NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_796D8BEAA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_filter_attribute (id INT AUTO_INCREMENT NOT NULL, attribute_id INT DEFAULT NULL, filter_id INT DEFAULT NULL, value VARCHAR(255) DEFAULT NULL, INDEX IDX_C0591B7CB6E62EFA (attribute_id), INDEX IDX_C0591B7CD395B25E (filter_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_profile_address (id INT AUTO_INCREMENT NOT NULL, profile_id INT DEFAULT NULL, country_id INT DEFAULT NULL, street VARCHAR(255) NOT NULL, suburl VARCHAR(255) DEFAULT NULL, postal_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, state VARCHAR(255) DEFAULT NULL, contact_type VARCHAR(255) NOT NULL, is_default TINYINT(1) NOT NULL, INDEX IDX_753AFDDCCCFA12B8 (profile_id), INDEX IDX_753AFDDCF92F3E70 (country_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_user_group (id INT AUTO_INCREMENT NOT NULL, group_id INT DEFAULT NULL, group_name VARCHAR(255) NOT NULL, group_type VARCHAR(255) NOT NULL, gender VARCHAR(255) DEFAULT NULL, min_age INT DEFAULT NULL, max_age INT DEFAULT NULL, is_active_member TINYINT(1) NOT NULL, INDEX IDX_C6C4F170FE54D947 (group_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE group_role (group_id INT NOT NULL, role_id INT NOT NULL, INDEX IDX_7E33D11AFE54D947 (group_id), INDEX IDX_7E33D11AD60322AC (role_id), PRIMARY KEY(group_id, role_id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_group_location (group_id INT NOT NULL, location_id INT NOT NULL, INDEX IDX_9B1F7567FE54D947 (group_id), INDEX IDX_9B1F756764D218E (location_id), PRIMARY KEY(group_id, location_id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_user_group (id INT AUTO_INCREMENT NOT NULL, group_id INT DEFAULT NULL, group_name VARCHAR(255) NOT NULL, group_type VARCHAR(255) NOT NULL, gender VARCHAR(255) DEFAULT NULL, min_age INT DEFAULT NULL, max_age INT DEFAULT NULL, is_active_member TINYINT(1) DEFAULT NULL, INDEX IDX_C6C4F170FE54D947 (group_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_user_group_role (group_id INT NOT NULL, role_id INT NOT NULL, INDEX IDX_7E33D11AFE54D947 (group_id), INDEX IDX_7E33D11AD60322AC (role_id), PRIMARY KEY(group_id, role_id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_user_group_location (group_id INT NOT NULL, location_id INT NOT NULL, INDEX IDX_9B1F7567FE54D947 (group_id), INDEX IDX_9B1F756764D218E (location_id), PRIMARY KEY(group_id, location_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE group_product (group_id INT NOT NULL, product_id INT NOT NULL, INDEX IDX_554A50A1FE54D947 (group_id), INDEX IDX_554A50A14584665A (product_id), PRIMARY KEY(group_id, product_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_user_group (group_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_37734BAFFE54D947 (group_id), INDEX IDX_37734BAFA76ED395 (user_id), PRIMARY KEY(group_id, user_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_config (id INT AUTO_INCREMENT NOT NULL, config_key VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_6F2A6CCA95D1CAA6 (config_key), PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -36,7 +36,6 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("CREATE TABLE location_mail (location_id INT NOT NULL, mail_id INT NOT NULL, INDEX IDX_D122190864D218E (location_id), INDEX IDX_D1221908C8776F01 (mail_id), PRIMARY KEY(location_id, mail_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_profile_company (id INT AUTO_INCREMENT NOT NULL, profile_id INT DEFAULT NULL, company_name VARCHAR(255) NOT NULL, cvr VARCHAR(255) NOT NULL, is_default TINYINT(1) NOT NULL, INDEX IDX_37CB9B12CCFA12B8 (profile_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_role (id INT AUTO_INCREMENT NOT NULL, role_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE role_group (role_id INT NOT NULL, group_id INT NOT NULL, INDEX IDX_9A1CACEAD60322AC (role_id), INDEX IDX_9A1CACEAFE54D947 (group_id), PRIMARY KEY(role_id, group_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_profile_email (id INT AUTO_INCREMENT NOT NULL, profile_id INT DEFAULT NULL, email_address VARCHAR(255) DEFAULT NULL, contact_type VARCHAR(255) NOT NULL, is_default TINYINT(1) NOT NULL, INDEX IDX_607BB7F3CCFA12B8 (profile_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_filter (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, filter_name VARCHAR(255) NOT NULL, is_active TINYINT(1) NOT NULL, INDEX IDX_C4641CABA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_location_config (id INT AUTO_INCREMENT NOT NULL, config_id INT DEFAULT NULL, location_id INT DEFAULT NULL, value VARCHAR(255) DEFAULT NULL, INDEX IDX_3432EBBF24DB0683 (config_id), INDEX IDX_3432EBBF64D218E (location_id), PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -93,10 +92,10 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_user_profile_address ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");
         $this->addSql("ALTER TABLE club_user_profile_address ADD FOREIGN KEY (country_id) REFERENCES club_user_country(id)");
         $this->addSql("ALTER TABLE club_user_group ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
-        $this->addSql("ALTER TABLE group_role ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE group_role ADD FOREIGN KEY (role_id) REFERENCES club_user_role(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_group_location ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
-        $this->addSql("ALTER TABLE club_group_location ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
+        $this->addSql("ALTER TABLE club_user_group_role ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_user_group_role ADD FOREIGN KEY (role_id) REFERENCES club_user_role(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_user_group_location ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
+        $this->addSql("ALTER TABLE club_user_group_location ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
         $this->addSql("ALTER TABLE group_product ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE group_product ADD FOREIGN KEY (product_id) REFERENCES club_shop_product(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_user_user_group ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
@@ -111,8 +110,6 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE location_mail ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE location_mail ADD FOREIGN KEY (mail_id) REFERENCES club_mail(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_user_profile_company ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");
-        $this->addSql("ALTER TABLE role_group ADD FOREIGN KEY (role_id) REFERENCES club_user_role(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE role_group ADD FOREIGN KEY (group_id) REFERENCES club_user_group(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_user_profile_email ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");
         $this->addSql("ALTER TABLE club_user_filter ADD FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_user_location_config ADD FOREIGN KEY (config_id) REFERENCES club_user_config(id)");
@@ -185,11 +182,10 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_user_user DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_profile_address DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_group DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE group_role DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE club_group_location DROP FOREIGN KEY ");
+        $this->addSql("ALTER TABLE club_user_group_role DROP FOREIGN KEY ");
+        $this->addSql("ALTER TABLE club_user_group_location DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE group_product DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_user_group DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE role_group DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE mail_group DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_location_config DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_user_note DROP FOREIGN KEY ");
@@ -208,7 +204,7 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_event_attend DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_filter_attribute DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_location DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE club_group_location DROP FOREIGN KEY ");
+        $this->addSql("ALTER TABLE club_user_group_location DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_user DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_location DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE location_mail DROP FOREIGN KEY ");
@@ -217,9 +213,8 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_shop_cart DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_shop_category DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_shop_subscription_location DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE group_role DROP FOREIGN KEY ");
+        $this->addSql("ALTER TABLE club_user_group_role DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_user_role DROP FOREIGN KEY ");
-        $this->addSql("ALTER TABLE role_group DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_filter_attribute DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_profile_phone DROP FOREIGN KEY ");
         $this->addSql("ALTER TABLE club_user_profile_address DROP FOREIGN KEY ");
@@ -278,8 +273,8 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("DROP TABLE club_user_filter_attribute");
         $this->addSql("DROP TABLE club_user_profile_address");
         $this->addSql("DROP TABLE club_user_group");
-        $this->addSql("DROP TABLE group_role");
-        $this->addSql("DROP TABLE club_group_location");
+        $this->addSql("DROP TABLE club_user_group_role");
+        $this->addSql("DROP TABLE club_user_group_location");
         $this->addSql("DROP TABLE group_product");
         $this->addSql("DROP TABLE club_user_user_group");
         $this->addSql("DROP TABLE club_user_config");
@@ -292,7 +287,6 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("DROP TABLE location_mail");
         $this->addSql("DROP TABLE club_user_profile_company");
         $this->addSql("DROP TABLE club_user_role");
-        $this->addSql("DROP TABLE role_group");
         $this->addSql("DROP TABLE club_user_profile_email");
         $this->addSql("DROP TABLE club_user_filter");
         $this->addSql("DROP TABLE club_user_location_config");

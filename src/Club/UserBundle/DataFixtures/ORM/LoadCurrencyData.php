@@ -2,10 +2,9 @@
 
 namespace Club\UserBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 
-class LoadCurrencyData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCurrencyData implements FixtureInterface
 {
   public function load($manager)
   {
@@ -18,12 +17,5 @@ class LoadCurrencyData extends AbstractFixture implements OrderedFixtureInterfac
 
     $manager->persist($currency);
     $manager->flush();
-
-    $this->addReference('currency-dkk',$currency);
-  }
-
-  public function getOrder()
-  {
-    return 5;
   }
 }

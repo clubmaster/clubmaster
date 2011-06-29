@@ -2,22 +2,31 @@
 
 namespace Club\UserBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadRoleData implements FixtureInterface
+class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load($manager)
   {
     $roles = array();
+    $roles[] = 'ROLE_SUPER_ADMIN';
     $roles[] = 'ROLE_ADMIN';
 
     foreach ($roles as $role) {
       $r = new \Club\UserBundle\Entity\Role();
       $r->setRoleName($role);
 
+      $this->addReference($role,$r);
+
       $manager->persist($r);
     }
 
     $manager->flush();
+  }
+
+  public function getOrder()
+  {
+    return 10;
   }
 }

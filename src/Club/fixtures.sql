@@ -26,13 +26,13 @@ INSERT INTO `club_event_event` VALUES (1,'Tournament','Senior Tournament',NULL,N
 UNLOCK TABLES;
 
 --
--- Dumping data for table `club_group_location`
+-- Dumping data for table `club_user_group_location`
 --
 
-LOCK TABLES `club_group_location` WRITE;
-/*!40000 ALTER TABLE `club_group_location` DISABLE KEYS */;
-INSERT INTO `club_group_location` VALUES (4,1);
-/*!40000 ALTER TABLE `club_group_location` ENABLE KEYS */;
+LOCK TABLES `club_user_group_location` WRITE;
+/*!40000 ALTER TABLE `club_user_group_location` DISABLE KEYS */;
+INSERT INTO `club_user_group_location` VALUES (4,1);
+/*!40000 ALTER TABLE `club_uer_group_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

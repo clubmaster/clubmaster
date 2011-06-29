@@ -44,6 +44,12 @@ class InstallerController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        $group = $em->getRepository('ClubUserBundle:Group')->findOneBy(array(
+          'group_name' => 'Super Administrators'
+        ));
+
+        $group->addUsers($user);
+
         $em->persist($user);
         $em->flush();
 

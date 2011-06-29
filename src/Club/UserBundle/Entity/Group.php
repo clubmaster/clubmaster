@@ -57,7 +57,7 @@ class Group
     private $max_age;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable="true")
      *
      * @var boolean $is_active_member
      */
@@ -72,6 +72,10 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\JoinTable(name="club_user_group_role",
+     *   joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\UserBundle\Entity\Role
      */
@@ -79,7 +83,7 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity="Location")
-     * @ORM\JoinTable(name="club_group_location",
+     * @ORM\JoinTable(name="club_user_group_location",
      *   joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
      * )
