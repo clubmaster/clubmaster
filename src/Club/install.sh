@@ -12,6 +12,8 @@ echo "  # you can add the parameter \"drop\" to the        #"
 echo "  # script. The database will be dropped.            #"
 echo "  #                                                  #"
 echo "  ####################################################"
+echo
+echo "  Press a key to continue..."
 read
 
 if [[ "$1" == drop ]]; then
