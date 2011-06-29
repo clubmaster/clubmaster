@@ -36,13 +36,6 @@ class Location
     private $location;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Currency")
-     *
-     * @var Club\UserBundle\Entity\Currency
-     */
-    private $currency;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Club\MailBundle\Entity\Mail")
      *
      * @var Club\MailBundle\Entity\Mail
@@ -107,25 +100,5 @@ class Location
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Set currency
-     *
-     * @param Club\UserBundle\Entity\Currency $currency
-     */
-    public function setCurrency(\Club\UserBundle\Entity\Currency $currency)
-    {
-        $this->currency = $currency;
-    }
-
-    /**
-     * Get currency
-     *
-     * @return Club\UserBundle\Entity\Currency $currency
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
     }
 }

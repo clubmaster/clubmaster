@@ -70,10 +70,12 @@ class InstallerController extends Controller
   public function locationAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
+
     if ($this->get('session')->get('installer_location_id')) {
       $location = $em->find('ClubUserBundle:Location',$this->get('session')->get('installer_location_id'));
     } else {
       $location = new \Club\UserBundle\Entity\Location();
+      $location->setLocation($em->find('ClubUserBundle:Location',1));
     }
     $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location);
 

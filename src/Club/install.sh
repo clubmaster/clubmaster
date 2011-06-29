@@ -2,6 +2,7 @@
 
 if [[ "$1" == drop ]]; then
   php app/console doctrine:database:drop --force
+  sudo rm -rf app/cache/* app/logs/*
 fi
 
 php app/console doctrine:database:create

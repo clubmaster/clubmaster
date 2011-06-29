@@ -10,7 +10,6 @@ class LocationStep extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('location_name');
-    $builder->add('currency');
   }
 
   public function getDefaultOptions(array $options)

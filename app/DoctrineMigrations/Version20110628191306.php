@@ -32,7 +32,7 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("CREATE TABLE club_user_attribute (id INT AUTO_INCREMENT NOT NULL, attribute_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_currency (id INT AUTO_INCREMENT NOT NULL, currency_name VARCHAR(255) NOT NULL, code VARCHAR(255) NOT NULL, symbol_left VARCHAR(255) DEFAULT NULL, symbol_right VARCHAR(255) DEFAULT NULL, decimal_places VARCHAR(255) NOT NULL, value NUMERIC(10, 0) NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_login_attempt (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(255) NOT NULL, session VARCHAR(255) NOT NULL, ip_address VARCHAR(255) NOT NULL, hostname VARCHAR(255) NOT NULL, login_failed TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_user_location (id INT AUTO_INCREMENT NOT NULL, location_id INT DEFAULT NULL, currency_id INT DEFAULT NULL, location_name VARCHAR(255) NOT NULL, INDEX IDX_3D42B7F64D218E (location_id), INDEX IDX_3D42B7F38248176 (currency_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_user_location (id INT AUTO_INCREMENT NOT NULL, location_id INT DEFAULT NULL, location_name VARCHAR(255) NOT NULL, INDEX IDX_3D42B7F64D218E (location_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE location_mail (location_id INT NOT NULL, mail_id INT NOT NULL, INDEX IDX_D122190864D218E (location_id), INDEX IDX_D1221908C8776F01 (mail_id), PRIMARY KEY(location_id, mail_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_profile_company (id INT AUTO_INCREMENT NOT NULL, profile_id INT DEFAULT NULL, company_name VARCHAR(255) NOT NULL, cvr VARCHAR(255) NOT NULL, is_default TINYINT(1) NOT NULL, INDEX IDX_37CB9B12CCFA12B8 (profile_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_role (id INT AUTO_INCREMENT NOT NULL, role_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -106,7 +106,6 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_user_user_role ADD FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_user_user_role ADD FOREIGN KEY (role_id) REFERENCES club_user_role(id)");
         $this->addSql("ALTER TABLE club_user_location ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
-        $this->addSql("ALTER TABLE club_user_location ADD FOREIGN KEY (currency_id) REFERENCES club_user_currency(id)");
         $this->addSql("ALTER TABLE location_mail ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE location_mail ADD FOREIGN KEY (mail_id) REFERENCES club_mail(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_user_profile_company ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");

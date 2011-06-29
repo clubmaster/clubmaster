@@ -17,11 +17,9 @@ Quickstart
 If you just want to be up and running, here is what you have to do:
 
   cd /var/www
-  tar xzf clubmaster.tgz
-  cd clubmaster
-  php doctrine:database:create
-  php doctrine:migrations:migrate
-  php doctrine:fixtures:load
+  tar xzf clubmaster-XXX.tgz
+  cd clubmaster-XXX
+  ./install.sh
   chmod -R 777 app/cache app/logs
 
 Now browse to:
@@ -47,11 +45,6 @@ That page will tell you everything you will need to know in order to get up and 
 Install
 -------
 
-The way to get up and running with ClubMaster is:
-
-Preparation
-~~~~~~~~~~~
-
 First get the archive from our website http://www.clubmaster.dk.
 
 Now extract the archive some place that your webserver can see.
@@ -62,13 +55,7 @@ Edit the file app/config/parameters.yml to fit to your needs.
 
 Now you can start building the database, for that we have a couple of scripts that you have to run:
 
-  $ php doctrine:database:create
-  $ php doctrine:migrations:migrate
-  $ php doctrine:fixtures:load
-
-Now in order for the webserver can use the buildin cache and logging functionality, please make the cache and logging folders worldwide writeable.
-
-$ chmod -R 777 app/cache/ app/logs
+  $ ./install.sh
 
 Now you are ready to progress. Login to the only installer and follow the information on the screen.
 
