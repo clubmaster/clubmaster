@@ -38,7 +38,7 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("CREATE TABLE club_user_role (id INT AUTO_INCREMENT NOT NULL, role_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_profile_email (id INT AUTO_INCREMENT NOT NULL, profile_id INT DEFAULT NULL, email_address VARCHAR(255) DEFAULT NULL, contact_type VARCHAR(255) NOT NULL, is_default TINYINT(1) NOT NULL, INDEX IDX_607BB7F3CCFA12B8 (profile_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_filter (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, filter_name VARCHAR(255) NOT NULL, is_active TINYINT(1) NOT NULL, INDEX IDX_C4641CABA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_user_location_config (id INT AUTO_INCREMENT NOT NULL, config_id INT DEFAULT NULL, location_id INT DEFAULT NULL, value VARCHAR(255) DEFAULT NULL, INDEX IDX_3432EBBF24DB0683 (config_id), INDEX IDX_3432EBBF64D218E (location_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_user_location_config (id INT AUTO_INCREMENT NOT NULL, location_id INT DEFAULT NULL, value VARCHAR(255) NOT NULL, config VARCHAR(255) NOT NULL, INDEX IDX_3432EBBF64D218E (location_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_whois_online (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_ban (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, type VARCHAR(255) NOT NULL, value VARCHAR(255) NOT NULL, expire_date DATETIME NOT NULL, note LONGTEXT DEFAULT NULL, INDEX IDX_8A531BC7A76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_user_forgot_password (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, hash VARCHAR(255) NOT NULL, expire_date DATETIME NOT NULL, INDEX IDX_8173F9A7A76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -111,7 +111,6 @@ class Version20110628191306 extends AbstractMigration
         $this->addSql("ALTER TABLE club_user_profile_company ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");
         $this->addSql("ALTER TABLE club_user_profile_email ADD FOREIGN KEY (profile_id) REFERENCES club_user_profile(id)");
         $this->addSql("ALTER TABLE club_user_filter ADD FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
-        $this->addSql("ALTER TABLE club_user_location_config ADD FOREIGN KEY (config_id) REFERENCES club_user_config(id)");
         $this->addSql("ALTER TABLE club_user_location_config ADD FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
         $this->addSql("ALTER TABLE club_user_ban ADD FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_user_forgot_password ADD FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
