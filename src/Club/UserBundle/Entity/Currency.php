@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Currency")
  * @ORM\Table(name="club_user_currency")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Currency
 {
@@ -61,6 +62,20 @@ class Currency
      */
     private $value;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_active;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
 
     public function __toString()
     {
@@ -195,5 +210,77 @@ class Currency
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @ORM\prePersist()
+     */
+    public function prePersist()
+    {
+      if (!$this->getId()) {
+        $this->setCreatedAt(new \DateTime());
+      }
+
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean $isActive
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 }

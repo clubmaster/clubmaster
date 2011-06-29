@@ -11,7 +11,5 @@ php ../../app/console doctrine:migrations:migrate --no-interaction
 php ../../app/console doctrine:fixtures:load
 php ../../app/console assets:install ../../web
 
-mysql -u root clubmaster_v2 < fixtures.sql
-
 sudo chmod 777 -R ../../app/logs ../../app/cache
 sudo chown www-data:www-data ../../app/cache ../../app/logs
