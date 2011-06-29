@@ -20,7 +20,7 @@
   <tbody>
   {% for config in configs %}
     <tr>
-      <td>{{ config.config.configKey }}</td>
+      <td>{{ config.config }}</td>
       <td>{{ config.value }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_config_edit', { 'id':config.id })} %}
@@ -28,7 +28,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no configs for this location./td>
+    <td colspan="3">There are no configs for this location.</td>
   </tr>
   {% endfor %}
   </tbody>

@@ -74,19 +74,25 @@ class InstallerController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    if ($this->get('session')->get('installer_location_id')) {
-      $location = $em->find('ClubUserBundle:Location',$this->get('session')->get('installer_location_id'));
-    } else {
-      $location = new \Club\UserBundle\Entity\Location();
-      $location->setLocation($em->find('ClubUserBundle:Location',1));
-    }
-    $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location);
+    $location_step = new \Club\InstallerBundle\Step\LocationStep();
+    $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location_step);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        $location = new \Club\UserBundle\Entity\Location();
+        $location->setLocation($em->find('ClubUserBundle:Location',1));
+        $location->setLocationName($location_step->location_name);
         $em->persist($location);
+
+        $location_config = $em->getRepository('ClubUserBundle:LocationConfig')->findOneBy(array(
+          'location' => 1,
+          'config' => 'default_currency'
+        ));
+        $location_config->setValue($location_step->currency->getId());
+        $em->persist($location_config);
+
         $em->flush();
 
         $this->get('session')->set('installer_location_id',$location->getId());

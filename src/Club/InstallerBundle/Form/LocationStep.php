@@ -9,13 +9,9 @@ class LocationStep extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('location_name');
-  }
-
-  public function getDefaultOptions(array $options)
-  {
-    return array(
-      'data_class' => 'Club\UserBundle\Entity\Location'
-    );
+    $builder->add('location_name','text');
+    $builder->add('currency','entity',array(
+      'class' => 'Club\UserBundle\Entity\Currency'
+    ));
   }
 }
