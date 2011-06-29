@@ -5,7 +5,7 @@ namespace Club\InstallerBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class SettingStep extends AbstractType
+class LocationStep extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {

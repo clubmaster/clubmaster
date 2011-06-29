@@ -1,7 +1,6 @@
 == before next release ==
 - installer
   - welcome
-  - database config
   - administrator user
   - system settings
 - make sure filter actually works and filter users correct
