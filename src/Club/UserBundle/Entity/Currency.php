@@ -55,7 +55,7 @@ class Currency
     private $decimal_places;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="5")
      *
      * @var float $value
      */

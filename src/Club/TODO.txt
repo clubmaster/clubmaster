@@ -1,12 +1,13 @@
 == before next release ==
-- find a way to create a default value
+- add mode currencies, only activate a single one after installer, give all value to 1, and have a last updated time
+- add config keys for locations
 - make sure filter actually works and filter users correct
 
 == todo ==
+- obey rules of club_user_currency
 - remove link to change location if only 2 locations in the system
 - make infinive parent loop in location configs
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
-- add config keys for locations
 - on location config better widgets
 - add 365 date icons
 - fix layout, single and double column
