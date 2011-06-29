@@ -61,8 +61,3 @@ _admin_shop_special:
   resource: "@ClubShopBundle/Controller/AdminSpecialController.php"
   type: annotation
   prefix: /admin
-
-_admin_shop_transaction:
-  resource: "@ClubShopBundle/Controller/AdminTransactionController.php"
-  type: annotation
-  prefix: /admin
