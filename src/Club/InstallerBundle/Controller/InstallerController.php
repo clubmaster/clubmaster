@@ -14,6 +14,9 @@ class InstallerController extends Controller
    */
   public function indexAction()
   {
+    $this->get('session')->set('installer_user_id',null);
+    $this->get('session')->set('installer_location_id',null);
+
     return array();
   }
 

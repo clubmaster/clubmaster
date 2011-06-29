@@ -1,6 +1,7 @@
 == before next release ==
 - add mode currencies, only activate a single one after installer, give all value to 1, and have a last updated time
 - add config keys for locations
+- fix style on installer
 - make sure filter actually works and filter users correct
 
 == todo ==
