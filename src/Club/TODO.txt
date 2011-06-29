@@ -1,9 +1,7 @@
 == before next release ==
 - check permissions in installer script
-- installer
-  - administrator user
-  - location settings
 - find a way to create a default value
+- fetch right config key
 - make sure filter actually works and filter users correct
 
 == todo ==
