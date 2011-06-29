@@ -32,6 +32,8 @@ class RequestListener
       $this->em->flush();
     }
 
+    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'default_language');
+    var_dump('meh');die();
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLanguage()) {
       $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'default_language');
       $language = $this->em->getRepository('ClubUserBundle:Language')->findOneBy(array(

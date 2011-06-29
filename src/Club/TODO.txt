@@ -1,4 +1,5 @@
 == before next release ==
+- cannot be located in ClubMaster location
 - check permissions in installer script
 - find a way to create a default value
 - fetch right config key
