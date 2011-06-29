@@ -1,0 +1,62 @@
+ClubMaster
+==========
+:Author:    Michael Holm Kristensen
+:Email:     <hollo@hollo.dk>
+:Date:      2011-06-29
+:Revision:  1
+
+
+Feedback
+--------
+It would really help me a lot of you can give me just any feedback at {email}.
+
+
+Quickstart
+----------
+
+If you just want to be up and running, here is what you have to do:
+
+  cd /var/www
+  tar xzf clubmaster-XXX.tgz
+  cd clubmaster-XXX
+  ./install.sh
+  chmod -R 777 app/cache app/logs
+
+Now browse to:
+
+http://localhost/clubmaster/web/check.php
+
+
+Prerequirements
+---------------
+In order to run this software you need to following prerequirements:
+
+- Webserver
+- PHP
+- MySQL 5
+
+When you have this up and running, you can check the following page for other requirements:
+
+http://localhost/clubmaster/web/check.php
+
+That page will tell you everything you will need to know in order to get up and running.
+
+
+Install
+-------
+
+First get the archive from our website http://www.clubmaster.dk.
+
+Now extract the archive some place that your webserver can see.
+
+Go to the newly created folder clubmaster/.
+
+Edit the file app/config/parameters.yml to fit to your needs.
+
+Now you can start building the database, for that we have a couple of scripts that you have to run:
+
+  $ ./install.sh
+
+Now you are ready to progress. Login to the only installer and follow the information on the screen.
+
+http://localhost/clubmaster/web/check.php

@@ -33,11 +33,6 @@ class Role implements RoleInterface
      */
     private $users;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Group")
-     */
-    private $groups;
-
 
     public function __toString()
     {

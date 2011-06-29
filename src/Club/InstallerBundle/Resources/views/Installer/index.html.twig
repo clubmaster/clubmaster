@@ -1,4 +1,4 @@
-{% extends "ClubLayoutBundle:Default:base2.html.twig" %}
+{% extends "ClubLayoutBundle:Default:base.html.twig" %}
 
 {% block body %}
 <h2>ClubMaster Installer</h2>
@@ -8,12 +8,11 @@
 <p>When you have completed the following list of steps, you are ready to start using ClubMaster.</p>
 
 <ul>
-  <li>Database configuration</li>
   <li>Administrator setup</li>
-  <li>System settings</li>
+  <li>Location setup</li>
 </ul>
 
 <p>ClubMaster team</p>
 
-<p><a href="{{ path("club_installer_installer_database") }}">Start installer</a></p>
+<p><a href="{{ path("club_installer_installer_administrator") }}">Start installer</a></p>
 {% endblock %}

@@ -1,14 +1,16 @@
 == before next release ==
-- installer
-  - welcome
-  - database config
-  - administrator user
-  - system settings
+- add mode currencies, only activate a single one after installer, give all value to 1, and have a last updated time
+- add config keys for locations
 - make sure filter actually works and filter users correct
 
 == todo ==
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
+- obey rules of club_user_currency
+- remove link to change location if only 2 locations in the system
+- make infinive parent loop in location configs
+- review the entire location overview, is it easy to understand by the user (config, parent and child)
+- on location config better widgets
 - add 365 date icons
 - fix layout, single and double column
 - configurable sender email
@@ -19,6 +21,7 @@
 - add batch to user list
 - add search to order
 - member of a location will also be member to child locations
+- settings from parent locations applies to locations without settings
 - merge users
 - remember to set a subscription to inactive when no more tickets
 - improve the way to recalc users of group

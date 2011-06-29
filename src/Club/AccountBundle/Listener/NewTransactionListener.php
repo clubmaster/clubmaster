@@ -18,12 +18,12 @@ class NewTransactionListener
     $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'account_default_income');
+    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('account_default_income',$user->getLocation());
     $income_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
       'account_number' => $config->getValue()
     ));
 
-    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'account_default_vat');
+    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('account_default_vat',$user->getLocation());
     $vat_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
       'account_number' => $config->getValue()
     ));

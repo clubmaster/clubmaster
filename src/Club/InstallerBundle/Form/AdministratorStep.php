@@ -9,14 +9,20 @@ class AdministratorStep extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('first_name');
-    $builder->add('last_name');
-    $builder->add('email_address');
     $builder->add('password','repeated', array(
-      'required' => false,
+      'required' => true,
       'type' => 'password',
       'first_name' => 'Password',
       'second_name' => 'Password again'
     ));
+    $builder->add('language');
+    $builder->add('profile',new \Club\InstallerBundle\Form\AdministratorProfile());
+  }
+
+  public function getDefaultOptions(array $options)
+  {
+    return array(
+      'data_class' => 'Club\UserBundle\Entity\User'
+    );
   }
 }

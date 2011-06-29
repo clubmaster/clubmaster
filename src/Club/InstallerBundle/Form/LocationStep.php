@@ -1,19 +1,15 @@
 <?php
 
-namespace Club\UserBundle\Form;
+namespace Club\InstallerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class Location extends AbstractType
+class LocationStep extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('location_name');
-    $builder->add('location','entity',array(
-      'class' => 'Club\UserBundle\Entity\Location',
-      'required' => true
-    ));
   }
 
   public function getDefaultOptions(array $options)
