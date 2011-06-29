@@ -40,6 +40,13 @@ class LoadLocationData extends AbstractFixture implements OrderedFixtureInterfac
     $lc->setValue(1);
     $manager->persist($lc);
 
+    $config = $this->getReference('config_default_location');
+    $lc = new \Club\UserBundle\Entity\LocationConfig();
+    $lc->setLocation($location);
+    $lc->setConfig($config->getConfigKey());
+    $lc->setValue(2);
+    $manager->persist($lc);
+
     $manager->persist($location);
     $manager->flush();
   }

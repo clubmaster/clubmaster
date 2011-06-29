@@ -12,18 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class Location extends EntityRepository
 {
-  public function getDefault()
-  {
-    $query = $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
-      ->orderBy('l.id')
-      ->setMaxResults(1)
-      ->getQuery();
-
-    return $query->getSingleResult();
-  }
-
   public function getByIds($ids)
   {
     return $this->_em->createQueryBuilder()

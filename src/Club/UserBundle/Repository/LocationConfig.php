@@ -12,26 +12,39 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationConfig extends EntityRepository
 {
-  public function getByKey(\Club\UserBundle\Entity\Location $location, $key)
+  public function getByKey($key, \Club\UserBundle\Entity\Location $location = null)
   {
+    if ($location == null)
+      $location = $this->_em->find('ClubUserBundle:Location',1);
+
     $config = $this->_em->createQueryBuilder()
       ->select('lc')
       ->from('ClubUserBundle:LocationConfig','lc')
-      ->leftJoin('lc.config','c')
       ->where('lc.location = :location')
-      ->andWhere('c.config_key = :key')
+      ->andWhere('lc.config = :key')
       ->setParameter('key',$key)
       ->setParameter('location',$location->getId())
       ->getQuery()
-      ->getSingleResult();
+      ->getResult();
 
-    var_dump($config);
-    if (!$config) {
-      $config = $this->getByKey($location->getLocation(),$key);
-      var_dump($config);
+    if (!count($config)) {
+      $config = $this->getByKey($key, $location->getLocation());
+
+      if (count($config)) {
+        return $config;
+      } else {
+        $config = $this->getByKey($key, $location->getLocation());
+
+        if (count($config)) {
+          return $config;
+        } else {
+          // TODO, find a way to make an infinitive loop
+          throw new \Exception('Too many parents');
+        }
+
+      }
     }
 
-    die('meh');
-
+    return $config[0];
   }
 }

@@ -6,6 +6,7 @@
 - make sure filter actually works and filter users correct
 
 == todo ==
+- make infinive parent loop in location configs
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - add config keys for locations
 - on location config better widgets

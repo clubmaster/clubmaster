@@ -25,20 +25,17 @@ class RequestListener
 
     $user = $this->security_context->getToken()->getUser();
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLocation()) {
-      $location = $this->em->getRepository('ClubUserBundle:Location')->getDefault();
+      $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('default_location');
+      $location = $this->em->find('ClubUserBundle:Location',$config->getValue());
       $user->setLocation($location);
 
       $this->em->persist($user);
       $this->em->flush();
     }
 
-    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'default_language');
-    var_dump('meh');die();
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLanguage()) {
-      $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey($user->getLocation(),'default_language');
-      $language = $this->em->getRepository('ClubUserBundle:Language')->findOneBy(array(
-        'code' => $config->getValue()
-      ));
+      $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('default_language',$user->getLocation());
+      $language = $this->em->find('ClubUserBundle:Language',$config->getValue());
       $user->setLanguage($language);
       $this->session->setLocale($config->getValue());
 

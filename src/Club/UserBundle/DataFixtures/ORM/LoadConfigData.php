@@ -14,6 +14,7 @@ class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
     $configs[] = 'account_default_vat';
     $configs[] = 'default_language';
     $configs[] = 'default_currency';
+    $configs[] = 'default_location';
 
     foreach ($configs as $c) {
       $config = new \Club\UserBundle\Entity\Config();
