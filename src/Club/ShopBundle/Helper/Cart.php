@@ -25,8 +25,9 @@ class Cart
         $this->cart = new \Club\ShopBundle\Entity\Cart();
         $this->cart->setUser($this->user);
         $location = $this->user->getLocation();
-        $this->cart->setCurrency($location->getCurrency()->getCode());
-        $this->cart->setCurrencyValue($location->getCurrency()->getValue());
+        $currency = $em->find('ClubUserBundle:Currency',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('default_currency',$location));
+        $this->cart->setCurrency($currency);
+        $this->cart->setCurrencyValue($currency->getValue());
         $this->cart->setPrice(0);
         $this->cart->setVatPrice(0);
         $this->cart->setLocation($location);
