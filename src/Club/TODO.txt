@@ -10,7 +10,6 @@
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - obey rules of club_user_currency
-- remove link to change location if only 2 locations in the system
 - make infinive parent loop in location configs
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - on location config better widgets

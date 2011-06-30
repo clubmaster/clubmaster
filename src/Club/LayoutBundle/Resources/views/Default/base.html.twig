@@ -48,7 +48,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <p class="f-right">
                 User: <strong>{{ app.user }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Location: <strong><a href="{{ path('club_user_location_index') }}">{{ app.user.location.locationName }}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% render 'ClubUserBundle:Misc:LocationBar' %}
                 <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
                 {% endif %}
 

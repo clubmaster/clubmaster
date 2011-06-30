@@ -1,0 +1,5 @@
+{% if locations|length > 1 %}
+  Location: <strong><a href="{{ path('club_user_location_index') }}">{{ app.user.location.locationName }}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{% else %}
+  Location: <strong><{{ app.user.location.locationName }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{% endif %}
