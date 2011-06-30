@@ -16,10 +16,10 @@ Quickstart
 
 If you just want to be up and running, here is what you have to do:
 
-  vim app/config/parameters.ini
   cd /var/www
   tar xzf clubmaster-XXX.tgz
   cd clubmaster-XXX
+  vim app/config/parameters.ini
   ./install.sh
   chmod -R 777 app/cache app/logs
 
