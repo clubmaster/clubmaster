@@ -1,4 +1,5 @@
 == todo ==
+- disable emails during development
 - add the message to the frontend, remove the installer file
 - append the version number in the design dynamic
 - manual steps for install clubmaster
