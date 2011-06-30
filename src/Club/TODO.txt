@@ -1,4 +1,5 @@
 == todo ==
+- obey rules of ban
 - disable emails during development
 - add the message to the frontend, remove the installer file
 - append the version number in the design dynamic
@@ -20,7 +21,6 @@
 - find out the syntax for member_numbers
 - add images to products
 - sort user lists
-- add batch to user list
 - add search to order
 - member of a location will also be member to child locations
 - settings from parent locations applies to locations without settings

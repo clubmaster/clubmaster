@@ -214,6 +214,16 @@ class AdminUserController extends Controller
    */
   public function batchAction()
   {
+    // FIXME, not a pretty symfony way
+    $ids = $_POST['ids'];
+    $em = $this->getDoctrine()->getEntityManager();
+
+    foreach ($ids as $id=>$value) {
+      $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+    }
+
+    $this->get('session')->setFlash('notice','Users banned.');
+    return $this->redirect($this->generateUrl('admin_user'));
   }
 
   /**
@@ -222,19 +232,9 @@ class AdminUserController extends Controller
   public function banAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User',$id);
+    $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
 
-    $ban = new \Club\UserBundle\Entity\Ban();
-    $ban->setUser($this->get('security.context')->getToken()->getUser());
-    $ban->setType('user');
-    $ban->setValue($user->getId());
-    $ban->setExpireDate(new \DateTime(date('Y-m-d',strtotime("+1 month"))));
-
-    $em->persist($ban);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',sprintf('User %s banned.',$user->getUsername()));
-
+    $this->get('session')->setFlash('notice','User banned.');
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
