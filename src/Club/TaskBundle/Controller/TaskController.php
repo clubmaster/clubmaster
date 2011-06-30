@@ -74,6 +74,7 @@ class TaskController extends Controller
 
     $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
     $task->setNextRunAt(new \DateTime());
+    $task->setLocked(0);
 
     $em->persist($task);
     $em->flush();
