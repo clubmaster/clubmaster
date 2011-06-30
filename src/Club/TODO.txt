@@ -4,7 +4,6 @@
 - gettings warnings when sending mails
 - manual steps for install clubmaster
 - add filter items (name, member_number)
-- create task that cleanup expired bans
 - Fix shop as user
 - Find a way to upgrade clubmaster
 

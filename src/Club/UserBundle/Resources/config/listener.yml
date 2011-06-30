@@ -11,6 +11,11 @@ services:
       - { name: kernel.event_listener, event: group.task, method: onGroupTask }
   club.userbundle.listener.login_attempt.listener:
     class: Club\UserBundle\Listener\CleanupLoginAttemptListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: login_attempt.task, method: onLoginAttemptTask }
+  club.userbundle.listener.ban.listener:
+    class: Club\UserBundle\Listener\CleanupBanListener
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: ban.task, method: onBanTask }
