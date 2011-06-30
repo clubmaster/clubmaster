@@ -9,6 +9,7 @@
 - add filter items (name, member_number)
 - create task that cleanup expired bans
 - Fix shop as user
+- Find a way to upgrade clubmaster
 
 == todo ==
 - consider if you should be able to delete users
@@ -32,7 +33,7 @@
 - improve the way to recalc users of group
 - translation
 - Obey lifetime membership
-- make sure we can keep track of auto renewal subscriptions
+- make sure we can keep track of auto renewal subscriptions, just create a new order
 - make a quick search field for users
 - users should be able to disable types of email (password,info)
 - users should be able to add and remove address, email and phone
