@@ -78,7 +78,7 @@ class AdminCategoryController extends Controller
 
   protected function process($category)
   {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Category(), $category);
+    $form = $this->createForm(new \Club\ShopBundle\Form\Category(), $category);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

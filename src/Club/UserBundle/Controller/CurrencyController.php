@@ -76,7 +76,7 @@ class CurrencyController extends Controller
 
   protected function process($currency)
   {
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Currency(), $currency);
+    $form = $this->createForm(new \Club\UserBundle\Form\Currency(), $currency);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

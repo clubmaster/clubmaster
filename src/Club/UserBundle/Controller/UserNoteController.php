@@ -90,7 +90,7 @@ class UserNoteController extends Controller
 
   protected function process($user_note)
   {
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\UserNote(), $user_note);
+    $form = $this->createForm(new \Club\UserBundle\Form\UserNote(), $user_note);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

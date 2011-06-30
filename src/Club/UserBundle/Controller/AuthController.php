@@ -78,7 +78,7 @@ class AuthController extends Controller
       } else {
         $user = new \Club\UserBundle\Entity\User();
       }
-      $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\ForgotPassword(), $user);
+      $form = $this->createForm(new \Club\UserBundle\Form\ForgotPassword(), $user);
 
       if ($this->getRequest()->getMethod() == 'POST') {
         $form->bindRequest($this->getRequest());

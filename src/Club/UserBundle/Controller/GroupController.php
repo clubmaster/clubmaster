@@ -81,7 +81,7 @@ class GroupController extends Controller
 
   protected function process($group)
   {
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Group(), $group);
+    $form = $this->createForm(new \Club\UserBundle\Form\Group(), $group);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
