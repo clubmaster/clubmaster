@@ -1,6 +1,5 @@
 == todo ==
 - append the version number in the design dynamic
-- improve checkout procedure, change customer, delivery and billing address.
 - manual steps for install clubmaster
 - gettings warnings when sending mails
 - different login pages for different locations
