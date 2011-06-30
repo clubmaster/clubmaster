@@ -1,7 +1,5 @@
-== scheduled for beta2 ==
-- make sure filter actually works and filter users correct
-
 == todo ==
+- make sure subscription uses childs too
 - consider if you should be able to delete users
 - add 365 date icons
 - add the manuel installation to the README file
