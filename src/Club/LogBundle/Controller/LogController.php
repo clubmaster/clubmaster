@@ -57,6 +57,12 @@ class LogController extends Controller
 
   public function LogViewAction()
   {
+    $remove_installer_file = 0;
+    
+    $file = preg_replace("/\/src\/Club\/LogBundle\/Controller/","",__DIR__).'/installer';
+    if (file_exists($file))
+      $remove_installer_file = $file;
+
     $em = $this->getDoctrine()->getEntityManager();
 
     $logs = $em->getRepository('ClubLogBundle:Log')->findBy(array(
@@ -65,7 +71,8 @@ class LogController extends Controller
     ));
 
     return $this->render('ClubLogBundle:Log:log_view.html.twig',array(
-      'logs' => $logs
+      'logs' => $logs,
+      'remove_installer_file' => $remove_installer_file
     ));
   }
 }
