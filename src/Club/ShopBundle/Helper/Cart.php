@@ -126,6 +126,8 @@ class Cart
   {
     $address = $this->getAddress($user);
     $this->cart->setCustomerAddress($address);
+    $this->cart->setShippingAddress($address);
+    $this->cart->setBillingAddress($address);
   }
 
   public function setShippingAddress(\Club\UserBundle\Entity\User $user)
@@ -153,14 +155,15 @@ class Cart
 
   protected function getAddress(\Club\UserBundle\Entity\User $user)
   {
-    return $this->convertAddress($this->getUserAddress($user));
+    $addr = $this->getUserAddress($user);
+    return $this->convertAddress($addr);
   }
 
   protected function convertAddress($addr)
   {
     $address = new \Club\ShopBundle\Entity\CartAddress();
-    $address->setFirstName($user->getProfile()->getFirstName());
-    $address->setLastName($user->getProfile()->getLastName());
+    $address->setFirstName($addr->getProfile()->getFirstName());
+    $address->setLastName($addr->getProfile()->getLastName());
     $address->setStreet($addr->getStreet());
     $address->setPostalCode($addr->getPostalCode());
     $address->setCity($addr->getCity());

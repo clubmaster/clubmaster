@@ -23,6 +23,7 @@ rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
 rm -rf ${BUILD_PATH}/app/logs/*
 rm -rf ${BUILD_PATH}/web/index_dev.php
 rm -rf ${BUILD_PATH}/src/Club/fixtures.sql
+rm -rf ${BUILD_PATH}/src/Club/users_data.sql
 rm -rf ${BUILD_PATH}/src/Club/build.sh
 rm -rf ${BUILD_PATH}/src/Club/TODO.txt
 rm -rf ${BUILD_PATH}/src/Club/remake_schema.sh

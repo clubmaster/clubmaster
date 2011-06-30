@@ -16,7 +16,7 @@ class User extends EntityRepository
   {
     $dql =
       "SELECT u,s ".
-      "FROM Club\UserBundle\Entity\User u ".
+      "FROM ClubUserBundle:User u ".
       "JOIN u.subscriptions s ".
       "WHERE s.start_date <= :start AND s.expire_date <= :expire";
 
@@ -31,7 +31,7 @@ class User extends EntityRepository
 
   public function findNextMemberNumber()
   {
-    $dql = "SELECT u FROM Club\UserBundle\Entity\User u ORDER BY u.member_number DESC";
+    $dql = "SELECT u FROM ClubUserBundle:User u ORDER BY u.member_number DESC";
 
     $query = $this->_em->createQuery($dql);
     $query->setMaxResults(1);
@@ -239,8 +239,9 @@ class User extends EntityRepository
   protected function filterIsActive($qb)
   {
     $qb->leftJoin('u.subscriptions','s1');
-    $qb->andWhere('((s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
+    $qb->andWhere('(s1.start_date >= :sds AND (s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
     $qb->setParameter('is_active',1);
+    $qb->setParameter('sds',date('Y-m-d'));
     $qb->setParameter('eds',date('Y-m-d'));
 
     return $qb;
