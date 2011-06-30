@@ -20,8 +20,8 @@
   {% for log in logs %}
     <tr>
       <td>
-        {% if log.isRead %}<img src="{{ asset('images/icons/16/Status-mail-read-icon.png') }}" title="Read" />
-        {% else %}<img src="{{ asset('images/icons/16/Status-mail-unread-new-icon.png') }}" title="Unread" />
+        {% if log.isRead %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-read-icon.png') }}" title="Read" />
+        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="Unread" />
         {% endif %}
       </td>
       <td>{{ log.user.profile.name }}</td>
