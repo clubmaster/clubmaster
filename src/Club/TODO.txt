@@ -2,6 +2,7 @@
 - make sure filter actually works and filter users correct
 
 == todo ==
+- consider if you should be able to delete users
 - add 365 date icons
 - add the manuel installation to the README file
 - obey rules of ban
