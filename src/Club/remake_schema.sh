@@ -12,6 +12,7 @@ php ../../app/console doctrine:fixtures:load
 php ../../app/console assets:install ../../web
 
 mysql -u root clubmaster_v2 < fixtures.sql
+mysql -u root clubmaster_v2 < users_data.sql
 
 touch ../../installer
 php ../../app/console cache:warmup

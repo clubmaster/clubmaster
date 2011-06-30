@@ -1,9 +1,9 @@
 == scheduled for beta2 ==
 - make sure filter actually works and filter users correct
 - add 365 date icons
-- add some more test data
 
 == todo ==
+- add the manuel installation to the README file
 - obey rules of ban
 - disable emails during development
 - add the message to the frontend, remove the installer file
