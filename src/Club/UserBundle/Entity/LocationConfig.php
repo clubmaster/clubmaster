@@ -7,7 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\LocationConfig")
- * @ORM\Table(name="club_user_location_config")
+ * @ORM\Table(name="club_user_location_config",
+ *   uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"location_id","config"})}
+ * )
  */
 class LocationConfig
 {

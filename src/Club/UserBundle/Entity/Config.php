@@ -13,12 +13,30 @@ class Config
 {
   /**
    * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   *
+   * @var integer $id
+   */
+  private $id;
+
+  /**
    * @ORM\Column(type="string", unique=true)
    *
    * @var string $config_key
    */
   private $config_key;
 
+
+  /**
+   * Get id
+   *
+   * @return integer $id
+   */
+  public function getId()
+  {
+    return $this->id;
+  }
 
   /**
    * Get Config key
