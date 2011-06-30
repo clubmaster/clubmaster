@@ -3,7 +3,7 @@ ClubMaster
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
 :Date:      2011-06-30
-:Revision:  2
+:Revision:  3
 
 
 Feedback
@@ -16,6 +16,7 @@ Quickstart
 
 If you just want to be up and running, here is what you have to do:
 
+  vim app/config/parameters.ini
   cd /var/www
   tar xzf clubmaster-XXX.tgz
   cd clubmaster-XXX
