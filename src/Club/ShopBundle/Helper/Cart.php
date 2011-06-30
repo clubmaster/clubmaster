@@ -34,8 +34,6 @@ class Cart
 
         if ($this->getUserAddress($this->user)) {
           $this->setCustomerAddress($this->user);
-          $this->setShippingAddress($this->user);
-          $this->setBillingAddress($this->user);
         }
 
         $this->save();

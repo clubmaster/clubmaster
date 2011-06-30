@@ -12,8 +12,15 @@
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
 
-<h3>Billing information</h3>
-<p>{{ user.profile.name }}</p>
+<h3>Customer information</h3>
+<p>Company: {{ cart.customerAddress.companyName }}</p>
+CVR: {{ cart.customerAddress.cvr }}<br />
+Name: {{ cart.customerAddress.firstName }} {{ cart.customerAddress.lastName }}<br />
+Street: {{ cart.customerAddress.street }}<br />
+Suburl: {{ cart.customerAddress.suburl }}<br />
+City: {{ cart.customerAddress.postalCode }} {{ cart.customerAddress.city }}<br />
+State: {{ cart.customerAddress.state }}<br />
+Country: {{ cart.customerAddress.country }}</p>
 
 <h3>Payment information</h3>
 <p>{{ cart.paymentMethod }}</p>

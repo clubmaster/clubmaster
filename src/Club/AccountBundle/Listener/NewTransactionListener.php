@@ -18,15 +18,9 @@ class NewTransactionListener
     $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('account_default_income',$user->getLocation());
-    $income_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
-      'account_number' => $config->getValue()
-    ));
+    $income_account = $this->em->find('ClubAccountBundle:Account',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('account_default_income',$user->getLocation()));
 
-    $config = $this->em->getRepository('ClubUserBundle:LocationConfig')->getByKey('account_default_vat',$user->getLocation());
-    $vat_account = $this->em->getRepository('ClubAccountBundle:Account')->findOneBy(array(
-      'account_number' => $config->getValue()
-    ));
+    $vat_account = $this->em->find('ClubAccountBundle:Account',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('account_default_vat',$user->getLocation()));
 
     foreach ($order->getProducts() as $product) {
       $ledger = new \Club\AccountBundle\Entity\Ledger();

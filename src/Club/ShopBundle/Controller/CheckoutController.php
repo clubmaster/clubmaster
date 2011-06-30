@@ -34,13 +34,36 @@ class CheckoutController extends Controller
       throw new Exception('You need to have a least one shipping method');
     }
 
-    if (count($shippings) == 1) {
+    if (count($shippings) == 1)
       $this->get('cart')->setShipping($shippings[0]);
 
+    if (count($shippings) == 1 && $this->get('cart')->getCart()->getCustomerAddress())
       return $this->redirect($this->generateUrl('shop_checkout_payment'));
+
+    $address = $this->get('cart')->getCart()->getCustomerAddress();
+    if (!$address)
+      $address = $this->getCustomerAddress($this->get('cart')->getCart());
+
+    $form = $this->createForm(new \Club\ShopBundle\Form\CheckoutAddress(), $address);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $this->get('cart')->getCart()->setCustomerAddress($address);
+        $this->get('cart')->getCart()->setShippingAddress($address);
+        $this->get('cart')->getCart()->setBillingAddress($address);
+
+        $em->persist($address);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('shop_checkout_payment'));
+      }
     }
 
-    return array();
+    return array(
+      'form' => $form->createView(),
+    );
   }
 
   /**
@@ -89,10 +112,7 @@ class CheckoutController extends Controller
    */
   public function reviewAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
-
     return array(
-      'user' => $user,
       'cart' => $this->get('cart')->getCart()
     );
   }
@@ -133,5 +153,16 @@ class CheckoutController extends Controller
   {
     $this->get('cart')->emptyCart();
     return $this->redirect($this->generateUrl('shop_checkout'));
+  }
+
+  protected function getCustomerAddress(\Club\ShopBundle\Entity\Cart $cart)
+  {
+    $profile = $cart->getUser()->getProfile();
+
+    $address = new \Club\ShopBundle\Entity\CartAddress();
+    $address->setFirstName($profile->getFirstName());
+    $address->setLastName($profile->getLastName());
+
+    return $address;
   }
 }
