@@ -239,7 +239,7 @@ class User extends EntityRepository
   protected function filterIsActive($qb)
   {
     $qb->leftJoin('u.subscriptions','s1');
-    $qb->andWhere('(s1.start_date >= :sds AND (s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
+    $qb->andWhere('(s1.start_date <= :sds AND (s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
     $qb->setParameter('is_active',1);
     $qb->setParameter('sds',date('Y-m-d'));
     $qb->setParameter('eds',date('Y-m-d'));
@@ -249,13 +249,19 @@ class User extends EntityRepository
 
   protected function filterHasTicket($qb)
   {
-    // TODO, havent finished filter
+    $qb->leftJoin('u.subscriptions','s3');
+    $qb->andWhere('s3.type = :type');
+    $qb->setParameter('type','ticket');
+
     return $qb;
   }
 
   protected function filterHasSubscription($qb)
   {
-    // TODO, havent finished filter
+    $qb->leftJoin('u.subscriptions','s4');
+    $qb->andWhere('s4.type = :type');
+    $qb->setParameter('type','subscription');
+
     return $qb;
   }
 
