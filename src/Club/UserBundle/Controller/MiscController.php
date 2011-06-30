@@ -18,4 +18,11 @@ class MiscController extends Controller
       'locations' => $locations
     ));
   }
+
+  public function versionBarAction()
+  {
+    return $this->render('ClubUserBundle:Misc:versionBar.html.twig', array(
+      'version' => $this->get('clubmaster.version')->getVersion()
+    ));
+  }
 }

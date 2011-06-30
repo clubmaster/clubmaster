@@ -2,7 +2,6 @@
 - add the manuel installation to the README file
 - obey rules of ban
 - disable emails during development
-- append the version number in the design dynamic
 - gettings warnings when sending mails
 - manual steps for install clubmaster
 - add filter items (name, member_number)
