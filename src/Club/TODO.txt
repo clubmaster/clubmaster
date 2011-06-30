@@ -67,7 +67,6 @@
 
 == tests data ==
 - add some more test data
-- add some lorem ipsum data
 
 == security ==
 - cannot edit orders that you do not own
