@@ -1,4 +1,6 @@
 == todo ==
+- gettings warnings when sending mails
+- different login pages for different locations
 - make sure filter actually works and filter users correct
 - make sure nobody can access the installer after install
 - save user search filters
@@ -11,6 +13,7 @@
 - add 365 date icons
 - fix layout, single and double column
 - configurable sender email
+- configurable emails sent on different events
 - add filter items (name, member_number)
 - find out the syntax for member_numbers
 - add images to products

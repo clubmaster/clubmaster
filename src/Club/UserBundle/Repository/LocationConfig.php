@@ -47,4 +47,10 @@ class LocationConfig extends EntityRepository
 
     return $config[0];
   }
+
+  public function getValueByKey($key, \Club\UserBundle\Entity\Location $location = null)
+  {
+    $config = $this->getByKey($key,$location);
+    return $config->getValue();
+  }
 }

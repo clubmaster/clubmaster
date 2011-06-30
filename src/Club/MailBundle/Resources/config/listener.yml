@@ -6,6 +6,6 @@ services:
       - { name: kernel.event_listener, event: password.reset, method: onPasswordReset }
   club.mailbundle.listener.on_user_new_listener:
     class: Club\MailBundle\Listener\UserNewListener
-    arguments: [@doctrine.orm.entity_manager, @mailer, @templating, @router]
+    arguments: [@doctrine.orm.entity_manager, @templating, @router, @clubmaster_mailer]
     tags:
       - { name: kernel.event_listener, event: user.new, method: onUserNew }
