@@ -8,6 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class InstallerController extends Controller
 {
+  public function __construct()
+  {
+    $file = __DIR__.'/../../../../installer';
+    if (!file_exists($file))
+      die('The installer is not available.');
+  }
+
   /**
    * @Route("/installer")
    * @Template()

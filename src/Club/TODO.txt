@@ -1,10 +1,10 @@
 == todo ==
+- add the message to the frontend, remove the installer file
 - append the version number in the design dynamic
 - manual steps for install clubmaster
 - gettings warnings when sending mails
 - different login pages for different locations
 - make sure filter actually works and filter users correct
-- make sure nobody can access the installer after install
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - obey rules of club_user_currency
