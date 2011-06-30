@@ -1,7 +1,6 @@
 == scheduled for beta3 ==
 - add the manuel installation to the README file
 - obey rules of ban
-- disable emails during development
 - gettings warnings when sending mails
 - manual steps for install clubmaster
 - add filter items (name, member_number)
