@@ -15,7 +15,7 @@
 <div class="btn">
   <dl>
     <dt><a href="{{ path('shop_prod_view', {'id':cat.id}) }}">{{ cat.categoryName }}</a> ({{ cat.getProducts|length }})</dt>
-    <dd>{{ cat.description }}</dd>
+    <dd>{{ cat.description|truncate(40) }}</dd>
   </dl>
 </div> <!-- /btn -->
 <div class="btn-bottom"></div>
