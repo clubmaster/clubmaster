@@ -1,11 +1,22 @@
 #!/bin/bash
 
 echo
+php app/check.php
+
+echo
 echo "  ####################################################"
 echo "  #                                                  #"
-echo "  # This script might require root access, depending #"
-echo "  # on wheather the web user has written files in    #"
-echo "  # the cache dir                                    #"
+echo "  # A System check has just been processed, please   #"
+echo "  # use a few seconds that you meet all the          #"
+echo "  # requirements.                                    #"
+echo "  #                                                  #"
+echo "  ####################################################"
+echo
+echo "  Press a key to continue..."
+read
+
+echo
+echo "  ####################################################"
 echo "  #                                                  #"
 echo "  # INFO: If you already have created the database,  #"
 echo "  # you can add the parameter \"drop\" to the        #"

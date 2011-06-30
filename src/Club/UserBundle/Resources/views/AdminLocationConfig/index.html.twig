@@ -3,6 +3,7 @@
 
 {% block body %}
 <h2>Location config</h2>
+<p class="box"><a href="{{ path('club_user_adminlocationconfig_new', {'id':location.id}) }}" class="btn-create"><span>Create config</span></a></p>
 
 <table>
   <thead>
@@ -24,6 +25,7 @@
       <td>{{ config.value }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_config_edit', { 'id':config.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_user_adminlocationconfig_delete', { 'id':config.id })} %}
       </td>
     </tr>
   {% else %}

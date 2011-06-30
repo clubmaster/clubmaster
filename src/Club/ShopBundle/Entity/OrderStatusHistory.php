@@ -119,7 +119,7 @@ class OrderStatusHistory
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

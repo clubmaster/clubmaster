@@ -78,7 +78,7 @@ class AdminLocationController extends Controller
 
   protected function process($location)
   {
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\Location(), $location);
+    $form = $this->createForm(new \Club\UserBundle\Form\Location(), $location);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

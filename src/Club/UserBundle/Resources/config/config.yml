@@ -7,3 +7,6 @@ services:
     arguments: [@doctrine.orm.entity_manager]
   clubmaster.version:
     class: Club\UserBundle\Helper\Version
+  clubmaster.ban:
+    class: Club\UserBundle\Helper\Ban
+    arguments: [@doctrine.orm.entity_manager, @security.context]

@@ -8,6 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class InstallerController extends Controller
 {
+  public function __construct()
+  {
+    $file = __DIR__.'/../../../../installer';
+    if (!file_exists($file))
+      die('The installer is not available.');
+  }
+
   /**
    * @Route("/installer")
    * @Template()
@@ -35,9 +42,11 @@ class InstallerController extends Controller
       $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
       $profile = new \Club\UserBundle\Entity\Profile();
       $user->setProfile($profile);
+      $profile->setUser($user);
       $email = new \Club\UserBundle\Entity\ProfileEmail();
       $email->setContactType('home');
       $email->setIsDefault(1);
+      $email->setProfile($profile);
       $profile->addProfileEmail($email);
     }
 

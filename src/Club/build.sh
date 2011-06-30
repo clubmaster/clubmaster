@@ -31,6 +31,8 @@ find ${BUILD_PATH} -name .git | xargs rm -rf
 find ${BUILD_PATH} -name .gitkeep | xargs rm -rf
 find ${BUILD_PATH} -name .gitignore | xargs rm -rf
 
+touch ${BUILD_PATH}/installer
+
 cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
 [parameters]
     database_driver   = pdo_mysql

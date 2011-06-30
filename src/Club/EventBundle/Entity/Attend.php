@@ -134,7 +134,7 @@ class Attend
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

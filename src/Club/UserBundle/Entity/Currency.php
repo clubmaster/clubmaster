@@ -213,7 +213,7 @@ class Currency
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

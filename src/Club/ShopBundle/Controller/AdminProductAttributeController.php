@@ -84,7 +84,7 @@ class AdminProductAttributeController extends Controller
 
   protected function process($attr)
   {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\ProductAttribute(), $attr);
+    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute(), $attr);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

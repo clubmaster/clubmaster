@@ -11,7 +11,7 @@
   {% endfor %}
 </ul>
 
-<form method="post" action="{{ path('admin_location_config_edit', {'id':config.id}) }}">
+<form method="post" action="{{ path('club_user_adminlocationconfig_new', {'id':location.id}) }}">
 {% include "ClubUserBundle:AdminLocationConfig:form.html.twig" with {'form': form} %}
 </form>
 

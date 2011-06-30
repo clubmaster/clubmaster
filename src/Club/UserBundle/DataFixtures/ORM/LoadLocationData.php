@@ -11,6 +11,7 @@ class LoadLocationData extends AbstractFixture implements OrderedFixtureInterfac
   {
     $location = new \Club\UserBundle\Entity\Location();
     $location->setLocationName('ClubMaster');
+    $manager->persist($location);
 
     $config = $this->getReference('config_account_default_income');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
@@ -47,7 +48,20 @@ class LoadLocationData extends AbstractFixture implements OrderedFixtureInterfac
     $lc->setValue(2);
     $manager->persist($lc);
 
-    $manager->persist($location);
+    $config = $this->getReference('config_email_sender_address');
+    $lc = new \Club\UserBundle\Entity\LocationConfig();
+    $lc->setLocation($location);
+    $lc->setConfig($config->getConfigKey());
+    $lc->setValue('noreply@clubmaster.dk');
+    $manager->persist($lc);
+
+    $config = $this->getReference('config_email_sender_name');
+    $lc = new \Club\UserBundle\Entity\LocationConfig();
+    $lc->setLocation($location);
+    $lc->setConfig($config->getConfigKey());
+    $lc->setValue('ClubMaster');
+    $manager->persist($lc);
+
     $manager->flush();
   }
 

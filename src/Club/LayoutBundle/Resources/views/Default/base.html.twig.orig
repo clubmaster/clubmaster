@@ -48,7 +48,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <p class="f-right">
                 User: <strong>{{ app.user }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {% render 'ClubUserBundle:Misc:LocationBar' %}
+                Location: <strong><a href="{{ path('club_user_location_index') }}">{{ app.user.location.locationName }}</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
                 {% endif %}
 
@@ -105,8 +105,6 @@
         <div id="footer" class="box">
 
                 <p class="f-left">&copy; 2011 <a href="#">ClubMaster</a>, All Rights Reserved &reg;</p>
-
-                <p class="f-right">Version <strong>beta2-dev</strong></p>
 
         </div> <!-- /footer -->
 

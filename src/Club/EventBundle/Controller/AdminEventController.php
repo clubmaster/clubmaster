@@ -78,7 +78,7 @@ class AdminEventController extends Controller
 
   protected function process($event)
   {
-    $form = $this->get('form.factory')->create(new \Club\EventBundle\Form\Event(), $event);
+    $form = $this->createForm(new \Club\EventBundle\Form\Event(), $event);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

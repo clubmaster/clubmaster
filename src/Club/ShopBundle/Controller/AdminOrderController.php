@@ -35,7 +35,7 @@ class AdminOrderController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
 
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Order(), $order);
+    $form = $this->createForm(new \Club\ShopBundle\Form\Order(), $order);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

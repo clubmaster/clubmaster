@@ -16,12 +16,39 @@ class AdminLocationConfigController extends Controller
   public function indexAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
+    $location = $em->find('ClubUserBundle:Location',$id);
+
     $configs = $em->getRepository('ClubUserBundle:LocationConfig')->findBy(array(
-      'location' => $id
+      'location' => $location->getId()
     ));
 
     return array(
+      'location' => $location,
       'configs' => $configs
+    );
+  }
+
+  /**
+   * @Route("/location/config/new/{id}")
+   * @Template()
+   */
+  public function newAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $location = $em->find('ClubUserBundle:Location',$id);
+    $config = new \Club\UserBundle\Entity\LocationConfig($location);
+    $config->setLocation($location);
+
+    $res = $this->process($config);
+
+    if ($res instanceOf RedirectResponse)
+      return $res;
+
+    return array(
+      'location' => $location,
+      'config' => $config,
+      'form' => $res->createView(),
+      'configs' => $em->getRepository('ClubUserBundle:Config')->findAll()
     );
   }
 
@@ -41,13 +68,30 @@ class AdminLocationConfigController extends Controller
 
     return array(
       'config' => $config,
-      'form' => $res->createView()
+      'form' => $res->createView(),
+      'configs' => $em->getRepository('ClubUserBundle:Config')->findAll()
     );
   }
 
+  /**
+   * @Route("/location/config/delete/{id}")
+   */
+  public function deleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $config = $em->find('ClubUserBundle:LocationConfig',$id);
+    $em->remove($config);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('admin_location_config',array(
+      'id' => $config->getLocation()->getId()
+    )));
+  }
   protected function process($config)
   {
-    $form = $this->get('form.factory')->create(new \Club\UserBundle\Form\LocationConfig(), $config);
+    $form = $this->createForm(new \Club\UserBundle\Form\LocationConfig(), $config);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

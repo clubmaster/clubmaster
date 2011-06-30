@@ -276,7 +276,7 @@ class Task
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

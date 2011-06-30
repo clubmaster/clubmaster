@@ -24,10 +24,7 @@
     <tr class="bg">
       <td colspan="7" class="arrow-01">
         <select name="" class="input-text">
-          <option value="">Delete selected</option>
-          <option value="">Remove selected</option>
-          <option value="">Rename selected</option>
-          <option value="">Copy selected</option>
+          <option value="">Ban selected</option>
         </select>&nbsp;<input type="submit" value="OK" />
       </td>
     </tr>
@@ -35,7 +32,7 @@
   <tbody>
   {% for user in users %}
     <tr>
-      <td><input type="checkbox" /></td>
+      <td><input type="checkbox" name="ids[{{ user.id }}]"/></td>
       <td>{{ user.memberNumber }}</td>
       <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>

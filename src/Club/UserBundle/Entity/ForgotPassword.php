@@ -113,7 +113,7 @@ class ForgotPassword
     }
 
     /**
-     * @ORM\prePersist
+     * @ORM\PrePersist
      */
     public function prePersist()
     {

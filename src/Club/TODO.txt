@@ -1,18 +1,16 @@
 == scheduled for beta2 ==
-- add config keys for locations
 - make sure filter actually works and filter users correct
-- make sure nobody can access the installer after install
-- remove link to change location if only 2 locations in the system
 - add 365 date icons
-- configurable sender email
-- add batch to user list
-- rewrite prePersist to PrePersist?? Will this work?
-- rewrite form.factory to $this->createForm()
 - add some more test data
-- add some lorem ipsum data
-
 
 == todo ==
+- obey rules of ban
+- disable emails during development
+- add the message to the frontend, remove the installer file
+- append the version number in the design dynamic
+- manual steps for install clubmaster
+- gettings warnings when sending mails
+- different login pages for different locations
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - obey rules of club_user_currency
@@ -20,6 +18,7 @@
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - on location config better widgets
 - fix layout, single and double column
+- configurable emails sent on different events
 - add filter items (name, member_number)
 - find out the syntax for member_numbers
 - add images to products
@@ -53,6 +52,7 @@
 
 == task ==
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
+- create task that cleanup expired bans
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -66,6 +66,9 @@
 - make sure all pages are html validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
+
+== tests data ==
+- add some more test data
 
 == security ==
 - cannot edit orders that you do not own

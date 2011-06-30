@@ -78,7 +78,7 @@ class AdminShippingController extends Controller
 
   protected function process($shipping)
   {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Shipping(), $shipping);
+    $form = $this->createForm(new \Club\ShopBundle\Form\Shipping(), $shipping);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

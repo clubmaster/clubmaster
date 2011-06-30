@@ -192,7 +192,7 @@ class LoginAttempt
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

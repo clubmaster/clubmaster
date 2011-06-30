@@ -78,7 +78,7 @@ class AdminPaymentMethodController extends Controller
 
   protected function process($payment_method)
   {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\PaymentMethod(), $payment_method);
+    $form = $this->createForm(new \Club\ShopBundle\Form\PaymentMethod(), $payment_method);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

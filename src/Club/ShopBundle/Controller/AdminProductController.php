@@ -78,7 +78,7 @@ class AdminProductController extends Controller
 
   protected function process($product)
   {
-    $form = $this->get('form.factory')->create(new \Club\ShopBundle\Form\Product(), $product);
+    $form = $this->createForm(new \Club\ShopBundle\Form\Product(), $product);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
