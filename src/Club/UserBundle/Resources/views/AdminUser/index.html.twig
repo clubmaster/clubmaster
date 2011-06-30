@@ -43,6 +43,7 @@
         <a href="{{ path('admin_user_ban', { 'id':user.id }) }}"><img src="{{ asset('bundles/clublayout/images/icons/16/Actions-im-ban-user-icon.png') }}" alt="Ban" /></a>
         <a href="{{ path('admin_user_group', { 'id':user.id }) }}"><img src="{{ asset('bundles/clublayout/images/icons/16/user-group-icon.png') }}" alt="Group" /></a>
         <a href="{{ path('admin_user_note', { 'id':user.id }) }}"><img src="{{ asset('bundles/clublayout/images/icons/16/Folder-icon.png') }}" alt="Note" /></a>
+        <a href="{{ path('club_user_adminuser_shop', { 'id':user.id }) }}"><img src="{{ asset('bundles/clublayout/images/icons/16/shopping-cart-insert-icon.png') }}" alt="Shop As" /></a>
       </td>
     </tr>
   {% else %}

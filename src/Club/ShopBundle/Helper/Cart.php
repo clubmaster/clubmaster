@@ -15,9 +15,12 @@ class Cart
     $this->em = $em;
     $this->user = $security->getToken()->getUser();
 
-    $this->cart = $this->session->get('cart');
+    if ($this->session->get('cart_id') != '') {
+      $this->cart = $this->em->find('ClubShopBundle:Cart',$this->session->get('cart_id'));
+    }
+
     if (!$this->cart) {
-      $this->cart = $em->getRepository('\Club\ShopBundle\Entity\Cart')->findOneBy(
+      $this->cart = $em->getRepository('ClubShopBundle:Cart')->findOneBy(
         array('user' => $this->user->getId())
       );
 
@@ -38,6 +41,8 @@ class Cart
 
         $this->save();
       }
+
+      $this->session->set('cart_id',$this->cart->getId());
     }
   }
 
@@ -128,6 +133,8 @@ class Cart
     $this->cart->setCustomerAddress($address);
     $this->cart->setShippingAddress($address);
     $this->cart->setBillingAddress($address);
+
+    $this->save();
   }
 
   public function setShippingAddress(\Club\UserBundle\Entity\User $user)

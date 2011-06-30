@@ -4,7 +4,6 @@
 - gettings warnings when sending mails
 - manual steps for install clubmaster
 - add filter items (name, member_number)
-- Fix shop as user
 - Find a way to upgrade clubmaster
 
 == todo ==
@@ -63,6 +62,7 @@
 - make sure all pages are html validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
+- add icon to pause, resume and expire
 
 == security ==
 - cannot edit orders that you do not own

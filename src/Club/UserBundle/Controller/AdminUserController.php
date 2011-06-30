@@ -239,111 +239,19 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/shop/{id}", name="admin_user_shop")
+   * @Route("/user/shop/{id}")
    */
   public function shopAction($id)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+    $user = $em->find('ClubUserBundle:User',$id);
+
+    $this->get('session')->set('cart_id',null);
     $cart = $this->get('cart');
-    $cart->emptyCart();
-    $cart->setUserId($id);
+    $cart->getCart()->setUser($user);
+    $cart->setCustomerAddress($user);
 
     return $this->redirect($this->generateUrl('shop'));
-  }
-
-  /**
-   * @Route("/user/address/{id}", name="admin_user_address")
-   * @Template()
-   */
-  public function addressAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
-
-    $address = new \Club\UserBundle\Entity\ProfileAddress();
-    $address->setProfile($profile);
-    $address->setIsDefault(1);
-
-    $form = $this->createForm(new \Club\UserBundle\Form\ProfileAddress(), $address);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em->persist($address);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-        return $this->redirect($this->generateUrl('admin_user'));
-      }
-    }
-
-    return array(
-      'profile' => $profile,
-      'form' => $form->createView()
-    );
-  }
-
-  /**
-   * @Route("/user/phone/{id}", name="admin_user_phone")
-   * @Template()
-   */
-  public function phoneAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
-
-    $phone = new \Club\UserBundle\Entity\ProfilePhone();
-    $phone->setProfile($profile);
-    $phone->setIsDefault(1);
-
-    $form = $this->createForm(new \Club\UserBundle\Form\ProfilePhone(), $phone);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em->persist($phone);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-        return $this->redirect($this->generateUrl('admin_user'));
-      }
-    }
-
-    return array(
-      'profile' => $profile,
-      'form' => $form->createView()
-    );
-  }
-
-  /**
-   * @Route("/user/email/{id}", name="admin_user_email")
-   * @Template()
-   */
-  public function emailAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $profile = $em->find('\Club\UserBundle\Entity\Profile',$id);
-
-    $email = new \Club\UserBundle\Entity\ProfileEmail();
-    $email->setProfile($profile);
-    $email->setIsDefault(1);
-
-    $form = $this->createForm(new \Club\UserBundle\Form\ProfileEmail(), $email);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em->persist($email);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-        return $this->redirect($this->generateUrl('admin_user'));
-      }
-    }
-
-    return array(
-      'profile' => $profile,
-      'form' => $form->createView()
-    );
   }
 
   /**
