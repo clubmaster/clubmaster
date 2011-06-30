@@ -51,6 +51,7 @@
 
 == task ==
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
+- create task that cleanup expired bans
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
