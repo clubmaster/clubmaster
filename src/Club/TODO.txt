@@ -1,4 +1,5 @@
 == todo ==
+- manual steps for install clubmaster
 - gettings warnings when sending mails
 - different login pages for different locations
 - make sure filter actually works and filter users correct
