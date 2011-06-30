@@ -177,7 +177,7 @@ class Log
     }
 
     /**
-     * @ORM\prePersist()
+     * @ORM\PrePersist()
      */
     public function prePersist()
     {

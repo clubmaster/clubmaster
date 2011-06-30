@@ -56,7 +56,6 @@
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - on success handler, consider forward and not redirect response?
 - remove all names from route, and use defaults
-- rewrite prePersist to PrePersist?? Will this work?
 - rewrite form.factory to $this->createForm()
 
 == graphics ==

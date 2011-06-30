@@ -483,7 +483,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @ORM\prePersist
+     * @ORM\PrePersist
      */
     public function prePersist()
     {
