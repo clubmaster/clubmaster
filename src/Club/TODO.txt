@@ -1,5 +1,4 @@
 == todo ==
-- add config keys for locations
 - make sure filter actually works and filter users correct
 - make sure nobody can access the installer after install
 - save user search filters
