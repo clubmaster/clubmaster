@@ -1,14 +1,18 @@
-== todo ==
-- make sure subscription uses childs too
-- consider if you should be able to delete users
-- add 365 date icons
+== scheduled for beta3 ==
 - add the manuel installation to the README file
 - obey rules of ban
-- disable emails during development
 - add the message to the frontend, remove the installer file
+- disable emails during development
 - append the version number in the design dynamic
-- manual steps for install clubmaster
 - gettings warnings when sending mails
+- manual steps for install clubmaster
+- add filter items (name, member_number)
+- create task that cleanup expired bans
+- Fix shop as user
+
+== todo ==
+- consider if you should be able to delete users
+- add 365 date icons
 - different login pages for different locations
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
@@ -18,7 +22,6 @@
 - on location config better widgets
 - fix layout, single and double column
 - configurable emails sent on different events
-- add filter items (name, member_number)
 - find out the syntax for member_numbers
 - add images to products
 - sort user lists
@@ -37,7 +40,6 @@
 - find a way to make company users
 - Update basket
 - fix product variants
-- Fix shop as user
 - Shop coupons
 - database email delivery strategy
 - unit test
@@ -51,7 +53,6 @@
 
 == task ==
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
-- create task that cleanup expired bans
 
 == rewrite stuff ==
 - rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
@@ -65,9 +66,6 @@
 - make sure all pages are html validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
-
-== tests data ==
-- add some more test data
 
 == security ==
 - cannot edit orders that you do not own
