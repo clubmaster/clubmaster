@@ -23,7 +23,7 @@
     <tr>
       <td>{{ ban.type }}</td>
       <td>{{ ban.value }}</td>
-      <td>{{ ban.expireDate|date("Y-m-d") }}</td>
+      <td>{{ ban.expireDate|date("Y-m-d H:i:s") }}</td>
       <td>
         <a href="{{ path('ban_expire', {'id':ban.id}) }}">Expire</a>
         <a href="{{ path('ban_extend', {'id':ban.id}) }}">Extend</a>

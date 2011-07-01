@@ -15,7 +15,7 @@ class BanController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $bans = $em->getRepository('\Club\UserBundle\Entity\Ban')->findAll();
+    $bans = $em->getRepository('ClubUserBundle:Ban')->findAll();
 
     return array(
       'bans' => $bans
@@ -28,7 +28,7 @@ class BanController extends Controller
   public function extendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $ban = $em->find('\Club\UserBundle\Entity\Ban',$id);
+    $ban = $em->find('ClubUserBundle:Ban',$id);
     $ban->setExpireDate(new \DateTime(date('Y-m-d',strtotime('+1 month'))));
 
     $em->persist($ban);
@@ -44,9 +44,10 @@ class BanController extends Controller
   public function expireAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $ban = $em->find('\Club\UserBundle\Entity\Ban',$id);
+    $ban = $em->find('ClubUserBundle:Ban',$id);
+    $ban->setExpireDate(new \DateTime());
 
-    $em->remove($ban);
+    $em->persist($ban);
     $em->flush();
 
     $this->get('session')->setFlash('notice','Ban has been expired');

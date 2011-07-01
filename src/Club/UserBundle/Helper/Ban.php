@@ -19,8 +19,11 @@ class Ban
     $ban->setUser($this->security_context->getToken()->getUser());
     $ban->setType('user');
     $ban->setValue($user->getId());
-    $ban->setExpireDate(new \DateTime(date('Y-m-d',strtotime("+1 month"))));
+    $ban->setExpireDate(new \DateTime(date('Y-m-d H:i:s',strtotime("+1 month"))));
 
+    $user->setLocked(1);
+
+    $this->em->persist($user);
     $this->em->persist($ban);
     $this->em->flush();
   }

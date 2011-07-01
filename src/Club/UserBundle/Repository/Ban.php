@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class Ban extends EntityRepository
 {
+  public function findAllExpired()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('b')
+      ->from('ClubUserBundle:Ban','b')
+      ->where('b.expire_date < :date')
+      ->setParameter('date',date('Y-m-d H:is:'))
+      ->getQuery()
+      ->getResult();
+  }
 }

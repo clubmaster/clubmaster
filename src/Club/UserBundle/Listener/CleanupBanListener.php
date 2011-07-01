@@ -16,11 +16,18 @@ class CleanupBanListener
 
   public function onBanTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
-    $res = $this->em->createQueryBuilder()
-      ->delete('ClubUserBundle:Ban','b')
-      ->where('b.expire_date > :date')
-      ->setParameter('date',date('Y-m-d H:is:'))
-      ->getQuery()
-      ->getResult();
+    $bans = $this->em->getRepository('ClubUserBundle:Ban')->findAllExpired();
+
+    foreach ($bans as $ban) {
+      if ($ban->getType() == 'user') {
+        $user = $this->em->find('ClubUserBundle:User',$ban->getValue());
+        $user->setLocked(0);
+
+        $this->em->remove($ban);
+        $this->em->persist($user);
+      }
+    }
+
+    $this->em->flush();
   }
 }

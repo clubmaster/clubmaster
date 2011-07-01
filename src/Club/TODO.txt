@@ -6,6 +6,7 @@
 - Find a way to upgrade clubmaster
 
 == todo ==
+- dont show remove installer file on installer
 - consider if you should be able to delete users
 - add 365 date icons
 - different login pages for different locations
