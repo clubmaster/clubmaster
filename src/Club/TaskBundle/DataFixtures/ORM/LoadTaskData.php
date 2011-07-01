@@ -53,6 +53,15 @@ class LoadTaskData implements FixtureInterface
     $task->setEvent('onBanTask');
     $manager->persist($task);
 
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Send emails');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('+1 hour');
+    $task->setEvent('onMailTask');
+    $manager->persist($task);
+
     $manager->flush();
   }
 }

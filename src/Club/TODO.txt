@@ -1,5 +1,5 @@
 == scheduled for beta3 ==
-- gettings warnings when sending mails
+- validate we can write in email spool path folder
 - add the manuel installation to the README file
 - manual steps for install clubmaster
 - Find a way to upgrade clubmaster
@@ -36,7 +36,6 @@
 - Update basket
 - fix product variants
 - Shop coupons
-- database email delivery strategy
 - unit test
 - special products
 - group and user filter, is_active (true, false, both)
