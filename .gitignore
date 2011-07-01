@@ -20,4 +20,4 @@ vendor/symfony/
 vendor/twig-extensions/
 vendor/twig/
 web/bundles
-installer
+app/installer

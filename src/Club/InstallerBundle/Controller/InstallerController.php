@@ -10,7 +10,7 @@ class InstallerController extends Controller
 {
   public function __construct()
   {
-    $file = __DIR__.'/../../../../installer';
+    $file = __DIR__.'/../../../../app/installer';
     if (!file_exists($file))
       die('The installer is not available.');
   }

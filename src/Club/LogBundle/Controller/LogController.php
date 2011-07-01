@@ -58,10 +58,10 @@ class LogController extends Controller
   public function LogViewAction()
   {
     $remove_installer_file = 0;
-    
-    $file = preg_replace("/\/src\/Club\/LogBundle\/Controller/","",__DIR__).'/installer';
-    if (file_exists($file))
-      $remove_installer_file = $file;
+    $installer_file = $this->get('kernel')->getRootDir().'/installer';
+
+    if (file_exists($installer_file))
+      $remove_installer_file = $installer_file;
 
     $em = $this->getDoctrine()->getEntityManager();
 
