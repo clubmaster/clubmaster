@@ -4,6 +4,7 @@ namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -541,13 +542,60 @@ class User implements UserInterface, \Serializable
       return array_unique($roles);
     }
 
+    public function equals(UserInterface $user)
+    {
+      if (!$user instanceof User) {
+        return false;
+      }
+
+      if ($this->password !== $user->getPassword()) {
+        return false;
+      }
+      if ($this->getSalt() !== $user->getSalt()) {
+        return false;
+      }
+      if ($this->isAccountNonExpired() !== $user->isAccountNonExpired()) {
+        return false;
+      }
+      if (!$this->locked !== $user->isAccountNonLocked()) {
+        return false;
+      }
+      if ($this->isCredentialsNonExpired() !== $user->isCredentialsNonExpired()) {
+        return false;
+      }
+      if ($this->enabled !== $user->isEnabled()) {
+        return false;
+      }
+
+      return true;
+
+    }
+
     public function eraseCredentials()
     {
     }
 
-    public function equals(UserInterface $user)
+    public function isAccountNonExpired()
     {
-      return md5($this->getMemberNumber()) == md5($user->getMemberNumber());
+      return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+      if ($this->getLocked() == 1)
+        return false;
+
+      return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+      return true;
+    }
+
+    public function isEnabled()
+    {
+      return true;
     }
 
     public function getUsername()

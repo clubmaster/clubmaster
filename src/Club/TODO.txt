@@ -1,5 +1,4 @@
 == scheduled for beta3 ==
-- obey rules of ban
 - gettings warnings when sending mails
 - add the manuel installation to the README file
 - manual steps for install clubmaster
