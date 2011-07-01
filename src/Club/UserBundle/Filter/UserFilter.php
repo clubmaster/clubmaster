@@ -4,6 +4,10 @@ namespace Club\UserBundle\Filter;
 
 class UserFilter
 {
+  public $name;
+
+  public $member_number;
+
   public $min_age;
 
   public $max_age;

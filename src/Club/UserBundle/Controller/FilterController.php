@@ -48,6 +48,8 @@ class FilterController extends Controller
    */
   private function syncFilters($filter,$data)
   {
+    $name = ($data->name != '') ? $data->name : null;
+    $member_number = ($data->member_number != '') ? $data->member_number : null;
     $min_age = ($data->min_age != '') ? $data->min_age : null;
     $max_age = ($data->max_age != '') ? $data->max_age : null;
     $gender = ($data->gender != '') ? $data->gender : null;
@@ -58,6 +60,8 @@ class FilterController extends Controller
     $has_ticket= ($data->has_ticket != '') ? $data->has_ticket : null;
     $has_subscription = ($data->has_subscription != '') ? $data->has_subscription : null;
 
+    $this->syncColumn($filter, 'name', $name);
+    $this->syncColumn($filter, 'member_number', $member_number);
     $this->syncColumn($filter, 'min_age', $min_age);
     $this->syncColumn($filter, 'max_age', $max_age);
     $this->syncColumn($filter, 'gender', $gender);
@@ -129,6 +133,12 @@ class FilterController extends Controller
 
     foreach ($filter->getAttributes() as $attribute) {
       switch ($attribute->getAttribute()->getAttributeName()) {
+      case 'name':
+        $form_filter->name = $attribute->getValue();
+        break;
+      case 'member_number':
+        $form_filter->member_number = $attribute->getValue();
+        break;
       case 'min_age':
         $form_filter->min_age = $attribute->getValue();
         break;

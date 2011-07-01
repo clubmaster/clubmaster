@@ -81,6 +81,12 @@ class User extends EntityRepository
     foreach ($filter->getAttributes() as $attr) {
       if ($attr->getValue() != '') {
         switch ($attr->getAttribute()->getAttributeName()) {
+        case 'name':
+          $qb = $this->filterName($qb,$attr->getValue());
+          break;
+        case 'member_number':
+          $qb = $this->filterMemberNumber($qb,$attr->getValue());
+          break;
         case 'min_age':
           $qb = $this->filterMinAge($qb,$attr->getValue());
           break;
@@ -159,6 +165,24 @@ class User extends EntityRepository
       ->select('u')
       ->from('ClubUserBundle:User','u')
       ->leftJoin('u.profile','p');
+  }
+
+  protected function filterName($qb,$value)
+  {
+    $qb->andWhere('(p.first_name = :name OR p.last_name = :name)');
+    $qb->setParameter('name', $value);
+
+    return $qb;
+  }
+
+  protected function filterMemberNumber($qb,$value)
+  {
+    $qb->andWhere(
+      $qb->expr()->eq('u.member_number',':number')
+    );
+    $qb->setParameter('number', $value);
+
+    return $qb;
   }
 
   protected function filterMinAge($qb,$value)

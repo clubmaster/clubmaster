@@ -15,6 +15,8 @@ class Filter extends AbstractType
       '0' => 'No'
     );
 
+    $builder->add('name');
+    $builder->add('member_number');
     $builder->add('min_age', 'choice', array(
       'choices' => $age,
       'required' => false
