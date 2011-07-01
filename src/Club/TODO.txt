@@ -6,6 +6,8 @@
 - dont show remove installer file on installer
 
 == todo ==
+- javascript confirms
+- flash on set subscription on pause
 - consider if you should be able to delete users
 - add 365 date icons
 - different login pages for different locations
