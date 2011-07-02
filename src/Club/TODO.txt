@@ -3,7 +3,6 @@
 - add the manuel installation to the README file
 - manual steps for install clubmaster
 - Find a way to upgrade clubmaster
-- dont show remove installer file on installer
 
 == todo ==
 - consider if you should be able to delete users
