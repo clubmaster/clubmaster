@@ -86,3 +86,11 @@ Now your installation is in place, go to this url an follow the onscreen install
 http://localhost/clubmaster/web/check.php
 
 That page will tell you everything you will need to know in order to get up and running.
+
+
+Upgrade
+-------
+
+In order to upgrade from a previous installation:
+
+- Backup your current database and files.

@@ -31,6 +31,7 @@ security:
         - { path: /auth/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /rest.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /installer.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /upgrade.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /event/ical, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /.*, roles: 'ROLE_USER' }
         - { path: /admin/.*, roles: 'ROLE_ADMIN' }
