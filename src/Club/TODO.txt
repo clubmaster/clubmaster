@@ -1,6 +1,5 @@
 == scheduled for beta3 ==
 - validate we can write in email spool path folder
-- Find a way to upgrade clubmaster
 
 == todo ==
 - javascript confirms
