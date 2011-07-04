@@ -94,3 +94,4 @@ Upgrade
 In order to upgrade from a previous installation:
 
 - Backup your current database and files.
+- Go to the website, http://localhost/clubmaster/web/upgrade
