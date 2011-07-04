@@ -1,7 +1,5 @@
 == scheduled for beta3 ==
 - validate we can write in email spool path folder
-- add the manuel installation to the README file
-- manual steps for install clubmaster
 - Find a way to upgrade clubmaster
 
 == todo ==

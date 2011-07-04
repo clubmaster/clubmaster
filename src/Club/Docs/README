@@ -3,29 +3,50 @@ ClubMaster
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
 :Date:      2011-06-30
-:Revision:  3
+:Revision:  4
 
 
 Feedback
 --------
-It would really help me a lot of you can give me just any feedback at {email}.
+It would really help me a lot of you can give me just any feedback at hollo@hollo.dk.
 
 
 Quickstart
 ----------
 
-If you just want to be up and running, here is what you have to do:
+If you just want to be up and running and have access to the shell, here is what you have to do:
 
   cd /var/www
   tar xzf clubmaster-XXX.tgz
   cd clubmaster-XXX
   vim app/config/parameters.ini
   ./install.sh
-  chmod -R 777 app/cache app/logs
 
 Now browse to:
 
 http://localhost/clubmaster/web/check.php
+
+
+Manual Installation
+-------------------
+
+If you dont have access to the shell, then you have to do then manual installation.
+
+
+Get the archive
+---------------
+
+First get the archive from our website http://www.clubmaster.dk.
+
+Now extract the archive some place that your webserver can see.
+
+Go to the newly created folder clubmaster/.
+
+
+Edit configuration
+------------------
+
+Edit the file app/config/parameters.yml to fit to your needs.
 
 
 Prerequirements
@@ -36,28 +57,32 @@ In order to run this software you need to following prerequirements:
 - PHP 5.3.2
 - MySQL 5
 
-When you have this up and running, you can check the following page for other requirements:
+
+Create database
+---------------
+
+First manually create the database that you want to use:
+
+$ mysql -u root -e"CREATE DATABASE clubmaster"
+
+Now when the database is in place, import the schema files located in the folder app/sql/.
+
+$ mysql -u root clubmaster < app/sql/install.sql
+
+
+File permissions
+----------------
+
+Before you can complete the installation online, you have to make some files writeable for the webserver, do the following:
+
+$ chmod -R 777 app/cache app/logs
+
+
+Complete installation
+---------------------
+
+Now your installation is in place, go to this url an follow the onscreen installation:
 
 http://localhost/clubmaster/web/check.php
 
 That page will tell you everything you will need to know in order to get up and running.
-
-
-Install
--------
-
-First get the archive from our website http://www.clubmaster.dk.
-
-Now extract the archive some place that your webserver can see.
-
-Go to the newly created folder clubmaster/.
-
-Edit the file app/config/parameters.yml to fit to your needs.
-
-Now you can start building the database, for that we have a couple of scripts that you have to run:
-
-  $ ./install.sh
-
-Now you are ready to progress. Login to the only installer and follow the information on the screen.
-
-http://localhost/clubmaster/web/check.php

@@ -34,6 +34,9 @@ find ${BUILD_PATH} -name .gitignore | xargs rm -rf
 
 touch ${BUILD_PATH}/app/installer
 
+mkdir ${BUILD_PATH}/app/sql
+cp Docs/sql/install.sql ${BUILD_PATH}/app/sql
+
 cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
 [parameters]
     database_driver   = pdo_mysql
@@ -51,3 +54,5 @@ EOF
 
 cd /tmp
 tar czf clubmaster_${VERSION}.tgz clubmaster_${VERSION}
+
+rm -rf ${BUILD_PATH}
