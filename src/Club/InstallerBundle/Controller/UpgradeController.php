@@ -14,6 +14,13 @@ class UpgradeController extends Controller
    */
   public function indexAction()
   {
+    $this->migrate();
+
+    return array();
+  }
+
+  private function migrate()
+  {
     $em = $this->getDoctrine()->getEntityManager();
 
     $dir = $this->container->getParameter('doctrine_migrations.dir_name');
@@ -34,7 +41,5 @@ class UpgradeController extends Controller
       if ($version->getVersion() > $from)
         $migration->migrate($version->getVersion());
     }
-
-    return array();
   }
 }
