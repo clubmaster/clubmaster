@@ -5,7 +5,23 @@
 
 <p>This is the upgrader tool ClubMaster.</p>
 
-<p>After running this software your application will be up to date.</p>
+<p>Your current database version: <strong>{{ configuration.currentVersion }}</strong></p>
+<p>Latest database version: <strong>{{ configuration.latestVersion }}</strong></p>
+
+{% if configuration.currentVersion == configuration.latestVersion %}
+<p>There are no database upgrades for this version. Just return to <a href="{{ path('homepage') }}">the login screen</a> to continue to use ClubMaster.</p>
+
+{% else %}
+<P>You are not running the latest version of ClubMaster.</p>
+
+<ul>
+  <li>Start by backing up your database.</li>
+  <li>Push the <strong>UPGRADE</strong> button below.</li>
+</ul>
+
+{% endif %}
+
+<p><strong><a href="{{ path('club_installer_upgrade_upgrade') }}">UPGRADE ClubMaster</a></strong></p>
 
 <p>ClubMaster team</p>
 

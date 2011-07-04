@@ -14,6 +14,19 @@ class UpgradeController extends Controller
    */
   public function indexAction()
   {
+    $configuration = $this->getMigrationsConfiguration();
+
+    return array(
+      'configuration' => $configuration
+    );
+  }
+
+  /**
+   * @Route("/upgrade/execute")
+   * @Template()
+   */
+  public function upgradeAction()
+  {
     $this->migrate();
 
     return array();
@@ -23,14 +36,7 @@ class UpgradeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $dir = $this->container->getParameter('doctrine_migrations.dir_name');
-    $configuration = new \Doctrine\DBAL\Migrations\Configuration\Configuration($em->getConnection());
-    $configuration->setMigrationsNamespace($this->container->getParameter('doctrine_migrations.namespace'));
-    $configuration->setMigrationsDirectory($dir);
-    $configuration->registerMigrationsFromDirectory($dir);
-    $configuration->setName($this->container->getParameter('doctrine_migrations.name'));
-    $configuration->setMigrationsTableName($this->container->getParameter('doctrine_migrations.table_name'));
-
+    $configuration = $this->getMigrationsConfiguration();
     $migration = new \Doctrine\DBAL\Migrations\Migration($configuration);
 
     $from = $configuration->getCurrentVersion();
@@ -58,5 +64,20 @@ class UpgradeController extends Controller
     $executor = new \Doctrine\Common\DataFixtures\Executor\ORMExecutor($em, $purger);
 
     $executor->execute($fixtures, true);
+  }
+
+  private function getMigrationsConfiguration()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $dir = $this->container->getParameter('doctrine_migrations.dir_name');
+    $configuration = new \Doctrine\DBAL\Migrations\Configuration\Configuration($em->getConnection());
+    $configuration->setMigrationsNamespace($this->container->getParameter('doctrine_migrations.namespace'));
+    $configuration->setMigrationsDirectory($dir);
+    $configuration->registerMigrationsFromDirectory($dir);
+    $configuration->setName($this->container->getParameter('doctrine_migrations.name'));
+    $configuration->setMigrationsTableName($this->container->getParameter('doctrine_migrations.table_name'));
+
+    return $configuration;
   }
 }

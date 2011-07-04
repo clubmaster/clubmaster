@@ -15,7 +15,7 @@ php ../../app/console assets:install ../../web
 mysql -u root clubmaster_v2 < Docs/sql/test_data.sql
 mysql -u root clubmaster_v2 < Docs/sql/users_data.sql
 
-touch ../../installer
+touch ../../app/installer
 php ../../app/console cache:warmup
 
 sudo chmod 777 -R ../../app/logs ../../app/cache
