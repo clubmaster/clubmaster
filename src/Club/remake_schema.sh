@@ -9,6 +9,7 @@ php ../../app/console doctrine:database:drop --force
 php ../../app/console doctrine:database:create
 php ../../app/console doctrine:migrations:migrate --no-interaction
 php ../../app/console doctrine:fixtures:load
+php ../../app/console doctrine:fixtures:load --fixtures=../../app/DoctrineFixtures/ --append
 php ../../app/console assets:install ../../web
 
 mysql -u root clubmaster_v2 < Docs/sql/test_data.sql

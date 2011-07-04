@@ -38,8 +38,25 @@ class UpgradeController extends Controller
     $migrations = $configuration->getMigrations();
 
     foreach ($migrations as $version) {
-      if ($version->getVersion() > $from)
+      if ($version->getVersion() > $from) {
         $migration->migrate($version->getVersion());
+        $this->loadFixtures($version->getVersion());
+      }
     }
+  }
+
+  private function loadFixtures($version)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $dir = $this->get('kernel')->getRootDir().'/DoctrineFixtures/'.$version;
+
+    $loader = new \Symfony\Bundle\DoctrineFixturesBundle\Common\DataFixtures\Loader($this->container);
+    $loader->loadFromDirectory($dir);
+    $fixtures = $loader->getFixtures();
+
+    $purger = new  \Doctrine\Common\DataFixtures\Purger\ORMPurger($em);
+    $executor = new \Doctrine\Common\DataFixtures\Executor\ORMExecutor($em, $purger);
+
+    $executor->execute($fixtures, true);
   }
 }
