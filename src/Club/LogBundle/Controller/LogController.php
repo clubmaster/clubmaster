@@ -59,7 +59,7 @@ class LogController extends Controller
   {
     $logs = array();
 
-    if (($res = $this->canWriteToMailerSpool()))
+    if (!($res = $this->canWriteToMailerSpool()))
       $logs[] = 'Cannot write to mailer spool dir <strong>'.$this->container->getParameter('swiftmailer.spool.file.path').'</strong>';
 
     if (($res = $this->installerFileExists()))
