@@ -16,9 +16,9 @@ class UserNoteController extends Controller
   public function indexAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('\Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
-    $user_notes = $em->getRepository('\Club\UserBundle\Entity\UserNote')->findBy(array(
+    $user_notes = $em->getRepository('ClubUserBundle:UserNote')->findBy(array(
       'user' => $user->getId()
     ));
 
@@ -35,7 +35,7 @@ class UserNoteController extends Controller
   public function newAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('\Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $user_note = new \Club\UserBundle\Entity\UserNote();
     $user_note->setUser($user);
@@ -58,7 +58,7 @@ class UserNoteController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user_note = $em->find('Club\UserBundle\Entity\UserNote',$id);
+    $user_note = $em->find('ClubUserBundle:UserNote',$id);
     $res = $this->process($user_note);
 
     if ($res instanceOf RedirectResponse)
@@ -76,7 +76,7 @@ class UserNoteController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user_note = $em->find('\Club\UserBundle\Entity\UserNote',$id);
+    $user_note = $em->find('ClubUserBundle:UserNote',$id);
 
     $em->remove($user_note);
     $em->flush();

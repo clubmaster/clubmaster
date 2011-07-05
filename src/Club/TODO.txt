@@ -9,7 +9,6 @@
 - make sure the firewall actually does work
 - only right user can pause and expire subscription (admin, owner)
 - remember to set a subscription to inactive when no more tickets (create ticket helper)
-- rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 
 == todo ==
 - consider if you should be able to delete users

@@ -16,7 +16,7 @@ class ProductController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $product = $em->find('Club\ShopBundle\Entity\Product',$id);
+    $product = $em->find('ClubShopBundle:Product',$id);
 
     return array(
       'product' => $product
@@ -30,7 +30,7 @@ class ProductController extends Controller
   public function cartAction($id)
   {
     try {
-      $product = $this->getDoctrine()->getEntityManager()->find('Club\ShopBundle\Entity\Product',$id);
+      $product = $this->getDoctrine()->getEntityManager()->find('ClubShopBundle:Product',$id);
       $this->get('cart')->addToCart($product);
 
     } catch (\Exception $e) {

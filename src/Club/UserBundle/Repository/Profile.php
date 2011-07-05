@@ -14,7 +14,7 @@ class Profile extends EntityRepository
 {
   public function getDefaultAddress(\Club\UserBundle\Entity\Profile $profile)
   {
-    $address = $this->_em->getRepository('\Club\UserBundle\Entity\ProfileAddress')->findOneBy(array(
+    $address = $this->_em->getRepository('ClubUserBundle:ProfileAddress')->findOneBy(array(
       'profile' => $profile->getId(),
       'is_default' => 1
     ));
@@ -24,7 +24,7 @@ class Profile extends EntityRepository
 
   public function getDefaultEmail(\Club\UserBundle\Entity\Profile $profile)
   {
-    $email = $this->_em->getRepository('\Club\UserBundle\Entity\ProfileEmail')->findOneBy(array(
+    $email = $this->_em->getRepository('ClubUserBundle:ProfileEmail')->findOneBy(array(
       'profile' => $profile->getId(),
       'is_default' => 1
     ));

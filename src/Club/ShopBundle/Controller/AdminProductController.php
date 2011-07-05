@@ -16,7 +16,7 @@ class AdminProductController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $products = $em->getRepository('\Club\ShopBundle\Entity\Product')->findAll();
+    $products = $em->getRepository('ClubShopBundle:Product')->findAll();
 
     return array(
       'products' => $products
@@ -47,7 +47,7 @@ class AdminProductController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('Club\ShopBundle\Entity\Product',$id);
+    $product = $em->find('ClubShopBundle:Product',$id);
 
     $res = $this->process($product);
 

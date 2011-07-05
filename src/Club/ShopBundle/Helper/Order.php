@@ -128,9 +128,9 @@ class Order
     $this->order->setCurrencyValue($data->getCurrencyValue());
     $this->order->setPrice($data->getPrice());
     $this->order->setVatPrice($data->getVatPrice());
-    $this->order->setPaymentMethod($this->em->find('\Club\ShopBundle\Entity\PaymentMethod',$data->getPaymentMethod()->getId()));
-    $this->order->setShipping($this->em->find('\Club\ShopBundle\Entity\Shipping',$data->getShipping()->getId()));
-    $this->order->setOrderStatus($this->em->getRepository('\Club\ShopBundle\Entity\OrderStatus')->getDefaultStatus());
+    $this->order->setPaymentMethod($this->em->find('ClubShopBundle:PaymentMethod',$data->getPaymentMethod()->getId()));
+    $this->order->setShipping($this->em->find('ClubShopBundle:Shipping',$data->getShipping()->getId()));
+    $this->order->setOrderStatus($this->em->getRepository('ClubShopBundle:OrderStatus')->getDefaultStatus());
     $this->order->setUser($data->getUser());
 
     $this->em->persist($this->order);

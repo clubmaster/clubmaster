@@ -16,7 +16,7 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $events = $em->getRepository('\Club\EventBundle\Entity\Event')->findAll();
+    $events = $em->getRepository('ClubEventBundle:Event')->findAll();
 
     return array(
       'events' => $events,
@@ -31,7 +31,7 @@ class EventController extends Controller
   public function showAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('\Club\EventBundle\Entity\Event',$id);
+    $event = $em->find('ClubEventBundle:Event',$id);
 
     return array(
       'event' => $event,
@@ -45,7 +45,7 @@ class EventController extends Controller
   public function attendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('\Club\EventBundle\Entity\Event',$id);
+    $event = $em->find('ClubEventBundle:Event',$id);
 
     $attend = new \Club\EventBundle\Entity\Attend();
     $attend->setUser($this->get('security.context')->getToken()->getUser());
@@ -82,9 +82,9 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $event = $em->find('\Club\EventBundle\Entity\Event', $id);
+    $event = $em->find('ClubEventBundle:Event', $id);
 
-    $attend = $em->getRepository('Club\EventBundle\Entity\Attend')->findOneBy(array(
+    $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
       'user' => $this->get('security.context')->getToken()->getUser()->getId(),
       'event' => $event->getId()
     ));

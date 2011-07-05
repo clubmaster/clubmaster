@@ -16,7 +16,7 @@ class ShopController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
+    $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
       'location' => $this->get('security.context')->getToken()->getUser()->getLocation()->getId()
     ));
 
@@ -34,10 +34,10 @@ class ShopController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $categories = $em->getRepository('Club\ShopBundle\Entity\Category')->findBy(array(
+    $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
       'category' => $id
     ));
-    $category = $em->find('Club\ShopBundle\Entity\Category',$id);
+    $category = $em->find('ClubShopBundle:Category',$id);
 
     return array(
       'location' => $this->get('security.context')->getToken()->getUser()->getLocation(),
@@ -52,7 +52,7 @@ class ShopController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $category = $em->find('Club\ShopBundle\Entity\Category',$id);
+    $category = $em->find('ClubShopBundle:Category',$id);
 
     $em->remove($category);
     $em->flush();

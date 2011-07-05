@@ -16,7 +16,7 @@ class AdminPaymentMethodController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $payment_methods = $em->getRepository('\Club\ShopBundle\Entity\PaymentMethod')->findAll();
+    $payment_methods = $em->getRepository('ClubShopBundle:PaymentMethod')->findAll();
 
     return array(
       'payment_methods' => $payment_methods
@@ -47,7 +47,7 @@ class AdminPaymentMethodController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $payment_method = $em->find('Club\ShopBundle\Entity\PaymentMethod',$id);
+    $payment_method = $em->find('ClubShopBundle:PaymentMethod',$id);
 
     $res = $this->process($payment_method);
 

@@ -16,7 +16,7 @@ class AdminEventController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $events = $em->getRepository('\Club\EventBundle\Entity\Event')->findAll();
+    $events = $em->getRepository('ClubEventBundle:Event')->findAll();
 
     return array(
       'events' => $events
@@ -47,7 +47,7 @@ class AdminEventController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('Club\EventBundle\Entity\Event',$id);
+    $event = $em->find('ClubEventBundle:Event',$id);
 
     $res = $this->process($event);
 

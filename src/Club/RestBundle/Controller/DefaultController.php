@@ -19,7 +19,7 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $user = new \Club\UserBundle\Entity\User();
-    $user->setMemberNumber($em->getRepository('Club\UserBundle\Entity\User')->findNextMemberNumber());
+    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
     $user->setPassword(1234);
     $em->persist($user);
     $em->flush();
@@ -39,7 +39,7 @@ class DefaultController extends Controller
     $address->setStreet($this->getRequest()->get('street'));
     $address->setPostalCode($this->getRequest()->get('postal_code'));
     $address->setCity($this->getRequest()->get('city'));
-    $country = $em->getRepository('\Club\UserBundle\Entity\Country')->findOneByCountry($this->getRequest()->get('country'));
+    $country = $em->getRepository('ClubUserBundle:Country')->findOneByCountry($this->getRequest()->get('country'));
     $address->setCountry($country);
 
     $em->persist($address);
@@ -58,7 +58,7 @@ class DefaultController extends Controller
   public function getUserAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     return $this->renderJSon($user->toArray());
   }
@@ -70,7 +70,7 @@ class DefaultController extends Controller
   public function deleteUserAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $em->remove($user);
     $em->flush();
@@ -84,7 +84,7 @@ class DefaultController extends Controller
   public function getUsersAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAll();
+    $users = $em->getRepository('ClubUserBundle:User')->findAll();
 
     $res = array();
     foreach ($users as $user) {
@@ -100,7 +100,7 @@ class DefaultController extends Controller
   public function getUsersActiveAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $users = $em->getRepository('Club\UserBundle\Entity\User')->findAllActive();
+    $users = $em->getRepository('ClubUserBundle:User')->findAllActive();
 
     $res = array();
     foreach ($users as $user) {
@@ -116,7 +116,7 @@ class DefaultController extends Controller
   public function banUserAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('Club\UserBundle\Entity\User',$id);
+    $user = $em->find('ClubUserBundle:User',$id);
 
     $ban = new \Club\UserBundle\Entity\Ban();
     $ban->setUser($user);
@@ -136,8 +136,8 @@ class DefaultController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $em->find('Club\UserBundle\Entity\User',$this->getRequest()->get('user'));
-    $role = $em->find('Club\UserBundle\Entity\Role',$this->getRequest()->get('role'));
+    $user = $em->find('ClubUserBundle:User',$this->getRequest()->get('user'));
+    $role = $em->find('ClubUserBundle:Role',$this->getRequest()->get('role'));
 
     $user->addRole($role);
 
