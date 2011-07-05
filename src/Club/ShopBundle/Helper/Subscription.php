@@ -16,8 +16,8 @@ class Subscription
   public function pauseSubscription($subscription)
   {
     // validate that the user is allowed to pause
-    $attr = $this->em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'AllowedPauses');
-    if (count($subscription->getSubscriptionPauses()) >= $attr->getValue()) {
+    $allowed = $this->em->getRepository('ClubShopBundle:Subscription')->getAllowedPauses($subscription);
+    if (count($subscription->getSubscriptionPauses()) >= $allowed) {
       $this->session->setFlash('error','You cannot have anymore pauses.');
       return;
     }
@@ -32,7 +32,7 @@ class Subscription
     $this->em->persist($pause);
     $this->em->flush();
 
-    $this->session->set('notice','Your subscription has been paused.');
+    $this->session->setFlash('notice','Your subscription has been paused.');
   }
 
   public function resumeSubscription($subscription)

@@ -39,14 +39,31 @@ class Subscription extends EntityRepository
 
   public function getAttributeForSubscription(\Club\ShopBundle\Entity\Subscription $subscription,$attribute_name)
   {
+    return $this->getAttributeQuery($subscription, $attribute_name)
+      ->getQuery()
+      ->getSingleResult();
+  }
+
+  public function getAllowedPauses(\Club\ShopBundle\Entity\Subscription $subscription)
+  {
+    $res = $this->getAttributeQuery($subscription, 'AllowedPauses')
+      ->getQuery()
+      ->getResult();
+
+    if (!count($res))
+      return 0;
+
+    return $res[0]->getValue();
+  }
+
+  private function getAttributeQuery(\Club\ShopBundle\Entity\Subscription $subscription, $attribute_name)
+  {
     return $this->_em->createQueryBuilder()
       ->select('sa')
       ->from('ClubShopBundle:SubscriptionAttribute','sa')
       ->where('sa.subscription = :subscription')
       ->andWhere('sa.attribute_name = :attribute')
       ->setParameter('subscription', $subscription->getId())
-      ->setParameter('attribute', $attribute_name)
-      ->getQuery()
-      ->getSingleResult();
+      ->setParameter('attribute', $attribute_name);
   }
 }
