@@ -26,18 +26,33 @@ class Subscription extends EntityRepository
     return $pause;
   }
 
-  public function getExpiredAutoRenewalSubscriptions()
+  public function getExpiredSubscriptions()
   {
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubShopBundle:Subscription','s')
-      ->andWhere('s.expire_date >= :expire_date')
+      ->where('s.expire_date <= :expire_date')
       ->setParameter('expire_date',date('Y-m-d'))
       ->getQuery()
       ->getResult();
   }
 
-  public function getAttributeForSubscription(\Club\ShopBundle\Entity\Subscription $subscription,$attribute_name)
+  public function getExpiredAutoRenewalSubscriptions()
+  {
+    $res = array();
+    foreach ($this->getExpiredSubscriptions() as $subscription) {
+      if ($this->isAutoRenewal($subscription))
+        $res[] = $subscription;
+    }
+
+    return $res;
+  }
+
+  private function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
+  {
+  }
+
+  public function getAttributeForSubscription(\Club\ShopBundle\Entity\Subscription $subscription, $attribute_name)
   {
     return $this->getAttributeQuery($subscription, $attribute_name)
       ->getQuery()

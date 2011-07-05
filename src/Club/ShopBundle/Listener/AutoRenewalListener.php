@@ -21,6 +21,7 @@ class AutoRenewalListener
   public function onAutoRenewalTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredAutoRenewalSubscriptions();
+
     foreach ($subscriptions as $subscription) {
       $old_order = $subscription->getOrder();
 
