@@ -61,4 +61,28 @@ class Subscription
     $this->em->persist($subscription);
     $this->em->flush();
   }
+
+  public function useTicket(\Club\ShopBundle\Entity\Subscription $subscription, $tickets = 1)
+  {
+    $left = $this->em->getRepository('ClubShopBundle:Subscription')->getTicketsLeft($subscription);
+
+    if (($left-$tickets) < 0) {
+      $this->session->setFlash('error','You dont have enough tickets.');
+      return false;
+
+    } elseif (($left-$tickets) == 0) {
+      $subscription->setIsActive(0);
+      $this->em->persist($subscription);
+      $this->em->flush();
+    }
+
+    $st = new \Club\ShopBundle\Entity\SubscriptionTicket();
+    $st->setSubscription($subscription);
+    $st->setTickets($tickets);
+
+    $this->em->persist($st);
+    $this->em->flush();
+
+    $this->session->setFlash('notice',$tickets.' ticket was removed from your account.');
+  }
 }

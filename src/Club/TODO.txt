@@ -8,7 +8,6 @@
 - cannot edit orders that you do not own
 - make sure the firewall actually does work
 - only right user can pause and expire subscription (admin, owner)
-- remember to set a subscription to inactive when no more tickets (create ticket helper)
 
 == todo ==
 - consider if you should be able to delete users

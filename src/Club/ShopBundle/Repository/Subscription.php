@@ -56,6 +56,36 @@ class Subscription extends EntityRepository
     return $res[0]->getValue();
   }
 
+  public function getTicketsLeft(\Club\ShopBundle\Entity\Subscription $subscription)
+  {
+    $used = $this->getUsedTickets($subscription);
+
+    $res = $this->getAttributeQuery($subscription, 'Ticket')
+      ->getQuery()
+      ->getResult();
+
+    if (!count($res))
+      return 0;
+
+    return $res[0]->getValue()-$used;
+  }
+
+  private function getUsedTickets(\Club\ShopBundle\Entity\Subscription $subscription)
+  {
+    $tickets = $this->_em->createQueryBuilder()
+      ->select('SUM(st.tickets)')
+      ->from('ClubShopBundle:SubscriptionTicket','st')
+      ->where('st.subscription = ?1')
+      ->setParameter(1, $subscription->getId())
+      ->getQuery()
+      ->getSingleScalarResult();
+
+    if (!$tickets)
+      return 0;
+
+    return $tickets;
+  }
+
   private function getAttributeQuery(\Club\ShopBundle\Entity\Subscription $subscription, $attribute_name)
   {
     return $this->_em->createQueryBuilder()
