@@ -9,6 +9,8 @@ class LoadAttributeData implements FixtureInterface
   public function load($manager)
   {
     $attributes = array();
+    $attributes[] = 'name';
+    $attributes[] = 'member_number';
     $attributes[] = 'min_age';
     $attributes[] = 'max_age';
     $attributes[] = 'gender';

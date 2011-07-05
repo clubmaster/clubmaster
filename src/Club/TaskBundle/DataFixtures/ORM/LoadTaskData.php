@@ -14,7 +14,8 @@ class LoadTaskData implements FixtureInterface
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
     $task->setTaskInterval('+1 hour');
-    $task->setEvent('onGroupTask');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onGroupTask');
     $manager->persist($task);
 
     $task = new \Club\TaskBundle\Entity\Task();
@@ -23,7 +24,8 @@ class LoadTaskData implements FixtureInterface
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
     $task->setTaskInterval('+1 hour');
-    $task->setEvent('onLogTask');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onLogTask');
     $manager->persist($task);
 
     $task = new \Club\TaskBundle\Entity\Task();
@@ -32,7 +34,8 @@ class LoadTaskData implements FixtureInterface
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
     $task->setTaskInterval('+1 hour');
-    $task->setEvent('onAutoRenewalTask');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onAutoRenewalTask');
     $manager->persist($task);
 
     $task = new \Club\TaskBundle\Entity\Task();
@@ -41,7 +44,28 @@ class LoadTaskData implements FixtureInterface
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
     $task->setTaskInterval('+1 hour');
-    $task->setEvent('onLoginAttemptTask');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onLoginAttemptTask');
+    $manager->persist($task);
+
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Cleanup ban logs');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('+1 hour');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onBanTask');
+    $manager->persist($task);
+
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Send emails');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('+1 hour');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onMailTask');
     $manager->persist($task);
 
     $manager->flush();
