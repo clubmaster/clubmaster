@@ -50,6 +50,13 @@ class Task
     private $event;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $method
+     */
+    private $method;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
@@ -292,5 +299,25 @@ class Task
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set method
+     *
+     * @param string $method
+     */
+    public function setMethod($method)
+    {
+        $this->method = $method;
+    }
+
+    /**
+     * Get method
+     *
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->method;
     }
 }

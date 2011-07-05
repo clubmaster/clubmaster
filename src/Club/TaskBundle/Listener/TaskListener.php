@@ -25,7 +25,7 @@ class TaskListener
         $this->startTask($task);
 
         $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
-        $this->event_dispatcher->dispatch(constant('\Club\TaskBundle\Event\Events::'.$task->getEvent()), $event);
+        $this->event_dispatcher->dispatch(constant($task->getEvent().'::'.$task->getMethod()), $event);
 
         $this->stopTask($task);
       }

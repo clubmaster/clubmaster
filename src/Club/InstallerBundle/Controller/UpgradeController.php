@@ -56,6 +56,9 @@ class UpgradeController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $dir = $this->get('kernel')->getRootDir().'/DoctrineFixtures/'.$version;
 
+    if (!file_exists($dir))
+      return;
+
     $loader = new \Symfony\Bundle\DoctrineFixturesBundle\Common\DataFixtures\Loader($this->container);
     $loader->loadFromDirectory($dir);
     $fixtures = $loader->getFixtures();
