@@ -10,6 +10,11 @@
 - only right user can pause and expire subscription (admin, owner)
 
 == todo ==
+- subscriptions has to have at least:
+  - Month
+  - ExpireDate
+  - Ticket
+  - Lifetime
 - consider if you should be able to delete users
 - merge users
 - add 365 date icons
