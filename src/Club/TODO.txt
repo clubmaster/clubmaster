@@ -1,5 +1,4 @@
 == todo ==
-- make sure not all details from logview is viewable if the user is not admin
 - javascript confirms
 - flash on set subscription on pause
 - consider if you should be able to delete users
