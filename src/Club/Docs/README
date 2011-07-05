@@ -94,4 +94,7 @@ Upgrade
 In order to upgrade from a previous installation:
 
 - Backup your current database and files.
+- Extract the new clubmaster package in a new directory
+- Copy app/config/parameters.ini file from old directory
+- $ chmod 777 -R app/cache app/logs in the new clubmaster installation
 - Go to the website, http://localhost/clubmaster/web/upgrade
