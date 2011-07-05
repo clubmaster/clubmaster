@@ -57,22 +57,46 @@ class LogController extends Controller
 
   public function LogViewAction()
   {
-    $remove_installer_file = 0;
-    $installer_file = $this->get('kernel')->getRootDir().'/installer';
+    $logs = array();
 
-    if (file_exists($installer_file))
-      $remove_installer_file = $installer_file;
+    if (($res = $this->canWriteToMailerSpool()))
+      $logs[] = 'Cannot write to mailer spool dir <strong>'.$this->container->getParameter('swiftmailer.spool.file.path').'</strong>';
+
+    if (($res = $this->installerFileExists()))
+      $logs[] = 'Remove installer file <strong>'.$this->get('kernel')->getRootDir().'/installer</strong>';
 
     $em = $this->getDoctrine()->getEntityManager();
-
-    $logs = $em->getRepository('ClubLogBundle:Log')->findBy(array(
+    $l = $em->getRepository('ClubLogBundle:Log')->findBy(array(
       'is_read' => 0,
       'severity' => 'critical'
     ));
 
+    if (count($l) > 0)
+      $logs[] = 'You have <strong>'.count($l).' unread</strong> critical messages.';
+
     return $this->render('ClubLogBundle:Log:log_view.html.twig',array(
       'logs' => $logs,
-      'remove_installer_file' => $remove_installer_file
     ));
+  }
+
+  private function canWriteToMailerSpool()
+  {
+    $path = $this->container->getParameter('swiftmailer.spool.file.path');
+
+    if (is_writeable($path))
+      return true;
+
+    return false;
+  }
+
+  private function installerFileExists()
+  {
+    $remove_installer_file = 0;
+    $installer_file = $this->get('kernel')->getRootDir().'/installer';
+
+    if (file_exists($installer_file))
+      return true;
+
+    return false;
   }
 }

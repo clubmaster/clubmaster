@@ -1,5 +1,5 @@
-{% if remove_installer_file %}
-<p class="msg warning">Please delete the file: {{ remove_installer_file }}</p>
-{% elseif logs|length > 0 %}
-<p class="msg warning">You have <b>{{ logs|length }} unread critical messages</b>, <a href="{{ path('admin_log') }}">click here</a> to go to logs.</p>
-{% endif %}
+{% for log in logs %}
+  {% if logs|length > 0 %}
+    <p class="msg warning">{{ log|raw }}</p>
+  {% endif %}
+{% endfor %}
