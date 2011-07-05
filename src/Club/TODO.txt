@@ -1,11 +1,23 @@
-== todo ==
+== scheduled beta4 ==
 - javascript confirms
+- obey rules of club_user_currency
+- fix problem with renew membership
+- Obey lifetime membership
+- make sure we can keep track of auto renewal subscriptions, just create a new order
+- add icon to pause, resume and expire
+- cannot edit orders that you do not own
+- make sure the firewall actually does work
+- only right user can pause and expire subscription (admin, owner)
+- remember to set a subscription to inactive when no more tickets (create ticket helper)
+- rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
+
+== todo ==
 - consider if you should be able to delete users
+- merge users
 - add 365 date icons
 - different login pages for different locations
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
-- obey rules of club_user_currency
 - make infinive parent loop in location configs
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - on location config better widgets
@@ -16,12 +28,8 @@
 - sort user lists
 - add search to order
 - member of a location will also be member to child locations
-- merge users
-- remember to set a subscription to inactive when no more tickets
 - improve the way to recalc users of group
 - translation
-- Obey lifetime membership
-- make sure we can keep track of auto renewal subscriptions, just create a new order
 - make a quick search field for users
 - users should be able to disable types of email (password,info)
 - users should be able to add and remove address, email and phone
@@ -40,7 +48,6 @@
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 
 == rewrite stuff ==
-- rewrite all \Club\UserBundle\Entity\User to ClubUserBundle:User
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - on success handler, consider forward and not redirect response?
 - remove all names from route, and use defaults
@@ -51,12 +58,6 @@
 - make sure all pages are html validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
-- add icon to pause, resume and expire
-
-== security ==
-- cannot edit orders that you do not own
-- make sure the firewall actually does work
-- only right user can pause and expire subscription (admin, owner)
 
 == modules ==
 - mailer bundle
@@ -71,7 +72,9 @@
 - booking bundle
 - integration til e-conomic
 - dashboard bundle
-  - open orders
+  - widgets
+    - open orders
+    - new members
 - export / import bundle
 - ranking bundle
 - cup bundle
