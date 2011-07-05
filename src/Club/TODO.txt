@@ -5,7 +5,6 @@
 - Obey lifetime membership
 - make sure we can keep track of auto renewal subscriptions, just create a new order
 - add icon to pause, resume and expire
-- cannot edit orders that you do not own
 - make sure the firewall actually does work
 - only right user can pause and expire subscription (admin, owner)
 
