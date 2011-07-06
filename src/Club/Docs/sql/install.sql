@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.57, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i486)
 --
 -- Host: localhost    Database: clubmaster
 -- ------------------------------------------------------
--- Server version	5.1.57-3
+-- Server version	5.1.49-3-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1113,6 +1113,7 @@ CREATE TABLE `club_task_task` (
   `last_run_at` datetime DEFAULT NULL,
   `next_run_at` datetime NOT NULL,
   `task_interval` varchar(255) NOT NULL,
+  `method` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1123,7 +1124,7 @@ CREATE TABLE `club_task_task` (
 
 LOCK TABLES `club_task_task` WRITE;
 /*!40000 ALTER TABLE `club_task_task` DISABLE KEYS */;
-INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'onGroupTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour'),(2,'Cleanup logs',1,0,'onLogTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour'),(3,'Renewal memberships',1,0,'onAutoRenewalTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour'),(4,'Cleanup login logs',1,0,'onLoginAttemptTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour'),(5,'Cleanup ban logs',1,0,'onBanTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour'),(6,'Send emails',1,0,'onMailTask','2011-07-04 11:33:36','2011-07-04 11:33:36',NULL,'2011-07-04 11:33:36','+1 hour');
+INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onGroupTask'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onLogTask'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onAutoRenewalTask'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onLoginAttemptTask'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onBanTask'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onMailTask');
 /*!40000 ALTER TABLE `club_task_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1257,7 +1258,7 @@ CREATE TABLE `club_user_currency` (
 
 LOCK TABLES `club_user_currency` WRITE;
 /*!40000 ALTER TABLE `club_user_currency` DISABLE KEYS */;
-INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-04 11:33:36','2011-07-04 11:33:36'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-04 11:33:36','2011-07-04 11:33:36'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-04 11:33:36','2011-07-04 11:33:36');
+INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27');
 /*!40000 ALTER TABLE `club_user_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2013,7 +2014,7 @@ CREATE TABLE `migration_versions` (
 
 LOCK TABLES `migration_versions` WRITE;
 /*!40000 ALTER TABLE `migration_versions` DISABLE KEYS */;
-INSERT INTO `migration_versions` VALUES ('20110630004000'),('20110630105810');
+INSERT INTO `migration_versions` VALUES ('20110630004000'),('20110630105810'),('20110705133022');
 /*!40000 ALTER TABLE `migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2053,4 +2054,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-04 11:34:40
+-- Dump completed on 2011-07-06  6:19:09
