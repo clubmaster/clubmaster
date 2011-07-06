@@ -9,7 +9,7 @@
 - only right user can pause and expire subscription (admin, owner)
 
 == todo ==
-- add attends to events
+- add attends to events in test data
 - subscriptions has to have at least:
   - Month
   - ExpireDate
@@ -50,7 +50,7 @@
 - fix the menu and add active to right element
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 
-== rewrite stuff ==
+== rewrite ==
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - on success handler, consider forward and not redirect response?
 - remove all names from route, and use defaults
@@ -58,7 +58,7 @@
 == graphics ==
 - event calendar view
 - event agenda view
-- make sure all pages are html validated
+- make sure html are validated
 - make sure css are validated
 - if twig has no date, it prints current timestamp (tasks last run at)
 

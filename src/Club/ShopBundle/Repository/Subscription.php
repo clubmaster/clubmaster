@@ -41,8 +41,10 @@ class Subscription extends EntityRepository
   {
     $res = array();
     foreach ($this->getExpiredSubscriptions() as $subscription) {
-      if ($this->isAutoRenewal($subscription))
+      if ($this->isAutoRenewal($subscription)) {
+        echo $subscription->getId().',';
         $res[] = $subscription;
+      }
     }
 
     return $res;
@@ -50,6 +52,15 @@ class Subscription extends EntityRepository
 
   private function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
   {
+
+    $attr = $this->getAttributeQuery($subscription, 'AutoRenewal')
+      ->getQuery()
+      ->getResult();
+
+    if ($attr)
+      return true;
+
+    return false;
   }
 
   public function getAttributeForSubscription(\Club\ShopBundle\Entity\Subscription $subscription, $attribute_name)
