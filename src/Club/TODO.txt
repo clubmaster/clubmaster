@@ -1,7 +1,6 @@
 == scheduled for beta4 ==
 - javascript confirms
 - obey rules of club_user_currency
-- fix problem with renew membership
 - Obey lifetime membership
 - make sure we can keep track of auto renewal subscriptions, just create a new order
 - add icon to pause, resume and expire
@@ -9,6 +8,7 @@
 - only right user can pause and expire subscription (admin, owner)
 
 == todo ==
+- test all combinations of subscriptions:
 - add attends to events in test data
 - subscriptions has to have at least:
   - Month
