@@ -41,10 +41,8 @@ class Subscription extends EntityRepository
   {
     $res = array();
     foreach ($this->getExpiredSubscriptions() as $subscription) {
-      if ($this->isAutoRenewal($subscription)) {
-        echo $subscription->getId().',';
+      if ($this->isAutoRenewal($subscription))
         $res[] = $subscription;
-      }
     }
 
     return $res;
