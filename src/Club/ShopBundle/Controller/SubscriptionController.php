@@ -30,6 +30,7 @@ class SubscriptionController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
+    $this->validateOwner($subscription);
     $this->get('subscription')->pauseSubscription($subscription);
 
     return $this->redirect($this->generateUrl('shop_subscription'));
@@ -44,8 +45,18 @@ class SubscriptionController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
+    $this->validateOwner($subscription);
     $this->get('subscription')->resumeSubscription($subscription);
 
     return $this->redirect($this->generateUrl('shop_subscription'));
+  }
+
+  private function validateOwner(\Club\ShopBundle\Entity\Subscription $subscription)
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    // FIXME, does security not allowed exception exists
+    if ($subscription->getUser()->getId() != $user->getId())
+      throw new \Exception('You are not allowed to change this subscription.');
   }
 }
