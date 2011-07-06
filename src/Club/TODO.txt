@@ -1,4 +1,5 @@
 == todo ==
+- add attends to events
 - javascript confirms
 - consider if you should be able to delete users
 - add 365 date icons
