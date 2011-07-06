@@ -26,7 +26,7 @@ class TaskController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $tasks = $em->getRepository('\Club\TaskBundle\Entity\Task')->findAll();
+    $tasks = $em->getRepository('ClubTaskBundle:Task')->findAll();
 
     return array(
       'tasks' => $tasks
@@ -40,7 +40,7 @@ class TaskController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
+    $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setEnabled(0);
 
     $em->persist($task);
@@ -56,7 +56,7 @@ class TaskController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
+    $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setEnabled(1);
 
     $em->persist($task);
@@ -72,7 +72,7 @@ class TaskController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $task = $em->find('\Club\TaskBundle\Entity\Task',$id);
+    $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setNextRunAt(new \DateTime());
     $task->setLocked(0);
 

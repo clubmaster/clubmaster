@@ -29,7 +29,7 @@ class CheckoutController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $shippings = $em->getRepository('Club\ShopBundle\Entity\Shipping')->findAll();
+    $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
     if (!count($shippings)) {
       throw new Exception('You need to have a least one shipping method');
     }
@@ -73,7 +73,7 @@ class CheckoutController extends Controller
   public function paymentAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $payments = $em->getRepository('Club\ShopBundle\Entity\PaymentMethod')->findAll();
+    $payments = $em->getRepository('ClubShopBundle:PaymentMethod')->findAll();
 
     if (!count($payments)) {
       throw new Exception('You need to have at leats one payment method');
@@ -90,7 +90,7 @@ class CheckoutController extends Controller
 
     $form = $this->get('form.factory')
       ->createBuilder('form',$cart,array('validation_groups' => 'PaymentMethod'))
-      ->add('payment_method','entity',array('class' => 'Club\ShopBundle\Entity\PaymentMethod'))
+      ->add('payment_method','entity',array('class' => 'ClubShopBundle:PaymentMethod'))
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -139,7 +139,7 @@ class CheckoutController extends Controller
   public function confirmAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('ClubShopBundle:Order',$id);
 
     return array(
       'order' => $order

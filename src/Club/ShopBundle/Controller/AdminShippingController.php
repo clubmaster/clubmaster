@@ -16,7 +16,7 @@ class AdminShippingController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $shippings = $em->getRepository('\Club\ShopBundle\Entity\Shipping')->findAll();
+    $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
 
     return array(
       'shippings' => $shippings
@@ -47,7 +47,7 @@ class AdminShippingController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $shipping = $em->find('Club\ShopBundle\Entity\Shipping',$id);
+    $shipping = $em->find('ClubShopBundle:Shipping',$id);
 
     $res = $this->process($shipping);
 

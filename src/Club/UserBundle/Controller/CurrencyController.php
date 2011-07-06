@@ -16,7 +16,7 @@ class CurrencyController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $currencies = $em->getRepository('\Club\UserBundle\Entity\Currency')->findAll();
+    $currencies = $em->getRepository('ClubUserBundle:Currency')->findAll();
 
     return array(
       'currencies' => $currencies
@@ -47,7 +47,7 @@ class CurrencyController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $currency = $em->find('\Club\UserBundle\Entity\Currency',$id);
+    $currency = $em->find('ClubUserBundle:Currency',$id);
     $res = $this->process($currency);
 
     if ($res instanceOf RedirectResponse)
@@ -66,7 +66,7 @@ class CurrencyController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $currency = $em->find('\Club\UserBundle\Entity\Currency',$id);
+    $currency = $em->find('ClubUserBundle:Currency',$id);
 
     $em->remove($currency);
     $em->flush();

@@ -16,7 +16,7 @@ class AdminCategoryController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $categories = $em->getRepository('\Club\ShopBundle\Entity\Category')->findAll();
+    $categories = $em->getRepository('ClubShopBundle:Category')->findAll();
 
     return array(
       'categories' => $categories
@@ -47,7 +47,7 @@ class AdminCategoryController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $category = $em->find('Club\ShopBundle\Entity\Category',$id);
+    $category = $em->find('ClubShopBundle:Category',$id);
 
     $res = $this->process($category);
 

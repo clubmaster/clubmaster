@@ -16,7 +16,7 @@ class AdminProductAttributeController extends Controller
   public function indexAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('\Club\ShopBundle\Entity\Product',$id);
+    $product = $em->find('ClubShopBundle:Product',$id);
 
     return array(
       'product' => $product
@@ -30,7 +30,7 @@ class AdminProductAttributeController extends Controller
   public function newAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('\Club\ShopBundle\Entity\Product',$id);
+    $product = $em->find('ClubShopBundle:Product',$id);
 
     $attr = new \Club\ShopBundle\Entity\ProductAttribute();
     $attr->setProduct($product);
@@ -53,7 +53,7 @@ class AdminProductAttributeController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $attr = $em->find('Club\ShopBundle\Entity\ProductAttribute',$id);
+    $attr = $em->find('ClubShopBundle:ProductAttribute',$id);
 
     $res = $this->process($attr);
 
@@ -72,7 +72,7 @@ class AdminProductAttributeController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $attr = $em->find('\Club\ShopBundle\Entity\ProductAttribute',$id);
+    $attr = $em->find('ClubShopBundle:ProductAttribute',$id);
 
     $em->remove($attr);
     $em->flush();

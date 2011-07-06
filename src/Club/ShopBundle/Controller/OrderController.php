@@ -17,7 +17,7 @@ class OrderController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $orders = $em->getRepository('\Club\ShopBundle\Entity\Order')->findBy(array(
+    $orders = $em->getRepository('ClubShopBundle:Order')->findBy(array(
       'user' => $user->getId()
     ));
 
@@ -33,8 +33,9 @@ class OrderController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('ClubShopBundle:Order',$id);
 
+    $this->validateOwner($order);
     return array(
       'order' => $order,
     );
@@ -46,9 +47,10 @@ class OrderController extends Controller
   public function cancelAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('ClubShopBundle:Order',$id);
 
-    $status = $em->find('\Club\ShopBundle\Entity\OrderStatus',5);
+    $this->validateOwner($order);
+    $status = $em->find('ClubShopBundle:OrderStatus',5);
     $order->setOrderStatus($status);
 
     $em->persist($order);
@@ -58,5 +60,14 @@ class OrderController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
 
     return $this->redirect($this->generateUrl('shop_order'));
+  }
+
+  private function validateOwner(\Club\ShopBundle\Entity\Order $order)
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    // FIXME, does security not allowed exception exists
+    if ($order->getUser()->getId() != $user->getId())
+      throw new \Exception('You are not allowed to change this order.');
   }
 }

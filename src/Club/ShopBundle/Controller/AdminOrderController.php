@@ -33,7 +33,7 @@ class AdminOrderController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('ClubShopBundle:Order',$id);
 
     $form = $this->createForm(new \Club\ShopBundle\Form\Order(), $order);
 
@@ -65,7 +65,7 @@ class AdminOrderController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('\Club\ShopBundle\Entity\Order',$id);
+    $order = $em->find('ClubShopBundle:Order',$id);
 
     $em->remove($order);
     $em->flush();

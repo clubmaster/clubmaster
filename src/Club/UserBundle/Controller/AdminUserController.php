@@ -20,7 +20,7 @@ class AdminUserController extends Controller
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 
     $order_by = array();
-    $repository = $em->getRepository('\Club\UserBundle\Entity\User');
+    $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
