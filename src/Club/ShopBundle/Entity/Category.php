@@ -181,4 +181,34 @@ class Category
     {
         return $this->location;
     }
+
+    /**
+     * Set image
+     *
+     * @param Club\ShopBundle\Entity\Image $image
+     */
+    public function setImage(\Club\ShopBundle\Entity\Image $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Club\ShopBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add products
+     *
+     * @param Club\ShopBundle\Entity\Product $products
+     */
+    public function addProducts(\Club\ShopBundle\Entity\Product $products)
+    {
+        $this->products[] = $products;
+    }
 }

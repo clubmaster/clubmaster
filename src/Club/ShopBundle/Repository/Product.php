@@ -18,4 +18,18 @@ class Product extends EntityRepository
 
     return $this->_em->createQuery($dql)->getResult();
   }
+
+  public function getAccount(\Club\ShopBundle\Entity\Product $product, \Club\UserBundle\Entity\User $user)
+  {
+    if ($product->getAccount())
+      return $product->getAccount();
+
+    $value = $this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey(
+      'account_default_income',
+      $user->getLocation()
+    );
+
+    return $this->_em->find('ClubAccountBundle:Account',$value);
+
+  }
 }

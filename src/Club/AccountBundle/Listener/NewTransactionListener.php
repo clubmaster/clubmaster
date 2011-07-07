@@ -23,6 +23,9 @@ class NewTransactionListener
     $vat_account = $this->em->find('ClubAccountBundle:Account',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('account_default_vat',$user->getLocation()));
 
     foreach ($order->getProducts() as $product) {
+
+      $income_account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(),$user);
+
       $ledger = new \Club\AccountBundle\Entity\Ledger();
       $ledger->setValue($product->getPrice());
       $ledger->setNote($product->getQuantity().'x '.$product->getProductName());
