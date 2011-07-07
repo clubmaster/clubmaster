@@ -9,6 +9,8 @@
 - better widgets for product attributes
 
 == todo ==
+- custom signup fields
+  - register with subscription on signup
 - icon on account -> ledger
 - add category priority ( this will help pick right account_number for products )
 - obey rules of club_user_currency
@@ -72,7 +74,7 @@
 - weather bundle
 - sms bundle
 - booking bundle
-- integration til e-conomic
+- integration for e-conomic
 - dashboard bundle
   - widgets
     - open orders
