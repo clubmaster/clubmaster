@@ -21,7 +21,8 @@ class Account
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
      *
      * @var string $account_name
      */
@@ -29,6 +30,7 @@ class Account
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $account_number
      */
