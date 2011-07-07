@@ -1,7 +1,6 @@
 == scheduled for beta4 ==
 - javascript confirms
 - obey rules of club_user_currency
-- Obey lifetime membership
 - add icon to pause, resume and expire
 - make sure the firewall actually does work
 
