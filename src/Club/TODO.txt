@@ -2,6 +2,7 @@
 - javascript confirms
 
 == scheduled for beta5 ==
+- create account
 - orders should contain a list of unhandled orders
 - make sure we can keep track of users payments (debs or credit)
 - add products to different account numbers
@@ -9,8 +10,10 @@
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - make a quick search field for users
 - better widgets for product attributes
+- make account numbers unique
 
 == todo ==
+- add category priority ( this will help pick right account_number for products )
 - obey rules of club_user_currency
 - test all combinations of subscriptions:
 - subscriptions has to have at least:
