@@ -1,7 +1,3 @@
-== scheduled for beta4 ==
-- javascript confirms
-- obey rules of club_user_currency
-
 == todo ==
 - orders should contain a list of unhandled orders
 - make sure we can keep track of users payments (debs or credit)
