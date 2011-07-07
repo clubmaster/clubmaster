@@ -5,11 +5,16 @@
 - make a quick search field for users
 - better widgets for product attributes
 
+== scheduled for beta6 ==
+- icon on account -> ledger
+- save user search filters
+- on location config better widgets
+- member of a location will also be member to child locations
+
 == todo ==
 - find out what it takes to not require index.php/
 - custom signup fields
   - register with subscription on signup
-- icon on account -> ledger
 - add category priority ( this will help pick right account_number for products )
 - obey rules of club_user_currency
 - test all combinations of subscriptions:
@@ -22,16 +27,13 @@
 - merge users
 - add 365 date icons
 - different login pages for different locations
-- save user search filters
-- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
+- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
 - make infinive parent loop in location configs
-- on location config better widgets
 - fix layout, single and double column
 - configurable emails sent on different events
 - find out the syntax for member_numbers
 - add images to products
 - sort user lists
-- member of a location will also be member to child locations
 - improve the way to recalc users of group
 - translation
 - users should be able to disable types of email (password,info)
