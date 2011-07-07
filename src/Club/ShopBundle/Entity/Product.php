@@ -74,6 +74,13 @@ class Product
     private $vat;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\AccountBundle\Entity\Account")
+     *
+     * @var Club\AccountBundle\Entity\Account
+     */
+    private $account;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProductAttribute", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\ProductAttribute
@@ -234,5 +241,55 @@ class Product
     public function getVatPrice()
     {
       return sprintf("%.2f",$this->getPrice()*(1+$this->getVat()->getRate()/100));
+    }
+
+    /**
+     * Add variant_groups
+     *
+     * @param Club\ShopBundle\Entity\VariantGroup $variantGroups
+     */
+    public function addVariantGroups(\Club\ShopBundle\Entity\VariantGroup $variantGroups)
+    {
+        $this->variant_groups[] = $variantGroups;
+    }
+
+    /**
+     * Get variant_groups
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getVariantGroups()
+    {
+        return $this->variant_groups;
+    }
+
+    /**
+     * Set account
+     *
+     * @param Club\AccountBundle\Entity\Account $account
+     */
+    public function setAccount(\Club\AccountBundle\Entity\Account $account)
+    {
+        $this->account = $account;
+    }
+
+    /**
+     * Get account
+     *
+     * @return Club\AccountBundle\Entity\Account
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * Add product_attributes
+     *
+     * @param Club\ShopBundle\Entity\ProductAttribute $productAttributes
+     */
+    public function addProductAttributes(\Club\ShopBundle\Entity\ProductAttribute $productAttributes)
+    {
+        $this->product_attributes[] = $productAttributes;
     }
 }

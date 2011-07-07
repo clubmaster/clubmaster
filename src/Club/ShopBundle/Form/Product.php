@@ -14,6 +14,10 @@ class Product extends AbstractType
     $builder->add('price');
     $builder->add('vat');
     $builder->add('categories');
+    $builder->add('account','entity',array(
+      'class' => 'Club\AccountBundle\Entity\Account',
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)

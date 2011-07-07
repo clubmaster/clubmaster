@@ -1,9 +1,18 @@
-== todo ==
-- orders should contain a list of unhandled orders
+== scheduled for beta5 ==
 - make sure we can keep track of users payments (debs or credit)
-- add products to different account numbers
+- add search to order
+- review the entire location overview, is it easy to understand by the user (config, parent and child)
+- make a quick search field for users
+- better widgets for product attributes
+
+== todo ==
+- find out what it takes to not require index.php/
+- custom signup fields
+  - register with subscription on signup
+- icon on account -> ledger
+- add category priority ( this will help pick right account_number for products )
+- obey rules of club_user_currency
 - test all combinations of subscriptions:
-- add attends to events in test data
 - subscriptions has to have at least:
   - Month
   - ExpireDate
@@ -16,18 +25,15 @@
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - make infinive parent loop in location configs
-- review the entire location overview, is it easy to understand by the user (config, parent and child)
 - on location config better widgets
 - fix layout, single and double column
 - configurable emails sent on different events
 - find out the syntax for member_numbers
 - add images to products
 - sort user lists
-- add search to order
 - member of a location will also be member to child locations
 - improve the way to recalc users of group
 - translation
-- make a quick search field for users
 - users should be able to disable types of email (password,info)
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
@@ -66,7 +72,7 @@
 - weather bundle
 - sms bundle
 - booking bundle
-- integration til e-conomic
+- integration for e-conomic
 - dashboard bundle
   - widgets
     - open orders

@@ -25,6 +25,9 @@ class Order extends EntityRepository
   public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0) {
     $qb = $this->getQueryBuilder();
 
+    $qb->leftJoin('o.order_status','os')
+      ->add('orderBy', 'os.priority, o.id DESC');
+
     if ((isset($offset)) && (isset($limit))) {
       if ($limit > 0) {
         $qb->setFirstResult($offset);
