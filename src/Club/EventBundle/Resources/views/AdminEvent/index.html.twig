@@ -25,7 +25,7 @@
     <tr>
       <td>{{ event.id }}</td>
       <td>{{ event.eventName }}</td>
-      <td>{{ event.attends|length }} / {% if event.maxAttends == 0 %}-{% else %}{{ event.maxAttends }}{% endif %}</td>
+      <td>{{ event.attends|length }} / {% if event.maxAttends == 0 %}No limit{% else %}{{ event.maxAttends }}{% endif %}</td>
       <td>{{ event.price }}</td>
       <td>{{ event.startDate|date('Y-m-d H:i') }}</td>
       <td>{{ event.stopDate|date('Y-m-d H:i') }}</td>

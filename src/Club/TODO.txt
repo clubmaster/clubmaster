@@ -9,7 +9,6 @@
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - make a quick search field for users
 - better widgets for product attributes
-- add attends to events in test data
 
 == todo ==
 - obey rules of club_user_currency
