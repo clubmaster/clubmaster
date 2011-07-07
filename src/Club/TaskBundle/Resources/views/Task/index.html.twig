@@ -27,7 +27,11 @@
       <td>{{ task.taskName }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':task.enabled} %}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':task.locked} %}</td>
+      {% if task.lastRunAt == '' %}
+      <td>Never</td>
+      {% else %}
       <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
+      {% endif %}
       <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.taskInterval }}</td>
       <td>

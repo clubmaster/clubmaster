@@ -23,7 +23,11 @@
       <td>{{ subscription.type|capitalize }}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
+      {% if subscription.expireDate == '' %}
+      <td>Never</td>
+      {% else %}
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
+      {% endif %}
       <td>
         {% if subscription.isActive %}
           {% include "ClubLayoutBundle:Default:pause_link.html.twig" with {'url':path('shop_subscription_pause', {'id':subscription.id})} %}
