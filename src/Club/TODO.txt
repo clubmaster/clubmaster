@@ -1,13 +1,19 @@
 == scheduled for beta4 ==
 - javascript confirms
-- obey rules of club_user_currency
 
-== todo ==
+== scheduled for beta5 ==
 - orders should contain a list of unhandled orders
 - make sure we can keep track of users payments (debs or credit)
 - add products to different account numbers
-- test all combinations of subscriptions:
+- add search to order
+- review the entire location overview, is it easy to understand by the user (config, parent and child)
+- make a quick search field for users
+- better widgets for product attributes
 - add attends to events in test data
+
+== todo ==
+- obey rules of club_user_currency
+- test all combinations of subscriptions:
 - subscriptions has to have at least:
   - Month
   - ExpireDate
@@ -20,18 +26,15 @@
 - save user search filters
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription)
 - make infinive parent loop in location configs
-- review the entire location overview, is it easy to understand by the user (config, parent and child)
 - on location config better widgets
 - fix layout, single and double column
 - configurable emails sent on different events
 - find out the syntax for member_numbers
 - add images to products
 - sort user lists
-- add search to order
 - member of a location will also be member to child locations
 - improve the way to recalc users of group
 - translation
-- make a quick search field for users
 - users should be able to disable types of email (password,info)
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
