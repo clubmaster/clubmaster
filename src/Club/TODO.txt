@@ -2,7 +2,6 @@
 - javascript confirms
 
 == scheduled for beta5 ==
-- orders should contain a list of unhandled orders
 - make sure we can keep track of users payments (debs or credit)
 - add search to order
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
