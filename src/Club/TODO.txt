@@ -2,7 +2,6 @@
 - javascript confirms
 
 == scheduled for beta5 ==
-- create account
 - orders should contain a list of unhandled orders
 - make sure we can keep track of users payments (debs or credit)
 - add search to order
@@ -11,6 +10,7 @@
 - better widgets for product attributes
 
 == todo ==
+- icon on account -> ledger
 - add category priority ( this will help pick right account_number for products )
 - obey rules of club_user_currency
 - test all combinations of subscriptions:

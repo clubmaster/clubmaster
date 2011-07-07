@@ -43,7 +43,7 @@ class AdminAccountController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice','Your changes has been saved.');
-        return $this->redirect($this->generateUrl('club_account_adminaccount_index', array('id' => $account->getId())));
+        return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
       }
     }
 
@@ -52,4 +52,50 @@ class AdminAccountController extends Controller
     );
   }
 
+  /**
+   * @Route("/account/account/edit/{id}")
+   * @Template
+   */
+  public function editAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $account = $em->find('ClubAccountBundle:Account', $id);
+
+    $form = $this->createForm(new \Club\AccountBundle\Form\Account(), $account);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $em->persist($account);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice','Your changes has been saved.');
+        return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
+      }
+    }
+
+    return array(
+      'account' => $account,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Route("/account/account/delete/{id}")
+   * @Template
+   */
+  public function deleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $account = $em->find('ClubAccountBundle:Account', $id);
+
+    $em->remove($account);
+    $em->flush();
+
+    $this->get('session')->setFlash('notice','Your changes has been saved.');
+    return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
+  }
 }
