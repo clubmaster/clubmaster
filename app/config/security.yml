@@ -25,13 +25,13 @@ security:
             anonymous: true
 
     access_control:
+        - { path: /admin.*, roles: ROLE_ADMIN }
         - { path: /_profiler.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /_wdt.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /auth/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /auth.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /rest.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /installer.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /upgrade.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /event/ical, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /.*, roles: 'ROLE_USER' }
-        - { path: /admin/.*, roles: 'ROLE_ADMIN' }
+        - { path: /.*, roles: ROLE_USER }
