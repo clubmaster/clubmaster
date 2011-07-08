@@ -262,7 +262,7 @@ CREATE TABLE `club_shop_attribute` (
 
 LOCK TABLES `club_shop_attribute` WRITE;
 /*!40000 ALTER TABLE `club_shop_attribute` DISABLE KEYS */;
-INSERT INTO `club_shop_attribute` VALUES (1,'Month'),(2,'Ticket'),(3,'AutoRenewal'),(4,'Lifetime'),(5,'StartDate'),(6,'ExpireData'),(7,'AllowedPauses'),(8,'Location');
+INSERT INTO `club_shop_attribute` VALUES (1,'Month'),(2,'Ticket'),(3,'AutoRenewal'),(4,'Lifetime'),(5,'StartDate'),(6,'ExpireDate'),(7,'AllowedPauses'),(8,'Location');
 /*!40000 ALTER TABLE `club_shop_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
