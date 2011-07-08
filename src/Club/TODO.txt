@@ -1,11 +1,11 @@
 == scheduled for beta5 ==
-- make sure we can keep track of users payments (debs or credit)
 - add search to order
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - make a quick search field for users
 - better widgets for product attributes
 
 == todo ==
+- include product offers
 - find out what it takes to not require index.php/
 - custom signup fields
   - register with subscription on signup
