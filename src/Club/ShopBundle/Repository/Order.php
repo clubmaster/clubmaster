@@ -14,7 +14,7 @@ class Order extends EntityRepository
 {
   public function getCount($filter = array())
   {
-    $qb = $this->getQueryBuilder();
+    $qb = $this->getQueryBuilder($filter);
 
     return $qb
       ->select('COUNT(o)')
@@ -23,7 +23,7 @@ class Order extends EntityRepository
   }
 
   public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0) {
-    $qb = $this->getQueryBuilder();
+    $qb = $this->getQueryBuilder($filter);
 
     $qb->leftJoin('o.order_status','os')
       ->add('orderBy', 'os.priority, o.id DESC');
@@ -40,10 +40,24 @@ class Order extends EntityRepository
       ->getResult();
   }
 
-  private function getQueryBuilder()
+  private function getQueryBuilder($filter = array())
   {
-    return $this->_em->createQueryBuilder()
+    $qb = $this->_em->createQueryBuilder()
       ->select('o')
       ->from('ClubShopBundle:Order','o');
+
+    if (isset($filter['order_number'])) {
+      $qb = $this->filterOrderNumber($qb,$filter['order_number']);
+    }
+
+    return $qb;
+  }
+
+  private function filterOrderNumber($qb, $value)
+  {
+    $qb->andWhere('o.id = :order_number');
+    $qb->setParameter('order_number',$value);
+
+    return $qb;
   }
 }

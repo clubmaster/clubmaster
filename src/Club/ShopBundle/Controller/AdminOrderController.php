@@ -16,9 +16,9 @@ class AdminOrderController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $count = $em->getRepository('ClubShopBundle:Order')->getCount();
+    $count = $em->getRepository('ClubShopBundle:Order')->getCount($this->getFilter());
     $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('admin_shop_order'));
-    $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination(null, null, $paginator->getOffset(), $paginator->getLimit());
+    $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination($this->getFilter(), null, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
       'orders' => $orders,
@@ -71,5 +71,10 @@ class AdminOrderController extends Controller
     $em->flush();
 
     return $this->redirect($this->generateUrl('admin_shop_order'));
+  }
+
+  private function getFilter()
+  {
+    return unserialize($this->get('session')->get('order_filter'));
   }
 }

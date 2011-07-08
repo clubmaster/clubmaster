@@ -1,5 +1,4 @@
 == scheduled for beta5 ==
-- add search to order
 - review the entire location overview, is it easy to understand by the user (config, parent and child)
 - make a quick search field for users
 - better widgets for product attributes
