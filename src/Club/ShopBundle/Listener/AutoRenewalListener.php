@@ -29,16 +29,6 @@ class AutoRenewalListener
       $subscription->setIsActive(0);
       $this->em->persist($subscription);
       $this->em->flush();
-
-      $order_status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getAcceptedStatus();
-      $order = $this->order->getOrder();
-      $order->setOrderStatus($order_status);
-
-      $this->em->persist($order);
-      $this->em->flush();
-
-      $filter_event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
-      $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $filter_event);
     }
   }
 }
