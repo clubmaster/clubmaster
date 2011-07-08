@@ -1,8 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
 <h2>Orders</h2>
+
+{% render "ClubShopBundle:AdminOrderFilter:getFilter" %}
 
 <table>
   <thead>

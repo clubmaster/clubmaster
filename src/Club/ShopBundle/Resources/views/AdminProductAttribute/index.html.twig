@@ -2,40 +2,10 @@
 
 
 {% block body %}
+<h2>Edit Product {{ product.productName }}</h2>
 
-<p class="box"><a href="{{ path('admin_shop_product_attribute_new', {'id':product.id}) }}" class="btn-create"><span>Create attribute</span></a></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Attribute</th>
-      <th>Value</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="4">&#160;</td>
-    </tr>
-  </tfoot>
-  <tbody>
-  {% for attr in product.productAttributes %}
-    <tr>
-      <td>{{ attr.id }}</td>
-      <td>{{ attr.attribute.attributeName }}</td>
-      <td>{{ attr.value }}</td>
-      <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_attribute_edit', { 'id':attr.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_product_attribute_delete', { 'id':attr.id })} %}
-      </td>
-    </tr>
-  {% else %}
-  <tr>
-    <td colspan="4">There are no product attributes for this product</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<form method="post" action="{{ path('admin_shop_product_attribute', {'id':product.id}) }}">
+{% include "ClubShopBundle:AdminProductAttribute:form.html.twig" %}
+</form>
 
 {% endblock %}
