@@ -113,7 +113,7 @@ class AdminProductAttributeController extends Controller
         $arr[$attr->getAttribute()->getAttributeName()] = $res;
 
       } elseif ($attr->getAttribute()->getAttributeName() == 'StartDate' || $attr->getAttribute()->getAttributeName() == 'ExpireDate') {
-        $arr[$attr->getAttribute()->getAttributeName()] = unserialize($attr->getValue());
+        $arr[$attr->getAttribute()->getAttributeName()] = new \DateTime($attr->getValue());
       } else {
         $arr[$attr->getAttribute()->getAttributeName()] = $attr->getValue();
       }
@@ -133,7 +133,7 @@ class AdminProductAttributeController extends Controller
       ));
 
       if (($attr->getAttributeName() == 'StartDate' || $attr->getAttributeName() == 'ExpireDate') && $data[$attr->getAttributeName()] != '')
-        $data[$attr->getAttributeName()] = serialize($data[$attr->getAttributeName()]);
+        $data[$attr->getAttributeName()] = $data[$attr->getAttributeName()]->format('Y-m-d');
 
       if ($attr->getAttributeName() == 'Location') {
         $str = '';

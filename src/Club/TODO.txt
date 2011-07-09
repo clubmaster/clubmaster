@@ -3,7 +3,6 @@
 - make a quick search field for users
 - redo ExpireData with ExpireDate
 - style product attributes form
-- make StartDate and ExpireDate as DateTime objects, obey in subscriptions
 
 == scheduled for beta6 ==
 - icon on account -> ledger
