@@ -1,5 +1,7 @@
 == scheduled for beta5 ==
-- review the entire location overview, is it easy to understand by the user (config, parent and child)
+- Add edit, delete and config to each location
+- View the current settings for each location, but make sure people can see if its own or a parents config
+- Better widgets for te location config
 - make a quick search field for users
 - redo ExpireData with ExpireDate
 

@@ -1,40 +1,23 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-
 {% block body %}
 <p class="box"><a href="{{ path('admin_location_new') }}" class="btn-create"><span>Create location</span></a></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Parent</th>
-      <th>Location</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="4">&#160;</td>
-    </tr>
-  </tfoot>
-  <tbody>
-  {% for location in locations %}
-    <tr>
-      <td>{{ location.id }}</td>
-      <td>{{ location.location }}</td>
-      <td>{{ location.locationName }}</td>
-      <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_edit', { 'id':location.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_location_delete', { 'id':location.id })} %}
-        {% include "ClubLayoutBundle:Default:config_link.html.twig" with {'url':path('admin_location_config', {'id':location.id})} %}
-      </td>
-    </tr>
-  {% else %}
-  <tr>
-    <td colspan="4">There are no locations at the time</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<p>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</p>
+<ul>
+  <li>{{ root }}
+    <ul>{% for location1 in root.childs %}
+      <li>{{ location1.locationName }}
+        <ul>{% for location2 in location1.childs %}
+          <li>{{ location2.locationName }}
+            <ul>{% for location3 in location2.childs %}
+              <li>{{ location3.locationName }}</li>
+            {% endfor %}</ul>
+          </li>
+        {% endfor %}</ul>
+      </li>
+    {% endfor %}</ul>
+  </li>
+</ul>
+
 {% endblock %}
