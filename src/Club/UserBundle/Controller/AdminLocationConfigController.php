@@ -5,7 +5,6 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AdminLocationConfigController extends Controller
 {
@@ -18,93 +17,60 @@ class AdminLocationConfigController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('ClubUserBundle:Location',$id);
 
-    $configs = $em->getRepository('ClubUserBundle:LocationConfig')->findBy(array(
-      'location' => $location->getId()
-    ));
+    $form = $this->getForm();
+    $form->setData($this->getData($location));
 
     return array(
       'location' => $location,
-      'configs' => $configs
+      'form' => $form->createView()
     );
   }
 
-  /**
-   * @Route("/location/config/new/{id}")
-   * @Template()
-   */
-  public function newAction($id)
+  private function getData(\Club\UserBundle\Entity\Location $location)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $location = $em->find('ClubUserBundle:Location',$id);
-    $config = new \Club\UserBundle\Entity\LocationConfig($location);
-    $config->setLocation($location);
+    $configs = $em->getRepository('ClubUserBundle:Config')->findAll();
 
-    $res = $this->process($config);
+    $arr = array();
 
-    if ($res instanceOf RedirectResponse)
-      return $res;
-
-    return array(
-      'location' => $location,
-      'config' => $config,
-      'form' => $res->createView(),
-      'configs' => $em->getRepository('ClubUserBundle:Config')->findAll()
-    );
-  }
-
-  /**
-   * @Route("/location/config/edit/{id}", name="admin_location_config_edit")
-   * @Template()
-   */
-  public function editAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $config = $em->find('ClubUserBundle:LocationConfig',$id);
-
-    $res = $this->process($config);
-
-    if ($res instanceOf RedirectResponse)
-      return $res;
-
-    return array(
-      'config' => $config,
-      'form' => $res->createView(),
-      'configs' => $em->getRepository('ClubUserBundle:Config')->findAll()
-    );
-  }
-
-  /**
-   * @Route("/location/config/delete/{id}")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $config = $em->find('ClubUserBundle:LocationConfig',$id);
-    $em->remove($config);
-
-    $em->flush();
-
-    return $this->redirect($this->generateUrl('admin_location_config',array(
-      'id' => $config->getLocation()->getId()
-    )));
-  }
-  protected function process($config)
-  {
-    $form = $this->createForm(new \Club\UserBundle\Form\LocationConfig(), $config);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($config);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice','Your changes were saved!');
-
-        return $this->redirect($this->generateUrl('admin_location_config',array('id'=>$config->getLocation()->getId())));
-      }
+    foreach ($configs as $config) {
+      $arr[$config->getConfigKey()] = $em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey($config->getConfigKey(), $location, false);
     }
+
+    return $arr;
+  }
+
+  private function getForm()
+  {
+    $form = $this->createFormBuilder()
+      ->add('account_default_income','entity', array(
+        'class' => 'ClubAccountBundle:Account',
+        'required' => false
+      ))
+      ->add('account_default_vat','entity', array(
+        'class' => 'ClubAccountBundle:Account',
+        'required' => false
+      ))
+      ->add('default_currency','entity', array(
+        'class' => 'ClubUserBundle:Currency',
+        'required' => false
+      ))
+      ->add('default_language','entity', array(
+        'class' => 'ClubUserBundle:Language',
+        'required' => false
+      ))
+      ->add('default_location','entity', array(
+        'class' => 'ClubUserBundle:Location',
+        'required' => false
+      ))
+
+      ->add('email_sender_address','text', array(
+        'required' => false
+      ))
+      ->add('email_sender_name','text', array(
+        'required' => false
+      ))
+      ->getForm();
 
     return $form;
   }

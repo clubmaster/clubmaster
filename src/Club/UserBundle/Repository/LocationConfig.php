@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class LocationConfig extends EntityRepository
 {
-  public function getByKey($key, \Club\UserBundle\Entity\Location $location = null)
+  public function getByKey($key, \Club\UserBundle\Entity\Location $location = null, $fallback = true)
   {
     if ($location == null)
       $location = $this->_em->find('ClubUserBundle:Location',1);
@@ -27,13 +27,16 @@ class LocationConfig extends EntityRepository
       ->getQuery()
       ->getResult();
 
+    if (!count($config) && !$fallback)
+      return false;
+
     if (!count($config)) {
-      $config = $this->getByKey($key, $location->getLocation());
+      $config = $this->getByKey($key, $location->getLocation(), $fallback);
 
       if (count($config)) {
         return $config;
       } else {
-        $config = $this->getByKey($key, $location->getLocation());
+        $config = $this->getByKey($key, $location->getLocation(), $fallback);
 
         if (count($config)) {
           return $config;
@@ -46,6 +49,35 @@ class LocationConfig extends EntityRepository
     }
 
     return $config[0];
+  }
+
+  public function getObjectByKey($key, \Club\UserBundle\Entity\Location $location, $fallback = true)
+  {
+    $config = $this->getByKey($key, $location, $fallback);
+
+    if (!count($config))
+      return false;
+
+    switch ($config->getConfig()) {
+    case 'account_default_income':
+    case 'account_default_vat':
+      $res = $this->_em->find('ClubAccountBundle:Account',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      break;
+    case 'default_currency':
+      $res = $this->_em->find('ClubUserBundle:Currency',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      break;
+    case 'default_language':
+      $res = $this->_em->find('ClubUserBundle:Language',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      break;
+    case 'default_location':
+      $res = $this->_em->find('ClubUserBundle:Location',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      break;
+    default:
+      $res = $this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig());
+      break;
+    }
+
+    return $res;
   }
 
   public function getValueByKey($key, \Club\UserBundle\Entity\Location $location = null)
