@@ -1,7 +1,5 @@
 == scheduled for beta5 ==
 - make a quick search field for users
-- redo ExpireData with ExpireDate
-- default VAT account is failed
 
 == scheduled for beta6 ==
 - icon on account -> ledger
