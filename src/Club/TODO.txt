@@ -4,14 +4,13 @@
 == scheduled for beta6 ==
 - icon on account -> ledger
 - save user search filters
-- on location config better widgets
 - member of a location will also be member to child locations
-
-== todo ==
 - email on order change
 - seems like once in a while newtransactionlistener is called eventho you are not logged in (results in no location error)
-- include product offers
 - find out what it takes to not require index.php/
+
+== todo ==
+- include product offers
 - custom signup fields
   - register with subscription on signup
 - add category priority ( this will help pick right account_number for products )
