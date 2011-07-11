@@ -6,8 +6,6 @@
 - email on order change
 - seems like once in a while newtransactionlistener is called eventho you are not logged in (results in no location error)
 - find out what it takes to not require index.php/
-- find a way the bundles can add menu items to the menus
-  - menu, and priority
 
 == scheduled for beta7 ==
 - test all combinations of subscriptions:

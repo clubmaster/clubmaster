@@ -9,27 +9,27 @@ class DefaultController extends Controller
 {
   public function topMenuAction()
   {
-    $menu = array();
-
-    $menu[] = array(
-      'name' => 'User',
-      'route' => $this->generateUrl('user')
-    );
-    $menu[] = array(
-      'name' => 'Shop',
-      'route' => $this->generateUrl('shop')
-    );
-    $menu[] = array(
-      'name' => 'Order',
-      'route' => $this->generateUrl('shop_order')
-    );
-    $menu[] = array(
-      'name' => 'Subscription',
-      'route' => $this->generateUrl('shop_subscription')
-    );
-    $menu[] = array(
-      'name' => 'Event',
-      'route' => $this->generateUrl('event_event')
+    $menu = array(
+      array(
+        'name' => 'User',
+        'route' => $this->generateUrl('user')
+      ),
+      array(
+        'name' => 'Shop',
+        'route' => $this->generateUrl('shop')
+      ),
+      array(
+        'name' => 'Order',
+        'route' => $this->generateUrl('shop_order')
+      ),
+      array(
+        'name' => 'Subscription',
+        'route' => $this->generateUrl('shop_subscription')
+      ),
+      array(
+        'name' => 'Event',
+        'route' => $this->generateUrl('event_event')
+      )
     );
 
     return $this->render('ClubMenuBundle:Default:topMenu.html.twig', array(
@@ -101,12 +101,11 @@ class DefaultController extends Controller
         'route' => $this->generateUrl('admin_event_event'),
         'items' => array()
       ),
-      array(
-        'name' => 'Account',
-        'route' => $this->generateUrl('club_account_adminaccount_index'),
-        'items' => array()
-      )
     );
+
+    $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
+    $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onLeftMenuRender, $event);
+    $menu = $event->getMenu();
 
     return $this->render('ClubMenuBundle:Default:leftMenu.html.twig', array(
       'menu' => $menu
