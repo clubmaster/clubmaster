@@ -19,8 +19,8 @@ class Mailer
 
   public function setFrom()
   {
-    $sender_addr = $this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('email_sender_address');
-    $sender_name = $this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('email_sender_name');
+    $sender_addr = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address');
+    $sender_name = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name');
 
     $this->message->setFrom(array(
        $sender_addr => $sender_name

@@ -24,12 +24,12 @@ class Product extends EntityRepository
     if ($product->getAccount())
       return $product->getAccount();
 
-    $value = $this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey(
+    $account = $this->_em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(
       'account_default_income',
       $user->getLocation()
     );
 
-    return $this->_em->find('ClubAccountBundle:Account',$value);
+    return $account;
 
   }
 }

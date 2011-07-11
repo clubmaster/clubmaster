@@ -18,9 +18,9 @@ class NewTransactionListener
     $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $income_account = $this->em->find('ClubAccountBundle:Account',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('account_default_income',$user->getLocation()));
+    $income_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_income',$user->getLocation());
 
-    $vat_account = $this->em->find('ClubAccountBundle:Account',$this->em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey('account_default_vat',$user->getLocation()));
+    $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$user->getLocation());
 
     foreach ($order->getProducts() as $product) {
 

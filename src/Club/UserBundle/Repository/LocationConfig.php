@@ -55,34 +55,38 @@ class LocationConfig extends EntityRepository
   {
     $config = $this->getByKey($key, $location, $fallback);
 
-    if (!count($config))
-      return false;
+    if (!$config)
+      return;
 
     switch ($config->getConfig()) {
     case 'account_default_income':
     case 'account_default_vat':
-      $res = $this->_em->find('ClubAccountBundle:Account',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      $res = $this->_em->find('ClubAccountBundle:Account',$config->getValue());
       break;
     case 'default_currency':
-      $res = $this->_em->find('ClubUserBundle:Currency',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      $res = $this->_em->find('ClubUserBundle:Currency',$config->getValue());
       break;
     case 'default_language':
-      $res = $this->_em->find('ClubUserBundle:Language',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      $res = $this->_em->find('ClubUserBundle:Language',$config->getValue());
       break;
     case 'default_location':
-      $res = $this->_em->find('ClubUserBundle:Location',$this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig()));
+      $res = $this->_em->find('ClubUserBundle:Location',$config->getValue());
       break;
     default:
-      $res = $this->_em->getRepository('ClubUserBundle:LocationConfig')->getValueByKey($config->getConfig());
+      $res = $config->getValue();
       break;
     }
 
     return $res;
   }
 
-  public function getValueByKey($key, \Club\UserBundle\Entity\Location $location = null)
+  public function addConfig($key, \Club\UserBundle\Entity\Location $location, $value)
   {
-    $config = $this->getByKey($key,$location);
-    return $config->getValue();
+    $config = new \Club\UserBundle\Entity\LocationConfig();
+    $config->setLocation($location);
+    $config->setConfig($key);
+    $config->setValue($value);
+
+    return $config;
   }
 }

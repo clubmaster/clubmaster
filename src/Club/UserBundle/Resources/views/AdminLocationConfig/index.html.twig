@@ -5,6 +5,8 @@
 
 <p>If a location does not have any settings, it will relay on its parents.</p>
 
+<form method="post" action="{{ path('admin_location_config', {'id':location.id}) }}">
 {% include "ClubUserBundle:AdminLocationConfig:form.html.twig" %}
+</form>
 
 {% endblock %}

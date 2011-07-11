@@ -20,6 +20,18 @@ class AdminLocationConfigController extends Controller
     $form = $this->getForm();
     $form->setData($this->getData($location));
 
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $this->setData($location, $form->getData());
+
+        return $this->redirect($this->generateUrl('admin_location_config', array(
+          'id' => $id
+        )));
+      }
+    }
+
     return array(
       'location' => $location,
       'form' => $form->createView()
@@ -38,6 +50,50 @@ class AdminLocationConfigController extends Controller
     }
 
     return $arr;
+  }
+
+  private function setData(\Club\UserBundle\Entity\Location $location, $data)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $config_repos = $em->getRepository('ClubUserBundle:LocationConfig');
+
+    foreach ($data as $key=>$value) {
+      switch ($key) {
+      case 'account_default_income':
+      case 'account_default_vat':
+      case 'default_currency':
+      case 'default_language':
+      case 'default_location':
+        $config = $config_repos->getByKey($key, $location, false);
+
+        if (!$config && $value != '') {
+          $config = $config_repos->addConfig($key, $location, $value->getId());
+          $em->persist($config);
+        } elseif ($value != '') {
+          $config->setValue($value->getId());
+          $em->persist($config);
+        } elseif ($config && $value == '') {
+          $em->remove($config);
+        }
+
+        break;
+      default:
+        $config = $em->getRepository('ClubUserBundle:LocationConfig')->getByKey($key, $location, false);
+
+        if (!$config && $value != '') {
+          $config = $config_repos->addConfig($key, $location, $value);
+          $em->persist($config);
+        } elseif ($value != '') {
+          $config->setValue($value);
+          $em->persist($config);
+        } elseif ($config && $value == '') {
+          $em->remove($config);
+        }
+        break;
+      }
+    }
+
+    $em->flush();
   }
 
   private function getForm()
