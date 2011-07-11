@@ -1,8 +1,0 @@
-<ul class="box">
-  <li {% if app.request.attributes.get('_route') == 'user' %} id="menu-active"{% endif %}><a href="{{ path('user') }}"><span>{% trans %}User{% endtrans %}</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'shop' %} id="menu-active"{% endif %}><a href="{{ path('shop') }}"><span>{% trans %}Shop{% endtrans %}</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'shop_order' %} id="menu-active"{% endif %}><a href="{{ path('shop_order') }}"><span>{% trans %}Order{% endtrans %}</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'shop_subscription' %} id="menu-active"{% endif %}><a href="{{ path('shop_subscription') }}"><span>{% trans %}Subscription{% endtrans %}</span></a></li>
-  <li {% if app.request.attributes.get('_route') == 'event_event' %} id="menu-active"{% endif %}><a href="{{ path('event_event') }}"><span>{% trans %}Event{% endtrans %}</span></a></li>
-</ul>
-

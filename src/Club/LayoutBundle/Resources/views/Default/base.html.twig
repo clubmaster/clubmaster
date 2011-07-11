@@ -59,7 +59,7 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <!-- Menu -->
         <div id="menu" class="box">
-          {% include "ClubLayoutBundle:Default:top_menu.html.twig" %}
+          {% render "ClubMenuBundle:Default:topMenu" %}
         </div> <!-- /header -->
         {% endif %}
 
