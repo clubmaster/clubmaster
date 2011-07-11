@@ -4,7 +4,6 @@
 - member of a location will also be member to child locations
 - email on new order
 - email on order change
-- seems like once in a while newtransactionlistener is called eventho you are not logged in (results in no location error)
 - find out what it takes to not require index.php/
 
 == scheduled for beta7 ==
