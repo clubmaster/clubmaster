@@ -1,37 +1,33 @@
-== scheduled for beta5 ==
-- make a quick search field for users
-
 == scheduled for beta6 ==
 - icon on account -> ledger
 - save user search filters
 - member of a location will also be member to child locations
+- email on new order
 - email on order change
 - seems like once in a while newtransactionlistener is called eventho you are not logged in (results in no location error)
 - find out what it takes to not require index.php/
 
 == todo ==
-- include product offers
-- custom signup fields
-  - register with subscription on signup
-- add category priority ( this will help pick right account_number for products )
-- obey rules of club_user_currency
+- make a quick search field for users
 - test all combinations of subscriptions:
-- subscriptions has to have at least:
-  - Month
-  - ExpireDate
-  - Ticket
-  - Lifetime
-- consider if you should be able to delete users
+- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
+- add images to products
+- Shop coupons
+- sort user lists
+- find a way the bundles can add menu items to the menus
+  - menu, and priority
+- fix the menu and add active to right element
+- custom signup fields (register with subscription on signup)
+- add category priority ( this will help pick right account_number for products )
+- obey rules of club_user_currency (danish: 1.00, us: 5.5)
+- delete users
 - merge users
 - add 365 date icons
 - different login pages for different locations
-- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
 - make infinive parent loop in location configs
 - fix layout, single and double column
 - configurable emails sent on different events
 - find out the syntax for member_numbers
-- add images to products
-- sort user lists
 - improve the way to recalc users of group
 - translation
 - users should be able to disable types of email (password,info)
@@ -40,14 +36,10 @@
 - find a way to make company users
 - Update basket
 - fix product variants
-- Shop coupons
 - unit test
 - special products
 - group and user filter, is_active (true, false, both)
 - add event managers to events, they should be able to see all events in the club
-- find a way the bundles can add menu items to the menus
-  - menu, and priority
-- fix the menu and add active to right element
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 
 == rewrite ==
