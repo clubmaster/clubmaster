@@ -6,20 +6,22 @@
 - email on order change
 - seems like once in a while newtransactionlistener is called eventho you are not logged in (results in no location error)
 - find out what it takes to not require index.php/
+- find a way the bundles can add menu items to the menus
+  - menu, and priority
+
+== scheduled for beta7 ==
+- test all combinations of subscriptions:
+- obey rules of club_user_currency (danish: 1.00, us: 5.5)
+- add class active to right menu
 
 == todo ==
-- make a quick search field for users
-- test all combinations of subscriptions:
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
 - add images to products
 - Shop coupons
 - sort user lists
-- find a way the bundles can add menu items to the menus
-  - menu, and priority
-- fix the menu and add active to right element
+- make a quick search field for users
 - custom signup fields (register with subscription on signup)
 - add category priority ( this will help pick right account_number for products )
-- obey rules of club_user_currency (danish: 1.00, us: 5.5)
 - delete users
 - merge users
 - add 365 date icons
