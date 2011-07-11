@@ -1,0 +1,11 @@
+<ul class="box">
+  {% for item in menu %}
+  <li><a href="{{ item.route }}">{{ item.name }}</a>
+    <ul>
+    {% for subitem in item.items %}
+      <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+    {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>

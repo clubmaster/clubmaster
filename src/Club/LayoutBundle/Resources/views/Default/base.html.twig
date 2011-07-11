@@ -79,7 +79,7 @@
                         </div> <!-- /padding -->
 
                         {% if is_granted('ROLE_ADMIN') %}
-                          {% include "ClubLayoutBundle:Default:left_menu.html.twig" %}
+                          {% render "ClubMenuBundle:Default:leftMenu" %}
                         {% endif %}
 
                 </div> <!-- /aside -->
