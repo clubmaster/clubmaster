@@ -1,0 +1,17 @@
+Hi {{ order.customerAddress.firstName }},
+
+Your order has now been processed as delivered.
+
+-------------------------------
+Personal information
+-------------------------------
+Name:    {{ order.customerAddress.firstName }} {{ order.customerAddress.lastName }}
+Address: {{ order.customerAddress.street }}
+City:    {{ order.customerAddress.postalCode }} {{ order.customerAddress.city }}
+Country: {{ order.customerAddress.country }}
+
+Order number: {{ order.orderNumber }}
+Order date: {{ order.createdAt|date('Y-m-d H:i:s') }}
+
+Best regards,
+ClubMaster

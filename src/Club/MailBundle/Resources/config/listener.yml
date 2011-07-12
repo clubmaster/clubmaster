@@ -14,6 +14,11 @@ services:
     arguments: [@doctrine.orm.entity_manager, @templating, @router, @clubmaster_mailer]
     tags:
       - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
+  club.mailbundle.listener.on_order_accepted_listener:
+    class: Club\MailBundle\Listener\OrderAcceptedListener
+    arguments: [@doctrine.orm.entity_manager, @templating, @router, @clubmaster_mailer]
+    tags:
+      - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
   club.mailbundle.listener.on_mail_task_listener:
     class: Club\MailBundle\Listener\MailSendListener
     arguments: [@doctrine.orm.entity_manager, @mailer, @swiftmailer.transport.real]
