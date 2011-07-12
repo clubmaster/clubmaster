@@ -44,6 +44,11 @@ class Filter
     private $user;
 
 
+    public function __toString()
+    {
+      return $this->getFilterName();
+    }
+
     public function __construct()
     {
         $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();

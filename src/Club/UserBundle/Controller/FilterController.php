@@ -52,20 +52,43 @@ class FilterController extends Controller
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
-  public function getFilterAction()
+  /**
+   * @Route("/filter/change")
+   */
+  public function changeAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
+    $form_filters = $this->buildFormFilters();
+
+    $filter = $em->find('ClubUserBundle:Filter',$id);
+
+    $em->remove($filter);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('admin_user'));
+  }
+
+  public function getFilterAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $repos = $em->getRepository('ClubUserBundle:Filter');
+
+    $filters = $repos->findBy(array(
+      'user' => $this->get('security.context')->getToken()->getUser()
+    ));
+    $filter = $repos->findActive(
       $this->get('security.context')->getToken()->getUser()
     );
 
+    $form_filters = $this->buildFormFilters($filters);
     $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
     return $this->render('ClubUserBundle:Filter:form.html.twig', array(
       'filter' => $filter,
-      'form' => $form->createView()
+      'form' => $form->createView(),
+      'form_filters' => $form_filters->createView()
     ));
   }
 
@@ -143,6 +166,22 @@ class FilterController extends Controller
     );
 
     return $filter;
+  }
+
+  private function buildFormFilters($filters)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $repos = $em->getRepository('ClubUserBundle:Filter');
+
+    $filters = $repos->findBy(array(
+      'user' => $this->get('security.context')->getToken()->getUser()
+    ));
+
+    return $this->createFormBuilder()
+      ->add('filter','entity',array(
+        'class' => 'ClubUserBundle:Filter'
+      ))
+      ->getForm();
   }
 
   /**

@@ -1,5 +1,9 @@
 <!-- Submit -->
 <div id="submit" class="box-01 box" style="display:none;">
+  <form method="post" action="{{ path('club_user_filter_change') }}">
+  {{ form_row(form_filters) }}
+  </form>
+
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
 
     {{ form_row(form.name) }}
