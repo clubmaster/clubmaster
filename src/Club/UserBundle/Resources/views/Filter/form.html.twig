@@ -17,6 +17,7 @@
     {{ form_row(form._token) }}
 
     <input type="submit" value="Filter" class="input-submit" />
+    <a href="{{ path('club_user_filter_reset', {'id':filter.id}) }}">Reset</a>
 
   </form>
 </div>

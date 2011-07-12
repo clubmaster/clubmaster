@@ -16,7 +16,11 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $form_filter = new \Club\UserBundle\Filter\UserFilter();
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
+      $this->get('security.context')->getToken()->getUser()
+    );
+
+    $form_filter = new \Club\UserBundle\Filter\UserFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -33,12 +37,34 @@ class FilterController extends Controller
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
+  /**
+   * @Route("/filter/reset/{id}")
+   */
+  public function resetAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->find('ClubUserBundle:Filter',$id);
+
+    $em->remove($filter);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('admin_user'));
+  }
+
   public function getFilterAction()
   {
-    $form_filter = $this->buildFormFilter();
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
+      $this->get('security.context')->getToken()->getUser()
+    );
+
+    $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
     return $this->render('ClubUserBundle:Filter:form.html.twig', array(
+      'filter' => $filter,
       'form' => $form->createView()
     ));
   }
@@ -122,13 +148,10 @@ class FilterController extends Controller
   /**
    * Build the form filter
    */
-  private function buildFormFilter()
+  private function buildFormFilter(\Club\UserBundle\Entity\Filter $filter)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
-      $this->get('security.context')->getToken()->getUser()
-    );
     $form_filter = new \Club\UserBundle\Filter\UserFilter();
 
     foreach ($filter->getAttributes() as $attribute) {
