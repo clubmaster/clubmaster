@@ -35,6 +35,7 @@ class FilterAttribute
 
     /**
      * @ORM\ManyToOne(targetEntity="Filter")
+     * @ORM\JoinColumn(name="filter_id", referencedColumnName="id", onDelete="cascade")
      */
     private $filter;
 
