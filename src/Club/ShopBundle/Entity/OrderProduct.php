@@ -28,7 +28,7 @@ class OrderProduct
     private $product_name;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */

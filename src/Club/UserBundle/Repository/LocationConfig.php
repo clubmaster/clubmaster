@@ -51,7 +51,7 @@ class LocationConfig extends EntityRepository
     return $config[0];
   }
 
-  public function getObjectByKey($key, \Club\UserBundle\Entity\Location $location, $fallback = true)
+  public function getObjectByKey($key, \Club\UserBundle\Entity\Location $location = null, $fallback = true)
   {
     $config = $this->getByKey($key, $location, $fallback);
 

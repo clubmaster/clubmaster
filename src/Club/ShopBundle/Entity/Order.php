@@ -194,23 +194,13 @@ class Order
     }
 
     /**
-     * Set vat
-     *
-     * @param string $vat
-     */
-    public function setVat($vat)
-    {
-        $this->vat = $vat;
-    }
-
-    /**
      * Get vat
      *
      * @return string $vat
      */
     public function getVat()
     {
-        return $this->vat;
+        return $this->getVatPrice()-$this->getPrice();
     }
 
     /**
@@ -412,5 +402,10 @@ class Order
     public function getBillingAddress()
     {
       return $this->billing_address;
+    }
+
+    public function getOrderNumber()
+    {
+      return '#'.$this->getId();
     }
 }

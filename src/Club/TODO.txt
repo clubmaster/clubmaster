@@ -2,7 +2,6 @@
 - icon on account -> ledger
 - save user search filters
 - member of a location will also be member to child locations
-- email on new order
 - email on order change
 - find out what it takes to not require index.php/
 
@@ -10,11 +9,18 @@
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
 - add class active to right menu
+- Shop coupons
+- special products
+- add event managers to events, they should be able to see all events in the club
+- unit test
+- event calendar view
+- event agenda view
 
 == todo ==
+- make sure we can tax shipping and payment
+- use getOrderNumber in account
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
 - add images to products
-- Shop coupons
 - sort user lists
 - make a quick search field for users
 - custom signup fields (register with subscription on signup)
@@ -35,10 +41,7 @@
 - find a way to make company users
 - Update basket
 - fix product variants
-- unit test
-- special products
 - group and user filter, is_active (true, false, both)
-- add event managers to events, they should be able to see all events in the club
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 
 == rewrite ==
@@ -47,8 +50,6 @@
 - remove all names from route, and use defaults
 
 == graphics ==
-- event calendar view
-- event agenda view
 - make sure html are validated
 - make sure css are validated
 
