@@ -38,9 +38,46 @@ class FilterController extends Controller
   }
 
   /**
-   * @Route("/filter/reset/{id}")
+   * @Route("/filter/delete/{id}")
    */
-  public function resetAction($id)
+  public function deleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->find('ClubUserBundle:Filter',$id);
+
+    $em->remove($filter);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('admin_user'));
+  }
+
+  /**
+   * @Route("/filter/new")
+   */
+  public function newAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->createFilter(
+      $this->get('security.context')->getToken()->getUser()
+    );
+
+    $em->getRepository('ClubUserBundle:Filter')->activateFilter(
+      $this->get('security.context')->getToken()->getUser(),
+      $filter
+    );
+
+    $em->persist($filter);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('admin_user'));
+  }
+
+  /**
+   * @Route("/filter/save/{id}")
+   */
+  public function saveAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
@@ -59,11 +96,18 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $form_filters = $this->buildFormFilters();
+    $form = $this->buildFormFilters();
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        var_dump($form->getData());
+        die();
+      }
+    }
 
     $filter = $em->find('ClubUserBundle:Filter',$id);
 
-    $em->remove($filter);
     $em->flush();
 
     return $this->redirect($this->generateUrl('admin_user'));

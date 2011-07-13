@@ -2,6 +2,7 @@
 <div id="submit" class="box-01 box" style="display:none;">
   <form method="post" action="{{ path('club_user_filter_change') }}">
   {{ form_row(form_filters) }}
+  <input type="submit" value="Change" />
   </form>
 
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
@@ -21,7 +22,9 @@
     {{ form_row(form._token) }}
 
     <input type="submit" value="Filter" class="input-submit" />
-    <a href="{{ path('club_user_filter_reset', {'id':filter.id}) }}">Reset</a>
+    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">Save</a>
+    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">Delete</a>
+    <a href="{{ path('club_user_filter_new') }}">New</a>
 
   </form>
 </div>

@@ -19,17 +19,32 @@ class Filter extends EntityRepository
       'is_active' => 1
     ));
 
-    if (!$filter)
-      return $this->createFilter($user);
+    if (!$filter) {
+      $filter = $this->createFilter($user);
+      $filter->setIsActive(1);
+
+      $this->_em->flush();
+    }
 
     return $filter;
   }
 
-  protected function createFilter(\Club\UserBundle\Entity\User $user)
+  public function activateFilter(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\Filter $filter)
+  {
+    $old_filter = $this->findActive($user);
+    $old_filter->setIsActive(0);
+
+    $this->_em->persist($old_filter);
+
+    $filter->setIsActive(1);
+    $this->_em->persist($filter);
+  }
+
+  public function createFilter(\Club\UserBundle\Entity\User $user)
   {
     $filter = new \Club\UserBundle\Entity\Filter;
     $filter->setFilterName('Working');
-    $filter->setIsActive(1);
+    $filter->setIsActive(0);
     $filter->setUser($user);
 
     $attributes = $this->_em->getRepository('ClubUserBundle:Attribute')->findAll();
@@ -44,7 +59,6 @@ class Filter extends EntityRepository
     }
 
     $this->_em->persist($filter);
-    $this->_em->flush();
 
     return $filter;
   }
