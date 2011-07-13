@@ -76,17 +76,32 @@ class FilterController extends Controller
 
   /**
    * @Route("/filter/save/{id}")
+   * @Template()
    */
   public function saveAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $filter = $em->find('ClubUserBundle:Filter',$id);
 
-    $em->remove($filter);
-    $em->flush();
+    $form = $this->createFormBuilder($filter)
+      ->add('filter_name')
+      ->getForm();
 
-    return $this->redirect($this->generateUrl('admin_user'));
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em->persist($filter);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_user'));
+      }
+    }
+
+    return array(
+      'filter' => $filter,
+      'form' => $form->createView()
+    );
   }
 
   /**
@@ -130,7 +145,7 @@ class FilterController extends Controller
     $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
-    return $this->render('ClubUserBundle:Filter:form.html.twig', array(
+    return $this->render('ClubUserBundle:Filter:_form.html.twig', array(
       'filter' => $filter,
       'form' => $form->createView(),
       'form_filters' => $form_filters->createView()
