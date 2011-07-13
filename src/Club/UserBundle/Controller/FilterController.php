@@ -94,21 +94,22 @@ class FilterController extends Controller
    */
   public function changeAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
     $form = $this->buildFormFilters();
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
-        var_dump($form->getData());
-        die();
+        $data = $form->getData();
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->getRepository('ClubUserBundle:Filter')->activateFilter(
+          $this->get('security.context')->getToken()->getUser(),
+          $data['filter']
+        );
+        $em->flush();
+
       }
     }
-
-    $filter = $em->find('ClubUserBundle:Filter',$id);
-
-    $em->flush();
 
     return $this->redirect($this->generateUrl('admin_user'));
   }
@@ -125,7 +126,7 @@ class FilterController extends Controller
       $this->get('security.context')->getToken()->getUser()
     );
 
-    $form_filters = $this->buildFormFilters($filters);
+    $form_filters = $this->buildFormFilters();
     $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
@@ -212,7 +213,7 @@ class FilterController extends Controller
     return $filter;
   }
 
-  private function buildFormFilters($filters)
+  private function buildFormFilters()
   {
     $em = $this->getDoctrine()->getEntityManager();
     $repos = $em->getRepository('ClubUserBundle:Filter');
