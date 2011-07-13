@@ -32,7 +32,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_account_adminaccount_edit',{'id':account.id})} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_account_adminaccount_delete',{'id':account.id})} %}
-        <a href="{{ path('club_account_adminledger_index', {'id':account.id}) }}">Ledger</a>
+        {% include "ClubLayoutBundle:Default:ledger_link.html.twig" with {'url':path('club_account_adminledger_index',{'id':account.id})} %}
       </td>
     </tr>
   {% else %}
