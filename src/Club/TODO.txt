@@ -1,6 +1,5 @@
 == scheduled for beta6 ==
 - icon on account -> ledger
-- save user search filters
 - member of a location will also be member to child locations
 - find out what it takes to not require index.php/
 
