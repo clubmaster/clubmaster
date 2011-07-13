@@ -141,7 +141,7 @@ class FilterController extends Controller
       $this->get('security.context')->getToken()->getUser()
     );
 
-    $form_filters = $this->buildFormFilters();
+    $form_filters = $this->buildFormFilters($filter);
     $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
@@ -228,7 +228,7 @@ class FilterController extends Controller
     return $filter;
   }
 
-  private function buildFormFilters()
+  private function buildFormFilters(\Club\UserBundle\Entity\Filter $filter = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $repos = $em->getRepository('ClubUserBundle:Filter');
@@ -237,9 +237,22 @@ class FilterController extends Controller
       'user' => $this->get('security.context')->getToken()->getUser()
     ));
 
-    return $this->createFormBuilder()
+    $qb = $em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubUserBundle:Filter','f')
+      ->where('f.user = :user')
+      ->setParameter('user',$this->get('security.context')->getToken()->getUser()->getId())
+      ->orderBy('f.filter_name');
+
+    $arr = array();
+
+    if ($filter)
+      $arr['filter'] = $filter;
+
+    return $this->createFormBuilder($arr)
       ->add('filter','entity',array(
-        'class' => 'ClubUserBundle:Filter'
+        'class' => 'ClubUserBundle:Filter',
+        'query_builder' => $qb
       ))
       ->getForm();
   }
