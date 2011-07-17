@@ -1,6 +1,7 @@
 == scheduled for beta6 ==
 - member of a location will also be member to child locations
 - find out what it takes to not require index.php/
+  - mod_rewrite and allow overwrite ALL
 
 == scheduled for beta7 ==
 - test all combinations of subscriptions:
