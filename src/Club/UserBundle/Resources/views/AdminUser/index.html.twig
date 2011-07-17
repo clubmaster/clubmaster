@@ -9,6 +9,8 @@
 
 {% render "ClubUserBundle:Filter:getFilter" %}
 
+{% include "ClubLayoutBundle:Default:paginator.html.twig" %}
+
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table>
   <thead>

@@ -1,10 +1,12 @@
 <!-- Submit -->
 <div id="submit" class="box-01 box" style="display:none;">
+  <p>This is your current working filter.</p>
   <form method="post" action="{{ path('club_user_filter_change') }}">
-  {{ form_row(form_filters) }}
-  <input type="submit" value="Change" />
+  {{ form_row(form_filters.filter) }}
+  <input type="submit" value="Change" class="input-submit" />
   </form>
 
+  <p>This is your filter, make your search here.</p>
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
 
     {{ form_row(form.name) }}
