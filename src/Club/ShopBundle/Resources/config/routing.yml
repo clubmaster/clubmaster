@@ -22,6 +22,10 @@ _shop_subscription:
   resource: "@ClubShopBundle/Controller/SubscriptionController.php"
   type: annotation
 
+_shop_coupon:
+  resource: "@ClubShopBundle/Controller/CouponController.php"
+  type: annotation
+
 _admin_shop_subscription:
   resource: "@ClubShopBundle/Controller/AdminSubscriptionController.php"
   type: annotation

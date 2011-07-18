@@ -1,0 +1,11 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<p>If you have a coupon, you can enter the key here, and we will add it to your cart.</p>
+
+<form method="post" action="{{ path('club_shop_coupon_add') }}">
+{% include "ClubShopBundle:Coupon:form.html.twig" %}
+</form>
+
+{% endblock %}
