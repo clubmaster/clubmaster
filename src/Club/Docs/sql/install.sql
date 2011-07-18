@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.1.57, for debian-linux-gnu (i486)
 --
 -- Host: localhost    Database: clubmaster
 -- ------------------------------------------------------
--- Server version	5.1.49-3-log
+-- Server version	5.1.57-3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,8 @@ CREATE TABLE `club_account_account` (
   `account_name` varchar(255) NOT NULL,
   `account_number` varchar(255) NOT NULL,
   `account_type` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_AB0B7032D2B0F9AC` (`account_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -589,14 +590,14 @@ CREATE TABLE `club_shop_order_product` (
   `product_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   `product_name` varchar(255) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `vat` decimal(10,0) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_A59FC3EC4584665A` (`product_id`),
   KEY `IDX_A59FC3EC8D9F6D38` (`order_id`),
-  CONSTRAINT `club_shop_order_product_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `club_shop_order` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `club_shop_order_product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `club_shop_product` (`id`)
+  CONSTRAINT `club_shop_order_product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `club_shop_product` (`id`),
+  CONSTRAINT `club_shop_order_product_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `club_shop_order` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -686,7 +687,7 @@ CREATE TABLE `club_shop_order_status` (
 
 LOCK TABLES `club_shop_order_status` WRITE;
 /*!40000 ALTER TABLE `club_shop_order_status` DISABLE KEYS */;
-INSERT INTO `club_shop_order_status` VALUES (1,'Pending',0,0,0),(2,'Processing',0,0,0),(3,'Preparing',0,0,0),(4,'Delivered',1,0,0),(5,'Cancelled',0,1,0);
+INSERT INTO `club_shop_order_status` VALUES (1,'Pending',0,0,1),(2,'Processing',0,0,2),(3,'Preparing',0,0,3),(4,'Delivered',1,0,4),(5,'Cancelled',0,1,5);
 /*!40000 ALTER TABLE `club_shop_order_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -759,9 +760,12 @@ CREATE TABLE `club_shop_product` (
   `description` longtext NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
+  `account_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_AACDEC77B5B63A6B` (`vat_id`),
-  CONSTRAINT `club_shop_product_ibfk_1` FOREIGN KEY (`vat_id`) REFERENCES `club_shop_vat` (`id`)
+  KEY `IDX_AACDEC779B6B5FBA` (`account_id`),
+  CONSTRAINT `club_shop_product_ibfk_1` FOREIGN KEY (`vat_id`) REFERENCES `club_shop_vat` (`id`),
+  CONSTRAINT `club_shop_product_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `club_account_account` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -972,6 +976,33 @@ LOCK TABLES `club_shop_subscription_pause` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `club_shop_subscription_ticket`
+--
+
+DROP TABLE IF EXISTS `club_shop_subscription_ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `club_shop_subscription_ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subscription_id` int(11) DEFAULT NULL,
+  `tickets` int(11) NOT NULL,
+  `created_at` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_2DF24DBD9A1887DC` (`subscription_id`),
+  CONSTRAINT `club_shop_subscription_ticket_ibfk_1` FOREIGN KEY (`subscription_id`) REFERENCES `club_shop_subscription` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `club_shop_subscription_ticket`
+--
+
+LOCK TABLES `club_shop_subscription_ticket` WRITE;
+/*!40000 ALTER TABLE `club_shop_subscription_ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `club_shop_subscription_ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `club_shop_transaction`
 --
 
@@ -1124,7 +1155,7 @@ CREATE TABLE `club_task_task` (
 
 LOCK TABLES `club_task_task` WRITE;
 /*!40000 ALTER TABLE `club_task_task` DISABLE KEYS */;
-INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onGroupTask'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onLogTask'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onAutoRenewalTask'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onLoginAttemptTask'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onBanTask'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-06 06:18:27','2011-07-06 06:18:27',NULL,'2011-07-06 06:18:27','+1 hour','onMailTask');
+INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onGroupTask'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onLogTask'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onAutoRenewalTask'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onLoginAttemptTask'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onBanTask'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','2011-07-18 13:43:01','2011-07-18 13:43:01',NULL,'2011-07-18 13:43:01','+1 hour','onMailTask');
 /*!40000 ALTER TABLE `club_task_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1258,7 +1289,7 @@ CREATE TABLE `club_user_currency` (
 
 LOCK TABLES `club_user_currency` WRITE;
 /*!40000 ALTER TABLE `club_user_currency` DISABLE KEYS */;
-INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-06 06:18:27','2011-07-06 06:18:27');
+INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-18 13:43:01','2011-07-18 13:43:01'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-18 13:43:01','2011-07-18 13:43:01'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-18 13:43:01','2011-07-18 13:43:01');
 /*!40000 ALTER TABLE `club_user_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1304,7 +1335,7 @@ CREATE TABLE `club_user_filter_attribute` (
   PRIMARY KEY (`id`),
   KEY `IDX_C0591B7CB6E62EFA` (`attribute_id`),
   KEY `IDX_C0591B7CD395B25E` (`filter_id`),
-  CONSTRAINT `club_user_filter_attribute_ibfk_2` FOREIGN KEY (`filter_id`) REFERENCES `club_user_filter` (`id`),
+  CONSTRAINT `club_user_filter_attribute_ibfk_2` FOREIGN KEY (`filter_id`) REFERENCES `club_user_filter` (`id`) ON DELETE CASCADE,
   CONSTRAINT `club_user_filter_attribute_ibfk_1` FOREIGN KEY (`attribute_id`) REFERENCES `club_user_attribute` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1509,7 +1540,7 @@ CREATE TABLE `club_user_location_config` (
 
 LOCK TABLES `club_user_location_config` WRITE;
 /*!40000 ALTER TABLE `club_user_location_config` DISABLE KEYS */;
-INSERT INTO `club_user_location_config` VALUES (1,1,'1','account_default_income'),(2,1,'1','account_default_vat'),(3,1,'1','default_language'),(4,1,'1','default_currency'),(5,1,'2','default_location'),(6,1,'noreply@clubmaster.dk','email_sender_address'),(7,1,'ClubMaster','email_sender_name');
+INSERT INTO `club_user_location_config` VALUES (1,1,'1','account_default_income'),(2,1,'2','account_default_vat'),(3,1,'1','default_language'),(4,1,'1','default_currency'),(5,1,'2','default_location'),(6,1,'noreply@clubmaster.dk','email_sender_address'),(7,1,'ClubMaster','email_sender_name');
 /*!40000 ALTER TABLE `club_user_location_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2014,7 +2045,7 @@ CREATE TABLE `migration_versions` (
 
 LOCK TABLES `migration_versions` WRITE;
 /*!40000 ALTER TABLE `migration_versions` DISABLE KEYS */;
-INSERT INTO `migration_versions` VALUES ('20110630004000'),('20110630105810'),('20110705133022');
+INSERT INTO `migration_versions` VALUES ('20110630004000'),('20110630105810'),('20110705133022'),('20110705154214'),('20110707161439'),('20110712094421'),('20110712124146');
 /*!40000 ALTER TABLE `migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2054,4 +2085,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-06  6:19:09
+-- Dump completed on 2011-07-18 13:43:27
