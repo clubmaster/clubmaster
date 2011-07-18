@@ -95,22 +95,6 @@ class DefaultController extends Controller
   }
 
   /**
-   * @Route("/get/users/active")
-   */
-  public function getUsersActiveAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $users = $em->getRepository('ClubUserBundle:User')->findAllActive();
-
-    $res = array();
-    foreach ($users as $user) {
-      $res[] = $user->toArray();
-    }
-
-    return $this->renderJSon($res);
-  }
-
-  /**
    * @Route("/ban/user/{id}")
    */
   public function banUserAction($id)
