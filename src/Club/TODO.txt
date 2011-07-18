@@ -1,44 +1,45 @@
 == scheduled for beta7 ==
-- test all combinations of subscriptions:
-- obey rules of club_user_currency (danish: 1.00, us: 5.5)
-- add class active to right menu
 - Shop coupons
 - special products
-- add event managers to events, they should be able to see all events in the club
+- test all combinations of subscriptions:
+- obey rules of club_user_currency (danish: 1.00, us: 5.5)
 - unit test
+- add event managers to events, they should be able to see all events in the club
+- find a better place for /tmp/swift
+- make sure we can tax shipping and payment
+- explain product_attributes on product page
+- use getOrderNumber in account
+- add created_at to subscription
+- group and user filter, is_active (true, false, both)
+- add class active to right menu
 - event calendar view
 - event agenda view
-- find a better place for /tmp/swift
+
+== scheduled for beta8 ==
+- on bought new membership recalc groups for user
+- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
+- delete users
+- merge users
+- find out the syntax for member_numbers
+- Update basket
 
 == todo ==
-- on bought new membership recalc users
-- add created_at to subscription
-- explain product_attributes on product page
-- make sure we can tax shipping and payment
-- use getOrderNumber in account
-- find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
 - add images to products
 - sort user lists
 - make a quick search field for users
 - custom signup fields (register with subscription on signup)
 - add category priority ( this will help pick right account_number for products )
-- delete users
-- merge users
 - add 365 date icons
 - different login pages for different locations
 - make infinive parent loop in location configs
 - fix layout, single and double column
 - configurable emails sent on different events
-- find out the syntax for member_numbers
 - improve the way to recalc users of group
 - translation
-- users should be able to disable types of email (password,info)
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
 - find a way to make company users
-- Update basket
 - fix product variants
-- group and user filter, is_active (true, false, both)
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 
 == rewrite ==
