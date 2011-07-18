@@ -1,7 +1,3 @@
-== scheduled for beta6 ==
-- find out what it takes to not require index.php/
-  - mod_rewrite and allow overwrite ALL
-
 == scheduled for beta7 ==
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)

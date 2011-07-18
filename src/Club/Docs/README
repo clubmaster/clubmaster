@@ -2,13 +2,27 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-06-30
-:Revision:  4
+:Date:      2011-07-18
+:Revision:  5
 
 
 Feedback
 --------
 It would really help me a lot of you can give me just any feedback at hollo@hollo.dk.
+
+
+Prerequirements
+---------------
+In order to run this software you need to following prerequirements:
+
+- Webserver
+- PHP 5.3.2
+- MySQL 5
+
+Besides it higly suggested to:
+
+- Enable mod_rewrite for apache
+- AllowOverride All in your apache configuration
 
 
 Quickstart
@@ -47,15 +61,6 @@ Edit configuration
 ------------------
 
 Edit the file app/config/parameters.yml to fit to your needs.
-
-
-Prerequirements
----------------
-In order to run this software you need to following prerequirements:
-
-- Webserver
-- PHP 5.3.2
-- MySQL 5
 
 
 Create database
