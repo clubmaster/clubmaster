@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Coupon</th>
+      <th>Value</th>
       <th>Max usage</th>
       <th>Expire At</th>
       <th>Created At</th>
@@ -15,13 +16,14 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="5">&#160;</td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for coupon in coupons %}
     <tr>
       <td>{{ coupon.couponKey }}</td>
+      <td>{{ coupon.value }}</td>
       <td>{{ coupon.maxUsage }}</td>
       <td>{{ coupon.expireAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ coupon.createdAt|date('Y-m-d H:i:s') }}</td>
@@ -32,7 +34,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="5">There are no coupons at the time</td>
+    <td colspan="6">There are no coupons at the time</td>
   </tr>
   {% endfor %}
   </tbody>
