@@ -25,11 +25,12 @@ class CouponController extends Controller
         $data = $form->getData();
 
         $em = $this->getDoctrine()->getEntityManager();
-        $coupon = $em->getRepository('ClubShopBundle:Coupon')->findOneBy(array(
-          'coupon_key' => $data['coupon_key']
-        ));
+        $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
         if ($coupon) {
+          $event = new \Club\ShopBundle\Event\FilterCouponEvent($coupon);
+          $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
+
           $this->get('session')->setFlash('notice','Your coupon has been added to the cart.');
         } else {
           $this->get('session')->setFlash('error','No such coupon.');

@@ -51,6 +51,11 @@ class Coupon
      */
     private $created_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity="CouponHistory", mappedBy="coupon")
+     */
+    private $coupon_history;
+
 
     public function __construct()
     {
@@ -175,5 +180,25 @@ class Coupon
     {
       if (!$this->getId())
         $this->setCreatedAt(new \DateTime());
+    }
+
+    /**
+     * Add coupon_history
+     *
+     * @param Club\ShopBundle\Entity\CouponHistory $couponHistory
+     */
+    public function addCouponHistory(\Club\ShopBundle\Entity\CouponHistory $couponHistory)
+    {
+        $this->coupon_history[] = $couponHistory;
+    }
+
+    /**
+     * Get coupon_history
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getCouponHistory()
+    {
+        return $this->coupon_history;
     }
 }

@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class Coupon extends EntityRepository
 {
+  public function getCoupon($coupon_key)
+  {
+    $coupon = $this->_em->createQueryBuilder()
+      ->select('c')
+      ->from('ClubShopBundle:Coupon','c')
+      ->where('c.coupon_key = :coupon')
+      ->andWhere('c.expire_at >= :expire')
+      ->setParameter('coupon', $coupon_key)
+      ->setParameter('expire', date('Y-m-d H:i:s'))
+      ->getQuery()
+      ->getResult();
+
+    if (count($coupon)) {
+      if ($coupon[0]->getMaxUsage() <= count($coupon[0]->getCouponHistory()))
+        return false;
+
+      return $coupon[0];
+    }
+
+    return false;
+  }
 }
