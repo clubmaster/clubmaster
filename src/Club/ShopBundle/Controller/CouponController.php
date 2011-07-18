@@ -28,6 +28,12 @@ class CouponController extends Controller
         $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
         if ($coupon) {
+          $product = array(
+            'product_name' => 'Coupon #'.$coupon->getCouponKey(),
+            'price' => $coupon->getValue()*-1
+          );
+
+          $this->get('cart')->addToCart($product);
           $event = new \Club\ShopBundle\Event\FilterCouponEvent($coupon);
           $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
 

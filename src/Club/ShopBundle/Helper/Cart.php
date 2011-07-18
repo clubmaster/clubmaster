@@ -60,6 +60,36 @@ class Cart
 
   public function addToCart($product)
   {
+    if ($product instanceOf \Club\ShopBundle\Entity\Product) {
+      $this->addProductToCart($product);
+    } else {
+      $this->addArrayToCart($product);
+    }
+
+    $this->save();
+  }
+
+  private function updateProductToCart(\Club\ShopBundle\Entity\CartProduct $cart_product)
+  {
+    $this->cart->addCartProduct($cart_product);
+    $this->cart->setPrice($this->cart->getPrice()+$cart_product->getPrice());
+    $this->cart->setVatPrice($this->cart->getVatPrice()+$cart_product->getVatPrice());
+  }
+
+  private function addArrayToCart($product)
+  {
+    $op = new \Club\ShopBundle\Entity\CartProduct();
+    $op->setCart($this->cart);
+    $op->setProductName($product['product_name']);
+    $op->setPrice($product['price']);
+    $op->setVat(0);
+    $op->setQuantity(1);
+
+    $this->updateProductToCart($op);
+  }
+
+  private function addProductToCart(\Club\ShopBundle\Entity\Product $product)
+  {
     $this->checkLocation($product);
 
     $trigger = 0;
@@ -91,11 +121,8 @@ class Cart
         $op->addCartProductAttribute($opa);
       }
 
-      $this->cart->addCartProduct($op);
-      $this->cart->setPrice($this->cart->getPrice()+$op->getPrice());
-      $this->cart->setVatPrice($this->cart->getVatPrice()+$op->getVatPrice());
+      $this->updateProductToCart($op);
     }
-    $this->save();
   }
 
   public function emptyCart()
