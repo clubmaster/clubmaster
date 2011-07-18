@@ -11,6 +11,7 @@
 - use getOrderNumber in account
 - add created_at to subscription
 - group and user filter, is_active (true, false, both)
+- problem with default location on new install
 - add class active to right menu
 - event calendar view
 - event agenda view
