@@ -49,6 +49,13 @@ class OrderProduct
     private $quantity;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $type
+     */
+    private $type;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\UserBundle\Entity\Product
@@ -207,5 +214,35 @@ class OrderProduct
     public function getProductAttributes()
     {
         return $this->order_product_attributes;
+    }
+
+    /**
+     * Add order_product_attributes
+     *
+     * @param Club\ShopBundle\Entity\OrderProductAttribute $orderProductAttributes
+     */
+    public function addOrderProductAttributes(\Club\ShopBundle\Entity\OrderProductAttribute $orderProductAttributes)
+    {
+        $this->order_product_attributes[] = $orderProductAttributes;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

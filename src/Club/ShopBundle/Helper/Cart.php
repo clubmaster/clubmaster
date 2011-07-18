@@ -84,6 +84,7 @@ class Cart
     $op->setPrice($product['price']);
     $op->setVat(0);
     $op->setQuantity(1);
+    $op->setType($product['type']);
 
     $this->updateProductToCart($op);
   }
@@ -111,6 +112,7 @@ class Cart
       $op->setPrice($product->getPrice());
       $op->setVat($product->getVat()->getRate());
       $op->setQuantity(1);
+      $op->setType('product');
 
       foreach ($product->getProductAttributes() as $attr) {
         $opa = new \Club\ShopBundle\Entity\CartProductAttribute();

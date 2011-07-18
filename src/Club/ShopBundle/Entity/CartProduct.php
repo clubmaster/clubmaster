@@ -49,6 +49,13 @@ class CartProduct
     private $quantity;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var integer $type
+     */
+    private $type;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\UserBundle\Entity\Product
@@ -217,5 +224,35 @@ class CartProduct
     public function getVatSummary()
     {
       return $this->getVatPrice()*$this->getQuantity();
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add cart_product_attributes
+     *
+     * @param Club\ShopBundle\Entity\CartProductAttribute $cartProductAttributes
+     */
+    public function addCartProductAttributes(\Club\ShopBundle\Entity\CartProductAttribute $cartProductAttributes)
+    {
+        $this->cart_product_attributes[] = $cartProductAttributes;
     }
 }

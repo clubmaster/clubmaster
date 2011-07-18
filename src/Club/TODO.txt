@@ -1,5 +1,5 @@
 == scheduled for beta7 ==
-- Shop coupons
+- default coupon account
 - special products
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
@@ -15,6 +15,9 @@
 - add class active to right menu
 - event calendar view
 - event agenda view
+== FIXTURE CHANGE ==
+account_default_income = 3
+account_default_cash = 1
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user

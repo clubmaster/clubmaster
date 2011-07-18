@@ -18,18 +18,23 @@ class NewTransactionListener
     $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $income_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_income',$user->getLocation());
-
     $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$user->getLocation());
 
     foreach ($order->getProducts() as $product) {
 
-      $income_account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(),$user);
+      switch ($product->getType()) {
+      case 'product':
+        $account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(), $user->getLocation());
+        break;
+      case 'coupon':
+        $account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_income',$user->getLocation());
+        break;
+      }
 
       $ledger = new \Club\AccountBundle\Entity\Ledger();
       $ledger->setValue($product->getPrice());
       $ledger->setNote($product->getQuantity().'x '.$product->getProductName());
-      $ledger->setAccount($income_account);
+      $ledger->setAccount($account);
       $ledger->setUser($order->getUser());
 
       $this->em->persist($ledger);

@@ -30,7 +30,8 @@ class CouponController extends Controller
         if ($coupon) {
           $product = array(
             'product_name' => 'Coupon #'.$coupon->getCouponKey(),
-            'price' => $coupon->getValue()*-1
+            'price' => $coupon->getValue()*-1,
+            'type' => 'coupon'
           );
 
           $this->get('cart')->addToCart($product);
