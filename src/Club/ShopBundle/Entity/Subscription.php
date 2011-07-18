@@ -72,20 +72,9 @@ class Subscription
      */
     private $subscription_pauses;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
-     * @ORM\JoinTable(name="club_shop_subscription_location",
-     *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id", onDelete="cascade")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="cascade")}
-     * )
-     *
-     * @var Club\UserBundle\Entity\Location
-     */
-    private $locations;
     public function __construct()
     {
         $this->subscription_pauses = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -176,26 +165,6 @@ class Subscription
     public function getSubscriptionPauses()
     {
         return $this->subscription_pauses;
-    }
-
-    /**
-     * Add locations
-     *
-     * @param Club\UserBundle\Entity\Location $locations
-     */
-    public function addLocations(\Club\UserBundle\Entity\Location $locations)
-    {
-        $this->locations[] = $locations;
-    }
-
-    /**
-     * Get locations
-     *
-     * @return Doctrine\Common\Collections\Collection $locations
-     */
-    public function getLocations()
-    {
-        return $this->locations;
     }
 
     /**

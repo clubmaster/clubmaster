@@ -92,7 +92,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,8,1),
   (2,1,2),
   (2,7,5),
-  (2,8,1),
+  (2,8,5),
   (3,5,'2011-04-01'),
   (3,6,'2011-10-31'),
   (4,4,1),
