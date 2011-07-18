@@ -10,7 +10,6 @@ class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
   public function load($manager)
   {
     $configs = array();
-    $configs[] = 'account_default_cash';
     $configs[] = 'account_default_income';
     $configs[] = 'account_default_vat';
     $configs[] = 'default_language';
@@ -18,6 +17,7 @@ class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
     $configs[] = 'default_location';
     $configs[] = 'email_sender_address';
     $configs[] = 'email_sender_name';
+    $configs[] = 'account_default_cash';
 
     foreach ($configs as $c) {
       $config = new \Club\UserBundle\Entity\Config();

@@ -1,4 +1,5 @@
 == scheduled for beta7 ==
+- change key on config
 - default coupon account
 - special products
 - test all combinations of subscriptions:
@@ -16,8 +17,8 @@
 - event calendar view
 - event agenda view
 == FIXTURE CHANGE ==
-account_default_income = 3
-account_default_cash = 1
+changed, account_default_income = 3
+added, account_default_cash = 1
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
