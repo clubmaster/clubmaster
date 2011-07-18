@@ -23,7 +23,7 @@ class Coupon
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique="true")
      *
      * @var string $coupon_key
      */
@@ -51,6 +51,12 @@ class Coupon
      */
     private $created_at;
 
+
+    public function __construct()
+    {
+      $this->setCouponKey(uniqid());
+      $this->setExpireAt(new \DateTime("+1 month"));
+    }
 
     /**
      * Get id
@@ -107,7 +113,7 @@ class Coupon
      *
      * @param int $maxUsage
      */
-    public function setMaxUsage(\int $maxUsage)
+    public function setMaxUsage($maxUsage)
     {
         $this->max_usage = $maxUsage;
     }
