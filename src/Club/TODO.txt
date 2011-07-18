@@ -13,6 +13,7 @@
 - unit test
 - event calendar view
 - event agenda view
+- find a better place for /tmp/swift
 
 == todo ==
 - make sure we can tax shipping and payment
