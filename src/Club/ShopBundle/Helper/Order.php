@@ -145,7 +145,8 @@ class Order
       $op->setProductName($product->getProductName());
       $op->setVat($product->getVat());
       $op->setQuantity($product->getQuantity());
-      $op->setProduct($product->getProduct());
+      if ($product->getProduct())
+        $op->setProduct($product->getProduct());
 
       $this->order->addOrderProduct($op);
 
