@@ -98,7 +98,7 @@ class User extends EntityRepository
           $qb = $this->filterHasSubscription($qb);
           break;
         case 'location':
-          $qb = $this->filterLocation($qb,$attr->getValue());
+          $qb = $this->filterLocation($qb,explode(",", $attr->getValue()));
           break;
         }
       }
@@ -133,10 +133,11 @@ class User extends EntityRepository
     }
 
     if (count($group->getLocation()) > 0) {
-      $location_str = '';
+      $location_arr = array();
       foreach ($group->getLocation() as $location) {
+        $location_arr[] = $location->getId();
       }
-      $qb = $this->filterLocation($qb,$location_str);
+      $qb = $this->filterLocation($qb,$location_arr);
     }
 
     return $qb->getQuery();
@@ -272,14 +273,38 @@ class User extends EntityRepository
     return $qb;
   }
 
-  protected function filterLocation($qb,$value)
+  protected function filterLocation($qb,array $value)
   {
+    $locations = array();
+    foreach ($value as $id) {
+      // FIXME, has to be infinitive loop
+      $location = $this->_em->find('ClubUserBundle:Location',$id);
+      $locations[] = $location->getId();
+
+      if ($location->getLocation()) {
+        $locations[] = $location->getLocation()->getId();
+
+        if ($location->getLocation()->getLocation()) {
+          $locations[] = $location->getLocation()->getLocation()->getId();
+
+          if ($location->getLocation()->getLocation()->getLocation()) {
+            $locations[] = $location->getLocation()->getLocation()->getLocation()->getId();
+          }
+        }
+      }
+    }
+
+    $str = "";
+    foreach ($locations as $id) {
+      $str .= " sa.value = $id OR ";
+    }
+    $str = preg_replace("/OR $/","",$str);
+
     $qb
       ->leftJoin('u.subscriptions','s2')
-      ->leftJoin('s2.locations','l2')
-      ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND l2.id = :l2id)')
-      ->setParameter('s2ed',date('Y-m-d'))
-      ->setParameter('l2id',$value);
+      ->leftJoin('s2.subscription_attributes','sa')
+      ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND ('.$str.'))')
+      ->setParameter('s2ed',date('Y-m-d'));
 
     return $qb;
   }

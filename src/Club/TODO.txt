@@ -1,5 +1,4 @@
 == scheduled for beta6 ==
-- member of a location will also be member to child locations
 - find out what it takes to not require index.php/
   - mod_rewrite and allow overwrite ALL
 
@@ -16,6 +15,9 @@
 - find a better place for /tmp/swift
 
 == todo ==
+- on bought new membership recalc users
+- add created_at to subscription
+- explain product_attributes on product page
 - make sure we can tax shipping and payment
 - use getOrderNumber in account
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
