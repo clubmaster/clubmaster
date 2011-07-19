@@ -28,7 +28,7 @@ class CartProduct
     private $product_name;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */
@@ -218,12 +218,12 @@ class CartProduct
 
     public function getVatPrice()
     {
-      return $this->getPrice()*(1+$this->getVat()/100);
+      return sprintf("%.2f",$this->getPrice()*(1+$this->getVat()/100));
     }
 
     public function getVatSummary()
     {
-      return $this->getVatPrice()*$this->getQuantity();
+      return sprintf("%.2f",$this->getVatPrice()*$this->getQuantity());
     }
 
     /**
@@ -239,7 +239,7 @@ class CartProduct
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {

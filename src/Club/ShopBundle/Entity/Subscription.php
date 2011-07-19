@@ -49,6 +49,20 @@ class Subscription
     private $expire_date;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var datetime $updated_at
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var datetime $created_at
+     */
+    private $created_at;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Order")
      *
      * @var Club\ShopBundle\Entity\Order
@@ -71,6 +85,7 @@ class Subscription
      * @ORM\OneToMany(targetEntity="SubscriptionPause", mappedBy="subscription")
      */
     private $subscription_pauses;
+
 
     public function __construct()
     {
@@ -245,5 +260,56 @@ class Subscription
     public function getSubscriptionAttributes()
     {
         return $this->subscription_attributes;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      if (!$this->getId())
+        $this->setCreatedAt(new \DateTime());
+
+      $this->setUpdatedAt(new \DateTime());
     }
 }
