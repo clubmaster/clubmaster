@@ -14,6 +14,29 @@
   <h2>Description</h2>
   <p>{{ product.description|raw }}</p>
 
+  {% if product.productAttributes|length > 0 %}
+  <h2>Attributes</h2>
+  <ul>
+  {% for attr in product.productAttributes %}
+    {% if attr.attribute.attributeName == 'Month' %}
+    <li>Your subscription will last for <b>{{ attr.value }} months</b>.</li>
+    {% endif %}
+    {% if attr.attribute.attributeName == 'Ticket' %}
+    <li>You will receive <b>{{ attr.value }} tickets</b>.</li>
+    {% endif %}
+    {% if attr.attribute.attributeName == 'AutoRenewal' %}
+    <li>Your subscription will be <b>automatically renewed</b>.</li>
+    {% endif %}
+    {% if attr.attribute.attributeName == 'Lifetime' %}
+    <li>This subscription will <b>never expire</b>.</li>
+    {% endif %}
+    {% if attr.attribute.attributeName == 'AllowedPauses' %}
+    <li>You will be able to take <b>{{ attr.value }} pauses</b> during your membership period.</li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+  {% endif %}
+
 </div> <!-- /box-03 -->
 
 
