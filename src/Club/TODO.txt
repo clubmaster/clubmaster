@@ -1,4 +1,5 @@
 == scheduled for beta7 ==
+- view coupon usage history
 - special products
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
