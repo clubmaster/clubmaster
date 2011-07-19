@@ -25,7 +25,7 @@ class Coupon extends EntityRepository
       ->getResult();
 
     if (count($coupon)) {
-      if ($coupon[0]->getMaxUsage() <= count($coupon[0]->getCouponHistory()))
+      if ($coupon[0]->getMaxUsage() <= count($coupon[0]->getCouponLog()))
         return false;
 
       return $coupon[0];

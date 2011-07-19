@@ -84,7 +84,7 @@ class AdminCouponController extends Controller
   public function logAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $coupons = $em->getRepository('ClubShopBundle:CouponHistory')->findBy(array(
+    $coupons = $em->getRepository('ClubShopBundle:CouponLog')->findBy(array(
       'coupon' => $id
     ));
 

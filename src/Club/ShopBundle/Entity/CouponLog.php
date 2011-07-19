@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\CouponHistory")
- * @ORM\Table(name="club_shop_coupon_history")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\CouponLog")
+ * @ORM\Table(name="club_shop_coupon_log")
  * @ORM\HasLifecycleCallbacks
  *
  */
-class CouponHistory
+class CouponLog
 {
     /**
      * @ORM\Id

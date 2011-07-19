@@ -15,7 +15,7 @@ class CouponUseListener
   {
     $coupon = $event->getCoupon();
 
-    $history = new \Club\ShopBundle\Entity\CouponHistory();
+    $history = new \Club\ShopBundle\Entity\CouponLog();
     $history->setCoupon($coupon);
 
     $this->em->persist($history);

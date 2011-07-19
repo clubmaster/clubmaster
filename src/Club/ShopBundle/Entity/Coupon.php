@@ -52,9 +52,9 @@ class Coupon
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="CouponHistory", mappedBy="coupon")
+     * @ORM\OneToMany(targetEntity="CouponLog", mappedBy="coupon")
      */
-    private $coupon_history;
+    private $coupon_log;
 
 
     public function __construct()
@@ -183,22 +183,22 @@ class Coupon
     }
 
     /**
-     * Add coupon_history
+     * Add coupon_log
      *
-     * @param Club\ShopBundle\Entity\CouponHistory $couponHistory
+     * @param Club\ShopBundle\Entity\CouponLog $couponLog
      */
-    public function addCouponHistory(\Club\ShopBundle\Entity\CouponHistory $couponHistory)
+    public function addCouponLog(\Club\ShopBundle\Entity\CouponLog $couponLog)
     {
-        $this->coupon_history[] = $couponHistory;
+        $this->coupon_log[] = $couponLog;
     }
 
     /**
-     * Get coupon_history
+     * Get coupon_log
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getCouponHistory()
+    public function getCouponLog()
     {
-        return $this->coupon_history;
+        return $this->coupon_log;
     }
 }
