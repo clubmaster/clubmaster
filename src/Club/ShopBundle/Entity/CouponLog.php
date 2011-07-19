@@ -31,6 +31,13 @@ class CouponLog
     private $coupon;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     *
+     * @var Club\UserBundle\Entity\User
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -138,5 +145,25 @@ class CouponLog
     {
       if (!$this->getId())
         $this->setCreatedAt(new \DateTime());
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
