@@ -43,7 +43,10 @@ class NewSubscriptionListener
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
-          if (isset($res['AutoRenewal'])) {
+          $date = new \DateTime($res['StartDate']->getValue());
+          if ($date->getTimestamp() > time()) {
+            $start_date = $date;
+          } elseif (isset($res['AutoRenewal'])) {
             if ($res['AutoRenewal']->getValue() == 'A') {
               $start_date = new \DateTime();
             } elseif ($res['AutoRenewal']->getValue() == 'Y') {
