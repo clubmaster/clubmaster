@@ -57,7 +57,7 @@ swiftmailer:
     password:  %mailer_password%
     spool:
         type: file
-        path: /tmp/swift
+        path: %kernel.cache_dir%/swiftmailer/spool
 
 jms_security_extra:
     secure_controllers:  true

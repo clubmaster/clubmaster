@@ -3,9 +3,7 @@
 - special products
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
-- unit test
 - add event managers to events, they should be able to see all events in the club
-- find a better place for /tmp/swift
 - make sure we can tax shipping and payment
 - explain product_attributes on product page
 - use getOrderNumber in account
@@ -28,6 +26,7 @@ added, account_default_cash = 1
 - Update basket
 
 == todo ==
+- unit test (has to wait for phpunit 3.5.x)
 - add images to products
 - sort user lists
 - make a quick search field for users
