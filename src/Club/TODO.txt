@@ -1,5 +1,4 @@
 == scheduled for beta7 ==
-- change key on config
 - default coupon account
 - special products
 - test all combinations of subscriptions:
