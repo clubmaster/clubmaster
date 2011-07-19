@@ -99,6 +99,15 @@ class NewSubscriptionListener
 
           $this->em->persist($sub_attr);
         }
+        if (isset($res['Lifetime'])) {
+          $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
+          $sub_attr->setSubscription($subscription);
+          $sub_attr->setAttributeName('Lifetime');
+          $sub_attr->setValue($res['Lifetime']->getValue());
+          $subscription->addSubscriptionAttributes($sub_attr);
+
+          $this->em->persist($sub_attr);
+        }
         if (isset($res['AllowedPauses'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
@@ -108,7 +117,6 @@ class NewSubscriptionListener
 
           $this->em->persist($sub_attr);
         }
-
         if (isset($res['Location'])) {
           $locations = preg_split("/,/", $res['Location']->getValue());
           foreach ($locations as $location) {
