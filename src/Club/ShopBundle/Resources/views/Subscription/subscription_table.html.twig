@@ -29,10 +29,12 @@
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
       {% endif %}
       <td>
+        {% if not subscription.isExpired %}
         {% if subscription.isActive %}
           {% include "ClubLayoutBundle:Default:pause_link.html.twig" with {'url':path('shop_subscription_pause', {'id':subscription.id})} %}
         {% else %}
           {% include "ClubLayoutBundle:Default:resume_link.html.twig" with {'url':path('shop_subscription_resume', {'id':subscription.id})} %}
+        {% endif %}
         {% endif %}
       </td>
     </tr>

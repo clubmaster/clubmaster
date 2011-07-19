@@ -339,4 +339,12 @@ class Subscription
     {
         return $this->order_product;
     }
+
+    public function isExpired()
+    {
+      if (!$this->getIsActive() && $this->getExpireDate()->getTimestamp() < time())
+        return true;
+
+      return false;
+    }
 }
