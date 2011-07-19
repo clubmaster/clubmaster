@@ -109,7 +109,7 @@ class Cart
       $op->setCart($this->cart);
       $op->setProduct($product);
       $op->setProductName($product->getProductName());
-      $op->setPrice($product->getPrice());
+      $op->setPrice($product->getSpecialPrice());
       $op->setVat($product->getVat()->getRate());
       $op->setQuantity(1);
       $op->setType('product');

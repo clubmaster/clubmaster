@@ -87,6 +87,13 @@ class Product
      */
     private $product_attributes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Special", mappedBy="product")
+     *
+     * @var Club\ShopBundle\Entity\Special
+     */
+    private $specials;
+
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
@@ -165,7 +172,7 @@ class Product
      */
     public function getPrice()
     {
-        return $this->price;
+      return $this->price;
     }
 
     /**
@@ -291,5 +298,39 @@ class Product
     public function addProductAttributes(\Club\ShopBundle\Entity\ProductAttribute $productAttributes)
     {
         $this->product_attributes[] = $productAttributes;
+    }
+
+    /**
+     * Add specials
+     *
+     * @param Club\ShopBundle\Entity\Special $specials
+     */
+    public function addSpecials(\Club\ShopBundle\Entity\Special $specials)
+    {
+        $this->specials[] = $specials;
+    }
+
+    /**
+     * Get specials
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getSpecials()
+    {
+        return $this->specials;
+    }
+
+    public function getSpecialPrice()
+    {
+      foreach ($this->getSpecials() as $special) {
+        if ($special->getStartDate()->getTimestamp() < time() && $special->getExpireDate()->getTimestamp() > time())
+          return $special->getPrice();
+      }
+      return $this->getPrice();
+    }
+
+    public function getSpecialVatPrice()
+    {
+      return sprintf("%.2f",$this->getSpecialPrice()*(1+$this->getVat()->getRate()/100));
     }
 }

@@ -17,7 +17,7 @@
     <tr>
       <td><img src="{{ asset('bundles/clublayout/images/icons/64/Status-image-missing-icon.png') }}" title="No image" alt="No image" />
       <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a> <em>{{ product.description|truncate(200) }}</em></td>
-      <td>{{ product.vatPrice }}</td>
+      <td>{{ product.specialVatPrice }}</td>
       <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('bundles/clublayout/images/icons/48/shopping-cart-insert-icon.png') }}" alt="Put in cart" title="Put in cart" /></a></td>
     </tr>
     {% else %}
