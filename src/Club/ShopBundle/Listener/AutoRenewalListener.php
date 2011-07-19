@@ -22,7 +22,19 @@ class AutoRenewalListener
   {
     $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredAutoRenewalSubscriptions();
     foreach ($subscriptions as $subscription) {
+      $this->copySubscription($subscription);
+    }
+    $this->em->flush();
 
+    $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getEmptyTicketAutoRenewalSubscriptions();
+    foreach ($subscriptions as $subscription) {
+      $this->copySubscription($subscription);
+    }
+    $this->em->flush();
+  }
+
+  private function copySubscription($subscription)
+  {
       $old_order = $subscription->getOrder();
       $this->order->copyOrder($old_order);
       $this->order->addOrderProduct($subscription->getOrderProduct());
@@ -30,7 +42,5 @@ class AutoRenewalListener
 
       $subscription->setIsActive(0);
       $this->em->persist($subscription);
-      $this->em->flush();
-    }
   }
 }
