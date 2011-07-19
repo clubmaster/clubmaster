@@ -25,39 +25,35 @@ added, new account
 - Update basket
 
 == todo ==
-- unit test (has to wait for phpunit 3.5.x)
 - add images to products
 - sort user lists
 - make a quick search field for users
-- custom signup fields (register with subscription on signup)
 - add category priority ( this will help pick right account_number for products )
-- add 365 date icons
-- different login pages for different locations
-- make infinive parent loop in location configs
-- fix layout, single and double column
 - configurable emails sent on different events
-- improve the way to recalc users of group
+- problem with renewal of fixtures memberships
+
+== improvements ==
 - translation
+- flag if we run backend script for tasks (to avoid long wait periods for the users)
+- improve the way to recalc users of group
+- make infinive parent loop in location configs
+- unit test (has to wait for phpunit 3.5.x)
+- custom signup fields (register with subscription on signup)
+- different login pages for different locations
+- add 365 date icons
+- fix layout, single and double column
 - users should be able to add and remove address, email and phone
   - this will not work with our currently validation.. consider to remove this funcationality from the admin part
 - find a way to make company users
 - fix product variants
-- flag if we run backend script for tasks (to avoid long wait periods for the users)
-
-== rewrite ==
 - success / failure handler has to be more dynamic (might wait for a symfony upgrade) (symfony 2.1)
 - on success handler, consider forward and not redirect response?
 - remove all names from route, and use defaults
-
-== graphics ==
 - make sure html are validated
 - make sure css are validated
 
 == modules ==
-- mailer bundle
-  - send mails to specific user
-  - send mails to specific group
-  - send mail to user filters
+- mailer bundle (user, group, filters)
 - team bundle
 - forum bundle
 - payment gateway bundle
