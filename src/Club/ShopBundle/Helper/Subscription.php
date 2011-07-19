@@ -15,6 +15,11 @@ class Subscription
 
   public function pauseSubscription($subscription)
   {
+    if ($this->em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'Lifetime')) {
+      $this->session->setFlash('error','You cannot pause a lifetime membership.');
+      return;
+    }
+
     // validate that the user is allowed to pause
     $allowed = $this->em->getRepository('ClubShopBundle:Subscription')->getAllowedPauses($subscription);
     if (count($subscription->getSubscriptionPauses()) >= $allowed) {

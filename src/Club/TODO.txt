@@ -3,7 +3,6 @@
   - Month can only have AutoRenewal value A
   - Only One of following is mandatory: Month, ExpireDate, Lifetime
   - Cannot have ExpireDate without StartDate
-- cannot pause lifetimee membership
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
 - add event managers to events, they should be able to see all events in the club
 - make sure we can tax shipping and payment
