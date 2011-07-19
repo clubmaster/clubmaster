@@ -1,7 +1,7 @@
 == scheduled for beta7 ==
 - constraints:
   - Month can only have AutoRenewal value A
-  - Cannot have ExpireDate and Month
+  - Only One of following is mandatory: Month, ExpireDate, Lifetime
 - cannot resume an expired subscription from subscription page ( admin / user )
 - cannot pause lifetimee membership
 - view if subscription is active or not
