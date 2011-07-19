@@ -22,14 +22,16 @@ class Subscription
       return;
     }
 
-    $subscription->setIsActive(0);
-
     $pause = new \Club\ShopBundle\Entity\SubscriptionPause();
     $pause->setSubscription($subscription);
     $pause->setStartDate(new \DateTime());
-
-    $this->em->persist($subscription);
+    $pause->setOldExpireDate($subscription->getExpireDate());
     $this->em->persist($pause);
+
+    $subscription->setIsActive(0);
+    $subscription->setExpireDate(null);
+    $this->em->persist($subscription);
+
     $this->em->flush();
 
     $this->session->setFlash('notice','Your subscription has been paused.');
@@ -43,7 +45,7 @@ class Subscription
     $pause->setExpireDate(new \DateTime());
 
     $diff = $pause->getStartDate()->diff($pause->getExpireDate());
-    $new = new \DateTime($subscription->getExpireDate()->format('Y-m-d'));
+    $new = new \DateTime($pause->getOldExpireDate()->format('Y-m-d'));
     $new->add($diff);
     $subscription->setExpireDate($new);
 

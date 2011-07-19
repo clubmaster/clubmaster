@@ -33,6 +33,7 @@ class Subscription extends EntityRepository
       ->from('ClubShopBundle:Subscription','s')
       ->where('s.expire_date <= :expire_date')
       ->andWhere('s.expire_date IS NOT NULL')
+      ->andWhere('s.is_active = 1')
       ->setParameter('expire_date',date('Y-m-d'))
       ->getQuery()
       ->getResult();
@@ -51,7 +52,6 @@ class Subscription extends EntityRepository
 
   private function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
   {
-
     $attr = $this->getAttributeQuery($subscription, 'AutoRenewal')
       ->getQuery()
       ->getResult();

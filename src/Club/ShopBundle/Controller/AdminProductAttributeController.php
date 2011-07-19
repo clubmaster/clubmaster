@@ -56,8 +56,12 @@ class AdminProductAttributeController extends Controller
     }
 
     $bool = array(
-      0 => 'No',
       1 => 'Yes'
+    );
+
+    $renewal = array(
+      'A' => 'After expire',
+      'Y' => 'Yearly',
     );
 
     $form = $this->createFormBuilder()
@@ -71,7 +75,7 @@ class AdminProductAttributeController extends Controller
       ))
       ->add('AutoRenewal','choice',array(
         'required' => false,
-        'choices' => $bool
+        'choices' => $renewal
       ))
       ->add('Lifetime','choice',array(
         'required' => false,

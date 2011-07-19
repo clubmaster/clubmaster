@@ -1,4 +1,9 @@
 == scheduled for beta7 ==
+- constraints:
+  - Month can only have AutoRenewal value A
+- on subscription expiration, dont renew the subscription
+- cannot resume an expired subscription from subscription page ( admin / user )
+- view if subscription is active or not
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
 - add event managers to events, they should be able to see all events in the club
@@ -32,6 +37,7 @@ added, new account
 - problem with renewal of fixtures memberships
 
 == improvements ==
+- expand subscription periods
 - translation
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
 - improve the way to recalc users of group

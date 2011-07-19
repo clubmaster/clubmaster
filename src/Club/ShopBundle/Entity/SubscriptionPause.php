@@ -23,6 +23,13 @@ class SubscriptionPause
     /**
      * @ORM\Column(type="date")
      *
+     * @var datetime $old_expire_date
+     */
+    private $old_expire_date;
+
+    /**
+     * @ORM\Column(type="date")
+     *
      * @var datetime $start_date
      */
     private $start_date;
@@ -110,5 +117,25 @@ class SubscriptionPause
     public function getSubscription()
     {
         return $this->subscription;
+    }
+
+    /**
+     * Set old_expire_date
+     *
+     * @param date $oldExpireDate
+     */
+    public function setOldExpireDate($oldExpireDate)
+    {
+        $this->old_expire_date = $oldExpireDate;
+    }
+
+    /**
+     * Get old_expire_date
+     *
+     * @return date 
+     */
+    public function getOldExpireDate()
+    {
+        return $this->old_expire_date;
     }
 }
