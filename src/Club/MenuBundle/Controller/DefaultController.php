@@ -90,7 +90,10 @@ class DefaultController extends Controller
             'name' => 'Coupon',
             'route' => $this->generateUrl('club_shop_admincoupon_index')
           ),
-
+          array(
+            'name' => 'Special',
+            'route' => $this->generateUrl('club_shop_adminspecial_index')
+          ),
           array(
             'name' => 'Payment Method',
             'route' => $this->generateUrl('admin_shop_payment_method')

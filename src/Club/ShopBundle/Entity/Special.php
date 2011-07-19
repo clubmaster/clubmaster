@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Special")
  * @ORM\Table(name="club_shop_special")
- *
+ * @ORM\HasLifecycleCallbacks()
  */
 class Special
 {
@@ -36,11 +36,25 @@ class Special
     private $expire_date;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var datetime $updated_at
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var datetime $created_at
+     */
+    private $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product")
@@ -138,5 +152,56 @@ class Special
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      if (!$this->getId())
+        $this->setCreatedAt(new \DateTime());
+
+      $this->setUpdatedAt(new \DateTime());
     }
 }
