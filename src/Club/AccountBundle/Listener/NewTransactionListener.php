@@ -39,9 +39,9 @@ class NewTransactionListener
 
       $this->em->persist($ledger);
 
-      if ($product->getVat() > 0) {
+      if ($product->getVatRate() > 0) {
         $ledger = new \Club\AccountBundle\Entity\Ledger();
-        $ledger->setValue($product->getPrice()*$product->getVat()/100);
+        $ledger->setValue($product->getPrice()*$product->getVatRate()/100);
         $ledger->setNote('VAT for order '.$order->getOrderNumber());
         $ledger->setAccount($vat_account);
         $ledger->setUser($order->getUser());

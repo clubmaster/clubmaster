@@ -22,9 +22,11 @@ class AutoRenewalListener
   {
     $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredAutoRenewalSubscriptions();
     foreach ($subscriptions as $subscription) {
-      $old_order = $subscription->getOrder();
 
+      $old_order = $subscription->getOrder();
       $this->order->copyOrder($old_order);
+      $this->order->addOrderProduct($subscription->getOrderProduct());
+      $this->order->save();
 
       $subscription->setIsActive(0);
       $this->em->persist($subscription);

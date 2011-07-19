@@ -35,11 +35,11 @@ class OrderProduct
     private $price;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", scale="2")
      *
-     * @var float $vat
+     * @var float $vat_rate
      */
-    private $vat;
+    private $vat_rate;
 
     /**
      * @ORM\Column(type="integer")
@@ -122,7 +122,7 @@ class OrderProduct
     }
 
     /**
-     * Get vat
+     * Get price
      * *
      * @return float $price
      */
@@ -132,23 +132,23 @@ class OrderProduct
     }
 
     /**
-     * Set vat
+     * Set vat rate
      *
-     * @param float $vat
+     * @param float $vat_rate
      */
-    public function setVat($vat)
+    public function setVatRate($vat_rate)
     {
-        $this->vat = $vat;
+        $this->vat_rate = $vat_rate;
     }
 
     /**
-     * Get vat
+     * Get vat rate
      * *
-     * @return float $vat
+     * @return float $vat_rate
      */
-    public function getVat()
+    public function getVatRate()
     {
-        return $this->vat;
+        return $this->vat_rate;
     }
 
     /**
@@ -244,5 +244,10 @@ class OrderProduct
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getVatPrice()
+    {
+      return sprintf("%.2f",$this->getPrice()*(1+$this->getVatRate()/100));
     }
 }

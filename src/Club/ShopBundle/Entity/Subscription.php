@@ -63,6 +63,13 @@ class Subscription
     private $created_at;
 
     /**
+     * @ORM\ManyToOne(targetEntity="OrderProduct")
+     *
+     * @var Club\ShopBundle\Entity\OrderProduct
+     */
+    private $order_product;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Order")
      *
      * @var Club\ShopBundle\Entity\Order
@@ -311,5 +318,25 @@ class Subscription
         $this->setCreatedAt(new \DateTime());
 
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set order product
+     *
+     * @param Club\ShopBundle\Entity\OrderProduct $order_product
+     */
+    public function setOrderProduct(\Club\ShopBundle\Entity\OrderProduct $order_product)
+    {
+        $this->order_product = $order_product;
+    }
+
+    /**
+     * Get order product
+     *
+     * @return Club\ShopBundle\Entity\OrderProduct
+     */
+    public function getOrderProduct()
+    {
+        return $this->order_product;
     }
 }

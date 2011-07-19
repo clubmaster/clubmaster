@@ -82,7 +82,7 @@ class Cart
     $op->setCart($this->cart);
     $op->setProductName($product['product_name']);
     $op->setPrice($product['price']);
-    $op->setVat(0);
+    $op->setVatRate(0);
     $op->setQuantity(1);
     $op->setType($product['type']);
 
@@ -110,7 +110,7 @@ class Cart
       $op->setProduct($product);
       $op->setProductName($product->getProductName());
       $op->setPrice($product->getSpecialPrice());
-      $op->setVat($product->getVat()->getRate());
+      $op->setVatRate($product->getVat()->getRate());
       $op->setQuantity(1);
       $op->setType('product');
 

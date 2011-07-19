@@ -4,9 +4,9 @@ namespace Club\ShopBundle\Helper;
 
 class Order
 {
-  protected $order;
-  protected $em;
-  protected $event_dispatcher;
+  private $order;
+  private $em;
+  private $event_dispatcher;
 
   public function __construct($em,$event_dispatcher)
   {
@@ -24,10 +24,6 @@ class Order
     $this->setBillingAddressByUser($user);
     $this->order->setOrderMemo($order->getOrderMemo());
     $this->order->setNote($order->getNote());
-
-    $this->addProducts($order);
-
-    $this->save();
   }
 
   public function convertToOrder(\Club\ShopBundle\Entity\Cart $cart)
@@ -38,7 +34,10 @@ class Order
     $this->setShippingAddressByCart($cart->getShippingAddress());
     $this->setBillingAddressByCart($cart->getBillingAddress());
 
-    $this->addProducts($cart);
+    foreach ($cart->getProducts() as $product) {
+      $this->addCartProduct($product);
+    }
+
     $this->em->remove($cart);
 
     $this->save();
@@ -49,51 +48,66 @@ class Order
     return $this->order;
   }
 
-  protected function setCustomerAddressByUser($user)
+  private function setCustomerAddressByUser($user)
   {
     $address = $this->getAddressByUser($user);
     $this->order->setCustomerAddress($address);
   }
 
-  protected function setShippingAddressByUser($user)
+  private function setShippingAddressByUser($user)
   {
     $address = $this->getAddressByUser($user);
     $this->order->setShippingAddress($address);
   }
 
-  protected function setBillingAddressByUser($user)
+  private function setBillingAddressByUser($user)
   {
     $address = $this->getAddressByUser($user);
     $this->order->setBillingAddress($address);
   }
 
-  protected function setCustomerAddressByCart($address)
+  private function setCustomerAddressByCart($address)
   {
     $address = $this->getAddressByCart($address);
     $this->order->setCustomerAddress($address);
   }
 
-  protected function setShippingAddressByCart($address)
+  private function setShippingAddressByCart($address)
   {
     $address = $this->getAddressByCart($address);
     $this->order->setShippingAddress($address);
   }
 
-  protected function setBillingAddressByCart($address)
+  private function setBillingAddressByCart($address)
   {
     $address = $this->getAddressByCart($address);
     $this->order->setBillingAddress($address);
   }
 
-  protected function save()
+  private function recalcPrice()
   {
+    $price = 0;
+    $vat_price = 0;
+
+    foreach ($this->order->getOrderProducts() as $product) {
+      $price += $product->getPrice()*$product->getQuantity();
+      $vat_price += $product->getVatPrice()*$product->getQuantity();
+    }
+
+    $this->order->setPrice($price);
+    $this->order->setVatPrice($vat_price);
+  }
+
+  public function save()
+  {
+    $this->recalcPrice();
     $this->em->persist($this->order);
     $this->em->flush();
 
     $this->dispatch();
   }
 
-  protected function getAddressByCart(\Club\ShopBundle\Entity\CartAddress $addr)
+  private function getAddressByCart(\Club\ShopBundle\Entity\CartAddress $addr)
   {
     $address = new \Club\ShopBundle\Entity\OrderAddress();
     $address->setFirstName($addr->getFirstName());
@@ -106,7 +120,7 @@ class Order
     return $address;
   }
 
-  protected function getAddressByUser(\Club\UserBundle\Entity\User $user)
+  private function getAddressByUser(\Club\UserBundle\Entity\User $user)
   {
     $addr = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultAddress($user->getProfile());
 
@@ -121,7 +135,7 @@ class Order
     return $address;
   }
 
-  protected function createOrder($data)
+  private function createOrder($data)
   {
     $this->order = new \Club\ShopBundle\Entity\Order();
     $this->order->setCurrency($data->getCurrency());
@@ -136,13 +150,23 @@ class Order
     $this->em->persist($this->order);
   }
 
-  protected function addProduct($product)
+  public function addCartProduct(\Club\ShopBundle\Entity\CartProduct $product)
+  {
+    $this->addProduct($product);
+  }
+
+  public function addOrderProduct(\Club\ShopBundle\Entity\OrderProduct $product)
+  {
+    $this->addProduct($product);
+  }
+
+  private function addProduct($product)
   {
     $op = new \Club\ShopBundle\Entity\OrderProduct();
     $op->setOrder($this->order);
     $op->setPrice($product->getPrice());
     $op->setProductName($product->getProductName());
-    $op->setVat($product->getVat());
+    $op->setVatRate($product->getVatRate());
     $op->setQuantity($product->getQuantity());
     $op->setType($product->getType());
     if ($product->getProduct())
@@ -163,14 +187,7 @@ class Order
     $this->em->persist($op);
   }
 
-  protected function addProducts($data)
-  {
-    foreach ($data->getProducts() as $product) {
-      $this->addProduct($product);
-    }
-  }
-
-  protected function dispatch()
+  private function dispatch()
   {
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
     $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
