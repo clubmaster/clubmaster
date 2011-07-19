@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
+      <th>Active</th>
       <th>Name</th>
       <th>Start date</th>
       <th>Expire date</th>
@@ -13,7 +13,7 @@
   <tbody>
   {% for subscription in user.subscriptions %}
     <tr>
-      <td>{{ subscription.id }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.isActive} %}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
       {% if subscription.expireDate == '' %}
