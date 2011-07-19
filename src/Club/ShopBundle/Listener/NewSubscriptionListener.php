@@ -50,45 +50,58 @@ class NewSubscriptionListener
             if ($res['AutoRenewal']->getValue() == 'A') {
               $start_date = new \DateTime();
             } elseif ($res['AutoRenewal']->getValue() == 'Y') {
+              $start_date = new \DateTime(date('Y-m-d',mktime(0,0,0,$date->format('n'),$date->format('j'),date('Y'))));
+              if ($start_date->getTimestamp() < time()) {
+                $start_date->add(new \DateInterval('P1Y'));
+              }
             }
           }
         }
         $subscription->setStartDate($start_date);
 
         if (isset($res['ExpireDate'])) {
-          $subscription->setExpireDate(new \DateTime($res['ExpireDate']->getValue()));
-
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
           $sub_attr->setAttributeName('ExpireDate');
           $sub_attr->setValue($res['ExpireDate']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
+
+          $subscription->setExpireDate(new \DateTime($res['ExpireDate']->getValue()));
+          if (isset($res['AutoRenewal'])) {
+            if ($res['AutoRenewal']->getValue() == 'Y') {
+              $date1 = new \DateTime($res['StartDate']->getValue());
+              $interval = $date1->diff(new \DateTime($res['ExpireDate']->getValue()));
+              $expire_date = new \DateTime($start_date->format('Y-m-d'));
+              $expire_date->add($interval);
+
+              $subscription->setExpireDate($expire_date);
+            }
+          }
         }
 
         if (isset($res['Month'])) {
-          $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d'));;
-          $expire_date->add(new \DateInterval('P'.$res['Month']->getValue().'M'));
-          $subscription->setExpireDate($expire_date);
-
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
           $sub_attr->setAttributeName('Month');
           $sub_attr->setValue($res['Month']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
+
+          $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d'));;
+          $expire_date->add(new \DateInterval('P'.$res['Month']->getValue().'M'));
+          $subscription->setExpireDate($expire_date);
         }
 
         if (isset($res['Ticket'])) {
-          $subscription->setType('ticket');
-
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
           $sub_attr->setAttributeName('Ticket');
           $sub_attr->setValue($res['Ticket']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
-
           $this->em->persist($sub_attr);
+
+          $subscription->setType('ticket');
         }
         if (isset($res['AutoRenewal'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
@@ -96,7 +109,6 @@ class NewSubscriptionListener
           $sub_attr->setAttributeName('AutoRenewal');
           $sub_attr->setValue($res['AutoRenewal']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
-
           $this->em->persist($sub_attr);
         }
         if (isset($res['Lifetime'])) {
@@ -105,7 +117,6 @@ class NewSubscriptionListener
           $sub_attr->setAttributeName('Lifetime');
           $sub_attr->setValue($res['Lifetime']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
-
           $this->em->persist($sub_attr);
         }
         if (isset($res['AllowedPauses'])) {
@@ -114,7 +125,6 @@ class NewSubscriptionListener
           $sub_attr->setAttributeName('AllowedPauses');
           $sub_attr->setValue($res['AllowedPauses']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
-
           $this->em->persist($sub_attr);
         }
         if (isset($res['Location'])) {
@@ -125,7 +135,6 @@ class NewSubscriptionListener
             $sub_attr->setAttributeName('Location');
             $sub_attr->setValue($location);
             $subscription->addSubscriptionAttributes($sub_attr);
-
             $this->em->persist($sub_attr);
           }
         }
