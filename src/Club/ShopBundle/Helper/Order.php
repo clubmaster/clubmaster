@@ -136,32 +136,37 @@ class Order
     $this->em->persist($this->order);
   }
 
+  protected function addProduct($product)
+  {
+    $op = new \Club\ShopBundle\Entity\OrderProduct();
+    $op->setOrder($this->order);
+    $op->setPrice($product->getPrice());
+    $op->setProductName($product->getProductName());
+    $op->setVat($product->getVat());
+    $op->setQuantity($product->getQuantity());
+    $op->setType($product->getType());
+    if ($product->getProduct())
+      $op->setProduct($product->getProduct());
+
+    $this->order->addOrderProduct($op);
+
+    foreach ($product->getProductAttributes() as $attr) {
+      $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
+      $opa->setOrderProduct($op);
+      $opa->setAttributeName($attr->getAttributeName());
+      $opa->setValue($attr->getValue());
+
+      $op->addOrderProductAttribute($opa);
+      $this->em->persist($opa);
+    }
+
+    $this->em->persist($op);
+  }
+
   protected function addProducts($data)
   {
     foreach ($data->getProducts() as $product) {
-      $op = new \Club\ShopBundle\Entity\OrderProduct();
-      $op->setOrder($this->order);
-      $op->setPrice($product->getPrice());
-      $op->setProductName($product->getProductName());
-      $op->setVat($product->getVat());
-      $op->setQuantity($product->getQuantity());
-      $op->setType($product->getType());
-      if ($product->getProduct())
-        $op->setProduct($product->getProduct());
-
-      $this->order->addOrderProduct($op);
-
-      foreach ($product->getProductAttributes() as $attr) {
-        $opa = new \Club\ShopBundle\Entity\OrderProductAttribute();
-        $opa->setOrderProduct($op);
-        $opa->setAttributeName($attr->getAttributeName());
-        $opa->setValue($attr->getValue());
-
-        $op->addOrderProductAttribute($opa);
-        $this->em->persist($opa);
-      }
-
-      $this->em->persist($op);
+      $this->addProduct($product);
     }
   }
 
