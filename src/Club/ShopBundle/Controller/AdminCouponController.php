@@ -77,6 +77,22 @@ class AdminCouponController extends Controller
     return $this->redirect($this->generateUrl('club_shop_admincoupon_index'));
   }
 
+  /**
+   * @Route("/shop/coupon/log/{id}")
+   * @Template()
+   */
+  public function logAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $coupons = $em->getRepository('ClubShopBundle:CouponHistory')->findBy(array(
+      'coupon' => $id
+    ));
+
+    return array(
+      'coupons' => $coupons
+    );
+  }
+
   protected function process($coupon)
   {
     $form = $this->createForm(new \Club\ShopBundle\Form\Coupon(), $coupon);
