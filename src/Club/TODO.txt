@@ -1,7 +1,6 @@
 == scheduled for beta7 ==
 - constraints:
   - Month can only have AutoRenewal value A
-- on subscription expiration, dont renew the subscription
 - cannot resume an expired subscription from subscription page ( admin / user )
 - view if subscription is active or not
 - test all combinations of subscriptions:
