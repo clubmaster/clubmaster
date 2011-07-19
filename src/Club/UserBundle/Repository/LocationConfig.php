@@ -61,6 +61,8 @@ class LocationConfig extends EntityRepository
     switch ($config->getConfig()) {
     case 'account_default_income':
     case 'account_default_vat':
+    case 'account_default_cash':
+    case 'account_default_discount':
       $res = $this->_em->find('ClubAccountBundle:Account',$config->getValue());
       break;
     case 'default_currency':

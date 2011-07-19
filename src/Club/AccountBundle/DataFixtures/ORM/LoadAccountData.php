@@ -26,6 +26,12 @@ class LoadAccountData implements FixtureInterface
     $account->setAccountType('income');
     $manager->persist($account);
 
+    $account = new \Club\AccountBundle\Entity\Account();
+    $account->setAccountName('Discount');
+    $account->setAccountNumber('5020');
+    $account->setAccountType('income');
+    $manager->persist($account);
+
     $manager->flush();
   }
 }

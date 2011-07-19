@@ -1,5 +1,4 @@
 == scheduled for beta7 ==
-- default coupon account
 - special products
 - test all combinations of subscriptions:
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
@@ -16,6 +15,8 @@
 == FIXTURE CHANGE ==
 changed, account_default_income = 3
 added, account_default_cash = 1
+added, account_default_discount = 4
+added, new account
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user

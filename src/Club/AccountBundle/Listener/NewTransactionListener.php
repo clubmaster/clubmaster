@@ -27,7 +27,7 @@ class NewTransactionListener
         $account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(), $user->getLocation());
         break;
       case 'coupon':
-        $account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_income',$user->getLocation());
+        $account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_discount',$user->getLocation());
         break;
       }
 

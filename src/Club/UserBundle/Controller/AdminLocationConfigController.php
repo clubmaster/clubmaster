@@ -61,6 +61,8 @@ class AdminLocationConfigController extends Controller
       switch ($key) {
       case 'account_default_income':
       case 'account_default_vat':
+      case 'account_default_cash':
+      case 'account_default_discount':
       case 'default_currency':
       case 'default_language':
       case 'default_location':
@@ -104,6 +106,14 @@ class AdminLocationConfigController extends Controller
         'required' => false
       ))
       ->add('account_default_vat','entity', array(
+        'class' => 'ClubAccountBundle:Account',
+        'required' => false
+      ))
+      ->add('account_default_cash','entity', array(
+        'class' => 'ClubAccountBundle:Account',
+        'required' => false
+      ))
+      ->add('account_default_discount','entity', array(
         'class' => 'ClubAccountBundle:Account',
         'required' => false
       ))
