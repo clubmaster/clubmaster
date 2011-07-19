@@ -79,7 +79,8 @@ Praesent scelerisque aliquam purus, vitae accumsan erat bibendum ut. Curabitur a
   (12,'Subscription + 3Month + Start date + Expire date','Lorem ipsum...',100,1),
   (13,'Subscription + Lifetime','Lorem ipsum...',100,1),
   (14,'Subscription + Start date + Expire date + Renewal(Y)','Lorem ipsum...',100,1),
-  (15,'10 tickets + Renewal(A) + Location + Pauses','Lorem ipsum...',100,1);
+  (15,'10 tickets + Renewal(A) + Location + Pauses','Lorem ipsum...',100,1),
+  (16,'Subscription + 3Month + Renewal(A) + Start date in future','Lorem ipsum...',100,1);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
@@ -96,7 +97,8 @@ INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (12,1),
   (13,1),
   (14,1),
-  (15,2);
+  (15,2),
+  (16,1);
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,1),
@@ -131,7 +133,10 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (15,2,10),
   (15,3,'A'),
   (15,8,1),
-  (15,7,3);
+  (15,7,3),
+  (16,1,3),
+  (16,3,'A'),
+  (16,5,'2012-09-01');
 
 INSERT INTO `club_event_attend` (`user_id`,`event_id`,`paid`,`created_at`) VALUES ('1','1','1','2011-07-02 09:50:15');
 INSERT INTO `club_event_attend` (`user_id`,`event_id`,`paid`,`created_at`) VALUES ('6','1','1','2011-07-01 10:41:07');
