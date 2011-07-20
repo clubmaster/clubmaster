@@ -27,10 +27,11 @@
 - add category priority ( this will help pick right account_number for products )
 - configurable emails sent on different events
 - problem with renewal of fixtures memberships
+- we have a bug in the paginator counter, check user to get it right
 
 == improvements ==
-- we have a bug in the paginator counter, check user to get it right
-- make it more clear that the roles in the group form goes to the members
+- set expired memberships to inactive eventho they are not renewable
+- make it clear that the roles in the group form goes to the members
 - has to be possible to make a list of last years member which is not member this year
 - expand subscription periods
 - translation
