@@ -30,6 +30,8 @@
 - problem with renewal of fixtures memberships
 
 == improvements ==
+- make it more clear that the roles in the group form goes to the members
+- has to be possible to make a list of last years member which is not member this year
 - expand subscription periods
 - translation
 - flag if we run backend script for tasks (to avoid long wait periods for the users)
