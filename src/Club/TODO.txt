@@ -19,6 +19,9 @@
 - Update basket
 
 == todo ==
+- add icon to paid and unpaid (event)
+- remove confirm on view members
+- add boolean icon on event members
 - its like the session times out too soon
 - set default vat rate
 - show vat value on admin order view
