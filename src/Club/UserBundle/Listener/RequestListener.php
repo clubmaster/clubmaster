@@ -35,7 +35,7 @@ class RequestListener
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLanguage()) {
       $language = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_language',$user->getLocation());
       $user->setLanguage($language);
-      $this->session->setLocale($config->getValue());
+      $this->session->setLocale($language->getCode());
 
       $this->em->persist($user);
       $this->em->flush();
