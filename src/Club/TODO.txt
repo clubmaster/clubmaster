@@ -9,6 +9,7 @@
 - event calendar view
 - event agenda view
 - start the fixtures and migrations all over
+- filter for active membership in user filter, right now we just check if they have a filter in a location
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
@@ -30,6 +31,7 @@
 - problem with renewal of fixtures memberships
 
 == improvements ==
+- we have a bug in the paginator counter, check user to get it right
 - make it more clear that the roles in the group form goes to the members
 - has to be possible to make a list of last years member which is not member this year
 - expand subscription periods

@@ -49,9 +49,7 @@ class User extends EntityRepository
 
   public function getUsersCount($filter) {
     $qb = $this->getQueryBuilderByFilter($filter);
-
-    $qb->select($qb->expr()->count('u'));
-    return $qb->getQuery()->getSingleScalarResult();
+    return count($qb->getQuery()->getResult());
   }
 
   protected function getQueryBuilderByFilter(\Club\UserBundle\Entity\Filter $filter)
@@ -89,13 +87,13 @@ class User extends EntityRepository
           $qb = $this->filterCountry($qb,$attr->getValue());
           break;
         case 'is_active':
-          $qb = $this->filterIsActive($qb);
+          $qb = $this->filterIsActive($qb,$attr->getValue());
           break;
         case 'has_ticket':
-          $qb = $this->filterHasTicket($qb);
+          $qb = $this->filterHasTicket($qb,$attr->getValue());
           break;
         case 'has_subscription':
-          $qb = $this->filterHasSubscription($qb);
+          $qb = $this->filterHasSubscription($qb,$attr->getValue());
           break;
         case 'location':
           $qb = $this->filterLocation($qb,explode(",", $attr->getValue()));
@@ -129,7 +127,7 @@ class User extends EntityRepository
     }
 
     if ($group->getIsActiveMember()) {
-      $qb = $this->filterIsActive($qb);
+      $qb = $this->filterIsActive($qb,true);
     }
 
     if (count($group->getLocation()) > 0) {
@@ -244,30 +242,40 @@ class User extends EntityRepository
     return $qb;
   }
 
-  protected function filterIsActive($qb)
+  protected function filterIsActive($qb,$value)
   {
-    $qb->leftJoin('u.subscriptions','s1');
-    $qb->andWhere('(s1.start_date <= :sds AND (s1.expire_date >= :eds OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
-    $qb->setParameter('is_active',1);
-    $qb->setParameter('sds',date('Y-m-d'));
-    $qb->setParameter('eds',date('Y-m-d'));
+    if ($value) {
+      $qb->leftJoin('u.subscriptions','s1');
+      $qb->andWhere('(((s1.start_date <= :sds AND s1.expire_date >= :eds) OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
+      $qb->setParameter('is_active',1);
+      $qb->setParameter('sds',date('Y-m-d'));
+      $qb->setParameter('eds',date('Y-m-d'));
+    }
 
     return $qb;
   }
 
-  protected function filterHasTicket($qb)
+  protected function filterHasTicket($qb,$value)
   {
     $qb->leftJoin('u.subscriptions','s3');
-    $qb->andWhere('s3.type = :type');
+    if ($value) {
+      $qb->andWhere('s3.type = :type');
+    } else {
+      $qb->andWhere('s3.type <> :type');
+    }
     $qb->setParameter('type','ticket');
 
     return $qb;
   }
 
-  protected function filterHasSubscription($qb)
+  protected function filterHasSubscription($qb,$value)
   {
     $qb->leftJoin('u.subscriptions','s4');
-    $qb->andWhere('s4.type = :type');
+    if ($value) {
+      $qb->andWhere('s4.type = :type');
+    } else {
+      $qb->andWhere('s4.type <> :type');
+    }
     $qb->setParameter('type','subscription');
 
     return $qb;
