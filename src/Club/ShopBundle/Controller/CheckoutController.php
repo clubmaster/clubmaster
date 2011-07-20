@@ -130,8 +130,23 @@ class CheckoutController extends Controller
    */
   public function processAction()
   {
-    if ($this->get('cart')->getCart()) {
-      $this->get('order')->convertToOrder($this->get('cart')->getCart());
+    $cart = $this->get('cart')->getCart();
+
+    if ($cart) {
+      $em = $this->getDoctrine()->getEntityManager();
+      $shipping = $cart->getShipping();
+
+      if ($shipping->getPrice() > 0) {
+        $product = array(
+          'product_name' => $shipping->getShippingName(),
+          'price' => $shipping->getPrice(),
+          'type' => 'shipping'
+        );
+        $this->get('cart')->addToCart($product);
+      }
+      $this->get('order')->convertToOrder($cart);
+    } else {
+      return $this->redirect($this->generateUrl('shop'));
     }
 
     return $this->redirect($this->generateUrl('shop_checkout_confirm',array(
