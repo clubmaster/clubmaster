@@ -26,6 +26,7 @@ added, new account
 - Update basket
 
 == todo ==
+- its like the session times out too soon
 - set default vat rate
 - show vat value on admin order view
 - add images to products

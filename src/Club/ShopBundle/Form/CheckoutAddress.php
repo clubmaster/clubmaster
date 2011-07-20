@@ -27,4 +27,9 @@ class CheckoutAddress extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\CartAddress'
     );
   }
+
+  public function getName()
+  {
+    return 'checkout_address';
+  }
 }

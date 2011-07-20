@@ -44,25 +44,37 @@ class CheckoutController extends Controller
     if (!$address)
       $address = $this->getCustomerAddress($this->get('cart')->getCart());
 
-    $form = $this->createForm(new \Club\ShopBundle\Form\CheckoutAddress(), $address);
+    $cart = $this->get('cart')->getCart();
+    $form1 = $this->createForm(new \Club\ShopBundle\Form\CheckoutShipping(), $cart);
+
+    $form2 = $this->createForm(new \Club\ShopBundle\Form\CheckoutAddress(), $address);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-
-      if ($form->isValid()) {
-        $this->get('cart')->getCart()->setCustomerAddress($address);
-        $this->get('cart')->getCart()->setShippingAddress($address);
-        $this->get('cart')->getCart()->setBillingAddress($address);
-
-        $em->persist($address);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('shop_checkout_payment'));
+      if ($this->getRequest()->get($form1->getName())) {
+        $form1->bindRequest($this->getRequest());
+        if ($form1->isValid()) {
+          $this->get('cart')->setCart($cart);
+        }
       }
+      if ($this->getRequest()->get($form2->getName())) {
+        $form2->bindRequest($this->getRequest());
+
+        if ($form2->isValid()) {
+          $this->get('cart')->getCart()->setCustomerAddress($address);
+          $this->get('cart')->getCart()->setShippingAddress($address);
+          $this->get('cart')->getCart()->setBillingAddress($address);
+
+          $em->persist($address);
+          $em->flush();
+        }
+      }
+
+      return $this->redirect($this->generateUrl('shop_checkout_payment'));
     }
 
     return array(
-      'form' => $form->createView(),
+      'form1' => $form1->createView(),
+      'form2' => $form2->createView(),
     );
   }
 
@@ -86,12 +98,7 @@ class CheckoutController extends Controller
     }
 
     $cart = $this->get('cart')->getCart();
-    //$order = $em->merge($order);
-
-    $form = $this->get('form.factory')
-      ->createBuilder('form',$cart,array('validation_groups' => 'PaymentMethod'))
-      ->add('payment_method','entity',array('class' => 'ClubShopBundle:PaymentMethod'))
-      ->getForm();
+    $form = $this->createForm(new \Club\ShopBundle\Form\CheckoutPayment(), $cart);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

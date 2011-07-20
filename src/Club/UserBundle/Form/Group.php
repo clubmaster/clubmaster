@@ -36,4 +36,9 @@ class Group extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\Group'
     );
   }
+
+  public function getName()
+  {
+    return 'group';
+  }
 }
