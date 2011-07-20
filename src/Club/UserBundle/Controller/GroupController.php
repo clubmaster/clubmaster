@@ -86,6 +86,9 @@ class GroupController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
+        if ($group->getIsActiveMember() == '')
+          $group->setIsActiveMember(null);
+
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($group);
         $em->flush();

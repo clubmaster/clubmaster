@@ -56,9 +56,6 @@ class User extends EntityRepository
   {
     $qb = $this->getQueryBuilder();
 
-    // boolean to make sure we dont join address table twice
-    $this->has_joined_addr = false;
-
     foreach ($filter->getAttributes() as $attr) {
       if ($attr->getValue() != '') {
         switch ($attr->getAttribute()->getAttributeName()) {
@@ -126,8 +123,8 @@ class User extends EntityRepository
       $qb = $this->filterMaxAge($qb,$group->getMaxAge());
     }
 
-    if ($group->getIsActiveMember()) {
-      $qb = $this->filterIsActive($qb,true);
+    if ($group->getIsActiveMember() != '') {
+      $qb = $this->filterIsActive($qb,$group->getIsActiveMember());
     }
 
     if (count($group->getLocation()) > 0) {
@@ -143,6 +140,9 @@ class User extends EntityRepository
 
   protected function getQueryBuilder()
   {
+    $this->has_joined_addr = false;
+    $this->has_joined_sub = false;
+
     return $this->_em->createQueryBuilder()
       ->select('u')
       ->from('ClubUserBundle:User','u')
@@ -244,12 +244,17 @@ class User extends EntityRepository
 
   protected function filterIsActive($qb,$value)
   {
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
     if ($value) {
-      $qb->leftJoin('u.subscriptions','s1');
-      $qb->andWhere('(((s1.start_date <= :sds AND s1.expire_date >= :eds) OR s1.expire_date IS NULL) AND s1.is_active = :is_active)');
-      $qb->setParameter('is_active',1);
+      $qb->andWhere('(((s.start_date <= :sds AND s.expire_date >= :eds) OR s.expire_date IS NULL) AND s.is_active = 1)');
       $qb->setParameter('sds',date('Y-m-d'));
       $qb->setParameter('eds',date('Y-m-d'));
+    } else {
+      $qb->andWhere('s.id IS NULL');
     }
 
     return $qb;
@@ -257,11 +262,15 @@ class User extends EntityRepository
 
   protected function filterHasTicket($qb,$value)
   {
-    $qb->leftJoin('u.subscriptions','s3');
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
     if ($value) {
-      $qb->andWhere('s3.type = :type');
+      $qb->andWhere('s.type = :type');
     } else {
-      $qb->andWhere('s3.type <> :type');
+      $qb->andWhere('s.type <> :type');
     }
     $qb->setParameter('type','ticket');
 
@@ -270,11 +279,15 @@ class User extends EntityRepository
 
   protected function filterHasSubscription($qb,$value)
   {
-    $qb->leftJoin('u.subscriptions','s4');
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
     if ($value) {
-      $qb->andWhere('s4.type = :type');
+      $qb->andWhere('s.type = :type');
     } else {
-      $qb->andWhere('s4.type <> :type');
+      $qb->andWhere('s.type <> :type');
     }
     $qb->setParameter('type','subscription');
 
@@ -308,11 +321,14 @@ class User extends EntityRepository
     }
     $str = preg_replace("/OR $/","",$str);
 
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
     $qb
-      ->leftJoin('u.subscriptions','s2')
-      ->leftJoin('s2.subscription_attributes','sa')
-      ->andWhere('((s2.expire_date >= :s2ed OR s2.expire_date IS NULL) AND ('.$str.'))')
-      ->setParameter('s2ed',date('Y-m-d'));
+      ->leftJoin('s.subscription_attributes','sa')
+      ->andWhere('('.$str.')');
 
     return $qb;
   }

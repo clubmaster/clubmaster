@@ -9,6 +9,10 @@ class Group extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
+    $bool = array(
+      '0' => 'No',
+      '1' => 'Yes'
+    );
     $builder->add('group_name');
     $builder->add('group_type','choice',array(
       'choices' => array(
@@ -16,7 +20,10 @@ class Group extends AbstractType
         'dynamic' => 'Dynamic'
       )
     ));
-    $builder->add('is_active_member');
+    $builder->add('is_active_member','choice',array(
+      'choices' => $bool,
+      'required' => false
+    ));
     $builder->add('min_age');
     $builder->add('max_age');
     $builder->add('gender','choice',array(
