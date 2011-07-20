@@ -31,6 +31,7 @@
 - we have a bug in the paginator counter, check user to get it right
 
 == improvements ==
+- show members of a group
 - set expired memberships to inactive eventho they are not renewable
 - make it clear that the roles in the group form goes to the members
 - has to be possible to make a list of last years member which is not member this year
