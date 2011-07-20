@@ -12,6 +12,7 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
     $roles = array();
     $roles[] = 'ROLE_SUPER_ADMIN';
     $roles[] = 'ROLE_ADMIN';
+    $roles[] = 'ROLE_EVENT_ADMIN';
 
     foreach ($roles as $role) {
       $r = new \Club\UserBundle\Entity\Role();

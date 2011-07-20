@@ -12,11 +12,15 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
     $group = new \Club\UserBundle\Entity\Group();
     $group->setGroupName('Super Administrators');
     $group->setGroupType('static');
-
-    $role = $this->getReference('ROLE_SUPER_ADMIN');
-    $group->addRole($role);
-
+    $group->addRole($this->getReference('ROLE_SUPER_ADMIN'));
     $manager->persist($group);
+
+    $group = new \Club\UserBundle\Entity\Group();
+    $group->setGroupName('Event Managers');
+    $group->setGroupType('static');
+    $group->addRole($this->getReference('ROLE_EVENT_ADMIN'));
+    $manager->persist($group);
+
     $manager->flush();
   }
 

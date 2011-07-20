@@ -4,17 +4,12 @@
   - Only One of following is mandatory: Month, ExpireDate, Lifetime
   - Cannot have ExpireDate without StartDate
 - obey rules of club_user_currency (danish: 1.00, us: 5.5)
-- add event managers to events, they should be able to see all events in the club
 - group and user filter, is_active (true, false, both)
 - problem with default location on new install
 - add class active to right menu
 - event calendar view
 - event agenda view
-== FIXTURE CHANGE ==
-changed, account_default_income = 3
-added, account_default_cash = 1
-added, account_default_discount = 4
-added, new account
+- start the fixtures and migrations all over
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user

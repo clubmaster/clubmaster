@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\AccountBundle\Listener;
+namespace Club\EventBundle\Listener;
 
 class LeftMenuRenderListener
 {
@@ -17,10 +17,10 @@ class LeftMenuRenderListener
   {
     $menu = $event->getMenu();
 
-    if ($this->security_context->isGranted('ROLE_ADMIN')) {
+    if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
       $menu[] = array(
-        'name' => 'Account',
-        'route' => $this->router->generate('club_account_adminaccount_index'),
+        'name' => 'Event',
+        'route' => $this->router->generate('admin_event_event'),
         'items' => array()
       );
     }
