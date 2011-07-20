@@ -10,7 +10,6 @@
 - event calendar view
 - event agenda view
 - start the fixtures and migrations all over
-- during installation move admin to group, dont assign role
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user

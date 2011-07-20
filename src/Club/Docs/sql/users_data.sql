@@ -1643,4 +1643,4 @@ INSERT INTO `club_user_profile_phone` (`profile_id`,`number`,`is_default`,`conta
 INSERT INTO `club_user_profile_phone` (`profile_id`,`number`,`is_default`,`contact_type`) VALUES ('595','1 71 981 2297-2854','1','work');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`number`,`is_default`,`contact_type`) VALUES ('598','1 55 577 1889-9607','1','work');
 
-INSERT INTO club_user_user_role (user_id,role_id) VALUES (10,1);
+INSERT INTO club_user_user_group (user_id,group_id) VALUES (10,1);
