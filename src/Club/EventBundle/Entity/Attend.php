@@ -33,6 +33,7 @@ class Attend
 
     /**
      * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumn(name="event_id", onDelete="cascade")
      */
     private $event;
 

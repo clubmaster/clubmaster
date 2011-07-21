@@ -1,5 +1,3 @@
-- cannot delete events
-
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
 - find a way we can reuse numbers (users without subscription with number above X), optional, (set member_number high after 2 years without subscription, or dont have a username without an active membership)
