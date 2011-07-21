@@ -1,6 +1,5 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
 <p class="box"><a class="btn-create" href="{{ path("shop_product_cart",{"id":product.id}) }}"><span>Add to cart</span></a></p>
 
@@ -8,8 +7,8 @@
 
   <h2 class="nomb">{{ product.productName }}</h2>
   <p class="nomt low">
-    Price: {{ product.specialPrice }}<br />
-    Vat price: {{ product.specialVatPrice }}<br />
+    Price: {{ product.specialPrice|price }}<br />
+    Vat price: {{ product.specialVatPrice|price }}<br />
   </p>
   <h2>Description</h2>
   <p>{{ product.description|raw }}</p>

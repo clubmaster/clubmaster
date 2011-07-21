@@ -250,4 +250,9 @@ class OrderProduct
     {
       return sprintf("%.2f",$this->getPrice()*(1+$this->getVatRate()/100));
     }
+
+    public function getPriceSummary()
+    {
+      return $this->getPrice()*$this->getQuantity();
+    }
 }

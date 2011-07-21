@@ -26,7 +26,7 @@
     <tr>
       <td>{{ order.id }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
-      <td>{{ order.price }}</td>
+      <td>{{ order.price|price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
       <td>{{ order.createdAt|date('Y-m-d') }}</td>
       <td>
