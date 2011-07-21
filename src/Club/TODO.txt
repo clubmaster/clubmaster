@@ -1,8 +1,4 @@
 == scheduled for beta7 ==
-- constraints:
-  - Month can only have AutoRenewal value A
-  - Only One of following is mandatory: Month, ExpireDate, Lifetime
-  - Cannot have ExpireDate without StartDate
 - add class active to right menu
 - event calendar view
 - event agenda view
@@ -32,6 +28,10 @@
 - we have a bug in the paginator counter, check user to get it right
 
 == improvements ==
+- constraints:
+  - Month can only have AutoRenewal value A
+  - Only One of following is mandatory: Month, ExpireDate, Lifetime
+  - Cannot have ExpireDate without StartDate
 - show members of a group
 - set expired memberships to inactive eventho they are not renewable
 - make it clear that the roles in the group form goes to the members
