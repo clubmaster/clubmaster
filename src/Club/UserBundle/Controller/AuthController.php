@@ -189,19 +189,19 @@ class AuthController extends Controller
       $address = new \Club\UserBundle\Entity\ProfileAddress();
       $address->setContactType('home');
       $address->setProfile($user->getProfile());
-      $user->getProfile()->addProfileAddress($address);
+      $user->getProfile()->setProfileAddress($address);
     }
     if (!count($user->getProfile()->getProfilePhone())) {
       $phone = new \Club\UserBundle\Entity\ProfilePhone();
       $phone->setContactType('home');
       $phone->setProfile($user->getProfile());
-      $user->getProfile()->addProfilePhone($phone);
+      $user->getProfile()->setProfilePhone($phone);
     }
     if (!count($user->getProfile()->getProfileEmail())) {
       $email = new \Club\UserBundle\Entity\ProfileEmail();
       $email->setContactType('home');
       $email->setProfile($user->getProfile());
-      $user->getProfile()->addProfileEmail($email);
+      $user->getProfile()->setProfileEmail($email);
     }
 
     return $user;
