@@ -31,7 +31,7 @@ class Filter
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_active;
+    private $active;
 
     /**
      * @ORM\OneToMany(targetEntity="FilterAttribute", mappedBy="filter", cascade={"persist"})
@@ -125,22 +125,22 @@ class Filter
     }
 
     /**
-     * Set is_active
+     * Set active
      *
-     * @param boolean $isActive
+     * @param boolean $active
      */
-    public function setIsActive($isActive)
+    public function setActive($active)
     {
-        $this->is_active = $isActive;
+        $this->active = $active;
     }
 
     /**
-     * Get is_active
+     * Get active
      *
-     * @return boolean $isActive
+     * @return boolean $active
      */
-    public function getIsActive()
+    public function getActive()
     {
-        return $this->is_active;
+        return $this->active;
     }
 }

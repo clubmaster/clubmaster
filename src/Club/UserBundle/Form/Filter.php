@@ -46,7 +46,7 @@ class Filter extends AbstractType
       'class' => 'Club\UserBundle\Entity\Country',
       'required' => false
     ));
-    $builder->add('is_active', 'choice', array(
+    $builder->add('active', 'choice', array(
       'choices' => $boolean,
       'required' => false
     ));

@@ -17,7 +17,7 @@ class LoadAttributeData implements FixtureInterface
     $attributes[] = 'postal_code';
     $attributes[] = 'city';
     $attributes[] = 'country';
-    $attributes[] = 'is_active';
+    $attributes[] = 'active';
     $attributes[] = 'has_ticket';
     $attributes[] = 'has_subscription';
     $attributes[] = 'location';

@@ -83,8 +83,8 @@ class User extends EntityRepository
         case 'country':
           $qb = $this->filterCountry($qb,$attr->getValue());
           break;
-        case 'is_active':
-          $qb = $this->filterIsActive($qb,$attr->getValue());
+        case 'active':
+          $qb = $this->filterActive($qb,$attr->getValue());
           break;
         case 'has_ticket':
           $qb = $this->filterHasTicket($qb,$attr->getValue());
@@ -124,7 +124,7 @@ class User extends EntityRepository
     }
 
     if ($group->getActiveMember() != '') {
-      $qb = $this->filterIsActive($qb,$group->getActiveMember());
+      $qb = $this->filterActive($qb,$group->getActiveMember());
     }
 
     if (count($group->getLocation()) > 0) {
@@ -242,7 +242,7 @@ class User extends EntityRepository
     return $qb;
   }
 
-  protected function filterIsActive($qb,$value)
+  protected function filterActive($qb,$value)
   {
     if (!$this->has_joined_sub) {
       $qb->leftJoin('u.subscriptions','s');

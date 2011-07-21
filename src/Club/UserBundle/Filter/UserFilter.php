@@ -20,7 +20,7 @@ class UserFilter
 
   public $country;
 
-  public $is_active;
+  public $active;
 
   public $has_ticket;
 

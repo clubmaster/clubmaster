@@ -165,7 +165,7 @@ class FilterController extends Controller
     $postal_code = ($data->postal_code != '') ? $data->postal_code : null;
     $city = ($data->city != '') ? $data->city : null;
     $country = ($data->country != '') ? $data->country->getId() : null;
-    $is_active = ($data->is_active != '') ? $data->is_active : null;
+    $active = ($data->active != '') ? $data->active : null;
     $has_ticket= ($data->has_ticket != '') ? $data->has_ticket : null;
     $has_subscription = ($data->has_subscription != '') ? $data->has_subscription : null;
 
@@ -177,7 +177,7 @@ class FilterController extends Controller
     $this->syncColumn($filter, 'postal_code', $postal_code);
     $this->syncColumn($filter, 'city', $data->city);
     $this->syncColumn($filter, 'country', $country);
-    $this->syncColumn($filter, 'is_active', $is_active);
+    $this->syncColumn($filter, 'active', $active);
     $this->syncColumn($filter, 'has_ticket', $has_ticket);
     $this->syncColumn($filter, 'has_subscription', $has_subscription);
 
@@ -292,8 +292,8 @@ class FilterController extends Controller
       case 'country':
         $form_filter->country = $em->find('ClubUserBundle:Country',$attribute->getValue());
         break;
-      case 'is_active':
-        $form_filter->is_active = $attribute->getValue();
+      case 'active':
+        $form_filter->active = $attribute->getValue();
         break;
       case 'has_ticket':
         $form_filter->has_ticket = $attribute->getValue();
