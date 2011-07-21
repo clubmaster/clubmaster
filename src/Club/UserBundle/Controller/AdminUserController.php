@@ -97,22 +97,22 @@ class AdminUserController extends Controller
       }
 
       // validate address
-      $addresses = $user->getProfile()->getProfileAddress();
-      if (count($this->get('validator')->validate($addresses[0])) > 0) {
+      $address = $user->getProfile()->getProfileAddress();
+      if (count($this->get('validator')->validate($address)) > 0) {
         return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
           'form' => $form->createView()
         ));
       }
 
       // validate email
-      $emails = $user->getProfile()->getProfileEmail();
-      if (count($this->get('validator')->validate($emails[0])) > 0) {
+      $email = $user->getProfile()->getProfileEmail();
+      if (count($this->get('validator')->validate($email)) > 0) {
         $user->getProfile()->getProfileEmail()->removeElement($emails[0]);
       }
 
       // validate phone
-      $phones = $user->getProfile()->getProfilePhone();
-      if (count($this->get('validator')->validate($phones[0])) > 0) {
+      $phone = $user->getProfile()->getProfilePhone();
+      if (count($this->get('validator')->validate($phone)) > 0) {
         $user->getProfile()->getProfilePhone()->removeElement($phones[0]);
       }
 
@@ -308,19 +308,19 @@ class AdminUserController extends Controller
       $address = new \Club\UserBundle\Entity\ProfileAddress();
       $address->setContactType('home');
       $address->setProfile($user->getProfile());
-      $user->getProfile()->addProfileAddress($address);
+      $user->getProfile()->setProfileAddress($address);
     }
     if (!count($user->getProfile()->getProfilePhone())) {
       $phone = new \Club\UserBundle\Entity\ProfilePhone();
       $phone->setContactType('home');
       $phone->setProfile($user->getProfile());
-      $user->getProfile()->addProfilePhone($phone);
+      $user->getProfile()->setProfilePhone($phone);
     }
     if (!count($user->getProfile()->getProfileEmail())) {
       $email = new \Club\UserBundle\Entity\ProfileEmail();
       $email->setContactType('home');
       $email->setProfile($user->getProfile());
-      $user->getProfile()->addProfileEmail($email);
+      $user->getProfile()->setProfileEmail($email);
     }
 
     return $user;

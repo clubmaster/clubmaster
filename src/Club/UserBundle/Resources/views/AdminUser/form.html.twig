@@ -11,23 +11,23 @@
   <fieldset>
     <legend>Address Information</legend>
 
-    <p>{{ form_row(form.profile.profile_address.0.street) }}</p>
-    <p>{{ form_row(form.profile.profile_address.0.suburl) }}</p>
-    <p>{{ form_row(form.profile.profile_address.0.postal_code) }}</p>
-    <p>{{ form_row(form.profile.profile_address.0.city) }}</p>
-    <p>{{ form_row(form.profile.profile_address.0.country) }}</p>
+    <p>{{ form_row(form.profile.profile_address.street) }}</p>
+    <p>{{ form_row(form.profile.profile_address.suburl) }}</p>
+    <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
+    <p>{{ form_row(form.profile.profile_address.city) }}</p>
+    <p>{{ form_row(form.profile.profile_address.country) }}</p>
   </fieldset>
 
   <fieldset>
     <legend>Email Information</legend>
 
-    <p>{{ form_row(form.profile.profile_email.0.email_address) }}</p>
+    <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
   </fieldset>
 
   <fieldset>
     <legend>Phone Information</legend>
 
-    <p>{{ form_row(form.profile.profile_phone.0.number) }}</p>
+    <p>{{ form_row(form.profile.profile_phone.number) }}</p>
   </fieldset>
 
   {{ form_row(form._token) }}
