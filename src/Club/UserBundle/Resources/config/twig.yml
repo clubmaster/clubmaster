@@ -1,0 +1,6 @@
+services:
+  clubmaster.twig.extension:
+    class: Club\UserBundle\Extension\PriceExtension
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: twig.extension }
