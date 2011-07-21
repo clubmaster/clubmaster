@@ -306,21 +306,18 @@ class AdminUserController extends Controller
 
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setIsDefault(1);
       $address->setContactType('home');
       $address->setProfile($user->getProfile());
       $user->getProfile()->addProfileAddress($address);
     }
     if (!count($user->getProfile()->getProfilePhone())) {
       $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setIsDefault(1);
       $phone->setContactType('home');
       $phone->setProfile($user->getProfile());
       $user->getProfile()->addProfilePhone($phone);
     }
     if (!count($user->getProfile()->getProfileEmail())) {
       $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setIsDefault(1);
       $email->setContactType('home');
       $email->setProfile($user->getProfile());
       $user->getProfile()->addProfileEmail($email);

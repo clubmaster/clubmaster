@@ -20,7 +20,7 @@ class OrderNewListener
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
-    $email = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultEmail($order->getUser()->getProfile());
+    $email = $order->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer

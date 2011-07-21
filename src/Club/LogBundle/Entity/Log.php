@@ -52,7 +52,7 @@ class Log
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_read;
+    private $new;
 
     /**
      * @ORM\Column(type="datetime")
@@ -183,7 +183,7 @@ class Log
     {
       if (!$this->getId()) {
         $this->setCreatedAt(new \DateTime());
-        $this->setIsRead(0);
+        $this->setNew(1);
       }
     }
 
@@ -208,22 +208,22 @@ class Log
     }
 
     /**
-     * Set is_read
+     * Set new
      *
-     * @param boolean $isRead
+     * @param boolean $new
      */
-    public function setIsRead($isRead)
+    public function setNew($new)
     {
-        $this->is_read = $isRead;
+        $this->new = $new;
     }
 
     /**
-     * Get is_read
+     * Get new
      *
-     * @return boolean $isRead
+     * @return boolean 
      */
-    public function getIsRead()
+    public function getNew()
     {
-        return $this->is_read;
+        return $this->new;
     }
 }

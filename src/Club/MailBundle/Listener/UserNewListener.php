@@ -20,7 +20,7 @@ class UserNewListener
   public function onUserNew(\Club\UserBundle\Event\FilterUserEvent $event)
   {
     $user = $event->getUser();
-    $email = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultEmail($user->getProfile());
+    $email = $user->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer

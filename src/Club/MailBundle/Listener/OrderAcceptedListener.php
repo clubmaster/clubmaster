@@ -24,7 +24,7 @@ class OrderAcceptedListener
     if (!$this->em->getRepository('ClubShopBundle:Order')->isFirstAccepted($order))
       return;
 
-    $email = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultEmail($order->getUser()->getProfile());
+    $email = $order->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer

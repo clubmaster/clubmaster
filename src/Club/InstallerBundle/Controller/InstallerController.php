@@ -45,9 +45,8 @@ class InstallerController extends Controller
       $profile->setUser($user);
       $email = new \Club\UserBundle\Entity\ProfileEmail();
       $email->setContactType('home');
-      $email->setIsDefault(1);
       $email->setProfile($profile);
-      $profile->addProfileEmail($email);
+      $profile->setProfileEmail($email);
     }
 
     $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);

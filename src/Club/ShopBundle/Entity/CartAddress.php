@@ -325,22 +325,22 @@ class CartAddress
     }
 
     /**
-     * Set is_default
+     * Set default
      *
-     * @param boolean $isDefault
+     * @param boolean $default
      */
-    public function setIsDefault($isDefault)
+    public function setDefault($default)
     {
-        $this->is_default = $isDefault;
+        $this->default = $default;
     }
 
     /**
-     * Get is_default
+     * Get default
      *
-     * @return boolean $isDefault
+     * @return boolean $default
      */
-    public function getIsDefault()
+    public function getDefault()
     {
-        return $this->is_default;
+        return $this->default;
     }
 }

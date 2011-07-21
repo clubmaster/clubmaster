@@ -35,8 +35,8 @@ class Cart
         $this->cart->setVatPrice(0);
         $this->cart->setLocation($location);
 
-        if ($this->getUserAddress($this->user)) {
-          $this->setCustomerAddress($this->user);
+        if ($this->user->getProfile()->getProfileAddress()) {
+          $this->setCustomerAddress($this->user->getProfile()->getProfileAddress());
         }
 
         $this->save();
@@ -186,7 +186,7 @@ class Cart
 
   protected function getUserAddress(\Club\UserBundle\Entity\User $user)
   {
-    return $this->em->getRepository('ClubUserBundle:Profile')->getDefaultAddress($user->getProfile());
+    return $user->getProfile()->getProfileAddress();
   }
 
   protected function getAddress(\Club\UserBundle\Entity\User $user)

@@ -58,40 +58,56 @@ class Profile
     private $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ProfileAddress", cascade={"persist"})
+     */
+    private $profile_address;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProfilePhone", cascade={"persist"})
+     */
+    private $profile_phone;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProfileEmail", cascade={"persist"})
+     */
+    private $profile_email;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProfileCompany")
+     */
+    private $profile_company;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProfileAddress", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileAddress
      */
-    private $profile_address;
+    private $profile_addresses;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfilePhone", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfilePhone
      */
-    private $profile_phone;
+    private $profile_phones;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */
-    private $profile_email;
+    private $profile_emails;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileCompany", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileCompany
      */
-    private $profile_company;
+    private $profile_companies;
 
 
     public function __construct()
     {
-      $this->profile_address = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->profile_email = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->profile_phone = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->profile_company = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -175,56 +191,6 @@ class Profile
     }
 
     /**
-     * Add profile_address
-     *
-     * @param Club\UserBundle\Entity\ProfileAddress $profileAddress
-     */
-    public function addProfileAddress(\Club\UserBundle\Entity\ProfileAddress $profileAddress)
-    {
-        $this->profile_address[] = $profileAddress;
-    }
-
-    /**
-     * Get profile_address
-     *
-     * @return Doctrine\Common\Collections\Collection $profileAddress
-     */
-    public function getProfileAddress()
-    {
-        return $this->profile_address;
-    }
-
-    /**
-     * Add profile_phone
-     *
-     * @param Club\UserBundle\Entity\ProfilePhone $profilePhone
-     */
-    public function addProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhone)
-    {
-        $this->profile_phone[] = $profilePhone;
-    }
-
-    /**
-     * Add profile_email
-     *
-     * @param Club\UserBundle\Entity\ProfileEmail $profileEmail
-     */
-    public function addProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmail)
-    {
-        $this->profile_email[] = $profileEmail;
-    }
-
-    /**
-     * Add profile_company
-     *
-     * @param Club\UserBundle\Entity\ProfileCompany $profileCompany
-     */
-    public function addProfileCompany(\Club\UserBundle\Entity\ProfileCompany $profileCompany)
-    {
-        $this->profile_company[] = $profileCompany;
-    }
-
-    /**
      * Set day_of_birth
      *
      * @param date $dayOfBirth
@@ -245,9 +211,39 @@ class Profile
     }
 
     /**
+     * Set profile_address
+     *
+     * @param Club\UserBundle\Entity\ProfileAddress $profileAddress
+     */
+    public function setProfileAddress(\Club\UserBundle\Entity\ProfileAddress $profileAddress)
+    {
+        $this->profile_address = $profileAddress;
+    }
+
+    /**
+     * Get profile_address
+     *
+     * @return Club\UserBundle\Entity\ProfileAddress
+     */
+    public function getProfileAddress()
+    {
+        return $this->profile_address;
+    }
+
+    /**
+     * Set profile_phone
+     *
+     * @param Club\UserBundle\Entity\ProfilePhone $profilePhone
+     */
+    public function setProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhone)
+    {
+        $this->profile_phone = $profilePhone;
+    }
+
+    /**
      * Get profile_phone
      *
-     * @return Doctrine\Common\Collections\Collection $profilePhone
+     * @return Club\UserBundle\Entity\ProfilePhone
      */
     public function getProfilePhone()
     {
@@ -255,9 +251,19 @@ class Profile
     }
 
     /**
+     * Set profile_email
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmail
+     */
+    public function setProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmail)
+    {
+        $this->profile_email = $profileEmail;
+    }
+
+    /**
      * Get profile_email
      *
-     * @return Doctrine\Common\Collections\Collection $profileEmail
+     * @return Club\UserBundle\Entity\ProfileEmail
      */
     public function getProfileEmail()
     {
@@ -265,22 +271,107 @@ class Profile
     }
 
     /**
+     * Set profile_company
+     *
+     * @param Club\UserBundle\Entity\ProfileCompany $profileCompany
+     */
+    public function setProfileCompany(\Club\UserBundle\Entity\ProfileCompany $profileCompany)
+    {
+        $this->profile_company = $profileCompany;
+    }
+
+    /**
      * Get profile_company
      *
-     * @return Doctrine\Common\Collections\Collection $profileCompany
+     * @return Club\UserBundle\Entity\ProfileCompany
      */
     public function getProfileCompany()
     {
         return $this->profile_company;
     }
 
+    /**
+     * Add profile_addresses
+     *
+     * @param Club\UserBundle\Entity\ProfileAddress $profileAddresses
+     */
+    public function addProfileAddresses(\Club\UserBundle\Entity\ProfileAddress $profileAddresses)
+    {
+        $this->profile_addresses[] = $profileAddresses;
+    }
+
+    /**
+     * Get profile_addresses
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getProfileAddresses()
+    {
+        return $this->profile_addresses;
+    }
+
+    /**
+     * Add profile_phones
+     *
+     * @param Club\UserBundle\Entity\ProfilePhone $profilePhones
+     */
+    public function addProfilePhones(\Club\UserBundle\Entity\ProfilePhone $profilePhones)
+    {
+        $this->profile_phones[] = $profilePhones;
+    }
+
+    /**
+     * Get profile_phones
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getProfilePhones()
+    {
+        return $this->profile_phones;
+    }
+
+    /**
+     * Add profile_emails
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmails
+     */
+    public function addProfileEmails(\Club\UserBundle\Entity\ProfileEmail $profileEmails)
+    {
+        $this->profile_emails[] = $profileEmails;
+    }
+
+    /**
+     * Get profile_emails
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getProfileEmails()
+    {
+        return $this->profile_emails;
+    }
+
+    /**
+     * Add profile_companies
+     *
+     * @param Club\UserBundle\Entity\ProfileCompany $profileCompanies
+     */
+    public function addProfileCompanies(\Club\UserBundle\Entity\ProfileCompany $profileCompanies)
+    {
+        $this->profile_companies[] = $profileCompanies;
+    }
+
+    /**
+     * Get profile_companies
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getProfileCompanies()
+    {
+        return $this->profile_companies;
+    }
+
     public function getName()
     {
       return $this->getFirstName().' '.$this->getLastName();
-    }
-
-    public function setProfilePhone($profile_phone)
-    {
-      $this->profile_phone = $profile_phone;
     }
 }

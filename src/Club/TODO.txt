@@ -8,6 +8,7 @@
 - event agenda view
 - start the fixtures and migrations all over
 - remove all is_ prefixes on models
+- set a onetomany relationship to profile to email, phone and address
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user

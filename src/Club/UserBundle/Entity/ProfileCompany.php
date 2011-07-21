@@ -35,13 +35,6 @@ class ProfileCompany
     private $cvr;
 
     /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var boolean $is_default
-     */
-    private $is_default;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Profile")
      * @var Club\UserBundle\Entity\Profile
      */
@@ -96,26 +89,6 @@ class ProfileCompany
     public function getCvr()
     {
         return $this->cvr;
-    }
-
-    /**
-     * Set is_default
-     *
-     * @param boolean $isDefault
-     */
-    public function setIsDefault($isDefault)
-    {
-        $this->is_default = $isDefault;
-    }
-
-    /**
-     * Get is_default
-     *
-     * @return boolean $isDefault
-     */
-    public function getIsDefault()
-    {
-        return $this->is_default;
     }
 
     /**

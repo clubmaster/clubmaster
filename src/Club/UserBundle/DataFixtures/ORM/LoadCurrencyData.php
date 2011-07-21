@@ -14,7 +14,7 @@ class LoadCurrencyData implements FixtureInterface
     $currency->setSymbolLeft('$');
     $currency->setDecimalPlaces(2);
     $currency->setValue(1);
-    $currency->setIsActive(0);
+    $currency->setActive(0);
     $manager->persist($currency);
 
     $currency = new \Club\UserBundle\Entity\Currency();
@@ -23,7 +23,7 @@ class LoadCurrencyData implements FixtureInterface
     $currency->setSymbolLeft('€');
     $currency->setDecimalPlaces(2);
     $currency->setValue(1);
-    $currency->setIsActive(0);
+    $currency->setActive(0);
     $manager->persist($currency);
 
     $currency = new \Club\UserBundle\Entity\Currency();
@@ -32,7 +32,7 @@ class LoadCurrencyData implements FixtureInterface
     $currency->setSymbolRight('DK');
     $currency->setDecimalPlaces(2);
     $currency->setValue(1);
-    $currency->setIsActive(0);
+    $currency->setActive(0);
     $manager->persist($currency);
 
     $manager->flush();

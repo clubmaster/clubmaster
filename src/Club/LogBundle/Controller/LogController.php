@@ -45,7 +45,7 @@ class LogController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $log = $em->find('ClubLogBundle:Log',$id);
-    $log->setIsRead(1);
+    $log->setNew(0);
 
     $em->persist($log);
     $em->flush();
@@ -67,7 +67,7 @@ class LogController extends Controller
 
     $em = $this->getDoctrine()->getEntityManager();
     $l = $em->getRepository('ClubLogBundle:Log')->findBy(array(
-      'is_read' => 0,
+      'new' => 1,
       'severity' => 'critical'
     ));
 

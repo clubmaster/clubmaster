@@ -16,9 +16,7 @@ class AdministratorProfile extends AbstractType
     $builder->add('gender','choice',array(
       'choices' => $gender
     ));
-    $builder->add('profile_email', 'collection', array(
-      'type' => new \Club\InstallerBundle\Form\AdministratorEmail()
-    ));
+    $builder->add('profile_email', new \Club\InstallerBundle\Form\AdministratorEmail());
   }
 
   public function getDefaultOptions(array $options)

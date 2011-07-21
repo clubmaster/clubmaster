@@ -333,26 +333,6 @@ class OrderAddress
     }
 
     /**
-     * Set is_default
-     *
-     * @param boolean $isDefault
-     */
-    public function setIsDefault($isDefault)
-    {
-        $this->is_default = $isDefault;
-    }
-
-    /**
-     * Get is_default
-     *
-     * @return boolean $isDefault
-     */
-    public function getIsDefault()
-    {
-        return $this->is_default;
-    }
-
-    /**
      * Set order
      *
      * @param Club\ShopBundle\Entity\Order $order

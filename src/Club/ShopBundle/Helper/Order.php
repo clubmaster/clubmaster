@@ -122,7 +122,7 @@ class Order
 
   private function getAddressByUser(\Club\UserBundle\Entity\User $user)
   {
-    $addr = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultAddress($user->getProfile());
+    $addr = $user->getProfile()->getProfileAddress();
 
     $address = new \Club\ShopBundle\Entity\OrderAddress();
     $address->setFirstName($user->getProfile()->getFirstName());

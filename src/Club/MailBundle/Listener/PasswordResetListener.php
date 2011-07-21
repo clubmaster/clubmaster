@@ -20,7 +20,7 @@ class PasswordResetListener
   public function onPasswordReset(\Club\UserBundle\Event\FilterForgotPasswordEvent $event)
   {
     $user = $event->getForgotPassword()->getUser();
-    $email = $this->em->getRepository('ClubUserBundle:Profile')->getDefaultEmail($user->getProfile());
+    $email = $user->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer
