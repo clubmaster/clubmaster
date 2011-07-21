@@ -36,7 +36,7 @@ class Cart
         $this->cart->setLocation($location);
 
         if ($this->user->getProfile()->getProfileAddress()) {
-          $this->setCustomerAddress($this->user->getProfile()->getProfileAddress());
+          $this->setAddresses($this->user->getProfile()->getProfileAddress());
         }
 
         $this->save();
@@ -156,12 +156,13 @@ class Cart
     return $this->cart;
   }
 
-  public function setCustomerAddress(\Club\UserBundle\Entity\User $user)
+  public function setAddresses(\Club\UserBundle\Entity\ProfileAddress $address)
   {
-    $address = $this->getAddress($user);
-    $this->cart->setCustomerAddress($address);
-    $this->cart->setShippingAddress($address);
-    $this->cart->setBillingAddress($address);
+    $addr = $this->convertAddress($address);
+
+    $this->cart->setCustomerAddress($addr);
+    $this->cart->setShippingAddress($addr);
+    $this->cart->setBillingAddress($addr);
 
     $this->save();
   }
@@ -182,17 +183,6 @@ class Cart
   {
     $this->em->persist($this->cart);
     $this->em->flush();
-  }
-
-  protected function getUserAddress(\Club\UserBundle\Entity\User $user)
-  {
-    return $user->getProfile()->getProfileAddress();
-  }
-
-  protected function getAddress(\Club\UserBundle\Entity\User $user)
-  {
-    $addr = $this->getUserAddress($user);
-    return $this->convertAddress($addr);
   }
 
   protected function convertAddress($addr)

@@ -1,5 +1,6 @@
-/app/cache/*
-/app/logs/*
+app/cache/*
+app/logs/*
+app/spool/*
 *.swp
 *~
 vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle/
