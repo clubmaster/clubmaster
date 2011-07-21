@@ -123,8 +123,8 @@ class User extends EntityRepository
       $qb = $this->filterMaxAge($qb,$group->getMaxAge());
     }
 
-    if ($group->getIsActiveMember() != '') {
-      $qb = $this->filterIsActive($qb,$group->getIsActiveMember());
+    if ($group->getActiveMember() != '') {
+      $qb = $this->filterIsActive($qb,$group->getActiveMember());
     }
 
     if (count($group->getLocation()) > 0) {

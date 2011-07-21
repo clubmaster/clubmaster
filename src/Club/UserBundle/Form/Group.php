@@ -20,7 +20,7 @@ class Group extends AbstractType
         'dynamic' => 'Dynamic'
       )
     ));
-    $builder->add('is_active_member','choice',array(
+    $builder->add('active_member','choice',array(
       'choices' => $bool,
       'required' => false
     ));

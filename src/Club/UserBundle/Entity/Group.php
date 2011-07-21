@@ -59,9 +59,9 @@ class Group
     /**
      * @ORM\Column(type="boolean", nullable="true")
      *
-     * @var boolean $is_active_member
+     * @var boolean $active_member
      */
-    private $is_active_member;
+    private $active_member;
 
     /**
      * @ORM\ManyToOne(targetEntity="Group")
@@ -233,23 +233,23 @@ class Group
     }
 
     /**
-     * Set is_active_member
+     * Set active_member
      *
-     * @param boolean $isActiveMember
+     * @param boolean $activeMember
      */
-    public function setIsActiveMember($isActiveMember)
+    public function setActiveMember($activeMember)
     {
-        $this->is_active_member = $isActiveMember;
+        $this->active_member = $activeMember;
     }
 
     /**
-     * Get is_active_member
+     * Get active_member
      *
-     * @return boolean $isActiveMember
+     * @return boolean $activeMember
      */
-    public function getIsActiveMember()
+    public function getActiveMember()
     {
-        return $this->is_active_member;
+        return $this->active_member;
     }
 
     /**
