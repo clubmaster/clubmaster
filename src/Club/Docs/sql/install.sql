@@ -1195,7 +1195,7 @@ CREATE TABLE `club_task_task` (
 
 LOCK TABLES `club_task_task` WRITE;
 /*!40000 ALTER TABLE `club_task_task` DISABLE KEYS */;
-INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask','2011-07-21 14:31:52','2011-07-21 14:31:52',NULL,'2011-07-21 14:31:52','+1 hour');
+INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask','2011-07-21 14:43:00','2011-07-21 14:43:00',NULL,'2011-07-21 14:43:00','+1 hour');
 /*!40000 ALTER TABLE `club_task_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1329,7 +1329,7 @@ CREATE TABLE `club_user_currency` (
 
 LOCK TABLES `club_user_currency` WRITE;
 /*!40000 ALTER TABLE `club_user_currency` DISABLE KEYS */;
-INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-21 14:31:52','2011-07-21 14:31:52'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-21 14:31:52','2011-07-21 14:31:52'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-21 14:31:52','2011-07-21 14:31:52');
+INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-21 14:43:00','2011-07-21 14:43:00'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-21 14:43:00','2011-07-21 14:43:00'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-21 14:43:00','2011-07-21 14:43:00');
 /*!40000 ALTER TABLE `club_user_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1446,7 +1446,7 @@ CREATE TABLE `club_user_group` (
 
 LOCK TABLES `club_user_group` WRITE;
 /*!40000 ALTER TABLE `club_user_group` DISABLE KEYS */;
-INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-21 14:31:52','2011-07-21 14:31:52'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-21 14:31:52','2011-07-21 14:31:52');
+INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-21 14:43:00','2011-07-21 14:43:00'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-21 14:43:00','2011-07-21 14:43:00');
 /*!40000 ALTER TABLE `club_user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2135,4 +2135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-21 14:31:52
+-- Dump completed on 2011-07-21 14:43:00

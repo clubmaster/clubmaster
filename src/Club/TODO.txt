@@ -1,4 +1,5 @@
 == scheduled for beta7 ==
+- make sure we can make a payment
 - add class active to right menu
 - event calendar view
 - event agenda view
@@ -28,6 +29,9 @@
 - we have a bug in the paginator counter, check user to get it right
 
 == improvements ==
+- When edit or create a new dynamic group, recalc users
+- Cannot add categories to ClubMaster Location
+- make user aware that he has to add category before he can add products
 - constraints:
   - Month can only have AutoRenewal value A
   - Only One of following is mandatory: Month, ExpireDate, Lifetime
