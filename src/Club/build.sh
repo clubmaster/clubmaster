@@ -7,6 +7,13 @@ if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
 fi
 
+php ../../app/console doctrine:database:drop --force
+php ../../app/console doctrine:database:create
+php ../../app/console doctrine:migrations:migrate --no-interaction
+php ../../app/console doctrine:fixtures:load
+mysqldump -u root clubmaster_v2 > Docs/sql/install.sql
+sed -i 's/clubmaster_v2/clubmaster/' Docs/sql/install.sql
+
 mkdir ${BUILD_PATH}
 
 TRUNK_PATH=`pwd`/../../
