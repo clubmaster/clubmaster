@@ -28,7 +28,7 @@ class OrderStatus extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubShopBundle:OrderStatus','s')
-      ->where('s.is_accepted = 1')
+      ->where('s.accepted = 1')
       ->getQuery()
       ->getSingleResult();
   }

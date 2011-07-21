@@ -63,12 +63,12 @@ class Order extends EntityRepository
 
   public function isFirstAccepted(\Club\ShopBundle\Entity\Order $order)
   {
-    if (!$order->getOrderStatus()->getIsAccepted())
+    if (!$order->getOrderStatus()->getAccepted())
       return false;
 
     foreach ($order->getOrderStatusHistory() as $status) {
       // check if order already has been accepted
-      if ($status->getOrderStatus()->getIsAccepted()) {
+      if ($status->getOrderStatus()->getAccepted()) {
         return false;
       }
     }

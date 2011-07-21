@@ -30,16 +30,16 @@ class OrderStatus
     /**
      * @ORM\Column(type="boolean")
      *
-     * var boolean $is_accepted
+     * var boolean $accepted
      */
-    private $is_accepted;
+    private $accepted;
 
     /**
      * @ORM\Column(type="boolean")
      *
-     * var boolean $is_cancelled
+     * var boolean $cancelled
      */
-    private $is_cancelled;
+    private $cancelled;
 
     /**
      * @ORM\Column(type="integer")
@@ -85,43 +85,43 @@ class OrderStatus
     }
 
     /**
-     * Set is_accepted
+     * Set accepted
      *
-     * @param string $is_accepted
+     * @param string $accepted
      */
-    public function setIsAccepted($isAccepted)
+    public function setAccepted($accepted)
     {
-        $this->is_accepted = $isAccepted;
+        $this->accepted = $accepted;
     }
 
     /**
-     * Get is_accepted
+     * Get accepted
      *
-     * @return string $is_accepted
+     * @return string $accepted
      */
-    public function getIsAccepted()
+    public function getAccepted()
     {
-        return $this->is_accepted;
+        return $this->accepted;
     }
 
     /**
-     * Set is_cancelled
+     * Set cancelled
      *
-     * @param string $is_cancelled
+     * @param string $cancelled
      */
-    public function setIsCancelled($isCancelled)
+    public function setCancelled($cancelled)
     {
-        $this->is_cancelled = $isCancelled;
+        $this->cancelled = $cancelled;
     }
 
     /**
-     * Get is_cancelled
+     * Get cancelled
      *
-     * @return string $is_cancelled
+     * @return string $cancelled
      */
-    public function getIsCancelled()
+    public function getCancelled()
     {
-        return $this->is_cancelled;
+        return $this->cancelled;
     }
 
     /**
