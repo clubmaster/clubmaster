@@ -7,6 +7,7 @@
 - event calendar view
 - event agenda view
 - start the fixtures and migrations all over
+- remove all is_ prefixes on models
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
