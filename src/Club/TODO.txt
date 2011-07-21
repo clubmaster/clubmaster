@@ -6,7 +6,6 @@
 - add class active to right menu
 - event calendar view
 - event agenda view
-- start the fixtures and migrations all over
 
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
