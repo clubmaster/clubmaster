@@ -57,20 +57,6 @@ class Task
     private $method;
 
     /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var date $created_at
-     */
-    private $created_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var date $updated_at
-     */
-    private $updated_at;
-
-    /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $last_run_at
@@ -90,6 +76,20 @@ class Task
      * @var date $task_interval
      */
     private $task_interval;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var date $created_at
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var date $updated_at
+     */
+    private $updated_at;
 
     /**
      * Get id
