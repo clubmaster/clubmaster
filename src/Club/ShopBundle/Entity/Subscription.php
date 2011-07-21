@@ -30,9 +30,9 @@ class Subscription
     /**
      * @ORM\Column(type="boolean")
      *
-     * @var boolean $is_active
+     * @var boolean $active
      */
-    private $is_active;
+    private $active;
 
     /**
      * @ORM\Column(type="date")
@@ -110,23 +110,23 @@ class Subscription
     }
 
     /**
-     * Set is_active
+     * Set active
      *
-     * @param boolean $isActive
+     * @param boolean $active
      */
-    public function setIsActive($isActive)
+    public function setActive($active)
     {
-        $this->is_active = $isActive;
+        $this->active = $active;
     }
 
     /**
-     * Get is_active
+     * Get active
      *
-     * @return boolean $isActive
+     * @return boolean $active
      */
-    public function getIsActive()
+    public function getActive()
     {
-        return $this->is_active;
+        return $this->active;
     }
 
     /**
@@ -342,7 +342,7 @@ class Subscription
 
     public function isExpired()
     {
-      if (!$this->getIsActive() && $this->getExpireDate()->getTimestamp() < time())
+      if (!$this->getActive() && $this->getExpireDate()->getTimestamp() < time())
         return true;
 
       return false;

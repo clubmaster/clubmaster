@@ -33,7 +33,7 @@ class Subscription extends EntityRepository
       ->from('ClubShopBundle:Subscription','s')
       ->where('s.expire_date <= :expire_date')
       ->andWhere('s.expire_date IS NOT NULL')
-      ->andWhere('s.is_active = 1')
+      ->andWhere('s.active = 1')
       ->setParameter('expire_date',date('Y-m-d'))
       ->getQuery()
       ->getResult();
@@ -45,7 +45,7 @@ class Subscription extends EntityRepository
       ->select('s')
       ->from('ClubShopBundle:Subscription','s')
       ->where('s.type = :type')
-      ->andWhere('s.is_active = 1')
+      ->andWhere('s.active = 1')
       ->setParameter('type','ticket')
       ->getQuery()
       ->getResult();
