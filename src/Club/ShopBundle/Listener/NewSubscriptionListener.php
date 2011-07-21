@@ -30,7 +30,7 @@ class NewSubscriptionListener
         $subscription->setOrder($order);
         $subscription->setOrderProduct($product);
         $subscription->setUser($order->getUser());
-        $subscription->setIsActive(1);
+        $subscription->setActive(1);
         $subscription->setType('subscription');
 
         $start_date = isset($res['StartDate']) ? new \DateTime($res['StartDate']->getValue()) : new \DateTime();

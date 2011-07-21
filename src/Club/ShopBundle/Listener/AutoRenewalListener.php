@@ -40,7 +40,7 @@ class AutoRenewalListener
       $this->order->addOrderProduct($subscription->getOrderProduct());
       $this->order->save();
 
-      $subscription->setIsActive(0);
+      $subscription->setActive(0);
       $this->em->persist($subscription);
   }
 }
