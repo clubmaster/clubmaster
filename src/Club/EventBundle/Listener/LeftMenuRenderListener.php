@@ -18,7 +18,7 @@ class LeftMenuRenderListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
-      $menu[] = array(
+      $menu['event'] = array(
         'name' => 'Event',
         'route' => $this->router->generate('admin_event_event'),
         'items' => array()

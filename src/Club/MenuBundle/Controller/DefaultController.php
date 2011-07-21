@@ -43,39 +43,37 @@ class DefaultController extends Controller
 
     if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
       $menu = array(
-        array(
+        'user' => array(
           'name' => 'User',
           'route' => $this->generateUrl('admin_user'),
-          'items' => array(
-            array(
-              'name' => 'Location',
-              'route' => $this->generateUrl('admin_location')
-            ),
-            array(
-              'name' => 'Group',
-              'route' => $this->generateUrl('admin_group')
-            ),
-            array(
-              'name' => 'Currency',
-              'route' => $this->generateUrl('admin_currency')
-            ),
-            array(
-              'name' => 'Ban',
-              'route' => $this->generateUrl('ban')
-            ),
-            array(
-              'name' => 'Task',
-              'route' => $this->generateUrl('admin_task')
-            ),
-            array(
-              'name' => 'Log',
-              'route' => $this->generateUrl('admin_log')
-            ),
-          )
         ),
-        array(
+        'location' => array(
+          'name' => 'Location',
+          'route' => $this->generateUrl('admin_location')
+        ),
+        'group' => array(
+          'name' => 'Group',
+          'route' => $this->generateUrl('admin_group')
+        ),
+        'currency' => array(
+          'name' => 'Currency',
+          'route' => $this->generateUrl('admin_currency')
+        ),
+        'ban' => array(
+          'name' => 'Ban',
+          'route' => $this->generateUrl('ban')
+        ),
+        'task' => array(
+          'name' => 'Task',
+          'route' => $this->generateUrl('admin_task')
+        ),
+        'log' => array(
+          'name' => 'Log',
+          'route' => $this->generateUrl('admin_log')
+        ),
+        'shop' => array(
           'name' => 'Shop',
-          'route' => $this->generateUrl('shop'),
+          'route' => $this->generateUrl('admin_shop_product'),
           'items' => array(
             array(
               'name' => 'Product',
@@ -105,7 +103,7 @@ class DefaultController extends Controller
               'name' => 'Shipping',
               'route' => $this->generateUrl('admin_shop_shipping')
             ),
-          )
+          ),
         ),
       );
     }
@@ -113,6 +111,12 @@ class DefaultController extends Controller
     $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
     $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onLeftMenuRender, $event);
     $menu = $event->getMenu();
+
+    if (preg_match("/admin\/([^\/]+)?.*$/", $this->getRequest()->getRequestUri(),$rtn)) {
+      if (isset($menu[$rtn[1]])) {
+        $menu[$rtn[1]]['active'] = 1;
+      }
+    }
 
     return $this->render('ClubMenuBundle:Default:leftMenu.html.twig', array(
       'menu' => $menu

@@ -1,5 +1,4 @@
 == scheduled for beta7 ==
-- add class active to right menu
 - event calendar view
 - event agenda view
 
