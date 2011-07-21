@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Group")
  * @ORM\Table(name="club_user_group")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Group
 {
@@ -62,6 +63,16 @@ class Group
      * @var boolean $active_member
      */
     private $active_member;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Group")
@@ -355,5 +366,56 @@ class Group
       }
 
       return false;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      if (!$this->getId())
+        $this->setCreatedAt(new \DateTime());
+
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
     }
 }
