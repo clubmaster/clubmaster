@@ -117,6 +117,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Profile
      */

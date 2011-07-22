@@ -68,6 +68,7 @@ class ProfileAddress
 
     /**
      * @ORM\ManyToOne(targetEntity="Profile")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Profile
      */

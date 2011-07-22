@@ -28,6 +28,7 @@ class Attend
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
      */
     private $user;
 

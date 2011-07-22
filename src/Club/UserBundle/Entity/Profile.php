@@ -52,6 +52,7 @@ class Profile
 
     /**
      * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\User
      */
@@ -59,16 +60,19 @@ class Profile
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileAddress", cascade={"persist"})
+     * @ORM\JoinColumn(name="profile_address_id", referencedColumnName="id", onDelete="cascade")
      */
     private $profile_address;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfilePhone", cascade={"persist"})
+     * @ORM\JoinColumn(name="profile_phone_id", referencedColumnName="id", onDelete="cascade")
      */
     private $profile_phone;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileEmail", cascade={"persist"})
+     * @ORM\JoinColumn(name="profile_email_id", referencedColumnName="id", onDelete="cascade")
      */
     private $profile_email;
 
