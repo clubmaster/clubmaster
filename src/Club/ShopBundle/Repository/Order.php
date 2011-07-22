@@ -15,11 +15,7 @@ class Order extends EntityRepository
   public function getCount($filter = array())
   {
     $qb = $this->getQueryBuilder($filter);
-
-    return $qb
-      ->select('COUNT(o)')
-      ->getQuery()
-      ->getSingleScalarResult();
+    return count($qb->getQuery()->getResult());
   }
 
   public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0) {

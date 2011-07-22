@@ -24,10 +24,8 @@ class Log extends EntityRepository
 
   public function getCount()
   {
-    return $this->getQueryBuilder()
-      ->select('COUNT(l)')
-      ->getQuery()
-      ->getSingleScalarResult();
+    $qb = $this->getQueryBuilder();
+    return count($qb->getQuery()->getResult());
   }
 
   public function getWithPagination($offset = 0, $limit = 0) {

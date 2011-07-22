@@ -16,11 +16,7 @@ class Ledger extends EntityRepository
   {
     $qb = $this->getQueryBuilder();
     $qb = $this->filterAccount($qb, $filter['account']);
-
-    return $qb
-      ->select('COUNT(l)')
-      ->getQuery()
-      ->getSingleScalarResult();
+    return count($qb->getQuery()->getResult());
   }
 
   public function getWithPagination($filter, $order_by, $offset = 0, $limit = 0) {

@@ -1,7 +1,6 @@
 == scheduled for beta8 ==
 - merge users
 - problem with renewal of fixtures memberships
-- we have a bug in the paginator counter, check user to get it right
 - add icon to paid and unpaid (event)
 - add boolean icon on event members
 - prettier date widgets
