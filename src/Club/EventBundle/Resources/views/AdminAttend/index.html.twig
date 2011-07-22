@@ -29,8 +29,11 @@
       <td>{{ attend.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_attend_delete', {'id':attend.id})} %}
-        <a href="{{ path('admin_event_attend_paid', {'id':attend.id}) }}">Paid</a>
-        <a href="{{ path('admin_event_attend_unpaid', {'id':attend.id}) }}">Unpaid</a>
+        {% if attend.paid %}
+        {% include "ClubLayoutBundle:Default:not_paid_link.html.twig" with {'url':path('admin_event_attend_unpaid', {'id':attend.id})} %}
+        {% else %}
+        {% include "ClubLayoutBundle:Default:paid_link.html.twig" with {'url':path('admin_event_attend_paid', {'id':attend.id})} %}
+        {% endif %}
       </td>
     </tr>
   {% else %}
