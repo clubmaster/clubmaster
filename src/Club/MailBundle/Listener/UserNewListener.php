@@ -26,7 +26,7 @@ class UserNewListener
       $this->clubmaster_mailer
         ->setSubject('Welcome')
         ->setTo($email->getEmailAddress())
-        ->setBody($this->templating->render('ClubMailBundle:Default:user_new.html.twig',array(
+        ->setBody($this->templating->render('ClubMailBundle:Template:user_new.html.twig',array(
           'user' => $user,
           'url' => $this->router->generate('club_user_auth_activate',array('hash' => $user->getActivationCode()),1)
         )))

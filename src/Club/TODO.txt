@@ -1,21 +1,18 @@
 == scheduled for beta8 ==
-- merge users
+- configurable emails sent on different events
 - problem with renewal of fixtures memberships
 - add icon to paid and unpaid (event)
 - add boolean icon on event members
 - prettier date widgets
 - clear cache after upgrade in README
 
-== todo ==
-- its like the session times out too soon
-- set default vat rate
+== improvements ==
 - add images to products
+- its like the session times out too soon
+- merge users
 - sort user lists
 - make a quick search field for users
 - add category priority ( this will help pick right account_number for products )
-- configurable emails sent on different events
-
-== improvements ==
 - When edit or create a new dynamic group, recalc users
 - Cannot add categories to ClubMaster Location
 - make user aware that he has to add category before he can add products
