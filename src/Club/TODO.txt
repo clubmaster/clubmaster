@@ -1,6 +1,5 @@
 == scheduled for beta8 ==
 - merge users
-- show vat value on admin order view
 - problem with renewal of fixtures memberships
 - we have a bug in the paginator counter, check user to get it right
 - add icon to paid and unpaid (event)

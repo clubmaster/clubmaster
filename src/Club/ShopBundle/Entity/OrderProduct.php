@@ -255,4 +255,9 @@ class OrderProduct
     {
       return $this->getPrice()*$this->getQuantity();
     }
+
+    public function getVatPriceSummary()
+    {
+      return $this->getVatPrice()*$this->getQuantity();
+    }
 }

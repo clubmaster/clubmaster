@@ -1,19 +1,19 @@
 <table>
   <thead>
   <tr>
-    <th width="250">Produkt</th>
-    <th width="80">Pris</th>
-    <th width="80">Antal</th>
-    <th width="70">Total</th>
+    <th width="250">Product name</th>
+    <th width="80">Unit price</th>
+    <th width="80">Quantity</th>
+    <th width="70">Summary</th>
   </tr>
   </thead>
   <tbody>
   {% for item in order.orderProducts %}
   <tr>
     <td>{{ item.productName }}</td>
-    <td>{{ item.price|price }}</td>
+    <td>{{ item.vatPrice|price }}</td>
     <td>{{ item.quantity }}</td>
-    <td>{{ item.priceSummary|price }}</td>
+    <td>{{ item.vatPriceSummary|price }}</td>
   </tr>
   {% else %}
   <tr>
