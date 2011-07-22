@@ -1,6 +1,5 @@
 == scheduled for beta8 ==
 - problem with renewal of fixtures memberships
-- prettier date widgets
 - clear cache after upgrade in README
 
 == improvements ==

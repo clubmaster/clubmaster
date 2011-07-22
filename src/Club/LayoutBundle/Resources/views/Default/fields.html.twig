@@ -1,10 +1,8 @@
 {% block field_row %}
 {% spaceless %}
-    <p>
-        {{ form_label(form) }}<br />
-        {{ form_widget(form, {'attr': {'class':'input-text err' }}) }}
-        {{ form_errors(form) }}<br />
-    </p>
+    {{ form_label(form) }}<br />
+    {{ form_widget(form, {'attr': {'class':'input-text' }}) }}
+    {{ form_errors(form) }}<br />
 {% endspaceless %}
 {% endblock field_row %}
 
@@ -38,4 +36,20 @@
     <input size="40" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
 {% endspaceless %}
 {% endblock field_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year, {'attr': {'class':'input-text' }}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class':'input-text' }}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class':'input-text' }}),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
 
