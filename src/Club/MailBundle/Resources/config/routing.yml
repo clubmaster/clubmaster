@@ -1,0 +1,4 @@
+_mail:
+  resource: "@ClubMailBundle/Controller/AdminMailController.php"
+  type: annotation
+  prefix: /admin

@@ -1,5 +1,4 @@
 == scheduled for beta8 ==
-- configurable emails sent on different events
 - problem with renewal of fixtures memberships
 - add icon to paid and unpaid (event)
 - add boolean icon on event members

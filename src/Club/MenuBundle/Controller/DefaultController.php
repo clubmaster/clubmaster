@@ -71,6 +71,10 @@ class DefaultController extends Controller
           'name' => 'Log',
           'route' => $this->generateUrl('admin_log')
         ),
+        'mail' => array(
+          'name' => 'Mail',
+          'route' => $this->generateUrl('club_mail_adminmail_index')
+        ),
         'shop' => array(
           'name' => 'Shop',
           'route' => $this->generateUrl('admin_shop_product'),
