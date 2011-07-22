@@ -1,13 +1,12 @@
 == scheduled for beta8 ==
-- on bought new membership recalc groups for user
 - merge users
 - Update basket
-- add icon to paid and unpaid (event)
-- add boolean icon on event members
-- prettier date widgets
 - show vat value on admin order view
 - problem with renewal of fixtures memberships
 - we have a bug in the paginator counter, check user to get it right
+- add icon to paid and unpaid (event)
+- add boolean icon on event members
+- prettier date widgets
 
 == todo ==
 - its like the session times out too soon
