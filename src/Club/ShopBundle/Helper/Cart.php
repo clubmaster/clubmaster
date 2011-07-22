@@ -89,6 +89,20 @@ class Cart
     $this->updateProductToCart($op);
   }
 
+  public function modifyQuantity(\Club\ShopBundle\Entity\CartProduct $product, $quantity=1)
+  {
+    if (!($product->getQuantity()+$quantity)) {
+      $this->em->remove($product);
+    } else {
+      $product->setQuantity($product->getQuantity()+$quantity);
+      $this->cart->setPrice($this->cart->getPrice()+($product->getPrice()*$quantity));
+      $this->cart->setVatPrice($this->cart->getVatPrice()+($product->getVatPrice()*$quantity));
+    }
+    $this->save();
+
+    return $product;
+  }
+
   private function addProductToCart(\Club\ShopBundle\Entity\Product $product)
   {
     $this->checkLocation($product);
@@ -97,9 +111,7 @@ class Cart
     // check if its already in the cart
     foreach ($this->cart->getCartProducts() as $prod) {
       if ($prod->getProduct()->getId() == $product->getId()) {
-        $prod->setQuantity($prod->getQuantity()+1);
-        $this->cart->setPrice($this->cart->getPrice()+$prod->getPrice());
-        $this->cart->setVatPrice($this->cart->getVatPrice()+$prod->getVatPrice());
+        $prod = $this->modifyQuantity($prod);
         $trigger = 1;
       }
     }

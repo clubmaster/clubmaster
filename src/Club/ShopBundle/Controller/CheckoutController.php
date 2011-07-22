@@ -22,6 +22,32 @@ class CheckoutController extends Controller
   }
 
   /**
+   * @Route("/shop/cart/increment/{id}")
+   */
+  public function incrementAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
+    $this->get('cart')->modifyQuantity($product);
+
+    return $this->redirect($this->generateUrl('shop_checkout'));
+  }
+
+  /**
+   * @Route("/shop/cart/decrement/{id}")
+   */
+  public function decrementAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
+    $this->get('cart')->modifyQuantity($product,-1);
+
+    return $this->redirect($this->generateUrl('shop_checkout'));
+  }
+
+  /**
    * @Route("/shop/checkout/shipping", name="shop_checkout_shipping")
    * @Template()
    */

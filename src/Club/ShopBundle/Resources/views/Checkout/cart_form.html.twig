@@ -1,10 +1,10 @@
 <table>
   <thead>
   <tr>
-    <th width="250">Produkt</th>
-    <th width="80">Pris</th>
-    <th width="80">Antal</th>
-    <th width="70">Total</th>
+    <th width="250">Product name</th>
+    <th width="80">Unit price</th>
+    <th width="80">Quantity</th>
+    <th width="70">Summary</th>
   </tr>
   </thead>
   <tbody>
@@ -12,7 +12,7 @@
   <tr>
     <td>{{ item.productName }}</td>
     <td>{{ item.vatPrice|price }}</td>
-    <td>{{ item.quantity }}</td>
+    <td>{{ item.quantity }} <a href="{{ path('club_shop_checkout_increment', {'id':item.id}) }}">[+]</a>  <a href="{{ path('club_shop_checkout_decrement', {'id':item.id}) }}">[-]</a></td>
     <td>{{ item.vatSummary|price }}</td>
   </tr>
   {% else %}
