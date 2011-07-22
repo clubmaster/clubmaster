@@ -95,9 +95,10 @@ class Cart
       $this->em->remove($product);
     } else {
       $product->setQuantity($product->getQuantity()+$quantity);
-      $this->cart->setPrice($this->cart->getPrice()+($product->getPrice()*$quantity));
-      $this->cart->setVatPrice($this->cart->getVatPrice()+($product->getVatPrice()*$quantity));
     }
+
+    $this->cart->setPrice($this->cart->getPrice()+($product->getPrice()*$quantity));
+    $this->cart->setVatPrice($this->cart->getVatPrice()+($product->getVatPrice()*$quantity));
     $this->save();
 
     return $product;

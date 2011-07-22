@@ -6,6 +6,7 @@
 - add icon to paid and unpaid (event)
 - add boolean icon on event members
 - prettier date widgets
+- clear cache after upgrade in README
 
 == todo ==
 - its like the session times out too soon
