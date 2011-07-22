@@ -1,6 +1,5 @@
 == scheduled for beta8 ==
 - problem with renewal of fixtures memberships
-- clear cache after upgrade in README
 
 == improvements ==
 - add images to products

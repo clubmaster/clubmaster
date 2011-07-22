@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-07-18
-:Revision:  5
+:Date:      2011-07-22
+:Revision:  6
 
 
 Feedback
@@ -103,3 +103,4 @@ In order to upgrade from a previous installation:
 - Copy app/config/parameters.ini file from old directory
 - $ chmod 777 -R app/cache app/logs in the new clubmaster installation
 - Go to the website, http://localhost/clubmaster/web/upgrade
+- Empty the cache, rm -rf app/cache/*
