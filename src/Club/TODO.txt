@@ -1,7 +1,6 @@
 == scheduled for beta8 ==
 - on bought new membership recalc groups for user
 - merge users
-- find out the syntax for member_numbers
 - Update basket
 - add icon to paid and unpaid (event)
 - add boolean icon on event members
