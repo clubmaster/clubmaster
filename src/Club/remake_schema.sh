@@ -12,7 +12,6 @@ php ../../app/console assets:install ../../web
 mysql -u root clubmaster_v2 < Docs/sql/test_data.sql
 mysql -u root clubmaster_v2 < Docs/sql/users_data.sql
 mysql -u root clubmaster_v2 < Docs/sql/event_data.sql
-#mysql -u root clubmaster_v2 < Docs/sql/order_data.sql
 
 php ../../app/console cache:warmup
 

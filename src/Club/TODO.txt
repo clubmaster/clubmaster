@@ -1,6 +1,3 @@
-== scheduled for beta8 ==
-- problem with renewal of fixtures memberships
-
 == improvements ==
 - add images to products
 - its like the session times out too soon
