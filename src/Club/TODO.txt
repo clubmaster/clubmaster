@@ -7,7 +7,6 @@
 - Update basket
 - add icon to paid and unpaid (event)
 - add boolean icon on event members
-- rewrite format to date in admin events
 - prettier date widgets
 - show vat value on admin order view
 - problem with renewal of fixtures memberships
