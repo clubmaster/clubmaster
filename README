@@ -1,0 +1,36 @@
+lubMaster
+==========
+:Author:    Michael Holm Kristensen
+:Email:     <hollo@hollo.dk>
+
+
+Getting started
+---------------
+
+If you just want clubmaster up and running so you can start development:
+
+git clone git://github.com/hollodk/clubmaster.git
+cd clubmaster
+./bin/vendors install
+
+
+Prerequirements
+---------------
+
+- Webserver
+- PHP 5.3.2
+- MySQL 5
+
+To get a more detailed list, checkout in your browser:
+
+http://localhost/clubmaster/web/check.php
+
+
+
+Initialize data
+---------------
+
+To get the database up and running with some test data:
+
+cd src/Club
+./remake_schema.sh
