@@ -34,3 +34,17 @@ To get the database up and running with some test data:
 
 cd src/Club
 ./remake_schema.sh
+
+
+Development
+-----------
+
+If you want to make your own fork of this software or want to contribute, this software is written in symfony2 you can read all about it at http://www.symfony.com.
+
+When you want to develop, you have 2 different environments:
+
+Production
+http://localhost/clubmaster/web/index.php
+
+Development
+http://localhost/clubmaster/web/index_dev.php

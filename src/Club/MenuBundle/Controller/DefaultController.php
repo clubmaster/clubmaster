@@ -11,23 +11,23 @@ class DefaultController extends Controller
   {
     $menu = array(
       array(
-        'name' => 'User',
+        'name' => $this->get('translator')->trans('User'),
         'route' => $this->generateUrl('user')
       ),
       array(
-        'name' => 'Shop',
+        'name' => $this->get('translator')->trans('Shop'),
         'route' => $this->generateUrl('shop')
       ),
       array(
-        'name' => 'Order',
+        'name' => $this->get('translator')->trans('Order'),
         'route' => $this->generateUrl('shop_order')
       ),
       array(
-        'name' => 'Subscription',
+        'name' => $this->get('translator')->trans('Subscription'),
         'route' => $this->generateUrl('shop_subscription')
       ),
       array(
-        'name' => 'Event',
+        'name' => $this->get('translator')->trans('Event'),
         'route' => $this->generateUrl('event_event')
       )
     );
@@ -44,67 +44,67 @@ class DefaultController extends Controller
     if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
       $menu = array(
         'user' => array(
-          'name' => 'User',
+          'name' => $this->get('translator')->trans('User'),
           'route' => $this->generateUrl('admin_user'),
         ),
         'location' => array(
-          'name' => 'Location',
+          'name' => $this->get('translator')->trans('Location'),
           'route' => $this->generateUrl('admin_location')
         ),
         'group' => array(
-          'name' => 'Group',
+          'name' => $this->get('translator')->trans('Group'),
           'route' => $this->generateUrl('admin_group')
         ),
         'currency' => array(
-          'name' => 'Currency',
+          'name' => $this->get('translator')->trans('Currency'),
           'route' => $this->generateUrl('admin_currency')
         ),
         'ban' => array(
-          'name' => 'Ban',
+          'name' => $this->get('translator')->trans('Ban'),
           'route' => $this->generateUrl('ban')
         ),
         'task' => array(
-          'name' => 'Task',
+          'name' => $this->get('translator')->trans('Task'),
           'route' => $this->generateUrl('admin_task')
         ),
         'log' => array(
-          'name' => 'Log',
+          'name' => $this->get('translator')->trans('Log'),
           'route' => $this->generateUrl('admin_log')
         ),
         'mail' => array(
-          'name' => 'Mail',
+          'name' => $this->get('translator')->trans('Mail'),
           'route' => $this->generateUrl('club_mail_adminmail_index')
         ),
         'shop' => array(
-          'name' => 'Shop',
+          'name' => $this->get('translator')->trans('Shop'),
           'route' => $this->generateUrl('admin_shop_product'),
           'items' => array(
             array(
-              'name' => 'Product',
+              'name' => $this->get('translator')->trans('Product'),
               'route' => $this->generateUrl('admin_shop_product')
             ),
             array(
-              'name' => 'Category',
+              'name' => $this->get('translator')->trans('Category'),
               'route' => $this->generateUrl('admin_shop_category')
             ),
             array(
-              'name' => 'Order',
+              'name' => $this->get('translator')->trans('Order'),
               'route' => $this->generateUrl('admin_shop_order')
             ),
             array(
-              'name' => 'Coupon',
+              'name' => $this->get('translator')->trans('Coupon'),
               'route' => $this->generateUrl('club_shop_admincoupon_index')
             ),
             array(
-              'name' => 'Special',
+              'name' => $this->get('translator')->trans('Special'),
               'route' => $this->generateUrl('club_shop_adminspecial_index')
             ),
             array(
-              'name' => 'Payment Method',
+              'name' => $this->get('translator')->trans('Payment Method'),
               'route' => $this->generateUrl('admin_shop_payment_method')
             ),
             array(
-              'name' => 'Shipping',
+              'name' => $this->get('translator')->trans('Shipping'),
               'route' => $this->generateUrl('admin_shop_shipping')
             ),
           ),

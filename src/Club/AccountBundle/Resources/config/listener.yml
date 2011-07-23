@@ -6,6 +6,6 @@ services:
       - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
   club.accountbundle.listener.left_menu_render_listener:
     class: Club\AccountBundle\Listener\LeftMenuRenderListener
-    arguments: [@router, @security.context]
+    arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
