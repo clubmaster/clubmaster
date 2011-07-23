@@ -1,3 +1,19 @@
-  <p>{{ form_widget(form) }}</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  <fieldset>
+    <legend>Group Information</legend>
 
+    {{ form_row(form.group_name) }}
+    {{ form_row(form.group_type) }}
+    {{ form_row(form.active_member) }}
+    {{ form_row(form.min_age) }}
+    {{ form_row(form.max_age) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.location) }}
+  </fieldset>
+
+  <fieldset>
+    <legend>Role Information</legend>
+    {{ form_row(form.role) }}
+    <span class="smaller low">{% trans %}Info: The members of this group will get all the roles that you select in this field.{% endtrans %}</span>
+  </fieldset>
+
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}

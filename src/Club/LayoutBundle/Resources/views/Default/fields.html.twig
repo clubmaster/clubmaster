@@ -1,8 +1,10 @@
 {% block field_row %}
 {% spaceless %}
+  <p>
     {{ form_label(form) }}<br />
     {{ form_widget(form, {'attr': {'class':'input-text' }}) }}
     {{ form_errors(form) }}<br />
+  </p>
 {% endspaceless %}
 {% endblock field_row %}
 
