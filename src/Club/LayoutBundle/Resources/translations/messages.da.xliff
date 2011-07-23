@@ -82,6 +82,42 @@
         <source>Account</source>
         <target>Bogholderi</target>
       </trans-unit>
+      <trans-unit id="21">
+        <source>Personal Information</source>
+        <target>Personlig Inforamtion</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Address Information</source>
+        <target>Adresse Inforamtion</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Email Information</source>
+        <target>E-mail Inforamtion</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Phone Information</source>
+        <target>Telefon Inforamtion</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>First name</source>
+        <target>Fornavn</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>Last name</source>
+        <target>Efternavn</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Gender</source>
+        <target>Køn</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Day of birth</source>
+        <target>Fødselsdag</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>Street</source>
+        <target>Adresse</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
