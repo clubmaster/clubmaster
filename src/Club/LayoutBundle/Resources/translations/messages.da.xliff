@@ -84,19 +84,19 @@
       </trans-unit>
       <trans-unit id="21">
         <source>Personal Information</source>
-        <target>Personlig Inforamtion</target>
+        <target>Personlig Information</target>
       </trans-unit>
       <trans-unit id="22">
         <source>Address Information</source>
-        <target>Adresse Inforamtion</target>
+        <target>Adresse Information</target>
       </trans-unit>
       <trans-unit id="23">
         <source>Email Information</source>
-        <target>E-mail Inforamtion</target>
+        <target>E-mail Information</target>
       </trans-unit>
       <trans-unit id="24">
         <source>Phone Information</source>
-        <target>Telefon Inforamtion</target>
+        <target>Telefon Information</target>
       </trans-unit>
       <trans-unit id="25">
         <source>First name</source>
@@ -117,6 +117,54 @@
       <trans-unit id="29">
         <source>Street</source>
         <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>Postal code</source>
+        <target>Postnummer</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>City</source>
+        <target>By</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Email address</source>
+        <target>E-mail adresse</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Number</source>
+        <target>Nummer</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Save</source>
+        <target>Gem</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>User: &lt;strong&gt;%name%&lt;/strong&gt;</source>
+        <target>Bruger: &lt;strong&gt;%name%&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Location: &lt;strong&gt;%location%&lt;/strong&gt;</source>
+        <target>Område: &lt;strong&gt;%location%&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Log out</source>
+        <target>Log ud</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Project: &lt;strong&gt;%name%&lt;/strong&gt;</source>
+        <target>Projekt: &lt;strong&gt;%name%&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Version: &lt;strong&gt;%version%&lt;/strong&gt;</source>
+        <target>Version: &lt;strong&gt;%version%&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source>
+        <target>Område: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target>
       </trans-unit>
     </body>
   </file>

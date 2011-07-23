@@ -42,14 +42,14 @@
                           <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('bundles/clublayout/images/switcher-2col.gif') }}" alt="2 Columns" /></a>
                         </span>
 
-                        Project: <strong>ClubMaster</strong>
+                        {% trans with {'%name%':'ClubMaster'} %}Project: <strong>%name%</strong>{% endtrans %}
                 </p>
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <p class="f-right">
-                User: <strong>{{ app.user }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% trans with {'%name%':app.user} %}User: <strong>%name%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {% render 'ClubUserBundle:Misc:LocationBar' %}
-                <strong><a href="{{ path('_security_logout') }}" id="logout">Log out</a></strong></p>
+                <strong><a href="{{ path('_security_logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong></p>
                 {% endif %}
 
         </div> <!--  /tray -->
