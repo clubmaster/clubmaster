@@ -53,13 +53,11 @@
     {% if widget == 'single_text' %}
         {{ block('field_widget') }}
     {% else %}
-        <div {{ block('widget_container_attributes') }}>
             {{ date_pattern|replace({
                 '{{ year }}':  form_widget(form.year, {'attr': {'class':'input-text' }}),
                 '{{ month }}': form_widget(form.month, {'attr': {'class':'input-text' }}),
                 '{{ day }}':   form_widget(form.day, {'attr': {'class':'input-text' }}),
             })|raw }}
-        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
