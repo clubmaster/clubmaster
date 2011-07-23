@@ -20,9 +20,15 @@ class AutoRenewalListener
 
   public function onAutoRenewalTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
-    $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredAutoRenewalSubscriptions();
+    $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredSubscriptions();
     foreach ($subscriptions as $subscription) {
-      $this->copySubscription($subscription);
+
+      if ($this->em->getRepository('ClubShopBundle:Subscription')->isAutoRenewal($subscription)) {
+        $this->copySubscription($subscription);
+      } else {
+        $subscription->setActive(0);
+        $this->em->persist($subscription);
+      }
     }
     $this->em->flush();
 
@@ -30,17 +36,18 @@ class AutoRenewalListener
     foreach ($subscriptions as $subscription) {
       $this->copySubscription($subscription);
     }
+
     $this->em->flush();
   }
 
   private function copySubscription($subscription)
   {
-      $old_order = $subscription->getOrder();
-      $this->order->copyOrder($old_order);
-      $this->order->addOrderProduct($subscription->getOrderProduct());
-      $this->order->save();
+    $old_order = $subscription->getOrder();
+    $this->order->copyOrder($old_order);
+    $this->order->addOrderProduct($subscription->getOrderProduct());
+    $this->order->save();
 
-      $subscription->setActive(0);
-      $this->em->persist($subscription);
+    $subscription->setActive(0);
+    $this->em->persist($subscription);
   }
 }

@@ -62,18 +62,7 @@ class Subscription extends EntityRepository
     return $res;
   }
 
-  public function getExpiredAutoRenewalSubscriptions()
-  {
-    $res = array();
-    foreach ($this->getExpiredSubscriptions() as $subscription) {
-      if ($this->isAutoRenewal($subscription))
-        $res[] = $subscription;
-    }
-
-    return $res;
-  }
-
-  private function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
+  public function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
   {
     $attr = $this->getAttributeQuery($subscription, 'AutoRenewal')
       ->getQuery()
