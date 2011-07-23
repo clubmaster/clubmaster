@@ -14,7 +14,6 @@ class CheckoutAddress extends AbstractType
     $builder->add('first_name');
     $builder->add('last_name');
     $builder->add('street');
-    $builder->add('suburl');
     $builder->add('postal_code');
     $builder->add('city');
     $builder->add('state');

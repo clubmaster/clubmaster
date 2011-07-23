@@ -1,5 +1,5 @@
   <fieldset>
-    <legend>Personal Information</legend>
+    <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.language) }}</p>
     <p>{{ form_row(form.profile.first_name) }}</p>
@@ -9,23 +9,22 @@
   </fieldset>
 
   <fieldset>
-    <legend>Address Information</legend>
+    <legend>{% trans %}Address Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.profile_address.street) }}</p>
-    <p>{{ form_row(form.profile.profile_address.suburl) }}</p>
     <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
     <p>{{ form_row(form.profile.profile_address.city) }}</p>
     <p>{{ form_row(form.profile.profile_address.country) }}</p>
   </fieldset>
 
   <fieldset>
-    <legend>Email Information</legend>
+    <legend>{% trans %}Email Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
   </fieldset>
 
   <fieldset>
-    <legend>Phone Information</legend>
+    <legend>{% trans %}Phone Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.profile_phone.number) }}</p>
   </fieldset>

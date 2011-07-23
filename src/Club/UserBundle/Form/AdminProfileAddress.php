@@ -10,7 +10,6 @@ class AdminProfileAddress extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('street');
-    $builder->add('suburl');
     $builder->add('postal_code');
     $builder->add('city');
     $builder->add('state');

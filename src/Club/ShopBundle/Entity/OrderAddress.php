@@ -49,19 +49,12 @@ class OrderAddress
     private $last_name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @Assert\NotBlank
      *
      * @var string $street
      */
     private $street;
-
-    /**
-     * @ORM\Column(type="string", nullable="true")
-     *
-     * @var string $suburl
-     */
-    private $suburl;
 
     /**
      * @ORM\Column(type="string")
@@ -210,26 +203,6 @@ class OrderAddress
     public function getStreet()
     {
         return $this->street;
-    }
-
-    /**
-     * Set suburl
-     *
-     * @param string $suburl
-     */
-    public function setSuburl($suburl)
-    {
-        $this->suburl = $suburl;
-    }
-
-    /**
-     * Get suburl
-     *
-     * @return string $suburl
-     */
-    public function getSuburl()
-    {
-        return $this->suburl;
     }
 
     /**
