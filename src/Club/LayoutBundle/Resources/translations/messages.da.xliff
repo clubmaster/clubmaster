@@ -302,7 +302,26 @@
         <source>Subscriptions</source>
         <target>Abonnementer</target>
       </trans-unit>
-
+      <trans-unit id="76">
+        <source>There are no planned events.</source>
+        <target>Der er ikke planlagt nogen begivenheder.</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>No events</source>
+        <target>Ingen begivenheder</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>iCal format</source>
+        <target>iCal format</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Start date: %date%</source>
+        <target>Start dato: %date%</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Stop date: %date%</source>
+        <target>Stop dato: %date%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

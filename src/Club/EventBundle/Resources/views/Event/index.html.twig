@@ -1,24 +1,25 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_event_event_ical') }}" class="btn-info"><span>iCal format</span></a></p>
+<p class="box"><a href="{{ path('club_event_event_ical') }}" class="btn-info"><span>{% trans %}iCal format{% endtrans %}</span></a></p>
 
 {% for event in events %}
 <div class="box-03 event box">
 
   <h2 class="nomb"><a href="{{ path('event_event_show', {'id':event.id}) }}"/>{{ event.eventName }}</a></h2>
   <p class="nomt low">
-    Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
-    Start date: {{ event.stopDate|date('Y-m-d H:i') }}<br />
-    Price: {% if event.price == '' %}-{% else %}{{ event.price }}{% endif %}
+    {% trans with {'%date%':event.startDate|date('Y-m-d H:i') } %}Start date: %date%{% endtrans %}<br />
+    {% trans with {'%date%': event.stopDate|date('Y-m-d H:i') } %}Stop date: %date%{% endtrans %}<br />
+    {% if event.price == '' %}{% trans with {'%price%':'-'} %}Price: %price%{% endtrans %}
+    {% else %}{% trans with {'%price%':event.price|price} %}Price: %price%{% endtrans %}{% endif %}
   </p>
 
 </div> <!-- /box-03 -->
 
 {% else %}
 <div class="box-03 event box">
-  <h2 class="nomb">No events</h2>
-    <p class="nomt low"><em>There are no planned events at the time.</em></p>
+  <h2 class="nomb">{% trans %}No events{% endtrans %}</h2>
+    <p class="nomt low"><em>{% trans %}There are no planned events.{% endtrans %}</em></p>
   </div> <!-- /box-03 -->
 {% endfor %}
 {% endblock %}
