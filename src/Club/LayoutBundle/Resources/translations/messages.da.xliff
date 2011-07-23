@@ -270,6 +270,38 @@
         <source>Status</source>
         <target>Status</target>
       </trans-unit>
+      <trans-unit id="68">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Start date</source>
+        <target>Start dato</target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Expire date</source>
+        <target>Udløbsdato</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>You do not have any subscriptions.</source>
+        <target>Du har ikke nogen abonnementer.</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Subscriptions</source>
+        <target>Abonnementer</target>
+      </trans-unit>
 
     </body>
   </file>

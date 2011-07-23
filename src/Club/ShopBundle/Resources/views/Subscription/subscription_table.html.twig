@@ -1,14 +1,14 @@
-<h2>Subscriptions</h2>
+<h2>{% trans %}Subscriptions{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Active</th>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Start date</th>
-      <th>Expire date</th>
-      <th>Action</th>
+      <th>{% trans %}Active{% endtrans %}</th>
+      <th>{% trans %}Type{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Start date{% endtrans %}</th>
+      <th>{% trans %}Expire date{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -40,7 +40,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="6">There is no subscriptions for this user.</td>
+      <td colspan="6">{% trans %}You do not have any subscriptions.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>
