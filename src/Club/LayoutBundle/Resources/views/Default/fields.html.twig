@@ -8,6 +8,15 @@
 {% endspaceless %}
 {% endblock field_row %}
 
+{% block generic_label %}
+{% spaceless %}
+    {% if required %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+    <label class="req" {% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ label|trans }}:</label>
+{% endspaceless %}
+{% endblock %}
+
 {% block field_label %}
 {% spaceless %}
     <label class="req" for="{{ id }}"{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ label|trans }}:</label>
