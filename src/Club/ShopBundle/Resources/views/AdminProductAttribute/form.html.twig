@@ -1,3 +1,19 @@
-  <p>{{ form_widget(form) }}</p>
+  {{ form_row(form.Month) }}
+  <span class="smaller low">Info: How many months will be available for this subscription?</span>
+  {{ form_row(form.Ticket) }}
+  <span class="smaller low">Info: How many tickets will the user get for this subscription?</span>
+  {{ form_row(form.AutoRenewal) }}
+  <span class="smaller low">Info: Will this subscription automatically be renewal?</span>
+  {{ form_row(form.Lifetime) }}
+  <span class="smaller low">Info: Is this a lifetime subscription?</span>
+  {{ form_row(form.AllowedPauses) }}
+  <span class="smaller low">Info: How many pauses is the user of this subscription allowed to take?</span>
+  {{ form_row(form.StartDate) }}
+  <span class="smaller low">Info: What will be the first day of this subscription?</span>
+  {{ form_row(form.ExpireDate) }}
+  <span class="smaller low">Info: When will subscription expire? (Has to be used with StartDate)</span>
+  {{ form_row(form.Location) }}
+  <span class="smaller low">Info: Which locations will the user be a member of?</span>
+
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
