@@ -41,6 +41,9 @@ class RequestListener
       $this->em->flush();
     }
 
+    if ($user->getLanguage()->getCode() != $this->session->getLocale())
+      $this->session->setLocale($user->getLanguage()->getCode());
+
     $this->session->set('current_user',$user);
   }
 }
