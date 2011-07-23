@@ -322,6 +322,39 @@
         <source>Stop date: %date%</source>
         <target>Stop dato: %date%</target>
       </trans-unit>
+      <trans-unit id="81">
+        <source>Info: How many months will be available for this subscription?</source>
+        <target>Info: Hvor mange måneder vil medlemskabet blive tilgængeligt?</target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Info: How many tickets will the user get for this subscription?</source>
+        <target>Info: Hvor mange klip får brugeren for medlemskabet?</target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Info: Will this subscription automatically be renewal?</source>
+        <target>Info: Vil medlemskabet automatisk blive fornyet?</target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Info: Is this a lifetime subscription?</source>
+        <target>Info: Er dette et livstidsmedlemskab?</target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Info: How many pauses is the user of this subscription allowed to take?</source>
+        <target>Info: Hvor mange pauser vil medlemskabet give rettigheder til at tage?</target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Info: What will be the first day of this subscription?</source>
+        <target>Info: Hvad vil være den første dag af medlemskabet?</target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Info: When will subscription expire? (Has to be used with StartDate)</source>
+        <target>Info: Hvad vil være den sidste dag af medlemskabet? (Skal bruges med StartDate)</target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Info: Which locations will the user be a member of?</source>
+        <target>Info: Hvilke lokationer vil brugeren blive medlem af?</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

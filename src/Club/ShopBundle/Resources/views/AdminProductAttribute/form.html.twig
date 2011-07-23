@@ -1,19 +1,19 @@
   {{ form_row(form.Month) }}
-  <span class="smaller low">Info: How many months will be available for this subscription?</span>
+  <span class="smaller low">{% trans %}Info: How many months will be available for this subscription?{% endtrans %}</span>
   {{ form_row(form.Ticket) }}
-  <span class="smaller low">Info: How many tickets will the user get for this subscription?</span>
+  <span class="smaller low">{% trans %}Info: How many tickets will the user get for this subscription?{% endtrans %}</span>
   {{ form_row(form.AutoRenewal) }}
-  <span class="smaller low">Info: Will this subscription automatically be renewal?</span>
+  <span class="smaller low">{% trans %}Info: Will this subscription automatically be renewal?{% endtrans %}</span>
   {{ form_row(form.Lifetime) }}
-  <span class="smaller low">Info: Is this a lifetime subscription?</span>
+  <span class="smaller low">{% trans %}Info: Is this a lifetime subscription?{% endtrans %}</span>
   {{ form_row(form.AllowedPauses) }}
-  <span class="smaller low">Info: How many pauses is the user of this subscription allowed to take?</span>
+  <span class="smaller low">{% trans %}Info: How many pauses is the user of this subscription allowed to take?{% endtrans %}</span>
   {{ form_row(form.StartDate) }}
-  <span class="smaller low">Info: What will be the first day of this subscription?</span>
+  <span class="smaller low">{% trans %}Info: What will be the first day of this subscription?{% endtrans %}</span>
   {{ form_row(form.ExpireDate) }}
-  <span class="smaller low">Info: When will subscription expire? (Has to be used with StartDate)</span>
+  <span class="smaller low">{% trans %}Info: When will subscription expire? (Has to be used with StartDate){% endtrans %}</span>
   {{ form_row(form.Location) }}
-  <span class="smaller low">Info: Which locations will the user be a member of?</span>
+  <span class="smaller low">{% trans %}Info: Which locations will the user be a member of?{% endtrans %}</span>
 
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
