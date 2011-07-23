@@ -6,7 +6,6 @@
 - make a quick search field for users
 - add category priority ( this will help pick right account_number for products )
 - When edit or create a new dynamic group, recalc users
-- Cannot add categories to ClubMaster Location
 - make user aware that he has to add category before he can add products
 - constraints:
   - Month can only have AutoRenewal value A
