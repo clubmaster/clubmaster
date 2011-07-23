@@ -5,9 +5,17 @@
 
 <p>This is the installer program of ClubMaster.</p>
 
-<form method="post" action="">
-{{ form_widget(form) }}
-<input type="submit" />
+<form methmd="post" action="">
+  <fieldset>
+    <legend>Location Information</legend>
+
+    {{ form_row(form.location_name) }}
+    {{ form_row(form.currency) }}
+
+    <br />
+    {{ form_row(form._token) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
 </form>
 
 <p>ClubMaster team</p>
