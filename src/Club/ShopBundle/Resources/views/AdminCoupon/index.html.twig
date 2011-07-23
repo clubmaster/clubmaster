@@ -1,0 +1,43 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_shop_admincoupon_new') }}" class="btn-create"><span>Create coupon</span></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Coupon</th>
+      <th>Value</th>
+      <th>Max usage</th>
+      <th>Expire At</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for coupon in coupons %}
+    <tr>
+      <td>{{ coupon.couponKey }}</td>
+      <td>{{ coupon.value }}</td>
+      <td>{{ coupon.maxUsage }}</td>
+      <td>{{ coupon.expireAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ coupon.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_shop_admincoupon_edit', { 'id':coupon.id })} %}
+        {% include "ClubLayoutBundle:Default:expire_link.html.twig" with {'url':path('club_shop_admincoupon_expire', { 'id':coupon.id })} %}
+        {% include "ClubLayoutBundle:Default:log_link.html.twig" with {'url':path('club_shop_admincoupon_log', { 'id':coupon.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There are no coupons at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

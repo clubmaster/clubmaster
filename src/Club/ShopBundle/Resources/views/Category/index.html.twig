@@ -1,0 +1,27 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<table>
+  <tr>
+    <th>Category Id</th>
+    <th>Category name</th>
+    <th>Actions</th>
+  </tr>
+{% for category in categories %}
+  <tr>
+    <td>{{ category.id }}</td>
+    <td><a href="{{ path("shop_product",{"category":category.id}) }}">{{ category.categoryName }}</a></td>
+    <td><ul>
+      <li><a href="{{ path("shop_category_edit",{"id":category.id}) }}">Edit</li>
+      <li><a href="{{ path("shop_category_delete",{"id":category.id}) }}">Delete</li>
+    </ul></td>
+  </tr>
+{% else %}
+  <tr>
+    <td colspan="3">There is no such categories.</td>
+  </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

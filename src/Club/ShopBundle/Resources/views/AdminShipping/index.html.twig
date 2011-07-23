@@ -1,0 +1,39 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+<p class="box"><a href="{{ path('admin_shop_shipping_new') }}" class="btn-create"><span>Create shipping</span></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Shipping</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for shipping in shippings %}
+    <tr>
+      <td>{{ shipping.id }}</td>
+      <td>{{ shipping.shippingName }}</td>
+      <td>{{ shipping.price }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_shipping_edit', { 'id':shipping.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_shipping_delete', { 'id':shipping.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no shippings at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

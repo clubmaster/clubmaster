@@ -1,0 +1,68 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<h2>Customer</h2>
+<p>Company: {{ order.customerAddress.companyName }}<br />
+CVR: {{ order.customerAddress.companyName }}<br />
+Name: {{ order.customerAddress.firstName }} {{ order.customerAddress.lastName }}<br />
+Street: {{ order.customerAddress.street }}<br />
+Suburl: {{ order.customerAddress.suburl }}<br />
+Postal: {{ order.customerAddress.postalCode }}<br />
+City: {{ order.customerAddress.city }}<br />
+Country: {{ order.customerAddress.country }}</p>
+
+<h2>Shipping</h2>
+<p>Company: {{ order.shippingAddress.companyName }}<br />
+CVR: {{ order.shippingAddress.companyName }}<br />
+Name: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}<br />
+Street: {{ order.shippingAddress.street }}<br />
+Suburl: {{ order.shippingAddress.suburl }}<br />
+Postal: {{ order.shippingAddress.postalCode }}<br />
+City: {{ order.shippingAddress.city }}<br />
+Country: {{ order.shippingAddress.country }}</p>
+<p>{{ order.shipping }}</p>
+
+<h2>Billing</h2>
+
+<p>Company: {{ order.billingAddress.companyName }}<br />
+CVR: {{ order.billingAddress.companyName }}<br />
+Name: {{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}<br />
+Street: {{ order.billingAddress.street }}<br />
+Suburl: {{ order.billingAddress.suburl }}<br />
+Postal: {{ order.billingAddress.postalCode }}<br />
+City: {{ order.billingAddress.city }}<br />
+Country: {{ order.billingAddress.country }}</p>
+<p>{{ order.paymentMethod }}</p>
+
+<h2>Products</h2>
+{% include "ClubShopBundle:AdminOrder:order_form.html.twig" with {'order':order} %}
+
+<h2>Order history</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Order status</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th colspan="3">&#160;</th>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for status in order.orderStatusHistory %}
+    <tr>
+      <td>{{ status.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ status.orderStatus.statusName }}</td>
+      <td>{{ status.note }}</td>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{{ path('shop_order_cancel', {'id':order.id}) }}">Cancel order</a></p>
+
+{% endblock %}

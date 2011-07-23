@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Shop</source>
+        <target>Butik</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Order</source>
+        <target>Ordre</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Subscription</source>
+        <target>Abonnement</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Event</source>
+        <target>Begivenhed</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Location</source>
+        <target>Område</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Group</source>
+        <target>Gruppe</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Role</source>
+        <target>Rolle</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Currency</source>
+        <target>Valuta</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Language</source>
+        <target>Sprog</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Ban</source>
+        <target>Ban</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Task</source>
+        <target>Opgave</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Log</source>
+        <target>Log</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Product</source>
+        <target>Produkt</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Category</source>
+        <target>Kategori</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Payment Method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Shipping</source>
+        <target>Fragt</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Special</source>
+        <target>Speciel</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Transaction</source>
+        <target>Transaktion</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Account</source>
+        <target>Bogholderi</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+

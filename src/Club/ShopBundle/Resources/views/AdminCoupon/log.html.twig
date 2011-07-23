@@ -1,0 +1,32 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Coupon</th>
+      <th>User</th>
+      <th>Used At</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for coupon in coupons %}
+    <tr>
+      <td>{{ coupon.coupon.couponKey }}</td>
+      <td>{{ coupon.user.profile.name }}</td>
+      <td>{{ coupon.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">This coupon has never been used.</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

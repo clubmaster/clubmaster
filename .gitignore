@@ -1,0 +1,8 @@
+app/installer
+app/cache/*
+app/logs/*
+app/spool/*
+*.swp
+*~
+web/bundles
+vendor/

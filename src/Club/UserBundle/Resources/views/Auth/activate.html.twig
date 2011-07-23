@@ -1,0 +1,19 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Activate User</h2>
+
+<form method="post" action="{{ path('club_user_auth_activate', {'hash':user.activationCode}) }}">
+  <fieldset>
+    <legend>Account Activation</legend>
+    <p>Before your account is ready for you, you have to activate your personal account. Do that simple by type in your password in this formular.</p>
+    <p>Right afterwards you can start using your personal account.</p>
+
+    <p>{{ form_row(form.password) }}</p>
+  </fieldset>
+
+  {{ form_row(form._token) }}
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+</form>
+
+{% endblock %}

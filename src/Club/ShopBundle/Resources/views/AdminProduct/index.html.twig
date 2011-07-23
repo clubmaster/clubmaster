@@ -1,0 +1,38 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<p class="box"><a href="{{ path('admin_shop_product_new') }}" class="btn-create"><span>Create product</span></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Product</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for product in products %}
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.productName }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_product_delete', { 'id':product.id })} %}
+        {% include "ClubLayoutBundle:Default:attribute_link.html.twig" with {'url':path('admin_shop_product_attribute', {'id':product.id})} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">There are no products at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

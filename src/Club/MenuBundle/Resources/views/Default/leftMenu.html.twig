@@ -1,0 +1,13 @@
+<ul class="box">
+  {% for item in menu %}
+  <li {% if item.active is defined %}id="submenu-active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a>
+    <ul>
+    {% if item.items is defined %}
+    {% for subitem in item.items %}
+      <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+    {% endfor %}
+    {% endif %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>

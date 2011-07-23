@@ -1,0 +1,46 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Orders</h2>
+
+{% render "ClubShopBundle:AdminOrderFilter:getFilter" %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>User</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
+      <td>{{ order.price|price }}</td>
+      <td>{{ order.orderStatus.statusName }}</td>
+      <td>{{ order.createdAt|date('Y-m-d') }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_order_edit', { 'id':order.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_order_delete', { 'id':order.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There are no orders at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% include "ClubLayoutBundle:Default:paginator.html.twig" %}
+{% endblock %}

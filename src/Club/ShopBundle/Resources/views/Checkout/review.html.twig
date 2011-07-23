@@ -1,0 +1,35 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<h3>Review order</h3>
+
+{% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
+
+<h3>Order</h3>
+
+<div id="sf_admin_container">
+{% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
+
+<h3>Customer information</h3>
+<p>Company: {{ cart.customerAddress.companyName }}<br />
+CVR: {{ cart.customerAddress.cvr }}<br />
+Name: {{ cart.customerAddress.firstName }} {{ cart.customerAddress.lastName }}<br />
+Street: {{ cart.customerAddress.street }}<br />
+Suburl: {{ cart.customerAddress.suburl }}<br />
+City: {{ cart.customerAddress.postalCode }} {{ cart.customerAddress.city }}<br />
+State: {{ cart.customerAddress.state }}<br />
+Country: {{ cart.customerAddress.country }}</p>
+
+<h3>Payment information</h3>
+<p>{{ cart.paymentMethod }}</p>
+
+<form method="POST" action="{{ path('shop_checkout_process') }}">
+  <div class="box-01">
+    <p class="nom"><input type="submit" value="Place Order" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+</form>
+</div>
+
+{% endblock %}

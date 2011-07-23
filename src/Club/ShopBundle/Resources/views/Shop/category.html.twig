@@ -1,0 +1,32 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<p class="box"><a href="{{ path('shop_checkout') }}" class="btn-info"><span>View cart</span></a></p>
+
+{% if categories|length > 0 %}
+<h3>Categories</h3>
+
+{% for cat in categories %}
+<!-- Button -->
+<div class="btn-box">
+<div class="btn-top"></div>
+<div class="btn">
+  <dl>
+    <dt><a href="{{ path('shop_prod_view', {'id':cat.id}) }}">{{ cat.categoryName }}</a> ({{ cat.getProducts|length }})</dt>
+    <dd>{{ cat.description|truncate(40) }}</dd>
+  </dl>
+</div> <!-- /btn -->
+<div class="btn-bottom"></div>
+</div> <!-- /btn-box -->
+{% endfor %}
+
+<div class="fix"></div>
+{% endif %}
+
+{% if category %}
+  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'category':category} %}
+{% endif %}
+
+{% endblock %}

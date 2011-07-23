@@ -1,0 +1,15 @@
+{% if app.session.hasFlash('notice') %}
+<p class="msg done">{{ app.session.flash('notice') }}</p>
+{% endif %}
+
+{% if app.session.hasFlash('error') %}
+<p class="msg error">{{ app.session.flash('error') }}</p>
+{% endif %}
+
+{% if app.session.hasFlash('warning') %}
+<p class="msg warning">{{ app.session.flash('warning') }}</p>
+{% endif %}
+
+{% if app.session.hasFlash('info') %}
+<p class="msg info">{{ app.session.flash('info') }}</p>
+{% endif %}

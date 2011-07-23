@@ -1,0 +1,10 @@
+<ul class="box">
+  {% for item in menu %}
+
+  <li {% if app.request.attributes.get('_route') == item.route %} id="menu-active"{% endif %}>
+    <a href="{{ item.route }}"><span>{{ item.name }}</span></a>
+  </li>
+
+  {% endfor %}
+</ul>
+

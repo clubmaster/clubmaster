@@ -1,0 +1,46 @@
+{% extends "ClubAccountBundle::base.html.twig" %}
+
+{% block body %}
+
+<p class="box">
+  <a href="{{ path('club_account_adminaccount_new') }}" class="btn-create"><span>Create account</span></a>
+  <a href="{{ path('club_account_adminledger_new') }}" class="btn-create"><span>Create ledger</span></a>
+</p>
+
+<h2>Account</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Account Type</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for account in accounts %}
+    <tr>
+      <td>{{ account.accountNumber }}</td>
+      <td>{{ account.accountName }}</td>
+      <td>{{ account.accountType }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_account_adminaccount_edit',{'id':account.id})} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_account_adminaccount_delete',{'id':account.id})} %}
+        {% include "ClubLayoutBundle:Default:ledger_link.html.twig" with {'url':path('club_account_adminledger_index',{'id':account.id})} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no accounts at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "ClubInstallerBundle::base.html.twig" %}
+
+{% block body %}
+<h2>ClubMaster Installer</h2>
+
+<p>This is the installer program of ClubMaster.</p>
+
+<form method="post" action="">
+{{ form_widget(form) }}
+<input type="submit" />
+</form>
+
+<p>ClubMaster team</p>
+
+{% endblock %}

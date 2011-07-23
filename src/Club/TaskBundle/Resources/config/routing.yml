@@ -1,0 +1,4 @@
+_task:
+  resource: "@ClubTaskBundle/Controller/TaskController.php"
+  type: annotation
+  prefix: /admin

@@ -1,0 +1,32 @@
+<!-- Submit -->
+<div id="submit" class="box-01 box" style="display:none;">
+  <p>This is your current working filter.</p>
+  <form method="post" action="{{ path('club_user_filter_change') }}">
+  {{ form_row(form_filters.filter) }}
+  <input type="submit" value="Change" class="input-submit" />
+  </form>
+
+  <p>This is your filter, make your search here.</p>
+  <form method="POST" action="{{ path('club_user_filter_filter') }}">
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.member_number) }}
+    {{ form_row(form.min_age) }}
+    {{ form_row(form.max_age) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.postal_code) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.location) }}
+    {{ form_row(form.active) }}
+    {{ form_row(form.has_ticket) }}
+    {{ form_row(form.has_subscription) }}
+    {{ form_row(form._token) }}
+
+    <input type="submit" value="Filter" class="input-submit" />
+    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">Save</a>
+    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">Delete</a>
+    <a href="{{ path('club_user_filter_new') }}">New</a>
+
+  </form>
+</div>

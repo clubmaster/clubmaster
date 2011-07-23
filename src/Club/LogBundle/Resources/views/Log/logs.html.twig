@@ -1,0 +1,43 @@
+<h2>Logs</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Read</th>
+      <th>User</th>
+      <th>Severity</th>
+      <th>Message</th>
+      <th>Created at</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for log in logs %}
+    <tr>
+      <td>
+        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-read-icon.png') }}" title="Read" />
+        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="Unread" />
+        {% endif %}
+      </td>
+      <td>{{ log.user.profile.name }}</td>
+      <td>{{ log.severity }}</td>
+      <td>{{ log.log }}</td>
+      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_log_log_show', {'id':log.id}) } %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There are no logs at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% include "ClubLayoutBundle:Default:paginator.html.twig" %}

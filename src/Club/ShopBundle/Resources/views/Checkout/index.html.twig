@@ -1,0 +1,22 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<h3>Cart</h3>
+
+{% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
+
+<h3>Order</h3>
+
+<div id="sf_admin_container">
+{% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
+
+<p class="box">
+  <a href="{{ path('shop_checkout_empty') }}" class="btn-info"><span>Empty cart</span></a>
+  <a href="{{ path('shop') }}" class="btn-info"><span>Continue shopping</span></a>
+  <a href="{{ path('club_shop_coupon_add') }}" class="btn-info"><span>Add coupon</span></a>
+  <a href="{{ path('shop_checkout_shipping') }}" class="btn-info"><span>Checkout</span></a>
+</p>
+
+{% endblock %}

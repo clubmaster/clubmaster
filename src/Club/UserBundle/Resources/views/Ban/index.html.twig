@@ -1,0 +1,40 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+
+{% block body %}
+<h2>Bans</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Value</th>
+      <th>Expires At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for ban in bans %}
+    <tr>
+      <td>{{ ban.type }}</td>
+      <td>{{ ban.value }}</td>
+      <td>{{ ban.expireDate|date("Y-m-d H:i:s") }}</td>
+      <td>
+        <a href="{{ path('ban_expire', {'id':ban.id}) }}">Expire</a>
+        <a href="{{ path('ban_extend', {'id':ban.id}) }}">Extend</a>
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no bans at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

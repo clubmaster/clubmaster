@@ -1,0 +1,51 @@
+{% extends "ClubTaskBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>Task</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Enabled</th>
+      <th>Locked</th>
+      <th>Last run at</th>
+      <th>Next run at</th>
+      <th>Task interval</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="7">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for task in tasks %}
+    <tr>
+      <td>{{ task.taskName }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':task.enabled} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':task.locked} %}</td>
+      {% if task.lastRunAt == '' %}
+      <td>Never</td>
+      {% else %}
+      <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
+      {% endif %}
+      <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ task.taskInterval }}</td>
+      <td>
+        <a href="{{ path('admin_task_disable', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-delete.gif') }}" title="Disable" alt="disable" /></a>
+        <a href="{{ path('admin_task_enable', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" title="Enable" alt="enable" /></a>
+        <a href="{{ path('admin_task_run', {'id':task.id}) }}"><img src="{{ asset('bundles/clublayout/images/ico-settings.gif') }}" title="Run" alt="run" /></a>
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="7">There are no tasks at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

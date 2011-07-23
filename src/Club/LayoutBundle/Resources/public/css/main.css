@@ -1,0 +1,265 @@
+/* =============================================================================
+
+	MAIN.CSS
+	updated: 2009-10-10, 18:30 GMT+1
+
+============================================================================= */
+
+/* =============================================================================
+HTML - styles
+============================================================================= */
+
+body {font:0.8em/1.5 "arial", sans-serif;}
+h1, h2, h3, h4, h5, h6, address, blockquote, dl, fieldset, ol, p, table, ul {margin:15px 0;}
+#content h1 {font-size:180%;}
+#content h2 {font-size:160%;}
+#content h3 {font-size:140%;}
+#content h4 {font-size:120%;}
+#content h5, h6 {font-size:100%;}
+#content table {margin:0; border-collapse:collapse;}
+#content table.width100 {width:100%;}
+#content table th, #content table td {padding:5px 5px;}
+#content table th {text-align:left; vertical-align:middle; font-weight:bold;}
+#content table.tablesorter th.header {cursor:pointer; background-image:url("../images/orderby.gif");}
+#content table.tablesorter th.headerSortUp {background-image:url("../images/orderby-desc.gif");}
+#content table.tablesorter th.headerSortDown {background-image:url("../images/orderby-asc.gif");}
+#content table.tablesorter th.header, #content table.tablesorter th.headerSortUp, #content table.tablesorter th.headerSortDown {padding-left:25px !important; background-position:5px 50%; background-repeat:no-repeat;}
+#content ul {margin:15px 0; list-style:none;}
+#content ul li {padding-left:15px; background:url("../images/ul.gif") 0 4px no-repeat;}
+#content ul ul {margin:0 0 0 10px;}
+#content ul ul li {padding-left:15px; background:url("../images/ul-ul.gif") 0 4px no-repeat;}
+#content ol {margin:15px 0 15px 30px; list-style-type:decimal;}
+#content ol ol {margin:0 0 0 20px;}
+#content ol ol li {list-style-type:lower-alpha;}
+#content dl {clear:both;}
+#content dl dt {font-weight:bold;}
+#content dl dd {margin:0 0 5px 0;}
+#content fieldset {position:relative; margin:10px 0; padding:10px;}
+#content legend {font-size:120%; font-weight:bold;}
+#content code {font-family:"",monospace;}
+#content .help {cursor:help;}
+
+/* =============================================================================
+HTML - without styles
+============================================================================= */
+
+table.nostyle, table.nostyle th, table.nostyle td {border:0 !important;}
+table.nostyle th {background:none !important; text-align:left !important;}
+table.nostyle th, table.nostyle td {padding:3px 5px !important;}
+ul.nostyle {margin:15px 0 15px 20px !important; list-style-type:square !important;}
+ul.nostyle ul {margin:0 0 0 25px !important; list-style-type:square !important;}
+ul.nostyle li {padding:0 !important; background:none !important;}
+dl.nostyle dt {font-weight:bold !important;}
+dl.nostyle dd {margin:0 !important;}
+
+/* =============================================================================
+LAYOUT
+============================================================================= */
+
+#main {min-width:980px; width:expression(document.body.clientWidth < 980? "980px" : "auto" );}
+#tray {padding:12px 15px; background:url("../images/tray.gif") 0 0 repeat-x; font:85%/1.2 "tahoma",sans-serif;}
+#tray p {margin:0;}
+#tray p.f-left {width:50%;}
+#tray #logout {padding-left:18px; background:url("../images/tray-logout.gif") 0 50% no-repeat; text-transform:uppercase;}
+#tray #switcher {margin-right:15px;}
+#tray #switcher img {display:block; float:left; width:16px; height:16px; border:0;}
+#menu {position:relative; z-index:999; padding:15px 15px 13px 15px; background:url("../images/menu.gif") 0 0 repeat-x;}
+#menu ul {margin:0; padding:0; list-style:none;}
+#menu ul li {display:inline; margin:0; padding:0;}
+#menu ul li div {float:left; position:relative;}
+#menu ul li a {float:left; margin-right:5px; padding-left:5px; background:url("../images/menu-left.gif") 0 0 no-repeat; text-decoration:none; cursor:pointer;}
+#menu ul li a span {float:left; display:block; padding:7px 15px 9px 8px; background:url("../images/menu-right.gif") 100% 0 no-repeat;}
+#menu ul li a:hover, #menu ul li#menu-active a {background:url("../images/menu-left.gif") 0 -35px no-repeat;}
+#menu ul li a:hover span, #menu ul li#menu-active a span {background:url("../images/menu-right.gif") 100% -35px no-repeat;}
+#menu ul li#menu-active a {font-weight:bold;}
+#menu ul li#menu-active div a {font-weight:normal;}
+#menu ul li div.drop, #menu ul li.dropdown-off div.drop {display:none;}
+#menu ul li.dropdown-on div.drop {display:block; position:absolute; top:33px; left:0; width:200px; padding-top:14px; z-index:999;}
+#menu ul li.dropdown-on div.drop ul li a {display:block; width:178px; margin:0; padding:3px 10px;}
+#content {padding:20px; overflow:hidden;}
+#footer {clear:both; padding:15px; background:url("../images/separator.gif") 0 0 repeat-x; font:85%/1.2 "tahoma",sans-serif;}
+#footer p {margin:0;}
+
+/* =============================================================================
+PAGE: INDEX
+============================================================================= */
+
+#content .btn-box {float:left; margin-right:7px;}
+#content .btn-box .btn-top {width:342px; height:5px; background:url("../images/btn-02-top.gif") 0 0 no-repeat; font-size:0; line-height:0; overflow:hidden;}
+#content .btn-box .btn-bottom {width:342px; height:6px; margin-bottom:5px; background:url("../images/btn-02-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0; overflow:hidden;}
+#content .btn-box .btn {width:277px; padding:5px 10px 5px 55px; background:url("../images/btn-02.gif") 0 0 no-repeat;}
+#content .btn-box .btn dl {margin:0;}
+#content .btn-box .btn dt {font-size:120%; font-weight:bold;}
+#content .btn-box .btn dt a:hover, .btn-box .btn dt a:active, .btn-box .btn dt a:focus {text-decoration:none;}
+#content .btn-box .btn dd {margin:0;}
+#content .btn-box .btn dd a:hover, #content .btn-box .btn dd a:active, #content .btn-box .btn dd a:focus {text-decoration:none;}
+
+/* =============================================================================
+PAGE: GALLERY
+============================================================================= */
+
+#content .gallery {float:left; width:200px; margin:10px 7px 0 0; padding:10px;}
+#content .gallery .gallery-img {display:block; margin:5px 0;}
+#content .gallery p {margin:0;}
+
+/* =============================================================================
+PAGE: FILES
+============================================================================= */
+
+#content .box-03 {margin-bottom:15px; padding-left:70px;}
+#content .box-03 h2 {margin:0;}
+#content .box-03.doc {background:url("../images/ico-doc.gif") 0 3px no-repeat;}
+#content .box-03.img {background:url("../images/ico-img.gif") 0 3px no-repeat;}
+#content .box-03.pdf {background:url("../images/ico-pdf.gif") 0 3px no-repeat;}
+#content .box-03.xls {background:url("../images/ico-xls.gif") 0 3px no-repeat;}
+#content .box-03.mp3 {background:url("../images/ico-mp3.gif") 0 3px no-repeat;}
+#content .box-03.zip {background:url("../images/ico-zip.gif") 0 3px no-repeat;}
+#content .box-03.others {background:url("../images/ico-others.gif") 0 3px no-repeat;}
+#content .box-03.event {background:url("../images/icons/50/Actions-view-calendar-upcoming-events-icon.png") 0 3px no-repeat;}
+#content .box-03.log {background:url("../images/icons/50/Sign-Alert-icon.png") 0 3px no-repeat;}
+#content .box-03.noimage {background:url("../images/icons/50/Status-image-missing-icon.png") 0 3px no-repeat;}
+
+/* =============================================================================
+PAGE: CALENDAR
+============================================================================= */
+
+#content #calendar {margin:0;}
+#content #calendar th {width:14%; text-align:center;}
+#content #calendar td ul {margin:0 0 0 15px!important; padding:0 !important;}
+#content #calendar td {font:85%/1.2 "tahoma",sans-serif;}
+#content #calendar td.day {vertical-align:middle; text-align:center; font-size:160%;}
+#content #calendar td .day-num {margin-bottom:5px; padding:5px; text-align:center; font-weight:bold;}
+#content #calendar td .day-num .f-right {position:relative; top:-3px;}
+#content #submit {margin:15px 0;}
+
+/* =============================================================================
+PAGE: CALENDAR-02
+============================================================================= */
+
+#content #calendar-02 {margin:0;}
+#content #calendar-02 th {padding:10px; text-align:center;}
+#content #calendar-02 td {padding:10px; vertical-align:middle;}
+#content #calendar-02 td ul {margin:0 0 0 15px!important; padding:0 !important;}
+#content #calendar-02 td.day {vertical-align:middle; text-align:center; font-size:160%;}
+#content #calendar-02 td .day-actions {margin-bottom:5px; padding:5px 10px;}
+
+/* =============================================================================
+PAGE: FORMS
+============================================================================= */
+
+#content fieldset p {margin:10px 0;}
+#content .req {font-weight:bold;}
+
+/* =============================================================================
+PAGE: LOGIN
+============================================================================= */
+
+#main-02 {width:452px; margin:100px auto 0 auto;}
+#main-02 #login-top {width:452px; height:5px; background:url("../images/login-top.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+#main-02 #login-bottom {width:452px; height:5px; background:url("../images/login-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0;}
+#main-02 #login-box {width:420px; padding:10px 17px 10px 15px; background:url("../images/login-box.gif") 0 0 repeat-y;}
+
+/* =============================================================================
+OTHERS
+============================================================================= */
+
+#aside .padding {padding-left:15px;}
+#aside #logo {margin:0 0 15px 0;}
+#aside #logo img {display:block; width:200px;}
+#aside #search fieldset {padding:7px 10px;}
+#aside #search fieldset p {margin:0;}
+#aside #search fieldset legend {font-weight:bold;}
+#aside #search fieldset .input-text {width:130px;}
+#aside #search fieldset #search-options {margin-top:10px;}
+#aside #btn-create {margin:0 0 15px 0;}
+#aside #btn-create a {float:left; padding-left:27px; height:37px; overflow:hidden; background:url("../images/btn-create-left.gif") 0 0 no-repeat; text-decoration:none; font-weight:bold; cursor:pointer;}
+#aside #btn-create a span {float:left; display:block; width:163px; padding:8px 0 10px 10px; background:url("../images/btn-create-right.gif") -2px 0 no-repeat;}
+#aside #btn-create a:hover {background-position:0 -37px;}
+#aside ul {width:215px; margin:0 0 15px 0; list-style:none;}
+#aside ul li {display:inline;}
+#aside ul li a {display:block; width:185px; padding:4px 15px; text-decoration:none;}
+#aside ul li#submenu-active a {width:198px; border:0; background:url("../images/submenu-active.gif") 100% 50% no-repeat; font-weight:bold; z-index:100;}
+#aside ul ul {margin:0; position:static;}
+#aside ul ul li a, #aside ul li#submenu-active ul li a {width:170px; padding:5px 15px 5px 30px; background:url("../images/submenu-sub.gif") 15px 7px no-repeat; font:85%/1.2 "tahoma",sans-serif; font-weight:normal;}
+#content h1 {margin:0; padding:10px 15px; background:url("../images/content-h1.gif") 0 0 repeat-x; letter-spacing:-1px;}
+#content .box-01 {padding:15px;}
+#content .box-02 {padding:10px 15px;}
+#content .box-02.bottom {margin-top:15px;}
+
+#content a.btn, #content a.btn-create, #content a.btn-delete, #content a.btn-info, #content a.btn-list {float:left; margin-right:5px; padding-left:26px; height:37px; overflow:hidden; background:url("../images/btn-create.gif") 0 0 no-repeat; text-decoration:none; font-weight:bold; cursor:pointer;}
+#content a.btn {padding-left:7px; background:url("../images/btn-left.gif") 0 0 no-repeat;}
+#content a.btn-delete {background:url("../images/btn-delete.gif") 0 0 no-repeat;}
+#content a.btn-info {background:url("../images/btn-info.gif") 0 0 no-repeat;}
+#content a.btn-list {background:url("../images/btn-list.gif") 0 0 no-repeat;}
+#content a.btn span, #content a.btn-create span, #content a.btn-delete span, #content a.btn-info span, #content a.btn-list span {float:left; display:block; padding:8px 15px 10px 10px; background:url("../images/btn-right.gif") 100% 0 no-repeat;}
+#content a.btn span {padding:8px 15px 10px 7px; background:url("../images/btn-right.gif") 100% 0 no-repeat;}
+#content a:hover.btn-create, #content a:hover.btn-delete, #content a:hover.btn-info, #content a:hover.btn-list {background-position:0 -37px;}
+#content .label {padding:5px 17px 5px 5px; font:bold 85%/1.2 "tahoma",sans-serif; background:url("../images/label.gif") 100% 50% no-repeat;}
+#content .pagination {clear:both; margin:15px 0; padding-bottom:10px; background:url("../images/dot.gif") 0 100% repeat-x;}
+#content .pagination.bottom {margin-bottom:0; padding-top:10px; background:url("../images/dot.gif") 0 0 repeat-x;}
+#content .pagination p {margin:0;}
+#content .pagination .f-right a {padding:2px 4px; text-decoration:none;}
+#content .pagination .f-right a.pagination-active {padding:2px 6px; font-weight:bold;}
+#content .col50 {float:left; width:49%;}
+#content .col33 {float:left; width:32%;}
+#content .col33.center {padding:0 2%;}
+#content .tabs {margin:15px 0;}
+#content .tabs ul {margin:0; padding:0; list-style-type:none;}
+#content .tabs ul li {display:inline; margin:0; padding:0;}
+#content .tabs a {float:left; margin-right:3px; padding-left:4px; background:url("../images/tabs-l.gif") 0 -100px no-repeat; text-decoration:none;}
+#content .tabs a span {float:left; display:block; padding:8px 15px 6px 11px; background:url("../images/tabs-r.gif") 100% -100px no-repeat; cursor:pointer;}
+#content .tabs a:hover, .tabs a:hover span {text-decoration:underline;}
+#content .tabs .ui-tabs-selected a {background:url("../images/tabs-l.gif") 0 0 no-repeat; font-weight:bold;}
+#content .tabs .ui-tabs-selected a span  {background:url("../images/tabs-r.gif") 100% 0 no-repeat;}
+#content .tabs .ui-tabs-selected a:hover, #content .tabs .ui-tabs-selected a:hover span {text-decoration:none;}
+#content .ui-tabs-hide {display: none !important;}
+#content .nav-top {clear:both; margin:15px 0; padding-bottom:10px; background:url("../images/dot.gif") 0 100% repeat-x;}
+#content .nav-bottom {clear:both; margin:15px 0; padding-top:10px; background:url("../images/dot.gif") 0 0 repeat-x;}
+#content td.arrow-01 {padding-left:30px; background:url("../images/arrow-01.gif") 10px 50% no-repeat;}
+.input-text {padding:3px; font:100%/1.5 "arial", sans-serif;}
+.input-text-02 {padding:5px; font:140%/1.5 "arial", sans-serif;}
+.input-submit {padding:5px; font-size:120%;}
+.input-submit-02 {padding:1px; font-size:100%;}
+
+/* =============================================================================
+MESSAGES
+============================================================================= */
+
+.msg {padding:10px; padding-left:35px;}
+.msg.warning {background:url("../images/ico-warning.gif") 10px 50% no-repeat;}
+.msg.info {background:url("../images/ico-info.gif") 10px 50% no-repeat;}
+.msg.done {background:url("../images/ico-done.gif") 10px 50% no-repeat;}
+.msg.error {background:url("../images/ico-delete.gif") 10px 50% no-repeat;}
+
+/* =============================================================================
+ICONS
+============================================================================= */
+
+.ico {position:relative; top:3px;}
+.ico-delete {padding-left:20px; background:url("../images/ico-delete.gif") 0 0 no-repeat;}
+.ico-edit {padding-left:20px; background:url("../images/ico-edit.gif") 0 0 no-repeat;}
+.ico-show {padding-left:20px; background:url("../images/ico-show.gif") 0 0 no-repeat;}
+.ico-list {padding-left:20px; background:url("../images/ico-list.gif") 0 0 no-repeat;}
+.ico-folder {padding-left:20px; background:url("../images/ico-folder.gif") 0 0 no-repeat;}
+.ico-settings {padding-left:20px; background:url("../images/ico-settings.gif") 0 0 no-repeat;}
+.ico-done {padding-left:20px; background:url("../images/ico-done.gif") 0 0 no-repeat;}
+.ico-info {padding-left:20px; background:url("../images/ico-info.gif") 0 0 no-repeat;}
+.ico-warning {padding-left:20px; background:url("../images/ico-warning.gif") 0 0 no-repeat;}
+.ico-blank {padding-left:20px; background:url("../images/ico-blank.gif") 0 0 no-repeat;}
+.ico-template {padding-left:20px; background:url("../images/ico-template.gif") 0 0 no-repeat;}
+.ico-user-01 {padding-left:20px; background:url("../images/ico-user-01.gif") 0 0 no-repeat;}
+.ico-user-02 {padding-left:20px; background:url("../images/ico-user-02.gif") 0 0 no-repeat;}
+.ico-user-03 {padding-left:20px; background:url("../images/ico-user-03.gif") 0 0 no-repeat;}
+.ico-arrow-left {padding-left:20px; background:url("../images/ico-arrow-left.gif") 0 0 no-repeat;}
+.ico-arrow-right {padding-right:20px; background:url("../images/ico-arrow-right.gif") 100% 0 no-repeat;}
+.ico-drop {padding-left:13px; background:url("../images/ico-drop.gif") 0 4px no-repeat;}
+
+/* =============================================================================
+FONT STYLES
+============================================================================= */
+
+.bigger {font-size:120%;}
+.smaller {font:85%/1.2 "tahoma",sans-serif;}
+
+/* This line can be deleted */
+.tit {padding:10px; background:#f5f5f5;} .tag {background:#ffa;}

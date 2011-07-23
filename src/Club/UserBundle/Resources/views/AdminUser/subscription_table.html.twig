@@ -1,0 +1,36 @@
+<h2>Subscriptions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Start date</th>
+      <th>Expire date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for subscription in user.subscriptions %}
+    <tr>
+      <td>{{ subscription.id }}</td>
+      <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
+      <td>{{ subscription.startDate|date('Y-m-d') }}</td>
+      <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
+      <td>
+        <a href="{{ path('shop_subscription_expire', {'id': subscription.id}) }}">Cancel</a>
+        {% if subscription.active %}
+        <a href="{{ path('shop_subscription_pause', {'id':subscription.id}) }}">Pause</a>
+        {% else %}
+        <a href="{{ path('shop_subscription_resume', {'id':subscription.id}) }}">Resume</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td colspan="5">There is no subscriptions for this user.</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+

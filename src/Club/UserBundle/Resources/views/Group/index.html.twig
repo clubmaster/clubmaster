@@ -1,0 +1,40 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<p class="box"><a href="{{ path('admin_group_new') }}" class="btn-create"><span>Create group</span></a></p>
+
+<h2>Groups</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Group</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for group in groups %}
+    <tr>
+      <td>{{ group.id }}</td>
+      <td>{{ group.groupName }} ( {{ group.users|length }} )</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_group_edit', { 'id':group.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_group_delete', { 'id':group.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">There are no groups at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

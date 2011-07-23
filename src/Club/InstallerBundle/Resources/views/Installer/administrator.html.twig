@@ -1,0 +1,33 @@
+{% extends "ClubInstallerBundle::base.html.twig" %}
+
+{% block body %}
+<h2>ClubMaster Installer</h2>
+
+<p>This is the installer program of ClubMaster.</p>
+
+<form method="post" action="">
+  <fieldset>
+    <legend>Personal Information</legend>
+
+    <p>{{ form_row(form.profile.first_name) }}</p>
+    <p>{{ form_row(form.profile.last_name) }}</p>
+    <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
+    <p>{{ form_row(form.profile.gender) }}</p>
+    <p>{{ form_row(form.profile.day_of_birth) }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Account Information</legend>
+
+    <p>{{ form_row(form.language) }}</p>
+    <p>{{ form_row(form.password) }}</p>
+
+    {{ form_row(form._token) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </fieldset>
+</form>
+
+<p>ClubMaster team</p>
+
+{% endblock %}

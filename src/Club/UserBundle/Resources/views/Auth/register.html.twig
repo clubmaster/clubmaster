@@ -1,0 +1,9 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_user_auth_register') }}">
+{% include "ClubUserBundle:User:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

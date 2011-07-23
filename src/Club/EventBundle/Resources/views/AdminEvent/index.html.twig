@@ -1,0 +1,49 @@
+{% extends "ClubEventBundle::base.html.twig" %}
+
+{% block body %}
+
+<div class="nav-top box">
+  {% include "ClubEventBundle:AdminEvent:_navigation.html.twig" %}
+</div> <!-- /nav-top -->
+
+<p class="box"><a href="{{ path('admin_event_event_new') }}" class="btn-create"><span>Create event</span></a></p>
+
+      <!-- Calendar -->
+      <table id="calendar-02" class="width100">
+        {% for event in events %}
+        <tr>
+          <th style="width:100px;">{{ event.startDate|date('l') }}<br />{{ event.startDate|date('Y/n/j') }}</th>
+          <td class="note-01">
+            <ul class="nostyle">
+              <li>
+                <strong>{{ event.eventName }}</strong><br />
+                Start: {{ event.startDate|date('Y-m-d H:i') }}<br />
+                Stop: {{ event.stopDate|date('Y-m-d H:i') }}<br />
+                Attends: {{ event.attends|length }} / {% if event.maxAttends == 0 %}No limit{% else %}{{ event.maxAttends }}{% endif %}<br />
+                Price: {{ event.price|price }}<br />
+
+                {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %} Edit&#160;
+                {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %} Delete&#160;
+                {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %} Attends&#160;
+              </li>
+            </ul>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <th>&#160;</th>
+          <td>
+            <p>Nothing. <a href="{{ path('admin_event_event_new') }}" class="ico-list">Create</a></p>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </table>
+
+      <!-- Month -->
+
+      <div class="nav-bottom box">
+        {% include "ClubEventBundle:AdminEvent:_navigation.html.twig" %}
+      </div> <!-- /nav-top -->
+
+{% endblock %}

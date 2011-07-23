@@ -1,0 +1,36 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('admin_shop_payment_method_new') }}" class="btn-create"><span>Create payment method</span></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Payment method</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for payment_method in payment_methods %}
+    <tr>
+      <td>{{ payment_method.id }}</td>
+      <td>{{ payment_method.paymentMethodName }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_payment_method_edit', { 'id':payment_method.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_payment_method_delete', { 'id':payment_method.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">There are no payment_methods at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

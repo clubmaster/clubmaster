@@ -1,0 +1,63 @@
+Hi {{ order.customerAddress.firstName }},
+
+Thank you for the order.
+
+You can always check your order on our website with your username and password.
+
+-------------------------------
+Personal information
+-------------------------------
+Name:    {{ order.customerAddress.firstName }} {{ order.customerAddress.lastName }}
+Address: {{ order.customerAddress.street }}
+City:    {{ order.customerAddress.postalCode }} {{ order.customerAddress.city }}
+Country: {{ order.customerAddress.country }}
+
+Order number: {{ order.orderNumber }}
+Order date: {{ order.createdAt|date('Y-m-d H:i:s') }}
+
+-------------------------------
+Products
+-------------------------------
+{% for product in order.products %}
+{{ product.quantity }} x {{ product.productName }} : {{ product.price }}
+{% endfor %}
+-------------------------------
+Sub-Total: {{ order.price }}
+Vat: {{ order.vat }}
+-------------------------------
+Total: {{ order.vatPrice }}
+-------------------------------
+
+-------------------------------
+Shipping
+-------------------------------
+{{ order.shipping }}
+
+-------------------------------
+Payment Method
+-------------------------------
+{{ order.paymentMethod }}
+
+-------------------------------
+Delivery address
+-------------------------------
+Company: {{ order.shippingAddress.companyName }}
+CVR: {{ order.shippingAddress.cvr }}
+Name: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}
+Street: {{ order.shippingAddress.street }}
+City: {{ order.shippingAddress.postalCode }} {{ order.shippingAddress.city }}
+Country: {{ order.shippingAddress.country }}
+
+-------------------------------
+Billing address
+-------------------------------
+Company: {{ order.billingAddress.companyName }}
+CVR: {{ order.billingAddress.cvr }}
+Name: {{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}
+Street: {{ order.billingAddress.street }}
+City: {{ order.billingAddress.postalCode }} {{ order.billingAddress.city }}
+Country: {{ order.billingAddress.country }}
+
+
+Best regards,
+ClubMaster

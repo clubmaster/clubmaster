@@ -1,0 +1,27 @@
+{% if paginator.numpages > 1 %}
+      <!-- Pagination (Top) -->
+      <div class="pagination box">
+        <p class="f-right">
+          {% if paginator.currentPage > 1 %}
+          <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{ paginator.currentPage-1 }}">&laquo;</a>
+          {% else %}
+          &laquo;
+          {% endif %}
+
+        {% for i in 1..paginator.numpages %}
+            {% if i==paginator.currentpage %}
+            <a class="pagination-active" href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a>
+            {% else %}
+            <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{i}}">{{i}}</a>
+            {% endif %}
+        {% endfor %}
+
+          {% if paginator.currentPage != paginator.numpages %}
+          <a href="{{paginator.currentUrl}}?limit={{paginator.limit}}&amp;page={{ paginator.currentPage+1 }}">&raquo;</a>
+          {% else %}
+          &raquo;
+          {% endif %}
+        </p>
+        <p class="f-left">Showing <strong>{{ paginator.offset+1 }}&ndash;{{ paginator.offset+paginator.limit }}</strong> of <strong>{{ paginator.itemsCount }}</strong> Results</p>
+      </div> <!-- /pagination -->
+{% endif %}

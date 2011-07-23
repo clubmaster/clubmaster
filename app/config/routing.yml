@@ -1,0 +1,30 @@
+homepage:
+  pattern: /
+  defaults: { _controller: ClubUserBundle:User:index }
+
+_shop:
+  resource: "@ClubShopBundle/Resources/config/routing.yml"
+
+_user:
+  resource: "@ClubUserBundle/Resources/config/routing.yml"
+
+_rest:
+  resource: "@ClubRestBundle/Resources/config/routing.yml"
+
+_account:
+  resource: "@ClubAccountBundle/Resources/config/routing.yml"
+
+_task:
+  resource: "@ClubTaskBundle/Resources/config/routing.yml"
+
+_mail:
+  resource: "@ClubMailBundle/Resources/config/routing.yml"
+
+_log:
+  resource: "@ClubLogBundle/Resources/config/routing.yml"
+
+_event:
+  resource: "@ClubEventBundle/Resources/config/routing.yml"
+
+_installer:
+  resource: "@ClubInstallerBundle/Resources/config/routing.yml"

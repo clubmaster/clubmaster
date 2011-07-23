@@ -1,0 +1,9 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_user_filter_save', {'id':filter.id}) }}">
+  {% include "ClubUserBundle:Filter:form.html.twig" %}
+</form>
+
+{% endblock %}

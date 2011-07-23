@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ClubMaster//NONSGML v1.0//EN
+{% for event in events %}
+BEGIN:VEVENT
+UID:uid{{ event.id }}@clubmaster.dk
+DTSTAMP:{{ event.createdAt|date('Ymd') }}T{{ event.createdAt|date('His') }}Z
+DTSTART:{{ event.startDate|date('Ymd') }}T{{ event.startDate|date('His') }}Z
+DTEND:{{ event.stopDate|date('Ymd') }}T{{ event.stopDate|date('His') }}Z
+SUMMARY:{{ event.eventName }}
+DESCRIPTION: {{ event.description }}
+END:VEVENT
+{% endfor %}
+END:VCALENDAR
+

@@ -1,0 +1,18 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Payment Information</h2>
+
+{% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
+
+<form method="POST" action="{{ path('shop_checkout_payment') }}">
+<fieldset>
+  <legend>Payment Information</legend>
+
+  <p>{{ form_row(form) }}</p>
+
+  <p><input type="submit" value="Continue" class="input-submit" /></p>
+</fieldset>
+</form>
+
+{% endblock %}

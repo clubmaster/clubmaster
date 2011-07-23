@@ -1,0 +1,46 @@
+{% extends "ClubEventBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Attends</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Event</th>
+      <th>User</th>
+      <th>Paid</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for attend in attends %}
+    <tr>
+      <td>{{ attend.id }}</td>
+      <td>{{ event.eventName }}</td>
+      <td>{{ attend.user.profile.name }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':attend.paid} %}</td>
+      <td>{{ attend.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_attend_delete', {'id':attend.id})} %}
+        {% if attend.paid %}
+        {% include "ClubLayoutBundle:Default:not_paid_link.html.twig" with {'url':path('admin_event_attend_unpaid', {'id':attend.id})} %}
+        {% else %}
+        {% include "ClubLayoutBundle:Default:paid_link.html.twig" with {'url':path('admin_event_attend_paid', {'id':attend.id})} %}
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">There are no attends at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

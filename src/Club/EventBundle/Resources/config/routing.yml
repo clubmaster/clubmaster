@@ -1,0 +1,13 @@
+_admin_event:
+  resource: "@ClubEventBundle/Controller/AdminEventController.php"
+  type: annotation
+  prefix: /admin
+
+_admin_attend:
+  resource: "@ClubEventBundle/Controller/AdminAttendController.php"
+  type: annotation
+  prefix: /admin
+
+_event:
+  resource: "@ClubEventBundle/Controller/EventController.php"
+  type: annotation

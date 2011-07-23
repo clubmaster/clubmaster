@@ -1,0 +1,10 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<form method="post" action="{{ path('admin_currency_edit', {'id':currency.id}) }}">
+{% include "ClubUserBundle:Currency:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

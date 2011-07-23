@@ -1,0 +1,37 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Note</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for user_note in user_notes %}
+    <tr>
+      <td>{{ user_note.id }}</td>
+      <td>{{ user_note.note }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_note_delete', { 'id':user_note.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">There are no notes at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

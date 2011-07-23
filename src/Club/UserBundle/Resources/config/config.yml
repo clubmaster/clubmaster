@@ -1,0 +1,12 @@
+services:
+  failure.password.handler:
+    class: Club\UserBundle\Helper\FailurePasswordHandler
+    arguments: [@doctrine.orm.entity_manager]
+  success.password.handler:
+    class: Club\UserBundle\Helper\SuccessPasswordHandler
+    arguments: [@doctrine.orm.entity_manager]
+  clubmaster.version:
+    class: Club\UserBundle\Helper\Version
+  clubmaster.ban:
+    class: Club\UserBundle\Helper\Ban
+    arguments: [@doctrine.orm.entity_manager, @security.context]

@@ -1,0 +1,44 @@
+{% extends "ClubUserBundle:Auth:base.html.twig" %}
+
+{% block body %}
+      <div id="login-top"></div>
+
+        <div id="login-box">
+
+                <!-- Logo -->
+                <p class="nom t-center"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.gif') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
+
+                <!-- Messages -->
+                {% include "ClubLayoutBundle:Default:flash.html.twig" %}
+
+                <p class="msg info">Enter your username and password.</p>
+
+                <!-- Form -->
+                <form method="POST" action="{{ path('_security_check') }}">
+                <table class="nom nostyle">
+                        <tr>
+                                <td style="width:75px;"><label for="login-user"><strong>Username:</strong></label></td>
+                                <td><input type="text" style="width: 300px;" name="_username" class="input-text" id="login-user" /></td>
+                        </tr>
+                        <tr>
+                                <td><label for="login-pass"><strong>Password:</strong></label></td>
+                                <td><input type="password" style="width: 300px;" name="_password" class="input-text" id="login-pass" /></td>
+                        </tr>
+                        <tr>
+                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Sign In &raquo;" /></td>
+                        </tr>
+                        <tr>
+                                <td></td>
+                                <td>
+                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">Forgot password?</a></span><br />
+                                  <span class="f-right"><a href="{{ path('club_user_auth_register') }}">New user?</a></span>
+                                </td>
+                        </tr>
+                </table>
+                </form>
+
+        </div> <!-- /login-box -->
+
+        <div id="login-bottom"></div>
+
+{% endblock %}

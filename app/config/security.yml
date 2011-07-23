@@ -1,0 +1,38 @@
+security:
+    encoders:
+        Club\UserBundle\Entity\User:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_EVENT_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_EVENT_ADMIN]
+
+    providers:
+        main:
+          entity: { class: Club\UserBundle\Entity\User, property: member_number }
+
+    firewalls:
+        main:
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                failure_handler: failure.password.handler
+                success_handler: success.password.handler
+            logout: true
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: /admin/event*, roles: ROLE_EVENT_ADMIN }
+        - { path: /admin*, roles: ROLE_ADMIN }
+        - { path: /_profiler*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /_wdt*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /auth*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /rest*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /installer*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /upgrade*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /event/ical, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /*, roles: ROLE_USER }

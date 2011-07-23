@@ -1,0 +1,10 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<form method="post" action="{{ path('admin_shop_category_edit', {'id':category.id}) }}">
+{% include "ClubShopBundle:AdminCategory:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

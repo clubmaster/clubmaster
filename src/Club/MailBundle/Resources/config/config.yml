@@ -1,0 +1,4 @@
+services:
+  clubmaster_mailer:
+    class: Club\MailBundle\Helper\Mailer
+    arguments: [@doctrine.orm.entity_manager,@mailer]

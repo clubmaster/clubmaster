@@ -1,0 +1,55 @@
+{% block field_row %}
+{% spaceless %}
+    {{ form_label(form) }}<br />
+    {{ form_widget(form, {'attr': {'class':'input-text' }}) }}
+    {{ form_errors(form) }}<br />
+{% endspaceless %}
+{% endblock field_row %}
+
+{% block field_label %}
+{% spaceless %}
+    <label class="req" for="{{ id }}"{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ label|trans }}:</label>
+{% endspaceless %}
+{% endblock field_label %}
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul>
+        {% for error in errors %}
+            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+
+{% block textarea_widget %}
+{% spaceless %}
+    <textarea cols="70" rows="10" {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block field_widget %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input size="40" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
+{% endspaceless %}
+{% endblock field_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  form_widget(form.year, {'attr': {'class':'input-text' }}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class':'input-text' }}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class':'input-text' }}),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+

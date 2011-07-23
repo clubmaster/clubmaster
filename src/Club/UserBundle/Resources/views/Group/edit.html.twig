@@ -1,0 +1,10 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<form method="post" action="{{ path('admin_group_edit', {'id':group.id}) }}">
+{% include "ClubUserBundle:Group:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

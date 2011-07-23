@@ -1,0 +1,39 @@
+{% extends "ClubAccountBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>Ledger</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Value</th>
+      <th>Note</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for ledger in ledgers %}
+    <tr>
+      <td>{{ ledger.user }}</td>
+      <td>{{ ledger.value }}</td>
+      <td>{{ ledger.note }}</td>
+      <td>{{ ledger.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">There are no ledgers at the time</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+
+{% include "ClubLayoutBundle:Default:paginator.html.twig" %}
+{% endblock %}
