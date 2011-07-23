@@ -7,8 +7,8 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
       <th>Category</th>
+      <th>Location</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -20,8 +20,8 @@
   <tbody>
   {% for category in categories %}
     <tr>
-      <td>{{ category.id }}</td>
       <td>{{ category.categoryName }}</td>
+      <td>{{ category.location.locationName }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_category_edit', { 'id':category.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_category_delete', { 'id':category.id })} %}
