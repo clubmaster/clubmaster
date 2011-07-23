@@ -89,8 +89,8 @@ CREATE TABLE `club_event_attend` (
   PRIMARY KEY (`id`),
   KEY `IDX_2DF53999A76ED395` (`user_id`),
   KEY `IDX_2DF5399971F7E88B` (`event_id`),
-  CONSTRAINT `club_event_attend_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `club_event_event` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `club_event_attend_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `club_user_user` (`id`)
+  CONSTRAINT `club_event_attend_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `club_user_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `club_event_attend_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `club_event_event` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -328,8 +328,7 @@ CREATE TABLE `club_shop_cart_address` (
   `cvr` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `street` varchar(255) NOT NULL,
-  `suburl` varchar(255) DEFAULT NULL,
+  `street` longtext NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) DEFAULT NULL,
@@ -615,8 +614,7 @@ CREATE TABLE `club_shop_order_address` (
   `cvr` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `street` varchar(255) NOT NULL,
-  `suburl` varchar(255) DEFAULT NULL,
+  `street` longtext NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) DEFAULT NULL,
@@ -1195,7 +1193,7 @@ CREATE TABLE `club_task_task` (
 
 LOCK TABLES `club_task_task` WRITE;
 /*!40000 ALTER TABLE `club_task_task` DISABLE KEYS */;
-INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask',NULL,'2011-07-21 20:06:23','+1 hour','2011-07-21 20:06:23','2011-07-21 20:06:23');
+INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06');
 /*!40000 ALTER TABLE `club_task_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1329,7 +1327,7 @@ CREATE TABLE `club_user_currency` (
 
 LOCK TABLES `club_user_currency` WRITE;
 /*!40000 ALTER TABLE `club_user_currency` DISABLE KEYS */;
-INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-21 20:06:23','2011-07-21 20:06:23'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-21 20:06:23','2011-07-21 20:06:23'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-21 20:06:23','2011-07-21 20:06:23');
+INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06');
 /*!40000 ALTER TABLE `club_user_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1446,7 +1444,7 @@ CREATE TABLE `club_user_group` (
 
 LOCK TABLES `club_user_group` WRITE;
 /*!40000 ALTER TABLE `club_user_group` DISABLE KEYS */;
-INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-21 20:06:23','2011-07-21 20:06:23'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-21 20:06:23','2011-07-21 20:06:23');
+INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-23 13:41:07','2011-07-23 13:41:07'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-23 13:41:07','2011-07-23 13:41:07');
 /*!40000 ALTER TABLE `club_user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1638,11 +1636,11 @@ CREATE TABLE `club_user_profile` (
   KEY `IDX_A3EE1CF5C219427A` (`profile_phone_id`),
   KEY `IDX_A3EE1CF55158A078` (`profile_email_id`),
   KEY `IDX_A3EE1CF550F02D8B` (`profile_company_id`),
+  CONSTRAINT `club_user_profile_ibfk_9` FOREIGN KEY (`profile_email_id`) REFERENCES `club_user_profile_email` (`id`) ON DELETE CASCADE,
   CONSTRAINT `club_user_profile_ibfk_5` FOREIGN KEY (`profile_company_id`) REFERENCES `club_user_profile_company` (`id`),
-  CONSTRAINT `club_user_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `club_user_user` (`id`),
-  CONSTRAINT `club_user_profile_ibfk_2` FOREIGN KEY (`profile_address_id`) REFERENCES `club_user_profile_address` (`id`),
-  CONSTRAINT `club_user_profile_ibfk_3` FOREIGN KEY (`profile_phone_id`) REFERENCES `club_user_profile_phone` (`id`),
-  CONSTRAINT `club_user_profile_ibfk_4` FOREIGN KEY (`profile_email_id`) REFERENCES `club_user_profile_email` (`id`)
+  CONSTRAINT `club_user_profile_ibfk_6` FOREIGN KEY (`user_id`) REFERENCES `club_user_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `club_user_profile_ibfk_7` FOREIGN KEY (`profile_address_id`) REFERENCES `club_user_profile_address` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `club_user_profile_ibfk_8` FOREIGN KEY (`profile_phone_id`) REFERENCES `club_user_profile_phone` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1666,8 +1664,7 @@ CREATE TABLE `club_user_profile_address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(11) DEFAULT NULL,
   `country_id` int(11) DEFAULT NULL,
-  `street` varchar(255) NOT NULL,
-  `suburl` varchar(255) DEFAULT NULL,
+  `street` longtext NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) DEFAULT NULL,
@@ -1676,7 +1673,7 @@ CREATE TABLE `club_user_profile_address` (
   KEY `IDX_753AFDDCCCFA12B8` (`profile_id`),
   KEY `IDX_753AFDDCF92F3E70` (`country_id`),
   CONSTRAINT `club_user_profile_address_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `club_user_country` (`id`),
-  CONSTRAINT `club_user_profile_address_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`)
+  CONSTRAINT `club_user_profile_address_ibfk_3` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1730,7 +1727,7 @@ CREATE TABLE `club_user_profile_email` (
   `contact_type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_607BB7F3CCFA12B8` (`profile_id`),
-  CONSTRAINT `club_user_profile_email_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`)
+  CONSTRAINT `club_user_profile_email_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1757,7 +1754,7 @@ CREATE TABLE `club_user_profile_phone` (
   `contact_type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C3A65C5ACCFA12B8` (`profile_id`),
-  CONSTRAINT `club_user_profile_phone_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`)
+  CONSTRAINT `club_user_profile_phone_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1823,9 +1820,9 @@ CREATE TABLE `club_user_user` (
   UNIQUE KEY `UNIQ_581B3A66CCFA12B8` (`profile_id`),
   KEY `IDX_581B3A6682F1BAF4` (`language_id`),
   KEY `IDX_581B3A6664D218E` (`location_id`),
-  CONSTRAINT `club_user_user_ibfk_3` FOREIGN KEY (`location_id`) REFERENCES `club_user_location` (`id`),
-  CONSTRAINT `club_user_user_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`),
-  CONSTRAINT `club_user_user_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `club_user_language` (`id`)
+  CONSTRAINT `club_user_user_ibfk_4` FOREIGN KEY (`profile_id`) REFERENCES `club_user_profile` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `club_user_user_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `club_user_language` (`id`),
+  CONSTRAINT `club_user_user_ibfk_3` FOREIGN KEY (`location_id`) REFERENCES `club_user_location` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2095,7 +2092,7 @@ CREATE TABLE `migration_versions` (
 
 LOCK TABLES `migration_versions` WRITE;
 /*!40000 ALTER TABLE `migration_versions` DISABLE KEYS */;
-INSERT INTO `migration_versions` VALUES ('20110721200444');
+INSERT INTO `migration_versions` VALUES ('20110721200444'),('20110722111309'),('20110723103515');
 /*!40000 ALTER TABLE `migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2135,4 +2132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-21 20:06:23
+-- Dump completed on 2011-07-23 13:41:07
