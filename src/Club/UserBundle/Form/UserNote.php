@@ -18,4 +18,9 @@ class UserNote extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\UserNote'
     );
   }
+
+  public function getName()
+  {
+    return 'user_note';
+  }
 }

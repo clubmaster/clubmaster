@@ -23,4 +23,9 @@ class AdminProfileAddress extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\ProfileAddress'
     );
   }
+
+  public function getName()
+  {
+    return 'admin_profile_address';
+  }
 }

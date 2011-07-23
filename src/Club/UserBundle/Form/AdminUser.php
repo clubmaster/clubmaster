@@ -19,4 +19,9 @@ class AdminUser extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'admin_user';
+  }
 }

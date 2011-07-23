@@ -21,4 +21,9 @@ class Special extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Special'
     );
   }
+
+  public function getName()
+  {
+    return 'special';
+  }
 }

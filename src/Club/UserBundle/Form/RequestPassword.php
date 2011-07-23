@@ -16,4 +16,9 @@ class RequestPassword extends AbstractType
       'required' => 'false'
     ));
   }
+
+  public function getName()
+  {
+    return 'request_password';
+  }
 }

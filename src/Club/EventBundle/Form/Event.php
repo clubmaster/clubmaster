@@ -23,4 +23,9 @@ class Event extends AbstractType
       'data_class' => 'Club\EventBundle\Entity\Event'
     );
   }
+
+  public function getName()
+  {
+    return 'event';
+  }
 }

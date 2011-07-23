@@ -19,4 +19,9 @@ class LocationConfig extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\LocationConfig'
     );
   }
+
+  public function getName()
+  {
+    return 'location_config';
+  }
 }

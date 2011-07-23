@@ -14,4 +14,9 @@ class LocationStep extends AbstractType
       'class' => 'Club\UserBundle\Entity\Currency'
     ));
   }
+
+  public function getName()
+  {
+    return 'location_step';
+  }
 }

@@ -22,4 +22,9 @@ class ActivateUser extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'activate_user';
+  }
 }

@@ -25,4 +25,9 @@ class AdministratorProfile extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\Profile'
     );
   }
+
+  public function getName()
+  {
+    return 'administrator_profile';
+  }
 }

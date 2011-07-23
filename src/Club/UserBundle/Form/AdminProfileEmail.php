@@ -18,4 +18,9 @@ class AdminProfileEmail extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\ProfileEmail'
     );
   }
+
+  public function getName()
+  {
+    return 'admin_profile_email';
+  }
 }

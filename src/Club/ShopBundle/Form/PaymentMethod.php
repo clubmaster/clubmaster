@@ -19,4 +19,9 @@ class PaymentMethod extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\PaymentMethod'
     );
   }
+
+  public function getName()
+  {
+    return 'payment_method';
+  }
 }

@@ -20,4 +20,9 @@ class Shipping extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Shipping'
     );
   }
+
+  public function getName()
+  {
+    return 'shipping';
+  }
 }

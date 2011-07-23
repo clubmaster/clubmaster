@@ -22,4 +22,9 @@ class Location extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\Location'
     );
   }
+
+  public function getName()
+  {
+    return 'location';
+  }
 }

@@ -21,4 +21,9 @@ class Category extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Category'
     );
   }
+
+  public function getName()
+  {
+    return 'category';
+  }
 }

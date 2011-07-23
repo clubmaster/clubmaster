@@ -27,4 +27,9 @@ class UserGroup extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'user_group';
+  }
 }

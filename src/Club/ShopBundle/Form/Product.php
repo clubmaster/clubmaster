@@ -26,4 +26,9 @@ class Product extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Product'
     );
   }
+
+  public function getName()
+  {
+    return 'product';
+  }
 }

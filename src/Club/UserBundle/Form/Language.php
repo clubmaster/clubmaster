@@ -28,4 +28,9 @@ class Language extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\Language'
     );
   }
+
+  public function getName()
+  {
+    return 'language';
+  }
 }

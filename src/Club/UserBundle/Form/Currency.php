@@ -23,4 +23,9 @@ class Currency extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\Currency'
     );
   }
+
+  public function getName()
+  {
+    return 'currency';
+  }
 }

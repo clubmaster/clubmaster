@@ -19,4 +19,9 @@ class User extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'user';
+  }
 }

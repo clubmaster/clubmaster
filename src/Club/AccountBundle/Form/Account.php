@@ -27,4 +27,9 @@ class Account extends AbstractType
       'data_class' => 'Club\AccountBundle\Entity\Account'
     );
   }
+
+  public function getName()
+  {
+    return 'account';
+  }
 }

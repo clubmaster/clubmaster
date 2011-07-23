@@ -19,4 +19,9 @@ class Order extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Order'
     );
   }
+
+  public function getName()
+  {
+    return 'order';
+  }
 }

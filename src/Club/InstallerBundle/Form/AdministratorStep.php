@@ -25,4 +25,9 @@ class AdministratorStep extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'administrator_step';
+  }
 }

@@ -20,4 +20,9 @@ class AdminProfilePhone extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\ProfilePhone'
     );
   }
+
+  public function getName()
+  {
+    return 'admin_profile_phone';
+  }
 }

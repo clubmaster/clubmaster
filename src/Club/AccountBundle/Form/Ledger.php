@@ -21,4 +21,9 @@ class Ledger extends AbstractType
       'data_class' => 'Club\AccountBundle\Entity\Ledger'
     );
   }
+
+  public function getName()
+  {
+    return 'ledger';
+  }
 }

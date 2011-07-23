@@ -28,4 +28,9 @@ class Coupon extends AbstractType
       'data_class' => 'Club\ShopBundle\Entity\Coupon'
     );
   }
+
+  public function getName()
+  {
+    return 'coupon';
+  }
 }

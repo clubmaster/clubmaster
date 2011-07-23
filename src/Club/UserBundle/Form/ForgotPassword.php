@@ -22,4 +22,9 @@ class ForgotPassword extends AbstractType
       'data_class' => 'Club\UserBundle\Entity\User'
     );
   }
+
+  public function getName()
+  {
+    return 'forgot_password';
+  }
 }

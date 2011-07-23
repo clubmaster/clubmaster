@@ -71,4 +71,9 @@ class Filter extends AbstractType
       'data_class' => 'Club\UserBundle\Filter\UserFilter'
     );
   }
+
+  public function getName()
+  {
+    return 'filter';
+  }
 }
