@@ -166,6 +166,15 @@
         <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source>
         <target>Område: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target>
       </trans-unit>
+      <trans-unit id="42">
+        <source>Cannot write to mailer spool dir &lt;strong&gt;%path%&lt;/strong&gt;</source>
+        <target>Kan ikke skrive i mailer spool mappen &lt;strong&gt;%path%&lt;/strong&gt;</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Remove installer file &lt;strong&gt;%path%&lt;/strong&gt;</source>
+        <target>Fjern installations filen &lt;strong&gt;%path%&lt;/strong&gt;</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

@@ -60,10 +60,10 @@ class LogController extends Controller
     $logs = array();
 
     if (!($res = $this->canWriteToMailerSpool()))
-      $logs[] = 'Cannot write to mailer spool dir <strong>'.$this->container->getParameter('swiftmailer.spool.file.path').'</strong>';
+      $logs[] = $this->get('translator')->trans('Cannot write to mailer spool dir <strong>%path%</strong>',array('%path%' => $this->container->getParameter('swiftmailer.spool.file.path')));
 
     if (($res = $this->installerFileExists()))
-      $logs[] = 'Remove installer file <strong>'.$this->get('kernel')->getRootDir().'/installer</strong>';
+      $logs[] = $this->get('translator')->trans('Remove installer file <strong>%path%</strong>', array('%path%' => $this->get('kernel')->getRootDir().'/installer'));
 
     $em = $this->getDoctrine()->getEntityManager();
     $l = $em->getRepository('ClubLogBundle:Log')->findBy(array(
