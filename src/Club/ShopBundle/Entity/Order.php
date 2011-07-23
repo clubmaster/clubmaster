@@ -138,6 +138,11 @@ class Order
      */
     protected $created_at;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updated_at;
+
     public function __construct() {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
       $this->order_status_history = new \Doctrine\Common\Collections\ArrayCollection();
@@ -371,7 +376,10 @@ class Order
      */
     public function prePersist()
     {
-      $this->setCreatedAt(new \DateTime());
+      if (!$this->getId())
+        $this->setCreatedAt(new \DateTime());
+
+      $this->setUpdatedAt(new \DateTime());
     }
 
     public function setCustomerAddress($customer_address)
@@ -407,5 +415,45 @@ class Order
     public function getOrderNumber()
     {
       return '#'.$this->getId();
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Add order_status_history
+     *
+     * @param Club\ShopBundle\Entity\OrderStatusHistory $orderStatusHistory
+     */
+    public function addOrderStatusHistory(\Club\ShopBundle\Entity\OrderStatusHistory $orderStatusHistory)
+    {
+        $this->order_status_history[] = $orderStatusHistory;
+    }
+
+    /**
+     * Add order_products
+     *
+     * @param Club\ShopBundle\Entity\OrderProduct $orderProducts
+     */
+    public function addOrderProducts(\Club\ShopBundle\Entity\OrderProduct $orderProducts)
+    {
+        $this->order_products[] = $orderProducts;
     }
 }

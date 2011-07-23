@@ -13,12 +13,13 @@
       <th>Price</th>
       <th>Status</th>
       <th>Created At</th>
+      <th>Updated At</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="7">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -28,7 +29,8 @@
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price|price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
-      <td>{{ order.createdAt|date('Y-m-d') }}</td>
+      <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ order.updatedAt|date('Y-m-d H:i:s') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_order_edit', { 'id':order.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_order_delete', { 'id':order.id })} %}
@@ -36,7 +38,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">There are no orders at the time</td>
+    <td colspan="7">There are no orders at the time</td>
   </tr>
   {% endfor %}
   </tbody>
