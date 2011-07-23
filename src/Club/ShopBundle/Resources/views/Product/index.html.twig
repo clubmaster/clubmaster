@@ -1,36 +1,36 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a class="btn-create" href="{{ path("shop_product_cart",{"id":product.id}) }}"><span>Add to cart</span></a></p>
+<p class="box"><a class="btn-create" href="{{ path("shop_product_cart",{"id":product.id}) }}"><span>{% trans %}Add to cart{% endtrans %}</span></a></p>
 
 <div class="box-03 noimage box">
 
   <h2 class="nomb">{{ product.productName }}</h2>
   <p class="nomt low">
-    Price: {{ product.specialPrice|price }}<br />
-    Vat price: {{ product.specialVatPrice|price }}<br />
+    {% trans with {'%price%':product.specialPrice|price} %}Price ex. vat: %price%{% endtrans %}<br />
+    {% trans with {'%price%':product.specialVatPrice|price} %}Price: %price%{% endtrans %}<br />
   </p>
-  <h2>Description</h2>
+  <h2>{% trans %}Description{% endtrans %}</h2>
   <p>{{ product.description|raw }}</p>
 
   {% if product.productAttributes|length > 0 %}
-  <h2>Attributes</h2>
+  <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
   {% for attr in product.productAttributes %}
     {% if attr.attribute.attributeName == 'Month' %}
-    <li>Your subscription will last for <b>{{ attr.value }} months</b>.</li>
+    <li>{% trans with {'%months%':attr.value} %}Your subscription will last for <b>%months% months</b>.{% endtrans %}</li>
     {% endif %}
     {% if attr.attribute.attributeName == 'Ticket' %}
-    <li>You will receive <b>{{ attr.value }} tickets</b>.</li>
+    <li>{% trans with {'%tickets%':attr.value} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
     {% endif %}
     {% if attr.attribute.attributeName == 'AutoRenewal' %}
-    <li>Your subscription will be <b>automatically renewed</b>.</li>
+    <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
     {% endif %}
     {% if attr.attribute.attributeName == 'Lifetime' %}
-    <li>This subscription will <b>never expire</b>.</li>
+    <li>{% trans %}Your subscription will <b>never expire</b>.{% endtrans %}</li>
     {% endif %}
     {% if attr.attribute.attributeName == 'AllowedPauses' %}
-    <li>You will be able to take <b>{{ attr.value }} pauses</b> during your membership period.</li>
+    <li>{% trans with {'%pauses%':attr.value} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
     {% endif %}
   {% endfor %}
   </ul>

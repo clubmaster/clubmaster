@@ -210,6 +210,42 @@
         <source>There is no products in this category.</source>
         <target>Der er ingen produkter i denne kategori.</target>
       </trans-unit>
+      <trans-unit id="53">
+        <source>Price: %price%</source>
+        <target>Pris: %price%</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Price ex. vat: %price%</source>
+        <target>Pris u. moms: %price%</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Attributes</source>
+        <target>Attributter</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Your subscription will last for &lt;b&gt;%months% months&lt;/b&gt;.</source>
+        <target>Dit abonnement vil løbe i &lt;b&gt;%months% måneder&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source>
+        <target>Du vil modtage &lt;b&gt;%tickets% klip&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source>
+        <target>Dit abonnement vil blive &lt;b&gt;automatisk fornyet&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Your subscription will &lt;b&gt;never expire&lt;/b&gt;.</source>
+        <target>Dit abonnement vil &lt;b&gt;aldrig udløbe&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
+        <target>Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target>
+      </trans-unit>
 
 
     </body>
