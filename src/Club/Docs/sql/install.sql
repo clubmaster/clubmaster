@@ -573,6 +573,7 @@ CREATE TABLE `club_shop_order` (
   `price` decimal(10,2) NOT NULL,
   `vat_price` decimal(10,2) NOT NULL,
   `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_7BF987275AA1164F` (`payment_method_id`),
   KEY `IDX_7BF987274887F3F8` (`shipping_id`),
@@ -581,13 +582,13 @@ CREATE TABLE `club_shop_order` (
   KEY `IDX_7BF9872787EABF7` (`customer_address_id`),
   KEY `IDX_7BF987274D4CFF2B` (`shipping_address_id`),
   KEY `IDX_7BF9872779D0C0E4` (`billing_address_id`),
-  CONSTRAINT `club_shop_order_ibfk_7` FOREIGN KEY (`billing_address_id`) REFERENCES `club_shop_order_address` (`id`),
   CONSTRAINT `club_shop_order_ibfk_1` FOREIGN KEY (`payment_method_id`) REFERENCES `club_shop_payment_method` (`id`),
   CONSTRAINT `club_shop_order_ibfk_2` FOREIGN KEY (`shipping_id`) REFERENCES `club_shop_shipping` (`id`),
   CONSTRAINT `club_shop_order_ibfk_3` FOREIGN KEY (`order_status_id`) REFERENCES `club_shop_order_status` (`id`),
   CONSTRAINT `club_shop_order_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `club_user_user` (`id`),
   CONSTRAINT `club_shop_order_ibfk_5` FOREIGN KEY (`customer_address_id`) REFERENCES `club_shop_order_address` (`id`),
-  CONSTRAINT `club_shop_order_ibfk_6` FOREIGN KEY (`shipping_address_id`) REFERENCES `club_shop_order_address` (`id`)
+  CONSTRAINT `club_shop_order_ibfk_6` FOREIGN KEY (`shipping_address_id`) REFERENCES `club_shop_order_address` (`id`),
+  CONSTRAINT `club_shop_order_ibfk_7` FOREIGN KEY (`billing_address_id`) REFERENCES `club_shop_order_address` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1193,7 +1194,7 @@ CREATE TABLE `club_task_task` (
 
 LOCK TABLES `club_task_task` WRITE;
 /*!40000 ALTER TABLE `club_task_task` DISABLE KEYS */;
-INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask',NULL,'2011-07-23 13:41:06','+1 hour','2011-07-23 13:41:06','2011-07-23 13:41:06');
+INSERT INTO `club_task_task` VALUES (1,'Update dynamic groups',1,0,'\\Club\\TaskBundle\\Event\\Events','onGroupTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40'),(2,'Cleanup logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLogTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40'),(3,'Renewal memberships',1,0,'\\Club\\TaskBundle\\Event\\Events','onAutoRenewalTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40'),(4,'Cleanup login logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onLoginAttemptTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40'),(5,'Cleanup ban logs',1,0,'\\Club\\TaskBundle\\Event\\Events','onBanTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40'),(6,'Send emails',1,0,'\\Club\\TaskBundle\\Event\\Events','onMailTask',NULL,'2011-07-23 16:38:40','+1 hour','2011-07-23 16:38:40','2011-07-23 16:38:40');
 /*!40000 ALTER TABLE `club_task_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1327,7 +1328,7 @@ CREATE TABLE `club_user_currency` (
 
 LOCK TABLES `club_user_currency` WRITE;
 /*!40000 ALTER TABLE `club_user_currency` DISABLE KEYS */;
-INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-23 13:41:06','2011-07-23 13:41:06');
+INSERT INTO `club_user_currency` VALUES (1,'US Dollar','USD','$',NULL,'2','1.00000',0,'2011-07-23 16:38:40','2011-07-23 16:38:40'),(2,'Euro','EUR','€',NULL,'2','1.00000',0,'2011-07-23 16:38:40','2011-07-23 16:38:40'),(3,'Danish Krone','DKK',NULL,'DK','2','1.00000',0,'2011-07-23 16:38:40','2011-07-23 16:38:40');
 /*!40000 ALTER TABLE `club_user_currency` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,7 +1445,7 @@ CREATE TABLE `club_user_group` (
 
 LOCK TABLES `club_user_group` WRITE;
 /*!40000 ALTER TABLE `club_user_group` DISABLE KEYS */;
-INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-23 13:41:07','2011-07-23 13:41:07'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-23 13:41:07','2011-07-23 13:41:07');
+INSERT INTO `club_user_group` VALUES (1,NULL,'Super Administrators','static',NULL,NULL,NULL,NULL,'2011-07-23 16:38:40','2011-07-23 16:38:40'),(2,NULL,'Event Managers','static',NULL,NULL,NULL,NULL,'2011-07-23 16:38:40','2011-07-23 16:38:40');
 /*!40000 ALTER TABLE `club_user_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2092,7 +2093,7 @@ CREATE TABLE `migration_versions` (
 
 LOCK TABLES `migration_versions` WRITE;
 /*!40000 ALTER TABLE `migration_versions` DISABLE KEYS */;
-INSERT INTO `migration_versions` VALUES ('20110721200444'),('20110722111309'),('20110723103515');
+INSERT INTO `migration_versions` VALUES ('20110721200444'),('20110722111309'),('20110723103515'),('20110723160411');
 /*!40000 ALTER TABLE `migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2132,4 +2133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-23 13:41:07
+-- Dump completed on 2011-07-23 16:38:41
