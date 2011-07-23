@@ -16,6 +16,12 @@ class AdminProductController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
+    $categories = $em->getRepository('ClubShopBundle:Category')->findAll();
+
+    if (!count($categories)) {
+      return $this->forward('ClubShopBundle:AdminProduct:noCategory');
+    }
+
     $products = $em->getRepository('ClubShopBundle:Product')->findAll();
 
     return array(
@@ -74,6 +80,15 @@ class AdminProductController extends Controller
     $this->get('session')->setFlash('notify',sprintf('Product %s deleted.',$product->getProductName()));
 
     return $this->redirect($this->generateUrl('admin_shop_product'));
+  }
+
+  /**
+   * @Route("/shop/product/no_category")
+   * @Template()
+   */
+  public function noCategoryAction()
+  {
+    return array();
   }
 
   protected function process($product)
