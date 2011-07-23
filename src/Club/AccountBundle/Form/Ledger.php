@@ -10,7 +10,10 @@ class Ledger extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('account');
-    $builder->add('user');
+    $builder->add('user','entity',array(
+      'class' => 'Club\UserBundle\Entity\User',
+      'required' => false
+    ));
     $builder->add('value');
     $builder->add('note');
   }
