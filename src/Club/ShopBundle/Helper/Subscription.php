@@ -64,6 +64,7 @@ class Subscription
   public function expireSubscription($subscription)
   {
     $subscription->setExpireDate(new \DateTime());
+    $subscription->setActive(0);
 
     $this->em->persist($subscription);
     $this->em->flush();
