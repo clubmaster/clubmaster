@@ -1,11 +1,11 @@
-<h3>Products</h3>
+<h3>{% trans %}Products{% endtrans %}</h3>
 
 <table>
   <thead>
     <th>&#160;</th>
-    <th>Product name</th>
-    <th>Price</th>
-    <th>Action</th>
+    <th>{% trans %}Product name{% endtrans %}</th>
+    <th>{% trans %}Price{% endtrans %}</th>
+    <th>{% trans %}Action{% endtrans %}</th>
   </thead>
   <tfoot>
     <tr class="bg">
@@ -15,14 +15,14 @@
   <tbody>
     {% for product in category.getProducts %}
     <tr>
-      <td><img src="{{ asset('bundles/clublayout/images/icons/64/Status-image-missing-icon.png') }}" title="No image" alt="No image" />
+      <td><img src="{{ asset('bundles/clublayout/images/icons/64/Status-image-missing-icon.png') }}" title="{% trans %}No image{% endtrans %}" alt="{% trans %}No image{% endtrans %}" />
       <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a> <em>{{ product.description|truncate(200) }}</em></td>
       <td>{{ product.specialVatPrice|price }}</td>
-      <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('bundles/clublayout/images/icons/48/shopping-cart-insert-icon.png') }}" alt="Put in cart" title="Put in cart" /></a></td>
+      <td><a href="{{ path('shop_product_cart', {'id':product.id}) }}"><img src="{{ asset('bundles/clublayout/images/icons/48/shopping-cart-insert-icon.png') }}" alt="{% trans %}Put in cart{% endtrans %}" title="{% trans %}Put in cart{% endtrans %}" /></a></td>
     </tr>
     {% else %}
     <tr>
-      <td colspan="3">There is no products in this category.</td>
+      <td colspan="3">{% trans %}There is no products in this category.{% endtrans %}</td>
     </tr>
     {% endfor %}
   </tbody>
