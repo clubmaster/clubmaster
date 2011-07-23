@@ -249,7 +249,7 @@ class AdminUserController extends Controller
     $this->get('session')->set('cart_id',null);
     $cart = $this->get('cart');
     $cart->getCart()->setUser($user);
-    $cart->setCustomerAddress($user);
+    $cart->setAddresses($user->getProfile()->getProfileAddress());
 
     return $this->redirect($this->generateUrl('shop'));
   }
