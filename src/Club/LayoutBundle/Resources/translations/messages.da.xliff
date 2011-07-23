@@ -246,7 +246,30 @@
         <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
         <target>Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target>
       </trans-unit>
-
+      <trans-unit id="62">
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
+        <target>Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Order number</source>
+        <target>Ordre nummer</target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Updated at</source>
+        <target>Opdateret den</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>You have not completed any orders.</source>
+        <target>Du har ikke gennemført nogen ordre.</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
 
     </body>
   </file>

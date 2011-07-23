@@ -1,40 +1,41 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
-<h2>Order</h2>
+<h2>{% trans %}Order{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Created At</th>
-      <th>Actions</th>
+      <th>{% trans %}Order number{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Price{% endtrans %}</th>
+      <th>{% trans %}Status{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Updated at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="7">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for order in orders %}
     <tr>
-      <td>{{ order.id }}</td>
+      <td>{{ order.orderNumber }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
       <td>{{ order.createdAt|date('Y-m-d') }}</td>
+      <td>{{ order.updatedAt|date('Y-m-d') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('shop_order_edit', { 'id':order.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">There are no orders at the time</td>
+    <td colspan="7">{% trans %}You have not completed any orders.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
