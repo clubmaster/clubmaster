@@ -1,26 +1,26 @@
 #!/bin/sh
 
-VERSION=`cat UserBundle/Helper/Version.php  | grep "protected $version" | cut -d"'" -f2`
+VERSION=`cat src/Club/UserBundle/Helper/Version.php  | grep "protected $version" | cut -d"'" -f2`
 BUILD_PATH=/tmp/clubmaster_${VERSION}
 
 if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
 fi
 
-php ../../app/console doctrine:database:drop --force
-php ../../app/console doctrine:database:create
-php ../../app/console doctrine:migrations:migrate --no-interaction
-php ../../app/console doctrine:fixtures:load
-mysqldump -u root clubmaster_v2 > Docs/sql/install.sql
-sed -i 's/clubmaster_v2/clubmaster/' Docs/sql/install.sql
+php app/console doctrine:database:drop --force
+php app/console doctrine:database:create
+php app/console doctrine:migrations:migrate --no-interaction
+php app/console doctrine:fixtures:load
+mysqldump -u root clubmaster_v2 > src/Club/Docs/sql/install.sql
+sed -i 's/clubmaster_v2/clubmaster/' src/Club/Docs/sql/install.sql
 
 mkdir ${BUILD_PATH}
 
-TRUNK_PATH=`pwd`/../../
+TRUNK_PATH=`pwd`
 
 cp -r ${TRUNK_PATH} ${BUILD_PATH}
-cp Docs/README ${BUILD_PATH}
-cp Docs/bin/install.sh ${BUILD_PATH}
+cp src/Club/Docs/README ${BUILD_PATH}
+cp bin/install.sh ${BUILD_PATH}
 
 rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/deps
@@ -42,7 +42,7 @@ find ${BUILD_PATH} -name .gitignore | xargs rm -rf
 touch ${BUILD_PATH}/app/installer
 
 mkdir ${BUILD_PATH}/app/sql
-cp Docs/sql/install.sql ${BUILD_PATH}/app/sql
+cp src/Club/Docs/sql/install.sql ${BUILD_PATH}/app/sql
 
 cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
 [parameters]
