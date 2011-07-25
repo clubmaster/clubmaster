@@ -1,0 +1,50 @@
+{% extends "ClubTaskBundle::base.html.twig" %}
+
+{% block body %}
+<h2>{% trans %}Task{% endtrans %}</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>{% trans %}Task{% endtrans %}</th>
+      <th>{% trans %}Enabled{% endtrans %}</th>
+      <th>{% trans %}Locked{% endtrans %}</th>
+      <th>{% trans %}Last run at{% endtrans %}</th>
+      <th>{% trans %}Next run at{% endtrans %}</th>
+      <th>{% trans %}Task interval{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="7">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for task in tasks %}
+    <tr>
+      <td>{{ task.taskName }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':task.enabled} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':task.locked} %}</td>
+      {% if task.lastRunAt == '' %}
+      <td>Never</td>
+      {% else %}
+      <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
+      {% endif %}
+      <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ task.taskInterval }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:disable_link.html.twig" with {'url':path('admin_task_disable', {'id':task.id})} %}
+        {% include "ClubLayoutBundle:Default:enable_link.html.twig" with {'url':path('admin_task_enable', {'id':task.id})} %}
+        {% include "ClubLayoutBundle:Default:run_link.html.twig" with {'url':path('admin_task_run', {'id':task.id})} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="7">{% trans %}There are no tasks.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
