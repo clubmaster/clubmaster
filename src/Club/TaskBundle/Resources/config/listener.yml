@@ -1,6 +1,0 @@
-services:
-  club.taskbundle.listener.task:
-    class: Club\TaskBundle\Listener\TaskListener
-    arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
-    tags:
-      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
