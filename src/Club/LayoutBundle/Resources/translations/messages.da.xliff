@@ -374,6 +374,110 @@
         <source>If you want to change your current location, just click on the location you want to go to.</source>
         <target>Hvis du vil ændre dit nuværende område, så klik blot på det sted du vil gå til.</target>
       </trans-unit>
+      <trans-unit id="94">
+        <source>Create user</source>
+        <target>Opret bruger</target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Show filter</source>
+        <target>Vis filter</target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>OK</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Ban selected</source>
+        <target>Ban valgte</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>There are no users in the system.</source>
+        <target>Der er ingen brugere i systemet.</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Showing &lt;strong&gt;%first%-%last%&lt;/strong&gt; of &lt;strong&gt;%count%&lt;/strong&gt; results</source>
+        <target>Viser &lt;strong&gt;%first%-%last%&lt;/strong&gt; af &lt;strong&gt;%count%&lt;/strong&gt; resultater</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>This is your current working filter.</source>
+        <target>Dette er dit nuværende arbejds filter.</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Change</source>
+        <target>Skift</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>This is your filter, make your search here.</source>
+        <target>Dette er dit filter, lav din søgning her.</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Filter</source>
+        <target>Filter</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>New</source>
+        <target>Ny</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Member number</source>
+        <target>Medlemsnummer</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Min age</source>
+        <target>Min alder</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Max age</source>
+        <target>Max alder</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Has ticket</source>
+        <target>Har klip</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Has subscription</source>
+        <target>Har abonnement</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Are you sure?</source>
+        <target>Er du sikker?</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Note</source>
+        <target>Notat</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Shop as</source>
+        <target>Køb som</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>There is no subscriptions for this user.</source>
+        <target>Der er ingen abonnementer for denne bruger.</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Groups</source>
+        <target>Grupper</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>There are no notes.</source>
+        <target>Der er ingen notater.</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Create note</source>
+        <target>Opret notat</target>
+      </trans-unit>
 
     </body>
   </file>

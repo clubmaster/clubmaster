@@ -22,6 +22,6 @@
           &raquo;
           {% endif %}
         </p>
-        <p class="f-left">Showing <strong>{{ paginator.offset+1 }}&ndash;{{ paginator.offset+paginator.limit }}</strong> of <strong>{{ paginator.itemsCount }}</strong> Results</p>
+        <p class="f-left">{% trans with {'%first%':paginator.offset+1,'%last%':paginator.offset+paginator.limit,'%count%':paginator.itemsCount} %}Showing <strong>%first%-%last%</strong> of <strong>%count%</strong> results{% endtrans %}</p>
       </div> <!-- /pagination -->
 {% endif %}

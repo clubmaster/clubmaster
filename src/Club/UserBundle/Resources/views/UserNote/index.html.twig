@@ -1,14 +1,14 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>Create note</span></a></p>
+<p class="box"><a href="{{ path('admin_user_note_new', {'id':user.id}) }}" class="btn-create"><span>{% trans %}Create note{% endtrans %}</span></a></p>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Note</th>
-      <th>Actions</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Note{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -19,7 +19,7 @@
   <tbody>
   {% for user_note in user_notes %}
     <tr>
-      <td>{{ user_note.id }}</td>
+      <td>{{ user_note.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ user_note.note }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}
@@ -28,7 +28,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no notes at the time</td>
+    <td colspan="3">{% trans %}There are no notes.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
