@@ -1034,6 +1034,18 @@
         <source>Confirm order</source>
         <target>Bekræft ordre</target>
       </trans-unit>
+      <trans-unit id="259">
+        <source>Stop date</source>
+        <target>Stop dato</target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>Nothing.</source>
+        <target>Ingenting.</target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>Create</source>
+        <target>Opret</target>
+      </trans-unit>
 
     </body>
   </file>
