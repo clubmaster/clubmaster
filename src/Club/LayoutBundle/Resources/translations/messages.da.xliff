@@ -870,6 +870,34 @@
         <source>You have no products.</source>
         <target>Du har ingen produkter.</target>
       </trans-unit>
+      <trans-unit id="218">
+        <source>Max usage</source>
+        <target>Max brug</target>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>There are no coupons.</source>
+        <target>Der er ingen kuponner.</target>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Create coupon</source>
+        <target>Opret kupon</target>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Coupon key</source>
+        <target>Kupon nøgle</target>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Expire at</source>
+        <target>Udløber den</target>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>This coupon has never been used.</source>
+        <target>Denne kupon har aldrig været brugt.</target>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Used at</source>
+        <target>Brugt den</target>
+      </trans-unit>
 
     </body>
   </file>
