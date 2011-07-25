@@ -6,10 +6,10 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Value</th>
-      <th>Expires At</th>
-      <th>Actions</th>
+      <th>{% trans %}Type{% endtrans %}</th>
+      <th>{% trans %}Value{% endtrans %}</th>
+      <th>{% trans %}Expires at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -24,13 +24,13 @@
       <td>{{ ban.value }}</td>
       <td>{{ ban.expireDate|date("Y-m-d H:i:s") }}</td>
       <td>
-        <a href="{{ path('ban_expire', {'id':ban.id}) }}">Expire</a>
-        <a href="{{ path('ban_extend', {'id':ban.id}) }}">Extend</a>
+        {% include "ClubLayoutBundle:Default:expire_link.html.twig" with {'url':path('ban_expire', {'id':ban.id})} %}
+        {% include "ClubLayoutBundle:Default:extend_link.html.twig" with {'url':path('ban_extend', {'id':ban.id})} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no bans at the time</td>
+    <td colspan="4">{% trans %}There are no bans.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

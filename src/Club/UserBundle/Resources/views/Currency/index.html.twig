@@ -1,26 +1,23 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-
 {% block body %}
-<p class="box"><a href="{{ path('admin_currency_new') }}" class="btn-create"><span>Create currency</span></a></p>
+<p class="box"><a href="{{ path('admin_currency_new') }}" class="btn-create"><span>{% trans %}Create currency{% endtrans %}</span></a></p>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Currency</th>
-      <th>Actions</th>
+      <th>{% trans %}Currency{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="2">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for currency in currencies %}
     <tr>
-      <td>{{ currency.id }}</td>
       <td>{{ currency.currencyName }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_currency_edit', { 'id':currency.id })} %}
@@ -29,7 +26,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no currencies at the time</td>
+    <td colspan="2">{% trans %}There are no currencies.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

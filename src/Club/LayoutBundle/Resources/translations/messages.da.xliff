@@ -530,6 +530,54 @@
         <source>Info: The members of this group will get all the roles that you select in this field.</source>
         <target>Info: Medlemmer af denne gruppe vil få alle valgte roller.</target>
       </trans-unit>
+      <trans-unit id="133">
+        <source>Create currency</source>
+        <target>Opret valuta</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Currency</source>
+        <target>Valuta</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>There are no currencies.</source>
+        <target>Der er ingen valutaer.</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Currency name</source>
+        <target>Valuta navn</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Symbol left</source>
+        <target>Symbol venstre</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Symbol right</source>
+        <target>Symbol højre</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Decimal places</source>
+        <target>Decimal placeringer</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Value</source>
+        <target>Værdi</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>Expires at</source>
+        <target>Udløber den</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Expire</source>
+        <target>Udløb</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Extend</source>
+        <target>Udvid</target>
+      </trans-unit>
 
     </body>
   </file>
