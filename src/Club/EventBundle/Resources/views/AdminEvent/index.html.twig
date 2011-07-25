@@ -6,7 +6,7 @@
   {% include "ClubEventBundle:AdminEvent:_navigation.html.twig" %}
 </div> <!-- /nav-top -->
 
-<p class="box"><a href="{{ path('admin_event_event_new') }}" class="btn-create"><span>Create event</span></a></p>
+<p class="box"><a href="{{ path('admin_event_event_new') }}" class="btn-create"><span>{% trans %}Create event{% endtrans %}</span></a></p>
 
       <!-- Calendar -->
       <table id="calendar-02" class="width100">
@@ -17,14 +17,18 @@
             <ul class="nostyle">
               <li>
                 <strong>{{ event.eventName }}</strong><br />
-                Start: {{ event.startDate|date('Y-m-d H:i') }}<br />
-                Stop: {{ event.stopDate|date('Y-m-d H:i') }}<br />
-                Attends: {{ event.attends|length }} / {% if event.maxAttends == 0 %}No limit{% else %}{{ event.maxAttends }}{% endif %}<br />
-                Price: {{ event.price|price }}<br />
+                {% trans with {'%date%':event.startDate|date('Y-m-d H:i')} %}Start date: %date%{% endtrans %}<br />
+                {% trans with {'%date%':event.stopDate|date('Y-m-d H:i')} %}Stop date: %date%{% endtrans %}<br />
+                {% if event.maxAttends == 0 %}
+                {% trans with {'%attends%':event.attends|length} %}Attends: %attends% / No limit{% endtrans %}<br />
+                {% else %}
+                {% trans with {'%attends%':event.attends|length,'%limit%':event.maxAttends} %}Attends: %attends% / %limit%{% endtrans %}<br />
+                {% endif %}
+                {% trans with {'%price%':event.price|price} %}Price: %price%{% endtrans %}<br />
 
-                {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %} Edit&#160;
-                {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %} Delete&#160;
-                {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %} Attends&#160;
+                {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %} {% trans %}Edit{% endtrans %}&#160;
+                {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %} {% trans %}Delete{% endtrans %}&#160;
+                {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %} {% trans %}Attends{% endtrans %}&#160;
               </li>
             </ul>
           </td>

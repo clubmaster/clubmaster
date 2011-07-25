@@ -714,6 +714,38 @@
         <source>There are no ledgers.</source>
         <target>Der er ingen finanskonti.</target>
       </trans-unit>
+      <trans-unit id="179">
+        <source>Create event</source>
+        <target>Opret begivenhed</target>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Attends</source>
+        <target>Tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Attends: %attends% / %limit%</source>
+        <target>Tilmeldinger: %attends% / %limit%</target>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Attends: %attends% / No limit</source>
+        <target>Tilmeldinger: %attends% / Ingen loft</target>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Event name</source>
+        <target>Begivenhed navn</target>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Max attends</source>
+        <target>Max tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Paid</source>
+        <target>Betalt</target>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Not paid</source>
+        <target>Ikke betalt</target>
+      </trans-unit>
 
     </body>
   </file>

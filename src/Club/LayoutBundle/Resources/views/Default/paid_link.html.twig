@@ -1,1 +1,1 @@
-<a onclick="return confirm('Are you sure?');" href="{{ url }}"><img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" class="ico" alt="Paid" title="Paid" /></a> Paid
+<a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" href="{{ url }}"><img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" class="ico" alt="{% trans %}Paid{% endtrans %}" title="{% trans %}Paid{% endtrans %}" /></a> {% trans %}Paid{% endtrans %}
