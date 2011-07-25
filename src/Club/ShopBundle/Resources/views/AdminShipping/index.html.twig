@@ -1,21 +1,19 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
-<p class="box"><a href="{{ path('admin_shop_shipping_new') }}" class="btn-create"><span>Create shipping</span></a></p>
+<p class="box"><a href="{{ path('admin_shop_shipping_new') }}" class="btn-create"><span>{% trans %}Create shipping{% endtrans %}</span></a></p>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Shipping</th>
-      <th>Price</th>
-      <th>Actions</th>
+      <th>{% trans %}Shipping{% endtrans %}</th>
+      <th>{% trans %}Price{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -31,7 +29,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no shippings at the time</td>
+    <td colspan="3">{% trans %}There are no shipping.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

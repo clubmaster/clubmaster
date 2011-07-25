@@ -926,6 +926,18 @@
         <source>Page</source>
         <target>Side</target>
       </trans-unit>
+      <trans-unit id="232">
+        <source>There are no shipping.</source>
+        <target>Der er ingen fragt.</target>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Create shipping</source>
+        <target>Opret fragt</target>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>Shipping name</source>
+        <target>Fragt navn</target>
+      </trans-unit>
 
     </body>
   </file>
