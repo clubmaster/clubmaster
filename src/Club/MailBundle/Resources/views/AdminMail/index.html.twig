@@ -1,14 +1,14 @@
 {% extends "ClubMailBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Mail</h2>
+<h2>{% trans %}Mail{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Event</th>
-      <th>File</th>
-      <th>Actions</th>
+      <th>{% trans %}Event{% endtrans %}</th>
+      <th>{% trans %}File{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -27,7 +27,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no files at the time</td>
+    <td colspan="3">{% trans %}There are no files.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

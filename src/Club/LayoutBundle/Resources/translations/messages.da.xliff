@@ -658,6 +658,22 @@
         <source>Type: %type%</source>
         <target>Type: %type%</target>
       </trans-unit>
+      <trans-unit id="165">
+        <source>Mail</source>
+        <target>Mail</target>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>File</source>
+        <target>Fil</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Show</source>
+        <target>Vis</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>There are no files.</source>
+        <target>Der er ingen filer.</target>
+      </trans-unit>
 
     </body>
   </file>
