@@ -366,6 +366,14 @@
         <source>Coupon</source>
         <target>Kupon</target>
       </trans-unit>
+      <trans-unit id="92">
+        <source>Locations</source>
+        <target>Områder</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>If you want to change your current location, just click on the location you want to go to.</source>
+        <target>Hvis du vil ændre dit nuværende område, så klik blot på det sted du vil gå til.</target>
+      </trans-unit>
 
     </body>
   </file>
