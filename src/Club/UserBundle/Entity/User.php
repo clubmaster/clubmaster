@@ -95,13 +95,6 @@ class User implements AdvancedUserInterface, \Serializable
     private $activation_code;
 
     /**
-     * @ORM\Column(type="datetime", nullable="true")
-     *
-     * @var date $expires_at
-     */
-    private $expires_at;
-
-    /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
@@ -372,26 +365,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function getExpired()
     {
         return $this->expired;
-    }
-
-    /**
-     * Set expires_at
-     *
-     * @param date $expiresAt
-     */
-    public function setExpiresAt($expiresAt)
-    {
-        $this->expires_at = $expiresAt;
-    }
-
-    /**
-     * Get expires_at
-     *
-     * @return date $expiresAt
-     */
-    public function getExpiresAt()
-    {
-        return $this->expires_at;
     }
 
     /**
