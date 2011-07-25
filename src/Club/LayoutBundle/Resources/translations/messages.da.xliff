@@ -938,6 +938,50 @@
         <source>Shipping name</source>
         <target>Fragt navn</target>
       </trans-unit>
+      <trans-unit id="235">
+        <source>Location config</source>
+        <target>Område konfiguration</target>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>If a location does not have any settings, it will relay on its parents.</source>
+        <target>Hvis et område ikke har nogen konfiguration, vil det benytte sig af dets ovenstående område.</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Account default income</source>
+        <target>Konto standard indkomst</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Account default vat</source>
+        <target>Konto standard moms</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Account default cash</source>
+        <target>Konto standard kontant</target>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Account default discount</source>
+        <target>Konto standard rabat</target>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>Default currency</source>
+        <target>Standard valuta</target>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Default language</source>
+        <target>Standard sprog</target>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>Default location</source>
+        <target>Standard område</target>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Email sender address</source>
+        <target>E-mail afsender adresse</target>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Email sender name</source>
+        <target>E-mail afsender navn</target>
+      </trans-unit>
 
     </body>
   </file>

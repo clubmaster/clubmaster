@@ -1,7 +1,7 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-<h2>{% trans %}Group{% endtrans %}
+<h2>{% trans %}Group{% endtrans %}</h2>
 
 <form method="post" action="{{ path('admin_group_edit', {'id':group.id}) }}">
 {% include "ClubUserBundle:Group:form.html.twig" with {'form': form} %}
