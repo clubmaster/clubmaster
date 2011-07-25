@@ -28,3 +28,6 @@ _event:
 
 _installer:
   resource: "@ClubInstallerBundle/Resources/config/routing.yml"
+
+_feedback:
+  resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
