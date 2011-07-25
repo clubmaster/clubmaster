@@ -1,10 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
-<h2>Edit Product {{ product.productName }}</h2>
+<h2>{% trans with {'%product%':product.productName} %}Edit Product %product%{% endtrans %}</h2>
 
-<p>This is where you edit the different attributes for your product, if your product should have some special attributes.</p>
+<p>{% trans %}This is where you edit the different attributes for your product, if your product should have some special attributes.{% endtrans %}</p>
 
 <form method="post" action="{{ path('admin_shop_product_attribute', {'id':product.id}) }}">
 {% include "ClubShopBundle:AdminProductAttribute:form.html.twig" %}

@@ -1,26 +1,23 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-
-<p class="box"><a href="{{ path('admin_shop_product_new') }}" class="btn-create"><span>Create product</span></a></p>
+<p class="box"><a href="{{ path('admin_shop_product_new') }}" class="btn-create"><span>{% trans %}Create product{% endtrans %}</span></a></p>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Product</th>
-      <th>Actions</th>
+      <th>{% trans %}Product{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="2">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for product in products %}
     <tr>
-      <td>{{ product.id }}</td>
       <td>{{ product.productName }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
@@ -30,7 +27,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no products at the time</td>
+    <td colspan="2">{% trans %}There are no products.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

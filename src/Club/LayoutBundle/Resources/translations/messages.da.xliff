@@ -746,6 +746,130 @@
         <source>Not paid</source>
         <target>Ikke betalt</target>
       </trans-unit>
+      <trans-unit id="187">
+        <source>There are no products.</source>
+        <target>Der er ingen produkter.</target>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Create product</source>
+        <target>Opret produkt</target>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Attribute</source>
+        <target>Attribut</target>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Vat</source>
+        <target>Moms</target>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Edit Product %product%</source>
+        <target>Rediger Product %product%</target>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>This is where you edit the different attributes for your product, if your product should have some special attributes.</source>
+        <target>Dette er hvor du redigere de forskellige attributter til dine produkter, hvis du har et produkt som skal have en speciel attribut.</target>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Month</source>
+        <target>Måned</target>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Ticket</source>
+        <target>Klip</target>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Auto Renewal</source>
+        <target>Automatisk fornyelse</target>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Lifetime</source>
+        <target>Livstid</target>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Allowed Pauses</source>
+        <target>Tilladte pauser</target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Create category</source>
+        <target>Opret kategori</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>There are no categories.</source>
+        <target>Der er ikke nogen kategorier.</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Category name</source>
+        <target>Kategori navn</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>There are no orders.</source>
+        <target>Der er ingen ordre.</target>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>Customer</source>
+        <target>Kunde</target>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Billing</source>
+        <target>Betaler</target>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>Order history</source>
+        <target>Ordre historik</target>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>Date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>Order status</source>
+        <target>Ordre status</target>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>Company: %company%</source>
+        <target>Firma: %company%</target>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>CVR: %cvr%</source>
+        <target>CVR: %cvr%</target>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Name: %firstname% %lastname%</source>
+        <target>Navn: %firstname% %lastname%</target>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>Street: %street%</source>
+        <target>Adresse: %street%</target>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>Postal: %postal%</source>
+        <target>Postnummer: %postal%</target>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>City: %city%</source>
+        <target>By: %city%</target>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>Country: %country%</source>
+        <target>Land: %country%</target>
+      </trans-unit>
+      <trans-unit id="214">
+        <source>Unit price</source>
+        <target>Enhedspris</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Quantity</source>
+        <target>Mængde</target>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Summary</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>You have no products.</source>
+        <target>Du har ingen produkter.</target>
+      </trans-unit>
 
     </body>
   </file>
