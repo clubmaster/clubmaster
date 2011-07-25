@@ -354,7 +354,14 @@
         <source>Info: Which locations will the user be a member of?</source>
         <target>Info: Hvilke lokationer vil brugeren blive medlem af?</target>
       </trans-unit>
-
+      <trans-unit id="89">
+        <source>Attend</source>
+        <target>Tilmeld</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Unttend</source>
+        <target>Afmeld</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

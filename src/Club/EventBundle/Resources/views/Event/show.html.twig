@@ -4,9 +4,9 @@
 
 <p class="box">
 {% if event.isAttending(user) %}
-<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-delete"><span>Unattend</span></a>
+<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-delete"><span>{% trans %}Unattend{% endtrans %}</span></a>
 {% else %}
-<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>Attend</span></a>
+<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>{% trans %}Attend{% endtrans %}</span></a>
 {% endif %}
 </p>
 
@@ -14,12 +14,13 @@
 
   <h2 class="nomb">{{ event.eventName }}</h2>
   <p class="nomt low">
-    Start date: {{ event.startDate|date('Y-m-d H:i') }}<br />
-    Start date: {{ event.stopDate|date('Y-m-d H:i') }}<br />
-    Price: {% if event.price == '' %}-{% else %}{{ event.price }}{% endif %}
+    {% trans with {'%date%':event.startDate|date('Y-m-d H:i')} %}Start date: %date%{% endtrans %}<br />
+    {% trans with {'%date%':event.stopDate|date('Y-m-d H:i')} %}Start date: %date%{% endtrans %}<br />
+    {% if event.price == '' %}{% trans with {'%price%':'-'} %}Price: %price%{% endtrans %}
+    {% else %}{% trans with {'%price%':event.price|price} %}Price: %price%{% endtrans %}{% endif %}
   </p>
 
-  <h2>Description</h2>
+  <h2>{% trans %}Description{% endtrans %}</h2>
   <p class="nomt low">{{ event.description|raw }}</p>
 
 </div> <!-- /box-03 -->
