@@ -982,6 +982,58 @@
         <source>Email sender name</source>
         <target>E-mail afsender navn</target>
       </trans-unit>
+      <trans-unit id="246">
+        <source>Cart</source>
+        <target>Kurv</target>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Empty cart</source>
+        <target>Tøm kurv</target>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>Continue shopping</source>
+        <target>Fortsæt indkøb</target>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Use coupon</source>
+        <target>Brug kupon</target>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>Checkout</source>
+        <target>Gå til kassen</target>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Choose payment</source>
+        <target>Vælg betaling</target>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>Review order</source>
+        <target>Gennemse ordre</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Done</source>
+        <target>Færdig</target>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>Your cart is empty.</source>
+        <target>Din kurv er tom.</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>Customer Information</source>
+        <target>Kunde Information</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Shipping Information</source>
+        <target>Fragt Information</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Payment Information</source>
+        <target>Betalings Information</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source>Confirm order</source>
+        <target>Bekræft ordre</target>
+      </trans-unit>
 
     </body>
   </file>
