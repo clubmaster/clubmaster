@@ -1,21 +1,20 @@
 {% extends "ClubAccountBundle::base.html.twig" %}
 
 {% block body %}
-
 <p class="box">
-  <a href="{{ path('club_account_adminaccount_new') }}" class="btn-create"><span>Create account</span></a>
-  <a href="{{ path('club_account_adminledger_new') }}" class="btn-create"><span>Create ledger</span></a>
+  <a href="{{ path('club_account_adminaccount_new') }}" class="btn-create"><span>{% trans %}Create account{% endtrans %}</span></a>
+  <a href="{{ path('club_account_adminledger_new') }}" class="btn-create"><span>{% trans %}Create annex{% endtrans %}</span></a>
 </p>
 
-<h2>Account</h2>
+<h2>{% trans %}Account{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Account Type</th>
-      <th>Action</th>
+      <th>{% trans %}Number{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Account Type{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -37,7 +36,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no accounts at the time</td>
+    <td colspan="4">{% trans %}There are no accounts.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

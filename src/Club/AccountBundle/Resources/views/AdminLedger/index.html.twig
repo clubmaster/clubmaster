@@ -1,16 +1,15 @@
 {% extends "ClubAccountBundle::base.html.twig" %}
 
 {% block body %}
-
-<h2>Ledger</h2>
+<h2>{% trans %}Ledger{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Value</th>
-      <th>Note</th>
-      <th>Created At</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Value{% endtrans %}</th>
+      <th>{% trans %}Note{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -28,7 +27,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no ledgers at the time</td>
+    <td colspan="4">{% trans %}There are no ledgers.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

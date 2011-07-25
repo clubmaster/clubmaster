@@ -674,6 +674,46 @@
         <source>There are no files.</source>
         <target>Der er ingen filer.</target>
       </trans-unit>
+      <trans-unit id="169">
+        <source>Create account</source>
+        <target>Opret konto</target>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Create annex</source>
+        <target>Opret bilag</target>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>Account Type</source>
+        <target>Konto Type</target>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>There are no accounts.</source>
+        <target>Der er ingen konti.</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Ledger</source>
+        <target>Finanskonti</target>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Account name</source>
+        <target>Konto navn</target>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Account number</source>
+        <target>Konto nummer</target>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Account type</source>
+        <target>Konto type</target>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Account type</source>
+        <target>Konto type</target>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>There are no ledgers.</source>
+        <target>Der er ingen finanskonti.</target>
+      </trans-unit>
 
     </body>
   </file>
