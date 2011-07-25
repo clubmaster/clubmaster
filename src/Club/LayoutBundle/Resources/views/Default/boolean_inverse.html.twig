@@ -1,5 +1,5 @@
 {% if flag == 1 %}
-<img src="{{ asset('bundles/clublayout/images/ico-delete.gif') }}" title="Disabled" alt="disabled" />
+<img src="{{ asset('bundles/clublayout/images/ico-delete.gif') }}" title="{% trans %}Disabled{% endtrans %}" alt="{% trans %}Disabled{% endtrans %}" />
 {% else %}
-<img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" title="Enabled" alt="enabled" />
+<img src="{{ asset('bundles/clublayout/images/ico-done.gif') }}" title="{% trans %}Enabled{% endtrans %}" alt="{% trans %}Enabled{% endtrans %}" />
 {% endif %}

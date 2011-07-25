@@ -578,6 +578,46 @@
         <source>Extend</source>
         <target>Udvid</target>
       </trans-unit>
+      <trans-unit id="145">
+        <source>There are no tasks.</source>
+        <target>Der er ingen opgaver.</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>Enabled</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Locked</source>
+        <target>Låst</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Last run at</source>
+        <target>Seneste køresel den</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Next run at</source>
+        <target>Næste køresel den</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Task interval</source>
+        <target>Opgave interval</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Disabled</source>
+        <target>Deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Disable</source>
+        <target>Deaktiver</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Enable</source>
+        <target>Aktiver</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Run</source>
+        <target>Kør</target>
+      </trans-unit>
 
     </body>
   </file>
