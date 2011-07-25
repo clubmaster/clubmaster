@@ -81,7 +81,7 @@ class UserNoteController extends Controller
     $em->remove($user_note);
     $em->flush();
 
-    $this->get('session')->setFlash('notify','You changes has been saved.');
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_user_note',array(
       'id' => $user_note->getUser()->getId()
@@ -99,7 +99,7 @@ class UserNoteController extends Controller
         $em->persist($user_note);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_user_note', array(
           'id' => $user_note->getUser()->getId()

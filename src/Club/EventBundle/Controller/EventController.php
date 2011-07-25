@@ -66,7 +66,7 @@ class EventController extends Controller
       $em->persist($attend);
       $em->flush();
 
-      $this->get('session')->setFlash('notice','You are now signup for this event.');
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
       $e = new \Club\EventBundle\Event\FilterEventEvent($event);
       $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
@@ -92,7 +92,7 @@ class EventController extends Controller
     $em->remove($attend);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','Your signup has been cancelled.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     $e = new \Club\EventBundle\Event\FilterEventEvent($event);
     $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);
 

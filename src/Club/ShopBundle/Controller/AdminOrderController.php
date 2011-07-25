@@ -44,7 +44,7 @@ class AdminOrderController extends Controller
         $em->persist($order);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
         $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);

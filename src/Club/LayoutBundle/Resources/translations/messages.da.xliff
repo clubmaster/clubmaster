@@ -1046,6 +1046,54 @@
         <source>Create</source>
         <target>Opret</target>
       </trans-unit>
+      <trans-unit id="262">
+        <source>Your changes are saved.</source>
+        <target>Dine ændringer er gemt.</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>Your coupon has been added to the cart.</source>
+        <target>Din kupon er blevet tilføjet til kurven.</target>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>No such coupon.</source>
+        <target>Kuponnen findes ikke.</target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>Your account has been created.</source>
+        <target>Din konto er blevet oprettet.</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Your account has been activated.</source>
+        <target>Din konto er blevet aktiveret.</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>You cannot pause a lifetime membership.</source>
+        <target>Du kan ikke pause et livstidsmedlemskab.</target>
+      </trans-unit>
+      <trans-unit id="268">
+        <source>You cannot have anymore pauses.</source>
+        <target>Du kan ikke have flere pauser.</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>Your subscription has been paused.</source>
+        <target>Dit medlemskab er sat på pause.</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>Your subscription is now resumed.</source>
+        <target>Dit medlemskab er nu aktiveret.</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>You do not have enough tickets.</source>
+        <target>Du har ikke nok klip.</target>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>The tickets has been removed from your account.</source>
+        <target>Klippene er blevet fjernet fra din konto.</target>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>Coupon expired.</source>
+        <target>Kupon er udløbet.</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -34,7 +34,7 @@ class BanController extends Controller
     $em->persist($ban);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','You ban has been extended');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('ban'));
   }
 
@@ -50,7 +50,7 @@ class BanController extends Controller
     $em->persist($ban);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','Ban has been expired');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('ban'));
   }
 }

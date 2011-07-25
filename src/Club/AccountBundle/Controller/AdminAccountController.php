@@ -42,7 +42,7 @@ class AdminAccountController extends Controller
         $em->persist($account);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes has been saved.');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
       }
     }
@@ -72,7 +72,7 @@ class AdminAccountController extends Controller
         $em->persist($account);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes has been saved.');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
       }
     }
@@ -95,7 +95,7 @@ class AdminAccountController extends Controller
     $em->remove($account);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','Your changes has been saved.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('club_account_adminaccount_index'));
   }
 }

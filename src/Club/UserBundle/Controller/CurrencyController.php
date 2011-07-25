@@ -85,7 +85,7 @@ class CurrencyController extends Controller
         $em->persist($currency);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_currency'));
       }

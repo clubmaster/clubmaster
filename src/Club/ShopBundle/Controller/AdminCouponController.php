@@ -72,7 +72,7 @@ class AdminCouponController extends Controller
     $em->persist($coupon);
     $em->flush();
 
-    $this->get('session')->setFlash('notify','Coupon expired.');
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Coupon expired.'));
 
     return $this->redirect($this->generateUrl('club_shop_admincoupon_index'));
   }
@@ -104,7 +104,7 @@ class AdminCouponController extends Controller
         $em->persist($coupon);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_shop_admincoupon_index'));
       }

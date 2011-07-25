@@ -26,7 +26,7 @@ class AdminLedgerController extends Controller
         $em->persist($ledger);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes has been saved.');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('club_account_adminledger_index', array('id' => $ledger->getAccount()->getId())));
       }
     }

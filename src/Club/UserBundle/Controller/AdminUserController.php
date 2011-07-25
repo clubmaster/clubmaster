@@ -119,7 +119,7 @@ class AdminUserController extends Controller
       $em->persist($user);
       $em->flush();
 
-      $this->get('session')->setFlash('notice','Your changes were saved!');
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
       return $this->redirect($this->generateUrl('admin_user'));
     }
 
@@ -183,7 +183,7 @@ class AdminUserController extends Controller
       $em->persist($user);
       $em->flush();
 
-      $this->get('session')->setFlash('notice','Your changes were saved!');
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
       return $this->redirect($this->generateUrl('admin_user'));
     }
 
@@ -204,7 +204,7 @@ class AdminUserController extends Controller
     $em->remove($user);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',sprintf('User %s deleted.',$user->getUsername()));
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_user'));
   }
@@ -222,7 +222,7 @@ class AdminUserController extends Controller
       $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
     }
 
-    $this->get('session')->setFlash('notice','Users banned.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -234,7 +234,7 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
 
-    $this->get('session')->setFlash('notice','User banned.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -275,7 +275,7 @@ class AdminUserController extends Controller
         }
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('admin_user'));
       }
     }
