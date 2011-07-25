@@ -898,6 +898,34 @@
         <source>Used at</source>
         <target>Brugt den</target>
       </trans-unit>
+      <trans-unit id="225">
+        <source>There are no special prices.</source>
+        <target>Der er ingen specielle priser.</target>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>Create special</source>
+        <target>Opret speciel</target>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>There are no payment methods.</source>
+        <target>Der er ingen betalingsmetoder.</target>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Create payment method</source>
+        <target>Opret betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Payment method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Payment method name</source>
+        <target>Betalingsmetode navn</target>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>Page</source>
+        <target>Side</target>
+      </trans-unit>
 
     </body>
   </file>
