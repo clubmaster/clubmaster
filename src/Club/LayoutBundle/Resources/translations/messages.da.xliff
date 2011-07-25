@@ -478,6 +478,26 @@
         <source>Create note</source>
         <target>Opret notat</target>
       </trans-unit>
+      <trans-unit id="120">
+        <source>Create location</source>
+        <target>Opret område</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</source>
+        <target>Her er en liste over alle områder, de er bygget som en træstruktur for at illustrer hvordan de står i forhold til hinanden.</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>If you want to change some configuration, you can change it for all child elements by change the root element configurations.</source>
+        <target>Hvis du vil ændre en configuration, du kan ændre for alle områder ved at ændre i rod området.</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Config</source>
+        <target>Konfiguration</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Location name</source>
+        <target>Område navn</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -1,10 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('admin_location_new') }}" class="btn-create"><span>Create location</span></a></p>
+<p class="box"><a href="{{ path('admin_location_new') }}" class="btn-create"><span>{% trans %}Create location{% endtrans %}</span></a></p>
 
-<p>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</p>
-<p>If you want to change some configuration, you can change it for all child elements by change the root element configurations.</p>
+<p>{% trans %}Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.{% endtrans %}</p>
+<p>{% trans %}If you want to change some configuration, you can change it for all child elements by change the root element configurations.{% endtrans %}</p>
 
 <ul>
   <li>{{ root }}
