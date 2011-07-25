@@ -35,6 +35,10 @@ class FeedbackController extends Controller
 
       if ($form->isValid()) {
         $res = $form->getData();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message has been sent.'));
+
+        return $this->redirect($this->generateUrl('club_feedback_feedback_index'));
       }
     }
     return array(

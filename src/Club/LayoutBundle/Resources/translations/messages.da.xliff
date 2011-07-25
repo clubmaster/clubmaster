@@ -1106,6 +1106,10 @@
         <source>Other</source>
         <target>Andet</target>
       </trans-unit>
+      <trans-unit id="277">
+        <source>Your message has been sent.</source>
+        <target>Din besked er blevet sendt.</target>
+      </trans-unit>
 
     </body>
   </file>
