@@ -1,0 +1,3 @@
+[submodule "src/Club/TaskBundle"]
+	path = src/Club/TaskBundle
+	url = git://github.com/clubmaster/TaskBundle.git
