@@ -34,7 +34,8 @@ class FeedbackController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
-        $res = $form->getData();
+        $data = $form->getData();
+        $this->sendData($data);
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message has been sent.'));
 
@@ -44,5 +45,29 @@ class FeedbackController extends Controller
     return array(
       'form' => $form->createView()
     );
+  }
+
+  private function sendData(array $data)
+  {
+    $host = 'dev.hollo.dk';
+
+    $fp = fsockopen("dev.hollo.dk",80);
+
+    $str = "id=14";
+    if ($fp) {
+      fputs($fp, "POST /backend/web/app_dev.php/feedback HTTP/1.1\r\n");
+      fputs($fp, "From: mh@clubmaster.dk\r\n");
+      fputs($fp, "User-Agent: HTTPTool 1.0\r\n");
+      fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n");
+      fputs($fp, "Content-length: ".strlen($str)."\r\n\r\n");
+
+      fputs($fp, $str."\r\n\r\n");
+
+      $d = '';
+      while (!feof($fp)) $d .= fgets($fp,4096);
+      fclose($fp);
+
+      var_dump($d);die();
+    }
   }
 }
