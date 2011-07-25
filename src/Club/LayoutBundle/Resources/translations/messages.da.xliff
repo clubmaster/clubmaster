@@ -71,8 +71,8 @@
         <target>Fragt</target>
       </trans-unit>
       <trans-unit id="18">
-        <source>Special</source>
-        <target>Speciel</target>
+        <source>Special Price</source>
+        <target>Særlig Pris</target>
       </trans-unit>
       <trans-unit id="19">
         <source>Transaction</source>
@@ -362,6 +362,11 @@
         <source>Unttend</source>
         <target>Afmeld</target>
       </trans-unit>
+      <trans-unit id="91">
+        <source>Coupon</source>
+        <target>Kupon</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
