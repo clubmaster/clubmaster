@@ -2,4 +2,19 @@
 
 {% block body %}
 
+        <!-- Contact -->
+        <fieldset>
+          <legend>Feedback</legend>
+
+          <form method="POST" action="{{ path('club_feedback_feedback_index') }}">
+          {{ form_widget(form) }}
+
+        <hr class="noscreen" />
+        <div class="box-01">
+          <p class="nom"><input type="submit" value="{% trans %}Send{% endtrans %}" class="input-submit" /></p>
+        </div> <!-- /box-01 -->
+        </form>
+
+        </fieldset>
+
 {% endblock %}

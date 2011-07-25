@@ -1094,6 +1094,18 @@
         <source>Coupon expired.</source>
         <target>Kupon er udløbet.</target>
       </trans-unit>
+      <trans-unit id="274">
+        <source>Idea</source>
+        <target>Ide</target>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>Bug</source>
+        <target>Fejl</target>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>Other</source>
+        <target>Andet</target>
+      </trans-unit>
 
     </body>
   </file>
