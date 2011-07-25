@@ -498,6 +498,38 @@
         <source>Location name</source>
         <target>Område navn</target>
       </trans-unit>
+      <trans-unit id="125">
+        <source>There are no groups.</source>
+        <target>Der er ingen grupper.</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Create group</source>
+        <target>Opret gruppe</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Group Information</source>
+        <target>Gruppe Information</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Group name</source>
+        <target>Gruppe navn</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Group type</source>
+        <target>Gruppe type</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Active member</source>
+        <target>Aktive medlem</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Role Information</source>
+        <target>Rolle Information</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Info: The members of this group will get all the roles that you select in this field.</source>
+        <target>Info: Medlemmer af denne gruppe vil få alle valgte roller.</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -1,5 +1,5 @@
   <fieldset>
-    <legend>Group Information</legend>
+    <legend>{% trans %}Group Information{% endtrans %}</legend>
 
     {{ form_row(form.group_name) }}
     {{ form_row(form.group_type) }}
@@ -8,10 +8,11 @@
     {{ form_row(form.max_age) }}
     {{ form_row(form.gender) }}
     {{ form_row(form.location) }}
+
   </fieldset>
 
   <fieldset>
-    <legend>Role Information</legend>
+    <legend>{% trans %}Role Information{% endtrans %}</legend>
     {{ form_row(form.role) }}
     <span class="smaller low">{% trans %}Info: The members of this group will get all the roles that you select in this field.{% endtrans %}</span>
   </fieldset>

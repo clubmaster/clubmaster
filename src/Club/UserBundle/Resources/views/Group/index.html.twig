@@ -1,27 +1,24 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-
 {% block body %}
-<p class="box"><a href="{{ path('admin_group_new') }}" class="btn-create"><span>Create group</span></a></p>
-<h2>Groups</h2>
+<p class="box"><a href="{{ path('admin_group_new') }}" class="btn-create"><span>{% trans %}Create group{% endtrans %}</span></a></p>
+<h2>{% trans %}Groups{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Group</th>
-      <th>Actions</th>
+      <th>{% trans %}Group{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="2">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for group in groups %}
     <tr>
-      <td>{{ group.id }}</td>
       <td>{{ group.groupName }} ( {{ group.users|length }} )</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_group_edit', { 'id':group.id })} %}
@@ -30,7 +27,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">There are no groups at the time</td>
+    <td colspan="2">{% trans %}There are no groups.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
