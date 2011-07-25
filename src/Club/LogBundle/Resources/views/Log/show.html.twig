@@ -7,14 +7,14 @@
 
   <h2 class="nomb">{{ log.logType|capitalize }}</h2>
   <p class="nomt low">
-    Created At: {{ log.createdAt|date('Y-m-d H:i:s') }}<br />
-    User: {{ log.user.getProfile.getName }}<br />
-    Severity: {{ log.severity }}<br />
-    Event: {{ log.event }}<br />
-    Type: {{ log.logType }}
+    {% trans with {'%date%':log.createdAt|date('Y-m-d H:i:s')} %}Created at: %date%{% endtrans %}<br />
+    {% trans with {'%user%':log.user.getProfile.getName} %}User: %user%{% endtrans %}<br />
+    {% trans with {'%severity%':log.severity} %}Severity: %severity%{% endtrans %}<br />
+    {% trans with {'%event%':log.event} %}Event: %event%{% endtrans %}<br />
+    {% trans with {'%type%':log.logType} %}Type: %type%{% endtrans %}
   </p>
 
-  <h2>Message</h2>
+  <h2>{% trans %}Message{% endtrans %}</h2>
   <p class="nomt low">{{ log.log|raw }}</p>
 
 </div> <!-- /box-03 -->

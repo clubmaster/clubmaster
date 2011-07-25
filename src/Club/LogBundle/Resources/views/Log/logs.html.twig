@@ -1,14 +1,14 @@
-<h2>Logs</h2>
+<h2>{% trans %}Logs{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Read</th>
-      <th>User</th>
-      <th>Severity</th>
-      <th>Message</th>
-      <th>Created at</th>
-      <th>Action</th>
+      <th>{% trans %}Read{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Severity{% endtrans %}</th>
+      <th>{% trans %}Message{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -20,8 +20,8 @@
   {% for log in logs %}
     <tr>
       <td>
-        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-read-icon.png') }}" title="Read" />
-        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="Unread" />
+        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-read-icon.png') }}" title="{% trans %}Read{% endtrans %}" alt="{% trans %}Read{% endtrans %}" />
+        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="{% trans %}Unread{% endtrans %}" alt="{% trans %}Unread{% endtrans %}" />
         {% endif %}
       </td>
       <td>{{ log.user.profile.name }}</td>
@@ -34,7 +34,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">There are no logs at the time</td>
+    <td colspan="6">{% trans %}There are no logs.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

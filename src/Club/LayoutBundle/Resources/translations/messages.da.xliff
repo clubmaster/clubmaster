@@ -618,6 +618,46 @@
         <source>Run</source>
         <target>Kør</target>
       </trans-unit>
+      <trans-unit id="155">
+        <source>Read</source>
+        <target>Læst</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>Severity</source>
+        <target>Intensitet</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Message</source>
+        <target>Besked</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>There are no logs.</source>
+        <target>Der er ingen logs.</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Unread</source>
+        <target>Ulæst</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Created at: %date%</source>
+        <target>Oprettet den: %date%</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>User: %user%</source>
+        <target>Bruger: %user%</target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Severity: %severity%</source>
+        <target>Intensitet: %severity%</target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Event: %event%</source>
+        <target>Begivenhed: %event%</target>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Type: %type%</source>
+        <target>Type: %type%</target>
+      </trans-unit>
 
     </body>
   </file>
