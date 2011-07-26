@@ -105,6 +105,10 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\ShopBundle\Entity\Product")
+     * @ORM\JoinTable(name="club_user_group_product",
+     *   joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\ShopBundle\Entity\Product
      */
