@@ -50,6 +50,10 @@ class Product
 
     /**
      * @ORM\ManyToMany(targetEntity="VariantGroup")
+     * @ORM\JoinTable(name="club_shop_product_variantgroup",
+     *   joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="variantgroup_id", referencedColumnName="id")}
+     * )
      *
      * @var VariantGroup
      */
