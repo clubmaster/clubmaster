@@ -9,9 +9,9 @@ php app/console doctrine:migrations:migrate --no-interaction
 php app/console doctrine:fixtures:load
 php app/console assets:install web
 
-mysql -u root clubmaster_v2 < src/Club/Docs/sql/test_data.sql
-mysql -u root clubmaster_v2 < src/Club/Docs/sql/users_data.sql
-mysql -u root clubmaster_v2 < src/Club/Docs/sql/event_data.sql
+mysql -u root clubmaster < src/Club/Docs/sql/test_data.sql
+mysql -u root clubmaster < src/Club/Docs/sql/users_data.sql
+mysql -u root clubmaster < src/Club/Docs/sql/event_data.sql
 
 php app/console cache:warmup
 
