@@ -1,0 +1,6 @@
+services:
+  club.communicationbundle.left_menu_render_listener:
+    class: Club\CommunicationBundle\Listener\LeftMenuRenderListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }

@@ -3,13 +3,17 @@
 namespace Club\CommunicationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class AdminCommunicationController extends Controller
 {
-
-    public function indexAction($name)
-    {
-        return $this->render('ClubCommunicationBundle:Default:index.html.twig', array('name' => $name));
-    }
+  /**
+   * @Route("/communication")
+   * @Template()
+   */
+  public function indexAction()
+  {
+    return array();
+  }
 }

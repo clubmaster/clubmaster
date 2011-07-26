@@ -6,8 +6,8 @@ security:
             iterations: 10
 
     role_hierarchy:
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_EVENT_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        ROLE_ADMIN: [ROLE_EVENT_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_COMMUNICATION_ADMIN]
 
     providers:
         main:
