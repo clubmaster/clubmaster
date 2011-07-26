@@ -14,6 +14,21 @@ class AdminMessageController extends Controller
    */
   public function indexAction()
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $messages = $em->getRepository('ClubMessageBundle:Message')->findAll();
+
+    return array(
+      'messages' => $messages
+    );
+  }
+
+  /**
+   * @Route("/message/new")
+   * @Template()
+   */
+  public function newAction()
+  {
     $message = new \Club\MessageBundle\Entity\Message();
 
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);

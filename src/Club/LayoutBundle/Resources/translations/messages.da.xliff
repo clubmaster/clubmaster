@@ -1130,6 +1130,10 @@
         <source>Your message was queue for delivery.</source>
         <target>Din besked er lagt i kø for levering.</target>
       </trans-unit>
+      <trans-unit id="283">
+        <source>No messages has been sent.</source>
+        <target>Der er ikke blevet sendt nogen beskeder.</target>
+      </trans-unit>
 
     </body>
   </file>

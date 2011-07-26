@@ -1,0 +1,11 @@
+{% extends "ClubMessageBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_message_adminmessage_index') }}">
+{{ form_widget(form) }}
+
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+</form>
+
+{% endblock %}

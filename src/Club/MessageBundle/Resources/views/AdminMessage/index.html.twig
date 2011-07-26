@@ -1,11 +1,34 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
 {% block body %}
+<h2>{% trans %}Messages{% endtrans %}</h2>
 
-<form method="post" action="{{ path('club_message_adminmessage_index') }}">
-{{ form_widget(form) }}
-
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-</form>
+<table>
+  <thead>
+    }<tr>
+      <th>{% trans %}#{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Subject{% endtrans %}</th>
+      <th>{% trans %}Sent at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for message in messages %}
+    <tr>
+      <td>{{ message.id }}</td>
+      <td>{{ message.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ message.subject }}</td>
+      <td>{{ message.sentAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td colspan="4">{% trans %}No messages has been sent.{% endtrans %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\Message")
  * @ORM\Table(name="club_message_message")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Message
 {
@@ -40,6 +41,34 @@ class Message
      * @var text $message
      */
     private $message;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var text $processed
+     */
+    private $processed;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var text $sent_at
+     */
+    private $sent_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var text $updated_at
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var text $created_at
+     */
+    private $created_at;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
@@ -273,5 +302,96 @@ class Message
     public function getFilters()
     {
         return $this->filters;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      if (!$this->getId())
+        $this->setCreatedAt(new \DateTime());
+
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * Set sent_at
+     *
+     * @param datetime $sentAt
+     */
+    public function setSentAt($sentAt)
+    {
+        $this->sent_at = $sentAt;
+    }
+
+    /**
+     * Get sent_at
+     *
+     * @return datetime 
+     */
+    public function getSentAt()
+    {
+        return $this->sent_at;
     }
 }
