@@ -38,9 +38,9 @@ class CouponController extends Controller
           $event = new \Club\ShopBundle\Event\FilterCouponEvent($coupon);
           $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
 
-          $this->get('session')->setFlash('notice','Your coupon has been added to the cart.');
+          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your coupon has been added to the cart.'));
         } else {
-          $this->get('session')->setFlash('error','No such coupon.');
+          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such coupon.'));
         }
 
         return $this->redirect($this->generateUrl('shop_checkout'));

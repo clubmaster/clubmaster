@@ -7,4 +7,4 @@ services:
     arguments: [@doctrine.orm.entity_manager,@event_dispatcher]
   subscription:
     class: Club\ShopBundle\Helper\Subscription
-    arguments: [@doctrine.orm.entity_manager,@session]
+    arguments: [@doctrine.orm.entity_manager,@session,@translator]

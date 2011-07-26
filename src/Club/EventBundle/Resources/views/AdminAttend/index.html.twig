@@ -1,28 +1,26 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Attends</h2>
+<h2>{% trans %}Attends{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Event</th>
-      <th>User</th>
-      <th>Paid</th>
-      <th>Created at</th>
-      <th>Actions</th>
+      <th>{% trans %}Event{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Paid{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for attend in attends %}
     <tr>
-      <td>{{ attend.id }}</td>
       <td>{{ event.eventName }}</td>
       <td>{{ attend.user.profile.name }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':attend.paid} %}</td>
@@ -38,7 +36,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">There are no attends at the time</td>
+    <td colspan="5">There are no attends at the time</td>
   </tr>
   {% endfor %}
   </tbody>

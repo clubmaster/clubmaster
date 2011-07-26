@@ -1,20 +1,20 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Orders</h2>
+<h2>{% trans %}Orders{% endtrans %}</h2>
 
 {% render "ClubShopBundle:AdminOrderFilter:getFilter" %}
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Created At</th>
-      <th>Updated At</th>
-      <th>Actions</th>
+      <th>{% trans %}Order number{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Price{% endtrans %}</th>
+      <th>{% trans %}Status{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Updated at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -25,7 +25,7 @@
   <tbody>
   {% for order in orders %}
     <tr>
-      <td>{{ order.id }}</td>
+      <td>{{ order.orderNumber }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price|price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
@@ -38,7 +38,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="7">There are no orders at the time</td>
+    <td colspan="7">{% trans %}There are no orders.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

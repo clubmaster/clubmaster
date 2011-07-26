@@ -1,48 +1,46 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
 
-<h2>Customer</h2>
-<p>Company: {{ order.customerAddress.companyName }}<br />
-CVR: {{ order.customerAddress.companyName }}<br />
-Name: {{ order.customerAddress.firstName }} {{ order.customerAddress.lastName }}<br />
-Street: {{ order.customerAddress.street }}<br />
-Postal: {{ order.customerAddress.postalCode }}<br />
-City: {{ order.customerAddress.city }}<br />
-Country: {{ order.customerAddress.country }}</p>
+<h2>{% trans %}Customer{% endtrans %}</h2>
+<p>{% trans with {'%company%':order.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
+{% trans with {'%cvr%':order.customerAddress.companyName} %}CVR: {% endtrans %}<br />
+{% trans with {'%firstname%':order.customerAddress.firstName,'%lastname%':order.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
+{% trans with {'%street%':order.customerAddress.street} %}Street: %street%{% endtrans %}<br />
+{% trans with {'%postal%':order.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
+{% trans with {'%city%':order.customerAddress.city} %}City: %city%{% endtrans %}<br />
+{% trans with {'%country%':order.customerAddress.country} %}Country: %country%{% endtrans %}</p>
 
-<h2>Shipping</h2>
-<p>Company: {{ order.shippingAddress.companyName }}<br />
-CVR: {{ order.shippingAddress.companyName }}<br />
-Name: {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}<br />
-Street: {{ order.shippingAddress.street }}<br />
-Postal: {{ order.shippingAddress.postalCode }}<br />
-City: {{ order.shippingAddress.city }}<br />
-Country: {{ order.shippingAddress.country }}</p>
+<h2>{% trans %}Shipping{% endtrans %}</h2>
+<p>{% trans with {'%company%':order.shippingAddress.companyName} %}Company: %company%{% endtrans %}<br />
+{% trans with {'%cvr%':order.shippingAddress.companyName} %}CVR: {% endtrans %}<br />
+{% trans with {'%firstname%':order.shippingAddress.firstName,'%lastname%':order.shippingAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
+{% trans with {'%street%':order.shippingAddress.street} %}Street: %street%{% endtrans %}<br />
+{% trans with {'%postal%':order.shippingAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
+{% trans with {'%city%':order.shippingAddress.city} %}City: %city%{% endtrans %}<br />
+{% trans with {'%country%':order.shippingAddress.country} %}Country: %country%{% endtrans %}</p>
 <p>{{ order.shipping }}</p>
 
-<h2>Billing</h2>
-
-<p>Company: {{ order.billingAddress.companyName }}<br />
-CVR: {{ order.billingAddress.companyName }}<br />
-Name: {{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}<br />
-Street: {{ order.billingAddress.street }}<br />
-Postal: {{ order.billingAddress.postalCode }}<br />
-City: {{ order.billingAddress.city }}<br />
-Country: {{ order.billingAddress.country }}</p>
+<h2>{% trans %}Billing{% endtrans %}</h2>
+<p>{% trans with {'%company%':order.billingAddress.companyName} %}Company: %company%{% endtrans %}<br />
+{% trans with {'%cvr%':order.billingAddress.companyName} %}CVR: {% endtrans %}<br />
+{% trans with {'%firstname%':order.billingAddress.firstName,'%lastname%':order.billingAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
+{% trans with {'%street%':order.billingAddress.street} %}Street: %street%{% endtrans %}<br />
+{% trans with {'%postal%':order.billingAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
+{% trans with {'%city%':order.billingAddress.city} %}City: %city%{% endtrans %}<br />
+{% trans with {'%country%':order.billingAddress.country} %}Country: %country%{% endtrans %}</p>
 <p>{{ order.paymentMethod }}</p>
 
-<h2>Products</h2>
+<h2>{% trans %}Products{% endtrans %}</h2>
 {% include "ClubShopBundle:AdminOrder:order_form.html.twig" with {'order':order} %}
 
-<h2>Order history</h2>
+<h2>{% trans %}Order history{% endtrans %}</h2>
 <table>
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Order status</th>
-      <th>Note</th>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Order status{% endtrans %}</th>
+      <th>{% trans %}Note{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>

@@ -75,7 +75,9 @@ class AdminProductAttributeController extends Controller
       ))
       ->add('AutoRenewal','choice',array(
         'required' => false,
-        'choices' => $renewal
+        'choices' => $renewal,
+        'label' => 'Auto Renewal'
+
       ))
       ->add('Lifetime','choice',array(
         'required' => false,
@@ -83,13 +85,16 @@ class AdminProductAttributeController extends Controller
       ))
       ->add('AllowedPauses','choice',array(
         'required' => false,
-        'choices' => $pauses
+        'choices' => $pauses,
+        'label' => 'Allowed Pauses'
       ))
       ->add('StartDate','date', array(
-        'required' => false
+        'required' => false,
+        'label' => 'Start date'
       ))
       ->add('ExpireDate','date', array(
-        'required' => false
+        'required' => false,
+        'label' => 'Expire date'
       ))
       ->add('Location','entity',array(
         'class' => 'Club\UserBundle\Entity\Location',

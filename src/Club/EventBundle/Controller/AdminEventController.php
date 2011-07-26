@@ -109,7 +109,7 @@ class AdminEventController extends Controller
     $em->remove($event);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',sprintf('Event %s deleted.',$event->getEventName()));
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_event_event'));
   }
@@ -130,7 +130,7 @@ class AdminEventController extends Controller
         $em->persist($event);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_event_event'));
       }

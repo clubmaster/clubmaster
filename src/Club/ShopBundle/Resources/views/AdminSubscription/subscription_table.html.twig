@@ -1,13 +1,13 @@
-<h2>Subscriptions</h2>
+<h2>{% trans %}Subscriptions{% endtrans %}</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Active</th>
-      <th>Name</th>
-      <th>Start date</th>
-      <th>Expire date</th>
-      <th>Action</th>
+      <th>{% trans %}Active{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Start date{% endtrans %}</th>
+      <th>{% trans %}Expire date{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +17,7 @@
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|date('Y-m-d') }}</td>
       {% if subscription.expireDate == '' %}
-      <td>Never</td>
+      <td>{% trans %}Never{% endtrans %}</td>
       {% else %}
       <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
       {% endif %}
@@ -34,7 +34,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="5">There is no subscriptions for this user.</td>
+      <td colspan="5">{% trans %}There is no subscriptions for this user.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>

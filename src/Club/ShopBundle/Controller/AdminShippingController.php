@@ -71,7 +71,7 @@ class AdminShippingController extends Controller
     $em->remove($shipping);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',sprintf('Shipping %s deleted.',$shipping->getShippingName()));
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_shop_shipping'));
   }
@@ -87,7 +87,7 @@ class AdminShippingController extends Controller
         $em->persist($shipping);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_shop_shipping'));
       }

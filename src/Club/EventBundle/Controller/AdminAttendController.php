@@ -39,7 +39,7 @@ class AdminAttendController extends Controller
     $em->persist($attend);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','You changes has been saved.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
@@ -56,7 +56,7 @@ class AdminAttendController extends Controller
     $em->persist($attend);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','You changes has been saved.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
@@ -72,7 +72,7 @@ class AdminAttendController extends Controller
     $em->remove($attend);
     $em->flush();
 
-    $this->get('session')->setFlash('notice','You changes has been saved.');
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
   }
@@ -88,7 +88,7 @@ class AdminAttendController extends Controller
         $em->persist($event);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_event_event'));
       }

@@ -96,7 +96,7 @@ class DefaultController extends Controller
               'route' => $this->generateUrl('club_shop_admincoupon_index')
             ),
             array(
-              'name' => $this->get('translator')->trans('Special'),
+              'name' => $this->get('translator')->trans('Special Price'),
               'route' => $this->generateUrl('club_shop_adminspecial_index')
             ),
             array(

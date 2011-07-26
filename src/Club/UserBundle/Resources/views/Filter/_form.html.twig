@@ -1,12 +1,12 @@
 <!-- Submit -->
 <div id="submit" class="box-01 box" style="display:none;">
-  <p>This is your current working filter.</p>
+  <p>{% trans %}This is your current working filter.{% endtrans %}</p>
   <form method="post" action="{{ path('club_user_filter_change') }}">
   {{ form_row(form_filters.filter) }}
-  <input type="submit" value="Change" class="input-submit" />
+  <input type="submit" value="{% trans %}Change{% endtrans %}" class="input-submit" />
   </form>
 
-  <p>This is your filter, make your search here.</p>
+  <p>{% trans %}This is your filter, make your search here.{% endtrans %}</p>
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
 
     {{ form_row(form.name) }}
@@ -24,9 +24,9 @@
     {{ form_row(form._token) }}
 
     <input type="submit" value="Filter" class="input-submit" />
-    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">Save</a>
-    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">Delete</a>
-    <a href="{{ path('club_user_filter_new') }}">New</a>
+    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">{% trans %}Save{% endtrans %}</a>
+    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">{% trans %}Delete{% endtrans %}</a>
+    <a href="{{ path('club_user_filter_new') }}">{% trans %}New{% endtrans %}</a>
 
   </form>
 </div>

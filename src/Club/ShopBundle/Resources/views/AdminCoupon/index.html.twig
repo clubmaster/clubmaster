@@ -1,17 +1,17 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_shop_admincoupon_new') }}" class="btn-create"><span>Create coupon</span></a></p>
+<p class="box"><a href="{{ path('club_shop_admincoupon_new') }}" class="btn-create"><span>{% trans %}Create coupon{% endtrans %}</span></a></p>
 
 <table>
   <thead>
     <tr>
-      <th>Coupon</th>
-      <th>Value</th>
-      <th>Max usage</th>
-      <th>Expire At</th>
-      <th>Created At</th>
-      <th>Actions</th>
+      <th>{% trans %}Coupon{% endtrans %}</th>
+      <th>{% trans %}Value{% endtrans %}</th>
+      <th>{% trans %}Max usage{% endtrans %}</th>
+      <th>{% trans %}Expires at{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -35,7 +35,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">There are no coupons at the time</td>
+    <td colspan="6">{% trans %}There are no coupons.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

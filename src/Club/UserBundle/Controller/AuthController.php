@@ -126,7 +126,7 @@ class AuthController extends Controller
         $em->persist($user);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your account has been created');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
 
         $event = new \Club\UserBundle\Event\FilterUserEvent($user);
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
@@ -165,7 +165,7 @@ class AuthController extends Controller
         $em->persist($user);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your account has been activated');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been activated.'));
 
         $event = new \Club\UserBundle\Event\FilterUserEvent($user);
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserActivate, $event);

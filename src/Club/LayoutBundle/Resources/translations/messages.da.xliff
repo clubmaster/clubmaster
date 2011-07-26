@@ -71,8 +71,8 @@
         <target>Fragt</target>
       </trans-unit>
       <trans-unit id="18">
-        <source>Special</source>
-        <target>Speciel</target>
+        <source>Special Price</source>
+        <target>Særlig Pris</target>
       </trans-unit>
       <trans-unit id="19">
         <source>Transaction</source>
@@ -353,6 +353,762 @@
       <trans-unit id="88">
         <source>Info: Which locations will the user be a member of?</source>
         <target>Info: Hvilke lokationer vil brugeren blive medlem af?</target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Attend</source>
+        <target>Tilmeld</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Unttend</source>
+        <target>Afmeld</target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Coupon</source>
+        <target>Kupon</target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Locations</source>
+        <target>Områder</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>If you want to change your current location, just click on the location you want to go to.</source>
+        <target>Hvis du vil ændre dit nuværende område, så klik blot på det sted du vil gå til.</target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>Create user</source>
+        <target>Opret bruger</target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Show filter</source>
+        <target>Vis filter</target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>OK</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Ban selected</source>
+        <target>Ban valgte</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>There are no users in the system.</source>
+        <target>Der er ingen brugere i systemet.</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Showing &lt;strong&gt;%first%-%last%&lt;/strong&gt; of &lt;strong&gt;%count%&lt;/strong&gt; results</source>
+        <target>Viser &lt;strong&gt;%first%-%last%&lt;/strong&gt; af &lt;strong&gt;%count%&lt;/strong&gt; resultater</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>This is your current working filter.</source>
+        <target>Dette er dit nuværende arbejds filter.</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Change</source>
+        <target>Skift</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>This is your filter, make your search here.</source>
+        <target>Dette er dit filter, lav din søgning her.</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Filter</source>
+        <target>Filter</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>New</source>
+        <target>Ny</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Member number</source>
+        <target>Medlemsnummer</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Min age</source>
+        <target>Min alder</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Max age</source>
+        <target>Max alder</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Has ticket</source>
+        <target>Har klip</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Has subscription</source>
+        <target>Har abonnement</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Are you sure?</source>
+        <target>Er du sikker?</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Note</source>
+        <target>Notat</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Shop as</source>
+        <target>Køb som</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>There is no subscriptions for this user.</source>
+        <target>Der er ingen abonnementer for denne bruger.</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Groups</source>
+        <target>Grupper</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>There are no notes.</source>
+        <target>Der er ingen notater.</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Create note</source>
+        <target>Opret notat</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Create location</source>
+        <target>Opret område</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</source>
+        <target>Her er en liste over alle områder, de er bygget som en træstruktur for at illustrer hvordan de står i forhold til hinanden.</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>If you want to change some configuration, you can change it for all child elements by change the root element configurations.</source>
+        <target>Hvis du vil ændre en configuration, du kan ændre for alle områder ved at ændre i rod området.</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Config</source>
+        <target>Konfiguration</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Location name</source>
+        <target>Område navn</target>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>There are no groups.</source>
+        <target>Der er ingen grupper.</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Create group</source>
+        <target>Opret gruppe</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Group Information</source>
+        <target>Gruppe Information</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Group name</source>
+        <target>Gruppe navn</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Group type</source>
+        <target>Gruppe type</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Active member</source>
+        <target>Aktive medlem</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Role Information</source>
+        <target>Rolle Information</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Info: The members of this group will get all the roles that you select in this field.</source>
+        <target>Info: Medlemmer af denne gruppe vil få alle valgte roller.</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Create currency</source>
+        <target>Opret valuta</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Currency</source>
+        <target>Valuta</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>There are no currencies.</source>
+        <target>Der er ingen valutaer.</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Currency name</source>
+        <target>Valuta navn</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Code</source>
+        <target>Kode</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Symbol left</source>
+        <target>Symbol venstre</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Symbol right</source>
+        <target>Symbol højre</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Decimal places</source>
+        <target>Decimal placeringer</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Value</source>
+        <target>Værdi</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>Expires at</source>
+        <target>Udløber den</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Expire</source>
+        <target>Udløb</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Extend</source>
+        <target>Udvid</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>There are no tasks.</source>
+        <target>Der er ingen opgaver.</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>Enabled</source>
+        <target>Aktiveret</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Locked</source>
+        <target>Låst</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Last run at</source>
+        <target>Seneste køresel den</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Next run at</source>
+        <target>Næste køresel den</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Task interval</source>
+        <target>Opgave interval</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Disabled</source>
+        <target>Deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Disable</source>
+        <target>Deaktiver</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Enable</source>
+        <target>Aktiver</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Run</source>
+        <target>Kør</target>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>Read</source>
+        <target>Læst</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>Severity</source>
+        <target>Intensitet</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Message</source>
+        <target>Besked</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>There are no logs.</source>
+        <target>Der er ingen logs.</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Unread</source>
+        <target>Ulæst</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Created at: %date%</source>
+        <target>Oprettet den: %date%</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>User: %user%</source>
+        <target>Bruger: %user%</target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Severity: %severity%</source>
+        <target>Intensitet: %severity%</target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Event: %event%</source>
+        <target>Begivenhed: %event%</target>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Type: %type%</source>
+        <target>Type: %type%</target>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>Mail</source>
+        <target>Mail</target>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>File</source>
+        <target>Fil</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Show</source>
+        <target>Vis</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>There are no files.</source>
+        <target>Der er ingen filer.</target>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>Create account</source>
+        <target>Opret konto</target>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Create annex</source>
+        <target>Opret bilag</target>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>Account Type</source>
+        <target>Konto Type</target>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>There are no accounts.</source>
+        <target>Der er ingen konti.</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Ledger</source>
+        <target>Finanskonti</target>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Account name</source>
+        <target>Konto navn</target>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Account number</source>
+        <target>Konto nummer</target>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Account type</source>
+        <target>Konto type</target>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Account type</source>
+        <target>Konto type</target>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>There are no ledgers.</source>
+        <target>Der er ingen finanskonti.</target>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Create event</source>
+        <target>Opret begivenhed</target>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Attends</source>
+        <target>Tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Attends: %attends% / %limit%</source>
+        <target>Tilmeldinger: %attends% / %limit%</target>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Attends: %attends% / No limit</source>
+        <target>Tilmeldinger: %attends% / Ingen loft</target>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Event name</source>
+        <target>Begivenhed navn</target>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Max attends</source>
+        <target>Max tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Paid</source>
+        <target>Betalt</target>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Not paid</source>
+        <target>Ikke betalt</target>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>There are no products.</source>
+        <target>Der er ingen produkter.</target>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Create product</source>
+        <target>Opret produkt</target>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Attribute</source>
+        <target>Attribut</target>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Vat</source>
+        <target>Moms</target>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Edit Product %product%</source>
+        <target>Rediger Product %product%</target>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>This is where you edit the different attributes for your product, if your product should have some special attributes.</source>
+        <target>Dette er hvor du redigere de forskellige attributter til dine produkter, hvis du har et produkt som skal have en speciel attribut.</target>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Month</source>
+        <target>Måned</target>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Ticket</source>
+        <target>Klip</target>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Auto Renewal</source>
+        <target>Automatisk fornyelse</target>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Lifetime</source>
+        <target>Livstid</target>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Allowed Pauses</source>
+        <target>Tilladte pauser</target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Create category</source>
+        <target>Opret kategori</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>There are no categories.</source>
+        <target>Der er ikke nogen kategorier.</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Category name</source>
+        <target>Kategori navn</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>There are no orders.</source>
+        <target>Der er ingen ordre.</target>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>Customer</source>
+        <target>Kunde</target>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Billing</source>
+        <target>Betaler</target>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>Order history</source>
+        <target>Ordre historik</target>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>Date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>Order status</source>
+        <target>Ordre status</target>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>Company: %company%</source>
+        <target>Firma: %company%</target>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>CVR: %cvr%</source>
+        <target>CVR: %cvr%</target>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Name: %firstname% %lastname%</source>
+        <target>Navn: %firstname% %lastname%</target>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>Street: %street%</source>
+        <target>Adresse: %street%</target>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>Postal: %postal%</source>
+        <target>Postnummer: %postal%</target>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>City: %city%</source>
+        <target>By: %city%</target>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>Country: %country%</source>
+        <target>Land: %country%</target>
+      </trans-unit>
+      <trans-unit id="214">
+        <source>Unit price</source>
+        <target>Enhedspris</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Quantity</source>
+        <target>Mængde</target>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Summary</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>You have no products.</source>
+        <target>Du har ingen produkter.</target>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Max usage</source>
+        <target>Max brug</target>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>There are no coupons.</source>
+        <target>Der er ingen kuponner.</target>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Create coupon</source>
+        <target>Opret kupon</target>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Coupon key</source>
+        <target>Kupon nøgle</target>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Expire at</source>
+        <target>Udløber den</target>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>This coupon has never been used.</source>
+        <target>Denne kupon har aldrig været brugt.</target>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Used at</source>
+        <target>Brugt den</target>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>There are no special prices.</source>
+        <target>Der er ingen specielle priser.</target>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>Create special</source>
+        <target>Opret speciel</target>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>There are no payment methods.</source>
+        <target>Der er ingen betalingsmetoder.</target>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Create payment method</source>
+        <target>Opret betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Payment method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Payment method name</source>
+        <target>Betalingsmetode navn</target>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>Page</source>
+        <target>Side</target>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>There are no shipping.</source>
+        <target>Der er ingen fragt.</target>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Create shipping</source>
+        <target>Opret fragt</target>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>Shipping name</source>
+        <target>Fragt navn</target>
+      </trans-unit>
+      <trans-unit id="235">
+        <source>Location config</source>
+        <target>Område konfiguration</target>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>If a location does not have any settings, it will relay on its parents.</source>
+        <target>Hvis et område ikke har nogen konfiguration, vil det benytte sig af dets ovenstående område.</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Account default income</source>
+        <target>Konto standard indkomst</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Account default vat</source>
+        <target>Konto standard moms</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Account default cash</source>
+        <target>Konto standard kontant</target>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Account default discount</source>
+        <target>Konto standard rabat</target>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>Default currency</source>
+        <target>Standard valuta</target>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Default language</source>
+        <target>Standard sprog</target>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>Default location</source>
+        <target>Standard område</target>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Email sender address</source>
+        <target>E-mail afsender adresse</target>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Email sender name</source>
+        <target>E-mail afsender navn</target>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>Cart</source>
+        <target>Kurv</target>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Empty cart</source>
+        <target>Tøm kurv</target>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>Continue shopping</source>
+        <target>Fortsæt indkøb</target>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Use coupon</source>
+        <target>Brug kupon</target>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>Checkout</source>
+        <target>Gå til kassen</target>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Choose payment</source>
+        <target>Vælg betaling</target>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>Review order</source>
+        <target>Gennemse ordre</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Done</source>
+        <target>Færdig</target>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>Your cart is empty.</source>
+        <target>Din kurv er tom.</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>Customer Information</source>
+        <target>Kunde Information</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Shipping Information</source>
+        <target>Fragt Information</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Payment Information</source>
+        <target>Betalings Information</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source>Confirm order</source>
+        <target>Bekræft ordre</target>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>Stop date</source>
+        <target>Stop dato</target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>Nothing.</source>
+        <target>Ingenting.</target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>Create</source>
+        <target>Opret</target>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>Your changes are saved.</source>
+        <target>Dine ændringer er gemt.</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>Your coupon has been added to the cart.</source>
+        <target>Din kupon er blevet tilføjet til kurven.</target>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>No such coupon.</source>
+        <target>Kuponnen findes ikke.</target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>Your account has been created.</source>
+        <target>Din konto er blevet oprettet.</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Your account has been activated.</source>
+        <target>Din konto er blevet aktiveret.</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>You cannot pause a lifetime membership.</source>
+        <target>Du kan ikke pause et livstidsmedlemskab.</target>
+      </trans-unit>
+      <trans-unit id="268">
+        <source>You cannot have anymore pauses.</source>
+        <target>Du kan ikke have flere pauser.</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>Your subscription has been paused.</source>
+        <target>Dit medlemskab er sat på pause.</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>Your subscription is now resumed.</source>
+        <target>Dit medlemskab er nu aktiveret.</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>You do not have enough tickets.</source>
+        <target>Du har ikke nok klip.</target>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>The tickets has been removed from your account.</source>
+        <target>Klippene er blevet fjernet fra din konto.</target>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>Coupon expired.</source>
+        <target>Kupon er udløbet.</target>
+      </trans-unit>
+      <trans-unit id="274">
+        <source>Idea</source>
+        <target>Ide</target>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>Bug</source>
+        <target>Fejl</target>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>Other</source>
+        <target>Andet</target>
+      </trans-unit>
+      <trans-unit id="277">
+        <source>Your message has been sent.</source>
+        <target>Din besked er blevet sendt.</target>
       </trans-unit>
 
     </body>

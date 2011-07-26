@@ -82,7 +82,7 @@ class AdminLocationController extends Controller
     $em->remove($location);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',sprintf('Location %s deleted.',$location->getLocationName()));
+    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_location'));
   }
@@ -98,7 +98,7 @@ class AdminLocationController extends Controller
         $em->persist($location);
         $em->flush();
 
-        $this->get('session')->setFlash('notice','Your changes were saved!');
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_location'));
       }

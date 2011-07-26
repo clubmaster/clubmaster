@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Coupon</th>
-      <th>User</th>
-      <th>Used At</th>
+      <th>{% trans %}Coupon{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Used at{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -24,7 +24,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">This coupon has never been used.</td>
+    <td colspan="3">{% trans %}This coupon has never been used.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
