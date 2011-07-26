@@ -1114,6 +1114,10 @@
         <source>There was a problem delivering your message.</source>
         <target>Der var et problem med levering af din besked.</target>
       </trans-unit>
+      <trans-unit id="279">
+        <source>All messages in this form will go back to the developers of the system, so feel free to give any feedback that could help improve the system.</source>
+        <target>Alle meddelelser i denne formular vil blive modtaget af udviklerne af systemet. Du er meget velkommen til at sende hvilken som helst form for feedback så vi kan forbedre din oplevelse med systemet.</target>
+      </trans-unit>
 
     </body>
   </file>
