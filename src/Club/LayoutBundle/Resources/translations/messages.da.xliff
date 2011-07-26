@@ -1134,6 +1134,14 @@
         <source>No messages has been sent.</source>
         <target>Der er ikke blevet sendt nogen beskeder.</target>
       </trans-unit>
+      <trans-unit id="284">
+        <source>Your message will now be processed from queue.</source>
+        <target>Din besked vil nu blive processeret fra køen.</target>
+      </trans-unit>
+      <trans-unit id="285">
+        <source>Process</source>
+        <target>Ekspeder</target>
+      </trans-unit>
 
     </body>
   </file>

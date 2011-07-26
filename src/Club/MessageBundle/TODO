@@ -3,3 +3,4 @@
 - click a button to send mail, nothing should happend on the form
 - copy a message for resend
 - use jquery autocomplete for user recipient
+- add wysiwyg editor to message

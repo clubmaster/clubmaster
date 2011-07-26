@@ -53,4 +53,22 @@ class AdminMessageController extends Controller
       'form' => $form->createView()
     );
   }
+
+  /**
+   * @Route("/message/process/{id}/")
+   */
+  public function processAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $message->setProcessed(1);
+    $message->setSentAt(new \DateTime());
+
+    $em->persist($message);
+    $em->flush();
+
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message will now be processed from queue.'));
+    return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
+  }
 }
