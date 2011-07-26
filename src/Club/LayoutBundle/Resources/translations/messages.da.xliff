@@ -1126,6 +1126,11 @@
         <source>Mail Templates</source>
         <target>Mail Skabeloner</target>
       </trans-unit>
+      <trans-unit id="282">
+        <source>Your message was queue for delivery.</source>
+        <target>Din besked er lagt i kø for levering.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

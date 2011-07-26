@@ -42,7 +42,7 @@ class Message
     private $message;
 
     /**
-     * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
      * @ORM\JoinTable(name="club_message_message_location",
      *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
@@ -74,11 +74,23 @@ class Message
      */
     private $users;
 
+    /**
+     * @ORM\ManytoMany(targetEntity="Club\EventBundle\Entity\Event")
+     * @ORM\JoinTable(name="club_message_message_event",
+     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")}
+     * )
+     *
+     * @var Club\EventBundle\Entity\Event
+     */
+    private $events;
+
     public function __construct()
     {
         $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -209,5 +221,25 @@ class Message
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add events
+     *
+     * @param Club\EventBundle\Entity\Event $events
+     */
+    public function addEvents(\Club\EventBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+    }
+
+    /**
+     * Get events
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }
