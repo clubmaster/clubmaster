@@ -5,7 +5,6 @@
 - add wysiwyg editor to message
 - save sent mail report
 - make a backend job process messages
-- remove unsent mail
 - view report of sent mail
 - add pager on messages
 

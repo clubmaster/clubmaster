@@ -34,7 +34,9 @@
           {% trans %}Queued{% endtrans %}
         {% endif %}
       <td>
+        {% if not message.processed %}
         {% include "ClubLayoutBundle:Default:process_link.html.twig" with {'url':path('club_message_adminmessage_process', {'id':message.id})} %}
+        {% endif %}
       </td>
     </tr>
   {% else %}
