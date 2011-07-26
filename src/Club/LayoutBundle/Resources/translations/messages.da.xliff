@@ -1110,6 +1110,10 @@
         <source>Your message has been sent.</source>
         <target>Din besked er blevet sendt.</target>
       </trans-unit>
+      <trans-unit id="278">
+        <source>There was a problem delivering your message.</source>
+        <target>Der var et problem med levering af din besked.</target>
+      </trans-unit>
 
     </body>
   </file>
