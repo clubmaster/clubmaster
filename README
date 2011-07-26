@@ -2,49 +2,171 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
+:Date:      2011-07-26
+:Revision:  7
 
 
-Getting started
----------------
-
-If you just want clubmaster up and running so you can start development:
-
-git clone git://github.com/hollodk/clubmaster.git
-cd clubmaster
-./bin/vendors install
+Feedback
+--------
+It would really help me a lot of you can give me just any feedback at hollo@hollo.dk.
 
 
 Prerequirements
 ---------------
+In order to run this software you need to following prerequirements:
 
 - Webserver
 - PHP 5.3.2
 - MySQL 5
 
-To get a more detailed list, checkout in your browser:
+Besides it higly suggested to:
+
+- Enable mod_rewrite for apache
+- AllowOverride All in your apache configuration
+
+
+Quickstart
+----------
+
+If you just want to be up and running and have access to the shell, here is what you have to do:
+
+  cd /var/www
+  tar xzf clubmaster-XXX.tgz
+  cd clubmaster-XXX
+  vim app/config/parameters.ini
+  ./install.sh
+
+Now browse to:
 
 http://localhost/clubmaster/web/check.php
 
 
+Manual Installation
+-------------------
 
-Initialize data
+If you dont have access to the shell, then you have to do then manual installation.
+
+
+Get the archive
 ---------------
 
-To get the database up and running with some test data:
+First get the archive from our website http://www.clubmaster.dk.
 
-cd src/Club
-./remake_schema.sh
+Now extract the archive some place that your webserver can see.
+
+Go to the newly created folder clubmaster/.
+
+
+Edit configuration
+------------------
+
+Edit the file app/config/parameters.yml to fit to your needs.
+
+
+Create database
+---------------
+
+First manually create the database that you want to use:
+
+$ mysql -u root -e"CREATE DATABASE clubmaster"
+
+Now when the database is in place, import the schema files located in the folder app/sql/.
+
+$ mysql -u root clubmaster < app/sql/install.sql
+
+
+File permissions
+----------------
+
+Before you can complete the installation online, you have to make some files writeable for the webserver, do the following:
+
+$ chmod -R 777 app/cache app/logs
+
+
+Complete installation
+---------------------
+
+Now your installation is in place, go to this url an follow the onscreen installation:
+
+http://localhost/clubmaster/web/check.php
+
+That page will tell you everything you will need to know in order to get up and running.
+
+
+Upgrade
+-------
+
+In order to upgrade from a previous installation:
+
+- Backup your current database and files.
+- Extract the new clubmaster package in a new directory
+- Copy app/config/parameters.ini file from old directory
+- $ chmod 777 -R app/cache app/logs in the new clubmaster installation
+- Go to the website, http://localhost/clubmaster/web/upgrade
+- Empty the cache, rm -rf app/cache/*
 
 
 Development
 -----------
 
-If you want to make your own fork of this software or want to contribute, this software is written in symfony2 you can read all about it at http://www.symfony.com.
+If you want to support the system and help developing it, you are so welcome. All you have to know about getting started with development can you read about in this section.
 
-When you want to develop, you have 2 different environments:
+First of all, ClubMaster is written in Symfony2, you can read all about the framework on www.symfony.com, its a great PHP framework to ease development of PHP projects. Take a good look at the framework before you go any further, that is a really important step.
 
-Production
+Afterwards, if you just want to get up and running in a development environment all you have to do is:
+
+
+Fork on GitHub
+~~~~~~~~~~~~~~
+
+Make a fork of our project on GitHub, https://www.github.com/clubmaster/clubmaster.
+
+Follow the help provided by github.
+
+
+Get dependencies
+~~~~~~~~~~~~~~~~
+
+To get all dependencies of the project, run the following command:
+
+php bin/vendors install
+
+
+Initialize data
+~~~~~~~~~~~~~~~
+
+I have made a shell script to prepare the database schema, and load some test data. Just run the following script and see the onscreen magic :)
+
+./bin/remake_schema.sh
+
+
+Start coding
+~~~~~~~~~~~~
+
+When you are developing in Symfony2 there are multiple environmens:
+
+Production where you have enabled all the cache, and everything is optimized for optimal performance.
+
+Development where you have disabled a lot of caching, and get a nice web debugging tool to see what you application does behind the scene.
+
+To load the different environments go the the one url or the other:
+
+Production:
 http://localhost/clubmaster/web/index.php
 
-Development
+Development:
 http://localhost/clubmaster/web/index_dev.php
+
+
+Login
+~~~~~
+
+As in the demo project, just log in with:
+
+Administrator user:
+username: 10
+password: 1234
+
+Normal user:
+username: 1
+password: 1234
