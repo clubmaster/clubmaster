@@ -1,3 +1,4 @@
-ClubCommunicationBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubCommunicationBundle:Default:index }
+_admin_communication:
+  resource: "@ClubCommunicationBundle/Controller/AdminCommunicationController.php"
+  type: annotation
+  prefix: /admin
