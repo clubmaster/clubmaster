@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\Mail")
- * @ORM\Table(name="club_mail")
+ * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\Message")
+ * @ORM\Table(name="club_message_message")
  */
-class Mail
+class Message
 {
     /**
      * @ORM\Id

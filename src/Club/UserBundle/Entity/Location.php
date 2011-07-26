@@ -35,17 +35,6 @@ class Location
      */
     private $location;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Club\MessageBundle\Entity\Mail", mappedBy="Mail")
-     *
-     * @var Club\MessageBundle\Entity\Mail
-     */
-    private $mails;
-
-    public function __construct()
-    {
-        $this->mails = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function __toString()
     {

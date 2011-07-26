@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\MailAttachment")
- * @ORM\Table(name="club_message_mail_attachment")
+ * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\MessageAttachment")
+ * @ORM\Table(name="club_message_message_attachment")
  */
-class MailAttachment
+class MessageAttachment
 {
     /**
      * @ORM\Id
@@ -56,11 +56,11 @@ class MailAttachment
     private $file_hash;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Mail")
+     * @ORM\ManyToOne(targetEntity="Message")
      *
-     * @var Club\MessageBundle\Entity\Mail
+     * @var Club\MessageBundle\Entity\Message
      */
-    private $mail;
+    private $message;
 
 
     /**
@@ -174,22 +174,22 @@ class MailAttachment
     }
 
     /**
-     * Set mail
+     * Set message
      *
-     * @param Club\MessageBundle\Entity\Mail $mail
+     * @param Club\MessageBundle\Entity\Message $message
      */
-    public function setMail(\Club\MessageBundle\Entity\Mail $mail)
+    public function setMessage(\Club\MessageBundle\Entity\Message $message)
     {
-        $this->mail = $mail;
+        $this->message = $message;
     }
 
     /**
-     * Get mail
+     * Get message
      *
-     * @return Club\MessageBundle\Entity\Mail $mail
+     * @return Club\MessageBundle\Entity\Message $message
      */
-    public function getMail()
+    public function getMessage()
     {
-        return $this->mail;
+        return $this->message;
     }
 }
