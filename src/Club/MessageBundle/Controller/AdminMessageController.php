@@ -66,7 +66,9 @@ class AdminMessageController extends Controller
     $message->setSentAt(new \DateTime());
 
     $em->persist($message);
-    $em->flush();
+
+    // just to check if user has received the message once
+    $this->recipients = array();
 
     foreach ($message->getFilters() as $filter) {
       $this->processUsers($message, $em->getRepository('ClubUserBundle:User')->getUsers($filter));
@@ -81,6 +83,8 @@ class AdminMessageController extends Controller
     foreach ($message->getEvents() as $event) {
       $this->processAttends($message, $event->getAttends());
     }
+
+    $em->flush();
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message will now be processed from queue.'));
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
@@ -106,15 +110,16 @@ class AdminMessageController extends Controller
 
   private function sendMail(\Club\MessageBundle\Entity\Message $message, \Club\UserBundle\Entity\User $user)
   {
-    try {
-      $this->get('clubmaster_mailer')
-        ->setSubject($message->getSubject())
-        ->setFrom($message->getSenderAddress(),$message->getSenderName())
-        ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
-        ->setBody($message->getMessage())
-        ->send();
-    } catch (\Exception $e) {
-      $error = $e->getMessage();
-    }
+    if (isset($this->recipients[$user->getId()])) return;
+
+    $this->recipients[$user->getId()] = 1;
+
+    $queue = new \Club\MessageBundle\Entity\MessageQueue();
+    $queue->setUser($user);
+    $queue->setMessage($message);
+    $queue->setProcessed(0);
+
+    $em = $this->getDoctrine()->getEntityManager();
+    $em->persist($queue);
   }
 }

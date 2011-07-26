@@ -3,8 +3,22 @@
 - copy a message for resend
 - use jquery autocomplete for user recipient
 - add wysiwyg editor to message
-- cannot send the same mail to the same person twice
 - save sent mail report
 - make a backend job process messages
 - remove unsent mail
-- view report and sent mail
+- view report of sent mail
+- add pager on messages
+
+snippet for sending mails
+
+    try {
+      $this->get('clubmaster_mailer')
+        ->setSubject($message->getSubject())
+        ->setFrom($message->getSenderAddress(),$message->getSenderName())
+        ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
+        ->setBody($message->getMessage())
+        ->send();
+    } catch (\Exception $e) {
+      $error = $e->getMessage();
+    }
+
