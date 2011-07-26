@@ -29,7 +29,12 @@ class AdminMessageController extends Controller
    */
   public function newAction()
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
     $message = new \Club\MessageBundle\Entity\Message();
+    $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
+    $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
+    $message->setType('mail');
 
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
@@ -37,8 +42,6 @@ class AdminMessageController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-
         $em->persist($message);
         $em->flush();
 

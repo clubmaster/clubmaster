@@ -9,18 +9,13 @@ class Message extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $type = array(
-      'mail' => 'Mail'
-    );
-
+    $builder->add('sender_name');
+    $builder->add('sender_address');
     $builder->add('locations');
     $builder->add('groups');
     $builder->add('events');
     $builder->add('filters');
     $builder->add('users');
-    $builder->add('type','choice',array(
-      'choices' => $type
-    ));
     $builder->add('subject');
     $builder->add('message');
   }

@@ -1,6 +1,6 @@
 - only view users own filters
 - make a wizard to add recipients
-- view all sent messages
 - click a button to send mail, nothing should happend on the form
 - copy a message for resend
 - make it possible to change sender address
+- use jquery autocomplete for user recipient

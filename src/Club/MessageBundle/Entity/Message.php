@@ -43,6 +43,20 @@ class Message
     private $message;
 
     /**
+     * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $sender_name
+     */
+    private $sender_name;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $sender_address
+     */
+    private $sender_address;
+
+    /**
      * @ORM\Column(type="boolean")
      *
      * @var text $processed
@@ -388,10 +402,50 @@ class Message
     /**
      * Get sent_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getSentAt()
     {
         return $this->sent_at;
+    }
+
+    /**
+     * Set sender_name
+     *
+     * @param text $senderName
+     */
+    public function setSenderName($senderName)
+    {
+        $this->sender_name = $senderName;
+    }
+
+    /**
+     * Get sender_name
+     *
+     * @return text
+     */
+    public function getSenderName()
+    {
+        return $this->sender_name;
+    }
+
+    /**
+     * Set sender_address
+     *
+     * @param text $senderAddress
+     */
+    public function setSenderAddress($senderAddress)
+    {
+        $this->sender_address = $senderAddress;
+    }
+
+    /**
+     * Get sender_address
+     *
+     * @return text
+     */
+    public function getSenderAddress()
+    {
+        return $this->sender_address;
     }
 }
