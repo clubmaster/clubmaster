@@ -85,12 +85,24 @@ class Message
      */
     private $events;
 
+    /**
+     * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Filter")
+     * @ORM\JoinTable(name="club_message_message_filter",
+     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="filter_id", referencedColumnName="id")}
+     * )
+     *
+     * @var Club\UserBundle\Entity\Filter
+     */
+    private $filters;
+
     public function __construct()
     {
         $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->filters = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -241,5 +253,25 @@ class Message
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * Add filters
+     *
+     * @param Club\UserBundle\Entity\Filter $filters
+     */
+    public function addFilters(\Club\UserBundle\Entity\Filter $filters)
+    {
+        $this->filters[] = $filters;
+    }
+
+    /**
+     * Get filters
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFilters()
+    {
+        return $this->filters;
     }
 }

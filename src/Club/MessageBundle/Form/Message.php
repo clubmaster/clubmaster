@@ -15,8 +15,9 @@ class Message extends AbstractType
 
     $builder->add('locations');
     $builder->add('groups');
-    $builder->add('users');
     $builder->add('events');
+    $builder->add('filters');
+    $builder->add('users');
     $builder->add('type','choice',array(
       'choices' => $type
     ));
