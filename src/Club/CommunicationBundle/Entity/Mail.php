@@ -28,11 +28,18 @@ class Mail
     private $subject;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $type
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="text")
      *
-     * @var text $body
+     * @var text $message
      */
-    private $body;
+    private $message;
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
@@ -105,23 +112,23 @@ class Mail
     }
 
     /**
-     * Set body
+     * Set message
      *
-     * @param text $body
+     * @param text $message
      */
-    public function setBody($body)
+    public function setMessage($message)
     {
-        $this->body = $body;
+        $this->message = $message;
     }
 
     /**
-     * Get body
+     * Get message
      *
-     * @return text $body
+     * @return text $message
      */
-    public function getBody()
+    public function getMessage()
     {
-        return $this->body;
+        return $this->message;
     }
 
     /**
@@ -142,5 +149,65 @@ class Mail
     public function getLocations()
     {
         return $this->locations;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroups(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUsers(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
