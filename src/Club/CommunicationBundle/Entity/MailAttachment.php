@@ -1,13 +1,13 @@
 <?php
 
-namespace Club\MailBundle\Entity;
+namespace Club\CommunicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\MailBundle\Repository\MailAttachment")
- * @ORM\Table(name="club_mail_attachment")
+ * @ORM\Entity(repositoryClass="Club\CommunicationBundle\Repository\MailAttachment")
+ * @ORM\Table(name="club_message_mail_attachment")
  */
 class MailAttachment
 {
@@ -176,9 +176,9 @@ class MailAttachment
     /**
      * Set mail
      *
-     * @param Club\MailBundle\Entity\Mail $mail
+     * @param Club\CommunicationBundle\Entity\Mail $mail
      */
-    public function setMail(\Club\MailBundle\Entity\Mail $mail)
+    public function setMail(\Club\CommunicationBundle\Entity\Mail $mail)
     {
         $this->mail = $mail;
     }
@@ -186,7 +186,7 @@ class MailAttachment
     /**
      * Get mail
      *
-     * @return Club\MailBundle\Entity\Mail $mail
+     * @return Club\CommunicationBundle\Entity\Mail $mail
      */
     public function getMail()
     {
