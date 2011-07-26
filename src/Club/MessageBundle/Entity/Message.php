@@ -64,7 +64,7 @@ class Message
     private $processed;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable="true")
      *
      * @var text $sent_at
      */
@@ -363,8 +363,10 @@ class Message
      */
     public function prePersist()
     {
-      if (!$this->getId())
+      if (!$this->getId()) {
         $this->setCreatedAt(new \DateTime());
+        $this->setProcessed(0);
+      }
 
       $this->setUpdatedAt(new \DateTime());
     }

@@ -22,7 +22,11 @@
       <td>{{ message.id }}</td>
       <td>{{ message.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ message.subject }}</td>
-      <td>{{ message.sentAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% if message.sentAt %}
+        {{ message.sentAt|date('Y-m-d H:i:s') }}
+        {% endif %}
+      </td>
       <td>
         {% if message.processed %}
           {% trans %}Sent{% endtrans %}
