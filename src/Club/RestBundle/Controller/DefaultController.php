@@ -11,48 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
   /**
-   * @Route("/add/user")
-   * @Method("POST")
-   */
-  public function addUserAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $user = new \Club\UserBundle\Entity\User();
-    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
-    $user->setPassword(1234);
-    $em->persist($user);
-    $em->flush();
-
-    $profile = new \Club\UserBundle\Entity\Profile();
-    $profile->setUser($user);
-    $profile->setFirstName($this->getRequest()->get('first_name'));
-    $profile->setLastName($this->getRequest()->get('last_name'));
-    $profile->setGender($this->getRequest()->get('gender'));
-    $profile->setDayOfBirth(new \DateTime($this->getRequest()->get('day_of_birth')));
-    $em->persist($profile);
-
-    $address = new \Club\UserBundle\Entity\ProfileAddress();
-    $address->setProfile($profile);
-    $address->setContactType('home');
-    $address->setIsDefault(1);
-    $address->setStreet($this->getRequest()->get('street'));
-    $address->setPostalCode($this->getRequest()->get('postal_code'));
-    $address->setCity($this->getRequest()->get('city'));
-    $country = $em->getRepository('ClubUserBundle:Country')->findOneByCountry($this->getRequest()->get('country'));
-    $address->setCountry($country);
-
-    $em->persist($address);
-
-    $user->setProfile($profile);
-    $em->persist($user);
-
-    $em->flush();
-
-    return ($r = $this->hasErrors($user)) ? $r : $this->renderJSon($user->toArray());
-  }
-
-  /**
    * @Route("/get/user/{id}")
    */
   public function getUserAction($id)
