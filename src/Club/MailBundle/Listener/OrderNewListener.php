@@ -25,6 +25,7 @@ class OrderNewListener
     if ($email) {
       $this->clubmaster_mailer
         ->setSubject('Order '.$order->getOrderNumber())
+        ->setFrom()
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:order_new.html.twig',array(
           'order' => $order

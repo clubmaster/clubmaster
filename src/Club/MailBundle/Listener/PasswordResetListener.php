@@ -25,6 +25,7 @@ class PasswordResetListener
     if ($email) {
       $this->clubmaster_mailer
         ->setSubject('Reset Password')
+        ->setFrom()
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:password_reset.html.twig',array(
           'user' => $user,

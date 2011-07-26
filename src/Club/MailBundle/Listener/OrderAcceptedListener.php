@@ -29,6 +29,7 @@ class OrderAcceptedListener
     if ($email) {
       $this->clubmaster_mailer
         ->setSubject('Order '.$order->getOrderNumber())
+        ->setFrom()
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:order_accepted.html.twig',array(
           'order' => $order

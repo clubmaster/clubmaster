@@ -25,6 +25,7 @@ class UserNewListener
     if ($email) {
       $this->clubmaster_mailer
         ->setSubject('Welcome')
+        ->setFrom()
         ->setTo($email->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:user_new.html.twig',array(
           'user' => $user,

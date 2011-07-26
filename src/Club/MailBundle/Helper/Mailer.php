@@ -14,13 +14,15 @@ class Mailer
     $this->mailer = $mailer;
 
     $this->message = \Swift_Message::newInstance();
-    $this->setFrom();
   }
 
-  public function setFrom()
+  public function setFrom($sender_addr = null, $sender_name = null)
   {
-    $sender_addr = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address');
-    $sender_name = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name');
+    if ($sender_addr == null)
+      $sender_addr = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address');
+
+    if ($sender_name == null)
+      $sender_name = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name');
 
     $this->message->setFrom(array(
        $sender_addr => $sender_name
