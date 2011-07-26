@@ -36,6 +36,10 @@ class Mail
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\JoinTable(name="club_mail_mail_location",
+     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\UserBundle\Entity\Location
      */
@@ -43,6 +47,10 @@ class Mail
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="club_mail_mail_group",
+     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\UserBundle\Entity\Group
      */
@@ -50,6 +58,10 @@ class Mail
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="club_mail_mail_user",
+     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
      *
      * @var Club\UserBundle\Entity\User
      */
@@ -58,6 +70,8 @@ class Mail
     public function __construct()
     {
         $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
