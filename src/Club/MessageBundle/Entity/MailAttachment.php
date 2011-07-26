@@ -58,7 +58,7 @@ class MailAttachment
     /**
      * @ORM\ManyToOne(targetEntity="Mail")
      *
-     * @var Club\MailBundle\Entity\Mail
+     * @var Club\MessageBundle\Entity\Mail
      */
     private $mail;
 
