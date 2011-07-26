@@ -10,9 +10,9 @@ php app/console doctrine:fixtures:load
 php app/console assets:install web
 
 echo "Now you will be prompted for your MySQL password 3 times, in order to insert test data:"
-mysql -u root -p clubmaster < src/Club/Docs/sql/test_data.sql
-mysql -u root -p clubmaster < src/Club/Docs/sql/users_data.sql
-mysql -u root -p clubmaster < src/Club/Docs/sql/event_data.sql
+mysql -u root -p clubmaster < app/sql/test_data.sql
+mysql -u root -p clubmaster < app/sql/users_data.sql
+mysql -u root -p clubmaster < app/sql/event_data.sql
 
 php app/console cache:warmup
 
