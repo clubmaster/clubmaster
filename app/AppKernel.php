@@ -27,7 +27,6 @@ class AppKernel extends Kernel
             new Club\TaskBundle\ClubTaskBundle(),
             new Club\LogBundle\ClubLogBundle(),
             new Club\EventBundle\ClubEventBundle(),
-            new Club\ForumBundle\ClubForumBundle(),
             new Club\LayoutBundle\ClubLayoutBundle(),
             new Club\InstallerBundle\ClubInstallerBundle(),
             new Club\MenuBundle\ClubMenuBundle(),
