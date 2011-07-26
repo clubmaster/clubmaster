@@ -47,33 +47,13 @@ class DefaultController extends Controller
           'name' => $this->get('translator')->trans('User'),
           'route' => $this->generateUrl('admin_user'),
         ),
-        'location' => array(
-          'name' => $this->get('translator')->trans('Location'),
-          'route' => $this->generateUrl('admin_location')
-        ),
         'group' => array(
           'name' => $this->get('translator')->trans('Group'),
           'route' => $this->generateUrl('admin_group')
         ),
-        'currency' => array(
-          'name' => $this->get('translator')->trans('Currency'),
-          'route' => $this->generateUrl('admin_currency')
-        ),
-        'ban' => array(
-          'name' => $this->get('translator')->trans('Ban'),
-          'route' => $this->generateUrl('ban')
-        ),
-        'task' => array(
-          'name' => $this->get('translator')->trans('Task'),
-          'route' => $this->generateUrl('admin_task')
-        ),
-        'log' => array(
-          'name' => $this->get('translator')->trans('Log'),
-          'route' => $this->generateUrl('admin_log')
-        ),
-        'mail' => array(
-          'name' => $this->get('translator')->trans('Mail'),
-          'route' => $this->generateUrl('club_mail_adminmail_index')
+        'location' => array(
+          'name' => $this->get('translator')->trans('Location'),
+          'route' => $this->generateUrl('admin_location')
         ),
         'shop' => array(
           'name' => $this->get('translator')->trans('Shop'),
@@ -106,6 +86,32 @@ class DefaultController extends Controller
             array(
               'name' => $this->get('translator')->trans('Shipping'),
               'route' => $this->generateUrl('admin_shop_shipping')
+            ),
+          ),
+        ),
+        'admin' => array(
+          'name' => $this->get('translator')->trans('Administration'),
+          'route' => $this->generateUrl('ban'),
+          'items' => array(
+            array(
+              'name' => $this->get('translator')->trans('Ban'),
+              'route' => $this->generateUrl('ban')
+            ),
+            array(
+              'name' => $this->get('translator')->trans('Task'),
+              'route' => $this->generateUrl('admin_task')
+            ),
+            array(
+              'name' => $this->get('translator')->trans('Log'),
+              'route' => $this->generateUrl('admin_log')
+            ),
+            array(
+              'name' => $this->get('translator')->trans('Currency'),
+              'route' => $this->generateUrl('admin_currency')
+            ),
+            array(
+              'name' => $this->get('translator')->trans('Mail Templates'),
+              'route' => $this->generateUrl('club_mail_adminmail_index')
             ),
           ),
         ),

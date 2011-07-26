@@ -1118,6 +1118,14 @@
         <source>All messages in this form will go back to the developers of the system, so feel free to give any feedback that could help improve the system.</source>
         <target>Alle meddelelser i denne formular vil blive modtaget af udviklerne af systemet. Du er meget velkommen til at sende hvilken som helst form for feedback så vi kan forbedre din oplevelse med systemet.</target>
       </trans-unit>
+      <trans-unit id="280">
+        <source>Administration</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="281">
+        <source>Mail Templates</source>
+        <target>Mail Skabeloner</target>
+      </trans-unit>
 
     </body>
   </file>
