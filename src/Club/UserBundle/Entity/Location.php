@@ -36,7 +36,7 @@ class Location
     private $location;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\MailBundle\Entity\Mail")
+     * @ORM\ManyToMany(targetEntity="Club\MailBundle\Entity\Mail", mappedBy="Mail")
      *
      * @var Club\MailBundle\Entity\Mail
      */
