@@ -16,7 +16,7 @@ class AdminMessageController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $messages = $em->getRepository('ClubMessageBundle:Message')->findAll();
+    $messages = $em->getRepository('ClubMessageBundle:Message')->findBy(array(), array('id' => 'DESC'));
 
     return array(
       'messages' => $messages
