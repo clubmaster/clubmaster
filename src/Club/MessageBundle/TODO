@@ -5,3 +5,8 @@
 - use jquery autocomplete for user recipient
 - add wysiwyg editor to message
 - order by id desc
+- cannot send the same mail to the same person twice
+- save sent mail report
+- make a backend job process messages
+- remove unsent mail
+- view report and sent mail

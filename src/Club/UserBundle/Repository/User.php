@@ -48,8 +48,12 @@ class User extends EntityRepository
   }
 
   public function getUsersCount($filter) {
+    return count($this->getUsers($filter));
+  }
+
+  public function getUsers($filter) {
     $qb = $this->getQueryBuilderByFilter($filter);
-    return count($qb->getQuery()->getResult());
+    return $qb->getQuery()->getResult();
   }
 
   protected function getQueryBuilderByFilter(\Club\UserBundle\Entity\Filter $filter)

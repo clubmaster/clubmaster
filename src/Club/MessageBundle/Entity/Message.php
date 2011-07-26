@@ -85,17 +85,6 @@ class Message
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
-     * @ORM\JoinTable(name="club_message_message_location",
-     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
-     * )
-     *
-     * @var Club\UserBundle\Entity\Location
-     */
-    private $locations;
-
-    /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
      * @ORM\JoinTable(name="club_message_message_group",
      *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
@@ -141,7 +130,6 @@ class Message
 
     public function __construct()
     {
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->events = new \Doctrine\Common\Collections\ArrayCollection();
@@ -196,26 +184,6 @@ class Message
     public function getMessage()
     {
         return $this->message;
-    }
-
-    /**
-     * Add locations
-     *
-     * @param Club\UserBundle\Entity\Location $locations
-     */
-    public function addLocations(\Club\UserBundle\Entity\Location $locations)
-    {
-        $this->locations[] = $locations;
-    }
-
-    /**
-     * Get locations
-     *
-     * @return Doctrine\Common\Collections\Collection $locations
-     */
-    public function getLocations()
-    {
-        return $this->locations;
     }
 
     /**

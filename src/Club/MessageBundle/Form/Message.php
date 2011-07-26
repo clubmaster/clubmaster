@@ -11,7 +11,6 @@ class Message extends AbstractType
   {
     $builder->add('sender_name');
     $builder->add('sender_address');
-    $builder->add('locations');
     $builder->add('groups');
     $builder->add('events');
     $builder->add('filters');
