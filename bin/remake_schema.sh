@@ -9,11 +9,12 @@ php app/console doctrine:migrations:migrate --no-interaction
 php app/console doctrine:fixtures:load
 php app/console assets:install web
 
-mysql -u root clubmaster < src/Club/Docs/sql/test_data.sql
-mysql -u root clubmaster < src/Club/Docs/sql/users_data.sql
-mysql -u root clubmaster < src/Club/Docs/sql/event_data.sql
+echo "Now you will be prompted for your MySQL password 3 times, in order to insert test data:"
+mysql -u root -p clubmaster < src/Club/Docs/sql/test_data.sql
+mysql -u root -p clubmaster < src/Club/Docs/sql/users_data.sql
+mysql -u root -p clubmaster < src/Club/Docs/sql/event_data.sql
 
 php app/console cache:warmup
 
-sudo chmod 777 -R app/logs app/cache
+sudo chmod 777 -R app/logs app/cache app/spool
 sudo chown www-data:www-data app/cache app/logs

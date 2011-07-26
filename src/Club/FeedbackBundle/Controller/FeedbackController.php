@@ -20,14 +20,28 @@ class FeedbackController extends Controller
       'other' => $this->get('translator')->trans('Other')
     );
 
-    $form = $this->createFormBuilder()
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    $data = array(
+      'name' => $user->getProfile()->getName(),
+      'email' => $user->getProfile()->getProfileEmail()->getEmailAddress()
+    );
+    $form = $this->createFormBuilder($data)
+      ->add('name','text',array(
+        'required' => false
+      ))
+      ->add('email','email',array(
+        'required' => false
+      ))
       ->add('type','choice',array(
         'choices' => $type
       ))
-      ->add('subject','text', array(
+      ->add('subject','text',array(
         'required' => true
       ))
-      ->add('message','textarea')
+      ->add('message','textarea',array(
+        'required' => true
+      ))
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
