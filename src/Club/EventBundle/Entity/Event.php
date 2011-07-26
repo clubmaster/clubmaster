@@ -83,6 +83,12 @@ class Event
      */
     private $attends;
 
+
+    public function __toString()
+    {
+      return $this->getEventName();
+    }
+
     /**
      * Get id
      *
