@@ -43,8 +43,8 @@ class Message
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Location")
-     * @ORM\JoinTable(name="club_mail_mail_location",
-     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     * @ORM\JoinTable(name="club_message_message_location",
+     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
      * )
      *
@@ -54,8 +54,8 @@ class Message
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
-     * @ORM\JoinTable(name="club_mail_mail_group",
-     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     * @ORM\JoinTable(name="club_message_message_group",
+     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
      *
@@ -65,8 +65,8 @@ class Message
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_mail_mail_user",
-     *   joinColumns={@ORM\JoinColumn(name="mail_id", referencedColumnName="id")},
+     * @ORM\JoinTable(name="club_message_message_user",
+     *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      *
