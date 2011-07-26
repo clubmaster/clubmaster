@@ -64,21 +64,6 @@ class DefaultController extends Controller
   }
 
   /**
-   * @Route("/delete/user/{id}")
-   * @Method("DELETE")
-   */
-  public function deleteUserAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User',$id);
-
-    $em->remove($user);
-    $em->flush();
-
-    return $this->renderJSon();
-  }
-
-  /**
    * @Route("/get/users")
    */
   public function getUsersAction()
@@ -108,24 +93,6 @@ class DefaultController extends Controller
     $ban->setValue($user->getId());
 
     $em->persist($ban);
-    $em->flush();
-
-    return $this->renderJSon($user->toArray());
-  }
-
-  /**
-   * @Route("/add/user_role")
-   */
-  public function addUserRole()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $user = $em->find('ClubUserBundle:User',$this->getRequest()->get('user'));
-    $role = $em->find('ClubUserBundle:Role',$this->getRequest()->get('role'));
-
-    $user->addRole($role);
-
-    $em->persist($user);
     $em->flush();
 
     return $this->renderJSon($user->toArray());
