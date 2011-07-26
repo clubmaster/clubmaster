@@ -1126,11 +1126,6 @@
         <source>Mail Templates</source>
         <target>Mail Skabeloner</target>
       </trans-unit>
-      <trans-unit id="282">
-        <source>Communication</source>
-        <target>Kommunikation</target>
-      </trans-unit>
-
     </body>
   </file>
 </xliff>

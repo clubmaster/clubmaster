@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\CommunicationBundle\DependencyInjection;
+namespace Club\MessageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('club_communication');
+        $rootNode = $treeBuilder->root('club_message');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -1,4 +1,0 @@
-_admin_communication:
-  resource: "@ClubCommunicationBundle/Controller/AdminCommunicationController.php"
-  type: annotation
-  prefix: /admin

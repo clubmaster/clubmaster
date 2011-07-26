@@ -1,12 +1,12 @@
 <?php
 
-namespace Club\CommunicationBundle\Entity;
+namespace Club\MessageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\CommunicationBundle\Repository\Mail")
+ * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\Mail")
  * @ORM\Table(name="club_mail")
  */
 class Mail

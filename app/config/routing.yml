@@ -1,7 +1,3 @@
-ClubCommunicationBundle:
-    resource: "@ClubCommunicationBundle/Resources/config/routing.yml"
-    prefix:   /
-
 homepage:
   pattern: /
   defaults: { _controller: ClubUserBundle:User:index }
@@ -35,3 +31,6 @@ _installer:
 
 _feedback:
   resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
+
+_message:
+  resource: "@ClubMessageBundle/Resources/config/routing.yml"

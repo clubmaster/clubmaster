@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\CommunicationBundle\Listener;
+namespace Club\MessageBundle\Listener;
 
 class LeftMenuRenderListener
 {
@@ -19,10 +19,10 @@ class LeftMenuRenderListener
   {
     $menu = $event->getMenu();
 
-    if ($this->security_context->isGranted('ROLE_COMMUNICATION_ADMIN')) {
-      $menu['communication'] = array(
-        'name' => $this->translator->trans('Communication'),
-        'route' => $this->router->generate('club_communication_admincommunication_index'),
+    if ($this->security_context->isGranted('ROLE_MESSAGE_ADMIN')) {
+      $menu['message'] = array(
+        'name' => $this->translator->trans('Message'),
+        'route' => $this->router->generate('club_message_adminmessage_index'),
         'items' => array()
       );
     }

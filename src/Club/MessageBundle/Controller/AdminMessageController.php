@@ -1,15 +1,15 @@
 <?php
 
-namespace Club\CommunicationBundle\Controller;
+namespace Club\MessageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class AdminCommunicationController extends Controller
+class AdminMessageController extends Controller
 {
   /**
-   * @Route("/communication")
+   * @Route("/message")
    * @Template()
    */
   public function indexAction()
