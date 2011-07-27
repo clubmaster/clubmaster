@@ -118,6 +118,7 @@ class AdminMessageController extends Controller
     $queue->setUser($user);
     $queue->setMessage($message);
     $queue->setProcessed(0);
+    $queue->setRecipient($user->getProfile()->getProfileEmail()->getEmailAddress());
 
     $em = $this->getDoctrine()->getEntityManager();
     $em->persist($queue);

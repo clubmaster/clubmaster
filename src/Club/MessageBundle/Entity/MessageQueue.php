@@ -42,6 +42,11 @@ class MessageQueue
     private $created_at;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $recipient;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
@@ -194,5 +199,25 @@ class MessageQueue
     public function getProcessed()
     {
         return $this->processed;
+    }
+
+    /**
+     * Set recipient
+     *
+     * @param string $recipient
+     */
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
+    }
+
+    /**
+     * Get recipient
+     *
+     * @return string 
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
     }
 }
