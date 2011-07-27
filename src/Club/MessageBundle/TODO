@@ -1,5 +1,6 @@
 - make a wizard to add recipients
 - copy a message for resend
+- add attachment to messages
 
 - use jquery autocomplete for user recipient
 - add wysiwyg editor to message
