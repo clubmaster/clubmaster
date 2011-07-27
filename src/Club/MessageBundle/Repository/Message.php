@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class Message extends EntityRepository
 {
+  public function getCount()
+  {
+    return count($this->getQueryBuilder()->getQuery()->getResult());
+  }
+
+  public function getWithPagination($offset = 0, $limit = 0)
+  {
+    return $this->getQueryBuilder()
+      ->setFirstResult($offset)
+      ->setMaxResults($limit)
+      ->getQuery()
+      ->getResult();
+  }
+
+  private function getQueryBuilder()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('m')
+      ->from('ClubMessageBundle:Message','m')
+      ->orderBy('m.id','DESC');
+  }
 }

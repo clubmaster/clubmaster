@@ -16,10 +16,14 @@ class AdminMessageController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $messages = $em->getRepository('ClubMessageBundle:Message')->findBy(array(), array('id' => 'DESC'));
+    $count = $em->getRepository('ClubMessageBundle:Message')->getCount();
+    $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('club_message_adminmessage_index'));
+
+    $messages = $em->getRepository('ClubMessageBundle:Message')->getWithPagination($paginator->getOffset(),$paginator->getLimit());
 
     return array(
-      'messages' => $messages
+      'messages' => $messages,
+      'paginator' => $paginator
     );
   }
 
