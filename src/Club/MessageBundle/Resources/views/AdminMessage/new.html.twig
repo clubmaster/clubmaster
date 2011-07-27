@@ -3,9 +3,14 @@
 {% block body %}
 
 <form method="post" action="{{ path('club_message_adminmessage_new') }}">
-{{ form_widget(form) }}
+  <fieldset>
+    <legend>Message</legend>
 
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+    {{ form_widget(form) }}
+
+  </fieldset>
+
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 </form>
 
 {% endblock %}

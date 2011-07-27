@@ -33,34 +33,7 @@ class AdminMessageController extends Controller
    */
   public function newAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $message = new \Club\MessageBundle\Entity\Message();
-    $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
-    $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
-    $message->setType('mail');
-    $message->setUser($this->get('security.context')->getToken()->getUser());
-
-    $qb = $em->createQueryBuilder()
-      ->select('f')
-      ->from('ClubUserBundle:Filter','f')
-      ->where('f.user = :user')
-      ->setParameter('user',$this->get('security.context')->getToken()->getUser());
-
-    $form = $this->createFormBuilder($message)
-      ->add('sender_name')
-      ->add('sender_address')
-      ->add('filters','entity',array(
-        'class' => 'ClubUserBundle:Filter',
-        'multiple' => true,
-        'query_builder' => $qb
-      ))
-      ->add('groups')
-      ->add('events')
-      ->add('users')
-      ->add('subject')
-      ->add('message')
-      ->getForm();
+    $form = $this->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -160,5 +133,20 @@ class AdminMessageController extends Controller
 
     $em = $this->getDoctrine()->getEntityManager();
     $em->persist($queue);
+  }
+
+  private function getForm()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $message = new \Club\MessageBundle\Entity\Message();
+    $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
+    $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
+    $message->setType('mail');
+    $message->setUser($this->get('security.context')->getToken()->getUser());
+
+    $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
+
+    return $form;
   }
 }

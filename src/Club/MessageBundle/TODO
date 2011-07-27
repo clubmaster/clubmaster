@@ -1,6 +1,7 @@
-- translation
-- copy a message for resend
 - make a wizard to add recipients
+- copy a message for resend
 
 - use jquery autocomplete for user recipient
 - add wysiwyg editor to message
+
+- translation
