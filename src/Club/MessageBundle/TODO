@@ -3,6 +3,5 @@
 - copy a message for resend
 - use jquery autocomplete for user recipient
 - add wysiwyg editor to message
-- save sent mail report
-- view report of sent mail
 - add pager on messages
+- translation

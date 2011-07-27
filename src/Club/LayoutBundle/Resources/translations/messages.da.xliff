@@ -1142,6 +1142,14 @@
         <source>Process</source>
         <target>Ekspeder</target>
       </trans-unit>
+      <trans-unit id="286">
+        <source>Message log</source>
+        <target>Besked log</target>
+      </trans-unit>
+      <trans-unit id="287">
+        <source>No recipients for this message.</source>
+        <target>Ingen modtagere for denne besked.</target>
+      </trans-unit>
 
     </body>
   </file>

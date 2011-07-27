@@ -55,6 +55,20 @@ class AdminMessageController extends Controller
   }
 
   /**
+   * @Route("/message/log/{id}")
+   * @Template()
+   */
+  public function logAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    return array(
+      'message' => $message
+    );
+  }
+
+  /**
    * @Route("/message/process/{id}/")
    */
   public function processAction($id)
