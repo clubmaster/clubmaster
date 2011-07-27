@@ -135,6 +135,13 @@ class Message
      */
     private $filters;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     *
+     * @var Club\UserBundle\Entity\User
+     */
+    private $user;
+
     public function __construct()
     {
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
@@ -444,5 +451,25 @@ class Message
     public function getMessageQueue()
     {
         return $this->message_queue;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
