@@ -24,26 +24,6 @@ namespace Symfony\Component\DependencyInjection
 {
 
 
-class ContainerAware implements ContainerAwareInterface
-{
-    
-    protected $container;
-
-    
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-}
-}
- 
-
-
-
-namespace Symfony\Component\DependencyInjection
-{
-
-
 interface ContainerInterface
 {
     const EXCEPTION_ON_INVALID_REFERENCE = 1;
@@ -476,7 +456,7 @@ abstract class Kernel implements KernelInterface
     protected $startTime;
     protected $classes;
 
-    const VERSION = '2.0.0-DEV';
+    const VERSION = '2.0.0';
 
     
     public function __construct($environment, $debug)
@@ -1313,7 +1293,7 @@ abstract class Bundle extends ContainerAware implements BundleInterface
                     throw new \LogicException(sprintf(
                         'The extension alias for the default extension of a '.
                         'bundle must be the underscored version of the '.
-                        'bundle name ("%s" vs "%s")',
+                        'bundle name ("%s" instead of "%s")',
                         $expectedAlias, $extension->getAlias()
                     ));
                 }
