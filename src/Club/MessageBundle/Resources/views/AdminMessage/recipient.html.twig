@@ -1,0 +1,41 @@
+{% extends "ClubMessageBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box">
+  <a href="{{ path('club_message_adminmessage_recipientuser', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add user{% endtrans %}</span></a>
+  <a href="{{ path('club_message_adminmessage_recipientgroup', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add group{% endtrans %}</span></a>
+  <a href="{{ path('club_message_adminmessage_recipientevent', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add event{% endtrans %}</span></a>
+  <a href="{{ path('club_message_adminmessage_recipientfilter', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add filter{% endtrans %}</span></a>
+</p>
+
+<fieldset>
+  <legend>Recipients</legend>
+
+  <table>
+    <thead>
+      <tr>
+        <th width="80">Type</th>
+        <th width="300">Recipient</th>
+        <th width="100">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for line in lines %}
+      <tr>
+        <td>{{ line.type }}</td>
+        <td>{{ line.message }}</td>
+        <td><a href="#">Delete</a></td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="3">There are no recipients.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</fieldset>
+
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+{% endblock %}

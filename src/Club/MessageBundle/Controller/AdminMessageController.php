@@ -28,12 +28,120 @@ class AdminMessageController extends Controller
   }
 
   /**
+   * @Route("/message/recipient/{id}")
+   * @Template()
+   */
+  public function recipientAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $lines = array();
+    foreach ($message->getUsers() as $user) {
+      $lines[] = array(
+        'type' => 'User',
+        'message' => $user->getProfile()->getName(),
+        'path' => ''
+      );
+    }
+    foreach ($message->getGroups() as $group) {
+      $lines[] = array(
+        'type' => 'Group',
+        'message' => $group->getGroupName(),
+        'path' => ''
+      );
+    }
+    foreach ($message->getEvents() as $event) {
+      $lines[] = array(
+        'type' => 'Event',
+        'message' => $event->getEventName(),
+        'path' => ''
+      );
+    }
+    foreach ($message->getFilters() as $filter) {
+      $lines[] = array(
+        'type' => 'Filter',
+        'message' => $filter->getFilterName(),
+        'path' => ''
+      );
+    }
+
+
+    return array(
+      'lines' => $lines,
+      'message' => $message
+    );
+  }
+
+  /**
    * @Route("/message/new")
    * @Template()
    */
   public function newAction()
   {
-    $form = $this->getForm();
+    $message = new \Club\MessageBundle\Entity\Message();
+    $form = $this->getForm($message);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $em->persist($message);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id'=>$message->getId())));
+      }
+    }
+    return array(
+      'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Route("/message/edit/{id}")
+   * @Template()
+   */
+  public function editAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+    $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+
+        $em->persist($message);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id'=>$message->getId())));
+      }
+    }
+    return array(
+      'message' => $message,
+      'form' => $form->createView()
+    );
+  }
+
+
+  /**
+   * @Route("/message/recipient/filter/{id}")
+   * @Template()
+   */
+  public function recipientFilterAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $form = $this->createFormBuilder($message)
+      ->add('filters')
+      ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -43,11 +151,115 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
-        return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
     return array(
-      'form' => $form->createView()
+      'form' => $form->createView(),
+      'message' => $message
+    );
+
+  }
+
+  /**
+   * @Route("/message/recipient/event/{id}")
+   * @Template()
+   */
+  public function recipientEventAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $form = $this->createFormBuilder($message)
+      ->add('events')
+      ->getForm();
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em->persist($message);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
+      }
+    }
+    return array(
+      'form' => $form->createView(),
+      'message' => $message
+    );
+
+  }
+
+  /**
+   * @Route("/message/recipient/group/{id}")
+   * @Template()
+   */
+  public function recipientGroupAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $form = $this->createFormBuilder($message)
+      ->add('groups')
+      ->getForm();
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em->persist($message);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
+      }
+    }
+    return array(
+      'form' => $form->createView(),
+      'message' => $message
+    );
+
+  }
+
+  /**
+   * @Route("/message/recipient/user/delete/{id}")
+   * @Template()
+   */
+  public function recipientUserDeleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+  }
+
+  /**
+   * @Route("/message/recipient/user/{id}")
+   * @Template()
+   */
+  public function recipientUserAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $form = $this->createFormBuilder($message)
+      ->add('users')
+      ->getForm();
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em->persist($message);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
+      }
+    }
+    return array(
+      'form' => $form->createView(),
+      'message' => $message
     );
   }
 
@@ -97,7 +309,7 @@ class AdminMessageController extends Controller
 
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message will now be processed from queue.'));
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Recipients added to your recipient queue.'));
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
   }
 
@@ -135,11 +347,10 @@ class AdminMessageController extends Controller
     $em->persist($queue);
   }
 
-  private function getForm()
+  private function getForm($message)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $message = new \Club\MessageBundle\Entity\Message();
     $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
     $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
     $message->setType('mail');
