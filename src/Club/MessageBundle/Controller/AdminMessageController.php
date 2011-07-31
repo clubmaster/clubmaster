@@ -42,28 +42,40 @@ class AdminMessageController extends Controller
       $lines[] = array(
         'type' => 'User',
         'message' => $user->getProfile()->getName(),
-        'path' => ''
+        'path' => $this->generateUrl('club_message_adminmessage_recipientuserdelete', array(
+          'message_id' => $message->getId(),
+          'id' => $user->getId()
+        ))
       );
     }
     foreach ($message->getGroups() as $group) {
       $lines[] = array(
         'type' => 'Group',
         'message' => $group->getGroupName(),
-        'path' => ''
+        'path' => $this->generateUrl('club_message_adminmessage_recipientgroupdelete', array(
+          'message_id' => $message->getId(),
+          'id' => $group->getId()
+        ))
       );
     }
     foreach ($message->getEvents() as $event) {
       $lines[] = array(
         'type' => 'Event',
         'message' => $event->getEventName(),
-        'path' => ''
+        'path' => $this->generateUrl('club_message_adminmessage_recipienteventdelete', array(
+          'message_id' => $message->getId(),
+          'id' => $event->getId()
+        ))
       );
     }
     foreach ($message->getFilters() as $filter) {
       $lines[] = array(
         'type' => 'Filter',
         'message' => $filter->getFilterName(),
-        'path' => ''
+        'path' => $this->generateUrl('club_message_adminmessage_recipientfilterdelete', array(
+          'message_id' => $message->getId(),
+          'id' => $filter->getId()
+        ))
       );
     }
 
@@ -224,14 +236,73 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/user/delete/{id}")
+   * @Route("/message/recipient/user/delete/{message_id}/{id}")
    * @Template()
    */
-  public function recipientUserDeleteAction($id)
+  public function recipientUserDeleteAction($message_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $message = $em->find('ClubMessageBundle:Message',$id);
+    $message = $em->find('ClubMessageBundle:Message',$message_id);
+
+    $user = $em->find('ClubUserBundle:User',$id);
+    $message->getUsers()->removeElement($user);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
   }
+
+  /**
+   * @Route("/message/recipient/group/delete/{message_id}/{id}")
+   * @Template()
+   */
+  public function recipientGroupDeleteAction($message_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$message_id);
+
+    $group = $em->find('ClubUserBundle:Group',$id);
+    $message->getGroups()->removeElement($group);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
+  }
+
+  /**
+   * @Route("/message/recipient/event/delete/{message_id}/{id}")
+   * @Template()
+   */
+  public function recipientEventDeleteAction($message_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$message_id);
+
+    $event = $em->find('ClubEventBundle:Event',$id);
+    $message->getEvents()->removeElement($event);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
+  }
+
+  /**
+   * @Route("/message/recipient/filter/delete/{message_id}/{id}")
+   * @Template()
+   */
+  public function recipientFilterDeleteAction($message_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$message_id);
+
+    $filter = $em->find('ClubUserBundle:Filter',$id);
+    $message->getFilters()->removeElement($filter);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
+  }
+
 
   /**
    * @Route("/message/recipient/user/{id}")
