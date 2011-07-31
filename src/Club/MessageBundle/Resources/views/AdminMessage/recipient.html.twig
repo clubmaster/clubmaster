@@ -36,6 +36,9 @@
 
 </fieldset>
 
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+<hr class="noscreen" />
+<div class="box-01">
+  <p class="nom"><input type="button" onclick="location.href='{{ path('club_message_adminmessage_process', {'id':message.id}) }}'" value="{% trans %}Queue message{% endtrans %}" class="input-submit" /></p>
+</div> <!-- /box-01 -->
 
 {% endblock %}

@@ -79,7 +79,6 @@ class AdminMessageController extends Controller
       );
     }
 
-
     return array(
       'lines' => $lines,
       'message' => $message

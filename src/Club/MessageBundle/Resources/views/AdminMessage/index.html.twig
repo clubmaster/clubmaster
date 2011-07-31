@@ -35,7 +35,6 @@
         {% endif %}
       <td>
         {% if not message.processed %}
-        {% include "ClubLayoutBundle:Default:process_link.html.twig" with {'url':path('club_message_adminmessage_process', {'id':message.id})} %}
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_message_adminmessage_edit', {'id':message.id})} %}
         {% else %}
         {% include "ClubLayoutBundle:Default:log_link.html.twig" with {'url':path('club_message_adminmessage_log', {'id':message.id})} %}

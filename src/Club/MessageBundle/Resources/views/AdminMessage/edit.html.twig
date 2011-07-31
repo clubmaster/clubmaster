@@ -1,14 +1,13 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
+{% block javascripts %}
+  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <form method="post" action="{{ path('club_message_adminmessage_edit', {'id':message.id}) }}">
-  <fieldset>
-    <legend>Message</legend>
 
-    {{ form_widget(form) }}
-
-  </fieldset>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  {% include "ClubMessageBundle:AdminMessage:form.html.twig" %}
 
 </form>
 {% endblock %}
