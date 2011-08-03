@@ -15,8 +15,8 @@ RESET
 HTML
 ============================================================================= */
 
-table {font-size:100%;}
-table th, table td {padding:6px 6px !important;}
+table.style {font-size:100%;}
+table.style th, table.style td {padding:6px 6px !important;}
 code {font-size:105%;}
 
 /* =============================================================================

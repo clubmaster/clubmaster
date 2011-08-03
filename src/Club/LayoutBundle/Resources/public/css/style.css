@@ -13,10 +13,10 @@ body {background-color:#eaeaea; color:#303030;}
 a {color:#0085cc;}
 a:hover, a:active, a:focus {color:#df0000;}
 #content h2 {color:#0085cc;}
-#content table {border:2px solid #cfcfcf;}
-#content table th {border-right:1px solid #0074B3; background-color:#0085cc; color:#fff;}
-#content table td {border:1px solid #cfcfcf;}
-#content table tr.bg td, #content table tr.odd td {background-color:#e8f6ff;}
+#content table.style {border:2px solid #cfcfcf;}
+#content table.style th {border-right:1px solid #0074B3; background-color:#0085cc; color:#fff;}
+#content table.style td {border:1px solid #cfcfcf;}
+#content table.style tr.bg td, #content table.style tr.odd td {background-color:#e8f6ff;}
 #content table.tablesorter th.headerSortUp, #content table.tablesorter th.headerSortDown {background-color:#0074B3;}
 #content dl dt {color:#df0000;}
 #content fieldset {border:1px solid #ccc;}

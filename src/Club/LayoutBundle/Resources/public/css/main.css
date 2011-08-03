@@ -10,16 +10,16 @@ HTML - styles
 ============================================================================= */
 
 body {font:0.8em/1.5 "arial", sans-serif;}
-h1, h2, h3, h4, h5, h6, address, blockquote, dl, fieldset, ol, p, table, ul {margin:15px 0;}
+h1, h2, h3, h4, h5, h6, address, blockquote, dl, fieldset, ol, p, table.style, ul {margin:15px 0;}
 #content h1 {font-size:180%;}
 #content h2 {font-size:160%;}
 #content h3 {font-size:140%;}
 #content h4 {font-size:120%;}
 #content h5, h6 {font-size:100%;}
-#content table {margin:0; border-collapse:collapse;}
+#content table.style {margin:0; border-collapse:collapse;}
 #content table.width100 {width:100%;}
-#content table th, #content table td {padding:5px 5px;}
-#content table th {text-align:left; vertical-align:middle; font-weight:bold;}
+#content table.style th, #content table.style td {padding:5px 5px;}
+#content table.style th {text-align:left; vertical-align:middle; font-weight:bold;}
 #content table.tablesorter th.header {cursor:pointer; background-image:url("../images/orderby.gif");}
 #content table.tablesorter th.headerSortUp {background-image:url("../images/orderby-desc.gif");}
 #content table.tablesorter th.headerSortDown {background-image:url("../images/orderby-asc.gif");}
