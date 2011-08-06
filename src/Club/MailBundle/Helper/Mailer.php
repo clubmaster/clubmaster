@@ -47,14 +47,17 @@ class Mailer
 
   public function setBody($body)
   {
-    $this->message->setBody($body);
+    $this->message->setBody($body,'text/html');
 
     return $this;
   }
 
-  public function attach($filename)
+  public function attach($attachment)
   {
-    $this->message->attach(\Swift_Attachment::fromPath($filename));
+    $this->message->attach(
+      \Swift_Attachment::fromPath($attachment->getAbsolutePath())
+      ->setFilename($attachment->getFileName())
+    );
 
     return $this;
   }

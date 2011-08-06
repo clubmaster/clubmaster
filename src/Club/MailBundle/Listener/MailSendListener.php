@@ -33,7 +33,7 @@ class MailSendListener
           ->setBody($message->getMessage()->getMessage());
 
         foreach ($message->getMessage()->getMessageAttachment() as $attachment) {
-          $this->clubmaster_mailer->attach($attachment->getAbsolutePath());
+          $this->clubmaster_mailer->attach($attachment);
         }
 
         $this->clubmaster_mailer->send();
