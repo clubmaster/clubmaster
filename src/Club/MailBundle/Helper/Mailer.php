@@ -52,6 +52,13 @@ class Mailer
     return $this;
   }
 
+  public function attach($filename)
+  {
+    $this->message->attach(\Swift_Attachment::fromPath($filename));
+
+    return $this;
+  }
+
   public function send()
   {
     $this->mailer->send($this->message);

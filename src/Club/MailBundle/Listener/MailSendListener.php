@@ -30,8 +30,13 @@ class MailSendListener
           ->setSubject($message->getMessage()->getSubject())
           ->setFrom($message->getMessage()->getSenderAddress(),$message->getMessage()->getSenderName())
           ->setTo($message->getRecipient())
-          ->setBody($message->getMessage()->getMessage())
-          ->send();
+          ->setBody($message->getMessage()->getMessage());
+
+        foreach ($message->getMessage()->getMessageAttachment() as $attachment) {
+          $this->clubmaster_mailer->attach($attachment->getAbsolutePath());
+        }
+
+        $this->clubmaster_mailer->send();
       } catch (\Exception $e) {
         $message->setErrorMessage($e->getMessage());
       }
