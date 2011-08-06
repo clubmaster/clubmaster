@@ -92,6 +92,14 @@ class Message
     private $message_queue;
 
     /**
+     * @ORM\OneToMany(targetEntity="MessageAttachment", mappedBy="message")
+     *
+     * @var Club\MessageBundle\Entity\MessageAttachment
+     */
+    private $message_attachment;
+
+
+    /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
      * @ORM\JoinTable(name="club_message_message_group",
      *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
@@ -471,5 +479,25 @@ class Message
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add message_attachment
+     *
+     * @param Club\MessageBundle\Entity\MessageAttachment $messageAttachment
+     */
+    public function addMessageAttachment(\Club\MessageBundle\Entity\MessageAttachment $messageAttachment)
+    {
+        $this->message_attachment[] = $messageAttachment;
+    }
+
+    /**
+     * Get message_attachment
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMessageAttachment()
+    {
+        return $this->message_attachment;
     }
 }

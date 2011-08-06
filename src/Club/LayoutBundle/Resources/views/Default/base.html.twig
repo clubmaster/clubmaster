@@ -26,6 +26,7 @@
         </script>
 
         {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
       </head>
     <body>
@@ -107,6 +108,5 @@
           <p class="f-right">{% render "ClubUserBundle:Misc:versionBar" %}</p>
         </div> <!-- /footer -->
       </div> <!-- /main -->
-      {% block javascripts %}{% endblock %}
     </body>
 </html>

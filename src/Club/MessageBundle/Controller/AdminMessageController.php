@@ -103,8 +103,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
-        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id'=>$message->getId())));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
     }
     return array(
@@ -130,8 +129,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
-        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id'=>$message->getId())));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
     }
     return array(
@@ -140,6 +138,52 @@ class AdminMessageController extends Controller
     );
   }
 
+  /**
+   * @Route("/message/attachment/delete/{id}")
+   */
+  public function attachmentDeleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $attachment = $em->find('ClubMessageBundle:MessageAttachment',$id);
+
+    $em->remove($attachment);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_attachment', array('id' => $attachment->getMessage()->getId())));
+  }
+
+  /**
+   * @Route("/message/attachment/{id}")
+   * @Template()
+   */
+  public function attachmentAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $attachment = new \Club\MessageBundle\Entity\MessageAttachment();
+    $attachment->setMessage($message);
+    $form = $this->createForm(new \Club\MessageBundle\Form\MessageAttachment(), $attachment);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+
+        $em->persist($attachment);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Attachment was added to the message.'));
+        return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
+      }
+    }
+
+    return array(
+      'attachments' => $message->getMessageAttachment(),
+      'message' => $message,
+      'form' => $form->createView()
+    );
+  }
 
   /**
    * @Route("/message/recipient/filter/{id}")

@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\MessageAttachment")
  * @ORM\Table(name="club_message_message_attachment")
+ * @ORM\HasLifecycleCallbacks()
  */
 class MessageAttachment
 {
@@ -19,6 +20,13 @@ class MessageAttachment
      * @var integer $id
      */
     private $id;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     *
+     * @var string $file
+     */
+    public $file;
 
     /**
      * @ORM\Column(type="string")
@@ -190,6 +198,61 @@ class MessageAttachment
      */
     public function getMessage()
     {
-        return $this->message;
+      return $this->message;
+    }
+
+    public function getAbsolutePath()
+    {
+      return null === $this->getFilePath() ? null : $this->getUploadRootDir().'/'.$this->getFilePath();
+    }
+
+    public function getWebPath()
+    {
+      return null === $this->getFilePath() ? null : $this->getUploadDir().'/'.$this->getFilePath();
+    }
+
+    protected function getUploadRootDir()
+    {
+      // the absolute directory path where uploaded documents should be saved
+      return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+      // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+      return 'uploads/attachments';
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setFilePath(uniqid().'.'.$this->file->guessExtension());
+      $this->setFileName($this->file->getClientOriginalName());
+      $this->setFileSize(filesize($this->file->getPathName()));
+      $this->setFileHash(hash_file('sha256', $this->file->getPathName()));
+
+      $finfo = new \finfo(FILEINFO_MIME);
+      $this->setFileType($finfo->file($this->file->getPathName()));
+    }
+
+    /**
+     * @ORM\PostPersist()
+     */
+    public function postPersist()
+    {
+      $this->file->move($this->getUploadRootDir(), $this->getFilePath());
+      unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function postRemove()
+    {
+      if ($file = $this->getAbsolutePath()) {
+        unlink($file);
+      }
     }
 }

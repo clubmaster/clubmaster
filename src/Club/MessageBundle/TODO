@@ -1,4 +1,5 @@
 - copy a message for resend
 - add attachment to messages
+- make sure web/uploads is always writeable
 
 - translation
