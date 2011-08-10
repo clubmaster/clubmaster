@@ -79,47 +79,13 @@ class AdminUserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
-      // validate user
-      $errors = $this->get('validator')->validate($user);
-      if (count($errors) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
-          'form' => $form->createView()
-        ));
+      if ($form->isValid()) {
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('admin_user'));
       }
-
-      // validate profile
-      $errors = $this->get('validator')->validate($user->getProfile());
-      if (count($errors) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
-
-      // validate address
-      $address = $user->getProfile()->getProfileAddress();
-      if (count($this->get('validator')->validate($address)) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
-
-      // validate email
-      $email = $user->getProfile()->getProfileEmail();
-      if (count($this->get('validator')->validate($email)) > 0) {
-        $user->getProfile()->getProfileEmail()->removeElement($emails[0]);
-      }
-
-      // validate phone
-      $phone = $user->getProfile()->getProfilePhone();
-      if (count($this->get('validator')->validate($phone)) > 0) {
-        $user->getProfile()->getProfilePhone()->removeElement($phones[0]);
-      }
-
-      $em->persist($user);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-      return $this->redirect($this->generateUrl('admin_user'));
     }
 
     return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
