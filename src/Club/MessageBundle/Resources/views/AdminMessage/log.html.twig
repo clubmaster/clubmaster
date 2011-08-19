@@ -17,7 +17,12 @@
     <tr>
       <td>{{ queue.user.profile.name }}</td>
       <td>{{ queue.recipient }}</td>
-      <td>{{ queue.processed }}</td>
+      <td>
+        {% if queue.processed %}
+          Sent
+        {% else %}
+          Queued for delivery
+        {% endif %}</td>
       <td>{{ queue.errorMessage }}</td>
     </tr>
   {% else %}

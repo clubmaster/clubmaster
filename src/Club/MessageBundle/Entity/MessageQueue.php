@@ -214,7 +214,7 @@ class MessageQueue
     /**
      * Get recipient
      *
-     * @return string 
+     * @return string
      */
     public function getRecipient()
     {
