@@ -1,0 +1,24 @@
+{% extends "ClubMessageBundle::base.html.twig" %}
+
+{% block javascripts %}
+  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+  <fieldset>
+    <legend>Sender</legend>
+
+    {{ form_row(form.sender_name) }}
+    {{ form_row(form.sender_address) }}
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Message</legend>
+
+    {{ form_widget(form) }}
+
+  </fieldset>
+
+{% endblock %}

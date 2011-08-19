@@ -139,6 +139,22 @@ class AdminMessageController extends Controller
   }
 
   /**
+   * @Route("/message/show/{id}")
+   * @Template()
+   */
+  public function showAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+    $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
+
+    return array(
+      'message' => $message,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
    * @Route("/message/attachment/delete/{id}")
    */
   public function attachmentDeleteAction($id)

@@ -31,13 +31,14 @@
         {% if message.processed %}
           {% trans %}Sent{% endtrans %}
         {% else %}
-          {% trans %}Queued{% endtrans %}
+          {% trans %}Draft{% endtrans %}
         {% endif %}
       <td>
         {% if not message.processed %}
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_message_adminmessage_edit', {'id':message.id})} %}
         {% else %}
         {% include "ClubLayoutBundle:Default:log_link.html.twig" with {'url':path('club_message_adminmessage_log', {'id':message.id})} %}
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_message_adminmessage_show', {'id':message.id})} %}
         {% endif %}
       </td>
     </tr>
