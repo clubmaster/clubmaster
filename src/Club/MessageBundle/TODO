@@ -1,8 +1,5 @@
-- better icon for message report
 - copy a message for resend
 - pager on message report
-- make sure web/uploads is always writeable
 - should send message with a submit button, not a javascript button
-- should be able to change interval times on tasks
 
 - translation
