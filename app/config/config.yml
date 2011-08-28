@@ -5,7 +5,7 @@ imports:
 framework:
     secret:          %secret%
     charset:         UTF-8
-    translator:      { fallback: en }
+    translator:      { fallback: %locale% }
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
