@@ -3,9 +3,10 @@ imports:
     - { resource: security.yml }
 
 framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
     secret:          %secret%
     charset:         UTF-8
-    translator:      { fallback: %locale% }
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
@@ -13,7 +14,6 @@ framework:
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     session:
         default_locale: %locale%
-        lifetime:       3600
         auto_start:     true
 
 # Twig Configuration
@@ -40,6 +40,7 @@ doctrine:
     dbal:
         driver:   %database_driver%
         host:     %database_host%
+        port:     %database_port%
         dbname:   %database_name%
         user:     %database_user%
         password: %database_password%
@@ -62,9 +63,3 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
-
-services:
-  twig.extension.text:
-    class: Twig_Extensions_Extension_Text
-    tags:
-      - { name: twig.extension }
