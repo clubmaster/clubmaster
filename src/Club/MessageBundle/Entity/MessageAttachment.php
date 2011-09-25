@@ -23,6 +23,7 @@ class MessageAttachment
 
     /**
      * @Assert\File(maxSize="6000000")
+     * @Assert\NotBlank()
      *
      * @var string $file
      */
