@@ -1,4 +1,1 @@
-- should send message with a submit button, not a javascript button
 - translation
-- make sure we can send more messages
-- recheck if the mailqueue is smart enough
