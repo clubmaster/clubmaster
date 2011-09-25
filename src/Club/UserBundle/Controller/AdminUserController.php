@@ -109,42 +109,6 @@ class AdminUserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
-      // validate user
-      $errors = $this->get('validator')->validate($user);
-      if (count($errors) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
-
-      // validate profile
-      $errors = $this->get('validator')->validate($user->getProfile());
-      if (count($errors) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
-
-      // validate address
-      $addresses = $user->getProfile()->getProfileAddress();
-      if (count($this->get('validator')->validate($addresses[0])) > 0) {
-        return $this->render('ClubUserBundle:AdminUser:edit.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
-
-      // validate email
-      $emails = $user->getProfile()->getProfileEmail();
-      if (count($this->get('validator')->validate($emails[0])) > 0) {
-        $user->getProfile()->getProfileEmail()->removeElement($emails[0]);
-      }
-
-      // validate phone
-      $phones = $user->getProfile()->getProfilePhone();
-      if (count($this->get('validator')->validate($phones[0])) > 0) {
-        $user->getProfile()->getProfilePhone()->removeElement($phones[0]);
-      }
-
       $em->persist($user);
       $em->flush();
 
