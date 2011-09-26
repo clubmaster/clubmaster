@@ -23,6 +23,7 @@ class Message
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $subject
      */
@@ -37,6 +38,7 @@ class Message
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      *
      * @var text $message
      */
