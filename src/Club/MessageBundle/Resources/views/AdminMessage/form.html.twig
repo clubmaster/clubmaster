@@ -1,15 +1,11 @@
   <fieldset>
-    <legend>Sender</legend>
-
+    <legend>{% trans %}Sender{% endtrans %}</legend>
     {{ form_row(form.sender_name) }}
     {{ form_row(form.sender_address) }}
-
   </fieldset>
 
   <fieldset>
-    <legend>Message</legend>
-
+    <legend>{% trans %}Message{% endtrans %}</legend>
     {{ form_widget(form) }}
-
   </fieldset>
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
