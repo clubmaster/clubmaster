@@ -5,15 +5,15 @@
   <a href="{{ path('club_message_adminmessage_recipient', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add recipients{% endtrans %}</span></a>
 </p>
 <fieldset>
-  <legend>Attachments</legend>
+  <legend>{% trans %}Attachments{% endtrans %}</legend>
 
   <table class="style">
     <thead>
       <tr>
-        <th>File name</th>
-        <th>File type</th>
-        <th>File size</th>
-        <th>Action</th>
+        <th>{% trans %}File name{% endtrans %}</th>
+        <th>{% trans %}File type{% endtrans %}</th>
+        <th>{% trans %}File size{% endtrans %}</th>
+        <th>{% trans %}Action{% endtrans %}</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
       </tr>
       {% else %}
       <tr>
-        <td colspan="4">There are no attachments.</td>
+        <td colspan="4">{% trans %}There are no attachments.{% endtrans %}</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -36,7 +36,7 @@
 
 <form method="post" action="{{ path('club_message_adminmessage_attachment', {'id':message.id}) }}" {{ form_enctype(form) }}>
   <fieldset>
-    <legend>Upload Attachment</legend>
+    <legend>{% trans %}Upload Attachment{% endtrans %}</legend>
     {{ form_widget(form) }}
   </fieldset>
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}

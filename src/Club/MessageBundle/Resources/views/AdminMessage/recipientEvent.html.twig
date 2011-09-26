@@ -3,7 +3,7 @@
 {% block body %}
 <form method="post" action="{{ path('club_message_adminmessage_recipientevent', {'id':message.id}) }}">
   <fieldset>
-    <legend>Message</legend>
+    <legend>{% trans %}Message{% endtrans %}</legend>
 
     {{ form_widget(form) }}
 

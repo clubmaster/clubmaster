@@ -9,14 +9,14 @@
 </p>
 
 <fieldset>
-  <legend>Recipients</legend>
+  <legend>{% trans %}Recipients{% endtrans %}</legend>
 
   <table class="style">
     <thead>
       <tr>
-        <th width="80">Type</th>
-        <th width="300">Recipient</th>
-        <th width="100">Action</th>
+        <th width="80">{% trans %}Type{% endtrans %}</th>
+        <th width="300">{% trans %}Recipient{% endtrans %}</th>
+        <th width="100">{% trans %}Action{% endtrans %}</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
       </tr>
       {% else %}
       <tr>
-        <td colspan="3">There are no recipients.</td>
+        <td colspan="3">{% trans %}There are no recipients.{% endtrans %}</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -38,7 +38,7 @@
 
 <hr class="noscreen" />
 <div class="box-01">
-  <p class="nom"><input type="button" onclick="location.href='{{ path('club_message_adminmessage_process', {'id':message.id}) }}'" value="{% trans %}Queue message{% endtrans %}" class="input-submit" /></p>
+  <p class="nom"><input type="button" onclick="location.href='{{ path('club_message_adminmessage_process', {'id':message.id}) }}'" value="{% trans %}Send message{% endtrans %}" class="input-submit" /></p>
 </div> <!-- /box-01 -->
 
 {% endblock %}

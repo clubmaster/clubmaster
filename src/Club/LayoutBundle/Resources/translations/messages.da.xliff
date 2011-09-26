@@ -1150,6 +1150,94 @@
         <source>No recipients for this message.</source>
         <target>Ingen modtagere for denne besked.</target>
       </trans-unit>
+      <trans-unit id="288">
+        <source>Create message</source>
+        <target>Opret besked</target>
+      </trans-unit>
+      <trans-unit id="289">
+        <source>Subject</source>
+        <target>Emne</target>
+      </trans-unit>
+      <trans-unit id="290">
+        <source>Sender name</source>
+        <target>Afsender navn</target>
+      </trans-unit>
+      <trans-unit id="291">
+        <source>Sender address</source>
+        <target>Afsender adresse</target>
+      </trans-unit>
+      <trans-unit id="292">
+        <source>Sender</source>
+        <target>Afsender</target>
+      </trans-unit>
+      <trans-unit id="293">
+        <source>Add recipients</source>
+        <target>Tilføj modtagere</target>
+      </trans-unit>
+      <trans-unit id="294">
+        <source>Attachments</source>
+        <target>Vedhæftninger</target>
+      </trans-unit>
+      <trans-unit id="295">
+        <source>File name</source>
+        <target>Fil navn</target>
+      </trans-unit>
+      <trans-unit id="296">
+        <source>File type</source>
+        <target>Fil type</target>
+      </trans-unit>
+      <trans-unit id="297">
+        <source>File size</source>
+        <target>Fil størrelse</target>
+      </trans-unit>
+      <trans-unit id="298">
+        <source>There are no attachments.</source>
+        <target>Der er ikke nogen vedhæftninger.</target>
+      </trans-unit>
+      <trans-unit id="299">
+        <source>Upload Attachment</source>
+        <target>Opload Vedhæftning</target>
+      </trans-unit>
+      <trans-unit id="300">
+        <source>Add user</source>
+        <target>Tilføj bruger</target>
+      </trans-unit>
+      <trans-unit id="301">
+        <source>Add group</source>
+        <target>Tilføj gruppe</target>
+      </trans-unit>
+      <trans-unit id="302">
+        <source>Add event</source>
+        <target>Tilføj begivenhed</target>
+      </trans-unit>
+      <trans-unit id="303">
+        <source>Add filter</source>
+        <target>Tilføj filter</target>
+      </trans-unit>
+      <trans-unit id="304">
+        <source>Recipient</source>
+        <target>Modtager</target>
+      </trans-unit>
+      <trans-unit id="305">
+        <source>There are no recipients.</source>
+        <target>Der er ingen modtagere.</target>
+      </trans-unit>
+      <trans-unit id="306">
+        <source>Send message</source>
+        <target>Send besked</target>
+      </trans-unit>
+      <trans-unit id="307">
+        <source>Users</source>
+        <target>Brugere</target>
+      </trans-unit>
+      <trans-unit id="308">
+        <source>Events</source>
+        <target>Begivenheder</target>
+      </trans-unit>
+      <trans-unit id="309">
+        <source>Filters</source>
+        <target>Filtre</target>
+      </trans-unit>
 
     </body>
   </file>
