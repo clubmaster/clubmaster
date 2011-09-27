@@ -16,5 +16,6 @@
     {{ form_row(form.role) }}
     <span class="smaller low">{% trans %}Info: The members of this group will get all the roles that you select in this field.{% endtrans %}</span>
   </fieldset>
+  {{ form_rest(form) }}
 
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
