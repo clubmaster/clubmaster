@@ -1,9 +1,9 @@
 <?php
-namespace Club\MessageBundle\Tests\Controller;
+namespace Club\AccountBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdminMessageControllerTest extends WebTestCase
+class AdminLedgerControllerTest extends WebTestCase
 {
   public function testIndex()
   {
@@ -11,7 +11,7 @@ class AdminMessageControllerTest extends WebTestCase
       'PHP_AUTH_USER' => '10',
       'PHP_AUTH_PW' => '1234'
     ));
-    $crawler = $client->request('GET', '/admin/message');
+    $crawler = $client->request('GET', '/admin/account/ledger/1');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }
