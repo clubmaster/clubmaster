@@ -3,7 +3,7 @@ namespace Club\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DemoControllerTest extends WebTestCase
+class AuthControllerTest extends WebTestCase
 {
   public function testIndex()
   {
