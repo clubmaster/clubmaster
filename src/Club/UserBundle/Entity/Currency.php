@@ -217,10 +217,8 @@ class Currency
      */
     public function prePersist()
     {
-      if (!$this->getId()) {
-        $this->setCreatedAt(new \DateTime());
-      }
-
+      $this->setActive(1);
+      $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
     }
 
