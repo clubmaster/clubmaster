@@ -7,20 +7,9 @@ if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
 fi
 
-# automatic tests
-sudo chmod -R 777 app/cache/* app/logs/*
-php app/console doctrine:database:drop --force
-php app/console doctrine:database:create
-php app/console doctrine:migrations:migrate --no-interaction
-php app/console doctrine:fixtures:load
-phpunit -c app/phpunit_installer.xml
-
-if [ $? -ne 0 ]; then
-  exit
-fi
-
+touch app/installer
 ./bin/remake_schema.sh
-phpunit -c app/phpunit_project.xml
+phpunit -c app
 
 if [ $? -ne 0 ]; then
   exit
@@ -79,4 +68,5 @@ EOF
 cd /tmp
 tar czf clubmaster_${VERSION}.tgz clubmaster_${VERSION}
 
+rm -f app/installer
 rm -rf ${BUILD_PATH}
