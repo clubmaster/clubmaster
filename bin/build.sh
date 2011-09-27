@@ -1,10 +1,17 @@
 #!/bin/sh
 
-VERSION=`cat src/Club/UserBundle/Helper/Version.php  | grep "protected $version" | cut -d"'" -f2`
+VERSION=`cat src/Club/UserBundle/Helper/Version.php  | grep "protected $version" | cut -d"'" -f2 | cut -d"-" -f1`
 BUILD_PATH=/tmp/clubmaster_${VERSION}
 
 if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
+fi
+
+./bin/remake_schema.sh
+phpunit -c app
+
+if [ $? -ne 0 ]; then
+  exit
 fi
 
 php app/console doctrine:database:drop --force

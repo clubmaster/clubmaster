@@ -9,10 +9,9 @@ php app/console doctrine:migrations:migrate --no-interaction
 php app/console doctrine:fixtures:load
 php app/console assets:install web
 
-echo "Now you will be prompted for your MySQL password 3 times, in order to insert test data:"
-mysql -u root -p clubmaster < app/sql/test_data.sql
-mysql -u root -p clubmaster < app/sql/users_data.sql
-mysql -u root -p clubmaster < app/sql/event_data.sql
+mysql -u root clubmaster < app/sql/test_data.sql
+mysql -u root clubmaster < app/sql/users_data.sql
+mysql -u root clubmaster < app/sql/event_data.sql
 
 php app/console cache:warmup
 
