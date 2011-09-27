@@ -1,9 +1,9 @@
 <?php
-namespace Club\UserBundle\Tests\Controller;
+namespace Club\ShopBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserControllerTest extends WebTestCase
+class ShopControllerTest extends WebTestCase
 {
   public function testIndex()
   {
@@ -11,7 +11,7 @@ class UserControllerTest extends WebTestCase
       'PHP_AUTH_USER' => '10',
       'PHP_AUTH_PW' => '1234'
     ));
-    $crawler = $client->request('GET', '/user');
+    $crawler = $client->request('GET', '/shop');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }
