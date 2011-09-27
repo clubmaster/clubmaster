@@ -51,10 +51,5 @@ class CheckoutControllerTest extends WebTestCase
     $crawler = $client->submit($form);
 
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
-
-    #$link = $crawler->selectLink('Confirm order')->link();
-    #$crawler = $client->click($link);
-    #$this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
-
 }
