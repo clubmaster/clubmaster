@@ -8,7 +8,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration,
 /**
  * Auto-generated Migration: Please modify to your need!
  */
-class Version20110928125521 extends AbstractMigration
+class Version20110928173150 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -22,17 +22,20 @@ class Version20110928125521 extends AbstractMigration
         $this->addSql("ALTER TABLE mail_user DROP FOREIGN KEY mail_user_ibfk_1");
         $this->addSql("CREATE TABLE club_user_group_product (group_id INT NOT NULL, product_id INT NOT NULL, INDEX IDX_257704F4FE54D947 (group_id), INDEX IDX_257704F44584665A (product_id), PRIMARY KEY(group_id, product_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_shop_product_variantgroup (product_id INT NOT NULL, variantgroup_id INT NOT NULL, INDEX IDX_DB190F384584665A (product_id), INDEX IDX_DB190F38E5B9157C (variantgroup_id), PRIMARY KEY(product_id, variantgroup_id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_message_message_queue (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, message_id INT DEFAULT NULL, error_message VARCHAR(255) DEFAULT NULL, processed TINYINT(1) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, recipient VARCHAR(255) NOT NULL, INDEX IDX_582BBC47A76ED395 (user_id), INDEX IDX_582BBC47537A1329 (message_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_message_message_attachment (id INT AUTO_INCREMENT NOT NULL, message_id INT DEFAULT NULL, file_path VARCHAR(255) NOT NULL, file_name VARCHAR(255) NOT NULL, file_type VARCHAR(255) NOT NULL, file_size VARCHAR(255) NOT NULL, file_hash VARCHAR(255) NOT NULL, INDEX IDX_7A27EA70537A1329 (message_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, subject VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, message LONGTEXT NOT NULL, sender_name VARCHAR(255) DEFAULT NULL, sender_address VARCHAR(255) NOT NULL, processed TINYINT(1) NOT NULL, sent_at DATETIME DEFAULT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_392338ADA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message_group (message_id INT NOT NULL, group_id INT NOT NULL, INDEX IDX_4A1687E1537A1329 (message_id), INDEX IDX_4A1687E1FE54D947 (group_id), PRIMARY KEY(message_id, group_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message_user (message_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_59115838537A1329 (message_id), INDEX IDX_59115838A76ED395 (user_id), PRIMARY KEY(message_id, user_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message_event (message_id INT NOT NULL, event_id INT NOT NULL, INDEX IDX_1C78C983537A1329 (message_id), INDEX IDX_1C78C98371F7E88B (event_id), PRIMARY KEY(message_id, event_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message_filter (message_id INT NOT NULL, filter_id INT NOT NULL, INDEX IDX_43E06D0F537A1329 (message_id), INDEX IDX_43E06D0FD395B25E (filter_id), PRIMARY KEY(message_id, filter_id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_message_message_queue (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, message_id INT DEFAULT NULL, error_message VARCHAR(255) DEFAULT NULL, processed TINYINT(1) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, recipient VARCHAR(255) NOT NULL, INDEX IDX_582BBC47A76ED395 (user_id), INDEX IDX_582BBC47537A1329 (message_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_message_message_attachment (id INT AUTO_INCREMENT NOT NULL, message_id INT DEFAULT NULL, file_path VARCHAR(255) NOT NULL, file_name VARCHAR(255) NOT NULL, file_type VARCHAR(255) NOT NULL, file_size VARCHAR(255) NOT NULL, file_hash VARCHAR(255) NOT NULL, INDEX IDX_7A27EA70537A1329 (message_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("ALTER TABLE club_user_group_product ADD CONSTRAINT FK_257704F4FE54D947 FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
         $this->addSql("ALTER TABLE club_user_group_product ADD CONSTRAINT FK_257704F44584665A FOREIGN KEY (product_id) REFERENCES club_shop_product(id)");
         $this->addSql("ALTER TABLE club_shop_product_variantgroup ADD CONSTRAINT FK_DB190F384584665A FOREIGN KEY (product_id) REFERENCES club_shop_product(id)");
         $this->addSql("ALTER TABLE club_shop_product_variantgroup ADD CONSTRAINT FK_DB190F38E5B9157C FOREIGN KEY (variantgroup_id) REFERENCES club_shop_variant_group(id)");
+        $this->addSql("ALTER TABLE club_message_message_queue ADD CONSTRAINT FK_582BBC47A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
+        $this->addSql("ALTER TABLE club_message_message_queue ADD CONSTRAINT FK_582BBC47537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
+        $this->addSql("ALTER TABLE club_message_message_attachment ADD CONSTRAINT FK_7A27EA70537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
         $this->addSql("ALTER TABLE club_message_message ADD CONSTRAINT FK_392338ADA76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_message_message_group ADD CONSTRAINT FK_4A1687E1537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
         $this->addSql("ALTER TABLE club_message_message_group ADD CONSTRAINT FK_4A1687E1FE54D947 FOREIGN KEY (group_id) REFERENCES club_user_group(id)");
@@ -42,9 +45,6 @@ class Version20110928125521 extends AbstractMigration
         $this->addSql("ALTER TABLE club_message_message_event ADD CONSTRAINT FK_1C78C98371F7E88B FOREIGN KEY (event_id) REFERENCES club_event_event(id)");
         $this->addSql("ALTER TABLE club_message_message_filter ADD CONSTRAINT FK_43E06D0F537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
         $this->addSql("ALTER TABLE club_message_message_filter ADD CONSTRAINT FK_43E06D0FD395B25E FOREIGN KEY (filter_id) REFERENCES club_user_filter(id)");
-        $this->addSql("ALTER TABLE club_message_message_queue ADD CONSTRAINT FK_582BBC47A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
-        $this->addSql("ALTER TABLE club_message_message_queue ADD CONSTRAINT FK_582BBC47537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
-        $this->addSql("ALTER TABLE club_message_message_attachment ADD CONSTRAINT FK_7A27EA70537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
         $this->addSql("DROP TABLE club_mail");
         $this->addSql("DROP TABLE club_mail_attachment");
         $this->addSql("DROP TABLE club_mail_queue");
@@ -55,6 +55,8 @@ class Version20110928125521 extends AbstractMigration
         $this->addSql("DROP TABLE mail_user");
         $this->addSql("DROP TABLE product_variantgroup");
         $this->addSql("ALTER TABLE club_user_profile_email CHANGE email_address email_address VARCHAR(255) NOT NULL");
+        $this->addSql("ALTER TABLE club_shop_product_attribute DROP FOREIGN KEY club_shop_product_attribute_ibfk_1");
+        $this->addSql("ALTER TABLE club_shop_product_attribute ADD CONSTRAINT FK_7D097C3E4584665A FOREIGN KEY (product_id) REFERENCES club_shop_product(id) ON DELETE CASCADE");
     }
 
     public function down(Schema $schema)
@@ -62,12 +64,12 @@ class Version20110928125521 extends AbstractMigration
         // this down() migration is autogenerated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
         
+        $this->addSql("ALTER TABLE club_message_message_queue DROP FOREIGN KEY FK_582BBC47537A1329");
+        $this->addSql("ALTER TABLE club_message_message_attachment DROP FOREIGN KEY FK_7A27EA70537A1329");
         $this->addSql("ALTER TABLE club_message_message_group DROP FOREIGN KEY FK_4A1687E1537A1329");
         $this->addSql("ALTER TABLE club_message_message_user DROP FOREIGN KEY FK_59115838537A1329");
         $this->addSql("ALTER TABLE club_message_message_event DROP FOREIGN KEY FK_1C78C983537A1329");
         $this->addSql("ALTER TABLE club_message_message_filter DROP FOREIGN KEY FK_43E06D0F537A1329");
-        $this->addSql("ALTER TABLE club_message_message_queue DROP FOREIGN KEY FK_582BBC47537A1329");
-        $this->addSql("ALTER TABLE club_message_message_attachment DROP FOREIGN KEY FK_7A27EA70537A1329");
         $this->addSql("CREATE TABLE club_mail (id INT AUTO_INCREMENT NOT NULL, subject VARCHAR(255) NOT NULL, body LONGTEXT NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_mail_attachment (id INT AUTO_INCREMENT NOT NULL, mail_id INT DEFAULT NULL, file_path VARCHAR(255) NOT NULL, file_name VARCHAR(255) NOT NULL, file_type VARCHAR(255) NOT NULL, file_size VARCHAR(255) NOT NULL, file_hash VARCHAR(255) NOT NULL, INDEX IDX_B28A0199C8776F01 (mail_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_mail_queue (id INT AUTO_INCREMENT NOT NULL, message LONGTEXT NOT NULL, error_message VARCHAR(255) NOT NULL, priority INT NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -92,13 +94,15 @@ class Version20110928125521 extends AbstractMigration
         $this->addSql("ALTER TABLE product_variantgroup ADD CONSTRAINT product_variantgroup_ibfk_1 FOREIGN KEY (product_id) REFERENCES club_shop_product(id) ON DELETE CASCADE");
         $this->addSql("DROP TABLE club_user_group_product");
         $this->addSql("DROP TABLE club_shop_product_variantgroup");
+        $this->addSql("DROP TABLE club_message_message_queue");
+        $this->addSql("DROP TABLE club_message_message_attachment");
         $this->addSql("DROP TABLE club_message_message");
         $this->addSql("DROP TABLE club_message_message_group");
         $this->addSql("DROP TABLE club_message_message_user");
         $this->addSql("DROP TABLE club_message_message_event");
         $this->addSql("DROP TABLE club_message_message_filter");
-        $this->addSql("DROP TABLE club_message_message_queue");
-        $this->addSql("DROP TABLE club_message_message_attachment");
+        $this->addSql("ALTER TABLE club_shop_product_attribute DROP FOREIGN KEY FK_7D097C3E4584665A");
+        $this->addSql("ALTER TABLE club_shop_product_attribute ADD CONSTRAINT club_shop_product_attribute_ibfk_1 FOREIGN KEY (product_id) REFERENCES club_shop_product(id)");
         $this->addSql("ALTER TABLE club_user_profile_email CHANGE email_address email_address VARCHAR(255) DEFAULT NULL");
     }
 }

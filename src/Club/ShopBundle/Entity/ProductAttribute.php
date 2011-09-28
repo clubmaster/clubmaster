@@ -30,6 +30,7 @@ class ProductAttribute
 
     /**
      * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")
      */
     private $product;
 
