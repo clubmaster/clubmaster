@@ -5,12 +5,20 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
+  protected function login($client)
+  {
+    $crawler = $client->request('GET', '/login');
+    $form = $crawler->selectButton('Sign In')->form();
+    $form['_username'] = '10';
+    $form['_password'] = '1234';
+    $crawler = $client->submit($form);
+  }
+
   public function testIndex()
   {
-    $client = static::createClient(array(), array(
-      'PHP_AUTH_USER' => '10',
-      'PHP_AUTH_PW' => '1234'
-    ));
+    $client = static::createClient();
+    $this->login($client);
+
     $crawler = $client->request('GET', '/user');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
