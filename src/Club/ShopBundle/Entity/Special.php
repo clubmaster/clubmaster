@@ -37,6 +37,7 @@ class Special
 
     /**
      * @ORM\Column(type="decimal", scale="2")
+     * @Assert\NotBlank()
      *
      * @var float $price
      */
