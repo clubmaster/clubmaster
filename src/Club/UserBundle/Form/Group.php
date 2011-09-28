@@ -33,8 +33,16 @@ class Group extends AbstractType
       ),
       'required' => false
     ));
-    $builder->add('location');
-    $builder->add('role');
+    $builder->add('location', 'entity', array(
+      'class' => 'ClubUserBundle:Location',
+      'multiple' => true,
+      'required' => false
+    ));
+    $builder->add('role', 'entity', array(
+      'class' => 'ClubUserBundle:Role',
+      'multiple' => true,
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)
