@@ -30,6 +30,7 @@ TRUNK_PATH=`pwd`
 cp -r ${TRUNK_PATH}/* ${BUILD_PATH}
 cp bin/install.sh ${BUILD_PATH}
 
+sed -i 's/\-dev//' ${BUILD_PATH}/src/Club/UserBundle/Helper/Version.php
 rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/deps
 rm -rf ${BUILD_PATH}/app/cache/*
