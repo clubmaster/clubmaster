@@ -62,12 +62,17 @@ class AdminEventController extends Controller
   }
 
   /**
-   * @Route("/event/event/new", name="admin_event_event_new")
+   * @Route("/event/event/new/{year}/{month}", defaults={"year" = null, "month" = null})
    * @Template()
    */
-  public function newAction()
+  public function newAction($year, $month)
   {
+    $time = mktime(0,0,0,$month,1,$year);
+
     $event = new \Club\EventBundle\Entity\Event();
+    $event->setStartDate(new \DateTime(date('Y-m-d', $time)));
+    $event->setStopDate(new \DateTime(date('Y-m-d', $time)));
+
     $res = $this->process($event);
 
     if ($res instanceOf RedirectResponse)
