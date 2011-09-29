@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-07-26
-:Revision:  7
+:Date:      2011-09-29
+:Revision:  8
 
 
 Feedback
@@ -80,7 +80,7 @@ File permissions
 
 Before you can complete the installation online, you have to make some files writeable for the webserver, do the following:
 
-$ chmod -R 777 app/cache app/logs
+$ chmod -R 777 app/cache app/logs web/uploads
 
 
 Complete installation
