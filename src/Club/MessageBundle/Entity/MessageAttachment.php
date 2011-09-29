@@ -204,7 +204,7 @@ class MessageAttachment
 
     public function getAbsolutePath()
     {
-      return null === $this->getFilePath() ? null : $this->getUploadRootDir().'/'.$this->getFilePath();
+      return null === $this->getFilePath() ? null : $this->getFSUploadPath().'/'.$this->getFilePath();
     }
 
     public function getWebPath()
@@ -212,15 +212,13 @@ class MessageAttachment
       return null === $this->getFilePath() ? null : $this->getUploadDir().'/'.$this->getFilePath();
     }
 
-    protected function getUploadRootDir()
+    protected function getFSUploadPath()
     {
-      // the absolute directory path where uploaded documents should be saved
-      return __DIR__.'/../../../../web/'.$this->getUploadDir();
+      return __DIR__.'/../../../../web/'.$this->getUploadPath();
     }
 
-    protected function getUploadDir()
+    protected function getUploadPath()
     {
-      // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
       return 'uploads/attachments';
     }
 
@@ -243,7 +241,7 @@ class MessageAttachment
      */
     public function postPersist()
     {
-      $this->file->move($this->getUploadRootDir(), $this->getFilePath());
+      $this->file->move($this->getFSUploadPath(), $this->getFilePath());
       unset($this->file);
     }
 
@@ -252,8 +250,8 @@ class MessageAttachment
      */
     public function postRemove()
     {
-      if ($file = $this->getAbsolutePath()) {
-        unlink($file);
+      if (file_exists($this->getAbsolutePath())) {
+        unlink($this->getAbsolutePath());
       }
     }
 }
