@@ -62,6 +62,9 @@ class LogController extends Controller
     if (!($res = $this->canWriteToMailerSpool()))
       $logs[] = $this->get('translator')->trans('Cannot write to mailer spool dir <strong>%path%</strong>',array('%path%' => $this->container->getParameter('swiftmailer.spool.file.path')));
 
+    if (!($res = $this->canWriteToUploadPath()))
+      $logs[] = $this->get('translator')->trans('Cannot write to upload path <strong>%path%</strong>',array('%path%' => $this->container->getParameter('upload_path')));
+
     if (($res = $this->installerFileExists()))
       $logs[] = $this->get('translator')->trans('Remove installer file <strong>%path%</strong>', array('%path%' => $this->get('kernel')->getRootDir().'/installer'));
 
@@ -82,6 +85,16 @@ class LogController extends Controller
   private function canWriteToMailerSpool()
   {
     $path = $this->container->getParameter('swiftmailer.spool.file.path');
+
+    if (is_writeable($path))
+      return true;
+
+    return false;
+  }
+
+  private function canWriteToUploadPath()
+  {
+    $path = $this->container->getParameter('upload_path');
 
     if (is_writeable($path))
       return true;

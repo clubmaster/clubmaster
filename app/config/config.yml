@@ -1,3 +1,7 @@
+parameters:
+    web_path: %kernel.root_dir%/../web
+    upload_path: %web_path%/uploads
+
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
