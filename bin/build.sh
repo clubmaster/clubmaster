@@ -35,8 +35,6 @@ rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/deps
 rm -rf ${BUILD_PATH}/app/cache/*
 rm -rf ${BUILD_PATH}/app/logs/*
-rm -rf ${BUILD_PATH}/app/spool/*.message
-rm -rf ${BUILD_PATH}/app/spool/.*.message
 rm -rf ${BUILD_PATH}/app/sql/*
 rm -rf ${BUILD_PATH}/deps.lock
 rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
