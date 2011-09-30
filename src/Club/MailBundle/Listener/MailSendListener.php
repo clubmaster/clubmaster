@@ -22,30 +22,6 @@ class MailSendListener
 
   public function onMailTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
-    $queue = $this->em->getRepository('ClubMessageBundle:MessageQueue')->getQueued();
-
-    foreach ($queue as $message) {
-      try {
-        $this->clubmaster_mailer
-          ->setSubject($message->getMessage()->getSubject())
-          ->setFrom($message->getMessage()->getSenderAddress(),$message->getMessage()->getSenderName())
-          ->setTo($message->getRecipient())
-          ->setBody($message->getMessage()->getMessage());
-
-        foreach ($message->getMessage()->getMessageAttachment() as $attachment) {
-          $this->clubmaster_mailer->attach($attachment);
-        }
-
-        $this->clubmaster_mailer->send();
-      } catch (\Exception $e) {
-        $message->setErrorMessage($e->getMessage());
-      }
-
-      $message->setProcessed(1);
-      $this->em->persist($message);
-    }
-    $this->em->flush();
-
     $transport  = $this->mailer->getTransport();
 
     if ($transport instanceof \Swift_Transport_SpoolTransport) {

@@ -467,14 +467,16 @@ class AdminMessageController extends Controller
 
     $this->recipients[$user->getId()] = 1;
 
-    $queue = new \Club\MessageBundle\Entity\MessageQueue();
-    $queue->setUser($user);
-    $queue->setMessage($message);
-    $queue->setProcessed(0);
-    $queue->setRecipient($user->getProfile()->getProfileEmail()->getEmailAddress());
+    $mailer = $this->get('clubmaster_mailer')
+      ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
+      ->setFrom($message->getSenderAddress(), $message->getSenderName())
+      ->setBody($message->getMessage());
 
-    $em = $this->getDoctrine()->getEntityManager();
-    $em->persist($queue);
+    foreach ($message->getMessageAttachment() as $attachment) {
+      $mailer->attach($attachment);
+    }
+
+    $mailer->send();
   }
 
   private function getForm($message)
