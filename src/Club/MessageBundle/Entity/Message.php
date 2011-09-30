@@ -87,13 +87,6 @@ class Message
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="MessageQueue", mappedBy="message")
-     *
-     * @var Club\MessageBundle\Entity\MessageQueue
-     */
-    private $message_queue;
-
-    /**
      * @ORM\OneToMany(targetEntity="MessageAttachment", mappedBy="message")
      *
      * @var Club\MessageBundle\Entity\MessageAttachment
@@ -441,26 +434,6 @@ class Message
     public function getSenderAddress()
     {
         return $this->sender_address;
-    }
-
-    /**
-     * Add message_queue
-     *
-     * @param Club\MessageBundle\Entity\MessageQueue $messageQueue
-     */
-    public function addMessageQueue(\Club\MessageBundle\Entity\MessageQueue $messageQueue)
-    {
-        $this->message_queue[] = $messageQueue;
-    }
-
-    /**
-     * Get message_queue
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getMessageQueue()
-    {
-        return $this->message_queue;
     }
 
     /**
