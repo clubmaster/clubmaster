@@ -29,3 +29,8 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: log.task, method: onLogTask }
+  club.logbundle.listener.log_listener:
+    class: Club\LogBundle\Listener\LogListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.event_listener, event: connection.error, method: onConnectionError }

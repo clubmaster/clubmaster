@@ -24,7 +24,13 @@
         {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="{% trans %}Unread{% endtrans %}" alt="{% trans %}Unread{% endtrans %}" />
         {% endif %}
       </td>
-      <td>{{ log.user.profile.name }}</td>
+      <td>
+      {% if log.user %}
+        {{ log.user.profile.name }}
+      {% else %}
+        {% trans %}System{% endtrans %}
+      {% endif %}
+      </td>
       <td>{{ log.severity }}</td>
       <td>{{ log.log }}</td>
       <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>

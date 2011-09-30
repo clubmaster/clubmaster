@@ -21,6 +21,6 @@ services:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
   club.mailbundle.listener.on_mail_task_listener:
     class: Club\MailBundle\Listener\MailSendListener
-    arguments: [@doctrine.orm.entity_manager, @mailer, @swiftmailer.transport.real, @clubmaster_mailer]
+    arguments: [@doctrine.orm.entity_manager, @mailer, @swiftmailer.transport.real, @clubmaster_mailer, @event_dispatcher]
     tags:
       - { name: kernel.event_listener, event: mail.task, method: onMailTask }

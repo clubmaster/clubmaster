@@ -220,7 +220,7 @@ class Log
     /**
      * Get new
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNew()
     {
