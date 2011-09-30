@@ -27,8 +27,8 @@
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
-      <td>{{ order.createdAt|date('Y-m-d') }}</td>
-      <td>{{ order.updatedAt|date('Y-m-d') }}</td>
+      <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ order.updatedAt|date('Y-m-d H:i:s') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('shop_order_edit', { 'id':order.id })} %}
       </td>
