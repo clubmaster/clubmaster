@@ -470,7 +470,7 @@ class AdminMessageController extends Controller
     $mailer = $this->get('clubmaster_mailer')
       ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
       ->setFrom($message->getSenderAddress(), $message->getSenderName())
-      ->setBody($message->getMessage());
+      ->setBody($message->getMessage(), 'text/html');
 
     foreach ($message->getMessageAttachment() as $attachment) {
       $mailer->attach($attachment);

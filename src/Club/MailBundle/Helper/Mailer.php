@@ -45,9 +45,9 @@ class Mailer
     return $this;
   }
 
-  public function setBody($body)
+  public function setBody($body, $type=null)
   {
-    $this->message->setBody($body,'text/html');
+    $this->message->setBody($body, $type);
 
     return $this;
   }
