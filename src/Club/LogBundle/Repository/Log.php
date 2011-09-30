@@ -47,6 +47,7 @@ class Log extends EntityRepository
   {
     return $this->_em->createQueryBuilder()
       ->select('l')
-      ->from('ClubLogBundle:Log','l');
+      ->from('ClubLogBundle:Log','l')
+      ->orderBy('l.id', 'DESC');
   }
 }
