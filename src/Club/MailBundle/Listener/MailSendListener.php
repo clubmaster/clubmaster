@@ -12,7 +12,7 @@ class MailSendListener
   protected $swiftmailer_transport_real;
   protected $clubmaster_mailer;
   protected $event_dispatcher;
-  protected $logger;
+  protected $reporter;
 
   public function __construct($em, $mailer, $swiftmailer_transport_real, $clubmaster_mailer, $event_dispatcher)
   {
@@ -22,8 +22,8 @@ class MailSendListener
     $this->clubmaster_mailer = $clubmaster_mailer;
     $this->event_dispatcher = $event_dispatcher;
 
-    $this->logger = new \Swift_Plugins_Loggers_ArrayLogger();
-    $this->mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($this->logger));
+    $this->reporter = new \Club\MailBundle\Helper\SwiftReporter($em);
+    $this->mailer->registerPlugin(new \Swift_Plugins_ReporterPlugin($this->reporter));
   }
 
   public function onMailTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
