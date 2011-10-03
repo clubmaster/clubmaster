@@ -16,9 +16,9 @@ class LogListener
   public function onConnectionError(\Club\LogBundle\Event\FilterLogEvent $event)
   {
     $log = new \Club\LogBundle\Entity\Log();
-    $log->setEvent('onConnectionError');
-    $log->setSeverity('critical');
-    $log->setLogType('mail');
+    $log->setEvent($event->getEvent());
+    $log->setSeverity($event->getSeverity());
+    $log->setLogType($event->getType());
     $log->setLog($event->getMessage());
 
     $this->em->persist($log);
