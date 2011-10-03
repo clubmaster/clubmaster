@@ -15,5 +15,5 @@ mysql -u root clubmaster < app/sql/event_data.sql
 
 php app/console cache:warmup
 
-sudo chmod 777 -R app/logs app/cache app/spool
+sudo chmod 777 -R app/logs app/cache
 sudo chown www-data:www-data app/cache app/logs
