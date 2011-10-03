@@ -33,11 +33,14 @@ class MailSendListener
     if ($transport instanceof \Swift_Transport_SpoolTransport) {
       try {
         $spool = $transport->getSpool();
-        $spool->setMessageLimit(10);
+        $spool->setMessageLimit(60);
         $spool->setTimeLimit(60);
         $sent = $spool->flushQueue($this->swiftmailer_transport_real);
+
+        $event = new \Club\LogBundle\Event\FilterLogEvent(sprintf('Sent %s emails', $sent), 'onMailTask', 'mail', 'info');
+        $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
       } catch (\Exception $e) {
-        $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage());
+        $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage(), 'onConnectionError', 'mail');
         $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
       }
     }
