@@ -61,6 +61,13 @@ class Message
     /**
      * @ORM\Column(type="boolean")
      *
+     * @var text $ready
+     */
+    private $ready;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
      * @var text $processed
      */
     private $processed;
@@ -92,7 +99,6 @@ class Message
      * @var Club\MessageBundle\Entity\MessageAttachment
      */
     private $message_attachment;
-
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
@@ -348,12 +354,30 @@ class Message
      */
     public function prePersist()
     {
-      if (!$this->getId()) {
-        $this->setCreatedAt(new \DateTime());
-        $this->setProcessed(0);
-      }
-
+      $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
+      $this->setReady(0);
+      $this->setProcessed(0);
+    }
+
+    /**
+     * Set ready
+     *
+     * @param boolean $ready
+     */
+    public function setReady($ready)
+    {
+        $this->ready = $ready;
+    }
+
+    /**
+     * Get ready
+     *
+     * @return boolean
+     */
+    public function getReady()
+    {
+        return $this->ready;
     }
 
     /**
