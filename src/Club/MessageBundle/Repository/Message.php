@@ -33,4 +33,15 @@ class Message extends EntityRepository
       ->from('ClubMessageBundle:Message','m')
       ->orderBy('m.id','DESC');
   }
+
+  public function getAllReady()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('m')
+      ->from('ClubMessageBundle:Message','m')
+      ->where('m.ready = 1')
+      ->andWhere('m.processed = 0')
+      ->getQuery()
+      ->getResult();
+  }
 }
