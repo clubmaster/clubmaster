@@ -44,5 +44,17 @@ class MailSendListener
         $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
       }
     }
+
+    $this->cleanupLogs();
+  }
+
+  protected function cleanupLogs()
+  {
+    $q = $this->em->createQueryBuilder()
+      ->delete()
+      ->from('ClubMailBundle:Log', 'l')
+      ->where("l.created_at < DATE_SUB(CURRENT_DATE(), 1, 'MONTH')")
+      ->getQuery()
+      ->getResult();
   }
 }
