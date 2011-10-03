@@ -8,4 +8,9 @@
     <legend>{% trans %}Message{% endtrans %}</legend>
     {{ form_widget(form) }}
   </fieldset>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input formnovalidate="true" type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+
