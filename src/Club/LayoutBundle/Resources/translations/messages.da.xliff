@@ -1238,6 +1238,10 @@
         <source>Filters</source>
         <target>Filtre</target>
       </trans-unit>
+      <trans-unit id="310">
+        <source>Queued</source>
+        <target>I kø</target>
+      </trans-unit>
 
     </body>
   </file>
