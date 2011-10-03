@@ -30,11 +30,14 @@
       <td>
         {% if message.processed %}
           {% trans %}Sent{% endtrans %}
+        {% elseif message.ready %}
+          {% trans %}Queued{% endtrans %}
         {% else %}
           {% trans %}Draft{% endtrans %}
         {% endif %}
+      </td>
       <td>
-        {% if not message.processed %}
+        {% if not message.ready %}
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_message_adminmessage_edit', {'id':message.id})} %}
         {% else %}
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_message_adminmessage_show', {'id':message.id})} %}

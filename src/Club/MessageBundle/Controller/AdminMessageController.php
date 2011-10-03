@@ -414,69 +414,13 @@ class AdminMessageController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
-
-    $message->setProcessed(1);
-    $message->setSentAt(new \DateTime());
+    $message->setReady(1);
 
     $em->persist($message);
-
-    // just to check if user has received the message once
-    $this->recipients = array();
-
-    foreach ($message->getFilters() as $filter) {
-      $this->processUsers($message, $em->getRepository('ClubUserBundle:User')->getUsers($filter));
-    }
-
-    $this->processUsers($message, $message->getUsers());
-
-    foreach ($message->getGroups() as $group) {
-      $this->processUsers($message, $group->getUsers());
-    }
-
-    foreach ($message->getEvents() as $event) {
-      $this->processAttends($message, $event->getAttends());
-    }
-
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Recipients added to your recipient queue.'));
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
-  }
-
-  private function processAttends(\Club\MessageBundle\Entity\Message $message, $attends)
-  {
-    foreach ($attends as $attend) {
-      if ($message->getType() == 'mail') {
-        $this->sendMail($message,$attend->getUser());
-      }
-    }
-  }
-
-  private function processUsers(\Club\MessageBundle\Entity\Message $message, $users)
-  {
-    foreach ($users as $user) {
-      if ($message->getType() == 'mail') {
-        $this->sendMail($message,$user);
-      }
-    }
-  }
-
-  private function sendMail(\Club\MessageBundle\Entity\Message $message, \Club\UserBundle\Entity\User $user)
-  {
-    if (isset($this->recipients[$user->getId()])) return;
-
-    $this->recipients[$user->getId()] = 1;
-
-    $mailer = $this->get('clubmaster_mailer')
-      ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
-      ->setFrom($message->getSenderAddress(), $message->getSenderName())
-      ->setBody($message->getMessage(), 'text/html');
-
-    foreach ($message->getMessageAttachment() as $attachment) {
-      $mailer->attach($attachment);
-    }
-
-    $mailer->send();
   }
 
   private function getForm($message)

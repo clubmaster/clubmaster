@@ -33,12 +33,13 @@
       {% endfor %}
     </tbody>
   </table>
-
 </fieldset>
 
 <hr class="noscreen" />
 <div class="box-01">
-  <p class="nom"><input type="button" onclick="location.href='{{ path('club_message_adminmessage_process', {'id':message.id}) }}'" value="{% trans %}Send message{% endtrans %}" class="input-submit" /></p>
+  <form method="POST" action="{{ path('club_message_adminmessage_process', {'id':message.id}) }}">
+    <p class="nom"><input type="submit" value="{% trans %}Send message{% endtrans %}" class="input-submit" /></p>
+  </form>
 </div> <!-- /box-01 -->
 
 {% endblock %}
