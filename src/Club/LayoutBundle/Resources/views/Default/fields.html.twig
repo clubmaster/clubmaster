@@ -35,12 +35,6 @@
 {% endspaceless %}
 {% endblock field_errors %}
 
-{% block textarea_widget %}
-{% spaceless %}
-    <textarea cols="70" rows="10" {{ block('widget_attributes') }}>{{ value }}</textarea>
-{% endspaceless %}
-{% endblock textarea_widget %}
-
 {% block field_widget %}
 {% spaceless %}
     {% set type = type|default('text') %}

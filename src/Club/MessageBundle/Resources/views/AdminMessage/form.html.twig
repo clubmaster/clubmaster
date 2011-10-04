@@ -6,7 +6,13 @@
 
   <fieldset>
     <legend>{% trans %}Message{% endtrans %}</legend>
-    {{ form_widget(form) }}
+    {{ form_row(form.subject) }}
+    <p>
+      {{ form_label(form.message) }}<br />
+      {{ form_widget(form.message, {'attr': {'class':'big' }}) }}
+      {{ form_errors(form.message) }}<br />
+    </p>
+    {{ form_rest(form) }}
   </fieldset>
 
   <hr class="noscreen" />
