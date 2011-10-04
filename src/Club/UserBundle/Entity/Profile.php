@@ -22,7 +22,8 @@ class Profile
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank
+     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"user"})
      *
      * @var string $first_name
      */
@@ -31,6 +32,7 @@ class Profile
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"user"})
      *
      * @var string $last_name
      */
@@ -39,6 +41,7 @@ class Profile
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"user"})
      *
      * var string $gender
      */
@@ -47,6 +50,7 @@ class Profile
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"user"})
      */
     private $day_of_birth;
 
