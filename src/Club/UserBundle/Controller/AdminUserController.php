@@ -79,6 +79,11 @@ class AdminUserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
+      if ($user->getProfile()->getProfileEmail()->getEmailAddress() == '')
+        $user->getProfile()->setProfileEmail(null);
+      if ($user->getProfile()->getProfilePhone()->getNumber() == '')
+        $user->getProfile()->setProfilePhone(null);
+
       if ($form->isValid()) {
         $em->persist($user);
         $em->flush();
@@ -109,11 +114,18 @@ class AdminUserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
-      $em->persist($user);
-      $em->flush();
+      if ($user->getProfile()->getProfileEmail()->getEmailAddress() == '')
+        $user->getProfile()->setProfileEmail(null);
+      if ($user->getProfile()->getProfilePhone()->getNumber() == '')
+        $user->getProfile()->setProfilePhone(null);
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-      return $this->redirect($this->generateUrl('admin_user'));
+      if ($form->isValid()) {
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('admin_user'));
+      }
     }
 
     return array(
