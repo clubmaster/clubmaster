@@ -239,7 +239,7 @@ class Profile
      *
      * @param Club\UserBundle\Entity\ProfilePhone $profilePhone
      */
-    public function setProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhone)
+    public function setProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhone=null)
     {
         $this->profile_phone = $profilePhone;
     }
@@ -259,7 +259,7 @@ class Profile
      *
      * @param Club\UserBundle\Entity\ProfileEmail $profileEmail
      */
-    public function setProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmail)
+    public function setProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmail=null)
     {
         $this->profile_email = $profileEmail;
     }
