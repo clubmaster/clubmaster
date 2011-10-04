@@ -42,5 +42,19 @@ class AdminUserControllerTest extends WebTestCase
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+    $crawler = $client->request('GET', '/admin/user/new');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form(array(
+      'admin_user[profile][first_name]' => 'John',
+      'admin_user[profile][last_name]' => 'Doe',
+      'admin_user[profile][profile_address][street]' => 'Clubby Strasse 14',
+      'admin_user[profile][profile_address][postal_code]' => '9000',
+      'admin_user[profile][profile_address][city]' => 'Aalborg',
+    ));
+    $crawler = $client->submit($form);
+    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
   }
 }
