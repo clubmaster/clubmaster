@@ -16,7 +16,8 @@ class User extends AbstractType
   public function getDefaultOptions(array $options)
   {
     return array(
-      'data_class' => 'Club\UserBundle\Entity\User'
+      'data_class' => 'Club\UserBundle\Entity\User',
+      'validation_groups' => 'user'
     );
   }
 

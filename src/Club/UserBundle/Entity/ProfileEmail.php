@@ -22,6 +22,7 @@ class ProfileEmail
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups={"user"})
      *
      * @var string $email_address
      */
