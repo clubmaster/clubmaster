@@ -1,6 +1,6 @@
 [symfony]
     git=http://github.com/symfony/symfony.git
-    version=v2.0.4
+    version=v2.0.3
 
 [twig]
     git=http://github.com/fabpot/Twig.git
@@ -12,15 +12,15 @@
 
 [doctrine-common]
     git=http://github.com/doctrine/common.git
-    version=2.1.2
+    version=2.1.1
 
 [doctrine-dbal]
     git=http://github.com/doctrine/dbal.git
-    version=2.1.3
+    version=2.1.2
 
 [doctrine]
     git=http://github.com/doctrine/doctrine2.git
-    version=2.1.2
+    version=2.1.1
 
 [swiftmailer]
     git=http://github.com/swiftmailer/swiftmailer.git
@@ -44,12 +44,10 @@
 [JMSSecurityExtraBundle]
     git=http://github.com/schmittjoh/JMSSecurityExtraBundle.git
     target=/bundles/JMS/SecurityExtraBundle
-    version=origin/1.0.x
 
 [SensioDistributionBundle]
     git=http://github.com/sensio/SensioDistributionBundle.git
     target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/1.0
 
 [SensioGeneratorBundle]
     git=http://github.com/sensio/SensioGeneratorBundle.git
