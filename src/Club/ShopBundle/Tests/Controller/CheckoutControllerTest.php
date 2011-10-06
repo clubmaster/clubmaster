@@ -8,9 +8,10 @@ class CheckoutControllerTest extends WebTestCase
   protected function login($client)
   {
     $crawler = $client->request('GET', '/login');
-    $form = $crawler->selectButton('Sign In')->form();
-    $form['_username'] = '10';
-    $form['_password'] = '1234';
+    $form = $crawler->selectButton('Sign In')->form(array(
+      '_username' => '10',
+      '_password' => '1234'
+    ));
     $crawler = $client->submit($form);
   }
 
@@ -37,7 +38,7 @@ class CheckoutControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/shop/product/11');
+    $crawler = $client->request('GET', '/shop/product/10');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Put in cart')->link();
