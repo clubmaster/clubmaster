@@ -9,7 +9,9 @@ class LocationStep extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('location_name','text');
+    $builder->add('location_name','text',array(
+      'required' => true
+    ));
     $builder->add('currency','entity',array(
       'class' => 'Club\UserBundle\Entity\Currency'
     ));
