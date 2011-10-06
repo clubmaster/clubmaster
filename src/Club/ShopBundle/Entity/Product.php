@@ -22,6 +22,7 @@ class Product
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $product_name
      */
@@ -29,6 +30,7 @@ class Product
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      *
      * @var text $description
      */
@@ -36,6 +38,7 @@ class Product
 
     /**
      * @ORM\Column(type="decimal", scale="2")
+     * @Assert\NotBlank()
      *
      * @var float $price
      */
