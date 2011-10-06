@@ -1,58 +1,47 @@
 <?php
 namespace Club\ShopBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class AdminCouponControllerTest extends WebTestCase
 {
-  protected function login($client)
+  protected $client;
+
+  public function __construct()
   {
-    $crawler = $client->request('GET', '/login');
-    $form = $crawler->selectButton('Sign In')->form(array(
-      '_username' => '10',
-      '_password' => '1234'
-    ));
-    $crawler = $client->submit($form);
+    $this->client = static::createClient();
+    $this->login($this->client);
   }
 
   public function testIndex()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/shop/coupon');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/shop/coupon');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/shop/coupon/new');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/shop/coupon/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
-    $crawler = $client->submit($form);
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
       'coupon[value]' => '122'
     ));
-    $crawler = $client->submit($form);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
   public function testExpire()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/shop/coupon');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/shop/coupon');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Expire')->link();
-    $crawler = $client->click($link);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->click($link);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }
