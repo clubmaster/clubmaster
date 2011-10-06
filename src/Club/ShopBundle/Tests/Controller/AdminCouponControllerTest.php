@@ -1,9 +1,9 @@
 <?php
-namespace Club\UserBundle\Tests\Controller;
+namespace Club\ShopBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdminLocationControllerTest extends WebTestCase
+class AdminCouponControllerTest extends WebTestCase
 {
   protected function login($client)
   {
@@ -20,7 +20,7 @@ class AdminLocationControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/admin/location');
+    $crawler = $client->request('GET', '/admin/shop/coupon');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 
@@ -29,26 +29,30 @@ class AdminLocationControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/admin/location/new');
+    $crawler = $client->request('GET', '/admin/shop/coupon/new');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $client->submit($form);
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'location[location_name]' => 'Test',
+      'coupon[value]' => '122'
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
 
-  public function testDelete()
+  public function testExpire()
   {
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/admin/location');
+    $crawler = $client->request('GET', '/admin/shop/coupon');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $links = $crawler->selectLink('Delete')->links();
-    $crawler = $client->click(end($links));
+    $link = $crawler->selectLink('Expire')->link();
+    $crawler = $client->click($link);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
 }
