@@ -23,6 +23,7 @@ class Currency
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $currency_name
      */
@@ -30,6 +31,7 @@ class Currency
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $code
      */
@@ -57,6 +59,7 @@ class Currency
 
     /**
      * @ORM\Column(type="decimal", scale="5")
+     * @Assert\NotBlank()
      *
      * @var float $value
      */

@@ -1,7 +1,7 @@
 <?php
 namespace Club\UserBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class AuthControllerTest extends WebTestCase
 {
@@ -15,14 +15,15 @@ class AuthControllerTest extends WebTestCase
     $crawler = $client->submit($form);
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $form['user[profile][first_name]'] = 'John';
-    $form['user[profile][last_name]'] = 'Doe';
-    $form['user[profile][profile_address][street]'] = 'Myllerstrasse 14';
-    $form['user[profile][profile_address][postal_code]'] = '9000';
-    $form['user[profile][profile_address][city]'] = 'Aalborg';
-    $form['user[profile][profile_email][email_address]'] = 'user@example.com';
-    $form['user[profile][profile_phone][number]'] = '80808080';
-
+    $form = $crawler->selectButton('Save')->form(array(
+      'user[profile][first_name]' => 'John',
+      'user[profile][last_name]' => 'Doe',
+      'user[profile][profile_address][street]' => 'Myllerstrasse 14',
+      'user[profile][profile_address][postal_code]' => '9000',
+      'user[profile][profile_address][city]' => 'Aalborg',
+      'user[profile][profile_email][email_address]' => 'user@example.com',
+      'user[profile][profile_phone][number]' => '80808080'
+    ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }

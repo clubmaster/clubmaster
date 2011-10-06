@@ -1,35 +1,32 @@
 <?php
 namespace Club\UserBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class AdminUserControllerTest extends WebTestCase
 {
-  protected function login($client)
+  protected $client;
+
+  public function __construct()
   {
-    $crawler = $client->request('GET', '/login');
-    $form = $crawler->selectButton('Sign In')->form();
-    $form['_username'] = '10';
-    $form['_password'] = '1234';
-    $crawler = $client->submit($form);
+    $this->client = static::createClient();
+    $this->login($this->client);
   }
 
   public function testIndex()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/user');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/user');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $client = static::createClient();
-    $this->login($client);
+    $crawler = $this->client->request('GET', '/admin/user/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $crawler = $client->request('GET', '/admin/user/new');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
       'admin_user[profile][first_name]' => 'John',
@@ -40,11 +37,11 @@ class AdminUserControllerTest extends WebTestCase
       'admin_user[profile][profile_email][email_address]' => 'user@example.com',
       'admin_user[profile][profile_phone][number]' => '+45 80808080',
     ));
-    $crawler = $client->submit($form);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
 
-    $crawler = $client->request('GET', '/admin/user/new');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/user/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
       'admin_user[profile][first_name]' => 'John',
@@ -53,20 +50,17 @@ class AdminUserControllerTest extends WebTestCase
       'admin_user[profile][profile_address][postal_code]' => '9000',
       'admin_user[profile][profile_address][city]' => 'Aalborg',
     ));
-    $crawler = $client->submit($form);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
   public function testBan()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/user');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/user');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Ban')->links();
-    $crawler = $client->click($links[1]);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->click($links[1]);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }

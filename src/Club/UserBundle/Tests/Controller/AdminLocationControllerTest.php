@@ -1,54 +1,47 @@
 <?php
 namespace Club\UserBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class AdminLocationControllerTest extends WebTestCase
 {
-  protected function login($client)
+  protected $client;
+
+  public function __construct()
   {
-    $crawler = $client->request('GET', '/login');
-    $form = $crawler->selectButton('Sign In')->form(array(
-      '_username' => '10',
-      '_password' => '1234'
-    ));
-    $crawler = $client->submit($form);
+    $this->client = static::createClient();
+    $this->login($this->client);
   }
 
   public function testIndex()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/location');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/location');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $client = static::createClient();
-    $this->login($client);
+    $crawler = $this->client->request('GET', '/admin/location/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $crawler = $client->request('GET', '/admin/location/new');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
       'location[location_name]' => 'Test',
     ));
-    $crawler = $client->submit($form);
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
   public function testDelete()
   {
-    $client = static::createClient();
-    $this->login($client);
-
-    $crawler = $client->request('GET', '/admin/location');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->request('GET', '/admin/location');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();
-    $crawler = $client->click(end($links));
-    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $this->client->click(end($links));
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }
