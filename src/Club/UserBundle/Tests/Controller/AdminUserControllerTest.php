@@ -56,4 +56,17 @@ class AdminUserControllerTest extends WebTestCase
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
+
+  public function testBan()
+  {
+    $client = static::createClient();
+    $this->login($client);
+
+    $crawler = $client->request('GET', '/admin/user');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    $links = $crawler->selectLink('Ban')->links();
+    $crawler = $client->click($links[1]);
+    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+  }
 }
