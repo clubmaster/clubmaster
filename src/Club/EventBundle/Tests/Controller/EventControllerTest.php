@@ -5,11 +5,6 @@ use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class EventControllerTest extends WebTestCase
 {
-  public function __construct()
-  {
-    return;
-  }
-
   public function testICal()
   {
     $client = static::createClient();
