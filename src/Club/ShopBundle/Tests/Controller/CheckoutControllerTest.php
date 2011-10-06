@@ -91,6 +91,7 @@ class CheckoutControllerTest extends WebTestCase
     $link = $crawler->selectLink('Pause')->link();
     $crawler = $client->click($link);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $client->followRedirect();
 
     $link = $crawler->selectLink('Resume')->link();
     $crawler = $client->click($link);
