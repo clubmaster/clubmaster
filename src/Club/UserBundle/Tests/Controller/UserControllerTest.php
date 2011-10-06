@@ -15,12 +15,6 @@ class UserControllerTest extends WebTestCase
 
     $form = $crawler->selectButton('Save')->form();
     $crawler = $client->submit($form);
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
-
-    $form = $crawler->selectButton('Save')->form(array(
-      'user[profile][first_name]' => 'Tux'
-    ));
-    $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
 }
