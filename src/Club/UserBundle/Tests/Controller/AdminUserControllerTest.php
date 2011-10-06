@@ -55,6 +55,5 @@ class AdminUserControllerTest extends WebTestCase
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
-
   }
 }

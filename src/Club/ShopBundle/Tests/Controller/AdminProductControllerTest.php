@@ -1,9 +1,9 @@
 <?php
-namespace Club\MessageBundle\Tests\Controller;
+namespace Club\ShopBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdminMessageControllerTest extends WebTestCase
+class AdminProductControllerTest extends WebTestCase
 {
   protected function login($client)
   {
@@ -19,7 +19,7 @@ class AdminMessageControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/admin/message');
+    $crawler = $client->request('GET', '/admin/shop/product');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 
@@ -28,26 +28,32 @@ class AdminMessageControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/admin/message/new');
+    $crawler = $client->request('GET', '/admin/shop/product/new');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
     $crawler = $client->submit($form);
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Save')->form();
-    $form['message[subject]'] = 'Test';
-    $form['message[message]'] = 'Testing';
+    $form = $crawler->selectButton('Save')->form(array(
+      'product[product_name]' => 'Test1234',
+      'product[description]' => 'Testing',
+      'product[price]' => '123'
+    ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
-    $crawler = $client->followRedirect();
+  }
 
-    $link = $crawler->selectLink('Add recipients')->link();
-    $crawler = $client->click($link);
+  public function testDelete()
+  {
+    $client = static::createClient();
+    $this->login($client);
+
+    $crawler = $client->request('GET', '/admin/shop/product');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Send message')->form();
-    $crawler = $client->submit($form);
+    $links = $crawler->selectLink('Delete')->links();
+    $crawler = $client->click(end($links));
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
   }
 }
