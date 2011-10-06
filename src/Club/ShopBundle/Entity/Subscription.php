@@ -342,6 +342,9 @@ class Subscription
 
     public function isExpired()
     {
+      if ($this->getExpireDate() == null)
+        return false;
+
       if (!$this->getActive() && $this->getExpireDate()->getTimestamp() < time())
         return true;
 
