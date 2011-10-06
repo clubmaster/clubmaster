@@ -22,6 +22,7 @@ class Category
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $category_name
      */
@@ -29,6 +30,7 @@ class Category
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var text $description
      */
