@@ -20,7 +20,14 @@ class ShopControllerTest extends WebTestCase
     $this->login($client);
 
     $crawler = $client->request('GET', '/shop');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
+    $link = $crawler->selectLink('Ticket coupon')->link();
+    $crawler = $client->click($link);
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    $link = $crawler->selectLink('10 clip')->link();
+    $crawler = $client->click($link);
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }
