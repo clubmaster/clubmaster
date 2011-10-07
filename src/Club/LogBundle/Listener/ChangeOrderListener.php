@@ -16,14 +16,15 @@ class NewOrderListener
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
-    $user = $this->security_context->getToken()->getUser();
 
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onShopOrder');
     $log->setSeverity('informational');
-    $log->setUser($user);
     $log->setLogType('general');
     $log->setLog('Created a new order #'.$order->getId());
+
+    $user = $this->security_context->getToken()->getUser();
+    if ($user instanceOf \Club\UserBundle\Entity\User) $log->setUser($user);
 
     $this->em->persist($log);
     $this->em->flush();

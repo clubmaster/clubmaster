@@ -14,11 +14,9 @@ class NewTransactionListener
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
-
     $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$order->getLocation());
 
     foreach ($order->getProducts() as $product) {
-
       switch ($product->getType()) {
       case 'product':
         $account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(), $order->getLocation());
