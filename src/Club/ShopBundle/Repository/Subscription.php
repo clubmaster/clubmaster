@@ -34,7 +34,7 @@ class Subscription extends EntityRepository
       ->where('s.expire_date <= :expire_date')
       ->andWhere('s.expire_date IS NOT NULL')
       ->andWhere('s.active = 1')
-      ->setParameter('expire_date',date('Y-m-d'))
+      ->setParameter('expire_date',date('Y-m-d H:i:s'))
       ->getQuery()
       ->getResult();
   }
