@@ -77,7 +77,8 @@ Praesent scelerisque aliquam purus, vitae accumsan erat bibendum ut. Curabitur a
   (17,'Subscription + 1Month + Start date + Renewal(Y)','Lorem ipsum...',100,1),
   (18,'Subscription + Start date + Expire date + Renewal(Y) + ealier this year','Lorem ipsum...',100,1),
   (19,'Daily subscription','Lorem ipsum...',100,1),
-  (20,'10 min subscription','Lorem ipsum...',35,1);
+  (20,'10 min subscription','Lorem ipsum...',35,1),
+  (21,'10 min subscription + pauses','Lorem ipsum...',35,1);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
@@ -99,7 +100,8 @@ INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (17,1),
   (18,1),
   (19,1),
-  (20,1);
+  (20,1),
+  (21,1);
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (1,1,'1M'),
@@ -146,4 +148,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (19,1,'1D'),
   (19,3,'A'),
   (20,1,'T10M'),
-  (20,3,'A');
+  (20,3,'A'),
+  (21,1,'T10M'),
+  (21,3,'A'),
+  (21,7,'2');
