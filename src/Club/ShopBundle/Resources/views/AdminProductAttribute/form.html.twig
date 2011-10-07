@@ -1,5 +1,9 @@
   {{ form_row(form.TimeInterval) }}
-  <span class="smaller low">{% trans %}Info: What is the time interval for this subscription? Ex. 0Y2M13DT2H0M0S{% endtrans %}</span>
+  <span class="smaller low">{% trans %}Info: What is the time interval for this subscription?{% endtrans %}</span><br />
+  <span class="smaller low">{% trans %}Info: 1 month is <b>1M</b>{% endtrans %}</span><br />
+  <span class="smaller low">{% trans %}Info: 1 month and 15 days is <b>1M15D</b>{% endtrans %}</span><br />
+  <span class="smaller low">{% trans %}Info: 5 hours is <b>T5H</b>{% endtrans %}</span><br />
+  <span class="smaller low">{% trans %}Info: 1 year, 5 hours and 15 minutes is <b>Y1T5H15M</b>{% endtrans %}</span>
   {{ form_row(form.Ticket) }}
   <span class="smaller low">{% trans %}Info: How many tickets will the user get for this subscription?{% endtrans %}</span>
   {{ form_row(form.AutoRenewal) }}
