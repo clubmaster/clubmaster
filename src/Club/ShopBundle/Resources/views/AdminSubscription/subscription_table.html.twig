@@ -15,11 +15,11 @@
     <tr>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.active} %}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
-      <td>{{ subscription.startDate|date('Y-m-d') }}</td>
+      <td>{{ subscription.startDate|date('Y-m-d H:i') }}</td>
       {% if subscription.expireDate == '' %}
       <td>{% trans %}Never{% endtrans %}</td>
       {% else %}
-      <td>{{ subscription.expireDate|date('Y-m-d') }}</td>
+      <td>{{ subscription.expireDate|date('Y-m-d H:i') }}</td>
       {% endif %}
       <td>
         {% if not subscription.isExpired %}
