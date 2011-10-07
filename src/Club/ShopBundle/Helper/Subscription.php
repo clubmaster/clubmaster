@@ -52,7 +52,7 @@ class Subscription
     $pause->setExpireDate(new \DateTime());
 
     $diff = $pause->getStartDate()->diff($pause->getExpireDate());
-    $new = new \DateTime($pause->getOldExpireDate()->format('Y-m-d'));
+    $new = new \DateTime($pause->getOldExpireDate()->format('Y-m-d H:i:s'));
     $new->add($diff);
     $subscription->setExpireDate($new);
 
