@@ -32,7 +32,7 @@
       <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
       {% endif %}
       <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
-      <td>{{ task.taskInterval }}</td>
+      <td>{{ task.taskIntervalPretty }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:disable_link.html.twig" with {'url':path('admin_task_disable', {'id':task.id})} %}
         {% include "ClubLayoutBundle:Default:enable_link.html.twig" with {'url':path('admin_task_enable', {'id':task.id})} %}

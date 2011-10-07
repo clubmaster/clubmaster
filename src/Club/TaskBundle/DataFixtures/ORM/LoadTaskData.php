@@ -13,7 +13,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T1H');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onGroupTask');
     $manager->persist($task);
@@ -23,7 +23,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T1H');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onLogTask');
     $manager->persist($task);
@@ -33,7 +33,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T1H');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onAutoRenewalTask');
     $manager->persist($task);
@@ -43,7 +43,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T1H');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onLoginAttemptTask');
     $manager->persist($task);
@@ -53,7 +53,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T1H');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onBanTask');
     $manager->persist($task);
@@ -63,7 +63,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T5M');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onMailTask');
     $manager->persist($task);
@@ -73,7 +73,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('+1 hour');
+    $task->setTaskInterval('T15M');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onMessageTask');
     $manager->persist($task);

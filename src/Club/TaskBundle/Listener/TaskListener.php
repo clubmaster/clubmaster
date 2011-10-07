@@ -50,7 +50,8 @@ class TaskListener
     $task->setLocked(0);
 
     $date = new \DateTime();
-    $date->modify($task->getTaskInterval());
+    $diff = new \DateInterval('P'.$task->getTaskInterval());
+    $date->add($diff);
     $task->setNextRunAt($date);
     $this->em->persist($task);
     $this->em->flush();

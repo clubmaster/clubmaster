@@ -318,4 +318,14 @@ class Task
     {
         return $this->method;
     }
+
+    public function getTaskIntervalPretty()
+    {
+      $date1 = new \Club\UserBundle\Helper\DateTime();
+      $date2 = new \Club\UserBundle\Helper\DateTime();
+      $i = new \DateInterval('P'.$this->getTaskInterval());
+      $date2->add($i);
+
+      return $date2->formatDateDiff($date1, $date2);
+    }
 }
