@@ -181,10 +181,8 @@ class Log
      */
     public function prePersist()
     {
-      if (!$this->getId()) {
-        $this->setCreatedAt(new \DateTime());
-        $this->setNew(1);
-      }
+      $this->setCreatedAt(new \DateTime());
+      $this->setNew(1);
     }
 
     /**

@@ -287,10 +287,8 @@ class Task
      */
     public function prePersist()
     {
-      if (!$this->getId()) {
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
-      }
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
     }
 
     /**

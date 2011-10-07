@@ -361,6 +361,14 @@ class Message
     }
 
     /**
+     * @ORM\PreUpdate
+     */
+    public function prePersist()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
      * Set ready
      *
      * @param boolean $ready

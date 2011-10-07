@@ -226,6 +226,14 @@ class Currency
     }
 
     /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
      * Set active
      *
      * @param boolean $active

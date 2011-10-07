@@ -462,11 +462,8 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function prePersist()
     {
-      if (!$this->getId()) {
-        $this->setActivationCode(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-        $this->setCreatedAt(new \DateTime());
-      }
-
+      $this->setActivationCode(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+      $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
     }
 

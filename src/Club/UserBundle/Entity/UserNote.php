@@ -97,7 +97,6 @@ class UserNote
      */
     public function prePersist()
     {
-      if (!$this->getId())
-        $this->setCreatedAt(new \DateTime());
+      $this->setCreatedAt(new \DateTime());
     }
 }
