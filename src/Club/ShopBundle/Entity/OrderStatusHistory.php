@@ -123,7 +123,6 @@ class OrderStatusHistory
      */
     public function prePersist()
     {
-      if (!is_numeric($this->getId()))
-        $this->setCreatedAt(new \DateTime());
+      $this->setCreatedAt(new \DateTime());
     }
 }

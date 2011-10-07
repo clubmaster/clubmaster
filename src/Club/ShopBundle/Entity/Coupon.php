@@ -53,6 +53,11 @@ class Coupon
     private $created_at;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
      * @ORM\OneToMany(targetEntity="CouponLog", mappedBy="coupon")
      */
     private $coupon_log;
@@ -175,12 +180,40 @@ class Coupon
     }
 
     /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
      * @ORM\PrePersist
      */
     public function prePersist()
     {
-      if (!$this->getId())
-        $this->setCreatedAt(new \DateTime());
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
     }
 
     /**
