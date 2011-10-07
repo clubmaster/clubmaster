@@ -17,8 +17,8 @@
   <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
   {% for attr in product.productAttributes %}
-    {% if attr.attribute.attributeName == 'Month' %}
-    <li>{% trans with {'%months%':attr.value} %}Your subscription will last for <b>%months% months</b>.{% endtrans %}</li>
+    {% if attr.attribute.attributeName == 'TimeInterval' %}
+    <li>{% trans with {'%time%':attr.timeInterval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
     {% endif %}
     {% if attr.attribute.attributeName == 'Ticket' %}
     <li>{% trans with {'%tickets%':attr.value} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
