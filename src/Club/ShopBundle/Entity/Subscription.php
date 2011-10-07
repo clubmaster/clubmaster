@@ -7,7 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
- * @ORM\Table(name="club_shop_subscription")
+ * @ORM\Table(name="club_shop_subscription",
+ *   indexes={@ORM\index(
+ *     name="active_idx",
+ *     columns={"active"}
+ *   )}
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class Subscription
