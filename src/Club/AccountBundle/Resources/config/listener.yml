@@ -1,7 +1,7 @@
 services:
   club.accountbundle.listener.on_shop_order_listener:
     class: Club\AccountBundle\Listener\NewTransactionListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
   club.accountbundle.listener.left_menu_render_listener:

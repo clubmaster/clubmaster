@@ -5,29 +5,26 @@ namespace Club\AccountBundle\Listener;
 class NewTransactionListener
 {
   protected $em;
-  protected $security_context;
 
-  public function __construct($em, $security_context)
+  public function __construct($em)
   {
     $this->em = $em;
-    $this->security_context = $security_context;
   }
 
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
-    $user = $this->security_context->getToken()->getUser();
     $order = $event->getOrder();
 
-    $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$user->getLocation());
+    $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$order->getLocation());
 
     foreach ($order->getProducts() as $product) {
 
       switch ($product->getType()) {
       case 'product':
-        $account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(), $user->getLocation());
+        $account = $this->em->getRepository('ClubShopBundle:Product')->getAccount($product->getProduct(), $order->getLocation());
         break;
       case 'coupon':
-        $account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_discount',$user->getLocation());
+        $account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_discount',$order->getLocation());
         break;
       }
 

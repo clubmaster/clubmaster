@@ -9,13 +9,11 @@ class AutoRenewalListener
 {
   protected $em;
   protected $order;
-  protected $event_dispatcher;
 
-  public function __construct($em, $order, $event_dispatcher)
+  public function __construct($em, $order)
   {
     $this->em = $em;
     $this->order = $order;
-    $this->event_dispatcher = $event_dispatcher;
   }
 
   public function onAutoRenewalTask(\Club\TaskBundle\Event\FilterTaskEvent $event)

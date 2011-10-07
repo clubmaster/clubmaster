@@ -127,6 +127,13 @@ class Order
     protected $billing_address;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    protected $location;
+
+    /**
      * @ORM\OneToMany(targetEntity="OrderProduct", mappedBy="order", cascade={"persist"})
      *
      * @var Club\ShopBundle\Entity\OrderProduct
@@ -461,5 +468,25 @@ class Order
     public function addOrderProducts(\Club\ShopBundle\Entity\OrderProduct $orderProducts)
     {
         $this->order_products[] = $orderProducts;
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

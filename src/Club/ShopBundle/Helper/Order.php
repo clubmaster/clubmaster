@@ -24,6 +24,7 @@ class Order
     $this->setBillingAddressByUser($user);
     $this->order->setOrderMemo($order->getOrderMemo());
     $this->order->setNote($order->getNote());
+    $this->order->setLocation($order->getLocation());
   }
 
   public function convertToOrder(\Club\ShopBundle\Entity\Cart $cart)
@@ -146,6 +147,7 @@ class Order
     $this->order->setShipping($this->em->find('ClubShopBundle:Shipping',$data->getShipping()->getId()));
     $this->order->setOrderStatus($this->em->getRepository('ClubShopBundle:OrderStatus')->getDefaultStatus());
     $this->order->setUser($data->getUser());
+    $this->order->setLocation($data->getLocation());
 
     $this->em->persist($this->order);
   }

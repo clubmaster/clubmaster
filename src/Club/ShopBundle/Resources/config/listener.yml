@@ -16,7 +16,7 @@ services:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 5 }
   club.shopbundle.listener.auto_renewal.listener:
     class: Club\ShopBundle\Listener\AutoRenewalListener
-    arguments: [@doctrine.orm.entity_manager,@order,@event_dispatcher]
+    arguments: [@doctrine.orm.entity_manager,@order]
     tags:
       - { name: kernel.event_listener, event: auto_renewal.task, method: onAutoRenewalTask }
   club.shopbundle.listener.on_coupon_use_listener:
