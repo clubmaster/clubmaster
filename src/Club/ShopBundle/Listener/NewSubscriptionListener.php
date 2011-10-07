@@ -72,7 +72,7 @@ class NewSubscriptionListener
             if ($res['AutoRenewal']->getValue() == 'Y') {
               $date1 = new \DateTime($res['StartDate']->getValue());
               $interval = $date1->diff(new \DateTime($res['ExpireDate']->getValue()));
-              $expire_date = new \DateTime($start_date->format('Y-m-d'));
+              $expire_date = new \DateTime($start_date->format('Y-m-d H:i:s'));
               $expire_date->add($interval);
 
               $subscription->setExpireDate($expire_date);
@@ -88,7 +88,7 @@ class NewSubscriptionListener
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
-          $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d'));;
+          $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d H:i:s'));
           $expire_date->add(new \DateInterval('P'.$res['TimeInterval']->getValue()));
           $subscription->setExpireDate($expire_date);
         }
