@@ -21,21 +21,21 @@ class SubscriptionPause
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var datetime $old_expire_date
      */
     private $old_expire_date;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var datetime $start_date
      */
     private $start_date;
 
     /**
-     * @ORM\Column(type="date", nullable="true")
+     * @ORM\Column(type="datetime", nullable="true")
      *
      * @var datetime $expire_date
      */
@@ -132,7 +132,7 @@ class SubscriptionPause
     /**
      * Get old_expire_date
      *
-     * @return date 
+     * @return date
      */
     public function getOldExpireDate()
     {
