@@ -9,7 +9,7 @@ class LoadAttributeData implements FixtureInterface
   public function load($manager)
   {
     $attributes = array();
-    $attributes[] = 'Month';
+    $attributes[] = 'TimeInterval';
     $attributes[] = 'Ticket';
     $attributes[] = 'AutoRenewal';
     $attributes[] = 'Lifetime';

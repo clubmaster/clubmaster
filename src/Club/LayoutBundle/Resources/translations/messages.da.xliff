@@ -771,8 +771,8 @@
         <target>Dette er hvor du redigere de forskellige attributter til dine produkter, hvis du har et produkt som skal have en speciel attribut.</target>
       </trans-unit>
       <trans-unit id="193">
-        <source>Month</source>
-        <target>Måned</target>
+        <source>Time Interval</source>
+        <target>Tidsinterval</target>
       </trans-unit>
       <trans-unit id="194">
         <source>Ticket</source>

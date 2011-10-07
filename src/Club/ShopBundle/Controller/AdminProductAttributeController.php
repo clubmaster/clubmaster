@@ -39,11 +39,6 @@ class AdminProductAttributeController extends Controller
 
   private function getForm($product)
   {
-    $res = range(1,72);
-    $months = array();
-    foreach ($res as $i) {
-      $months[$i] = $i;
-    }
     $res = range(1,100);
     $tickets = array();
     foreach ($res as $i) {
@@ -65,9 +60,8 @@ class AdminProductAttributeController extends Controller
     );
 
     $form = $this->createFormBuilder()
-      ->add('Month','choice',array(
+      ->add('TimeInterval','text',array(
         'required' => false,
-        'choices' => $months
       ))
       ->add('Ticket','choice',array(
         'required' => false,

@@ -75,7 +75,8 @@ Praesent scelerisque aliquam purus, vitae accumsan erat bibendum ut. Curabitur a
   (15,'10 tickets + Renewal(A) + Location + Pauses','Lorem ipsum...',100,1),
   (16,'Subscription + 3Month + Renewal(A) + Start date in future','Lorem ipsum...',100,1),
   (17,'Subscription + 1Month + Start date + Renewal(Y)','Lorem ipsum...',100,1),
-  (18,'Subscription + Start date + Expire date + Renewal(Y) + ealier this year','Lorem ipsum...',100,1);
+  (18,'Subscription + Start date + Expire date + Renewal(Y) + ealier this year','Lorem ipsum...',100,1),
+  (19,'Daily subscription','Lorem ipsum...',100,1);
 
 INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (1,1),
@@ -95,13 +96,14 @@ INSERT INTO club_shop_category_product (product_id,category_id) VALUES
   (15,2),
   (16,1),
   (17,1),
-  (18,1);
+  (18,1),
+  (19,1);
 
 INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
-  (1,1,1),
+  (1,1,'1M'),
   (1,7,3),
   (1,8,1),
-  (2,1,2),
+  (2,1,'2M'),
   (2,7,5),
   (2,8,5),
   (3,5,'2011-04-01'),
@@ -113,11 +115,11 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (6,8,1),
   (9,5,'2011-04-16'),
   (9,6,'2011-04-30'),
-  (10,1,1),
+  (10,1,'1M'),
   (10,3,'A'),
   (10,8,1),
   (10,7,3),
-  (11,1,3),
+  (11,1,'3M'),
   (11,3,'A'),
   (11,5,'2009-09-01'),
   (12,5,'2009-09-01'),
@@ -130,12 +132,15 @@ INSERT INTO club_shop_product_attribute (product_id,attribute_id,value) VALUES
   (15,3,'A'),
   (15,8,1),
   (15,7,3),
-  (16,1,3),
+  (16,1,'3M'),
   (16,3,'A'),
   (16,5,'2012-09-01'),
-  (17,1,1),
+  (17,1,'1M'),
   (17,5,'2011-12-01'),
   (17,3,'Y'),
   (18,5,'2009-04-01'),
   (18,6,'2011-06-12'),
-  (18,3,'Y');
+  (18,3,'Y'),
+  (19,1,'1D'),
+  (19,3,'A');
+

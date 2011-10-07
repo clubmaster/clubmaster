@@ -80,16 +80,16 @@ class NewSubscriptionListener
           }
         }
 
-        if (isset($res['Month'])) {
+        if (isset($res['TimeInterval'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('Month');
-          $sub_attr->setValue($res['Month']->getValue());
+          $sub_attr->setAttributeName('TimeInterval');
+          $sub_attr->setValue($res['TimeInterval']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
           $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d'));;
-          $expire_date->add(new \DateInterval('P'.$res['Month']->getValue().'M'));
+          $expire_date->add(new \DateInterval('P'.$res['TimeInterval']->getValue()));
           $subscription->setExpireDate($expire_date);
         }
 
