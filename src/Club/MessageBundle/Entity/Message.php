@@ -363,7 +363,7 @@ class Message
     /**
      * @ORM\PreUpdate
      */
-    public function prePersist()
+    public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
     }
