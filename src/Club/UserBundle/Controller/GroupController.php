@@ -88,6 +88,8 @@ class GroupController extends Controller
       if ($form->isValid()) {
         if ($group->getActiveMember() == '')
           $group->setActiveMember(null);
+        if ($group->getGender() == '')
+          $group->setGender(null);
 
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($group);
