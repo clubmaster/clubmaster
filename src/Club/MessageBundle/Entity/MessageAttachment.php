@@ -227,8 +227,8 @@ class MessageAttachment
      */
     public function prePersist()
     {
-      if (isset($this->file)) {
-        $this->setFilePath(uniqid().'.'.$this->file->guessExtension());
+      if (!$this->getFilePath()) {
+        $this->setFilePath(uniqid().'.'.$this->file->getExtension());
         $this->setFileName($this->file->getClientOriginalName());
         $this->setFileSize(filesize($this->file->getPathName()));
         $this->setFileHash(hash_file('sha256', $this->file->getPathName()));
@@ -243,7 +243,7 @@ class MessageAttachment
      */
     public function postPersist()
     {
-      if (file_exists($this->file)) {
+      if (method_exists($this->file, 'move')) {
         $this->file->move($this->getFSUploadPath(), $this->getFilePath());
         unset($this->file);
       }

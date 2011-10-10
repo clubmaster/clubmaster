@@ -3,6 +3,7 @@
 namespace Club\MessageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -156,9 +157,13 @@ class AdminMessageController extends Controller
     $em->persist($new);
 
     foreach ($message->getMessageAttachment() as $attachment) {
+      $file = new \SplFileInfo($attachment->getAbsolutePath());
+      $filename = uniqid().'.'.$file->getExtension();
+
       $attach = new \Club\MessageBundle\Entity\MessageAttachment();
+      $attach->file = $file;
       $attach->setMessage($new);
-      $attach->setFilePath($attachment->getFilePath());
+      $attach->setFilePath($filename);
       $attach->setFileName($attachment->getFileName());
       $attach->setFileType($attachment->getFileType());
       $attach->setFileSize($attachment->getFileSize());
