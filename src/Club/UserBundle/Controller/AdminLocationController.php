@@ -16,21 +16,12 @@ class AdminLocationController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $root = $em->find('ClubUserBundle:Location',1);
 
-    $locations = $root;
-    $locations->childs = $em->getRepository('ClubUserBundle:Location')->getChilds($root);
-
-    foreach ($locations->childs as $child) {
-      $child->childs = $em->getRepository('ClubUserBundle:Location')->getChilds($child);
-
-      foreach ($child->childs as $child2) {
-        $child2->childs = $em->getRepository('ClubUserBundle:Location')->getChilds($child2);
-      }
-    }
+    $location = $em->find('ClubUserBundle:Location',1);
+    $location = $em->getRepository('ClubUserBundle:Location')->getAllChilds($location);
 
     return array(
-      'root' => $root
+      'location' => $location
     );
   }
 
