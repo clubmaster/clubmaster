@@ -452,6 +452,7 @@ class AdminMessageController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
     $message->setReady(1);
+    $message->setSentAt(new \DateTime());
 
     $em->persist($message);
     $em->flush();
