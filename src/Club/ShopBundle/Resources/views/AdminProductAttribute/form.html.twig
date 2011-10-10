@@ -19,5 +19,7 @@
   {{ form_row(form.Location) }}
   <span class="smaller low">{% trans %}Info: Which locations will the user be a member of?{% endtrans %}</span>
 
+  {{ form_rest(form) }}
+
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
