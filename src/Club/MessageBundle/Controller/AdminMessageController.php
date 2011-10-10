@@ -139,6 +139,43 @@ class AdminMessageController extends Controller
   }
 
   /**
+   * @Route("/message/copy/{id}")
+   * @Template()
+   */
+  public function copyAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $new = new \Club\MessageBundle\Entity\Message();
+    $new->setSubject($message->getSubject());
+    $new->setType($message->getType());
+    $new->setMessage($message->getMessage());
+    $new->setSenderName($message->getSenderName());
+    $new->setSenderAddress($message->getSenderAddress());
+    $em->persist($new);
+
+    foreach ($message->getMessageAttachment() as $attachment) {
+      $attach = new \Club\MessageBundle\Entity\MessageAttachment();
+      $attach->setMessage($new);
+      $attach->setFilePath($attachment->getFilePath());
+      $attach->setFileName($attachment->getFileName());
+      $attach->setFileType($attachment->getFileType());
+      $attach->setFileSize($attachment->getFileSize());
+      $attach->setFileHash($attachment->getFileHash());
+      $em->persist($attach);
+
+      copy($attachment->getAbsolutePath(), $attach->getAbsolutePath());
+    }
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_edit', array(
+      'id' => $new->getId()
+    )));
+  }
+
+  /**
    * @Route("/message/show/{id}")
    * @Template()
    */

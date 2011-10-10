@@ -227,13 +227,15 @@ class MessageAttachment
      */
     public function prePersist()
     {
-      $this->setFilePath(uniqid().'.'.$this->file->guessExtension());
-      $this->setFileName($this->file->getClientOriginalName());
-      $this->setFileSize(filesize($this->file->getPathName()));
-      $this->setFileHash(hash_file('sha256', $this->file->getPathName()));
+      if (isset($this->file)) {
+        $this->setFilePath(uniqid().'.'.$this->file->guessExtension());
+        $this->setFileName($this->file->getClientOriginalName());
+        $this->setFileSize(filesize($this->file->getPathName()));
+        $this->setFileHash(hash_file('sha256', $this->file->getPathName()));
 
-      $finfo = new \finfo(FILEINFO_MIME);
-      $this->setFileType($finfo->file($this->file->getPathName()));
+        $finfo = new \finfo(FILEINFO_MIME);
+        $this->setFileType($finfo->file($this->file->getPathName()));
+      }
     }
 
     /**
@@ -241,8 +243,10 @@ class MessageAttachment
      */
     public function postPersist()
     {
-      $this->file->move($this->getFSUploadPath(), $this->getFilePath());
-      unset($this->file);
+      if (file_exists($this->file)) {
+        $this->file->move($this->getFSUploadPath(), $this->getFilePath());
+        unset($this->file);
+      }
     }
 
     /**
