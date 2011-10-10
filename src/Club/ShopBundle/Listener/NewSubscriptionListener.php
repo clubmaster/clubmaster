@@ -128,12 +128,11 @@ class NewSubscriptionListener
           $this->em->persist($sub_attr);
         }
         if (isset($res['Location'])) {
-          $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
-          $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('Location');
-          $sub_attr->setValue($res['Location']->getValue());
-          $subscription->addSubscriptionAttributes($sub_attr);
-          $this->em->persist($sub_attr);
+          $ids = preg_split("/,/", $res['Location']->getValue());
+          foreach ($ids as $id) {
+            $location = $this->em->find('ClubUserBundle:Location', $id);
+            $subscription->addLocation($location);
+          }
         }
 
         $this->em->persist($subscription);

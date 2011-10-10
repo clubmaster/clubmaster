@@ -98,6 +98,17 @@ class Subscription
      */
     private $subscription_pauses;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\JoinTable(name="club_shop_subscription_location",
+     *   joinColumns={@ORM\JoinColumn(name="subscription_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id")}
+     * )
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
+
 
     public function __construct()
     {
@@ -351,6 +362,26 @@ class Subscription
         return $this->order_product;
     }
 
+    /**
+     * Get location
+     *
+     * @return Doctrine\Common\Collections\Collection $location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Add product
+     *
+     * @param Club\ShopBundle\Entity\Product $product
+     */
+    public function addProduct(\Club\ShopBundle\Entity\Product $product)
+    {
+        $this->product[] = $product;
+    }
+
     public function isExpired()
     {
       if ($this->getExpireDate() == null)
@@ -360,5 +391,35 @@ class Subscription
         return true;
 
       return false;
+    }
+
+    /**
+     * Add subscription_attributes
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes
+     */
+    public function addSubscriptionAttribute(\Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes)
+    {
+        $this->subscription_attributes[] = $subscriptionAttributes;
+    }
+
+    /**
+     * Add subscription_pauses
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses
+     */
+    public function addSubscriptionPause(\Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses)
+    {
+        $this->subscription_pauses[] = $subscriptionPauses;
+    }
+
+    /**
+     * Add location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function addLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location[] = $location;
     }
 }
