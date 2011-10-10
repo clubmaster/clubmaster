@@ -28,8 +28,7 @@ class GroupRecalcListener
         $group->getUsers()->removeElement($user);
       }
 
-      $query = $this->em->getRepository('ClubUserBundle:User')->getQueryByGroup($group);
-      $users = $query->getResult();
+      $query = $this->em->getRepository('ClubUserBundle:User')->getByGroup($group);
       foreach ($users as $user) {
         $group->addUsers($user);
       }

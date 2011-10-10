@@ -18,7 +18,7 @@ class AdminLocationController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $location = $em->find('ClubUserBundle:Location',1);
-    $location = $em->getRepository('ClubUserBundle:Location')->getAllChilds($location);
+    $location = $em->getRepository('ClubUserBundle:Location')->getWithChilds($location);
 
     return array(
       'location' => $location

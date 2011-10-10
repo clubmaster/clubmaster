@@ -382,4 +382,15 @@ class Profile
     {
       return $this->getFirstName().' '.$this->getLastName();
     }
+
+    public function getAge()
+    {
+      $ageTime = $this->getDayOfBirth()->getTimestamp();
+      $t = time();
+      $age = ($ageTime < 0) ? ( $t + ($ageTime * -1) ) : $t - $ageTime;
+      $year = 60 * 60 * 24 * 365;
+      $ageYears = $age / $year;
+
+      return floor($ageYears);
+    }
 }

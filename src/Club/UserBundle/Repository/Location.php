@@ -44,15 +44,15 @@ class Location extends EntityRepository
       ->getResult();
   }
 
-  public function getAllChilds(\Club\UserBundle\Entity\Location $location)
+  public function getWithChilds(\Club\UserBundle\Entity\Location $location)
   {
-    $location->childs = $this->_em->getRepository('ClubUserBundle:Location')->getChilds($location);
+    $location->childs = $this->getChilds($location);
 
     foreach ($location->childs as $child) {
-      $child->childs = $this->_em->getRepository('ClubUserBundle:Location')->getChilds($child);
+      $child->childs = $this->getChilds($child);
 
       foreach ($child->childs as $child2) {
-        $child2->childs = $this->_em->getRepository('ClubUserBundle:Location')->getChilds($child2);
+        $child2->childs = $this->getChilds($child2);
       }
     }
 

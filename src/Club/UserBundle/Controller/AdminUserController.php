@@ -109,6 +109,11 @@ class AdminUserController extends Controller
     $user = $em->find('ClubUserBundle:User',$id);
     $user = $this->getUser($user);
 
+    foreach ($em->getRepository('ClubUserBundle:User')->getGroupsByUser($user) as $group) {
+      echo $group->getId();
+    }
+
+    die();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->getRequest()->getMethod() == 'POST') {

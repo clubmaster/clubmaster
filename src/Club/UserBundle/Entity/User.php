@@ -698,4 +698,18 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->activation_code;
     }
+
+    public function getMemberStatus()
+    {
+      foreach ($this->getSubscriptions() as $s) {
+        if ($s->getStartDate()->getTimestamp() <= time()) {
+          if ($s->getExpireDate()->getTimestamp() >= time() || $s->getExpireDate() == '') {
+            if ($s->getActive())
+              return true;
+          }
+        }
+      }
+
+      return false;
+    }
 }

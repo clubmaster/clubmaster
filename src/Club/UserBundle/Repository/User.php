@@ -111,6 +111,11 @@ class User extends EntityRepository
     return $this->getQueryBuilderByFilter($filter)->getQuery();
   }
 
+  public function getByGroup(\Club\UserBundle\Entity\Group $group)
+  {
+    return $this->getQueryByGroup($group)->getResult();
+  }
+
   public function getQueryByGroup(\Club\UserBundle\Entity\Group $group)
   {
     $qb = $this->getQueryBuilder();
@@ -335,5 +340,54 @@ class User extends EntityRepository
       ->andWhere('('.$str.')');
 
     return $qb;
+  }
+
+  public function getGroupsByUser(\Club\UserBundle\Entity\User $user)
+  {
+    $location_str = '';
+    $used = array();
+
+    foreach ($user->getSubscriptions() as $subscription) {
+      foreach ($subscription->getLocation() as $location) {
+
+        if (!isset($used[$location->getId()])) {
+          $location_str .= 'l.id = '.$location->getId().' OR ';
+          $used[$location->getId()] = 1;
+        }
+
+        if ($location->getLocation()) {
+          if (!isset($used[$location->getLocation()->getId()])) {
+            $location_str .= 'l.id = '.$location->getLocation()->getId().' OR ';
+            $used[$location->getLocation()->getId()] = 1;
+          }
+
+          if ($location->getLocation()->getLocation()) {
+
+            if (!isset($used[$location->getLocation()->getLocation()->getId()])) {
+              $location_str .= 'l.id = '.$location->getLocation()->getLocation()->getId().' OR ';
+              $used[$location->getLocation()->getLocation()->getId()] = 1;
+            }
+          }
+        }
+      }
+    }
+
+    return $this->_em->createQueryBuilder()
+      ->select('g')
+      ->from('ClubUserBundle:Group', 'g')
+      ->leftJoin('g.location','l')
+      ->where('g.group_type = :type')
+      ->andWhere('(g.gender IS NULL OR g.gender=:gender)')
+      ->andWhere('(g.min_age IS NULL OR g.min_age <= :min_age)')
+      ->andWhere('(g.max_age IS NULL OR g.max_age >= :max_age)')
+      ->andWhere('(g.active_member IS NULL OR g.active_member = :active_member)')
+      ->andWhere('('.$location_str.' l.id IS NULL)')
+      ->setParameter('type', 'dynamic')
+      ->setParameter('gender', $user->getProfile()->getGender())
+      ->setParameter('min_age', $user->getProfile()->getAge())
+      ->setParameter('max_age', $user->getProfile()->getAge())
+      ->setParameter('active_member', $user->getMemberStatus())
+      ->getQuery()
+      ->getResult();
   }
 }
