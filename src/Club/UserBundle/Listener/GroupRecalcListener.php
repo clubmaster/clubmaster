@@ -22,15 +22,19 @@ class GroupRecalcListener
       'group_type' => 'dynamic'
     ));
 
-    foreach ($groups as $group) {
-      $users = $group->getUsers();
-      foreach ($users as $user) {
-        $group->getUsers()->removeElement($user);
-      }
-
-      $query = $this->em->getRepository('ClubUserBundle:User')->getByGroup($group);
-      foreach ($users as $user) {
+    $res = array();
+    foreach ($this->em->getRepository('ClubUserBundle:User')->findAll() as $user) {
+      $groups = $this->em->getRepository('ClubUserBundle:User')->getGroupsByUser($user);
+      foreach ($groups as $group) {
         $group->addUsers($user);
+        $res[$group->getId().'_'.$user->getId()] = 1;
+      }
+    }
+
+    foreach ($groups as $group) {
+      foreach ($group->getUsers() as $user) {
+        if (!isset($res[$group->getId().'_'.$user->getId()]))
+          $group->getUsers()->removeElement($user);
       }
     }
 
