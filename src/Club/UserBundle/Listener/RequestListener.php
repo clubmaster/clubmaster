@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class RequestListener
 {
+  protected $test=0;
   protected $em;
   protected $security_context;
   protected $session;
@@ -20,6 +21,12 @@ class RequestListener
 
   public function onKernelRequest(GetResponseEvent $event)
   {
+    if (!$this->test) {
+      $this->test = 1;
+    } else {
+      return;
+    } 
+
     if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
       return;
 

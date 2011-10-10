@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class TaskListener
 {
+  protected $test=0;
   protected $em;
   protected $event_dispatcher;
 
@@ -19,6 +20,12 @@ class TaskListener
   public function onKernelRequest(GetResponseEvent $event)
   {
     try {
+      if (!$this->test) {
+        $this->test = 1;
+      } else {
+        return;
+      }
+
       $tasks = $this->em->getRepository('ClubTaskBundle:Task')->getTasksToExecute();
 
       foreach ($tasks as $task) {
