@@ -22,7 +22,6 @@ class AppKernel extends Kernel
             new Club\UserBundle\ClubUserBundle(),
             new Club\MailBundle\ClubMailBundle(),
             new Club\ShopBundle\ClubShopBundle(),
-            new Club\RestBundle\ClubRestBundle(),
             new Club\AccountBundle\ClubAccountBundle(),
             new Club\TaskBundle\ClubTaskBundle(),
             new Club\LogBundle\ClubLogBundle(),
