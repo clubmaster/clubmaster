@@ -160,8 +160,8 @@ class User extends EntityRepository
 
   protected function filterName($qb,$value)
   {
-    $qb->andWhere('(p.first_name = :name OR p.last_name = :name)');
-    $qb->setParameter('name', $value);
+    $qb->andWhere("CONCAT(CONCAT(p.first_name, ' '), p.last_name) LIKE :name");
+    $qb->setParameter('name', '%'.$value.'%');
 
     return $qb;
   }
