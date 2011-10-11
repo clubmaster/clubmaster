@@ -4,7 +4,7 @@ namespace Club\UserBundle\Helper;
 
 class Version
 {
-  protected $version = 'rc3-dev';
+  protected $version = 'rc4-dev';
 
   public function getVersion()
   {
