@@ -326,7 +326,7 @@ class User extends EntityRepository
 
     $str = "";
     foreach ($locations as $id) {
-      $str .= " sa.value = $id OR ";
+      $str .= " sl.id = $id OR ";
     }
     $str = preg_replace("/OR $/","",$str);
 
@@ -336,7 +336,7 @@ class User extends EntityRepository
     }
 
     $qb
-      ->leftJoin('s.subscription_attributes','sa')
+      ->leftJoin('s.location','sl')
       ->andWhere('('.$str.')');
 
     return $qb;
