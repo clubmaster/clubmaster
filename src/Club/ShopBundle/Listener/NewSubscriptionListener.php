@@ -33,23 +33,23 @@ class NewSubscriptionListener
         $subscription->setActive(1);
         $subscription->setType('subscription');
 
-        $start_date = isset($res['StartDate']) ? new \DateTime($res['StartDate']->getValue()) : new \DateTime();
+        $start_date = isset($res['start_date']) ? new \DateTime($res['start_date']->getValue()) : new \DateTime();
 
-        if (isset($res['StartDate'])) {
+        if (isset($res['start_date'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('StartDate');
-          $sub_attr->setValue($res['StartDate']->getValue());
+          $sub_attr->setAttributeName('start_date');
+          $sub_attr->setValue($res['start_date']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
-          $date = new \DateTime($res['StartDate']->getValue());
+          $date = new \DateTime($res['start_date']->getValue());
           if ($date->getTimestamp() > time()) {
             $start_date = $date;
-          } elseif (isset($res['AutoRenewal'])) {
-            if ($res['AutoRenewal']->getValue() == 'A') {
+          } elseif (isset($res['auto_renewal'])) {
+            if ($res['auto_renewal']->getValue() == 'A') {
               $start_date = new \DateTime();
-            } elseif ($res['AutoRenewal']->getValue() == 'Y') {
+            } elseif ($res['auto_renewal']->getValue() == 'Y') {
               $start_date = new \DateTime(date('Y-m-d',mktime(0,0,0,$date->format('n'),$date->format('j'),date('Y'))));
               if ($start_date->getTimestamp() < time()) {
                 $start_date->add(new \DateInterval('P1Y'));
@@ -59,19 +59,19 @@ class NewSubscriptionListener
         }
         $subscription->setStartDate($start_date);
 
-        if (isset($res['ExpireDate'])) {
+        if (isset($res['expire_date'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('ExpireDate');
-          $sub_attr->setValue($res['ExpireDate']->getValue());
+          $sub_attr->setAttributeName('expire_date');
+          $sub_attr->setValue($res['expire_date']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
-          $subscription->setExpireDate(new \DateTime($res['ExpireDate']->getValue()));
-          if (isset($res['AutoRenewal'])) {
-            if ($res['AutoRenewal']->getValue() == 'Y') {
-              $date1 = new \DateTime($res['StartDate']->getValue());
-              $interval = $date1->diff(new \DateTime($res['ExpireDate']->getValue()));
+          $subscription->setExpireDate(new \DateTime($res['expire_date']->getValue()));
+          if (isset($res['auto_renewal'])) {
+            if ($res['auto_renewal']->getValue() == 'Y') {
+              $date1 = new \DateTime($res['start_date']->getValue());
+              $interval = $date1->diff(new \DateTime($res['expire_date']->getValue()));
               $expire_date = new \DateTime($start_date->format('Y-m-d H:i:s'));
               $expire_date->add($interval);
 
@@ -80,55 +80,55 @@ class NewSubscriptionListener
           }
         }
 
-        if (isset($res['TimeInterval'])) {
+        if (isset($res['time_interval'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('TimeInterval');
-          $sub_attr->setValue($res['TimeInterval']->getValue());
+          $sub_attr->setAttributeName('time_interval');
+          $sub_attr->setValue($res['time_interval']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
           $expire_date = new \DateTime($subscription->getStartDate()->format('Y-m-d H:i:s'));
-          $expire_date->add(new \DateInterval('P'.$res['TimeInterval']->getValue()));
+          $expire_date->add(new \DateInterval('P'.$res['time_interval']->getValue()));
           $subscription->setExpireDate($expire_date);
         }
 
-        if (isset($res['Ticket'])) {
+        if (isset($res['ticket'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('Ticket');
-          $sub_attr->setValue($res['Ticket']->getValue());
+          $sub_attr->setAttributeName('ticket');
+          $sub_attr->setValue($res['ticket']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
 
           $subscription->setType('ticket');
         }
-        if (isset($res['AutoRenewal'])) {
+        if (isset($res['auto_renewal'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('AutoRenewal');
-          $sub_attr->setValue($res['AutoRenewal']->getValue());
+          $sub_attr->setAttributeName('auto_renewal');
+          $sub_attr->setValue($res['auto_renewal']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
         }
-        if (isset($res['Lifetime'])) {
+        if (isset($res['lifetime'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('Lifetime');
-          $sub_attr->setValue($res['Lifetime']->getValue());
+          $sub_attr->setAttributeName('lifetime');
+          $sub_attr->setValue($res['lifetime']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
         }
-        if (isset($res['AllowedPauses'])) {
+        if (isset($res['allowed_pauses'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('AllowedPauses');
-          $sub_attr->setValue($res['AllowedPauses']->getValue());
+          $sub_attr->setAttributeName('allowed_pauses');
+          $sub_attr->setValue($res['allowed_pauses']->getValue());
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
         }
-        if (isset($res['Location'])) {
-          $ids = preg_split("/,/", $res['Location']->getValue());
+        if (isset($res['location'])) {
+          $ids = preg_split("/,/", $res['location']->getValue());
           foreach ($ids as $id) {
             $location = $this->em->find('ClubUserBundle:Location', $id);
             $subscription->addLocation($location);

@@ -9,14 +9,14 @@ class LoadAttributeData implements FixtureInterface
   public function load($manager)
   {
     $attributes = array();
-    $attributes[] = 'TimeInterval';
-    $attributes[] = 'Ticket';
-    $attributes[] = 'AutoRenewal';
-    $attributes[] = 'Lifetime';
-    $attributes[] = 'StartDate';
-    $attributes[] = 'ExpireDate';
-    $attributes[] = 'AllowedPauses';
-    $attributes[] = 'Location';
+    $attributes[] = 'time_interval';
+    $attributes[] = 'ticket';
+    $attributes[] = 'auto_renewal';
+    $attributes[] = 'lifetime';
+    $attributes[] = 'start_date';
+    $attributes[] = 'expire_date';
+    $attributes[] = 'allowed_pauses';
+    $attributes[] = 'location';
 
     foreach ($attributes as $attr) {
       $a = new \Club\ShopBundle\Entity\Attribute();

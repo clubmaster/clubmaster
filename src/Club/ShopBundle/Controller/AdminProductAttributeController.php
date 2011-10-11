@@ -39,65 +39,8 @@ class AdminProductAttributeController extends Controller
 
   private function getForm($product)
   {
-    $res = range(1,100);
-    $tickets = array();
-    foreach ($res as $i) {
-      $tickets[$i] = $i;
-    }
-    $res = range(1,10);
-    $pauses = array();
-    foreach ($res as $i) {
-      $pauses[$i] = $i;
-    }
+    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute(), $this->getData($product));
 
-    $bool = array(
-      1 => 'Yes'
-    );
-
-    $renewal = array(
-      'A' => 'After expire',
-      'Y' => 'Yearly',
-    );
-
-    $form = $this->createFormBuilder()
-      ->add('TimeInterval','text',array(
-        'required' => false,
-      ))
-      ->add('Ticket','choice',array(
-        'required' => false,
-        'choices' => $tickets
-      ))
-      ->add('AutoRenewal','choice',array(
-        'required' => false,
-        'choices' => $renewal,
-        'label' => 'Auto Renewal'
-
-      ))
-      ->add('Lifetime','choice',array(
-        'required' => false,
-        'choices' => $bool
-      ))
-      ->add('AllowedPauses','choice',array(
-        'required' => false,
-        'choices' => $pauses,
-        'label' => 'Allowed Pauses'
-      ))
-      ->add('StartDate','date', array(
-        'required' => false,
-        'label' => 'Start date'
-      ))
-      ->add('ExpireDate','date', array(
-        'required' => false,
-        'label' => 'Expire date'
-      ))
-      ->add('Location','entity',array(
-        'class' => 'Club\UserBundle\Entity\Location',
-        'multiple' => true,
-        'required' => false
-      ))
-      ->getForm();
-
-    $form->setData($this->getData($product));
     return $form;
   }
 
@@ -105,24 +48,26 @@ class AdminProductAttributeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $arr = array();
+    $attribute = new \Club\ShopBundle\Model\Attribute();
+
     foreach ($product->getProductAttributes() as $attr) {
-      if ($attr->getAttribute()->getAttributeName() == 'Location') {
+      $val = $attr->getAttribute()->getAttributeName();
+      if ($attr->getAttribute()->getAttributeName() == 'location') {
         $res = new \Doctrine\Common\Collections\ArrayCollection();
         $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attr->getValue()));
         foreach ($locations as $location) {
           $res[] = $location;
         }
-        $arr[$attr->getAttribute()->getAttributeName()] = $res;
+        $attribute->$val = $res;
 
-      } elseif ($attr->getAttribute()->getAttributeName() == 'StartDate' || $attr->getAttribute()->getAttributeName() == 'ExpireDate') {
-        $arr[$attr->getAttribute()->getAttributeName()] = new \DateTime($attr->getValue());
+      } elseif ($attr->getAttribute()->getAttributeName() == 'start_date' || $attr->getAttribute()->getAttributeName() == 'expire_date') {
+        $attribute->$val = new \DateTime($attr->getValue());
       } else {
-        $arr[$attr->getAttribute()->getAttributeName()] = $attr->getValue();
+        $attribute->$val = $attr->getValue();
       }
     }
 
-    return $arr;
+    return $attribute;
   }
 
   private function setData(\Club\ShopBundle\Entity\Product $product, $data)
@@ -130,17 +75,19 @@ class AdminProductAttributeController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     foreach ($em->getRepository('ClubShopBundle:Attribute')->findAll() as $attr) {
+      $val = $attr->getAttributeName();
+
       $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
         'product' => $product->getId(),
         'attribute' => $attr->getId()
       ));
 
-      if (($attr->getAttributeName() == 'StartDate' || $attr->getAttributeName() == 'ExpireDate') && $data[$attr->getAttributeName()] != '')
-        $data[$attr->getAttributeName()] = $data[$attr->getAttributeName()]->format('Y-m-d');
+      if (($attr->getAttributeName() == 'start_date' || $attr->getAttributeName() == 'expire_date') && $data->$val != '')
+        $data->$val = $data->$val->format('Y-m-d');
 
-      if ($attr->getAttributeName() == 'Location') {
+      if ($attr->getAttributeName() == 'location') {
         $str = '';
-        foreach ($data[$attr->getAttributeName()] as $l) {
+        foreach ($data->$val as $l) {
           $str .= $l->getId().',';
         }
         $str = preg_replace("/,$/","",$str);
@@ -159,16 +106,16 @@ class AdminProductAttributeController extends Controller
 
       } else {
 
-        if ($prod_attr && $data[$attr->getAttributeName()] == '') {
+        if ($prod_attr && $data->$val == '') {
           $em->remove($prod_attr);
 
-        } elseif ($prod_attr && $data[$attr->getAttributeName()] != '') {
-          $prod_attr->setValue($data[$attr->getAttributeName()]);
+        } elseif ($prod_attr && $data->$val != '') {
+          $prod_attr->setValue($data->$val);
           $em->persist($prod_attr);
 
-        } elseif (!$prod_attr && $data[$attr->getAttributeName()] != '') {
+        } elseif (!$prod_attr && $data->$val != '') {
           $prod_attr = $this->buildProductAttribute($product,$attr);
-          $prod_attr->setValue($data[$attr->getAttributeName()]);
+          $prod_attr->setValue($data->$val);
           $em->persist($prod_attr);
         }
       }

@@ -64,7 +64,7 @@ class Subscription extends EntityRepository
 
   public function isAutoRenewal(\Club\ShopBundle\Entity\Subscription $subscription)
   {
-    $attr = $this->getAttributeQuery($subscription, 'AutoRenewal')
+    $attr = $this->getAttributeQuery($subscription, 'auto_renewal')
       ->getQuery()
       ->getResult();
 
@@ -88,7 +88,7 @@ class Subscription extends EntityRepository
 
   public function getAllowedPauses(\Club\ShopBundle\Entity\Subscription $subscription)
   {
-    $res = $this->getAttributeQuery($subscription, 'AllowedPauses')
+    $res = $this->getAttributeQuery($subscription, 'allowed_pauses')
       ->getQuery()
       ->getResult();
 
@@ -102,7 +102,7 @@ class Subscription extends EntityRepository
   {
     $used = $this->getUsedTickets($subscription);
 
-    $res = $this->getAttributeQuery($subscription, 'Ticket')
+    $res = $this->getAttributeQuery($subscription, 'ticket')
       ->getQuery()
       ->getResult();
 

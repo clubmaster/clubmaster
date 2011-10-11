@@ -1,22 +1,22 @@
-  {{ form_row(form.TimeInterval) }}
+  {{ form_row(form.time_interval) }}
   <span class="smaller low">{% trans %}Info: What is the time interval for this subscription?{% endtrans %}</span><br />
   <span class="smaller low">{% trans %}Info: 1 month is <b>1M</b>{% endtrans %}</span><br />
   <span class="smaller low">{% trans %}Info: 1 month and 15 days is <b>1M15D</b>{% endtrans %}</span><br />
   <span class="smaller low">{% trans %}Info: 5 hours is <b>T5H</b>{% endtrans %}</span><br />
   <span class="smaller low">{% trans %}Info: 1 year, 5 hours and 15 minutes is <b>Y1T5H15M</b>{% endtrans %}</span>
-  {{ form_row(form.Ticket) }}
+  {{ form_row(form.ticket) }}
   <span class="smaller low">{% trans %}Info: How many tickets will the user get for this subscription?{% endtrans %}</span>
-  {{ form_row(form.AutoRenewal) }}
+  {{ form_row(form.auto_renewal) }}
   <span class="smaller low">{% trans %}Info: Will this subscription automatically be renewal?{% endtrans %}</span>
-  {{ form_row(form.Lifetime) }}
+  {{ form_row(form.lifetime) }}
   <span class="smaller low">{% trans %}Info: Is this a lifetime subscription?{% endtrans %}</span>
-  {{ form_row(form.AllowedPauses) }}
+  {{ form_row(form.allowed_pauses) }}
   <span class="smaller low">{% trans %}Info: How many pauses is the user of this subscription allowed to take?{% endtrans %}</span>
-  {{ form_row(form.StartDate) }}
+  {{ form_row(form.start_date) }}
   <span class="smaller low">{% trans %}Info: What will be the first day of this subscription?{% endtrans %}</span>
-  {{ form_row(form.ExpireDate) }}
+  {{ form_row(form.expire_date) }}
   <span class="smaller low">{% trans %}Info: When will subscription expire? (Has to be used with StartDate){% endtrans %}</span>
-  {{ form_row(form.Location) }}
+  {{ form_row(form.location) }}
   <span class="smaller low">{% trans %}Info: Which locations will the user be a member of?{% endtrans %}</span>
 
   {{ form_rest(form) }}
