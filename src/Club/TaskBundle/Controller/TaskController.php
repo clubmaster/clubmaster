@@ -81,4 +81,29 @@ class TaskController extends Controller
 
     return $this->redirect($this->generateUrl('admin_task'));
   }
+
+  /**
+   * @Route("/task/edit/{id}")
+   * @Template()
+   */
+  public function editAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $task = $em->find('ClubTaskBundle:Task',$id);
+
+    $form = $this->createForm(new \Club\TaskBundle\Form\Task, $task);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em->persist($task);
+        $em->flush();
+      }
+    }
+
+    return array(
+      'form' => $form->createView(),
+      'task' => $task
+    );
+  }
 }

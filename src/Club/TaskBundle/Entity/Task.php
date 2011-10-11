@@ -72,6 +72,7 @@ class Task
 
     /**
      * @ORM\Column(type="string")
+     * @Club\ShopBundle\Validator\DateTime()
      *
      * @var date $task_interval
      */
