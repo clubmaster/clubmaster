@@ -60,6 +60,8 @@ Country: {{ order.billingAddress.country }}</p>
   </tbody>
 </table>
 
+{% if order.orderStatusHistory|length == 1 %}
 <p><a href="{{ path('shop_order_cancel', {'id':order.id}) }}">Cancel order</a></p>
+{% endif %}
 
 {% endblock %}
