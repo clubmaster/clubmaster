@@ -22,8 +22,6 @@ class Attribute
 
   public $auto_renewal;
 
-  public $lifetime;
-
   /**
    * @Assert\Regex(
    *   pattern="/^\d+$/",

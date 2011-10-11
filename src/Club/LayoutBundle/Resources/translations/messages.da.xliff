@@ -334,10 +334,6 @@
         <source>Info: Will this subscription automatically be renewal?</source>
         <target>Info: Vil medlemskabet automatisk blive fornyet?</target>
       </trans-unit>
-      <trans-unit id="84">
-        <source>Info: Is this a lifetime subscription?</source>
-        <target>Info: Er dette et livstidsmedlemskab?</target>
-      </trans-unit>
       <trans-unit id="85">
         <source>Info: How many pauses is the user of this subscription allowed to take?</source>
         <target>Info: Hvor mange pauser vil medlemskabet give rettigheder til at tage?</target>

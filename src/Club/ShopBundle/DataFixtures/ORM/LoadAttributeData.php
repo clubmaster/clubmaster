@@ -12,7 +12,6 @@ class LoadAttributeData implements FixtureInterface
     $attributes[] = 'time_interval';
     $attributes[] = 'ticket';
     $attributes[] = 'auto_renewal';
-    $attributes[] = 'lifetime';
     $attributes[] = 'start_date';
     $attributes[] = 'expire_date';
     $attributes[] = 'allowed_pauses';

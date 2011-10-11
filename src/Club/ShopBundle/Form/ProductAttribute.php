@@ -41,10 +41,6 @@ class ProductAttribute extends AbstractType
       'choices' => $renewal,
       'label' => 'Auto Renewal'
     ));
-    $builder->add('lifetime', 'choice', array(
-      'required' => false,
-      'choices' => $bool
-    ));
     $builder->add('allowed_pauses', 'choice', array(
       'required' => false,
       'choices' => $pauses,

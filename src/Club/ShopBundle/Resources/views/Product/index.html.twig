@@ -26,9 +26,6 @@
     {% if attr.attribute.attributeName == 'auto_renewal' %}
     <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute.attributeName == 'lifetime' %}
-    <li>{% trans %}Your subscription will <b>never expire</b>.{% endtrans %}</li>
-    {% endif %}
     {% if attr.attribute.attributeName == 'allowed_pauses' %}
     <li>{% trans with {'%pauses%':attr.value} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
     {% endif %}

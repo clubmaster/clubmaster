@@ -111,14 +111,6 @@ class NewSubscriptionListener
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
         }
-        if (isset($res['lifetime'])) {
-          $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
-          $sub_attr->setSubscription($subscription);
-          $sub_attr->setAttributeName('lifetime');
-          $sub_attr->setValue($res['lifetime']->getValue());
-          $subscription->addSubscriptionAttributes($sub_attr);
-          $this->em->persist($sub_attr);
-        }
         if (isset($res['allowed_pauses'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);
