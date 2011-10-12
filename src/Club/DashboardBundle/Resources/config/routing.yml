@@ -1,3 +1,4 @@
-ClubDashboardBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubDashboardBundle:Default:index }
+_admin_dashboard:
+  resource: "@ClubDashboardBundle/Controller/AdminDashboardController.php"
+  type: annotation
+  prefix: /admin
