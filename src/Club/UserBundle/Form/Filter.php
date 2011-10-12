@@ -66,6 +66,12 @@ class Filter extends AbstractType
       'required' => false,
       'multiple' => true
     ));
+    $builder->add('subscription_start', 'date', array(
+      'required' => false
+    ));
+    $builder->add('subscription_end', 'date', array(
+      'required' => false
+    ));
   }
 
   public function getDefaultOptions(array $options)

@@ -1,3 +1,34 @@
-  <p>{{ form_widget(form) }}</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+<!-- Submit -->
+<div id="submit" class="box-01 box" style="display:none;">
+  <p>{% trans %}This is your current working filter.{% endtrans %}</p>
+  <form method="post" action="{{ path('club_user_filter_change') }}">
+  {{ form_row(form_filters.filter) }}
+  <input type="submit" value="{% trans %}Change{% endtrans %}" class="input-submit" />
+  </form>
 
+  <p>{% trans %}This is your filter, make your search here.{% endtrans %}</p>
+  <form method="POST" action="{{ path('club_user_filter_filter') }}">
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.member_number) }}
+    {{ form_row(form.min_age) }}
+    {{ form_row(form.max_age) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.postal_code) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.location) }}
+    {{ form_row(form.active) }}
+    {{ form_row(form.has_ticket) }}
+    {{ form_row(form.has_subscription) }}
+    {{ form_row(form.subscription_start) }}
+    {{ form_row(form.subscription_end) }}
+    {{ form_row(form._token) }}
+
+    <input type="submit" value="Filter" class="input-submit" />
+    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">{% trans %}Save{% endtrans %}</a>
+    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">{% trans %}Delete{% endtrans %}</a>
+    <a href="{{ path('club_user_filter_new') }}">{% trans %}New{% endtrans %}</a>
+
+  </form>
+</div>

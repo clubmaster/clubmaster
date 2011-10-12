@@ -145,7 +145,7 @@ class FilterController extends Controller
     $form_filter = $this->buildFormFilter($filter);
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
 
-    return $this->render('ClubUserBundle:Filter:_form.html.twig', array(
+    return $this->render('ClubUserBundle:Filter:form.html.twig', array(
       'filter' => $filter,
       'form' => $form->createView(),
       'form_filters' => $form_filters->createView()
