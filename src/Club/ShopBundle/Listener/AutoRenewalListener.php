@@ -24,7 +24,6 @@ class AutoRenewalListener
       if ($this->em->getRepository('ClubShopBundle:Subscription')->isAutoRenewal($subscription)) {
         $this->copySubscription($subscription);
       } else {
-        $subscription->setActive(0);
         $this->em->persist($subscription);
       }
     }
@@ -45,7 +44,6 @@ class AutoRenewalListener
     $this->order->addOrderProduct($subscription->getOrderProduct());
     $this->order->save();
 
-    $subscription->setActive(0);
     $this->em->persist($subscription);
   }
 }

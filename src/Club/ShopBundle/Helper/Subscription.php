@@ -35,8 +35,7 @@ class Subscription
     $pause->setOldExpireDate($subscription->getExpireDate());
     $this->em->persist($pause);
 
-    $subscription->setActive(0);
-    $subscription->setExpireDate(null);
+    $subscription->setExpireDate(new \DateTime());
     $this->em->persist($subscription);
 
     $this->em->flush();
@@ -46,8 +45,6 @@ class Subscription
 
   public function resumeSubscription($subscription)
   {
-    $subscription->setActive(1);
-
     $pause = $this->em->getRepository('ClubShopBundle:Subscription')->getActivePause($subscription);
     $pause->setExpireDate(new \DateTime());
 
@@ -66,7 +63,6 @@ class Subscription
   public function expireSubscription($subscription)
   {
     $subscription->setExpireDate(new \DateTime());
-    $subscription->setActive(0);
 
     $this->em->persist($subscription);
     $this->em->flush();
@@ -81,7 +77,6 @@ class Subscription
       return false;
 
     } elseif (($left-$tickets) == 0) {
-      $subscription->setActive(0);
       $this->em->persist($subscription);
       $this->em->flush();
     }

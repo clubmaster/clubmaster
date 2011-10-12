@@ -7,12 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Subscription")
- * @ORM\Table(name="club_shop_subscription",
- *   indexes={@ORM\index(
- *     name="active_idx",
- *     columns={"active"}
- *   )}
- * )
+ * @ORM\Table(name="club_shop_subscription")
  * @ORM\HasLifecycleCallbacks()
  */
 class Subscription
@@ -31,13 +26,6 @@ class Subscription
      * @Assert\Choice({ "subscription", "ticket_coupon" })
      */
     private $type;
-
-    /**
-     * @ORM\Column(type="boolean")
-     *
-     * @var boolean $active
-     */
-    private $active;
 
     /**
      * @ORM\Column(type="datetime")
@@ -123,26 +111,6 @@ class Subscription
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean $active
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 
     /**
@@ -387,7 +355,7 @@ class Subscription
       if ($this->getExpireDate() == null)
         return false;
 
-      if (!$this->getActive() && $this->getExpireDate()->getTimestamp() < time())
+      if ($this->getExpireDate()->getTimestamp() < time())
         return true;
 
       return false;
