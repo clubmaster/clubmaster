@@ -40,10 +40,18 @@ class AutoRenewalListener
   private function copySubscription($subscription)
   {
     $old_order = $subscription->getOrder();
+
+    $attr = $this->em->getRepository('ClubShopBundle:SubscriptionAttribute')->findOneBy(array(
+      'subscription' => $subscription->getId(),
+      'attribute_name' => 'auto_renewal'
+    ));
+    $attr->setAttributeName('renewed');
+
     $this->order->copyOrder($old_order);
     $this->order->addOrderProduct($subscription->getOrderProduct());
     $this->order->save();
 
+    $this->em->persist($attr);
     $this->em->persist($subscription);
   }
 }

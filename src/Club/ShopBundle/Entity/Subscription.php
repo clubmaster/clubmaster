@@ -390,4 +390,12 @@ class Subscription
     {
         $this->location[] = $location;
     }
+
+    public function getActive()
+    {
+      if ($this->isExpired())
+        return false;
+
+      return true;
+    }
 }
