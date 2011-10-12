@@ -364,7 +364,8 @@ class Subscription
     public function isPaused()
     {
       foreach ($this->getSubscriptionPauses() as $pause) {
-        return true;
+        if ($pause->getExpireDate() == null)
+          return true;
       }
 
       return false;
