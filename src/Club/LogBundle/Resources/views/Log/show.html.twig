@@ -1,6 +1,9 @@
 {% extends "ClubLogBundle::base.html.twig" %}
 
 {% block body %}
+
+{% include "ClubLogBundle:Log:header.html.twig" %}
+
 <h2>{{ log.logType|capitalize }} <em>({{ log.severity }})</em></h2>
 
 <div class="box-03 log box">
