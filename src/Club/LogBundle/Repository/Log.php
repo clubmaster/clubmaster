@@ -50,4 +50,13 @@ class Log extends EntityRepository
       ->from('ClubLogBundle:Log','l')
       ->orderBy('l.id', 'DESC');
   }
+
+  public function getRecent($limit=10)
+  {
+    return $this->getQueryBuilder()
+      ->where('l.user IS NOT NULL')
+      ->setMaxResults($limit)
+      ->getQuery()
+      ->getResult();
+  }
 }

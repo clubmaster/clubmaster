@@ -1,0 +1,7 @@
+parameters:
+#    club_dashboard.example.class: Club\DashboardBundle\Example
+
+services:
+#    club_dashboard.example:
+#        class: %club_dashboard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

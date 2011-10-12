@@ -1,6 +1,6 @@
 homepage:
   pattern: /
-  defaults: { _controller: ClubUserBundle:User:index }
+  defaults: { _controller: ClubDashboardBundle:AdminDashboard:index }
 
 _shop:
   resource: "@ClubShopBundle/Resources/config/routing.yml"
@@ -31,3 +31,6 @@ _feedback:
 
 _message:
   resource: "@ClubMessageBundle/Resources/config/routing.yml"
+
+_dashboard:
+  resource: "@ClubDashboardBundle/Resources/config/routing.yml"

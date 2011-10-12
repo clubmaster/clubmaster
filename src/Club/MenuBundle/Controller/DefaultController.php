@@ -11,6 +11,10 @@ class DefaultController extends Controller
   {
     $menu = array(
       array(
+        'name' => $this->get('translator')->trans('Dashboard'),
+        'route' => $this->generateUrl('homepage')
+      ),
+      array(
         'name' => $this->get('translator')->trans('User'),
         'route' => $this->generateUrl('user')
       ),

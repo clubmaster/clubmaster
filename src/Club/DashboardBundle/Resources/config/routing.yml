@@ -1,0 +1,4 @@
+_admin_dashboard:
+  resource: "@ClubDashboardBundle/Controller/AdminDashboardController.php"
+  type: annotation
+  prefix: /admin

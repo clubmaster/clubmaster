@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Club\MenuBundle\ClubMenuBundle(),
             new Club\FeedbackBundle\ClubFeedbackBundle(),
             new Club\MessageBundle\ClubMessageBundle(),
+            new Club\DashboardBundle\ClubDashboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
