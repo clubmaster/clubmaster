@@ -20,6 +20,8 @@ class LoadAttributeData implements FixtureInterface
     $attributes[] = 'active';
     $attributes[] = 'has_ticket';
     $attributes[] = 'has_subscription';
+    $attributes[] = 'subscription_start';
+    $attributes[] = 'subscription_end';
     $attributes[] = 'location';
 
     foreach ($attributes as $attr) {

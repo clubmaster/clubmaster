@@ -168,6 +168,8 @@ class FilterController extends Controller
     $active = ($data->active != '') ? $data->active : null;
     $has_ticket= ($data->has_ticket != '') ? $data->has_ticket : null;
     $has_subscription = ($data->has_subscription != '') ? $data->has_subscription : null;
+    $subscription_start = ($data->subscription_start != '') ? serialize($data->subscription_start) : null;
+    $subscription_end = ($data->subscription_end != '') ? serialize($data->subscription_end) : null;
 
     $this->syncColumn($filter, 'name', $name);
     $this->syncColumn($filter, 'member_number', $member_number);
@@ -180,6 +182,8 @@ class FilterController extends Controller
     $this->syncColumn($filter, 'active', $active);
     $this->syncColumn($filter, 'has_ticket', $has_ticket);
     $this->syncColumn($filter, 'has_subscription', $has_subscription);
+    $this->syncColumn($filter, 'subscription_start', $subscription_start);
+    $this->syncColumn($filter, 'subscription_end', $subscription_end);
 
     $str = '';
     foreach ($data->location as $l) {
@@ -301,6 +305,15 @@ class FilterController extends Controller
       case 'has_subscription':
         $form_filter->has_subscription = $attribute->getValue();
         break;
+      case 'subscription_start':
+        if ($attribute->getValue() != '')
+          $form_filter->subscription_start = unserialize($attribute->getValue());
+        break;
+      case 'subscription_end':
+        if ($attribute->getValue() != '')
+          $form_filter->subscription_end = unserialize($attribute->getValue());
+        break;
+
       case 'location':
         $res = new \Doctrine\Common\Collections\ArrayCollection();
         $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attribute->getValue()));

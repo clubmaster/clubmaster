@@ -96,6 +96,9 @@ class User extends EntityRepository
         case 'has_subscription':
           $qb = $this->filterHasSubscription($qb,$attr->getValue());
           break;
+        case 'subscription_start':
+          $qb = $this->filterSubscriptionStart($qb,$attr->getValue());
+          break;
         case 'location':
           $qb = $this->filterLocation($qb,explode(",", $attr->getValue()));
           break;
@@ -296,6 +299,38 @@ class User extends EntityRepository
       $qb->andWhere('s.type <> :type');
     }
     $qb->setParameter('type','subscription');
+
+    return $qb;
+  }
+
+  protected function filterSubscriptionStart($qb,$value)
+  {
+    $date = unserialize($value);
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
+    if ($value) {
+      $qb->andWhere('s.start_date >= :start_date');
+    }
+    $qb->setParameter('start_date',$date->format('Y-m-d H:i:s'));
+
+    return $qb;
+  }
+
+  protected function filterSubscriptionEnd($qb,$value)
+  {
+    $date = unserialize($value);
+    if (!$this->has_joined_sub) {
+      $qb->leftJoin('u.subscriptions','s');
+      $this->has_joined_sub = true;
+    }
+
+    if ($value) {
+      $qb->andWhere('s.expire_date <= :end_date');
+    }
+    $qb->setParameter('end_date',$date->format('Y-m-d H:i:s'));
 
     return $qb;
   }
