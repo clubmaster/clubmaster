@@ -15,6 +15,9 @@ class AdminDashboardController extends Controller
    */
   public function indexAction()
   {
+    if (false === $this->get('security.context')->isGranted('ROLE_ADMIN'))
+      return $this->redirect($this->generateUrl('user'));
+
     $em = $this->getDoctrine();
 
     $orders = $em->getRepository('ClubShopBundle:Order')->findBy(
