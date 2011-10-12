@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class LogController extends Controller
 {
   /**
-   * @Route("/log", name="admin_log")
+   * @Route("/log/action")
    * @Template()
    */
   public function indexAction()
@@ -27,7 +27,7 @@ class LogController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
-    $paginator = new \Club\UserBundle\Helper\Paginator($logs_count, $this->generateUrl('admin_log'));
+    $paginator = new \Club\UserBundle\Helper\Paginator($logs_count, $this->generateUrl('club_log_log_index'));
     $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($paginator->getOffset(), $paginator->getLimit());
 
     return array(
@@ -37,7 +37,7 @@ class LogController extends Controller
   }
 
   /**
-   * @Route("/log/{id}")
+   * @Route("/log/action/{id}")
    * @Template()
    */
   public function showAction($id)

@@ -107,7 +107,7 @@ class DefaultController extends Controller
             ),
             array(
               'name' => $this->get('translator')->trans('Log'),
-              'route' => $this->generateUrl('admin_log')
+              'route' => $this->generateUrl('club_log_log_index')
             ),
             array(
               'name' => $this->get('translator')->trans('Currency'),

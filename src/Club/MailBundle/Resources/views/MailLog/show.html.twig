@@ -1,0 +1,20 @@
+{% extends "ClubLogBundle::base.html.twig" %}
+
+{% block body %}
+{% include "ClubLogBundle:Log:header.html.twig" %}
+
+<h2>Mail</h2>
+
+<div class="box-03 log box">
+
+  <h2 class="nomb">{{ log.recipient }}</h2>
+  <p class="nomt low">
+    {% trans with {'%date%':log.createdAt|date('Y-m-d H:i:s')} %}Created at: %date%{% endtrans %}
+  </p>
+
+  <h2>{% trans %}Message{% endtrans %}</h2>
+  <p class="nomt low">{{ log.message|raw }}</p>
+
+</div> <!-- /box-03 -->
+
+{% endblock %}

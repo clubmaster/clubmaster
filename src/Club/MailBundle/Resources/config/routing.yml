@@ -2,3 +2,8 @@ _mail:
   resource: "@ClubMailBundle/Controller/AdminMailController.php"
   type: annotation
   prefix: /admin
+
+_mail_log:
+  resource: "@ClubMailBundle/Controller/MailLogController.php"
+  type: annotation
+  prefix: /admin
