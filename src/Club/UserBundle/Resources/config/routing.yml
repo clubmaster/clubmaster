@@ -64,3 +64,8 @@ _filter:
   resource: "@ClubUserBundle/Controller/FilterController.php"
   type: annotation
   prefix: /admin
+
+_login_log:
+  resource: "@ClubUserBundle/Controller/LoginLogController.php"
+  type: annotation
+  prefix: /admin

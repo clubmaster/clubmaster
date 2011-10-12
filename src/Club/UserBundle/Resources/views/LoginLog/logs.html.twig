@@ -1,0 +1,34 @@
+<h2>{% trans %}Login Log{% endtrans %}</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Id{% endtrans %}</th>
+      <th>{% trans %}Username{% endtrans %}</th>
+      <th>{% trans %}Ip address{% endtrans %}</th>
+      <th>{% trans %}Status{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for log in logs %}
+    <tr>
+      <td>{{ log.id }}</td>
+      <td>{{ log.username }}</td>
+      <td>{{ log.ipAddress }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':log.loginFailed} %}</td>
+      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no logs.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
