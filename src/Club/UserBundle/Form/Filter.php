@@ -14,6 +14,9 @@ class Filter extends AbstractType
       '1' => 'Yes',
       '0' => 'No'
     );
+    $yes = array(
+      '1' => 'Yes',
+    );
 
     $builder->add('name','text', array(
       'required' => false
@@ -47,7 +50,7 @@ class Filter extends AbstractType
       'required' => false
     ));
     $builder->add('active', 'choice', array(
-      'choices' => $boolean,
+      'choices' => $yes,
       'required' => false
     ));
     $builder->add('has_ticket', 'choice', array(

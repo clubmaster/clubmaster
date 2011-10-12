@@ -259,12 +259,9 @@ class User extends EntityRepository
     }
 
     if ($value) {
-      $qb->andWhere('((s.start_date <= :sds AND s.expire_date >= :eds) OR s.expire_date IS NULL)');
-      $qb->setParameter('sds',date('Y-m-d H:i:s'));
-      $qb->setParameter('eds',date('Y-m-d H:i:s'));
-    } else {
-      $qb->andWhere('s.id IS NULL');
+      $qb->andWhere('((s.start_date <= :date AND s.expire_date >= :date) OR (s.start_date IS NOT NULL AND s.expire_date IS NULL))');
     }
+    $qb->setParameter('date',date('Y-m-d H:i:s'));
 
     return $qb;
   }
