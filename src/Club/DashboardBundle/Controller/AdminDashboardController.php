@@ -21,13 +21,7 @@ class AdminDashboardController extends Controller
 
     $em = $this->getDoctrine();
 
-    $orders = $em->getRepository('ClubShopBundle:Order')->findBy(
-      array(
-        'order_status' => 1
-      ),
-      null,
-      10
-    );
+    $orders = $em->getRepository('ClubShopBundle:Order')->getOpenOrders(10);
 
     $users = $em->getRepository('ClubUserBundle:User')->findBy(
       array(),
