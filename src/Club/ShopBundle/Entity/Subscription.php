@@ -361,6 +361,15 @@ class Subscription
       return false;
     }
 
+    public function isPaused()
+    {
+      foreach ($this->getSubscriptionPauses() as $pause) {
+        return true;
+      }
+
+      return false;
+    }
+
     /**
      * Add subscription_attributes
      *
