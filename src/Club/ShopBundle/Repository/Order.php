@@ -79,6 +79,7 @@ class Order extends EntityRepository
       ->where('os.accepted = 0')
       ->andWhere('os.cancelled = 0')
       ->setMaxResults($limit)
+      ->orderBy('o.updated_at', 'DESC')
       ->getQuery()
       ->getResult();
   }
