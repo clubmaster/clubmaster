@@ -17,12 +17,28 @@ class AdminDashboardController extends Controller
   {
     $em = $this->getDoctrine();
 
-    $orders = $em->getRepository('ClubShopBundle:Order')->findBy(array(
-      'order_status' => 1
-    ));
+    $orders = $em->getRepository('ClubShopBundle:Order')->findBy(
+      array(
+        'order_status' => 1
+      ),
+      null,
+      10
+    );
+
+    $users = $em->getRepository('ClubUserBundle:User')->findBy(
+      array(),
+      array(
+        'id' => 'DESC'
+      ),
+      10
+    );
+
+    $logs = $em->getRepository('ClubLogBundle:Log')->getRecent(10);
 
     return array(
-      'orders' => $orders
+      'orders' => $orders,
+      'users' => $users,
+      'logs' => $logs
     );
   }
 }
