@@ -1,0 +1,31 @@
+<h2>{% trans %}PHP Log{% endtrans %}</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Type{% endtrans %}</th>
+      <th>{% trans %}Severity{% endtrans %}</th>
+      <th>{% trans %}Message{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for log in logs %}
+    <tr>
+      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.type }}</td>
+      <td>{{ log.severity }}</td>
+      <td>{{ log.log }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">{% trans %}The log is empty.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
