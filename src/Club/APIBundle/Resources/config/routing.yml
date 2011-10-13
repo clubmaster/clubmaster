@@ -1,3 +1,5 @@
-ClubAPIBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubAPIBundle:Default:index }
+_api_auth:
+  resource: "@ClubAPIBundle/Controller/AuthController.php"
+  type: annotation
+  prefix: /api
+
