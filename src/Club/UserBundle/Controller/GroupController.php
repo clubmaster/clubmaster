@@ -22,9 +22,23 @@ class GroupController extends Controller
       array('group_name'=>'ASC')
     );
 
-    return $this->render('ClubUserBundle:Group:index.html.twig',array(
+    return array(
       'groups' => $groups
-    ));
+    );
+  }
+
+  /**
+   * @Route("/group/members/{id}")
+   * @Template()
+   */
+  public function membersAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $group = $em->find('ClubUserBundle:Group', $id);
+
+    return array(
+      'group' => $group
+    );
   }
 
   /**
