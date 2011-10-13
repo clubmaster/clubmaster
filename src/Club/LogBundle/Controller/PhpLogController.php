@@ -28,8 +28,7 @@ class PhpLogController extends Controller
 
     $logs = array();
     foreach ($raw as $line) {
-      var_dump($line);
-      if (preg_match("/^[(.+)] (\w+)\.(\w+): (.*)$/", $line, $o)) {
+      if (preg_match("/^\[(.+)\] (\w+)\.(\w+): (.*)$/", $line, $o)) {
         $logs[] = array(
           'date' => $o[1],
           'type' => $o[2],
@@ -40,7 +39,7 @@ class PhpLogController extends Controller
     }
 
     return array(
-      'logs' => $logs,
+      'logs' => array_reverse($logs),
     );
   }
 

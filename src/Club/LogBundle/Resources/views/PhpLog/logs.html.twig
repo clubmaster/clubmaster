@@ -17,10 +17,10 @@
   <tbody>
   {% for log in logs %}
     <tr>
-      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.date }}</td>
       <td>{{ log.type }}</td>
       <td>{{ log.severity }}</td>
-      <td>{{ log.log }}</td>
+      <td>{{ log.message }}</td>
     </tr>
   {% else %}
   <tr>
