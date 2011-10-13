@@ -3,3 +3,8 @@ _api_auth:
   type: annotation
   prefix: /api
 
+_api_event:
+  resource: "@ClubAPIBundle/Controller/EventController.php"
+  type: annotation
+  prefix: /api/event
+
