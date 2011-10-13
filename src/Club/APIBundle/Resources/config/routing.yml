@@ -1,0 +1,3 @@
+ClubAPIBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ClubAPIBundle:Default:index }

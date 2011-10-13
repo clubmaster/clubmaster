@@ -2,6 +2,9 @@ homepage:
   pattern: /
   defaults: { _controller: ClubDashboardBundle:AdminDashboard:index }
 
+_api:
+  resource: "@ClubAPIBundle/Resources/config/routing.yml"
+
 _shop:
   resource: "@ClubShopBundle/Resources/config/routing.yml"
 
