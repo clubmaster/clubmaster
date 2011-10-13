@@ -1,5 +1,8 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
+
+{% include "ClubUserBundle:AdminUser:header.html.twig" %}
 {% include "ClubShopBundle:AdminSubscription:subscription_table.html.twig" with {'user': user} %}
+
 {% endblock %}
