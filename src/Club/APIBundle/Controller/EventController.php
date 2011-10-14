@@ -42,6 +42,21 @@ class EventController extends Controller
    */
   public function attendAction($id)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $event = $em->find('ClubEventBundle:Event', $id);
+    $user = $em->find('ClubUserBundle:User', $this->getRequest()->get('user_id'));
+
+    $attend = new \Club\EventBundle\Entity\Attend();
+    $attend->setUser($user);
+    $attend->setEvent($event);
+
+    $event->addAttends($attend);
+
+    $em->persist($event);
+    $em->flush();
+
+    return new Response();
   }
 
   /**
@@ -50,5 +65,17 @@ class EventController extends Controller
    */
   public function unattendAction($id)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
+      'event' => $id,
+      'user' => $this->getRequest()->get('user_id')
+    ));
+
+    $em->remove($attend);
+    $em->flush();
+
+    return new Response();
+
   }
 }

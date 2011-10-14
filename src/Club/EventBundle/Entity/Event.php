@@ -79,7 +79,7 @@ class Event
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="Attend", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="Attend", mappedBy="event", cascade={"persist"})
      */
     private $attends;
 
