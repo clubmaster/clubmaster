@@ -6,5 +6,10 @@ _api_auth:
 _api_event:
   resource: "@ClubAPIBundle/Controller/EventController.php"
   type: annotation
-  prefix: /api/event
+  prefix: /api/events
+
+_api_user:
+  resource: "@ClubAPIBundle/Controller/UserController.php"
+  type: annotation
+  prefix: /api/users
 
