@@ -24,9 +24,9 @@ class ProfilePhone
      * @ORM\Column(type="string")
      * @Assert\NotBlank(groups={"user"})
      *
-     * @var string $number
+     * @var string $phone_number
      */
-    private $number;
+    private $phone_number;
 
     /**
      * @ORM\Column(type="string")
@@ -55,23 +55,23 @@ class ProfilePhone
     }
 
     /**
-     * Set number
+     * Set phone_number
      *
-     * @param string $number
+     * @param string $phone_number
      */
-    public function setNumber($number)
+    public function setPhoneNumber($phone_number)
     {
-        $this->number = $number;
+        $this->phone_number = $phone_number;
     }
 
     /**
-     * Get number
+     * Get phone_number
      *
-     * @return string $number
+     * @return string $phone_number
      */
-    public function getNumber()
+    public function getPhoneNumber()
     {
-        return $this->number;
+        return $this->phone_number;
     }
 
     /**

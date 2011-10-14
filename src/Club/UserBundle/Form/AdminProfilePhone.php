@@ -9,7 +9,7 @@ class AdminProfilePhone extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('number');
+    $builder->add('phone_number');
   }
 
   public function getDefaultOptions(array $options)

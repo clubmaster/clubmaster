@@ -35,7 +35,7 @@ class AdminUserControllerTest extends WebTestCase
       'admin_user[profile][profile_address][postal_code]' => '9000',
       'admin_user[profile][profile_address][city]' => 'Aalborg',
       'admin_user[profile][profile_email][email_address]' => 'user@example.com',
-      'admin_user[profile][profile_phone][number]' => '+45 80808080',
+      'admin_user[profile][profile_phone][phone_number]' => '+45 80808080',
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());

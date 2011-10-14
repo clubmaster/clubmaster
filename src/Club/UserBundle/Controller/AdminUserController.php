@@ -81,7 +81,7 @@ class AdminUserController extends Controller
 
       if ($user->getProfile()->getProfileEmail()->getEmailAddress() == '')
         $user->getProfile()->setProfileEmail(null);
-      if ($user->getProfile()->getProfilePhone()->getNumber() == '')
+      if ($user->getProfile()->getProfilePhone()->getPhoneNumber() == '')
         $user->getProfile()->setProfilePhone(null);
 
       if ($form->isValid()) {
@@ -116,7 +116,7 @@ class AdminUserController extends Controller
 
       if ($user->getProfile()->getProfileEmail()->getEmailAddress() == '')
         $user->getProfile()->setProfileEmail(null);
-      if ($user->getProfile()->getProfilePhone()->getNumber() == '')
+      if ($user->getProfile()->getProfilePhone()->getPhoneNumber() == '')
         $user->getProfile()->setProfilePhone(null);
 
       if ($form->isValid()) {

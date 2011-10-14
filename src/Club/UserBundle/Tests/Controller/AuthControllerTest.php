@@ -22,7 +22,7 @@ class AuthControllerTest extends WebTestCase
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
       'user[profile][profile_email][email_address]' => 'user@example.com',
-      'user[profile][profile_phone][number]' => '80808080'
+      'user[profile][profile_phone][phone_number]' => '80808080'
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
