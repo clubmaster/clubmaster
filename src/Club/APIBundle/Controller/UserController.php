@@ -70,13 +70,24 @@ class UserController extends Controller
       $res['email_address'] = $user->getProfile()->getProfileEmail()->getEmailAddress();
     }
 
-    return new Response($this->get('club_api.encode')->encode($res));
-  }
+    $res['subscriptions'] = array();
+    foreach ($user->getSubscriptions() as $sub) {
+      $res['subscriptions'][] = array(
+        'id' => $sub->getId(),
+        'type' => $sub->getType(),
+        'start_date' => $sub->getStartDate(),
+        'expire_date' => $sub->getExpireDate()
+      );
+    }
 
-  /**
-   * @Route("/{id}/subscription")
-   */
-  public function subscriptionAction($id)
-  {
+    $res['groups'] = array();
+    foreach ($user->getGroups() as $group) {
+      $res['groups'][] = array(
+        'id' => $group->getId(),
+        'group_name' => $group->getGroupName()
+      );
+    }
+
+    return new Response($this->get('club_api.encode')->encode($res));
   }
 }
