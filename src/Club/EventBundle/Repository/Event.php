@@ -31,4 +31,16 @@ class Event extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getComing()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('e')
+      ->from('ClubEventBundle:Event','e')
+      ->where('e.start_date > :start')
+      ->setParameter('start', new \DateTime())
+      ->getQuery()
+      ->getResult();
+  }
+
 }

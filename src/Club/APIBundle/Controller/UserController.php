@@ -4,13 +4,15 @@ namespace Club\APIBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 
 
 class UserController extends Controller
 {
   /**
-   * @Route("")
+   * @Route("/")
+   * @Method("GET")
    */
   public function indexAction()
   {
@@ -36,6 +38,7 @@ class UserController extends Controller
 
   /**
    * @Route("/{id}")
+   * @Method("GET")
    */
   public function getAction($id)
   {
