@@ -71,7 +71,7 @@ class AdminCategoryController extends Controller
     $em->remove($category);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_shop_category'));
   }
