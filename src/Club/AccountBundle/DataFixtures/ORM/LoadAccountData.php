@@ -10,26 +10,32 @@ class LoadAccountData implements FixtureInterface
   {
     $account = new \Club\AccountBundle\Entity\Account();
     $account->setAccountName('Cash In Bash');
-    $account->setAccountNumber('1010');
+    $account->setAccountNumber('1001');
     $account->setAccountType('asset');
     $manager->persist($account);
 
     $account = new \Club\AccountBundle\Entity\Account();
-    $account->setAccountName('VAT');
-    $account->setAccountNumber('3001');
+    $account->setAccountName('Income');
+    $account->setAccountNumber('4001');
     $account->setAccountType('income');
     $manager->persist($account);
 
     $account = new \Club\AccountBundle\Entity\Account();
-    $account->setAccountName('Income');
-    $account->setAccountNumber('5001');
+    $account->setAccountName('VAT');
+    $account->setAccountNumber('4002');
     $account->setAccountType('income');
     $manager->persist($account);
 
     $account = new \Club\AccountBundle\Entity\Account();
     $account->setAccountName('Discount');
-    $account->setAccountNumber('5020');
+    $account->setAccountNumber('4003');
     $account->setAccountType('income');
+    $manager->persist($account);
+
+    $account = new \Club\AccountBundle\Entity\Account();
+    $account->setAccountName('Expenses');
+    $account->setAccountNumber('5001');
+    $account->setAccountType('expense');
     $manager->persist($account);
 
     $manager->flush();

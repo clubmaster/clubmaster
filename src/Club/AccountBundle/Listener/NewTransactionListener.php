@@ -31,6 +31,7 @@ class NewTransactionListener
       $ledger->setNote($product->getQuantity().'x '.$product->getProductName());
       $ledger->setAccount($account);
       $ledger->setUser($order->getUser());
+      $ledger->setOrder($order);
 
       $this->em->persist($ledger);
 

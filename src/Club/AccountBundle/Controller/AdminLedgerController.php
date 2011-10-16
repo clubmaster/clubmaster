@@ -9,10 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminLedgerController extends Controller
 {
   /**
-   * @Route("/account/ledger/new")
+   * @Route("/account/ledger/expense")
    * @Template
    */
-  public function newAction()
+  public function expenseAction()
+  {
+    $ledger = new \Club\AccountBundle\Entity\Ledger();
+    $form = $this->createForm(new \Club\AccountBundle\Form\Ledger(), $ledger);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $em->persist($ledger);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('club_account_adminledger_index', array('id' => $ledger->getAccount()->getId())));
+      }
+    }
+
+    return array(
+      'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Route("/account/ledger/income")
+   * @Template
+   */
+  public function incomeAction()
   {
     $ledger = new \Club\AccountBundle\Entity\Ledger();
     $form = $this->createForm(new \Club\AccountBundle\Form\Ledger(), $ledger);

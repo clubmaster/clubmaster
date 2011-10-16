@@ -47,6 +47,11 @@ class Ledger
     private $account;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
+     */
+    private $order;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     private $user;
@@ -116,5 +121,25 @@ class Ledger
     public function getUser()
     {
       return $this->user;
+    }
+
+    /**
+     * Set order
+     *
+     * @param Club\ShopBundle\Entity\Order $order
+     */
+    public function setOrder(\Club\ShopBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * Get order
+     *
+     * @return Club\ShopBundle\Entity\Order 
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 }
