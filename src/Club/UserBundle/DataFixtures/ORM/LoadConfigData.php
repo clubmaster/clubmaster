@@ -10,9 +10,6 @@ class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
   public function load($manager)
   {
     $configs = array();
-    $configs[] = 'account_default_cash';
-    $configs[] = 'account_default_income';
-    $configs[] = 'account_default_discount';
     $configs[] = 'default_language';
     $configs[] = 'default_currency';
     $configs[] = 'default_location';

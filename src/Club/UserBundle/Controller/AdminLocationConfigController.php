@@ -59,9 +59,6 @@ class AdminLocationConfigController extends Controller
 
     foreach ($data as $key=>$value) {
       switch ($key) {
-      case 'account_default_income':
-      case 'account_default_cash':
-      case 'account_default_discount':
       case 'default_currency':
       case 'default_language':
       case 'default_location':
