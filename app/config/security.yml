@@ -11,9 +11,14 @@ security:
 
     providers:
         main:
-          entity: { class: Club\UserBundle\Entity\User, property: member_number }
+            entity: { class: Club\UserBundle\Entity\User, property: member_number }
 
     firewalls:
+        api:
+            pattern: ^/api
+            anonymous: ~
+            http_basic:
+                realm: "ClubMaster API"
         main:
             form_login:
                 check_path: /login_check
