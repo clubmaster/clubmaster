@@ -7,8 +7,7 @@
 
   <h2 class="nomb">{{ product.productName }}</h2>
   <p class="nomt low">
-    {% trans with {'%price%':product.specialPrice|price} %}Price ex. vat: %price%{% endtrans %}<br />
-    {% trans with {'%price%':product.specialVatPrice|price} %}Price: %price%{% endtrans %}<br />
+    {% trans with {'%price%':product.specialPrice|price} %}Price: %price%{% endtrans %}<br />
   </p>
   <h2>{% trans %}Description{% endtrans %}</h2>
   <p>{{ product.description|raw }}</p>

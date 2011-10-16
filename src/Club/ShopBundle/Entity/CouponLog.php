@@ -43,11 +43,6 @@ class CouponLog
     private $created_at;
 
 
-    public function __toString()
-    {
-      return $this->getVatName();
-    }
-
     /**
      * Get id
      *
@@ -56,26 +51,6 @@ class CouponLog
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set vat_name
-     *
-     * @param string $vatName
-     */
-    public function setVatName($vatName)
-    {
-        $this->vat_name = $vatName;
-    }
-
-    /**
-     * Get vat_name
-     *
-     * @return string $vatName
-     */
-    public function getVatName()
-    {
-        return $this->vat_name;
     }
 
     /**

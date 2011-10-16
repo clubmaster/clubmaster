@@ -32,7 +32,6 @@ class Cart
         $this->cart->setCurrency($currency);
         $this->cart->setCurrencyValue($currency->getValue());
         $this->cart->setPrice(0);
-        $this->cart->setVatPrice(0);
         $this->cart->setLocation($location);
 
         if ($this->user->getProfile()->getProfileAddress()) {
@@ -73,7 +72,6 @@ class Cart
   {
     $this->cart->addCartProduct($cart_product);
     $this->cart->setPrice($this->cart->getPrice()+$cart_product->getPrice());
-    $this->cart->setVatPrice($this->cart->getVatPrice()+$cart_product->getVatPrice());
   }
 
   private function addArrayToCart($product)
@@ -82,7 +80,6 @@ class Cart
     $op->setCart($this->cart);
     $op->setProductName($product['product_name']);
     $op->setPrice($product['price']);
-    $op->setVatRate(0);
     $op->setQuantity(1);
     $op->setType($product['type']);
 
@@ -98,7 +95,6 @@ class Cart
     }
 
     $this->cart->setPrice($this->cart->getPrice()+($product->getPrice()*$quantity));
-    $this->cart->setVatPrice($this->cart->getVatPrice()+($product->getVatPrice()*$quantity));
     $this->save();
 
     return $product;
@@ -123,7 +119,6 @@ class Cart
       $op->setProduct($product);
       $op->setProductName($product->getProductName());
       $op->setPrice($product->getSpecialPrice());
-      $op->setVatRate($product->getVat()->getRate());
       $op->setQuantity(1);
       $op->setType('product');
 

@@ -14,7 +14,6 @@ class NewTransactionListener
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
-    $vat_account = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('account_default_vat',$order->getLocation());
 
     foreach ($order->getProducts() as $product) {
       switch ($product->getType()) {
@@ -34,16 +33,6 @@ class NewTransactionListener
       $ledger->setOrder($order);
 
       $this->em->persist($ledger);
-
-      if ($product->getVatRate() > 0) {
-        $ledger = new \Club\AccountBundle\Entity\Ledger();
-        $ledger->setValue($product->getPrice()*$product->getVatRate()/100);
-        $ledger->setNote('VAT for order '.$order->getOrderNumber());
-        $ledger->setAccount($vat_account);
-        $ledger->setUser($order->getUser());
-
-        $this->em->persist($ledger);
-      }
     }
 
     $this->em->flush();

@@ -60,7 +60,6 @@ class AdminLocationConfigController extends Controller
     foreach ($data as $key=>$value) {
       switch ($key) {
       case 'account_default_income':
-      case 'account_default_vat':
       case 'account_default_cash':
       case 'account_default_discount':
       case 'default_currency':
@@ -102,10 +101,6 @@ class AdminLocationConfigController extends Controller
   {
     $form = $this->createFormBuilder()
       ->add('account_default_income','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_vat','entity', array(
         'class' => 'ClubAccountBundle:Account',
         'required' => false
       ))

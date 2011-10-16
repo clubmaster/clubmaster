@@ -75,8 +75,3 @@ _admin_shop_shipping:
   resource: "@ClubShopBundle/Controller/AdminShippingController.php"
   type: annotation
   prefix: /admin
-
-_admin_shop_vat:
-  resource: "@ClubShopBundle/Controller/AdminVatController.php"
-  type: annotation
-  prefix: /admin

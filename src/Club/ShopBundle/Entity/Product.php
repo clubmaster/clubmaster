@@ -74,13 +74,6 @@ class Product
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vat")
-     *
-     * @var Club\ShopBundle\Entity\Vat
-     */
-    private $vat;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Club\AccountBundle\Entity\Account")
      *
      * @var Club\AccountBundle\Entity\Account
@@ -233,31 +226,6 @@ class Product
     }
 
     /**
-     * Set vat
-     *
-     * @param float $vat
-     */
-    public function setVat($vat)
-    {
-        $this->vat = $vat;
-    }
-
-    /**
-     * Get vat
-     *
-     * @return float $vat
-     */
-    public function getVat()
-    {
-        return $this->vat;
-    }
-
-    public function getVatPrice()
-    {
-      return sprintf("%.2f",$this->getPrice()*(1+$this->getVat()->getRate()/100));
-    }
-
-    /**
      * Add variant_groups
      *
      * @param Club\ShopBundle\Entity\VariantGroup $variantGroups
@@ -334,10 +302,5 @@ class Product
           return $special->getPrice();
       }
       return $this->getPrice();
-    }
-
-    public function getSpecialVatPrice()
-    {
-      return sprintf("%.2f",$this->getSpecialPrice()*(1+$this->getVat()->getRate()/100));
     }
 }

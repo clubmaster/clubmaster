@@ -57,13 +57,6 @@ class Order
     protected $price;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
-     *
-     * @var string $vat_price
-     */
-    protected $vat_price;
-
-    /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
      * @Assert\Notblank()
      * @Assert\NotBlank(groups={"PaymentMethod"})
@@ -206,16 +199,6 @@ class Order
     }
 
     /**
-     * Get vat
-     *
-     * @return string $vat
-     */
-    public function getVat()
-    {
-        return $this->getVatPrice()-$this->getPrice();
-    }
-
-    /**
      * Set currency
      *
      * @param string $currency
@@ -243,16 +226,6 @@ class Order
     public function getPrice()
     {
       return $this->price;
-    }
-
-    public function setVatPrice($vat_price)
-    {
-      $this->vat_price = $vat_price;
-    }
-
-    public function getVatPrice()
-    {
-      return $this->vat_price;
     }
 
     /**
