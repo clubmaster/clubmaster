@@ -1,9 +1,0 @@
-_admin_ledger:
-  resource: "@ClubAccountBundle/Controller/AdminLedgerController.php"
-  type: annotation
-  prefix: /admin
-
-_admin_account:
-  resource: "@ClubAccountBundle/Controller/AdminAccountController.php"
-  type: annotation
-  prefix: /admin

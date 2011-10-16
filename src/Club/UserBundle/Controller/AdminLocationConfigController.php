@@ -100,18 +100,6 @@ class AdminLocationConfigController extends Controller
   private function getForm()
   {
     $form = $this->createFormBuilder()
-      ->add('account_default_income','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_cash','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_discount','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
       ->add('default_currency','entity', array(
         'class' => 'ClubUserBundle:Currency',
         'required' => false

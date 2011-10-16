@@ -74,13 +74,6 @@ class Product
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\AccountBundle\Entity\Account")
-     *
-     * @var Club\AccountBundle\Entity\Account
-     */
-    private $account;
-
-    /**
      * @ORM\OneToMany(targetEntity="ProductAttribute", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\ProductAttribute
@@ -243,26 +236,6 @@ class Product
     public function getVariantGroups()
     {
         return $this->variant_groups;
-    }
-
-    /**
-     * Set account
-     *
-     * @param Club\AccountBundle\Entity\Account $account
-     */
-    public function setAccount(\Club\AccountBundle\Entity\Account $account)
-    {
-        $this->account = $account;
-    }
-
-    /**
-     * Get account
-     *
-     * @return Club\AccountBundle\Entity\Account
-     */
-    public function getAccount()
-    {
-        return $this->account;
     }
 
     /**
