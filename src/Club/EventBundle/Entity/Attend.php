@@ -140,7 +140,7 @@ class Attend
      */
     public function prePersist()
     {
-      $this->setPaid(1);
+      $this->setPaid(0);
       $this->setCreatedAt(new \DateTime());
     }
 
