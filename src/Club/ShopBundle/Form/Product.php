@@ -13,7 +13,6 @@ class Product extends AbstractType
     $builder->add('product_name');
     $builder->add('description');
     $builder->add('price');
-    $builder->add('vat');
     $builder->add('categories');
     $builder->add('account', 'entity', array(
       'class' => 'ClubAccountBundle:Account',
