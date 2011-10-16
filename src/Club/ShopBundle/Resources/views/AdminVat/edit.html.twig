@@ -1,0 +1,9 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_shop_adminvat_edit', {'id':vat.id}) }}">
+{% include "ClubShopBundle:AdminVat:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

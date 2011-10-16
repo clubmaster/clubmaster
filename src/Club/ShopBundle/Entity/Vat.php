@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\Vat")
  * @ORM\Table(name="club_shop_vat")
- *
+ * @ORM\HasLifecycleCallbacks()
  */
 class Vat
 {
@@ -34,6 +34,20 @@ class Vat
      * @var float $rate
      */
     private $rate;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * var datetime $created_at
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * var datetime $updated_at
+     */
+    private $updated_at;
 
 
     public function __toString()
@@ -89,5 +103,62 @@ class Vat
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
     }
 }

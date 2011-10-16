@@ -91,6 +91,10 @@ class DefaultController extends Controller
               'name' => $this->get('translator')->trans('Shipping'),
               'route' => $this->generateUrl('admin_shop_shipping')
             ),
+            array(
+              'name' => $this->get('translator')->trans('Vat'),
+              'route' => $this->generateUrl('club_shop_adminvat_index')
+            ),
           ),
         ),
         'admin' => array(
