@@ -20,6 +20,6 @@ class AdminLocationConfigControllerTest extends WebTestCase
 
     $form = $crawler->selectButton('Save')->form();
     $crawler = $this->client->submit($form);
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }
