@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 
 class EventController extends Controller
@@ -39,13 +40,14 @@ class EventController extends Controller
   /**
    * @Route("/{id}/attend")
    * @Method("POST")
+   * @Secure(roles="ROLE_USER")
    */
   public function attendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $event = $em->find('ClubEventBundle:Event', $id);
-    $user = $em->find('ClubUserBundle:User', $this->getRequest()->get('user_id'));
+    $user = $this->get('security.context')->getToken()->getUser();
 
     $attend = new \Club\EventBundle\Entity\Attend();
     $attend->setUser($user);
@@ -62,6 +64,7 @@ class EventController extends Controller
   /**
    * @Route("/{id}/unattend")
    * @Method("POST")
+   * @Secure(roles="ROLE_USER")
    */
   public function unattendAction($id)
   {
@@ -69,13 +72,12 @@ class EventController extends Controller
 
     $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
       'event' => $id,
-      'user' => $this->getRequest()->get('user_id')
+      'user' => $this->get('security.context')->getToken()->getUser()->getId()
     ));
 
     $em->remove($attend);
     $em->flush();
 
     return new Response();
-
   }
 }

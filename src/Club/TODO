@@ -1,3 +1,4 @@
+add constraint event->attends user_event
 build a security key to use the API from the application
 find a way to validate the cash flow, today its pretty hidden whats going in and out
 make a better first logo, users can always find the logo and change it
