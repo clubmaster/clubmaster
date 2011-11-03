@@ -70,6 +70,8 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $user = $this->get('security.context')->getToken()->getUser();
+
     $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
       'event' => $id,
       'user' => $this->get('security.context')->getToken()->getUser()->getId()

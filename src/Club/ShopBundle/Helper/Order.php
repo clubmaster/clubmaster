@@ -88,15 +88,12 @@ class Order
   private function recalcPrice()
   {
     $price = 0;
-    $vat_price = 0;
 
     foreach ($this->order->getOrderProducts() as $product) {
       $price += $product->getPrice()*$product->getQuantity();
-      $vat_price += $product->getVatPrice()*$product->getQuantity();
     }
 
     $this->order->setPrice($price);
-    $this->order->setVatPrice($vat_price);
   }
 
   public function save()
@@ -142,7 +139,6 @@ class Order
     $this->order->setCurrency($data->getCurrency());
     $this->order->setCurrencyValue($data->getCurrencyValue());
     $this->order->setPrice($data->getPrice());
-    $this->order->setVatPrice($data->getVatPrice());
     $this->order->setPaymentMethod($this->em->find('ClubShopBundle:PaymentMethod',$data->getPaymentMethod()->getId()));
     $this->order->setShipping($this->em->find('ClubShopBundle:Shipping',$data->getShipping()->getId()));
     $this->order->setOrderStatus($this->em->getRepository('ClubShopBundle:OrderStatus')->getDefaultStatus());
@@ -168,7 +164,6 @@ class Order
     $op->setOrder($this->order);
     $op->setPrice($product->getPrice());
     $op->setProductName($product->getProductName());
-    $op->setVatRate($product->getVatRate());
     $op->setQuantity($product->getQuantity());
     $op->setType($product->getType());
     if ($product->getProduct())

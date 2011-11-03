@@ -19,7 +19,7 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for attend in attends %}
+  {% for attend in event.attends %}
     <tr>
       <td>{{ event.eventName }}</td>
       <td>{{ attend.user.profile.name }}</td>

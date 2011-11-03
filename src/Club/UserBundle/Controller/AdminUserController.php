@@ -145,7 +145,7 @@ class AdminUserController extends Controller
     $em->remove($user);
     $em->flush();
 
-    $this->get('session')->setFlash('notify',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_user'));
   }

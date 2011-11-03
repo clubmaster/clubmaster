@@ -1,9 +1,9 @@
 <?php
-namespace Club\AccountBundle\Tests\Controller;
+namespace Club\DashboardBundle\Tests\Controller;
 
 use Club\UserBundle\Helper\TestCase as WebTestCase;
 
-class AdminLedgerControllerTest extends WebTestCase
+class DashboardControllerTest extends WebTestCase
 {
   protected $client;
 
@@ -15,7 +15,7 @@ class AdminLedgerControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/account/ledger/1');
+    $crawler = $this->client->request('GET', '/admin/dashboard');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 }

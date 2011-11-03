@@ -37,7 +37,7 @@ class MailSendListener
         $spool->setTimeLimit(60);
         $sent = $spool->flushQueue($this->swiftmailer_transport_real);
 
-        $event = new \Club\LogBundle\Event\FilterLogEvent(sprintf('Sent %s emails', $sent), 'onMailTask', 'mail', 'info');
+        $event = new \Club\LogBundle\Event\FilterLogEvent(sprintf('Sent %s emails', $sent), 'onMailTask', 'mail', 'informational');
         $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
       } catch (\Exception $e) {
         $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage(), 'onConnectionError', 'mail');

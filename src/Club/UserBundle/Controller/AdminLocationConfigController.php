@@ -25,11 +25,13 @@ class AdminLocationConfigController extends Controller
 
       if ($form->isValid()) {
         $this->setData($location, $form->getData());
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_location_config', array(
           'id' => $id
         )));
       }
+    die('marm');
     }
 
     return array(
@@ -59,10 +61,6 @@ class AdminLocationConfigController extends Controller
 
     foreach ($data as $key=>$value) {
       switch ($key) {
-      case 'account_default_income':
-      case 'account_default_vat':
-      case 'account_default_cash':
-      case 'account_default_discount':
       case 'default_currency':
       case 'default_language':
       case 'default_location':
@@ -101,22 +99,6 @@ class AdminLocationConfigController extends Controller
   private function getForm()
   {
     $form = $this->createFormBuilder()
-      ->add('account_default_income','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_vat','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_cash','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
-      ->add('account_default_discount','entity', array(
-        'class' => 'ClubAccountBundle:Account',
-        'required' => false
-      ))
       ->add('default_currency','entity', array(
         'class' => 'ClubUserBundle:Currency',
         'required' => false

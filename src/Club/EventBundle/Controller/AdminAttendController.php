@@ -17,13 +17,8 @@ class AdminAttendController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $event = $em->find('ClubEventBundle:Event', $id);
 
-    $attends = $em->getRepository('ClubEventBundle:Attend')->findBy(array(
-      'event' => $event->getId()
-    ));
-
     return array(
-      'event' => $event,
-      'attends' => $attends
+      'event' => $event
     );
   }
 

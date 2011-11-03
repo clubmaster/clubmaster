@@ -35,13 +35,6 @@ class CartProduct
     private $price;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
-     *
-     * @var float $vat_rate
-     */
-    private $vat_rate;
-
-    /**
      * @ORM\Column(type="integer")
      *
      * @var integer $quantity
@@ -132,26 +125,6 @@ class CartProduct
     }
 
     /**
-     * Set vat_rate
-     *
-     * @param float $vat_rate
-     */
-    public function setVatRate($vat_rate)
-    {
-        $this->vat_rate = $vat_rate;
-    }
-
-    /**
-     * Get vat_rate
-     * *
-     * @return float $vat_rate
-     */
-    public function getVatRate()
-    {
-        return $this->vat_rate;
-    }
-
-    /**
      * Set quantity
      *
      * @param integer $quantity
@@ -216,16 +189,6 @@ class CartProduct
         return $this->cart_product_attributes;
     }
 
-    public function getVatPrice()
-    {
-      return sprintf("%.2f",$this->getPrice()*(1+$this->getVatRate()/100));
-    }
-
-    public function getVatSummary()
-    {
-      return sprintf("%.2f",$this->getVatPrice()*$this->getQuantity());
-    }
-
     /**
      * Set type
      *
@@ -254,5 +217,10 @@ class CartProduct
     public function addCartProductAttributes(\Club\ShopBundle\Entity\CartProductAttribute $cartProductAttributes)
     {
         $this->cart_product_attributes[] = $cartProductAttributes;
+    }
+
+    public function getSummary()
+    {
+      return $this->getPrice()*$this->getQuantity();
     }
 }
