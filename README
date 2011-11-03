@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-09-29
-:Revision:  8
+:Date:      2011-11-03
+:Revision:  9
 
 
 Feedback
@@ -170,3 +170,69 @@ password: 1234
 Normal user:
 username: 1
 password: 1234
+
+
+API
+---
+
+You are welcome to use our open API to make your own tools.
+
+
+Validate authentication
+~~~~~~~~~~~~~~~~~~~~~~~
+
+URL:
+/api/auth
+
+Success response will be HTTP response code 200
+
+Failure response will be HTTP response code 403
+
+
+Get all events
+~~~~~~~~~~~~~~
+
+URL:
+/api/events/
+
+Success response will be HTTP response code 200, and a json response with all events
+
+
+Attend event
+~~~~~~~~~~~~
+
+URL:
+/api/events/{id}/attend
+
+Use basic access authentication for the user who has to authenticate.
+
+Success response will be HTTP response code 200
+
+
+Unattend event
+~~~~~~~~~~~~~~
+
+URL:
+/api/events/{id}/unattend
+
+Use basic access authentication for the user who has to authenticate.
+
+Success response will be HTTP response code 200
+
+
+Get all users
+~~~~~~~~~~~~~
+
+URL:
+/api/users/
+
+Success response will be HTTP response code 200, and a json response with all users
+
+
+Get user
+~~~~~~~~
+
+URL:
+/api/users/{id}
+
+Success response will be HTTP response code 200, and a json response with specified user
