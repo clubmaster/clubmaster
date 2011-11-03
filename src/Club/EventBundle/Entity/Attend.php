@@ -7,7 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\EventBundle\Repository\Attend")
- * @ORM\Table(name="club_event_attend")
+ * @ORM\Table(name="club_event_attend",
+ *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"user_id","event_id"})}
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class Attend
