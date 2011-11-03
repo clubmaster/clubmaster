@@ -23,8 +23,13 @@ class LoginListener
     $login = new \Club\UserBundle\Entity\LoginAttempt();
     $login->setUsername($user->getUsername());
     $login->setSession(session_id());
-    $login->setIpAddress($_SERVER['REMOTE_ADDR']);
-    $login->setHostname(gethostbyaddr($_SERVER['REMOTE_ADDR']));
+    if (isset($_SERVER['REMOTE_ADDR'])) {
+      $login->setIpAddress($_SERVER['REMOTE_ADDR']);
+      $login->setHostname(gethostbyaddr($_SERVER['REMOTE_ADDR']));
+    } else {
+      $login->setIpAddress('127.0.0.1');
+      $login->setHostname(gethostbyaddr('127.0.0.1'));
+    }
     $login->setLoginFailed(0);
 
     $this->em->persist($login);
