@@ -1,6 +1,5 @@
-filter on subscription period
+build a security key to use the API from the application
+find a way to validate the cash flow, today its pretty hidden whats going in and out
 make a better first logo, users can always find the logo and change it
-show members of a group
 booking bundle
-fjern øverste bar, og smid informationer ned i den blå bjælke
-må ikke kunne ændre password på demo sitet
+make a unique constaint on attend: user_id / event_id
