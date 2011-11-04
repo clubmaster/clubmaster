@@ -27,7 +27,9 @@ class UserController extends Controller
       $res[] = $user->toArray();
     }
 
-    return new Response($this->get('club_api.encode')->encode($res));
+    $response = new Response($this->get('club_api.encode')->encode($res));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
   }
 
   /**
@@ -42,6 +44,8 @@ class UserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);
 
-    return new Response($this->get('club_api.encode')->encode($user->toArray()));
+    $response = new Response($this->get('club_api.encode')->encode($user->toArray()));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
   }
 }

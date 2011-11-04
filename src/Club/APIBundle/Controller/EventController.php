@@ -34,7 +34,10 @@ class EventController extends Controller
       );
     }
 
-    return new Response($this->get('club_api.encode')->encode($res));
+    $response = new Response($this->get('club_api.encode')->encode($res));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+
+    return $response;
   }
 
   /**
@@ -58,7 +61,9 @@ class EventController extends Controller
     $em->persist($event);
     $em->flush();
 
-    return new Response();
+    $response = new Response();
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
   }
 
   /**
@@ -80,6 +85,8 @@ class EventController extends Controller
     $em->remove($attend);
     $em->flush();
 
-    return new Response();
+    $response = new Response();
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
   }
 }

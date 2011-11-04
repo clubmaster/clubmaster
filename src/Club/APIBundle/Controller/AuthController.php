@@ -19,6 +19,8 @@ class AuthController extends Controller
   {
     $user = $this->get('security.context')->getToken()->getUser();
 
-    return new Response($this->get('club_api.encode')->encode($user->toArray()));
+    $response = new Response($this->get('club_api.encode')->encode($user->toArray()));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
   }
 }
