@@ -17,9 +17,8 @@ class AuthController extends Controller
    */
   public function authAction()
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
+    $user = $this->get('security.context')->getToken()->getUser();
 
-    return new Response();
+    return new Response($this->get('club_api.encode')->encode($user->toArray()));
   }
 }

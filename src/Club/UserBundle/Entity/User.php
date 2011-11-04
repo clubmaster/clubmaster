@@ -477,17 +477,53 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function toArray()
     {
-      return array(
+      $res = array(
         'id' => $this->getId(),
         'member_number' => $this->getMemberNumber(),
+        'first_name' => $this->getProfile()->getFirstName(),
+        'last_name' => $this->getProfile()->getLastName(),
+        'gender' => $this->getProfile()->getGender(),
+        'day_of_birth' => $this->getProfile()->getDayOfBirth(),
+        'member_status' => $this->getMemberStatus(),
         'created_at' => $this->getCreatedAt(),
-        'updated_at' => $this->getUpdatedAt(),
-        'profile' => array(
-          'first_name' => $this->getProfile()->getFirstName(),
-          'last_name' => $this->getProfile()->getLastName(),
-          'gender' => $this->getProfile()->getGender()
-        )
+        'updated_at' => $this->getUpdatedAt()
       );
+
+      if ($this->getProfile()->getProfileAddress()) {
+        $res['street'] = $this->getProfile()->getProfileAddress()->getStreet();
+        $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
+        $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
+        $res['state'] = $this->getProfile()->getProfileAddress()->getState();
+        $res['country'] = $this->getProfile()->getProfileAddress()->getCountry()->getCountry();
+      }
+
+      if ($this->getProfile()->getProfilePhone()) {
+        $res['phone_number'] = $this->getProfile()->getProfilePhone()->getPhoneNumber();
+      }
+
+      if ($this->getProfile()->getProfileEmail()) {
+        $res['email_address'] = $this->getProfile()->getProfileEmail()->getEmailAddress();
+      }
+
+      $res['subscriptions'] = array();
+      foreach ($this->getSubscriptions() as $sub) {
+        $res['subscriptions'][] = array(
+          'id' => $sub->getId(),
+          'type' => $sub->getType(),
+          'start_date' => $sub->getStartDate(),
+          'expire_date' => $sub->getExpireDate()
+        );
+      }
+
+      $res['groups'] = array();
+      foreach ($this->getGroups() as $group) {
+        $res['groups'][] = array(
+          'id' => $group->getId(),
+          'group_name' => $group->getGroupName()
+        );
+      }
+
+      return $res;
     }
 
     public function addRole($role)

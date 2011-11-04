@@ -17,9 +17,6 @@ class EventController extends Controller
    */
   public function indexAction()
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
     $events = $em->getRepository('ClubEventBundle:Event')->getComing();
 
@@ -47,9 +44,6 @@ class EventController extends Controller
    */
   public function attendAction($id)
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
 
     $event = $em->find('ClubEventBundle:Event', $id);
@@ -74,9 +68,6 @@ class EventController extends Controller
    */
   public function unattendAction($id)
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
 
     $user = $this->get('security.context')->getToken()->getUser();

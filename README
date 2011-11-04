@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-03
-:Revision:  9
+:Date:      2011-11-04
+:Revision:  10
 
 
 Feedback
@@ -175,16 +175,36 @@ password: 1234
 API
 ---
 
-You are welcome to use our open API to make your own tools.
+We have developed an API which is open for everyone. However the API has some limitations what security is conserned. Some functions is locked with basic access authentication other functions is locked with an API key. More about that under each function section.
+
+The API key is a value defined in the application in the file:
+
+/app/config/clubmaster.yml
+
+Then you have to use the API key, simply set a header values in your request, API_KEY and with the value of the API key.
+
+
+Here is 2 different usages of the API, first we will fetch all users afterwards we will attend an event.
+
+When you want to fetch all users, we dont want this method to be public so thats why you have to use the API key, watch this curl example.
+
+curl -H "API_KEY:YOUR_KEY" http://example.com/api/users/
+
+If you want to attend an event, you dont get access to any sensitive data, so you dont have to apply the API key, simple do a basic access authentication before the login with the users credentials.
+
+curl -u "user:password" http://example.com/api/events/{id}/attend
+
+That pretty much all you need to know before you can use our API.
 
 
 Validate authentication
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-URL:
-/api/auth
+URL: /api/auth
 
-Success response will be HTTP response code 200
+Method: ANY
+
+Success response will be HTTP response code 200, and a json response with specified user
 
 Failure response will be HTTP response code 403
 
@@ -192,8 +212,9 @@ Failure response will be HTTP response code 403
 Get all events
 ~~~~~~~~~~~~~~
 
-URL:
-/api/events/
+URL: /api/events/
+
+Method: GET
 
 Success response will be HTTP response code 200, and a json response with all events
 
@@ -201,8 +222,9 @@ Success response will be HTTP response code 200, and a json response with all ev
 Attend event
 ~~~~~~~~~~~~
 
-URL:
-/api/events/{id}/attend
+URL: /api/events/{id}/attend
+
+Method: POST
 
 Use basic access authentication for the user who has to authenticate.
 
@@ -212,8 +234,9 @@ Success response will be HTTP response code 200
 Unattend event
 ~~~~~~~~~~~~~~
 
-URL:
-/api/events/{id}/unattend
+URL: /api/events/{id}/unattend
+
+Method: POST
 
 Use basic access authentication for the user who has to authenticate.
 
@@ -223,8 +246,11 @@ Success response will be HTTP response code 200
 Get all users
 ~~~~~~~~~~~~~
 
-URL:
-/api/users/
+URL: /api/users/
+
+Method: GET
+
+Header: API_KEY
 
 Success response will be HTTP response code 200, and a json response with all users
 
@@ -232,7 +258,10 @@ Success response will be HTTP response code 200, and a json response with all us
 Get user
 ~~~~~~~~
 
-URL:
-/api/users/{id}
+URL: /api/users/{id}
+
+Method: GET
+
+Header: API_KEY
 
 Success response will be HTTP response code 200, and a json response with specified user
