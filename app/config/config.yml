@@ -5,6 +5,7 @@ parameters:
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: clubmaster.yml }
 
 framework:
     #esi:             ~

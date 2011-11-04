@@ -24,5 +24,7 @@ class ClubAPIExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('club_api.api_key', $config['api_key']);
     }
 }

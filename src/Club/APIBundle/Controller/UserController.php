@@ -2,7 +2,7 @@
 
 namespace Club\APIBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\APIBundle\Controller\DefaultController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +16,9 @@ class UserController extends Controller
    */
   public function indexAction()
   {
+    if (!$this->validateKey())
+      return new Response('Wrong API key', 403);
+
     $em = $this->getDoctrine()->getEntityManager();
     $users = $em->getRepository('ClubUserBundle:User')->findAll();
 
@@ -42,6 +45,9 @@ class UserController extends Controller
    */
   public function getAction($id)
   {
+    if (!$this->validateKey())
+      return new Response('Wrong API key', 403);
+
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);
 

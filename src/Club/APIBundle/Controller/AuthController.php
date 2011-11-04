@@ -2,7 +2,7 @@
 
 namespace Club\APIBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\APIBundle\Controller\DefaultController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +17,9 @@ class AuthController extends Controller
    */
   public function authAction()
   {
+    if (!$this->validateKey())
+      return new Response('Wrong API key', 403);
+
     return new Response();
   }
 }
