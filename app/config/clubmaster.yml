@@ -1,2 +1,6 @@
+parameters:
+    web_path: %kernel.root_dir%/../web
+    upload_path: uploads
+
 club_api:
     api_key: THIS_IS_A_DEMO_KEY
