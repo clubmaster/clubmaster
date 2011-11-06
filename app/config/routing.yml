@@ -5,6 +5,9 @@ homepage:
 _api:
   resource: "@ClubAPIBundle/Resources/config/routing.yml"
 
+_team:
+  resource: "@ClubTeamBundle/Resources/config/routing.yml"
+
 _shop:
   resource: "@ClubShopBundle/Resources/config/routing.yml"
 

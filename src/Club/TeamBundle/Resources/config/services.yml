@@ -1,0 +1,7 @@
+parameters:
+#    club_team.example.class: Club\TeamBundle\Example
+
+services:
+#    club_team.example:
+#        class: %club_team.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
