@@ -26,6 +26,7 @@ class AdminProductAttributeController extends Controller
       if ($form->isValid()) {
         $this->setData($product,$form->getData());
 
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('admin_shop_product_attribute',array(
           'id' => $id
         )));
