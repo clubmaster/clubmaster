@@ -31,7 +31,12 @@
         {% trans %}System{% endtrans %}
       {% endif %}
       </td>
-      <td>{{ log.severity }}</td>
+      <td>
+        {% if log.severity == 'debug' %}<span class="label label-02">{{ log.severity }}</span>
+        {% elseif log.severity == 'informational' %}<span class="label label-02">{{ log.severity }}</span>
+        {% elseif log.severity == 'warning' %}<span class="label label-04">{{ log.severity }}</span>
+        {% else %}<span class="label label-01">{{ log.severity }}</span>{% endif %}
+      </td>
       <td>{{ log.log }}</td>
       <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>
