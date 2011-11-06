@@ -1,0 +1,69 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>Subscription</h2>
+
+<table class="style">
+  <tbody>
+    <tr>
+      <th>Day bought:</th>
+      <td>{{ subscription.order.createdAt|date('Y-m-d H:i') }}</td>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <td>{{ subscription.orderProduct.price|price }}</td>
+    </tr>
+    <tr>
+      <th>Period:</th>
+      <td>{{ subscription.startDate|date('Y-m-d H:i') }} - {% if subscription.expireDate == '' %}Never{% else %}{{ subscription.expireDate|date('Y-m-d H:i') }}{% endif %}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% if subscription.type == 'ticket' %}
+<h2>Ticket</h2>
+
+{% set tickets_left = subscription.getStartTickets %}
+<table class="style">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Ticket</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ subscription.createdAt|date('Y-m-d H:i') }}</td>
+      <td>-</td>
+      <td>{{ tickets_left }}</td>
+    </tr>
+    {% for log in subscription.subscriptionTicket %}
+    {% set tickets_left = tickets_left-log.tickets %}
+    <tr>
+      <td>{{ log.createdAt|date('Y-m-d H:i') }}</td>
+      <td>{{ log.tickets }}</td>
+      <td>{{ tickets_left }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">&#160;</th>
+    </tr>
+  </tfoot>
+</table>
+
+{% endif %}
+
+<h2>Attributes</h2>
+
+{% for attr in subscription.subscriptionAttributes %}
+{% if attr.attributeName == 'ticket' %}
+{% elseif attr.attributeName == 'auto_renewal' %}
+{% elseif attr.attributeName == 'allowed_pauses' %}
+{% endif %}
+{% endfor %}
+
+{% endblock %}

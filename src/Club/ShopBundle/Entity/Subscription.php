@@ -23,7 +23,7 @@ class Subscription
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Choice({ "subscription", "ticket_coupon" })
+     * @Assert\Choice({ "subscription", "ticket" })
      */
     private $type;
 
@@ -80,6 +80,11 @@ class Subscription
      * @ORM\OneToMany(targetEntity="SubscriptionAttribute", mappedBy="subscription")
      */
     private $subscription_attributes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SubscriptionTicket", mappedBy="subscription")
+     */
+    private $subscription_ticket;
 
     /**
      * @ORM\OneToMany(targetEntity="SubscriptionPause", mappedBy="subscription")
@@ -407,5 +412,50 @@ class Subscription
         return false;
 
       return true;
+    }
+
+    public function hasAttribute($key)
+    {
+      foreach ($this->getSubscriptionAttributes() as $attr) {
+        if ($attr->getAttributeName() == $key)
+          return true;
+      }
+
+      return false;
+    }
+
+    public function getAttribute($key)
+    {
+      foreach ($this->getSubscriptionAttributes() as $attr) {
+        if ($attr->getAttributeName() == $key)
+          return $attr;
+      }
+
+      return false;
+    }
+
+    public function getStartTickets()
+    {
+      return $this->getAttribute('ticket')->getValue();
+    }
+
+    /**
+     * Add subscription_ticket
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionTicket $subscriptionTicket
+     */
+    public function addSubscriptionTicket(\Club\ShopBundle\Entity\SubscriptionTicket $subscriptionTicket)
+    {
+        $this->subscription_ticket[] = $subscriptionTicket;
+    }
+
+    /**
+     * Get subscription_ticket
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getSubscriptionTicket()
+    {
+        return $this->subscription_ticket;
     }
 }

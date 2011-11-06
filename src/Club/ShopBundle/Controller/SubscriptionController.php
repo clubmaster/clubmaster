@@ -22,6 +22,20 @@ class SubscriptionController extends Controller
   }
 
   /**
+   * @Route("/shop/subscription/show/{id}")
+   * @Template()
+   */
+  public function showAction($id)
+  {
+    $em = $this->getDoctrine();
+    $subscription = $em->getRepository('ClubShopBundle:Subscription')->find($id);
+
+    return array(
+      'subscription' => $subscription
+    );
+  }
+
+  /**
    * @Route("/shop/subscription/pause/{id}", name="shop_subscription_pause")
    * @Template()
    */

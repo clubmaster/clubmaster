@@ -29,7 +29,7 @@ class SubscriptionTicket
     private $tickets;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
      */
