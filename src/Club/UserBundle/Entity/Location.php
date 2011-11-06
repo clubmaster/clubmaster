@@ -35,6 +35,13 @@ class Location
      */
     private $location;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Location", mappedBy="location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $childs;
+
 
     public function __toString()
     {
@@ -89,5 +96,29 @@ class Location
     public function getLocation()
     {
         return $this->location;
+    }
+    public function __construct()
+    {
+        $this->childs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add childs
+     *
+     * @param Club\UserBundle\Entity\Location $childs
+     */
+    public function addLocation(\Club\UserBundle\Entity\Location $childs)
+    {
+        $this->childs[] = $childs;
+    }
+
+    /**
+     * Get childs
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getChilds()
+    {
+        return $this->childs;
     }
 }

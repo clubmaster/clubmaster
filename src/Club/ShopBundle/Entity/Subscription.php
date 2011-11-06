@@ -439,6 +439,11 @@ class Subscription
       return $this->getAttribute('ticket')->getValue();
     }
 
+    public function getStartPauses()
+    {
+      return $this->getAttribute('allowed_pauses')->getValue();
+    }
+
     /**
      * Add subscription_ticket
      *

@@ -1,0 +1,21 @@
+<h2>Location</h2>
+
+<p>This subscription is valid in the following clubs.</p>
+
+<p><ul>
+{% for location in subscription.location %}
+  <li>{{ location.locationName }}</li>
+  {% for child in location.childs %}
+    <li>{{ child.locationName }}</li>
+    {% for child2 in child.childs %}
+      <li>{{ child2.locationName }}</li>
+      {% for child3 in child2.childs %}
+        <li>{{ child3.locationName }}</li>
+      {% endfor %}
+
+    {% endfor %}
+
+  {% endfor %}
+
+{% endfor %}
+</ul></p>
