@@ -19,8 +19,8 @@ class LeftMenuRenderListener
   {
     $menu = $event->getMenu();
 
-    if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
-      $menu['event'] = array(
+    if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
+      $menu['team'] = array(
         'name' => $this->translator->trans('Team'),
         'route' => $this->router->generate('club_team_adminteam_index'),
         'items' => array()
