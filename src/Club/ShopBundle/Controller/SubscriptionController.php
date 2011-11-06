@@ -36,6 +36,20 @@ class SubscriptionController extends Controller
   }
 
   /**
+   * @Route("/shop/subscription/expire/{id}")
+   * @Template()
+   */
+  public function expireAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $subscription = $em->find('ClubShopBundle:Subscription', $id);
+
+    $this->get('subscription')->expireSubscription($subscription);
+
+    return $this->redirect($this->generateUrl('shop_subscription'));
+  }
+
+  /**
    * @Route("/shop/subscription/pause/{id}", name="shop_subscription_pause")
    * @Template()
    */
