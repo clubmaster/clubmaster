@@ -1,3 +1,4 @@
-ClubTeamBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubTeamBundle:Default:index }
+_admin_team:
+  resource: "@ClubTeamBundle/Controller/AdminTeamController.php"
+  type: annotation
+  prefix: /admin
