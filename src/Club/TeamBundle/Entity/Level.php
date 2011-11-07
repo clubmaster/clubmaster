@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\TeamBundle\Entity\Level
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_team_level")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\LevelRepository")
  */
 class Level
@@ -32,7 +32,7 @@ class Level
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -52,7 +52,7 @@ class Level
     /**
      * Get level_name
      *
-     * @return string 
+     * @return string
      */
     public function getLevelName()
     {
