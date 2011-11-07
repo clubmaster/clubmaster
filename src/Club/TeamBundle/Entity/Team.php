@@ -55,11 +55,16 @@ class Team
     private $level;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ClubUserBundle:User")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_team_team_user")
      */
     private $instructors;
 
+
+    public function __construct()
+    {
+        $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -170,17 +175,13 @@ class Team
     {
         return $this->level;
     }
-    public function __construct()
-    {
-        $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add instructors
      *
-     * @param Club\TeamBundle\Entity\ClubUserBundle:User $instructors
+     * @param Club\UserBundle\Entity\User $instructors
      */
-    public function addClubUserBundle:User(\Club\TeamBundle\Entity\ClubUserBundle:User $instructors)
+    public function addUser(\Club\UserBundle\Entity\User $instructors)
     {
         $this->instructors[] = $instructors;
     }
