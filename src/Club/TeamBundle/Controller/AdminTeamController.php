@@ -16,7 +16,7 @@ class AdminTeamController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $teams = $em->getRepository('ClubTeamBundle:Team')->getByDate($calendar_date);
+    $teams = $em->getRepository('ClubTeamBundle:Team')->findAll();
 
     return array(
       'teams' => $teams
@@ -74,7 +74,7 @@ class AdminTeamController extends Controller
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('admin_team_team'));
+    return $this->redirect($this->generateUrl('club_team_adminteam_index'));
   }
 
   protected function process($team)
@@ -90,7 +90,7 @@ class AdminTeamController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('admin_team_team'));
+        return $this->redirect($this->generateUrl('club_team_adminteam_index'));
       }
     }
 

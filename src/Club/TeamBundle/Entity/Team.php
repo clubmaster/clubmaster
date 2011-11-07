@@ -3,6 +3,7 @@
 namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\TeamBundle\Entity\Team
@@ -26,6 +27,8 @@ class Team
      * @var string $team_name
      *
      * @ORM\Column(name="team_name", type="string", length="255")
+     * @Assert\NotBlank()
+     *
      */
     private $team_name;
 
@@ -33,6 +36,7 @@ class Team
      * @var text $description
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 

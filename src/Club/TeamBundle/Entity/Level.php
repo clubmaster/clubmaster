@@ -29,6 +29,11 @@ class Level
     private $level_name;
 
 
+    public function __toString()
+    {
+      return $this->getLevelName();
+    }
+
     /**
      * Get id
      *
