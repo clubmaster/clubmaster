@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_team_team")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Team
 {
@@ -195,4 +196,22 @@ class Team
     {
         return $this->instructors;
     }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
 }
