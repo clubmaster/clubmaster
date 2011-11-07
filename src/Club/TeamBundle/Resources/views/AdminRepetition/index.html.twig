@@ -1,0 +1,41 @@
+{% extends "ClubTeamBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_team_adminteam_new') }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}First date{% endtrans %}</th>
+      <th>{% trans %}Type{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Updated at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for repetition in repetitions %}
+    <tr>
+      <td>{{ repetition.firstDate|date('Y-m-d H:i:s') }}</td>
+      <td>{{ repetition.type }}</td>
+      <td>{{ repetition.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ repetition.updatedAt|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminrepetition_edit', { 'team_id':repetition.team.id,'id':repetition.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminrepetition_delete', { 'team_id':repetition.team.id,'id':repetition.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no repetitions.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

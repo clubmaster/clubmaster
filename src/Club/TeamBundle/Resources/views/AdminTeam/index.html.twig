@@ -26,6 +26,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'team_id':team.id })} %}
       </td>
     </tr>
   {% else %}

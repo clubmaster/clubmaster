@@ -2,3 +2,8 @@ _admin_team:
   resource: "@ClubTeamBundle/Controller/AdminTeamController.php"
   type: annotation
   prefix: /admin
+
+_admin_repetition:
+  resource: "@ClubTeamBundle/Controller/AdminRepetitionController.php"
+  type: annotation
+  prefix: /admin
