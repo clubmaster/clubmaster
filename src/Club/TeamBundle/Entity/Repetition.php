@@ -3,6 +3,7 @@
 namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\TeamBundle\Entity\Repetition
@@ -37,25 +38,40 @@ class Repetition
     private $last_date;
 
     /**
-     * @var integer $day_period
+     * @var end_occurrences
      *
-     * @ORM\Column(name="day_period", type="integer")
+     * @ORM\Column(name="end_occurrences", type="integer")
      */
-    private $day_period;
+    private $end_occurrences;
+
+    /**
+     * @var integer $repeat_every
+     *
+     * @ORM\Column(name="repeat_every", type="integer")
+     */
+    private $repeat_every;
+
+    /**
+     * @var integer $days_in_week
+     *
+     * @ORM\Column(name="days_in_week", type="integer")
+     */
+    private $days_in_week;
 
     /**
      * @var integer $day_of_month
      *
-     * @ORM\Column(name="day_of_month", type="integer")
+     * @ORM\Column(name="day_of_month", type="boolean")
      */
     private $day_of_month;
 
     /**
-     * @var integer $day_of_week
+     * @var integer $week
      *
-     * @ORM\Column(name="day_of_week", type="integer")
+     * @ORM\Column(name="week", type="string")
+     * @Assert\Choice({ "1", "2", "3", "4", "last"})
      */
-    private $day_of_week;
+    private $week;
 
     /**
      * @var datetime $created_at
