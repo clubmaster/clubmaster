@@ -24,6 +24,14 @@ class Repetition
     private $id;
 
     /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string")
+     * @Assert\Choice({ "daily", "weekly", "monthly", "yearly" })
+     */
+    private $type;
+
+    /**
      * @var datetime $first_date
      *
      * @ORM\Column(name="first_date", type="datetime")
@@ -33,14 +41,14 @@ class Repetition
     /**
      * @var datetime $last_date
      *
-     * @ORM\Column(name="last_date", type="datetime")
+     * @ORM\Column(name="last_date", type="datetime", nullable="true")
      */
     private $last_date;
 
     /**
      * @var end_occurrences
      *
-     * @ORM\Column(name="end_occurrences", type="integer")
+     * @ORM\Column(name="end_occurrences", type="integer", nullable="true")
      */
     private $end_occurrences;
 
@@ -54,21 +62,21 @@ class Repetition
     /**
      * @var integer $days_in_week
      *
-     * @ORM\Column(name="days_in_week", type="integer")
+     * @ORM\Column(name="days_in_week", type="integer", nullable="true")
      */
     private $days_in_week;
 
     /**
      * @var integer $day_of_month
      *
-     * @ORM\Column(name="day_of_month", type="boolean")
+     * @ORM\Column(name="day_of_month", type="boolean", nullable="true")
      */
     private $day_of_month;
 
     /**
      * @var integer $week
      *
-     * @ORM\Column(name="week", type="string")
+     * @ORM\Column(name="week", type="string", nullable="true")
      * @Assert\Choice({ "1", "2", "3", "4", "last"})
      */
     private $week;
@@ -144,66 +152,6 @@ class Repetition
     }
 
     /**
-     * Set day_period
-     *
-     * @param integer $dayPeriod
-     */
-    public function setDayPeriod($dayPeriod)
-    {
-        $this->day_period = $dayPeriod;
-    }
-
-    /**
-     * Get day_period
-     *
-     * @return integer
-     */
-    public function getDayPeriod()
-    {
-        return $this->day_period;
-    }
-
-    /**
-     * Set day_of_month
-     *
-     * @param integer $dayOfMonth
-     */
-    public function setDayOfMonth($dayOfMonth)
-    {
-        $this->day_of_month = $dayOfMonth;
-    }
-
-    /**
-     * Get day_of_month
-     *
-     * @return integer
-     */
-    public function getDayOfMonth()
-    {
-        return $this->day_of_month;
-    }
-
-    /**
-     * Set day_of_week
-     *
-     * @param integer $dayOfWeek
-     */
-    public function setDayOfWeek($dayOfWeek)
-    {
-        $this->day_of_week = $dayOfWeek;
-    }
-
-    /**
-     * Get day_of_week
-     *
-     * @return integer
-     */
-    public function getDayOfWeek()
-    {
-        return $this->day_of_week;
-    }
-
-    /**
      * Set created_at
      *
      * @param datetime $createdAt
@@ -261,5 +209,125 @@ class Repetition
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set end_occurrences
+     *
+     * @param integer $endOccurrences
+     */
+    public function setEndOccurrences($endOccurrences)
+    {
+        $this->end_occurrences = $endOccurrences;
+    }
+
+    /**
+     * Get end_occurrences
+     *
+     * @return integer
+     */
+    public function getEndOccurrences()
+    {
+        return $this->end_occurrences;
+    }
+
+    /**
+     * Set repeat_every
+     *
+     * @param integer $repeatEvery
+     */
+    public function setRepeatEvery($repeatEvery)
+    {
+        $this->repeat_every = $repeatEvery;
+    }
+
+    /**
+     * Get repeat_every
+     *
+     * @return integer
+     */
+    public function getRepeatEvery()
+    {
+        return $this->repeat_every;
+    }
+
+    /**
+     * Set days_in_week
+     *
+     * @param integer $daysInWeek
+     */
+    public function setDaysInWeek($daysInWeek)
+    {
+        $this->days_in_week = $daysInWeek;
+    }
+
+    /**
+     * Get days_in_week
+     *
+     * @return integer
+     */
+    public function getDaysInWeek()
+    {
+        return $this->days_in_week;
+    }
+
+    /**
+     * Set day_of_month
+     *
+     * @param boolean $dayOfMonth
+     */
+    public function setDayOfMonth($dayOfMonth)
+    {
+        $this->day_of_month = $dayOfMonth;
+    }
+
+    /**
+     * Get day_of_month
+     *
+     * @return boolean
+     */
+    public function getDayOfMonth()
+    {
+        return $this->day_of_month;
+    }
+
+    /**
+     * Set week
+     *
+     * @param string $week
+     */
+    public function setWeek($week)
+    {
+        $this->week = $week;
+    }
+
+    /**
+     * Get week
+     *
+     * @return string
+     */
+    public function getWeek()
+    {
+        return $this->week;
     }
 }
