@@ -12,8 +12,23 @@ class RepetitionWeekly extends AbstractType
     $builder->add('first_date');
     $builder->add('last_date');
     $builder->add('end_occurrences');
-    $builder->add('repeat_every');
-    $builder->add('days_in_week');
+    $range = range(1,50);
+    $builder->add('repeat_every', 'choice', array(
+      'choices' => $range
+    ));
+    $range = array(
+      'monday' => 'Monday',
+      'tuesday' => 'Tuesday',
+      'wednesday' => 'Wednesday',
+      'thursday' => 'Thursday',
+      'friday' => 'Friday',
+      'saturday' => 'Saturday',
+      'sunday' => 'Sunday'
+    );
+    $builder->add('days_in_week', 'choice', array(
+      'choices' => $range,
+      'multiple' => true
+    ));
   }
 
   public function getDefaultOptions(array $options)

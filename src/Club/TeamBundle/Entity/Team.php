@@ -54,17 +54,6 @@ class Team
      */
     private $updated_at;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Level")
-     */
-    private $level;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_team_user")
-     */
-    private $instructors;
-
 
     public function __construct()
     {
@@ -162,46 +151,6 @@ class Team
     }
 
     /**
-     * Set level
-     *
-     * @param Club\TeamBundle\Entity\Level $level
-     */
-    public function setLevel(\Club\TeamBundle\Entity\Level $level)
-    {
-        $this->level = $level;
-    }
-
-    /**
-     * Get level
-     *
-     * @return Club\TeamBundle\Entity\Level
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
-
-    /**
-     * Add instructors
-     *
-     * @param Club\UserBundle\Entity\User $instructors
-     */
-    public function addUser(\Club\UserBundle\Entity\User $instructors)
-    {
-        $this->instructors[] = $instructors;
-    }
-
-    /**
-     * Get instructors
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getInstructors()
-    {
-        return $this->instructors;
-    }
-
-    /**
      * @ORM\PrePersist()
      */
     public function prePersist()
@@ -217,5 +166,4 @@ class Team
     {
       $this->setUpdatedAt(new \DateTime());
     }
-
 }

@@ -7,31 +7,29 @@
   <thead>
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
-      <th>{% trans %}Level{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for team in teams %}
     <tr>
       <td>{{ team.teamName }}</td>
-      <td>{{ team.level.levelName }}</td>
       <td>{{ team.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'team_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'team_id':team.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">{% trans %}There are no teams.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no teams.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

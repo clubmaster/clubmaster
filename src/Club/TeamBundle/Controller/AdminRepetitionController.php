@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminRepetitionController extends Controller
 {
   /**
-   * @Route("/team/team/{team_id}/repetition")
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/repetition")
    * @Template()
    */
-  public function indexAction($team_id)
+  public function indexAction($team_id, $schedule_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findBy(array(
@@ -39,13 +39,16 @@ class AdminRepetitionController extends Controller
     $repetition = new \Club\TeamBundle\Entity\Repetition();
     $repetition->setTeam($team);
 
-    $res = $this->process($repetition);
-
-    if ($res instanceOf RedirectResponse)
-      return $res;
+    $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
+    $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
+    $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
+    $form_yearly = $this->createForm(new \Club\TeamBundle\Form\RepetitionYearly(), $repetition);
 
     return array(
-      'form' => $res->createView()
+      'form_daily' => $form_daily->createView(),
+      'form_weekly' => $form_weekly->createView(),
+      'form_monthly' => $form_monthly->createView(),
+      'form_yearly' => $form_yearly->createView()
     );
   }
 

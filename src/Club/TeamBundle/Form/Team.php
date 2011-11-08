@@ -11,7 +11,6 @@ class Team extends AbstractType
   {
     $builder->add('team_name');
     $builder->add('description');
-    $builder->add('level');
   }
 
   public function getDefaultOptions(array $options)

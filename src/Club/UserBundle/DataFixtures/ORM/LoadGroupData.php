@@ -21,6 +21,12 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
     $group->addRole($this->getReference('ROLE_EVENT_ADMIN'));
     $manager->persist($group);
 
+    $group = new \Club\UserBundle\Entity\Group();
+    $group->setGroupName('Staff');
+    $group->setGroupType('static');
+    $group->addRole($this->getReference('ROLE_STAFF'));
+    $manager->persist($group);
+
     $manager->flush();
   }
 

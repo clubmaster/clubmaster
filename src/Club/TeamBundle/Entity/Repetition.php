@@ -96,9 +96,9 @@ class Repetition
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="Schedule")
      */
-    private $team;
+    private $schedule;
 
 
     /**
@@ -189,26 +189,6 @@ class Repetition
     public function getUpdatedAt()
     {
         return $this->updated_at;
-    }
-
-    /**
-     * Set team
-     *
-     * @param Club\TeamBundle\Entity\Team $team
-     */
-    public function setTeam(\Club\TeamBundle\Entity\Team $team)
-    {
-        $this->team = $team;
-    }
-
-    /**
-     * Get team
-     *
-     * @return Club\TeamBundle\Entity\Team
-     */
-    public function getTeam()
-    {
-        return $this->team;
     }
 
     /**
@@ -329,5 +309,25 @@ class Repetition
     public function getWeek()
     {
         return $this->week;
+    }
+
+    /**
+     * Set schedule
+     *
+     * @param Club\TeamBundle\Entity\Schedule $schedule
+     */
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
+    /**
+     * Get schedule
+     *
+     * @return Club\TeamBundle\Entity\Schedule 
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
     }
 }
