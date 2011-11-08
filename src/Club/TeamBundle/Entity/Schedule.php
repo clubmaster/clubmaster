@@ -70,6 +70,11 @@ class Schedule
     private $schedule;
 
     /**
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="schedule")
+     */
+    private $schedules;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_team_team_user")
      */
@@ -277,7 +282,7 @@ class Schedule
      *
      * @param Club\TeamBundle\Entity\Schedule $schedule
      */
-    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule=null)
     {
         $this->schedule = $schedule;
     }
@@ -290,5 +295,25 @@ class Schedule
     public function getSchedule()
     {
         return $this->schedule;
+    }
+
+    /**
+     * Add schedules
+     *
+     * @param Club\TeamBundle\Entity\Schedule $schedules
+     */
+    public function addSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
+    {
+        $this->schedules[] = $schedules;
+    }
+
+    /**
+     * Get schedules
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getSchedules()
+    {
+        return $this->schedules;
     }
 }

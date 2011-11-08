@@ -28,6 +28,20 @@ class AdminScheduleController extends Controller
   }
 
   /**
+   * @Route("/team/team/{team_id}/schedule/{id}/choice")
+   * @Template()
+   */
+  public function choiceAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+
+    return array(
+      'schedule' => $schedule
+    );
+  }
+
+  /**
    * @Route("/team/team/{team_id}/schedule/new")
    * @Template()
    */
@@ -79,11 +93,66 @@ class AdminScheduleController extends Controller
   public function deleteAction($team_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $schedule = $em->find('ClubTeamBundle:Schedule',$this->getRequest()->get('id'));
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    if ($schedule->getSchedule()) {
+      if (count($schedule->getSchedule()->getSchedules())) {
+        return $this->redirect($this->generateUrl('club_team_adminschedule_choice', array(
+          'team_id' => $team_id,
+          'id' => $id
+        )));
+      }
+    }
+
+    if (count($schedule->getSchedules()))
+      return $this->redirect($this->generateUrl('club_team_adminschedule_choice', array(
+        'team_id' => $team_id,
+        'id' => $id
+      )));
 
     $em->remove($schedule);
     $em->flush();
 
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/delete/{id}/once")
+   */
+  public function deleteOnceAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    if (count($schedule->getSchedules())) {
+      foreach ($schedule->getSchedules() as $sch) {
+        if (!isset($new_schedule)) {
+          $new_schedule = $sch;
+          $sch->setSchedule(null);
+
+          $repetition = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
+            'schedule' => $schedule->getId()
+          ));
+          $repetition->setSchedule($sch);
+          $em->persist($repetition);
+        } else {
+          $sch->setSchedule($new_schedule);
+        }
+
+        $em->persist($new_schedule);
+      }
+
+      $em->remove($schedule);
+
+    } elseif ($schedule->getSchedule() && count($schedule->getSchedule()->getSchedules())) {
+      $em->remove($schedule);
+    }
+
+    $em->flush();
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
