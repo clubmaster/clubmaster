@@ -38,6 +38,8 @@ class AdminScheduleController extends Controller
     $team = $em->find('ClubTeamBundle:Team', $team_id);
     $schedule = new \Club\TeamBundle\Entity\Schedule();
     $schedule->setTeam($team);
+    $schedule->setFirstDate(new \DateTime());
+    $schedule->setEndDate(new \DateTime());
 
     $res = $this->process($schedule);
 

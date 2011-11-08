@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_team_adminschedule_edit', {'id':schedule.id}) }}">
+<form method="post" action="{{ path('club_team_adminschedule_edit', {'id':schedule.id, 'team_id':schedule.team.id}) }}">
 {% include "ClubTeamBundle:AdminSchedule:form.html.twig" with {'form': form} %}
 </form>
 

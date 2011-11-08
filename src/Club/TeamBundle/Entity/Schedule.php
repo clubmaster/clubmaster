@@ -65,6 +65,11 @@ class Schedule
     private $team;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Schedule")
+     */
+    private $schedule;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_team_team_user")
      */
@@ -265,5 +270,25 @@ class Schedule
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set schedule
+     *
+     * @param Club\TeamBundle\Entity\Schedule $schedule
+     */
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
+    /**
+     * Get schedule
+     *
+     * @return Club\TeamBundle\Entity\Schedule
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
     }
 }
