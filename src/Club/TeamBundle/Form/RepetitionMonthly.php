@@ -24,10 +24,11 @@ class RepetitionMonthly extends AbstractType
     $builder->add('day_of_month');
 
     $range = array(
-      '1' => 'First week',
-      '2' => 'Second week',
-      '3' => 'Third week',
-      '4' => 'Fourth week',
+      '' => '',
+      'first' => 'First week',
+      'second' => 'Second week',
+      'third' => 'Third week',
+      'fourth' => 'Fourth week',
       'last' => 'Last week'
     );
     $builder->add('week', 'choice', array(

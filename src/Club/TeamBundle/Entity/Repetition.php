@@ -77,7 +77,7 @@ class Repetition
      * @var integer $week
      *
      * @ORM\Column(name="week", type="string", nullable="true")
-     * @Assert\Choice({ "1", "2", "3", "4", "last"})
+     * @Assert\Choice({ "", "first", "second", "third", "fourth", "last"})
      */
     private $week;
 
