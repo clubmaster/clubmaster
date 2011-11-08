@@ -19,9 +19,11 @@ class AdminRepetitionController extends Controller
     $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findBy(array(
       'team' => $team_id
     ));
+    $team = $em->find('ClubTeamBundle:Team', $team_id);
 
     return array(
-      'repetitions' => $repetitions
+      'repetitions' => $repetitions,
+      'team' => $team
     );
   }
 
