@@ -12,6 +12,7 @@ class RepetitionWeekly extends AbstractType
     $builder->add('first_date');
     $builder->add('last_date');
     $builder->add('end_occurrences');
+    $builder->add('type', 'hidden');
     $range = range(1,50);
     $builder->add('repeat_every', 'choice', array(
       'choices' => $range

@@ -2,6 +2,8 @@
 
 {% block body %}
 
-{% include "ClubTeamBundle:AdminRepetition:form.html.twig" %}
+<form method="post" action="{{ path('club_team_adminrepetition_new', {'schedule_id':schedule.id,'team_id':schedule.team.id}) }}">
+  {% include "ClubTeamBundle:AdminRepetition:form.html.twig" %}
+</form>
 
 {% endblock %}
