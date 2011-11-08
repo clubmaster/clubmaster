@@ -1,28 +1,36 @@
+<form method="post" action="{{ path }}">
   <fieldset>
     <legend>Repetition Daily</legend>
     {{ form_widget(form_daily) }}
 
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
+</form>
 
+<form method="post" action="{{ path }}">
   <fieldset>
     <legend>Repetition Weekly</legend>
     {{ form_widget(form_weekly) }}
 
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
+</form>
 
+<form method="post" action="{{ path }}">
   <fieldset>
     <legend>Repetition Monthly</legend>
     {{ form_widget(form_monthly) }}
 
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
+</form>
 
+<form method="post" action="{{ path }}">
   <fieldset>
     <legend>Repetition Yearly</legend>
     {{ form_widget(form_yearly) }}
 
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
+</form>
 

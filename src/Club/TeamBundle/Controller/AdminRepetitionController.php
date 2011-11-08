@@ -136,17 +136,19 @@ class AdminRepetitionController extends Controller
   protected function process($repetition, $form)
   {
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($repetition);
-        $em->flush();
+      if ($this->getRequest()->get($form->getName()) != '') {
+        $form->bindRequest($this->getRequest());
+        if ($form->isValid()) {
+          $em = $this->getDoctrine()->getEntityManager();
+          $em->persist($repetition);
+          $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-          'team_id' => $repetition->getSchedule()->getTeam()->getId()
-        )));
+          return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+            'team_id' => $repetition->getSchedule()->getTeam()->getId()
+          )));
+        }
       }
     }
 
