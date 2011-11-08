@@ -16,28 +16,35 @@ class AdminRepetitionController extends Controller
   public function indexAction($team_id, $schedule_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findBy(array(
-      'team' => $team_id
+    $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
+      'schedule' => $schedule_id
     ));
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
 
-    return array(
-      'repetitions' => $repetitions,
-      'team' => $team
-    );
+    if (count($repetitions)) {
+      return $this->redirect($this->generateUrl('club_team_adminrepetition_edit', array(
+        'team_id' => $team_id,
+        'schedule_id' => $schedule_id,
+        'id' => $repetitions->getId()
+      )));
+    } else {
+      return $this->redirect($this->generateUrl('club_team_adminrepetition_new', array(
+        'team_id' => $team_id,
+        'schedule_id' => $schedule_id
+      )));
+    }
   }
 
   /**
-   * @Route("/team/team/{team_id}/repetition/new")
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/repetition/new")
    * @Template()
    */
-  public function newAction($team_id)
+  public function newAction($team_id,$schedule_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
 
     $repetition = new \Club\TeamBundle\Entity\Repetition();
-    $repetition->setTeam($team);
+    $repetition->setSchedule($schedule);
 
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
