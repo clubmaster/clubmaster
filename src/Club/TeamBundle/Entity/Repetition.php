@@ -60,9 +60,9 @@ class Repetition
     private $repeat_every;
 
     /**
-     * @var integer $days_in_week
+     * @var string $days_in_week
      *
-     * @ORM\Column(name="days_in_week", type="integer", nullable="true")
+     * @ORM\Column(name="days_in_week", type="string", nullable="true")
      */
     private $days_in_week;
 
@@ -254,21 +254,24 @@ class Repetition
     /**
      * Set days_in_week
      *
-     * @param integer $daysInWeek
+     * @param string $daysInWeek
      */
     public function setDaysInWeek($daysInWeek)
     {
-        $this->days_in_week = $daysInWeek;
+        $this->days_in_week = serialize($daysInWeek);
     }
 
     /**
      * Get days_in_week
      *
-     * @return integer
+     * @return string
      */
     public function getDaysInWeek()
     {
-        return $this->days_in_week;
+      if (!unserialize($this->days_in_week))
+        return array();
+
+      return unserialize($this->days_in_week);
     }
 
     /**

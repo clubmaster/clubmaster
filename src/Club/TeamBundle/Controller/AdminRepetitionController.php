@@ -53,9 +53,10 @@ class AdminRepetitionController extends Controller
       return $form_daily;
 
     $repetition->setType('weekly');
+    $repetition->setDaysInWeek(array($schedule->getFirstDate()->format('N')));
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
     if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse)
-      return $form_weeky;
+      return $form_weekly;
 
     $repetition->setType('monthly');
     $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
@@ -94,7 +95,7 @@ class AdminRepetitionController extends Controller
     $repetition->setType('weekly');
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
     if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse)
-      return $form_weeky;
+      return $form_weekly;
 
     $repetition->setType('monthly');
     $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
@@ -142,6 +143,9 @@ class AdminRepetitionController extends Controller
           $em = $this->getDoctrine()->getEntityManager();
           $em->persist($repetition);
           $em->flush();
+
+          $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
+          $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
 
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 

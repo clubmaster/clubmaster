@@ -1,6 +1,11 @@
 services:
-  club.teambundle.listener.left_menu_render_listener:
+  club.teambundle.left_menu_render_listener:
     class: Club\TeamBundle\Listener\LeftMenuRenderListener
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+  club.team.repetition.change:
+    class: Club\TeamBundle\Listener\GenerateScheduleListener
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: repetition.change, method: onRepetitionChange }
