@@ -45,6 +45,7 @@ class AdminRepetitionController extends Controller
 
     $repetition = new \Club\TeamBundle\Entity\Repetition();
     $repetition->setSchedule($schedule);
+    $repetition->setFirstDate($schedule->getFirstDate());
 
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);

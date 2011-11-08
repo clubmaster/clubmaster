@@ -2,26 +2,6 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_team_adminteam_new') }}">
-  <fieldset>
-    <legend>Repetition Daily</legend>
-    {{ form_widget(form_daily) }}
-  </fieldset>
-
-  <fieldset>
-    <legend>Repetition Weekly</legend>
-    {{ form_widget(form_weekly) }}
-  </fieldset>
-
-  <fieldset>
-    <legend>Repetition Monthly</legend>
-    {{ form_widget(form_monthly) }}
-  </fieldset>
-
-  <fieldset>
-    <legend>Repetition Yearly</legend>
-    {{ form_widget(form_yearly) }}
-  </fieldset>
-</form>
+{% include "ClubTeamBundle:AdminRepetition:form.html.twig" %}
 
 {% endblock %}

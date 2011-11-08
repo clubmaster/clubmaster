@@ -1,3 +1,30 @@
-  <p>{{ form_widget(form) }}</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+<form method="post" action="{{ path('club_team_adminteam_new') }}">
+  <fieldset>
+    <legend>Repetition Daily</legend>
+    {{ form_widget(form_daily) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+
+  <fieldset>
+    <legend>Repetition Weekly</legend>
+    {{ form_widget(form_weekly) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+
+  <fieldset>
+    <legend>Repetition Monthly</legend>
+    {{ form_widget(form_monthly) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+
+  <fieldset>
+    <legend>Repetition Yearly</legend>
+    {{ form_widget(form_yearly) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+</form>
 
