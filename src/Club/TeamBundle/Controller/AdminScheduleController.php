@@ -30,10 +30,24 @@ class AdminScheduleController extends Controller
   }
 
   /**
-   * @Route("/team/team/{team_id}/schedule/{id}/choice")
+   * @Route("/team/team/{team_id}/schedule/{id}/edit/choice")
    * @Template()
    */
-  public function choiceAction($team_id,$id)
+  public function editChoiceAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+
+    return array(
+      'schedule' => $schedule
+    );
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/{id}/delete/choice")
+   * @Template()
+   */
+  public function deleteChoiceAction($team_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
@@ -80,6 +94,14 @@ class AdminScheduleController extends Controller
 
     $res = $this->process($schedule);
 
+    if ($this->getRequest()->getMethod() == 'POST') {
+      if (count($schedule->getSchedules()) || $schedule->getSchedule())
+        return $this->redirect($this->generateUrl('club_team_adminschedule_editchoice', array(
+          'id' => $schedule->getId(),
+          'team_id' => $schedule->getTeam()->getId()
+        )));
+    }
+
     if ($res instanceOf RedirectResponse)
       return $res;
 
@@ -99,7 +121,7 @@ class AdminScheduleController extends Controller
 
     if ($schedule->getSchedule()) {
       if (count($schedule->getSchedule()->getSchedules())) {
-        return $this->redirect($this->generateUrl('club_team_adminschedule_choice', array(
+        return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
           'team_id' => $team_id,
           'id' => $id
         )));
@@ -107,7 +129,7 @@ class AdminScheduleController extends Controller
     }
 
     if (count($schedule->getSchedules()))
-      return $this->redirect($this->generateUrl('club_team_adminschedule_choice', array(
+      return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
         'team_id' => $team_id,
         'id' => $id
       )));
@@ -217,6 +239,133 @@ class AdminScheduleController extends Controller
     )));
   }
 
+  /**
+   * @Route("/team/team/{team_id}/schedule/edit/{id}/future")
+   */
+  public function editFutureAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    $parent = $this->getParent($schedule);
+
+    if (!count($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule))) {
+      $this->updateSchedule($parent, $schedule);
+
+      foreach ($parent->getSchedules() as $sch) {
+        $this->updateSchedule($sch, $schedule);
+      }
+
+    } else {
+      $edit_parent = ($parent->getId() == $schedule->getId()) ? true : false;
+      foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+        if ($sch->getId() == $parent->getId())
+          $edit_parent = true;
+      }
+
+      if ($edit_parent) {
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule) as $past) {
+          if (!isset($new_parent)) {
+            $new_parent = $this->copyParent($parent, $past);
+          } else {
+            $past->setSchedule($new_parent);
+          }
+
+          $em->persist($past);
+        }
+
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+          $this->updateSchedule($sch, $schedule);
+        };
+
+      } else {
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+          $this->updateSchedule($sch, $schedule);
+          $sch->setSchedule($schedule);
+        };
+
+        $schedule = $this->copyParent($parent, $schedule);
+        $em->persist($schedule);
+      }
+    }
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/edit/{id}/all")
+   */
+  public function editAllAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    $parent = $this->getParent($schedule);
+    $this->updateSchedule($parent, $schedule);
+
+    foreach ($parent->getSchedules() as $sch) {
+      $this->updateSchedule($sch, $schedule);
+    }
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
+  }
+
+  /**
+   * This first parameter is to be updated be parameter two
+   */
+  protected function updateSchedule(\Club\TeamBundle\Entity\Schedule $schedule, \Club\TeamBundle\Entity\Schedule $original)
+  {
+    $t1_first = new \DateTime(
+      '@'.mktime(
+      $original->getFirstDate()->format('H'),
+      $original->getFirstDate()->format('i'),
+      $original->getFirstDate()->format('s'),
+      1,1,1970));
+    $t2_first = new \DateTime(
+      '@'.mktime(
+      $schedule->getFirstDate()->format('H'),
+      $schedule->getFirstDate()->format('i'),
+      $schedule->getFirstDate()->format('s'),
+      1,1,1970));
+
+    $t1_end = new \DateTime(
+      '@'.mktime(
+      $original->getEndDate()->format('H'),
+      $original->getEndDate()->format('i'),
+      $original->getEndDate()->format('s'),
+      1,1,1970));
+    $t2_end = new \DateTime(
+      '@'.mktime(
+      $schedule->getEndDate()->format('H'),
+      $schedule->getEndDate()->format('i'),
+      $schedule->getEndDate()->format('s'),
+      1,1,1970));
+
+    $diff_first = $t1_first->diff($t2_first);
+    $diff_end = $t1_end->diff($t2_end);
+
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $schedule->setDescription($original->getDescription());
+    $schedule->setFirstDate(new \DateTime($schedule->getFirstDate()->sub($diff_first)->format('Y-m-d H:i:s')));
+    $schedule->setEndDate(new \DateTime($schedule->getEndDate()->sub($diff_end)->format('Y-m-d H:i:s')));
+    $schedule->setLevel($original->getLevel());
+
+    echo $schedule->getFirstDate()->format('Y-m-d H:i:s')."<br>";
+
+    $em->persist($schedule);
+  }
+
   protected function process($schedule)
   {
     $form = $this->createForm(new \Club\TeamBundle\Form\Schedule(), $schedule);
@@ -250,6 +399,31 @@ class AdminScheduleController extends Controller
     ));
     $repetition->setSchedule($schedule);
     $em->persist($repetition);
+
+    return $schedule;
+  }
+
+  private function copyParent(\Club\TeamBundle\Entity\Schedule $old_parent, \Club\TeamBundle\Entity\Schedule $schedule)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $schedule->setSchedule(null);
+
+    $repetition = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
+      'schedule' => $old_parent->getId()
+    ));
+    $rep = new \Club\TeamBundle\Entity\Repetition();
+    $rep->setType($repetition->getType());
+    $rep->setFirstDate($repetition->getFirstDate());
+    $rep->setLastDate($repetition->getLastDate());
+    $rep->setEndOccurrences($repetition->getEndOccurrences());
+    $rep->setRepeatEvery($repetition->getRepeatEvery());
+    $rep->setDaysInWeek($repetition->getDaysInWeek());
+    $rep->setDayOfMonth($repetition->getDayOfMonth());
+    $rep->setWeek($repetition->getWeek());
+    $rep->setSchedule($schedule);
+
+    $em->persist($rep);
 
     return $schedule;
   }

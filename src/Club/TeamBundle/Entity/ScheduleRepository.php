@@ -18,7 +18,9 @@ class ScheduleRepository extends EntityRepository
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date >= :date')
+      ->andWhere('(s.schedule = :id OR s.id = :id)')
       ->setParameter('date', $schedule->getFirstDate()->format('Y-m-d H:i:s'))
+      ->setParameter('id', $schedule->getId())
       ->getQuery()
       ->getResult();
   }
@@ -29,7 +31,9 @@ class ScheduleRepository extends EntityRepository
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date < :date')
+      ->andWhere('(s.schedule = :id OR s.id = :id)')
       ->setParameter('date', $schedule->getFirstDate()->format('Y-m-d H:i:s'))
+      ->setParameter('id', $schedule->getId())
       ->getQuery()
       ->getResult();
   }

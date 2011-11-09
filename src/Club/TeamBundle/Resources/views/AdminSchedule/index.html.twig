@@ -23,8 +23,8 @@
   {% for schedule in schedules %}
     <tr>
       <td>{{ schedule.team.teamName }}</td>
-      <td>{{ schedule.firstDate|date('Y-m-d H:i:s') }}</td>
-      <td>{{ schedule.endDate|date('Y-m-d H:i:s') }}</td>
+      <td>{{ schedule.firstDate|date('Y-m-d H:i') }}</td>
+      <td>{{ schedule.endDate|date('Y-m-d H:i') }}</td>
       <td>{{ schedule.level.levelName }}</td>
       <td>{{ schedule.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>
