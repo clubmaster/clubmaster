@@ -8,9 +8,8 @@ add role_staff on release
 add group staff on release
 occurs in the future is hardcoded
 
-edit all future
 fix regenerate occurs
 edit all repetition on a child
 cannot regenerate instances with already child
 fix schedule instructorss
-
+fix generation of weekly with different weeks

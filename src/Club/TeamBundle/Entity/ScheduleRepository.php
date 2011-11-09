@@ -14,26 +14,30 @@ class ScheduleRepository extends EntityRepository
 {
   public function getAllFuture(\Club\TeamBundle\Entity\Schedule $schedule)
   {
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
+
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date >= :date')
       ->andWhere('(s.schedule = :id OR s.id = :id)')
       ->setParameter('date', $schedule->getFirstDate()->format('Y-m-d H:i:s'))
-      ->setParameter('id', $schedule->getId())
+      ->setParameter('id', $parent->getId())
       ->getQuery()
       ->getResult();
   }
 
   public function getAllPast(\Club\TeamBundle\Entity\Schedule $schedule)
   {
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
+
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date < :date')
       ->andWhere('(s.schedule = :id OR s.id = :id)')
       ->setParameter('date', $schedule->getFirstDate()->format('Y-m-d H:i:s'))
-      ->setParameter('id', $schedule->getId())
+      ->setParameter('id', $parent->getId())
       ->getQuery()
       ->getResult();
   }
