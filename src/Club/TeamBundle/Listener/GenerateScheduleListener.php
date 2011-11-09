@@ -35,10 +35,13 @@ class GenerateScheduleListener
         $start->add(new \DateInterval('P'.$repetition->getRepeatEvery().'D'));
         break;
       case 'weekly':
-        if (in_array($start->format('N'), $repetition->getDaysInWeek()))
-          $this->addSchedule($start, $diff, $repetition);
-
-        $start->add(new \DateInterval('P'.$repetition->getRepeatEvery().'D'));
+        for ($i=0; $i < 7; $i++) {
+          if (in_array($start->format('N'), $repetition->getDaysInWeek())) {
+            $this->addSchedule($start, $diff, $repetition);
+          }
+          $start->add(new \DateInterval('P1D'));
+        }
+        $start->add(new \DateInterval('P'.(($repetition->getRepeatEvery()-1)*7).'D'));
         break;
       case 'monthly':
         if ($repetition->getDayOfMonth()) {
