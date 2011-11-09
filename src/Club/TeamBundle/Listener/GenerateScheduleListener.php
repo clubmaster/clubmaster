@@ -61,7 +61,6 @@ class GenerateScheduleListener
     }
 
     $this->em->flush();
-    die('marm');
   }
 
   private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Repetition $repetition)
@@ -72,7 +71,6 @@ class GenerateScheduleListener
     if ($new_format == $repetition->getSchedule()->getFirstDate()->format('Y-m-d H:i:s'))
       return;
 
-    echo $start->format('Y-m-d H:i:s');echo "<br>";
     $new_first = new \DateTime($new_format);
     $new_end = new \DateTime($new_format);
     $new_end->add($diff);

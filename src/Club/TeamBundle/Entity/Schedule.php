@@ -66,6 +66,7 @@ class Schedule
 
     /**
      * @ORM\ManyToOne(targetEntity="Schedule")
+     * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
     private $schedule;
 

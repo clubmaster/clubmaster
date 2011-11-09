@@ -18,6 +18,8 @@ class AdminScheduleController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->findBy(array(
       'team' => $team_id
+    ), array(
+      'first_date' => 'ASC'
     ));
     $team = $em->find('ClubTeamBundle:Team', $team_id);
 
@@ -131,28 +133,83 @@ class AdminScheduleController extends Controller
     if (count($schedule->getSchedules())) {
       foreach ($schedule->getSchedules() as $sch) {
         if (!isset($new_schedule)) {
-          $new_schedule = $sch;
-          $sch->setSchedule(null);
-
-          $repetition = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
-            'schedule' => $schedule->getId()
-          ));
-          $repetition->setSchedule($sch);
-          $em->persist($repetition);
+          $new_schedule = $this->promoteParent($schedule, $sch);
         } else {
           $sch->setSchedule($new_schedule);
         }
 
-        $em->persist($new_schedule);
+        $em->persist($sch);
       }
 
       $em->remove($schedule);
 
-    } elseif ($schedule->getSchedule() && count($schedule->getSchedule()->getSchedules())) {
+    } elseif ($schedule->getSchedule()) {
       $em->remove($schedule);
     }
 
     $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/delete/{id}/future")
+   */
+  public function deleteFutureAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    $parent = $this->getParent($schedule);
+
+    if (!count($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule))) {
+      $this->deleteAll($parent);
+    } else {
+      $delete_parent = false;
+      foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+        if ($sch->getId() == $parent->getId())
+          $delete_parent = true;
+      }
+
+      if ($delete_parent) {
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule) as $past) {
+          if (!isset($new_parent)) {
+            $new_parent = $this->promoteParent($parent, $past);
+          } else {
+            $past->setSchedule($new_parent);
+          }
+
+          $em->persist($past);
+        }
+      }
+
+      foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+        $em->remove($sch);
+      };
+    }
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/delete/{id}/all")
+   */
+  public function deleteAllAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+
+    $parent = $this->getParent($schedule);
+    $this->deleteAll($parent);
+
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
@@ -180,5 +237,45 @@ class AdminScheduleController extends Controller
     }
 
     return $form;
+  }
+
+  private function promoteParent(\Club\TeamBundle\Entity\Schedule $old_parent, \Club\TeamBundle\Entity\Schedule $schedule)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $schedule->setSchedule(null);
+
+    $repetition = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
+      'schedule' => $old_parent->getId()
+    ));
+    $repetition->setSchedule($schedule);
+    $em->persist($repetition);
+
+    return $schedule;
+  }
+
+  protected function getParent(\Club\TeamBundle\Entity\Schedule $schedule)
+  {
+    if ($schedule->getSchedule()) {
+      $parent = $schedule->getSchedule();
+    } else {
+      $parent = $schedule;
+    }
+
+    return $parent;
+  }
+
+  protected function deleteAll(\Club\TeamBundle\Entity\Schedule $schedule)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $em->createQueryBuilder()
+      ->delete('ClubTeamBundle:Schedule','s')
+      ->where('s.id = :id')
+      ->setParameter('id', $schedule->getId())
+      ->getQuery()
+      ->getResult();
+
+    return true;
   }
 }
