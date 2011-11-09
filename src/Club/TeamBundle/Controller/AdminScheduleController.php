@@ -430,13 +430,7 @@ class AdminScheduleController extends Controller
 
   protected function getParent(\Club\TeamBundle\Entity\Schedule $schedule)
   {
-    if ($schedule->getSchedule()) {
-      $parent = $schedule->getSchedule();
-    } else {
-      $parent = $schedule;
-    }
-
-    return $parent;
+    return ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
   }
 
   protected function deleteAll(\Club\TeamBundle\Entity\Schedule $schedule)
