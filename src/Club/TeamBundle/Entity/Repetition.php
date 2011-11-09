@@ -96,7 +96,7 @@ class Repetition
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Schedule")
+     * @ORM\OneToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
     private $schedule;

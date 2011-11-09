@@ -16,8 +16,11 @@ class AdminRepetitionController extends Controller
   public function indexAction($team_id, $schedule_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
+
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
     $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
-      'schedule' => $schedule_id
+      'schedule' => $parent->getId()
     ));
 
     if (count($repetitions)) {
@@ -87,6 +90,11 @@ class AdminRepetitionController extends Controller
     $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
 
+    if ($this->getRequest()->getMethod() == 'POST' && $repetition->getSchedule()->getId() != $schedule_id) {
+      $repetition = new \Club\TeamBundle\Entity\Repetition();
+      $repetition->setSchedule($schedule);
+    }
+
     $repetition->setType('daily');
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
     if (($form_daily = $this->process($repetition, $form_daily)) instanceOf RedirectResponse)
@@ -109,10 +117,61 @@ class AdminRepetitionController extends Controller
 
     return array(
       'repetition' => $repetition,
+      'schedule' => $schedule,
       'form_daily' => $form_daily->createView(),
       'form_weekly' => $form_weekly->createView(),
       'form_monthly' => $form_monthly->createView(),
       'form_yearly' => $form_yearly->createView()
+    );
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/repetition/edit/{id}/choice")
+   * @Template()
+   */
+  public function editChoiceAction($team_id, $schedule_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
+
+    return array(
+      'repetition' => $repetition
+    );
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/repetition/edit/{id}/editfuture")
+   * @Template()
+   */
+  public function editFutureAction($team_id, $schedule_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
+
+    return array(
+      'repetition' => $repetition
+    );
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/repetition/edit/{id}/editall")
+   * @Template()
+   */
+  public function editAllAction($team_id, $schedule_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
+
+    $old_rep = $repetition->getSchedule()->getRepetition();
+    $repetition->getSchedule()->setRepetition($repetition);
+
+    $em->persist($repetition);
+    $em->remove($old_rep);
+
+    $em->flush();
+
+    return array(
+      'repetition' => $repetition
     );
   }
 
@@ -142,12 +201,22 @@ class AdminRepetitionController extends Controller
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getEntityManager();
           $em->persist($repetition);
+          $is_new = ($repetition->getId()) ? false : true;
           $em->flush();
 
-          $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
-          $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
-
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+          if ($is_new && !$repetition->getSchedule()->getSchedule()) {
+            $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
+            $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
+          } elseif ($repetition->getSchedule()->getSchedule()) {
+
+            return $this->redirect($this->generateUrl('club_team_adminrepetition_editchoice', array(
+              'team_id' => $repetition->getSchedule()->getTeam()->getId(),
+              'schedule_id' => $repetition->getSchedule()->getId(),
+              'id' => $repetition->getId()
+            )));
+          }
 
           return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'team_id' => $repetition->getSchedule()->getTeam()->getId()
