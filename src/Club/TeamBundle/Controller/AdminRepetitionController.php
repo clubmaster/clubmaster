@@ -162,7 +162,9 @@ class AdminRepetitionController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
 
-    $old_rep = $repetition->getSchedule()->getRepetition();
+    $old_rep = $repetition->getSchedule()->getSchedule();
+    echo $old_rep->getId();
+    die();
     $repetition->getSchedule()->setRepetition($repetition);
 
     $em->persist($repetition);
