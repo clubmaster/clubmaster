@@ -15,3 +15,4 @@ fix schedule instructorss
 
 fix all copy of datetime objects, use CLONE objects instead
 when generate schedules, make sure to generate 25 occurs ahead of today
+change repetition form for parent does not work
