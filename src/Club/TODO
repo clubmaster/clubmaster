@@ -11,8 +11,12 @@ occurs in the future is hardcoded
 fix regenerate occurs
 edit all repetition on a child
 cannot regenerate instances with already child
-fix schedule instructorss
+fix schedule instructors
 
 fix all copy of datetime objects, use CLONE objects instead
 when generate schedules, make sure to generate 25 occurs ahead of today
 change repetition form for parent does not work
+
+general, export dates to this format: 2010-03-29T15:03:55.789Z
+add team groups
+add constraint, that you cannot attend expired teams

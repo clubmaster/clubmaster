@@ -5,22 +5,25 @@
 <h2>Team</h2>
 
 <table class="style">
-  <thead>
-    <tr>
-      <th>{% trans %}Dato{% endtrans %}</th>
-      <th>{% trans %}Name{% endtrans %}</th>
-      <th>{% trans %}Action{% endtrans %}</th>
-    </tr>
-  </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
+  {% set prev_date = '' %}
+  {% set date = '' %}
   {% for schedule in schedules %}
+    {% set prev_date = date %}
+    {% set date = schedule.firstDate|date('l, Y-m-d') %}
+
+    {% if date != prev_date %}
     <tr>
-      <td>{{ schedule.firstDate|date('Y-m-d H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
+      <th colspan="3">{{ date }}</th>
+    </tr>
+    {% endif %}
+    <tr>
+      <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
       <td>{{ schedule.team.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
       <td>
         {% if user.attend(schedule) %}

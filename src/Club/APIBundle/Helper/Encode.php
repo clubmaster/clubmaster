@@ -6,6 +6,11 @@ class Encode
 {
   public function encode($input)
   {
-    return json_encode($input);
+    $res = array(
+      'apiVersion' => '1',
+      'data' => $input
+    );
+
+    return json_encode($res);
   }
 }
