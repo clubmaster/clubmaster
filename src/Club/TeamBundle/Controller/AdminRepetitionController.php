@@ -156,11 +156,61 @@ class AdminRepetitionController extends Controller
   public function editFutureAction($team_id, $schedule_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
+    $repetition = $em->find('ClubTeamBundle:Repetition',$id);
+    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
-    return array(
-      'repetition' => $repetition
-    );
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
+
+    if (!count($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule))) {
+      //$this->updateSchedule($parent, $schedule);
+
+      //foreach ($parent->getSchedules() as $sch) {
+        //$this->updateSchedule($sch, $schedule);
+      //}
+
+    } else {
+      $edit_parent = ($parent->getId() == $schedule->getId()) ? true : false;
+      foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+        if ($sch->getId() == $parent->getId())
+          $edit_parent = true;
+      }
+
+      if ($edit_parent) {
+        /*
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule) as $past) {
+          if (!isset($new_parent)) {
+            $new_parent = $this->copyParent($parent, $past);
+          } else {
+            $past->setSchedule($new_parent);
+          }
+
+          $em->persist($past);
+        }
+
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+          $this->updateSchedule($sch, $schedule);
+        };
+
+         */
+      } else {
+        /*
+        foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
+          $this->updateSchedule($sch, $schedule);
+          $sch->setSchedule($schedule);
+        };
+
+        $schedule = $this->copyParent($parent, $schedule);
+        $em->persist($schedule);
+         */
+      }
+    }
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $schedule->getTeam()->getId()
+    )));
   }
 
   /**
