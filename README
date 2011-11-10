@@ -271,6 +271,12 @@ Get all teams
 ~~~~~~~~~~~~~
 
 URL: /api/teams/
+URL: /api/teams/{start}
+URL: /api/teams/{start}/{end}
+
+Parameters:
+{start}: 2011-01-01
+{end}: 2011-01-02
 
 Method: GET
 
