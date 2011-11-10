@@ -85,9 +85,15 @@ class Schedule
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_team_user")
+     * @ORM\JoinTable(name="club_team_team_instructor")
      */
     private $instructors;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="club_team_team_user")
+     */
+    private $users;
 
     /**
      * @ORM\ManyToOne(targetEntity="Level")
@@ -236,16 +242,6 @@ class Schedule
     }
 
     /**
-     * Add instructors
-     *
-     * @param Club\UserBundle\Entity\User $instructors
-     */
-    public function addUser(\Club\UserBundle\Entity\User $instructors)
-    {
-        $this->instructors[] = $instructors;
-    }
-
-    /**
      * Get instructors
      *
      * @return Doctrine\Common\Collections\Collection
@@ -365,10 +361,40 @@ class Schedule
     /**
      * Get max_attend
      *
-     * @return integer 
+     * @return integer
      */
     public function getMaxAttend()
     {
         return $this->max_attend;
+    }
+
+    /**
+     * Add instructors
+     *
+     * @param Club\UserBundle\Entity\User $instructors
+     */
+    public function addInstructor(\Club\UserBundle\Entity\User $instructors)
+    {
+        $this->instructors[] = $instructors;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
