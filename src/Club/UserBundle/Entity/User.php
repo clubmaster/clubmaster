@@ -155,7 +155,7 @@ class User implements AdvancedUserInterface, \Serializable
     private $groups;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Club\TeamBundle\Entity\Schedule", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="Club\TeamBundle\Entity\Schedule", mappedBy="users")
      */
     private $schedules;
 
