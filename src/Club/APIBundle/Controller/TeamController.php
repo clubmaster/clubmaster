@@ -12,16 +12,27 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class TeamController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("/", defaults={"start" = null, "end" = null})
+   * @Route("/{start}", defaults={"end" = null})
+   * @Route("/{start}/{end}", defaults={"start" = null, "end" = null})
    * @Method("GET")
    */
-  public function indexAction()
+  public function indexAction($start, $end)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $res = array();
 
-    $start = new \DateTime(date('Y-m-d 00:00:00'));
-    $end = new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')));
+    if ($start == null) {
+      $start = new \DateTime(date('Y-m-d 00:00:00'));
+    } else {
+      $start = new \DateTime($start.' 00:00:00');
+    }
+
+    if ($end == null) {
+      $end = new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')));
+    } else {
+      $end = new \DateTime($end.' 23:59:59');
+    }
 
     foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end) as $schedule) {
       $res[] = $schedule->toArray();
