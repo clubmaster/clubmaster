@@ -312,15 +312,24 @@ class Event
 
     public function toArray()
     {
-      return array(
+      $res = array(
         'id' => $this->getId(),
         'event_name' => $this->getEventName(),
         'description' => $this->getDescription(),
         'price' => $this->getPrice(),
         'max_attends' => $this->getMaxAttends(),
-        'start_date' => $this->getStartDate(),
-        'stop_date' => $this->getStopDate(),
-        'created_at' => $this->getCreatedAt()
+        'attends' => array(),
+        'start_date' => $this->getStartDate()->format('c'),
+        'stop_date' => $this->getStopDate()->format('c'),
+        'created_at' => $this->getCreatedAt()->format('c')
       );
+
+      foreach ($this->getAttends() as $attend) {
+        $res['attends'][] = array(
+          'user_id' => $attend->getUser()->getId()
+        );
+      }
+
+      return $res;
     }
 }

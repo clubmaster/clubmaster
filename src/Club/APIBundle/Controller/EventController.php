@@ -22,16 +22,7 @@ class EventController extends Controller
 
     $res = array();
     foreach ($events as $event) {
-      $res[] = array(
-        'id' => $event->getId(),
-        'event_name' => $event->getEventName(),
-        'description' => $event->getDescription(),
-        'price' => $event->getPrice(),
-        'max_attends' => $event->getMaxAttends(),
-        'attends' => count($event->getAttends()),
-        'start_date' => $event->getStartDate(),
-        'stop_date' => $event->getStopDate(),
-      );
+      $res[] = $event->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));

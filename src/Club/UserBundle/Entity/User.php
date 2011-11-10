@@ -488,10 +488,10 @@ class User implements AdvancedUserInterface, \Serializable
         'first_name' => $this->getProfile()->getFirstName(),
         'last_name' => $this->getProfile()->getLastName(),
         'gender' => $this->getProfile()->getGender(),
-        'day_of_birth' => $this->getProfile()->getDayOfBirth(),
+        'day_of_birth' => $this->getProfile()->getDayOfBirth()->format('c'),
         'member_status' => $this->getMemberStatus(),
-        'created_at' => $this->getCreatedAt(),
-        'updated_at' => $this->getUpdatedAt()
+        'created_at' => $this->getCreatedAt()->format('c'),
+        'updated_at' => $this->getUpdatedAt()->format('c')
       );
 
       if ($this->getProfile()->getProfileAddress()) {
@@ -515,8 +515,8 @@ class User implements AdvancedUserInterface, \Serializable
         $res['subscriptions'][] = array(
           'id' => $sub->getId(),
           'type' => $sub->getType(),
-          'start_date' => $sub->getStartDate(),
-          'expire_date' => $sub->getExpireDate()
+          'start_date' => $sub->getStartDate()->format('c'),
+          'expire_date' => $sub->getExpireDate()->format('c')
         );
       }
 

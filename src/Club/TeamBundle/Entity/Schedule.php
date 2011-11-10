@@ -405,8 +405,8 @@ class Schedule
         'team_name' => $this->getTeam()->getTeamName(),
         'description' => $this->getDescription(),
         'level' => $this->getLevel()->getLevelName(),
-        'first_date' => $this->getFirstDate(),
-        'end_date' => $this->getEndDate(),
+        'first_date' => $this->getFirstDate()->format('c'),
+        'end_date' => $this->getEndDate()->format('c'),
         'max_attend' => $this->getMaxAttend(),
         'users' => array()
       );
