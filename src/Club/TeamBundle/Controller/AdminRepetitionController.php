@@ -189,6 +189,9 @@ class AdminRepetitionController extends Controller
 
     $em->flush();
 
+    $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
+
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'team_id' => $repetition->getSchedule()->getTeam()->getId()
     )));

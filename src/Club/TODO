@@ -14,3 +14,4 @@ cannot regenerate instances with already child
 fix schedule instructorss
 
 fix all copy of datetime objects, use CLONE objects instead
+when generate schedules, make sure to generate 25 occurs ahead of today
