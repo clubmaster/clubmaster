@@ -320,7 +320,7 @@ class Repetition
      *
      * @param Club\TeamBundle\Entity\Schedule $schedule
      */
-    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule=null)
     {
         $this->schedule = $schedule;
     }

@@ -170,16 +170,22 @@ class AdminRepetitionController extends Controller
   public function editAllAction($team_id, $schedule_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
-    $parent = $repetition->getSchedule()->getSchedule();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
+
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
     $old_rep = $parent->getRepetition();
 
-    $parent->setRepetition($repetition);
-    $repetition->getSchedule()->setRepetition(null);
-
-    $em->persist($repetition);
+    $parent->setRepetition(null);
+    $em->persist($parent);
     $em->remove($old_rep);
+    $em->flush();
+
+    $parent->setRepetition($repetition);
+    $repetition->setSchedule($parent);
+
+    $em->persist($parent);
+    $em->persist($repetition);
 
     $em->flush();
 
