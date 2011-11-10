@@ -29,7 +29,7 @@ class TeamController extends Controller
   }
 
   /**
-   * @Route("/team/team/attend/{id}")
+   * @Route("/team/team/{id}/attend")
    * @Template()
    */
   public function attendAction($id)
@@ -46,7 +46,7 @@ class TeamController extends Controller
   }
 
   /**
-   * @Route("/team/team/unattend/{id}")
+   * @Route("/team/team/{id}/unattend")
    * @Template()
    */
   public function unattendAction($id)

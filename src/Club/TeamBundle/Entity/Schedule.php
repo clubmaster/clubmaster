@@ -397,4 +397,24 @@ class Schedule
     {
         return $this->users;
     }
+
+    public function toArray()
+    {
+      $res = array(
+        'id' => $this->getId(),
+        'team_name' => $this->getTeam()->getTeamName(),
+        'description' => $this->getDescription(),
+        'level' => $this->getLevel()->getLevelName(),
+        'first_date' => $this->getFirstDate(),
+        'end_date' => $this->getEndDate(),
+        'max_attend' => $this->getMaxAttend(),
+        'users' => array()
+      );
+
+      foreach ($this->getUsers() as $user) {
+        $res['users'][] = array('user_id' => $user->getId());
+      }
+
+      return $res;
+    }
 }

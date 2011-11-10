@@ -8,6 +8,11 @@ _api_event:
   type: annotation
   prefix: /api/events
 
+_api_team:
+  resource: "@ClubAPIBundle/Controller/TeamController.php"
+  type: annotation
+  prefix: /api/teams
+
 _api_user:
   resource: "@ClubAPIBundle/Controller/UserController.php"
   type: annotation
