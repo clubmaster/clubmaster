@@ -32,6 +32,14 @@ class Schedule
     private $description;
 
     /**
+     * @var text $max_attend
+     *
+     * @ORM\Column(name="max_attend", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $max_attend;
+
+    /**
      * @var datetime $first_date
      *
      * @ORM\Column(name="first_date", type="datetime")
@@ -342,5 +350,25 @@ class Schedule
     public function getRepetition()
     {
         return $this->repetition;
+    }
+
+    /**
+     * Set max_attend
+     *
+     * @param integer $maxAttend
+     */
+    public function setMaxAttend($maxAttend)
+    {
+        $this->max_attend = $maxAttend;
+    }
+
+    /**
+     * Get max_attend
+     *
+     * @return integer 
+     */
+    public function getMaxAttend()
+    {
+        return $this->max_attend;
     }
 }

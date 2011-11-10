@@ -70,6 +70,7 @@ class AdminScheduleController extends Controller
     $schedule->setTeam($team);
     $schedule->setFirstDate(new \DateTime());
     $schedule->setEndDate(new \DateTime());
+    $schedule->setMaxAttend(15);
 
     $res = $this->process($schedule);
 
@@ -360,8 +361,7 @@ class AdminScheduleController extends Controller
     $schedule->setFirstDate(new \DateTime($schedule->getFirstDate()->sub($diff_first)->format('Y-m-d H:i:s')));
     $schedule->setEndDate(new \DateTime($schedule->getEndDate()->sub($diff_end)->format('Y-m-d H:i:s')));
     $schedule->setLevel($original->getLevel());
-
-    echo $schedule->getFirstDate()->format('Y-m-d H:i:s')."<br>";
+    $schedule->setMaxAttend($original->getMaxAttend());
 
     $em->persist($schedule);
   }
