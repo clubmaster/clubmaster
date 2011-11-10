@@ -36,6 +36,10 @@ class DefaultController extends Controller
       )
     );
 
+    $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
+    $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onTopMenuRender, $event);
+    $menu = $event->getMenu();
+
     return $this->render('ClubMenuBundle:Default:topMenu.html.twig', array(
       'menu' => $menu
     ));

@@ -1,9 +1,15 @@
 services:
-  club.teambundle.left_menu_render_listener:
-    class: Club\TeamBundle\Listener\LeftMenuRenderListener
+  club.teambundle.left_menu_listener:
+    class: Club\TeamBundle\Listener\MenuListener
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+  club.teambundle.top_menu_listener:
+    class: Club\TeamBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+
   club.team.repetition.change:
     class: Club\TeamBundle\Listener\GenerateScheduleListener
     arguments: [@doctrine.orm.entity_manager]

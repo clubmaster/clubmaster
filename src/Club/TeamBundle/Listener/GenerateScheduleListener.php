@@ -144,6 +144,7 @@ class GenerateScheduleListener
     // make new schedule
     $schedule = new \Club\TeamBundle\Entity\Schedule();
     $schedule->setDescription($repetition->getSchedule()->getDescription());
+    $schedule->setMaxAttend($repetition->getSchedule()->getMaxAttend());
     $schedule->setFirstDate($new_first);
     $schedule->setEndDate($new_end);
     $schedule->setTeam($repetition->getSchedule()->getTeam());

@@ -154,6 +154,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $groups;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="\Club\TeamBundle\Entity\Schedule", mappedBy="users")
+     */
+    private $schedules;
+
 
     public function __toString()
     {
@@ -744,6 +749,66 @@ class User implements AdvancedUserInterface, \Serializable
               return true;
           }
         }
+      }
+
+      return false;
+    }
+
+    /**
+     * Add subscriptions
+     *
+     * @param Club\ShopBundle\Entity\Subscription $subscriptions
+     */
+    public function addSubscription(\Club\ShopBundle\Entity\Subscription $subscriptions)
+    {
+        $this->subscriptions[] = $subscriptions;
+    }
+
+    /**
+     * Add attends
+     *
+     * @param Club\EventBundle\Entity\Attend $attends
+     */
+    public function addAttend(\Club\EventBundle\Entity\Attend $attends)
+    {
+        $this->attends[] = $attends;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroup(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    }
+
+    /**
+     * Add schedules
+     *
+     * @param Club\TeamBundle\Entity\Schedule $schedules
+     */
+    public function addSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
+    {
+        $this->schedules[] = $schedules;
+    }
+
+    /**
+     * Get schedules
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getSchedules()
+    {
+        return $this->schedules;
+    }
+
+    public function isAttend(\Club\TeamBundle\Entity\Schedule $schedule)
+    {
+      foreach ($this->getSchedules() as $sch) {
+        if ($schedule->getId() == $sch->getId())
+          return true;
       }
 
       return false;

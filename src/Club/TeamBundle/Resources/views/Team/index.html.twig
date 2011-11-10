@@ -1,0 +1,41 @@
+{% extends "ClubTeamBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>Team</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Dato{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for schedule in schedules %}
+    <tr>
+      <td>{{ schedule.firstDate|date('Y-m-d H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
+      <td>{{ schedule.team.teamName }}</td>
+      <td>
+        {% if user.attend(schedule) %}
+          {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}
+        {% else %}
+          {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('club_team_team_attend', { 'id':schedule.id })} %}
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">{% trans %}There are no teams.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

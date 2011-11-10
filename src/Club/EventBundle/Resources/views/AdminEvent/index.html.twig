@@ -28,7 +28,7 @@
 
                 {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %} {% trans %}Edit{% endtrans %}&#160;
                 {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %} {% trans %}Delete{% endtrans %}&#160;
-                {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %} {% trans %}Attends{% endtrans %}&#160;
+                {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('admin_event_attend', {'id':event.id})} %} {% trans %}Attends{% endtrans %}&#160;
               </li>
             </ul>
           </td>

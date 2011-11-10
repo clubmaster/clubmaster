@@ -1,3 +1,7 @@
+_team:
+  resource: "@ClubTeamBundle/Controller/TeamController.php"
+  type: annotation
+
 _admin_team:
   resource: "@ClubTeamBundle/Controller/AdminTeamController.php"
   type: annotation

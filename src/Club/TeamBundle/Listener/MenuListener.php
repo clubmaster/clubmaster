@@ -2,7 +2,7 @@
 
 namespace Club\TeamBundle\Listener;
 
-class LeftMenuRenderListener
+class MenuListener
 {
   private $router;
   private $security_context;
@@ -26,6 +26,18 @@ class LeftMenuRenderListener
         'items' => array()
       );
     }
+
+    $event->setMenu($menu);
+  }
+
+  public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+  {
+    $menu = $event->getMenu();
+
+    $menu[] = array(
+      'name' => $this->translator->trans('Team'),
+      'route' => $this->router->generate('club_team_team_index')
+    );
 
     $event->setMenu($menu);
   }

@@ -85,13 +85,13 @@ class Schedule
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_team_instructor")
+     * @ORM\JoinTable(name="club_team_schedule_instructor")
      */
     private $instructors;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_team_user")
+     * @ORM\JoinTable(name="club_team_schedule_user")
      */
     private $users;
 
