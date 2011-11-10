@@ -50,26 +50,36 @@ class AdminRepetitionController extends Controller
     $repetition->setSchedule($schedule);
     $repetition->setFirstDate($schedule->getFirstDate());
 
+    $schedule->setRepetition($repetition);
+
     $repetition->setType('daily');
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
-    if (($form_daily = $this->process($repetition, $form_daily)) instanceOf RedirectResponse)
+    if (($form_daily = $this->process($repetition, $form_daily)) instanceOf RedirectResponse) {
+      $em->persist($schedule);
       return $form_daily;
+    }
 
     $repetition->setType('weekly');
     $repetition->setDaysInWeek(array($schedule->getFirstDate()->format('N')));
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
-    if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse)
+    if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse) {
+      $em->persist($schedule);
       return $form_weekly;
+    }
 
     $repetition->setType('monthly');
     $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
-    if (($form_monthly = $this->process($repetition, $form_monthly)) instanceOf RedirectResponse)
+    if (($form_monthly = $this->process($repetition, $form_monthly)) instanceOf RedirectResponse) {
+      $em->persist($schedule);
       return $form_monthly;
+    }
 
     $repetition->setType('yearly');
     $form_yearly = $this->createForm(new \Club\TeamBundle\Form\RepetitionYearly(), $repetition);
-    if (($form_yearly = $this->process($repetition, $form_yearly)) instanceOf RedirectResponse)
+    if (($form_yearly = $this->process($repetition, $form_yearly)) instanceOf RedirectResponse) {
+      $em->persist($schedule);
       return $form_yearly;
+    }
 
     return array(
       'schedule' => $schedule,
@@ -160,21 +170,22 @@ class AdminRepetitionController extends Controller
   public function editAllAction($team_id, $schedule_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
 
-    $old_rep = $repetition->getSchedule()->getSchedule();
-    echo $old_rep->getId();
-    die();
-    $repetition->getSchedule()->setRepetition($repetition);
+    $repetition = $em->find('ClubTeamBundle:Repetition', $id);
+    $parent = $repetition->getSchedule()->getSchedule();
+    $old_rep = $parent->getRepetition();
+
+    $parent->setRepetition($repetition);
+    $repetition->getSchedule()->setRepetition(null);
 
     $em->persist($repetition);
     $em->remove($old_rep);
 
     $em->flush();
 
-    return array(
-      'repetition' => $repetition
-    );
+    return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+      'team_id' => $repetition->getSchedule()->getTeam()->getId()
+    )));
   }
 
   /**

@@ -88,7 +88,7 @@ class Schedule
 
     /**
      * @ORM\OneToOne(targetEntity="Repetition")
-     * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id")
      */
     private $repetition;
 
@@ -329,7 +329,7 @@ class Schedule
      *
      * @param Club\TeamBundle\Entity\Repetition $repetition
      */
-    public function setRepetition(\Club\TeamBundle\Entity\Repetition $repetition)
+    public function setRepetition(\Club\TeamBundle\Entity\Repetition $repetition=null)
     {
         $this->repetition = $repetition;
     }
@@ -337,7 +337,7 @@ class Schedule
     /**
      * Get repetition
      *
-     * @return Club\TeamBundle\Entity\Repetition 
+     * @return Club\TeamBundle\Entity\Repetition
      */
     public function getRepetition()
     {
