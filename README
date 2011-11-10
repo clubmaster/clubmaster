@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-04
-:Revision:  10
+:Date:      2011-11-10
+:Revision:  11
 
 
 Feedback
@@ -265,3 +265,38 @@ Method: GET
 Header: API_KEY
 
 Success response will be HTTP response code 200, and a json response with specified user
+
+
+Get all teams
+~~~~~~~~~~~~~
+
+URL: /api/teams/
+
+Method: GET
+
+Success response will be HTTP response code 200, and a json response with all teams
+
+
+Attend team
+~~~~~~~~~~~
+
+URL: /api/teams/{id}/attend
+
+Method: POST
+
+Use basic access authentication for the user who has to authenticate.
+
+Success response will be HTTP response code 200
+
+
+Unattend team
+~~~~~~~~~~~~~
+
+URL: /api/teams/{id}/unattend
+
+Method: POST
+
+Use basic access authentication for the user who has to authenticate.
+
+Success response will be HTTP response code 200
+
