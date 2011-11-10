@@ -21,7 +21,7 @@
   {% for schedule in schedules %}
     <tr>
       <td>{{ schedule.firstDate|date('Y-m-d H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
-      <td>{{ schedule.team.teamName }}</td>
+      <td>{{ schedule.team.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
       <td>
         {% if user.attend(schedule) %}
           {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}
