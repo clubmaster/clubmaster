@@ -24,7 +24,6 @@ class RepetitionMonthly extends AbstractType
     $builder->add('day_of_month');
 
     $range = array(
-      '' => '',
       'first' => 'First week',
       'second' => 'Second week',
       'third' => 'Third week',

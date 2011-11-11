@@ -5,7 +5,6 @@ most not be possible to change password on demo page
 == TEAM BUNDLE ==
 fix schedule instructors
 make sure you have subscription to subscribe to a team
-make sure repetition monthly is valid, either days of month or week is set
 
 == BEFORE RELEASE ==
 add role_staff on release

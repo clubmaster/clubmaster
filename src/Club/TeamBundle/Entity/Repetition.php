@@ -4,6 +4,8 @@ namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContext;
+
 
 /**
  * Club\TeamBundle\Entity\Repetition
@@ -11,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="club_team_repetition")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\RepetitionRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Assert\Callback(methods={"isValid"})
  */
 class Repetition
 {
@@ -350,5 +353,19 @@ class Repetition
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    public function isValid(ExecutionContext $context)
+    {
+      switch ($this->getType()) {
+      case 'monthly':
+        if ($this->getDayOfMonth() != true && $this->getWeek() == null) {
+          $property_path = $context->getPropertyPath() . '.day_of_month';
+          $context->setPropertyPath($property_path);
+          $context->addViolation('Choose either day of month or a day of week!', array(), null);
+
+        }
+        break;
+      }
     }
 }
