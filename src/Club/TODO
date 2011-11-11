@@ -3,7 +3,6 @@ improve user filter design
 most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
-remove clubmaster from location array
 fix regenerate occurs
 edit all repetition on a child
 cannot regenerate instances with already child
