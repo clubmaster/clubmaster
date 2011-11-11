@@ -278,10 +278,12 @@ class AdminRepetitionController extends Controller
 
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-          if ($is_new && !$repetition->getSchedule()->getSchedule()) {
+          $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
+
+          if (!count($parent->getSchedules())) {
             $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
             $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
-          } elseif ($repetition->getSchedule()->getSchedule()) {
+          } else {
 
             return $this->redirect($this->generateUrl('club_team_adminrepetition_editchoice', array(
               'team_id' => $repetition->getSchedule()->getTeam()->getId(),

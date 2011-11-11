@@ -11,13 +11,23 @@ class GenerateScheduleListener
   {
     $this->em = $em;
     $this->future_occurs = $future_occurs;
+    $this->occur = 0;
+  }
+
+  public function onScheduleTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  {
   }
 
   public function onRepetitionChange(\Club\TeamBundle\Event\FilterRepetitionEvent $event)
   {
     $repetition = $event->getRepetition();
-    // set start time
     $start = $repetition->getFirstDate();
+
+    $this->generateSchedules($repetition, $start);
+  }
+
+  public function generateSchedules(\Club\TeamBundle\Entity\Repetition $repetition, \DateTime $start)
+  {
     // set end time
     if ($repetition->getLastDate() != '') {
       $end = $repetition->getLastDate();
@@ -25,8 +35,6 @@ class GenerateScheduleListener
       $end = new \DateTime();
       $end->add(new \DateInterval('P10Y'));
     }
-    // set occurs
-    $this->occur = 0;
     // get diff interval
     $diff = $repetition->getSchedule()->getFirstDate()->diff($repetition->getSchedule()->getEndDate());
 
@@ -117,6 +125,10 @@ class GenerateScheduleListener
 
   private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Repetition $repetition)
   {
+    // only count when we are in the future to get the following
+    if ($start->getTimestamp() > time())
+      $this->occur++;
+
     $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
 
     $schedule = $this->em->createQueryBuilder()
@@ -129,7 +141,6 @@ class GenerateScheduleListener
       ->getQuery()
       ->getResult();
 
-    $this->occur++;
     if (count($schedule))
       return;
 
