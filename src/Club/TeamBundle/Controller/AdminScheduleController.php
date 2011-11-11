@@ -446,12 +446,22 @@ class AdminScheduleController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
+    $repetition = $parent->getRepetition();
+    $repetition->setSchedule(null);
+
+    $em->persist($repetition);
+    $em->flush();
+
     $em->createQueryBuilder()
       ->delete('ClubTeamBundle:Schedule','s')
-      ->where('s.id = :id')
-      ->setParameter('id', $schedule->getId())
+      ->where('(s.id = :id OR s.schedule = :id)')
+      ->setParameter('id', $parent->getId())
       ->getQuery()
-      ->getResult();
+      ->execute();
+
+    $em->remove($repetition);
+    $em->flush();
 
     return true;
   }
