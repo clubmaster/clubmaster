@@ -43,4 +43,20 @@ class Event extends EntityRepository
       ->getResult();
   }
 
+  public function getAllBetween(\DateTime $start, \DateTime $end=null)
+  {
+    $qb = $this->_em->createQueryBuilder()
+      ->select('e')
+      ->from('ClubEventBundle:Event','e')
+      ->where('e.start_date >= :start_date')
+      ->setParameter('start_date', $start->format('Y-m-d H:i:s'));
+
+    if ($end != null) {
+      $qb
+      ->andWhere('e.start_date <= :stop_date')
+      ->setParameter('stop_date', $end->format('Y-m-d H:i:s'));
+    }
+
+    return $qb->getQuery()->getResult();
+  }
 }

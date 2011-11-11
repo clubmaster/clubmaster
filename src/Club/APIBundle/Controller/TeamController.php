@@ -14,7 +14,7 @@ class TeamController extends Controller
   /**
    * @Route("/", defaults={"start" = null, "end" = null})
    * @Route("/{start}", defaults={"end" = null})
-   * @Route("/{start}/{end}", defaults={"start" = null, "end" = null})
+   * @Route("/{start}/{end}")
    * @Method("GET")
    */
   public function indexAction($start, $end)
@@ -22,17 +22,8 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $res = array();
 
-    if ($start == null) {
-      $start = new \DateTime(date('Y-m-d 00:00:00'));
-    } else {
-      $start = new \DateTime($start.' 00:00:00');
-    }
-
-    if ($end == null) {
-      $end = new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')));
-    } else {
-      $end = new \DateTime($end.' 23:59:59');
-    }
+    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
+    $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
 
     foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end) as $schedule) {
       $res[] = $schedule->toArray();

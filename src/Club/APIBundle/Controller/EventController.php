@@ -12,16 +12,20 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class EventController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("/", defaults={"start" = null, "end" = null})
+   * @Route("/{start}", defaults={"end" = null})
+   * @Route("/{start}/{end}")
    * @Method("GET")
    */
-  public function indexAction()
+  public function indexAction($start, $end)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $events = $em->getRepository('ClubEventBundle:Event')->getComing();
-
     $res = array();
-    foreach ($events as $event) {
+
+    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
+    $end = ($end == null) ? null : new \DateTime($end.' 23:59:59');
+
+    foreach ($em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end) as $event) {
       $res[] = $event->toArray();
     }
 
