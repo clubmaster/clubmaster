@@ -3,10 +3,7 @@ improve user filter design
 most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
-cannot regenerate instances with already child
 fix schedule instructors
-fix all copy of datetime objects, use CLONE objects instead
-add constraint, that you cannot attend expired teams
 make sure you have subscription to subscribe to a team
 make sure repetition monthly is valid, either days of month or week is set
 

@@ -4,6 +4,8 @@ namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContext;
+
 
 /**
  * Club\TeamBundle\Entity\Schedule
@@ -11,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="club_team_schedule")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Assert\Callback(methods={"isFull","isExpired"})
  */
 class Schedule
 {
@@ -441,5 +444,23 @@ class Schedule
     public function getLocation()
     {
         return $this->location;
+    }
+
+    public function isFull(ExecutionContext $context)
+    {
+      if (count($this->getUsers()) > $this->getMaxAttend()) {
+        $property_path = $context->getPropertyPath() . '.users';
+        $context->setPropertyPath($property_path);
+        $context->addViolation('The team is already full!', array(), null);
+      }
+    }
+
+    public function isExpired(ExecutionContext $context)
+    {
+      if ($this->getFirstDate()->getTimestamp() < time()) {
+        $property_path = $context->getPropertyPath() . '.users';
+        $context->setPropertyPath($property_path);
+        $context->addViolation('The team is already started!', array(), null);
+      }
     }
 }
