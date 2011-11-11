@@ -5,10 +5,12 @@ namespace Club\TeamBundle\Listener;
 class GenerateScheduleListener
 {
   private $em;
+  private $future_occurs;
 
-  public function __construct($em)
+  public function __construct($em, $future_occurs)
   {
     $this->em = $em;
+    $this->future_occurs = $future_occurs;
   }
 
   public function onRepetitionChange(\Club\TeamBundle\Event\FilterRepetitionEvent $event)
@@ -105,7 +107,7 @@ class GenerateScheduleListener
         break;
       }
 
-      if ($this->occur > 25)
+      if ($this->occur > $this->future_occurs)
         break;
     }
 

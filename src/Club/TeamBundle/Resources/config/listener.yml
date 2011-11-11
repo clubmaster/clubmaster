@@ -9,9 +9,8 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
-
   club.team.repetition.change:
     class: Club\TeamBundle\Listener\GenerateScheduleListener
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.entity_manager, %club_team.future_occurs%]
     tags:
       - { name: kernel.event_listener, event: repetition.change, method: onRepetitionChange }

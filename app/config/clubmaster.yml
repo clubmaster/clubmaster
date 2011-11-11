@@ -4,3 +4,6 @@ parameters:
 
 club_api:
     api_key: THIS_IS_A_DEMO_KEY
+
+club_team:
+    future_occurs: 25
