@@ -14,10 +14,3 @@ make sure repetition monthly is valid, either days of month or week is set
 add role_staff on release
 add group staff on release
 add new team task
-
-== CHECKLIST ==
-## check generate ##
-generate never
-generate max occurs
-generate end date
-

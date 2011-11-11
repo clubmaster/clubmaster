@@ -12,6 +12,7 @@ class GenerateScheduleListener
     $this->em = $em;
     $this->future_occurs = $future_occurs;
     $this->occur = 0;
+    $this->future_occur = 0;
   }
 
   public function onTeamTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
@@ -46,7 +47,7 @@ class GenerateScheduleListener
     // get diff interval
     $diff = $schedule->getFirstDate()->diff($schedule->getEndDate());
 
-    while ($start->getTimestamp() < $end->getTimestamp()) {
+    while ($start->getTimestamp() <= $end->getTimestamp()) {
       switch ($schedule->getRepetition()->getType()) {
       case 'daily':
         $this->addSchedule($start, $diff, $schedule);
@@ -123,7 +124,10 @@ class GenerateScheduleListener
         break;
       }
 
-      if ($this->occur > $this->future_occurs)
+      if ($this->future_occur > $this->future_occurs)
+        break;
+
+      if ($schedule->getRepetition()->getEndOccurrences() > 0 & $this->occur >= $schedule->getRepetition()->getEndOccurrences())
         break;
     }
 
@@ -135,7 +139,8 @@ class GenerateScheduleListener
   {
     // only count when we are in the future to get the following
     if ($start->getTimestamp() > time())
-      $this->occur++;
+      $this->future_occur++;
+    $this->occur++;
 
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
 
