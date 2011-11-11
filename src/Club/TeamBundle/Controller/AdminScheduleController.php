@@ -361,6 +361,7 @@ class AdminScheduleController extends Controller
     $schedule->setFirstDate(new \DateTime($schedule->getFirstDate()->sub($diff_first)->format('Y-m-d H:i:s')));
     $schedule->setEndDate(new \DateTime($schedule->getEndDate()->sub($diff_end)->format('Y-m-d H:i:s')));
     $schedule->setLevel($original->getLevel());
+    $schedule->setLocation($original->getLocation());
     $schedule->setMaxAttend($original->getMaxAttend());
 
     $em->persist($schedule);

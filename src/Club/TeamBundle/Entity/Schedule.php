@@ -73,6 +73,11 @@ class Schedule
     private $team;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
@@ -416,5 +421,25 @@ class Schedule
       }
 
       return $res;
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

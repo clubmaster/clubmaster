@@ -149,6 +149,7 @@ class GenerateScheduleListener
     $schedule->setEndDate($new_end);
     $schedule->setTeam($repetition->getSchedule()->getTeam());
     $schedule->setLevel($repetition->getSchedule()->getLevel());
+    $schedule->setLocation($repetition->getSchedule()->getLocation());
     $schedule->setSchedule($parent);
 
     $this->em->persist($schedule);

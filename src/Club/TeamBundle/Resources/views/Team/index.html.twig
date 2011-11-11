@@ -7,7 +7,7 @@
 <table class="style">
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -19,12 +19,13 @@
 
     {% if date != prev_date %}
     <tr>
-      <th colspan="3">{{ date }}</th>
+      <th colspan="4">{{ date }}</th>
     </tr>
     {% endif %}
     <tr>
       <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
       <td>{{ schedule.team.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
+      <td>{{ schedule.location.locationName }}</td>
       <td>
         {% if user.attend(schedule) %}
           {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}

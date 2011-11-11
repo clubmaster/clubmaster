@@ -3,7 +3,6 @@ improve user filter design
 most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
-add priority to level
 add role_staff on release
 add group staff on release
 occurs in the future is hardcoded
@@ -17,4 +16,3 @@ change repetition form for parent does not work
 add team groups
 add constraint, that you cannot attend expired teams
 make sure you have subscription to subscribe to a team
-add location to team

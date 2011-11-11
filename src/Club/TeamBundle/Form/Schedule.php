@@ -14,6 +14,7 @@ class Schedule extends AbstractType
     $builder->add('first_date');
     $builder->add('end_date');
     $builder->add('level');
+    $builder->add('location');
   }
 
   public function getDefaultOptions(array $options)
