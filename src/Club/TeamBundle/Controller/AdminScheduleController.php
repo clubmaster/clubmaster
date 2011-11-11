@@ -269,11 +269,16 @@ class AdminScheduleController extends Controller
         foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllPast($schedule) as $past) {
           if (!isset($new_parent)) {
             $new_parent = $this->copyParent($parent, $past);
+            $new_parent->getRepetition()->setLastDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+            $em->persist($new_parent);
+
           } else {
             $past->setSchedule($new_parent);
           }
-
           $em->persist($past);
+
+          $parent->getRepetition()->setFirstDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+          $em->persist($parent);
         }
 
         foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
@@ -287,6 +292,10 @@ class AdminScheduleController extends Controller
         };
 
         $schedule = $this->copyParent($parent, $schedule);
+        $parent->getRepetition()->setLastDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+        $schedule->getRepetition()->setFirstDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+
+        $em->persist($parent);
         $em->persist($schedule);
       }
     }
@@ -405,27 +414,25 @@ class AdminScheduleController extends Controller
     return $schedule;
   }
 
-  private function copyParent(\Club\TeamBundle\Entity\Schedule $old_parent, \Club\TeamBundle\Entity\Schedule $schedule)
+  private function copyParent(\Club\TeamBundle\Entity\Schedule $old, \Club\TeamBundle\Entity\Schedule $schedule)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $schedule->setSchedule(null);
 
-    $repetition = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
-      'schedule' => $old_parent->getId()
-    ));
     $rep = new \Club\TeamBundle\Entity\Repetition();
-    $rep->setType($repetition->getType());
-    $rep->setFirstDate($repetition->getFirstDate());
-    $rep->setLastDate($repetition->getLastDate());
-    $rep->setEndOccurrences($repetition->getEndOccurrences());
-    $rep->setRepeatEvery($repetition->getRepeatEvery());
-    $rep->setDaysInWeek($repetition->getDaysInWeek());
-    $rep->setDayOfMonth($repetition->getDayOfMonth());
-    $rep->setWeek($repetition->getWeek());
+    $rep->setType($old->getRepetition()->getType());
+    $rep->setFirstDate($old->getRepetition()->getFirstDate());
+    $rep->setLastDate($old->getRepetition()->getLastDate());
+    $rep->setEndOccurrences($old->getRepetition()->getEndOccurrences());
+    $rep->setRepeatEvery($old->getRepetition()->getRepeatEvery());
+    $rep->setDaysInWeek($old->getRepetition()->getDaysInWeek());
+    $rep->setDayOfMonth($old->getRepetition()->getDayOfMonth());
+    $rep->setWeek($old->getRepetition()->getWeek());
     $rep->setSchedule($schedule);
-
     $em->persist($rep);
+
+    $schedule->setRepetition($rep);
+    $em->persist($schedule);
 
     return $schedule;
   }
