@@ -64,10 +64,11 @@ class AdminScheduleController extends Controller
   public function newAction($team_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $team = $em->find('ClubTeamBundle:Team', $team_id);
+
     $schedule = new \Club\TeamBundle\Entity\Schedule();
     $schedule->setTeam($team);
+    $schedule->setDescription($team->getDescription());
     $schedule->setFirstDate(new \DateTime());
     $schedule->setEndDate(new \DateTime());
     $schedule->setMaxAttend(15);
