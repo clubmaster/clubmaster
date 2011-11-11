@@ -391,9 +391,16 @@ class Schedule
      *
      * @param Club\UserBundle\Entity\User $users
      */
-    public function addUser(\Club\UserBundle\Entity\User $users)
+    public function addUser(\Club\UserBundle\Entity\User $user)
     {
-        $this->users[] = $users;
+      foreach ($user->getSubscriptions() as $subscription) {
+        if ($subscription->hasAttribute('team')) {
+          $this->users[] = $user;
+          return true;
+        }
+      }
+
+      return false;
     }
 
     /**

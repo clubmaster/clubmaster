@@ -45,18 +45,27 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
-    $schedule->addUser($this->get('security.context')->getToken()->getUser());
-    $errors = $this->get('validator')->validate($schedule);
+    if (!$schedule->addUser($this->get('security.context')->getToken()->getUser())) {
+      $res = array('You do not have the right permission to use teams.');
 
-    if (count($errors)) {
-      $res = array();
-      foreach ($errors as $error) {
-        $res[] = $error->getMessage();
-      }
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
       $response->headers->set('Access-Control-Allow-Origin', '*');
 
       return $response;
+
+    } else {
+      $errors = $this->get('validator')->validate($schedule);
+
+      if (count($errors)) {
+        $res = array();
+        foreach ($errors as $error) {
+          $res[] = $error->getMessage();
+        }
+        $response = new Response($this->get('club_api.encode')->encode($res), 403);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
+      }
     }
 
     $em->persist($schedule);
