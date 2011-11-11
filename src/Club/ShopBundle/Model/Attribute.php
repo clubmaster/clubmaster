@@ -47,6 +47,7 @@ class Attribute
 
   public $location;
 
+  public $team;
 
   public function isValid(ExecutionContext $context)
   {

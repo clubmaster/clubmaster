@@ -16,6 +16,7 @@ class LoadAttributeData implements FixtureInterface
     $attributes[] = 'expire_date';
     $attributes[] = 'allowed_pauses';
     $attributes[] = 'location';
+    $attributes[] = 'team';
 
     foreach ($attributes as $attr) {
       $a = new \Club\ShopBundle\Entity\Attribute();

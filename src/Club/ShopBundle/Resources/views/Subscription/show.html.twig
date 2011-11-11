@@ -25,6 +25,14 @@
         {% else %}This subscription will not be automatically renewed.{% endif %}
       </td>
     </tr>
+    <tr>
+      <th>Team:</th>
+      <td>
+        {% if subscription.hasAttribute('team') %}This subscription allow you to use teams.
+        {% else %}This subscription does not allow you to use teams.{% endif %}
+      </td>
+    </tr>
+
   </tbody>
 </table>
 
