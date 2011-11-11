@@ -193,15 +193,18 @@ class AdminRepetitionController extends Controller
         }
 
       } else {
-        /*
         foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
-          $this->updateSchedule($sch, $schedule);
           $sch->setSchedule($schedule);
+          $em->persist($sch);
         };
 
-        $schedule = $this->copyParent($parent, $schedule);
+        $schedule->setRepetition($repetition);
+        $schedule->setSchedule(null);
+        $parent->getRepetition()->setLastDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+        $schedule->getRepetition()->setFirstDate(new \DateTime($schedule->getFirstDate()->format('Y-m-d 00:00:00')));
+
+        $em->persist($parent);
         $em->persist($schedule);
-         */
       }
     }
 

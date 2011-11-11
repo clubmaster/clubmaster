@@ -3,12 +3,9 @@ improve user filter design
 most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
-edit all repetition on a child
 cannot regenerate instances with already child
 fix schedule instructors
 fix all copy of datetime objects, use CLONE objects instead
-when generate schedules, make sure to generate 25 occurs ahead of today
-change repetition form for parent does not work
 add constraint, that you cannot attend expired teams
 make sure you have subscription to subscribe to a team
 make sure repetition monthly is valid, either days of month or week is set
@@ -35,7 +32,7 @@ OK - første
 OK - første
 OK - før
 OK - parent
-efter
+OK - efter
 
 ## check delete all ##
 OK - første
