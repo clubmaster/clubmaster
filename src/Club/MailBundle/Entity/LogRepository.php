@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\MailBundle\Repository;
+namespace Club\MailBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
