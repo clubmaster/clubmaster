@@ -23,7 +23,12 @@ class MenuListener
       $menu['team'] = array(
         'name' => $this->translator->trans('Team'),
         'route' => $this->router->generate('club_team_adminteam_index'),
-        'items' => array()
+        'items' => array(
+          array(
+            'name' => $this->translator->trans('Level'),
+            'route' => $this->router->generate('club_team_adminlevel_index')
+          )
+        )
       );
     }
 
