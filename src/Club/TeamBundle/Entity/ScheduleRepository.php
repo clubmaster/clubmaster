@@ -55,4 +55,31 @@ class ScheduleRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getAllParent()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubTeamBundle:Schedule', 's')
+      ->where('s.schedule IS NULL')
+      ->getQuery()
+      ->getResult();
+  }
+
+  public function getPrevSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+  {
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
+
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubTeamBundle:Schedule','s')
+      ->where('s.first_date <= :date')
+      ->andWhere('(s.id = :id OR s.schedule = :id)')
+      ->setMaxResults(1)
+      ->orderBy('s.first_date', 'DESC')
+      ->setParameter('date', date('Y-m-d H:i:s'))
+      ->setParameter('id', $parent->getId())
+      ->getQuery()
+      ->getSingleResult();
+  }
 }

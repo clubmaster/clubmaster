@@ -13,7 +13,7 @@ class LoadTaskData implements FixtureInterface
     $task->setEnabled(1);
     $task->setLocked(0);
     $task->setNextRunAt(new \DateTime());
-    $task->setTaskInterval('T1H');
+    $task->setTaskInterval('1D');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onGroupTask');
     $manager->persist($task);
@@ -76,6 +76,16 @@ class LoadTaskData implements FixtureInterface
     $task->setTaskInterval('T15M');
     $task->setEvent('\Club\TaskBundle\Event\Events');
     $task->setMethod('onMessageTask');
+    $manager->persist($task);
+
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Generate new team schedules');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('1D');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onTeamTask');
     $manager->persist($task);
 
     $manager->flush();

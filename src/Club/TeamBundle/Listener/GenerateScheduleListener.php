@@ -14,65 +14,73 @@ class GenerateScheduleListener
     $this->occur = 0;
   }
 
-  public function onScheduleTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  public function onTeamTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllParent();
+    foreach ($schedules as $schedule) {
+      $res = $this->em->getRepository('ClubTeamBundle:Schedule')->getPrevSchedule($schedule);
+      $parent = ($res->getSchedule()) ? $res->getSchedule() : $res;
+
+      $start = $parent->getRepetition()->getFirstDate();
+      $this->generateSchedules($res, $start);
+    }
   }
 
   public function onRepetitionChange(\Club\TeamBundle\Event\FilterRepetitionEvent $event)
   {
-    $repetition = $event->getRepetition();
-    $start = $repetition->getFirstDate();
+    $schedule = $event->getRepetition()->getSchedule();
+    $start = $schedule->getRepetition()->getFirstDate();
 
-    $this->generateSchedules($repetition, $start);
+    $this->generateSchedules($schedule, $start);
   }
 
-  public function generateSchedules(\Club\TeamBundle\Entity\Repetition $repetition, \DateTime $start)
+  public function generateSchedules(\Club\TeamBundle\Entity\Schedule $schedule, \DateTime $start)
   {
     // set end time
-    if ($repetition->getLastDate() != '') {
-      $end = $repetition->getLastDate();
+    if ($schedule->getRepetition()->getLastDate() != '') {
+      $end = $schedule->getRepetition()->getLastDate();
     } else {
       $end = new \DateTime();
       $end->add(new \DateInterval('P10Y'));
     }
     // get diff interval
-    $diff = $repetition->getSchedule()->getFirstDate()->diff($repetition->getSchedule()->getEndDate());
+    $diff = $schedule->getFirstDate()->diff($schedule->getEndDate());
 
     while ($start->getTimestamp() < $end->getTimestamp()) {
-      switch ($repetition->getType()) {
+      switch ($schedule->getRepetition()->getType()) {
       case 'daily':
-        $this->addSchedule($start, $diff, $repetition);
+        $this->addSchedule($start, $diff, $schedule);
 
-        for ($i=1; $i < $repetition->getRepeatEvery(); $i++) {
+        for ($i=1; $i < $schedule->getRepetition()->getRepeatEvery(); $i++) {
           $start->add(new \DateInterval('P1D'));
-          $this->deleteSchedule($start, $repetition);
+          $this->deleteSchedule($start, $schedule);
         }
         $start->add(new \DateInterval('P1D'));
         break;
       case 'weekly':
         $curr_day = $start->format('N');
         while ($curr_day < 8) {
-          if (in_array($start->format('N'), $repetition->getDaysInWeek())) {
-            $this->addSchedule($start, $diff, $repetition);
+          if (in_array($start->format('N'), $schedule->getRepetition()->getDaysInWeek())) {
+            $this->addSchedule($start, $diff, $schedule);
           } else {
-            $this->deleteSchedule($start, $repetition);
+            $this->deleteSchedule($start, $schedule);
           }
 
           $curr_day++;
           $start->add(new \DateInterval('P1D'));
         }
 
-        for ($i=0; $i < (($repetition->getRepeatEvery()-1)*7); $i++) {
+        for ($i=0; $i < (($schedule->getRepetition()->getRepeatEvery()-1)*7); $i++) {
           $start->add(new \DateInterval('P1D'));
-          $this->deleteSchedule($start, $repetition);
+          $this->deleteSchedule($start, $schedule);
         }
         break;
       case 'monthly':
-        if ($repetition->getDayOfMonth()) {
-          $this->addSchedule($start, $diff, $repetition);
+        if ($schedule->getRepetition()->getDayOfMonth()) {
+          $this->addSchedule($start, $diff, $schedule);
 
           $t1 = clone $start;
-          $start->add(new \DateInterval('P'.$repetition->getRepeatEvery().'M'));
+          $start->add(new \DateInterval('P'.$schedule->getRepetition()->getRepeatEvery().'M'));
           $t2 = clone $start;
 
         } else {
@@ -80,38 +88,38 @@ class GenerateScheduleListener
           if (!isset($init_time)) {
             $init_time = $start->getTimestamp();
 
-            $temp = new \DateTime($repetition->getWeek().' '.$repetition->getSchedule()->getFirstDate()->format('D').' of '.$start->format('F Y'));
+            $temp = new \DateTime($schedule->getRepetition()->getWeek().' '.$schedule->getFirstDate()->format('D').' of '.$start->format('F Y'));
             $start = new \DateTime($temp->format('Y-m-d').' '.$start->format('H:i:s'));
 
             if ($init_time > $start->getTimestamp()) {
               $start->add(new \DateInterval('P1M'));
-              $temp = new \DateTime($repetition->getWeek().' '.$repetition->getSchedule()->getFirstDate()->format('D').' of '.$start->format('F Y'));
+              $temp = new \DateTime($schedule->getRepetition()->getWeek().' '.$schedule->getFirstDate()->format('D').' of '.$start->format('F Y'));
               $start = new \DateTime($temp->format('Y-m-d').' '.$start->format('H:i:s'));
             }
           } else {
-            $temp = new \DateTime($repetition->getWeek().' '.$repetition->getSchedule()->getFirstDate()->format('D').' of '.$start->format('F Y'));
+            $temp = new \DateTime($schedule->getRepetition()->getWeek().' '.$schedule->getFirstDate()->format('D').' of '.$start->format('F Y'));
             $start = new \DateTime($temp->format('Y-m-d').' '.$start->format('H:i:s'));
           }
 
-          $this->addSchedule($start, $diff, $repetition);
+          $this->addSchedule($start, $diff, $schedule);
 
           $t1 = clone $start;
-          $start->add(new \DateInterval('P'.$repetition->getRepeatEvery().'M'));
-          $temp = new \DateTime($repetition->getWeek().' '.$repetition->getSchedule()->getFirstDate()->format('D').' of '.$start->format('F Y'));
+          $start->add(new \DateInterval('P'.$schedule->getRepetition()->getRepeatEvery().'M'));
+          $temp = new \DateTime($schedule->getRepetition()->getWeek().' '.$schedule->getFirstDate()->format('D').' of '.$start->format('F Y'));
           $start = new \DateTime($temp->format('Y-m-d').' '.$start->format('H:i:s'));
           $t2 = clone $start;
         }
 
-        $this->deleteBetween($t1, $repetition, $t2);
+        $this->deleteBetween($t1, $schedule, $t2);
         break;
       case 'yearly':
-        $this->addSchedule($start, $diff, $repetition);
+        $this->addSchedule($start, $diff, $schedule);
 
         $t1 = clone $start;
-        $start->add(new \DateInterval('P'.$repetition->getRepeatEvery().'Y'));
+        $start->add(new \DateInterval('P'.$schedule->getRepetition()->getRepeatEvery().'Y'));
         $t2 = clone $start;
 
-        $this->deleteBetween($t1, $repetition, $t2);
+        $this->deleteBetween($t1, $schedule, $t2);
         break;
       }
 
@@ -119,19 +127,19 @@ class GenerateScheduleListener
         break;
     }
 
-    $this->deleteBetween($start, $repetition);
+    $this->deleteBetween($start, $schedule);
     $this->em->flush();
   }
 
-  private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Repetition $repetition)
+  private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Schedule $schedule)
   {
     // only count when we are in the future to get the following
     if ($start->getTimestamp() > time())
       $this->occur++;
 
-    $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
 
-    $schedule = $this->em->createQueryBuilder()
+    $res = $this->em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule', 's')
       ->where('s.first_date = :date')
@@ -141,13 +149,13 @@ class GenerateScheduleListener
       ->getQuery()
       ->getResult();
 
-    if (count($schedule))
+    if (count($res))
       return;
 
     // find new times
-    $new_format = $start->format('Y-m-d').' '.$repetition->getSchedule()->getFirstDate()->format('H:i:s');
+    $new_format = $start->format('Y-m-d').' '.$schedule->getFirstDate()->format('H:i:s');
 
-    if ($new_format == $repetition->getSchedule()->getFirstDate()->format('Y-m-d H:i:s'))
+    if ($new_format == $schedule->getFirstDate()->format('Y-m-d H:i:s'))
       return;
 
     $new_first = new \DateTime($new_format);
@@ -155,24 +163,24 @@ class GenerateScheduleListener
     $new_end->add($diff);
 
     // make new schedule
-    $schedule = new \Club\TeamBundle\Entity\Schedule();
-    $schedule->setDescription($repetition->getSchedule()->getDescription());
-    $schedule->setMaxAttend($repetition->getSchedule()->getMaxAttend());
-    $schedule->setFirstDate($new_first);
-    $schedule->setEndDate($new_end);
-    $schedule->setTeam($repetition->getSchedule()->getTeam());
-    $schedule->setLevel($repetition->getSchedule()->getLevel());
-    $schedule->setLocation($repetition->getSchedule()->getLocation());
-    $schedule->setSchedule($parent);
+    $new = new \Club\TeamBundle\Entity\Schedule();
+    $new->setDescription($schedule->getDescription());
+    $new->setMaxAttend($schedule->getMaxAttend());
+    $new->setFirstDate($new_first);
+    $new->setEndDate($new_end);
+    $new->setTeam($schedule->getTeam());
+    $new->setLevel($schedule->getLevel());
+    $new->setLocation($schedule->getLocation());
+    $new->setSchedule($parent);
 
-    $this->em->persist($schedule);
+    $this->em->persist($new);
 
-    return $schedule;
+    return $new;
   }
 
-  private function deleteSchedule(\DateTime $start, \Club\TeamBundle\Entity\Repetition $repetition)
+  private function deleteSchedule(\DateTime $start, \Club\TeamBundle\Entity\Schedule $schedule)
   {
-    $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
 
     $schedule = $this->em->createQueryBuilder()
       ->delete('ClubTeamBundle:Schedule', 's')
@@ -186,9 +194,9 @@ class GenerateScheduleListener
     return true;
   }
 
-  private function deleteBetween(\DateTime $start, \Club\TeamBundle\Entity\Repetition $repetition, \DateTime $end=null)
+  private function deleteBetween(\DateTime $start, \Club\TeamBundle\Entity\Schedule $schedule, \DateTime $end=null)
   {
-    $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
+    $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
 
     $qb = $this->em->createQueryBuilder()
       ->delete('ClubTeamBundle:Schedule', 's')

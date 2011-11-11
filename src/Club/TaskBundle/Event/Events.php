@@ -11,4 +11,5 @@ final class Events
   const onMailTask = 'mail.task';
   const onMessageTask = 'message.task';
   const onAutoRenewalTask = 'auto_renewal.task';
+  const onTeamTask = 'team.task';
 }

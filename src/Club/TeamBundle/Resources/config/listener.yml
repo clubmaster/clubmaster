@@ -14,3 +14,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, %club_team.future_occurs%]
     tags:
       - { name: kernel.event_listener, event: repetition.change, method: onRepetitionChange }
+  club.team.team.task:
+    class: Club\TeamBundle\Listener\GenerateScheduleListener
+    arguments: [@doctrine.orm.entity_manager, %club_team.future_occurs%]
+    tags:
+      - { name: kernel.event_listener, event: team.task, method: onTeamTask }

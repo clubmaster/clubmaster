@@ -3,7 +3,6 @@ improve user filter design
 most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
-fix regenerate occurs
 edit all repetition on a child
 cannot regenerate instances with already child
 fix schedule instructors
@@ -16,3 +15,4 @@ make sure you have subscription to subscribe to a team
 == BEFORE RELEASE ==
 add role_staff on release
 add group staff on release
+add new team task
