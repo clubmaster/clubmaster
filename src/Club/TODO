@@ -11,6 +11,7 @@ when generate schedules, make sure to generate 25 occurs ahead of today
 change repetition form for parent does not work
 add constraint, that you cannot attend expired teams
 make sure you have subscription to subscribe to a team
+make sure repetition monthly is valid, either days of month or week is set
 
 == BEFORE RELEASE ==
 add role_staff on release

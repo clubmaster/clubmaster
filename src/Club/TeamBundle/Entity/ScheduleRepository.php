@@ -36,6 +36,7 @@ class ScheduleRepository extends EntityRepository
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date < :date')
       ->andWhere('(s.schedule = :id OR s.id = :id)')
+      ->orderBy('s.first_date')
       ->setParameter('date', $schedule->getFirstDate()->format('Y-m-d H:i:s'))
       ->setParameter('id', $parent->getId())
       ->getQuery()

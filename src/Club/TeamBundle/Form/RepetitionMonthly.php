@@ -32,7 +32,8 @@ class RepetitionMonthly extends AbstractType
       'last' => 'Last week'
     );
     $builder->add('week', 'choice', array(
-      'choices' => $range
+      'choices' => $range,
+      'required' => false
     ));
   }
 
