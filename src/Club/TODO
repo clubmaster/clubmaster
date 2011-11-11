@@ -16,33 +16,6 @@ add group staff on release
 add new team task
 
 == CHECKLIST ==
-## check edit all schedule ##
-OK - første
-
-## check edit future schedule ##
-OK - første
-OK - før
-OK - parent
-OK - efter
-
-## check edit all repetition ##
-OK - første
-
-## check edit future repetition ##
-OK - første
-OK - før
-OK - parent
-OK - efter
-
-## check delete all ##
-OK - første
-
-## check delete future ##
-første
-før
-parent
-efter
-
 ## check generate ##
 generate never
 generate max occurs

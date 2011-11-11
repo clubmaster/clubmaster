@@ -213,9 +213,10 @@ class AdminScheduleController extends Controller
       foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllFuture($schedule) as $sch) {
         $em->remove($sch);
       };
+
+      $em->flush();
     }
 
-    $em->flush();
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
