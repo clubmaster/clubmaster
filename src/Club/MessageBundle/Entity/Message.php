@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\MessageBundle\Repository\Message")
+ * @ORM\Entity(repositoryClass="Club\MessageBundle\Entity\MessageRepository")
  * @ORM\Table(name="club_message_message")
  * @ORM\HasLifecycleCallbacks()
  */
