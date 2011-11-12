@@ -6,5 +6,4 @@ final class Events
 {
   const onShopOrder = 'shop.order';
   const onOrderChange = 'order.change';
-  const onCouponUse = 'coupon.use';
 }

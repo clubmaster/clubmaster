@@ -2,7 +2,7 @@
 
 namespace Club\ShopBundle\Listener;
 
-class CouponUseListener
+class SubscriptionUseListener
 {
   protected $em;
   protected $security_context;
@@ -13,9 +13,9 @@ class CouponUseListener
     $this->security_context = $security_context;
   }
 
-  public function onCouponUse(\Club\ShopBundle\Event\FilterCouponEvent $event)
+  public function onSubscriptionUse(\Club\ShopBundle\Event\FilterUserEvent $event)
   {
-    $coupon = $event->getCoupon();
+    $user = $event->getUser();
 
     $history = new \Club\ShopBundle\Entity\CouponLog();
     $history->setCoupon($coupon);
