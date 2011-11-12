@@ -4,6 +4,11 @@ most not be possible to change password on demo page
 
 == TEAM BUNDLE ==
 fix schedule instructors
+fix clip cards for teams
+add default subscription for teams
+default add subscription to user 10
+obey rules of allowed to use teams for location
+user team history view
 
 == BEFORE RELEASE ==
 add role_staff on release
