@@ -23,4 +23,4 @@ services:
     class: Club\ShopBundle\Listener\SubscriptionUseListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
-      - { name: kernel.event_listener, event: team.use, method: onSubscriptionUse }
+      - { name: kernel.event_listener, event: team.attend, method: onSubscriptionUse }

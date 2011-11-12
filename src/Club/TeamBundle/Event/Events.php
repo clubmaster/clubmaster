@@ -5,5 +5,6 @@ namespace Club\TeamBundle\Event;
 final class Events
 {
   const onRepetitionChange = 'repetition.change';
-  const onTeamUse = 'team.use';
+  const onTeamAttend = 'team.attend';
+  const onTeamUnattend = 'team.unattend';
 }
