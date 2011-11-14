@@ -55,11 +55,10 @@ class Subscription extends EntityRepository
       ->select('s')
       ->from('ClubShopBundle:Subscription','s')
       ->where('s.user = :user')
-      ->andWhere('s.type = :type')
-      ->orderBy('s.type')
-      ->orderBy('s.expire_date')
+      ->andWhere('(s.expire_date > :date OR s.expire_date IS NULL)')
+      ->orderBy('s.type, s.expire_date')
+      ->setParameter('date', date('Y-m-d H:i:s'))
       ->setParameter('user', $user->getId())
-      ->setParameter('type','ticket')
       ->getQuery()
       ->getResult();
 

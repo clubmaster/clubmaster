@@ -19,12 +19,12 @@ services:
     arguments: [@doctrine.orm.entity_manager,@order]
     tags:
       - { name: kernel.event_listener, event: auto_renewal.task, method: onAutoRenewalTask }
-  club.shopbundle.listener.subscription_use_listener:
+  club.shopbundle.subscription_use_attend:
     class: Club\ShopBundle\Listener\SubscriptionUseListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: team.attend, method: onTeamAttend }
-  club.shopbundle.listener.subscription_use_listener:
+  club.shopbundle.subscription_use_unattend:
     class: Club\ShopBundle\Listener\SubscriptionUseListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
