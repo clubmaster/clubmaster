@@ -49,7 +49,7 @@ class Subscription extends EntityRepository
       ->getResult();
   }
 
-  public function getSingleActiveSubscription(\Club\UserBundle\Entity\User $user)
+  public function getSingleActiveSubscriptionForTeam(\Club\UserBundle\Entity\User $user)
   {
     $subscriptions = $this->_em->createQueryBuilder()
       ->select('s')
@@ -58,14 +58,15 @@ class Subscription extends EntityRepository
       ->andWhere('s.type = :type')
       ->orderBy('s.type')
       ->orderBy('s.expire_date')
-      ->setMaxResults(1)
       ->setParameter('user', $user->getId())
       ->setParameter('type','ticket')
       ->getQuery()
       ->getResult();
 
-    if (count($subscriptions))
-      return $subscriptions[0];
+    foreach ($subscriptions as $sub) {
+      if ($sub->hasAttribute('team'))
+        return $sub;
+    }
 
     return false;
   }

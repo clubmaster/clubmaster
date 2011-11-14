@@ -49,6 +49,13 @@ class SubscriptionTicket
      */
     private $subscription;
 
+    /**
+     * @ORM\OneToMany(targetEntity="SubscriptionTicketAttribute", mappedBy="subscription_ticket")
+     *
+     * @var Club\ShopBundle\Entity\SubscriptionTicketAttribute
+     */
+    private $subscription_ticket_attribute;
+
 
     /**
      * Get id
@@ -146,5 +153,29 @@ class SubscriptionTicket
     public function getNote()
     {
         return $this->note;
+    }
+    public function __construct()
+    {
+        $this->subscription_ticket_attribute = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add subscription_ticket_attribute
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionTicketAttribute $subscriptionTicketAttribute
+     */
+    public function addSubscriptionTicketAttribute(\Club\ShopBundle\Entity\SubscriptionTicketAttribute $subscriptionTicketAttribute)
+    {
+        $this->subscription_ticket_attribute[] = $subscriptionTicketAttribute;
+    }
+
+    /**
+     * Get subscription_ticket_attribute
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSubscriptionTicketAttribute()
+    {
+        return $this->subscription_ticket_attribute;
     }
 }
