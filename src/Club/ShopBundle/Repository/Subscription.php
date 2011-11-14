@@ -49,6 +49,27 @@ class Subscription extends EntityRepository
       ->getResult();
   }
 
+  public function getSingleActiveSubscription(\Club\UserBundle\Entity\User $user)
+  {
+    $subscriptions = $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:Subscription','s')
+      ->where('s.user = :user')
+      ->andWhere('s.type = :type')
+      ->orderBy('s.type')
+      ->orderBy('s.expire_date')
+      ->setMaxResults(1)
+      ->setParameter('user', $user->getId())
+      ->setParameter('type','ticket')
+      ->getQuery()
+      ->getResult();
+
+    if (count($subscriptions))
+      return $subscriptions[0];
+
+    return false;
+  }
+
   public function getEmptyTicketAutoRenewalSubscriptions()
   {
     $res = array();

@@ -48,6 +48,10 @@ class TeamController extends Controller
         $this->get('session')->setFlash('notice', 'You are now attending the team.');
         $em->persist($schedule);
         $em->flush();
+
+        $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+        $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
+
       } else {
         $this->get('session')->setFlash('error', $errors[0]->getMessage());
       }
@@ -68,6 +72,9 @@ class TeamController extends Controller
 
     $schedule->getUsers()->removeElement($user);
     $em->flush();
+
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $this->get('session')->setFlash('notice', 'You are no longer on the team.');
 

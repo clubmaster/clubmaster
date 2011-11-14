@@ -29,6 +29,13 @@ class SubscriptionTicket
     private $tickets;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $note
+     */
+    private $note;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
@@ -118,7 +125,26 @@ class SubscriptionTicket
      */
     public function prePersist()
     {
-      if (!$this->getId())
-        $this->setCreatedAt(new \DateTime());
+      $this->setCreatedAt(new \DateTime());
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }
