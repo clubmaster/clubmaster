@@ -405,8 +405,12 @@ class Schedule
     {
       foreach ($user->getSubscriptions() as $subscription) {
         if ($subscription->hasAttribute('team')) {
-          $this->users[] = $user;
-          return true;
+          foreach ($subscription->getLocation() as $location) {
+            if ($location == $this->getLocation()) {
+              $this->users[] = $user;
+              return true;
+            }
+          }
         }
       }
 
