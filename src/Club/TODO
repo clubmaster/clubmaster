@@ -1,10 +1,7 @@
-participate bundle
 improve user filter design
 most not be possible to change password on demo page
-always append Access-Control-Allow-Origin: * even on 401 answers
-
-== TEAM BUNDLE ==
-make tests
+participate bundle
+make team tests
 
 == BEFORE RELEASE ==
 add role_staff on release
