@@ -23,7 +23,7 @@ class GenerateScheduleListener
       $parent = ($res->getSchedule()) ? $res->getSchedule() : $res;
 
       $start = $parent->getRepetition()->getFirstDate();
-      $this->generateSchedules($res, $start);
+      $this->generateSchedules($parent, $start);
     }
   }
 
@@ -37,7 +37,6 @@ class GenerateScheduleListener
 
   public function generateSchedules(\Club\TeamBundle\Entity\Schedule $schedule, \DateTime $start)
   {
-    echo $schedule->getId();
     // set end time
     if ($schedule->getRepetition()->getLastDate() != '') {
       $end = $schedule->getRepetition()->getLastDate();

@@ -4,7 +4,6 @@ most not be possible to change password on demo page
 always append Access-Control-Allow-Origin: * even on 401 answers
 
 == TEAM BUNDLE ==
-checkout regeneration of schedules
 make tests
 
 == BEFORE RELEASE ==
