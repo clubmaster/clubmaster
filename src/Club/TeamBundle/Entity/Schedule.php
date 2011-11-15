@@ -383,7 +383,17 @@ class Schedule
      */
     public function addInstructor(\Club\UserBundle\Entity\User $instructors)
     {
+      if (!$this->hasInstructor($instructors))
         $this->instructors[] = $instructors;
+    }
+
+    public function hasInstructor(\Club\UserBundle\Entity\User $instructor)
+    {
+      foreach ($this->getInstructors() as $inst) {
+        if ($inst == $instructor) return true;
+      }
+
+      return false;
     }
 
     /**
@@ -473,5 +483,10 @@ class Schedule
         $context->setPropertyPath($property_path);
         $context->addViolation('The team is already started!', array(), null);
       }
+    }
+
+    public function resetInstructors()
+    {
+      $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

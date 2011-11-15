@@ -337,6 +337,9 @@ class AdminScheduleController extends Controller
    */
   protected function updateSchedule(\Club\TeamBundle\Entity\Schedule $schedule, \Club\TeamBundle\Entity\Schedule $original)
   {
+    if( $schedule == $original)
+      return;
+
     $t1_first = new \DateTime(
       '@'.mktime(
       $original->getFirstDate()->format('H'),
@@ -368,14 +371,18 @@ class AdminScheduleController extends Controller
 
     $em = $this->getDoctrine()->getEntityManager();
 
+    $schedule->resetInstructors();
+
     $schedule->setDescription($original->getDescription());
     $schedule->setFirstDate(new \DateTime($schedule->getFirstDate()->sub($diff_first)->format('Y-m-d H:i:s')));
     $schedule->setEndDate(new \DateTime($schedule->getEndDate()->sub($diff_end)->format('Y-m-d H:i:s')));
     $schedule->setLevel($original->getLevel());
     $schedule->setLocation($original->getLocation());
     $schedule->setMaxAttend($original->getMaxAttend());
-    $schedule->setInstructors($original->getInstructors());
 
+    foreach ($original->getInstructors() as $instructor) {
+      $schedule->addInstructor($instructor);
+    }
     $em->persist($schedule);
   }
 
