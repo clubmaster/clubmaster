@@ -37,6 +37,9 @@ class GenerateScheduleListener
 
   public function generateSchedules(\Club\TeamBundle\Entity\Schedule $schedule, \DateTime $start)
   {
+    if (!$schedule->getRepetition())
+      return;
+
     // set end time
     if ($schedule->getRepetition()->getLastDate() != '') {
       $end = $schedule->getRepetition()->getLastDate();
