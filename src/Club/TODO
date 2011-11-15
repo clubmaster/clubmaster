@@ -9,6 +9,7 @@ default add subscription to user 10
 obey rules of allowed to use teams for location
 user team history view
 make validation on dub key on attend
+checkout regeneration of schedules
 
 == BEFORE RELEASE ==
 add role_staff on release
