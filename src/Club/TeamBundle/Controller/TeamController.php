@@ -18,6 +18,10 @@ class TeamController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $task = $em->find('ClubTaskBundle:Task', 1);
+    $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
+    $this->get('event_dispatcher')->dispatch(\Club\TaskBundle\Event\Events::onTeamTask, $event);
+
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween(
       new \DateTime(date('Y-m-d 00:00:00')),
       new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')))

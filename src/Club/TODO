@@ -1,11 +1,11 @@
 participate bundle
 improve user filter design
 most not be possible to change password on demo page
+always append Access-Control-Allow-Origin: * even on 401 answers
 
 == TEAM BUNDLE ==
-user team history view
-make validation on dub key on attend
 checkout regeneration of schedules
+make tests
 
 == BEFORE RELEASE ==
 add role_staff on release
