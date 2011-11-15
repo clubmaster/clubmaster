@@ -54,7 +54,7 @@ class TeamController extends Controller
       return $response;
 
     } else {
-      $errors = $this->get('validator')->validate($schedule);
+      $errors = $this->get('validator')->validate($schedule, array('attend'));
 
       if (count($errors)) {
         $res = array();

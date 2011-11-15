@@ -13,7 +13,7 @@ use Symfony\Component\Validator\ExecutionContext;
  * @ORM\Table(name="club_team_schedule")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleRepository")
  * @ORM\HasLifecycleCallbacks()
- * @Assert\Callback(methods={"isFull","isExpired"})
+ * @Assert\Callback(groups={"attend"}, methods={"isFull","isExpired"})
  */
 class Schedule
 {
@@ -423,11 +423,15 @@ class Schedule
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
         'max_attend' => $this->getMaxAttend(),
-        'users' => array()
+        'users' => array(),
+        'instructors' => array()
       );
 
       foreach ($this->getUsers() as $user) {
         $res['users'][] = array('user_id' => $user->getId());
+      }
+      foreach ($this->getInstructors() as $user) {
+        $res['instructors'][] = array('user_id' => $user->getId());
       }
 
       return $res;

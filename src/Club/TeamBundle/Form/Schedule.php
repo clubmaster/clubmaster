@@ -22,6 +22,17 @@ class Schedule extends AbstractType
           ->where('l.id <> 1');
       }
     ));
+    $builder->add('instructors','entity',array(
+      'class' => 'Club\UserBundle\Entity\User',
+      'multiple' => true,
+      'query_builder' => function(EntityRepository $er) {
+        return $er->createQueryBuilder('u')
+          ->leftJoin('u.groups', 'g')
+          ->leftJoin('g.role', 'r')
+          ->where('r.role_name = :role')
+          ->setParameter('role', 'ROLE_STAFF');
+      }
+    ));
   }
 
   public function getDefaultOptions(array $options)

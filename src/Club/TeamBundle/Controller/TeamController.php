@@ -42,7 +42,7 @@ class TeamController extends Controller
       $this->get('session')->setFlash('error', 'You do not have permission to use teams.');
     } else {
 
-      $errors = $this->get('validator')->validate($schedule);
+      $errors = $this->get('validator')->validate($schedule, array('attend'));
 
       if (!count($errors)) {
         $this->get('session')->setFlash('notice', 'You are now attending the team.');
