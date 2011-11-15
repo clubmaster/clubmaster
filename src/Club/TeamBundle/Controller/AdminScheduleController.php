@@ -374,6 +374,7 @@ class AdminScheduleController extends Controller
     $schedule->setLevel($original->getLevel());
     $schedule->setLocation($original->getLocation());
     $schedule->setMaxAttend($original->getMaxAttend());
+    $schedule->setInstructors($original->getInstructors());
 
     $em->persist($schedule);
   }

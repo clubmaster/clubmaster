@@ -179,6 +179,7 @@ class GenerateScheduleListener
     $new->setTeam($schedule->getTeam());
     $new->setLevel($schedule->getLevel());
     $new->setLocation($schedule->getLocation());
+    $new->setInstructors($schedule->getInstructors());
     $new->setSchedule($parent);
 
     $this->em->persist($new);
