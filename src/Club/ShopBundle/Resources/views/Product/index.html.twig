@@ -16,6 +16,9 @@
   <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
   {% for attr in product.productAttributes %}
+    {% if attr.attribute.attributeName == 'team' %}
+    <li>{% trans %}Your subscription will give you access to use teams.{% endtrans %}</li>
+    {% endif %}
     {% if attr.attribute.attributeName == 'time_interval' %}
     <li>{% trans with {'%time%':attr.timeInterval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
     {% endif %}
