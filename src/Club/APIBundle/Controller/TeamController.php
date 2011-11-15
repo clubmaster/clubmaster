@@ -71,6 +71,9 @@ class TeamController extends Controller
     $em->persist($schedule);
     $em->flush();
 
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
+
     $response = new Response();
     $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
@@ -89,6 +92,9 @@ class TeamController extends Controller
 
     $schedule->getUsers()->removeElement($user);
     $em->flush();
+
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $response = new Response();
     $response->headers->set('Access-Control-Allow-Origin', '*');

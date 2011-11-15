@@ -29,6 +29,13 @@ class SubscriptionTicket
     private $tickets;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $note
+     */
+    private $note;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
@@ -41,6 +48,13 @@ class SubscriptionTicket
      * @var Club\ShopBundle\Entity\Subscription
      */
     private $subscription;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SubscriptionTicketAttribute", mappedBy="subscription_ticket")
+     *
+     * @var Club\ShopBundle\Entity\SubscriptionTicketAttribute
+     */
+    private $subscription_ticket_attribute;
 
 
     /**
@@ -118,7 +132,50 @@ class SubscriptionTicket
      */
     public function prePersist()
     {
-      if (!$this->getId())
-        $this->setCreatedAt(new \DateTime());
+      $this->setCreatedAt(new \DateTime());
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+    public function __construct()
+    {
+        $this->subscription_ticket_attribute = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add subscription_ticket_attribute
+     *
+     * @param Club\ShopBundle\Entity\SubscriptionTicketAttribute $subscriptionTicketAttribute
+     */
+    public function addSubscriptionTicketAttribute(\Club\ShopBundle\Entity\SubscriptionTicketAttribute $subscriptionTicketAttribute)
+    {
+        $this->subscription_ticket_attribute[] = $subscriptionTicketAttribute;
+    }
+
+    /**
+     * Get subscription_ticket_attribute
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSubscriptionTicketAttribute()
+    {
+        return $this->subscription_ticket_attribute;
     }
 }

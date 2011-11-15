@@ -1,10 +1,10 @@
 <?php
 
-namespace Club\ShopBundle\Event;
+namespace Club\TeamBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class FilterTeamEvent extends Event
+class FilterScheduleEvent extends Event
 {
   protected $schedule;
 
