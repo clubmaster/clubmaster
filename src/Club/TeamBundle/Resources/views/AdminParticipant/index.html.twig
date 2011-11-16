@@ -1,0 +1,33 @@
+{% extends "ClubTeamBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>Participant</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for participant in participants %}
+    <tr>
+      <td>{{ participant.user.profile.name }}</td>
+      <td>{{ participant.createdAt|date('Y-m-d H:i:s') }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}There are no participants.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
