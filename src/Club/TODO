@@ -1,7 +1,22 @@
+== MAKE TESTS ==
+add team
+add create schedule
+add repetition
+attend team
+unattend team
+partifipant team
+attend team - API
+unattend team - API
+partifipant team - API
+add level
+delete level
+delete team
+delete schedule
+
+== TODO ==
 fix api tests
 improve user filter design
 most not be possible to change password on demo page
-make team tests
 fix logo for participant_link.html.twig
 
 == BEFORE RELEASE ==

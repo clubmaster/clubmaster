@@ -72,6 +72,7 @@ class Schedule
 
     /**
      * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
      */
     private $team;
 
@@ -110,7 +111,7 @@ class Schedule
 
     /**
      * @ORM\OneToOne(targetEntity="Repetition")
-     * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id", onDelete="cascade")
      */
     private $repetition;
 

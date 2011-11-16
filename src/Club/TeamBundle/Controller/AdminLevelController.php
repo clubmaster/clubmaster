@@ -66,13 +66,17 @@ class AdminLevelController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $level = $em->find('ClubTeamBundle:Level',$this->getRequest()->get('id'));
+    try {
+      $em = $this->getDoctrine()->getEntityManager();
+      $level = $em->find('ClubTeamBundle:Level',$this->getRequest()->get('id'));
 
-    $em->remove($level);
-    $em->flush();
+      $em->remove($level);
+      $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    } catch (\PDOException $e) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete level which is already being used.'));
+    }
 
     return $this->redirect($this->generateUrl('club_team_adminlevel_index'));
   }
