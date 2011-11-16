@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-10
-:Revision:  11
+:Date:      2011-11-16
+:Revision:  12
 
 
 Feedback
@@ -301,6 +301,18 @@ Unattend team
 URL: /api/teams/{id}/unattend
 
 Method: POST
+
+Use basic access authentication for the user who has to authenticate.
+
+Success response will be HTTP response code 200
+
+
+Participant team
+~~~~~~~~~~~~~~~~
+
+URL: /api/teams/participant
+
+Method: ANY
 
 Use basic access authentication for the user who has to authenticate.
 
