@@ -12,30 +12,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class EventController extends Controller
 {
   /**
-   * @Route("/", defaults={"start" = null, "end" = null})
-   * @Route("/{start}", defaults={"end" = null})
-   * @Route("/{start}/{end}")
-   * @Method("GET")
-   */
-  public function indexAction($start, $end)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $res = array();
-
-    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
-    $end = ($end == null) ? null : new \DateTime($end.' 23:59:59');
-
-    foreach ($em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end) as $event) {
-      $res[] = $event->toArray();
-    }
-
-    $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
-
-    return $response;
-  }
-
-  /**
    * @Route("/{id}/attend")
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
@@ -82,6 +58,30 @@ class EventController extends Controller
 
     $response = new Response();
     $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
+  }
+
+  /**
+   * @Route("/", defaults={"start" = null, "end" = null})
+   * @Route("/{start}", defaults={"end" = null})
+   * @Route("/{start}/{end}")
+   * @Method("GET")
+   */
+  public function indexAction($start, $end)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $res = array();
+
+    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
+    $end = ($end == null) ? null : new \DateTime($end.' 23:59:59');
+
+    foreach ($em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end) as $event) {
+      $res[] = $event->toArray();
+    }
+
+    $response = new Response($this->get('club_api.encode')->encode($res));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+
     return $response;
   }
 }

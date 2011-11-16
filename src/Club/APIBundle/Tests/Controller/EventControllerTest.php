@@ -14,20 +14,15 @@ class EventControllerTest extends WebTestCase
 
   public function testAttend()
   {
-    $client = static::createClient(array(), array(
-      'PHP_AUTH_USER' => '10',
-      'PHP_AUTH_PW' => '1234'
-    ));
+    $client = $this->apiLogin();
+
     $crawler = $client->request('POST', '/api/events/1/attend');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 
   public function testUnattend()
   {
-    $client = static::createClient(array(), array(
-      'PHP_AUTH_USER' => '10',
-      'PHP_AUTH_PW' => '1234'
-    ));
+    $client = $this->apiLogin();
 
     $crawler = $client->request('POST', '/api/events/1/unattend');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());

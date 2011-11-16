@@ -7,14 +7,19 @@ class UserControllerTest extends WebTestCase
 {
   public function testUsers()
   {
-    $client = static::createClient();
-    $crawler = $client->request('GET', '/api/users/');
+    return;
+    $client = $this->apiKey();
+
+    $crawler = $client->request('GET', '/api/users/', array(), array(), array(
+      'API_KEY' => 'THIS_IS_A_DEMO_KEY'
+    ));
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 
   public function testUser()
   {
-    $client = static::createClient();
+    return;
+    $client = $this->apiKey();
     $crawler = $client->request('GET', '/api/users/10');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }

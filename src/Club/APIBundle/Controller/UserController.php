@@ -38,6 +38,7 @@ class UserController extends Controller
    */
   public function getAction($id)
   {
+    return;
     if (!$this->validateKey())
       return new Response('Wrong API key', 403);
 

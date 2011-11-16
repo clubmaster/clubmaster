@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\EventBundle\Repository;
+namespace Club\EventBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
