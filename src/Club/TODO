@@ -1,17 +1,12 @@
 == MAKE TESTS ==
-add team
 add create schedule
 add repetition
 attend team
 unattend team
-partifipant team
+delete schedule
 attend team - API
 unattend team - API
 partifipant team - API
-add level
-delete level
-delete team
-delete schedule
 
 == TODO ==
 fix api tests
