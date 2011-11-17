@@ -1,7 +1,9 @@
 == TODO ==
-give penalty to people not participate a team
 improve user filter design
 most not be possible to change password on demo page
+add dashboard for user
+  not finished orders
+  attending teams
 
 == BEFORE RELEASE ==
 add role_staff on release

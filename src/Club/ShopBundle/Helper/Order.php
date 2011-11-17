@@ -14,6 +14,33 @@ class Order
     $this->event_dispatcher = $event_dispatcher;
   }
 
+  public function createSimpleOrder(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\Location $location)
+  {
+    $this->order = new \Club\ShopBundle\Entity\Order();
+    $this->order->setOrderStatus($this->getDefaultOrderStatus());
+    $this->order->setUser($user);
+    $this->setCustomerAddressByUser($user);
+    $this->setShippingAddressByUser($user);
+    $this->setBillingAddressByUser($user);
+    $this->order->setLocation($location);
+    $this->setCurrency();
+  }
+
+  public function addSimpleProduct($product)
+  {
+    $prod = new \Club\ShopBundle\Entity\OrderProduct();
+
+    $prod->setOrder($this->order);
+    $prod->setPrice($product['price']);
+    $prod->setQuantity($product['quantity']);
+    $prod->setProductName($product['product_name']);
+    $prod->setType($product['type']);
+
+    $this->order->addOrderProduct($prod);
+
+    $this->em->persist($prod);
+  }
+
   public function copyOrder(\Club\ShopBundle\Entity\Order $order)
   {
     $this->createOrder($order);
@@ -141,7 +168,7 @@ class Order
     $this->order->setPrice($data->getPrice());
     $this->order->setPaymentMethod($this->em->find('ClubShopBundle:PaymentMethod',$data->getPaymentMethod()->getId()));
     $this->order->setShipping($this->em->find('ClubShopBundle:Shipping',$data->getShipping()->getId()));
-    $this->order->setOrderStatus($this->em->getRepository('ClubShopBundle:OrderStatus')->getDefaultStatus());
+    $this->order->setOrderStatus($this->getDefaultOrderStatus());
     $this->order->setUser($data->getUser());
     $this->order->setLocation($data->getLocation());
 
@@ -188,5 +215,21 @@ class Order
   {
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
     $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onShopOrder, $event);
+  }
+
+  private function getDefaultOrderStatus()
+  {
+    return $this->em->getRepository('ClubShopBundle:OrderStatus')->getDefaultStatus();
+  }
+
+  /**
+   * require that you have set the orer location first, then this will go automatically
+   */
+  private function setCurrency()
+  {
+    $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$this->order->getLocation());
+
+    $this->order->setCurrency($currency);
+    $this->order->setCurrencyValue($currency->getValue());
   }
 }

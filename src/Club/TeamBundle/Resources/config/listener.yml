@@ -21,6 +21,6 @@ services:
       - { name: kernel.event_listener, event: team.task, method: onTeamTask }
   club.team.team.penalty:
     class: Club\TeamBundle\Listener\TeamPenaltyListener
-    arguments: [@doctrine.orm.entity_manager, %club_team.minutes_before_schedule%, %club_team.penalty_enabled%]
+    arguments: [@doctrine.orm.entity_manager, %club_team.minutes_before_schedule%, %club_team.penalty_enabled%, @order]
     tags:
       - { name: kernel.event_listener, event: team.penalty, method: onTeamPenalty }
