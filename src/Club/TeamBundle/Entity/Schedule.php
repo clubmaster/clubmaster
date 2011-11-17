@@ -35,6 +35,14 @@ class Schedule
     private $description;
 
     /**
+     * @var text $penalty
+     *
+     * @ORM\Column(name="penalty", type="decimal", scale="2")
+     * @Assert\NotBlank()
+     */
+    private $penalty;
+
+    /**
      * @var text $max_attend
      *
      * @ORM\Column(name="max_attend", type="integer")
@@ -55,6 +63,13 @@ class Schedule
      * @ORM\Column(name="end_date", type="datetime", nullable="true")
      */
     private $end_date;
+
+    /**
+     * @var datetime $processed
+     *
+     * @ORM\Column(name="processed", type="boolean")
+     */
+    private $processed;
 
     /**
      * @var datetime $created_at
@@ -285,6 +300,7 @@ class Schedule
      */
     public function prePersist()
     {
+      $this->setProcessed(false);
       $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
     }
@@ -522,5 +538,45 @@ class Schedule
     public function resetInstructors()
     {
       $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set penalty
+     *
+     * @param decimal $penalty
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return decimal
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
+    }
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
     }
 }

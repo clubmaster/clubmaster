@@ -41,6 +41,14 @@ class Team
     private $description;
 
     /**
+     * @var text $penalty
+     *
+     * @ORM\Column(name="penalty", type="decimal", scale="2")
+     * @Assert\NotBlank()
+     */
+    private $penalty;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -165,5 +173,25 @@ class Team
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set penalty
+     *
+     * @param decimal $penalty
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return decimal
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
     }
 }

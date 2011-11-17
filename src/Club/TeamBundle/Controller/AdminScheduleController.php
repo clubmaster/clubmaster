@@ -108,6 +108,7 @@ class AdminScheduleController extends Controller
     $schedule = new \Club\TeamBundle\Entity\Schedule();
     $schedule->setTeam($team);
     $schedule->setDescription($team->getDescription());
+    $schedule->setPenalty($team->getPenalty());
     $schedule->setFirstDate(new \DateTime(date('Y-m-d 12:00:00')));
     $schedule->setEndDate(new \DateTime(date('Y-m-d 13:00:00')));
     $schedule->setMaxAttend(15);
