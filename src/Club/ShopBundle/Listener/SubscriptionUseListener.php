@@ -15,7 +15,7 @@ class SubscriptionUseListener
 
   public function onTeamAttend(\Club\TeamBundle\Event\FilterScheduleEvent $event)
   {
-    $user = $this->security_context->getToken()->getUser();
+    $user = $event->getUser();
     $subscription = $this->em->getRepository('ClubShopBundle:Subscription')->getSingleActiveSubscriptionForTeam($user);
     $schedule = $event->getSchedule();
 
@@ -37,7 +37,7 @@ class SubscriptionUseListener
 
   public function onTeamUnattend(\Club\TeamBundle\Event\FilterScheduleEvent $event)
   {
-    $user = $this->security_context->getToken()->getUser();
+    $user = $event->getUser();
     $schedule = $event->getSchedule();
     $subscription = $this->em->getRepository('ClubShopBundle:Subscription')->getSingleActiveSubscriptionForTeam($user);
 

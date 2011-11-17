@@ -24,6 +24,7 @@ class Schedule extends AbstractType
     ));
     $builder->add('instructors','entity',array(
       'class' => 'Club\UserBundle\Entity\User',
+      'required' => false,
       'multiple' => true,
       'query_builder' => function(EntityRepository $er) {
         return $er->createQueryBuilder('u')

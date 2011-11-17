@@ -30,6 +30,45 @@ class AdminScheduleController extends Controller
   }
 
   /**
+   * @Route("/team/team/{team_id}/schedule/{schedule_id}/participant/{id}/unattend")
+   * @Template()
+   */
+  public function unattendAction($team_id, $schedule_id, $id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
+    $user = $em->find('ClubUserBundle:User', $id);
+
+    $schedule->getUsers()->removeElement($user);
+    $em->flush();
+
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $user);
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
+
+    $this->get('session')->setFlash('notice', 'User has been deleted from the team.');
+
+    return $this->redirect($this->generateUrl('club_team_adminschedule_participant', array(
+      'team_id' => $team_id,
+      'id' => $schedule_id
+    )));
+  }
+
+  /**
+   * @Route("/team/team/{team_id}/schedule/{id}/participant")
+   * @Template()
+   */
+  public function participantAction($team_id,$id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+
+    return array(
+      'team' => $schedule->getTeam()->getId(),
+      'schedule' => $schedule
+    );
+  }
+
+  /**
    * @Route("/team/team/{team_id}/schedule/{id}/edit/choice")
    * @Template()
    */

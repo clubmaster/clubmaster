@@ -48,7 +48,7 @@ class TeamController extends Controller
         $em->persist($schedule);
         $em->flush();
 
-        $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+        $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
         $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
 
       } else {
@@ -72,7 +72,7 @@ class TeamController extends Controller
     $schedule->getUsers()->removeElement($user);
     $em->flush();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule);
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $this->get('session')->setFlash('notice', 'You are no longer on the team.');
