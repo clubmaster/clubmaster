@@ -34,8 +34,6 @@ class LoadFixturesData implements FixtureInterface
     foreach ($roles as $role) {
       $r = new \Club\UserBundle\Entity\Role();
       $r->setRoleName($role);
-
-      $this->addReference($role,$r);
       $manager->persist($r);
     }
 
@@ -52,7 +50,6 @@ class LoadFixturesData implements FixtureInterface
     $group = new \Club\UserBundle\Entity\Group();
     $group->setGroupName('Staff');
     $group->setGroupType('static');
-    $group->addRole($this->getReference('ROLE_STAFF'));
     $manager->persist($group);
 
     $manager->flush();
