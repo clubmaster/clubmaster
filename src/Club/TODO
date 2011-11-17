@@ -1,5 +1,4 @@
 == MAKE TESTS ==
-add create schedule
 add repetition
 attend team
 unattend team
@@ -7,9 +6,9 @@ delete schedule
 attend team - API
 unattend team - API
 partifipant team - API
+find a way to make tests with API_KEY
 
 == TODO ==
-find a way to make tests with API_KEY
 improve user filter design
 most not be possible to change password on demo page
 fix logo for participant_link.html.twig

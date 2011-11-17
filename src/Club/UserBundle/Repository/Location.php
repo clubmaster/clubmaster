@@ -32,15 +32,4 @@ class Location extends EntityRepository
       ->getQuery()
       ->getResult();
   }
-
-  public function getChilds(\Club\UserBundle\Entity\Location $location)
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
-      ->where('l.location = :parent')
-      ->setParameter('parent', $location->getId())
-      ->getQuery()
-      ->getResult();
-  }
 }
