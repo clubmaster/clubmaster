@@ -4,6 +4,8 @@ delete schedule
 find a way to make tests with API_KEY
 
 == TODO ==
+show participant on schedule
+give penalty to people not participate a team
 improve user filter design
 most not be possible to change password on demo page
 
