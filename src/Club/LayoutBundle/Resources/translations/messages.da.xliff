@@ -1238,6 +1238,126 @@
         <source>Queued</source>
         <target>I kø</target>
       </trans-unit>
+      <trans-unit id="311">
+        <source>Team</source>
+        <target>Hold</target>
+      </trans-unit>
+      <trans-unit id="312">
+        <source>Level</source>
+        <target>Niveau</target>
+      </trans-unit>
+      <trans-unit id="313">
+        <source>Participant</source>
+        <target>Deltagere</target>
+      </trans-unit>
+      <trans-unit id="314">
+        <source>Create level</source>
+        <target>Opret niveau</target>
+      </trans-unit>
+      <trans-unit id="315">
+        <source>Level name</source>
+        <target>Niveau navn</target>
+      </trans-unit>
+      <trans-unit id="316">
+        <source>There are no participants.</source>
+        <target>Der er ingen deltagere.</target>
+      </trans-unit>
+      <trans-unit id="317">
+        <source>Create team</source>
+        <target>Opret hold</target>
+      </trans-unit>
+      <trans-unit id="318">
+        <source>Team name</source>
+        <target>Hold navn</target>
+      </trans-unit>
+      <trans-unit id="319">
+        <source>Penalty</source>
+        <target>Bøde</target>
+      </trans-unit>
+      <trans-unit id="320">
+        <source>Create schedule</source>
+        <target>Opret skema</target>
+      </trans-unit>
+      <trans-unit id="321">
+        <source>First date</source>
+        <target>Første dato</target>
+      </trans-unit>
+      <trans-unit id="322">
+        <source>End date</source>
+        <target>Slut dato</target>
+      </trans-unit>
+      <trans-unit id="323">
+        <source>Max attend</source>
+        <target>Max deltagere</target>
+      </trans-unit>
+      <trans-unit id="324">
+        <source>Instructors</source>
+        <target>Instruktører</target>
+      </trans-unit>
+      <trans-unit id="325">
+        <source>Repetition Daily</source>
+        <target>Gentagelse Daglig</target>
+      </trans-unit>
+      <trans-unit id="326">
+        <source>Repetition Weekly</source>
+        <target>Gentagelse Ugentlig</target>
+      </trans-unit>
+      <trans-unit id="327">
+        <source>Repetition Monthly</source>
+        <target>Gentagelse Månedlig</target>
+      </trans-unit>
+      <trans-unit id="328">
+        <source>Repetition Yearly</source>
+        <target>Gentagelse Årlig</target>
+      </trans-unit>
+      <trans-unit id="329">
+        <source>Last date</source>
+        <target>Sidste dato</target>
+      </trans-unit>
+      <trans-unit id="330">
+        <source>End occurrences</source>
+        <target>Slut gentagelser</target>
+      </trans-unit>
+      <trans-unit id="331">
+        <source>Repeat every</source>
+        <target>Gentag hver</target>
+      </trans-unit>
+      <trans-unit id="332">
+        <source>Days in week</source>
+        <target>Dage i uge</target>
+      </trans-unit>
+      <trans-unit id="333">
+        <source>Day of month</source>
+        <target>Dato i måned</target>
+      </trans-unit>
+      <trans-unit id="334">
+        <source>Week</source>
+        <target>Uge</target>
+      </trans-unit>
+      <trans-unit id="335">
+        <source>There are no participants.</source>
+        <target>Der er ingen deltagere.</target>
+      </trans-unit>
+      <trans-unit id="336">
+        <source>Admin Dashboard</source>
+        <target>Admin Dashboard</target>
+      </trans-unit>
+      <trans-unit id="337">
+        <source>Your teams</source>
+        <target>Dine hold</target>
+      </trans-unit>
+      <trans-unit id="338">
+        <source>Open orders</source>
+        <target>Åbne ordre</target>
+      </trans-unit>
+      <trans-unit id="339">
+        <source>You have no coming teams.</source>
+        <target>Du har ingen kommende hold.</target>
+      </trans-unit>
+      <trans-unit id="340">
+        <source>Time</source>
+        <target>Tid</target>
+      </trans-unit>
 
     </body>
   </file>
