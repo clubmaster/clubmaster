@@ -6,7 +6,6 @@ find a way to make tests with API_KEY
 == TODO ==
 improve user filter design
 most not be possible to change password on demo page
-fix logo for participant_link.html.twig
 
 == BEFORE RELEASE ==
 add role_staff on release
