@@ -1,3 +1,10 @@
 == TODO ==
 improve user filter design
 most not be possible to change password on demo page
+booking bundle
+add api key to participant API call
+find places and replace clone DateTime class
+cleanup repository classes
+make some more tests
+coupon option to go below zero
+implement gravatar
