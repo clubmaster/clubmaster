@@ -12,4 +12,5 @@ final class Events
   const onMessageTask = 'message.task';
   const onAutoRenewalTask = 'auto_renewal.task';
   const onTeamTask = 'team.task';
+  const onTeamPenalty = 'team.penalty';
 }

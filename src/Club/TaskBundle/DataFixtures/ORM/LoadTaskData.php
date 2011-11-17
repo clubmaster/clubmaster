@@ -88,6 +88,16 @@ class LoadTaskData implements FixtureInterface
     $task->setMethod('onTeamTask');
     $manager->persist($task);
 
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Create team penalty');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('1D');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onTeamPenalty');
+    $manager->persist($task);
+
     $manager->flush();
   }
 }
