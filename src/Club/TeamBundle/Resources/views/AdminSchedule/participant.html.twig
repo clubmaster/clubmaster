@@ -8,13 +8,12 @@
     <tr>
       <th>{% trans %}Team{% endtrans %}</th>
       <th>{% trans %}User{% endtrans %}</th>
-      <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -22,14 +21,13 @@
     <tr>
       <td>{{ schedule.team.teamName }}</td>
       <td>{{ participant.profile.name }}</td>
-      <td>{{ participant.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_unattend', {'team_id':schedule.team.id,'schedule_id':schedule.id, 'id':participant.id})} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">There are no participants at the time</td>
+    <td colspan="3">There are no participants at the time</td>
   </tr>
   {% endfor %}
   </tbody>
