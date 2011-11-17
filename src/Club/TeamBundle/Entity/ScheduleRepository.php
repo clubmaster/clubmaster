@@ -43,16 +43,25 @@ class ScheduleRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getAllBetween(\DateTime $start, \DateTime $end)
+  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null)
   {
-    return $this->_em->createQueryBuilder()
+    $qb = $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date >= :start')
       ->andWhere('s.first_date <= :end')
       ->orderBy('s.first_date')
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
-      ->setParameter('end', $end->format('Y-m-d H:i:s'))
+      ->setParameter('end', $end->format('Y-m-d H:i:s'));
+
+    if (isset($user)) {
+      $qb
+        ->leftJoin('s.users', 'u')
+        ->andWhere('u.id = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    return $qb
       ->getQuery()
       ->getResult();
   }

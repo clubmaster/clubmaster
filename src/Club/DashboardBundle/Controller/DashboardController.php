@@ -19,8 +19,16 @@ class DashboardController extends Controller
 
     $orders = $em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$this->get('security.context')->getToken()->getUser());
 
+    $start = new \DateTime();
+    $end = clone $start;
+    $end->sub(new \DateInterval('P1M'));
+
+    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
+    echo count($schedules);die();
+
     return array(
       'orders' => $orders,
+      'schedules' => $schedules
     );
   }
 }
