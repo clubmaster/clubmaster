@@ -24,7 +24,15 @@ class AdminScheduleControllerTest extends WebTestCase
     $crawler = $this->client->request('GET', '/admin/team/team/1/schedule/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Save')->form();
+    $time = strtotime('+1 day');
+    $form = $crawler->selectButton('Save')->form(array(
+      'schedule[first_date][date][day]' => date('j', $time),
+      'schedule[first_date][date][month]' => date('n', $time),
+      'schedule[first_date][date][year]' => date('Y', $time),
+      'schedule[end_date][date][day]' => date('j', $time),
+      'schedule[end_date][date][month]' => date('n', $time),
+      'schedule[end_date][date][year]' => date('Y', $time)
+    ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
