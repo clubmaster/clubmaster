@@ -23,4 +23,13 @@ class UserControllerTest extends WebTestCase
     $crawler = $client->request('GET', '/api/users/10');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
+
+  public function testTeams()
+  {
+    $client = $this->apiLogin();
+
+    $crawler = $client->request('GET', '/api/users/teams');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode());
+  }
+
 }
