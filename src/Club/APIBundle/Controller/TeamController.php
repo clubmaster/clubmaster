@@ -98,7 +98,6 @@ class TeamController extends Controller
     return $response;
   }
 
-
   /**
    * @Route("/", defaults={"start" = null, "end" = null})
    * @Route("/{start}", defaults={"end" = null})

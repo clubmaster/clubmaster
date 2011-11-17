@@ -407,9 +407,38 @@ class Schedule
       foreach ($user->getSubscriptions() as $subscription) {
         if ($subscription->hasAttribute('team')) {
           foreach ($subscription->getLocation() as $location) {
+
             if ($location == $this->getLocation()) {
               $this->users[] = $user;
               return true;
+            }
+
+            foreach ($subscription->getLocation() as $child) {
+              if ($child == $this->getLocation()) {
+                $this->users[] = $user;
+                return true;
+              }
+
+              foreach ($child->getChilds() as $child2) {
+                if ($child2 == $this->getLocation()) {
+                  $this->users[] = $user;
+                  return true;
+                }
+              }
+
+              foreach ($child2->getChilds() as $child3) {
+                if ($child3 == $this->getLocation()) {
+                  $this->users[] = $user;
+                  return true;
+                }
+
+                foreach ($child3->getChilds() as $child4) {
+                  if ($child4 == $this->getLocation()) {
+                    $this->users[] = $user;
+                    return true;
+                  }
+                }
+              }
             }
           }
         }

@@ -140,6 +140,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Club\TeamBundle\Entity\Schedule", mappedBy="users")
+     */
+    private $schedules;
+
+    /**
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
      */
     private $subscriptions;
@@ -153,11 +158,6 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\ManyToMany(targetEntity="Group", mappedBy="users")
      */
     private $groups;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Club\TeamBundle\Entity\Schedule", mappedBy="users")
-     */
-    private $schedules;
 
 
     public function __toString()

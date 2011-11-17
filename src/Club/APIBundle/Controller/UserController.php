@@ -3,6 +3,7 @@
 namespace Club\APIBundle\Controller;
 
 use Club\APIBundle\Controller\DefaultController as Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +30,26 @@ class UserController extends Controller
 
     $response = new Response($this->get('club_api.encode')->encode($res));
     $response->headers->set('Access-Control-Allow-Origin', '*');
+    return $response;
+  }
+
+  /**
+   * @Route("/teams")
+   * @Method("GET")
+   * @Secure(roles="ROLE_USER")
+   */
+  public function teamsAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $res = array();
+    foreach ($this->get('security.context')->getToken()->getUser()->getSchedules() as $schedule) {
+      $res[] = $schedule->toArray();
+    }
+
+    $response = new Response($this->get('club_api.encode')->encode($res));
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+
     return $response;
   }
 
