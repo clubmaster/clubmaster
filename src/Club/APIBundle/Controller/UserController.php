@@ -34,17 +34,24 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/teams")
+  /**
+   * @Route("/teams", defaults={"start" = null, "end" = null})
+   * @Route("/teams/{start}", defaults={"end" = null})
+   * @Route("/teams/{start}/{end}")
    * @Method("GET")
    * @Secure(roles="ROLE_USER")
    */
-  public function teamsAction()
+  public function teamsAction($start, $end)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
+    $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
+
     $res = array();
     foreach ($this->get('security.context')->getToken()->getUser()->getSchedules() as $schedule) {
-      $res[] = $schedule->toArray();
+      if ($schedule->getFirstDate()->getTimestamp() >= $start->getTimestamp() && $schedule->getFirstDate()->getTimestamp() <= $end->getTimestamp())
+        $res[] = $schedule->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));

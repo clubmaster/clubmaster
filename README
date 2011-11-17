@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-16
-:Revision:  12
+:Date:      2011-11-17
+:Revision:  13
 
 
 Feedback
@@ -273,6 +273,22 @@ Get all teams
 URL: /api/teams/
 URL: /api/teams/{start}
 URL: /api/teams/{start}/{end}
+
+Parameters:
+{start}: 2011-01-01
+{end}: 2011-01-02
+
+Method: GET
+
+Success response will be HTTP response code 200, and a json response with all teams
+
+
+Get users teams
+~~~~~~~~~~~~~~~
+
+URL: /api/users/teams/
+URL: /api/users/teams/{start}
+URL: /api/users/teams/{start}/{end}
 
 Parameters:
 {start}: 2011-01-01
