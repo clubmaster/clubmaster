@@ -171,6 +171,7 @@ class GenerateScheduleListener
     $new = new \Club\TeamBundle\Entity\Schedule();
     $new->setDescription($schedule->getDescription());
     $new->setMaxAttend($schedule->getMaxAttend());
+    $new->setPenalty($schedule->getPenalty());
     $new->setFirstDate($new_first);
     $new->setEndDate($new_end);
     $new->setTeam($schedule->getTeam());

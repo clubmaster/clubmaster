@@ -83,4 +83,16 @@ class ScheduleRepository extends EntityRepository
       ->getQuery()
       ->getSingleResult();
   }
+
+  public function getNotProcessed()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubTeamBundle:Schedule','s')
+      ->where('s.end_date < :date')
+      ->andWhere('s.processed=0')
+      ->setParameter('date', date('Y-m-d H:i:s'))
+      ->getQuery()
+      ->getResult();
+  }
 }

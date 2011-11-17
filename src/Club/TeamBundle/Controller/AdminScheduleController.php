@@ -419,6 +419,7 @@ class AdminScheduleController extends Controller
     $schedule->setLevel($original->getLevel());
     $schedule->setLocation($original->getLocation());
     $schedule->setMaxAttend($original->getMaxAttend());
+    $schedule->setPenalty($original->getPenalty());
 
     foreach ($original->getInstructors() as $instructor) {
       $schedule->addInstructor($instructor);

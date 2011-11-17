@@ -19,5 +19,10 @@ class TeamPenaltyListener
   {
     if (!$this->penalty_enabled)
       return;
+
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getNotProcessed();
+
+    foreach ($schedules as $schedule) {
+    }
   }
 }
