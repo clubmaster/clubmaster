@@ -72,14 +72,22 @@ class Order extends EntityRepository
     return true;
   }
 
-  public function getOpenOrders($limit=10)
+  public function getOpenOrders($limit=10, \Club\UserBundle\Entity\User $user=null)
   {
-    return $this->getQueryBuilder()
+    $qb = $this->getQueryBuilder()
       ->leftJoin('o.order_status', 'os')
       ->where('os.accepted = 0')
       ->andWhere('os.cancelled = 0')
       ->setMaxResults($limit)
-      ->orderBy('o.updated_at', 'DESC')
+      ->orderBy('o.updated_at', 'DESC');
+
+    if (isset($user)) {
+      $qb
+        ->andWhere('o.user = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    return $qb
       ->getQuery()
       ->getResult();
   }

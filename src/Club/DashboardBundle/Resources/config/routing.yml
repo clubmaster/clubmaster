@@ -1,3 +1,7 @@
+_dashboard:
+  resource: "@ClubDashboardBundle/Controller/DashboardController.php"
+  type: annotation
+
 _admin_dashboard:
   resource: "@ClubDashboardBundle/Controller/AdminDashboardController.php"
   type: annotation

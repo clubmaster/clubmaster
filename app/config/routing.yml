@@ -1,6 +1,6 @@
 homepage:
   pattern: /
-  defaults: { _controller: ClubDashboardBundle:AdminDashboard:index }
+  defaults: { _controller: ClubDashboardBundle:Dashboard:index }
 
 _api:
   resource: "@ClubAPIBundle/Resources/config/routing.yml"

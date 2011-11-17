@@ -1,0 +1,14 @@
+{% extends "ClubDashboardBundle::base.html.twig" %}
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+<p class="box">
+  <a href="{{ path('club_dashboard_admindashboard_index') }}" class="btn-info"><span>Admin Dashboard</span></a>
+</p>
+
+{% endif %}
+
+{% include "ClubDashboardBundle:Dashboard:order_table.html.twig" %}
+
+{% endblock %}
