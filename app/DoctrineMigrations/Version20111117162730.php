@@ -8,7 +8,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration,
 /**
  * Auto-generated Migration: Please modify to your need!
  */
-class Version20111115152005 extends AbstractMigration
+class Version20111117162730 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -21,16 +21,18 @@ class Version20111115152005 extends AbstractMigration
         $this->addSql("CREATE TABLE club_team_repetition (id INT AUTO_INCREMENT NOT NULL, schedule_id INT DEFAULT NULL, type VARCHAR(255) NOT NULL, first_date DATETIME NOT NULL, last_date DATETIME DEFAULT NULL, end_occurrences INT DEFAULT NULL, repeat_every INT NOT NULL, days_in_week VARCHAR(255) DEFAULT NULL, day_of_month TINYINT(1) DEFAULT NULL, week VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_BC76ED49A40BC2D5 (schedule_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_team_team (id INT AUTO_INCREMENT NOT NULL, team_name VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_team_level (id INT AUTO_INCREMENT NOT NULL, level_name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id)");
+        $this->addSql("CREATE TABLE club_team_participant (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, created_at DATETIME NOT NULL, INDEX IDX_5DDB6DBDA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B3164D218E FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
         $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B315FB14BA7 FOREIGN KEY (level_id) REFERENCES club_team_level(id)");
-        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31A06DF6FF FOREIGN KEY (repetition_id) REFERENCES club_team_repetition(id)");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31A06DF6FF FOREIGN KEY (repetition_id) REFERENCES club_team_repetition(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule_instructor ADD CONSTRAINT FK_909B132FA40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule_instructor ADD CONSTRAINT FK_909B132FA76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule_user ADD CONSTRAINT FK_860A2A86A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_schedule_user ADD CONSTRAINT FK_860A2A86A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_team_repetition ADD CONSTRAINT FK_BC76ED49A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_participant ADD CONSTRAINT FK_5DDB6DBDA76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_shop_subscription_ticket ADD note VARCHAR(255) NOT NULL, CHANGE created_at created_at DATETIME NOT NULL");
     }
 
@@ -52,6 +54,7 @@ class Version20111115152005 extends AbstractMigration
         $this->addSql("DROP TABLE club_team_repetition");
         $this->addSql("DROP TABLE club_team_team");
         $this->addSql("DROP TABLE club_team_level");
+        $this->addSql("DROP TABLE club_team_participant");
         $this->addSql("ALTER TABLE club_shop_subscription_ticket DROP note, CHANGE created_at created_at DATE NOT NULL");
     }
 }
