@@ -1,0 +1,30 @@
+<h2>Your teams</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Team{% endtrans %}</th>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Time{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for schedule in schedules %}
+    <tr>
+      <td>{{ schedule.team.teamName }}</td>
+      <td>{{ schedule.firstDate|date('Y-m-d') }}</td>
+      <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}You have no coming teams.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
