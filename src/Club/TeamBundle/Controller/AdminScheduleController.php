@@ -16,6 +16,7 @@ class AdminScheduleController extends Controller
   public function indexAction($team_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
+
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->findBy(array(
       'team' => $team_id
     ), array(

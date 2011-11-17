@@ -89,9 +89,8 @@ class ScheduleRepository extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
-      ->where('s.end_date < :date')
+      ->where('s.end_date < CURRENT_TIMESTAMP()')
       ->andWhere('s.processed=0')
-      ->setParameter('date', date('Y-m-d H:i:s'))
       ->getQuery()
       ->getResult();
   }

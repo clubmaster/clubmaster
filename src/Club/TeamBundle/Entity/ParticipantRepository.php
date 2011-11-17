@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ParticipantRepository extends EntityRepository
 {
+  public function getUserInRange(\Club\UserBundle\Entity\User $user, \DateTime $first, \DateTime $last)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('p')
+      ->from('ClubTeamBundle:Participant', 'p')
+      ->where('p.user = :user')
+      ->andWhere('p.created_at >= :first')
+      ->andWhere('p.created_at <= :last')
+      ->setParameter('user', $user->getId())
+      ->setParameter('first', $first)
+      ->setParameter('last', $last)
+      ->getQuery()
+      ->getResult();
+  }
 }
