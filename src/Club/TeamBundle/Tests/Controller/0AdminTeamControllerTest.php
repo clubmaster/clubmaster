@@ -26,7 +26,8 @@ class AdminTeamControllerTest extends WebTestCase
 
     $form = $crawler->selectButton('Save')->form(array(
       'team[team_name]' => 'Test',
-      'team[description]' => 'Test'
+      'team[description]' => 'Test',
+      'team[penalty]' => '50'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -36,7 +37,8 @@ class AdminTeamControllerTest extends WebTestCase
 
     $form = $crawler->selectButton('Save')->form(array(
       'team[team_name]' => 'Test2',
-      'team[description]' => 'Test2'
+      'team[description]' => 'Test2',
+      'team[penalty]' => '50'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());

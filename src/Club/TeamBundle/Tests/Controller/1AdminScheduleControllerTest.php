@@ -36,4 +36,14 @@ class AdminScheduleControllerTest extends WebTestCase
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
+
+  public function testRepetition()
+  {
+    $crawler = $this->client->request('GET', '/admin/team/team/1/schedule/1/repetition/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+  }
 }
