@@ -9,7 +9,8 @@ fi
 
 touch app/installer
 ./bin/remake_schema.sh
-phpunit -c app
+phpunit -c app/phpunit.xml.dist
+phpunit -c app/apiunit.xml
 
 if [ $? -ne 0 ]; then
   exit
