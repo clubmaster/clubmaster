@@ -19,7 +19,6 @@ fi
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/users_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/event_data.sql
-mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/team_data.sql
 
 phpunit -c app/ src/Club/ShopBundle/Tests/Controller/CheckoutControllerTest.php
 

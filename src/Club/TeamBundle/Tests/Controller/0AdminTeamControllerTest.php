@@ -30,29 +30,13 @@ class AdminTeamControllerTest extends WebTestCase
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  }
 
-  public function testAttend()
-  {
     $crawler = $this->client->request('GET', '/admin/team/team/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'team[team_name]' => 'Test',
-      'team[description]' => 'Test'
-    ));
-    $crawler = $this->client->submit($form);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  }
-
-  public function testUnattend()
-  {
-    $crawler = $this->client->request('GET', '/admin/team/team/new');
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $form = $crawler->selectButton('Save')->form(array(
-      'team[team_name]' => 'Test',
-      'team[description]' => 'Test'
+      'team[team_name]' => 'Test2',
+      'team[description]' => 'Test2'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -63,8 +47,8 @@ class AdminTeamControllerTest extends WebTestCase
     $crawler = $this->client->request('GET', '/admin/team/team');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $links = $crawler->selectLink('Delete')->links();   
+    $links = $crawler->selectLink('Delete')->links();
     $crawler = $this->client->click(end($links));
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  } 
+  }
 }

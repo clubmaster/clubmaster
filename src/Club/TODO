@@ -9,7 +9,7 @@ unattend team - API
 partifipant team - API
 
 == TODO ==
-fix api tests
+find a way to make tests with API_KEY
 improve user filter design
 most not be possible to change password on demo page
 fix logo for participant_link.html.twig
