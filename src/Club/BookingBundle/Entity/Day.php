@@ -30,18 +30,18 @@ class Day
     private $day;
 
     /**
-     * @var datetime $open_date
+     * @var datetime $open_time
      *
-     * @ORM\Column(name="open_date", type="datetime")
+     * @ORM\Column(name="open_time", type="time")
      */
-    private $open_date;
+    private $open_time;
 
     /**
-     * @var datetime $close_date
+     * @var datetime $close_time
      *
-     * @ORM\Column(name="close_date", type="datetime")
+     * @ORM\Column(name="close_time", type="time")
      */
-    private $close_date;
+    private $close_time;
 
     /**
      * @var datetime $created_at
@@ -94,43 +94,43 @@ class Day
     }
 
     /**
-     * Set open_date
+     * Set open_time
      *
-     * @param datetime $openDate
+     * @param datetime $openTime
      */
-    public function setOpenDate($openDate)
+    public function setOpenTime($openTime)
     {
-        $this->open_date = $openDate;
+        $this->open_time = $openTime;
     }
 
     /**
-     * Get open_date
+     * Get open_time
      *
      * @return datetime
      */
-    public function getOpenDate()
+    public function getOpenTime()
     {
-        return $this->open_date;
+        return $this->open_time;
     }
 
     /**
-     * Set close_date
+     * Set close_time
      *
-     * @param datetime $closeDate
+     * @param datetime $closeTime
      */
-    public function setCloseDate($closeDate)
+    public function setCloseTime($closeTime)
     {
-        $this->close_date = $closeDate;
+        $this->close_time = $closeTime;
     }
 
     /**
-     * Get close_date
+     * Get close_time
      *
      * @return datetime
      */
-    public function getCloseDate()
+    public function getCloseTime()
     {
-        return $this->close_date;
+        return $this->close_time;
     }
 
     /**
