@@ -1,0 +1,7 @@
+parameters:
+#    club_booking.example.class: Club\BookingBundle\Example
+
+services:
+#    club_booking.example:
+#        class: %club_booking.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

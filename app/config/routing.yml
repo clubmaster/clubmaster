@@ -35,5 +35,8 @@ _feedback:
 _message:
   resource: "@ClubMessageBundle/Resources/config/routing.yml"
 
+_booking:
+  resource: "@ClubBookingBundle/Resources/config/routing.yml"
+
 _dashboard:
   resource: "@ClubDashboardBundle/Resources/config/routing.yml"
