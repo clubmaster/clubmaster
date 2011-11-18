@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\BookingBundle\Entity\Field
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_booking_field")
  * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\FieldRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Field
 {
@@ -20,13 +21,6 @@ class Field
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var integer $location_id
-     *
-     * @ORM\Column(name="location_id", type="integer")
-     */
-    private $location_id;
 
     /**
      * @var string $name
@@ -63,35 +57,20 @@ class Field
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     */
+    private $location;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set location_id
-     *
-     * @param integer $locationId
-     */
-    public function setLocationId($locationId)
-    {
-        $this->location_id = $locationId;
-    }
-
-    /**
-     * Get location_id
-     *
-     * @return integer 
-     */
-    public function getLocationId()
-    {
-        return $this->location_id;
     }
 
     /**
@@ -107,7 +86,7 @@ class Field
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -127,7 +106,7 @@ class Field
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -147,7 +126,7 @@ class Field
     /**
      * Get terms
      *
-     * @return text 
+     * @return text
      */
     public function getTerms()
     {
@@ -167,7 +146,7 @@ class Field
     /**
      * Get created_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -187,10 +166,47 @@ class Field
     /**
      * Get updated_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

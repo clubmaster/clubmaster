@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\BookingBundle\Entity\Day
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_booking_day")
  * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\DayRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Day
 {
@@ -20,13 +21,6 @@ class Day
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var integer $field_id
-     *
-     * @ORM\Column(name="field_id", type="integer")
-     */
-    private $field_id;
 
     /**
      * @var string $day
@@ -63,35 +57,20 @@ class Day
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Field")
+     */
+    private $field;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set field_id
-     *
-     * @param integer $fieldId
-     */
-    public function setFieldId($fieldId)
-    {
-        $this->field_id = $fieldId;
-    }
-
-    /**
-     * Get field_id
-     *
-     * @return integer 
-     */
-    public function getFieldId()
-    {
-        return $this->field_id;
     }
 
     /**
@@ -107,7 +86,7 @@ class Day
     /**
      * Get day
      *
-     * @return string 
+     * @return string
      */
     public function getDay()
     {
@@ -127,7 +106,7 @@ class Day
     /**
      * Get open_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getOpenDate()
     {
@@ -147,7 +126,7 @@ class Day
     /**
      * Get close_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCloseDate()
     {
@@ -167,7 +146,7 @@ class Day
     /**
      * Get created_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -187,10 +166,47 @@ class Day
     /**
      * Get updated_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set field
+     *
+     * @param Club\BookingBundle\Entity\Field $field
+     */
+    public function setField(\Club\BookingBundle\Entity\Field $field)
+    {
+        $this->field = $field;
+    }
+
+    /**
+     * Get field
+     *
+     * @return Club\BookingBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
     }
 }
