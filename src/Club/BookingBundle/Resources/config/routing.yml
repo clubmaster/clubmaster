@@ -1,3 +1,3 @@
-ClubBookingBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubBookingBundle:Default:index }
+_booking:
+  resource: "@ClubBookingBundle/Controller/BookingController.php"
+  type: annotation
