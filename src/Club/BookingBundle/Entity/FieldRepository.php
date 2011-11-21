@@ -12,4 +12,53 @@ use Doctrine\ORM\EntityRepository;
  */
 class FieldRepository extends EntityRepository
 {
+  public function getDayData(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+  {
+    $fields = $this->_em->getRepository('ClubBookingBundle:Field')->findBy(array(
+      'location' => $location->getId()
+    ));
+
+    $start_time = clone $date;
+    $start_time->setTime(23,59,59);
+    $end_time = clone $date;
+    $end_time->setTime(0,0,0);
+
+    foreach ($fields as $field) {
+      foreach ($field->getIntervals() as $interval) {
+        if ($interval->getStartTime()->format('His') < $start_time->format('His')) {
+          $start_time = clone $interval->getStartTime();
+        }
+
+        if ($interval->getStopTime()->format('His') > $end_time->format('His')) {
+          $end_time = clone $interval->getStopTime();
+        }
+      }
+    }
+
+    $res = array(
+      'start_time' => $start_time,
+      'end_time' => $end_time
+    );
+
+    return $res;
+  }
+
+  public function getFieldsOverview(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+  {
+    $fields = $this->_em->getRepository('ClubBookingBundle:Field')->findBy(array(
+      'location' => $location->getId()
+    ));
+
+    $res = array();
+    foreach ($fields as $field) {
+      $intervals = $this->_em->getRepository('ClubBookingBundle:Interval')->findBy(array(
+        'field' => $field->getId(),
+        'day' => $date->format('N')
+      ));
+
+      $field->setTimes($intervals);
+    }
+
+    return $fields;
+  }
 }

@@ -5,6 +5,7 @@ find places and replace clone DateTime class
 make some more tests
 coupon option to go below zero
 implement gravatar
+find all tfoot without bg="class"
 
 == TEAM PARAMETERS ==
 cannot cancel team within start date

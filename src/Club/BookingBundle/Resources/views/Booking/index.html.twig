@@ -1,4 +1,39 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
+
+<h2>Booking</h2>
+
+<table class="style" id="booking">
+  <thead>
+    <tr>
+      <th width="50">&#160;</th>
+      {% for field in fields %}
+      <th width="100">{{ field.name }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="{{ fields|length+1 }}">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>
+      {% for dt in period %}
+      <div class="time_period" style="height: 60px;">{{ dt|date('H:i') }}</div>
+      {% endfor %}
+      </td>
+      {% for field in fields %}
+      <td>
+        {% for interval in field.times %}
+        <div class="booking" style="height: {{ interval.diff }}px">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</div>
+        {% endfor %}
+      </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+
 {% endblock %}

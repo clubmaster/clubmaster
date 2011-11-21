@@ -62,6 +62,15 @@ class Field
      */
     private $location;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Interval", mappedBy="field")
+     */
+    private $intervals;
+
+    /**
+     * only in use for booking schema
+     */
+    public $times;
 
     /**
      * Get id
@@ -208,5 +217,39 @@ class Field
     public function getLocation()
     {
         return $this->location;
+    }
+    public function __construct()
+    {
+        $this->intervals = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add intervals
+     *
+     * @param Club\BookingBundle\Entity\Interval $intervals
+     */
+    public function addInterval(\Club\BookingBundle\Entity\Interval $intervals)
+    {
+        $this->intervals[] = $intervals;
+    }
+
+    /**
+     * Get intervals
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getIntervals()
+    {
+        return $this->intervals;
+    }
+
+    public function getTimes()
+    {
+      return $this->times;
+    }
+
+    public function setTimes(array $intervals)
+    {
+      $this->times = $intervals;
     }
 }

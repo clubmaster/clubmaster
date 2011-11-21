@@ -23,6 +23,13 @@ class Interval
     private $id;
 
     /**
+     * @var integer $day
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $day;
+
+    /**
      * @var time $start_time
      *
      * @ORM\Column(type="time")
@@ -51,9 +58,9 @@ class Interval
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Day")
+     * @ORM\ManyToOne(targetEntity="Field")
      */
-    private $day;
+    private $field;
 
 
     /**
@@ -147,26 +154,6 @@ class Interval
     }
 
     /**
-     * Set day
-     *
-     * @param Club\BookingBundle\Entity\Day $day
-     */
-    public function setDay(\Club\BookingBundle\Entity\Day $day)
-    {
-        $this->day = $day;
-    }
-
-    /**
-     * Get day
-     *
-     * @return Club\BookingBundle\Entity\Day
-     */
-    public function getDay()
-    {
-        return $this->day;
-    }
-
-    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -181,5 +168,40 @@ class Interval
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set day
+     *
+     * @param integer $day
+     */
+    public function setDay($day)
+    {
+        $this->day = $day;
+    }
+
+    /**
+     * Get day
+     *
+     * @return integer
+     */
+    public function getDay()
+    {
+        return $this->day;
+    }
+
+    public function getDiff()
+    {
+      $diff = $this->getStartTime()->diff($this->getStopTime());
+
+      $min = 0;
+      if ($diff->d > 0)
+        $min += $diff->d*24*60;
+      if ($diff->h > 0)
+        $min += $diff->h*60;
+      if ($diff->i > 0)
+        $min += $diff->i;
+
+      return $min;
     }
 }

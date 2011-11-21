@@ -1,1 +1,26 @@
 /* WRITE YOUR CSS CODE HERE */
+div.time_period {
+  width: 100%;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+div.booking {
+  background-color: #d2deff;
+  width: 109px;
+  padding: 0px;
+  margin: 0px;
+}
+
+table#booking tbody td {
+  padding: 0px !important;
+}
+
+table#booking td.odd {
+  background-color: #bdbdbd;
+}
+
+table#booking td.even {
+  background-color: #e8e8e8;
+}
