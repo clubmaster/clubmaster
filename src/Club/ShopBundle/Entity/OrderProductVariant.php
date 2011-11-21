@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderProductVariant")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\OrderProductVariantRepository")
  * @ORM\Table(name="club_shop_order_product_variant")
  *
  */
