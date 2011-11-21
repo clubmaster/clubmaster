@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\Role")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\RoleRepository")
  * @ORM\Table(name="club_user_role")
  */
 class Role implements RoleInterface

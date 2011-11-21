@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\ForgotPassword")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\ForgotPasswordRepository")
  * @ORM\Table(name="club_user_forgot_password")
  * @ORM\HasLifeCycleCallbacks()
  */

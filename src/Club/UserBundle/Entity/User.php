@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
- * @ORM\Entity(repositoryClass="Club\UserBundle\Repository\User")
+ * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\UserRepository")
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
