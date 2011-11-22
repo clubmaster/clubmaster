@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-17
-:Revision:  13
+:Date:      2011-11-22
+:Revision:  14
 
 
 Feedback
@@ -195,6 +195,15 @@ If you want to attend an event, you dont get access to any sensitive data, so yo
 curl -u "user:password" http://example.com/api/events/{id}/attend
 
 That pretty much all you need to know before you can use our API.
+
+Date format
+~~~~~~~~~~~
+
+Date format will always be transmitted in ISO 8601 format.
+
+You can read about it here:
+
+http://en.wikipedia.org/wiki/ISO_8601
 
 
 Validate authentication
