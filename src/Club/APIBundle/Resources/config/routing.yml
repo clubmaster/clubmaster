@@ -18,3 +18,13 @@ _api_user:
   type: annotation
   prefix: /api/users
 
+_api_booking:
+  resource: "@ClubAPIBundle/Controller/BookingController.php"
+  type: annotation
+  prefix: /api/booking
+
+_api_location:
+  resource: "@ClubAPIBundle/Controller/LocationController.php"
+  type: annotation
+  prefix: /api/locations
+

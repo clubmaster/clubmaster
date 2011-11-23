@@ -121,4 +121,12 @@ class Location
     {
         return $this->childs;
     }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'location_name' => $this->getLocationName()
+      );
+    }
 }
