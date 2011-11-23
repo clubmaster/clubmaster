@@ -38,11 +38,11 @@ class BookingController extends Controller
   }
 
   /**
-   * @Route("/{id}/unattend")
+   * @Route("/{id}/cancel")
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
    */
-  public function unattendAction($id)
+  public function cancelAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 

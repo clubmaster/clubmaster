@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-22
-:Revision:  14
+:Date:      2011-11-23
+:Revision:  15
 
 
 Feedback
@@ -208,21 +208,16 @@ http://en.wikipedia.org/wiki/ISO_8601
 
 Validate authentication
 ~~~~~~~~~~~~~~~~~~~~~~~
-
 URL: /api/auth
-
 Method: ANY
 
 Success response will be HTTP response code 200, and a json response with specified user
-
 Failure response will be HTTP response code 403
 
 
 Get all events
 ~~~~~~~~~~~~~~
-
 URL: /api/events/
-
 Method: GET
 
 Success response will be HTTP response code 200, and a json response with all events
@@ -230,35 +225,26 @@ Success response will be HTTP response code 200, and a json response with all ev
 
 Attend event
 ~~~~~~~~~~~~
-
 URL: /api/events/{id}/attend
-
 Method: POST
 
 Use basic access authentication for the user who has to authenticate.
-
 Success response will be HTTP response code 200
 
 
 Unattend event
 ~~~~~~~~~~~~~~
-
 URL: /api/events/{id}/unattend
-
 Method: POST
 
 Use basic access authentication for the user who has to authenticate.
-
 Success response will be HTTP response code 200
 
 
 Get all users
 ~~~~~~~~~~~~~
-
 URL: /api/users/
-
 Method: GET
-
 Header: API_KEY
 
 Success response will be HTTP response code 200, and a json response with all users
@@ -266,11 +252,8 @@ Success response will be HTTP response code 200, and a json response with all us
 
 Get user
 ~~~~~~~~
-
 URL: /api/users/{id}
-
 Method: GET
-
 Header: API_KEY
 
 Success response will be HTTP response code 200, and a json response with specified user
@@ -278,68 +261,107 @@ Success response will be HTTP response code 200, and a json response with specif
 
 Get all teams
 ~~~~~~~~~~~~~
-
 URL: /api/teams/
 URL: /api/teams/{start}
 URL: /api/teams/{start}/{end}
+Method: GET
 
 Parameters:
 {start}: 2011-01-01
 {end}: 2011-01-02
-
-Method: GET
 
 Success response will be HTTP response code 200, and a json response with all teams
 
 
 Get users teams
 ~~~~~~~~~~~~~~~
-
 URL: /api/users/teams/
 URL: /api/users/teams/{start}
 URL: /api/users/teams/{start}/{end}
+Method: GET
 
 Parameters:
 {start}: 2011-01-01
 {end}: 2011-01-02
-
-Method: GET
 
 Success response will be HTTP response code 200, and a json response with all teams
 
 
 Attend team
 ~~~~~~~~~~~
-
 URL: /api/teams/{id}/attend
-
 Method: POST
 
 Use basic access authentication for the user who has to authenticate.
-
 Success response will be HTTP response code 200
 
 
 Unattend team
 ~~~~~~~~~~~~~
-
 URL: /api/teams/{id}/unattend
-
 Method: POST
 
 Use basic access authentication for the user who has to authenticate.
-
 Success response will be HTTP response code 200
 
 
 Participant team
 ~~~~~~~~~~~~~~~~
-
 URL: /api/teams/participant
-
 Method: ANY
 
 Use basic access authentication for the user who has to authenticate.
+Success response will be HTTP response code 200
 
+
+Get locations
+~~~~~~~~~~~~~
+URL: /api/locations/
+Method: GET
+
+Success response will be HTTP response code 200, and a json response with all locations
+
+
+Get fields
+~~~~~~~~~~
+URL: /api/fields/{location_id}
+URL: /api/fields/{location_id}/{date}
+Method: GET
+
+Parameters:
+{date}: 2011-01-01
+
+Success response will be HTTP response code 200, and a json response with all fields in a location
+
+
+Get bookings
+~~~~~~~~~~~~
+URL: /api/bookings/{date}/{location_id}
+Method: GET
+
+Parameters:
+{date}: 2011-01-01
+
+Success response will be HTTP response code 200, and a json response with all bookings for a location
+
+
+Make booking
+~~~~~~~~~~~~
+URL: /api/bookings/{date}/{interval_id}/attend
+Method: POST
+
+Parameters:
+{date}: 2011-01-01
+
+Use basic access authentication for the user who has to authenticate.
+Success response will be HTTP response code 200
+
+
+Cancel booking
+~~~~~~~~~~~~~~
+URL: /api/bookings/{id}/cancel
+Method: POST
+
+Use basic access authentication for the user who has to authenticate.
 Success response will be HTTP response code 200
 
