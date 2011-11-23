@@ -204,4 +204,14 @@ class Interval
 
       return $min;
     }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'start_time' => $this->getStartTime()->format('c'),
+        'end_time' => $this->getStopTime()->format('c'),
+        'day' => $this->getDay()
+      );
+    }
 }

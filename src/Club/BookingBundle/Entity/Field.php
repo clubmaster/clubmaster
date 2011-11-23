@@ -252,4 +252,24 @@ class Field
     {
       $this->times = $intervals;
     }
+
+    public function toArray()
+    {
+      $res = array(
+        'id' => $this->getId(),
+        'name' => $this->getName(),
+        'pository' => $this->getPosition(),
+        'term' => $this->getTerms()
+      );
+
+      if (count($this->getTimes())) {
+
+        $res['intervals'] = array();
+        foreach ($this->getTimes() as $interval) {
+          $res['intervals'][] = $interval->toArray();
+        }
+      }
+
+      return $res;
+    }
 }

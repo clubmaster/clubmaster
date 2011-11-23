@@ -12,22 +12,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class BookingController extends Controller
 {
   /**
-   * @Route("/fields")
-   * @Method("GET")
-   */
-  public function fieldsAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $res = array();
-
-
-    $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
-
-    return $response;
-  }
-
-  /**
    * @Route("/{id}/attend")
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
