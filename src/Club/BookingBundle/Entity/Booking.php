@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_booking_booking")
  * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
@@ -22,11 +23,11 @@ class Booking
     private $id;
 
     /**
-     * @var date $booking_date
+     * @var date $date
      *
-     * @ORM\Column(name="booking_date", type="date")
+     * @ORM\Column(type="date")
      */
-    private $booking_date;
+    private $date;
 
     /**
      * @var datetime $created_at
@@ -64,23 +65,23 @@ class Booking
     }
 
     /**
-     * Set booking_date
+     * Set date
      *
-     * @param date $bookingDate
+     * @param date $date
      */
-    public function setBookingDate($bookingDate)
+    public function setDate($date)
     {
-        $this->booking_date = $bookingDate;
+        $this->date = $date;
     }
 
     /**
-     * Get booking_date
+     * Get date
      *
      * @return date
      */
-    public function getBookingDate()
+    public function getDate()
     {
-        return $this->booking_date;
+        return $this->date;
     }
 
     /**
@@ -136,7 +137,7 @@ class Booking
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -156,10 +157,27 @@ class Booking
     /**
      * Get interval
      *
-     * @return Club\BookingBundle\Entity\Interval 
+     * @return Club\BookingBundle\Entity\Interval
      */
     public function getInterval()
     {
         return $this->interval;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
     }
 }

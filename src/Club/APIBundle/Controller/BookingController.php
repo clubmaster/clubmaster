@@ -12,24 +12,24 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class BookingController extends Controller
 {
   /**
-   * @Route("/{id}/attend")
+   * @Route("/{date}/{interval_id}/attend")
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
    */
-  public function attendAction($id)
+  public function attendAction($date, $interval_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $event = $em->find('ClubEventBundle:Event', $id);
+    $date = new \DateTime($date);
+    $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $attend = new \Club\EventBundle\Entity\Attend();
-    $attend->setUser($user);
-    $attend->setEvent($event);
+    $booking = new \Club\BookingBundle\Entity\Booking();
+    $booking->setDate($date);
+    $booking->setInterval($interval);
+    $booking->setUser($user);
 
-    $event->addAttends($attend);
-
-    $em->persist($event);
+    $em->persist($booking);
     $em->flush();
 
     $response = new Response();
@@ -46,14 +46,9 @@ class BookingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $this->get('security.context')->getToken()->getUser();
+    $booking = $em->find('ClubBookingBundle:Booking', $id);
 
-    $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
-      'event' => $id,
-      'user' => $this->get('security.context')->getToken()->getUser()->getId()
-    ));
-
-    $em->remove($attend);
+    $em->remove($booking);
     $em->flush();
 
     $response = new Response();
