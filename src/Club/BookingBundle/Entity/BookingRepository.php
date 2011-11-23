@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookingRepository extends EntityRepository
 {
+  public function getAllByLocationDate(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('b')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.interval' ,'i')
+      ->leftJoin('i.field', 'f')
+      ->leftJoin('f.location', 'l')
+      ->where('l.id = :location')
+      ->setParameter('location', $location->getId())
+      ->getQuery()
+      ->getResult();
+  }
 }

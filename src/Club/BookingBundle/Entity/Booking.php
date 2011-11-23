@@ -180,4 +180,16 @@ class Booking
     {
       $this->setUpdatedAt(new \DateTime());
     }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'interval_id' => $this->getInterval()->getId(),
+        'user_id' => $this->getUser()->getId(),
+        'date' => $this->getDate()->format('c'),
+        'created_at' => $this->getCreatedAt()->format('c'),
+        'updated_at' => $this->getUpdatedAt()->format('c')
+      );
+    }
 }

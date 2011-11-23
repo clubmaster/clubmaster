@@ -57,19 +57,22 @@ class BookingController extends Controller
   }
 
   /**
-   * @Route("/{start}")
+   * @Route("/{date}/{location_id}")
    * @Method("GET")
    */
-  public function indexAction($start)
+  public function indexAction($date, $location_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $res = array();
+    $location = $em->find('ClubUserBundle:Location', $location_id);
 
-    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
-    $end = ($end == null) ? null : new \DateTime($end.' 23:59:59');
+    $date = new \DateTime($date);
+    $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
 
-    foreach ($em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end) as $event) {
-      $res[] = $event->toArray();
+    $res = array(
+      'bookings' => array()
+    );
+    foreach ($bookings as $booking) {
+      $res['bookings'][] = $booking->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));

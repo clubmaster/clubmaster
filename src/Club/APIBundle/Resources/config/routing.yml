@@ -21,7 +21,7 @@ _api_user:
 _api_booking:
   resource: "@ClubAPIBundle/Controller/BookingController.php"
   type: annotation
-  prefix: /api/booking
+  prefix: /api/bookings
 
 _api_location:
   resource: "@ClubAPIBundle/Controller/LocationController.php"

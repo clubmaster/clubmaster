@@ -42,6 +42,11 @@ class Location
      */
     private $childs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Club\BookingBundle\Entity\Field", mappedBy="location")
+     */
+    private $fields;
+
 
     public function __toString()
     {
@@ -128,5 +133,25 @@ class Location
         'id' => $this->getId(),
         'location_name' => $this->getLocationName()
       );
+    }
+
+    /**
+     * Add fields
+     *
+     * @param Club\BookingBundle\Entity\Field $fields
+     */
+    public function addField(\Club\BookingBundle\Entity\Field $fields)
+    {
+        $this->fields[] = $fields;
+    }
+
+    /**
+     * Get fields
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFields()
+    {
+        return $this->fields;
     }
 }
