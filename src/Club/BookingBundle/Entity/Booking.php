@@ -3,11 +3,14 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\BookingBundle\Entity\Booking
  *
- * @ORM\Table(name="club_booking_booking")
+ * @ORM\Table(name="club_booking_booking",
+ *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"date", "interval_id"})}
+ * )
  * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\BookingRepository")
  * @ORM\HasLifecycleCallbacks()
  */
