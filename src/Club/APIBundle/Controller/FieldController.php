@@ -12,18 +12,18 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class FieldController extends Controller
 {
   /**
-   * @Route("/{location_id}")
+   * @Route("/{location_id}", defaults={"date" = null})
+   * @Route("/{location_id}/{date}")
    * @Method("GET")
    */
-  public function indexAction($location_id)
+  public function indexAction($location_id, $date)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('ClubUserBundle:Location', $location_id);
 
-    $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsOverview(
-      $location,
-      new \DateTime()
-    );
+    $date = ($date == null) ? new \DateTime() : new \DateTime($date);
+
+    $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsOverview($location,$date);
 
     $res = array();
     foreach ($fields as $field) {
