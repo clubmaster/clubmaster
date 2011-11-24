@@ -1,6 +1,5 @@
 == TODO ==
 booking bundle
-add api key to participant API call
 find places and replace clone DateTime class
 make some more tests
 coupon option to go below zero

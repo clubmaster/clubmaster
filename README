@@ -309,6 +309,7 @@ Participant team
 ~~~~~~~~~~~~~~~~
 URL: /api/teams/participant
 Method: ANY
+Header: API_KEY
 
 Use basic access authentication for the user who has to authenticate.
 Success response will be HTTP response code 200

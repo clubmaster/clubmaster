@@ -79,6 +79,9 @@ class TeamController extends Controller
    */
   public function participantAction()
   {
+    if (!$this->validateKey())
+      return new Response('Wrong API key', 403);
+
     $em = $this->getDoctrine()->getEntityManager();
     $participant = new \Club\TeamBundle\Entity\Participant();
     $participant->setUser($this->get('security.context')->getToken()->getUser());
