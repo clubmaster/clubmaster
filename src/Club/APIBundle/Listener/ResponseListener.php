@@ -22,6 +22,7 @@ class ResponseListener
 
     $response = $event->getResponse();
     $response->headers->set('Access-Control-Allow-Origin', '*');
+    $response->headers->set('WWW-Authenticate', null);
     $event->setResponse($response);
   }
 }
