@@ -73,3 +73,7 @@
 [DoctrineFixturesBundle]
     git=http://github.com/symfony/DoctrineFixturesBundle.git
     target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
+
+[OrnicarGravatarBundle]
+    git=http://github.com/ornicar/GravatarBundle.git
+    target=/bundles/Ornicar/GravatarBundle

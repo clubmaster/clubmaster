@@ -4,6 +4,20 @@
 
 {% include "ClubUserBundle:AdminUser:header.html.twig" %}
 
+{% if gravatar_exists(user.profile.profileEmail.emailAddress) %}
+<!-- Avatar -->
+<fieldset>
+  <legend>Avatar</legend>
+  <table class="nostyle">
+    <tr>
+      <td>
+        <img src="{{ gravatar(user.profile.profileEmail.emailAddress) }}" alt="Gravatar" /><br />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+{% endif %}
+
 <form method="post" action="{{ path('admin_user_edit', {'id':user.id}) }}">
   {% include "ClubUserBundle:AdminUser:form.html.twig" with {'form': form} %}
 </form>

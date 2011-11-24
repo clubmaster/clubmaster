@@ -9,3 +9,8 @@ club_team:
     future_occurs: 25
     minutes_before_schedule: 120
     penalty_enabled: true
+
+ornicar_gravatar:
+    rating: g
+    size: 160
+    default: mm
