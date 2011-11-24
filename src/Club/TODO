@@ -6,6 +6,7 @@ make some more tests
 coupon option to go below zero
 implement gravatar
 find all tfoot without bg="class"
+find out how to make right response code for invalid password, locked account and so on
 
 == TEAM PARAMETERS ==
 cannot cancel team within start date
