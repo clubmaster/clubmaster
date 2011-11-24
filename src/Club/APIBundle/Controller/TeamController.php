@@ -25,7 +25,6 @@ class TeamController extends Controller
       $res = array('You do not have the right permission to use teams.');
 
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
-      $response->headers->set('Access-Control-Allow-Origin', '*');
 
       return $response;
 
@@ -38,7 +37,6 @@ class TeamController extends Controller
           $res[] = $error->getMessage();
         }
         $response = new Response($this->get('club_api.encode')->encode($res), 403);
-        $response->headers->set('Access-Control-Allow-Origin', '*');
 
         return $response;
       }
@@ -51,7 +49,6 @@ class TeamController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
 
     $response = new Response();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -73,7 +70,6 @@ class TeamController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $response = new Response();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -94,7 +90,6 @@ class TeamController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamParticipant, $event);
 
     $response = new Response();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -117,7 +112,6 @@ class TeamController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
 
     return $response;
   }

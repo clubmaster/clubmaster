@@ -31,7 +31,6 @@ class FieldController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
 
     return $response;
   }

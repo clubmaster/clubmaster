@@ -29,7 +29,6 @@ class UserController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -55,7 +54,6 @@ class UserController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
 
     return $response;
   }
@@ -74,7 +72,6 @@ class UserController extends Controller
     $user = $em->find('ClubUserBundle:User', $id);
 
     $response = new Response($this->get('club_api.encode')->encode($user->toArray()));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 }

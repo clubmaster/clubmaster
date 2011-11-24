@@ -33,7 +33,6 @@ class EventController extends Controller
     $em->flush();
 
     $response = new Response();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -57,7 +56,6 @@ class EventController extends Controller
     $em->flush();
 
     $response = new Response();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
     return $response;
   }
 
@@ -80,7 +78,6 @@ class EventController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
-    $response->headers->set('Access-Control-Allow-Origin', '*');
 
     return $response;
   }
