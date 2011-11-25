@@ -229,4 +229,24 @@ class Interval
     {
       return $this->booking;
     }
+
+    /**
+     * Set field
+     *
+     * @param Club\BookingBundle\Entity\Field $field
+     */
+    public function setField(\Club\BookingBundle\Entity\Field $field)
+    {
+        $this->field = $field;
+    }
+
+    /**
+     * Get field
+     *
+     * @return Club\BookingBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
 }

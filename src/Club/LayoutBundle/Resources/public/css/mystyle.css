@@ -24,3 +24,9 @@ table#booking td.odd {
 table#booking td.even {
   background-color: #e8e8e8;
 }
+
+div.list label {
+  width: 150px;
+  float: left;
+  font-weight: bold;
+}

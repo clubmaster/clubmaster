@@ -4,6 +4,21 @@
 <h2>Booking</h2>
 
 <fieldset>
+  <legend>Booking Information</legend>
+  <div class="list">
+    <p><label>Location</label>{{ interval.field.location.locationName }}</p>
+    <p><label>Date</label>{{ date|date('Y-m-d') }}</p>
+    <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
+    <p><label>Field</label>{{ interval.field.name }}</p>
+
+    {% if interval.field.terms %}
+    <h3>Information</h3>
+    <p>{{ interval.field.terms }}</p>
+    {% endif %}
+  </div>
+</fieldset>
+
+<fieldset>
   <form method="post" action="{{ path('club_booking_booking_user', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
     <legend>Booking</legend>
 
