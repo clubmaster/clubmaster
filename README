@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-23
-:Revision:  15
+:Date:      2011-11-25
+:Revision:  16
 
 
 Feedback
@@ -348,7 +348,8 @@ Success response will be HTTP response code 200, and a json response with all bo
 
 Make booking
 ~~~~~~~~~~~~
-URL: /api/bookings/{date}/{interval_id}/attend
+URL: /api/bookings/{date}/{interval_id}/book/{user_id}
+URL: /api/bookings/{date}/{interval_id}/book/guest
 Method: POST
 
 Parameters:

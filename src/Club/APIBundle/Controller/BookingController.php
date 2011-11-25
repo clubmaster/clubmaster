@@ -12,22 +12,29 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class BookingController extends Controller
 {
   /**
-   * @Route("/{date}/{interval_id}/attend")
+   * @Route("/{date}/{interval_id}/book/{user_id}")
+   * @Route("/{date}/{interval_id}/book/guest", defaults={"guest"})
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
    */
-  public function attendAction($date, $interval_id)
+  public function bookAction($date, $interval_id, $user_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $date = new \DateTime($date);
     $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
-    $user = $this->get('security.context')->getToken()->getUser();
 
     $booking = new \Club\BookingBundle\Entity\Booking();
     $booking->setDate($date);
     $booking->setInterval($interval);
-    $booking->setUser($user);
+    $booking->setUser($this->get('security.context')->getToken()->getUser());
+
+    if ($user_id == 'guest') {
+      $booking->setGuest(true);
+    } else {
+      $user = $em->find('ClubUserBundle:User', $user_id);
+      $booking->addUser($user);
+    }
 
     $em->persist($booking);
     $em->flush();
