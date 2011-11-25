@@ -21,7 +21,7 @@ class BookingController extends Controller
      $date = new \DateTime();
      $location = $em->find('ClubUserBundle:Location', 2);
 
-     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsOverview($location, $date);
+     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
 
      $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
 
@@ -101,6 +101,23 @@ class BookingController extends Controller
 
        return $this->redirect($this->generateUrl('club_booking_booking_index'));
      }
+   }
+
+   /**
+    * @Template()
+    * @Route("/booking/book/cancel/{id}")
+    */
+   public function cancelAction($id)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+
+     $booking = $em->find('ClubBookingBundle:Booking', $id);
+
+     $em->remove($booking);
+     $em->flush();
+
+     $this->get('session')->setFlash('notice', 'Booking has been cancelled');
+     return $this->redirect($this->generateUrl('club_booking_booking_index'));
    }
 
    /**

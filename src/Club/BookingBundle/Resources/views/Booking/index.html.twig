@@ -28,8 +28,17 @@
       <td>
         {% for interval in field.times %}
 
+        {% if interval.booking %}
+        <div class="booking" style="height: {{ interval.diff }}px">
+          <a href="{{ path('club_booking_booking_cancel', {'id':interval.booking.id}) }}">{{ interval.booking.user.profile.name }}</a>
+        </div>
+
+        {% else %}
         <!-- Free booking -->
-        <div class="booking" style="height: {{ interval.diff }}px"><a href="{{ path('club_booking_booking_book', {'interval_id':interval.id,'date': date|date('Y-m-d') }) }}">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</a></div>
+        <div class="booking" style="height: {{ interval.diff }}px">
+          <a href="{{ path('club_booking_booking_book', {'interval_id':interval.id,'date': date|date('Y-m-d') }) }}">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</a>
+        </div>
+        {% endif %}
 
         {% endfor %}
       </td>

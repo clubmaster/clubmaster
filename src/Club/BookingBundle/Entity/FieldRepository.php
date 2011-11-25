@@ -61,4 +61,21 @@ class FieldRepository extends EntityRepository
 
     return $fields;
   }
+
+  public function getFieldsBooking(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+  {
+    $fields = $this->getFieldsOverview($location, $date);
+    $bookings = $this->_em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
+
+    foreach ($fields as $field) {
+      foreach ($field->getTimes() as $interval) {
+        foreach ($bookings as $booking) {
+          if ($booking->getInterval()->getId() == $interval->getId())
+            $interval->setBooking($booking);
+        }
+      }
+    }
+
+    return $fields;
+  }
 }

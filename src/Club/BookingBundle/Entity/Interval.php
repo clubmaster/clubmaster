@@ -62,6 +62,11 @@ class Interval
      */
     private $field;
 
+    /**
+     * Virtual variable
+     */
+    private $booking;
+
 
     /**
      * Get id
@@ -213,5 +218,15 @@ class Interval
         'end_time' => $this->getStopTime()->format('c'),
         'day' => $this->getDay()
       );
+    }
+
+    public function setBooking(\Club\BookingBundle\Entity\Booking $booking)
+    {
+      $this->booking = $booking;
+    }
+
+    public function getBooking()
+    {
+      return $this->booking;
     }
 }
