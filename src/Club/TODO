@@ -9,6 +9,15 @@ booking bundle
   - cancel minutes after created, int
   - can only book in future
   - cannot book with yourself
+  - cannot cancel team within start date
+  - cannot cancel others booking except ROLE
+better pick opponent form
+add booking plans
+  - maintenance
+  - cleaning
+  - tournament
+implement payment for booking
+show time and location information on book page
 make some more tests
 coupon option to go below zero
 
