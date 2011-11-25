@@ -1,5 +1,13 @@
 == TODO ==
 booking bundle
+  - book with guest, true/false
+  - nums book with guest, int
+  - nums of book with same person, int
+  - nums book a day, int
+  - nums book in future, int
+  - cancel minutes before, int
+  - cancel minutes after created, int
+  - can only book in future
 make some more tests
 coupon option to go below zero
 

@@ -33,6 +33,13 @@ class Booking
     private $date;
 
     /**
+     * @var boolean $guest
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $guest;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -56,6 +63,11 @@ class Booking
      */
     private $interval;
 
+
+    public function __construct()
+    {
+      $this->setGuest(false);
+    }
 
     /**
      * Get id
@@ -194,5 +206,25 @@ class Booking
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
+    }
+
+    /**
+     * Set guest
+     *
+     * @param boolean $guest
+     */
+    public function setGuest($guest)
+    {
+        $this->guest = $guest;
+    }
+
+    /**
+     * Get guest
+     *
+     * @return boolean
+     */
+    public function getGuest()
+    {
+        return $this->guest;
     }
 }

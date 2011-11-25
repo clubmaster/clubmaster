@@ -1,7 +1,6 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-
 <h2>Booking</h2>
 
 <table class="style" id="booking">
@@ -28,7 +27,10 @@
       {% for field in fields %}
       <td>
         {% for interval in field.times %}
-        <div class="booking" style="height: {{ interval.diff }}px">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</div>
+
+        <!-- Free booking -->
+        <div class="booking" style="height: {{ interval.diff }}px"><a href="{{ path('club_booking_booking_book', {'interval_id':interval.id,'date': date|date('Y-m-d') }) }}">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</a></div>
+
         {% endfor %}
       </td>
       {% endfor %}
