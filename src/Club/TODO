@@ -8,6 +8,7 @@ booking bundle
   - cancel minutes before, int
   - cancel minutes after created, int
   - can only book in future
+  - cannot book with yourself
 make some more tests
 coupon option to go below zero
 

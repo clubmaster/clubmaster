@@ -59,6 +59,15 @@ class Booking
     private $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="club_booking_booking_user",
+     *   joinColumns={@ORM\JoinColumn(name="booking_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $users;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Interval")
      */
     private $interval;
@@ -226,5 +235,25 @@ class Booking
     public function getGuest()
     {
         return $this->guest;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

@@ -3,6 +3,7 @@
 namespace Club\BookingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -35,24 +36,7 @@ class BookingController extends Controller
 
    /**
     * @Template()
-    * @Route("/booking/book/{interval_id}/{date}")
-    */
-   public function bookAction($interval_id,$date)
-   {
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $date = new \DateTime($date);
-     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
-
-     return array(
-       'interval' => $interval,
-       'date' => $date
-     );
-   }
-
-   /**
-    * @Template()
-    * @Route("/booking/guest/{interval_id}/{date}")
+    * @Route("/booking/book/guest/{interval_id}/{date}")
     */
    public function guestAction($interval_id,$date)
    {
@@ -73,5 +57,70 @@ class BookingController extends Controller
      $this->get('session')->setFlash('notice', 'Your booking has been created');
 
      return $this->redirect($this->generateUrl('club_booking_booking_index'));
+   }
+
+   /**
+    * @Template()
+    * @Route("/booking/book/user/{interval_id}/{date}")
+    * @Method("POST")
+    */
+   public function userAction($interval_id,$date)
+   {
+     $user = new \Club\UserBundle\Entity\User();
+     $form = $this->createForm(new \Club\BookingBundle\Form\User, $user);
+     $form->bindRequest($this->getRequest());
+
+     if ($form->isValid()) {
+       $em = $this->getDoctrine()->getEntityManager();
+
+       $date = new \DateTime($date);
+       $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+       $user = $em->getRepository('ClubUserBundle:User')->findOneBy(array(
+         'member_number' => $user->getMemberNumber()
+       ));
+
+       if (!$user) {
+         $this->get('session')->setFlash('error', 'User does not exist');
+         return $this->redirect($this->generateUrl('club_booking_booking_book', array(
+           'interval_id' => $interval->getId(),
+           'date' => $date->format('Y-m-d')
+         )));
+       }
+
+       $booking = new \Club\BookingBundle\Entity\Booking();
+       $booking->setUser($this->get('security.context')->getToken()->getUser());
+       $booking->setInterval($interval);
+       $booking->setDate($date);
+       $booking->addUser($user);
+
+       $em->persist($booking);
+       $em->flush();
+
+       $this->get('session')->setFlash('notice', 'Your booking has been created');
+
+       return $this->redirect($this->generateUrl('club_booking_booking_index'));
+     }
+   }
+
+   /**
+    * @Template()
+    * @Route("/booking/book/{interval_id}/{date}")
+    */
+   public function bookAction($interval_id,$date)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+
+     $user = new \Club\UserBundle\Entity\User();
+     $form = $this->createForm(new \Club\BookingBundle\Form\User, $user);
+
+     $date = new \DateTime($date);
+     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+     return array(
+       'interval' => $interval,
+       'date' => $date,
+       'form' => $form->createVieW()
+     );
    }
 }

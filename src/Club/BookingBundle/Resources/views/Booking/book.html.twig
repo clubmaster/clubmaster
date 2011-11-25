@@ -3,14 +3,25 @@
 {% block body %}
 <h2>Booking</h2>
 
-<form method="post" action="{{ path('club_booking_booking_guest', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
 <fieldset>
-  <legend>Guest Booking</legend>
+  <form method="post" action="{{ path('club_booking_booking_user', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+    <legend>Booking</legend>
 
-  <p>Click here if you want to book with a guest.</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+    <p>Find your partner and complete your booking.</p>
+    {{ form_widget(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
-</form>
+  </form>
+</fieldset>
+
+<fieldset>
+  <form method="post" action="{{ path('club_booking_booking_guest', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+    <legend>Guest Booking</legend>
+
+    <p>Click here if you want to book with a guest.</p>
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </form>
 </fieldset>
 
 {% endblock %}
