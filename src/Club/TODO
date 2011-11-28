@@ -1,10 +1,6 @@
 == TODO ==
 booking bundle
   - cannot cancel team within start date
-  obey:
-    cancel_minute_before: 120
-    cancel_minute_created: 5
-
 better pick opponent form
 add booking plans
   - maintenance

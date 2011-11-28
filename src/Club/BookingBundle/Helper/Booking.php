@@ -29,18 +29,35 @@ class Booking
   {
     $this->booking = $booking;
 
-    $c = clone $this->booking->getDate();
-    $c->setTime(
+    if ($this->security_context->isGranted('ROLE_BOOKING_ADMIN'))
+      return;
+
+    if ($this->booking->getUser() != $this->security_context->getToken()->getUser()) {
+      $this->setError('You do not have permissions to delete this booking');
+      return;
+    }
+
+    $book_time = clone $this->booking->getDate();
+    $book_time->setTime(
       $this->booking->getInterval()->getStartTime()->format('H'),
       $this->booking->getInterval()->getStartTime()->format('i'),
       $this->booking->getInterval()->getStartTime()->format('s')
     );
 
-    if ($c < new \DateTime())
+    if ($book_time < new \DateTime()) {
       $this->setError('You cannot delete bookings in the past');
+      return;
+    }
 
-    if ((!$this->security_context->isGranted('ROLE_BOOKING_ADMIN')) && ($this->booking->getUser() != $this->security_context->getToken()->getUser()))
-      $this->setError('You do not have permissions to delete this booking');
+    $now = new \DateTime();
+    $diff = ($now->getTimestamp()-$this->booking->getCreatedAt()->getTimestamp());
+    if ($diff < $this->container->getParameter('club_booking.cancel_minute_created')*60)
+      return;
+
+    $delete_within = clone $book_time;
+    $delete_within->sub(new \DateInterval('PT'.$this->container->getParameter('club_booking.cancel_minute_before').'M'));
+    if ($delete_within < new \DateTime())
+      $this->setError('Cannot delete booking because time range is too small');
   }
 
   public function bindGuest(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user)
