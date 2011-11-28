@@ -33,7 +33,6 @@ class BookingController extends Controller
 
     if (!$this->get('club_booking.booking')->isValid()) {
       $res = array($this->get('club_booking.booking')->getError());
-
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
       return $response;
     }
@@ -55,8 +54,13 @@ class BookingController extends Controller
 
     $booking = $em->find('ClubBookingBundle:Booking', $id);
 
-    $em->remove($booking);
-    $em->flush();
+    $this->get('club_booking.booking')->bindDelete($booking);
+    if (!$this->get('club_booking.booking')->isValid()) {
+      $res = array($this->get('club_booking.booking')->getError());
+      $response = new Response($this->get('club_api.encode')->encode($res), 403);
+      return $response;
+    }
+    $this->get('club_booking.booking')->remove();
 
     $response = new Response();
     return $response;

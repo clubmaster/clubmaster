@@ -109,10 +109,14 @@ class BookingController extends Controller
 
      $booking = $em->find('ClubBookingBundle:Booking', $id);
 
-     $em->remove($booking);
-     $em->flush();
+     $this->get('club_booking.booking')->bindDelete($booking);
+     if ($this->get('club_booking.booking')->isValid()) {
+       $this->get('club_booking.booking')->remove();
+       $this->get('session')->setFlash('notice', 'Booking has been cancelled');
+     } else {
+       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+     }
 
-     $this->get('session')->setFlash('notice', 'Booking has been cancelled');
      return $this->redirect($this->generateUrl('club_booking_booking_index'));
    }
 

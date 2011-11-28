@@ -8,6 +8,7 @@ class Booking
 {
   protected $em;
   protected $container;
+  protected $security_context;
   protected $error;
   protected $is_valid = true;
   protected $user;
@@ -15,11 +16,31 @@ class Booking
   protected $interval;
   protected $partner;
   protected $guest = false;
+  protected $booking;
 
-  public function __construct(EntityManager $em, $container)
+  public function __construct(EntityManager $em, $container, $security_context)
   {
     $this->em = $em;
     $this->container = $container;
+    $this->security_context = $security_context;
+  }
+
+  public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
+  {
+    $this->booking = $booking;
+
+    $c = clone $this->booking->getDate();
+    $c->setTime(
+      $this->booking->getInterval()->getStartTime()->format('H'),
+      $this->booking->getInterval()->getStartTime()->format('i'),
+      $this->booking->getInterval()->getStartTime()->format('s')
+    );
+
+    if ($c < new \DateTime())
+      $this->setError('You cannot delete bookings in the past');
+
+    if ((!$this->security_context->isGranted('ROLE_BOOKING_ADMIN')) && ($this->booking->getUser() != $this->security_context->getToken()->getUser()))
+      $this->setError('You do not have permissions to delete this booking');
   }
 
   public function bindGuest(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user)
@@ -148,6 +169,12 @@ class Booking
     $this->em->flush();
 
     return $booking;
+  }
+
+  public function remove()
+  {
+    $this->em->remove($this->booking);
+    $this->em->flush();
   }
 
   protected function setError($error)
