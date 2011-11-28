@@ -11,9 +11,9 @@
     <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
     <p><label>Field</label>{{ interval.field.name }}</p>
 
-    {% if interval.field.terms %}
+    {% if interval.field.information %}
     <h3>Information</h3>
-    <p>{{ interval.field.terms }}</p>
+    <p>{{ interval.field.information }}</p>
     {% endif %}
   </div>
 </fieldset>

@@ -37,11 +37,11 @@ class Field
     private $position;
 
     /**
-     * @var text $terms
+     * @var text $information
      *
-     * @ORM\Column(name="terms", type="text")
+     * @ORM\Column(type="text")
      */
-    private $terms;
+    private $information;
 
     /**
      * @var datetime $created_at
@@ -120,26 +120,6 @@ class Field
     public function getPosition()
     {
         return $this->position;
-    }
-
-    /**
-     * Set terms
-     *
-     * @param text $terms
-     */
-    public function setTerms($terms)
-    {
-        $this->terms = $terms;
-    }
-
-    /**
-     * Get terms
-     *
-     * @return text
-     */
-    public function getTerms()
-    {
-        return $this->terms;
     }
 
     /**
@@ -271,5 +251,25 @@ class Field
       }
 
       return $res;
+    }
+
+    /**
+     * Set information
+     *
+     * @param text $information
+     */
+    public function setInformation($information)
+    {
+        $this->information = $information;
+    }
+
+    /**
+     * Get information
+     *
+     * @return text 
+     */
+    public function getInformation()
+    {
+        return $this->information;
     }
 }

@@ -1,16 +1,16 @@
 == TODO ==
-booking bundle
-  - cannot cancel team within start date
 better pick opponent form
 add booking plans
   - maintenance
   - cleaning
   - tournament
 implement payment for booking
-show time and location information on book page
 make some more tests
 coupon option to go below zero
-rename terms to information
+change time and location for booking
+make field administration
+
+make more simple demo location setup
 change time comparence to object compare instead of timestamp
 Check up on Query#getOneOrNullResult(): Retrieve a single object. If no object is found null will be returned.
 
