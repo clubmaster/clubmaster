@@ -120,6 +120,12 @@ class Schedule
     private $users;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Club\BookingBundle\Entity\Field")
+     * @ORM\JoinTable(name="club_team_schedule_field")
+     */
+    private $fields;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Level")
      */
     private $level;
@@ -578,5 +584,25 @@ class Schedule
     public function getProcessed()
     {
         return $this->processed;
+    }
+
+    /**
+     * Add fields
+     *
+     * @param Club\BookingBundle\Entity\Field $fields
+     */
+    public function addField(\Club\BookingBundle\Entity\Field $fields)
+    {
+        $this->fields[] = $fields;
+    }
+
+    /**
+     * Get fields
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFields()
+    {
+        return $this->fields;
     }
 }

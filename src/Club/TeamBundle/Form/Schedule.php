@@ -16,6 +16,7 @@ class Schedule extends AbstractType
     $builder->add('first_date');
     $builder->add('end_date');
     $builder->add('level');
+    $builder->add('fields');
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',
       'query_builder' => function(EntityRepository $er) {

@@ -266,10 +266,15 @@ class Field
     /**
      * Get information
      *
-     * @return text 
+     * @return text
      */
     public function getInformation()
     {
         return $this->information;
+    }
+
+    public function __toString()
+    {
+      return $this->getName();
     }
 }
