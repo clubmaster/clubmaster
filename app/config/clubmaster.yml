@@ -12,12 +12,12 @@ club_team:
 
 club_booking:
     enable_guest: true
-    num_book_guest_day: 1
-    num_book_guest_future: 1
-    num_book_same_partner_day: 1
-    num_book_same_partner_future: 1
-    num_book_day: 1
-    num_book_future: 4
+    num_book_guest_day: 10
+    num_book_guest_future: 10
+    num_book_same_partner_day: 10
+    num_book_same_partner_future: 10
+    num_book_day: 20
+    num_book_future: 20
     cancel_minute_before: 120
     cancel_minute_created: 5
 

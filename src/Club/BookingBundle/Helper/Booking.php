@@ -31,6 +31,9 @@ class Booking
 
     $this->validate();
 
+    if (!$this->isValid())
+      return;
+
     if (!$this->container->getParameter('club_booking.enable_guest'))
       $this->setError('Guest booking is not enabled');
 
@@ -45,8 +48,10 @@ class Booking
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day'))
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day')) {
       $this->setError('You cannot have more guest bookings this day');
+      return;
+    }
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -59,8 +64,10 @@ class Booking
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future'))
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future')) {
       $this->setError('You cannot have more guest bookings');
+      return;
+    }
   }
 
   public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
@@ -71,22 +78,49 @@ class Booking
     $this->partner = $partner;
 
     $this->validate();
+    if (!$this->isValid())
+      return;
 
     if ($user == $partner)
       $this->setError('You cannot book with yourself');
 
-    $bookings = $this->em->createQueryBuilder()
-      ->select('b')
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date >= CURRENT_DATE()')
+      ->leftJoin('b.users', 'u')
+      ->where('b.date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $this->user->getId())
+      ->setParameter('partner', $this->partner->getId())
       ->setParameter('is_guest', false)
       ->getQuery()
-      ->getResult();
+      ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future'))
-      $this->setError('You cannot have more guest bookings');
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day')) {
+      $this->setError('You cannot have more bookings with this partner this day');
+      return;
+    }
+
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.date >= CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('user', $this->user->getId())
+      ->setParameter('partner', $this->partner->getId())
+      ->setParameter('is_guest', false)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future')) {
+      $this->setError('You cannot have more bookings with this partner');
+      return;
+    }
   }
 
   public function getError()
