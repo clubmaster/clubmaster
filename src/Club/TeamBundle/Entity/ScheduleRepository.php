@@ -103,4 +103,8 @@ class ScheduleRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getInterval(\Club\TeamBundle\Entity\Schedule $schedule)
+  {
+  }
 }

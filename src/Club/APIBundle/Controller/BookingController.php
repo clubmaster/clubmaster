@@ -79,7 +79,8 @@ class BookingController extends Controller
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
 
     $res = array(
-      'bookings' => array()
+      'bookings' => array(),
+      'teams' => array()
     );
     foreach ($bookings as $booking) {
       $res['bookings'][] = $booking->toArray();
