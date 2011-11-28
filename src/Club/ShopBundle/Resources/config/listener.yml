@@ -29,3 +29,8 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: team.unattend, method: onTeamUnattend }
+  club.shopbundle.coupon_use:
+    class: Club\ShopBundle\Listener\CouponListener
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.event_listener, event: coupon.use, method: onCouponUse }

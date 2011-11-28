@@ -1,4 +1,5 @@
 == TODO ==
+fix coupon
 better pick opponent form
 add booking plans
   - maintenance
@@ -6,13 +7,15 @@ add booking plans
   - tournament
 implement payment for booking
 make some more tests
-coupon option to go below zero
 change time and location for booking
 make field administration
 
 make more simple demo location setup
 change time comparence to object compare instead of timestamp
-Check up on Query#getOneOrNullResult(): Retrieve a single object. If no object is found null will be returned.
+fix expire date of coupon
+fix max usage of coupon
+cannot add more coupons to cart on + sign
+bind coupon to specific product
 
 == TEAM PARAMETERS ==
 cannot cancel team within start date

@@ -22,15 +22,8 @@ class CouponRepository extends EntityRepository
       ->setParameter('coupon', $coupon_key)
       ->setParameter('expire', date('Y-m-d H:i:s'))
       ->getQuery()
-      ->getResult();
+      ->getOneOrNullResult();
 
-    if (count($coupon)) {
-      if ($coupon[0]->getMaxUsage() <= count($coupon[0]->getCouponLog()))
-        return false;
-
-      return $coupon[0];
-    }
-
-    return false;
+    return $coupon;
   }
 }
