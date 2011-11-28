@@ -1,5 +1,4 @@
 == TODO ==
-fix coupon
 better pick opponent form
 add booking plans
   - maintenance
@@ -13,6 +12,7 @@ fix expire date of coupon
 fix max usage of coupon
 cannot add more coupons to cart on + sign
 bind coupon to specific product
+fix coupon no orders can go below zero
 cannot cancel team within start date
 max attends
 max attends / day
