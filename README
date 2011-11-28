@@ -356,7 +356,7 @@ Parameters:
 {date}: 2011-01-01
 
 Use basic access authentication for the user who has to authenticate.
-Success response will be HTTP response code 200
+Success response will be HTTP response code 200 and json response with booking object
 
 
 Cancel booking

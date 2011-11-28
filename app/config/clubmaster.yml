@@ -10,6 +10,17 @@ club_team:
     minutes_before_schedule: 120
     penalty_enabled: true
 
+club_booking:
+    enable_guest: true
+    num_book_guest_day: 1
+    num_book_guest_future: 1
+    num_book_same_partner_day: 1
+    num_book_same_partner_future: 1
+    num_book_day: 1
+    num_book_future: 4
+    cancel_minute_before: 120
+    cancel_minute_created: 5
+
 ornicar_gravatar:
     rating: g
     size: 160

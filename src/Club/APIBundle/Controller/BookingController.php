@@ -24,22 +24,23 @@ class BookingController extends Controller
     $date = new \DateTime($date);
     $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
 
-    $booking = new \Club\BookingBundle\Entity\Booking();
-    $booking->setDate($date);
-    $booking->setInterval($interval);
-    $booking->setUser($this->get('security.context')->getToken()->getUser());
-
     if ($user_id == 'guest') {
-      $booking->setGuest(true);
+      $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
     } else {
-      $user = $em->find('ClubUserBundle:User', $user_id);
-      $booking->addUser($user);
+      $partner = $em->find('ClubUserBundle:User', $user_id);
+      $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $partner);
     }
 
-    $em->persist($booking);
-    $em->flush();
+    if (!$this->get('club_booking.booking')->isValid()) {
+      $res = array($this->get('club_booking.booking')->getError());
 
-    $response = new Response();
+      $response = new Response($this->get('club_api.encode')->encode($res), 403);
+      return $response;
+    }
+
+    $booking = $this->get('club_booking.booking')->save();
+
+    $response = new Response($this->get('club_api.encode')->encode($booking->toArray()));
     return $response;
   }
 

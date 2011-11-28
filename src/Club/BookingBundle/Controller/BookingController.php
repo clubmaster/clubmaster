@@ -45,16 +45,14 @@ class BookingController extends Controller
      $date = new \DateTime($date);
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
 
-     $booking = new \Club\BookingBundle\Entity\Booking();
-     $booking->setUser($this->get('security.context')->getToken()->getUser());
-     $booking->setInterval($interval);
-     $booking->setDate($date);
-     $booking->setGuest(true);
+     $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
 
-     $em->persist($booking);
-     $em->flush();
-
-     $this->get('session')->setFlash('notice', 'Your booking has been created');
+     if ($this->get('club_booking.booking')->isValid()) {
+       $this->get('club_booking.booking')->save();
+       $this->get('session')->setFlash('notice', 'Your booking has been created');
+     } else {
+       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+     }
 
      return $this->redirect($this->generateUrl('club_booking_booking_index'));
    }
@@ -88,16 +86,14 @@ class BookingController extends Controller
          )));
        }
 
-       $booking = new \Club\BookingBundle\Entity\Booking();
-       $booking->setUser($this->get('security.context')->getToken()->getUser());
-       $booking->setInterval($interval);
-       $booking->setDate($date);
-       $booking->addUser($user);
+       $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $user);
 
-       $em->persist($booking);
-       $em->flush();
-
-       $this->get('session')->setFlash('notice', 'Your booking has been created');
+       if ($this->get('club_booking.booking')->isValid()) {
+         $this->get('club_booking.booking')->save();
+         $this->get('session')->setFlash('notice', 'Your booking has been created');
+       } else {
+         $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+       }
 
        return $this->redirect($this->generateUrl('club_booking_booking_index'));
      }

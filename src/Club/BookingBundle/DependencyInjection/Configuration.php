@@ -24,6 +24,19 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+          ->children()
+            ->scalarNode('enable_guest')->isRequired()->end()
+            ->scalarNode('num_book_guest_day')->isRequired()->end()
+            ->scalarNode('num_book_guest_future')->isRequired()->end()
+            ->scalarNode('num_book_same_partner_day')->isRequired()->end()
+            ->scalarNode('num_book_same_partner_future')->isRequired()->end()
+            ->scalarNode('num_book_day')->isRequired()->end()
+            ->scalarNode('num_book_future')->isRequired()->end()
+            ->scalarNode('cancel_minute_before')->isRequired()->end()
+            ->scalarNode('cancel_minute_created')->isRequired()->end()
+          ->end();
+
         return $treeBuilder;
     }
 }

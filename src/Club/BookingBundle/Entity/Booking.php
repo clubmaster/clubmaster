@@ -73,11 +73,6 @@ class Booking
     private $interval;
 
 
-    public function __construct()
-    {
-      $this->setGuest(false);
-    }
-
     /**
      * Get id
      *

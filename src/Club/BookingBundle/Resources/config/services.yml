@@ -1,3 +1,6 @@
 services:
     club_booking.interval:
         class: Club\BookingBundle\Helper\Interval
+    club_booking.booking:
+        class: Club\BookingBundle\Helper\Booking
+        arguments: [@doctrine.orm.entity_manager, @service_container]

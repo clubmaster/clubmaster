@@ -1,14 +1,5 @@
 == TODO ==
 booking bundle
-  - book with guest, true/false
-  - nums book with guest, int
-  - nums of book with same person, int
-  - nums book a day, int
-  - nums book in future, int
-  - cancel minutes before, int
-  - cancel minutes after created, int
-  - can only book in future
-  - cannot book with yourself
   - cannot cancel team within start date
   - cannot cancel others booking except ROLE
 better pick opponent form
@@ -21,6 +12,8 @@ show time and location information on book page
 make some more tests
 coupon option to go below zero
 rename terms to information
+change time comparence to object compare instead of timestamp
+Check up on Query#getOneOrNullResult(): Retrieve a single object. If no object is found null will be returned.
 
 == TEAM PARAMETERS ==
 cannot cancel team within start date
