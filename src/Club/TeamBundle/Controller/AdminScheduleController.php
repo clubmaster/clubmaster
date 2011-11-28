@@ -425,6 +425,11 @@ class AdminScheduleController extends Controller
     foreach ($original->getInstructors() as $instructor) {
       $schedule->addInstructor($instructor);
     }
+
+    foreach ($original->getFields() as $field) {
+      $schedule->addField($field);
+    }
+
     $em->persist($schedule);
   }
 
