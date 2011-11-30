@@ -19,6 +19,7 @@ max attends / day
 be able to delete attends within 5 minutes after created
 team should be able to use fields
 make ajax fields for fields on schedule
+not 2 schedules can have the same interval
 
 == NOTES TO LATER ==
 make more simple demo location setup

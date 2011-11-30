@@ -43,7 +43,7 @@ class ScheduleRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null)
+  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null, \Club\UserBundle\Entity\Location $location=null)
   {
     $qb = $this->_em->createQueryBuilder()
       ->select('s')
@@ -59,6 +59,13 @@ class ScheduleRepository extends EntityRepository
         ->leftJoin('s.users', 'u')
         ->andWhere('u.id = :user')
         ->setParameter('user', $user->getId());
+    }
+
+    if (isset($location)) {
+      $qb
+        ->leftJoin('s.location', 'l')
+        ->andWhere('l.id = :location')
+        ->setParameter('location', $location->getId());
     }
 
     return $qb
@@ -104,7 +111,23 @@ class ScheduleRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getInterval(\Club\TeamBundle\Entity\Schedule $schedule)
+  public function getIntervalByLocationDate(\Club\UserBundle\Entity\Location $location, \DateTime $date)
   {
+    $start = new \DateTime('today');
+    $end = new \DateTime('today');
+    $end->setTime(23,59,59);
+
+    $schedules = $this->getAllBetween($start, $end, null, $location);
+
+    $intervals = array();
+    foreach ($schedules as $schedule) {
+      foreach ($schedule->getFields() as $field) {
+        foreach ($this->_em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field) as $interval) {
+          $intervals[] = $interval;
+        }
+      }
+    }
+
+    return $intervals;
   }
 }

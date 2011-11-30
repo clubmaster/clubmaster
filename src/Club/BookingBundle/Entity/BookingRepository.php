@@ -21,7 +21,9 @@ class BookingRepository extends EntityRepository
       ->leftJoin('i.field', 'f')
       ->leftJoin('f.location', 'l')
       ->where('l.id = :location')
+      ->andWhere('b.date = :date')
       ->setParameter('location', $location->getId())
+      ->setParameter('date', $date->format('Y-m-d'))
       ->getQuery()
       ->getResult();
   }

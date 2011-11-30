@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class IntervalRepository extends EntityRepository
 {
+  public function getAll(\DateTime $start, \DateTime $end, \Club\BookingBundle\Entity\Field $field)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('i')
+      ->from('ClubBookingBundle:Interval', 'i')
+      ->where('i.start_time <= :start')
+      ->andWhere('i.stop_time >= :stop')
+      ->andWhere('i.field = :field')
+      ->andWhere('i.day = :day')
+      ->setParameter('start', $start->format('H:i:s'))
+      ->setParameter('stop', $start->format('H:i:s'))
+      ->setParameter('field', $field->getId())
+      ->setParameter('day', $start->format('N'))
+      ->getQuery()
+      ->getResult();
+  }
 }

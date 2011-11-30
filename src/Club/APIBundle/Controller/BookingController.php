@@ -77,6 +77,7 @@ class BookingController extends Controller
 
     $date = new \DateTime($date);
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
+    $intervals = $em->getRepository('ClubTeamBundle:Schedule')->getIntervalByLocationDate($location, $date);
 
     $res = array(
       'bookings' => array(),
@@ -84,6 +85,9 @@ class BookingController extends Controller
     );
     foreach ($bookings as $booking) {
       $res['bookings'][] = $booking->toArray();
+    }
+    foreach ($intervals as $interval) {
+      $res['teams'][] = $interval->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
