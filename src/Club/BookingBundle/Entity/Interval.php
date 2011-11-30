@@ -67,6 +67,11 @@ class Interval
      */
     private $booking;
 
+    /**
+     * Virtual variable
+     */
+    private $schedule;
+
 
     /**
      * Get id
@@ -228,6 +233,16 @@ class Interval
     public function getBooking()
     {
       return $this->booking;
+    }
+
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    {
+      $this->schedule = $schedule;
+    }
+
+    public function getSchedule()
+    {
+      return $this->schedule;
     }
 
     /**

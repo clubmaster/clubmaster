@@ -123,7 +123,7 @@ class ScheduleRepository extends EntityRepository
     foreach ($schedules as $schedule) {
       foreach ($schedule->getFields() as $field) {
         foreach ($this->_em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field) as $interval) {
-          $intervals[] = $interval;
+          $interval->setSchedule($schedule);
         }
       }
     }
