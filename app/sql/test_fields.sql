@@ -1,4 +1,4 @@
-INSERT INTO club_booking_field (location_id, name, position, terms, created_at, updated_at) VALUES
+INSERT INTO club_booking_field (location_id, name, position, information, created_at, updated_at) VALUES
   (2, 'Bane 1', 1, 'Ingen adgang uden sko.', now(), now()),
   (2, 'Bane 2', 2, 'Ingen adgang uden sko.', now(), now()),
   (2, 'Bane 3', 3, 'Ingen adgang uden sko.', now(), now()),
