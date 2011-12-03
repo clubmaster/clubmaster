@@ -14,11 +14,10 @@ cannot add more coupons to cart on + sign
 bind coupon to specific product
 fix coupon no orders can go below zero
 cannot cancel team within start date
-max attends
-max attends / day
+user constraints max attends
+user constraints max attends / day
 be able to delete attends within 5 minutes after created
-team should be able to use fields
-make ajax fields for fields on schedule
+make ajax fields for fields on schedule to prevent showing all fields
 not 2 schedules can have the same interval
 
 == NOTES TO LATER ==
