@@ -110,24 +110,4 @@ class ScheduleRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
-
-  public function getIntervalByLocationDate(\Club\UserBundle\Entity\Location $location, \DateTime $date)
-  {
-    $start = new \DateTime('today');
-    $end = new \DateTime('today');
-    $end->setTime(23,59,59);
-
-    $schedules = $this->getAllBetween($start, $end, null, $location);
-
-    $intervals = array();
-    foreach ($schedules as $schedule) {
-      foreach ($schedule->getFields() as $field) {
-        foreach ($this->_em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field) as $interval) {
-          $interval->setSchedule($schedule);
-        }
-      }
-    }
-
-    return $intervals;
-  }
 }

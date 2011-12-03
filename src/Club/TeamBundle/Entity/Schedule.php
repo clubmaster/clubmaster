@@ -597,6 +597,16 @@ class Schedule
     }
 
     /**
+     * Set fields
+     *
+     * @param Doctrine\Common\Collections\Collection $fields
+     */
+    public function setFields(\Doctrine\Common\Collections\Collection $fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
      * Get fields
      *
      * @return Doctrine\Common\Collections\Collection

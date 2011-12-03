@@ -12,8 +12,8 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class BookingController extends Controller
 {
   /**
-   * @Route("/{date}/{interval_id}/book/{user_id}")
-   * @Route("/{date}/{interval_id}/book/guest", defaults={"guest"})
+   * @Route("/book/{date}/{interval_id}/{user_id}")
+   * @Route("/book/{date}/{interval_id}/guest", defaults={"guest"})
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
    */
@@ -44,7 +44,7 @@ class BookingController extends Controller
   }
 
   /**
-   * @Route("/{id}/cancel")
+   * @Route("/cancel/{id}")
    * @Method("POST")
    * @Secure(roles="ROLE_USER")
    */
@@ -67,32 +67,41 @@ class BookingController extends Controller
   }
 
   /**
-   * @Route("/{date}/{location_id}")
+   * @Route("/{location_id}", defaults={"date" = null})
+   * @Route("/{location_id}/{date}")
    * @Method("GET")
    */
-  public function indexAction($date, $location_id)
+  public function indexAction($location_id, $date)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $location = $em->find('ClubUserBundle:Location', $location_id);
 
-    $date = new \DateTime($date);
-    $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
-    $intervals = $em->getRepository('ClubTeamBundle:Schedule')->getIntervalByLocationDate($location, $date);
+    $date = ($date == null) ? new \DateTime() : new \DateTime($date);
+    $start = clone $date;
+    $start->setTime(0,0,0);
+    $end = clone $date;
+    $end->setTime(23,59,59);
 
-    $res = array(
-      'bookings' => array(),
-      'teams' => array()
-    );
+    $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
+    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
+
+    $res = array();
     foreach ($bookings as $booking) {
-      $res['bookings'][] = $booking->toArray();
+      $booking->getInterval()->setBooking($booking);
+      $res[] = $booking->getInterval()->toArray();
     }
-    foreach ($intervals as $interval) {
-      $res['teams'][] = $interval->toArray();
+    foreach ($schedules as $schedule) {
+      foreach ($schedule->getFields() as $field) {
+        $intervals = $em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field);
+        foreach ($intervals as $interval) {
+          $interval->setSchedule($schedule);
+          $res[] = $interval->toArray();
+        }
+      }
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
 
     return $response;
   }
-
 }

@@ -18,7 +18,8 @@ class Schedule extends AbstractType
     $builder->add('level');
     $builder->add('fields', 'entity', array(
       'class' => 'Club\BookingBundle\Entity\Field',
-      'required' => false
+      'required' => false,
+      'multiple' => true
     ));
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',

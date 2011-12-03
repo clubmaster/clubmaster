@@ -217,12 +217,20 @@ class Interval
 
     public function toArray()
     {
-      return array(
+      $res = array(
         'id' => $this->getId(),
         'start_time' => $this->getStartTime()->format('c'),
         'end_time' => $this->getStopTime()->format('c'),
-        'day' => $this->getDay()
+        'day' => $this->getDay(),
+        'field' => $this->getField()->getId()
       );
+
+      if (isset($this->booking))
+        $res['booking'] = $this->booking->toArray();
+      if (isset($this->schedule))
+        $res['schedule'] = $this->schedule->toArray();
+
+      return $res;
     }
 
     public function setBooking(\Club\BookingBundle\Entity\Booking $booking)

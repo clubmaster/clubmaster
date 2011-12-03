@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-11-25
-:Revision:  16
+:Date:      2011-12-03
+:Revision:  17
 
 
 Feedback
@@ -337,19 +337,20 @@ Success response will be HTTP response code 200, and a json response with all fi
 
 Get bookings
 ~~~~~~~~~~~~
-URL: /api/bookings/{date}/{location_id}
+URL: /api/bookings/{location_id}
+URL: /api/bookings/{location_id}/{date}
 Method: GET
 
 Parameters:
 {date}: 2011-01-01
 
-Success response will be HTTP response code 200, and a json response with all bookings for a location
+Success response will be HTTP response code 200, and a json response with all used intervals
 
 
 Make booking
 ~~~~~~~~~~~~
-URL: /api/bookings/{date}/{interval_id}/book/{user_id}
-URL: /api/bookings/{date}/{interval_id}/book/guest
+URL: /api/bookings/book/{date}/{interval_id}/{user_id}
+URL: /api/bookings/book/{date}/{interval_id}/guest
 Method: POST
 
 Parameters:
@@ -361,7 +362,7 @@ Success response will be HTTP response code 200 and json response with booking o
 
 Cancel booking
 ~~~~~~~~~~~~~~
-URL: /api/bookings/{id}/cancel
+URL: /api/bookings/cancel/{id}
 Method: POST
 
 Use basic access authentication for the user who has to authenticate.

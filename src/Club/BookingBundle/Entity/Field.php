@@ -239,7 +239,7 @@ class Field
         'id' => $this->getId(),
         'name' => $this->getName(),
         'pository' => $this->getPosition(),
-        'term' => $this->getTerms()
+        'term' => $this->getInformation()
       );
 
       if (count($this->getTimes())) {
