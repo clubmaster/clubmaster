@@ -127,7 +127,7 @@ class BookingController extends Controller
      $em = $this->getDoctrine()->getEntityManager();
 
      $nav = $this->getNav();
-     $location = $em->find('ClubUserBundle:Location', 2);
+     $location = $this->get('security.context')->getToken()->getUser()->getLocation();
      $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
      $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
      $period = $this->get('club_booking.interval')->getTimePeriod($data['start_time'], $data['end_time'], new \DateInterval('PT60M'));
