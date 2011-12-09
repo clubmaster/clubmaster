@@ -87,15 +87,12 @@ class Team
 
   public function remove()
   {
-    $res = $this->em->createQueryBuilder()
-      ->delete('ClubTeamBundle:ScheduleUser', 'su')
-      ->where('su.user = :user')
-      ->andWhere('su.schedule = :schedule')
-      ->setParameter('user', $this->user->getId())
-      ->setParameter('schedule', $this->schedule->getId())
-      ->getQuery()
-      ->getResult();
+    $res = $this->em->getRepository('ClubTeamBundle:ScheduleUser')->findOneBy(array(
+      'user' => $this->user->getId(),
+      'schedule' => $this->schedule->getId()
+    ));
 
+    $this->em->remove($res);
     $this->em->flush();
   }
 
@@ -112,29 +109,34 @@ class Team
     if ($c < new \DateTime())
       $this->setError('You cannot attend in the past');
 
+    /**
     $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date = CURRENT_DATE()')
-      ->andWhere('b.user = :user')
+      ->select('COUNT(su)')
+      ->from('ClubTeamBundle:ScheduleUser', 'su')
+      ->leftJoin('su.schedule', 's')
+      ->where('DATE_FORMAT(s.first_date,%Y-%m-%d) = :date')
+      ->andWhere('su.user = :user')
+      ->setParameter('user', $this->user->getId())
+      ->setParameter('date', $this->schedule->getFirstDate()->format('Y-m-d'))
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_team.num_team_day'))
+      $this->setError('You cannot attend more teams this day');
+     */
+
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(su)')
+      ->from('ClubTeamBundle:ScheduleUser', 'su')
+      ->leftJoin('su.schedule', 's')
+      ->where('s.first_date >= CURRENT_DATE()')
+      ->andWhere('su.user = :user')
       ->setParameter('user', $this->user->getId())
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day'))
-      $this->setError('You cannot have more bookings this day');
-
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->setParameter('user', $this->user->getId())
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future'))
-      $this->setError('You cannot have more bookings');
+    if ($res[1] >= $this->container->getParameter('club_team.num_team_future'))
+      $this->setError('You cannot attend more teams');
 
   }
 }

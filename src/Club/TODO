@@ -7,7 +7,6 @@ add booking plans
 implement payment for booking
 make some more tests
 make field administration
-make attend created time
 cannot cancel team within start date
 user constraints max attends
 user constraints max attends / day
@@ -15,6 +14,7 @@ be able to delete attends within 5 minutes after created
 make ajax fields for fields on schedule to prevent showing all fields
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
+fix num_team_day
 
 == NOTES TO LATER ==
 make more simple demo location setup
