@@ -1,10 +1,10 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Booking</h2>
+<h2>Booking - {{ date|date('Y-m-d') }}</h2>
 
 {% for item in nav %}
-<div class="col33 t-right"><a href="">{{ item|date('l') }} &raquo;</a></div>
+<div class="col33 t-right"><a href="{{ path('club_booking_booking_index', {'date':item|date('Y-m-d')}) }}">{{ item|date('l') }} &raquo;</a></div>
 {% endfor %}
 
 <table class="style" id="booking">

@@ -10,33 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BookingController extends Controller
 {
-  /**
-   * @Template()
-   * @Route("/booking")
-   */
-   public function indexAction()
-   {
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $nav = $this->getNav();
-
-     $date = new \DateTime();
-     $location = $em->find('ClubUserBundle:Location', 2);
-
-     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
-
-     $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
-
-     $period = $this->get('club_booking.interval')->getTimePeriod($data['start_time'], $data['end_time'], new \DateInterval('PT60M'));
-
-     return array(
-       'period' => $period,
-       'fields' => $fields,
-       'date' => $date,
-       'nav' => $nav
-    );
-   }
-
    /**
     * @Template()
     * @Route("/booking/book/guest/{interval_id}/{date}")
@@ -57,7 +30,7 @@ class BookingController extends Controller
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }
 
-     return $this->redirect($this->generateUrl('club_booking_booking_index'));
+     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
    }
 
    /**
@@ -98,7 +71,7 @@ class BookingController extends Controller
          $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
        }
 
-       return $this->redirect($this->generateUrl('club_booking_booking_index'));
+       return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
      }
    }
 
@@ -120,7 +93,7 @@ class BookingController extends Controller
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }
 
-     return $this->redirect($this->generateUrl('club_booking_booking_index'));
+     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $booking->getDate()->format('Y-m-d'))));
    }
 
    /**
@@ -144,15 +117,27 @@ class BookingController extends Controller
      );
    }
 
-   /**
-    * @Route("/booking/change/{date}")
-    */
-   public function nextAction($date)
+  /**
+   * @Template()
+   * @Route("/booking/{date}", defaults={"date" = null})
+   */
+   public function indexAction($date)
    {
-     $calendar_date = $this->get('session')->get('calendar_date');
-     $calendar_date->modify('+1 month');
+     $date = ($date == null) ? new \DateTime() : new \DateTime($date);
+     $em = $this->getDoctrine()->getEntityManager();
 
-     return $this->redirect($this->generateUrl('admin_event_event'));
+     $nav = $this->getNav();
+     $location = $em->find('ClubUserBundle:Location', 2);
+     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
+     $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
+     $period = $this->get('club_booking.interval')->getTimePeriod($data['start_time'], $data['end_time'], new \DateInterval('PT60M'));
+
+     return array(
+       'period' => $period,
+       'fields' => $fields,
+       'date' => $date,
+       'nav' => $nav
+    );
    }
 
    protected function getNav()
