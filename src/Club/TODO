@@ -7,7 +7,6 @@ add booking plans
 implement payment for booking
 make some more tests
 make field administration
-cannot cancel team within start date
 user constraints max attends
 user constraints max attends / day
 be able to delete attends within 5 minutes after created

@@ -42,7 +42,12 @@ class Team
       return;
     }
 
-    $diff = ($now->getTimestamp()-$this->schedule->getCreatedAt()->getTimestamp());
+    $attend = $this->em->getRepository('ClubTeamBundle:ScheduleUser')->findOneBy(array(
+      'user' => $this->user->getId(),
+      'schedule' => $this->schedule->getId()
+    ));
+
+    $diff = ($now->getTimestamp()-$attend->getCreatedAt()->getTimestamp());
     if ($diff < $this->container->getParameter('club_team.cancel_minute_created')*60)
       return;
 
