@@ -7,7 +7,6 @@ add booking plans
 implement payment for booking
 make some more tests
 make field administration
-fix expire date of coupon
 fix max usage of coupon
 cannot add more coupons to cart on + sign
 bind coupon to specific product

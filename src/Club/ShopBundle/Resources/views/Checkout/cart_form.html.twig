@@ -12,7 +12,10 @@
   <tr>
     <td>{{ item.productName }}</td>
     <td>{{ item.price|price }}</td>
-    <td>{{ item.quantity }} <a href="{{ path('club_shop_checkout_increment', {'id':item.id}) }}">[+]</a>  <a href="{{ path('club_shop_checkout_decrement', {'id':item.id}) }}">[-]</a></td>
+    <td>{{ item.quantity }}
+      {% if item.type == 'product' %}<a href="{{ path('club_shop_checkout_increment', {'id':item.id}) }}">[+]</a>  <a href="{{ path('club_shop_checkout_decrement', {'id':item.id}) }}">[-]</a>{% endif %}
+      {% if item.type == 'coupon' %}<a href="{{ path('club_shop_checkout_decrement', {'id':item.id}) }}">[-]</a>{% endif %}
+    </td>
     <td>{{ item.summary|price }}</td>
   </tr>
   {% else %}

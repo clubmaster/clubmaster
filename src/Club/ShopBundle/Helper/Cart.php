@@ -107,7 +107,7 @@ class Cart
     $trigger = 0;
     // check if its already in the cart
     foreach ($this->cart->getCartProducts() as $prod) {
-      if ($prod->getProduct()->getId() == $product->getId()) {
+      if ($prod->getProduct() && $prod->getProduct()->getId() == $product->getId()) {
         $prod = $this->modifyQuantity($prod);
         $trigger = 1;
       }
