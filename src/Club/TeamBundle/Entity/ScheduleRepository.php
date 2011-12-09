@@ -110,4 +110,16 @@ class ScheduleRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getByUser(\Club\TeamBundle\Entity\Schedule $schedule, \Club\UserBundle\Entity\User $user)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubTeamBundle:Schedule', 's')
+      ->leftJoin('s.users', 'u')
+      ->where('u.id = :user')
+      ->setParameter('user', $user->getId())
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
 }

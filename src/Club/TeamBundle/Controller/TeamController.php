@@ -69,13 +69,16 @@ class TeamController extends Controller
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $schedule->getUsers()->removeElement($user);
-    $em->flush();
+    $this->get('club_team.team')->bindUnattend($schedule, $user);
+    if ($this->get('club_team.team')->isValid()) {
+      $this->get('club_team.team')->remove();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
-    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
-
-    $this->get('session')->setFlash('notice', 'You are no longer on the team.');
+      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $user);
+      $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
+      $this->get('session')->setFlash('notice', 'You are no longer on the team.');
+    } else {
+      $this->get('session')->setFlash('error', $this->get('club_team.team')->getError());
+    }
 
     return $this->redirect($this->generateUrl('club_team_team_index'));
   }

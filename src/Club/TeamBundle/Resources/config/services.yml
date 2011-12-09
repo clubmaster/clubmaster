@@ -1,7 +1,5 @@
-parameters:
-#    club_team.example.class: Club\TeamBundle\Example
-
 services:
-#    club_team.example:
-#        class: %club_team.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    club_team.team:
+        class: Club\TeamBundle\Helper\Team
+        arguments: [@doctrine.orm.entity_manager, @service_container, @security.context]
+

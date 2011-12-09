@@ -63,8 +63,13 @@ class TeamController extends Controller
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $schedule->getUsers()->removeElement($user);
-    $em->flush();
+    $this->get('club_team.team')->bindUnattend($schedule, $user);
+    if (!$this->get('club_team.team')->isValid()) {
+      $res = array($this->get('club_team.team')->getError());
+      $response = new Response($this->get('club_api.encode')->encode($res), 403);
+      return $response;
+    }
+    $this->get('club_team.team')->remove();
 
     $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
