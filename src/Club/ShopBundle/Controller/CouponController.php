@@ -27,7 +27,11 @@ class CouponController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
-        if ($coupon) {
+        if (count($coupon->getCouponLog()) >= $coupon->getMaxUsage()) {
+          $this->get('session')->setFlash('error',$this->get('translator')->trans('Coupon use too many times'));
+        } elseif (!$coupon) {
+          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such coupon.'));
+        } else {
           $product = array(
             'product_name' => 'Coupon #'.$coupon->getCouponKey(),
             'price' => $coupon->getValue()*-1,
@@ -39,8 +43,6 @@ class CouponController extends Controller
           $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
 
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your coupon has been added to the cart.'));
-        } else {
-          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such coupon.'));
         }
 
         return $this->redirect($this->generateUrl('shop_checkout'));
