@@ -9,16 +9,19 @@ class Team
   protected $em;
   protected $container;
   protected $security_context;
+  protected $validator;
   protected $error;
   protected $is_valid = true;
   protected $user;
   protected $schedule;
+  protected $schedule_user;
 
-  public function __construct(EntityManager $em, $container, $security_context)
+  public function __construct(EntityManager $em, $container, $security_context, $validator)
   {
     $this->em = $em;
     $this->container = $container;
     $this->security_context = $security_context;
+    $this->validator = $validator;
   }
 
   public function bindUnattend(\Club\TeamBundle\Entity\Schedule $schedule, \Club\UserBundle\Entity\User $user)
@@ -78,16 +81,25 @@ class Team
     return $this->is_valid;
   }
 
+  protected function prepare()
+  {
+    $this->schedule_user = new \Club\TeamBundle\Entity\ScheduleUser();
+    $this->schedule_user->setUser($this->user);
+    $this->schedule_user->setSchedule($this->schedule);
+
+    $errors = $this->validator->validate($this->schedule_user, array('attend'));
+    foreach ($errors as $error) {
+      $this->setError($error->getMessage());
+      return;
+    }
+  }
+
   public function save()
   {
-    $su = new \Club\TeamBundle\Entity\ScheduleUser();
-    $su->setUser($this->user);
-    $su->setSchedule($this->schedule);
-
-    $this->em->persist($su);
+    $this->em->persist($this->schedule_user);
     $this->em->flush();
 
-    return $su;
+    return $this->schedule_user;
   }
 
   public function remove()
@@ -140,8 +152,61 @@ class Team
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_team.num_team_future'))
+    if ($res[1] >= $this->container->getParameter('club_team.num_team_future')) {
       $this->setError('You cannot attend more teams');
+      return;
+    }
 
+    if (!$this->hasSubscription($this->user)) {
+      $this->setError('You do not have permission to use teams.');
+      return;
+    }
+
+    $this->prepare();
+  }
+
+  private function hasSubscription(\Club\UserBundle\Entity\User $user)
+  {
+    foreach ($user->getSubscriptions() as $subscription) {
+      if ($subscription->hasAttribute('team')) {
+        foreach ($subscription->getLocation() as $location) {
+
+          if ($location == $this->schedule->getLocation()) {
+            $this->users[] = $user;
+            return true;
+          }
+
+          foreach ($subscription->getLocation() as $child) {
+            if ($child == $this->schedule->getLocation()) {
+              $this->users[] = $user;
+              return true;
+            }
+
+            foreach ($child->getChilds() as $child2) {
+              if ($child2 == $this->schedule->getLocation()) {
+                $this->users[] = $user;
+                return true;
+              }
+            }
+
+            foreach ($child2->getChilds() as $child3) {
+              if ($child3 == $this->schedule->getLocation()) {
+                $this->users[] = $user;
+                return true;
+              }
+
+              foreach ($child3->getChilds() as $child4) {
+                if ($child4 == $this->schedule->getLocation()) {
+                  $this->users[] = $user;
+                  return true;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return false;
   }
 }

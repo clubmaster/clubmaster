@@ -21,29 +21,18 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
-    if (!$schedule->addUser($this->get('security.context')->getToken()->getUser())) {
-      $res = array('You do not have the right permission to use teams.');
-
+    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    if (!$this->get('club_team.team')->isValid()) {
+      $res = array($this->get('club_team.team')->getError());
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
-
       return $response;
-
-    } else {
-      $errors = $this->get('validator')->validate($schedule, array('attend'));
-
-      if (count($errors)) {
-        $res = array();
-        foreach ($errors as $error) {
-          $res[] = $error->getMessage();
-        }
-        $response = new Response($this->get('club_api.encode')->encode($res), 403);
-
-        return $response;
-      }
     }
 
-    $em->persist($schedule);
-    $em->flush();
+    $this->get('club_team.team')->save();
+
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
+    $this->get('session')->setFlash('notice', 'You are now attending the team.');
 
     $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);

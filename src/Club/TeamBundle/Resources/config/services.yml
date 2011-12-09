@@ -1,5 +1,5 @@
 services:
     club_team.team:
         class: Club\TeamBundle\Helper\Team
-        arguments: [@doctrine.orm.entity_manager, @service_container, @security.context]
+        arguments: [@doctrine.orm.entity_manager, @service_container, @security.context, @validator]
 

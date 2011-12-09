@@ -1,4 +1,8 @@
 == TODO ==
+better booking schema:
+  - fix close times
+  - improve colors
+  - improve borders
 better pick opponent form
 add booking plans
   - maintenance
@@ -10,10 +14,10 @@ make field administration
 make ajax fields for fields on schedule to prevent showing all fields
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
-fix num_team_day
 
 == NOTES TO LATER ==
 make more simple demo location setup
 change time comparence to object compare instead of timestamp
 use validators in coupon
 bind coupon to specific product
+fix num_team_day

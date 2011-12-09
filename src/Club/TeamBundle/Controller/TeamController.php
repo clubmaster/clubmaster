@@ -48,26 +48,6 @@ class TeamController extends Controller
       $this->get('session')->setFlash('error', $this->get('club_team.team')->getError());
     }
 
-    /**
-    if (!$schedule->addUser($this->get('security.context')->getToken()->getUser())) {
-      $this->get('session')->setFlash('error', 'You do not have permission to use teams.');
-    } else {
-
-      $errors = $this->get('validator')->validate($schedule, array('attend'));
-
-      if (!count($errors)) {
-        $em->persist($schedule);
-        $em->flush();
-
-        $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
-        $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
-
-      } else {
-        $this->get('session')->setFlash('error', $errors[0]->getMessage());
-      }
-    }
-     */
-
     return $this->redirect($this->generateUrl('club_team_team_index'));
   }
 

@@ -4,7 +4,6 @@ namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
 
 
 /**
@@ -13,7 +12,6 @@ use Symfony\Component\Validator\ExecutionContext;
  * @ORM\Table(name="club_team_schedule")
  * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleRepository")
  * @ORM\HasLifecycleCallbacks()
- * @Assert\Callback(groups={"attend"}, methods={"isFull","isExpired"})
  */
 class Schedule
 {
@@ -420,56 +418,6 @@ class Schedule
     }
 
     /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUser(\Club\UserBundle\Entity\User $user)
-    {
-      foreach ($user->getSubscriptions() as $subscription) {
-        if ($subscription->hasAttribute('team')) {
-          foreach ($subscription->getLocation() as $location) {
-
-            if ($location == $this->getLocation()) {
-              $this->users[] = $user;
-              return true;
-            }
-
-            foreach ($subscription->getLocation() as $child) {
-              if ($child == $this->getLocation()) {
-                $this->users[] = $user;
-                return true;
-              }
-
-              foreach ($child->getChilds() as $child2) {
-                if ($child2 == $this->getLocation()) {
-                  $this->users[] = $user;
-                  return true;
-                }
-              }
-
-              foreach ($child2->getChilds() as $child3) {
-                if ($child3 == $this->getLocation()) {
-                  $this->users[] = $user;
-                  return true;
-                }
-
-                foreach ($child3->getChilds() as $child4) {
-                  if ($child4 == $this->getLocation()) {
-                    $this->users[] = $user;
-                    return true;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return false;
-    }
-
-    /**
      * Get users
      *
      * @return Doctrine\Common\Collections\Collection
@@ -521,24 +469,6 @@ class Schedule
     public function getLocation()
     {
         return $this->location;
-    }
-
-    public function isFull(ExecutionContext $context)
-    {
-      if (count($this->getUsers()) > $this->getMaxAttend()) {
-        $property_path = $context->getPropertyPath() . '.users';
-        $context->setPropertyPath($property_path);
-        $context->addViolation('The team is already full!', array(), null);
-      }
-    }
-
-    public function isExpired(ExecutionContext $context)
-    {
-      if ($this->getFirstDate()->getTimestamp() < time()) {
-        $property_path = $context->getPropertyPath() . '.users';
-        $context->setPropertyPath($property_path);
-        $context->addViolation('The team is already started!', array(), null);
-      }
     }
 
     public function resetInstructors()
