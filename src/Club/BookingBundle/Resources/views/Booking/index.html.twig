@@ -3,6 +3,10 @@
 {% block body %}
 <h2>Booking</h2>
 
+{% for item in nav %}
+<div class="col33 t-right"><a href="">{{ item|date('l') }} &raquo;</a></div>
+{% endfor %}
+
 <table class="style" id="booking">
   <thead>
     <tr>

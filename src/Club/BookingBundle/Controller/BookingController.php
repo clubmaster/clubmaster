@@ -18,6 +18,8 @@ class BookingController extends Controller
    {
      $em = $this->getDoctrine()->getEntityManager();
 
+     $nav = $this->getNav();
+
      $date = new \DateTime();
      $location = $em->find('ClubUserBundle:Location', 2);
 
@@ -30,7 +32,8 @@ class BookingController extends Controller
      return array(
        'period' => $period,
        'fields' => $fields,
-       'date' => $date
+       'date' => $date,
+       'nav' => $nav
     );
    }
 
@@ -139,5 +142,29 @@ class BookingController extends Controller
        'date' => $date,
        'form' => $form->createVieW()
      );
+   }
+
+   /**
+    * @Route("/booking/change/{date}")
+    */
+   public function nextAction($date)
+   {
+     $calendar_date = $this->get('session')->get('calendar_date');
+     $calendar_date->modify('+1 month');
+
+     return $this->redirect($this->generateUrl('admin_event_event'));
+   }
+
+   protected function getNav()
+   {
+     $nav = array();
+     $d = new \DateTime();
+     $i = new \DateInterval('P1D');
+     $p = new \DatePeriod($d, $i, 6);
+     foreach ($p as $dt) {
+       $nav[] = $dt;
+     }
+
+     return $nav;
    }
 }
