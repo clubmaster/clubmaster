@@ -19,21 +19,21 @@ class Log
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $event
      */
-    private $event;
+    protected $event;
 
     /**
      * @ORM\Column(type="text")
      *
      * @var string $log
      */
-    private $log;
+    protected $log;
 
     /**
      * @ORM\Column(type="string")
@@ -41,30 +41,30 @@ class Log
      *
      * @var string $log_type
      */
-    private $log_type;
+    protected $log_type;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\Choice({ "debug", "informational", "warning", "critical" })
      */
-    private $severity;
+    protected $severity;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $new;
+    protected $new;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    private $user;
+    protected $user;
 
     /**
      * Get id

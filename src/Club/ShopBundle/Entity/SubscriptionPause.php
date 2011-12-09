@@ -18,35 +18,35 @@ class SubscriptionPause
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $old_expire_date
      */
-    private $old_expire_date;
+    protected $old_expire_date;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $start_date
      */
-    private $start_date;
+    protected $start_date;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var datetime $expire_date
      */
-    private $expire_date;
+    protected $expire_date;
 
     /**
      * @ORM\ManyToOne(targetEntity="Subscription")
      *
      * @var Club\ShopBundle\Entity\Subscription
      */
-    private $subscription;
+    protected $subscription;
 
 
     /**

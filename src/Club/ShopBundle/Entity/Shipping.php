@@ -19,7 +19,7 @@ class Shipping
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,14 +27,14 @@ class Shipping
      *
      * @var string $shipping_name
      */
-    private $shipping_name;
+    protected $shipping_name;
 
     /**
      * @ORM\Column(type="text")
      *
      * @var text $description
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
@@ -42,7 +42,7 @@ class Shipping
      *
      * @var float $price
      */
-    private $price;
+    protected $price;
 
 
     public function __toString()

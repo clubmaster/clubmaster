@@ -19,14 +19,14 @@ class Attribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $attribute_name
      */
-    private $attribute_name;
+    protected $attribute_name;
 
     public function __toString()
     {

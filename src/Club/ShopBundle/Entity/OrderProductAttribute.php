@@ -19,27 +19,27 @@ class OrderProductAttribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $attribute_name
      */
-    private $attribute_name;
+    protected $attribute_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderProduct")
      * @ORM\JoinColumn(name="order_product_id", onDelete="cascade")
      */
-    private $order_product;
+    protected $order_product;
 
     /**
      * Get id

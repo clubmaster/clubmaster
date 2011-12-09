@@ -19,7 +19,7 @@ class Event
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,61 +27,61 @@ class Event
      *
      * @var string $event_name
      */
-    private $event_name;
+    protected $event_name;
 
     /**
      * @ORM\Column(type="text")
      *
      * @var string $description
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="decimal", scale="2", nullable="true")
      *
      * @var string $price
      */
-    private $price;
+    protected $price;
 
     /**
      * @ORM\Column(type="integer", nullable="true")
      *
      * @var string $max_attends
      */
-    private $max_attends;
+    protected $max_attends;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $start_date
      */
-    private $start_date;
+    protected $start_date;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $stop_date
      */
-    private $stop_date;
+    protected $stop_date;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\OneToMany(targetEntity="Attend", mappedBy="event", cascade={"persist"})
      */
-    private $attends;
+    protected $attends;
 
 
     public function __toString()

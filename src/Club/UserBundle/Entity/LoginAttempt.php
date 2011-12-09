@@ -19,47 +19,47 @@ class LoginAttempt
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $username
      */
-    private $username;
+    protected $username;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $session
      */
-    private $session;
+    protected $session;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $ip_address
      */
-    private $ip_address;
+    protected $ip_address;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $hostname
      */
-    private $hostname;
+    protected $hostname;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $login_failed
      */
-    private $login_failed;
+    protected $login_failed;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * Get id

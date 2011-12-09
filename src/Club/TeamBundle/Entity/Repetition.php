@@ -24,7 +24,7 @@ class Repetition
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $type
@@ -32,49 +32,49 @@ class Repetition
      * @ORM\Column(name="type", type="string")
      * @Assert\Choice({ "daily", "weekly", "monthly", "yearly" })
      */
-    private $type;
+    protected $type;
 
     /**
      * @var datetime $first_date
      *
      * @ORM\Column(name="first_date", type="datetime")
      */
-    private $first_date;
+    protected $first_date;
 
     /**
      * @var datetime $last_date
      *
      * @ORM\Column(name="last_date", type="datetime", nullable="true")
      */
-    private $last_date;
+    protected $last_date;
 
     /**
      * @var end_occurrences
      *
      * @ORM\Column(name="end_occurrences", type="integer", nullable="true")
      */
-    private $end_occurrences;
+    protected $end_occurrences;
 
     /**
      * @var integer $repeat_every
      *
      * @ORM\Column(name="repeat_every", type="integer")
      */
-    private $repeat_every;
+    protected $repeat_every;
 
     /**
      * @var string $days_in_week
      *
      * @ORM\Column(name="days_in_week", type="string", nullable="true")
      */
-    private $days_in_week;
+    protected $days_in_week;
 
     /**
      * @var integer $day_of_month
      *
      * @ORM\Column(name="day_of_month", type="boolean", nullable="true")
      */
-    private $day_of_month;
+    protected $day_of_month;
 
     /**
      * @var integer $week
@@ -82,27 +82,27 @@ class Repetition
      * @ORM\Column(name="week", type="string", nullable="true")
      * @Assert\Choice({ "", "first", "second", "third", "fourth", "last"})
      */
-    private $week;
+    protected $week;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\OneToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $schedule;
+    protected $schedule;
 
 
     /**

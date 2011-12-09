@@ -19,7 +19,7 @@ class Message
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,14 +27,14 @@ class Message
      *
      * @var string $subject
      */
-    private $subject;
+    protected $subject;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $type
      */
-    private $type;
+    protected $type;
 
     /**
      * @ORM\Column(type="text")
@@ -42,63 +42,63 @@ class Message
      *
      * @var text $message
      */
-    private $message;
+    protected $message;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $sender_name
      */
-    private $sender_name;
+    protected $sender_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $sender_address
      */
-    private $sender_address;
+    protected $sender_address;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var text $ready
      */
-    private $ready;
+    protected $ready;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var text $processed
      */
-    private $processed;
+    protected $processed;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var text $sent_at
      */
-    private $sent_at;
+    protected $sent_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var text $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var text $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\OneToMany(targetEntity="MessageAttachment", mappedBy="message")
      *
      * @var Club\MessageBundle\Entity\MessageAttachment
      */
-    private $message_attachment;
+    protected $message_attachment;
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
@@ -109,7 +109,7 @@ class Message
      *
      * @var Club\UserBundle\Entity\Group
      */
-    private $groups;
+    protected $groups;
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\User")
@@ -120,7 +120,7 @@ class Message
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $users;
+    protected $users;
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\EventBundle\Entity\Event")
@@ -131,7 +131,7 @@ class Message
      *
      * @var Club\EventBundle\Entity\Event
      */
-    private $events;
+    protected $events;
 
     /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Filter")
@@ -142,14 +142,14 @@ class Message
      *
      * @var Club\UserBundle\Entity\Filter
      */
-    private $filters;
+    protected $filters;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     public function __construct()
     {

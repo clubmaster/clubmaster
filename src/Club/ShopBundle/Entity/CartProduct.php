@@ -18,42 +18,42 @@ class CartProduct
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $product_name
      */
-    private $product_name;
+    protected $product_name;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */
-    private $price;
+    protected $price;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer $quantity
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var integer $type
      */
-    private $type;
+    protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\UserBundle\Entity\Product
      */
-    private $product;
+    protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Cart")
@@ -61,12 +61,12 @@ class CartProduct
      *
      * @var Club\UserBundle\Entity\Cart
      */
-    private $cart;
+    protected $cart;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProductAttribute", mappedBy="cart_product", cascade={"persist","remove"})
      */
-    private $cart_product_attributes;
+    protected $cart_product_attributes;
 
 
     public function __construct()

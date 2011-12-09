@@ -18,7 +18,7 @@ class Product
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -26,7 +26,7 @@ class Product
      *
      * @var string $product_name
      */
-    private $product_name;
+    protected $product_name;
 
     /**
      * @ORM\Column(type="text")
@@ -34,7 +34,7 @@ class Product
      *
      * @var text $description
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
@@ -42,14 +42,14 @@ class Product
      *
      * @var float $price
      */
-    private $price;
+    protected $price;
 
     /**
      * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $quantity
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @ORM\ManyToMany(targetEntity="VariantGroup")
@@ -60,7 +60,7 @@ class Product
      *
      * @var VariantGroup
      */
-    private $variant_groups;
+    protected $variant_groups;
 
     /**
      * @ORM\ManyToMany(targetEntity="Category")
@@ -71,21 +71,21 @@ class Product
      *
      * @var Club\ShopBundle\Entity\Category
      */
-    private $categories;
+    protected $categories;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductAttribute", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\ProductAttribute
      */
-    private $product_attributes;
+    protected $product_attributes;
 
     /**
      * @ORM\OneToMany(targetEntity="Special", mappedBy="product")
      *
      * @var Club\ShopBundle\Entity\Special
      */
-    private $specials;
+    protected $specials;
 
     public function __construct()
     {

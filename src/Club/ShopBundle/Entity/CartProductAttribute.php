@@ -19,27 +19,27 @@ class CartProductAttribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $attribute_name
      */
-    private $attribute_name;
+    protected $attribute_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="CartProduct")
      * @ORM\JoinColumn(name="cart_product_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $cart_product;
+    protected $cart_product;
 
     /**
      * Get id

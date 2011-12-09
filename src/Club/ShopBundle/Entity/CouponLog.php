@@ -20,7 +20,7 @@ class CouponLog
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Coupon")
@@ -28,19 +28,19 @@ class CouponLog
      *
      * @var Club\ShopBundle\Entity\Coupon
      */
-    private $coupon;
+    protected $coupon;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
 
     /**

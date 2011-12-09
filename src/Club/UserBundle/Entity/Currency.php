@@ -19,7 +19,7 @@ class Currency
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,7 +27,7 @@ class Currency
      *
      * @var string $currency_name
      */
-    private $currency_name;
+    protected $currency_name;
 
     /**
      * @ORM\Column(type="string")
@@ -35,27 +35,27 @@ class Currency
      *
      * @var string $code
      */
-    private $code;
+    protected $code;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $symbol_left
      */
-    private $symbol_left;
+    protected $symbol_left;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $symbol_right
      */
-    private $symbol_right;
+    protected $symbol_right;
 
     /**
      * @ORM\Column(type="string")
      * @var string $decimal_places
      */
-    private $decimal_places;
+    protected $decimal_places;
 
     /**
      * @ORM\Column(type="decimal", scale="5")
@@ -63,22 +63,22 @@ class Currency
      *
      * @var float $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $active;
+    protected $active;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     public function __toString()
     {

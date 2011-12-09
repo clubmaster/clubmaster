@@ -19,28 +19,28 @@ class ForgotPassword
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $hash
      */
-    private $hash;
+    protected $hash;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $expire_date
      */
-    private $expire_date;
+    protected $expire_date;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     /**
      * Get id

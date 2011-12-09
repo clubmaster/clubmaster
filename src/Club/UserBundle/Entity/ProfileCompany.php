@@ -18,27 +18,27 @@ class ProfileCompany
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $company_name
      */
-    private $company_name;
+    protected $company_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $cvr
      */
-    private $cvr;
+    protected $cvr;
 
     /**
      * @ORM\ManyToOne(targetEntity="Profile")
      * @var Club\UserBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
 
     /**

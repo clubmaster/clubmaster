@@ -18,42 +18,42 @@ class OrderProduct
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $product_name
      */
-    private $product_name;
+    protected $product_name;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
      *
      * @var float $price
      */
-    private $price;
+    protected $price;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer $quantity
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $type
      */
-    private $type;
+    protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Product")
      *
      * @var Club\UserBundle\Entity\Product
      */
-    private $product;
+    protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
@@ -61,12 +61,12 @@ class OrderProduct
      *
      * @var Club\UserBundle\Entity\Order
      */
-    private $order;
+    protected $order;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProductAttribute", mappedBy="order_product")
      */
-    private $order_product_attributes;
+    protected $order_product_attributes;
 
 
     public function __construct()

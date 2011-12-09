@@ -18,7 +18,7 @@ class FilterAttribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", nullable="true")
@@ -26,18 +26,18 @@ class FilterAttribute
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="Attribute")
      */
-    private $attribute;
+    protected $attribute;
 
     /**
      * @ORM\ManyToOne(targetEntity="Filter")
      * @ORM\JoinColumn(name="filter_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $filter;
+    protected $filter;
 
     /**
      * Get id

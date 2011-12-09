@@ -18,14 +18,14 @@ class Config
    *
    * @var integer $id
    */
-  private $id;
+  protected $id;
 
   /**
    * @ORM\Column(type="string", unique=true)
    *
    * @var string $config_key
    */
-  private $config_key;
+  protected $config_key;
 
 
   /**

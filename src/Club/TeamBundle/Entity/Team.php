@@ -21,7 +21,7 @@ class Team
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $team_name
@@ -30,7 +30,7 @@ class Team
      * @Assert\NotBlank()
      *
      */
-    private $team_name;
+    protected $team_name;
 
     /**
      * @var text $description
@@ -38,7 +38,7 @@ class Team
      * @ORM\Column(name="description", type="text")
      * @Assert\NotBlank()
      */
-    private $description;
+    protected $description;
 
     /**
      * @var text $penalty
@@ -46,21 +46,21 @@ class Team
      * @ORM\Column(name="penalty", type="decimal", scale="2")
      * @Assert\NotBlank()
      */
-    private $penalty;
+    protected $penalty;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
 
     public function __construct()

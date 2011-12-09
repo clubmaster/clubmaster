@@ -23,40 +23,40 @@ class Booking
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var date $date
      *
      * @ORM\Column(type="date")
      */
-    private $date;
+    protected $date;
 
     /**
      * @var boolean $guest
      *
      * @ORM\Column(type="boolean")
      */
-    private $guest;
+    protected $guest;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
@@ -65,12 +65,12 @@ class Booking
      *   inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      */
-    private $users;
+    protected $users;
 
     /**
      * @ORM\ManyToOne(targetEntity="Interval")
      */
-    private $interval;
+    protected $interval;
 
 
     /**

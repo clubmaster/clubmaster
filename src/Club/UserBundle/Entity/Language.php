@@ -18,21 +18,21 @@ class Language
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $name
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $code
      */
-    private $code;
+    protected $code;
 
 
     public function __toString()

@@ -21,12 +21,12 @@ class SubscriptionAttribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="Subscription")
@@ -34,12 +34,12 @@ class SubscriptionAttribute
      *
      * @var Club\ShopBundle\Entity\Subscription
      */
-    private $subscription;
+    protected $subscription;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $attribute_name;
+    protected $attribute_name;
 
 
     /**

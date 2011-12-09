@@ -18,7 +18,7 @@ class ProfileEmail
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -28,14 +28,14 @@ class ProfileEmail
      *
      * @var string $email_address
      */
-    private $email_address;
+    protected $email_address;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $contact_type
      */
-    private $contact_type;
+    protected $contact_type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Profile")
@@ -43,7 +43,7 @@ class ProfileEmail
      *
      * @var Club\UserBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
 
     /**

@@ -19,27 +19,27 @@ class UserNote
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="text")
      *
      * @var string $note
      */
-    private $note;
+    protected $note;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
 
     /**

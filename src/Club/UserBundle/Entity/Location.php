@@ -18,7 +18,7 @@ class Location
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -26,26 +26,26 @@ class Location
      *
      * @var string $location_name
      */
-    private $location_name;
+    protected $location_name;
 
     /**
      * @ORM\ManyToOne(targetEntity="Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\OneToMany(targetEntity="Location", mappedBy="location")
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $childs;
+    protected $childs;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\BookingBundle\Entity\Field", mappedBy="location")
      */
-    private $fields;
+    protected $fields;
 
 
     public function __toString()

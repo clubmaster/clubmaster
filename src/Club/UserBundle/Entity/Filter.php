@@ -18,7 +18,7 @@ class Filter
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -26,22 +26,22 @@ class Filter
      *
      * @var string $filter_name
      */
-    private $filter_name;
+    protected $filter_name;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $active;
+    protected $active;
 
     /**
      * @ORM\OneToMany(targetEntity="FilterAttribute", mappedBy="filter", cascade={"persist"})
      */
-    private $attributes;
+    protected $attributes;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private $user;
+    protected $user;
 
 
     public function __toString()

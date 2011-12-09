@@ -20,24 +20,24 @@ class LocationConfig
    *
    * @var integer $id
    */
-  private $id;
+  protected $id;
 
   /**
    * @ORM\Column(type="string")
    *
    * @var string $value
    */
-  private $value;
+  protected $value;
 
   /**
    * @ORM\Column(type="string")
    */
-  private $config;
+  protected $config;
 
   /**
    * @ORM\ManyToOne(targetEntity="Location")
    */
-  private $location;
+  protected $location;
 
   /**
    * Get id

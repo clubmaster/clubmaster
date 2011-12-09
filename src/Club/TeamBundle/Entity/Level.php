@@ -20,28 +20,28 @@ class Level
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $level_name
      *
      * @ORM\Column(name="level_name", type="string", length=255)
      */
-    private $level_name;
+    protected $level_name;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
 
     public function __toString()

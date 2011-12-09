@@ -20,14 +20,14 @@ class Coupon
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", unique="true")
      *
      * @var string $coupon_key
      */
-    private $coupon_key;
+    protected $coupon_key;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
@@ -35,32 +35,32 @@ class Coupon
      *
      * @var float $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $max_usage;
+    protected $max_usage;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $expire_at;
+    protected $expire_at;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\OneToMany(targetEntity="CouponLog", mappedBy="coupon")
      */
-    private $coupon_log;
+    protected $coupon_log;
 
 
     public function __construct()

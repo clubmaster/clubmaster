@@ -19,21 +19,21 @@ class Special
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="date")
      *
      * @var datetime $start_date
      */
-    private $start_date;
+    protected $start_date;
 
     /**
      * @ORM\Column(type="date")
      *
      * @var datetime $expire_date
      */
-    private $expire_date;
+    protected $expire_date;
 
     /**
      * @ORM\Column(type="decimal", scale="2")
@@ -41,28 +41,28 @@ class Special
      *
      * @var float $price
      */
-    private $price;
+    protected $price;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product")
      *
      * @var Club\ShopBundle\Entity\Product
      */
-    private $product;
+    protected $product;
 
 
     /**

@@ -20,57 +20,57 @@ class Interval
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer $day
      *
      * @ORM\Column(type="integer")
      */
-    private $day;
+    protected $day;
 
     /**
      * @var time $start_time
      *
      * @ORM\Column(type="time")
      */
-    private $start_time;
+    protected $start_time;
 
     /**
      * @var time $stop_time
      *
      * @ORM\Column(type="time")
      */
-    private $stop_time;
+    protected $stop_time;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Field")
      */
-    private $field;
+    protected $field;
 
     /**
      * Virtual variable
      */
-    private $booking;
+    protected $booking;
 
     /**
      * Virtual variable
      */
-    private $schedule;
+    protected $schedule;
 
 
     /**

@@ -19,25 +19,25 @@ class ProductAttribute
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $product;
+    protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Attribute")
      */
-    private $attribute;
+    protected $attribute;
 
     /**
      * Get id

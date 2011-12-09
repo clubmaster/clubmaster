@@ -18,35 +18,35 @@ class CartAddress
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $company_name
      *
      * @ORM\Column(type="string", nullable="true")
      */
-    private $company_name;
+    protected $company_name;
 
     /**
      * @var string $cvr
      *
      * @ORM\Column(type="string", nullable="true")
      */
-    private $cvr;
+    protected $cvr;
 
     /**
      * @var string $first_name
      *
      * @ORM\Column(type="string")
      */
-    private $first_name;
+    protected $first_name;
 
     /**
      * @var string $last_name
      *
      * @ORM\Column(type="string")
      */
-    private $last_name;
+    protected $last_name;
 
     /**
      * @ORM\Column(type="text")
@@ -54,7 +54,7 @@ class CartAddress
      *
      * @var string $street
      */
-    private $street;
+    protected $street;
 
     /**
      * @ORM\Column(type="string")
@@ -62,7 +62,7 @@ class CartAddress
      *
      * @var string $postal_code
      */
-    private $postal_code;
+    protected $postal_code;
 
     /**
      * @ORM\Column(type="string")
@@ -70,14 +70,14 @@ class CartAddress
      *
      * @var string $city
      */
-    private $city;
+    protected $city;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $state
      */
-    private $state;
+    protected $state;
 
     /**
      * @ORM\Column(type="string")
@@ -85,7 +85,7 @@ class CartAddress
      *
      * @var string $country
      */
-    private $country;
+    protected $country;
 
     /**
      * Get id

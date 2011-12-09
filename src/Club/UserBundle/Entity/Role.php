@@ -19,19 +19,19 @@ class Role implements RoleInterface
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $role_name
      */
-    private $role_name;
+    protected $role_name;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
-    private $users;
+    protected $users;
 
 
     public function __toString()

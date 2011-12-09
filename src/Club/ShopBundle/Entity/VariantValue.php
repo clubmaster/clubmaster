@@ -19,19 +19,19 @@ class VariantValue
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\ManyToOne(targetEntity="VariantGroup")
      */
-    private $variant_group;
+    protected $variant_group;
 
 
     /**

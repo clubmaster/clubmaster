@@ -19,56 +19,56 @@ class Task
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var integer $task_name
      */
-    private $task_name;
+    protected $task_name;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $enabled
      */
-    private $enabled;
+    protected $enabled;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $locked
      */
-    private $locked;
+    protected $locked;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $event
      */
-    private $event;
+    protected $event;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $method
      */
-    private $method;
+    protected $method;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $last_run_at
      */
-    private $last_run_at;
+    protected $last_run_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $next_run_at
      */
-    private $next_run_at;
+    protected $next_run_at;
 
     /**
      * @ORM\Column(type="string")
@@ -76,21 +76,21 @@ class Task
      *
      * @var date $task_interval
      */
-    private $task_interval;
+    protected $task_interval;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * Get id

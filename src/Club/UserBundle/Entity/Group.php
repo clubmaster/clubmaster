@@ -19,7 +19,7 @@ class Group
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,59 +27,59 @@ class Group
      *
      * @var string $group_name
      */
-    private $group_name;
+    protected $group_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $group_type
      */
-    private $group_type;
+    protected $group_type;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $gender
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $min_age
      */
-    private $min_age;
+    protected $min_age;
 
     /**
      * @ORM\Column(type="integer", nullable="true")
      *
      * @var integer $max_age
      */
-    private $max_age;
+    protected $max_age;
 
     /**
      * @ORM\Column(type="boolean", nullable="true")
      *
      * @var boolean $active_member
      */
-    private $active_member;
+    protected $active_member;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Group")
      *
      * @var Club\UserBundle\Entity\Group
      */
-    private $group;
+    protected $group;
 
     /**
      * @ORM\ManyToMany(targetEntity="Role")
@@ -90,7 +90,7 @@ class Group
      *
      * @var Club\UserBundle\Entity\Role
      */
-    private $role;
+    protected $role;
 
     /**
      * @ORM\ManyToMany(targetEntity="Location")
@@ -101,7 +101,7 @@ class Group
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\ShopBundle\Entity\Product")
@@ -112,7 +112,7 @@ class Group
      *
      * @var Club\ShopBundle\Entity\Product
      */
-    private $product;
+    protected $product;
 
 
     /**
@@ -122,7 +122,7 @@ class Group
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      */
-    private $users;
+    protected $users;
 
     public function __construct()
     {

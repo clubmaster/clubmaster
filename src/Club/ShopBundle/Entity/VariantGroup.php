@@ -19,14 +19,14 @@ class VariantGroup
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $variant_group_name
      */
-    private $variant_group_name;
+    protected $variant_group_name;
 
     /**
      * Get id

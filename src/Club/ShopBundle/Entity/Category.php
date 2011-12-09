@@ -18,7 +18,7 @@ class Category
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -26,7 +26,7 @@ class Category
      *
      * @var string $category_name
      */
-    private $category_name;
+    protected $category_name;
 
     /**
      * @ORM\Column(type="string")
@@ -34,35 +34,35 @@ class Category
      *
      * @var text $description
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="Image")
      *
      * @var Club\ShopBundle\Entity\Image
      */
-    private $image;
+    protected $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
      *
      * @var Club\ShopBundle\Entity\Category
      */
-    private $category;
+    protected $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
      *
      * @var Club\ShopBundle\Entity\Product
      */
-    private $products;
+    protected $products;
 
     public function __construct()
     {

@@ -18,14 +18,14 @@ class Country
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $country
      */
-    private $country;
+    protected $country;
 
     public function __toString()
     {

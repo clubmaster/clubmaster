@@ -18,41 +18,41 @@ class Ban
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $type
      */
-    private $type;
+    protected $type;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value
      */
-    private $value;
+    protected $value;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $expire_date
      */
-    private $expire_date;
+    protected $expire_date;
 
     /**
      * @ORM\Column(type="text", nullable="true")
      *
      * @var string $note
      */
-    private $note;
+    protected $note;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
 
     /**

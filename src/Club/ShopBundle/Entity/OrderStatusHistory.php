@@ -19,20 +19,20 @@ class OrderStatusHistory
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      * @var text $note
      */
-    private $note;
+    protected $note;
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderStatus")
      *
      * @var Club\ShopBundle\Entity\OrderStatus
      */
-    private $order_status;
+    protected $order_status;
 
     /**
      * @ORM\ManyToOne(targetEntity="Order")
@@ -40,12 +40,12 @@ class OrderStatusHistory
      *
      * @var Club\ShopBundle\Entity\Order
      */
-    private $order;
+    protected $order;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
 
     /**

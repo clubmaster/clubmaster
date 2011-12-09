@@ -19,26 +19,26 @@ class OrderProductVariant
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $variant;
      */
-    private $variant;
+    protected $variant;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $value;
      */
-    private $variant_value;
+    protected $variant_value;
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderProduct")
      */
-    private $order_product;
+    protected $order_product;
 
 
     /**

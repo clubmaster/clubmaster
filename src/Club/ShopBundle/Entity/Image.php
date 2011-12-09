@@ -18,42 +18,42 @@ class Image
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $file_path
      */
-    private $file_path;
+    protected $file_path;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $file_name
      */
-    private $file_name;
+    protected $file_name;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $file_type
      */
-    private $file_type;
+    protected $file_type;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $file_size
      */
-    private $file_size;
+    protected $file_size;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $file_hash
      */
-    private $file_hash;
+    protected $file_hash;
 
 
     /**

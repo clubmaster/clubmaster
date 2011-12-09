@@ -24,7 +24,7 @@ class Schedule
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var text $description
@@ -32,7 +32,7 @@ class Schedule
      * @ORM\Column(name="description", type="text")
      * @Assert\NotBlank()
      */
-    private $description;
+    protected $description;
 
     /**
      * @var text $penalty
@@ -40,7 +40,7 @@ class Schedule
      * @ORM\Column(name="penalty", type="decimal", scale="2")
      * @Assert\NotBlank()
      */
-    private $penalty;
+    protected $penalty;
 
     /**
      * @var text $max_attend
@@ -48,93 +48,93 @@ class Schedule
      * @ORM\Column(name="max_attend", type="integer")
      * @Assert\NotBlank()
      */
-    private $max_attend;
+    protected $max_attend;
 
     /**
      * @var datetime $first_date
      *
      * @ORM\Column(name="first_date", type="datetime")
      */
-    private $first_date;
+    protected $first_date;
 
     /**
      * @var datetime $end_date
      *
      * @ORM\Column(name="end_date", type="datetime", nullable="true")
      */
-    private $end_date;
+    protected $end_date;
 
     /**
      * @var datetime $processed
      *
      * @ORM\Column(name="processed", type="boolean")
      */
-    private $processed;
+    protected $processed;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $team;
+    protected $team;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\ManyToOne(targetEntity="Schedule")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $schedule;
+    protected $schedule;
 
     /**
      * @ORM\OneToMany(targetEntity="Schedule", mappedBy="schedule")
      */
-    private $schedules;
+    protected $schedules;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_team_schedule_instructor")
      */
-    private $instructors;
+    protected $instructors;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_team_schedule_user")
      */
-    private $users;
+    protected $users;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\BookingBundle\Entity\Field")
      * @ORM\JoinTable(name="club_team_schedule_field")
      */
-    private $fields;
+    protected $fields;
 
     /**
      * @ORM\ManyToOne(targetEntity="Level")
      */
-    private $level;
+    protected $level;
 
     /**
      * @ORM\OneToOne(targetEntity="Repetition")
      * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $repetition;
+    protected $repetition;
 
 
     /**

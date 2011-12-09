@@ -18,28 +18,28 @@ class Transaction
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $transaction_code
      */
-    private $transaction_code;
+    protected $transaction_code;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $transaction_return_value
      */
-    private $transaction_return_value;
+    protected $transaction_return_value;
 
     /**
      * @ORM\ManyToOne(targetEntity="TransactionStatus")
      *
      * @var Club\ShopBundle\Entity\TransactionStatus
      */
-    private $transaction_status;
+    protected $transaction_status;
 
 
     /**

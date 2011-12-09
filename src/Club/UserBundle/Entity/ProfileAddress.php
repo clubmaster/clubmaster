@@ -18,7 +18,7 @@ class ProfileAddress
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="text")
@@ -27,7 +27,7 @@ class ProfileAddress
      *
      * @var string $street
      */
-    private $street;
+    protected $street;
 
     /**
      * @ORM\Column(type="string")
@@ -36,7 +36,7 @@ class ProfileAddress
      *
      * @var string $postal_code
      */
-    private $postal_code;
+    protected $postal_code;
 
     /**
      * @ORM\Column(type="string")
@@ -45,14 +45,14 @@ class ProfileAddress
      *
      * @var string $city
      */
-    private $city;
+    protected $city;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $state
      */
-    private $state;
+    protected $state;
 
     /**
      * @ORM\Column(type="string")
@@ -61,7 +61,7 @@ class ProfileAddress
      *
      * @var string $contact_type
      */
-    private $contact_type;
+    protected $contact_type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Profile")
@@ -69,12 +69,12 @@ class ProfileAddress
      *
      * @var Club\UserBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
     /**
      * @ORM\ManyToOne(targetEntity="Country")
      */
-    private $country;
+    protected $country;
 
 
     /**

@@ -20,35 +20,35 @@ class Log
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var text $message
      *
      * @ORM\Column(name="message", type="text")
      */
-    private $message;
+    protected $message;
 
     /**
      * @var string $recipient
      *
      * @ORM\Column(name="recipient", type="string", length=255)
      */
-    private $recipient;
+    protected $recipient;
 
     /**
      * @var boolean $error
      *
      * @ORM\Column(name="error", type="boolean")
      */
-    private $error;
+    protected $error;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
 
     /**

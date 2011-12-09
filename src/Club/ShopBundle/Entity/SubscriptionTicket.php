@@ -19,35 +19,35 @@ class SubscriptionTicket
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var datetime $tickets
      */
-    private $tickets;
+    protected $tickets;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $note
      */
-    private $note;
+    protected $note;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Subscription")
      *
      * @var Club\ShopBundle\Entity\Subscription
      */
-    private $subscription;
+    protected $subscription;
 
     /**
      * Get id

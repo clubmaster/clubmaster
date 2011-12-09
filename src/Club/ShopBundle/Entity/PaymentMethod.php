@@ -18,21 +18,21 @@ class PaymentMethod
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $payment_method_name
      */
-    private $payment_method_name;
+    protected $payment_method_name;
 
     /**
      * @ORM\Column(type="text")
      *
      * @var string $page
      */
-    private $page;
+    protected $page;
 
 
     public function __toString()

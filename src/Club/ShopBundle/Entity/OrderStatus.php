@@ -18,35 +18,35 @@ class OrderStatus
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $status_name
      */
-    private $status_name;
+    protected $status_name;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * var boolean $accepted
      */
-    private $accepted;
+    protected $accepted;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * var boolean $cancelled
      */
-    private $cancelled;
+    protected $cancelled;
 
     /**
      * @ORM\Column(type="integer")
      *
      * var boolean $priority
      */
-    private $priority;
+    protected $priority;
 
 
     public function __toString()

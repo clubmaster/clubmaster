@@ -20,52 +20,52 @@ class Field
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var integer $position
      *
      * @ORM\Column(name="position", type="integer")
      */
-    private $position;
+    protected $position;
 
     /**
      * @var text $information
      *
      * @ORM\Column(type="text")
      */
-    private $information;
+    protected $information;
 
     /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\OneToMany(targetEntity="Interval", mappedBy="field")
      */
-    private $intervals;
+    protected $intervals;
 
     /**
      * only in use for booking schema

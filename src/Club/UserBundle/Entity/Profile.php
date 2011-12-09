@@ -18,7 +18,7 @@ class Profile
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
@@ -27,7 +27,7 @@ class Profile
      *
      * @var string $first_name
      */
-    private $first_name;
+    protected $first_name;
 
     /**
      * @ORM\Column(type="string")
@@ -36,7 +36,7 @@ class Profile
      *
      * @var string $last_name
      */
-    private $last_name;
+    protected $last_name;
 
     /**
      * @ORM\Column(type="string")
@@ -45,14 +45,14 @@ class Profile
      *
      * var string $gender
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
      * @Assert\NotBlank(groups={"user"})
      */
-    private $day_of_birth;
+    protected $day_of_birth;
 
     /**
      * @ORM\OneToOne(targetEntity="User")
@@ -60,58 +60,58 @@ class Profile
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileAddress", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_address_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $profile_address;
+    protected $profile_address;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfilePhone", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_phone_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $profile_phone;
+    protected $profile_phone;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileEmail", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_email_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $profile_email;
+    protected $profile_email;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileCompany")
      */
-    private $profile_company;
+    protected $profile_company;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileAddress", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileAddress
      */
-    private $profile_addresses;
+    protected $profile_addresses;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfilePhone", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfilePhone
      */
-    private $profile_phones;
+    protected $profile_phones;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */
-    private $profile_emails;
+    protected $profile_emails;
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileCompany", mappedBy="profile", cascade={"persist"})
      *
      * @var Club\UserBundle\Entity\ProfileCompany
      */
-    private $profile_companies;
+    protected $profile_companies;
 
 
     public function __construct()

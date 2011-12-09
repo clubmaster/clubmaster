@@ -18,12 +18,12 @@ class WhoisOnline
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
 
     /**

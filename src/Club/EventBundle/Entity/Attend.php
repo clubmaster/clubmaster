@@ -21,31 +21,31 @@ class Attend
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $paid;
+    protected $paid;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Event")
      * @ORM\JoinColumn(name="event_id", onDelete="cascade")
      */
-    private $event;
+    protected $event;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * Get id

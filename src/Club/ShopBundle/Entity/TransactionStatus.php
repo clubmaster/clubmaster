@@ -18,14 +18,14 @@ class TransactionStatus
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $status_name
      */
-    private $status_name;
+    protected $status_name;
 
 
     /**

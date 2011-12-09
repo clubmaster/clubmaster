@@ -19,77 +19,77 @@ class Subscription
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\Choice({ "subscription", "ticket" })
      */
-    private $type;
+    protected $type;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $start_date
      */
-    private $start_date;
+    protected $start_date;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var datetime $expire_date
      */
-    private $expire_date;
+    protected $expire_date;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var datetime $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="OrderProduct")
      *
      * @var Club\ShopBundle\Entity\OrderProduct
      */
-    private $order_product;
+    protected $order_product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Order")
      *
      * @var Club\ShopBundle\Entity\Order
      */
-    private $order;
+    protected $order;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="subscriptions")
      *
      * @var Club\UserBundle\Entity\User
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\OneToMany(targetEntity="SubscriptionAttribute", mappedBy="subscription")
      */
-    private $subscription_attributes;
+    protected $subscription_attributes;
 
     /**
      * @ORM\OneToMany(targetEntity="SubscriptionTicket", mappedBy="subscription")
      */
-    private $subscription_ticket;
+    protected $subscription_ticket;
 
     /**
      * @ORM\OneToMany(targetEntity="SubscriptionPause", mappedBy="subscription")
      */
-    private $subscription_pauses;
+    protected $subscription_pauses;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\Location")
@@ -100,7 +100,7 @@ class Subscription
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $location;
+    protected $location;
 
 
     public function __construct()

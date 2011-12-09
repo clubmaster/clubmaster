@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User implements AdvancedUserInterface, \Serializable
+class User implements AdvancedUserInterface
 {
     /**
      * @ORM\Id
@@ -22,91 +22,91 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @var integer $id
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer $member_number
      */
-    private $member_number;
+    protected $member_number;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $password
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="datetime", nullable="true")
      *
      * @var date $last_login_time
      */
-    private $last_login_time;
+    protected $last_login_time;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var string $last_login_ip
      */
-    private $last_login_ip;
+    protected $last_login_ip;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $enabled
      */
-    private $enabled;
+    protected $enabled;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $algorithm
      */
-    private $algorithm;
+    protected $algorithm;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string $salt
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $locked
      */
-    private $locked;
+    protected $locked;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @var boolean $expired
      */
-    private $expired;
+    protected $expired;
 
     /**
      * @ORM\Column(type="string", nullable="true")
      *
      * @var boolean $activation_code
      */
-    private $activation_code;
+    protected $activation_code;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var date $updated_at
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @ORM\OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
@@ -114,21 +114,21 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @var Club\UserBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
     /**
      * @ORM\ManyToOne(targetEntity="Language")
      *
      * @var Club\UserBundle\Entity\Language
      */
-    private $language;
+    protected $language;
 
     /**
      * @ORM\ManyToOne(targetEntity="Location")
      *
      * @var Club\UserBundle\Entity\Location
      */
-    private $location;
+    protected $location;
 
     /**
      * @ORM\ManyToMany(targetEntity="Role")
@@ -137,27 +137,27 @@ class User implements AdvancedUserInterface, \Serializable
      *   inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      * )
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\TeamBundle\Entity\Schedule", mappedBy="users")
      */
-    private $schedules;
+    protected $schedules;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
      */
-    private $subscriptions;
+    protected $subscriptions;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\EventBundle\Entity\Attend", mappedBy="user")
      */
-    private $attends;
+    protected $attends;
 
     /**
      * @ORM\ManyToMany(targetEntity="Group", mappedBy="users")
      */
-    private $groups;
+    protected $groups;
 
 
     public function __toString()
@@ -170,7 +170,6 @@ class User implements AdvancedUserInterface, \Serializable
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
       $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
       $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-
       $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
       $this->algorithm = 'sha512';
       $this->enabled = false;
@@ -617,13 +616,26 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function serialize()
     {
-      return serialize(array($this->getMemberNumber()));
+      return serialize(array(
+        $this->password,
+        $this->member_number,
+        $this->salt,
+        $this->enabled,
+        $this->locked,
+        $this->expired
+      ));
     }
 
     public function unserialize($serialized)
     {
-      $data = unserialize($serialized);
-      $this->setMemberNumber($data[0]);
+      list(
+        $this->password,
+        $this->member_number,
+        $this->salt,
+        $this->enabled,
+        $this->locked,
+        $this->expired
+      ) = unserialize($serialized);
     }
 
     /**
