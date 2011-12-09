@@ -140,7 +140,7 @@ class User implements AdvancedUserInterface
     protected $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\TeamBundle\Entity\Schedule", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\ScheduleUser", mappedBy="user")
      */
     protected $schedules;
 
@@ -819,7 +819,7 @@ class User implements AdvancedUserInterface
     public function isAttend(\Club\TeamBundle\Entity\Schedule $schedule)
     {
       foreach ($this->getSchedules() as $sch) {
-        if ($schedule->getId() == $sch->getId())
+        if ($schedule->getId() == $sch->getSchedule()->getId())
           return true;
       }
 

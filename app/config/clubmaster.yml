@@ -11,6 +11,8 @@ club_team:
     penalty_enabled: true
     cancel_minute_before: 120
     cancel_minute_created: 5
+    num_book_day: 20
+    num_book_future: 20
 
 club_booking:
     enable_guest: true

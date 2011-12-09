@@ -61,11 +61,6 @@ class Team
 
     if (!$this->isValid())
       return;
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day')) {
-      $this->setError('You cannot have more guest bookings this day');
-      return;
-    }
   }
 
   public function getError()
@@ -80,24 +75,27 @@ class Team
 
   public function save()
   {
-    $booking = new \Club\BookingBundle\Entity\Booking();
-    $booking->setUser($this->user);
-    $booking->setInterval($this->interval);
-    $booking->setDate($this->date);
-    $booking->setGuest($this->guest);
+    $su = new \Club\TeamBundle\Entity\ScheduleUser();
+    $su->setUser($this->user);
+    $su->setSchedule($this->schedule);
 
-    if ($this->partner)
-      $booking->addUser($this->partner);
-
-    $this->em->persist($booking);
+    $this->em->persist($su);
     $this->em->flush();
 
-    return $booking;
+    return $su;
   }
 
   public function remove()
   {
-    $this->schedule->getUsers()->removeElement($this->user);
+    $res = $this->em->createQueryBuilder()
+      ->delete('ClubTeamBundle:ScheduleUser', 'su')
+      ->where('su.user = :user')
+      ->andWhere('su.schedule = :schedule')
+      ->setParameter('user', $this->user->getId())
+      ->setParameter('schedule', $this->schedule->getId())
+      ->getQuery()
+      ->getResult();
+
     $this->em->flush();
   }
 
@@ -109,12 +107,7 @@ class Team
 
   protected function validate()
   {
-    $c = clone $this->date;
-    $c->setTime(
-      $this->interval->getStartTime()->format('H'),
-      $this->interval->getStartTime()->format('i'),
-      $this->interval->getStartTime()->format('s')
-    );
+    $c = clone $this->schedule->getFirstDate();
 
     if ($c < new \DateTime())
       $this->setError('You cannot attend in the past');

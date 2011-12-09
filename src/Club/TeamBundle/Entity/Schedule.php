@@ -114,7 +114,7 @@ class Schedule
     protected $instructors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\ScheduleUser", mappedBy="schedule")
      * @ORM\JoinTable(name="club_team_schedule_user")
      */
     protected $users;

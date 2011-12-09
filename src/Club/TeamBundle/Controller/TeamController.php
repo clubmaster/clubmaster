@@ -37,6 +37,18 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
+    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    if ($this->get('club_team.team')->isValid()) {
+      $this->get('club_team.team')->save();
+
+      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+      $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
+      $this->get('session')->setFlash('notice', 'You are now attending the team.');
+    } else {
+      $this->get('session')->setFlash('error', $this->get('club_team.team')->getError());
+    }
+
+    /**
     if (!$schedule->addUser($this->get('security.context')->getToken()->getUser())) {
       $this->get('session')->setFlash('error', 'You do not have permission to use teams.');
     } else {
@@ -44,7 +56,6 @@ class TeamController extends Controller
       $errors = $this->get('validator')->validate($schedule, array('attend'));
 
       if (!count($errors)) {
-        $this->get('session')->setFlash('notice', 'You are now attending the team.');
         $em->persist($schedule);
         $em->flush();
 
@@ -55,6 +66,7 @@ class TeamController extends Controller
         $this->get('session')->setFlash('error', $errors[0]->getMessage());
       }
     }
+     */
 
     return $this->redirect($this->generateUrl('club_team_team_index'));
   }
