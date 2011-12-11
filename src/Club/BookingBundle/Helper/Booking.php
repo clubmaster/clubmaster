@@ -10,13 +10,14 @@ class Booking
   protected $container;
   protected $security_context;
   protected $error;
-  protected $is_valid = true;
   protected $user;
   protected $date;
   protected $interval;
   protected $partner;
-  protected $guest = false;
   protected $booking;
+  protected $guest = false;
+  protected $is_valid = true;
+  protected $price;
 
   public function __construct(EntityManager $em, $container, $security_context)
   {
@@ -235,6 +236,9 @@ class Booking
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_future'))
       $this->setError('You cannot have more bookings');
+  }
 
+  public function getPrice()
+  {
   }
 }
