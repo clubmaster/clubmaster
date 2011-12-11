@@ -1,3 +1,8 @@
+_field:
+  resource: "@ClubBookingBundle/Controller/AdminFieldController.php"
+  type: annotation
+  prefix: /admin
+
 _booking:
   resource: "@ClubBookingBundle/Controller/BookingController.php"
   type: annotation
