@@ -36,7 +36,7 @@ function initBookings(location, date)
       });
 }
 
-function initSchema(location, date)
+function initTable(location, date)
 {
   // settings
   var hour_width=100;
@@ -104,7 +104,7 @@ function initSchema(location, date)
 
 $(document).ready(function() {
   date = new Date("{{ date|date('c')}}");
-  initSchema(2, date);
+  initTable(2, date);
 });
 </script>
 
