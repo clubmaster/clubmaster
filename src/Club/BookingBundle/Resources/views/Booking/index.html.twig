@@ -1,5 +1,13 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/booking.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('bundles/clublayout/js/booking.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <h2>Booking - {{ date|date('Y-m-d') }}</h2>
 
@@ -7,48 +15,10 @@
 <div class="col33 t-right"><a href="{{ path('club_booking_booking_index', {'date':item|date('Y-m-d')}) }}">{{ item|date('l') }} &raquo;</a></div>
 {% endfor %}
 
-<table class="style" id="booking">
-  <thead>
-    <tr>
-      <th width="50">&#160;</th>
-      {% for field in fields %}
-      <th width="100">{{ field.name }}</th>
-      {% endfor %}
-    </tr>
-  </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="{{ fields|length+1 }}">&#160;</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>
-      {% for dt in period %}
-      <div class="time_period" style="height: 60px;">{{ dt|date('H:i') }}</div>
-      {% endfor %}
-      </td>
-      {% for field in fields %}
-      <td>
-        {% for interval in field.times %}
-
-        {% if interval.booking %}
-        <div class="booking" style="height: {{ interval.diff }}px">
-          <a href="{{ path('club_booking_booking_cancel', {'id':interval.booking.id}) }}">{{ interval.booking.user.profile.name }}</a>
-        </div>
-
-        {% else %}
-        <!-- Free booking -->
-        <div class="booking" style="height: {{ interval.diff }}px">
-          <a href="{{ path('club_booking_booking_book', {'interval_id':interval.id,'date': date|date('Y-m-d') }) }}">{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</a>
-        </div>
-        {% endif %}
-
-        {% endfor %}
-      </td>
-      {% endfor %}
-    </tr>
-  </tbody>
-</table>
+<div id="booking">
+  <div id="times"></div>
+  <div id="fields"></div>
+  <div id="intervals"></div>
+</div>
 
 {% endblock %}

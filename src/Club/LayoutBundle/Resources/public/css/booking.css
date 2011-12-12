@@ -1,0 +1,67 @@
+div#booking
+{
+  position: relative;
+  border: solid 1px #c3c3c3;
+  z-index: 0px;
+}
+
+div#booking div#times
+{
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  z-index: 0;
+}
+
+div#booking div#fields
+{
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  z-index: 0;
+}
+
+div#booking div#intervals
+{
+  position: absolute;
+  top: 40px;
+  left: 100px;
+  z-index: 10;
+}
+
+div#booking div.interval
+{
+  position: absolute;
+  background-color: #97ffa6;
+  font-size: 11px;
+  border: dotted 1px #aeaeae;
+  padding: 5px 0px 0px 0px;
+  z-index: 20;
+}
+
+div#booking div.booking
+{
+  position: absolute;
+  background-color: #eef0ff;
+  font-size: 11px;
+  border: dotted 1px #aeaeae;
+  padding: 5px 0px 0px 0px;
+  z-index: 30;
+}
+
+div#booking div.time
+{
+  position: absolute;
+  height: 100%;
+  float: left;
+  border-left: dotted 1px #c3c3c3;
+  text-align: center;
+}
+
+div#booking div.field
+{
+  position: absolute;
+  width: 100%;
+  border-top: solid 1px #c3c3c3;
+}
+

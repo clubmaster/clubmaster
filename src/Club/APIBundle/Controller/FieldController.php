@@ -23,11 +23,19 @@ class FieldController extends Controller
 
     $date = ($date == null) ? new \DateTime() : new \DateTime($date);
 
-    $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsOverview($location,$date);
+    $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsOverview($location, $date);
+    $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
+    $info = array(
+      'start_time' => $data['start_time']->format('c'),
+      'end_time' => $data['end_time']->format('c'),
+    );
 
-    $res = array();
+    $res = array(
+      'info' => $info,
+      'fields' => array()
+    );
     foreach ($fields as $field) {
-      $res[] = $field->toArray();
+      $res['fields'][] = $field->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
