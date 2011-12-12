@@ -8,9 +8,19 @@ function checkTime(i)
   return '0'+i;
 }
 
+function getTime(date)
+{
+  return date.getFullYear()+'-'+checkTime(date.getMonth()+1)+'-'+checkTime(date.getDate());
+}
+
+function makeIntervalUrl(interval_id, date)
+{
+  return '<a href="{{ path('homepage') }}booking/book/'+interval_id+'/'+getTime(date)+'">Available</a>';
+}
+
 function initBookings(location)
 {
-  $.getJSON("api/bookings/"+location, function(json) {
+  $.getJSON("{{ path('homepage') }}api/bookings/"+location, function(json) {
       $.each(json.data, function() {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
 
@@ -36,7 +46,7 @@ function initSchema(location)
   var times=0;
   var pixel_size=hour_width/60
 
-    $.getJSON("api/fields/"+location, function(json) {
+    $.getJSON("{{ path('homepage') }}api/fields/"+location, function(json) {
         var startTime=new Date(json.data.info.start_time);
         var endTime=new Date(json.data.info.end_time);
         console.log("Found start time: "+startTime);
@@ -71,7 +81,7 @@ function initSchema(location)
               var day_diff=(start-day_start)/1000/60;
               console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
-              $("#intervals").append('<div class="interval" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;Available</div>');
+              $("#intervals").append('<div class="interval" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;'+makeIntervalUrl(this.id,start)+'</div>');
               });
 
             top = top+field_height;
@@ -100,7 +110,6 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block body %}
-
 <div class="fix"></div>
 
 <div id="booking">
