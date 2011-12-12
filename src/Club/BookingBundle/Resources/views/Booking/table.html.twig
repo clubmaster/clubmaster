@@ -18,9 +18,9 @@ function makeIntervalUrl(interval_id, date)
   return '<a href="{{ path('homepage') }}booking/book/'+interval_id+'/'+getTime(date)+'">Available</a>';
 }
 
-function initBookings(location)
+function initBookings(location, date)
 {
-  $.getJSON("{{ path('homepage') }}api/bookings/"+location, function(json) {
+  $.getJSON("{{ path('homepage') }}api/bookings/"+location+"/"+getTime(date), function(json) {
       $.each(json.data, function() {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
 
@@ -36,7 +36,7 @@ function initBookings(location)
       });
 }
 
-function initSchema(location)
+function initSchema(location, date)
 {
   // settings
   var hour_width=100;
@@ -46,7 +46,7 @@ function initSchema(location)
   var times=0;
   var pixel_size=hour_width/60
 
-    $.getJSON("{{ path('homepage') }}api/fields/"+location, function(json) {
+    $.getJSON("{{ path('homepage') }}api/fields/"+location+"/"+getTime(date), function(json) {
         var startTime=new Date(json.data.info.start_time);
         var endTime=new Date(json.data.info.end_time);
         console.log("Found start time: "+startTime);
@@ -81,7 +81,7 @@ function initSchema(location)
               var day_diff=(start-day_start)/1000/60;
               console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
-              $("#intervals").append('<div class="interval" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;'+makeIntervalUrl(this.id,start)+'</div>');
+              $("#intervals").append('<div class="interval" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;'+makeIntervalUrl(this.id,date)+'</div>');
               });
 
             top = top+field_height;
@@ -98,18 +98,20 @@ function initSchema(location)
         $('div#times').css('height', height+'px');
         $('div#fields').css('width', width+'px');
 
-        initBookings(location);
+        initBookings(location, date);
     });
 }
 
 $(document).ready(function() {
-    initSchema(2);
-    });
+  date = new Date("{{ date|date('c')}}");
+  initSchema(2, date);
+});
 </script>
 
 {% endblock %}
 
 {% block body %}
+
 <div class="fix"></div>
 
 <div id="booking">
