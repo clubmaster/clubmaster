@@ -104,7 +104,7 @@ function initTable(location, date)
 
 $(document).ready(function() {
   date = new Date("{{ date|date('c')}}");
-  initTable(2, date);
+  initTable({{ location.id }}, date);
 });
 </script>
 

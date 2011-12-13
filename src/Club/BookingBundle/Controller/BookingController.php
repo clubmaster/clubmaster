@@ -136,7 +136,8 @@ class BookingController extends Controller
        'period' => $period,
        'fields' => $fields,
        'date' => $date,
-       'nav' => $nav
+       'nav' => $nav,
+       'location' => $location
     );
    }
 
