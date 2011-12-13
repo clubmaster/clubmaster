@@ -1,5 +1,9 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
+{% block javascripts %}
+  <script src="{{ asset('bundles/clublayout/js/booking.js') }}" type="text/javascript"></script>
+{% endblock %}
+
 {% block stylesheets %}
   <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/booking.css') }}" />
 {% endblock %}
