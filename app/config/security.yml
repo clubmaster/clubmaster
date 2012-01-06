@@ -16,16 +16,15 @@ security:
     firewalls:
         api:
             pattern: ^/api
-            security: true
             anonymous: ~
             http_basic:
                 realm: "ClubMaster API"
         main:
+            pattern: .*
+            anonymous: ~
+            logout: ~
             form_login:
                 failure_handler: failure.password.handler
-            logout: true
-            security: true
-            anonymous: true
 
     access_control:
         - { path: /admin/event*, roles: ROLE_EVENT_ADMIN }
