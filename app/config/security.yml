@@ -6,35 +6,41 @@ security:
             iterations: 10
 
     role_hierarchy:
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_MESSAGE_ADMIN, ROLE_TEAM_ADMIN, ROLE_BOOKING_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         main:
             entity: { class: Club\UserBundle\Entity\User, property: member_number }
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern: ^/login$
+            anonymous: ~
+            security: false
+
         api:
             pattern: ^/api
             anonymous: ~
             http_basic:
                 realm: "ClubMaster API"
+
         main:
-            pattern: .*
-            anonymous: ~
+            pattern: ^/
             logout: ~
+            anonymous: ~
             form_login:
                 failure_handler: failure.password.handler
 
     access_control:
         - { path: /admin/event*, roles: ROLE_EVENT_ADMIN }
         - { path: /admin*, roles: ROLE_ADMIN }
-        - { path: /_profiler*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /_wdt*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /api*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /auth*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /installer*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /upgrade*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /event/ical, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /api*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /installer*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /upgrade*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /event/ical, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /*, roles: ROLE_USER }

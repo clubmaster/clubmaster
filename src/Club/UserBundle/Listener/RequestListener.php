@@ -25,9 +25,9 @@ class RequestListener
       $this->test = 1;
     } else {
       return;
-    } 
+    }
 
-    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+    if (!$this->security_context->getToken())
       return;
 
     $user = $this->security_context->getToken()->getUser();
