@@ -51,7 +51,6 @@ class RequestListener
 
   private function setLocation()
   {
-    $this->session->set('location_id', null);
     if ($this->session->get('location_id'))
       return;
 
