@@ -29,18 +29,19 @@ security:
             http_basic:
                 realm: "ClubMaster API"
 
-        main:
-            pattern: ^/
+        user:
+            pattern: ^/user
             logout: ~
-            anonymous: ~
             form_login:
                 failure_handler: failure.password.handler
+                check_path: /user/login_check
+
+        main:
+            pattern: ^/
+            security: false
 
     access_control:
-        - { path: /admin/event*, roles: ROLE_EVENT_ADMIN }
-        - { path: /admin*, roles: ROLE_ADMIN }
-        - { path: /api*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /installer*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /upgrade*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /event/ical, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /*, roles: ROLE_USER }
+        - { path: /admin/event, roles: ROLE_EVENT_ADMIN }
+        - { path: /admin, roles: ROLE_ADMIN }
+        - { path: /user, roles: ROLE_USER }
+        - { path: /, roles: IS_AUTHENTICATED_ANONYMOUSLY }

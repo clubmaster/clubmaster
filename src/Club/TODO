@@ -6,13 +6,16 @@ add booking plans
   - maintenance
   - cleaning
   - tournament
-implement payment for booking
 make some more tests
 make field administration
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
+move all login pages to /user
+make / anonymous
+make welcome bundle
 
 == NOTES TO LATER ==
+implement payment for booking
 make more simple demo location setup
 change time comparence to object compare instead of timestamp
 use validators in coupon
