@@ -51,11 +51,15 @@ class RequestListener
 
   private function setLocation()
   {
+    $this->session->set('location_id', null);
     if ($this->session->get('location_id'))
       return;
 
     $this->location = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_location');
     $this->session->set('location_id', $this->location->getId());
+
+    if (!$this->security_context->getToken() || $this->security_context->getToken() instanceOf \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken)
+      return;
 
     $user = $this->security_context->getToken()->getUser();
 
