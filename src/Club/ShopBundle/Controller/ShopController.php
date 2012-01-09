@@ -16,12 +16,13 @@ class ShopController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
     $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
-      'location' => $this->get('security.context')->getToken()->getUser()->getLocation()->getId()
+      'location' => $location->getId()
     ));
 
     return array(
-      'location' => $this->get('security.context')->getToken()->getUser()->getLocation(),
+      'location' => $location,
       'categories' => $categories
     );
   }

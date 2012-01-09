@@ -19,3 +19,4 @@ change time comparence to object compare instead of timestamp
 use validators in coupon
 bind coupon to specific product
 fix num_team_day
+fint a smart way to get default location, might be with the url

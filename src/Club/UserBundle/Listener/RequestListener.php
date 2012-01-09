@@ -11,6 +11,7 @@ class RequestListener
   protected $em;
   protected $security_context;
   protected $session;
+  protected $location;
 
   public function __construct($em,$security_context,$session)
   {
@@ -27,34 +28,41 @@ class RequestListener
       return;
     }
 
-    $token = $this->security_context->getToken();
-    if (!$this->security_context->getToken())
+    $this->setLocation();
+    $this->setLocale();
+  }
+
+  private function setLocale()
+  {
+    if ($this->session->getLocale())
       return;
 
-    if ($this->security_context->getToken() instanceOf \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken)
-      return;
+    $language = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_language',$this->location);
+    $this->session->setLocale($language->getCode());
 
     $user = $this->security_context->getToken()->getUser();
-    if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLocation()) {
-      $location = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_location');
-      $user->setLocation($location);
-
-      $this->em->persist($user);
-      $this->em->flush();
-    }
-
     if ($user instanceOf \Club\UserBundle\Entity\User && !$user->getLanguage()) {
-      $language = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_language',$user->getLocation());
       $user->setLanguage($language);
-      $this->session->setLocale($language->getCode());
 
       $this->em->persist($user);
       $this->em->flush();
     }
+  }
 
-    if ($user->getLanguage()->getCode() != $this->session->getLocale())
-      $this->session->setLocale($user->getLanguage()->getCode());
+  private function setLocation()
+  {
+    if ($this->session->get('location_id'))
+      return;
 
-    $this->session->set('current_user',$user);
+    $this->location = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_location');
+    $this->session->set('location_id', $this->location->getId());
+
+    $user = $this->security_context->getToken()->getUser();
+
+    if ($user instanceOf \Club\UserBundle\Entity\User) {
+      $user->setLocation($this->location);
+      $this->em->persist($user);
+      $this->em->flush();
+    }
   }
 }
