@@ -22,18 +22,6 @@ class DefaultController extends Controller
           'route' => $this->generateUrl('user')
         ),
         array(
-          'name' => $this->get('translator')->trans('Shop'),
-          'route' => $this->generateUrl('shop')
-        ),
-        array(
-          'name' => $this->get('translator')->trans('Order'),
-          'route' => $this->generateUrl('shop_order')
-        ),
-        array(
-          'name' => $this->get('translator')->trans('Subscription'),
-          'route' => $this->generateUrl('shop_subscription')
-        ),
-        array(
           'name' => $this->get('translator')->trans('Event'),
           'route' => $this->generateUrl('event_event')
         )
@@ -67,40 +55,6 @@ class DefaultController extends Controller
           'name' => $this->get('translator')->trans('Location'),
           'route' => $this->generateUrl('admin_location')
         ),
-        'shop' => array(
-          'name' => $this->get('translator')->trans('Shop'),
-          'route' => $this->generateUrl('admin_shop_product'),
-          'items' => array(
-            array(
-              'name' => $this->get('translator')->trans('Product'),
-              'route' => $this->generateUrl('admin_shop_product')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Category'),
-              'route' => $this->generateUrl('admin_shop_category')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Order'),
-              'route' => $this->generateUrl('admin_shop_order')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Coupon'),
-              'route' => $this->generateUrl('club_shop_admincoupon_index')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Special Price'),
-              'route' => $this->generateUrl('club_shop_adminspecial_index')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Payment Method'),
-              'route' => $this->generateUrl('admin_shop_payment_method')
-            ),
-            array(
-              'name' => $this->get('translator')->trans('Shipping'),
-              'route' => $this->generateUrl('admin_shop_shipping')
-            ),
-          ),
-        ),
         'admin' => array(
           'name' => $this->get('translator')->trans('Administration'),
           'route' => $this->generateUrl('ban'),
@@ -128,15 +82,15 @@ class DefaultController extends Controller
           ),
         ),
       );
-    }
 
-    $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
-    $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onLeftMenuRender, $event);
-    $menu = $event->getMenu();
+      $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
+      $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onLeftMenuRender, $event);
+      $menu = $event->getMenu();
 
-    if (preg_match("/admin\/([^\/]+)?.*$/", $this->getRequest()->getRequestUri(),$rtn)) {
-      if (isset($menu[$rtn[1]])) {
-        $menu[$rtn[1]]['active'] = 1;
+      if (preg_match("/admin\/([^\/]+)?.*$/", $this->getRequest()->getRequestUri(),$rtn)) {
+        if (isset($menu[$rtn[1]])) {
+          $menu[$rtn[1]]['active'] = 1;
+        }
       }
     }
 

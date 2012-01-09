@@ -34,3 +34,13 @@ services:
     arguments: [@doctrine.orm.entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: coupon.use, method: onCouponUse }
+  club.shopbundle.top_menu_listener:
+    class: Club\ShopBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+  club.shopbundle.left_menu_listener:
+    class: Club\ShopBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
