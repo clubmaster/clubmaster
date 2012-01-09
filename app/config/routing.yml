@@ -1,7 +1,3 @@
-ClubWelcomeBundle:
-    resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
-    prefix:   /
-
 homepage:
   pattern: /
   defaults: { _controller: ClubDashboardBundle:Dashboard:index }
@@ -44,3 +40,6 @@ _booking:
 
 _dashboard:
   resource: "@ClubDashboardBundle/Resources/config/routing.yml"
+
+_welcome:
+  resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
