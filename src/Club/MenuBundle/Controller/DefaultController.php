@@ -15,7 +15,7 @@ class DefaultController extends Controller
       $menu = array(
         array(
           'name' => $this->get('translator')->trans('Dashboard'),
-          'route' => $this->generateUrl('homepage')
+          'route' => $this->generateUrl('club_dashboard_dashboard_index')
         ),
         array(
           'name' => $this->get('translator')->trans('User'),

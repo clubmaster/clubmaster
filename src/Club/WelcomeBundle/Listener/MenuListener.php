@@ -19,10 +19,12 @@ class MenuListener
   {
     $menu = $event->getMenu();
 
-    $menu[] = array(
-      'name' => $this->translator->trans('Login'),
-      'route' => $this->router->generate('login')
-    );
+    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+      $menu[] = array(
+        'name' => $this->translator->trans('Login'),
+        'route' => $this->router->generate('login')
+      );
+    }
 
     $event->setMenu($menu);
   }
