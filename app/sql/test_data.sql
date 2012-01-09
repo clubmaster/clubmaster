@@ -16,11 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 INSERT INTO club_user_location (location_name,location_id) VALUES
-  ('Denmark',1),
-  ('Aalborg',2),
-  ('Copenhagen',2),
-  ('Aalborg Tennis Club',3),
-  ('Gug Tennis Club',3);
+  ('Aalborg',1);
 
 INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),

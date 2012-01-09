@@ -6,7 +6,6 @@ INSERT INTO club_booking_field (location_id, name, position, information, create
   (2, 'Bane 5', 5, 'Ingen adgang uden sko.', now(), now()),
   (2, 'Bane 6', 6, 'Ingen adgang uden sko.', now(), now()),
   (2, 'Bane 7', 7, 'Ingen adgang uden sko.', now(), now()),
-  (3, 'Bane 1', 1, 'Ingen adgang uden sko.', now(), now());
 
 INSERT INTO club_booking_interval (day, start_time, stop_time, created_at, updated_at, field_id) VALUES
   (1,'10:00','11:00',now(),now(),1),

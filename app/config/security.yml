@@ -38,7 +38,7 @@ security:
 
         main:
             pattern: ^/
-            security: false
+            anonymous: ~
 
     access_control:
         - { path: /admin/event, roles: ROLE_EVENT_ADMIN }

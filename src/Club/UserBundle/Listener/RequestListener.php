@@ -27,7 +27,11 @@ class RequestListener
       return;
     }
 
+    $token = $this->security_context->getToken();
     if (!$this->security_context->getToken())
+      return;
+
+    if ($this->security_context->getToken() instanceOf \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken)
       return;
 
     $user = $this->security_context->getToken()->getUser();
