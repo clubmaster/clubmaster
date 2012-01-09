@@ -1,0 +1,7 @@
+parameters:
+#    club_welcome.example.class: Club\WelcomeBundle\Example
+
+services:
+#    club_welcome.example:
+#        class: %club_welcome.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

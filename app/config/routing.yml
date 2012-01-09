@@ -1,3 +1,7 @@
+ClubWelcomeBundle:
+    resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 homepage:
   pattern: /
   defaults: { _controller: ClubDashboardBundle:Dashboard:index }

@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Club\TeamBundle\ClubTeamBundle(),
             new Club\BookingBundle\ClubBookingBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new Club\WelcomeBundle\ClubWelcomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
