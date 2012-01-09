@@ -6,11 +6,13 @@ class PriceExtension extends \Twig_Extension
 {
   private $em;
   private $security_context;
+  private $session;
 
-  public function __construct($em,$security_context)
+  public function __construct($em,$security_context, $session)
   {
     $this->em = $em;
     $this->security_context = $security_context;
+    $this->session = $session;
   }
 
   public function getFilters()
@@ -24,7 +26,7 @@ class PriceExtension extends \Twig_Extension
   {
     $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(
       'default_currency',
-      $this->security_context->getToken()->getUser()->getLocation()
+      $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
     );
 
     $str = "%.".$currency->getDecimalPlaces()."f";
