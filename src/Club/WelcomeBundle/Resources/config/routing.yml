@@ -1,3 +1,4 @@
-ClubWelcomeBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubWelcomeBundle:Default:index }
+_welcome:
+  resource: "@ClubWelcomeBundle/Controller/WelcomeController.php"
+  type: annotation
+
