@@ -29,6 +29,13 @@ class Cart
     protected $currency;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $session
+     */
+    protected $session;
+
+    /**
      * @ORM\Column(type="decimal")
      *
      * @var string $currency_value
