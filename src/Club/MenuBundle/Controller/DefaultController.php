@@ -9,32 +9,36 @@ class DefaultController extends Controller
 {
   public function topMenuAction()
   {
-    $menu = array(
-      array(
-        'name' => $this->get('translator')->trans('Dashboard'),
-        'route' => $this->generateUrl('homepage')
-      ),
-      array(
-        'name' => $this->get('translator')->trans('User'),
-        'route' => $this->generateUrl('user')
-      ),
-      array(
-        'name' => $this->get('translator')->trans('Shop'),
-        'route' => $this->generateUrl('shop')
-      ),
-      array(
-        'name' => $this->get('translator')->trans('Order'),
-        'route' => $this->generateUrl('shop_order')
-      ),
-      array(
-        'name' => $this->get('translator')->trans('Subscription'),
-        'route' => $this->generateUrl('shop_subscription')
-      ),
-      array(
-        'name' => $this->get('translator')->trans('Event'),
-        'route' => $this->generateUrl('event_event')
-      )
-    );
+    $menu = array();
+
+    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+      $menu = array(
+        array(
+          'name' => $this->get('translator')->trans('Dashboard'),
+          'route' => $this->generateUrl('homepage')
+        ),
+        array(
+          'name' => $this->get('translator')->trans('User'),
+          'route' => $this->generateUrl('user')
+        ),
+        array(
+          'name' => $this->get('translator')->trans('Shop'),
+          'route' => $this->generateUrl('shop')
+        ),
+        array(
+          'name' => $this->get('translator')->trans('Order'),
+          'route' => $this->generateUrl('shop_order')
+        ),
+        array(
+          'name' => $this->get('translator')->trans('Subscription'),
+          'route' => $this->generateUrl('shop_subscription')
+        ),
+        array(
+          'name' => $this->get('translator')->trans('Event'),
+          'route' => $this->generateUrl('event_event')
+        )
+      );
+    }
 
     $event = new \Club\MenuBundle\Event\FilterMenuEvent($menu);
     $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onTopMenuRender, $event);

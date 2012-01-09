@@ -1,15 +1,16 @@
-<ul class="box f-right">
-  <li><a href="{{ path('club_feedback_feedback_index') }}"><span><strong>{% trans %}Feedback{% endtrans %}</strong></span></a></li>
-</ul>
+        <!-- Menu -->
+        <div id="menu" class="box">
+          <ul class="box f-right">
+            <li><a href="{{ path('club_feedback_feedback_index') }}"><span><strong>{% trans %}Feedback{% endtrans %}</strong></span></a></li>
+          </ul>
 
 
-<ul class="box">
-  {% for item in menu %}
+          <ul class="box">
+            {% for item in menu %}
+            <li {% if app.request.attributes.get('_route') == item.route %} id="menu-active"{% endif %}>
+            <a href="{{ item.route }}"><span>{{ item.name }}</span></a>
+            </li>
 
-  <li {% if app.request.attributes.get('_route') == item.route %} id="menu-active"{% endif %}>
-    <a href="{{ item.route }}"><span>{{ item.name }}</span></a>
-  </li>
-
-  {% endfor %}
-</ul>
-
+            {% endfor %}
+          </ul>
+        </div>

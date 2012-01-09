@@ -1,11 +1,7 @@
-_security_login:
-  pattern:  /login
-  defaults: { _controller: ClubUserBundle:Auth:login }
-
-_security_check:
+login_check:
   pattern:  /login_check
 
-_security_logout:
+logout:
   pattern:  /logout
 
 _auth:

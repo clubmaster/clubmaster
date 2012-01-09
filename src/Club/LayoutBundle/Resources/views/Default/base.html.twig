@@ -50,19 +50,14 @@
                 <p class="f-right">
                 {% trans with {'%name%':app.user} %}User: <strong>%name%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {% render 'ClubUserBundle:Misc:LocationBar' %}
-                <strong><a href="{{ path('_security_logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong></p>
+                <strong><a href="{{ path('logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong></p>
                 {% endif %}
 
         </div> <!--  /tray -->
 
         <hr class="noscreen" />
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <!-- Menu -->
-        <div id="menu" class="box">
-          {% render "ClubMenuBundle:Default:topMenu" %}
-        </div> <!-- /header -->
-        {% endif %}
+        {% render "ClubMenuBundle:Default:topMenu" %}
 
         <hr class="noscreen" />
 

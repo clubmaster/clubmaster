@@ -6,8 +6,8 @@ security:
             iterations: 10
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_MESSAGE_ADMIN, ROLE_TEAM_ADMIN, ROLE_BOOKING_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_MESSAGE_ADMIN, ROLE_TEAM_ADMIN, ROLE_BOOKING_ADMIN]
 
     providers:
         main:
@@ -20,7 +20,6 @@ security:
 
         login:
             pattern: ^/login$
-            anonymous: ~
             security: false
 
         api:
@@ -30,15 +29,15 @@ security:
                 realm: "ClubMaster API"
 
         user:
-            pattern: ^/user
-            logout: ~
-            form_login:
-                failure_handler: failure.password.handler
-                check_path: /user/login_check
-
-        main:
             pattern: ^/
             anonymous: ~
+            form_login:
+                failure_handler: failure.password.handler
+                check_path: /login_check
+                login_path: /login
+            logout:
+                path: /logout
+                target: /
 
     access_control:
         - { path: /admin/event, roles: ROLE_EVENT_ADMIN }
