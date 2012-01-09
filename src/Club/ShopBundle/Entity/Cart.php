@@ -284,4 +284,24 @@ class Cart
     {
       $this->setCreatedAt(new \DateTime());
     }
+
+    /**
+     * Set session
+     *
+     * @param string $session
+     */
+    public function setSession($session)
+    {
+        $this->session = $session;
+    }
+
+    /**
+     * Get session
+     *
+     * @return string 
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
 }

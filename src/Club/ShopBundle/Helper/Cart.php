@@ -7,35 +7,49 @@ class Cart
   protected $cart;
   protected $session;
   protected $em;
-  protected $user;
+  protected $security_context;
+  protected $token;
 
-  public function __construct($em,$session,$security)
+  public function __construct($em, $session, $security_context)
   {
     $this->session = $session;
     $this->em = $em;
-    $this->user = $security->getToken()->getUser();
+    $this->security_context = $security_context;
+    $this->token = $security_context->getToken();
 
     if ($this->session->get('cart_id') != '') {
       $this->cart = $this->em->find('ClubShopBundle:Cart',$this->session->get('cart_id'));
     }
 
     if (!$this->cart) {
-      $this->cart = $em->getRepository('ClubShopBundle:Cart')->findOneBy(
-        array('user' => $this->user->getId())
-      );
+      if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+        $this->cart = $em->getRepository('ClubShopBundle:Cart')->findOneBy(
+          array('user' => $this->token->getUser()->getId())
+        );
+      } else {
+        $this->cart = $em->getRepository('ClubShopBundle:Cart')->findOneBy(
+          array('session' => $this->session->getId())
+        );
+      }
 
       if (!$this->cart) {
         $this->cart = new \Club\ShopBundle\Entity\Cart();
-        $this->cart->setUser($this->user);
-        $location = $this->user->getLocation();
+        $this->cart->setSession($this->session->getId());
+
+        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+          $this->cart->setUser($this->token->getUser());
+
+        $location = $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'));
         $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$location);
         $this->cart->setCurrency($currency);
         $this->cart->setCurrencyValue($currency->getValue());
         $this->cart->setPrice(0);
         $this->cart->setLocation($location);
 
-        if ($this->user->getProfile()->getProfileAddress()) {
-          $this->setAddresses($this->user->getProfile()->getProfileAddress());
+        if ($this->security_context->isGranted('IS_FULLY_AUTHENTICATED')) {
+          if ($this->token->getUser()->getProfile()->getProfileAddress()) {
+            $this->setAddresses($this->token->getUser()->getProfile()->getProfileAddress());
+          }
         }
 
         $this->save();
