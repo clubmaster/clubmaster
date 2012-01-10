@@ -3,6 +3,11 @@ _field:
   type: annotation
   prefix: /admin
 
+_interval:
+  resource: "@ClubBookingBundle/Controller/AdminIntervalController.php"
+  type: annotation
+  prefix: /admin
+
 _booking:
   resource: "@ClubBookingBundle/Controller/BookingController.php"
   type: annotation
