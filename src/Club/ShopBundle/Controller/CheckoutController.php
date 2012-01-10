@@ -228,6 +228,14 @@ class CheckoutController extends Controller
    */
   public function loginAction()
   {
+    $em = $this->getDoctrine()->getEntityManager();
+    $carts = $em->getRepository('ClubShopBundle:Cart')->findBy(array(
+      'user' => $this->get('security.context')->getToken()->getUser()->getId()
+    ));
+    foreach ($carts as $cart) {
+      $em->remove($cart);
+    }
+
     $this->get('cart')->setUser();
     $this->get('cart')->save();
 

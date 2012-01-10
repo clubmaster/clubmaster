@@ -1,5 +1,4 @@
 == TODO ==
-remove cart if user shop login and already has a cart
 cannot change quantity on order preview
 remove new member, add to checkout of shop
 better booking schema:
