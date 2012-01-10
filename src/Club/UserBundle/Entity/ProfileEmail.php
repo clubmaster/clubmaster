@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\ProfileEmailRepository")
  * @ORM\Table(name="club_user_profile_email")
+ * @ORM\HasLifeCycleCallbacks()
  */
 class ProfileEmail
 {
@@ -45,6 +46,11 @@ class ProfileEmail
      */
     protected $profile;
 
+
+    public function __construct()
+    {
+      $this->setContactType('home');
+    }
 
     /**
      * Get id

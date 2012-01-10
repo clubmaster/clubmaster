@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\ProfileAddressRepository")
  * @ORM\Table(name="club_user_profile_address")
+ * @ORM\HasLifeCycleCallbacks()
  */
 class ProfileAddress
 {
@@ -76,6 +77,11 @@ class ProfileAddress
      */
     protected $country;
 
+
+    public function __construct()
+    {
+      $this->setContactType('home');
+    }
 
     /**
      * Get id

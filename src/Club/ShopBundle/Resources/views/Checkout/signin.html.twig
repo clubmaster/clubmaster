@@ -6,8 +6,10 @@
 <fieldset>
   <legend>Signup</legend>
   <p>If you do not have an account, please signup here.</p>
-  <form method="POST" action="">
-  {{ form_widget(user_form) }}
+
+  <form method="POST" action="{{ path('club_shop_checkout_signin') }}">
+  {{ form_widget(form) }}
+  <p><input type="submit" value="signup"></p>
   </form>
 
 </fieldset>
@@ -15,6 +17,7 @@
 <fieldset>
   <legend>Signin</legend>
   <p>If you already have an account, please signin here.</p>
+
   <form method="post" action="{{ path('login_check') }}">
   <p>Username: <input type="input" name="_username"><br />
   Password: <input type="password" name="_password"></p>

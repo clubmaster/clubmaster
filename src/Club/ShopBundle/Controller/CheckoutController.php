@@ -212,13 +212,32 @@ class CheckoutController extends Controller
    */
   public function signinAction()
   {
-    $user = new \Club\UserBundle\Entity\User();
-
-    $user_form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+    $em = $this->getDoctrine()->getEntityManager();
     $this->get('session')->set('_security.target_path', '/shop/login');
 
+    $user = new \Club\UserBundle\Entity\User();
+    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+
+    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
+
+        $event = new \Club\UserBundle\Event\FilterUserEvent($user);
+        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
+
+        return $this->redirect($this->generateUrl('shop_checkout'));
+      }
+    }
+
     return array(
-      'user_form' => $user_form->createView(),
+      'form' => $form->createView()
     );
   }
 
