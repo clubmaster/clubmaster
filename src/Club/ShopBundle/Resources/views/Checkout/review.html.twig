@@ -7,7 +7,7 @@
 
 <h3>{% trans %}Order{% endtrans %}</h3>
 <div id="sf_admin_container">
-{% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
+{% include "ClubShopBundle:Checkout:cart_confirm.html.twig" %}
 
 <h3>{% trans %}Customer Information{% endtrans %}</h3>
 <p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
