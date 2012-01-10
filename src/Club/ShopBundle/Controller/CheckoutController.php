@@ -216,6 +216,19 @@ class CheckoutController extends Controller
     $this->get('session')->set('_security.target_path', '/shop/login');
 
     $user = new \Club\UserBundle\Entity\User();
+    $profile = new \Club\UserBundle\Entity\Profile();
+    $address = new \Club\UserBundle\Entity\ProfileAddress();
+    $phone = new \Club\UserBundle\Entity\ProfilePhone();
+    $email = new \Club\UserBundle\Entity\ProfileEmail();
+
+    $user->setProfile($profile);
+    $profile->setUser($user);
+    $profile->setProfileAddress($address);
+    $profile->setProfileEmail($email);
+    $profile->setProfilePhone($phone);
+    $address->setProfile($profile);
+    $phone->setProfile($profile);
+    $email->setProfile($profile);
     $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
 
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
@@ -232,7 +245,14 @@ class CheckoutController extends Controller
         $event = new \Club\UserBundle\Event\FilterUserEvent($user);
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
 
-        return $this->redirect($this->generateUrl('shop_checkout'));
+        $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+          $user,
+          null,
+          'user'
+        );
+        $this->get('security.context')->setToken($token);
+
+        return $this->redirect($this->generateUrl('club_shop_checkout_login'));
       }
     }
 
