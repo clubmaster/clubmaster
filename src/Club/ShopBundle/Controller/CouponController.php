@@ -27,10 +27,11 @@ class CouponController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
-        if (count($coupon->getCouponLog()) >= $coupon->getMaxUsage()) {
-          $this->get('session')->setFlash('error',$this->get('translator')->trans('Coupon use too many times'));
-        } elseif (!$coupon) {
+        if (!$coupon) {
           $this->get('session')->setFlash('error',$this->get('translator')->trans('No such coupon.'));
+
+        } elseif (count($coupon->getCouponLog()) >= $coupon->getMaxUsage()) {
+          $this->get('session')->setFlash('error',$this->get('translator')->trans('Coupon use too many times'));
         } else {
           $product = array(
             'product_name' => 'Coupon #'.$coupon->getCouponKey(),
