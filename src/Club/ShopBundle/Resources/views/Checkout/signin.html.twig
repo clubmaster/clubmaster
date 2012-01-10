@@ -1,0 +1,26 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Signin</h2>
+
+<fieldset>
+  <legend>Signup</legend>
+  <p>If you do not have an account, please signup here.</p>
+  <form method="POST" action="">
+  {{ form_widget(user_form) }}
+  </form>
+
+</fieldset>
+
+<fieldset>
+  <legend>Signin</legend>
+  <p>If you already have an account, please signin here.</p>
+  <form method="post" action="{{ path('login_check') }}">
+  <p>Username: <input type="input" name="_username"><br />
+  Password: <input type="password" name="_password"></p>
+  <p><input type="submit" value="login"></p>
+  </form>
+
+</fieldset>
+
+{% endblock %}

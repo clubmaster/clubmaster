@@ -53,6 +53,9 @@ class CheckoutController extends Controller
    */
   public function shippingAction()
   {
+    if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+      return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
+
     $em = $this->getDoctrine()->getEntityManager();
 
     $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
@@ -200,6 +203,34 @@ class CheckoutController extends Controller
   public function emptyCartAction()
   {
     $this->get('cart')->emptyCart();
+    return $this->redirect($this->generateUrl('shop_checkout'));
+  }
+
+  /**
+   * @Route("/shop/signin")
+   * @Template()
+   */
+  public function signinAction()
+  {
+    $user = new \Club\UserBundle\Entity\User();
+
+    $user_form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+    $this->get('session')->set('_security.target_path', '/shop/login');
+
+    return array(
+      'user_form' => $user_form->createView(),
+    );
+  }
+
+  /**
+   * @Route("/shop/login")
+   * @Template()
+   */
+  public function loginAction()
+  {
+    $this->get('cart')->setUser();
+    $this->get('cart')->save();
+
     return $this->redirect($this->generateUrl('shop_checkout'));
   }
 

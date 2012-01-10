@@ -36,26 +36,28 @@ class Cart
         $this->cart = new \Club\ShopBundle\Entity\Cart();
         $this->cart->setSession($this->session->getId());
 
-        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
-          $this->cart->setUser($this->token->getUser());
-
         $location = $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'));
         $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$location);
         $this->cart->setCurrency($currency);
         $this->cart->setCurrencyValue($currency->getValue());
         $this->cart->setPrice(0);
         $this->cart->setLocation($location);
-
-        if ($this->security_context->isGranted('IS_FULLY_AUTHENTICATED')) {
-          if ($this->token->getUser()->getProfile()->getProfileAddress()) {
-            $this->setAddresses($this->token->getUser()->getProfile()->getProfileAddress());
-          }
-        }
+        $this->setUser();
 
         $this->save();
       }
 
       $this->session->set('cart_id',$this->cart->getId());
+    }
+  }
+
+  public function setUser()
+  {
+    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+      $this->cart->setUser($this->token->getUser());
+      if ($this->token->getUser()->getProfile()->getProfileAddress()) {
+        $this->setAddresses($this->token->getUser()->getProfile()->getProfileAddress());
+      }
     }
   }
 
@@ -201,7 +203,7 @@ class Cart
     $this->cart->setBillingAddress($address);
   }
 
-  protected function save()
+  public function save()
   {
     $this->em->persist($this->cart);
     $this->em->flush();
