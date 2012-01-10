@@ -1,0 +1,36 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_booking_adminfield_new') }}" class="btn-create"><span>{% trans %}Create field{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Category{% endtrans %}</th>
+      <th>{% trans %}Location{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for field in fields %}
+    <tr>
+      <td>{{ field.name }}</td>
+      <td>{{ field.location.locationName }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminfield_edit', { 'id':field.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminfield_delete', { 'id':field.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}There are no fields.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
