@@ -141,31 +141,4 @@ class AuthController extends Controller
       'user' => $user
     );
   }
-
-
-  protected function getUser($user)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    if (!count($user->getProfile()->getProfileAddress())) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setContactType('home');
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!count($user->getProfile()->getProfilePhone())) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setContactType('home');
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!count($user->getProfile()->getProfileEmail())) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setContactType('home');
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    return $user;
-  }
 }
