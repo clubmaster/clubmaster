@@ -6,8 +6,8 @@
 <table class="style">
   <thead>
     <tr>
-      <th>{% trans %}Category{% endtrans %}</th>
       <th>{% trans %}Location{% endtrans %}</th>
+      <th>{% trans %}Field{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -19,8 +19,8 @@
   <tbody>
   {% for field in fields %}
     <tr>
-      <td>{{ field.name }}</td>
       <td>{{ field.location.locationName }}</td>
+      <td>{{ field.name }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminfield_edit', { 'id':field.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminfield_delete', { 'id':field.id })} %}
