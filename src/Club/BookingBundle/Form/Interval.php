@@ -10,7 +10,18 @@ class Interval extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('day');
+    $days = array(
+      1 => 'Monday',
+      2 => 'Tuesday',
+      3 => 'Wednesday',
+      4 => 'Thursday',
+      5 => 'Friday',
+      6 => 'Saturday',
+      7 => 'Sunday'
+    );
+    $builder->add('day', 'choice', array(
+      'choices' => $days
+    ));
     $builder->add('start_time');
     $builder->add('stop_time');
     $builder->add('field');

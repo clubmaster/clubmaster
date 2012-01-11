@@ -10,33 +10,43 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminIntervalController extends Controller
 {
   /**
-   * @Route("/booking/interval")
+   * @Route("/booking/interval/{field_id}")
    * @Template()
    */
-  public function indexAction()
+  public function indexAction($field_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $intervals = $em->getRepository('ClubBookingBundle:Interval')->findAll();
+
+    $field = $em->find('ClubBookingBundle:Field', $field_id);
+    $intervals = $em->getRepository('ClubBookingBundle:Interval')->findBy(array(
+      'field' => $field_id
+    ));
 
     return array(
-      'intervals' => $intervals
+      'intervals' => $intervals,
+      'field' => $field
     );
   }
 
   /**
-   * @Route("/booking/interval/new")
+   * @Route("/booking/interval/new/{field_id}")
    * @Template()
    */
-  public function newAction()
+  public function newAction($field_id)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $field = $em->find('ClubBookingBundle:Field', $field_id);
     $interval = new \Club\BookingBundle\Entity\Interval();
+    $interval->setField($field);
     $res = $this->process($interval);
 
     if ($res instanceOf RedirectResponse)
       return $res;
 
     return array(
-      'form' => $res->createView()
+      'form' => $res->createView(),
+      'field' => $field
     );
   }
 
@@ -73,7 +83,7 @@ class AdminIntervalController extends Controller
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_booking_admininterval_index'));
+    return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $interval->getField()->getId())));
   }
 
   protected function process($interval)
@@ -89,7 +99,7 @@ class AdminIntervalController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_admininterval_index'));
+        return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $interval->getField()->getId())));
       }
     }
 

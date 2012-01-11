@@ -1,0 +1,10 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+
+{% block body %}
+
+<form method="post" action="{{ path('club_booking_admininterval_new', {'field_id':field.id}) }}">
+{% include "ClubBookingBundle:AdminInterval:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

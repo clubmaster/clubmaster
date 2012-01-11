@@ -9,7 +9,6 @@ add booking plans
   - cleaning
   - tournament
 make some more tests
-make field administration
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
 move all login pages to /user
