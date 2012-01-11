@@ -59,6 +59,7 @@ class Interval
 
     /**
      * @ORM\ManyToOne(targetEntity="Field")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $field;
 
