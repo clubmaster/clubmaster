@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
   /**
    * @Template()
-   * @Route("/dashboard")
+   * @Route("/user/dashboard")
    */
   public function indexAction()
   {
