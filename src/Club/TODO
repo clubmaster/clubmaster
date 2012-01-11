@@ -1,13 +1,9 @@
 == TODO ==
 better logo for adminfield interval
-make login button in the top, instead of the button
+make login form visible in the left when not logged in
 better booking schema:
   - improve colors
 better pick opponent form
-add booking plans
-  - maintenance
-  - cleaning
-  - tournament
 make some more tests
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
@@ -21,3 +17,7 @@ use validators in coupon
 bind coupon to specific product
 fix num_team_day
 fint a smart way to get default location, might be with the url
+add booking plans
+  - maintenance
+  - cleaning
+  - tournament
