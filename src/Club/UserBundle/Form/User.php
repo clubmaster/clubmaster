@@ -13,7 +13,7 @@ class User extends AbstractType
     $builder->add('password', 'repeated', array(
       'type' => 'password',
       'first_name' => 'Password',
-      'second_name' => 'Password again'
+      'second_name' => 'Password again',
     ));
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }

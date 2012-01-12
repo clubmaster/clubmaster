@@ -16,15 +16,6 @@ class TestCase extends WebTestCase
     return $client;
   }
 
-  protected function apiKey()
-  {
-    $client = static::createClient(array(), array(
-      'API_KEY' => 'THIS_IS_A_DEMO_KEY'
-    ));
-
-    return $client;
-  }
-
   protected function login($client)
   {
     $crawler = $client->request('GET', '/login');
