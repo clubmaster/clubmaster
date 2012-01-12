@@ -1,10 +1,17 @@
 == TODO ==
+remove register user
+complete checkout as guest
+complete checkout as user
+create field for booking
+create intervals in booking
+book field with user
+book field with guest
+test forgot password
 better logo for adminfield interval
 make login form visible in the left when not logged in
 better booking schema:
   - improve colors
 better pick opponent form
-make some more tests
 not 2 schedules can have the same interval
 fix coupon no orders can go below zero
 move all login pages to /user

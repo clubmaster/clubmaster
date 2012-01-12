@@ -5,10 +5,10 @@ use Club\UserBundle\Helper\TestCase as WebTestCase;
 
 class AuthControllerTest extends WebTestCase
 {
-  public function testRegister()
+  public function testForgot()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/auth/register');
+    $crawler = $client->request('GET', '/auth/forgot');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -16,8 +16,8 @@ class AuthControllerTest extends WebTestCase
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'user[profile][first_name]' => 'John',
-      'user[profile][last_name]' => 'Doe',
+      'request_password[username]' => '10',
+      'request_password[email]' => 'Doe',
       'user[profile][profile_address][street]' => 'Myllerstrasse 14',
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
