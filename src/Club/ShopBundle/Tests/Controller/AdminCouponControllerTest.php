@@ -29,7 +29,8 @@ class AdminCouponControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'coupon[value]' => '122'
+      'coupon[value]' => '122',
+      'coupon[coupon_key]' => date('Y-m-d')
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
