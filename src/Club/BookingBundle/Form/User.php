@@ -9,18 +9,14 @@ class User extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('member_number');
-  }
-
-  public function getDefaultOptions(array $options)
-  {
-    return array(
-      'data_class' => 'Club\UserBundle\Entity\User'
-    );
+    $builder->add('id', 'hidden');
+    $builder->add('query', 'text', array(
+      'label' => 'Partner'
+    ));
   }
 
   public function getName()
   {
-    return 'user';
+    return 'booking';
   }
 }
