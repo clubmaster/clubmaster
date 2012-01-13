@@ -3,7 +3,6 @@ make login form visible in the left when not logged in
 better booking schema:
   - improve colors
 better pick opponent form
-not 2 schedules can have the same interval
 
 == NOTES TO LATER ==
 implement payment for booking
@@ -20,3 +19,4 @@ add booking plans
 login through team attend page
 login through booking page
 move all login pages to /user
+not 2 schedules can have the same interval
