@@ -16,12 +16,12 @@ class TestCase extends WebTestCase
     return $client;
   }
 
-  protected function login($client)
+  protected function login($client, $username = '10', $password = '1234')
   {
     $crawler = $client->request('GET', '/login');
     $form = $crawler->selectButton('Sign In')->form(array(
-      '_username' => '10',
-      '_password' => '1234'
+      '_username' => $username,
+      '_password' => $password
     ));
     $crawler = $client->submit($form);
 
