@@ -21,10 +21,10 @@ mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/users_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/event_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_fields.sql
 
-phpunit -c app/ src/Club/ShopBundle/Tests/Controller/CheckoutControllerTest.php
 phpunit -c app/ src/Club/TeamBundle/Tests/Controller/0AdminTeamControllerTest.php
 phpunit -c app/ src/Club/TeamBundle/Tests/Controller/1AdminScheduleControllerTest.php
 phpunit -c app/ src/Club/ShopBundle/Tests/Controller/AdminCouponControllerTest.php
+phpunit -c app/ src/Club/ShopBundle/Tests/Controller/CheckoutControllerTest.php
 
 php app/console cache:warmup
 

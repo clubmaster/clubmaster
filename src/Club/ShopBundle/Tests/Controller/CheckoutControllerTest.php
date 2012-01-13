@@ -38,6 +38,17 @@ class CheckoutControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 
+    $link = $crawler->selectLink('Use coupon')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form(array(
+      'form[coupon_key]' => date('Y-m-d')
+    ));
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+    $crawler = $this->client->followRedirect();
+
     $link = $crawler->selectLink('Checkout')->link();
     $crawler = $this->client->click($link);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
