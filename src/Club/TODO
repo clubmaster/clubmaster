@@ -4,7 +4,6 @@ better booking schema:
   - improve colors
 better pick opponent form
 not 2 schedules can have the same interval
-move all login pages to /user
 
 == NOTES TO LATER ==
 implement payment for booking
@@ -20,3 +19,4 @@ add booking plans
   - tournament
 login through team attend page
 login through booking page
+move all login pages to /user
