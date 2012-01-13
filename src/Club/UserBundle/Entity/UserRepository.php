@@ -429,7 +429,7 @@ class UserRepository extends EntityRepository
       ->select('u')
       ->from('ClubUserBundle:User', 'u');
 
-    if ($user['id']) {
+    if (isset($user['id']) && $user['id'] != '') {
       $qb
         ->where('u.id = :id')
         ->setParameter('id', $user['id']);

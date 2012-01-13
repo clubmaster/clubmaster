@@ -40,7 +40,7 @@ security:
                 target: /
 
     access_control:
-        - { path: /admin/event, roles: ROLE_EVENT_ADMIN }
-        - { path: /admin, roles: ROLE_ADMIN }
-        - { path: /user, roles: ROLE_USER }
-        - { path: /, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/event, roles: ROLE_EVENT_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
