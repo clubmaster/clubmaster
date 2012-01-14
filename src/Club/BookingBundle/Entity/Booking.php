@@ -180,7 +180,20 @@ class Booking
      */
     public function getInterval()
     {
-        return $this->interval;
+      // FIXME, there might be a problem if we cross multiple days, check up on this..
+      $interval = $this->interval;
+      $interval->getStartTime()->setDate(
+        $this->getDate()->format('Y'),
+        $this->getDate()->format('m'),
+        $this->getDate()->format('d')
+      );
+      $interval->getStopTime()->setDate(
+        $this->getDate()->format('Y'),
+        $this->getDate()->format('m'),
+        $this->getDate()->format('d')
+      );
+
+      return $this->interval;
     }
 
     /**

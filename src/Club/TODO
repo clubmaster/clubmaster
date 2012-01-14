@@ -1,12 +1,13 @@
 users and admin should be able to delete booking
+login through booking page
 scroll right and left on booking page
-login directly through booking
 add booking confirmation
 make login form visible in the left when not logged in
 better booking schema:
   - add tooltips
-better pick opponent form
-jquery form on booking
+jquery autocomplete partner form
+jquery overlay form on booking
+support for both bookings and schedules on booking schema
 
 == NOTES TO LATER ==
 implement payment for booking
@@ -21,7 +22,6 @@ add booking plans
   - cleaning
   - tournament
 login through team attend page
-login through booking page
 move all login pages to /user
 not 2 schedules can have the same interval
 what will happen if interval access multiple days
