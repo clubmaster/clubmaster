@@ -4,8 +4,6 @@ login directly through booking
 add booking confirmation
 make login form visible in the left when not logged in
 better booking schema:
-  - improve colors
-  - cannnot click element in the past
   - add tooltips
 better pick opponent form
 jquery form on booking

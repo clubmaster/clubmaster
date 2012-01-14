@@ -60,9 +60,14 @@ div#booking div.interval
   z-index: 20;
 }
 
-div#booking div.interval:hover
+div#booking div.future:hover
 {
   background-color: #9dd578;
+}
+
+div#booking div.past
+{
+  background-color: #dcdcdc;
 }
 
 div#booking div.booking
