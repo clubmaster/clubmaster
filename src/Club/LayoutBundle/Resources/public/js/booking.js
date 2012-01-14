@@ -77,10 +77,15 @@ function initTable(location, date, url, hour_width, field_height)
         console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
         if (start < current_time) {
-          $("#intervals").append('<div class="interval past" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;Available</div>');
+          $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;Available</div>');
         } else {
-          $("#intervals").append('<div class="interval future" id="interval_'+this.id+'" style="height: '+(field_height-5)+'px; top: '+top+'px; left: '+(day_diff*pixel_size)+'px; width: '+((diff*pixel_size)-1)+'px;">&#160;'+makeIntervalUrl(this.id,date,url)+'</div>');
+          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this.id,date,url)+'</div>');
         }
+        $("div#interval_"+this.id).addClass('interval');
+        $("div#interval_"+this.id).css('height', (field_height-6)+'px');
+        $("div#interval_"+this.id).css('top', top+'px');
+        $("div#interval_"+this.id).css('left', (day_diff*pixel_size)+'px');
+        $("div#interval_"+this.id).css('width', ((diff*pixel_size)-1)+'px');
 
       });
 
