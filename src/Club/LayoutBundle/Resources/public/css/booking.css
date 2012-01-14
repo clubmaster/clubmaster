@@ -70,6 +70,11 @@ div#booking div.past
   background-color: #dcdcdc;
 }
 
+div#booking div.past:hover
+{
+  background-color: #e3e3e3;
+}
+
 div#booking div.booking
 {
   position: absolute;
