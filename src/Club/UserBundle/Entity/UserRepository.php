@@ -422,4 +422,28 @@ class UserRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getBySearch(array $user)
+  {
+    $qb = $this->_em->createQueryBuilder()
+      ->select('u')
+      ->from('ClubUserBundle:User', 'u');
+
+    if (isset($user['id']) && $user['id'] != '') {
+      $qb
+        ->where('u.id = :id')
+        ->setParameter('id', $user['id']);
+    } else {
+      $qb
+        ->leftJoin('u.profile', 'p')
+        ->where('u.member_number = :number')
+        ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
+        ->setParameter('number', $user['query'])
+        ->setParameter('query', '%'.$user['query'].'%');
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
 }

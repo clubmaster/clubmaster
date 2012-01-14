@@ -33,6 +33,7 @@ class User implements AdvancedUserInterface
 
     /**
      * @ORM\Column(type="string", nullable="true")
+     * @Assert\NotBlank(groups={"user"})
      *
      * @var string $password
      */

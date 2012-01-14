@@ -40,8 +40,7 @@ class BookingController extends Controller
     */
    public function userAction($interval_id,$date)
    {
-     $user = new \Club\UserBundle\Entity\User();
-     $form = $this->createForm(new \Club\BookingBundle\Form\User, $user);
+     $form = $this->createForm(new \Club\BookingBundle\Form\User);
      $form->bindRequest($this->getRequest());
 
      if ($form->isValid()) {
@@ -50,18 +49,23 @@ class BookingController extends Controller
        $date = new \DateTime($date);
        $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
 
-       $user = $em->getRepository('ClubUserBundle:User')->findOneBy(array(
-         'member_number' => $user->getMemberNumber()
-       ));
+       $user = $em->getRepository('ClubUserBundle:User')->getBySearch($form->getData());
 
-       if (!$user) {
+       if (!count($user)) {
          $this->get('session')->setFlash('error', 'User does not exist');
+         return $this->redirect($this->generateUrl('club_booking_booking_book', array(
+           'interval_id' => $interval->getId(),
+           'date' => $date->format('Y-m-d')
+         )));
+       } elseif (count($user) > 1) {
+         $this->get('session')->setFlash('error', 'Too many users match this search');
          return $this->redirect($this->generateUrl('club_booking_booking_book', array(
            'interval_id' => $interval->getId(),
            'date' => $date->format('Y-m-d')
          )));
        }
 
+       $user = $user[0];
        $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $user);
 
        if ($this->get('club_booking.booking')->isValid()) {
@@ -104,8 +108,7 @@ class BookingController extends Controller
    {
      $em = $this->getDoctrine()->getEntityManager();
 
-     $user = new \Club\UserBundle\Entity\User();
-     $form = $this->createForm(new \Club\BookingBundle\Form\User, $user);
+     $form = $this->createForm(new \Club\BookingBundle\Form\User());
 
      $date = new \DateTime($date);
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);

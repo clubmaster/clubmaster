@@ -24,7 +24,9 @@ class AuthController extends Controller
    */
   public function forgotAction()
   {
-    $form = $this->createForm(new \Club\UserBundle\Form\RequestPassword());
+    $form = $this->createFormBuilder()
+      ->add('username', 'text')
+      ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -37,7 +39,7 @@ class AuthController extends Controller
 
       if (!($user instanceOf \Club\UserBundle\Entity\User)) {
         $email = $em->getRepository('ClubUserBundle:ProfileEmail')->findOneBy(array(
-          'email_address' => $post['email']
+          'email_address' => $post['username']
         ));
 
         if ($email instanceOf \Club\UserBundle\Entity\ProfileEmail) {

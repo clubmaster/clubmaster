@@ -38,6 +38,17 @@ class CheckoutControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 
+    $link = $crawler->selectLink('Use coupon')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form(array(
+      'form[coupon_key]' => date('Y-m-d')
+    ));
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+    $crawler = $this->client->followRedirect();
+
     $link = $crawler->selectLink('Checkout')->link();
     $crawler = $this->client->click($link);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -80,6 +91,44 @@ class CheckoutControllerTest extends WebTestCase
     $crawler = $this->client->followRedirect();
 
     $link = $crawler->selectLink('Resume')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+  }
+
+  public function testUserCheckout()
+  {
+    $this->client = static::createClient();
+    $this->login($this->client, 1, 1234);
+
+    $crawler = $this->client->request('GET', '/shop/product/1');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $link = $crawler->selectLink('Put in cart')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+    $crawler = $this->client->followRedirect();
+
+    $link = $crawler->selectLink('Checkout')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+    $crawler = $this->client->followRedirect();
+
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+    $crawler = $this->client->followRedirect();
+
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    $form = $crawler->selectButton('Confirm order')->form();
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+
+    $crawler = $this->client->request('GET', '/shop/order');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $link = $crawler->selectLink('Edit')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $link = $crawler->selectLink('Cancel order')->link();
     $crawler = $this->client->click($link);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }

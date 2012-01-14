@@ -15,12 +15,8 @@
                 <form method="POST" action="{{ path('auth_forgot') }}">
                 <table class="nom nostyle">
                         <tr>
-                          <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.username) }}</strong></label></td>
+                          <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.username,'Username or e-mail') }}</strong></label></td>
                           <td>{{ form_widget(form.username) }}</td>
-                        </tr>
-                        <tr>
-                          <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.email) }}</strong></label></td>
-                          <td>{{ form_widget(form.email) }}</td>
                         </tr>
                         <tr>
                                 <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Send Password &raquo;" /></td>

@@ -3,6 +3,8 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Club\BookingBundle\Entity\Field
@@ -26,6 +28,7 @@ class Field
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $name;
 
@@ -33,6 +36,7 @@ class Field
      * @var integer $position
      *
      * @ORM\Column(name="position", type="integer")
+     * @Assert\NotBlank()
      */
     protected $position;
 
@@ -59,6 +63,7 @@ class Field
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     * @Assert\NotBlank()
      */
     protected $location;
 

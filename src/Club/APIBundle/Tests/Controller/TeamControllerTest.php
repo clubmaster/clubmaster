@@ -27,13 +27,4 @@ class TeamControllerTest extends WebTestCase
     $crawler = $client->request('POST', '/api/teams/1/unattend');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
-
-  public function testParticipant()
-  {
-    $client = $this->apiLogin();
-
-    $crawler = $client->request('POST', '/api/teams/participant');
-    $this->assertEquals(200, $client->getResponse()->getStatusCode());
-  }
-
 }

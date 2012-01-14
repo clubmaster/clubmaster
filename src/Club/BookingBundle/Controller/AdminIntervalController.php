@@ -29,7 +29,7 @@ class AdminIntervalController extends Controller
   }
 
   /**
-   * @Route("/booking/interval/new/{field_id}")
+   * @Route("/booking/interval/{field_id}/new")
    * @Template()
    */
   public function newAction($field_id)

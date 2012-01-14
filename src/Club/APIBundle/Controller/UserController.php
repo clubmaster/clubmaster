@@ -12,16 +12,24 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("/", defaults={"query" = null})
+   * @Route("/search/{query}")
    * @Method("GET")
    */
-  public function indexAction()
+  public function indexAction($query)
   {
     if (!$this->validateKey())
       return new Response('Wrong API key', 403);
 
     $em = $this->getDoctrine()->getEntityManager();
-    $users = $em->getRepository('ClubUserBundle:User')->findAll();
+
+    if ($query == null) {
+      $users = $em->getRepository('ClubUserBundle:User')->findAll();
+    } else {
+      $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
+        'query' => $query
+      ));
+    }
 
     $res = array();
     foreach ($users as $user) {
