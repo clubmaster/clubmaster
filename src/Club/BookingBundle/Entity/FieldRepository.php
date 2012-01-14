@@ -26,11 +26,19 @@ class FieldRepository extends EntityRepository
     foreach ($fields as $field) {
       foreach ($field->getIntervals() as $interval) {
         if ($interval->getStartTime()->format('His') < $start_time->format('His')) {
-          $start_time = clone $interval->getStartTime();
+          $start_time->setTime(
+            $interval->getStartTime()->format('H'),
+            $interval->getStartTime()->format('i'),
+            $interval->getStartTime()->format('s')
+          );
         }
 
         if ($interval->getStopTime()->format('His') > $end_time->format('His')) {
-          $end_time = clone $interval->getStopTime();
+          $end_time->setTime(
+            $interval->getStopTime()->format('H'),
+            $interval->getStopTime()->format('i'),
+            $interval->getStopTime()->format('s')
+          );
         }
       }
     }
@@ -56,6 +64,18 @@ class FieldRepository extends EntityRepository
         'day' => $date->format('N')
       ));
 
+      foreach ($intervals as $interval) {
+        $interval->getStartTime()->setDate(
+          $date->format('Y'),
+          $date->format('m'),
+          $date->format('d')
+        );
+        $interval->getStopTime()->setDate(
+          $date->format('Y'),
+          $date->format('m'),
+          $date->format('d')
+        );
+      }
       $field->setTimes($intervals);
     }
 
