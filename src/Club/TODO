@@ -1,8 +1,14 @@
+users and admin should be able to delete booking
+scroll right and left on booking page
+login directly through booking
 add booking confirmation
 make login form visible in the left when not logged in
 better booking schema:
   - improve colors
+  - cannnot click element in the past
+  - add tooltips
 better pick opponent form
+jquery form on booking
 
 == NOTES TO LATER ==
 implement payment for booking

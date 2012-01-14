@@ -1,5 +1,14 @@
+div#preloader
+{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+
 div#booking
 {
+  display: none;
   position: relative;
   border: solid 1px #c3c3c3;
   z-index: 0px;
@@ -29,20 +38,37 @@ div#booking div#intervals
   z-index: 10;
 }
 
+div#booking a
+{
+  text-decoration: none;
+  color: #444444;
+}
+
+div#booking a:hover
+{
+  text-decoration: none;
+  color: #747474;
+}
+
 div#booking div.interval
 {
   position: absolute;
-  background-color: #97ffa6;
+  background-color: #b8f88e;
   font-size: 11px;
   border: dotted 1px #aeaeae;
   padding: 5px 0px 0px 0px;
   z-index: 20;
 }
 
+div#booking div.interval:hover
+{
+  background-color: #9dd578;
+}
+
 div#booking div.booking
 {
   position: absolute;
-  background-color: #eef0ff;
+  background-color: #cb7c7c;
   font-size: 11px;
   border: dotted 1px #aeaeae;
   padding: 5px 0px 0px 0px;

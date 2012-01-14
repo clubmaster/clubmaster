@@ -92,6 +92,9 @@ function initTable(location, date, url, hour_width, field_height)
         $('div#times').css('height', height+'px');
         $('div#fields').css('width', width+'px');
 
+        $('#preloader').hide();
+        $('#booking').show();
+
         initBookings(location, date, url);
     });
 }
