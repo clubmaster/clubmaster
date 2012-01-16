@@ -1,18 +1,17 @@
+improve text and design on delete booking page
+jquery autocomplete partner form
+support for both bookings and schedules on booking schema
 jquery overlay form on booking
 login through booking page
 scroll right and left on booking page
-jquery autocomplete partner form
-support for both bookings and schedules on booking schema
-improve text and design on delete booking page
 
 == NOTES TO LATER ==
 implement payment for booking
-make more simple demo location setup
 change time comparence to object compare instead of timestamp
 use validators in coupon
 bind coupon to specific product
 fix num_team_day
-fint a smart way to get default location, might be with the url
+find a smart way to get default location, might be with the url
 add booking plans
   - maintenance
   - cleaning
