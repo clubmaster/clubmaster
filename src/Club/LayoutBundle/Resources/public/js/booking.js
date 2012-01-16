@@ -13,7 +13,7 @@ function getTime(date)
 
 function makeIntervalUrl(interval_id, date,url)
 {
-  return '<a href="'+url+'booking/book/'+interval_id+'/'+getTime(date)+'">Available</a>';
+  return '<a href="'+url+'booking/'+getTime(date)+'/'+interval_id+'">Available</a>';
 }
 
 function initBookings(location, date, url)
