@@ -12,94 +12,93 @@ class BookingController extends Controller
 {
    /**
     * @Template()
-    * @Route("/booking/book/confirm/{interval_id}/{date},")
-    */
-   public function confirmAction($interval_id, $date)
-   {
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $date = new \DateTime($date);
-     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
-
-     $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
-
-     if ($this->get('club_booking.booking')->isValid()) {
-       $this->get('club_booking.booking')->save();
-       $this->get('session')->setFlash('notice', 'Your booking has been created');
-     } else {
-       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
-     }
-
-     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
-   }
-
-   /**
-    * @Template()
-    * @Route("/booking/book/guest/{interval_id}/{date}")
-    */
-   public function guestAction($interval_id,$date)
-   {
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $date = new \DateTime($date);
-     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
-
-     $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
-
-     if ($this->get('club_booking.booking')->isValid()) {
-       $this->get('club_booking.booking')->save();
-       $this->get('session')->setFlash('notice', 'Your booking has been created');
-     } else {
-       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
-     }
-
-     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
-   }
-
-   /**
-    * @Template()
-    * @Route("/booking/book/user/{interval_id}/{date}")
+    * @Route("/booking/book/review/{interval_id}/{date}")
     * @Method("POST")
     */
-   public function userAction($interval_id,$date)
+   public function reviewAction($interval_id, $date)
    {
-     $form = $this->createForm(new \Club\BookingBundle\Form\User);
-     $form->bindRequest($this->getRequest());
+     if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+       $this->get('session')->setFlash('error', 'You has to be logged in.');
+       return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+         'date' => $date,
+         'interval_id' => $interval_id
+       )));
+     }
 
-     if ($form->isValid()) {
-       $em = $this->getDoctrine()->getEntityManager();
+     $em = $this->getDoctrine()->getEntityManager();
 
-       $date = new \DateTime($date);
-       $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+     $date = new \DateTime($date);
+     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+     $guest = $this->getRequest()->get('guest') ? 1 : 0;
 
-       $user = $em->getRepository('ClubUserBundle:User')->getBySearch($form->getData());
+     if ($guest) {
+       $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
+     } else {
+       $form = $this->createForm(new \Club\BookingBundle\Form\User);
+       $form->bindRequest($this->getRequest());
 
-       if (!count($user)) {
-         $this->get('session')->setFlash('error', 'User does not exist');
-         return $this->redirect($this->generateUrl('club_booking_booking_book', array(
-           'interval_id' => $interval->getId(),
-           'date' => $date->format('Y-m-d')
-         )));
-       } elseif (count($user) > 1) {
-         $this->get('session')->setFlash('error', 'Too many users match this search');
-         return $this->redirect($this->generateUrl('club_booking_booking_book', array(
-           'interval_id' => $interval->getId(),
-           'date' => $date->format('Y-m-d')
-         )));
+       if ($form->isValid()) {
+         $user = $em->getRepository('ClubUserBundle:User')->getBySearch($form->getData());
+
+         if (!count($user)) {
+           $this->get('session')->setFlash('error', 'User does not exist');
+           return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+             'interval_id' => $interval->getId(),
+             'date' => $date->format('Y-m-d')
+           )));
+         } elseif (count($user) > 1) {
+           $this->get('session')->setFlash('error', 'Too many users match this search');
+           return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+             'interval_id' => $interval->getId(),
+             'date' => $date->format('Y-m-d')
+           )));
+         }
        }
 
        $user = $user[0];
        $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $user);
-
-       if ($this->get('club_booking.booking')->isValid()) {
-         $this->get('club_booking.booking')->save();
-         $this->get('session')->setFlash('notice', 'Your booking has been created');
-       } else {
-         $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
-       }
-
-       return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
      }
+
+     if (!$this->get('club_booking.booking')->isValid()) {
+       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+       return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+         'interval_id' => $interval->getId(),
+         'date' => $date->format('Y-m-d')
+       )));
+     }
+
+     $ret = array(
+       'guest' => $guest,
+       'booking' => $this->get('club_booking.booking')->getBooking()
+     );
+
+     if (isset($user))
+       $ret['user'] = $user;
+
+     $this->get('club_booking.booking')->serialize();
+
+     return $ret;
+   }
+
+   /**
+    * @Template()
+    * @Route("/booking/book/confirm")
+    */
+   public function confirmAction()
+   {
+     $this->get('club_booking.booking')->unserialize();
+     $em = $this->getDoctrine()->getEntityManager();
+
+     if ($this->get('club_booking.booking')->isValid()) {
+       $this->get('club_booking.booking')->save();
+       $this->get('session')->setFlash('notice', 'Your booking has been created');
+     } else {
+       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+     }
+
+     return $this->redirect($this->generateUrl('club_booking_overview_index', array(
+       'date' => $this->get('club_booking.booking')->getBooking()->getDate()->format('Y-m-d')
+     )));
    }
 
    /**
@@ -121,25 +120,5 @@ class BookingController extends Controller
      }
 
      return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $booking->getDate()->format('Y-m-d'))));
-   }
-
-   /**
-    * @Template()
-    * @Route("/booking/book/{date}/{interval_id}")
-    */
-   public function bookAction($date, $interval_id)
-   {
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $form = $this->createForm(new \Club\BookingBundle\Form\User());
-
-     $date = new \DateTime($date);
-     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
-
-     return array(
-       'interval' => $interval,
-       'date' => $date,
-       'form' => $form->createVieW()
-     );
    }
 }

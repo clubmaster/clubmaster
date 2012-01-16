@@ -10,6 +10,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OverviewController extends Controller
 {
+   /**
+    * @Template()
+    * @Route("/booking/{date}/{interval_id}")
+    */
+   public function viewAction($date, $interval_id)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+
+     $form = $this->createForm(new \Club\BookingBundle\Form\User());
+
+     $date = new \DateTime($date);
+     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+     return array(
+       'interval' => $interval,
+       'date' => $date,
+       'form' => $form->createVieW()
+     );
+   }
+
   /**
    * @Template()
    * @Route("/booking/{date}", defaults={"date" = null})
