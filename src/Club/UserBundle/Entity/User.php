@@ -480,7 +480,7 @@ class User implements AdvancedUserInterface
       $this->setUpdatedAt(new \DateTime());
     }
 
-    public function toArray()
+    public function toArray($type='full')
     {
       $res = array(
         'id' => $this->getId(),
@@ -494,38 +494,40 @@ class User implements AdvancedUserInterface
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
 
-      if ($this->getProfile()->getProfileAddress()) {
-        $res['street'] = $this->getProfile()->getProfileAddress()->getStreet();
-        $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
-        $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
-        $res['state'] = $this->getProfile()->getProfileAddress()->getState();
-        $res['country'] = $this->getProfile()->getProfileAddress()->getCountry()->getCountry();
-      }
+      if ($type == 'full') {
+        if ($this->getProfile()->getProfileAddress()) {
+          $res['street'] = $this->getProfile()->getProfileAddress()->getStreet();
+          $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
+          $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
+          $res['state'] = $this->getProfile()->getProfileAddress()->getState();
+          $res['country'] = $this->getProfile()->getProfileAddress()->getCountry()->getCountry();
+        }
 
-      if ($this->getProfile()->getProfilePhone()) {
-        $res['phone_number'] = $this->getProfile()->getProfilePhone()->getPhoneNumber();
-      }
+        if ($this->getProfile()->getProfilePhone()) {
+          $res['phone_number'] = $this->getProfile()->getProfilePhone()->getPhoneNumber();
+        }
 
-      if ($this->getProfile()->getProfileEmail()) {
-        $res['email_address'] = $this->getProfile()->getProfileEmail()->getEmailAddress();
-      }
+        if ($this->getProfile()->getProfileEmail()) {
+          $res['email_address'] = $this->getProfile()->getProfileEmail()->getEmailAddress();
+        }
 
-      $res['subscriptions'] = array();
-      foreach ($this->getSubscriptions() as $sub) {
-        $res['subscriptions'][] = array(
-          'id' => $sub->getId(),
-          'type' => $sub->getType(),
-          'start_date' => $sub->getStartDate()->format('c'),
-          'expire_date' => $sub->getExpireDate()->format('c')
-        );
-      }
+        $res['subscriptions'] = array();
+        foreach ($this->getSubscriptions() as $sub) {
+          $res['subscriptions'][] = array(
+            'id' => $sub->getId(),
+            'type' => $sub->getType(),
+            'start_date' => $sub->getStartDate()->format('c'),
+            'expire_date' => $sub->getExpireDate()->format('c')
+          );
+        }
 
-      $res['groups'] = array();
-      foreach ($this->getGroups() as $group) {
-        $res['groups'][] = array(
-          'id' => $group->getId(),
-          'group_name' => $group->getGroupName()
-        );
+        $res['groups'] = array();
+        foreach ($this->getGroups() as $group) {
+          $res['groups'][] = array(
+            'id' => $group->getId(),
+            'group_name' => $group->getGroupName()
+          );
+        }
       }
 
       return $res;
