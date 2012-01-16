@@ -11,3 +11,7 @@ _interval:
 _booking:
   resource: "@ClubBookingBundle/Controller/BookingController.php"
   type: annotation
+
+_overview:
+  resource: "@ClubBookingBundle/Controller/OverviewController.php"
+  type: annotation

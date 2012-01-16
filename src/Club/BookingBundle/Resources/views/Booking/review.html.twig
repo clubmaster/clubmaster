@@ -1,0 +1,27 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+{% block body %}
+<h2>Booking</h2>
+
+<fieldset>
+  <legend>Booking Information</legend>
+  <div class="list">
+    <p><label>Location</label>{{ booking.interval.field.location.locationName }}</p>
+    <p><label>Date</label>{{ booking.date|date('Y-m-d') }}</p>
+    <p><label>Time</label>{{ booking.interval.startTime|date('H:i') }} - {{ booking.interval.stopTime|date('H:i') }}</p>
+    <p><label>Field</label>{{ booking.interval.field.name }}</p>
+
+    {% if booking.interval.field.information %}
+    <h3>Information</h3>
+    <p>{{ booking.interval.field.information }}</p>
+    {% endif %}
+
+    <p>Click here to confirm your booking.</p>
+    <form method="post" action="{{ path('club_booking_booking_confirm') }}">
+      <p><input type="submit" value="confirm" /></p>
+    </form>
+
+  </div>
+</fieldset>
+
+{% endblock %}

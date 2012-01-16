@@ -7,7 +7,7 @@ security:
 
     role_hierarchy:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_MESSAGE_ADMIN, ROLE_TEAM_ADMIN, ROLE_BOOKING_ADMIN]
+        ROLE_ADMIN: [ROLE_EVENT_ADMIN, ROLE_MESSAGE_ADMIN, ROLE_TEAM_ADMIN, ROLE_BOOKING_ADMIN, ROLE_BOOKING_ADMIN]
 
     providers:
         main:
@@ -40,6 +40,7 @@ security:
                 target: /
 
     access_control:
+        - { path: ^/admin/booking, roles: ROLE_BOOKING_ADMIN }
         - { path: ^/admin/event, roles: ROLE_EVENT_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_USER }

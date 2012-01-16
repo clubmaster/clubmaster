@@ -9,6 +9,7 @@ class Booking
   protected $em;
   protected $container;
   protected $security_context;
+  protected $session;
   protected $error;
   protected $user;
   protected $date;
@@ -19,11 +20,12 @@ class Booking
   protected $is_valid = true;
   protected $price;
 
-  public function __construct(EntityManager $em, $container, $security_context)
+  public function __construct(EntityManager $em, $container, $security_context, $session)
   {
     $this->em = $em;
     $this->container = $container;
     $this->security_context = $security_context;
+    $this->session = $session;
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -107,6 +109,8 @@ class Booking
       $this->setError('You cannot have more guest bookings');
       return;
     }
+
+    $this->bind();
   }
 
   public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
@@ -160,6 +164,8 @@ class Booking
       $this->setError('You cannot have more bookings with this partner');
       return;
     }
+
+    $this->bind();
   }
 
   public function getError()
@@ -172,21 +178,26 @@ class Booking
     return $this->is_valid;
   }
 
-  public function save()
+  public function bind()
   {
-    $booking = new \Club\BookingBundle\Entity\Booking();
-    $booking->setUser($this->user);
-    $booking->setInterval($this->interval);
-    $booking->setDate($this->date);
-    $booking->setGuest($this->guest);
+    $this->booking = new \Club\BookingBundle\Entity\Booking();
+    $this->booking->setUser($this->user);
+    $this->booking->setInterval($this->interval);
+    $this->booking->setDate($this->date);
+    $this->booking->setGuest($this->guest);
 
     if ($this->partner)
-      $booking->addUser($this->partner);
+      $this->booking->addUser($this->partner);
+  }
 
-    $this->em->persist($booking);
+  public function save()
+  {
+    $this->bind();
+
+    $this->em->persist($this->booking);
     $this->em->flush();
 
-    return $booking;
+    return $this->booking;
   }
 
   public function remove()
@@ -240,5 +251,50 @@ class Booking
 
   public function getPrice()
   {
+  }
+
+  public function getBooking()
+  {
+    return $this->booking;
+  }
+
+  public function getInterval()
+  {
+    return $this->interval;
+  }
+
+  public function serialize()
+  {
+    $ret = array(
+      'user' => $this->user->getId(),
+      'date' => $this->date,
+      'interval' => $this->interval->getId(),
+      'guest' => $this->guest,
+      'is_valid' => $this->is_valid,
+      'price' => $this->price
+    );
+
+    if ($this->partner)
+      $ret['partner'] = $this->partner->getId();
+
+    $this->session->set('booking', serialize($ret));
+  }
+
+  public function unserialize()
+  {
+    $r = unserialize($this->session->get('booking'));
+
+    $user = $this->em->find('ClubUserBundle:User', $r['user']);
+    $interval = $this->em->find('ClubBookingBundle:Interval', $r['interval']);
+    if (isset($r['partner'])) $partner = $this->em->find('ClubUserBundle:User', $r['partner']);
+
+    $this->user = $user;
+    $this->date = $r['date'];
+    $this->interval = $interval;
+    $this->guest = $r['guest'];
+    $this->is_valid = $r['is_valid'];
+    $this->price = $r['price'];
+
+    if (isset($partner)) $this->partner = $partner;
   }
 }

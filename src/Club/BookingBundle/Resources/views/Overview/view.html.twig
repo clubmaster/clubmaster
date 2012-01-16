@@ -1,3 +1,5 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
 {% block javascripts %}
 <script type="text/javascript">
   $(function() {
@@ -35,8 +37,6 @@
 </script>
 {% endblock %}
 
-{% extends "ClubBookingBundle::base.html.twig" %}
-
 {% block body %}
 <h2>Booking</h2>
 
@@ -55,8 +55,17 @@
   </div>
 </fieldset>
 
+{% if booking is defined and (is_granted('ROLE_BOOKING_ADMIN') or booking.user == app.user) %}
+
 <fieldset>
-  <form method="post" action="{{ path('club_booking_booking_user', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+  <legend>Delete</legend>
+  <p><a href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">Cancel</a></p>
+</fieldset>
+
+{% elseif (is_granted('IS_AUTHENTICATED_FULLY') and booking is not defined) %}
+
+<fieldset>
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
     <legend>Booking</legend>
 
     <p>Find your partner and complete your booking.</p>
@@ -67,13 +76,15 @@
 </fieldset>
 
 <fieldset>
-  <form method="post" action="{{ path('club_booking_booking_guest', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
     <legend>Guest Booking</legend>
 
     <p>Click here if you want to book with a guest.</p>
+    <input type="hidden" name="guest" value="1" />
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
   </form>
 </fieldset>
+{% endif %}
 
 {% endblock %}
