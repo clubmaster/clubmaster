@@ -23,11 +23,21 @@ class OverviewController extends Controller
      $date = new \DateTime($date);
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
 
-     return array(
+     $ret = array(
        'interval' => $interval,
        'date' => $date,
        'form' => $form->createVieW()
      );
+
+     $booking = $em->getRepository('ClubBookingBundle:Booking')->findOneBy(array(
+       'interval' => $interval_id,
+       'date' => $date
+     ));
+
+     if ($booking)
+       $ret['booking'] = $booking;
+
+     return $ret;
    }
 
   /**

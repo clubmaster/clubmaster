@@ -25,3 +25,4 @@ move all login pages to /user
 not 2 schedules can have the same interval
 what will happen if interval access multiple days
 dynamic number of partners for a booking
+booking module should work without partners too

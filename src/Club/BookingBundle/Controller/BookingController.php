@@ -119,6 +119,6 @@ class BookingController extends Controller
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }
 
-     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $booking->getDate()->format('Y-m-d'))));
+     return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $booking->getDate()->format('Y-m-d'))));
    }
 }
