@@ -6,19 +6,33 @@ function checkTime(i)
   return '0'+i;
 }
 
-function getTime(date)
+function getDate(date)
 {
   return date.getFullYear()+'-'+checkTime(date.getMonth()+1)+'-'+checkTime(date.getDate());
 }
 
-function makeIntervalUrl(interval_id, date,url)
+function getTime(date)
 {
-  return '<a href="'+url+'booking/'+getTime(date)+'/'+interval_id+'">Available</a>';
+  return date.getHours()+':'+checkTime(date.getMinutes());
+}
+
+function makeIntervalUrl(interval,date,url)
+{
+  var start = new Date(interval.start_time);
+  var end = new Date(interval.end_time);
+
+  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+getTime(start)+'-'+getTime(end)+'">Available</a>';
+}
+
+function makeBookedUrl(interval,url)
+{
+  var date = new Date(interval.booking.date);
+  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="Booked">Booked</a>';
 }
 
 function initBookings(location, date, url)
 {
-  $.getJSON(url+'api/bookings/'+location+"/"+getTime(date), function(json) {
+  $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
       $.each(json.data, function() {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
 
@@ -29,7 +43,7 @@ function initBookings(location, date, url)
 
         console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
 
-        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;Booked</div>');
+        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
         });
       });
 }
@@ -41,7 +55,7 @@ function initTable(location, date, url, hour_width, field_height)
   var pixel_size=hour_width/60;
   var current_time=new Date();
 
-  $.getJSON(url+'api/fields/'+location+"/"+getTime(date), function(json) {
+  $.getJSON(url+'api/fields/'+location+"/"+getDate(date), function(json) {
     var startTime=new Date(json.data.info.start_time);
     var endTime=new Date(json.data.info.end_time);
     console.log("Found start time: "+startTime);
@@ -79,7 +93,7 @@ function initTable(location, date, url, hour_width, field_height)
         if (start < current_time) {
           $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;Available</div>');
         } else {
-          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this.id,date,url)+'</div>');
+          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this,date,url)+'</div>');
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', (field_height-6)+'px');
