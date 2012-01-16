@@ -17,15 +17,5 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
-    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $menu[] = array(
-        'name' => $this->translator->trans('Login'),
-        'route' => $this->router->generate('login')
-      );
-    }
-
-    $event->setMenu($menu);
   }
 }

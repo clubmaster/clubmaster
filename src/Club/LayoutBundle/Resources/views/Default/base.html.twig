@@ -73,6 +73,13 @@
 
                         </div> <!-- /padding -->
 
+                        <form method="post" action="{{ path('login_check') }}">
+                          <p>Username:<br />
+                          <input type="text" name="_username"></p>
+                          <p>Password:<br />
+                          <input type="password" name="_password" /></p>
+                          <p><input type="submit" value="Login"></p>
+                        </form>
                         {% render "ClubMenuBundle:Default:leftMenu" %}
 
                 </div> <!-- /aside -->
