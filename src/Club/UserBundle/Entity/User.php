@@ -166,6 +166,11 @@ class User implements AdvancedUserInterface
       return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
     }
 
+    public function getName()
+    {
+      return $this->getProfile()->getName();
+    }
+
     public function __construct()
     {
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
