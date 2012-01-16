@@ -56,7 +56,7 @@
 </fieldset>
 
 <fieldset>
-  <form method="post" action="{{ path('club_booking_booking_confirm', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+  <form method="post" action="{{ path('club_booking_overview_user', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
     <legend>Booking</legend>
 
     <p>Find your partner and complete your booking.</p>
@@ -67,11 +67,10 @@
 </fieldset>
 
 <fieldset>
-  <form method="post" action="{{ path('club_booking_booking_confirm', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+  <form method="post" action="{{ path('club_booking_overview_guest', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
     <legend>Guest Booking</legend>
 
     <p>Click here if you want to book with a guest.</p>
-    <input type="hidden" name="guest" value="1" />
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
   </form>
