@@ -47,6 +47,18 @@
     <p><label>Date</label>{{ date|date('Y-m-d') }}</p>
     <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
     <p><label>Field</label>{{ interval.field.name }}</p>
+    {% if booking is defined %}
+    <p><label>Booker</label>{{ booking.user.name }}</p>
+      {% if booking.guest %}
+      <p><label>Partner</label>Guest</p>
+      {% else %}
+      <p><label>Partner</label>
+      {% for partner in booking.users %}
+        {{ partner.name }}
+      {% endfor %}
+      </p>
+      {% endif %}
+    {% endif %}
 
     {% if interval.field.information %}
     <h3>Information</h3>
