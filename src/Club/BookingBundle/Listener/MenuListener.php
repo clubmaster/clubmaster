@@ -34,7 +34,7 @@ class MenuListener
 
     $menu[] = array(
       'name' => $this->translator->trans('Booking'),
-      'route' => $this->router->generate('club_booking_booking_index')
+      'route' => $this->router->generate('club_booking_overview_index')
     );
 
     $event->setMenu($menu);

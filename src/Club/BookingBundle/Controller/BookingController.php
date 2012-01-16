@@ -12,6 +12,29 @@ class BookingController extends Controller
 {
    /**
     * @Template()
+    * @Route("/booking/book/confirm/{interval_id}/{date},")
+    */
+   public function confirmAction($interval_id, $date)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+
+     $date = new \DateTime($date);
+     $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+     $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
+
+     if ($this->get('club_booking.booking')->isValid()) {
+       $this->get('club_booking.booking')->save();
+       $this->get('session')->setFlash('notice', 'Your booking has been created');
+     } else {
+       $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+     }
+
+     return $this->redirect($this->generateUrl('club_booking_booking_index', array('date' => $date->format('Y-m-d'))));
+   }
+
+   /**
+    * @Template()
     * @Route("/booking/book/guest/{interval_id}/{date}")
     */
    public function guestAction($interval_id,$date)
@@ -102,9 +125,9 @@ class BookingController extends Controller
 
    /**
     * @Template()
-    * @Route("/booking/book/{interval_id}/{date}")
+    * @Route("/booking/book/{date}/{interval_id}")
     */
-   public function bookAction($interval_id,$date)
+   public function bookAction($date, $interval_id)
    {
      $em = $this->getDoctrine()->getEntityManager();
 
@@ -118,42 +141,5 @@ class BookingController extends Controller
        'date' => $date,
        'form' => $form->createVieW()
      );
-   }
-
-  /**
-   * @Template()
-   * @Route("/booking/{date}", defaults={"date" = null})
-   */
-   public function indexAction($date)
-   {
-     $date = ($date == null) ? new \DateTime() : new \DateTime($date);
-     $em = $this->getDoctrine()->getEntityManager();
-
-     $nav = $this->getNav();
-     $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
-     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
-     $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
-     $period = $this->get('club_booking.interval')->getTimePeriod($data['start_time'], $data['end_time'], new \DateInterval('PT60M'));
-
-     return array(
-       'period' => $period,
-       'fields' => $fields,
-       'date' => $date,
-       'nav' => $nav,
-       'location' => $location
-    );
-   }
-
-   protected function getNav()
-   {
-     $nav = array();
-     $d = new \DateTime();
-     $i = new \DateInterval('P1D');
-     $p = new \DatePeriod($d, $i, 6);
-     foreach ($p as $dt) {
-       $nav[] = $dt;
-     }
-
-     return $nav;
    }
 }
