@@ -26,12 +26,8 @@ function makeIntervalUrl(interval,date,url)
 
 function makeBookedUrl(interval,url)
 {
-<<<<<<< HEAD
-  return '<a href="'+url+'booking/'+getTime(date)+'/'+interval_id+'">Available</a>';
-=======
   var date = new Date(interval.booking.date);
   return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
->>>>>>> ba2a1c784cc8eb576a970ee14fc287c77a31fac5
 }
 
 function initBookings(location, date, url)
