@@ -215,14 +215,24 @@ class Booking
 
     public function toArray()
     {
-      return array(
+      $ret = array(
         'id' => $this->getId(),
         'interval_id' => $this->getInterval()->getId(),
-        'user_id' => $this->getUser()->getId(),
+        'user' => $this->getUser()->toArray('simple'),
+        'guest' => $this->getGuest(),
         'date' => $this->getDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
+
+      if (count($this->getUsers())) {
+        $ret['users'] = array();
+        foreach ($this->getUsers() as $user) {
+          $ret['users'][] = $user->toArray('simple');
+        }
+      }
+
+      return $ret;
     }
 
     /**

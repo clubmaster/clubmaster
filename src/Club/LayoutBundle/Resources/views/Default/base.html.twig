@@ -13,6 +13,7 @@
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/style.css') }}" /> <!-- GRAPHIC THEME -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.17.custom.css') }}" /> <!-- JQUERY -->
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.7.1.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.slimbox2.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.switcher.js') }}"></script>
@@ -20,7 +21,11 @@
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.17.custom.min.js') }}"></script>
         <script type="text/javascript">
         $(document).ready(function(){
-                $(".tabs > ul").tabs();
+          $(".tabs > ul").tabs();
+
+          $('#login_username').click(function() {
+            this.select();
+          });
         });
         </script>
 
@@ -71,18 +76,20 @@
                                 <!-- Logo (Max. width = 200px) -->
                                 <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
 
-                        </div> <!-- /padding -->
-
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <form method="post" action="{{ path('login_check') }}">
-                          <p>Username:<br />
-                          <input type="text" name="_username"></p>
-                          <p>Password:<br />
-                          <input type="password" name="_password" /></p>
-                          <p><input type="submit" value="Login"></p>
+                        <!-- Login form -->
+                        <form method="post" action="{{ path('login_check') }}" id="search">
+                          <fieldset>
+                            <legend>Login</legend>
+                            <p><input type="text" class="input-text" name="_username" value="Username" id="login_username" /></p>
+                            <p><input type="password" class="input-text" name="_password" value="1234" /></p>
+                            <p><input type="submit" value="Login" class="input-submit-02" /></p>
+                          </fieldset>
                         </form>
                         {% endif %}
                         {% render "ClubMenuBundle:Default:leftMenu" %}
+
+                        </div> <!-- /padding -->
 
                 </div> <!-- /aside -->
 

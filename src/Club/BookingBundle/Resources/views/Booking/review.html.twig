@@ -10,18 +10,33 @@
     <p><label>Date</label>{{ booking.date|date('Y-m-d') }}</p>
     <p><label>Time</label>{{ booking.interval.startTime|date('H:i') }} - {{ booking.interval.stopTime|date('H:i') }}</p>
     <p><label>Field</label>{{ booking.interval.field.name }}</p>
+    <p><label>Booker</label>{{ booking.user.name }}</p>
+    {% if booking.guest %}
+    <p><label>Partner</label>Guest</p>
+    {% else %}
+      <p><label>Partner</label>
+      {% for partner in booking.users %}
+        {{ partner.name }}
+      {% endfor %}
+      </p>
+    {% endif %}
 
     {% if booking.interval.field.information %}
     <h3>Information</h3>
     <p>{{ booking.interval.field.information }}</p>
     {% endif %}
+  </div>
+</fieldset>
 
+<fieldset>
+  <legend>Confirm</legend>
     <p>Click here to confirm your booking.</p>
     <form method="post" action="{{ path('club_booking_booking_confirm') }}">
-      <p><input type="submit" value="confirm" /></p>
+      <hr class="noscreen" />
+      <div class="box-01">
+        <p class="nom"><input type="submit" value="{% trans %}Confirm{% endtrans %}" class="input-submit" /></p>
+      </div> <!-- /box-01 -->
     </form>
-
-  </div>
 </fieldset>
 
 {% endblock %}
