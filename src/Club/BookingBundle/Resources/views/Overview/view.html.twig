@@ -1,15 +1,36 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block javascripts %}
+
 <script type="text/javascript">
-  $(function() {
+  var url = "{{ path('homepage') }}";
+
+  $(document).ready(function() {
     $( "#booking_query" ).autocomplete({
-      source: "/clubmaster/web/index_dev.php/api/users/search/grace",
+      source: function( request, response ) {
+        $.ajax({
+          url: url + "api/users/search/" + $("#booking_query").attr("value"),
+          dataType: "json",
+          success: function( data ) {
+            response( $.map( data.data, function( item ) {
+              return {
+                label: item.first_name + " " + item.last_name,
+                value: item.first_name + " " + item.last_name,
+                id: item.id
+              }
+            }));
+          }
+        });
+      },
       minLength: 2,
       select: function( event, ui ) {
-        log( ui.item ?
-          "Selected: " + ui.item.value + " aka " + ui.item.id :
-          "Nothing selected, input was " + this.value );
+        $("#booking_id").attr("value", ui.item.id);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
       }
     });
   });

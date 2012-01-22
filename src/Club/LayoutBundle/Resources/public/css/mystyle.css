@@ -30,3 +30,5 @@ div.list label {
   float: left;
   font-weight: bold;
 }
+
+.ui-autocomplete-loading { background: white url('../images/ajax-loader-ball.gif') right center no-repeat; }
