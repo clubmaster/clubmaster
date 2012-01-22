@@ -30,7 +30,7 @@ class UserController extends Controller
 
     $res = array();
     foreach ($users as $user) {
-      $res[] = $user->toArray();
+      $res[] = $user->toArray('simple');
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
