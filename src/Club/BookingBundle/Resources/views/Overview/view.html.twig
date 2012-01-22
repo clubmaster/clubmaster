@@ -4,33 +4,12 @@
 <script type="text/javascript">
   $(function() {
     $( "#booking_query" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax({
-          url: "/clubmaster/web/index_dev.php/api/users/search/grace",
-          success: function( data ) {
-            response( $.map( data.geonames, function( item ) {
-              return {
-                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                value: item.name
-              }
-            }));
-          },
-          headers: {
-            "API_KEY":"THIS_IS_A_DEMO_KEY"
-          }
-        });
-      },
+      source: "/clubmaster/web/index_dev.php/api/users/search/grace",
       minLength: 2,
       select: function( event, ui ) {
         log( ui.item ?
-          "Selected: " + ui.item.label :
-          "Nothing selected, input was " + this.value);
-      },
-      open: function() {
-        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-      },
-      close: function() {
-        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+          "Selected: " + ui.item.value + " aka " + ui.item.id :
+          "Nothing selected, input was " + this.value );
       }
     });
   });
@@ -71,7 +50,14 @@
 
 <fieldset>
   <legend>Delete</legend>
-  <p><a href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">Cancel</a></p>
+
+  <p>Click here to cancel your booking.</p>
+  <form method="post" action="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">
+    <hr class="noscreen" />
+    <div class="box-01">
+      <p class="nom"><input type="submit" value="{% trans %}Cancel{% endtrans %}" class="input-submit" /></p>
+    </div> <!-- /box-01 -->
+  </form>
 </fieldset>
 
 {% elseif (is_granted('IS_AUTHENTICATED_FULLY') and booking is not defined) %}

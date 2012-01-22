@@ -1,4 +1,5 @@
-improve text and design on delete booking page
+give better debug information on team attend error
+add if user is attending team on /api/users/teams
 jquery autocomplete partner form
 support for both bookings and schedules on booking schema
 jquery overlay form on booking
@@ -24,3 +25,4 @@ dynamic number of partners for a booking
 booking module should work without partners too
 add display username
 add address on club to api
+remove API KEY from BookingBundle/Resources/views/Overview/view.html.twig

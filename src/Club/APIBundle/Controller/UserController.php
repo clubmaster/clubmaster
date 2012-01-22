@@ -18,9 +18,6 @@ class UserController extends Controller
    */
   public function indexAction($query)
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
 
     if ($query == null) {
@@ -40,7 +37,6 @@ class UserController extends Controller
     return $response;
   }
 
-  /**
   /**
    * @Route("/teams", defaults={"start" = null, "end" = null})
    * @Route("/teams/{start}", defaults={"end" = null})
@@ -74,7 +70,7 @@ class UserController extends Controller
   {
     return;
     if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
+      return new Response($this->get('club_api.encode')->encode('Wrong API key'), 403);
 
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);
