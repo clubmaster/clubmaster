@@ -53,8 +53,8 @@ class UserController extends Controller
 
     $res = array();
     foreach ($this->get('security.context')->getToken()->getUser()->getSchedules() as $schedule) {
-      if ($schedule->getFirstDate()->getTimestamp() >= $start->getTimestamp() && $schedule->getFirstDate()->getTimestamp() <= $end->getTimestamp())
-        $res[] = $schedule->toArray();
+      if ($schedule->getSchedule()->getFirstDate()->getTimestamp() >= $start->getTimestamp() && $schedule->getSchedule()->getFirstDate()->getTimestamp() <= $end->getTimestamp())
+        $res[] = $schedule->getSchedule()->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));

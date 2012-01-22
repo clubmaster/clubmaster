@@ -26,3 +26,4 @@ booking module should work without partners too
 add display username
 add address on club to api
 remove API KEY from BookingBundle/Resources/views/Overview/view.html.twig
+much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
