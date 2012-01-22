@@ -1,3 +1,4 @@
+schedule user does not work
 give better debug information on team attend error
 add if user is attending team on /api/users/teams
 add name for instructor on /api/teams/
