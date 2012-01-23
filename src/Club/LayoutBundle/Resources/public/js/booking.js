@@ -126,7 +126,6 @@ function initTable(location, date, url, hour_width, field_height)
         console.log('start: '+start.getTime());
         console.log('curr:  '+current_time.getTime());
         if (start.getTime() < current_time.getTime() && (start.getHours() == current_time.getHours() || start.getHours() < current_time.getHours())) {
-          console.log('WUZAAHSDFDSIFSD');
           start_position = day_diff*pixel_size*-1;
         }
 
@@ -147,16 +146,20 @@ function initTable(location, date, url, hour_width, field_height)
     });
 
     var height=((fields)*field_height)+40;
-    var nav_overlay_width=((times)*hour_width)-(times*2);
-    var width=nav_overlay_width+101;
+    var times_width=((times)*hour_width)-(times*2);
+    var width=times_width+100;
 
     $('div#overlay').css('height', height+'px');
     $('div#booking').css('height', height+'px');
     $('div#booking').css('width', width+'px');
     $('div#times').css('height', height+'px');
     $('div#nav_overlay').css('height', height+'px');
-    $('div#nav_overlay').css('width', nav_overlay_width+'px');
-    $('div#fields').css('width', width+'px');
+    $('div#nav_overlay').css('width', times_width+'px');
+    $('div#fields').css('width', $("#booking").width()+'px');
+
+    if ($("#overlay").width() > width) {
+      $("#overlay").css('width', width+'px');
+    }
 
     // set booking position
     var overlay_width = $("#overlay").width();
