@@ -8,6 +8,33 @@
     var field_height = 45;
 
     initTable(location, date, url, hour_width, field_height);
+
+    $("#prev").click(function() {
+      var scroll_width = getScrollWidth();
+      var position = $("#times").position();
+      var new_pos = position.left+scroll_width;
+      if (new_pos > 0) {
+        var new_pos = 0;
+      }
+
+      $("#times").css('left', new_pos+'px');
+      $("#intervals").css('left', new_pos+'px');
+    });
+    $("#next").click(function() {
+      var overlay_width = $("#overlay").width();
+      var times_width = $("#booking").width();
+      var scroll_width = getScrollWidth();
+      var times = $("#times").position();
+      var position = $("#times").position();
+      var max_left = (times_width-overlay_width)*-1;
+      var new_pos = position.left-scroll_width;
+      if (new_pos < max_left) {
+        new_pos = max_left;
+      }
+
+      $("#times").css('left', new_pos+'px');
+      $("#intervals").css('left', new_pos+'px');
+    });
   });
   </script>
 {% endblock %}
@@ -17,10 +44,16 @@
 <div class="fix"></div>
 <p>&#160;</p>
 
-<div id="booking">
-  <div id="times"></div> <!-- this is for time periods -->
-  <div id="fields"></div> <!-- this is for field names -->
-  <div id="intervals"></div> <!-- this is for intervals -->
+<p>[<a id="prev">&#60;</a>] [<a id="next">&#62;</a>]</p>
+
+<div id="overlay">
+  <div id="booking">
+    <div id="fields"></div> <!-- this is for field names -->
+     <div id="nav_overlay">
+      <div id="times"></div> <!-- this is for time periods -->
+      <div id="intervals"></div> <!-- this is for intervals -->
+    </div>
+  </div>
 </div>
 <div id="preloader"><img src="{{ asset('bundles/clublayout/images/ajax-loader.gif') }}"></div>
 

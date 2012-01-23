@@ -1,3 +1,19 @@
+div#overlay
+{
+  position: relative;
+  border: solid 1px #c3c3c3;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+div#nav_overlay
+{
+  position: absolute;
+  left: 100px;
+  top: 0px;
+  overflow: hidden;
+}
+
 div#preloader
 {
   margin-top: 100px;
@@ -9,16 +25,16 @@ div#preloader
 div#booking
 {
   display: none;
-  position: relative;
-  border: solid 1px #c3c3c3;
+  position: absolute;
   z-index: 0px;
+  padding-right: 20px;
 }
 
 div#booking div#times
 {
   position: absolute;
   top: 0px;
-  left: 100px;
+  left: 0px;
   z-index: 0;
 }
 
@@ -34,7 +50,7 @@ div#booking div#intervals
 {
   position: absolute;
   top: 40px;
-  left: 100px;
+  left: 0px;
   z-index: 10;
 }
 
@@ -47,7 +63,7 @@ div#booking a
 div#booking a:hover
 {
   text-decoration: none;
-  color: #ffffff;
+  color: #747474;
 }
 
 div#booking div.interval
@@ -73,11 +89,6 @@ div#booking div.past
 div#booking div.past:hover
 {
   background-color: #e3e3e3;
-}
-
-div#booking div.booking:hover
-{
-  background-color: #bd6d6d;
 }
 
 div#booking div.booking

@@ -1,3 +1,8 @@
+function getScrollWidth()
+{
+  return 200;
+}
+
 function checkTime(i)
 {
   if (i >= 10) {
@@ -6,33 +11,19 @@ function checkTime(i)
   return '0'+i;
 }
 
-function getDate(date)
+function getTime(date)
 {
   return date.getFullYear()+'-'+checkTime(date.getMonth()+1)+'-'+checkTime(date.getDate());
 }
 
-function getTime(date)
+function makeIntervalUrl(interval_id, date,url)
 {
-  return date.getHours()+':'+checkTime(date.getMinutes());
-}
-
-function makeIntervalUrl(interval,date,url)
-{
-  var start = new Date(interval.start_time);
-  var end = new Date(interval.end_time);
-
-  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+getTime(start)+'-'+getTime(end)+'">'+getTime(start)+'-'+getTime(end)+'</a>';
-}
-
-function makeBookedUrl(interval,url)
-{
-  var date = new Date(interval.booking.date);
-  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
+  return '<a href="'+url+'booking/'+getTime(date)+'/'+interval_id+'">Available</a>';
 }
 
 function initBookings(location, date, url)
 {
-  $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
+  $.getJSON(url+'api/bookings/'+location+"/"+getTime(date), function(json) {
       $.each(json.data, function() {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
 
@@ -43,7 +34,7 @@ function initBookings(location, date, url)
 
         console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
 
-        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
+        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;Booked</div>');
         });
       });
 }
@@ -55,7 +46,7 @@ function initTable(location, date, url, hour_width, field_height)
   var pixel_size=hour_width/60;
   var current_time=new Date();
 
-  $.getJSON(url+'api/fields/'+location+"/"+getDate(date), function(json) {
+  $.getJSON(url+'api/fields/'+location+"/"+getTime(date), function(json) {
     var startTime=new Date(json.data.info.start_time);
     var endTime=new Date(json.data.info.end_time);
     console.log("Found start time: "+startTime);
@@ -93,7 +84,7 @@ function initTable(location, date, url, hour_width, field_height)
         if (start < current_time) {
           $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;Available</div>');
         } else {
-          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this,date,url)+'</div>');
+          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this.id,date,url)+'</div>');
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', (field_height-6)+'px');
@@ -112,9 +103,12 @@ function initTable(location, date, url, hour_width, field_height)
     console.log('DIV height: '+height);
     console.log('DIV width: '+width);
 
+    $('div#overlay').css('height', height+'px');
     $('div#booking').css('height', height+'px');
     $('div#booking').css('width', width+'px');
     $('div#times').css('height', height+'px');
+    $('div#nav_overlay').css('height', height+'px');
+    $('div#nav_overlay').css('width', width+'px');
     $('div#fields').css('width', width+'px');
 
     $('#preloader').hide();
