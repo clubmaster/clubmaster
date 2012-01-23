@@ -1,5 +1,6 @@
 support for both bookings and schedules on booking schema
 make a tool that dynamic can create fields
+fix overflow when clock if late
 
 == NOTES TO LATER ==
 login through booking page

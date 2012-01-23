@@ -12,20 +12,43 @@ function checkTime(i)
   return '0'+i;
 }
 
-function getTime(date)
+function getDate(date)
 {
-  return date.getFullYear()+'-'+checkTime(date.getMonth()+1)+'-'+checkTime(date.getDate());
+    return date.getFullYear()+'-'+checkTime(date.getMonth()+1)+'-'+checkTime(date.getDate());
 }
 
-function makeIntervalUrl(interval_id, date,url)
+function getTime(date)
 {
-  return '<a href="'+url+'booking/'+getTime(date)+'/'+interval_id+'">Available</a>';
+    return date.getHours()+':'+checkTime(date.getMinutes());
+}
+
+function makePastIntervalUrl(interval)
+{
+  var start = new Date(interval.start_time);
+  var end = new Date(interval.end_time);
+
+  return getTime(start)+'-'+getTime(end);
+}
+
+function makeIntervalUrl(interval, date, url)
+{
+  var start = new Date(interval.start_time);
+  var end = new Date(interval.end_time);
+
+  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+getTime(start)+'-'+getTime(end)+'">'+getTime(start)+'-'+getTime(end)+'</a>';
+}
+
+function makeBookedUrl(interval,url)
+{
+  var date = new Date(interval.booking.date);
+  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
 }
 
 function initBookings(location, date, url)
 {
-  $.getJSON(url+'api/bookings/'+location+"/"+getTime(date), function(json) {
-      $.each(json.data, function() {
+  $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
+    $.each(json.data, function() {
+      if (this.booking) {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
 
         var top=$('div#interval_'+this.id).css('top');
@@ -35,9 +58,21 @@ function initBookings(location, date, url)
 
         console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
 
-        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;Booked</div>');
-        });
-      });
+        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
+      } else {
+        console.log("Found team, id: "+this.schedule.id+", interval id: "+this.id);
+
+        var top=$('div#interval_'+this.id).css('top');
+        var left=$('div#interval_'+this.id).css('left');
+        var width=$('div#interval_'+this.id).css('width');
+        var height=$('div#interval_'+this.id).css('height');
+
+        console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
+
+        $("#intervals").append('<div class="booking" team="'+this.schedule.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;Booked</div>');
+      }
+    });
+  });
 }
 
 function initTable(location, date, url, hour_width, field_height)
@@ -48,7 +83,7 @@ function initTable(location, date, url, hour_width, field_height)
   var current_time=new Date();
   var start_position=0;
 
-  $.getJSON(url+'api/fields/'+location+"/"+getTime(date), function(json) {
+  $.getJSON(url+'api/fields/'+location+"/"+getDate(date), function(json) {
     var startTime=new Date(json.data.info.start_time);
     var endTime=new Date(json.data.info.end_time);
     console.log("Found start time: "+startTime);
@@ -88,9 +123,9 @@ function initTable(location, date, url, hour_width, field_height)
         }
 
         if (start < current_time) {
-          $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;Available</div>');
+          $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;'+makePastIntervalUrl(this)+'</div>');
         } else {
-          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this.id,date,url)+'</div>');
+          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this,date,url)+'</div>');
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', (field_height-6)+'px');
@@ -120,7 +155,7 @@ function initTable(location, date, url, hour_width, field_height)
     // set booking position
     var overlay_width = $("#overlay").width();
     var times_width = $("#booking").width();
-    var max_left = (times_width-overlay_width-21)*-1;
+    var max_left = (times_width-overlay_width)*-1;
     if (start_position < max_left) {
       start_position = max_left;
     }
@@ -153,7 +188,7 @@ $(function() {
     var scroll_width = getScrollWidth();
     var times = $("#times").position();
     var position = $("#times").position();
-    var max_left = (times_width-overlay_width-21)*-1;
+    var max_left = (times_width-overlay_width)*-1;
     var new_pos = position.left-scroll_width;
     if (new_pos < max_left) {
       new_pos = max_left;
