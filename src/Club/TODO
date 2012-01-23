@@ -1,11 +1,13 @@
-improve text and design on delete booking page
-jquery autocomplete partner form
+schedule user does not work
+give better debug information on team attend error
+add if user is attending team on /api/users/teams
+add name for instructor on /api/teams/
 support for both bookings and schedules on booking schema
-jquery overlay form on booking
-login through booking page
 scroll right and left on booking page
 
 == NOTES TO LATER ==
+login through booking page
+jquery overlay form on booking
 implement payment for booking
 change time comparence to object compare instead of timestamp
 use validators in coupon
@@ -23,3 +25,6 @@ what will happen if interval access multiple days
 dynamic number of partners for a booking
 booking module should work without partners too
 add display username
+add address on club to api
+remove API KEY from BookingBundle/Resources/views/Overview/view.html.twig
+much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()

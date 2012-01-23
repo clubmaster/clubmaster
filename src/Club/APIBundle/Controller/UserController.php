@@ -18,9 +18,6 @@ class UserController extends Controller
    */
   public function indexAction($query)
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
 
     if ($query == null) {
@@ -33,14 +30,13 @@ class UserController extends Controller
 
     $res = array();
     foreach ($users as $user) {
-      $res[] = $user->toArray();
+      $res[] = $user->toArray('simple');
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
     return $response;
   }
 
-  /**
   /**
    * @Route("/teams", defaults={"start" = null, "end" = null})
    * @Route("/teams/{start}", defaults={"end" = null})
@@ -58,7 +54,7 @@ class UserController extends Controller
     $res = array();
     foreach ($this->get('security.context')->getToken()->getUser()->getSchedules() as $schedule) {
       if ($schedule->getSchedule()->getFirstDate()->getTimestamp() >= $start->getTimestamp() && $schedule->getSchedule()->getFirstDate()->getTimestamp() <= $end->getTimestamp())
-        $res[] = $schedule->toArray();
+        $res[] = $schedule->getSchedule()->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
@@ -74,7 +70,7 @@ class UserController extends Controller
   {
     return;
     if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
+      return new Response($this->get('club_api.encode')->encode('Wrong API key'), 403);
 
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);

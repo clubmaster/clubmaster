@@ -442,10 +442,10 @@ class Schedule
       );
 
       foreach ($this->getUsers() as $user) {
-        $res['users'][] = array('user_id' => $user->getId());
+        $res['users'][] = $user->getUser()->toArray('simple');
       }
       foreach ($this->getInstructors() as $user) {
-        $res['instructors'][] = array('user_id' => $user->getId());
+        $res['instructors'][] = $user->toArray('simple');
       }
 
       return $res;

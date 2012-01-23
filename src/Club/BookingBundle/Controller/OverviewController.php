@@ -26,12 +26,12 @@ class OverviewController extends Controller
      $ret = array(
        'interval' => $interval,
        'date' => $date,
-       'form' => $form->createVieW()
+       'form' => $form->createView()
      );
 
      $booking = $em->getRepository('ClubBookingBundle:Booking')->findOneBy(array(
        'interval' => $interval_id,
-       'date' => $date
+       'date' => $date->format('Y-m-d')
      ));
 
      if ($booking)

@@ -23,9 +23,8 @@ class TeamController extends Controller
 
     $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
     if (!$this->get('club_team.team')->isValid()) {
-      $res = array($this->get('club_team.team')->getError());
-      $response = new Response($this->get('club_api.encode')->encode($res), 403);
-      return $response;
+      $res = $this->get('club_team.team')->getError();
+      return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->save();
 
@@ -49,9 +48,8 @@ class TeamController extends Controller
 
     $this->get('club_team.team')->bindUnattend($schedule, $user);
     if (!$this->get('club_team.team')->isValid()) {
-      $res = array($this->get('club_team.team')->getError());
-      $response = new Response($this->get('club_api.encode')->encode($res), 403);
-      return $response;
+      $res = $this->get('club_team.team')->getError();
+      return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->remove();
 
@@ -69,7 +67,7 @@ class TeamController extends Controller
   public function participantAction()
   {
     if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
+      return new Response($this->get('club_api.encode')->encodeError('Wrong API key'), 403);
 
     $em = $this->getDoctrine()->getEntityManager();
     $participant = new \Club\TeamBundle\Entity\Participant();

@@ -34,10 +34,10 @@
       <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ task.taskIntervalPretty }}</td>
       <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_task_task_edit', {'id':task.id})} %}
         {% include "ClubLayoutBundle:Default:disable_link.html.twig" with {'url':path('admin_task_disable', {'id':task.id})} %}
         {% include "ClubLayoutBundle:Default:enable_link.html.twig" with {'url':path('admin_task_enable', {'id':task.id})} %}
         {% include "ClubLayoutBundle:Default:run_link.html.twig" with {'url':path('admin_task_run', {'id':task.id})} %}
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_task_task_edit', {'id':task.id})} %}
       </td>
     </tr>
   {% else %}
