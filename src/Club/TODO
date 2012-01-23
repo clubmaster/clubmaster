@@ -1,4 +1,3 @@
-add if user is attending team on /api/users/teams
 add name for instructor on /api/teams/
 support for both bookings and schedules on booking schema
 make a tool that dynamic can create fields
