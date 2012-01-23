@@ -46,6 +46,7 @@ function initTable(location, date, url, hour_width, field_height)
   var times=0;
   var pixel_size=hour_width/60;
   var current_time=new Date();
+  var start_position=0;
 
   $.getJSON(url+'api/fields/'+location+"/"+getTime(date), function(json) {
     var startTime=new Date(json.data.info.start_time);
@@ -82,6 +83,10 @@ function initTable(location, date, url, hour_width, field_height)
         var day_diff=(start-day_start)/1000/60;
         console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
+        if (start_position == 0 && start.getHours() == current_time.getHours()) {
+          start_position = day_diff*pixel_size*-1;
+        }
+
         if (start < current_time) {
           $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;Available</div>');
         } else {
@@ -111,6 +116,17 @@ function initTable(location, date, url, hour_width, field_height)
     $('div#nav_overlay').css('height', height+'px');
     $('div#nav_overlay').css('width', width+'px');
     $('div#fields').css('width', width+'px');
+
+    // set booking position
+    var overlay_width = $("#overlay").width();
+    var times_width = $("#booking").width();
+    var max_left = (times_width-overlay_width-21)*-1;
+    if (start_position < max_left) {
+      start_position = max_left;
+    }
+
+    $('div#times').css('left', start_position+'px');
+    $('div#intervals').css('left', start_position+'px');
 
     $('#preloader').hide();
     $('#booking').show();
