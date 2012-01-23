@@ -4,7 +4,7 @@
     var date = new Date("{{ date|date('c')}}");
     var url = "{{ path('homepage') }}";
     var location = {{ location.id }};
-    var hour_width = 100;
+    var hour_width = 150;
     var field_height = 45;
 
     initTable(location, date, url, hour_width, field_height);

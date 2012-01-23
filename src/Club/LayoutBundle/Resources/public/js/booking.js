@@ -1,7 +1,6 @@
 function getScrollWidth()
 {
-  alert
-  return 200;
+  return 300;
 }
 
 function checkTime(i)
@@ -124,7 +123,10 @@ function initTable(location, date, url, hour_width, field_height)
         var day_diff=(start-day_start)/1000/60;
         console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
-        if (start_position == 0 && start.getHours() == current_time.getHours()) {
+        console.log('start: '+start.getTime());
+        console.log('curr:  '+current_time.getTime());
+        if (start.getTime() < current_time.getTime() && (start.getHours() == current_time.getHours() || start.getHours() < current_time.getHours())) {
+          console.log('WUZAAHSDFDSIFSD');
           start_position = day_diff*pixel_size*-1;
         }
 
@@ -145,11 +147,8 @@ function initTable(location, date, url, hour_width, field_height)
     });
 
     var height=((fields)*field_height)+40;
-    var nav_overlay_width=((times)*hour_width);
-    var width=nav_overlay_width+100;
-
-    console.log('DIV height: '+height);
-    console.log('DIV width: '+width);
+    var nav_overlay_width=((times)*hour_width)-(times*2);
+    var width=nav_overlay_width+101;
 
     $('div#overlay').css('height', height+'px');
     $('div#booking').css('height', height+'px');
