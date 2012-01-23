@@ -40,8 +40,14 @@ function makeIntervalUrl(interval, date, url)
 
 function makeBookedUrl(interval,url)
 {
-  var date = new Date(interval.booking.date);
-  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
+  if (interval.booking) {
+    var date = new Date(interval.booking.date);
+    return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
+  } else {
+    var date = new Date(interval.start_time);
+    return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.schedule.team_name+'">'+interval.schedule.team_name+'</a>';
+
+  }
 }
 
 function initBookings(location, date, url)
@@ -69,7 +75,7 @@ function initBookings(location, date, url)
 
         console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
 
-        $("#intervals").append('<div class="booking" team="'+this.schedule.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;Booked</div>');
+        $("#intervals").append('<div class="booking" team="'+this.schedule.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
       }
     });
   });
