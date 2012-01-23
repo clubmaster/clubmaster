@@ -228,10 +228,10 @@ MESSAGES
 ============================================================================= */
 
 .msg {padding:10px; padding-left:35px;}
-.msg.warning {background:url("../images/ico-warning.gif") 10px 50% no-repeat;}
-.msg.info {background:url("../images/ico-info.gif") 10px 50% no-repeat;}
-.msg.done {background:url("../images/ico-done.gif") 10px 50% no-repeat;}
-.msg.error {background:url("../images/ico-delete.gif") 10px 50% no-repeat;}
+.msg.warning {background:url("../images/icons/16x16/error.png") 10px 50% no-repeat;}
+.msg.info {background:url("../images/icons/16x16/information.png") 10px 50% no-repeat;}
+.msg.done {background:url("../images/icons/16x16/tick.png") 10px 50% no-repeat;}
+.msg.error {background:url("../images/icons/16x16/cross.png") 10px 50% no-repeat;}
 
 /* =============================================================================
 ICONS
