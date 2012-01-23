@@ -126,6 +126,19 @@ class Team
     if ($c < new \DateTime())
       $this->setError('You cannot attend in the past');
 
+    $r = $this->em->createQueryBuilder()
+      ->select('su')
+      ->from('ClubTeamBundle:ScheduleUser','su')
+      ->where('su.schedule = :schedule')
+      ->andWhere('su.user = :user')
+      ->setParameter('schedule', $this->schedule->getId())
+      ->setParameter('user', $this->user->getId())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if (count($r))
+      $this->setError('You are already on this team');
+
     /**
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
