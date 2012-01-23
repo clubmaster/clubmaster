@@ -3,7 +3,6 @@ give better debug information on team attend error
 add if user is attending team on /api/users/teams
 add name for instructor on /api/teams/
 support for both bookings and schedules on booking schema
-scroll right and left on booking page
 
 == NOTES TO LATER ==
 login through booking page
