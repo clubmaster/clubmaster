@@ -1,7 +1,6 @@
 fix teams on booking review page
 make sure you cannot book when a schedule exists on an interval
 make a tool that dynamic can create fields
-fix overflow when clock if late
 
 == NOTES TO LATER ==
 login through booking page

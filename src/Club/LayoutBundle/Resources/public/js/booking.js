@@ -112,7 +112,7 @@ function initTable(location, date, url, hour_width, field_height)
     $.each(json.data.fields, function() {
       fields++;
 
-      $("#fields").append('<div class="field" style="top: '+top+'px">&#160;'+this.name+'</div>');
+      $("#fields").append('<div class="field" style="top: '+top+'px; height: '+field_height+'px;">&#160;'+this.name+'</div>');
       console.log("Found field, id: "+this.id+", name: "+this.name+", top: "+top);
 
       // parse intervals
