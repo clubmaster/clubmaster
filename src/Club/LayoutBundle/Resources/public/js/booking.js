@@ -1,5 +1,6 @@
 function getScrollWidth()
 {
+  alert
   return 200;
 }
 
@@ -117,3 +118,32 @@ function initTable(location, date, url, hour_width, field_height)
     initBookings(location, date, url);
   });
 }
+
+$(function() {
+  $("#prev").click(function() {
+    var scroll_width = getScrollWidth();
+    var position = $("#times").position();
+    var new_pos = position.left+scroll_width;
+    if (new_pos > 0) {
+      var new_pos = 0;
+    }
+
+    $("#times").css('left', new_pos+'px');
+    $("#intervals").css('left', new_pos+'px');
+  });
+  $("#next").click(function() {
+    var overlay_width = $("#overlay").width();
+    var times_width = $("#booking").width();
+    var scroll_width = getScrollWidth();
+    var times = $("#times").position();
+    var position = $("#times").position();
+    var max_left = (times_width-overlay_width-21)*-1;
+    var new_pos = position.left-scroll_width;
+    if (new_pos < max_left) {
+      new_pos = max_left;
+    }
+
+    $("#times").css('left', new_pos+'px');
+    $("#intervals").css('left', new_pos+'px');
+  });
+});
