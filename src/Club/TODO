@@ -1,4 +1,5 @@
-support for both bookings and schedules on booking schema
+fix teams on booking review page
+make sure you cannot book when a schedule exists on an interval
 make a tool that dynamic can create fields
 fix overflow when clock if late
 
