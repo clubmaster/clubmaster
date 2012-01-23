@@ -26,7 +26,7 @@ function makePastIntervalUrl(interval)
   var start = new Date(interval.start_time);
   var end = new Date(interval.end_time);
 
-  return getTime(start)+'-'+getTime(end);
+  return '<div class="past" id="interval_'+interval.id+'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeIntervalUrl(interval, date, url)
@@ -34,18 +34,25 @@ function makeIntervalUrl(interval, date, url)
   var start = new Date(interval.start_time);
   var end = new Date(interval.end_time);
 
-  return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+getTime(start)+'-'+getTime(end)+'">'+getTime(start)+'-'+getTime(end)+'</a>';
+  return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeBookedUrl(interval,url)
 {
+  var top=$('div#interval_'+interval.id).css('top');
+  var left=$('div#interval_'+interval.id).css('left');
+  var width=$('div#interval_'+interval.id).css('width');
+  var height=$('div#interval_'+interval.id).css('height');
+
+  console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
   if (interval.booking) {
     var date = new Date(interval.booking.date);
-    return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'">'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</a>';
+
+    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</div>';
   } else {
     var date = new Date(interval.start_time);
-    return '<a href="'+url+'booking/'+getDate(date)+'/'+interval.id+'" title="'+interval.schedule.team_name+'">'+interval.schedule.team_name+'</a>';
 
+    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+interval.schedule.team_name+'</div>';
   }
 }
 
@@ -55,27 +62,10 @@ function initBookings(location, date, url)
     $.each(json.data, function() {
       if (this.booking) {
         console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
-
-        var top=$('div#interval_'+this.id).css('top');
-        var left=$('div#interval_'+this.id).css('left');
-        var width=$('div#interval_'+this.id).css('width');
-        var height=$('div#interval_'+this.id).css('height');
-
-        console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
-
-        $("#intervals").append('<div class="booking" booking="'+this.booking.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
       } else {
         console.log("Found team, id: "+this.schedule.id+", interval id: "+this.id);
-
-        var top=$('div#interval_'+this.id).css('top');
-        var left=$('div#interval_'+this.id).css('left');
-        var width=$('div#interval_'+this.id).css('width');
-        var height=$('div#interval_'+this.id).css('height');
-
-        console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
-
-        $("#intervals").append('<div class="booking" team="'+this.schedule.id+'" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';">&#160;'+makeBookedUrl(this,url)+'</div>');
       }
+      $("#intervals").append(makeBookedUrl(this,url));
     });
   });
 }
@@ -130,9 +120,9 @@ function initTable(location, date, url, hour_width, field_height)
         }
 
         if (start < current_time) {
-          $("#intervals").append('<div class="past" id="interval_'+this.id+'">&#160;'+makePastIntervalUrl(this)+'</div>');
+          $("#intervals").append(makePastIntervalUrl(this));
         } else {
-          $("#intervals").append('<div class="future" id="interval_'+this.id+'">&#160;'+makeIntervalUrl(this,date,url)+'</div>');
+          $("#intervals").append(makeIntervalUrl(this,date,url));
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', (field_height-6)+'px');

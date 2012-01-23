@@ -122,3 +122,7 @@ div#booking div.field
   color: #ffffff;
 }
 
+.link
+{
+  cursor: pointer;
+}
