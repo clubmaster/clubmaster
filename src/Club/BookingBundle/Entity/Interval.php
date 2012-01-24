@@ -273,4 +273,22 @@ class Interval
     {
         return $this->field;
     }
+
+    public function setDate(\DateTime $date)
+    {
+      $this->setStartTime(
+        $this->getStartTime()->setDate(
+          $date->format('Y'),
+          $date->format('m'),
+          $date->format('d')
+        )
+      );
+      $this->setStopTime(
+        $this->getStopTime()->setDate(
+          $date->format('Y'),
+          $date->format('m'),
+          $date->format('d')
+        )
+      );
+    }
 }

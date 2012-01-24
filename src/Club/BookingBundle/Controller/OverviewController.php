@@ -22,22 +22,13 @@ class OverviewController extends Controller
 
      $date = new \DateTime($date);
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+     $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
-     $ret = array(
+     return array(
        'interval' => $interval,
-       'date' => $date->format('Y-m-d'),
+       'date' => $date,
        'form' => $form->createView()
      );
-
-     $booking = $em->getRepository('ClubBookingBundle:Booking')->findOneBy(array(
-       'interval' => $interval_id,
-       'date' => $date
-     ));
-
-     if ($booking)
-       $ret['booking'] = $booking;
-
-     return $ret;
    }
 
   /**

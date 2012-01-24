@@ -4,6 +4,13 @@ namespace Club\BookingBundle\Helper;
 
 class Interval
 {
+  protected $em;
+
+  public function __construct($em)
+  {
+    $this->em = $em;
+  }
+
   public function getTimePeriod(\DateTime $start, \DateTime $end, \DateInterval $interval)
   {
     $res = array();
@@ -15,5 +22,22 @@ class Interval
     }
 
     return $res;
+  }
+
+  public function getVirtualInterval(\Club\BookingBundle\Entity\Interval $interval, $date)
+  {
+    $booking = $this->em->getRepository('ClubBookingBundle:Booking')->findOneBy(array(
+      'interval' => $interval->getId(),
+      'date' => $date
+    ));
+    if ($booking) $interval->setBooking($booking);
+
+    $start = new \DateTime($date->format('Y-m-d').' '.$interval->getStartTime()->format('H:i:s'));
+    $end = new \DateTime($date->format('Y-m-d').' '.$interval->getStopTime()->format('H:i:s'));
+
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $interval->getField()->getLocation());
+    if ($schedules) $interval->setSchedule($schedules[0]);
+
+    return $interval;
   }
 }

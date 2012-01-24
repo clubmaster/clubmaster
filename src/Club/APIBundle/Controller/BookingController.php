@@ -88,6 +88,7 @@ class BookingController extends Controller
     $res = array();
     foreach ($bookings as $booking) {
       $booking->getInterval()->setBooking($booking);
+      $booking->getInterval()->setDate($date);
       $res[] = $booking->getInterval()->toArray();
     }
     foreach ($schedules as $schedule) {
@@ -95,6 +96,7 @@ class BookingController extends Controller
         $intervals = $em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field);
         foreach ($intervals as $interval) {
           $interval->setSchedule($schedule);
+          $interval->setDate($date);
           $res[] = $interval->toArray();
         }
       }
