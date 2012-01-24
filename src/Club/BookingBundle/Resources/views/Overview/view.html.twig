@@ -1,109 +1,16 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
-{% block javascripts %}
-
-<script type="text/javascript">
-  var url = "{{ path('homepage') }}";
-
-  $(document).ready(function() {
-    $( "#booking_query" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax({
-          url: url + "api/users/search/" + $("#booking_query").attr("value"),
-          dataType: "json",
-          success: function( data ) {
-            response( $.map( data.data, function( item ) {
-              return {
-                label: item.first_name + " " + item.last_name,
-                value: item.first_name + " " + item.last_name,
-                id: item.id
-              }
-            }));
-          }
-        });
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        $("#booking_id").attr("value", ui.item.id);
-      },
-      open: function() {
-        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-      },
-      close: function() {
-        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-      }
-    });
-  });
-</script>
-{% endblock %}
-
 {% block body %}
 <h2>Booking</h2>
 
-<fieldset>
-  <legend>Booking Information</legend>
-  <div class="list">
-    <p><label>Location</label>{{ interval.field.location.locationName }}</p>
-    <p><label>Date</label>{{ date|date('Y-m-d') }}</p>
-    <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
-    <p><label>Field</label>{{ interval.field.name }}</p>
-    {% if booking is defined %}
-    <p><label>Booker</label>{{ booking.user.name }}</p>
-      {% if booking.guest %}
-      <p><label>Partner</label>Guest</p>
-      {% else %}
-      <p><label>Partner</label>
-      {% for partner in booking.users %}
-        {{ partner.name }}
-      {% endfor %}
-      </p>
-      {% endif %}
-    {% endif %}
+{% include "ClubBookingBundle:Overview:information.html.twig" %}
 
-    {% if interval.field.information %}
-    <h3>Information</h3>
-    <p>{{ interval.field.information }}</p>
-    {% endif %}
-  </div>
-</fieldset>
+{% if interval.booking and (is_granted('ROLE_BOOKING_ADMIN') or interval.booking.user == app.user) %}
+  {% include "ClubBookingBundle:Overview:cancel_form.html.twig" %}
 
-{% if booking is defined and (is_granted('ROLE_BOOKING_ADMIN') or booking.user == app.user) %}
+{% elseif (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available %}
+  {% include "ClubBookingBundle:Overview:book_form.html.twig" %}
 
-<fieldset>
-  <legend>Delete</legend>
-
-  <p>Click here to cancel your booking.</p>
-  <form method="post" action="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">
-    <hr class="noscreen" />
-    <div class="box-01">
-      <p class="nom"><input type="submit" value="{% trans %}Cancel{% endtrans %}" class="input-submit" /></p>
-    </div> <!-- /box-01 -->
-  </form>
-</fieldset>
-
-{% elseif (is_granted('IS_AUTHENTICATED_FULLY') and booking is not defined) %}
-
-<fieldset>
-  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>Booking</legend>
-
-    <p>Find your partner and complete your booking.</p>
-    {{ form_widget(form) }}
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
-  </form>
-</fieldset>
-
-<fieldset>
-  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>Guest Booking</legend>
-
-    <p>Click here if you want to book with a guest.</p>
-    <input type="hidden" name="guest" value="1" />
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
-  </form>
-</fieldset>
 {% endif %}
 
 {% endblock %}

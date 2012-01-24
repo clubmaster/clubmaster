@@ -73,6 +73,11 @@ class Interval
      */
     protected $schedule;
 
+    /**
+     * Virtual variable
+     */
+    protected $available = true;
+
 
     /**
      * Get id
@@ -223,7 +228,8 @@ class Interval
         'start_time' => $this->getStartTime()->format('c'),
         'end_time' => $this->getStopTime()->format('c'),
         'day' => $this->getDay(),
-        'field' => $this->getField()->getId()
+        'field' => $this->getField()->getId(),
+        'available' => $this->getAvailable()
       );
 
       if (isset($this->booking))
@@ -236,6 +242,7 @@ class Interval
 
     public function setBooking(\Club\BookingBundle\Entity\Booking $booking)
     {
+      if ($booking) $this->setAvailable(false);
       $this->booking = $booking;
     }
 
@@ -246,6 +253,7 @@ class Interval
 
     public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
     {
+      if ($schedule) $this->setAvailable(false);
       $this->schedule = $schedule;
     }
 
@@ -290,5 +298,15 @@ class Interval
           $date->format('d')
         )
       );
+    }
+
+    public function setAvailable($available)
+    {
+      $this->available = $available;
+    }
+
+    public function getAvailable()
+    {
+      return $this->available;
     }
 }

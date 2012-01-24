@@ -43,7 +43,7 @@ class ScheduleRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null, \Club\UserBundle\Entity\Location $location=null)
+  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null, \Club\UserBundle\Entity\Location $location=null, \Club\BookingBundle\Entity\Field $field=null)
   {
     $qb = $this->_em->createQueryBuilder()
       ->select('s')
@@ -66,6 +66,13 @@ class ScheduleRepository extends EntityRepository
         ->leftJoin('s.location', 'l')
         ->andWhere('l.id = :location')
         ->setParameter('location', $location->getId());
+    }
+
+    if (isset($field)) {
+      $qb
+        ->leftJoin('s.fields', 'f')
+        ->andWhere('f.id = :field')
+        ->setParameter('field', $field->getId());
     }
 
     return $qb

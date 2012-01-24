@@ -1,0 +1,32 @@
+<fieldset>
+  <legend>Booking Information</legend>
+  <div class="list">
+    <p><label>Location</label>{{ interval.field.location.locationName }}</p>
+    <p><label>Date</label>{{ date|date('Y-m-d') }}</p>
+    <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
+    <p><label>Field</label>{{ interval.field.name }}</p>
+
+    {% if interval.booking %}
+      <p><label>Booker</label>{{ interval.booking.user.name }}</p>
+      {% if interval.booking.guest %}
+      <p><label>Partner</label>Guest</p>
+      {% else %}
+      <p><label>Partner</label>
+      {% for partner in interval.booking.users %}
+        {{ partner.name }}
+      {% endfor %}
+      </p>
+      {% endif %}
+
+    {% elseif interval.schedule %}
+      <p><label>Team</label>{{ interval.schedule.team.teamName }}</p>
+
+    {% endif %}
+
+    {% if interval.field.information %}
+      <h3>Information</h3>
+      <p>{{ interval.field.information }}</p>
+    {% endif %}
+  </div>
+</fieldset>
+

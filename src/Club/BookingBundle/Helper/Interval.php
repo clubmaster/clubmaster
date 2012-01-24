@@ -30,13 +30,17 @@ class Interval
       'interval' => $interval->getId(),
       'date' => $date
     ));
-    if ($booking) $interval->setBooking($booking);
+    if ($booking) {
+      $interval->setBooking($booking);
+    }
 
     $start = new \DateTime($date->format('Y-m-d').' '.$interval->getStartTime()->format('H:i:s'));
     $end = new \DateTime($date->format('Y-m-d').' '.$interval->getStopTime()->format('H:i:s'));
 
-    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $interval->getField()->getLocation());
-    if ($schedules) $interval->setSchedule($schedules[0]);
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $interval->getField()->getLocation(), $interval->getField());
+    if ($schedules) {
+      $interval->setSchedule($schedules[0]);
+    }
 
     return $interval;
   }

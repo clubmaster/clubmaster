@@ -1,0 +1,59 @@
+{% block javascripts %}
+
+<script type="text/javascript">
+  var url = "{{ path('homepage') }}";
+
+  $(document).ready(function() {
+    $( "#booking_query" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: url + "api/users/search/" + $("#booking_query").attr("value"),
+          dataType: "json",
+          success: function( data ) {
+            response( $.map( data.data, function( item ) {
+              return {
+                label: item.first_name + " " + item.last_name,
+                value: item.first_name + " " + item.last_name,
+                id: item.id
+              }
+            }));
+          }
+        });
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        $("#booking_id").attr("value", ui.item.id);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+  });
+</script>
+{% endblock %}
+
+<fieldset>
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+    <legend>Booking</legend>
+
+    <p>Find your partner and complete your booking.</p>
+    {{ form_widget(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </form>
+</fieldset>
+
+<fieldset>
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+    <legend>Guest Booking</legend>
+
+    <p>Click here if you want to book with a guest.</p>
+    <input type="hidden" name="guest" value="1" />
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </form>
+</fieldset>
+
