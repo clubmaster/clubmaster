@@ -31,7 +31,7 @@ class OverviewController extends Controller
 
      $booking = $em->getRepository('ClubBookingBundle:Booking')->findOneBy(array(
        'interval' => $interval_id,
-       'date' => $date->format('Y-m-d')
+       'date' => $date
      ));
 
      if ($booking)
