@@ -10,6 +10,7 @@ class Booking
   protected $container;
   protected $security_context;
   protected $session;
+  protected $club_interval;
   protected $error;
   protected $user;
   protected $date;
@@ -20,12 +21,13 @@ class Booking
   protected $is_valid = true;
   protected $price;
 
-  public function __construct(EntityManager $em, $container, $security_context, $session)
+  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval)
   {
     $this->em = $em;
     $this->container = $container;
     $this->security_context = $security_context;
     $this->session = $session;
+    $this->club_interval = $club_interval;
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -221,8 +223,17 @@ class Booking
       $this->interval->getStartTime()->format('s')
     );
 
-    if ($c < new \DateTime())
+    if ($c < new \DateTime()) {
       $this->setError('You cannot book in the past');
+      return;
+    }
+
+    $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
+
+    if (!$interval->getAvailable()) {
+      $this->setError('Interval is not available');
+      return;
+    }
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -233,8 +244,10 @@ class Booking
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day'))
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day')) {
       $this->setError('You cannot have more bookings this day');
+      return;
+    }
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -245,8 +258,10 @@ class Booking
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future'))
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future')) {
       $this->setError('You cannot have more bookings');
+      return;
+    }
   }
 
   public function getPrice()

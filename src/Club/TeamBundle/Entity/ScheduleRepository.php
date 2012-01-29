@@ -49,7 +49,7 @@ class ScheduleRepository extends EntityRepository
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
       ->where('s.first_date >= :start')
-      ->andWhere('s.first_date <= :end')
+      ->andWhere('s.first_date < :end')
       ->orderBy('s.first_date')
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
       ->setParameter('end', $end->format('Y-m-d H:i:s'));
@@ -57,7 +57,7 @@ class ScheduleRepository extends EntityRepository
     if (isset($user)) {
       $qb
         ->leftJoin('s.users', 'u')
-        ->andWhere('u.id = :user')
+        ->andWhere('u.user = :user')
         ->setParameter('user', $user->getId());
     }
 
