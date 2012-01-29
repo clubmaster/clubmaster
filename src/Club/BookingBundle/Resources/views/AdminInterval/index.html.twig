@@ -1,7 +1,10 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_booking_admininterval_new', {'field_id':field.id}) }}" class="btn-create"><span>{% trans %}Create interval{% endtrans %}</span></a></p>
+<p class="box">
+  <a href="{{ path('club_booking_admininterval_new', {'field_id':field.id}) }}" class="btn-create"><span>{% trans %}Create interval{% endtrans %}</span></a>
+  <a href="{{ path('club_booking_admininterval_manage', {'field_id':field.id}) }}" class="btn-create"><span>{% trans %}Manage intervals{% endtrans %}</span></a>
+</p>
 
 <table class="style">
   <thead>

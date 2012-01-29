@@ -1,0 +1,53 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_booking_admininterval_manage', {'field_id':field.id}) }}">
+
+<fieldset>
+  <legend>Generel Information</legend>
+  {{ form_row(form.start_date) }}
+</fieldset>
+
+<fieldset>
+  <legend>Monday</legend>
+  {{ form_widget(form.1) }}
+</fieldset>
+
+<fieldset>
+  <legend>Tuesday</legend>
+  {{ form_widget(form.2) }}
+</fieldset>
+
+<fieldset>
+  <legend>Wednesday</legend>
+  {{ form_widget(form.3) }}
+</fieldset>
+
+<fieldset>
+  <legend>Tursday</legend>
+  {{ form_widget(form.4) }}
+</fieldset>
+
+<fieldset>
+  <legend>Friday</legend>
+  {{ form_widget(form.5) }}
+</fieldset>
+
+<fieldset>
+  <legend>Saturday</legend>
+  {{ form_widget(form.6) }}
+</fieldset>
+
+<fieldset>
+  <legend>Sunday</legend>
+  {{ form_widget(form.7) }}
+</fieldset>
+
+{{ form_rest(form) }}
+
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+</form>
+
+{% endblock %}

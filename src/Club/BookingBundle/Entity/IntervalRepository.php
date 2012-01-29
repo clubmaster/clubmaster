@@ -12,6 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class IntervalRepository extends EntityRepository
 {
+  public function findValidByField(\Club\BookingBundle\Entity\Field $field)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('i')
+      ->from('ClubBookingBundle:Interval', 'i')
+      ->where('i.field = :field_id')
+      ->andWhere('i.valid_from < :date')
+      ->andWhere('(i.valid_to >= :date OR i.valid_to IS NULL)')
+      ->setParameter('field_id', $field->getId())
+      ->setParameter('date', new \DateTime())
+      ->getQuery()
+      ->getResult();
+  }
+
   public function getAll(\DateTime $start, \DateTime $end, \Club\BookingBundle\Entity\Field $field)
   {
     return $this->_em->createQueryBuilder()

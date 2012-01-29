@@ -18,9 +18,7 @@ class AdminIntervalController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $field = $em->find('ClubBookingBundle:Field', $field_id);
-    $intervals = $em->getRepository('ClubBookingBundle:Interval')->findBy(array(
-      'field' => $field_id
-    ));
+    $intervals = $em->getRepository('ClubBookingBundle:Interval')->findValidByField($field);
 
     return array(
       'intervals' => $intervals,
@@ -104,5 +102,62 @@ class AdminIntervalController extends Controller
     }
 
     return $form;
+  }
+
+  /**
+   * @Route("/booking/interval/{field_id}/manage")
+   * @Template()
+   */
+  public function manageAction($field_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $field = $em->find('ClubBookingBundle:Field', $field_id);
+
+    $date = new \DateTime('next monday');
+    $int = new \DateInterval('P1D');
+    $period = new \DatePeriod($date, $int, 7);
+
+    $data = array(
+      'start_date' => new \DateTime()
+    );
+    foreach ($period as $dt) {
+      $data[$dt->format('N')] = array(
+        'interval' => 60,
+        'start' => new \DateTime('2000-01-01 08:00:00'),
+        'stop' => new \DateTime('2000-01-01 22:00:00')
+      );
+    }
+    $form = $this->createForm(new \Club\BookingBundle\Form\ManageDays(), $data);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      $form_data = $form->getData();
+
+      foreach ($form_data as $key=>$data) {
+        if (is_numeric($key)) {
+          $time = $data['start'];
+          $stop = $data['stop'];
+          $t_interval = new \DateInterval('PT'.$data['interval'].'M');
+
+          while ($time < $stop) {
+            $interval = new \Club\BookingBundle\Entity\Interval();
+            $interval->setField($field);
+            $interval->setDay($key);
+            $interval->setStartTime(clone $time);
+            $time->add($t_interval);
+            $interval->setStopTime(clone $time);
+            $interval->setValidFrom($form_data['start_date']);
+
+            $em->persist($interval);
+          }
+        }
+      }
+      $em->flush();
+    }
+
+    return array(
+      'field' => $field,
+      'form' => $form->createView(),
+    );
   }
 }

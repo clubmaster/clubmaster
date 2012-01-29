@@ -1,8 +1,8 @@
 make sure you cannot book when a schedule exists on an interval
-make a tool that dynamic can create fields
 translation of booking bundle
 
 == NOTES TO LATER ==
+make sure that not 2 intervals can be valid at the same time
 login through booking page
 jquery overlay form on booking
 implement payment for booking
