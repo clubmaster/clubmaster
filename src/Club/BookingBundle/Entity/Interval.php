@@ -44,6 +44,20 @@ class Interval
     protected $stop_time;
 
     /**
+     * @var datetime $valid_from
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $valid_from;
+
+    /**
+     * @var datetime $valid_to
+     *
+     * @ORM\Column(type="datetime", nullable="true")
+     */
+    protected $valid_to;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -314,5 +328,45 @@ class Interval
     public function getAvailable()
     {
       return $this->available;
+    }
+
+    /**
+     * Set valid_from
+     *
+     * @param datetime $validFrom
+     */
+    public function setValidFrom($validFrom)
+    {
+        $this->valid_from = $validFrom;
+    }
+
+    /**
+     * Get valid_from
+     *
+     * @return datetime
+     */
+    public function getValidFrom()
+    {
+        return $this->valid_from;
+    }
+
+    /**
+     * Set valid_to
+     *
+     * @param datetime $validTo
+     */
+    public function setValidTo($validTo)
+    {
+        $this->valid_to = $validTo;
+    }
+
+    /**
+     * Get valid_to
+     *
+     * @return datetime
+     */
+    public function getValidTo()
+    {
+        return $this->valid_to;
     }
 }
