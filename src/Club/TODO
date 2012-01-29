@@ -1,5 +1,6 @@
 make sure you cannot book when a schedule exists on an interval
 translation of booking bundle
+add better index page
 
 == NOTES TO LATER ==
 make sure that not 2 intervals can be valid at the same time
