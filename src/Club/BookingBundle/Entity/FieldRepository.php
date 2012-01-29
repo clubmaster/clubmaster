@@ -24,7 +24,8 @@ class FieldRepository extends EntityRepository
     $end_time->setTime(0,0,0);
 
     foreach ($fields as $field) {
-      foreach ($field->getIntervals() as $interval) {
+      $intervals = $this->_em->getRepository('ClubBookingBundle:Interval')->findValidByField($field, $date->format('N'));
+      foreach ($intervals as $interval) {
         if ($interval->getStartTime()->format('His') < $start_time->format('His')) {
           $start_time->setTime(
             $interval->getStartTime()->format('H'),
@@ -59,10 +60,7 @@ class FieldRepository extends EntityRepository
 
     $res = array();
     foreach ($fields as $field) {
-      $intervals = $this->_em->getRepository('ClubBookingBundle:Interval')->findBy(array(
-        'field' => $field->getId(),
-        'day' => $date->format('N')
-      ));
+      $intervals = $this->_em->getRepository('ClubBookingBundle:Interval')->findValidByField($field, $date->format('N'));
 
       foreach ($intervals as $interval) {
         $interval->getStartTime()->setDate(
