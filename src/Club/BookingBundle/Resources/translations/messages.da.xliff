@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Field</source>
+                <target>Bane</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Create field</source>
+                <target>Opret bane</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Booking</source>
+                <target>Booking</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Create interval</source>
+                <target>Opret interval</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Manage intervals</source>
+                <target>Administre intervaller</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Start time</source>
+                <target>Start tid</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Stop time</source>
+                <target>Stop tid</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>There are no intervals.</source>
+                <target>Der er ingen intervaller.</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Day</source>
+                <target>Dag</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
