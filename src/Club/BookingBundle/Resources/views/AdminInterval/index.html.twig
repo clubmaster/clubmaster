@@ -24,7 +24,7 @@
     <tr>
       <td>{{ interval.field.location }}</td>
       <td>{{ interval.field }}</td>
-      <td>{{ interval.day }}</td>
+      <td>{{ interval.day(true).format('l') }}</td>
       <td>{{ interval.startTime|date('H:i') }}</td>
       <td>{{ interval.stopTime|date('H:i') }}</td>
       <td>

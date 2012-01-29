@@ -201,9 +201,15 @@ class Interval
      *
      * @return integer
      */
-    public function getDay()
+    public function getDay($object=null)
     {
-        return $this->day;
+      if (isset($object)) {
+        $date = new \DateTime('next monday');
+        $date->add(new \DateInterval('P'.($this->day-1).'D'));
+        return $date;
+      }
+
+      return $this->day;
     }
 
     public function getDiff()
