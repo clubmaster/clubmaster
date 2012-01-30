@@ -37,9 +37,9 @@
 
 <fieldset>
   <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>Booking</legend>
+    <legend>{% trans %}Booking{% endtrans %}</legend>
 
-    <p>Find your partner and complete your booking.</p>
+    <p>{% trans %}Find your partner and complete your booking.{% endtrans %}</p>
     {{ form_widget(form) }}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
@@ -48,9 +48,9 @@
 
 <fieldset>
   <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>Guest Booking</legend>
+    <legend>{% trans %}Guest Booking{% endtrans %}</legend>
 
-    <p>Click here if you want to book with a guest.</p>
+    <p>{% trans %}Click here if you want to book with a guest.{% endtrans %}</p>
     <input type="hidden" name="guest" value="1" />
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 

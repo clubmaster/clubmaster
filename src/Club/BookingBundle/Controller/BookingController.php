@@ -91,7 +91,7 @@ class BookingController extends Controller
 
      if ($this->get('club_booking.booking')->isValid()) {
        $this->get('club_booking.booking')->save();
-       $this->get('session')->setFlash('notice', 'Your booking has been created');
+       $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your booking has been created'));
      } else {
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }
@@ -114,7 +114,7 @@ class BookingController extends Controller
      $this->get('club_booking.booking')->bindDelete($booking);
      if ($this->get('club_booking.booking')->isValid()) {
        $this->get('club_booking.booking')->remove();
-       $this->get('session')->setFlash('notice', 'Booking has been cancelled');
+       $this->get('session')->setFlash('notice', $this->get('translator')->trans('Booking has been cancelled'));
      } else {
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }

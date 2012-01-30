@@ -1,7 +1,7 @@
 <fieldset>
-  <legend>Delete</legend>
+  <legend>{% trans %}Delete{% endtrans %}</legend>
 
-  <p>Click here to cancel your booking.</p>
+  <p>{% trans %}Click here to cancel your booking.{% endtrans %}</p>
   <form method="post" action="{{ path('club_booking_booking_cancel', {'id':interval.booking.id}) }}">
     <hr class="noscreen" />
     <div class="box-01">
