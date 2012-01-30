@@ -1,4 +1,5 @@
 add tiny mce in editor windows
+requirement is php-intl
 
 == NOTES TO LATER ==
 make sure that not 2 intervals can be valid at the same time
@@ -30,7 +31,6 @@ make sure widgets works:
   - datetime
   - date
   - time
-rewrite currency code to intl extension
 rewrite date formatter object to intl extension
 add news blog on welcome page
 change password

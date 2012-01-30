@@ -38,39 +38,6 @@ class Currency
     protected $code;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
-     *
-     * @var string $symbol_left
-     */
-    protected $symbol_left;
-
-    /**
-     * @ORM\Column(type="string", nullable="true")
-     *
-     * @var string $symbol_right
-     */
-    protected $symbol_right;
-
-    /**
-     * @ORM\Column(type="string")
-     * @var string $decimal_places
-     */
-    protected $decimal_places;
-
-    /**
-     * @ORM\Column(type="decimal", scale="5")
-     * @Assert\NotBlank()
-     *
-     * @var float $value
-     */
-    protected $value;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $active;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     protected $created_at;
@@ -136,86 +103,6 @@ class Currency
     }
 
     /**
-     * Set symbol_left
-     *
-     * @param string $symbolLeft
-     */
-    public function setSymbolLeft($symbolLeft)
-    {
-        $this->symbol_left = $symbolLeft;
-    }
-
-    /**
-     * Get symbol_left
-     *
-     * @return string $symbolLeft
-     */
-    public function getSymbolLeft()
-    {
-        return $this->symbol_left;
-    }
-
-    /**
-     * Set symbol_right
-     *
-     * @param string $symbolRight
-     */
-    public function setSymbolRight($symbolRight)
-    {
-        $this->symbol_right = $symbolRight;
-    }
-
-    /**
-     * Get symbol_right
-     *
-     * @return string $symbolRight
-     */
-    public function getSymbolRight()
-    {
-        return $this->symbol_right;
-    }
-
-    /**
-     * Set decimal_places
-     *
-     * @param string $decimalPlaces
-     */
-    public function setDecimalPlaces($decimalPlaces)
-    {
-        $this->decimal_places = $decimalPlaces;
-    }
-
-    /**
-     * Get decimal_places
-     *
-     * @return string $decimalPlaces
-     */
-    public function getDecimalPlaces()
-    {
-        return $this->decimal_places;
-    }
-
-    /**
-     * Set value
-     *
-     * @param float $value
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * Get value
-     *
-     * @return float $value
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
      * @ORM\PrePersist()
      */
     public function prePersist()
@@ -231,26 +118,6 @@ class Currency
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean $active
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 
     /**

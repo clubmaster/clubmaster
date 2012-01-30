@@ -11,10 +11,6 @@ class Currency extends AbstractType
   {
     $builder->add('currency_name');
     $builder->add('code');
-    $builder->add('symbol_left');
-    $builder->add('symbol_right');
-    $builder->add('decimal_places');
-    $builder->add('value');
   }
 
   public function getDefaultOptions(array $options)
