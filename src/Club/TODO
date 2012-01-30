@@ -5,7 +5,6 @@ make sure that not 2 intervals can be valid at the same time
 login through booking page
 jquery overlay form on booking
 implement payment for booking
-change time comparence to object compare instead of timestamp
 use validators in coupon
 bind coupon to specific product
 fix num_team_day
@@ -22,7 +21,6 @@ dynamic number of partners for a booking
 booking module should work without partners too
 add display username
 add address on club to api
-remove API KEY from BookingBundle/Resources/views/Overview/view.html.twig
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 what happens if you put schema on already booked interval
 booking admins should be able to deleted planned schedules too
