@@ -1,5 +1,4 @@
 translation of booking bundle
-add better index page
 
 == NOTES TO LATER ==
 make sure that not 2 intervals can be valid at the same time
@@ -33,3 +32,4 @@ make sure widgets works:
   - time
 rewrite currency code to intl extension
 rewrite date formatter object to intl extension
+add news blog on welcome page
