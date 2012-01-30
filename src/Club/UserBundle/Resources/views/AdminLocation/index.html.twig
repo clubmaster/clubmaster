@@ -9,6 +9,7 @@
 <ul>
   <li>{{ location }}
   {% include "ClubLayoutBundle:Default:config_link.html.twig" with {'url':path('admin_location_config', {'id':location.id})} %}
+  {% include "ClubLayoutBundle:Default:page_link.html.twig" with {'url':path('club_welcome_adminwelcome_edit', {'location_id':location.id})} %}
 
     <ul>{% for location1 in location.childs %}
       <li>{{ location1.locationName }}

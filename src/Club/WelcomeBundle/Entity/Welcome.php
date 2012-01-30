@@ -23,6 +23,13 @@ class Welcome
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    private $location;
+
+    /**
      * @var text $content
      *
      * @ORM\Column(name="content", type="text")
@@ -129,5 +136,25 @@ class Welcome
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

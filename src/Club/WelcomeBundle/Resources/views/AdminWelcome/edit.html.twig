@@ -1,0 +1,9 @@
+{% extends "ClubWelcomeBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_welcome_adminwelcome_edit', {'location_id':welcome.location.id}) }}">
+{% include "ClubWelcomeBundle:AdminWelcome:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}
