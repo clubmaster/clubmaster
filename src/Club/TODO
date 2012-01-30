@@ -1,5 +1,4 @@
 add tiny mce in editor windows
-requirement is php-intl
 
 == NOTES TO LATER ==
 make sure that not 2 intervals can be valid at the same time
