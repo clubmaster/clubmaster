@@ -1,6 +1,6 @@
 services:
-  club_user_extension_price:
-    class: Club\UserBundle\Twig\Extension\PriceExtension
+  club_layout_extension_price:
+    class: Club\LayoutBundle\Twig\Extension\PriceExtension
     arguments: [@doctrine.orm.entity_manager, @security.context, @session]
     tags:
       - { name: twig.extension }

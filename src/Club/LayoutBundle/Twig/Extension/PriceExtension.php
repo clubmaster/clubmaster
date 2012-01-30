@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\LayoutBundle\Extension;
+namespace Club\LayoutBundle\Twig\Extension;
 
 class PriceExtension extends \Twig_Extension
 {
