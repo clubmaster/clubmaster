@@ -23,7 +23,7 @@ class IntervalRepository extends EntityRepository
       ->setParameter('field_id', $field->getId())
       ->setParameter('date', new \DateTime());
 
-    if (!isset($day))
+    if ($day != null)
       $qb
         ->andWhere('i.day = :day')
         ->setParameter('day', $day);

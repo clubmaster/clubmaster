@@ -1,5 +1,5 @@
 services:
-  clubmaster.twig.extension:
+  club_user_extension_price:
     class: Club\UserBundle\Extension\PriceExtension
     arguments: [@doctrine.orm.entity_manager, @security.context, @session]
     tags:

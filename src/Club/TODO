@@ -31,3 +31,5 @@ make sure widgets works:
   - datetime
   - date
   - time
+rewrite currency code to intl extension
+rewrite date formatter object to intl extension
