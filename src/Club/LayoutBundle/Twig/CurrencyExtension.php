@@ -18,7 +18,6 @@ class CurrencyExtension extends \Twig_Extension
   public function getFilters()
   {
     return array(
-      'price' => new \Twig_Filter_Method($this, 'price'),
       'club_price' => new \Twig_Filter_Method($this, 'getPrice')
     );
   }
