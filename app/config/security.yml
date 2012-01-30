@@ -35,6 +35,7 @@ security:
                 failure_handler: failure.password.handler
                 check_path: /login_check
                 login_path: /login
+                default_target_path: /user/dashboard
             logout:
                 path: /logout
                 target: /
