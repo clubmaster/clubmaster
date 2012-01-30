@@ -33,3 +33,4 @@ make sure widgets works:
 rewrite currency code to intl extension
 rewrite date formatter object to intl extension
 add news blog on welcome page
+change password
