@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadAttributeData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $attributes = array();
     $attributes[] = 'time_interval';

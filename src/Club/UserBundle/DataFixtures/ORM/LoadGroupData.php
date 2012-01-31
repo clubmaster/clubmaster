@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $group = new \Club\UserBundle\Entity\Group();
     $group->setGroupName('Super Administrators');

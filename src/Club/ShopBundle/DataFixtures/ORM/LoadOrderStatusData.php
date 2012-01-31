@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadOrderStatusData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $status = new \Club\ShopBundle\Entity\OrderStatus();
     $status->setStatusName('Pending');

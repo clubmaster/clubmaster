@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadTaskData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $task = new \Club\TaskBundle\Entity\Task();
     $task->setTaskName('Update dynamic groups');
