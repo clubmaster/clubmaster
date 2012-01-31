@@ -24,11 +24,6 @@ class Attend
     protected $id;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $paid;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
      */
@@ -55,26 +50,6 @@ class Attend
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set paid
-     *
-     * @param boolean $paid
-     */
-    public function setPaid($paid)
-    {
-        $this->paid = $paid;
-    }
-
-    /**
-     * Get paid
-     *
-     * @return boolean $paid
-     */
-    public function getPaid()
-    {
-        return $this->paid;
     }
 
     /**
@@ -142,7 +117,6 @@ class Attend
      */
     public function prePersist()
     {
-      $this->setPaid(0);
       $this->setCreatedAt(new \DateTime());
     }
 

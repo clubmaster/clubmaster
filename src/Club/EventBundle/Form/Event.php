@@ -11,7 +11,6 @@ class Event extends AbstractType
   {
     $builder->add('event_name');
     $builder->add('description');
-    $builder->add('price');
     $builder->add('max_attends');
     $builder->add('start_date');
     $builder->add('stop_date');

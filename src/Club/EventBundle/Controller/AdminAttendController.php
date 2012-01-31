@@ -23,40 +23,6 @@ class AdminAttendController extends Controller
   }
 
   /**
-   * @Route("/event/attend/paid/{id}", name="admin_event_attend_paid")
-   */
-  public function paidAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $attend = $em->find('ClubEventBundle:Attend',$id);
-    $attend->setPaid(1);
-
-    $em->persist($attend);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-    return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
-  }
-
-  /**
-   * @Route("/event/attend/unpaid/{id}", name="admin_event_attend_unpaid")
-   */
-  public function unpaidAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $attend = $em->find('ClubEventBundle:Attend',$id);
-    $attend->setPaid(0);
-
-    $em->persist($attend);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-    return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
-  }
-
-  /**
    * @Route("/event/attend/delete/{id}", name="admin_event_attend_delete")
    */
   public function deleteAction($id)

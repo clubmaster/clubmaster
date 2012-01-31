@@ -37,13 +37,6 @@ class Event
     protected $description;
 
     /**
-     * @ORM\Column(type="decimal", scale="2", nullable="true")
-     *
-     * @var string $price
-     */
-    protected $price;
-
-    /**
      * @ORM\Column(type="integer", nullable="true")
      *
      * @var string $max_attends
@@ -137,26 +130,6 @@ class Event
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set price
-     *
-     * @param decimal $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * Get price
-     *
-     * @return decimal $price
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
 
     /**
@@ -316,7 +289,6 @@ class Event
         'id' => $this->getId(),
         'event_name' => $this->getEventName(),
         'description' => $this->getDescription(),
-        'price' => $this->getPrice(),
         'max_attends' => $this->getMaxAttends(),
         'attends' => array(),
         'start_date' => $this->getStartDate()->format('c'),
