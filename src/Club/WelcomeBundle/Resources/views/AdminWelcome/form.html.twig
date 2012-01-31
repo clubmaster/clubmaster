@@ -1,3 +1,13 @@
-  <p>{{ form_widget(form) }}</p>
+  <fieldset>
+    <legend>Welcome</legend>
+    <p>
+      {{ form_label(form.content) }}<br />
+      {{ form_widget(form.content, {'attr': {'class':'big' }}) }}
+      {{ form_errors(form.content) }}<br />
+    </p>
+    {{ form_rest(form) }}
+
+  </fieldset>
+
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
