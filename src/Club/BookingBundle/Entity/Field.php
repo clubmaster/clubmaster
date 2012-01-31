@@ -43,7 +43,7 @@ class Field
     /**
      * @var text $information
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="true")
      */
     protected $information;
 

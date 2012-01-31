@@ -153,6 +153,9 @@ class AdminIntervalController extends Controller
         }
       }
       $em->flush();
+
+      $this->get('session')->setFlash('notice', 'Field has been created');
+      return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $field->getId())));
     }
 
     return array(

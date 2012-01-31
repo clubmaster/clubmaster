@@ -14,12 +14,14 @@
       <th>{% trans %}Day{% endtrans %}</th>
       <th>{% trans %}Start time{% endtrans %}</th>
       <th>{% trans %}Stop time{% endtrans %}</th>
+      <th>{% trans %}Valid from{% endtrans %}</th>
+      <th>{% trans %}Valid to{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="8">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -30,6 +32,8 @@
       <td>{{ interval.day(true).format('l') }}</td>
       <td>{{ interval.startTime|date('H:i') }}</td>
       <td>{{ interval.stopTime|date('H:i') }}</td>
+      <td>{{ interval.validFrom|date('Y-m-d H:i') }}</td>
+      <td>{{ interval.validTo|date('Y-m-d H:i') }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_admininterval_edit', { 'id':interval.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_admininterval_delete', { 'id':interval.id })} %}
@@ -37,7 +41,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">{% trans %}There are no intervals.{% endtrans %}</td>
+    <td colspan="8">{% trans %}There are no intervals.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

@@ -33,6 +33,7 @@ class LocationController extends Controller
     $location = $em->find('ClubUserBundle:Location',$id);
 
     $user->setLocation($location);
+    $this->get('session')->set('location_id', $location->getId());
 
     $em->persist($user);
     $em->flush();
