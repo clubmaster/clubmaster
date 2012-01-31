@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadLanguageData implements FixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $language = new \Club\UserBundle\Entity\Language();
     $language->setName('English');

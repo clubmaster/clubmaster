@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadLocationData extends AbstractFixture implements OrderedFixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $location = new \Club\UserBundle\Entity\Location();
     $location->setLocationName('ClubMaster');

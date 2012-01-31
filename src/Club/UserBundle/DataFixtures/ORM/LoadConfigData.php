@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadConfigData extends AbstractFixture implements OrderedFixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $configs = array();
     $configs[] = 'default_language';

@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadPaymentMethodData implements FixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $payment = new \Club\ShopBundle\Entity\PaymentMethod();
     $payment->setPaymentMethodName('Cash');

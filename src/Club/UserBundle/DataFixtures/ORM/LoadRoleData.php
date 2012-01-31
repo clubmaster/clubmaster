@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $roles = array();
     $roles[] = 'ROLE_SUPER_ADMIN';

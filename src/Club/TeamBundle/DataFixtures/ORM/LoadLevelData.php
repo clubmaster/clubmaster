@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadLevelData implements FixtureInterface
 {
-  public function load(ObjectManager $manager)
+  public function load($manager)
   {
     $payment = new \Club\TeamBundle\Entity\Level();
     $payment->setLevelName('Easy');
