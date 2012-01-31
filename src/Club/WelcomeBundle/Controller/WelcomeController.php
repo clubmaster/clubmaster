@@ -19,9 +19,11 @@ class WelcomeController extends Controller
     $welcome = $em->getRepository('ClubWelcomeBundle:Welcome')->findOneBy(array(
       'location' => 1
     ));
+    $posts = $em->getRepository('ClubWelcomeBundle:Blog')->findBy(array(), array('id' => 'desc'), 10);
 
     return array(
-      'welcome' => $welcome
+      'welcome' => $welcome,
+      'posts' => $posts
     );
   }
 }

@@ -7,4 +7,9 @@
 {{ welcome.content|raw }}
 {% endif %}
 
+{% for post in posts %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.message }}</p>
+{% endfor %}
+
 {% endblock %}
