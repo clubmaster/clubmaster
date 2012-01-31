@@ -21,6 +21,12 @@ class ShopController extends Controller
       'location' => $location->getId()
     ));
 
+    if (!count($categories)) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('There are no categories in this location, choose another location.'));
+      $this->get('session')->set('switch_location', $this->generateUrl('shop'));
+      return $this->redirect($this->generateUrl('club_user_location_index'));
+    }
+
     return array(
       'location' => $location,
       'categories' => $categories

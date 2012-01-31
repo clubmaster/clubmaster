@@ -1358,6 +1358,10 @@
         <source>Time</source>
         <target>Tid</target>
       </trans-unit>
+      <trans-unit id="341">
+        <source>There are no categories in this location, choose another location.</source>
+        <target>Der er ingen kategorier i denne lokation, vælg en anden lokation.</target>
+      </trans-unit>
 
     </body>
   </file>
