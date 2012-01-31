@@ -56,6 +56,7 @@ class RequestListener
 
     $this->location = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_location');
     $this->session->set('location_id', $this->location->getId());
+    $this->session->set('location_name', $this->location->getLocationName());
 
     if (!$this->security_context->getToken() || $this->security_context->getToken() instanceOf \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken)
       return;

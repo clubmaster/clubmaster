@@ -34,6 +34,7 @@ class LocationController extends Controller
 
     $user->setLocation($location);
     $this->get('session')->set('location_id', $location->getId());
+    $this->get('session')->set('location_name', $location->getLocationName());
 
     $em->persist($user);
     $em->flush();

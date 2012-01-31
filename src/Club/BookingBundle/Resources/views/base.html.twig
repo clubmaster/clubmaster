@@ -1,3 +1,3 @@
 {% extends "ClubLayoutBundle:Default:base.html.twig" %}
 
-{% block header %}<h1>{% trans %}Booking{% endtrans %}</h1>{% endblock %}
+{% block header %}<h1>{% trans with {'%location%':app.session.get('location_name')}  %}Booking, %location%{% endtrans %}</h1>{% endblock %}
