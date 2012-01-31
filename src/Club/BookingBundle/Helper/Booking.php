@@ -122,6 +122,7 @@ class Booking
     $this->user = $user;
     $this->partner = $partner;
 
+    /*
     $this->validate();
     if (!$this->isValid())
       return;
@@ -166,6 +167,7 @@ class Booking
       $this->setError('You cannot have more bookings with this partner');
       return;
     }
+     */
 
     $this->bind();
   }
@@ -182,10 +184,25 @@ class Booking
 
   public function bind()
   {
+    $start = clone $this->date;
+    $start->setTime(
+      $this->interval->getStartTime()->format('H'),
+      $this->interval->getStartTime()->format('i'),
+      $this->interval->getStartTime()->format('s')
+    );
+
+    $stop = clone $this->date;
+    $stop->setTime(
+      $this->interval->getStopTime()->format('H'),
+      $this->interval->getStopTime()->format('i'),
+      $this->interval->getStopTime()->format('s')
+    );
+
     $this->booking = new \Club\BookingBundle\Entity\Booking();
     $this->booking->setUser($this->user);
-    $this->booking->setInterval($this->interval);
-    $this->booking->setDate($this->date);
+    $this->booking->setStartDate($start);
+    $this->booking->setField($this->interval->getField());
+    $this->booking->setStopDate($stop);
     $this->booking->setGuest($this->guest);
 
     if ($this->partner)
@@ -216,6 +233,7 @@ class Booking
 
   protected function validate()
   {
+    return;
     $c = clone $this->date;
     $c->setTime(
       $this->interval->getStartTime()->format('H'),

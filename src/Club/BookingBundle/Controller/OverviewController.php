@@ -42,7 +42,9 @@ class OverviewController extends Controller
 
      $nav = $this->getNav();
      $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
-     $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
+     $fields = $em->getRepository('ClubBookingBundle:Field')->findBy(array(
+       'location' => $location->getId()
+     ));
 
      if (!count($fields)) {
        $this->get('session')->setFlash('error', $this->get('translator')->trans('There are no fields in this location, choose another location.'));
@@ -51,7 +53,6 @@ class OverviewController extends Controller
      }
 
      return array(
-       'fields' => $fields,
        'date' => $date,
        'nav' => $nav,
        'location' => $location

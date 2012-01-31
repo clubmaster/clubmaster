@@ -87,9 +87,12 @@ class BookingController extends Controller
 
     $res = array();
     foreach ($bookings as $booking) {
+
+      /*
       $booking->getInterval()->setBooking($booking);
       $booking->getInterval()->setDate($date);
       $res[] = $booking->getInterval()->toArray();
+       */
     }
     foreach ($schedules as $schedule) {
       foreach ($schedule->getFields() as $field) {

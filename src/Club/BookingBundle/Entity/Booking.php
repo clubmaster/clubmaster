@@ -64,6 +64,11 @@ class Booking
     protected $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Field")
+     */
+    protected $field;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_booking_booking_user",
      *   joinColumns={@ORM\JoinColumn(name="booking_id", referencedColumnName="id")},
@@ -144,39 +149,6 @@ class Booking
     }
 
     /**
-     * Set interval
-     *
-     * @param Club\BookingBundle\Entity\Interval $interval
-     */
-    public function setInterval(\Club\BookingBundle\Entity\Interval $interval)
-    {
-        $this->interval = $interval;
-    }
-
-    /**
-     * Get interval
-     *
-     * @return Club\BookingBundle\Entity\Interval
-     */
-    public function getInterval()
-    {
-      // FIXME, there might be a problem if we cross multiple days, check up on this..
-      $interval = $this->interval;
-      $interval->getStartTime()->setDate(
-        $this->getStartDate()->format('Y'),
-        $this->getStartDate()->format('m'),
-        $this->getStartDate()->format('d')
-      );
-      $interval->getStopTime()->setDate(
-        $this->getStopDate()->format('Y'),
-        $this->getStopDate()->format('m'),
-        $this->getStopDate()->format('d')
-      );
-
-      return $this->interval;
-    }
-
-    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -197,7 +169,6 @@ class Booking
     {
       $ret = array(
         'id' => $this->getId(),
-        'interval_id' => $this->getInterval()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
         'start_date' => $this->getStartDate()->format('c'),
@@ -298,5 +269,25 @@ class Booking
     public function getStopDate()
     {
         return $this->stop_date;
+    }
+
+    /**
+     * Set field
+     *
+     * @param Club\BookingBundle\Entity\Field $field
+     */
+    public function setField(\Club\BookingBundle\Entity\Field $field)
+    {
+        $this->field = $field;
+    }
+
+    /**
+     * Get field
+     *
+     * @return Club\BookingBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
     }
 }

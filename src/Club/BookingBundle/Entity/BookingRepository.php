@@ -12,18 +12,49 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookingRepository extends EntityRepository
 {
+  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null, \Club\UserBundle\Entity\Location $location=null, \Club\BookingBundle\Entity\Field $field=null)
+  {
+    // this is not working
+    $qb = $this->_em->createQueryBuilder()
+      ->select('b')
+      ->from('ClubTeamBundle:Schedule','s')
+      ->where('s.first_date >= :start')
+      ->andWhere('s.first_date < :end')
+      ->orderBy('s.first_date')
+      ->setParameter('start', $start->format('Y-m-d H:i:s'))
+      ->setParameter('end', $end->format('Y-m-d H:i:s'));
+
+    if (isset($user)) {
+      $qb
+        ->leftJoin('s.users', 'u')
+        ->andWhere('u.user = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    if (isset($field)) {
+      $qb
+        ->leftJoin('s.fields', 'f')
+        ->andWhere('f.id = :field')
+        ->setParameter('field', $field->getId());
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
+
   public function getAllByLocationDate(\Club\UserBundle\Entity\Location $location, \DateTime $date)
   {
     return $this->_em->createQueryBuilder()
       ->select('b')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->leftJoin('b.interval' ,'i')
-      ->leftJoin('i.field', 'f')
+      ->leftJoin('b.field', 'f')
       ->leftJoin('f.location', 'l')
       ->where('l.id = :location')
-      ->andWhere('b.date = :date')
+      ->andWhere('b.start_date BETWEEN :start AND :stop')
       ->setParameter('location', $location->getId())
-      ->setParameter('date', $date->format('Y-m-d'))
+      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
+      ->setParameter('stop', $date->format('Y-m-d 23:59:59'))
       ->getQuery()
       ->getResult();
   }
