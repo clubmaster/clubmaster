@@ -26,11 +26,18 @@ class Booking
     protected $id;
 
     /**
-     * @var date $date
+     * @var date $start_date
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    protected $date;
+    protected $start_date;
+
+    /**
+     * @var date $stop_date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $stop_date;
 
     /**
      * @var boolean $guest
@@ -67,11 +74,6 @@ class Booking
      */
     protected $users;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Interval")
-     */
-    protected $interval;
-
 
     /**
      * Get id
@@ -81,26 +83,6 @@ class Booking
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set date
-     *
-     * @param date $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    }
-
-    /**
-     * Get date
-     *
-     * @return date
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**
@@ -183,14 +165,14 @@ class Booking
       // FIXME, there might be a problem if we cross multiple days, check up on this..
       $interval = $this->interval;
       $interval->getStartTime()->setDate(
-        $this->getDate()->format('Y'),
-        $this->getDate()->format('m'),
-        $this->getDate()->format('d')
+        $this->getStartDate()->format('Y'),
+        $this->getStartDate()->format('m'),
+        $this->getStartDate()->format('d')
       );
       $interval->getStopTime()->setDate(
-        $this->getDate()->format('Y'),
-        $this->getDate()->format('m'),
-        $this->getDate()->format('d')
+        $this->getStopDate()->format('Y'),
+        $this->getStopDate()->format('m'),
+        $this->getStopDate()->format('d')
       );
 
       return $this->interval;
@@ -220,7 +202,8 @@ class Booking
         'interval_id' => $this->getInterval()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
-        'date' => $this->getDate()->format('c'),
+        'start_date' => $this->getStartDate()->format('c'),
+        'stop_date' => $this->getStopDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
@@ -273,5 +256,49 @@ class Booking
     public function getUsers()
     {
         return $this->users;
+    }
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set start_date
+     *
+     * @param datetime $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->start_date = $startDate;
+    }
+
+    /**
+     * Get start_date
+     *
+     * @return datetime 
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set stop_date
+     *
+     * @param datetime $stopDate
+     */
+    public function setStopDate($stopDate)
+    {
+        $this->stop_date = $stopDate;
+    }
+
+    /**
+     * Get stop_date
+     *
+     * @return datetime 
+     */
+    public function getStopDate()
+    {
+        return $this->stop_date;
     }
 }
