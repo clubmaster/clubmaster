@@ -15,7 +15,7 @@
   {% set date = '' %}
   {% for schedule in schedules %}
     {% set prev_date = date %}
-    {% set date = schedule.firstDate|date('l, Y-m-d') %}
+    {% set date = schedule.firstDate|club_date('full') %}
 
     {% if date != prev_date %}
     <tr>

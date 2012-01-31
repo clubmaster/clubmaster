@@ -4,3 +4,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @session]
     tags:
       - { name: twig.extension }
+  club_layout_twig_date_extension:
+    class: Club\LayoutBundle\Twig\DateExtension
+    arguments: [@doctrine.orm.entity_manager, @security.context, @session]
+    tags:
+      - { name: twig.extension }
