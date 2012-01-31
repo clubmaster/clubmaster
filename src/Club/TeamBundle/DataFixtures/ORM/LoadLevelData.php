@@ -3,10 +3,11 @@
 namespace Club\TeamBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadLevelData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $payment = new \Club\TeamBundle\Entity\Level();
     $payment->setLevelName('Easy');

@@ -3,10 +3,11 @@
 namespace Club\ShopBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadShippingData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $shipping = new \Club\ShopBundle\Entity\Shipping();
     $shipping->setShippingName('Free shipping');

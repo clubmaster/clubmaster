@@ -3,10 +3,11 @@
 namespace Club\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadLanguageData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $language = new \Club\UserBundle\Entity\Language();
     $language->setName('English');

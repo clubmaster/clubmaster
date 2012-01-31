@@ -3,10 +3,11 @@
 namespace Club\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadCurrencyData implements FixtureInterface
 {
-  public function load($manager)
+  public function load(ObjectManager $manager)
   {
     $currency = new \Club\UserBundle\Entity\Currency();
     $currency->setCurrencyName('US Dollar');
