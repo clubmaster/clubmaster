@@ -30,6 +30,7 @@ class AdminBlogController extends Controller
   public function newAction()
   {
     $blog = new \Club\WelcomeBundle\Entity\Blog();
+    $blog->setUser($this->get('security.context')->getToken()->getUser());
 
     $res = $this->process($blog);
 

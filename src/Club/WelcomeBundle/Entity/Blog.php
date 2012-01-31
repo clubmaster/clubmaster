@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Club\WelcomeBundle\Entity\BlogRepository")
+ * @ORM\HasLifeCycleCallbacks()
  */
 class Blog
 {
@@ -160,10 +161,27 @@ class Blog
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
     }
 }

@@ -7,6 +7,7 @@ change password
 add news blog on welcome page
 
 == NOTES TO LATER ==
+make sure either create or updated always comes first
 add display username
 make sure widgets works:
   - datetime
