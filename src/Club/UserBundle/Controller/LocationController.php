@@ -39,6 +39,11 @@ class LocationController extends Controller
     $em->persist($user);
     $em->flush();
 
-    return $this->redirect($this->generateUrl('homepage'));
+    $url = ($this->get('session')->get('switch_location'))
+      ? $this->get('session')->get('switch_location')
+      : $this->generateUrl('homepage');
+
+    $this->get('session')->set('switch_location', null);
+    return $this->redirect($url);
   }
 }

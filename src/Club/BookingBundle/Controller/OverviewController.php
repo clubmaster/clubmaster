@@ -43,11 +43,14 @@ class OverviewController extends Controller
      $nav = $this->getNav();
      $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
      $fields = $em->getRepository('ClubBookingBundle:Field')->getFieldsBooking($location, $date);
-     $data = $em->getRepository('ClubBookingBundle:Field')->getDayData($location, $date);
-     $period = $this->get('club_booking.interval')->getTimePeriod($data['start_time'], $data['end_time'], new \DateInterval('PT60M'));
+
+     if (!count($fields)) {
+       $this->get('session')->setFlash('error', $this->get('translator')->trans('There are no fields in this location, choose another location.'));
+       $this->get('session')->set('switch_location', $this->generateUrl('club_booking_overview_index'));
+       return $this->redirect($this->generateUrl('club_user_location_index'));
+     }
 
      return array(
-       'period' => $period,
        'fields' => $fields,
        'date' => $date,
        'nav' => $nav,

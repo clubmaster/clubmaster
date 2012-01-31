@@ -86,6 +86,10 @@
                 <source>Booking has been cancelled</source>
                 <target>Booking er blevet annulleret</target>
             </trans-unit>
+            <trans-unit id="22">
+                <source>There are no fields in this location, choose another location.</source>
+                <target>Der er ingen baner på denne lokation, vælg en anden lokation.</target>
+            </trans-unit>
 
         </body>
     </file>
