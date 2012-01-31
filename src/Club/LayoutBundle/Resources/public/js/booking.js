@@ -37,35 +37,38 @@ function makeIntervalUrl(interval, date, url)
   return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
-function makeBookedUrl(interval,url)
+function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
 {
-  var top=$('div#interval_'+interval.id).css('top');
-  var left=$('div#interval_'+interval.id).css('left');
-  var width=$('div#interval_'+interval.id).css('width');
-  var height=$('div#interval_'+interval.id).css('height');
+  var start=new Date(booking.start_date);
+  var end=new Date(booking.stop_date);
+  var diff=(end-start)/1000/60;
+  var day_diff=(start-day_start)/1000/60;
+
+  console.log('GRRR: '+pixel_size);
+
+  var width=((diff*pixel_size)-1)+'px';
+  var left=(day_diff*pixel_size)+'px';
+  var height=(field_height-6)+'px';
+  var top=$("#field_"+booking.field_id).css('top');
 
   console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
-  if (interval.booking) {
-    var date = new Date(interval.booking.date);
+  if (booking) {
+    var date = new Date(booking.start_date);
 
-    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+interval.booking.user.first_name+' '+interval.booking.user.last_name+'</div>';
+    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+booking.id+'\'">&#160;'+booking.user.first_name+' '+booking.user.last_name+'</div>';
   } else {
-    var date = new Date(interval.start_time);
+    var date = new Date(terval.start_time);
 
     return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+interval.schedule.team_name+'</div>';
   }
 }
 
-function initBookings(location, date, url)
+function initBookings(location, date, url, pixel_size, field_height, day_start)
 {
   $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
     $.each(json.data, function() {
-      if (this.booking) {
-        console.log("Found booking, id: "+this.booking.id+", interval id: "+this.id);
-      } else {
-        console.log("Found team, id: "+this.schedule.id+", interval id: "+this.id);
-      }
-      $("#intervals").append(makeBookedUrl(this,url));
+      console.log("Found booking, id: "+this.id);
+      $("#intervals").append(makeBookedUrl(this, url, pixel_size, field_height, day_start));
     });
   });
 }
@@ -102,7 +105,7 @@ function initTable(location, date, url, hour_width, field_height)
     $.each(json.data.fields, function() {
       fields++;
 
-      $("#fields").append('<div class="field" style="top: '+top+'px; height: '+field_height+'px;">&#160;'+this.name+'</div>');
+      $("#fields").append('<div id="field_'+this.id+'" class="field" style="top: '+top+'px; height: '+field_height+'px;">&#160;'+this.name+'</div>');
       console.log("Found field, id: "+this.id+", name: "+this.name+", top: "+top);
 
       // parse intervals
@@ -111,10 +114,11 @@ function initTable(location, date, url, hour_width, field_height)
         var end=new Date(this.end_time);
         var diff=(end-start)/1000/60;
         var day_diff=(start-day_start)/1000/60;
-        console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
 
+        console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
         console.log('start: '+start.getTime());
         console.log('curr:  '+current_time.getTime());
+
         if (start.getTime() < current_time.getTime() && (start.getHours() == current_time.getHours() || start.getHours() < current_time.getHours())) {
           start_position = day_diff*pixel_size*-1;
         }
@@ -167,7 +171,7 @@ function initTable(location, date, url, hour_width, field_height)
     $('#preloader').hide();
     $('#booking').show();
 
-    initBookings(location, date, url);
+    initBookings(location, date, url, pixel_size, field_height, day_start);
   });
 }
 

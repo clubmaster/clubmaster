@@ -87,13 +87,9 @@ class BookingController extends Controller
 
     $res = array();
     foreach ($bookings as $booking) {
-
-      /*
-      $booking->getInterval()->setBooking($booking);
-      $booking->getInterval()->setDate($date);
-      $res[] = $booking->getInterval()->toArray();
-       */
+      $res[] = $booking->toArray();
     }
+    /*
     foreach ($schedules as $schedule) {
       foreach ($schedule->getFields() as $field) {
         $intervals = $em->getRepository('ClubBookingBundle:Interval')->getAll($schedule->getFirstDate(), $schedule->getEndDate(), $field);
@@ -104,6 +100,7 @@ class BookingController extends Controller
         }
       }
     }
+     */
 
     $response = new Response($this->get('club_api.encode')->encode($res));
 
