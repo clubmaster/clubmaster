@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\WelcomeBundle\Entity\Blog
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_welcome_blog")
  * @ORM\Entity(repositoryClass="Club\WelcomeBundle\Entity\BlogRepository")
  * @ORM\HasLifeCycleCallbacks()
  */

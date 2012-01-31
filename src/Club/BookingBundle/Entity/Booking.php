@@ -8,9 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Club\BookingBundle\Entity\Booking
  *
- * @ORM\Table(name="club_booking_booking",
- *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"date", "interval_id"})}
- * )
+ * @ORM\Table(name="club_booking_booking")
  * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\BookingRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -261,7 +259,7 @@ class Booking
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set start_date
      *
@@ -275,7 +273,7 @@ class Booking
     /**
      * Get start_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getStartDate()
     {
@@ -295,7 +293,7 @@ class Booking
     /**
      * Get stop_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getStopDate()
     {
