@@ -38,7 +38,7 @@
         {% else %}<span class="label label-01">{{ log.severity }}</span>{% endif %}
       </td>
       <td>{{ log.log }}</td>
-      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_log_log_show', {'id':log.id}) } %}
       </td>

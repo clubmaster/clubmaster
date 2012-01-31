@@ -2,8 +2,8 @@
   <legend>{% trans %}Booking Information{% endtrans %}</legend>
   <div class="list">
     <p><label>{% trans %}Location{% endtrans %}</label>{{ interval.field.location.locationName }}</p>
-    <p><label>{% trans %}Date{% endtrans %}</label>{{ date|date('Y-m-d') }}</p>
-    <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
+    <p><label>{% trans %}Date{% endtrans %}</label>{{ date|club_date }}</p>
+    <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ interval.field.name }}</p>
 
     {% if interval.booking %}

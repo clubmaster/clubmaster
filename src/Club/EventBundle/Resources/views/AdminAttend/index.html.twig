@@ -24,7 +24,7 @@
       <td>{{ event.eventName }}</td>
       <td>{{ attend.user.profile.name }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':attend.paid} %}</td>
-      <td>{{ attend.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ attend.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_attend_delete', {'id':attend.id})} %}
         {% if attend.paid %}

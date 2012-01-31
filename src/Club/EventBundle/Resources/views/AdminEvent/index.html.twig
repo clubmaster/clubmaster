@@ -17,8 +17,8 @@
             <ul class="nostyle">
               <li>
                 <strong>{{ event.eventName }}</strong><br />
-                {% trans with {'%date%':event.startDate|date('Y-m-d H:i')} %}Start date: %date%{% endtrans %}<br />
-                {% trans with {'%date%':event.stopDate|date('Y-m-d H:i')} %}Stop date: %date%{% endtrans %}<br />
+                {% trans with {'%date%':event.startDate|club_datetime} %}Start date: %date%{% endtrans %}<br />
+                {% trans with {'%date%':event.stopDate|club_datetime} %}Stop date: %date%{% endtrans %}<br />
                 {% if event.maxAttends == 0 %}
                 {% trans with {'%attends%':event.attends|length} %}Attends: %attends% / No limit{% endtrans %}<br />
                 {% else %}

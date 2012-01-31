@@ -23,10 +23,10 @@
   {% for schedule in schedules %}
     <tr>
       <td>{{ schedule.team.teamName }}</td>
-      <td>{{ schedule.firstDate|date('Y-m-d H:i') }}</td>
-      <td>{{ schedule.endDate|date('Y-m-d H:i') }}</td>
+      <td>{{ schedule.firstDate|club_datetime }}</td>
+      <td>{{ schedule.endDate|club_datetime }}</td>
       <td>{{ schedule.level.levelName }}</td>
-      <td>{{ schedule.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ schedule.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminschedule_edit', { 'id':schedule.id,'team_id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_delete', { 'id':schedule.id,'team_id':team.id })} %}

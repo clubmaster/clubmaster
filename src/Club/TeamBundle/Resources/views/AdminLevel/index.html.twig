@@ -20,7 +20,7 @@
   {% for level in levels %}
     <tr>
       <td>{{ level.levelName }}</td>
-      <td>{{ level.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ level.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminlevel_edit', { 'id':level.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminlevel_delete', { 'id':level.id })} %}

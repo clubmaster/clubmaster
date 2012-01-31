@@ -23,8 +23,8 @@
     <tr>
       <td>{{ special.product }}</td>
       <td>{{ special.price }}</td>
-      <td>{{ special.startDate|date('Y-m-d H:i:s') }}</td>
-      <td>{{ special.expireDate|date('Y-m-d H:i:s') }}</td>
+      <td>{{ special.startDate|club_datetime }}</td>
+      <td>{{ special.expireDate|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_shop_adminspecial_edit', { 'id':special.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_shop_adminspecial_delete', { 'id':special.id })} %}

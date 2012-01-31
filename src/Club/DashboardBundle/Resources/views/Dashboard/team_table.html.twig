@@ -17,8 +17,8 @@
   {% for schedule in schedules %}
     <tr>
       <td>{{ schedule.team.teamName }}</td>
-      <td>{{ schedule.firstDate|date('Y-m-d') }}</td>
-      <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
+      <td>{{ schedule.firstDate|club_date }}</td>
+      <td>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</td>
     </tr>
   {% else %}
   <tr>

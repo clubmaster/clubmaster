@@ -22,7 +22,7 @@
       <td>{{ log.username }}</td>
       <td>{{ log.ipAddress }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':log.loginFailed} %}</td>
-      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
   <tr>

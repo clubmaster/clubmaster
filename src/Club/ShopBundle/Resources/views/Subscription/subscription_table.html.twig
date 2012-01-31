@@ -22,11 +22,11 @@
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.active} %}</td>
       <td>{{ subscription.type|capitalize }}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
-      <td>{{ subscription.startDate|date('Y-m-d H:i') }}</td>
+      <td>{{ subscription.startDate|club_datetime }}</td>
       {% if subscription.expireDate == '' %}
       <td>Never</td>
       {% else %}
-      <td>{{ subscription.expireDate|date('Y-m-d H:i') }}</td>
+      <td>{{ subscription.expireDate|club_datetime }}</td>
       {% endif %}
       <td>
         {% include "ClubLayoutBundle:Default:expire_link.html.twig" with {'url':path('club_shop_subscription_expire', {'id':subscription.id})} %}

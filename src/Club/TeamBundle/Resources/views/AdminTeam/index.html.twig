@@ -20,7 +20,7 @@
   {% for team in teams %}
     <tr>
       <td>{{ team.teamName }}</td>
-      <td>{{ team.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ team.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id })} %}

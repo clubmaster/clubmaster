@@ -1,4 +1,5 @@
 == BOOKING BUNDLE ==
+remove price from events
 enable and disable teams
 enable and disable bookings
 enable and disable events
@@ -7,7 +8,6 @@ make it more clear which location we are on, booking page
 on visit shop with no categories, view shops with products
 on visit to booking with no fields, view locations with fields
 change password
-rewrite date formatter object to intl extension
 add news blog on welcome page
 
 == NOTES TO LATER ==

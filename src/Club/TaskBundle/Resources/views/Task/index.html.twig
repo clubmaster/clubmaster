@@ -29,9 +29,9 @@
       {% if task.lastRunAt == '' %}
       <td>Never</td>
       {% else %}
-      <td>{{ task.lastRunAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ task.lastRunAt|club_datetime }}</td>
       {% endif %}
-      <td>{{ task.nextRunAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ task.nextRunAt|club_datetime }}</td>
       <td>{{ task.taskIntervalPretty }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_task_task_edit', {'id':task.id})} %}

@@ -37,7 +37,7 @@
         {% else %}<span class="label label-01">{{ log.severity }}</span>{% endif %}
       </td>
       <td>{{ log.log }}</td>
-      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
   <tr>

@@ -53,7 +53,7 @@ Country: {{ order.billingAddress.country }}</p>
   <tbody>
   {% for status in order.orderStatusHistory %}
     <tr>
-      <td>{{ status.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ status.createdAt|club_datetime }}</td>
       <td>{{ status.orderStatus.statusName }}</td>
       <td>{{ status.note }}</td>
   {% endfor %}

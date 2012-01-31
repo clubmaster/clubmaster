@@ -21,7 +21,7 @@
     <tr>
       <td>{{ coupon.coupon.couponKey }}</td>
       <td>{{ coupon.user.profile.name }}</td>
-      <td>{{ coupon.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ coupon.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
   <tr>

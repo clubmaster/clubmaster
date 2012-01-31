@@ -20,11 +20,11 @@
   {% for message in messages %}
     <tr>
       <td>{{ message.id }}</td>
-      <td>{{ message.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ message.createdAt|club_datetime }}</td>
       <td>{{ message.subject }}</td>
       <td>
         {% if message.sentAt %}
-        {{ message.sentAt|date('Y-m-d H:i:s') }}
+        {{ message.sentAt|club_datetime }}
         {% endif %}
       </td>
       <td>

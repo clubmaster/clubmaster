@@ -20,7 +20,7 @@
   {% for participant in participants %}
     <tr>
       <td>{{ participant.user.profile.name }}</td>
-      <td>{{ participant.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ participant.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
   <tr>

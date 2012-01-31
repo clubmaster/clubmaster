@@ -8,7 +8,7 @@
   <tbody>
     <tr>
       <th>Day bought:</th>
-      <td>{{ subscription.order.createdAt|date('Y-m-d H:i') }}</td>
+      <td>{{ subscription.order.createdAt|club_datetime }}</td>
     </tr>
     <tr>
       <th>Price:</th>
@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <th>Period:</th>
-      <td>{{ subscription.startDate|date('Y-m-d H:i') }} - {% if subscription.expireDate == '' %}Never{% else %}{{ subscription.expireDate|date('Y-m-d H:i') }}{% endif %}</td>
+      <td>{{ subscription.startDate|club_datetime }} - {% if subscription.expireDate == '' %}Never{% else %}{{ subscription.expireDate|club_datetime }}{% endif %}</td>
     </tr>
     <tr>
       <th>Auto renewal:</th>

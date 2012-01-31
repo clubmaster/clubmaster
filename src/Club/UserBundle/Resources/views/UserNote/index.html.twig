@@ -19,7 +19,7 @@
   <tbody>
   {% for user_note in user_notes %}
     <tr>
-      <td>{{ user_note.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ user_note.createdAt|club_datetime }}</td>
       <td>{{ user_note.note }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_note_edit', { 'id':user_note.id })} %}

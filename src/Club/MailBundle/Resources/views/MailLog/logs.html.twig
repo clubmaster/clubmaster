@@ -21,7 +21,7 @@
       <td>{{ log.id }}</td>
       <td>{{ log.recipient }}</td>
       <td>{{ log.error }}</td>
-      <td>{{ log.createdAt|date('Y-m-d H:i:s') }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_mail_maillog_show', {'id':log.id}) } %}
       </td>

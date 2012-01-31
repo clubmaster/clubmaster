@@ -13,7 +13,7 @@ City:    {{ order.customerAddress.postalCode }} {{ order.customerAddress.city }}
 Country: {{ order.customerAddress.country }}
 
 Order number: {{ order.orderNumber }}
-Order date: {{ order.createdAt|date('Y-m-d H:i:s') }}
+Order date: {{ order.createdAt|club_datetime }}
 
 -------------------------------
 Products

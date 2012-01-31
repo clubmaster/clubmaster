@@ -11,14 +11,14 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ subscription.createdAt|date('Y-m-d H:i') }}</td>
+      <td>{{ subscription.createdAt|club_datetime }}</td>
       <td>-</td>
       <td>{{ tickets_left }}</td>
     </tr>
     {% for log in subscription.subscriptionTicket %}
     {% set tickets_left = tickets_left-log.tickets %}
     <tr>
-      <td>{{ log.createdAt|date('Y-m-d H:i') }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
       <td>{{ log.tickets }}</td>
       <td>{{ tickets_left }}</td>
     </tr>

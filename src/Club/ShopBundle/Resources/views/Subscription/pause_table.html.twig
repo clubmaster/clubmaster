@@ -11,15 +11,15 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ subscription.createdAt|date('Y-m-d H:i') }}</td>
-      <td>{{ subscription.createdAt|date('Y-m-d H:i') }}</td>
+      <td>{{ subscription.createdAt|club_datetime }}</td>
+      <td>{{ subscription.createdAt|club_datetime }}</td>
       <td>{{ pause_left }}</td>
     </tr>
     {% for log in subscription.subscriptionPauses %}
     {% set pause_left = pause_left-1 %}
     <tr>
-      <td>{{ log.startDate|date('Y-m-d H:i') }}</td>
-      <td>{% if log.expireDate == '' %}-{% else %}{{ log.expireDate|date('Y-m-d H:i') }}{% endif %}</td>
+      <td>{{ log.startDate|club_datetime }}</td>
+      <td>{% if log.expireDate == '' %}-{% else %}{{ log.expireDate|club_datetime }}{% endif %}</td>
       <td>{{ pause_left }}</td>
     </tr>
     {% endfor %}
