@@ -4,6 +4,7 @@ enable and disable bookings
 enable and disable events
 dont bind bookings to interval, make them as schedules
 change password
+improve design on welcome blog page
 
 == NOTES TO LATER ==
 make sure either create or updated always comes first
