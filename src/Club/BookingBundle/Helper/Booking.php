@@ -80,6 +80,7 @@ class Booking
     if (!$this->container->getParameter('club_booking.enable_guest'))
       $this->setError('Guest booking is not enabled');
 
+    /*
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
@@ -111,6 +112,7 @@ class Booking
       $this->setError('You cannot have more guest bookings');
       return;
     }
+     */
 
     $this->bind();
   }

@@ -69,7 +69,8 @@ class BookingController extends Controller
 
      $ret = array(
        'guest' => $guest,
-       'booking' => $this->get('club_booking.booking')->getBooking()
+       'booking' => $this->get('club_booking.booking')->getBooking(),
+       'interval' => $interval
      );
 
      if (isset($user))
@@ -97,7 +98,7 @@ class BookingController extends Controller
      }
 
      return $this->redirect($this->generateUrl('club_booking_overview_index', array(
-       'date' => $this->get('club_booking.booking')->getBooking()->getDate()->format('Y-m-d')
+       'date' => $this->get('club_booking.booking')->getBooking()->getStartDate()->format('Y-m-d')
      )));
    }
 

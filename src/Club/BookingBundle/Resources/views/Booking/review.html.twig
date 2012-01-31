@@ -6,10 +6,10 @@
 <fieldset>
   <legend>{% trans %}Booking Information{% endtrans %}</legend>
   <div class="list">
-    <p><label>{% trans %}Location{% endtrans %}</label>{{ booking.interval.field.location.locationName }}</p>
-    <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.date|club_date }}</p>
-    <p><label>{% trans %}Time{% endtrans %}</label>{{ booking.interval.startTime|club_time }} - {{ booking.interval.stopTime|club_time }}</p>
-    <p><label>{% trans %}Field{% endtrans %}</label>{{ booking.interval.field.name }}</p>
+    <p><label>{% trans %}Location{% endtrans %}</label>{{ interval.field.location.locationName }}</p>
+    <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.startDate|club_date('long') }}</p>
+    <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</p>
+    <p><label>{% trans %}Field{% endtrans %}</label>{{ interval.field.name }}</p>
     <p><label>{% trans %}Booker{% endtrans %}</label>{{ booking.user.name }}</p>
     {% if booking.guest %}
     <p><label>{% trans %}Partner{% endtrans %}</label>Guest</p>
@@ -21,9 +21,9 @@
       </p>
     {% endif %}
 
-    {% if booking.interval.field.information %}
+    {% if interval.field.information %}
     <h3>{% trans %}Information{% endtrans %}</h3>
-    <p>{{ booking.interval.field.information }}</p>
+    <p>{{ interval.field.information }}</p>
     {% endif %}
   </div>
 </fieldset>
