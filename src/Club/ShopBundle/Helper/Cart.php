@@ -39,7 +39,7 @@ class Cart
         $location = $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'));
         $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$location);
         $this->cart->setCurrency($currency);
-        $this->cart->setCurrencyValue($currency->getValue());
+        $this->cart->setCurrencyValue(1);
         $this->cart->setPrice(0);
         $this->cart->setLocation($location);
         $this->setUser();

@@ -1,27 +1,26 @@
 <?php
 
-namespace Club\UserBundle\Form;
+namespace Club\WelcomeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class Currency extends AbstractType
+class Welcome extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('currency_name');
-    $builder->add('code');
+    $builder->add('content');
   }
 
   public function getDefaultOptions(array $options)
   {
     return array(
-      'data_class' => 'Club\UserBundle\Entity\Currency'
+      'data_class' => 'Club\WelcomeBundle\Entity\Welcome'
     );
   }
 
   public function getName()
   {
-    return 'currency';
+    return 'welcome';
   }
 }

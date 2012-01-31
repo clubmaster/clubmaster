@@ -38,6 +38,55 @@
                 <source>Day</source>
                 <target>Dag</target>
             </trans-unit>
+            <trans-unit id="10">
+                <source>Booking Information</source>
+                <target>Booking Information</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Find your partner and complete your booking.</source>
+                <target>Find din makker og gennemfør din booking.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Partner</source>
+                <target>Makker</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Guest Booking</source>
+                <target>Gæste Booking</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Click here if you want to book with a guest.</source>
+                <target>Klik her hvis du vil booke med en gæst.</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Booker</source>
+                <target>Booker</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Confirm</source>
+                <target>Bekræft</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Click here to confirm your booking.</source>
+                <target>Klik her for at bekræfte din booking.</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Your booking has been created</source>
+                <target>Din booking er blevet oprettet</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Click here to cancel your booking.</source>
+                <target>Klik her for at annullere din booking.</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Cancel</source>
+                <target>Annuller</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Booking has been cancelled</source>
+                <target>Booking er blevet annulleret</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

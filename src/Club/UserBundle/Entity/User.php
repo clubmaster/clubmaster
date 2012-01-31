@@ -221,10 +221,12 @@ class User implements AdvancedUserInterface
      */
     public function setPassword($password)
     {
-      $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
-      $password = $encoder->encodePassword($password,$this->getSalt());
+      if ($password != null) {
+        $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
+        $password = $encoder->encodePassword($password,$this->getSalt());
 
-      $this->password = $password;
+        $this->password = $password;
+      }
     }
 
     /**

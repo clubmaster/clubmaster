@@ -1,35 +1,33 @@
-translation of booking bundle
-add better index page
+add tiny mce in editor windows
 
 == NOTES TO LATER ==
-make sure that not 2 intervals can be valid at the same time
+add display username
+change password
+rewrite date formatter object to intl extension
+add news blog on welcome page
+make sure widgets works:
+  - datetime
+  - date
+  - time
+add address on club to api
 login through booking page
+login through team attend page
 jquery overlay form on booking
 implement payment for booking
-change time comparence to object compare instead of timestamp
-use validators in coupon
-bind coupon to specific product
+make sure that not 2 intervals can be valid at the same time
 fix num_team_day
 find a smart way to get default location, might be with the url
 add booking plans
   - maintenance
   - cleaning
   - tournament
-login through team attend page
+use validators in coupon
+bind coupon to specific product
 move all login pages to /user
 not 2 schedules can have the same interval
 what will happen if interval access multiple days
 dynamic number of partners for a booking
 booking module should work without partners too
-add display username
-add address on club to api
-remove API KEY from BookingBundle/Resources/views/Overview/view.html.twig
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 what happens if you put schema on already booked interval
 booking admins should be able to deleted planned schedules too
-make sure widgets works:
-  - datetime
-  - date
-  - time
-rewrite currency code to intl extension
-rewrite date formatter object to intl extension

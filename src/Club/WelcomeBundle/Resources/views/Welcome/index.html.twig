@@ -2,4 +2,9 @@
 
 {% block body %}
 <p>Welcome to ClubMaster</p>
+
+{% if welcome.content is defined %}
+{{ welcome.content|raw }}
+{% endif %}
+
 {% endblock %}

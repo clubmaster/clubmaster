@@ -1,17 +1,17 @@
 <fieldset>
-  <legend>Booking Information</legend>
+  <legend>{% trans %}Booking Information{% endtrans %}</legend>
   <div class="list">
-    <p><label>Location</label>{{ interval.field.location.locationName }}</p>
-    <p><label>Date</label>{{ date|date('Y-m-d') }}</p>
-    <p><label>Time</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
-    <p><label>Field</label>{{ interval.field.name }}</p>
+    <p><label>{% trans %}Location{% endtrans %}</label>{{ interval.field.location.locationName }}</p>
+    <p><label>{% trans %}Date{% endtrans %}</label>{{ date|date('Y-m-d') }}</p>
+    <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|date('H:i') }} - {{ interval.stopTime|date('H:i') }}</p>
+    <p><label>{% trans %}Field{% endtrans %}</label>{{ interval.field.name }}</p>
 
     {% if interval.booking %}
-      <p><label>Booker</label>{{ interval.booking.user.name }}</p>
+      <p><label>{% trans %}Booker{% endtrans %}</label>{{ interval.booking.user.name }}</p>
       {% if interval.booking.guest %}
-      <p><label>Partner</label>Guest</p>
+      <p><label>{% trans %}Partner{% endtrans %}</label>Guest</p>
       {% else %}
-      <p><label>Partner</label>
+      <p><label>{% trans %}Partner{% endtrans %}</label>
       {% for partner in interval.booking.users %}
         {{ partner.name }}
       {% endfor %}
@@ -19,12 +19,12 @@
       {% endif %}
 
     {% elseif interval.schedule %}
-      <p><label>Team</label>{{ interval.schedule.team.teamName }}</p>
+      <p><label>{% trans %}Team{% endtrans %}</label>{{ interval.schedule.team.teamName }}</p>
 
     {% endif %}
 
     {% if interval.field.information %}
-      <h3>Information</h3>
+      <h3>{% trans %}Information{% endtrans %}</h3>
       <p>{{ interval.field.information }}</p>
     {% endif %}
   </div>

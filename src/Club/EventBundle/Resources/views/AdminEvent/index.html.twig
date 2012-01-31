@@ -24,7 +24,7 @@
                 {% else %}
                 {% trans with {'%attends%':event.attends|length,'%limit%':event.maxAttends} %}Attends: %attends% / %limit%{% endtrans %}<br />
                 {% endif %}
-                {% trans with {'%price%':event.price|price} %}Price: %price%{% endtrans %}<br />
+                {% trans with {'%price%':event.price|club_price} %}Price: %price%{% endtrans %}<br />
 
                 {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %} {% trans %}Edit{% endtrans %}&#160;
                 {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %} {% trans %}Delete{% endtrans %}&#160;

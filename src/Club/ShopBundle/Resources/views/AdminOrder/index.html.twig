@@ -27,7 +27,7 @@
     <tr>
       <td>{{ order.orderNumber }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
-      <td>{{ order.price|price }}</td>
+      <td>{{ order.price|club_price }}</td>
       <td>{{ order.orderStatus.statusName }}</td>
       <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
       <td>{{ order.updatedAt|date('Y-m-d H:i:s') }}</td>
