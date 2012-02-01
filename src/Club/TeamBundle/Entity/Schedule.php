@@ -431,6 +431,7 @@ class Schedule
     {
       $res = array(
         'id' => $this->getId(),
+        'type' => 'team',
         'team_name' => $this->getTeam()->getTeamName(),
         'description' => $this->getDescription(),
         'level' => $this->getLevel()->getLevelName(),

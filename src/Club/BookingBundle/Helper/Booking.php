@@ -80,11 +80,10 @@ class Booking
     if (!$this->container->getParameter('club_booking.enable_guest'))
       $this->setError('Guest booking is not enabled');
 
-    /*
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date = CURRENT_DATE()')
+      ->where('b.start_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $this->user->getId())
@@ -100,7 +99,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date >= CURRENT_DATE()')
+      ->where('b.start_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $this->user->getId())
@@ -112,7 +111,6 @@ class Booking
       $this->setError('You cannot have more guest bookings');
       return;
     }
-     */
 
     $this->bind();
   }
@@ -124,7 +122,6 @@ class Booking
     $this->user = $user;
     $this->partner = $partner;
 
-    /*
     $this->validate();
     if (!$this->isValid())
       return;
@@ -136,7 +133,7 @@ class Booking
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.date = CURRENT_DATE()')
+      ->where('b.start_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('u.id = :partner')
       ->andWhere('b.guest = :is_guest')
@@ -155,7 +152,7 @@ class Booking
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.date >= CURRENT_DATE()')
+      ->where('b.start_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('u.id = :partner')
       ->andWhere('b.guest = :is_guest')
@@ -169,7 +166,6 @@ class Booking
       $this->setError('You cannot have more bookings with this partner');
       return;
     }
-     */
 
     $this->bind();
   }
@@ -235,7 +231,11 @@ class Booking
 
   protected function validate()
   {
-    return;
+    if ($this->date->format('N') != $this->interval->getDay()) {
+      $this->setError('Interval does not exists that day');
+      return;
+    }
+
     $c = clone $this->date;
     $c->setTime(
       $this->interval->getStartTime()->format('H'),
@@ -258,7 +258,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date = CURRENT_DATE()')
+      ->where('b.start_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->setParameter('user', $this->user->getId())
       ->getQuery()
@@ -272,7 +272,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.date >= CURRENT_DATE()')
+      ->where('b.start_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->setParameter('user', $this->user->getId())
       ->getQuery()
