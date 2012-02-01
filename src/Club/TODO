@@ -1,7 +1,3 @@
-== BOOKING BUNDLE ==
-cannot view booked booking
-cannot view schedule
-
 == NOTES TO LATER ==
 change all equal form.html.twig to layout default
 enable and disable teams
