@@ -1,5 +1,9 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
+{% block javascripts %}
+  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
+{% endblock %}
+
 {% block body %}
 
 <form method="post" action="{{ path('club_welcome_adminblog_new') }}">
