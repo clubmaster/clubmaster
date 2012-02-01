@@ -96,11 +96,16 @@ div#booking div.past:hover
 div#booking div.booking
 {
   position: absolute;
-  background-color: #cb7c7c;
+  background-color: #db9696;
   font-size: 11px;
   border: dotted 1px #aeaeae;
   padding: 5px 0px 0px 0px;
   z-index: 30;
+}
+
+div#booking div.booking:hover
+{
+  background-color: #cb7c7c;
 }
 
 div#booking div.time
