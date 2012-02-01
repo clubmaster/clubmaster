@@ -8,8 +8,8 @@
 {% endif %}
 
 {% for post in posts %}
-<h3>{{ post.title }}</h3>
-<p>{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name} %}Posted on %date% by %author%.{% endtrans %}</p>
+<h3 class="tit">{{ post.title }}</h3>
+<p><span class="label label-02">{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
 <p>{{ post.message|raw }}</p>
 {% endfor %}
 
