@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>{% trans %}Booking Information{% endtrans %}</legend>
+  <div class="list">
+    <p><label>{% trans %}Location{% endtrans %}</label>{{ booking.field.location.locationName }}</p>
+    <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.firstDate|club_date }}</p>
+    <p><label>{% trans %}Time{% endtrans %}</label>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</p>
+    <p><label>{% trans %}Field{% endtrans %}</label>{{ booking.field.name }}</p>
+
+    <p><label>{% trans %}Booker{% endtrans %}</label>{{ booking.user.name }}</p>
+    {% if booking.guest %}
+    <p><label>{% trans %}Partner{% endtrans %}</label>Guest</p>
+    {% else %}
+    <p><label>{% trans %}Partner{% endtrans %}</label>
+    {% for partner in booking.users %}
+      {{ partner.name }}
+    {% endfor %}
+    </p>
+    {% endif %}
+
+    {% if booking.field.information %}
+      <h3>{% trans %}Information{% endtrans %}</h3>
+      <p>{{ booking.field.information }}</p>
+    {% endif %}
+  </div>
+</fieldset>
+

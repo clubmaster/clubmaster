@@ -54,7 +54,7 @@ function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
   if (booking.type == 'booking') {
     var top=$("#field_"+booking.field_id).css('top');
 
-    ret='<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+booking.id+'\'">&#160;'+booking.user.first_name+' '+booking.user.last_name+'</div>';
+    ret='<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/book/view/'+booking.id+'\'">&#160;'+booking.user.first_name+' '+booking.user.last_name+'</div>';
   } else if (booking.type == 'team') {
     $.each(booking.fields, function() {
       var top=$("#field_"+this.id).css('top');

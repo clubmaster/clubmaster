@@ -104,6 +104,20 @@ class BookingController extends Controller
 
    /**
     * @Template()
+    * @Route("/booking/book/view/{id}")
+    */
+   public function viewAction($id)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+     $booking = $em->find('ClubBookingBundle:Booking', $id);
+
+     return array(
+      'booking' => $booking
+    );
+   }
+
+   /**
+    * @Template()
     * @Route("/booking/book/cancel/{id}")
     */
    public function cancelAction($id)
@@ -120,6 +134,6 @@ class BookingController extends Controller
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
      }
 
-     return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $booking->getDate()->format('Y-m-d'))));
+     return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $booking->getFirstDate()->format('Y-m-d'))));
    }
 }
