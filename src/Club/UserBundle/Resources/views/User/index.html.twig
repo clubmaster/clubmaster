@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('user', {'id':user.id}) }}">
+<form method="post" action="{{ path('user') }}">
 {% include "ClubUserBundle:User:form.html.twig" with {'form': form} %}
 </form>
 
