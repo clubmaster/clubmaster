@@ -104,9 +104,9 @@ class BookingController extends Controller
 
    /**
     * @Template()
-    * @Route("/booking/book/view/{id}")
+    * @Route("/booking/view/booking/{id}")
     */
-   public function viewAction($id)
+   public function viewBookingAction($id)
    {
      $em = $this->getDoctrine()->getEntityManager();
      $booking = $em->find('ClubBookingBundle:Booking', $id);
@@ -114,6 +114,22 @@ class BookingController extends Controller
      return array(
       'booking' => $booking
     );
+   }
+
+   /**
+    * @Template()
+    * @Route("/booking/view/team/{id}/{field_id}")
+    */
+   public function viewTeamAction($id, $field_id)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+     $field = $em->find('ClubBookingBundle:Field', $field_id);
+
+     return array(
+       'schedule' => $schedule,
+       'field' => $field
+     );
    }
 
    /**

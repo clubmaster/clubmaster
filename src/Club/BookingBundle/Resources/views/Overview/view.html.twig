@@ -5,9 +5,6 @@
 
 {% include "ClubBookingBundle:Overview:information.html.twig" %}
 
-{% if interval.booking and (is_granted('ROLE_BOOKING_ADMIN') or interval.booking.user == app.user) %}
-  {% include "ClubBookingBundle:Overview:cancel_form.html.twig" %}
-
 {% elseif (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available %}
   {% include "ClubBookingBundle:Overview:book_form.html.twig" %}
 
