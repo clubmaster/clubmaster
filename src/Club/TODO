@@ -1,12 +1,15 @@
 == BOOKING BUNDLE ==
+change password
+improve design on welcome blog page
+improve design for change password
+check up on bookings
+what does id make in user route
+
+== NOTES TO LATER ==
+change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings
 enable and disable events
-dont bind bookings to interval, make them as schedules
-change password
-improve design on welcome blog page
-
-== NOTES TO LATER ==
 make sure either create or updated always comes first
 add display username
 make sure widgets works:
