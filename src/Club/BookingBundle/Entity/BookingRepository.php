@@ -12,33 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookingRepository extends EntityRepository
 {
-  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\User $user=null, \Club\UserBundle\Entity\Location $location=null, \Club\BookingBundle\Entity\Field $field=null)
+  public function getAllBetween(\DateTime $start, \DateTime $end, \Club\BookingBundle\Entity\Field $field)
   {
-    // this is not working
-    $qb = $this->_em->createQueryBuilder()
+    return $this->_em->createQueryBuilder()
       ->select('b')
-      ->from('ClubTeamBundle:Schedule','s')
-      ->where('s.first_date >= :start')
-      ->andWhere('s.first_date < :end')
-      ->orderBy('s.first_date')
+      ->from('ClubBookingBundle:Booking','b')
+      ->where('b.start_date >= :start')
+      ->andWhere('b.start_date < :end')
+      ->orderBy('b.start_date')
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
-      ->setParameter('end', $end->format('Y-m-d H:i:s'));
-
-    if (isset($user)) {
-      $qb
-        ->leftJoin('s.users', 'u')
-        ->andWhere('u.user = :user')
-        ->setParameter('user', $user->getId());
-    }
-
-    if (isset($field)) {
-      $qb
-        ->leftJoin('s.fields', 'f')
-        ->andWhere('f.id = :field')
-        ->setParameter('field', $field->getId());
-    }
-
-    return $qb
+      ->setParameter('end', $end->format('Y-m-d H:i:s'))
+      ->leftJoin('b.field', 'f')
+      ->andWhere('f.id = :field')
+      ->setParameter('field', $field->getId())
       ->getQuery()
       ->getResult();
   }

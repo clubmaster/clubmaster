@@ -26,14 +26,13 @@ class Interval
 
   public function getVirtualInterval(\Club\BookingBundle\Entity\Interval $interval, $date)
   {
-    // FIXME, get all bookings for interval
-    //$bookings = $this->em->getRepository('ClubBookingBundle:Booking'->getAllBetween();
-    //if ($booking) {
-      //$interval->setBooking($booking);
-    //}
-
     $start = new \DateTime($date->format('Y-m-d').' '.$interval->getStartTime()->format('H:i:s'));
     $end = new \DateTime($date->format('Y-m-d').' '.$interval->getStopTime()->format('H:i:s'));
+
+    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllBetween($start, $end, $interval->getField());
+    if ($bookings) {
+      $interval->setBooking($bookings[0]);
+    }
 
     $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $interval->getField()->getLocation(), $interval->getField());
     if ($schedules) {
