@@ -83,7 +83,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.start_date = CURRENT_DATE()')
+      ->where('b.first_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $this->user->getId())
@@ -99,7 +99,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.start_date >= CURRENT_DATE()')
+      ->where('b.first_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $this->user->getId())
@@ -133,7 +133,7 @@ class Booking
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.start_date = CURRENT_DATE()')
+      ->where('b.first_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('u.id = :partner')
       ->andWhere('b.guest = :is_guest')
@@ -152,7 +152,7 @@ class Booking
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.start_date >= CURRENT_DATE()')
+      ->where('b.first_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->andWhere('u.id = :partner')
       ->andWhere('b.guest = :is_guest')
@@ -198,9 +198,9 @@ class Booking
 
     $this->booking = new \Club\BookingBundle\Entity\Booking();
     $this->booking->setUser($this->user);
-    $this->booking->setStartDate($start);
+    $this->booking->setFirstDate($start);
     $this->booking->setField($this->interval->getField());
-    $this->booking->setStopDate($stop);
+    $this->booking->setEndDate($stop);
     $this->booking->setGuest($this->guest);
 
     if ($this->partner)
@@ -258,7 +258,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.start_date = CURRENT_DATE()')
+      ->where('b.first_date = CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->setParameter('user', $this->user->getId())
       ->getQuery()
@@ -272,7 +272,7 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.start_date >= CURRENT_DATE()')
+      ->where('b.first_date >= CURRENT_DATE()')
       ->andWhere('b.user = :user')
       ->setParameter('user', $this->user->getId())
       ->getQuery()

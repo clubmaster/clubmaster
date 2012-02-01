@@ -24,18 +24,18 @@ class Booking
     protected $id;
 
     /**
-     * @var date $start_date
+     * @var date $first_date
      *
      * @ORM\Column(type="datetime")
      */
-    protected $start_date;
+    protected $first_date;
 
     /**
-     * @var date $stop_date
+     * @var date $end_date
      *
      * @ORM\Column(type="datetime")
      */
-    protected $stop_date;
+    protected $end_date;
 
     /**
      * @var boolean $guest
@@ -173,8 +173,8 @@ class Booking
         'field_id' => $this->getField()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
-        'start_date' => $this->getStartDate()->format('c'),
-        'stop_date' => $this->getStopDate()->format('c'),
+        'first_date' => $this->getStartDate()->format('c'),
+        'end_date' => $this->getStopDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
@@ -234,43 +234,43 @@ class Booking
     }
 
     /**
-     * Set start_date
+     * Set first_date
      *
-     * @param datetime $startDate
+     * @param datetime $firstDate
      */
-    public function setStartDate($startDate)
+    public function setStartDate($firstDate)
     {
-        $this->start_date = $startDate;
+        $this->first_date = $firstDate;
     }
 
     /**
-     * Get start_date
+     * Get first_date
      *
      * @return datetime
      */
     public function getStartDate()
     {
-        return $this->start_date;
+        return $this->first_date;
     }
 
     /**
-     * Set stop_date
+     * Set end_date
      *
-     * @param datetime $stopDate
+     * @param datetime $endDate
      */
-    public function setStopDate($stopDate)
+    public function setStopDate($endDate)
     {
-        $this->stop_date = $stopDate;
+        $this->end_date = $endDate;
     }
 
     /**
-     * Get stop_date
+     * Get end_date
      *
      * @return datetime
      */
     public function getStopDate()
     {
-        return $this->stop_date;
+        return $this->end_date;
     }
 
     /**

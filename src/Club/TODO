@@ -1,5 +1,6 @@
 == BOOKING BUNDLE ==
-check up on bookings
+cannot view booked booking
+cannot view schedule
 
 == NOTES TO LATER ==
 change all equal form.html.twig to layout default

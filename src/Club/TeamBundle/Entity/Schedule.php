@@ -18,7 +18,7 @@ class Schedule
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -27,7 +27,7 @@ class Schedule
     /**
      * @var text $description
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
     protected $description;
@@ -35,7 +35,7 @@ class Schedule
     /**
      * @var text $penalty
      *
-     * @ORM\Column(name="penalty", type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale="2")
      * @Assert\NotBlank()
      */
     protected $penalty;
@@ -43,7 +43,7 @@ class Schedule
     /**
      * @var text $max_attend
      *
-     * @ORM\Column(name="max_attend", type="integer")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     protected $max_attend;
@@ -51,35 +51,35 @@ class Schedule
     /**
      * @var datetime $first_date
      *
-     * @ORM\Column(name="first_date", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $first_date;
 
     /**
      * @var datetime $end_date
      *
-     * @ORM\Column(name="end_date", type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable="true")
      */
     protected $end_date;
 
     /**
      * @var datetime $processed
      *
-     * @ORM\Column(name="processed", type="boolean")
+     * @ORM\Column(type="boolean")
      */
     protected $processed;
 
     /**
      * @var datetime $created_at
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $updated_at;
 
