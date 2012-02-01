@@ -58,4 +58,8 @@ class BookingRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getIntervals(\Club\BookingBundle\Entity\Booking $booking)
+  {
+  }
 }

@@ -169,6 +169,7 @@ class Booking
     {
       $ret = array(
         'id' => $this->getId(),
+        'type' => 'booking',
         'field_id' => $this->getField()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
