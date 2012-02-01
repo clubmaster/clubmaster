@@ -1,4 +1,7 @@
 == NOTES TO LATER ==
+create initial welcome blog
+translate dashboard
+translate installer to danish
 when setting language in installer, it does not follow the user
 change all equal form.html.twig to layout default
 enable and disable teams
