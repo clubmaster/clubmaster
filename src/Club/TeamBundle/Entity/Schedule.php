@@ -439,7 +439,8 @@ class Schedule
         'end_date' => $this->getEndDate()->format('c'),
         'max_attend' => $this->getMaxAttend(),
         'users' => array(),
-        'instructors' => array()
+        'instructors' => array(),
+        'fields' => array()
       );
 
       foreach ($this->getUsers() as $user) {
@@ -447,6 +448,9 @@ class Schedule
       }
       foreach ($this->getInstructors() as $user) {
         $res['instructors'][] = $user->toArray('simple');
+      }
+      foreach ($this->getFields() as $field) {
+        $res['fields'][] = $field->toArray();
       }
 
       return $res;

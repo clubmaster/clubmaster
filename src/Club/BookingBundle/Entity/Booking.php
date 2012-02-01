@@ -173,8 +173,8 @@ class Booking
         'field_id' => $this->getField()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
-        'first_date' => $this->getStartDate()->format('c'),
-        'end_date' => $this->getStopDate()->format('c'),
+        'first_date' => $this->getFirstDate()->format('c'),
+        'end_date' => $this->getEndDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
@@ -238,7 +238,7 @@ class Booking
      *
      * @param datetime $firstDate
      */
-    public function setStartDate($firstDate)
+    public function setFirstDate($firstDate)
     {
         $this->first_date = $firstDate;
     }
@@ -248,7 +248,7 @@ class Booking
      *
      * @return datetime
      */
-    public function getStartDate()
+    public function getFirstDate()
     {
         return $this->first_date;
     }
@@ -258,7 +258,7 @@ class Booking
      *
      * @param datetime $endDate
      */
-    public function setStopDate($endDate)
+    public function setEndDate($endDate)
     {
         $this->end_date = $endDate;
     }
@@ -268,7 +268,7 @@ class Booking
      *
      * @return datetime
      */
-    public function getStopDate()
+    public function getEndDate()
     {
         return $this->end_date;
     }

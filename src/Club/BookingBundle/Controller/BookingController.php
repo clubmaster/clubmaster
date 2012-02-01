@@ -98,7 +98,7 @@ class BookingController extends Controller
      }
 
      return $this->redirect($this->generateUrl('club_booking_overview_index', array(
-       'date' => $this->get('club_booking.booking')->getBooking()->getStartDate()->format('Y-m-d')
+       'date' => $this->get('club_booking.booking')->getBooking()->getFirstDate()->format('Y-m-d')
      )));
    }
 

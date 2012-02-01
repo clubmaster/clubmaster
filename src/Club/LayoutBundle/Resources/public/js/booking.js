@@ -39,28 +39,30 @@ function makeIntervalUrl(interval, date, url)
 
 function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
 {
-  var start=new Date(booking.start_date);
-  var end=new Date(booking.stop_date);
+  var start=new Date(booking.first_date);
+  var end=new Date(booking.end_date);
   var diff=(end-start)/1000/60;
   var day_diff=(start-day_start)/1000/60;
-
-  console.log('GRRR: '+pixel_size);
+  var ret;
 
   var width=((diff*pixel_size)-1)+'px';
   var left=(day_diff*pixel_size)+'px';
   var height=(field_height-6)+'px';
-  var top=$("#field_"+booking.field_id).css('top');
+  var date = new Date(booking.first_date);
 
   console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
-  if (booking) {
-    var date = new Date(booking.start_date);
+  if (booking.type == 'booking') {
+    var top=$("#field_"+booking.field_id).css('top');
 
-    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+booking.id+'\'">&#160;'+booking.user.first_name+' '+booking.user.last_name+'</div>';
-  } else {
-    var date = new Date(terval.start_time);
-
-    return '<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+interval.schedule.team_name+'</div>';
+    ret='<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+booking.id+'\'">&#160;'+booking.user.first_name+' '+booking.user.last_name+'</div>';
+  } else if (booking.type == 'team') {
+    $.each(booking.fields, function() {
+      var top=$("#field_"+this.id).css('top');
+      ret = ret+'<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/'+getDate(date)+'/'+booking.id+'\'">&#160;'+booking.team_name+'</div>';
+    });
   }
+
+  return ret;
 }
 
 function initBookings(location, date, url, pixel_size, field_height, day_start)

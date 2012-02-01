@@ -7,7 +7,7 @@
   <legend>{% trans %}Booking Information{% endtrans %}</legend>
   <div class="list">
     <p><label>{% trans %}Location{% endtrans %}</label>{{ interval.field.location.locationName }}</p>
-    <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.startDate|club_date('long') }}</p>
+    <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.firstDate|club_date('long') }}</p>
     <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ interval.field.name }}</p>
     <p><label>{% trans %}Booker{% endtrans %}</label>{{ booking.user.name }}</p>
