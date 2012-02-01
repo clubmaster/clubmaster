@@ -14,6 +14,7 @@ class User extends AbstractType
       'type' => 'password',
       'first_name' => 'Password',
       'second_name' => 'Password again',
+      'required' => false
     ));
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
