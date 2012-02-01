@@ -9,7 +9,8 @@
 
 {% for post in posts %}
 <h3>{{ post.title }}</h3>
-<p>{{ post.message }}</p>
+<p>{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name} %}Posted on %date% by %author%.{% endtrans %}</p>
+<p>{{ post.message|raw }}</p>
 {% endfor %}
 
 {% endblock %}
