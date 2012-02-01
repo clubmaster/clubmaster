@@ -1,4 +1,10 @@
   <fieldset>
+    <legend>{% trans %}Password{% endtrans %}</legend>
+
+    <p>{{ form_row(form.password) }}</p>
+  </fieldset>
+
+  <fieldset>
     <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.language) }}</p>
