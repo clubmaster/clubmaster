@@ -28,7 +28,7 @@
 
 <p class="box">
 {% for item in nav %}
-  <a class="btn" href="{{ path('club_booking_overview_index', {'date':item|date('Y-m-d')}) }}"><span>{{ item|date('l') }} &raquo;</span></a>
+  <a class="btn" href="{{ path('club_booking_overview_index', {'date':item|date('Y-m-d')}) }}"><span>{{ item|club_day }} &raquo;</span></a>
 {% endfor %}
 </p>
 

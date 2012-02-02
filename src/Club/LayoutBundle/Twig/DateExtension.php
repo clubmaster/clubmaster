@@ -23,6 +23,7 @@ class DateExtension extends \Twig_Extension
       'club_date' => new \Twig_Filter_Method($this, 'getDate'),
       'club_datetime' => new \Twig_Filter_Method($this, 'getDateTime'),
       'club_time' => new \Twig_Filter_Method($this, 'getTime'),
+      'club_day' => new \Twig_Filter_Method($this, 'getDay'),
     );
   }
 
@@ -90,6 +91,13 @@ class DateExtension extends \Twig_Extension
       break;
     }
     $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, $time);
+    return $fmt->format($value);
+  }
+
+  public function getDay($value)
+  {
+    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
+    $fmt->setPattern('eeee');
     return $fmt->format($value);
   }
 
