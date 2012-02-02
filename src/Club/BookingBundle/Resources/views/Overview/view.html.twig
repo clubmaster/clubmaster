@@ -5,7 +5,7 @@
 
 {% include "ClubBookingBundle:Overview:information.html.twig" %}
 
-{% elseif (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available %}
+{% if (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available %}
   {% include "ClubBookingBundle:Overview:book_form.html.twig" %}
 
 {% endif %}
