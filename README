@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2011-12-03
-:Revision:  17
+:Date:      2012-02-02
+:Revision:  18
 
 
 Feedback
@@ -101,6 +101,7 @@ In order to upgrade from a previous installation:
 - Backup your current database and files.
 - Extract the new clubmaster package in a new directory
 - Copy app/config/parameters.ini file from old directory
+- Make sure any changes you have made to app/config/clubmaster.yml is moved
 - $ chmod 777 -R app/cache app/logs in the new clubmaster installation
 - Go to the website, http://localhost/clubmaster/web/upgrade
 - Empty the cache, rm -rf app/cache/*
