@@ -1,6 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 improve design on checkout anonymous
-create initial welcome blog
 make sure the times are right according to database, check events for instance
 
 == NOTES TO LATER ==
