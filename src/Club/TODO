@@ -1,9 +1,12 @@
 == NOTES FOR THIS RELEASE ==
+when user login, language does not change
 create initial welcome blog
 user dashboard, cannot edit orders
 translate dashboard
 translate installer to danish
+translate weekdays on booking page
 when setting language in installer, it does not follow the user
+event admin, tinymce
 
 == NOTES TO LATER ==
 rewrite shop attributes, dont have them in database

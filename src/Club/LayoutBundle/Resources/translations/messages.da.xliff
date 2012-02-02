@@ -823,32 +823,32 @@
         <target>Ordre status</target>
       </trans-unit>
       <trans-unit id="207">
-        <source>Company: %company%</source>
-        <target>Firma: %company%</target>
+        <source>Company</source>
+        <target>Firma</target>
       </trans-unit>
       <trans-unit id="208">
-        <source>CVR: %cvr%</source>
-        <target>CVR: %cvr%</target>
+        <source>CVR</source>
+        <target>CVR</target>
       </trans-unit>
       <trans-unit id="209">
-        <source>Name: %firstname% %lastname%</source>
-        <target>Navn: %firstname% %lastname%</target>
+        <source>Name</source>
+        <target>Navn</target>
       </trans-unit>
       <trans-unit id="210">
-        <source>Street: %street%</source>
-        <target>Adresse: %street%</target>
+        <source>Street</source>
+        <target>Adresse</target>
       </trans-unit>
       <trans-unit id="211">
-        <source>Postal: %postal%</source>
-        <target>Postnummer: %postal%</target>
+        <source>Postal</source>
+        <target>Postnummer</target>
       </trans-unit>
       <trans-unit id="212">
-        <source>City: %city%</source>
-        <target>By: %city%</target>
+        <source>City</source>
+        <target>By</target>
       </trans-unit>
       <trans-unit id="213">
-        <source>Country: %country%</source>
-        <target>Land: %country%</target>
+        <source>Country</source>
+        <target>Land</target>
       </trans-unit>
       <trans-unit id="214">
         <source>Unit price</source>
@@ -1381,6 +1381,18 @@
       <trans-unit id="346">
         <source>Click here to cancel your order.</source>
         <target>Klik her for at annullere din ordre.</target>
+      </trans-unit>
+      <trans-unit id="347">
+        <source>Password again</source>
+        <target>Password igen</target>
+      </trans-unit>
+      <trans-unit id="348">
+        <source>Phone number</source>
+        <target>Telefon nummer</target>
+      </trans-unit>
+      <trans-unit id="349">
+        <source>If you have a coupon, you can enter the key here, and we will add it to your cart.</source>
+        <target>Hvis du har en kupon, kan du indtaste nøglen her og den vil blive tilføjet til din kurv.</target>
       </trans-unit>
 
     </body>

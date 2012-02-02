@@ -15,7 +15,7 @@
   <h2 class="nomb">{{ event.eventName }}</h2>
   <p class="nomt low">
     {% trans with {'%date%':event.startDate|club_datetime} %}Start date: %date%{% endtrans %}<br />
-    {% trans with {'%date%':event.stopDate|club_datetime} %}Start date: %date%{% endtrans %}<br />
+    {% trans with {'%date%':event.stopDate|club_datetime} %}Stop date: %date%{% endtrans %}<br />
   </p>
 
   <h2>{% trans %}Description{% endtrans %}</h2>
