@@ -1,12 +1,12 @@
 == NOTES FOR THIS RELEASE ==
 improve design on checkout anonymous
+rewrite shop attributes, dont have them in database
+remove clubmaster from product attribute
 
 == NOTES TO LATER ==
 only show recently expired subscriptions, and show active first
 find a better way with installer, the file is pretty old school
-rewrite shop attributes, dont have them in database
 open and close booking on specific dates for fields
-remove clubmaster from product attribute
 change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings
