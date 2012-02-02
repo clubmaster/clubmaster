@@ -29,15 +29,18 @@ class ProductAttribute
     protected $value;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $attribute
+     */
+    protected $attribute;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $product;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Attribute")
-     */
-    protected $attribute;
 
     /**
      * Get id
