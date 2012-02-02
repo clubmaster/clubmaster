@@ -16,19 +16,19 @@
   <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
   {% for attr in product.productAttributes %}
-    {% if attr.attribute.attributeName == 'team' %}
+    {% if attr.attribute == 'team' %}
     <li>{% trans %}Your subscription will give you access to use teams.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute.attributeName == 'time_interval' %}
+    {% if attr.attribute == 'time_interval' %}
     <li>{% trans with {'%time%':attr.timeInterval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute.attributeName == 'ticket' %}
+    {% if attr.attribute == 'ticket' %}
     <li>{% trans with {'%tickets%':attr.value} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute.attributeName == 'auto_renewal' %}
+    {% if attr.attribute == 'auto_renewal' %}
     <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute.attributeName == 'allowed_pauses' %}
+    {% if attr.attribute == 'allowed_pauses' %}
     <li>{% trans with {'%pauses%':attr.value} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
     {% endif %}
   {% endfor %}
