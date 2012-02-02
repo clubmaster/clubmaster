@@ -115,8 +115,8 @@ class CheckoutControllerTest extends WebTestCase
 
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
-
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
     $form = $crawler->selectButton('Confirm order')->form();
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -128,8 +128,8 @@ class CheckoutControllerTest extends WebTestCase
     $crawler = $this->client->click($link);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $link = $crawler->selectLink('Cancel order')->link();
-    $crawler = $this->client->click($link);
+    $form = $crawler->selectButton('Cancel')->form();
+    $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }
