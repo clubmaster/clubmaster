@@ -2,7 +2,7 @@
 
 namespace Club\EventBundle\Listener;
 
-class LeftMenuRenderListener
+class MenuListener
 {
   private $router;
   private $security_context;
@@ -13,6 +13,18 @@ class LeftMenuRenderListener
     $this->router = $router;
     $this->security_context = $security_context;
     $this->translator = $translator;
+  }
+
+  public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+  {
+    $menu = $event->getMenu();
+
+    $menu['event'] = array(
+      'name' => $this->translator->trans('Event'),
+      'route' => $this->router->generate('event_event')
+    );
+
+    $event->setMenu($menu);
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)

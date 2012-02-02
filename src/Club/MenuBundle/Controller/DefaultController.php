@@ -21,10 +21,6 @@ class DefaultController extends Controller
           'name' => $this->get('translator')->trans('User'),
           'route' => $this->generateUrl('user')
         ),
-        array(
-          'name' => $this->get('translator')->trans('Event'),
-          'route' => $this->generateUrl('event_event')
-        )
       );
     }
 
