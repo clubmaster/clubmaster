@@ -1402,6 +1402,22 @@
         <source>Recent logs</source>
         <target>Seneste logs</target>
       </trans-unit>
+      <trans-unit id="353">
+        <source>Create post</source>
+        <target>Opret besked</target>
+      </trans-unit>
+      <trans-unit id="354">
+        <source>Author</source>
+        <target>Forfatter</target>
+      </trans-unit>
+      <trans-unit id="355">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="356">
+        <source>There are no posts.</source>
+        <target>Der er ingen beskeder.</target>
+      </trans-unit>
 
     </body>
   </file>
