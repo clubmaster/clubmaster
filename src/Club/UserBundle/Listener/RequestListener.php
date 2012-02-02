@@ -34,6 +34,9 @@ class RequestListener
 
   private function setLocale()
   {
+    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY') && ($language = $this->security_context->getToken()->getUser()->getLanguage()))
+      $this->session->setLocale($language->getCode());
+
     if ($this->session->getLocale())
       return;
 
@@ -59,7 +62,7 @@ class RequestListener
     $this->session->set('location_id', $this->location->getId());
     $this->session->set('location_name', $this->location->getLocationName());
 
-    if (!$this->security_context->getToken() || $this->security_context->getToken() instanceOf \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken)
+    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
       return;
 
     $user = $this->security_context->getToken()->getUser();
