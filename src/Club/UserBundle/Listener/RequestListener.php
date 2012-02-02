@@ -22,6 +22,8 @@ class RequestListener
 
   public function onKernelRequest(GetResponseEvent $event)
   {
+    if ($this->security_context->getToken() == null) return;
+
     if (!$this->test) {
       $this->test = 1;
     } else {
