@@ -242,9 +242,13 @@ class Booking
     }
 
     $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
-
     if (!$interval->getAvailable()) {
       $this->setError('Interval is not available');
+      return;
+    }
+
+    if (!$this->user->getMemberStatus()) {
+      $this->setError('Member does not have an active membership');
       return;
     }
 
