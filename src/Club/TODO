@@ -1,6 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 improve design on checkout anonymous
-remove clubmaster from product attribute
 
 == NOTES TO LATER ==
 only show recently expired subscriptions, and show active first

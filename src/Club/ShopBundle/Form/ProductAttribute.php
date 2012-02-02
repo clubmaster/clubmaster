@@ -4,6 +4,7 @@ namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\EntityRepository;
 
 class ProductAttribute extends AbstractType
 {
@@ -59,11 +60,16 @@ class ProductAttribute extends AbstractType
       'required' => false,
       'label' => 'Expire date'
     ));
-    $builder->add('location', 'entity', array(
+    $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',
       'multiple' => true,
-      'required' => false
+      'required' => false,
+      'query_builder' => function(EntityRepository $er) {
+        return $er->createQueryBuilder('l')
+          ->where('l.id <> 1');
+      }
     ));
+
   }
 
   public function getDefaultOptions(array $options)
