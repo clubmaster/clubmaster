@@ -1,3 +1,17 @@
-  <p>{{ form_widget(form) }}</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+<fieldset>
+  <legend>{% trans %}Event{% endtrans %}</legend>
 
+  {{ form_row(form.event_name) }}
+  <p>
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description, {'attr': {'class':'big'}}) }}
+    {{ form_errors(form.description) }}
+  </p>
+
+  <p>{{ form_rest(form) }}</p>
+</fieldset>
+
+<hr class="noscreen" />
+<div class="box-01">
+  <p class="nom"><input formnovalidate="true" type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+</div> <!-- /box-01 -->
