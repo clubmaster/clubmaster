@@ -6,11 +6,32 @@ use Club\UserBundle\Helper\TestCase as WebTestCase;
 class CheckoutControllerTest extends WebTestCase
 {
   protected $client;
+  protected $coupon_key;
 
   public function __construct()
   {
     $this->client = static::createClient();
     $this->login($this->client);
+  }
+
+  public function testCreateCoupon()
+  {
+    $this->login($this->client, 10, 1234);
+    $this->coupon_key = uniqid();
+
+    $crawler = $this->client->request('GET', '/admin/shop/coupon/new');
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form(array(
+      'coupon[value]' => '50',
+      'coupon[coupon_key]' => $this->coupon_key
+    ));
+    $crawler = $this->client->submit($form);
+    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
   public function testEmptyCart()
@@ -43,7 +64,7 @@ class CheckoutControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'form[coupon_key]' => date('Y-m-d')
+      'form[coupon_key]' => $this->coupon_key
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -124,7 +145,8 @@ class CheckoutControllerTest extends WebTestCase
     $crawler = $this->client->request('GET', '/shop/order');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $link = $crawler->selectLink('Edit')->link();
+    $links = $crawler->selectLink('Edit')->links();
+    $link = end($links);
     $crawler = $this->client->click($link);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
