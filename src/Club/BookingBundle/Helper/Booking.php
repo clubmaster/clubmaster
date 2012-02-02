@@ -42,14 +42,7 @@ class Booking
       return;
     }
 
-    $book_time = clone $this->booking->getDate();
-    $book_time->setTime(
-      $this->booking->getInterval()->getStartTime()->format('H'),
-      $this->booking->getInterval()->getStartTime()->format('i'),
-      $this->booking->getInterval()->getStartTime()->format('s')
-    );
-
-    if ($book_time < new \DateTime()) {
+    if ($this->booking->getFirstDate() < new \DateTime()) {
       $this->setError('You cannot delete bookings in the past');
       return;
     }
