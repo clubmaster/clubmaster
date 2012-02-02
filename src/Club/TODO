@@ -2,7 +2,6 @@
 when user login, language does not change
 create initial welcome blog
 user dashboard, cannot edit orders
-translate dashboard
 translate installer to danish
 translate weekdays on booking page
 when setting language in installer, it does not follow the user

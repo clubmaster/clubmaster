@@ -1,4 +1,4 @@
-<h2>{% trans %}Recent Logs{% endtrans %}</h2>
+<h2>{% trans %}Recent logs{% endtrans %}</h2>
 
 <table class="style">
   <thead>
@@ -8,20 +8,19 @@
       <th>{% trans %}Severity{% endtrans %}</th>
       <th>{% trans %}Message{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
-      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for log in logs %}
     <tr>
       <td>
-        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-read-icon.png') }}" title="{% trans %}Read{% endtrans %}" alt="{% trans %}Read{% endtrans %}" />
-        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16/Status-mail-unread-new-icon.png') }}" title="{% trans %}Unread{% endtrans %}" alt="{% trans %}Unread{% endtrans %}" />
+        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/email_open.png') }}" title="{% trans %}Read{% endtrans %}" alt="{% trans %}Read{% endtrans %}" />
+        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/email.png') }}" title="{% trans %}Unread{% endtrans %}" alt="{% trans %}Unread{% endtrans %}" />
         {% endif %}
       </td>
       <td>
@@ -39,13 +38,10 @@
       </td>
       <td>{{ log.log }}</td>
       <td>{{ log.createdAt|club_datetime }}</td>
-      <td>
-        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_log_log_show', {'id':log.id}) } %}
-      </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">{% trans %}There are no logs.{% endtrans %}</td>
+    <td colspan="5">{% trans %}There are no logs.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

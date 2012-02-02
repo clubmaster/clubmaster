@@ -1394,6 +1394,14 @@
         <source>If you have a coupon, you can enter the key here, and we will add it to your cart.</source>
         <target>Hvis du har en kupon, kan du indtaste nøglen her og den vil blive tilføjet til din kurv.</target>
       </trans-unit>
+      <trans-unit id="351">
+        <source>New users</source>
+        <target>Nye brugere</target>
+      </trans-unit>
+      <trans-unit id="352">
+        <source>Recent logs</source>
+        <target>Seneste logs</target>
+      </trans-unit>
 
     </body>
   </file>
