@@ -1,11 +1,11 @@
 == NOTES FOR THIS RELEASE ==
-dont show forms to users that cannot book
 should not be possible to book without membership
 improve design on checkout anonymous
 create initial welcome blog
 make sure the times are right according to database, check events for instance
 
 == NOTES TO LATER ==
+only show recently expired subscriptions, and show active first
 find a better way with installer, the file is pretty old school
 rewrite shop attributes, dont have them in database
 open and close booking on specific dates for fields
