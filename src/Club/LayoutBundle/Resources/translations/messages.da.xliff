@@ -1362,6 +1362,26 @@
         <source>There are no categories in this location, choose another location.</source>
         <target>Der er ingen kategorier i denne lokation, vælg en anden lokation.</target>
       </trans-unit>
+      <trans-unit id="342">
+        <source>Welcome</source>
+        <target>Velkommen</target>
+      </trans-unit>
+      <trans-unit id="343">
+        <source>Login</source>
+        <target>Log ind</target>
+      </trans-unit>
+      <trans-unit id="344">
+        <source>There are no teams.</source>
+        <target>Der er ingen hold.</target>
+      </trans-unit>
+      <trans-unit id="345">
+        <source>Cancel order</source>
+        <target>Annuller ordre</target>
+      </trans-unit>
+      <trans-unit id="346">
+        <source>Click here to cancel your order.</source>
+        <target>Klik her for at annullere din ordre.</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -1,8 +1,14 @@
-== NOTES TO LATER ==
+== NOTES FOR THIS RELEASE ==
 create initial welcome blog
+user dashboard, cannot edit orders
 translate dashboard
 translate installer to danish
 when setting language in installer, it does not follow the user
+
+== NOTES TO LATER ==
+rewrite shop attributes, dont have them in database
+open and close booking on specific dates for fields
+remove clubmaster from product attribute
 change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings

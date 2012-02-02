@@ -32,12 +32,14 @@ class LocationController extends Controller
     $user = $this->get('security.context')->getToken()->getUser();
     $location = $em->find('ClubUserBundle:Location',$id);
 
-    $user->setLocation($location);
     $this->get('session')->set('location_id', $location->getId());
     $this->get('session')->set('location_name', $location->getLocationName());
 
-    $em->persist($user);
-    $em->flush();
+    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+      $user->setLocation($location);
+      $em->persist($user);
+      $em->flush();
+    }
 
     $url = ($this->get('session')->get('switch_location'))
       ? $this->get('session')->get('switch_location')

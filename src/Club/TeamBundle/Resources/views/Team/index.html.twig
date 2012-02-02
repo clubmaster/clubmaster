@@ -4,6 +4,9 @@
 
 <h2>{% trans %}Team{% endtrans %}</h2>
 
+{% if schedules|length == 0 %}
+<p class="msg info">{% trans %}There are no teams.{% endtrans %}</p>
+{% else %}
 <table class="style">
   <tfoot>
     <tr class="bg">
@@ -36,12 +39,9 @@
       </td>
       {% endif %}
     </tr>
-  {% else %}
-  <tr>
-    <td colspan="4">{% trans %}There are no teams.{% endtrans %}</td>
-  </tr>
   {% endfor %}
   </tbody>
 </table>
 
+{% endif %}
 {% endblock %}

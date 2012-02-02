@@ -2,61 +2,9 @@
 
 {% block body %}
 
-<h2>{% trans %}Customer{% endtrans %}</h2>
-<p>{% trans with {'%company%':order.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
-{% trans with {'%cvr%':order.customerAddress.companyName} %}CVR: {% endtrans %}<br />
-{% trans with {'%firstname%':order.customerAddress.firstName,'%lastname%':order.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
-{% trans with {'%street%':order.customerAddress.street} %}Street: %street%{% endtrans %}<br />
-{% trans with {'%postal%':order.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
-{% trans with {'%city%':order.customerAddress.city} %}City: %city%{% endtrans %}<br />
-{% trans with {'%country%':order.customerAddress.country} %}Country: %country%{% endtrans %}</p>
-
-<h2>{% trans %}Shipping{% endtrans %}</h2>
-<p>{% trans with {'%company%':order.shippingAddress.companyName} %}Company: %company%{% endtrans %}<br />
-{% trans with {'%cvr%':order.shippingAddress.companyName} %}CVR: {% endtrans %}<br />
-{% trans with {'%firstname%':order.shippingAddress.firstName,'%lastname%':order.shippingAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
-{% trans with {'%street%':order.shippingAddress.street} %}Street: %street%{% endtrans %}<br />
-{% trans with {'%postal%':order.shippingAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
-{% trans with {'%city%':order.shippingAddress.city} %}City: %city%{% endtrans %}<br />
-{% trans with {'%country%':order.shippingAddress.country} %}Country: %country%{% endtrans %}</p>
-<p>{{ order.shipping }}</p>
-
-<h2>{% trans %}Billing{% endtrans %}</h2>
-<p>{% trans with {'%company%':order.billingAddress.companyName} %}Company: %company%{% endtrans %}<br />
-{% trans with {'%cvr%':order.billingAddress.companyName} %}CVR: {% endtrans %}<br />
-{% trans with {'%firstname%':order.billingAddress.firstName,'%lastname%':order.billingAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
-{% trans with {'%street%':order.billingAddress.street} %}Street: %street%{% endtrans %}<br />
-{% trans with {'%postal%':order.billingAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
-{% trans with {'%city%':order.billingAddress.city} %}City: %city%{% endtrans %}<br />
-{% trans with {'%country%':order.billingAddress.country} %}Country: %country%{% endtrans %}</p>
-<p>{{ order.paymentMethod }}</p>
-
-<h2>{% trans %}Products{% endtrans %}</h2>
-{% include "ClubShopBundle:AdminOrder:order_form.html.twig" with {'order':order} %}
-
-<h2>{% trans %}Order history{% endtrans %}</h2>
-<table class="style">
-  <thead>
-    <tr>
-      <th>{% trans %}Date{% endtrans %}</th>
-      <th>{% trans %}Order status{% endtrans %}</th>
-      <th>{% trans %}Note{% endtrans %}</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <th colspan="3">&#160;</th>
-    </tr>
-  </tfoot>
-  <tbody>
-  {% for status in order.orderStatusHistory %}
-    <tr>
-      <td>{{ status.createdAt|club_datetime }}</td>
-      <td>{{ status.orderStatus.statusName }}</td>
-      <td>{{ status.note }}</td>
-  {% endfor %}
-  </tbody>
-</table>
+{% include "ClubShopBundle:Order:order_information.html.twig" %}
+{% include "ClubShopBundle:Order:order_form.html.twig" %}
+{% include "ClubShopBundle:Order:order_history.html.twig" %}
 
 <form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
 {% include "ClubShopBundle:AdminOrder:form.html.twig" with {'form': form} %}
