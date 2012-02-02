@@ -30,11 +30,7 @@ class AdminCurrencyControllerTest extends WebTestCase
 
     $form = $crawler->selectButton('Save')->form(array(
       'currency[currency_name]' => 'Test',
-      'currency[code]' => 'us_UK',
-      'currency[symbol_left]' => '',
-      'currency[symbol_right]' => ',-',
-      'currency[decimal_places]' => '1',
-      'currency[value]' => '1',
+      'currency[code]' => 'us_UK'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
