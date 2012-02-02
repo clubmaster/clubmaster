@@ -142,7 +142,7 @@ class Cart
         $opa = new \Club\ShopBundle\Entity\CartProductAttribute();
         $opa->setCartProduct($op);
         $opa->setValue($attr->getValue());
-        $opa->setAttributeName($attr->getAttribute()->getAttributeName());
+        $opa->setAttributeName($attr->getAttribute());
 
         $op->addCartProductAttribute($opa);
       }

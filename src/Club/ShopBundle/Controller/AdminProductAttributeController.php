@@ -52,8 +52,8 @@ class AdminProductAttributeController extends Controller
     $attribute = new \Club\ShopBundle\Model\Attribute();
 
     foreach ($product->getProductAttributes() as $attr) {
-      $val = $attr->getAttribute()->getAttributeName();
-      if ($attr->getAttribute()->getAttributeName() == 'location') {
+      $val = $attr->getAttribute();
+      if ($attr->getAttribute() == 'location') {
         $res = new \Doctrine\Common\Collections\ArrayCollection();
         $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attr->getValue()));
         foreach ($locations as $location) {
@@ -61,7 +61,7 @@ class AdminProductAttributeController extends Controller
         }
         $attribute->$val = $res;
 
-      } elseif ($attr->getAttribute()->getAttributeName() == 'start_date' || $attr->getAttribute()->getAttributeName() == 'expire_date') {
+      } elseif ($attr->getAttribute() == 'start_date' || $attr->getAttribute() == 'expire_date') {
         $attribute->$val = new \DateTime($attr->getValue());
       } else {
         $attribute->$val = $attr->getValue();
@@ -75,20 +75,18 @@ class AdminProductAttributeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    foreach ($em->getRepository('ClubShopBundle:Attribute')->findAll() as $attr) {
-      $val = $attr->getAttributeName();
-
+    foreach ($data as $attribute => $value) {
       $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
         'product' => $product->getId(),
-        'attribute' => $attr->getId()
+        'attribute' => $attribute
       ));
 
-      if (($attr->getAttributeName() == 'start_date' || $attr->getAttributeName() == 'expire_date') && $data->$val != '')
-        $data->$val = $data->$val->format('Y-m-d');
+      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
+        $value = $value->format('Y-m-d');
 
-      if ($attr->getAttributeName() == 'location') {
+      if ($attribute == 'location') {
         $str = '';
-        foreach ($data->$val as $l) {
+        foreach ($value as $l) {
           $str .= $l->getId().',';
         }
         $str = preg_replace("/,$/","",$str);
@@ -99,7 +97,7 @@ class AdminProductAttributeController extends Controller
             $em->remove($prod_attr);
         } else {
           if (!$prod_attr)
-            $prod_attr = $this->buildProductAttribute($product,$attr);
+            $prod_attr = $this->buildProductAttribute($product,$attribute);
 
           $prod_attr->setValue($str);
           $em->persist($prod_attr);
@@ -107,16 +105,16 @@ class AdminProductAttributeController extends Controller
 
       } else {
 
-        if ($prod_attr && $data->$val == '') {
+        if ($prod_attr && $value == '') {
           $em->remove($prod_attr);
 
-        } elseif ($prod_attr && $data->$val != '') {
-          $prod_attr->setValue($data->$val);
+        } elseif ($prod_attr && $value != '') {
+          $prod_attr->setValue($value);
           $em->persist($prod_attr);
 
-        } elseif (!$prod_attr && $data->$val != '') {
-          $prod_attr = $this->buildProductAttribute($product,$attr);
-          $prod_attr->setValue($data->$val);
+        } elseif (!$prod_attr && $value != '') {
+          $prod_attr = $this->buildProductAttribute($product,$attribute);
+          $prod_attr->setValue($value);
           $em->persist($prod_attr);
         }
       }
@@ -125,11 +123,11 @@ class AdminProductAttributeController extends Controller
     $em->flush();
   }
 
-  private function buildProductAttribute(\Club\ShopBundle\Entity\Product $product, \Club\ShopBundle\Entity\Attribute $attr)
+  private function buildProductAttribute(\Club\ShopBundle\Entity\Product $product, $attribute)
   {
     $prod_attr = new \Club\ShopBundle\Entity\ProductAttribute();
     $prod_attr->setProduct($product);
-    $prod_attr->setAttribute($attr);
+    $prod_attr->setAttribute($attribute);
 
     return $prod_attr;
   }
