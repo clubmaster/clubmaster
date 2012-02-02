@@ -1,6 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 improve design on checkout anonymous
-rewrite shop attributes, dont have them in database
 remove clubmaster from product attribute
 
 == NOTES TO LATER ==
