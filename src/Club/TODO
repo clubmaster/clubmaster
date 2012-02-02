@@ -1,6 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 improve design on checkout anonymous
-make sure the times are right according to database, check events for instance
 
 == NOTES TO LATER ==
 only show recently expired subscriptions, and show active first
