@@ -1,7 +1,15 @@
 == NOTES FOR THIS RELEASE ==
+test booking in:
+  opera,
+  ie 9
+  ie 8,
+  ie 7
+  chrome
 improve design on checkout anonymous
 
 == NOTES TO LATER ==
+find a way for family subscription
+price on event, has to be optional to use the club system, or pay on arrival
 only show recently expired subscriptions, and show active first
 find a better way with installer, the file is pretty old school
 open and close booking on specific dates for fields
