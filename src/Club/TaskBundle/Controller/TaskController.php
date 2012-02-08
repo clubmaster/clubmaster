@@ -79,6 +79,8 @@ class TaskController extends Controller
     $em->persist($task);
     $em->flush();
 
+    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Job has been executed'));
+
     return $this->redirect($this->generateUrl('admin_task'));
   }
 

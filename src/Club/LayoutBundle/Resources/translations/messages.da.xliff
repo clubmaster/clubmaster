@@ -1418,6 +1418,10 @@
         <source>There are no posts.</source>
         <target>Der er ingen beskeder.</target>
       </trans-unit>
+      <trans-unit id="357">
+        <source>Job has been executed</source>
+        <target>Jobbet er blevet kørt</target>
+      </trans-unit>
 
     </body>
   </file>

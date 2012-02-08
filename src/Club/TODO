@@ -8,10 +8,9 @@ test booking in:
   ie 8,
   ie 7
   chrome
-simplify new_subscription_listener shop
-flash when task has been executed
 
 == NOTES TO LATER ==
+simplify new_subscription_listener shop
 no reason for a member to expire subscription, just remove renewal
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
