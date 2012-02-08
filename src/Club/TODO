@@ -1,16 +1,20 @@
 == NOTES FOR THIS RELEASE ==
+remember to remove attribute entity
+remove config data, and replace with simulair to product attributes
+improve design on checkout anonymous
+show active subscription and expired subscriptions in two different tables
 test booking in:
   opera,
   ie 9
   ie 8,
   ie 7
   chrome
-improve design on checkout anonymous
+add address on club to api
+enable booking in subscriptions like team
 
 == NOTES TO LATER ==
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
-only show recently expired subscriptions, and show active first
 find a better way with installer, the file is pretty old school
 open and close booking on specific dates for fields
 change all equal form.html.twig to layout default
@@ -18,12 +22,10 @@ enable and disable teams
 enable and disable bookings
 enable and disable events
 make sure either create or updated always comes first
-add display username
 make sure widgets works:
   - datetime
   - date
   - time
-add address on club to api
 login through booking page
 login through team attend page
 jquery overlay form on booking
@@ -40,8 +42,7 @@ bind coupon to specific product
 move all login pages to /user
 not 2 schedules can have the same interval
 what will happen if interval access multiple days
-dynamic number of partners for a booking
-booking module should work without partners too
+dynamic number of partners for a booking, from 0 to 888
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 what happens if you put schema on already booked interval
 booking admins should be able to deleted planned schedules too
