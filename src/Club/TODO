@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-validate on review booking page
 remove config data, and replace with simulair to product attributes
 improve design on checkout anonymous
 show active subscription and expired subscriptions in two different tables
@@ -13,7 +12,7 @@ simplify new_subscription_listener shop
 flash when task has been executed
 
 == NOTES TO LATER ==
-find a way to shop auto renewal
+no reason for a member to expire subscription, just remove renewal
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
