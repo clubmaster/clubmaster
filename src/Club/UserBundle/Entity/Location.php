@@ -29,6 +29,39 @@ class Location
     protected $location_name;
 
     /**
+     * @ORM\Column(type="text", nullable="true")
+     *
+     * @var string $street
+     */
+    protected $street;
+
+    /**
+     * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $postal_code
+     */
+    protected $postal_code;
+
+    /**
+     * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $city
+     */
+    protected $city;
+
+    /**
+     * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $state
+     */
+    protected $state;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country")
+     */
+    protected $country;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Location")
      *
      * @var Club\UserBundle\Entity\Location
@@ -129,9 +162,16 @@ class Location
 
     public function toArray()
     {
+      $country = ($this->getCountry()) ? $this->getCountry()->getCountry() : null;
+
       return array(
         'id' => $this->getId(),
-        'location_name' => $this->getLocationName()
+        'location_name' => $this->getLocationName(),
+        'street' => $this->getStreet(),
+        'postal_code' => $this->getPostalCode(),
+        'city' => $this->getCity(),
+        'state' => $this->getState(),
+        'country' => $country
       );
     }
 
@@ -153,5 +193,105 @@ class Location
     public function getFields()
     {
         return $this->fields;
+    }
+
+    /**
+     * Set street
+     *
+     * @param text $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * Get street
+     *
+     * @return text
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set postal_code
+     *
+     * @param string $postalCode
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postal_code = $postalCode;
+    }
+
+    /**
+     * Get postal_code
+     *
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postal_code;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set country
+     *
+     * @param Club\UserBundle\Entity\Country $country
+     */
+    public function setCountry(\Club\UserBundle\Entity\Country $country=null)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * Get country
+     *
+     * @return Club\UserBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }
