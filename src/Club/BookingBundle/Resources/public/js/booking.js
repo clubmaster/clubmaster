@@ -50,7 +50,7 @@ function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
   var height=(field_height-6)+'px';
   var date = new Date(booking.first_date);
 
-  console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
+  //console.log("Got styles; top:"+top+", left: "+left+", width: "+width+", height: "+height);
   if (booking.type == 'booking') {
     var top=$("#field_"+booking.field_id).css('top');
 
@@ -69,7 +69,7 @@ function initBookings(location, date, url, pixel_size, field_height, day_start)
 {
   $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
     $.each(json.data, function() {
-      console.log("Found booking, id: "+this.id);
+      //console.log("Found booking, id: "+this.id);
       $("#intervals").append(makeBookedUrl(this, url, pixel_size, field_height, day_start));
     });
   });
@@ -86,11 +86,11 @@ function initTable(location, date, url, hour_width, field_height)
   $.getJSON(url+'api/fields/'+location+"/"+getDate(date), function(json) {
     var startTime=new Date(json.data.info.start_time);
     var endTime=new Date(json.data.info.end_time);
-    console.log("Found start time: "+startTime);
-    console.log("Found end time: "+endTime);
+    //console.log("Found start time: "+startTime);
+    //console.log("Found end time: "+endTime);
 
     var day_start=startTime.getTime();
-    console.log("Field unix start_time: "+day_start);
+    //console.log("Field unix start_time: "+day_start);
 
     // parse times
     var left=0;
@@ -108,7 +108,7 @@ function initTable(location, date, url, hour_width, field_height)
       fields++;
 
       $("#fields").append('<div id="field_'+this.id+'" class="field" style="top: '+top+'px; height: '+field_height+'px;">&#160;'+this.name+'</div>');
-      console.log("Found field, id: "+this.id+", name: "+this.name+", top: "+top);
+      //console.log("Found field, id: "+this.id+", name: "+this.name+", top: "+top);
 
       // parse intervals
       $.each(this.intervals, function() {
@@ -117,9 +117,9 @@ function initTable(location, date, url, hour_width, field_height)
         var diff=(end-start)/1000/60;
         var day_diff=(start-day_start)/1000/60;
 
-        console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
-        console.log('start: '+start.getTime());
-        console.log('curr:  '+current_time.getTime());
+        //console.log("Interval ID: "+this.id+", diff: "+diff+", day_diff: "+day_diff+", start: "+start);
+        //console.log('start: '+start.getTime());
+        //console.log('curr:  '+current_time.getTime());
 
         if (start.getTime() < current_time.getTime() && (start.getHours() == current_time.getHours() || start.getHours() < current_time.getHours())) {
           start_position = day_diff*pixel_size*-1;
