@@ -9,6 +9,7 @@ test booking in:
   chrome
 
 == NOTES TO LATER ==
+cannot expire expired subscriptions
 simplify new_subscription_listener shop
 no reason for a member to expire subscription, just remove renewal
 gravatar throw warning if gravatar does not work (missing network)
