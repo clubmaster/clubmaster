@@ -110,6 +110,14 @@ class NewSubscriptionListener
           $subscription->addSubscriptionAttributes($sub_attr);
           $this->em->persist($sub_attr);
         }
+        if (isset($res['booking'])) {
+          $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
+          $sub_attr->setSubscription($subscription);
+          $sub_attr->setAttributeName('booking');
+          $sub_attr->setValue($res['booking']->getValue());
+          $subscription->addSubscriptionAttributes($sub_attr);
+          $this->em->persist($sub_attr);
+        }
         if (isset($res['team'])) {
           $sub_attr = new \Club\ShopBundle\Entity\SubscriptionAttribute();
           $sub_attr->setSubscription($subscription);

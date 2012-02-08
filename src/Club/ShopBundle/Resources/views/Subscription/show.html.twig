@@ -26,6 +26,14 @@
       </td>
     </tr>
     <tr>
+      <th>Booking:</th>
+      <td>
+        {% if subscription.hasAttribute('booking') %}This subscription allow you to use bookings.
+        {% else %}This subscription does not allow you to use bookings.{% endif %}
+      </td>
+    </tr>
+
+    <tr>
       <th>Team:</th>
       <td>
         {% if subscription.hasAttribute('team') %}This subscription allow you to use teams.
