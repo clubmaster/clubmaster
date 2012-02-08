@@ -1,4 +1,5 @@
 == NOTES FOR THIS RELEASE ==
+validate on review booking page
 remove config data, and replace with simulair to product attributes
 improve design on checkout anonymous
 show active subscription and expired subscriptions in two different tables
