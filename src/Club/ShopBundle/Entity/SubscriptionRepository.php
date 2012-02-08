@@ -26,14 +26,43 @@ class SubscriptionRepository extends EntityRepository
     return $pause;
   }
 
-  public function getExpiredSubscriptions()
+  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null)
   {
-    return $this->_em->createQueryBuilder()
+    $qb = $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:Subscription','s')
+      ->where('s.expire_date > :expire_date')
+      ->orWhere('s.expire_date IS NULL')
+      ->setParameter('expire_date',date('Y-m-d H:i:s'));
+
+    if ($user) {
+      $qb
+        ->andWhere('s.user = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
+
+
+  public function getExpiredSubscriptions(\Club\UserBundle\Entity\User $user=null)
+  {
+    $qb = $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubShopBundle:Subscription','s')
       ->where('s.expire_date <= :expire_date')
       ->andWhere('s.expire_date IS NOT NULL')
-      ->setParameter('expire_date',date('Y-m-d H:i:s'))
+      ->setParameter('expire_date',date('Y-m-d H:i:s'));
+
+    if ($user) {
+      $qb
+        ->andWhere('s.user = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    return $qb
       ->getQuery()
       ->getResult();
   }

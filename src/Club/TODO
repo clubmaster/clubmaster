@@ -1,7 +1,6 @@
 == NOTES FOR THIS RELEASE ==
 remove config data, and replace with simulair to product attributes
 improve design on checkout anonymous
-show active subscription and expired subscriptions in two different tables
 test booking in:
   opera,
   ie 9

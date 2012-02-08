@@ -2,6 +2,10 @@
 
 {% block body %}
 
-{% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'user': user} %}
+<h2>{% trans %}Active subscriptions{% endtrans %}</h2>
+{% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':active} %}
+
+<h2>{% trans %}Expired subscriptions{% endtrans %}</h2>
+{% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':expired} %}
 
 {% endblock %}

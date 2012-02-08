@@ -1,5 +1,3 @@
-<h2>{% trans %}Subscriptions{% endtrans %}</h2>
-
 <table class="style">
   <thead>
     <tr>
@@ -17,7 +15,7 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for subscription in user.subscriptions %}
+  {% for subscription in subscriptions %}
     <tr>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.active} %}</td>
       <td>{{ subscription.type|capitalize }}</td>

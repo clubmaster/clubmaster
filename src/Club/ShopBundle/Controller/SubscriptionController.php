@@ -14,10 +14,16 @@ class SubscriptionController extends Controller
    */
   public function indexAction()
   {
+    $em = $this->getDoctrine()->getEntityManager();
     $user = $this->get('security.context')->getToken()->getUser();
 
+    $active = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user);
+    $expired = $em->getRepository('ClubShopBundle:Subscription')->getExpiredSubscriptions($user);
+
     return array(
-      'user' => $user
+      'user' => $user,
+      'active' => $active,
+      'expired' => $expired
     );
   }
 
