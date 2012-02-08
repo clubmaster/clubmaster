@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-remember to remove attribute entity
 remove config data, and replace with simulair to product attributes
 improve design on checkout anonymous
 show active subscription and expired subscriptions in two different tables
