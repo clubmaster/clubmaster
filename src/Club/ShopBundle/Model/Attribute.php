@@ -58,5 +58,8 @@ class Attribute
 
     if ($this->expire_date != '' && $this->start_date == '')
       $context->addViolation('You are not able to have an expire date without a start date.', array(), null);
+
+    if (($this->team || $this->booking) && !count($this->location))
+      $context->addViolation('You have to select a location for booking or teams', array(), null);
   }
 }

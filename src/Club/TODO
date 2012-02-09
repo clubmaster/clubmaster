@@ -5,7 +5,6 @@ test booking in:
   ie 8,
   ie 7
   chrome
-if subscription has team or booking, location is mandatory
 cannot expire expired subscriptions
 simplify new_subscription_listener shop
 no reason for a member to expire subscription, just remove renewal
