@@ -1,5 +1,7 @@
 == NOTES FOR THIS RELEASE ==
 remove visible position from fields, replace it with user arrows
+rules for when on the day a subscription can use booking
+something is broken when creating more intervals on the same field, fix it
 test booking in:
   opera,
   ie 9
@@ -9,8 +11,6 @@ add booking plans
   - maintenance
   - cleaning
   - tournament
-rules for when on the day a subscription can use booking
-something is broken when creating more intervals on the same field, fix it
 
 == NOTES TO LATER ==
 what happens if you put schema on already booked interval
