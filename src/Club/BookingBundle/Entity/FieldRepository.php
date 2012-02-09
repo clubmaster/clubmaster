@@ -103,4 +103,20 @@ class FieldRepository extends EntityRepository
 
     return $fields;
   }
+
+  public function getNextPosition(\Club\UserBundle\Entity\Location $location)
+  {
+    $r = $this->_em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubBookingBundle:Field', 'f')
+      ->where('f.location = :location')
+      ->orderBy('f.position', 'DESC')
+      ->setMaxResults(1)
+      ->setParameter('location', $location->getId())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    $ret = ($r) ? $r->getPosition()+1 : 1;
+    return $ret;
+  }
 }

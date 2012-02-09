@@ -36,7 +36,6 @@ class Field
      * @var integer $position
      *
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
      */
     protected $position;
 

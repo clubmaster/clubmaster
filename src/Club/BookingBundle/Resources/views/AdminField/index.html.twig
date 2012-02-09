@@ -8,12 +8,13 @@
     <tr>
       <th>{% trans %}Location{% endtrans %}</th>
       <th>{% trans %}Field{% endtrans %}</th>
+      <th>{% trans %}Position{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -22,6 +23,10 @@
       <td>{{ field.location.locationName }}</td>
       <td>{{ field.name }}</td>
       <td>
+        {% include "ClubLayoutBundle:Default:up_link.html.twig" with {'url':path('club_booking_adminfield_up', { 'id':field.id })} %}
+        {% include "ClubLayoutBundle:Default:down_link.html.twig" with {'url':path('club_booking_adminfield_down', { 'id':field.id })} %}
+      </td>
+      <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminfield_edit', { 'id':field.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminfield_delete', { 'id':field.id })} %}
         {% include "ClubLayoutBundle:Default:interval_link.html.twig" with {'url':path('club_booking_admininterval_index', { 'field_id':field.id })} %}
@@ -29,7 +34,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}There are no fields.{% endtrans %}</td>
+    <td colspan="4">{% trans %}There are no fields.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

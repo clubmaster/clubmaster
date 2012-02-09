@@ -16,7 +16,9 @@ class AdminFieldController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $fields = $em->getRepository('ClubBookingBundle:Field')->findAll();
+    $fields = $em->getRepository('ClubBookingBundle:Field')->findBy(array(),array(
+      'position' => 'ASC'
+    ));
 
     return array(
       'fields' => $fields
@@ -36,6 +38,10 @@ class AdminFieldController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
+
+        $r = $em->getRepository('ClubBookingBundle:Field')->getNextPosition($field->getLocation());
+        $field->setPosition($r);
+
         $em->persist($field);
         $em->flush();
 
@@ -96,4 +102,79 @@ class AdminFieldController extends Controller
 
     return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
   }
+
+  /**
+   * @Route("/booking/field/up/{id}")
+   */
+  public function upAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $field = $em->find('ClubBookingBundle:Field',$this->getRequest()->get('id'));
+
+    $old = $em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubBookingBundle:Field', 'f')
+      ->where('f.location = :location')
+      ->andWhere('f.position < :position')
+      ->orderBy('f.position', 'DESC')
+      ->setMaxResults(1)
+      ->setParameter('location', $field->getLocation()->getId())
+      ->setParameter('position', $field->getPosition())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if ($old) {
+      $new_pos = $old->getPosition();
+      $old_pos = $field->getPosition();
+
+      $field->setPosition($new_pos);
+      $old->setPosition($old_pos);
+
+      $em->persist($field);
+      $em->persist($old);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    }
+
+    return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
+  }
+
+  /**
+   * @Route("/booking/field/down/{id}")
+   */
+  public function downAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $field = $em->find('ClubBookingBundle:Field',$this->getRequest()->get('id'));
+
+    $old = $em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubBookingBundle:Field', 'f')
+      ->where('f.location = :location')
+      ->andWhere('f.position > :position')
+      ->orderBy('f.position', 'ASC')
+      ->setMaxResults(1)
+      ->setParameter('location', $field->getLocation()->getId())
+      ->setParameter('position', $field->getPosition())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if ($old) {
+      $new_pos = $old->getPosition();
+      $old_pos = $field->getPosition();
+
+      $field->setPosition($new_pos);
+      $old->setPosition($old_pos);
+
+      $em->persist($field);
+      $em->persist($old);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    }
+
+    return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
+  }
+
 }
