@@ -6,10 +6,6 @@ test booking in:
   ie 9
   ie 8,
   ie 7
-add booking plans
-  - maintenance
-  - cleaning
-  - tournament
 
 == NOTES TO LATER ==
 what happens if you put schema on already booked interval

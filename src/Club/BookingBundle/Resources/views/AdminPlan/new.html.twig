@@ -1,0 +1,9 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_booking_adminplan_new') }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
+</form>
+
+{% endblock %}
