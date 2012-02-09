@@ -6,17 +6,17 @@ test booking in:
   ie 8,
   ie 7
   chrome
-
-== NOTES TO LATER ==
 if subscription has team or booking, location is mandatory
 cannot expire expired subscriptions
 simplify new_subscription_listener shop
 no reason for a member to expire subscription, just remove renewal
+open and close booking on specific dates for fields
+
+== NOTES TO LATER ==
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
 find a better way with installer, the file is pretty old school
-open and close booking on specific dates for fields
 change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings
