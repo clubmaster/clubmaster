@@ -1,4 +1,5 @@
 == NOTES FOR THIS RELEASE ==
+remove visible position from fields, replace it with user arrows
 problem with stopped subscription on auto_renewal
 test booking in:
   opera,
@@ -13,7 +14,6 @@ add booking plans
 fix num_team_day (doctrine date_format)
 rules for when on the day a subscription can use booking
 something is broken when creating more intervals on the same field, fix it
-when field created, forward to create interval page
 
 == NOTES TO LATER ==
 what happens if you put schema on already booked interval

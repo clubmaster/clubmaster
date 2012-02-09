@@ -30,13 +30,25 @@ class AdminFieldController extends Controller
   public function newAction()
   {
     $field = new \Club\BookingBundle\Entity\Field();
-    $res = $this->process($field);
+    $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
-    if ($res instanceOf RedirectResponse)
-      return $res;
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($field);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_booking_admininterval_index', array(
+          'field_id' => $field->getId()
+        )));
+      }
+    }
 
     return array(
-      'form' => $res->createView()
+      'form' => $form->createView()
     );
   }
 
@@ -48,15 +60,24 @@ class AdminFieldController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $field = $em->find('ClubBookingBundle:Field',$id);
+    $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
-    $res = $this->process($field);
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($field);
+        $em->flush();
 
-    if ($res instanceOf RedirectResponse)
-      return $res;
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
+      }
+    }
 
     return array(
       'field' => $field,
-      'form' => $res->createView()
+      'form' => $form->createView()
     );
   }
 
@@ -74,25 +95,5 @@ class AdminFieldController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
-  }
-
-  protected function process($field)
-  {
-    $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($field);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-        return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
-      }
-    }
-
-    return $form;
   }
 }
