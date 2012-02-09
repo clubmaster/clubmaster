@@ -4,7 +4,7 @@
 {% block body %}
 
 <form method="post" action="{{ path('admin_shop_category_new') }}">
-{% include "ClubShopBundle:AdminCategory:form.html.twig" with {'form': form} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}

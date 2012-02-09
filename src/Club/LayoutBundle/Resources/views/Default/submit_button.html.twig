@@ -1,5 +1,5 @@
   <hr class="noscreen" />
   <div class="box-01">
-    <p class="nom"><input type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+    <p class="nom"><input type="submit" value="{% if button is defined %}{{ button }}{% else %}{% trans %}Save{% endtrans %}{% endif %}" class="input-submit" /></p>
   </div> <!-- /box-01 -->
 
