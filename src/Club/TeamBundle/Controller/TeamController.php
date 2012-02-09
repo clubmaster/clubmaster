@@ -18,7 +18,7 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween(
-      new \DateTime(date('Y-m-d 00:00:00')),
+      new \DateTime(),
       new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')))
     );
 
