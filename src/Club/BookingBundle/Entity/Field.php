@@ -18,7 +18,7 @@ class Field
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -27,7 +27,7 @@ class Field
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     protected $name;
@@ -35,7 +35,7 @@ class Field
     /**
      * @var integer $position
      *
-     * @ORM\Column(name="position", type="integer")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     protected $position;
@@ -48,16 +48,30 @@ class Field
     protected $information;
 
     /**
+     * @var date $open
+     *
+     * @ORM\Column(type="date", nullable="true")
+     */
+    protected $open;
+
+    /**
+     * @var date $close
+     *
+     * @ORM\Column(type="date", nullable="true")
+     */
+    protected $close;
+
+    /**
      * @var datetime $created_at
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $created_at;
 
     /**
      * @var datetime $updated_at
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $updated_at;
 
@@ -281,5 +295,45 @@ class Field
     public function __toString()
     {
       return $this->getName();
+    }
+
+    /**
+     * Set open
+     *
+     * @param datetime $open
+     */
+    public function setOpen($open)
+    {
+        $this->open = $open;
+    }
+
+    /**
+     * Get open
+     *
+     * @return datetime
+     */
+    public function getOpen()
+    {
+        return $this->open;
+    }
+
+    /**
+     * Set close
+     *
+     * @param datetime $close
+     */
+    public function setClose($close)
+    {
+        $this->close = $close;
+    }
+
+    /**
+     * Get close
+     *
+     * @return datetime
+     */
+    public function getClose()
+    {
+        return $this->close;
     }
 }

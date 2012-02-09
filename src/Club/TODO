@@ -4,10 +4,21 @@ test booking in:
   ie 9
   ie 8,
   ie 7
-  chrome
 open and close booking on specific dates for fields
 
 == NOTES TO LATER ==
+add booking plans
+  - maintenance
+  - cleaning
+  - tournament
+fix num_team_day
+rules for when on the day a subscription can use booking
+what happens if you put schema on already booked interval
+booking admins should be able to deleted planned schedules too
+something is broken when creating more intervals on the same field, fix it
+on admin interval manager, put a default interval in top, that will set the same for everyone
+when field created, forward to create interval page
+implement payment for booking
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
@@ -24,14 +35,8 @@ make sure widgets works:
 login through booking page
 login through team attend page
 jquery overlay form on booking
-implement payment for booking
 make sure that not 2 intervals can be valid at the same time
-fix num_team_day
 find a smart way to get default location, might be with the url
-add booking plans
-  - maintenance
-  - cleaning
-  - tournament
 use validators in coupon
 bind coupon to specific product
 move all login pages to /user
@@ -39,10 +44,5 @@ not 2 schedules can have the same interval
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
-what happens if you put schema on already booked interval
-booking admins should be able to deleted planned schedules too
-something is broken when creating more intervals on the same field, fix it
-on admin interval manager, put a default interval in top, that will set the same for everyone
-when field created, forward to create interval page
 on switch location, stay on last visited page
 simplify new_subscription_listener shop
