@@ -5,8 +5,6 @@ test booking in:
   ie 8,
   ie 7
   chrome
-simplify new_subscription_listener shop
-no reason for a member to expire subscription, just remove renewal
 open and close booking on specific dates for fields
 
 == NOTES TO LATER ==
@@ -47,3 +45,4 @@ something is broken when creating more intervals on the same field, fix it
 on admin interval manager, put a default interval in top, that will set the same for everyone
 when field created, forward to create interval page
 on switch location, stay on last visited page
+simplify new_subscription_listener shop

@@ -60,6 +60,23 @@ class Subscription
     $this->session->setFlash('notice',$this->translator->trans('Your subscription is now resumed.'));
   }
 
+  public function stopSubscription($subscription)
+  {
+    $attr = $this->em->createQueryBuilder()
+      ->select('a')
+      ->from('ClubShopBundle:SubscriptionAttribute', 'a')
+      ->where('a.subscription = :subscription')
+      ->andWhere('a.attribute_name = :attr')
+      ->setParameter('subscription', $subscription->getId())
+      ->setParameter('attr', 'auto_renewal')
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if ($attr) $this->em->remove($attr);
+    $this->em->persist($subscription);
+    $this->em->flush();
+  }
+
   public function expireSubscription($subscription)
   {
     $subscription->setExpireDate(new \DateTime());

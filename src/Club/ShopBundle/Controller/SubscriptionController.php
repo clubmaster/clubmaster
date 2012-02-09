@@ -42,6 +42,21 @@ class SubscriptionController extends Controller
   }
 
   /**
+   * @Route("/shop/subscription/stop/{id}")
+   * @Template()
+   */
+  public function stopAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $subscription = $em->find('ClubShopBundle:Subscription', $id);
+
+    $this->get('subscription')->stopSubscription($subscription);
+    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Subscription will not be renewed'));
+
+    return $this->redirect($this->generateUrl('shop_subscription'));
+  }
+
+  /**
    * @Route("/shop/subscription/expire/{id}")
    * @Template()
    */
