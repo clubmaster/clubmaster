@@ -1,23 +1,24 @@
 == NOTES FOR THIS RELEASE ==
+problem with stopped subscription on auto_renewal
 test booking in:
   opera,
   ie 9
   ie 8,
   ie 7
 open and close booking on specific dates for fields
-
-== NOTES TO LATER ==
 add booking plans
   - maintenance
   - cleaning
   - tournament
 fix num_team_day
 rules for when on the day a subscription can use booking
+something is broken when creating more intervals on the same field, fix it
+when field created, forward to create interval page
+
+== NOTES TO LATER ==
 what happens if you put schema on already booked interval
 booking admins should be able to deleted planned schedules too
-something is broken when creating more intervals on the same field, fix it
 on admin interval manager, put a default interval in top, that will set the same for everyone
-when field created, forward to create interval page
 implement payment for booking
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
