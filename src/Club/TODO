@@ -5,7 +5,6 @@ test booking in:
   ie 8,
   ie 7
   chrome
-cannot expire expired subscriptions
 simplify new_subscription_listener shop
 no reason for a member to expire subscription, just remove renewal
 open and close booking on specific dates for fields
