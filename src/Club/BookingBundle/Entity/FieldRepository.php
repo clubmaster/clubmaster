@@ -54,9 +54,16 @@ class FieldRepository extends EntityRepository
 
   public function getFieldsOverview(\Club\UserBundle\Entity\Location $location, \DateTime $date)
   {
-    $fields = $this->_em->getRepository('ClubBookingBundle:Field')->findBy(array(
-      'location' => $location->getId()
-    ));
+    $fields = $this->_em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubBookingBundle:Field', 'f')
+      ->where('f.location = :location')
+      ->andWhere('(f.open < :date OR f.open IS NULL)')
+      ->andWhere('(f.close > :date OR f.close IS NULL)')
+      ->setParameter('location', $location->getId())
+      ->setParameter('date', $date->format('Y-m-d'))
+      ->getQuery()
+      ->getResult();
 
     $res = array();
     foreach ($fields as $field) {

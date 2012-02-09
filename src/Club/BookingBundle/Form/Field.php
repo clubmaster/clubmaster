@@ -13,6 +13,8 @@ class Field extends AbstractType
     $builder->add('name');
     $builder->add('position');
     $builder->add('information');
+    $builder->add('open');
+    $builder->add('close');
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',
       'query_builder' => function(EntityRepository $er) {

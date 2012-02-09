@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-open and close booking on specific dates for fields
 remove visible position from fields, replace it with user arrows
 problem with stopped subscription on auto_renewal
 test booking in:
