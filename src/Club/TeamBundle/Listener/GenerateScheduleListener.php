@@ -182,7 +182,7 @@ class GenerateScheduleListener
     foreach ($schedule->getInstructors() as $instructor) {
       $new->addInstructor($instructor);
     }
-    foreach ($schedule->getFields() as $fields) {
+    foreach ($schedule->getFields() as $field) {
       $new->addField($field);
     }
 
