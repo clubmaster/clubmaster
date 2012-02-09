@@ -1,4 +1,5 @@
 == NOTES FOR THIS RELEASE ==
+open and close booking on specific dates for fields
 remove visible position from fields, replace it with user arrows
 problem with stopped subscription on auto_renewal
 test booking in:
@@ -6,12 +7,10 @@ test booking in:
   ie 9
   ie 8,
   ie 7
-open and close booking on specific dates for fields
 add booking plans
   - maintenance
   - cleaning
   - tournament
-fix num_team_day (doctrine date_format)
 rules for when on the day a subscription can use booking
 something is broken when creating more intervals on the same field, fix it
 

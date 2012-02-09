@@ -139,21 +139,21 @@ class Team
     if (count($r))
       $this->setError('You are already on this team');
 
-    /**
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
       ->from('ClubTeamBundle:ScheduleUser', 'su')
       ->leftJoin('su.schedule', 's')
-      ->where('DATE_FORMAT(s.first_date,%Y-%m-%d) = :date')
+      ->where('s.first_date > :first')
+      ->andWhere('s.first_date < :end')
       ->andWhere('su.user = :user')
       ->setParameter('user', $this->user->getId())
-      ->setParameter('date', $this->schedule->getFirstDate()->format('Y-m-d'))
+      ->setParameter('first', $this->schedule->getFirstDate()->format('Y-m-d').' 00:00:00')
+      ->setParameter('end', $this->schedule->getFirstDate()->format('Y-m-d').' 23:59:59')
       ->getQuery()
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_team.num_team_day'))
       $this->setError('You cannot attend more teams this day');
-     */
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
