@@ -14,38 +14,33 @@ class LoadLocationData extends AbstractFixture implements OrderedFixtureInterfac
     $location->setLocationName('ClubMaster');
     $manager->persist($location);
 
-    $config = $this->getReference('config_default_language');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
     $lc->setLocation($location);
-    $lc->setConfig($config->getConfigKey());
+    $lc->setConfig('default_language');
     $lc->setValue(1);
     $manager->persist($lc);
 
-    $config = $this->getReference('config_default_currency');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
     $lc->setLocation($location);
-    $lc->setConfig($config->getConfigKey());
+    $lc->setConfig('default_currency');
     $lc->setValue(1);
     $manager->persist($lc);
 
-    $config = $this->getReference('config_default_location');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
     $lc->setLocation($location);
-    $lc->setConfig($config->getConfigKey());
+    $lc->setConfig('default_location');
     $lc->setValue(2);
     $manager->persist($lc);
 
-    $config = $this->getReference('config_email_sender_address');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
     $lc->setLocation($location);
-    $lc->setConfig($config->getConfigKey());
+    $lc->setConfig('email_sender_address');
     $lc->setValue('noreply@clubmaster.dk');
     $manager->persist($lc);
 
-    $config = $this->getReference('config_email_sender_name');
     $lc = new \Club\UserBundle\Entity\LocationConfig();
     $lc->setLocation($location);
-    $lc->setConfig($config->getConfigKey());
+    $lc->setConfig('email_sender_name');
     $lc->setValue('ClubMaster');
     $manager->persist($lc);
 

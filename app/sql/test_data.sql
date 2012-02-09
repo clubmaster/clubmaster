@@ -147,6 +147,8 @@ INSERT INTO club_shop_product_attribute (product_id,attribute,value) VALUES
   (19,'auto_renewal','A'),
   (20,'time_interval','T10M'),
   (20,'auto_renewal','A'),
+  (20,'booking','1'),
+  (20,'team','1'),
   (21,'time_interval','T10M'),
   (21,'auto_renewal','A'),
   (21,'allowed_pauses','2');

@@ -1,5 +1,5 @@
 == NOTES FOR THIS RELEASE ==
-remove config data, and replace with simulair to product attributes
+seems like team subscription does not work
 improve design on checkout anonymous
 test booking in:
   opera,

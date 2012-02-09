@@ -25,7 +25,10 @@ class LocationConfigRepository extends EntityRepository
       ->setParameter('key',$key)
       ->setParameter('location',$location->getId())
       ->getQuery()
-      ->getResult();
+      ->getOneOrNullResult();
+
+    if ($config)
+      return $config;
 
     if (!count($config) && !$fallback)
       return false;
@@ -47,8 +50,6 @@ class LocationConfigRepository extends EntityRepository
 
       }
     }
-
-    return $config[0];
   }
 
   public function getObjectByKey($key, \Club\UserBundle\Entity\Location $location = null, $fallback = true)

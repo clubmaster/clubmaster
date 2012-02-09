@@ -43,12 +43,18 @@ class AdminLocationConfigController extends Controller
   private function getData(\Club\UserBundle\Entity\Location $location)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $configs = $em->getRepository('ClubUserBundle:Config')->findAll();
+    $configs = array(
+      'default_language',
+      'default_currency',
+      'default_location',
+      'email_sender_address',
+      'email_sender_name'
+    );
 
     $arr = array();
 
     foreach ($configs as $config) {
-      $arr[$config->getConfigKey()] = $em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey($config->getConfigKey(), $location, false);
+      $arr[$config] = $em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey($config, $location, false);
     }
 
     return $arr;
