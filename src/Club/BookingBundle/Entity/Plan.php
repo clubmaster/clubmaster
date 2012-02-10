@@ -163,22 +163,6 @@ class Plan
       $this->setUpdatedAt(new \DateTime());
     }
 
-    public function toArray()
-    {
-      $ret = array(
-        'id' => $this->getId(),
-        'type' => 'booking',
-        'user' => $this->getUser()->toArray('simple'),
-        'guest' => $this->getGuest(),
-        'first_date' => $this->getFirstDate()->format('c'),
-        'end_date' => $this->getEndDate()->format('c'),
-        'created_at' => $this->getCreatedAt()->format('c'),
-        'updated_at' => $this->getUpdatedAt()->format('c')
-      );
-
-      return $ret;
-    }
-
     /**
      * Set first_date
      *
@@ -281,5 +265,23 @@ class Plan
     public function getFields()
     {
         return $this->fields;
+    }
+
+    public function toArray()
+    {
+      $res = array(
+        'id' => $this->getId(),
+        'name' => $this->getName(),
+        'description' => $this->getDescription(),
+        'first_date' => $this->getFirstDate(),
+        'end_date' => $this->getEndDate(),
+        'fields' => array()
+      );
+
+      foreach ($this->getFields() as $field) {
+        $res['fields'][] = $field->toArray();
+      }
+
+      return $res;
     }
 }

@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlanRepository extends EntityRepository
 {
+  public function getAllBetween(\Club\UserBundle\Entity\Location $location, \DateTime $start, \DateTime $end)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('p')
+      ->from('ClubBookingBundle:Plan', 'p')
+      ->leftJoin('p.fields', 'f')
+      ->where('p.first_date >= :first')
+      ->andWhere('p.first_date < :end')
+      ->andWhere('f.location = :location')
+      ->setParameter('first', $start->format('Y-m-d H:i:s'))
+      ->setParameter('end', $end->format('Y-m-d H:i:s'))
+      ->setParameter('location', $location->getId())
+      ->getQuery()
+      ->getResult();
+  }
 }

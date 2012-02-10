@@ -84,6 +84,7 @@ class BookingController extends Controller
 
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
+    $plans = $em->getRepository('ClubBookingBundle:Plan')->getAllBetween($location, $start, $end);
 
     $res = array();
     foreach ($bookings as $booking) {
@@ -91,6 +92,9 @@ class BookingController extends Controller
     }
     foreach ($schedules as $schedule) {
       $res[] = $schedule->toArray();
+    }
+    foreach ($plans as $plan) {
+      $res[] = $plan->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
