@@ -134,6 +134,22 @@ class BookingController extends Controller
 
    /**
     * @Template()
+    * @Route("/booking/view/plan/{id}/{field_id}")
+    */
+   public function viewPlanAction($id, $field_id)
+   {
+     $em = $this->getDoctrine()->getEntityManager();
+     $plan = $em->find('ClubBookingBundle:Plan', $id);
+     $field = $em->find('ClubBookingBundle:Field', $field_id);
+
+     return array(
+       'plan' => $plan,
+       'field' => $field
+     );
+   }
+
+   /**
+    * @Template()
     * @Route("/booking/book/cancel/{id}")
     */
    public function cancelAction($id)

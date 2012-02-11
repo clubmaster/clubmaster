@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-add booking plans to API
 add booking plans to Booking Helper validator
 rules for when on the day a subscription can use booking
 something is broken when creating more intervals on the same field, fix it
