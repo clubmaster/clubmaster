@@ -271,10 +271,11 @@ class Plan
     {
       $res = array(
         'id' => $this->getId(),
+        'type' => 'plan',
         'name' => $this->getName(),
         'description' => $this->getDescription(),
-        'first_date' => $this->getFirstDate(),
-        'end_date' => $this->getEndDate(),
+        'first_date' => $this->getFirstDate()->format('c'),
+        'end_date' => $this->getEndDate()->format('c'),
         'fields' => array()
       );
 
