@@ -72,6 +72,10 @@ class Plan
 
     /**
      * @ORM\ManyToMany(targetEntity="Field")
+     * @ORM\JoinTable(name="club_booking_plan_field",
+     *   joinColumns={@ORM\JoinColumn(name="plan_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")}
+     * )
      */
     protected $fields;
 

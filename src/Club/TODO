@@ -4,7 +4,6 @@ fix virtual interval for:
   schedules
   plans
   find a way to find everything between, maybe doctrine support between?
-fix name for plan_fields
 rules for when on the day a subscription can use booking
 something is broken when creating more intervals on the same field, fix it
 test booking in:
