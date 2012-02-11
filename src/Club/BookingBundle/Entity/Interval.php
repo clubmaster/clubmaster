@@ -90,6 +90,11 @@ class Interval
     /**
      * Virtual variable
      */
+    protected $plan;
+
+    /**
+     * Virtual variable
+     */
     protected $available = true;
 
 
@@ -280,6 +285,17 @@ class Interval
     public function getSchedule()
     {
       return $this->schedule;
+    }
+
+    public function setPlan(\Club\BookingBundle\Entity\Plan $plan)
+    {
+      if ($plan) $this->setAvailable(false);
+      $this->plan = $plan;
+    }
+
+    public function getPlan()
+    {
+      return $this->plan;
     }
 
     /**

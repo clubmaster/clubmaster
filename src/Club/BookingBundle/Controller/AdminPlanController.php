@@ -30,6 +30,8 @@ class AdminPlanController extends Controller
   public function newAction()
   {
     $plan = new \Club\BookingBundle\Entity\Plan();
+    $plan->setUser($this->get('security.context')->getToken()->getUser());
+
     $form = $this->createForm(new \Club\BookingBundle\Form\Plan(), $plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {

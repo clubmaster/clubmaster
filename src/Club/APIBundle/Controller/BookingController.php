@@ -84,7 +84,7 @@ class BookingController extends Controller
 
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
-    $plans = $em->getRepository('ClubBookingBundle:Plan')->getAllBetween($location, $start, $end);
+    $plans = $em->getRepository('ClubBookingBundle:Plan')->getAllBetween($start, $end, $location);
 
     $res = array();
     foreach ($bookings as $booking) {

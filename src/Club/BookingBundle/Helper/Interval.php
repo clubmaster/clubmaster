@@ -39,6 +39,11 @@ class Interval
       $interval->setSchedule($schedules[0]);
     }
 
+    $plans = $this->em->getRepository('ClubBookingBundle:Plan')->getAllBetween($start, $end, null, $interval->getField());
+    if ($plans) {
+      $interval->setPlan($plans[0]);
+    }
+
     return $interval;
   }
 }
