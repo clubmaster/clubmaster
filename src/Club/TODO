@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-check what happens if not logged in in renew subscriptions
 fix virtual interval for:
   bookings
   schedules
