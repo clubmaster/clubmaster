@@ -1,7 +1,7 @@
 {% block javascripts %}
   <script>
   $(document).ready(function() {
-    var date = new Date("{{ date|date('c')}}");
+    var date = new Date({{ date|date('Y')}},{{ date|date('n')-1 }},{{ date|date('j') }});
     var url = "{{ path('homepage') }}";
     var location = {{ location.id }};
     var hour_width = 120;
