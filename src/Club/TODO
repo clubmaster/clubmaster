@@ -1,9 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-fix virtual interval for:
-  bookings
-  schedules
-  plans
-  find a way to find everything between, maybe doctrine support between?
 test booking in:
   opera,
   ie 9

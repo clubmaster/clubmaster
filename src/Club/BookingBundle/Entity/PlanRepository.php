@@ -18,8 +18,10 @@ class PlanRepository extends EntityRepository
       ->select('p')
       ->from('ClubBookingBundle:Plan', 'p')
       ->leftJoin('p.fields', 'f')
-      ->where('p.end_date > :end')
-      ->andWhere('p.first_date <= :start')
+      ->where('(p.first_date <= :start and p.end_date >= :end)')
+      ->orWhere('(p.first_date <= :start and p.end_date <= :end and p.end_date >= :start)')
+      ->orWhere('(p.first_date >= :start and p.end_date >= :end and p.first_date < :end)')
+      ->orWhere('(p.first_date >= :start and p.end_date <= :end and p.end_date >= :start)')
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
       ->setParameter('end', $end->format('Y-m-d H:i:s'));
 

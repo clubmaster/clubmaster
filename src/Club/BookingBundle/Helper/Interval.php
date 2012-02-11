@@ -28,6 +28,8 @@ class Interval
   {
     $start = new \DateTime($date->format('Y-m-d').' '.$interval->getStartTime()->format('H:i:s'));
     $end = new \DateTime($date->format('Y-m-d').' '.$interval->getStopTime()->format('H:i:s'));
+    $i = new \DateInterval('PT1S');
+    $start->add($i);
 
     $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllBetween($start, $end, $interval->getField());
     if ($bookings) {

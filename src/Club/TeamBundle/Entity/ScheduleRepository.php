@@ -48,8 +48,10 @@ class ScheduleRepository extends EntityRepository
     $qb = $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubTeamBundle:Schedule','s')
-      ->where('s.first_date >= :start')
-      ->andWhere('s.first_date < :end')
+      ->where('(s.first_date <= :start and s.end_date >= :end)')
+      ->orWhere('(s.first_date <= :start and s.end_date <= :end and s.end_date >= :start)')
+      ->orWhere('(s.first_date >= :start and s.end_date >= :end and s.first_date < :end)')
+      ->orWhere('(s.first_date >= :start and s.end_date <= :end and s.end_date >= :start)')
       ->orderBy('s.first_date')
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
       ->setParameter('end', $end->format('Y-m-d H:i:s'));
