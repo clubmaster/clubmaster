@@ -248,7 +248,7 @@ class Booking
     }
 
     if (!$this->user->getMemberStatus()) {
-      $this->setError('Member does not have an active membership');
+      $this->setError('You do not have an active membership');
       return;
     }
 
