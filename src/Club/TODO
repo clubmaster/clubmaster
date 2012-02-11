@@ -32,9 +32,7 @@ make sure widgets works:
 login through booking page
 login through team attend page
 jquery overlay form on booking
-make sure that not 2 intervals can be valid at the same time
 find a smart way to get default location, might be with the url
-use validators in coupon
 bind coupon to specific product
 move all login pages to /user
 not 2 schedules can have the same interval
