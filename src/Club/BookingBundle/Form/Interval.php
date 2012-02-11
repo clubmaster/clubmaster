@@ -25,6 +25,8 @@ class Interval extends AbstractType
     $builder->add('start_time');
     $builder->add('stop_time');
     $builder->add('field');
+    $builder->add('valid_from');
+    $builder->add('valid_to');
   }
 
   public function getDefaultOptions(array $options)
