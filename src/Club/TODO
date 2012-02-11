@@ -1,4 +1,6 @@
 == NOTES FOR THIS RELEASE ==
+does renew membership of location works?
+check what happens if not logged in in renew subscriptions
 fix virtual interval for:
   bookings
   schedules
@@ -40,4 +42,3 @@ what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 on switch location, stay on last visited page
-simplify new_subscription_listener shop
