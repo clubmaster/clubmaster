@@ -122,6 +122,11 @@ class Booking
     if ($user == $partner)
       $this->setError('You cannot book with yourself');
 
+    if (!$this->partner->getMemberStatus(array('booking'))) {
+      $this->setError('Your partner must have an active membership');
+      return;
+    }
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
@@ -247,7 +252,7 @@ class Booking
       return;
     }
 
-    if (!$this->user->getMemberStatus()) {
+    if (!$this->user->getMemberStatus(array('booking'))) {
       $this->setError('You do not have an active membership');
       return;
     }

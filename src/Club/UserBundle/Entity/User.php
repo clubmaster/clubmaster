@@ -762,13 +762,20 @@ class User implements AdvancedUserInterface
         return $this->activation_code;
     }
 
-    public function getMemberStatus()
+    public function getMemberStatus(array $attr=null)
     {
       foreach ($this->getSubscriptions() as $s) {
         if ($s->getStartDate()->getTimestamp() <= time()) {
           if ($s->getExpireDate()->getTimestamp() >= time() || $s->getExpireDate() == '') {
             if ($s->getActive())
-              return true;
+              if (is_array($attr)) {
+                foreach ($attr as $key => $value) {
+                  if ($s->hasAttribute($value))
+                    return true;
+                }
+              } else {
+                return true;
+              }
           }
         }
       }

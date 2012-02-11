@@ -1,5 +1,4 @@
 == NOTES FOR THIS RELEASE ==
-validate partner has active membership
 check what happens if not logged in in renew subscriptions
 fix virtual interval for:
   bookings
