@@ -1,13 +1,27 @@
 == NOTES FOR THIS RELEASE ==
+booking schema starts at 11?
 remove user attributes
+translate admin_interval days
+check everything for danish translation
+problem with team participant order
 
 == NOTES TO LATER ==
-translate admin_interval days
 rules for when on the day a subscription can use booking
+implement payment for booking
+on admin interval manager, put a default interval in top, that will set the same for everyone
+make sure either create or updated always comes first
+make sure widgets works:
+  - datetime
+  - date
+  - time
+login through booking page
+login through team attend page
+what will happen if interval access multiple days
+dynamic number of partners for a booking, from 0 to 888
+
+== NOTES FOR EVEN LATER ==
 something is broken when creating more intervals on the same field, fix it
 what happens if you put schema on already booked interval
-on admin interval manager, put a default interval in top, that will set the same for everyone
-implement payment for booking
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
@@ -16,19 +30,10 @@ change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings
 enable and disable events
-make sure either create or updated always comes first
-make sure widgets works:
-  - datetime
-  - date
-  - time
-login through booking page
-login through team attend page
 jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product
 move all login pages to /user
 not 2 schedules can have the same interval
-what will happen if interval access multiple days
-dynamic number of partners for a booking, from 0 to 888
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 on switch location, stay on last visited page
