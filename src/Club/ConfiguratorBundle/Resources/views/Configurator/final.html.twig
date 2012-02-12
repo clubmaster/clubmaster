@@ -4,9 +4,9 @@
 {% block content %}
     <h1>Well done!</h1>
     {% if is_writable %}
-    <h2>Your distribution is configured!</h2>
+    <h2>Your application is configured!</h2>
     {% else %}
-    <h2 class="configure-error">Your distribution is almost configured but...</h2>
+    <h2 class="configure-error">Your application is almost configured but...</h2>
     {% endif %}
     <h3>
         <span>
@@ -22,7 +22,7 @@
 
     {% if welcome_url %}
         <ul>
-            <li><a href="{{ welcome_url }}">Go to the Welcome page</a></li>
+            <li><a href="{{ welcome_url }}">Go to the installer</a></li>
         </ul>
     {% endif %}
 {% endblock %}

@@ -83,11 +83,7 @@ class ConfiguratorController extends ContainerAware
         $configurator = $this->container->get('club.configurator.webconfigurator');
         $configurator->clean();
 
-        try {
-            $welcomeUrl = $this->container->get('router')->generate('_welcome');
-        } catch (\Exception $e) {
-            $welcomeUrl = null;
-        }
+        $welcomeUrl = $this->container->get('router')->generate('club_installer_installer_index');
 
         return $this->container->get('templating')->renderResponse('ClubConfiguratorBundle::Configurator/final.html.twig', array(
             'welcome_url' => $welcomeUrl,
