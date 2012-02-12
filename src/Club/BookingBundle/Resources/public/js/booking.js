@@ -1,3 +1,28 @@
+Date.prototype.setISO8601 = function (string) {
+    var regexp = "([0-9]{4})(-([0-9]{2})(-([0-9]{2})" +
+        "(T([0-9]{2}):([0-9]{2})(:([0-9]{2})(\.([0-9]+))?)?" +
+        "(Z|(([-+])([0-9]{2}):([0-9]{2})))?)?)?)?";
+    var d = string.match(new RegExp(regexp));
+
+    var offset = 0;
+    var date = new Date(d[1], 0, 1);
+
+    if (d[3]) { date.setMonth(d[3] - 1); }
+    if (d[5]) { date.setDate(d[5]); }
+    if (d[7]) { date.setHours(d[7]); }
+    if (d[8]) { date.setMinutes(d[8]); }
+    if (d[10]) { date.setSeconds(d[10]); }
+    if (d[12]) { date.setMilliseconds(Number("0." + d[12]) * 1000); }
+    if (d[14]) {
+        offset = (Number(d[16]) * 60) + Number(d[17]);
+        offset *= ((d[15] == '-') ? 1 : -1);
+    }
+
+    offset -= date.getTimezoneOffset();
+    time = (Number(date) + (offset * 60 * 1000));
+    this.setTime(Number(time));
+}
+
 function getScrollWidth()
 {
   return 300;
@@ -23,24 +48,30 @@ function getTime(date)
 
 function makePastIntervalUrl(interval)
 {
-  var start = new Date(interval.start_time);
-  var end = new Date(interval.end_time);
+  var start = new Date();
+  start.setISO8601(interval.start_time);
+  var end = new Date();
+  end.setISO8601(interval.end_time);
 
   return '<div class="past" id="interval_'+interval.id+'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeIntervalUrl(interval, date, url)
 {
-  var start = new Date(interval.start_time);
-  var end = new Date(interval.end_time);
+  var start = new Date();
+  start.setISO8601(interval.start_time);
+  var end = new Date();
+  end.setISO8601(interval.end_time);
 
   return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
 {
-  var start=new Date(booking.first_date);
-  var end=new Date(booking.end_date);
+  var start=new Date();
+  start.setISO8601(booking.first_date);
+  var end=new Date();
+  end.setISO8601(booking.end_date);
   var diff=(end-start)/1000/60;
   var day_diff=(start-day_start)/1000/60;
   var ret;
@@ -48,7 +79,8 @@ function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
   var width=((diff*pixel_size)-1)+'px';
   var left=(day_diff*pixel_size)+'px';
   var height=(field_height-6)+'px';
-  var date = new Date(booking.first_date);
+  var date = new Date();
+  date.setISO8601(booking.first_date);
 
   if (booking.type == 'booking') {
     var top=$("#field_"+booking.field_id).css('top');
@@ -90,8 +122,10 @@ function initTable(location, date, url, hour_width, field_height)
   var start_position=0;
 
   $.getJSON(url+'api/fields/'+location+"/"+getDate(date), function(json) {
-    var startTime=new Date(json.data.info.start_time);
-    var endTime=new Date(json.data.info.end_time);
+    var startTime=new Date();
+    startTime.setISO8601(json.data.info.start_time);
+    var endTime=new Date();
+    endTime.setISO8601(json.data.info.end_time);
 
     var day_start=startTime.getTime();
 
@@ -114,8 +148,10 @@ function initTable(location, date, url, hour_width, field_height)
 
       // parse intervals
       $.each(this.intervals, function() {
-        var start=new Date(this.start_time);
-        var end=new Date(this.end_time);
+        var start=new Date();
+        start.setISO8601(this.start_time);
+        var end=new Date();
+        end.setISO8601(this.end_time);
         var diff=(end-start)/1000/60;
         var day_diff=(start-day_start)/1000/60;
 
