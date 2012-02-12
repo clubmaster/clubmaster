@@ -29,7 +29,7 @@ class FilterAttribute
     protected $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Attribute")
+     * @ORM\Column(type="string")
      */
     protected $attribute;
 
