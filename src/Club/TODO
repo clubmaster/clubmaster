@@ -1,11 +1,11 @@
 == NOTES FOR THIS RELEASE ==
+improve installer, first page will set system up with parameters.ini file
 translate admin_interval days
 check everything for danish translation
 problem with team participant order
 problem with generate new schedules
 
 == NOTES TO LATER ==
-improve installer, first page will set system up with parameters.ini file
 improve navigator
 correct links in navigator
 better timesupport on booking schema, its on danish today

@@ -35,12 +35,12 @@ class AppKernel extends Kernel
             new Club\TeamBundle\ClubTeamBundle(),
             new Club\BookingBundle\ClubBookingBundle(),
             new Club\WelcomeBundle\ClubWelcomeBundle(),
+            new Club\ConfiguratorBundle\ClubConfiguratorBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 

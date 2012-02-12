@@ -28,9 +28,11 @@ _event:
 
 _installer:
   resource: "@ClubInstallerBundle/Resources/config/routing.yml"
+  prefix: /installer
 
-_feedback:
-  resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
+_configurator:
+  resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
+  prefix: /configurator
 
 _message:
   resource: "@ClubMessageBundle/Resources/config/routing.yml"
