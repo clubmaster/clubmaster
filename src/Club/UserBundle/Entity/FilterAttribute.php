@@ -72,9 +72,9 @@ class FilterAttribute
     /**
      * Set attribute
      *
-     * @param Club\UserBundle\Entity\Attribute $attribute
+     * @param string $attribute
      */
-    public function setAttribute(\Club\UserBundle\Entity\Attribute $attribute)
+    public function setAttribute($attribute)
     {
         $this->attribute = $attribute;
     }
@@ -82,7 +82,7 @@ class FilterAttribute
     /**
      * Get attribute
      *
-     * @return Club\UserBundle\Entity\Attribute $attribute
+     * @return string $attribute
      */
     public function getAttribute()
     {

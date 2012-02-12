@@ -204,13 +204,9 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $attr = $em->getRepository('ClubUserBundle:Attribute')->findOneBy(array(
-      'attribute_name' => $column
-    ));
-
     $filter_attr = $em->getRepository('ClubUserBundle:FilterAttribute')->findOneBy(array(
       'filter' => $filter->getId(),
-      'attribute' => $attr->getId()
+      'attribute' => $column
     ));
     $filter_attr->setValue($value);
 
@@ -271,7 +267,7 @@ class FilterController extends Controller
     $form_filter = new \Club\UserBundle\Filter\UserFilter();
 
     foreach ($filter->getAttributes() as $attribute) {
-      switch ($attribute->getAttribute()->getAttributeName()) {
+      switch ($attribute->getAttribute()) {
       case 'name':
         $form_filter->name = $attribute->getValue();
         break;

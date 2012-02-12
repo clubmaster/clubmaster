@@ -47,9 +47,8 @@ class FilterRepository extends EntityRepository
     $filter->setActive(0);
     $filter->setUser($user);
 
-    $attributes = $this->_em->getRepository('ClubUserBundle:Attribute')->findAll();
-
-    foreach ($attributes as $attr) {
+    $attributes = new \Club\UserBundle\Filter\UserFilter();
+    foreach ($attributes as $attr => $value) {
       $filter_attr = new \Club\UserBundle\Entity\FilterAttribute();
       $filter_attr->setFilter($filter);
       $filter_attr->setAttribute($attr);

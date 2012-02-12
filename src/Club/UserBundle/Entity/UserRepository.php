@@ -62,7 +62,7 @@ class UserRepository extends EntityRepository
 
     foreach ($filter->getAttributes() as $attr) {
       if ($attr->getValue() != '') {
-        switch ($attr->getAttribute()->getAttributeName()) {
+        switch ($attr->getAttribute()) {
         case 'name':
           $qb = $this->filterName($qb,$attr->getValue());
           break;
