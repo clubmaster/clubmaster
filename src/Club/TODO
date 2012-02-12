@@ -1,10 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 remove user attributes
-test booking in:
-  opera,
-  ie 9
-  ie 8,
-  ie 7
 
 == NOTES TO LATER ==
 translate admin_interval days
