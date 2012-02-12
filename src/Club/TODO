@@ -3,6 +3,7 @@ remove user attributes
 translate admin_interval days
 check everything for danish translation
 problem with team participant order
+problem with generate new schedules
 
 == NOTES TO LATER ==
 better timesupport on booking schema, its on danish today
