@@ -1494,6 +1494,46 @@
         <source>Your partner must have an active membership</source>
         <target>Din makker skal have et aktivt medlemskab</target>
       </trans-unit>
+      <trans-unit id="376">
+        <source>Auto renewal</source>
+        <target>Automatisk fornyelse</target>
+      </trans-unit>
+      <trans-unit id="377">
+        <source>Day bought</source>
+        <target>Købsdato</target>
+      </trans-unit>
+      <trans-unit id="378">
+        <source>Period</source>
+        <target>Periode</target>
+      </trans-unit>
+      <trans-unit id="379">
+        <source>This subscription will not be automatically renewed.</source>
+        <target>Dette abonnement vil ikke automatisk blive fornyet.</target>
+      </trans-unit>
+      <trans-unit id="380">
+        <source>This subscription will automatically be renewed.</source>
+        <target>Dette abonnement vil automatisk blive fornyet.</target>
+      </trans-unit>
+      <trans-unit id="381">
+        <source>This subscription allow you to use bookings.</source>
+        <target>Dette abonnement tillader dig at bruge booking.</target>
+      </trans-unit>
+      <trans-unit id="382">
+        <source>This subscription does not allow you to use bookings.</source>
+        <target>Dette abonnement tillader dig ikke at bruge booking.</target>
+      </trans-unit>
+      <trans-unit id="383">
+        <source>This subscription allow you to use teams.</source>
+        <target>Dette abonnement tillader dig at bruge hold.</target>
+      </trans-unit>
+      <trans-unit id="384">
+        <source>This subscription does not allow you to use teams.</source>
+        <target>Dette abonnement tillader dig ikke at bruge hold.</target>
+      </trans-unit>
+      <trans-unit id="385">
+        <source>This subscription is valid in the following clubs.</source>
+        <target>Dette abonnement er gyldigt i følgende klubber.</target>
+      </trans-unit>
 
     </body>
   </file>
