@@ -1478,6 +1478,15 @@
         <source>Go to ClubMaster</source>
         <target>Gå til ClubMaster</target>
       </trans-unit>
+      <trans-unit id="372">
+        <source>Active subscriptions</source>
+        <target>Aktive medlemskaber</target>
+      </trans-unit>
+      <trans-unit id="373">
+        <source>Expired subscriptions</source>
+        <target>Udløbet medlemskaber</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
