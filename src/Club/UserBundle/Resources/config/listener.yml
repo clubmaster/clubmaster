@@ -16,6 +16,6 @@ services:
       - { name: kernel.event_listener, event: ban.task, method: onBanTask }
   club.userbundle.login_listener:
     class: Club\UserBundle\Listener\LoginListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.entity_manager, @security.context, @session]
     tags:
       - { name: kernel.event_listener, event: security.interactive_login }
