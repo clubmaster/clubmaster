@@ -1,11 +1,11 @@
 == NOTES FOR THIS RELEASE ==
-booking schema starts at 11?
 remove user attributes
 translate admin_interval days
 check everything for danish translation
 problem with team participant order
 
 == NOTES TO LATER ==
+better timesupport on booking schema, its on danish today
 rules for when on the day a subscription can use booking
 implement payment for booking
 on admin interval manager, put a default interval in top, that will set the same for everyone
