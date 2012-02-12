@@ -15,7 +15,6 @@ class AdministratorStep extends AbstractType
       'first_name' => 'Password',
       'second_name' => 'Password again'
     ));
-    $builder->add('language');
     $builder->add('profile', new \Club\InstallerBundle\Form\AdministratorProfile());
   }
 

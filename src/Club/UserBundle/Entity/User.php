@@ -33,6 +33,13 @@ class User implements AdvancedUserInterface
 
     /**
      * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $locale
+     */
+    protected $locale;
+
+    /**
+     * @ORM\Column(type="string", nullable="true")
      * @Assert\NotBlank(groups={"user"})
      *
      * @var string $password
@@ -116,13 +123,6 @@ class User implements AdvancedUserInterface
      * @var Club\UserBundle\Entity\Profile
      */
     protected $profile;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Language")
-     *
-     * @var Club\UserBundle\Entity\Language
-     */
-    protected $language;
 
     /**
      * @ORM\ManyToOne(targetEntity="Location")
@@ -437,26 +437,6 @@ class User implements AdvancedUserInterface
     public function getProfile()
     {
         return $this->profile;
-    }
-
-    /**
-     * Set language
-     *
-     * @param Club\UserBundle\Entity\Language $language
-     */
-    public function setLanguage(\Club\UserBundle\Entity\Language $language)
-    {
-        $this->language = $language;
-    }
-
-    /**
-     * Get language
-     *
-     * @return Club\UserBundle\Entity\Language $language
-     */
-    public function getLanguage()
-    {
-        return $this->language;
     }
 
     public function getSubscriptions()
@@ -841,5 +821,35 @@ class User implements AdvancedUserInterface
       }
 
       return false;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Add schedules
+     *
+     * @param Club\TeamBundle\Entity\ScheduleUser $schedules
+     */
+    public function addScheduleUser(\Club\TeamBundle\Entity\ScheduleUser $schedules)
+    {
+        $this->schedules[] = $schedules;
     }
 }

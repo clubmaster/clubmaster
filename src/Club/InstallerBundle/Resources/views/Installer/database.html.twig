@@ -1,24 +1,24 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
-<h2>ClubMaster Installer</h2>
+<h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
-<p>Before you can continue your installation of ClubMaster, you will have to install the database.</p>
+<p>{% trans %}Before you can continue your installation of ClubMaster, you will have to install the database.{% endtrans %}</p>
 
 {% if app.session.hasFlash('error') %}
-  <p>An error occur, please correct the problem and try again.</p>
+  <p>{% trans %}An error occur, please correct the problem and try again.{% endtrans %}</p>
 
   <p class="box">
-    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>Try again</span></a>
+    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>{% trans %}Try again{% endtrans %}</span></a>
   </p>
 
 {% else %}
   <p class="box">
   {% if configuration.currentVersion == configuration.latestVersion %}
-    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>Start installation</span></a>
+    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>{% trans %}Start installation{% endtrans %}</span></a>
 
   {% else %}
-    <a href="{{ path("club_installer_installer_migrate") }}" class="btn"><span>Install database</span></a>
+    <a href="{{ path("club_installer_installer_migrate") }}" class="btn"><span>{% trans %}Install database{% endtrans %}</span></a>
 
   {% endif %}
   </p>

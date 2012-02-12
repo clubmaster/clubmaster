@@ -1,6 +1,5 @@
 == NOTES FOR THIS RELEASE ==
 move request listener to after login event
-improve installer, first page will set system up with parameters.ini file
 translate admin_interval days
 check everything for danish translation
 problem with team participant order

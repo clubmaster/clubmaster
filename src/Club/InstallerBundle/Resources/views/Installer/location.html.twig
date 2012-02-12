@@ -1,13 +1,13 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
-<h2>ClubMaster Installer</h2>
+<h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
-<p>This is the installer program of ClubMaster.</p>
+<p>{% trans %}This is the installer of ClubMaster.{% endtrans %}</p>
 
 <form method="post" action="{{ path('club_installer_installer_location') }}">
   <fieldset>
-    <legend>Location Information</legend>
+    <legend>{% trans %}Location Information{% endtrans %}</legend>
 
     {{ form_row(form.location_name) }}
     {{ form_row(form.currency) }}
@@ -17,7 +17,5 @@
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
 </form>
-
-<p>ClubMaster team</p>
 
 {% endblock %}

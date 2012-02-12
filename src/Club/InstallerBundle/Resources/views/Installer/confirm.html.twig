@@ -1,16 +1,14 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Congretulations</h2>
+<h2>{% trans %}Congratulations{% endtrans %}</h2>
 
-<p>You have finished the installation.</p>
+<p>{% trans %}Your installation has successful completed. You can not start use your new open source membership management system.{% endtrans %}</p>
 
-<p>Now go to the login window and start using your new fresh installation.</p>
+<h4>{% trans %}Member number{% endtrans %}: 1</h4>
 
-<p><a href="{{ path('homepage') }}">Start using ClubMaster</a></p>
-
-<p>Your username is: <strong>1</strong></p>
-
-<p>ClubMaster team</p>
+<p class="box">
+  <a href="{{ path('homepage') }}" class="btn"><span>{% trans %}Go to ClubMaster{% endtrans %}</span></a>
+</p>
 
 {% endblock %}

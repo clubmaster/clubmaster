@@ -9,7 +9,6 @@ class User extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('language');
     $builder->add('password', 'repeated', array(
       'type' => 'password',
       'first_name' => 'Password',

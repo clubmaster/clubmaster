@@ -26,7 +26,6 @@ class InstallerControllerTest extends WebTestCase
       'administrator_step[profile][day_of_birth][day]' => '29',
       'administrator_step[profile][day_of_birth][month]' => '6',
       'administrator_step[profile][day_of_birth][year]' => '1984',
-      'administrator_step[language]' => '1',
       'administrator_step[password][Password]' => '1',
       'administrator_step[password][Password again]' => '1',
       'administrator_step[profile][profile_email][email_address]' => 'user@example.com'

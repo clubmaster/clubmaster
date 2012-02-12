@@ -23,7 +23,15 @@ class SecretStepType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('secret', 'text');
+      $locales = array(
+        'en' => 'English',
+        'da' => 'Danish',
+      );
+
+      $builder->add('secret', 'text');
+      $builder->add('locale', 'choice', array(
+        'choices' => $locales
+      ));
     }
 
     public function getName()

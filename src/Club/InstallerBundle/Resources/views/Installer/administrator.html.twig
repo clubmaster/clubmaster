@@ -1,13 +1,13 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
-<h2>ClubMaster Installer</h2>
+<h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
-<p>This is the installer program of ClubMaster.</p>
+<p>{% trans %}This is the installer of ClubMaster.{% endtrans %}</p>
 
 <form method="post" action="">
   <fieldset>
-    <legend>Personal Information</legend>
+    <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.first_name) }}</p>
     <p>{{ form_row(form.profile.last_name) }}</p>
@@ -17,9 +17,8 @@
   </fieldset>
 
   <fieldset>
-    <legend>Account Information</legend>
+    <legend>{% trans %}Account Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.language) }}</p>
     <p>{{ form_row(form.password) }}</p>
 
     {{ form_row(form._token) }}
@@ -27,7 +26,5 @@
 
   </fieldset>
 </form>
-
-<p>ClubMaster team</p>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="file.ext">
+  <file source-language="en" target-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
         <source>User</source>
@@ -1422,7 +1422,62 @@
         <source>Job has been executed</source>
         <target>Jobbet er blevet kørt</target>
       </trans-unit>
-
+      <trans-unit id="358">
+        <source>This is the installer of ClubMaster.</source>
+        <target>Dette er installationen af ClubMaster.</target>
+      </trans-unit>
+      <trans-unit id="359">
+        <source>ClubMaster Installation</source>
+        <target>ClubMaster Installation</target>
+      </trans-unit>
+      <trans-unit id="360">
+        <source>When you have completed the following list of steps, you are ready to start using ClubMaster.</source>
+        <target>Når du har fuldført de følgende punkter, er du klar til at bruge ClubMaster.</target>
+      </trans-unit>
+      <trans-unit id="361">
+        <source>Install database</source>
+        <target>Installer database</target>
+      </trans-unit>
+      <trans-unit id="362">
+        <source>Administrator setup</source>
+        <target>Administrator opsætning</target>
+      </trans-unit>
+      <trans-unit id="363">
+        <source>Location setup</source>
+        <target>Område opsætning</target>
+      </trans-unit>
+      <trans-unit id="364">
+        <source>Start installation</source>
+        <target>Start installation</target>
+      </trans-unit>
+      <trans-unit id="365">
+        <source>Before you can continue your installation of ClubMaster, you will have to install the database.</source>
+        <target>Før du kan færdiggøre installationen af ClubMaster skal du have installeret databasen.</target>
+      </trans-unit>
+      <trans-unit id="366">
+        <source>An error occur, please correct the problem and try again.</source>
+        <target>En fejl er opstået, ret venligst fejlen og prøv igen.</target>
+      </trans-unit>
+      <trans-unit id="367">
+        <source>Try again</source>
+        <target>Prøv igen</target>
+      </trans-unit>
+      <trans-unit id="368">
+        <source>Location Information</source>
+        <target>Område Information</target>
+      </trans-unit>
+      <trans-unit id="369">
+        <source>Congratulations</source>
+        <target>Tillykke</target>
+      </trans-unit>
+      <trans-unit id="370">
+        <source>Your installation has successful completed. You can not start use your new open source membership management system.</source>
+        <target>Din installation er fuldført. Du kan nu begynde at bruge dit nye open source medlemskab administrationsystem.</target>
+      </trans-unit>
+      <trans-unit id="371">
+        <source>Go to ClubMaster</source>
+        <target>Gå til ClubMaster</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

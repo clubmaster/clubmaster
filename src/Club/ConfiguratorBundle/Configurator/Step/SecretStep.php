@@ -26,6 +26,11 @@ class SecretStep implements StepInterface
      */
     public $secret;
 
+    /**
+     * @Assert\NotBlank
+     */
+    public $locale;
+
     public function __construct(array $parameters)
     {
         $this->secret = $parameters['secret'];
@@ -64,7 +69,10 @@ class SecretStep implements StepInterface
      */
     public function update(StepInterface $data)
     {
-        return array('secret' => $data->secret);
+      return array(
+        'secret' => $data->secret,
+        'locale' => $data->locale
+      );
     }
 
     /**
