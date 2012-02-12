@@ -28,11 +28,11 @@ chmod -R 777 app/cache app/logs web/uploads
 
 echo
 echo
-echo "*********************************************************"
-echo "*                                                       *"
-echo "* ATTENTION:                                            *"
-echo "*   Now you can progress with the online configuration. *"
-echo "*   Open your browser and locate the file web/check.php *"
-echo "*                                                       *"
-echo "*********************************************************"
+echo "**********************************************************"
+echo "*                                                        *"
+echo "* ATTENTION:                                             *"
+echo "*   Now you can progress with the online configuration.  *"
+echo "*   Open your browser and locate the file web/config.php *"
+echo "*                                                        *"
+echo "**********************************************************"
 echo

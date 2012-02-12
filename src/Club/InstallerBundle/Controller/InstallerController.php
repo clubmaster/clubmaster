@@ -16,7 +16,7 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/installer")
+   * @Route("/")
    * @Template()
    */
   public function indexAction()
@@ -28,7 +28,7 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/installer/step/1")
+   * @Route("/step/1")
    * @Template()
    */
   public function administratorAction()
@@ -75,7 +75,7 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/installer/step/2")
+   * @Route("/step/2")
    * @Template()
    */
   public function locationAction()
@@ -114,7 +114,7 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/installer/step/3")
+   * @Route("/step/3")
    * @Template()
    */
   public function confirmAction()
