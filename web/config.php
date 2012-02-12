@@ -33,12 +33,12 @@ if (!class_exists('DomDocument')) {
     $minorProblems[] = 'Install and enable the <strong>php-xml</strong> module.';
 }
 
-if (!defined('LIBXML_COMPACT')) {
-    $minorProblems[] = 'Upgrade your <strong>php-xml</strong> extension with a newer libxml.';
-}
-
 if (!((function_exists('apc_store') && ini_get('apc.enabled')) || function_exists('eaccelerator_put') && ini_get('eaccelerator.enable') || function_exists('xcache_set'))) {
     $minorProblems[] = 'Install and enable a <strong>PHP accelerator</strong> like APC (highly recommended).';
+}
+
+if (!(!(function_exists('apc_store') && ini_get('apc.enabled')) || version_compare(phpversion('apc'), '3.0.17', '>='))) {
+    $majorProblems[] = 'Upgrade your <strong>APC</strong> extension (3.0.17+)';
 }
 
 if (!function_exists('token_get_all')) {
@@ -79,17 +79,25 @@ if (!class_exists('Locale')) {
         $version = $matches[1];
     }
 
-    if(isset($matches) && !version_compare($matches[1], '4.0', '>=')) {
-        $minorProblems[] = 'Upgrade your intl extension with a newer ICU version (4+).';
+    if (!version_compare($version, '4.0', '>=')) {
+        $minorProblems[] = 'Upgrade your <strong>intl</strong> extension with a newer ICU version (4+).';
     }
-}
-
-if (!class_exists('SQLite3') && !in_array('sqlite', PDO::getAvailableDrivers())) {
-    $majorProblems[] = 'Install and enable the <strong>SQLite3</strong> or <strong>PDO_SQLite</strong> extension.';
 }
 
 if (!function_exists('json_encode')) {
     $majorProblems[] = 'Install and enable the <strong>json</strong> extension.';
+}
+
+if (!function_exists('session_start')) {
+    $majorProblems[] = 'Install and enable the <strong>session</strong> extension.';
+}
+
+if (!function_exists('ctype_alpha')) {
+    $majorProblems[] = 'Install and enable the <strong>ctype</strong> extension.';
+}
+
+if (!function_exists('token_get_all')) {
+    $majorProblems[] = 'Install and enable the <strong>Tokenizer</strong> extension.';
 }
 
 // php.ini
@@ -117,6 +125,7 @@ if (ini_get('session.auto_start')) {
     $phpini = true;
     $minorProblems[] = 'Set <strong>session.auto_start</strong> to <strong>off</strong> in php.ini<a href="#phpini">*</a>.';
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -136,7 +145,7 @@ if (ini_get('session.auto_start')) {
                 <div class="symfony-block-content">
                     <h1>Welcome!</h1>
                     <p>Welcome to your new ClubMaster project.</p>
-                    <p>This script will guide you through the basic configuration of your application.</p>
+                    <p>This script will guide you through the basic configuration of your project. You can also do the same by editing the ‘<strong>app/config/parameters.ini</strong>’ file directly.</p>
 
                     <?php if (count($majorProblems)): ?>
                         <h2>
@@ -180,9 +189,11 @@ if (ini_get('session.auto_start')) {
 
                     <ul class="symfony-install-continue">
                         <?php if (!count($majorProblems)): ?>
-                            <li><a href="index.php/installer">Configure your ClubMaster Application online</a></li>
+                            <li><a href="configurator/">Configure your ClubMaster Application online</a></li>
+                            <li><a href="installer/">Bypass configuration and go to the Welcome page</a></li>
+
                         <?php endif ?>
-                        <li><a href="check.php">Re-check configuration</a></li>
+                        <li><a href="config.php">Re-check configuration</a></li>
                     </ul>
                 </div>
             </div>
