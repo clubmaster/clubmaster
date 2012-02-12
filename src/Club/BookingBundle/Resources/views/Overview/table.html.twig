@@ -1,8 +1,7 @@
 {% block javascripts %}
   <script>
   $(document).ready(function() {
-    var date = new Date();
-    date.setISO8601("{{ date|date('c')}}");
+    var date = Date.parse("{{ date|date('c')}}");
     var url = "{{ path('homepage') }}";
     var location = {{ location.id }};
     var hour_width = 120;
