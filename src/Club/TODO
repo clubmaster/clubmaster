@@ -1,4 +1,5 @@
 == NOTES FOR THIS RELEASE ==
+move request listener to after login event
 improve installer, first page will set system up with parameters.ini file
 translate admin_interval days
 check everything for danish translation
@@ -39,3 +40,4 @@ move all login pages to /user
 not 2 schedules can have the same interval
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 on switch location, stay on last visited page
+move database install and upgrade to the same library

@@ -1,0 +1,26 @@
+{% extends "ClubInstallerBundle::base.html.twig" %}
+
+{% block body %}
+<h2>ClubMaster Installer</h2>
+
+<p>Before you can continue your installation of ClubMaster, you will have to install the database.</p>
+
+{% if app.session.hasFlash('error') %}
+  <p>An error occur, please correct the problem and try again.</p>
+
+  <p class="box">
+    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>Try again</span></a>
+  </p>
+
+{% else %}
+  <p class="box">
+  {% if configuration.currentVersion == configuration.latestVersion %}
+    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>Start installation</span></a>
+
+  {% else %}
+    <a href="{{ path("club_installer_installer_migrate") }}" class="btn"><span>Install database</span></a>
+
+  {% endif %}
+  </p>
+{% endif %}
+{% endblock %}

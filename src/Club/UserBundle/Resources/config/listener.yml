@@ -1,9 +1,4 @@
 services:
-  club.userbundle.listener.request:
-    class: Club\UserBundle\Listener\RequestListener
-    arguments: [@doctrine.orm.entity_manager,@security.context,@session]
-    tags:
-      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
   club.userbundle.listener.group.recalc:
     class: Club\UserBundle\Listener\GroupRecalcListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
