@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-02-02
-:Revision:  18
+:Date:      2012-02-12
+:Revision:  19
 
 
 Feedback
@@ -38,7 +38,7 @@ If you just want to be up and running and have access to the shell, here is what
 
 Now browse to:
 
-http://localhost/clubmaster/web/check.php
+http://localhost/clubmaster/web/config.php
 
 
 Manual Installation
@@ -88,7 +88,7 @@ Complete installation
 
 Now your installation is in place, go to this url an follow the onscreen installation:
 
-http://localhost/clubmaster/web/check.php
+http://localhost/clubmaster/web/config.php
 
 That page will tell you everything you will need to know in order to get up and running.
 
