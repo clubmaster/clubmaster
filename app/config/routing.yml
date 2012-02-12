@@ -45,3 +45,6 @@ _dashboard:
 
 _welcome:
   resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
+
+_feedback:
+  resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
