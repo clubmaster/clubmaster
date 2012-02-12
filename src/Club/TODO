@@ -6,8 +6,8 @@ problem with team participant order
 problem with generate new schedules
 
 == NOTES TO LATER ==
-improve navigator
-correct links in navigator
+improve paginator
+correct links in paginator
 better timesupport on booking schema, its on danish today
 rules for when on the day a subscription can use booking
 implement payment for booking
@@ -28,7 +28,6 @@ what happens if you put schema on already booked interval
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
-find a better way with installer, the file is pretty old school
 change all equal form.html.twig to layout default
 enable and disable teams
 enable and disable bookings
