@@ -1486,6 +1486,14 @@
         <source>Expired subscriptions</source>
         <target>Udløbet medlemskaber</target>
       </trans-unit>
+      <trans-unit id="374">
+        <source>You cannot have more guest bookings</source>
+        <target>Du kan ikke have flere gæste bookinger</target>
+      </trans-unit>
+      <trans-unit id="375">
+        <source>Your partner must have an active membership</source>
+        <target>Din makker skal have et aktivt medlemskab</target>
+      </trans-unit>
 
     </body>
   </file>
