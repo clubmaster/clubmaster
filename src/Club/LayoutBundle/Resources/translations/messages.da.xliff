@@ -1590,6 +1590,22 @@
         <source>Valid to</source>
         <target>Gyldig til</target>
       </trans-unit>
+      <trans-unit id="400">
+        <source>Status name</source>
+        <target>Status navn</target>
+      </trans-unit>
+      <trans-unit id="401">
+        <source>Accepted</source>
+        <target>Accepteret</target>
+      </trans-unit>
+      <trans-unit id="402">
+        <source>Cancelled</source>
+        <target>Anulleret</target>
+      </trans-unit>
+      <trans-unit id="403">
+        <source>Priority</source>
+        <target>Prioritet</target>
+      </trans-unit>
 
     </body>
   </file>
