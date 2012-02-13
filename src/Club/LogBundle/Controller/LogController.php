@@ -72,7 +72,11 @@ class LogController extends Controller
     ));
 
     if (count($l) > 0)
-      $logs[] = 'You have <strong>'.count($l).' unread</strong> critical messages.';
+      $logs[] = $this->get('translator')->transChoice(
+        'You have an unread critical message.|You have %amount% unread critical messages.',
+        1,
+        array('%amount%' => count($l))
+      );
 
     return $this->render('ClubLogBundle:Log:log_view.html.twig',array(
       'logs' => $logs,
