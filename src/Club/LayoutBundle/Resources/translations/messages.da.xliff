@@ -1486,6 +1486,102 @@
         <source>Expired subscriptions</source>
         <target>Udløbet medlemskaber</target>
       </trans-unit>
+      <trans-unit id="374">
+        <source>Field</source>
+        <target>Bane</target>
+      </trans-unit>
+      <trans-unit id="375">
+        <source>Create field</source>
+        <target>Opret bane</target>
+      </trans-unit>
+      <trans-unit id="376">
+        <source>Booking</source>
+        <target>Booking</target>
+      </trans-unit>
+      <trans-unit id="377">
+        <source>Create interval</source>
+        <target>Opret interval</target>
+      </trans-unit>
+      <trans-unit id="378">
+        <source>Manage intervals</source>
+        <target>Administre intervaller</target>
+      </trans-unit>
+      <trans-unit id="379">
+        <source>Start time</source>
+        <target>Start tid</target>
+      </trans-unit>
+      <trans-unit id="380">
+        <source>Stop time</source>
+        <target>Stop tid</target>
+      </trans-unit>
+      <trans-unit id="381">
+        <source>There are no intervals.</source>
+        <target>Der er ingen intervaller.</target>
+      </trans-unit>
+      <trans-unit id="382">
+        <source>Day</source>
+        <target>Dag</target>
+      </trans-unit>
+      <trans-unit id="383">
+        <source>Booking Information</source>
+        <target>Booking Information</target>
+      </trans-unit>
+      <trans-unit id="384">
+        <source>Find your partner and complete your booking.</source>
+        <target>Find din makker og gennemfør din booking.</target>
+      </trans-unit>
+      <trans-unit id="385">
+        <source>Partner</source>
+        <target>Makker</target>
+      </trans-unit>
+      <trans-unit id="386">
+        <source>Guest Booking</source>
+        <target>Gæste Booking</target>
+      </trans-unit>
+      <trans-unit id="387">
+        <source>Click here if you want to book with a guest.</source>
+        <target>Klik her hvis du vil booke med en gæst.</target>
+      </trans-unit>
+      <trans-unit id="388">
+        <source>Booker</source>
+        <target>Booker</target>
+      </trans-unit>
+      <trans-unit id="389">
+        <source>Confirm</source>
+        <target>Bekræft</target>
+      </trans-unit>
+      <trans-unit id="390">
+        <source>Click here to confirm your booking.</source>
+        <target>Klik her for at bekræfte din booking.</target>
+      </trans-unit>
+      <trans-unit id="391">
+        <source>Your booking has been created</source>
+        <target>Din booking er blevet oprettet</target>
+      </trans-unit>
+      <trans-unit id="392">
+        <source>Click here to cancel your booking.</source>
+        <target>Klik her for at annullere din booking.</target>
+      </trans-unit>
+      <trans-unit id="393">
+        <source>Cancel</source>
+        <target>Annuller</target>
+      </trans-unit>
+      <trans-unit id="394">
+        <source>Booking has been cancelled</source>
+        <target>Booking er blevet annulleret</target>
+      </trans-unit>
+      <trans-unit id="395">
+        <source>There are no fields in this location, choose another location.</source>
+        <target>Der er ingen baner på denne lokation, vælg en anden lokation.</target>
+      </trans-unit>
+      <trans-unit id="396">
+        <source>Open</source>
+        <target>Åben</target>
+      </trans-unit>
+      <trans-unit id="397">
+        <source>Close</source>
+        <target>Lukket</target>
+      </trans-unit>
 
     </body>
   </file>
