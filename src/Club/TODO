@@ -1,10 +1,11 @@
 == NOTES FOR THIS RELEASE ==
-translate admin_interval days
-check everything for danish translation
-problem with team participant order
 problem with generate new schedules
+cannot read mail logs
+better parser of mail logs
+remove throw exception in task listener
 
 == NOTES TO LATER ==
+set system locale for logging messages
 improve paginator
 any way to install database with webinterface
 correct links in paginator

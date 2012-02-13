@@ -230,6 +230,6 @@ class Order
     $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$this->order->getLocation());
 
     $this->order->setCurrency($currency);
-    $this->order->setCurrencyValue($currency->getValue());
+    $this->order->setCurrencyValue(1);
   }
 }

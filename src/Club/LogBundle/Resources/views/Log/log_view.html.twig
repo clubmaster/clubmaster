@@ -1,5 +1,5 @@
 {% for log in logs %}
   {% if logs|length > 0 %}
-    <p class="msg warning">{{ log|raw }}</p>
+    <p class="msg warning">{{ log|raw }} <a href="{{ path('club_log_log_index') }}">&rArr;</a></p>
   {% endif %}
 {% endfor %}

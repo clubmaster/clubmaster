@@ -29,7 +29,7 @@
     <tr>
       <td>{{ interval.field.location }}</td>
       <td>{{ interval.field }}</td>
-      <td>{{ interval.day(true).format('l') }}</td>
+      <td>{{ interval.day(true)|club_day }}</td>
       <td>{{ interval.startTime|club_time }}</td>
       <td>{{ interval.stopTime|club_time }}</td>
       <td>{{ interval.validFrom|club_datetime }}</td>

@@ -1534,6 +1534,142 @@
         <source>This subscription is valid in the following clubs.</source>
         <target>Dette abonnement er gyldigt i følgende klubber.</target>
       </trans-unit>
+      <trans-unit id="386">
+        <source>Field</source>
+        <target>Bane</target>
+      </trans-unit>
+      <trans-unit id="387">
+        <source>Create field</source>
+        <target>Opret bane</target>
+      </trans-unit>
+      <trans-unit id="388">
+        <source>Booking</source>
+        <target>Booking</target>
+      </trans-unit>
+      <trans-unit id="389">
+        <source>Create interval</source>
+        <target>Opret interval</target>
+      </trans-unit>
+      <trans-unit id="390">
+        <source>Manage intervals</source>
+        <target>Administre intervaller</target>
+      </trans-unit>
+      <trans-unit id="391">
+        <source>Start time</source>
+        <target>Start tid</target>
+      </trans-unit>
+      <trans-unit id="392">
+        <source>Stop time</source>
+        <target>Stop tid</target>
+      </trans-unit>
+      <trans-unit id="393">
+        <source>There are no intervals.</source>
+        <target>Der er ingen intervaller.</target>
+      </trans-unit>
+      <trans-unit id="394">
+        <source>Day</source>
+        <target>Dag</target>
+      </trans-unit>
+      <trans-unit id="395">
+        <source>Booking Information</source>
+        <target>Booking Information</target>
+      </trans-unit>
+      <trans-unit id="396">
+        <source>Find your partner and complete your booking.</source>
+        <target>Find din makker og gennemfør din booking.</target>
+      </trans-unit>
+      <trans-unit id="397">
+        <source>Partner</source>
+        <target>Makker</target>
+      </trans-unit>
+      <trans-unit id="398">
+        <source>Guest Booking</source>
+        <target>Gæste Booking</target>
+      </trans-unit>
+      <trans-unit id="399">
+        <source>Click here if you want to book with a guest.</source>
+        <target>Klik her hvis du vil booke med en gæst.</target>
+      </trans-unit>
+      <trans-unit id="400">
+        <source>Booker</source>
+        <target>Booker</target>
+      </trans-unit>
+      <trans-unit id="401">
+        <source>Confirm</source>
+        <target>Bekræft</target>
+      </trans-unit>
+      <trans-unit id="402">
+        <source>Click here to confirm your booking.</source>
+        <target>Klik her for at bekræfte din booking.</target>
+      </trans-unit>
+      <trans-unit id="403">
+        <source>Your booking has been created</source>
+        <target>Din booking er blevet oprettet</target>
+      </trans-unit>
+      <trans-unit id="404">
+        <source>Click here to cancel your booking.</source>
+        <target>Klik her for at annullere din booking.</target>
+      </trans-unit>
+      <trans-unit id="405">
+        <source>Cancel</source>
+        <target>Annuller</target>
+      </trans-unit>
+      <trans-unit id="406">
+        <source>Booking has been cancelled</source>
+        <target>Booking er blevet annulleret</target>
+      </trans-unit>
+      <trans-unit id="407">
+        <source>There are no fields in this location, choose another location.</source>
+        <target>Der er ingen baner på denne lokation, vælg en anden lokation.</target>
+      </trans-unit>
+      <trans-unit id="408">
+        <source>Open</source>
+        <target>Åben</target>
+      </trans-unit>
+      <trans-unit id="409">
+        <source>Close</source>
+        <target>Lukket</target>
+      </trans-unit>
+      <trans-unit id="410">
+        <source>Valid from</source>
+        <target>Gyldig fra</target>
+      </trans-unit>
+      <trans-unit id="411">
+        <source>Valid to</source>
+        <target>Gyldig til</target>
+      </trans-unit>
+      <trans-unit id="412">
+        <source>Status name</source>
+        <target>Status navn</target>
+      </trans-unit>
+      <trans-unit id="413">
+        <source>Accepted</source>
+        <target>Accepteret</target>
+      </trans-unit>
+      <trans-unit id="414">
+        <source>Cancelled</source>
+        <target>Anulleret</target>
+      </trans-unit>
+      <trans-unit id="415">
+        <source>Priority</source>
+        <target>Prioritet</target>
+      </trans-unit>
+      <trans-unit id="416">
+        <source>Create status</source>
+        <target>Opret staus</target>
+      </trans-unit>
+      <trans-unit id="417">
+        <source>You have an unread critical message.|You have %amount% unread critical messages.</source>
+        <target>Du har en ulæst kritisk besked.|Du har %amount% ulæste kritiske beskeder.</target>
+      </trans-unit>
+      <trans-unit id="418">
+        <source>Name: %name%</source>
+        <target>Navn: %name%</target>
+      </trans-unit>
+      <trans-unit id="419">
+        <source>Back to list</source>
+        <target>Tilbage til listen</target>
+      </trans-unit>
 
     </body>
   </file>

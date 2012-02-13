@@ -13,4 +13,5 @@ final class Events
   const onAutoRenewalTask = 'auto_renewal.task';
   const onTeamTask = 'team.task';
   const onTeamPenalty = 'team.penalty';
+  const onTaskError = 'task.error';
 }

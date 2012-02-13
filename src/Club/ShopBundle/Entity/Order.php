@@ -58,7 +58,6 @@ class Order
 
     /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
-     * @Assert\Notblank()
      * @Assert\NotBlank(groups={"PaymentMethod"})
      *
      * @var Club\ShopBundle\Entity\PaymentMethod
@@ -67,7 +66,6 @@ class Order
 
     /**
      * @ORM\ManyToOne(targetEntity="Shipping")
-     * @Assert\NotBlank()
      *
      * @var Club\ShopBundle\Entity\Shipping
      */

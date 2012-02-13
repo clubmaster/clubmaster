@@ -8,13 +8,15 @@ class TeamPenaltyListener
   private $minutes_before_schedule;
   private $penalty_enabled;
   private $order;
+  private $penalty_product_name;
 
-  public function __construct($em, $minutes_before_schedule, $penalty_enabled,$order)
+  public function __construct($em, $minutes_before_schedule, $penalty_enabled, $order, $penalty_product_name)
   {
     $this->em = $em;
     $this->minutes_before_schedule = $minutes_before_schedule;
     $this->penalty_enabled = $penalty_enabled;
     $this->order = $order;
+    $this->penalty_product_name = $penalty_product_name;
   }
 
   public function onTeamPenalty(\Club\TaskBundle\Event\FilterTaskEvent $event)
@@ -28,15 +30,15 @@ class TeamPenaltyListener
         $diff = new \DateInterval('PT'.$this->minutes_before_schedule.'M');
         $first = clone $schedule->getFirstDate()->sub($diff);
 
-        $participant = $this->em->getRepository('ClubTeamBundle:Participant')->getUserInRange($user, $first, $last);
+        $participant = $this->em->getRepository('ClubTeamBundle:Participant')->getUserInRange($user->getUser(), $first, $last);
         if (!count($participant)) {
           if ($this->penalty_enabled) {
-            $this->order->createSimpleOrder($user,$schedule->getLocation());
+            $this->order->createSimpleOrder($user->getUser(),$schedule->getLocation());
             $product = array(
               'price' => $schedule->getPenalty(),
               'quantity' => 1,
               'type' => 'product',
-              'product_name' => 'Penalty for missed team'
+              'product_name' => $this->penalty_product_name
             );
             $this->order->addSimpleProduct($product);
             $this->order->save();

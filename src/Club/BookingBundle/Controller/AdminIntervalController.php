@@ -86,7 +86,7 @@ class AdminIntervalController extends Controller
 
   protected function process($interval)
   {
-    $form = $this->createForm(new \Club\BookingBundle\Form\Interval(), $interval);
+    $form = $this->getForm($interval);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -162,5 +162,33 @@ class AdminIntervalController extends Controller
       'field' => $field,
       'form' => $form->createView(),
     );
+  }
+
+  protected function getForm($interval)
+  {
+      $d = new \DateTime('next monday');
+    $i = new \DateInterval('P1D');
+    $p = new \DatePeriod($d, $i, 7);
+
+    $fmt = new \IntlDateFormatter($this->get('session')->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
+    $fmt->setPattern('eeee');
+
+    $days = array();
+    foreach ($p as $i=>$dt) {
+      $days[$i] = $fmt->format($dt);
+    }
+
+    $form = $this->createFormBuilder($interval)
+      ->add('day', 'choice', array(
+        'choices' => $days
+      ))
+      ->add('start_time')
+      ->add('stop_time')
+      ->add('field')
+      ->add('valid_from')
+      ->add('valid_to')
+        ->getForm();
+
+    return $form;
   }
 }
