@@ -1582,6 +1582,14 @@
         <source>Close</source>
         <target>Lukket</target>
       </trans-unit>
+      <trans-unit id="398">
+        <source>Valid from</source>
+        <target>Gyldig fra</target>
+      </trans-unit>
+      <trans-unit id="399">
+        <source>Valid to</source>
+        <target>Gyldig til</target>
+      </trans-unit>
 
     </body>
   </file>
