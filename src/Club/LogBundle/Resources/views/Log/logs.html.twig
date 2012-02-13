@@ -4,10 +4,10 @@
   <thead>
     <tr>
       <th>{% trans %}Read{% endtrans %}</th>
-      <th>{% trans %}User{% endtrans %}</th>
       <th>{% trans %}Severity{% endtrans %}</th>
       <th>{% trans %}Message{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -24,13 +24,6 @@
         {% endif %}
       </td>
       <td>
-      {% if log.user %}
-        {{ log.user.profile.name }}
-      {% else %}
-        {% trans %}System{% endtrans %}
-      {% endif %}
-      </td>
-      <td>
         {% if log.severity == 'debug' %}<span class="label label-02">{{ log.severity }}</span>
         {% elseif log.severity == 'informational' %}<span class="label label-02">{{ log.severity }}</span>
         {% elseif log.severity == 'warning' %}<span class="label label-04">{{ log.severity }}</span>
@@ -38,6 +31,9 @@
       </td>
       <td>{{ log.log }}</td>
       <td>{{ log.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_log_log_show', { 'id':log.id })} %}
+      </td>
     </tr>
   {% else %}
   <tr>

@@ -1614,6 +1614,14 @@
         <source>You have an unread critical message.|You have %amount% unread critical messages.</source>
         <target>Du har en ulæst kritisk besked.|Du har %amount% ulæste kritiske beskeder.</target>
       </trans-unit>
+      <trans-unit id="406">
+        <source>Name: %name%</source>
+        <target>Navn: %name%</target>
+      </trans-unit>
+      <trans-unit id="407">
+        <source>Back to list</source>
+        <target>Tilbage til listen</target>
+      </trans-unit>
 
     </body>
   </file>

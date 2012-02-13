@@ -1,0 +1,26 @@
+{% extends "ClubLogBundle::base.html.twig" %}
+
+{% block body %}
+
+<p class="box">
+  <a class="btn" href="{{ path("club_log_log_index") }}"><span>{% trans %}Back to list{% endtrans %}</span></a>
+</p>
+
+<div class="box-03 noimage box">
+
+  <h2 class="nomb">{{ log.severity }}</h2>
+  <p class="nomt low">
+  {% if log.user %}
+    {% trans with {'%name%':log.user.profile.name} %}Name: %name%{% endtrans %}
+  {% else %}
+    {% trans with {'%name%':'System'} %}Name: %name%{% endtrans %}
+  {% endif %}<br />
+  {% trans with {'%date%':log.createdAt|club_datetime} %}Created at: %date%{% endtrans %}
+  </p>
+
+  <h2>{% trans %}Message{% endtrans %}</h2>
+  <p>{{ log.log }}</p>
+
+</div> <!-- /box-03 -->
+
+{% endblock %}
