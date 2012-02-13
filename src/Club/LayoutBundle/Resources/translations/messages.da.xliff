@@ -1606,6 +1606,10 @@
         <source>Priority</source>
         <target>Prioritet</target>
       </trans-unit>
+      <trans-unit id="404">
+        <source>Create status</source>
+        <target>Opret staus</target>
+      </trans-unit>
 
     </body>
   </file>
