@@ -74,7 +74,7 @@ class LogController extends Controller
     if (count($l) > 0)
       $logs[] = $this->get('translator')->transChoice(
         'You have an unread critical message.|You have %amount% unread critical messages.',
-        1,
+        count($l),
         array('%amount%' => count($l))
       );
 
