@@ -75,3 +75,8 @@ _admin_shop_shipping:
   resource: "@ClubShopBundle/Controller/AdminShippingController.php"
   type: annotation
   prefix: /admin
+
+_admin_shop_order_status:
+  resource: "@ClubShopBundle/Controller/AdminOrderStatusController.php"
+  type: annotation
+  prefix: /admin

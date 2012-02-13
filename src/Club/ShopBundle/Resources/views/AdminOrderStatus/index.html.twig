@@ -1,0 +1,40 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_shop_adminorderstatus_new') }}" class="btn-create"><span>{% trans %}Create status{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Status name{% endtrans %}</th>
+      <th>{% trans %}Accepted{% endtrans %}</th>
+      <th>{% trans %}Cancelled{% endtrans %}</th>
+      <th>{% trans %}Priority{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for status in orderstatuses %}
+    <tr>
+      <td>{{ status.statusName }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.accepted} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.cancelled} %}</td>
+      <td>{{ status.priority }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_shop_adminorderstatus_edit', { 'id':status.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_shop_adminorderstatus_delete', { 'id':status.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no statuses.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

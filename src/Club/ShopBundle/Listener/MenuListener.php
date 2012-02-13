@@ -51,6 +51,10 @@ class MenuListener
           'name' => $this->translator->trans('Shipping'),
           'route' => $this->router->generate('admin_shop_shipping')
         ),
+        array(
+          'name' => $this->translator->trans('Order status'),
+          'route' => $this->router->generate('club_shop_adminorderstatus_index')
+        ),
       ),
     );
 
