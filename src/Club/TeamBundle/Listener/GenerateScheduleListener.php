@@ -11,19 +11,20 @@ class GenerateScheduleListener
   {
     $this->em = $em;
     $this->future_occurs = $future_occurs;
-    $this->occur = 0;
-    $this->future_occur = 0;
   }
 
   public function onTeamTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllParent();
     foreach ($schedules as $schedule) {
-      $res = $this->em->getRepository('ClubTeamBundle:Schedule')->getPrevSchedule($schedule);
-      $parent = ($res->getSchedule()) ? $res->getSchedule() : $res;
+      $this->occur = 0;
+      $this->future_occur = 0;
 
-      $start = $parent->getRepetition()->getFirstDate();
-      $this->generateSchedules($parent, $start);
+      $repetition = $schedule->getRepetition();
+      if ($repetition) {
+        $start = $repetition->getFirstDate();
+        $this->generateSchedules($schedule, $start);
+      }
     }
   }
 
