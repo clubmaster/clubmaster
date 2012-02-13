@@ -2,6 +2,7 @@
 problem with generate new schedules
 
 == NOTES TO LATER ==
+set system locale for logging messages
 improve paginator
 any way to install database with webinterface
 correct links in paginator
