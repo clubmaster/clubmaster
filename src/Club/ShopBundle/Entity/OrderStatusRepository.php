@@ -29,7 +29,20 @@ class OrderStatusRepository extends EntityRepository
       ->select('s')
       ->from('ClubShopBundle:OrderStatus','s')
       ->where('s.accepted = 1')
+      ->setMaxResults(1)
       ->getQuery()
       ->getSingleResult();
   }
+
+  public function getCancelledStatus()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:OrderStatus','s')
+      ->where('s.cancelled = 1')
+      ->setMaxResults(1)
+      ->getQuery()
+      ->getSingleResult();
+  }
+
 }

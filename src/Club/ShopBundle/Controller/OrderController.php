@@ -50,7 +50,7 @@ class OrderController extends Controller
     $order = $em->find('ClubShopBundle:Order',$id);
 
     $this->validateOwner($order);
-    $status = $em->find('ClubShopBundle:OrderStatus',5);
+    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelledStatus();
     $order->setOrderStatus($status);
 
     $em->persist($order);
