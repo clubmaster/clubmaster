@@ -30,7 +30,6 @@ class BookingControllerTest extends WebTestCase
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
-    var_dump($this->client->getResponse());die();
 
     $form = $crawler->selectButton('Save')->form(array(
       'user[member_number]' => '1'
