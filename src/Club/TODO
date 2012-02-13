@@ -1,5 +1,7 @@
 == NOTES FOR THIS RELEASE ==
 problem with generate new schedules
+cannot read mail logs
+better parser of mail logs
 
 == NOTES TO LATER ==
 set system locale for logging messages
