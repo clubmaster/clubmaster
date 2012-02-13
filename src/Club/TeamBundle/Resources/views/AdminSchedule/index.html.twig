@@ -10,13 +10,12 @@
       <th>{% trans %}First date{% endtrans %}</th>
       <th>{% trans %}End date{% endtrans %}</th>
       <th>{% trans %}Level{% endtrans %}</th>
-      <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -26,7 +25,6 @@
       <td>{{ schedule.firstDate|club_datetime }}</td>
       <td>{{ schedule.endDate|club_datetime }}</td>
       <td>{{ schedule.level.levelName }}</td>
-      <td>{{ schedule.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminschedule_edit', { 'id':schedule.id,'team_id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_delete', { 'id':schedule.id,'team_id':team.id })} %}
@@ -36,7 +34,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">{% trans %}There are no schedules.{% endtrans %}</td>
+    <td colspan="5">{% trans %}There are no schedules.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
