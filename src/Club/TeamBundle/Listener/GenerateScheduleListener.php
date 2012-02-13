@@ -125,7 +125,7 @@ class GenerateScheduleListener
         break;
       }
 
-      if ($this->future_occur > $this->future_occurs)
+      if ($this->future_occur >= $this->future_occurs)
         break;
 
       if ($schedule->getRepetition()->getEndOccurrences() > 0 & $this->occur >= $schedule->getRepetition()->getEndOccurrences())
@@ -139,8 +139,7 @@ class GenerateScheduleListener
   private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Schedule $schedule)
   {
     // only count when we are in the future to get the following
-    if ($start->getTimestamp() > time())
-      $this->future_occur++;
+    if ($start->getTimestamp() > time()) $this->future_occur++;
     $this->occur++;
 
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
