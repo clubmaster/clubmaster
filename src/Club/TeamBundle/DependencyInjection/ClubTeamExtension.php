@@ -33,5 +33,6 @@ class ClubTeamExtension extends Extension
         $container->setParameter('club_team.cancel_minute_created', $config['cancel_minute_created']);
         $container->setParameter('club_team.num_team_day', $config['num_team_day']);
         $container->setParameter('club_team.num_team_future', $config['num_team_future']);
+        $container->setParameter('club_team.penalty_product_name', $config['penalty_product_name']);
     }
 }

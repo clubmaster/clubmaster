@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('cancel_minute_created')->isRequired()->end()
             ->scalarNode('num_team_day')->isRequired()->end()
             ->scalarNode('num_team_future')->isRequired()->end()
+            ->scalarNode('penalty_product_name')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

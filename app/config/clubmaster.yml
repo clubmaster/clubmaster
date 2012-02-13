@@ -13,6 +13,7 @@ club_team:
     cancel_minute_created: 5
     num_team_day: 1
     num_team_future: 2
+    penalty_product_name: 'Penalty for missed team'
 
 club_booking:
     enable_guest: true
