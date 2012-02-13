@@ -1,7 +1,3 @@
-== NOTES FOR THIS RELEASE ==
-cannot read mail logs
-better parser of mail logs
-
 == NOTES TO LATER ==
 set system locale for logging messages
 improve paginator

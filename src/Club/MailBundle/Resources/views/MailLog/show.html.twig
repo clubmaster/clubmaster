@@ -9,11 +9,11 @@
 
   <h2 class="nomb">{{ log.recipient }}</h2>
   <p class="nomt low">
-    {% trans with {'%date%':log.createdAt|club_datetime)} %}Created at: %date%{% endtrans %}
+    {% trans with {'%date%':log.createdAt|club_datetime} %}Created at: %date%{% endtrans %}
   </p>
 
   <h2>{% trans %}Message{% endtrans %}</h2>
-  <p class="nomt low">{{ log.message|raw }}</p>
+  <p class="nomt low">{{ log.message|nl2br }}</p>
 
 </div> <!-- /box-03 -->
 
