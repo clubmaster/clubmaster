@@ -30,7 +30,7 @@ class LocationListener
         ->getQuery()
         ->getOneOrNullResult();
 
-      $this->session->set('location_id', $location->getId());
+      if ($location) $this->session->set('location_id', $location->getId());
     } catch (\PDOException $e) {
     }
   }
