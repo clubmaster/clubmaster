@@ -15,8 +15,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-INSERT INTO club_user_location (location_name,location_id) VALUES
-  ('Aalborg Tennis Klub',null);
+INSERT INTO club_user_location (location_name,club) VALUES
+  ('Aalborg Tennis Klub',1);
 
 INSERT INTO club_user_location_config (location_id,value,config) VALUES
   (1,3,'default_currency'),

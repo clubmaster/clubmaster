@@ -28,7 +28,7 @@ EOF
   {
     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-    $fh = fopen($input->getArgument('file'));
+    $fh = fopen($input->getArgument('file'), 'r');
     while (!feof($fh)) {
       $member_number = trim(fgets($fh, 1024));
 

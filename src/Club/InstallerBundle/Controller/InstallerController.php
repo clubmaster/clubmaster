@@ -109,6 +109,7 @@ class InstallerController extends Controller
       if ($form->isValid()) {
         $location = new \Club\UserBundle\Entity\Location();
         $location->setLocationName($location_step->location_name);
+        $location->setClub(true);
         $em->persist($location);
 
         $lc = new \Club\UserBundle\Entity\LocationConfig();

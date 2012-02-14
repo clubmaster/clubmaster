@@ -1,5 +1,5 @@
 == NOTES TO THIS RELEASE ==
-make locations as club or just a simple area
+can only make shop in clubs
 filter with subscription date does not seems to wrk
 phone and email for admin should not be required
 translate admin user edit page
@@ -10,6 +10,7 @@ on booking field start date, pick from date at 00:00:00 and not as now
 when start and end date on subscription, timezone does not work
 send email on first user
 confirm order page in english
+use user helper on admin create/installer/checkout
 
 == NOTES TO LATER ==
 if order not completely okay, remove the order, perhaps a transaction

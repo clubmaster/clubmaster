@@ -10,6 +10,7 @@ class Location extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('location_name');
+    $builder->add('club');
     $builder->add('street');
     $builder->add('postal_code');
     $builder->add('city');

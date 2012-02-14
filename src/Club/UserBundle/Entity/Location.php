@@ -29,6 +29,13 @@ class Location
     protected $location_name;
 
     /**
+     * @ORM\Column(type="boolean", nullable="true")
+     *
+     * @var string $club
+     */
+    protected $club;
+
+    /**
      * @ORM\Column(type="text", nullable="true")
      *
      * @var string $street
@@ -293,5 +300,25 @@ class Location
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set club
+     *
+     * @param boolean $club
+     */
+    public function setClub($club)
+    {
+        $this->club = $club;
+    }
+
+    /**
+     * Get club
+     *
+     * @return boolean 
+     */
+    public function getClub()
+    {
+        return $this->club;
     }
 }
