@@ -1,4 +1,5 @@
 == NOTES TO LATER ==
+avoid try / catch on kernel.request listeners
 set system locale for logging messages
 improve paginator
 any way to install database with webinterface

@@ -36,10 +36,7 @@ class TaskListener
 
         $this->stopTask($task);
       }
-
-    } catch (\Exception $e) {
-      $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage(), 'onTask', 'task');
-      $this->event_dispatcher->dispatch(\Club\TaskBundle\Event\Events::onTaskError, $event);
+    } catch (\PDOException $e) {
     }
   }
 
