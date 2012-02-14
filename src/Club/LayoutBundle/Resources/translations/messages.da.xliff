@@ -1678,6 +1678,34 @@
         <source>There are no fields.</source>
         <target>Der er ingen baner.</target>
       </trans-unit>
+      <trans-unit id="422">
+        <source>Monday</source>
+        <target>Mandag</target>
+      </trans-unit>
+      <trans-unit id="423">
+        <source>Tuesday</source>
+        <target>Tirsdag</target>
+      </trans-unit>
+      <trans-unit id="424">
+        <source>Wednesday</source>
+        <target>Onsdag</target>
+      </trans-unit>
+      <trans-unit id="425">
+        <source>Tursday</source>
+        <target>Torsdag</target>
+      </trans-unit>
+      <trans-unit id="426">
+        <source>Friday</source>
+        <target>Fredag</target>
+      </trans-unit>
+      <trans-unit id="427">
+        <source>Saturday</source>
+        <target>Lørdag</target>
+      </trans-unit>
+      <trans-unit id="428">
+        <source>Sunday</source>
+        <target>Søndag</target>
+      </trans-unit>
 
     </body>
   </file>
