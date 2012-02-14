@@ -32,4 +32,15 @@ class LocationRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getFirstLocation()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:Location','l')
+      ->orderBy('l.id', 'ASC')
+      ->setMaxResults(1)
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
 }

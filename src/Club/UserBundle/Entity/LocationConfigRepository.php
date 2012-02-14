@@ -63,12 +63,6 @@ class LocationConfigRepository extends EntityRepository
     case 'default_currency':
       $res = $this->_em->find('ClubUserBundle:Currency',$config->getValue());
       break;
-    case 'default_language':
-      $res = $this->_em->find('ClubUserBundle:Language',$config->getValue());
-      break;
-    case 'default_location':
-      $res = $this->_em->find('ClubUserBundle:Location',$config->getValue());
-      break;
     default:
       $res = $config->getValue();
       break;

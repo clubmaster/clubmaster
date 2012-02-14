@@ -1,5 +1,7 @@
 == NOTES TO THIS RELEASE ==
 fix bug in config location
+what about default sender address and default sender name
+send email on first user
 
 == NOTES TO LATER ==
 avoid try / catch on kernel.request listeners
