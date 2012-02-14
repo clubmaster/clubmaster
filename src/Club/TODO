@@ -7,6 +7,8 @@ confirm order page in english
 if order not completely okay, remove the order, perhaps a transaction
 
 == NOTES TO LATER ==
+make sure user only can book in member status period
+make sure user only can use teams in member ship status period
 avoid try / catch on kernel.request listeners
 set system locale for logging messages
 improve paginator
