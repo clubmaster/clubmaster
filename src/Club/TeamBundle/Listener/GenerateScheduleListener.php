@@ -11,19 +11,20 @@ class GenerateScheduleListener
   {
     $this->em = $em;
     $this->future_occurs = $future_occurs;
-    $this->occur = 0;
-    $this->future_occur = 0;
   }
 
   public function onTeamTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllParent();
     foreach ($schedules as $schedule) {
-      $res = $this->em->getRepository('ClubTeamBundle:Schedule')->getPrevSchedule($schedule);
-      $parent = ($res->getSchedule()) ? $res->getSchedule() : $res;
+      $this->occur = 0;
+      $this->future_occur = 0;
 
-      $start = $parent->getRepetition()->getFirstDate();
-      $this->generateSchedules($parent, $start);
+      $repetition = $schedule->getRepetition();
+      if ($repetition) {
+        $start = $repetition->getFirstDate();
+        $this->generateSchedules($schedule, $start);
+      }
     }
   }
 
@@ -124,7 +125,7 @@ class GenerateScheduleListener
         break;
       }
 
-      if ($this->future_occur > $this->future_occurs)
+      if ($this->future_occur >= $this->future_occurs)
         break;
 
       if ($schedule->getRepetition()->getEndOccurrences() > 0 & $this->occur >= $schedule->getRepetition()->getEndOccurrences())
@@ -138,8 +139,7 @@ class GenerateScheduleListener
   private function addSchedule(\DateTime $start, \DateInterval $diff, \Club\TeamBundle\Entity\Schedule $schedule)
   {
     // only count when we are in the future to get the following
-    if ($start->getTimestamp() > time())
-      $this->future_occur++;
+    if ($start->getTimestamp() > time()) $this->future_occur++;
     $this->occur++;
 
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;

@@ -28,8 +28,18 @@ class LocationRepository extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('l')
       ->from('ClubUserBundle:Location','l')
-      ->where('l.location IS NOT NULL')
       ->getQuery()
       ->getResult();
+  }
+
+  public function getFirstLocation()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:Location','l')
+      ->orderBy('l.id', 'ASC')
+      ->setMaxResults(1)
+      ->getQuery()
+      ->getOneOrNullResult();
   }
 }

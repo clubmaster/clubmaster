@@ -1,11 +1,22 @@
-== NOTES FOR THIS RELEASE ==
-problem with generate new schedules
-cannot read mail logs
-better parser of mail logs
-remove throw exception in task listener
+== NOTES TO THIS RELEASE ==
 make locations as club or just a simple area
+filter with subscription date does not seems to wrk
+phone and email for admin should not be required
+translate admin user edit page
+quick create intervals when creating the field
+translate manage intervals
+when you buy dated period subscription, bought subscrition in period is wrong
+on booking field start date, pick from date at 00:00:00 and not as now
+when start and end date on subscription, timezone does not work
+send email on first user
+confirm order page in english
 
 == NOTES TO LATER ==
+if order not completely okay, remove the order, perhaps a transaction
+in checkout shipping form, country has to be entity
+make sure user only can book in member status period
+make sure user only can use teams in member ship status period
+avoid try / catch on kernel.request listeners
 set system locale for logging messages
 improve paginator
 any way to install database with webinterface

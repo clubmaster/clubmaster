@@ -95,7 +95,7 @@ class CheckoutControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'order[order_status]' => '4'
+      'order[order_status]' => '3'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());

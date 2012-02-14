@@ -44,9 +44,7 @@ class AdminLocationConfigController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $configs = array(
-      'default_language',
       'default_currency',
-      'default_location',
       'email_sender_address',
       'email_sender_name'
     );
@@ -68,8 +66,6 @@ class AdminLocationConfigController extends Controller
     foreach ($data as $key=>$value) {
       switch ($key) {
       case 'default_currency':
-      case 'default_language':
-      case 'default_location':
         $config = $config_repos->getByKey($key, $location, false);
 
         if (!$config && $value != '') {
@@ -109,15 +105,6 @@ class AdminLocationConfigController extends Controller
         'class' => 'ClubUserBundle:Currency',
         'required' => false
       ))
-      ->add('default_language','entity', array(
-        'class' => 'ClubUserBundle:Language',
-        'required' => false
-      ))
-      ->add('default_location','entity', array(
-        'class' => 'ClubUserBundle:Location',
-        'required' => false
-      ))
-
       ->add('email_sender_address','text', array(
         'required' => false
       ))

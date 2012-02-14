@@ -11,6 +11,7 @@ class Booking
   protected $security_context;
   protected $session;
   protected $club_interval;
+  protected $translator;
   protected $error;
   protected $user;
   protected $date;
@@ -21,13 +22,14 @@ class Booking
   protected $is_valid = true;
   protected $price;
 
-  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval)
+  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval, $translator)
   {
     $this->em = $em;
     $this->container = $container;
     $this->security_context = $security_context;
     $this->session = $session;
     $this->club_interval = $club_interval;
+    $this->translator = $translator;
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -85,7 +87,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day')) {
-      $this->setError('You cannot have more guest bookings this day');
+      $this->setError($this->translator->trans('You cannot have more guest bookings this day'));
       return;
     }
 
@@ -101,7 +103,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future')) {
-      $this->setError('You cannot have more guest bookings');
+      $this->setError($this->translator->trans('You cannot have more guest bookings'));
       return;
     }
 
@@ -123,7 +125,7 @@ class Booking
       $this->setError('You cannot book with yourself');
 
     if (!$this->partner->getMemberStatus(array('booking'))) {
-      $this->setError('Your partner must have an active membership');
+      $this->setError($this->translator->trans('Your partner must have an active membership'));
       return;
     }
 

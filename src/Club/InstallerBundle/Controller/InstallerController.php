@@ -108,20 +108,28 @@ class InstallerController extends Controller
 
       if ($form->isValid()) {
         $location = new \Club\UserBundle\Entity\Location();
-        $location->setLocation($em->find('ClubUserBundle:Location',1));
         $location->setLocationName($location_step->location_name);
         $em->persist($location);
 
-        $location_config = $em->getRepository('ClubUserBundle:LocationConfig')->findOneBy(array(
-          'location' => 1,
-          'config' => 'default_currency'
-        ));
-        $location_config->setValue($location_step->currency->getId());
-        $em->persist($location_config);
+        $lc = new \Club\UserBundle\Entity\LocationConfig();
+        $lc->setConfig('default_currency');
+        $lc->setLocation($location);
+        $lc->setValue($location_step->currency->getId());
+        $em->persist($lc);
+        $lc = new \Club\UserBundle\Entity\LocationConfig();
+        $lc->setConfig('email_sender_address');
+        $lc->setLocation($location);
+        $lc->setValue('noreply@clubmaster.org');
+        $em->persist($lc);
+        $lc = new \Club\UserBundle\Entity\LocationConfig();
+        $lc->setConfig('email_sender_name');
+        $lc->setLocation($location);
+        $lc->setValue('ClubMaster Administrator');
+        $em->persist($lc);
 
         $em->flush();
 
-        $this->get('session')->set('installer_location_id',$location->getId());
+        $this->get('session')->set('installer_location_id', $location->getId());
         return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
       }
     }

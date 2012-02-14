@@ -4,4 +4,4 @@ services:
         arguments: [@doctrine.orm.entity_manager]
     club_booking.booking:
         class: Club\BookingBundle\Helper\Booking
-        arguments: [@doctrine.orm.entity_manager, @service_container, @security.context, @session, @club_booking.interval]
+        arguments: [@doctrine.orm.entity_manager, @service_container, @security.context, @session, @club_booking.interval, @translator]

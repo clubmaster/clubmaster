@@ -18,22 +18,12 @@ class LocationListener
 
   public function onKernelRequest()
   {
-    $this->setLocation();
-  }
+    try {
+      if ($this->session->get('location_id')) return;
 
-  private function setLocation()
-  {
-    if ($this->session->get('location_id')) return;
-
-    $location = $this->em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location', 'l')
-      ->where('l.id > 1')
-      ->orderBy('l.id')
-      ->setMaxResults(1)
-      ->getQuery()
-      ->getOneOrNullResult();
-
-    $this->session->set('location_id', $location->getId());
+      $location = $this->em->getRepository('ClubUserBundle:Location')->getFirstLocation();
+      if ($location) $this->session->set('location_id', $location->getId());
+    } catch (\PDOException $e) {
+    }
   }
 }

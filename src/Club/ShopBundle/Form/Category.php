@@ -4,7 +4,6 @@ namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Doctrine\ORM\EntityRepository;
 
 class Category extends AbstractType
 {
@@ -16,13 +15,7 @@ class Category extends AbstractType
       'class' => 'Club\ShopBundle\Entity\Category',
       'required' => false
     ));
-    $builder->add('location','entity',array(
-      'class' => 'Club\UserBundle\Entity\Location',
-      'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('l')
-          ->where('l.id <> 1');
-      }
-    ));
+    $builder->add('location');
   }
 
   public function getDefaultOptions(array $options)

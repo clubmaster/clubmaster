@@ -54,7 +54,7 @@ class LoginListener
   {
     if ($this->session->get('location_id')) return;
 
-    $this->location = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_location');
+    $this->location = $this->em->getRepository('ClubUserBundle:Location')->getFirstLocation();
     if (!$this->location) return;
 
     $this->session->set('location_id', $this->location->getId());
