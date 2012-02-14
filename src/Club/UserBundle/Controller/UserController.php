@@ -28,7 +28,6 @@ class UserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
-        $this->get('session')->setLocale($user->getLanguage()->getCode());
         return $this->redirect($this->generateUrl('user'));
       }
     }

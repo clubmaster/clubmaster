@@ -1,7 +1,9 @@
 == NOTES TO THIS RELEASE ==
-fix bug in config location
 what about default sender address and default sender name
 send email on first user
+in checkout shipping form, country has to be entity
+confirm order page in english
+if order not completely okay, remove the order, perhaps a transaction
 
 == NOTES TO LATER ==
 avoid try / catch on kernel.request listeners

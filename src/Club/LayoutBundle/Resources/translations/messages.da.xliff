@@ -1670,6 +1670,10 @@
         <source>Back to list</source>
         <target>Tilbage til listen</target>
       </trans-unit>
+      <trans-unit id="420">
+        <source>Company name</source>
+        <target>Firmanavn</target>
+      </trans-unit>
 
     </body>
   </file>

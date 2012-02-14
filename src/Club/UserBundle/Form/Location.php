@@ -20,7 +20,7 @@ class Location extends AbstractType
     ));
     $builder->add('location','entity', array(
       'class' => 'Club\UserBundle\Entity\Location',
-      'required' => true
+      'required' => false
     ));
   }
 
