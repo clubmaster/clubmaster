@@ -70,7 +70,6 @@ class ProductAttribute extends AbstractType
       'multiple' => true,
       'required' => false
     ));
-
   }
 
   public function getDefaultOptions(array $options)
