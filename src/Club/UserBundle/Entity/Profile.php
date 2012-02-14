@@ -114,10 +114,6 @@ class Profile
     protected $profile_companies;
 
 
-    public function __construct()
-    {
-    }
-
     /**
      * Get id
      *
@@ -223,7 +219,7 @@ class Profile
      *
      * @param Club\UserBundle\Entity\ProfileAddress $profileAddress
      */
-    public function setProfileAddress(\Club\UserBundle\Entity\ProfileAddress $profileAddress)
+    public function setProfileAddress(\Club\UserBundle\Entity\ProfileAddress $profileAddress=null)
     {
         $this->profile_address = $profileAddress;
     }
