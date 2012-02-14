@@ -51,12 +51,13 @@
                         {% trans with {'%name%':'ClubMaster'} %}Project: <strong>%name%</strong>{% endtrans %}
                 </p>
 
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <p class="f-right">
-                {% trans with {'%name%':app.user} %}User: <strong>%name%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {% render 'ClubUserBundle:Misc:LocationBar' %}
-                <strong><a href="{{ path('logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong></p>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% trans with {'%name%':app.user} %}User: <strong>%name%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong><a href="{{ path('logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong>
                 {% endif %}
+                </p>
 
         </div> <!--  /tray -->
 
