@@ -28,7 +28,6 @@ class LocationRepository extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('l')
       ->from('ClubUserBundle:Location','l')
-      ->where('l.location IS NOT NULL')
       ->getQuery()
       ->getResult();
   }
