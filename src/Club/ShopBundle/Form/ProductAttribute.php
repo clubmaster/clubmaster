@@ -68,11 +68,7 @@ class ProductAttribute extends AbstractType
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',
       'multiple' => true,
-      'required' => false,
-      'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('l')
-          ->where('l.id <> 1');
-      }
+      'required' => false
     ));
 
   }
