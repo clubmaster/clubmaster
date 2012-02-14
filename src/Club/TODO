@@ -3,7 +3,6 @@ filter with subscription date does not seems to wrk
 phone and email for admin should not be required
 quick create intervals when creating the field
 when you buy dated period subscription, bought subscrition in period is wrong
-on booking field start date, pick from date at 00:00:00 and not as now
 when start and end date on subscription, timezone does not work
 send email on first user
 confirm order page in english
