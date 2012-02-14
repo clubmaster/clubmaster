@@ -17,6 +17,16 @@ class ShopController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
+    if (!$location->getClub()) {
+      $locations = $em->getRepository('ClubUserBundle:Location')->findClubs();
+      if (count($locations) == 1) {
+        $location = $locations[0];
+        $this->get('session')->set('location_id', $location->getId());
+      } else {
+        return $this->redirect($this->generateUrl('club_user_location_index'));
+      }
+    }
+
     $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
       'location' => $location->getId()
     ));

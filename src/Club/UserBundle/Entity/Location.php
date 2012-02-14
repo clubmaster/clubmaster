@@ -315,7 +315,7 @@ class Location
     /**
      * Get club
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getClub()
     {

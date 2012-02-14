@@ -23,11 +23,12 @@ class LocationRepository extends EntityRepository
       ->getResult();
   }
 
-  public function findAllVisible()
+  public function findClubs()
   {
     return $this->_em->createQueryBuilder()
       ->select('l')
       ->from('ClubUserBundle:Location','l')
+      ->where('l.club = 1')
       ->getQuery()
       ->getResult();
   }
