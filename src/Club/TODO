@@ -1,3 +1,6 @@
+== NOTES TO THIS RELEASE ==
+fix bug in config location
+
 == NOTES TO LATER ==
 avoid try / catch on kernel.request listeners
 set system locale for logging messages
