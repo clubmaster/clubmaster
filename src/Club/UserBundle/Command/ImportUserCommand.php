@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
-class ImportCommand extends ContainerAwareCommand
+class ImportUserCommand extends ContainerAwareCommand
 {
   protected function configure()
   {
