@@ -18,6 +18,11 @@
 INSERT INTO club_user_location (location_name,location_id) VALUES
   ('Aalborg Tennis Klub',null);
 
+INSERT INTO club_user_location_config (location_id,value,config) VALUES
+  (1,3,'default_currency'),
+  (1,'noreply@clubmaster.org','email_sender_address'),
+  (1,'ClubMaster Administrator','email_sender_name');
+
 INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),
   (null,'Junior','dynamic',null,0,17,1),
@@ -102,24 +107,24 @@ INSERT INTO club_shop_category_product (product_id,category_id) VALUES
 INSERT INTO club_shop_product_attribute (product_id,attribute,value) VALUES
   (1,'time_interval','1M'),
   (1,'allowed_pauses',3),
-  (1,'location',2),
+  (1,'location',1),
   (1,'team',1),
   (2,'time_interval','2M'),
   (2,'allowed_pauses',5),
-  (2,'location',5),
+  (2,'location',1),
   (3,'start_date','2011-04-01'),
   (3,'expire_date','2011-10-31'),
   (4,'auto_renewal',1),
   (5,'ticket',10),
-  (5,'location',2),
+  (5,'location',1),
   (5,'team',1),
   (6,'ticket',20),
-  (6,'location',2),
+  (6,'location',1),
   (9,'start_date','2011-04-16'),
   (9,'expire_date','2011-04-30'),
   (10,'time_interval','1M'),
   (10,'auto_renewal','A'),
-  (10,'location',2),
+  (10,'location',1),
   (10,'allowed_pauses',3),
   (11,'time_interval','3M'),
   (11,'auto_renewal','A'),
@@ -132,7 +137,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute,value) VALUES
   (14,'auto_renewal','Y'),
   (15,'ticket',10),
   (15,'auto_renewal','A'),
-  (15,'location',2),
+  (15,'location',1),
   (15,'allowed_pauses',3),
   (16,'time_interval','3M'),
   (16,'auto_renewal','A'),
@@ -149,7 +154,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute,value) VALUES
   (20,'auto_renewal','A'),
   (20,'booking','1'),
   (20,'team','1'),
-  (20,'location','2'),
+  (20,'location','1'),
   (21,'time_interval','T10M'),
   (21,'auto_renewal','A'),
   (21,'allowed_pauses','2');
