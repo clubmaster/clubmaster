@@ -46,30 +46,34 @@ class NewSubscriptionListener
             } elseif (isset($res['auto_renewal'])) {
               if ($res['auto_renewal']->getValue() == 'A') {
                 $start_date = new \DateTime();
-              } elseif ($res['auto_renewal']->getValue() == 'Y') {
-                $start_date = new \DateTime(date('Y-m-d',mktime(0,0,0,$date->format('n'),$date->format('j'),date('Y'))));
-                if ($start_date->getTimestamp() < time()) {
-                  $start_date->add(new \DateInterval('P1Y'));
-                }
               }
             }
+
             $subscription->setStartDate($start_date);
             break;
 
           case 'expire_date':
             $subscription = $this->addSubAttr($subscription, $res_key, $res_val->getValue());
-            $subscription->setExpireDate(new \DateTime($res['expire_date']->getValue()));
+            $expire_date = new \DateTime($res['expire_date']->getValue());
 
             if (isset($res['auto_renewal'])) {
               if ($res['auto_renewal']->getValue() == 'Y') {
                 $date1 = new \DateTime($res['start_date']->getValue());
                 $interval = $date1->diff(new \DateTime($res['expire_date']->getValue()));
+
                 $expire_date = new \DateTime($start_date->format('Y-m-d H:i:s'));
                 $expire_date->add($interval);
+
+                while ($expire_date->getTimestamp() < time()) {
+                  $start_date->add(new \DateInterval('P1Y'));
+                  $expire_date->add(new \DateInterval('P1Y'));
+                }
 
                 $subscription->setExpireDate($expire_date);
               }
             }
+
+            $subscription->setExpireDate($expire_date);
             break;
 
           case 'time_interval':

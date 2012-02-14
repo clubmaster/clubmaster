@@ -1,12 +1,11 @@
 == NOTES TO THIS RELEASE ==
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
-when you buy dated period subscription, bought subscrition in period is wrong
-when start and end date on subscription, timezone does not work
 send email on first user
 
 == NOTES TO LATER ==
-if order not completely okay, remove the order, perhaps a transaction
+add transaction on complete order
+add transaction on order change
 in checkout shipping form, country has to be entity
 make sure user only can book in member status period
 make sure user only can use teams in member ship status period
