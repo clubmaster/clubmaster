@@ -6,7 +6,6 @@ when you buy dated period subscription, bought subscrition in period is wrong
 when start and end date on subscription, timezone does not work
 send email on first user
 confirm order page in english
-use user helper on admin create/installer/checkout
 
 == NOTES TO LATER ==
 if order not completely okay, remove the order, perhaps a transaction

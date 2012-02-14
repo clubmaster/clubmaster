@@ -215,22 +215,7 @@ class CheckoutController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $this->get('session')->set('_security.target_path', '/shop/login');
 
-    $user = new \Club\UserBundle\Entity\User();
-    $profile = new \Club\UserBundle\Entity\Profile();
-    $address = new \Club\UserBundle\Entity\ProfileAddress();
-    $phone = new \Club\UserBundle\Entity\ProfilePhone();
-    $email = new \Club\UserBundle\Entity\ProfileEmail();
-
-    $user->setProfile($profile);
-    $profile->setUser($user);
-    $profile->setProfileAddress($address);
-    $profile->setProfileEmail($email);
-    $profile->setProfilePhone($phone);
-    $address->setProfile($profile);
-    $phone->setProfile($profile);
-    $email->setProfile($profile);
-    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
-
+    $user = $this->get('clubmaster.user')->get();
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {

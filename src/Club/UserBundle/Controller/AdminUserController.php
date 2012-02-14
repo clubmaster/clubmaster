@@ -57,7 +57,7 @@ class AdminUserController extends Controller
    */
   public function newAction()
   {
-    $user = $this->initUser();
+    $user = $this->get('clubmaster.user')->get();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     return array(
@@ -73,7 +73,7 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $this->initUser();
+    $user = $this->get('clubmaster.user')->get();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -227,39 +227,22 @@ class AdminUserController extends Controller
     );
   }
 
-  protected function initUser()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $user = new \Club\UserBundle\Entity\User();
-    $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
-    $profile = new \Club\UserBundle\Entity\Profile();
-
-    $user->setProfile($profile);
-    $profile->setUser($user);
-
-    return $this->getUser($user);
-  }
-
   protected function getUser($user)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setContactType('home');
       $address->setProfile($user->getProfile());
       $user->getProfile()->setProfileAddress($address);
     }
     if (!count($user->getProfile()->getProfilePhone())) {
       $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setContactType('home');
       $phone->setProfile($user->getProfile());
       $user->getProfile()->setProfilePhone($phone);
     }
     if (!count($user->getProfile()->getProfileEmail())) {
       $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setContactType('home');
       $email->setProfile($user->getProfile());
       $user->getProfile()->setProfileEmail($email);
     }
