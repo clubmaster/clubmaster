@@ -21,13 +21,7 @@ class Schedule extends AbstractType
       'required' => false,
       'multiple' => true
     ));
-    $builder->add('location','entity',array(
-      'class' => 'Club\UserBundle\Entity\Location',
-      'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('l')
-          ->where('l.id <> 1');
-      }
-    ));
+    $builder->add('location');
     $builder->add('instructors','entity',array(
       'class' => 'Club\UserBundle\Entity\User',
       'required' => false,

@@ -1,11 +1,11 @@
-INSERT INTO club_booking_field (location_id, name, position, information, created_at, updated_at) VALUES
-  (2, 'Bane 1', 1, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 2', 2, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 3', 3, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 4', 4, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 5', 5, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 6', 6, 'Ingen adgang uden sko.', now(), now()),
-  (2, 'Bane 7', 7, 'Ingen adgang uden sko.', now(), now());
+INSERT INTO club_booking_field (location_id, name, position, information, open, created_at, updated_at) VALUES
+  (1, 'Bane 1', 1, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 2', 2, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 3', 3, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 4', 4, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 5', 5, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 6', 6, 'Ingen adgang uden sko.', now(), now(), now()),
+  (1, 'Bane 7', 7, 'Ingen adgang uden sko.', now(), now(), now());
 
 INSERT INTO club_booking_interval (day, start_time, stop_time, created_at, updated_at, field_id, valid_from) VALUES
   (1,'10:00','11:00',now(),now(),1,now()),
