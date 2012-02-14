@@ -32,6 +32,7 @@ class AdminFieldController extends Controller
   public function newAction()
   {
     $field = new \Club\BookingBundle\Entity\Field();
+    $field->setOpen(new \DateTime());
     $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
     if ($this->getRequest()->getMethod() == 'POST') {

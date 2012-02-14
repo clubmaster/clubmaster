@@ -1,5 +1,6 @@
 == NOTES TO THIS RELEASE ==
-what about default sender address and default sender name
+on booking field start date, pick from date at 00:00:00 and not as now
+when start and end date on subscription, timezone does not work
 send email on first user
 in checkout shipping form, country has to be entity
 confirm order page in english

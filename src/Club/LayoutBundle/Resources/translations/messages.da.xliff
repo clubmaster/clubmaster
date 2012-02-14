@@ -1674,6 +1674,10 @@
         <source>Company name</source>
         <target>Firmanavn</target>
       </trans-unit>
+      <trans-unit id="421">
+        <source>There are no fields.</source>
+        <target>Der er ingen baner.</target>
+      </trans-unit>
 
     </body>
   </file>

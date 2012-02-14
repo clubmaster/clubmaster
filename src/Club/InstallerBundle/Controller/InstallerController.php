@@ -116,6 +116,16 @@ class InstallerController extends Controller
         $lc->setLocation($location);
         $lc->setValue($location_step->currency->getId());
         $em->persist($lc);
+        $lc = new \Club\UserBundle\Entity\LocationConfig();
+        $lc->setConfig('email_sender_address');
+        $lc->setLocation($location);
+        $lc->setValue('noreply@clubmaster.org');
+        $em->persist($lc);
+        $lc = new \Club\UserBundle\Entity\LocationConfig();
+        $lc->setConfig('email_sender_name');
+        $lc->setLocation($location);
+        $lc->setValue('ClubMaster Administrator');
+        $em->persist($lc);
 
         $em->flush();
 
