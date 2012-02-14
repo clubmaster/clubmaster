@@ -1706,6 +1706,34 @@
         <source>Sunday</source>
         <target>Søndag</target>
       </trans-unit>
+      <trans-unit id="429">
+        <source>Company: %company%</source>
+        <target>Firma: %company%</target>
+      </trans-unit>
+      <trans-unit id="430">
+        <source>CVR: %cvr%</source>
+        <target>CVR: %cvr%</target>
+      </trans-unit>
+      <trans-unit id="431">
+        <source>Name: %firstname% %lastname%</source>
+        <target>Navn: %firstname% %lastname%</target>
+      </trans-unit>
+      <trans-unit id="432">
+        <source>Street: %street%</source>
+        <target>Adresse: %street%</target>
+      </trans-unit>
+      <trans-unit id="433">
+        <source>Postal: %postal%</source>
+        <target>Postnummer: %postal%</target>
+      </trans-unit>
+      <trans-unit id="434">
+        <source>City: %city%</source>
+        <target>By: %city%</target>
+      </trans-unit>
+      <trans-unit id="435">
+        <source>Country: %country%</source>
+        <target>Land: %country%</target>
+      </trans-unit>
 
     </body>
   </file>
