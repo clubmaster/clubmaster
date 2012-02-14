@@ -7,3 +7,7 @@ services:
   clubmaster.ban:
     class: Club\UserBundle\Helper\Ban
     arguments: [@doctrine.orm.entity_manager, @security.context]
+  clubmaster.user:
+    class: Club\UserBundle\Helper\User
+    arguments: [@doctrine.orm.entity_manager]
+

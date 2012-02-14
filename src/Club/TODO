@@ -3,6 +3,7 @@ problem with generate new schedules
 cannot read mail logs
 better parser of mail logs
 remove throw exception in task listener
+make locations as club or just a simple area
 
 == NOTES TO LATER ==
 set system locale for logging messages
