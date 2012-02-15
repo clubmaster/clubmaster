@@ -6,7 +6,7 @@ sudo chmod 777 app/logs app/cache
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
 php app/console doctrine:migrations:migrate --no-interaction
-php app/console doctrine:fixtures:load --fixtures=app/DoctrineFixtures/20120214011048/
+php app/console doctrine:fixtures:load --fixtures=app/DoctrineFixtures/20120215114943/
 php app/console assets:install web
 
 MYSQL_PASSWORD=""
