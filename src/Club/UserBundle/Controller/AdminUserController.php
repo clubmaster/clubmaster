@@ -79,12 +79,12 @@ class AdminUserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
-      if ($user->getProfile()->getProfileEmail()->getEmailAddress() == '')
-        $user->getProfile()->setProfileEmail(null);
-      if ($user->getProfile()->getProfilePhone()->getPhoneNumber() == '')
-        $user->getProfile()->setProfilePhone(null);
-
       if ($form->isValid()) {
+        $profile = $user->getProfile();
+
+        if ($profile->getProfileEmail()->getEmailAddress() == '') $profile->setProfileEmail(null);
+        if ($profile->getProfilePhone()->getPhoneNumber() == '') $profile->setProfilePhone(null);
+
         $this->get('clubmaster.user')->save();
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('admin_user'));

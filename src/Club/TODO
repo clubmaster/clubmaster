@@ -1,7 +1,6 @@
 == NOTES TO THIS RELEASE ==
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
-validate activation links from email
 
 == NOTES TO LATER ==
 add transaction on complete order
