@@ -7,19 +7,28 @@ if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
 fi
 
-touch app/installer
 ./bin/remake_schema.sh
-phpunit -c app/phpunit.xml.dist
-phpunit -c app/apiunit.xml
-
 if [ $? -ne 0 ]; then
   exit
 fi
 
+phpunit -c app/phpunit.xml.dist
+if [ $? -ne 0 ]; then
+  exit
+fi
+
+phpunit -c app/apiunit.xml
+if [ $? -ne 0 ]; then
+  exit
+fi
+
+touch app/installer
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
-php app/console doctrine:migrations:migrate --no-interaction
-php app/console doctrine:fixtures:load --fixtures=app/DoctrineFixtures/20120215114943/
+phpunit -c app/installunit.xml
+if [ $? -ne 0 ]; then
+  exit
+fi
 
 SQL_DUMP_FILE=`mktemp`
 chmod 644 ${SQL_DUMP_FILE}
@@ -64,7 +73,7 @@ cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
     mailer_user       =
     mailer_password   =
     locale            = en
-    secret            = ChangeMeToSomethingRandom
+    secret            = ThisTokenIsNotSoSecretChangeIt
 EOF
 
 cd /tmp

@@ -31,7 +31,6 @@ class AdminLocationConfigController extends Controller
           'id' => $id
         )));
       }
-    die('marm');
     }
 
     return array(

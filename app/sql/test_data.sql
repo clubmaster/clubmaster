@@ -15,14 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-INSERT INTO club_user_location (location_name,club) VALUES
-  ('Aalborg Tennis Klub',1);
-
-INSERT INTO club_user_location_config (location_id,value,config) VALUES
-  (1,3,'default_currency'),
-  (1,'noreply@clubmaster.org','email_sender_address'),
-  (1,'ClubMaster Administrator','email_sender_name');
-
 INSERT INTO club_user_group (group_id,group_name,group_type,gender,min_age,max_age,active_member) VALUES
   (null,'Senior','dynamic',null,18,45,1),
   (null,'Junior','dynamic',null,0,17,1),

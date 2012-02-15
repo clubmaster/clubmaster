@@ -12,7 +12,7 @@ class AuthControllerTest extends WebTestCase
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Send Password')->form(array(
-      'form[username]' => '10',
+      'form[username]' => '2',
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());

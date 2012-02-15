@@ -21,7 +21,6 @@
 
 LOCK TABLES `club_user_user` WRITE;
 /*!40000 ALTER TABLE `club_user_user` DISABLE KEYS */;
-INSERT INTO `club_user_user` (`profile_id`,`member_number`,`salt`,`algorithm`,`enabled`,`locked`,`expired`,`created_at`,`updated_at`,`password`) VALUES ('1','1','dkd2ok5vh2go4ocs84so040cksggo0o','sha512','1','0','0','2012-02-28 12:36:04','2010-11-28 17:09:45','7iLCsy+1kI7NZKqpewQWt70MCL/JP5N9D9Dg0135WWnnUFme3lWfsmtQNt7ey3do/bHOklkRCWnle5grm25+Dg==');
 INSERT INTO `club_user_user` (`profile_id`,`member_number`,`salt`,`algorithm`,`enabled`,`locked`,`expired`,`created_at`,`updated_at`,`password`) VALUES ('2','2','dkd2ok5vh2go4ocs84so040cksggo0o','sha512','1','0','1','2011-05-04 01:27:41','2010-08-04 01:24:29','7iLCsy+1kI7NZKqpewQWt70MCL/JP5N9D9Dg0135WWnnUFme3lWfsmtQNt7ey3do/bHOklkRCWnle5grm25+Dg==');
 INSERT INTO `club_user_user` (`profile_id`,`member_number`,`salt`,`algorithm`,`enabled`,`locked`,`expired`,`created_at`,`updated_at`,`password`) VALUES ('3','3','dkd2ok5vh2go4ocs84so040cksggo0o','sha512','0','0','1','2011-11-27 02:11:44','2012-04-22 11:23:17','7iLCsy+1kI7NZKqpewQWt70MCL/JP5N9D9Dg0135WWnnUFme3lWfsmtQNt7ey3do/bHOklkRCWnle5grm25+Dg==');
 INSERT INTO `club_user_user` (`profile_id`,`member_number`,`salt`,`algorithm`,`enabled`,`locked`,`expired`,`created_at`,`updated_at`,`password`) VALUES ('4','4','dkd2ok5vh2go4ocs84so040cksggo0o','sha512','0','0','0','2010-08-14 12:46:42','2011-02-11 00:54:58','7iLCsy+1kI7NZKqpewQWt70MCL/JP5N9D9Dg0135WWnnUFme3lWfsmtQNt7ey3do/bHOklkRCWnle5grm25+Dg==');
@@ -229,7 +228,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `club_user_profile` WRITE;
 /*!40000 ALTER TABLE `club_user_profile` DISABLE KEYS */;
-INSERT INTO `club_user_profile` (`user_id`,`first_name`,`last_name`,`gender`,`day_of_birth`,`profile_address_id`,`profile_phone_id`,`profile_email_id`,`profile_company_id`) VALUES ('1','Grace','Guthrie','female','1985-08-06 15:21:58','1','1','1','1');
 INSERT INTO `club_user_profile` (`user_id`,`first_name`,`last_name`,`gender`,`day_of_birth`,`profile_address_id`,`profile_phone_id`,`profile_email_id`,`profile_company_id`) VALUES ('2','Sybill','Rogers','female','1927-09-19 06:24:31','2','2','2','2');
 INSERT INTO `club_user_profile` (`user_id`,`first_name`,`last_name`,`gender`,`day_of_birth`,`profile_address_id`,`profile_phone_id`,`profile_email_id`,`profile_company_id`) VALUES ('3','Aiko','Luna','female','1939-01-11 07:09:53','3','3','3','3');
 INSERT INTO `club_user_profile` (`user_id`,`first_name`,`last_name`,`gender`,`day_of_birth`,`profile_address_id`,`profile_phone_id`,`profile_email_id`,`profile_company_id`) VALUES ('4','Jena','Luna','female','1954-03-07 11:59:30','4','4','4','4');
@@ -437,7 +435,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `club_user_profile_address` WRITE;
 /*!40000 ALTER TABLE `club_user_profile_address` DISABLE KEYS */;
-INSERT INTO `club_user_profile_address` (`profile_id`,`country_id`,`street`,`postal_code`,`city`,`state`,`contact_type`) VALUES ('1','5','306-9882 Non Rd.','91098','Provo','AL','home');
 INSERT INTO `club_user_profile_address` (`profile_id`,`country_id`,`street`,`postal_code`,`city`,`state`,`contact_type`) VALUES ('2','1','7358 Nullam Street','29712','Gadsden','NS','work');
 INSERT INTO `club_user_profile_address` (`profile_id`,`country_id`,`street`,`postal_code`,`city`,`state`,`contact_type`) VALUES ('3','3','1258 Nunc Street','77653','Isle of Palms','BC','work');
 INSERT INTO `club_user_profile_address` (`profile_id`,`country_id`,`street`,`postal_code`,`city`,`state`,`contact_type`) VALUES ('4','4','Ap #338-2725 Est, Av.','L6K 4S7','Cumberland','Prince Edward Island','work');
@@ -639,7 +636,6 @@ INSERT INTO `club_user_profile_address` (`profile_id`,`country_id`,`street`,`pos
 /*!40000 ALTER TABLE `club_user_profile_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
-INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('1','leo@ipsum.org','home');
 INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('2','arcu.Morbi.sit@Maurisvestibulum.org','work');
 INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('3','ipsum.dolor.sit@nibhenimgravida.org','home');
 INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('4','elit.Curabitur.sed@penatibusetmagnis.ca','home');
@@ -839,7 +835,6 @@ INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_typ
 INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('198','ac@euarcuMorbi.org','work');
 INSERT INTO `club_user_profile_email` (`profile_id`,`email_address`,`contact_type`) VALUES ('199','tellus@ultriciesligula.com','work');
 
-INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('1','ac@Curabiturmassa.com','mobile');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('2','nonummy.ac@nequeNullam.ca','home');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('3','pretium.neque@liberoProin.edu','home');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('4','blandit.congue.In@mattisIntegereu.org','mobile');
@@ -1038,5 +1033,3 @@ INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('197','pede.ultrices@nullaIntegervulputate.org','home');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('198','luctus.vulputate.nisi@sapien.org','work');
 INSERT INTO `club_user_profile_phone` (`profile_id`,`phone_number`,`contact_type`) VALUES ('199','Nunc.lectus@convallis.com','work');
-
-INSERT INTO club_user_user_group (user_id,group_id) VALUES (10,1);

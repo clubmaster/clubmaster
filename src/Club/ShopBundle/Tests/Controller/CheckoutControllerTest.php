@@ -16,7 +16,6 @@ class CheckoutControllerTest extends WebTestCase
 
   public function testCreateCoupon()
   {
-    $this->login($this->client, 10, 1234);
     $this->coupon_key = uniqid();
 
     $crawler = $this->client->request('GET', '/admin/shop/coupon/new');
@@ -119,7 +118,7 @@ class CheckoutControllerTest extends WebTestCase
   public function testUserCheckout()
   {
     $this->client = static::createClient();
-    $this->login($this->client, 1, 1234);
+    $this->login($this->client, 10, 1234);
 
     $crawler = $this->client->request('GET', '/shop/product/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());

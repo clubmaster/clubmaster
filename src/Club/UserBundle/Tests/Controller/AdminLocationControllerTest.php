@@ -41,7 +41,6 @@ class AdminLocationControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();
-    echo count($links);die();
     $crawler = $this->client->click(end($links));
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
