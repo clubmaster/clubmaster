@@ -96,13 +96,6 @@ class User implements AdvancedUserInterface
     protected $expired;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
-     *
-     * @var boolean $activation_code
-     */
-    protected $activation_code;
-
-    /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
@@ -454,7 +447,6 @@ class User implements AdvancedUserInterface
      */
     public function prePersist()
     {
-      $this->setActivationCode(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
       $this->setCreatedAt(new \DateTime());
       $this->setUpdatedAt(new \DateTime());
     }
@@ -715,31 +707,6 @@ class User implements AdvancedUserInterface
     public function addGroups(\Club\UserBundle\Entity\Group $groups)
     {
       $this->groups[] = $groups;
-    }
-
-    public function getActivationHash()
-    {
-      return hash('sha256',$this->getId().'-'.$this->getCreatedAt()->format('Y-m-d'));
-    }
-
-    /**
-     * Set activation_code
-     *
-     * @param string $activationCode
-     */
-    public function setActivationCode($activationCode)
-    {
-        $this->activation_code = $activationCode;
-    }
-
-    /**
-     * Get activation_code
-     *
-     * @return string $activationCode
-     */
-    public function getActivationCode()
-    {
-        return $this->activation_code;
     }
 
     public function getMemberStatus(array $attr=null)
