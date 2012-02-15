@@ -60,7 +60,7 @@ class AdminUserControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Ban')->links();
-    $crawler = $this->client->click($links[1]);
+    $crawler = $this->client->click(end($links));
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }

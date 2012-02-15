@@ -36,6 +36,8 @@ class LocationConfig
 
   /**
    * @ORM\ManyToOne(targetEntity="Location")
+   * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="cascade")
+   *
    */
   protected $location;
 

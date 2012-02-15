@@ -18,7 +18,7 @@ class Category extends AbstractType
     ));
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',
-      'required' => false,
+      'required' => true,
       'query_builder' => function(EntityRepository $er) {
         return $er->createQueryBuilder('l')
           ->where('l.club = 1');

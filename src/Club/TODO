@@ -1,9 +1,12 @@
 == NOTES TO THIS RELEASE ==
+merge migrations into one file
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
 make sure upload dir is writable
+cannot view multiple root clubs
 
 == NOTES TO LATER ==
+fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
 in checkout shipping form, country has to be entity
