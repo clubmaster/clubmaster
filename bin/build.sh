@@ -19,7 +19,8 @@ fi
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
 php app/console doctrine:migrations:migrate --no-interaction
-php app/console doctrine:fixtures:load
+php app/console doctrine:fixtures:load --fixtures=app/DoctrineFixtures/20120215114943/
+
 SQL_DUMP_FILE=`mktemp`
 chmod 644 ${SQL_DUMP_FILE}
 mysqldump -u root clubmaster > ${SQL_DUMP_FILE}

@@ -42,18 +42,18 @@ class GuestCheckoutControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 
-    $form = $crawler->selectButton('signup')->form();
+    $form = $crawler->selectButton('Sign up')->form();
     $crawler = $this->client->submit($form);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('signup')->form(array(
+    $form = $crawler->selectButton('Sign up')->form(array(
       'user[profile][first_name]' => 'Michael Holm',
       'user[profile][last_name]' => 'Kristensen',
       'user[profile][profile_address][street]' => 'Oesterbro 62, 2tv',
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
       'user[profile][profile_address][country]' => '47',
-      'user[profile][profile_email][email_address]' => 'user@example.com',
+      'user[profile][profile_email][email_address]' => 'info@clubmaster.org',
       'user[profile][profile_phone][phone_number]' => '80808080'
     ));
     $form['user[password][Password]'] = '1234';

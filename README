@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-02-12
-:Revision:  19
+:Date:      2012-02-15
+:Revision:  20
 
 
 Feedback
@@ -33,8 +33,6 @@ If you just want to be up and running and have access to the shell, here is what
   cd /var/www
   tar xzf clubmaster-XXX.tgz
   cd clubmaster-XXX
-  vim app/config/parameters.ini
-  ./install.sh
 
 Now browse to:
 
