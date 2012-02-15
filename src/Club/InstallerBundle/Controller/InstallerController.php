@@ -56,15 +56,9 @@ class InstallerController extends Controller
     if ($this->get('session')->get('installer_user_id')) {
       $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
     } else {
-      $user = new \Club\UserBundle\Entity\User();
-      $user->setMemberNumber($em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
-      $profile = new \Club\UserBundle\Entity\Profile();
-      $user->setProfile($profile);
-      $profile->setUser($user);
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setContactType('home');
-      $email->setProfile($profile);
-      $profile->setProfileEmail($email);
+      $user = $this->get('clubmaster.user')->get();
+      $user->getProfile()->setProfileAddress(null);
+      $user->getProfile()->setProfilePhone(null);
     }
 
     $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
@@ -78,9 +72,7 @@ class InstallerController extends Controller
         ));
 
         $group->addUsers($user);
-
-        $em->persist($user);
-        $em->flush();
+        $this->get('clubmaster.user')->save();
 
         $this->get('session')->set('installer_user_id',$user->getId());
         return $this->redirect($this->generateUrl('club_installer_installer_location'));

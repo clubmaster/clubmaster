@@ -6,12 +6,14 @@ class Mailer
 {
   protected $em;
   protected $mailer;
+  protected $container;
   protected $message;
 
-  public function __construct($em,$mailer)
+  public function __construct($em, $mailer, $container)
   {
     $this->em = $em;
     $this->mailer = $mailer;
+    $this->container = $container;
 
     $this->message = \Swift_Message::newInstance();
   }
@@ -23,6 +25,9 @@ class Mailer
 
     if ($sender_name == null)
       $sender_name = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name');
+
+    $sender_addr = ($sender_addr) ? $sender_addr : $this->container->getParameter('club_mail.default_sender_address');
+    $sender_name = ($sender_name) ? $sender_name : $this->container->getParameter('club_mail.default_sender_name');
 
     $this->message->setFrom(array(
        $sender_addr => $sender_name

@@ -17,6 +17,8 @@ class LocationConfigRepository extends EntityRepository
     if ($location == null)
       $location = $this->_em->find('ClubUserBundle:Location',1);
 
+    if (!$location) return;
+
     $config = $this->_em->createQueryBuilder()
       ->select('lc')
       ->from('ClubUserBundle:LocationConfig','lc')

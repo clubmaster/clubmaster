@@ -222,13 +222,8 @@ class CheckoutController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $em->persist($user);
-        $em->flush();
-
+        $this->get('clubmaster.user')->save();
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
-
-        $event = new \Club\UserBundle\Event\FilterUserEvent($user);
-        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
 
         $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
           $user,

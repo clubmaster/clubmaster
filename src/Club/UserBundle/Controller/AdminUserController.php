@@ -85,9 +85,7 @@ class AdminUserController extends Controller
         $user->getProfile()->setProfilePhone(null);
 
       if ($form->isValid()) {
-        $em->persist($user);
-        $em->flush();
-
+        $this->get('clubmaster.user')->save();
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('admin_user'));
       }
