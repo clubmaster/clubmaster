@@ -43,4 +43,16 @@ class LocationRepository extends EntityRepository
       ->getQuery()
       ->getOneOrNullResult();
   }
+
+  public function getRoots()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:Location','l')
+      ->where('l.location IS NULL')
+      ->orderBy('l.id', 'ASC')
+      ->getQuery()
+      ->getResult();
+  }
+
 }

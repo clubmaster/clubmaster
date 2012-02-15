@@ -2,7 +2,6 @@
 merge migrations into one file
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
-cannot view multiple root clubs
 
 == NOTES TO LATER ==
 fix constraints to delete a location

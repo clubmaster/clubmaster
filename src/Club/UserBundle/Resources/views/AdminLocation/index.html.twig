@@ -7,6 +7,7 @@
 <p>{% trans %}If you want to change some configuration, you can change it for all child elements by change the root element configurations.{% endtrans %}</p>
 
 <ul>
+  {% for location in locations %}
   <li>{{ location }}
   {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_location_edit', {'id':location.id})} %}
   {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_location_delete', {'id':location.id})} %}
@@ -37,6 +38,7 @@
       </li>
     {% endfor %}</ul>
   </li>
+  {% endfor %}</ul>
 </ul>
 
 {% endblock %}

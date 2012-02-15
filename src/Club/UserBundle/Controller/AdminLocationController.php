@@ -16,11 +16,10 @@ class AdminLocationController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $location = $em->find('ClubUserBundle:Location',1);
+    $locations = $em->getRepository('ClubUserBundle:Location')->getRoots();
 
     return array(
-      'location' => $location
+      'locations' => $locations
     );
   }
 
