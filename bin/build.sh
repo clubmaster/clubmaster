@@ -49,6 +49,7 @@ rm -rf ${BUILD_PATH}/app/sql/*
 rm -rf ${BUILD_PATH}/deps.lock
 rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
 rm -rf ${BUILD_PATH}/web/index_dev.php
+rm -rf ${BUILD_PATH}/web/uploads/*
 
 cp ${SQL_DUMP_FILE} ${BUILD_PATH}/app/sql/install.sql
 
