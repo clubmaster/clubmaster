@@ -117,8 +117,8 @@ EOF
         }
 
         $em->persist($user);
+        $em->flush();
       }
     }
-    $em->flush();
   }
 }
