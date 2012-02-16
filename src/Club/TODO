@@ -1,5 +1,4 @@
 == NOTES TO THIS RELEASE ==
-validate change order works
 validate team penalty still works
 merge migrations into one file
 filter with subscription date does not seems to wrk
