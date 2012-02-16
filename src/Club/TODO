@@ -4,6 +4,7 @@ merge migrations into one file
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
 show subscription date from and to in product overview
+make a quick way to remove all team penalties
 
 == NOTES TO LATER ==
 add defaults during install:
