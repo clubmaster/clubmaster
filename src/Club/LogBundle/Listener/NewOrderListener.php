@@ -23,8 +23,8 @@ class NewOrderListener
     $log->setLogType('shop');
     $log->setLog('Created a new order #'.$order->getId());
 
-    $user = $this->security_context->getToken()->getUser();
-    if ($user instanceOf \Club\UserBundle\Entity\User) $log->setUser($user);
+    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+      $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);
     $this->em->flush();

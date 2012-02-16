@@ -8,10 +8,15 @@ class Order
   private $em;
   private $event_dispatcher;
 
-  public function __construct($em,$event_dispatcher)
+  public function __construct($em, $event_dispatcher)
   {
     $this->em = $em;
     $this->event_dispatcher = $event_dispatcher;
+  }
+
+  public function setOrder(\Club\ShopBundle\Entity\Order $order)
+  {
+    $this->order = $order;
   }
 
   public function createSimpleOrder(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\Location $location)
@@ -26,18 +31,18 @@ class Order
     $this->setCurrency();
   }
 
-  public function addSimpleProduct($product)
+  public function addSimpleProduct(\Club\ShopBundle\Entity\CartProduct $product)
   {
+    // will not add product attribute
     $prod = new \Club\ShopBundle\Entity\OrderProduct();
 
     $prod->setOrder($this->order);
-    $prod->setPrice($product['price']);
-    $prod->setQuantity($product['quantity']);
-    $prod->setProductName($product['product_name']);
-    $prod->setType($product['type']);
+    $prod->setPrice($product->getPrice());
+    $prod->setQuantity($product->getQuantity());
+    $prod->setProductName($product->getProductName());
+    $prod->setType($product->getType());
 
     $this->order->addOrderProduct($prod);
-
     $this->em->persist($prod);
   }
 
@@ -74,6 +79,16 @@ class Order
   public function getOrder()
   {
     return $this->order;
+  }
+
+  public function changeStatus(\Club\ShopBundle\Entity\OrderStatus $order_status)
+  {
+    $this->order->setOrderStatus($order_status);
+    $this->em->persist($this->order);
+    $this->em->flush();
+
+    $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
+    $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
   }
 
   private function setCustomerAddressByUser($user)

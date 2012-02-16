@@ -33,13 +33,13 @@ class TeamPenaltyListener
         $participant = $this->em->getRepository('ClubTeamBundle:Participant')->getUserInRange($user->getUser(), $first, $last);
         if (!count($participant)) {
           if ($this->penalty_enabled) {
+            $product = new \Club\ShopBundle\Entity\CartProduct();
+            $product->setPrice($schedule->getPenalty());
+            $product->setQuantity(1);
+            $product->setType('team_fee');
+            $product->setProductName($this->penalty_product_name);
+
             $this->order->createSimpleOrder($user->getUser(),$schedule->getLocation());
-            $product = array(
-              'price' => $schedule->getPenalty(),
-              'quantity' => 1,
-              'type' => 'product',
-              'product_name' => $this->penalty_product_name
-            );
             $this->order->addSimpleProduct($product);
             $this->order->save();
           }
