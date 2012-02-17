@@ -36,6 +36,7 @@ class BlogController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $blog = $em->find('ClubWelcomeBundle:Blog',$id);
+    $this->validateOwnership($blog);
 
     $res = $this->process($blog);
 
@@ -53,17 +54,14 @@ class BlogController extends Controller
    */
   public function deleteAction($id)
   {
-    try {
-      $em = $this->getDoctrine()->getEntityManager();
-      $blog = $em->find('ClubWelcomeBundle:Blog',$this->getRequest()->get('id'));
+    $em = $this->getDoctrine()->getEntityManager();
+    $blog = $em->find('ClubWelcomeBundle:Blog',$this->getRequest()->get('id'));
+    $this->validateOwnership($blog);
 
-      $em->remove($blog);
-      $em->flush();
+    $em->remove($blog);
+    $em->flush();
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-    } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete blog which is already being used.'));
-    }
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('homepage'));
   }
@@ -86,5 +84,11 @@ class BlogController extends Controller
     }
 
     return $form;
+  }
+
+  protected function validateOwnership(\Club\WelcomeBundle\Entity\Blog $blog)
+  {
+    if ($this->get('security.context')->getToken()->getUser() != $blog->getUser() && !$this->get('security.context')->isGranted('ROLE_ADMIN_BLOG'))
+      throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException;
   }
 }
