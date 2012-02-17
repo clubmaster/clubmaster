@@ -52,6 +52,10 @@ class FilterRepository extends EntityRepository
       $filter_attr = new \Club\UserBundle\Entity\FilterAttribute();
       $filter_attr->setFilter($filter);
       $filter_attr->setAttribute($attr);
+
+      if ($attr == 'active')
+        $filter_attr->setValue(1);
+
       $filter->addAttributes($filter_attr);
 
       $this->_em->persist($filter_attr);
