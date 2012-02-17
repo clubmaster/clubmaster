@@ -3,13 +3,18 @@
 {% block body %}
 <p class="box">
   <a href="{{ path('admin_user_new') }}" class="btn-create"><span>{% trans %}Create user{% endtrans %}</span></a>
-  <a href="javascript:toggle('submit');" class="btn-create"><span>{% trans %}Show filter{% endtrans %}</span></a>
 </p>
-
-{% render "ClubUserBundle:Filter:getFilter" %}
 
 {% include "ClubLayoutBundle:Default:paginator.html.twig" %}
 
+<div id="user_search" style="float: right;">
+  <fieldset>
+    <legend>Search</legend>
+    {% render "ClubUserBundle:Filter:getFilter" %}
+  </fieldset>
+</div>
+
+<div>
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table class="style">
   <thead>
@@ -53,6 +58,7 @@
   {% endfor %}
   </tbody>
 </table>
+</div>
 </form>
 
 {% include "ClubLayoutBundle:Default:paginator.html.twig" %}

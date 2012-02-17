@@ -34,3 +34,5 @@ div.list label {
 .ui-autocomplete-loading { background: white url('../images/ajax-loader-ball.gif') right center no-repeat; }
 
 #ui-datepicker-div { z-index: 500 !important; }
+
+div#search_box input { width: 200px; }
