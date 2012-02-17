@@ -15,7 +15,7 @@
   {% if product.productAttributes|length > 0 %}
   <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
-    {% if attr.next_start_date and attr.next_expire_date %}
+    {% if attr.start_date and attr.expire_date %}
     <li>{% trans with {'%start%':attr.nextStartDate|club_date,'%expire%':attr.nextExpireDate|club_date} %}Your subscription period is %start% - %expire%.{% endtrans %}</li>
     {% endif %}
     {% if attr.booking %}

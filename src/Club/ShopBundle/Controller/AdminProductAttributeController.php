@@ -48,25 +48,7 @@ class AdminProductAttributeController extends Controller
   private function getData($product)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $attribute = new \Club\ShopBundle\Model\Attribute();
-
-    foreach ($product->getProductAttributes() as $attr) {
-      $val = $attr->getAttribute();
-      if ($attr->getAttribute() == 'location') {
-        $res = new \Doctrine\Common\Collections\ArrayCollection();
-        $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attr->getValue()));
-        foreach ($locations as $location) {
-          $res[] = $location;
-        }
-        $attribute->$val = $res;
-
-      } elseif ($attr->getAttribute() == 'start_date' || $attr->getAttribute() == 'expire_date') {
-        $attribute->$val = new \DateTime($attr->getValue());
-      } else {
-        $attribute->$val = $attr->getValue();
-      }
-    }
+    $attribute = $this->get('club_shop.product')->getAttribute($product);
 
     return $attribute;
   }
@@ -81,8 +63,9 @@ class AdminProductAttributeController extends Controller
         'attribute' => $attribute
       ));
 
-      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
+      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '') {
         $value = $value->format('Y-m-d');
+      }
 
       if ($attribute == 'location') {
         $str = '';

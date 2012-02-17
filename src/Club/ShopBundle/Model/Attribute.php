@@ -51,47 +51,48 @@ class Attribute
 
   public $team;
 
-  public $next_start_date;
-
-  public $next_expire_date;
-
-  public function setNextDates()
+  public function getNextDates()
   {
-    if ($this->next_start_date && $this->expire_date && $this->auto_renewal == 'Y') {
-      $this->next_start_date = clone $this->start_date;
-      $this->next_expire_date = clone $this->expire_date;
+    if ($this->start_date && $this->expire_date && $this->auto_renewal == 'Y') {
+      $next_start_date = clone $this->start_date;
+      $next_expire_date = clone $this->expire_date;
 
-      $interval = $this->next_start_date->diff($this->expire_date);
+      $interval = new \DateInterval('P1Y');
 
-      $ed = new \DateTime($this->next_start_date->format('Y-m-d H:i:s'));
-      $ed->add($interval);
-
-      while ($ed->getTimestamp() < time()) {
-        $this->next_start_date->add(new \DateInterval('P1Y'));
-        $ed->add(new \DateInterval('P1Y'));
+      while ($next_expire_date->getTimestamp() < time()) {
+        $next_start_date->add($interval);
+        $next_expire_date->add($interval);
       }
-
-      $this->next_expire_date = $ed;
     } else {
-      $this->next_start_date = $this->start_date;
-      $this->next_expire_date = $this->expire_date;
+      $next_start_date = $this->start_date;
+      $next_expire_date = $this->expire_date;
     }
+
+    return array(
+      'next_start_date' => $next_start_date,
+      'next_expire_date' => $next_expire_date
+    );
   }
 
   public function getNextStartDate()
   {
-    return $this->next_start_date;
+    $r = $this->getNextDates();
+    return $r['next_start_date'];
   }
 
   public function getNextExpireDate()
   {
-    return $this->next_expire_date;
+    $r = $this->getNextDates();
+    return $r['next_expire_date'];
   }
 
   public function setStartDate($start_date)
   {
-    $this->start_date = new \DateTime($start_date.' 00:00:00');
-    $this->setNextDates();
+    if (!($start_date instanceof \DateTime)) {
+      $this->start_date = new \DateTime($start_date.' 00:00:00');
+    } else {
+      $this->start_date = $start_date;
+    }
   }
 
   public function getStartDate()
@@ -101,8 +102,11 @@ class Attribute
 
   public function setExpireDate($expire_date)
   {
-    $this->expire_date = new \DateTime($expire_date.' 23:59:59');
-    $this->setNextDates();
+    if (!($expire_date instanceof \DateTime)) {
+      $this->expire_date = new \DateTime($expire_date.' 23:59:59');
+    } else {
+      $this->expire_date = $expire_date;
+    }
   }
 
   public function getExpireDate()
@@ -133,7 +137,6 @@ class Attribute
   public function setAutoRenewal($auto_renewal)
   {
     $this->auto_renewal = $auto_renewal;
-    $this->setNextDates();
   }
 
   public function getAutoRenewal()

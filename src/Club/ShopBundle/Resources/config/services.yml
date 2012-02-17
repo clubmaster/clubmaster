@@ -10,6 +10,7 @@ services:
     arguments: [@doctrine.orm.entity_manager,@session,@translator]
   club_shop.product:
     class: Club\ShopBundle\Helper\Product
+    arguments: [@doctrine.orm.entity_manager]
   twig.extension.text:
     class: Twig_Extensions_Extension_Text
     tags:
