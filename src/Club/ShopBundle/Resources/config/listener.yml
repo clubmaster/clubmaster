@@ -6,7 +6,7 @@ services:
       - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
   club.shopbundle.listener.new_subscription_listener:
     class: Club\ShopBundle\Listener\NewSubscriptionListener
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.entity_manager, @order]
     tags:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
   club.shopbundle.listener.on_order_change_listener:

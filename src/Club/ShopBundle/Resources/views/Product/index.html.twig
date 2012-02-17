@@ -15,26 +15,27 @@
   {% if product.productAttributes|length > 0 %}
   <h2>{% trans %}Attributes{% endtrans %}</h2>
   <ul>
-  {% for attr in product.productAttributes %}
-    {% if attr.attribute == 'booking' %}
+    {% if attr.next_start_date and attr.next_expire_date %}
+    <li>{% trans with {'%start%':attr.nextStartDate|club_date,'%expire%':attr.nextExpireDate|club_date} %}Your subscription period is %start% - %expire%.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.booking %}
     <li>{% trans %}Your subscription will give you access to use bookings.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute == 'team' %}
+    {% if attr.team %}
     <li>{% trans %}Your subscription will give you access to use teams.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute == 'time_interval' %}
-    <li>{% trans with {'%time%':attr.timeInterval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
+    {% if attr.time_interval %}
+    <li>{% trans with {'%time%':attr.time_interval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute == 'ticket' %}
-    <li>{% trans with {'%tickets%':attr.value} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
+    {% if attr.ticket %}
+    <li>{% trans with {'%tickets%':attr.ticket} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute == 'auto_renewal' %}
+    {% if attr.auto_renewal %}
     <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
     {% endif %}
-    {% if attr.attribute == 'allowed_pauses' %}
-    <li>{% trans with {'%pauses%':attr.value} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
+    {% if attr.allowed_pauses %}
+    <li>{% trans with {'%pauses%':attr.allowed_pauses} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
     {% endif %}
-  {% endfor %}
   </ul>
   {% endif %}
 
