@@ -12,7 +12,6 @@ use attribute class as product attribute converter
 add defaults during install:
   - categories
   - products
-make the admin user filter visible all the time to the right
 let users be able to browser other active members
 fix constraints to delete a location
 add transaction on complete order
