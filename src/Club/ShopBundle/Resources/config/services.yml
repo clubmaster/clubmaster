@@ -8,6 +8,8 @@ services:
   subscription:
     class: Club\ShopBundle\Helper\Subscription
     arguments: [@doctrine.orm.entity_manager,@session,@translator]
+  club_shop.product:
+    class: Club\ShopBundle\Helper\Product
   twig.extension.text:
     class: Twig_Extensions_Extension_Text
     tags:
