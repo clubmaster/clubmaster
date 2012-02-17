@@ -2,12 +2,17 @@ _welcome:
   resource: "@ClubWelcomeBundle/Controller/WelcomeController.php"
   type: annotation
 
-_admin_welcome:
-  resource: "@ClubWelcomeBundle/Controller/AdminWelcomeController.php"
+_blog:
+  resource: "@ClubWelcomeBundle/Controller/BlogController.php"
   type: annotation
-  prefix: /admin
 
 _admin_blog:
   resource: "@ClubWelcomeBundle/Controller/AdminBlogController.php"
   type: annotation
   prefix: /admin
+
+_admin_welcome:
+  resource: "@ClubWelcomeBundle/Controller/AdminWelcomeController.php"
+  type: annotation
+  prefix: /admin
+

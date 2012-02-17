@@ -1,5 +1,4 @@
 == NOTES TO THIS RELEASE ==
-add message board
 merge migrations into one file
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
@@ -8,6 +7,7 @@ make sure yearly expire subscriptions will auto renew in the beginning of a new 
 does lifetime membership works?
 
 == NOTES TO LATER ==
+only owner of post and admin can delete blogs
 make a ranking list, look at scorekeepr, nice project :)
 use attribute class as product attribute converter
 add defaults during install:
