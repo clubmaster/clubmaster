@@ -1,14 +1,14 @@
 == NOTES TO THIS RELEASE ==
+add message board
 merge migrations into one file
 filter with subscription date does not seems to wrk
 quick create intervals when creating the field
 make a quick way to remove all team penalties
-add message board
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 does lifetime membership works?
-make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO LATER ==
+make a ranking list, look at scorekeepr, nice project :)
 use attribute class as product attribute converter
 add defaults during install:
   - categories

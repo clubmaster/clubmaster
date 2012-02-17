@@ -70,17 +70,6 @@ class MenuListener
       'route' => $this->router->generate('shop')
     );
 
-    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $menu[] = array(
-        'name' => $this->translator->trans('Order'),
-        'route' => $this->router->generate('shop_order')
-      );
-      $menu[] = array(
-        'name' => $this->translator->trans('Subscription'),
-        'route' => $this->router->generate('shop_subscription')
-      );
-    }
-
     $event->setMenu($menu);
   }
 }
