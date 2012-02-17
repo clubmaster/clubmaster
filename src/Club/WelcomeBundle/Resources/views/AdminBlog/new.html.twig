@@ -6,8 +6,8 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_welcome_blog_new') }}">
-{% include "ClubWelcomeBundle:Blog:form.html.twig" with {'form': form} %}
+<form method="post" action="{{ path('club_welcome_adminblog_new') }}">
+{% include "ClubWelcomeBundle:AdminBlog:form.html.twig" with {'form': form} %}
 </form>
 
 {% endblock %}

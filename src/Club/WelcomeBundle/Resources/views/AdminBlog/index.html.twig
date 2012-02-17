@@ -1,7 +1,7 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_welcome_blog_new') }}" class="btn-create"><span>{% trans %}Create post{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_welcome_adminblog_new') }}" class="btn-create"><span>{% trans %}Create post{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -26,8 +26,8 @@
       <td>{{ blog.createdAt|club_datetime }}</td>
       <td>{{ blog.updatedAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_blog_edit', { 'id':blog.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', { 'id':blog.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_adminblog_edit', { 'id':blog.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_adminblog_delete', { 'id':blog.id })} %}
       </td>
     </tr>
   {% else %}
