@@ -29,6 +29,4 @@ class UserFilter
   public $location;
 
   public $subscription_start;
-
-  public $subscription_end;
 }
