@@ -47,7 +47,7 @@ class OverviewController extends Controller
      ));
 
      if (!count($fields)) {
-       $this->get('session')->setFlash('error', $this->get('translator')->trans('There are no fields in this location, choose another location.'));
+       $this->get('session')->setFlash('warning', $this->get('translator')->trans('There are no fields in this location, choose another location.'));
        $this->get('session')->set('switch_location', $this->generateUrl('club_booking_overview_index'));
        return $this->redirect($this->generateUrl('club_user_location_index'));
      }

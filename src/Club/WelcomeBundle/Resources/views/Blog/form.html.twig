@@ -1,0 +1,18 @@
+  <fieldset>
+    <legend>{% trans %}Post blog{% endtrans %}</legend>
+
+    <p>{% trans %}You are welcome to post anything to the other members here. The post will end up on the frontpage.{% endtrans %}</p>
+
+    {{ form_row(form.title) }}
+    <p>
+      {{ form_label(form.message) }}
+      {{ form_widget(form.message, {'attr': {'class':'big'}}) }}
+      {{ form_errors(form.message) }}
+    </p>
+    {{ form_rest(form) }}
+  </fieldset>
+
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input formnovalidate="true" type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->

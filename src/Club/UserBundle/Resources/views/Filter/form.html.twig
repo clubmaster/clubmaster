@@ -1,5 +1,5 @@
 <!-- Submit -->
-<div id="submit" class="box-01 box" style="display:none;">
+<div id="search_box" class="box-01 box">
   <p>{% trans %}This is your current working filter.{% endtrans %}</p>
   <form method="post" action="{{ path('club_user_filter_change') }}">
   {{ form_row(form_filters.filter) }}
@@ -22,7 +22,6 @@
     {{ form_row(form.has_ticket) }}
     {{ form_row(form.has_subscription) }}
     {{ form_row(form.subscription_start) }}
-    {{ form_row(form.subscription_end) }}
     {{ form_row(form._token) }}
 
     <input type="submit" value="Filter" class="input-submit" />

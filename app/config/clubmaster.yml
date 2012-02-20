@@ -5,7 +5,14 @@ parameters:
 club_api:
     api_key: THIS_IS_A_DEMO_KEY
 
+club_event:
+    enabled: true
+
+club_ranking:
+    enabled: true
+
 club_team:
+    enabled: true
     future_occurs: 14
     minutes_before_schedule: 120
     penalty_enabled: true
@@ -16,6 +23,7 @@ club_team:
     penalty_product_name: 'Penalty for missed team'
 
 club_booking:
+    enabled: true
     enable_guest: true
     num_book_guest_day: 1
     num_book_guest_future: 1

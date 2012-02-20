@@ -1,0 +1,41 @@
+{% extends "ClubRankingBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_ranking_admingame_new') }}" class="btn-create"><span>{% trans %}Create game{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Set{% endtrans %}</th>
+      <th>{% trans %}Locked{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for game in games %}
+    <tr>
+      <td>{{ game.name }}</td>
+      <td>{{ game.gameSet }}</td>
+      <td>{{ game.locked }}</td>
+      <td>{{ game.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_ranking_admingame_edit', { 'id':game.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_ranking_admingame_delete', { 'id':game.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no games.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

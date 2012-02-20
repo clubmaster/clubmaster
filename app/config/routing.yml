@@ -48,3 +48,6 @@ _welcome:
 
 _feedback:
   resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
+
+_ranking:
+  resource: "@ClubRankingBundle/Resources/config/routing.yml"

@@ -17,7 +17,7 @@ class ImportUserCommand extends ContainerAwareCommand
       ->setDescription('Import users')
       ->addArgument('file', InputArgument::REQUIRED, 'What filename to import')
       ->setHelp(<<<EOF
-A should description of the required file format is:
+A short description of the required file format:
 
 Member number
 Password,

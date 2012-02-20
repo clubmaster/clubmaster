@@ -1,0 +1,11 @@
+services:
+  club.ranking.listener.top_menu_render_listener:
+    class: Club\RankingBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator, %club_ranking.enabled%]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+  club.ranking.listener.left_menu_render_listener:
+    class: Club\RankingBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator, %club_ranking.enabled%]
+    tags:
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }

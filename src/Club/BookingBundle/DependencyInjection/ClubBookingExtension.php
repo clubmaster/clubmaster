@@ -26,6 +26,7 @@ class ClubBookingExtension extends Extension
         $loader->load('services.yml');
         $loader->load('listener.yml');
 
+        $container->setParameter('club_booking.enabled', $config['enabled']);
         $container->setParameter('club_booking.enable_guest', $config['enable_guest']);
         $container->setParameter('club_booking.num_book_guest_day', $config['num_book_guest_day']);
         $container->setParameter('club_booking.num_book_guest_future', $config['num_book_guest_future']);

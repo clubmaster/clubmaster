@@ -40,14 +40,12 @@ class AdminOrderController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($order);
-        $em->flush();
+        $data = $form->getData();
+
+        $this->get('order')->setOrder($order);
+        $this->get('order')->changeStatus($data->getOrderStatus());
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-        $event = new \Club\ShopBundle\Event\FilterOrderEvent($order);
-        $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onOrderChange, $event);
 
         return $this->redirect($this->generateUrl('admin_shop_order'));
       }

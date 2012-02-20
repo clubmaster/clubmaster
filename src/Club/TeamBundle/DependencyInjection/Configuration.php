@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
           ->children()
+            ->scalarNode('enabled')->isRequired()->end()
             ->scalarNode('future_occurs')->isRequired()->end()
             ->scalarNode('minutes_before_schedule')->isRequired()->end()
             ->scalarNode('penalty_enabled')->isRequired()->end()

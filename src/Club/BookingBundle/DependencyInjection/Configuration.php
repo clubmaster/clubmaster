@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
           ->children()
+            ->scalarNode('enabled')->isRequired()->end()
             ->scalarNode('enable_guest')->isRequired()->end()
             ->scalarNode('num_book_guest_day')->isRequired()->end()
             ->scalarNode('num_book_guest_future')->isRequired()->end()

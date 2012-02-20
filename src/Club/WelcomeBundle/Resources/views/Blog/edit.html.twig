@@ -1,0 +1,13 @@
+{% extends "ClubWelcomeBundle::base.html.twig" %}
+
+{% block javascripts %}
+  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_welcome_blog_edit', {'id':blog.id}) }}">
+{% include "ClubWelcomeBundle:Blog:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

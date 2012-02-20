@@ -17,9 +17,11 @@ class ProductController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $product = $em->find('ClubShopBundle:Product',$id);
+    $attr = $this->get('club_shop.product')->getAttribute($product);
 
     return array(
-      'product' => $product
+      'product' => $product,
+      'attr' => $attr
     );
   }
 

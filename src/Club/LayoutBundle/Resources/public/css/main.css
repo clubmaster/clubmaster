@@ -218,7 +218,7 @@ OTHERS
 #content td.arrow-01 {padding-left:30px; background:url("../images/arrow-01.gif") 10px 50% no-repeat;}
 .input-text {padding:3px; font:100%/1.5 "arial", sans-serif;}
 .input-text-02 {padding:5px; font:140%/1.5 "arial", sans-serif;}
-.input-submit {padding:5px; font-size:120%;}
+.input-submit {padding:5px; font-size:120%; width: auto;}
 .input-submit-02 {padding:1px; font-size:100%;}
 textarea.input-text {width: 400px; height: 100px;}
 textarea.big {width: 600px; height: 400px;}

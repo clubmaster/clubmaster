@@ -305,32 +305,25 @@ class UserRepository extends EntityRepository
 
   protected function filterSubscriptionStart($qb,$value)
   {
-    $date = unserialize($value);
-    if (!$this->has_joined_sub) {
-      $qb->leftJoin('u.subscriptions','s');
-      $this->has_joined_sub = true;
-    }
-
     if ($value) {
-      $qb->andWhere('s.start_date >= :start_date');
-    }
-    $qb->setParameter('start_date',$date->format('Y-m-d H:i:s'));
+      $date = unserialize($value);
+      if (!$this->has_joined_sub) {
+        $qb->leftJoin('u.subscriptions','s');
+        $this->has_joined_sub = true;
+      }
 
-    return $qb;
-  }
+      $start = new \DateTime($date->format('Y-m-d 00:00:00'));
+      $end = new \DateTime($date->format('Y-m-d 23:59:59'));
 
-  protected function filterSubscriptionEnd($qb,$value)
-  {
-    $date = unserialize($value);
-    if (!$this->has_joined_sub) {
-      $qb->leftJoin('u.subscriptions','s');
-      $this->has_joined_sub = true;
+      $qb->andWhere(
+        '(s.start_date <= :start_date and s.expire_date >= :end_date) OR '.
+        '(s.start_date <= :start_date and s.expire_date <= :end_date and s.expire_date >= :start_date) OR '.
+        '(s.start_date >= :start_date and s.expire_date >= :end_date and s.start_date < :end_date) OR '.
+        '(s.start_date >= :start_date and s.expire_date <= :end_date and s.expire_date >= :start_date)'
+      );
+      $qb->setParameter('start_date',$start);
+      $qb->setParameter('end_date',$end);
     }
-
-    if ($value) {
-      $qb->andWhere('s.expire_date <= :end_date');
-    }
-    $qb->setParameter('end_date',$date->format('Y-m-d H:i:s'));
 
     return $qb;
   }

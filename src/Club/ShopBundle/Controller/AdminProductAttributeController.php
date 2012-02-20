@@ -16,8 +16,8 @@ class AdminProductAttributeController extends Controller
   public function indexAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('ClubShopBundle:Product',$id);
 
+    $product = $em->find('ClubShopBundle:Product',$id);
     $form = $this->getForm($product);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -32,6 +32,8 @@ class AdminProductAttributeController extends Controller
         )));
       }
     }
+    $form->setData($this->getData($product));
+
     return array(
       'form' => $form->createView(),
       'product' => $product
@@ -40,7 +42,7 @@ class AdminProductAttributeController extends Controller
 
   private function getForm($product)
   {
-    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute(), $this->getData($product));
+    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute());
 
     return $form;
   }
@@ -48,25 +50,7 @@ class AdminProductAttributeController extends Controller
   private function getData($product)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $attribute = new \Club\ShopBundle\Model\Attribute();
-
-    foreach ($product->getProductAttributes() as $attr) {
-      $val = $attr->getAttribute();
-      if ($attr->getAttribute() == 'location') {
-        $res = new \Doctrine\Common\Collections\ArrayCollection();
-        $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attr->getValue()));
-        foreach ($locations as $location) {
-          $res[] = $location;
-        }
-        $attribute->$val = $res;
-
-      } elseif ($attr->getAttribute() == 'start_date' || $attr->getAttribute() == 'expire_date') {
-        $attribute->$val = new \DateTime($attr->getValue());
-      } else {
-        $attribute->$val = $attr->getValue();
-      }
-    }
+    $attribute = $this->get('club_shop.product')->getAttribute($product);
 
     return $attribute;
   }
@@ -76,13 +60,6 @@ class AdminProductAttributeController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     foreach ($data as $attribute => $value) {
-      $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
-        'product' => $product->getId(),
-        'attribute' => $attribute
-      ));
-
-      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
-        $value = $value->format('Y-m-d');
 
       if ($attribute == 'location') {
         $str = '';
@@ -90,33 +67,25 @@ class AdminProductAttributeController extends Controller
           $str .= $l->getId().',';
         }
         $str = preg_replace("/,$/","",$str);
-        $str = ($str != '') ? $str : null;
+        $value = ($str != '') ? $str : null;
+      }
 
-        if ($str == '') {
-          if ($prod_attr)
-            $em->remove($prod_attr);
-        } else {
-          if (!$prod_attr)
-            $prod_attr = $this->buildProductAttribute($product,$attribute);
+      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
+        $value = $value->format('Y-m-d');
 
-          $prod_attr->setValue($str);
-          $em->persist($prod_attr);
-        }
+      $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
+        'product' => $product->getId(),
+        'attribute' => $attribute
+      ));
 
-      } else {
+      if (strlen($value)) {
+        $prod_attr = (!$prod_attr) ? $this->buildProductAttribute($product, $attribute) : $prod_attr;
 
-        if ($prod_attr && $value == '') {
-          $em->remove($prod_attr);
+        $prod_attr->setValue($value);
+        $em->persist($prod_attr);
 
-        } elseif ($prod_attr && $value != '') {
-          $prod_attr->setValue($value);
-          $em->persist($prod_attr);
-
-        } elseif (!$prod_attr && $value != '') {
-          $prod_attr = $this->buildProductAttribute($product,$attribute);
-          $prod_attr->setValue($value);
-          $em->persist($prod_attr);
-        }
+      } elseif ($prod_attr && $value == '') {
+        $em->remove($prod_attr);
       }
     }
 

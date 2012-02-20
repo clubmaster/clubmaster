@@ -1734,6 +1734,10 @@
         <source>Country: %country%</source>
         <target>Land: %country%</target>
       </trans-unit>
+      <trans-unit id="436">
+        <source>You are welcome to post anything to the other members here. The post will end up on the frontpage.</source>
+        <target>Du er velkommen til at poste noget her til de andre medlemmer. Posten vil komme op på forsiden.</target>
+      </trans-unit>
 
     </body>
   </file>

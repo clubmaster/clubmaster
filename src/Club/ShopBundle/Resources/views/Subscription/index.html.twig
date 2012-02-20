@@ -2,6 +2,8 @@
 
 {% block body %}
 
+{% include "ClubShopBundle:Shop:header.html.twig" %}
+
 <h2>{% trans %}Active subscriptions{% endtrans %}</h2>
 {% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':active} %}
 

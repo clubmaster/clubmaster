@@ -16,14 +16,14 @@ class OrderChangeListener
   public function onOrderChange(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
-    $user = $this->security_context->getToken()->getUser();
-
     $log = new \Club\LogBundle\Entity\Log();
     $log->setEvent('onOrderChange');
     $log->setSeverity('informational');
-    $log->setUser($user);
     $log->setLogType('shop');
     $log->setLog('Changed order status on order #'.$order->getId());
+
+    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+      $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);
     $this->em->flush();

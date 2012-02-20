@@ -1,10 +1,17 @@
 == NOTES TO THIS RELEASE ==
 merge migrations into one file
-filter with subscription date does not seems to wrk
 quick create intervals when creating the field
+make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+does lifetime membership works?
+make a ranking list, look at scorekeepr, nice project :)
+push items into dashboard
 
 == NOTES TO LATER ==
-make the admin user filter visible all the time to the right
+make a quick way to remove all team penalties
+use attribute class as product attribute converter
+add defaults during install:
+  - categories
+  - products
 let users be able to browser other active members
 fix constraints to delete a location
 add transaction on complete order
@@ -38,9 +45,6 @@ gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
 change all equal form.html.twig to layout default
-enable and disable teams
-enable and disable bookings
-enable and disable events
 jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product
