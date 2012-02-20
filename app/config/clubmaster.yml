@@ -8,6 +8,9 @@ club_api:
 club_event:
     enabled: true
 
+club_ranking:
+    enabled: true
+
 club_team:
     enabled: true
     future_occurs: 14
