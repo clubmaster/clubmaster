@@ -1,4 +1,5 @@
 == NOTES TO THIS RELEASE ==
+make time on day where users can book subscription
 merge migrations into one file
 quick create intervals when creating the field
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription

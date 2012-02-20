@@ -24,6 +24,20 @@ class Plan
     protected $id;
 
     /**
+     * @var date $period_start
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $period_start;
+
+    /**
+     * @var date $period_end
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $period_end;
+
+    /**
      * @var date $first_date
      *
      * @ORM\Column(type="datetime")
@@ -288,5 +302,45 @@ class Plan
       }
 
       return $res;
+    }
+
+    /**
+     * Set period_start
+     *
+     * @param datetime $periodStart
+     */
+    public function setPeriodStart($periodStart)
+    {
+        $this->period_start = $periodStart;
+    }
+
+    /**
+     * Get period_start
+     *
+     * @return datetime 
+     */
+    public function getPeriodStart()
+    {
+        return $this->period_start;
+    }
+
+    /**
+     * Set period_end
+     *
+     * @param datetime $periodEnd
+     */
+    public function setPeriodEnd($periodEnd)
+    {
+        $this->period_end = $periodEnd;
+    }
+
+    /**
+     * Get period_end
+     *
+     * @return datetime 
+     */
+    public function getPeriodEnd()
+    {
+        return $this->period_end;
     }
 }
