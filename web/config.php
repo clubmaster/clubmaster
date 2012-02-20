@@ -131,7 +131,7 @@ if (ini_get('session.auto_start')) {
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <link href="bundles/sensiodistribution/webconfigurator/css/install.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="bundles/clubconfigurator/webconfigurator/css/install.css" rel="stylesheet" type="text/css" media="all" />
         <title>ClubMaster Configuration</title>
     </head>
     <body>
