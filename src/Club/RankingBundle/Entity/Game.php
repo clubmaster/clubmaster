@@ -69,6 +69,12 @@ class Game
      */
     protected $administrators;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Rule")
+     * @var Club\RankingBundle\Entity\Rule
+     */
+    protected $rule;
+
 
     /**
      * Get id
@@ -195,5 +201,60 @@ class Game
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Get administrators
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAdministrators()
+    {
+        return $this->administrators;
+    }
+
+    /**
+     * Set rule
+     *
+     * @param Club\RankingBundle\Entity\Rule $rule
+     */
+    public function setRule(\Club\RankingBundle\Entity\Rule $rule)
+    {
+        $this->rule = $rule;
+    }
+
+    /**
+     * Get rule
+     *
+     * @return Club\RankingBundle\Entity\Rule 
+     */
+    public function getRule()
+    {
+        return $this->rule;
     }
 }
