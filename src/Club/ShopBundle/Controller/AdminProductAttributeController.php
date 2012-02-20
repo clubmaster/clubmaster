@@ -16,15 +16,14 @@ class AdminProductAttributeController extends Controller
   public function indexAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $product = $em->find('ClubShopBundle:Product',$id);
 
+    $product = $em->find('ClubShopBundle:Product',$id);
     $form = $this->getForm($product);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
-        $r = $form->getData();
         $this->setData($product,$form->getData());
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -33,6 +32,8 @@ class AdminProductAttributeController extends Controller
         )));
       }
     }
+    $form->setData($this->getData($product));
+
     return array(
       'form' => $form->createView(),
       'product' => $product
@@ -41,7 +42,7 @@ class AdminProductAttributeController extends Controller
 
   private function getForm($product)
   {
-    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute(), $this->getData($product));
+    $form = $this->createForm(new \Club\ShopBundle\Form\ProductAttribute());
 
     return $form;
   }
@@ -59,18 +60,6 @@ class AdminProductAttributeController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     foreach ($data as $attribute => $value) {
-      if ($value == '') {
-        $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
-          'product' => $product->getId(),
-          'attribute' => $attribute
-        ));
-
-        $em->remove($prod_attr);
-      }
-
-      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '') {
-        $value = $value->format('Y-m-d');
-      }
 
       if ($attribute == 'location') {
         $str = '';
@@ -78,32 +67,25 @@ class AdminProductAttributeController extends Controller
           $str .= $l->getId().',';
         }
         $str = preg_replace("/,$/","",$str);
-        $str = ($str != '') ? $str : null;
+        $value = ($str != '') ? $str : null;
+      }
 
-        if ($str == '') {
-          if ($prod_attr)
-            $em->remove($prod_attr);
-        } else {
-          if (!$prod_attr)
-            $prod_attr = $this->buildProductAttribute($product,$attribute);
+      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
+        $value = $value->format('Y-m-d');
 
-          $prod_attr->setValue($str);
-          $em->persist($prod_attr);
-        }
+      $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
+        'product' => $product->getId(),
+        'attribute' => $attribute
+      ));
 
-      } else {
+      if (strlen($value)) {
+        $prod_attr = (!$prod_attr) ? $this->buildProductAttribute($product, $attribute) : $prod_attr;
 
-        if ($prod_attr && $value == '') {
+        $prod_attr->setValue($value);
+        $em->persist($prod_attr);
 
-        } elseif ($prod_attr && $value != '') {
-          $prod_attr->setValue($value);
-          $em->persist($prod_attr);
-
-        } elseif (!$prod_attr && $value != '') {
-          $prod_attr = $this->buildProductAttribute($product,$attribute);
-          $prod_attr->setValue($value);
-          $em->persist($prod_attr);
-        }
+      } elseif ($prod_attr && $value == '') {
+        $em->remove($prod_attr);
       }
     }
 
