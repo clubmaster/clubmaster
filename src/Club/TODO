@@ -3,10 +3,10 @@ merge migrations into one file
 quick create intervals when creating the field
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 does lifetime membership works?
+make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO LATER ==
 make a quick way to remove all team penalties
-make a ranking list, look at scorekeepr, nice project :)
 use attribute class as product attribute converter
 add defaults during install:
   - categories
