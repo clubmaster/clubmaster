@@ -37,6 +37,13 @@ class Game
     private $locked;
 
     /**
+     * @var string $game_set
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $game_set;
+
+    /**
      * @var string $type
      *
      * @ORM\Column(type="string", length=255)
@@ -257,5 +264,25 @@ class Game
     public function getRule()
     {
         return $this->rule;
+    }
+
+    /**
+     * Set game_set
+     *
+     * @param integer $gameSet
+     */
+    public function setGameSet($gameSet)
+    {
+        $this->game_set = $gameSet;
+    }
+
+    /**
+     * Get game_set
+     *
+     * @return integer
+     */
+    public function getGameSet()
+    {
+        return $this->game_set;
     }
 }
