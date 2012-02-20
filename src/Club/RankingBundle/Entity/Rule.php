@@ -16,7 +16,7 @@ class Rule
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -25,42 +25,49 @@ class Rule
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var integer $point_won
      *
-     * @ORM\Column(name="point_won", type="integer")
+     * @ORM\Column(type="integer")
      */
     private $point_won;
 
     /**
      * @var integer $point_loss
      *
-     * @ORM\Column(name="point_loss", type="integer")
+     * @ORM\Column(type="integer")
      */
     private $point_loss;
 
     /**
      * @var integer $match_same_player
      *
-     * @ORM\Column(name="match_same_player", type="integer")
+     * @ORM\Column(type="integer")
      */
     private $match_same_player;
 
     /**
+     * @var integer $newbie_limit
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $newbie_limit;
+
+    /**
      * @var datetime $created_at
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
 
     /**
      * @var datetime $updated_at
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $updated_at;
 

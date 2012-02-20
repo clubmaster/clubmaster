@@ -33,6 +33,7 @@ class AdminRuleController extends Controller
     $rule->setPointWon(2);
     $rule->setPointLoss(0);
     $rule->setMatchSamePlayer(2);
+    $rule->setNewbieLimit(5);
 
     $res = $this->process($rule);
 
