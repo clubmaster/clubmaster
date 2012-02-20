@@ -37,6 +37,13 @@ class Game
     private $locked;
 
     /**
+     * @var boolean $invite_only
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $invite_only;
+
+    /**
      * @var string $game_set
      *
      * @ORM\Column(type="integer")
@@ -284,5 +291,25 @@ class Game
     public function getGameSet()
     {
         return $this->game_set;
+    }
+
+    /**
+     * Set invite_only
+     *
+     * @param boolean $inviteOnly
+     */
+    public function setInviteOnly($inviteOnly)
+    {
+        $this->invite_only = $inviteOnly;
+    }
+
+    /**
+     * Get invite_only
+     *
+     * @return boolean 
+     */
+    public function getInviteOnly()
+    {
+        return $this->invite_only;
     }
 }
