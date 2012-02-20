@@ -24,6 +24,7 @@ class AdminProductAttributeController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
+        $r = $form->getData();
         $this->setData($product,$form->getData());
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -58,10 +59,14 @@ class AdminProductAttributeController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     foreach ($data as $attribute => $value) {
-      $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
-        'product' => $product->getId(),
-        'attribute' => $attribute
-      ));
+      if ($value == '') {
+        $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
+          'product' => $product->getId(),
+          'attribute' => $attribute
+        ));
+
+        $em->remove($prod_attr);
+      }
 
       if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '') {
         $value = $value->format('Y-m-d');
@@ -89,7 +94,6 @@ class AdminProductAttributeController extends Controller
       } else {
 
         if ($prod_attr && $value == '') {
-          $em->remove($prod_attr);
 
         } elseif ($prod_attr && $value != '') {
           $prod_attr->setValue($value);

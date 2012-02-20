@@ -88,6 +88,8 @@ class Attribute
 
   public function setStartDate($start_date)
   {
+    if ($start_date == '') return;
+
     if (!($start_date instanceof \DateTime)) {
       $this->start_date = new \DateTime($start_date.' 00:00:00');
     } else {
@@ -102,6 +104,8 @@ class Attribute
 
   public function setExpireDate($expire_date)
   {
+    if ($expire_date == '') return;
+
     if (!($expire_date instanceof \DateTime)) {
       $this->expire_date = new \DateTime($expire_date.' 23:59:59');
     } else {
