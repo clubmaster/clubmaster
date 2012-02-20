@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\RankingBundle\Entity\Rule
  *
- * @ORM\Table()
+ * @ORM\Table(name="rule")
  * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\RuleRepository")
  * @ORM\HasLifeCycleCallbacks()
  */

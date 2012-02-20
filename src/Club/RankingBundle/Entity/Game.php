@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\RankingBundle\Entity\Game
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_ranking_game")
  * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\GameRepository")
  * @ORM\HasLifeCycleCallbacks()
  */
