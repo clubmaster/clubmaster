@@ -1,0 +1,3 @@
+ClubRankingBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ClubRankingBundle:Default:index }

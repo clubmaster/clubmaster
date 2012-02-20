@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Club\BookingBundle\ClubBookingBundle(),
             new Club\WelcomeBundle\ClubWelcomeBundle(),
             new Club\ConfiguratorBundle\ClubConfiguratorBundle(),
+            new Club\RankingBundle\ClubRankingBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
         );
 

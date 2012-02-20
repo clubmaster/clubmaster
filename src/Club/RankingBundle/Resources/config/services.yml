@@ -1,0 +1,7 @@
+parameters:
+#    club_ranking.example.class: Club\RankingBundle\Example
+
+services:
+#    club_ranking.example:
+#        class: %club_ranking.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
