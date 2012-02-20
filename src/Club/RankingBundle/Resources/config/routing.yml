@@ -1,3 +1,9 @@
-ClubRankingBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClubRankingBundle:Default:index }
+_ranking_game:
+  resource: "@ClubRankingBundle/Controller/GameController.php"
+  type: annotation
+  prefix: /ranking/game
+
+_admin_ranking_game:
+  resource: "@ClubRankingBundle/Controller/AdminGameController.php"
+  type: annotation
+  prefix: /admin/ranking/game
