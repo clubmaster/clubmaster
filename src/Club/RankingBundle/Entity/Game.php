@@ -204,10 +204,11 @@ class Game
     }
     public function __construct()
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->type = '1-on-1';
     }
-    
+
     /**
      * Add users
      *
@@ -221,7 +222,7 @@ class Game
     /**
      * Get users
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
@@ -231,7 +232,7 @@ class Game
     /**
      * Get administrators
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAdministrators()
     {
@@ -251,7 +252,7 @@ class Game
     /**
      * Get rule
      *
-     * @return Club\RankingBundle\Entity\Rule 
+     * @return Club\RankingBundle\Entity\Rule
      */
     public function getRule()
     {

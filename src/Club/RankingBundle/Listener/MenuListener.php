@@ -40,7 +40,12 @@ class MenuListener
       $menu['event'] = array(
         'name' => $this->translator->trans('Ranking'),
         'route' => $this->router->generate('club_ranking_admingame_index'),
-        'items' => array()
+        'items' => array(
+          array(
+            'name' => $this->translator->trans('Rule'),
+            'route' => $this->router->generate('club_ranking_adminrule_index')
+          )
+        )
       );
     }
 
