@@ -7,16 +7,20 @@ class MenuListener
   private $router;
   private $security_context;
   private $translator;
+  private $enabled;
 
-  public function __construct($router, $security_context, $translator)
+  public function __construct($router, $security_context, $translator, $enabled)
   {
     $this->router = $router;
     $this->security_context = $security_context;
     $this->translator = $translator;
+    $this->enabled = $enabled;
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
+    if (!$this->enabled) return;
+
     $menu = $event->getMenu();
 
     $menu[] = array(
@@ -36,6 +40,8 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
+    if (!$this->enabled) return;
+
     $menu = $event->getMenu();
 
     $menu[] = array(

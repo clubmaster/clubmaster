@@ -44,9 +44,6 @@ gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
 change all equal form.html.twig to layout default
-enable and disable teams
-enable and disable bookings
-enable and disable events
 jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product

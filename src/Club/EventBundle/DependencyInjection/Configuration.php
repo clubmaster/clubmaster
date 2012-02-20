@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\BookingBundle\DependencyInjection;
+namespace Club\EventBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('club_booking');
+        $rootNode = $treeBuilder->root('club_event');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
@@ -27,15 +27,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
             ->scalarNode('enabled')->isRequired()->end()
-            ->scalarNode('enable_guest')->isRequired()->end()
-            ->scalarNode('num_book_guest_day')->isRequired()->end()
-            ->scalarNode('num_book_guest_future')->isRequired()->end()
-            ->scalarNode('num_book_same_partner_day')->isRequired()->end()
-            ->scalarNode('num_book_same_partner_future')->isRequired()->end()
-            ->scalarNode('num_book_day')->isRequired()->end()
-            ->scalarNode('num_book_future')->isRequired()->end()
-            ->scalarNode('cancel_minute_before')->isRequired()->end()
-            ->scalarNode('cancel_minute_created')->isRequired()->end()
           ->end();
 
         return $treeBuilder;
