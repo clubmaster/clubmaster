@@ -306,7 +306,7 @@ class Game
     /**
      * Get invite_only
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getInviteOnly()
     {
