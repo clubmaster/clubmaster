@@ -30,6 +30,7 @@ class AdminGameController extends Controller
   public function newAction()
   {
     $game = new \Club\RankingBundle\Entity\Game();
+    $game->addAdministrator($this->get('security.context')->getToken()->getUser());
 
     $res = $this->process($game);
 

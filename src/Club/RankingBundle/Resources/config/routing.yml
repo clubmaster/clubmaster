@@ -3,6 +3,11 @@ _ranking_game:
   type: annotation
   prefix: /ranking/game
 
+_ranking_match:
+  resource: "@ClubRankingBundle/Controller/MatchController.php"
+  type: annotation
+  prefix: /ranking/match
+
 _admin_ranking_game:
   resource: "@ClubRankingBundle/Controller/AdminGameController.php"
   type: annotation

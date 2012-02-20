@@ -79,7 +79,7 @@ class Game
 
     /**
      * @ORM\OneToMany(targetEntity="Club\UserBundle\Entity\User", mappedBy="user")
-     * @ORM\JoinTable(name="club_ranking_game_admins")
+     * @ORM\JoinTable(name="club_ranking_game_administrators")
      */
     protected $administrators;
 
@@ -88,6 +88,11 @@ class Game
      * @var Club\RankingBundle\Entity\Rule
      */
     protected $rule;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Club\RankingBundle\Entity\Match", mappedBy="game")
+     */
+    protected $matches;
 
 
     /**
@@ -254,6 +259,16 @@ class Game
     }
 
     /**
+     * Add administrators
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addAdministrator(\Club\UserBundle\Entity\User $administrator)
+    {
+        $this->administrators[] = $administrator;
+    }
+
+    /**
      * Set rule
      *
      * @param Club\RankingBundle\Entity\Rule $rule
@@ -311,5 +326,25 @@ class Game
     public function getInviteOnly()
     {
         return $this->invite_only;
+    }
+
+    /**
+     * Add matches
+     *
+     * @param Club\RankingBundle\Entity\Match $matches
+     */
+    public function addMatch(\Club\RankingBundle\Entity\Match $matches)
+    {
+        $this->matches[] = $matches;
+    }
+
+    /**
+     * Get matches
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMatches()
+    {
+        return $this->matches;
     }
 }

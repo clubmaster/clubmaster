@@ -71,4 +71,44 @@ class MatchSet
     {
         return $this->match;
     }
+
+    /**
+     * Set game_set
+     *
+     * @param integer $gameSet
+     */
+    public function setGameSet($gameSet)
+    {
+        $this->game_set = $gameSet;
+    }
+
+    /**
+     * Get game_set
+     *
+     * @return integer
+     */
+    public function getGameSet()
+    {
+        return $this->game_set;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 }
