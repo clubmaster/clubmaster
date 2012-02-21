@@ -10,8 +10,6 @@ class Team extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('description');
-    $builder->add('penalty');
     $builder->add('max_attend');
     $builder->add('first_date');
     $builder->add('end_date');
@@ -21,7 +19,6 @@ class Team extends AbstractType
       'required' => false,
       'multiple' => true
     ));
-    $builder->add('location');
     $builder->add('instructors','entity',array(
       'class' => 'Club\UserBundle\Entity\User',
       'required' => false,

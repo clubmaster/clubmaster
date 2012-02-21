@@ -10,31 +10,31 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminTeamController extends Controller
 {
   /**
-   * @Route("/{team_id}/team")
+   * @Route("/{team_category_id}/team")
    * @Template()
    */
-  public function indexAction($team_id)
+  public function indexAction($team_category_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $teams = $em->getRepository('ClubTeamBundle:Team')->findBy(array(
-      'team' => $team_id
+      'team_category' => $team_category_id
     ), array(
       'first_date' => 'ASC'
     ));
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $team_category = $em->find('ClubTeamBundle:TeamCategory', $team_category_id);
 
     return array(
-      'team' => $team,
+      'team_category' => $team_category,
       'teams' => $teams
     );
   }
 
   /**
-   * @Route("/{team_id}/team/{team_id}/participant/{id}/unattend")
+   * @Route("/{team_category_id}/team/{team_id}/participant/{id}/unattend")
    * @Template()
    */
-  public function unattendAction($team_id, $team_id, $id)
+  public function unattendAction($team_category_id, $team_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team', $team_id);
@@ -55,39 +55,25 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/{id}/participant")
+   * @Route("/{team_category_id}/team/{id}/participant")
    * @Template()
    */
-  public function participantAction($team_id,$id)
+  public function participantAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team', $id);
 
     return array(
-      'team' => $team->getTeam()->getId(),
+      'team_category' => $team->getTeamCategory(),
       'team' => $team
     );
   }
 
   /**
-   * @Route("/{team_id}/team/{id}/edit/choice")
+   * @Route("/{team_category_id}/team/{id}/edit/choice")
    * @Template()
    */
-  public function editChoiceAction($team_id,$id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team', $id);
-
-    return array(
-      'team' => $team
-    );
-  }
-
-  /**
-   * @Route("/{team_id}/team/{id}/delete/choice")
-   * @Template()
-   */
-  public function deleteChoiceAction($team_id,$id)
+  public function editChoiceAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team', $id);
@@ -98,18 +84,30 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/new")
+   * @Route("/{team_category_id}/team/{id}/delete/choice")
    * @Template()
    */
-  public function newAction($team_id)
+  public function deleteChoiceAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $team = $em->find('ClubTeamBundle:Team', $id);
+
+    return array(
+      'team' => $team
+    );
+  }
+
+  /**
+   * @Route("/{team_category_id}/team/new")
+   * @Template()
+   */
+  public function newAction($team_category_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $team_category = $em->find('ClubTeamBundle:TeamCategory', $team_category_id);
 
     $team = new \Club\TeamBundle\Entity\Team();
-    $team->setTeam($team);
-    $team->setDescription($team->getDescription());
-    $team->setPenalty($team->getPenalty());
+    $team->setTeamCategory($team_category);
     $team->setFirstDate(new \DateTime(date('Y-m-d 14:00:00')));
     $team->setEndDate(new \DateTime(date('Y-m-d 15:00:00')));
     $team->setMaxAttend(15);
@@ -120,16 +118,16 @@ class AdminTeamController extends Controller
       return $res;
 
     return array(
-      'team' => $team,
+      'team_category' => $team_category,
       'form' => $res->createView()
     );
   }
 
   /**
-   * @Route("/{team_id}/team/edit/{id}")
+   * @Route("/{team_category_id}/team/edit/{id}")
    * @Template()
    */
-  public function editAction($team_id,$id)
+  public function editAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$team_id);
@@ -155,9 +153,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/delete/{id}")
+   * @Route("/{team_category_id}/team/delete/{id}")
    */
-  public function deleteAction($team_id,$id)
+  public function deleteAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -188,9 +186,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/delete/{id}/once")
+   * @Route("/{team_category_id}/team/delete/{id}/once")
    */
-  public function deleteOnceAction($team_id,$id)
+  public function deleteOnceAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -221,9 +219,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/delete/{id}/future")
+   * @Route("/{team_category_id}/team/delete/{id}/future")
    */
-  public function deleteFutureAction($team_id,$id)
+  public function deleteFutureAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -266,9 +264,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/delete/{id}/all")
+   * @Route("/{team_category_id}/team/delete/{id}/all")
    */
-  public function deleteAllAction($team_id,$id)
+  public function deleteAllAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -284,9 +282,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/edit/{id}/future")
+   * @Route("/{team_category_id}/team/edit/{id}/future")
    */
-  public function editFutureAction($team_id,$id)
+  public function editFutureAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -351,9 +349,9 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/{team_id}/team/edit/{id}/all")
+   * @Route("/{team_category_id}/team/edit/{id}/all")
    */
-  public function editAllAction($team_id,$id)
+  public function editAllAction($team_category_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $team = $em->find('ClubTeamBundle:Team',$id);
@@ -447,7 +445,7 @@ class AdminTeamController extends Controller
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_team_adminteam_index', array(
-          'team_id' => $team->getTeam()->getId()
+          'team_category_id' => $team->getTeamCategory()->getId()
         )));
       }
     }

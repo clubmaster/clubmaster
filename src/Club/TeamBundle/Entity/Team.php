@@ -25,22 +25,6 @@ class Team
     protected $id;
 
     /**
-     * @var text $description
-     *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     */
-    protected $description;
-
-    /**
-     * @var text $penalty
-     *
-     * @ORM\Column(type="decimal", scale="2")
-     * @Assert\NotBlank()
-     */
-    protected $penalty;
-
-    /**
      * @var text $max_attend
      *
      * @ORM\Column(type="integer")
@@ -88,11 +72,6 @@ class Team
      * @ORM\JoinColumn(name="team_category_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $team_category;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
-     */
-    protected $location;
 
     /**
      * @ORM\ManyToOne(targetEntity="Team")
@@ -147,26 +126,6 @@ class Team
     public function __construct()
     {
         $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return text
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -413,7 +372,7 @@ class Team
         'id' => $this->getId(),
         'type' => 'team',
         'team_name' => $this->getTeamCategory()->getTeamName(),
-        'description' => $this->getDescription(),
+        'description' => $this->getTeamCategory()->getDescription(),
         'level' => $this->getLevel()->getLevelName(),
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
@@ -436,49 +395,9 @@ class Team
       return $res;
     }
 
-    /**
-     * Set location
-     *
-     * @param Club\UserBundle\Entity\Location $location
-     */
-    public function setLocation(\Club\UserBundle\Entity\Location $location)
-    {
-        $this->location = $location;
-    }
-
-    /**
-     * Get location
-     *
-     * @return Club\UserBundle\Entity\Location
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
     public function resetInstructors()
     {
       $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set penalty
-     *
-     * @param decimal $penalty
-     */
-    public function setPenalty($penalty)
-    {
-        $this->penalty = $penalty;
-    }
-
-    /**
-     * Get penalty
-     *
-     * @return decimal
-     */
-    public function getPenalty()
-    {
-        return $this->penalty;
     }
 
     /**
@@ -529,5 +448,45 @@ class Team
     public function getFields()
     {
         return $this->fields;
+    }
+
+    /**
+     * Set team_category
+     *
+     * @param Club\TeamBundle\Entity\TeamCategory $teamCategory
+     */
+    public function setTeamCategory(\Club\TeamBundle\Entity\TeamCategory $teamCategory)
+    {
+        $this->team_category = $teamCategory;
+    }
+
+    /**
+     * Get team_category
+     *
+     * @return Club\TeamBundle\Entity\TeamCategory
+     */
+    public function getTeamCategory()
+    {
+        return $this->team_category;
+    }
+
+    /**
+     * Add instructors
+     *
+     * @param Club\UserBundle\Entity\User $instructors
+     */
+    public function addUser(\Club\UserBundle\Entity\User $instructors)
+    {
+        $this->instructors[] = $instructors;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\TeamBundle\Entity\TeamUser $users
+     */
+    public function addTeamUser(\Club\TeamBundle\Entity\TeamUser $users)
+    {
+        $this->users[] = $users;
     }
 }

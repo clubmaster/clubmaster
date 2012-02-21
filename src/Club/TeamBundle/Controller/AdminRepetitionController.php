@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminRepetitionController extends Controller
 {
   /**
-   * @Route("/team/team/{team_id}/team/{team_id}/repetition")
+   * @Route("/team/team/{team_category_id}/team/{team_id}/repetition")
    * @Template()
    */
-  public function indexAction($team_id, $team_id)
+  public function indexAction($team_category_id, $team_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $team_category = $em->find('ClubTeamBundle:TeamCategory', $team_category_id);
 
     $parent = ($team->getTeam()) ? $team->getTeam() : $team;
     $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(

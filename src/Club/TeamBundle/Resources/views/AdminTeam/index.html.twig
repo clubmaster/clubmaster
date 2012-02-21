@@ -1,7 +1,7 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_team_adminteam_new', {'team_id':team.id}) }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_team_adminteam_new', {'team_category_id':team_category.id}) }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -21,15 +21,15 @@
   <tbody>
   {% for team in teams %}
     <tr>
-      <td>{{ team.team.teamName }}</td>
+      <td>{{ team.teamCategory.teamName }}</td>
       <td>{{ team.firstDate|club_datetime }}</td>
       <td>{{ team.endDate|club_datetime }}</td>
       <td>{{ team.level.levelName }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'team_id':team.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_team_adminteam_participant', { 'id':team.id,'team_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id,'team_category_id':team_category.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id,'team_category_id':team_category.id })} %}
+        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'team_category_id':team_category.id,'team_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_team_adminteam_participant', { 'id':team.id,'team_category_id':team_category.id })} %}
       </td>
     </tr>
   {% else %}
