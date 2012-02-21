@@ -5,7 +5,7 @@ namespace Club\TeamBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class Team extends AbstractType
+class TeamCategory extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
@@ -17,12 +17,12 @@ class Team extends AbstractType
   public function getDefaultOptions(array $options)
   {
     return array(
-      'data_class' => 'Club\TeamBundle\Entity\Team'
+      'data_class' => 'Club\TeamBundle\Entity\TeamCategory'
     );
   }
 
   public function getName()
   {
-    return 'team';
+    return 'team_category';
   }
 }

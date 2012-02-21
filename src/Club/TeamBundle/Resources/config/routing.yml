@@ -12,10 +12,10 @@ _admin_level:
   type: annotation
   prefix: /admin
 
-_admin_team:
-  resource: "@ClubTeamBundle/Controller/AdminTeamController.php"
+_admin_team_category:
+  resource: "@ClubTeamBundle/Controller/AdminTeamCategoryController.php"
   type: annotation
-  prefix: /admin
+  prefix: /admin/team/category
 
 _admin_schedule:
   resource: "@ClubTeamBundle/Controller/AdminScheduleController.php"

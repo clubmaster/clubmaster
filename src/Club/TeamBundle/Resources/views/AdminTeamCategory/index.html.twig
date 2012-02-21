@@ -1,7 +1,7 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_team_adminteam_new') }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_team_adminteamcategory_new') }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -22,8 +22,8 @@
       <td>{{ team.teamName }}</td>
       <td>{{ team.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteam_edit', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_delete', { 'id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':team.id })} %}
         {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'team_id':team.id })} %}
       </td>
     </tr>
