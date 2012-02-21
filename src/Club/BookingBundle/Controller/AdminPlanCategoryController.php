@@ -7,43 +7,43 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class AdminPlanController extends Controller
+class AdminPlanCategoryController extends Controller
 {
   /**
-   * @Route("/booking/plan")
+   * @Route("/")
    * @Template()
    */
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $plans = $em->getRepository('ClubBookingBundle:Plan')->findAll();
+    $plan_categories = $em->getRepository('ClubBookingBundle:PlanCategory')->findAll();
 
     return array(
-      'plans' => $plans
+      'plan_categories' => $plan_categories
     );
   }
 
   /**
-   * @Route("/booking/plan/new")
+   * @Route("/new")
    * @Template()
    */
   public function newAction()
   {
-    $plan = new \Club\BookingBundle\Entity\Plan();
-    $plan->setUser($this->get('security.context')->getToken()->getUser());
+    $plan_category = new \Club\BookingBundle\Entity\PlanCategory();
+    $plan_category->setUser($this->get('security.context')->getToken()->getUser());
 
-    $form = $this->createForm(new \Club\BookingBundle\Form\Plan(), $plan);
+    $form = $this->createForm(new \Club\BookingBundle\Form\PlanCategory(), $plan_category);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($plan);
+        $em->persist($plan_category);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+        return $this->redirect($this->generateUrl('club_booking_adminplancategory_index'));
       }
     }
 
@@ -53,47 +53,47 @@ class AdminPlanController extends Controller
   }
 
   /**
-   * @Route("/booking/plan/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    */
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $plan = $em->find('ClubBookingBundle:Plan',$id);
-    $form = $this->createForm(new \Club\BookingBundle\Form\Plan(), $plan);
+    $plan_category = $em->find('ClubBookingBundle:PlanCategory',$id);
+    $form = $this->createForm(new \Club\BookingBundle\Form\PlanCategory(), $plan_category);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($plan);
+        $em->persist($plan_category);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+        return $this->redirect($this->generateUrl('club_booking_adminplancategory_index'));
       }
     }
 
     return array(
-      'plan' => $plan,
+      'plan_category' => $plan_category,
       'form' => $form->createView()
     );
   }
 
   /**
-   * @Route("/booking/plan/delete/{id}")
+   * @Route("/delete/{id}")
    */
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $plan = $em->find('ClubBookingBundle:Plan',$this->getRequest()->get('id'));
+    $plan_category = $em->find('ClubBookingBundle:PlanCategory',$this->getRequest()->get('id'));
 
-    $em->remove($plan);
+    $em->remove($plan_category);
     $em->flush();
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+    return $this->redirect($this->generateUrl('club_booking_adminplancategory_index'));
   }
 }

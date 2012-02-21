@@ -1,36 +1,34 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_booking_adminplan_new') }}" class="btn-create"><span>{% trans %}Create plan{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_booking_adminplancategory_new') }}" class="btn-create"><span>{% trans %}Create category{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
-      <th>{% trans %}First{% endtrans %}</th>
-      <th>{% trans %}End{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
-  {% for plan in plans %}
+  {% for plan_category in plan_categories %}
     <tr>
-      <td>{{ plan.name }}</td>
-      <td>{{ plan.firstDate|club_datetime }}</td>
-      <td>{{ plan.endDate|club_datetime }}</td>
+      <td>{{ plan_category.name }}</td>
+      <td>{{ plan_category.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'id':plan.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplancategory_edit', { 'id':plan_category.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplancategory_delete', { 'id':plan_category.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">{% trans %}There are no plans.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no categories.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
