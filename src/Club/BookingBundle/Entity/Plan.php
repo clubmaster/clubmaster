@@ -40,30 +40,16 @@ class Plan
     /**
      * @var date $first_date
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     protected $first_date;
 
     /**
      * @var date $end_date
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     protected $end_date;
-
-    /**
-     * @var date $name
-     *
-     * @ORM\Column(type="string")
-     */
-    protected $name;
-
-    /**
-     * @var date $description
-     *
-     * @ORM\Column(type="text")
-     */
-    protected $description;
 
     /**
      * @var datetime $created_at
@@ -83,6 +69,11 @@ class Plan
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PlanCategory")
+     */
+    protected $plan_category;
 
     /**
      * @ORM\ManyToMany(targetEntity="Field")
@@ -222,50 +213,6 @@ class Plan
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param text $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Get description
-     *
-     * @return text
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-    public function __construct()
-    {
-        $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add fields
      *
      * @param Club\BookingBundle\Entity\Field $fields
@@ -290,8 +237,8 @@ class Plan
       $res = array(
         'id' => $this->getId(),
         'type' => 'plan',
-        'name' => $this->getName(),
-        'description' => $this->getDescription(),
+        'name' => $this->getPlanCategory()->getName(),
+        'description' => $this->getPlanCategory()->getDescription(),
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
         'fields' => array()
@@ -317,7 +264,7 @@ class Plan
     /**
      * Get period_start
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getPeriodStart()
     {
@@ -337,10 +284,34 @@ class Plan
     /**
      * Get period_end
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getPeriodEnd()
     {
         return $this->period_end;
+    }
+    public function __construct()
+    {
+        $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set plan_category
+     *
+     * @param Club\BookingBundle\Entity\PlanCategory $planCategory
+     */
+    public function setPlanCategory(\Club\BookingBundle\Entity\PlanCategory $planCategory)
+    {
+        $this->plan_category = $planCategory;
+    }
+
+    /**
+     * Get plan_category
+     *
+     * @return Club\BookingBundle\Entity\PlanCategory
+     */
+    public function getPlanCategory()
+    {
+        return $this->plan_category;
     }
 }

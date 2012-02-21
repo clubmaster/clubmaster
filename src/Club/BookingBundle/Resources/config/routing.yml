@@ -3,10 +3,15 @@ _admin_field:
   type: annotation
   prefix: /admin
 
+_admin_plan_category:
+  resource: "@ClubBookingBundle/Controller/AdminPlanCategoryController.php"
+  type: annotation
+  prefix: /admin/booking/plan_category
+
 _admin_plan:
   resource: "@ClubBookingBundle/Controller/AdminPlanController.php"
   type: annotation
-  prefix: /admin
+  prefix: /admin/booking/plan
 
 _admin_interval:
   resource: "@ClubBookingBundle/Controller/AdminIntervalController.php"
