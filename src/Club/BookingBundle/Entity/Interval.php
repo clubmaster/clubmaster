@@ -85,7 +85,7 @@ class Interval
     /**
      * Virtual variable
      */
-    protected $schedule;
+    protected $team;
 
     /**
      * Virtual variable
@@ -253,8 +253,8 @@ class Interval
 
       if (isset($this->booking))
         $res['booking'] = $this->booking->toArray();
-      if (isset($this->schedule))
-        $res['schedule'] = $this->schedule->toArray();
+      if (isset($this->team))
+        $res['team'] = $this->team->toArray();
 
       return $res;
     }
@@ -270,15 +270,15 @@ class Interval
       return $this->booking;
     }
 
-    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
+    public function setTeam(\Club\TeamBundle\Entity\Team $team)
     {
-      if ($schedule) $this->setAvailable(false);
-      $this->schedule = $schedule;
+      if ($team) $this->setAvailable(false);
+      $this->team = $team;
     }
 
-    public function getSchedule()
+    public function getTeam()
     {
-      return $this->schedule;
+      return $this->team;
     }
 
     public function setPlan(\Club\BookingBundle\Entity\Plan $plan)

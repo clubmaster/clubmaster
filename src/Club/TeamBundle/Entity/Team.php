@@ -7,13 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * Club\TeamBundle\Entity\Schedule
+ * Club\TeamBundle\Entity\Team
  *
- * @ORM\Table(name="club_team_schedule")
- * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleRepository")
+ * @ORM\Table(name="club_team_team")
+ * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Schedule
+class Team
 {
     /**
      * @var integer $id
@@ -84,10 +84,10 @@ class Schedule
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="TeamCategory")
+     * @ORM\JoinColumn(name="team_category_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $team;
+    protected $team_category;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
@@ -95,31 +95,31 @@ class Schedule
     protected $location;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Schedule")
-     * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $schedule;
+    protected $team;
 
     /**
-     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="schedule")
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="team")
      */
-    protected $schedules;
+    protected $teams;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_schedule_instructor")
+     * @ORM\JoinTable(name="club_team_team_instructor")
      */
     protected $instructors;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\ScheduleUser", mappedBy="schedule")
-     * @ORM\JoinTable(name="club_team_schedule_user")
+     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\TeamUser", mappedBy="team")
+     * @ORM\JoinTable(name="club_team_team_user")
      */
     protected $users;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\BookingBundle\Entity\Field")
-     * @ORM\JoinTable(name="club_team_schedule_field")
+     * @ORM\JoinTable(name="club_team_team_field")
      */
     protected $fields;
 
@@ -250,26 +250,6 @@ class Schedule
     }
 
     /**
-     * Set team
-     *
-     * @param Club\TeamBundle\Entity\Team $team
-     */
-    public function setTeam(\Club\TeamBundle\Entity\Team $team)
-    {
-        $this->team = $team;
-    }
-
-    /**
-     * Get team
-     *
-     * @return Club\TeamBundle\Entity\Team
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
-
-    /**
      * Get instructors
      *
      * @return Doctrine\Common\Collections\Collection
@@ -318,43 +298,43 @@ class Schedule
     }
 
     /**
-     * Set schedule
+     * Set team
      *
-     * @param Club\TeamBundle\Entity\Schedule $schedule
+     * @param Club\TeamBundle\Entity\Team $team
      */
-    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule=null)
+    public function setTeam(\Club\TeamBundle\Entity\Team $team=null)
     {
-        $this->schedule = $schedule;
+        $this->team = $team;
     }
 
     /**
-     * Get schedule
+     * Get team
      *
-     * @return Club\TeamBundle\Entity\Schedule
+     * @return Club\TeamBundle\Entity\Team
      */
-    public function getSchedule()
+    public function getTeam()
     {
-        return $this->schedule;
+        return $this->team;
     }
 
     /**
-     * Add schedules
+     * Add teams
      *
-     * @param Club\TeamBundle\Entity\Schedule $schedules
+     * @param Club\TeamBundle\Entity\Team $teams
      */
-    public function addSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
+    public function addTeam(\Club\TeamBundle\Entity\Team $teams)
     {
-        $this->schedules[] = $schedules;
+        $this->teams[] = $teams;
     }
 
     /**
-     * Get schedules
+     * Get teams
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getSchedules()
+    public function getTeams()
     {
-        return $this->schedules;
+        return $this->teams;
     }
 
     /**
@@ -432,7 +412,7 @@ class Schedule
       $res = array(
         'id' => $this->getId(),
         'type' => 'team',
-        'team_name' => $this->getTeam()->getTeamName(),
+        'team_name' => $this->getTeamCategory()->getTeamName(),
         'description' => $this->getDescription(),
         'level' => $this->getLevel()->getLevelName(),
         'first_date' => $this->getFirstDate()->format('c'),

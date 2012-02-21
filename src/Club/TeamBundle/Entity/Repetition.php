@@ -99,10 +99,10 @@ class Repetition
     protected $updated_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="Schedule")
-     * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $schedule;
+    protected $team;
 
 
     /**
@@ -319,23 +319,23 @@ class Repetition
     }
 
     /**
-     * Set schedule
+     * Set team
      *
-     * @param Club\TeamBundle\Entity\Schedule $schedule
+     * @param Club\TeamBundle\Entity\Team $team
      */
-    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule=null)
+    public function setTeam(\Club\TeamBundle\Entity\Team $team=null)
     {
-        $this->schedule = $schedule;
+        $this->team = $team;
     }
 
     /**
-     * Get schedule
+     * Get team
      *
-     * @return Club\TeamBundle\Entity\Schedule
+     * @return Club\TeamBundle\Entity\Team
      */
-    public function getSchedule()
+    public function getTeam()
     {
-        return $this->schedule;
+        return $this->team;
     }
 
     /**
