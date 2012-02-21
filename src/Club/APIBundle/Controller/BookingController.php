@@ -83,15 +83,15 @@ class BookingController extends Controller
     $end->setTime(23,59,59);
 
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
-    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
+    $teams = $em->getRepository('ClubTeamBundle:Team')->getAllBetween($start, $end, null, $location);
     $plans = $em->getRepository('ClubBookingBundle:Plan')->getAllBetween($start, $end, $location);
 
     $res = array();
     foreach ($bookings as $booking) {
       $res[] = $booking->toArray();
     }
-    foreach ($schedules as $schedule) {
-      $res[] = $schedule->toArray();
+    foreach ($teams as $team) {
+      $res[] = $team->toArray();
     }
     foreach ($plans as $plan) {
       $plan->getFirstDate()->setDate(

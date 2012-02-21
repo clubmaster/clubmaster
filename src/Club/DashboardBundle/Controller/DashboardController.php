@@ -23,11 +23,11 @@ class DashboardController extends Controller
     $end = clone $start;
     $end->add(new \DateInterval('P1M'));
 
-    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
+    $teams = $em->getRepository('ClubTeamBundle:Team')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
 
     return array(
       'orders' => $orders,
-      'schedules' => $schedules
+      'teams' => $teams
     );
   }
 }

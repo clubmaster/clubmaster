@@ -17,13 +17,13 @@ class TeamController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween(
+    $teams = $em->getRepository('ClubTeamBundle:Team')->getAllBetween(
       new \DateTime(),
       new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day')))
     );
 
     return array(
-      'schedules' => $schedules,
+      'teams' => $teams,
       'user' => $this->get('security.context')->getToken()->getUser()
     );
   }
@@ -35,13 +35,13 @@ class TeamController extends Controller
   public function attendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+    $team = $em->find('ClubTeamBundle:Team', $id);
 
-    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    $this->get('club_team.team')->bindAttend($team, $this->get('security.context')->getToken()->getUser());
     if ($this->get('club_team.team')->isValid()) {
       $this->get('club_team.team')->save();
 
-      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+      $event = new \Club\TeamBundle\Event\FilterTeamEvent($team, $this->get('security.context')->getToken()->getUser());
       $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
       $this->get('session')->setFlash('notice', 'You are now attending the team.');
     } else {
@@ -58,14 +58,14 @@ class TeamController extends Controller
   public function unattendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+    $team = $em->find('ClubTeamBundle:Team', $id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $this->get('club_team.team')->bindUnattend($schedule, $user);
+    $this->get('club_team.team')->bindUnattend($team, $user);
     if ($this->get('club_team.team')->isValid()) {
       $this->get('club_team.team')->remove();
 
-      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $user);
+      $event = new \Club\TeamBundle\Event\FilterTeamEvent($team, $user);
       $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
       $this->get('session')->setFlash('notice', 'You are no longer on the team.');
     } else {

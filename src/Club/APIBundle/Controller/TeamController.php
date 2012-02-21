@@ -19,16 +19,16 @@ class TeamController extends Controller
   public function attendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+    $team = $em->find('ClubTeamBundle:Team', $id);
 
-    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    $this->get('club_team.team')->bindAttend($team, $this->get('security.context')->getToken()->getUser());
     if (!$this->get('club_team.team')->isValid()) {
       $res = $this->get('club_team.team')->getError();
       return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->save();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+    $event = new \Club\TeamBundle\Event\FilterTeamEvent($team, $this->get('security.context')->getToken()->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
 
     $response = new Response();
@@ -43,17 +43,17 @@ class TeamController extends Controller
   public function unattendAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+    $team = $em->find('ClubTeamBundle:Team', $id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    $this->get('club_team.team')->bindUnattend($schedule, $user);
+    $this->get('club_team.team')->bindUnattend($team, $user);
     if (!$this->get('club_team.team')->isValid()) {
       $res = $this->get('club_team.team')->getError();
       return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->remove();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+    $event = new \Club\TeamBundle\Event\FilterTeamEvent($team, $this->get('security.context')->getToken()->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $response = new Response();
@@ -97,8 +97,8 @@ class TeamController extends Controller
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
     $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
 
-    foreach ($em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end) as $schedule) {
-      $res[] = $schedule->toArray();
+    foreach ($em->getRepository('ClubTeamBundle:Team')->getAllBetween($start, $end) as $team) {
+      $res[] = $team->toArray();
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
