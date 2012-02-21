@@ -1,4 +1,5 @@
 == NOTES TO THIS RELEASE ==
+$request->getPreferredLanguage(array('en', 'fr'));
 rename team to team category
 make time on day where users can book subscription
 merge migrations into one file
