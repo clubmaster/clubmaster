@@ -1,12 +1,14 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_booking_adminplan_new') }}" class="btn-create"><span>{% trans %}Create plan{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_booking_adminplan_new', {'plan_category_id':plan_category.id}) }}" class="btn-create"><span>{% trans %}Create plan{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Period start{% endtrans %}</th>
+      <th>{% trans %}Period end{% endtrans %}</th>
       <th>{% trans %}First{% endtrans %}</th>
       <th>{% trans %}End{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
@@ -14,23 +16,25 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for plan in plans %}
     <tr>
-      <td>{{ plan.name }}</td>
-      <td>{{ plan.firstDate|club_datetime }}</td>
-      <td>{{ plan.endDate|club_datetime }}</td>
+      <td>{{ plan.planCategory.name }}</td>
+      <td>{{ plan.periodStart|club_datetime }}</td>
+      <td>{{ plan.periodEnd|club_datetime }}</td>
+      <td>{{ plan.firstDate|club_time }}</td>
+      <td>{{ plan.endDate|club_time }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'id':plan.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'plan_category_id':plan.planCategory.id, 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'plan_category_id':plan.planCategory.id, 'id':plan.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">{% trans %}There are no plans.{% endtrans %}</td>
+    <td colspan="6">{% trans %}There are no plans.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

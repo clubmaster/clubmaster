@@ -24,6 +24,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplancategory_edit', { 'id':plan_category.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplancategory_delete', { 'id':plan_category.id })} %}
+        {% include "ClubLayoutBundle:Default:plan_link.html.twig" with {'url':path('club_booking_adminplan_index', { 'plan_category_id':plan_category.id })} %}
       </td>
     </tr>
   {% else %}

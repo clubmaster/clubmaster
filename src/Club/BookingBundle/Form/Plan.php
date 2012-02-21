@@ -10,8 +10,8 @@ class Plan extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
-    $builder->add('name');
-    $builder->add('description');
+    $builder->add('period_start');
+    $builder->add('period_end');
     $builder->add('first_date');
     $builder->add('end_date');
     $builder->add('fields');
@@ -26,6 +26,6 @@ class Plan extends AbstractType
 
   public function getName()
   {
-    return 'admin_field';
+    return 'plan';
   }
 }
