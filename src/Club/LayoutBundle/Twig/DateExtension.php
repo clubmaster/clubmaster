@@ -96,9 +96,12 @@ class DateExtension extends \Twig_Extension
 
   public function getDay($value)
   {
+    $date = new \DateTime('next monday');
+    $date->add(new \DateInterval('P'.($value-1).'D'));
+
     $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
     $fmt->setPattern('eeee');
-    return $fmt->format($value);
+    return $fmt->format($date);
   }
 
   public function getName()

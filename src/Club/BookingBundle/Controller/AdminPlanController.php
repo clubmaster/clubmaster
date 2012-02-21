@@ -44,7 +44,7 @@ class AdminPlanController extends Controller
     $plan->setPeriodEnd(new \DateTime());
     $plan->getPeriodEnd()->setTime(23,59,59);
 
-    $form = $this->createForm(new \Club\BookingBundle\Form\Plan(), $plan);
+    $form = $this->getForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -72,7 +72,7 @@ class AdminPlanController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = $em->find('ClubBookingBundle:Plan',$id);
-    $form = $this->createForm(new \Club\BookingBundle\Form\Plan(), $plan);
+    $form = $this->getForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -107,5 +107,21 @@ class AdminPlanController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_booking_adminplan_index', array('plan_category_id' => $plan_category_id)));
+  }
+
+  private function getForm(\Club\BookingBundle\Entity\Plan $plan)
+  {
+    $days = $this->get('club_booking.interval')->getDays();
+
+    return $this->createFormBuilder($plan)
+      ->add('period_start')
+      ->add('period_end')
+      ->add('first_date')
+      ->add('end_date')
+      ->add('fields')
+      ->add('day', 'choice', array(
+        'choices' => $days
+      ))
+      ->getForm();
   }
 }

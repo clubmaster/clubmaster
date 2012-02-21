@@ -5,10 +5,12 @@ namespace Club\BookingBundle\Helper;
 class Interval
 {
   protected $em;
+  protected $session;
 
-  public function __construct($em)
+  public function __construct($em, $session)
   {
     $this->em = $em;
+    $this->session = $session;
   }
 
   public function getTimePeriod(\DateTime $start, \DateTime $end, \DateInterval $interval)
@@ -47,5 +49,22 @@ class Interval
     }
 
     return $interval;
+  }
+
+  public function getDays()
+  {
+    $d = new \DateTime('next monday');
+    $i = new \DateInterval('P1D');
+    $p = new \DatePeriod($d, $i, 6);
+
+    $fmt = new \IntlDateFormatter($this->session->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
+    $fmt->setPattern('eeee');
+
+    $days = array();
+    foreach ($p as $i=>$dt) {
+      $days[($i+1)] = $fmt->format($dt);
+    }
+
+    return $days;
   }
 }

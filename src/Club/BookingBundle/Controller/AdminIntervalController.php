@@ -166,19 +166,9 @@ class AdminIntervalController extends Controller
 
   protected function getForm($interval)
   {
-      $d = new \DateTime('next monday');
-    $i = new \DateInterval('P1D');
-    $p = new \DatePeriod($d, $i, 7);
+    $days = $this->get('club_booking.interval')->getDays();
 
-    $fmt = new \IntlDateFormatter($this->get('session')->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
-    $fmt->setPattern('eeee');
-
-    $days = array();
-    foreach ($p as $i=>$dt) {
-      $days[$i] = $fmt->format($dt);
-    }
-
-    $form = $this->createFormBuilder($interval)
+    return $this->createFormBuilder($interval)
       ->add('day', 'choice', array(
         'choices' => $days
       ))
@@ -187,8 +177,6 @@ class AdminIntervalController extends Controller
       ->add('field')
       ->add('valid_from')
       ->add('valid_to')
-        ->getForm();
-
-    return $form;
+      ->getForm();
   }
 }

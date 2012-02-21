@@ -38,6 +38,13 @@ class Plan
     protected $period_end;
 
     /**
+     * @var integer $day
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $day;
+
+    /**
      * @var date $first_date
      *
      * @ORM\Column(type="time")
@@ -313,5 +320,25 @@ class Plan
     public function getPlanCategory()
     {
         return $this->plan_category;
+    }
+
+    /**
+     * Set day
+     *
+     * @param integer $day
+     */
+    public function setDay($day)
+    {
+        $this->day = $day;
+    }
+
+    /**
+     * Get day
+     *
+     * @return integer
+     */
+    public function getDay()
+    {
+        return $this->day;
     }
 }
