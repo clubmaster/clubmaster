@@ -1275,8 +1275,8 @@
         <target>Bøde</target>
       </trans-unit>
       <trans-unit id="320">
-        <source>Create schedule</source>
-        <target>Opret skema</target>
+        <source>Create team</source>
+        <target>Opret hold</target>
       </trans-unit>
       <trans-unit id="321">
         <source>First date</source>

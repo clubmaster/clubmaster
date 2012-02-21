@@ -45,6 +45,6 @@ class Team extends AbstractType
 
   public function getName()
   {
-    return 'schedule';
+    return 'team';
   }
 }

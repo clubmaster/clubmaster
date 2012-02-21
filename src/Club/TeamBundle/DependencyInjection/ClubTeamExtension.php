@@ -28,7 +28,7 @@ class ClubTeamExtension extends Extension
 
         $container->setParameter('club_team.enabled', $config['enabled']);
         $container->setParameter('club_team.future_occurs', $config['future_occurs']);
-        $container->setParameter('club_team.minutes_before_schedule', $config['minutes_before_schedule']);
+        $container->setParameter('club_team.minutes_before_team', $config['minutes_before_team']);
         $container->setParameter('club_team.penalty_enabled', $config['penalty_enabled']);
         $container->setParameter('club_team.cancel_minute_before', $config['cancel_minute_before']);
         $container->setParameter('club_team.cancel_minute_created', $config['cancel_minute_created']);

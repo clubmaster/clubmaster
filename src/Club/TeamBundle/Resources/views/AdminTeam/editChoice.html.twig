@@ -6,9 +6,9 @@
 
 <p>Would you like to change this event only, all events in the series or this and all following events in the series?</p>
 
-<p><a href="{{ path('club_team_adminschedule_index', {'id':schedule.id, 'team_id':schedule.team.id}) }}">Only this instance</a> All other events in the series will remain the same.</p>
-<p><a href="{{ path('club_team_adminschedule_editfuture', {'id':schedule.id, 'team_id':schedule.team.id}) }}">All the following</a> This and all the following events will be changed.<br />
+<p><a href="{{ path('club_team_adminteam_index', {'id':team.id, 'team_id':team.team.id}) }}">Only this instance</a> All other events in the series will remain the same.</p>
+<p><a href="{{ path('club_team_adminteam_editfuture', {'id':team.id, 'team_id':team.team.id}) }}">All the following</a> This and all the following events will be changed.<br />
 Any changes to future events will be lost.</p>
-<p><a href="{{ path('club_team_adminschedule_editall', {'id':schedule.id, 'team_id':schedule.team.id}) }}">All events in the series</a> All events in the series will be changed.<br />
+<p><a href="{{ path('club_team_adminteam_editall', {'id':team.id, 'team_id':team.team.id}) }}">All events in the series</a> All events in the series will be changed.<br />
 Any changes made to other events will be kept.</p>
 {% endblock %}
