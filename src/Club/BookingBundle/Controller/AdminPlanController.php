@@ -68,7 +68,7 @@ class AdminPlanController extends Controller
    * @Route("/{plan_category_id}/edit/{id}")
    * @Template()
    */
-  public function editAction($id)
+  public function editAction($plan_category_id, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = $em->find('ClubBookingBundle:Plan',$id);
