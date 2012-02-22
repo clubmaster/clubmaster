@@ -1,4 +1,5 @@
 == NOTES TO THIS RELEASE ==
+do routing to annotation instead of, check default install of symfony bundle
 $request->getPreferredLanguage(array('en', 'fr'));
 rename team to team category
 make time on day where users can book subscription
