@@ -3,7 +3,7 @@ namespace Club\TeamBundle\Tests\Controller;
 
 use Club\UserBundle\Helper\TestCase as WebTestCase;
 
-class AdminTeamControllerTest extends WebTestCase
+class AdminScheduleControllerTest extends WebTestCase
 {
   protected $client;
 
@@ -15,23 +15,23 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team/1/team');
+    $crawler = $this->client->request('GET', '/admin/team/team/1/schedule');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team/1/team/new');
+    $crawler = $this->client->request('GET', '/admin/team/team/1/schedule/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $time = strtotime('+1 day');
     $form = $crawler->selectButton('Save')->form(array(
-      'team[first_date][date][day]' => date('j', $time),
-      'team[first_date][date][month]' => date('n', $time),
-      'team[first_date][date][year]' => date('Y', $time),
-      'team[end_date][date][day]' => date('j', $time),
-      'team[end_date][date][month]' => date('n', $time),
-      'team[end_date][date][year]' => date('Y', $time)
+      'schedule[first_date][date][day]' => date('j', $time),
+      'schedule[first_date][date][month]' => date('n', $time),
+      'schedule[first_date][date][year]' => date('Y', $time),
+      'schedule[end_date][date][day]' => date('j', $time),
+      'schedule[end_date][date][month]' => date('n', $time),
+      'schedule[end_date][date][year]' => date('Y', $time)
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -39,7 +39,7 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testRepetition()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team/1/team/1/repetition');
+    $crawler = $this->client->request('GET', '/admin/team/team/1/schedule/1/repetition');
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 

@@ -13,8 +13,8 @@ class Team
   protected $error;
   protected $is_valid = true;
   protected $user;
-  protected $team;
-  protected $team_user;
+  protected $schedule;
+  protected $schedule_user;
 
   public function __construct(EntityManager $em, $container, $security_context, $validator)
   {
@@ -24,9 +24,9 @@ class Team
     $this->validator = $validator;
   }
 
-  public function bindUnattend(\Club\TeamBundle\Entity\Team $team, \Club\UserBundle\Entity\User $user)
+  public function bindUnattend(\Club\TeamBundle\Entity\Schedule $schedule, \Club\UserBundle\Entity\User $user)
   {
-    $this->team = $team;
+    $this->schedule = $schedule;
     $this->user = $user;
 
     if ($this->security_context->isGranted('ROLE_TEAM_ADMIN'))
@@ -37,7 +37,7 @@ class Team
       return;
     }
 
-    $book_time = clone $this->team->getFirstDate();
+    $book_time = clone $this->schedule->getFirstDate();
 
     $now = new \DateTime();
     if ($book_time < $now) {
@@ -45,9 +45,9 @@ class Team
       return;
     }
 
-    $attend = $this->em->getRepository('ClubTeamBundle:TeamUser')->findOneBy(array(
+    $attend = $this->em->getRepository('ClubTeamBundle:ScheduleUser')->findOneBy(array(
       'user' => $this->user->getId(),
-      'team' => $this->team->getId()
+      'schedule' => $this->schedule->getId()
     ));
 
     $diff = ($now->getTimestamp()-$attend->getCreatedAt()->getTimestamp());
@@ -60,9 +60,9 @@ class Team
       $this->setError('Cannot unattend team because time range is too small');
   }
 
-  public function bindAttend(\Club\TeamBundle\Entity\Team $team, \Club\UserBundle\Entity\User $user)
+  public function bindAttend(\Club\TeamBundle\Entity\Schedule $schedule, \Club\UserBundle\Entity\User $user)
   {
-    $this->team = $team;
+    $this->schedule = $schedule;
     $this->user = $user;
 
     $this->validate();
@@ -83,11 +83,11 @@ class Team
 
   protected function prepare()
   {
-    $this->team_user = new \Club\TeamBundle\Entity\TeamUser();
-    $this->team_user->setUser($this->user);
-    $this->team_user->setTeam($this->team);
+    $this->schedule_user = new \Club\TeamBundle\Entity\ScheduleUser();
+    $this->schedule_user->setUser($this->user);
+    $this->schedule_user->setSchedule($this->schedule);
 
-    $errors = $this->validator->validate($this->team_user, array('attend'));
+    $errors = $this->validator->validate($this->schedule_user, array('attend'));
     foreach ($errors as $error) {
       $this->setError($error->getMessage());
       return;
@@ -96,17 +96,17 @@ class Team
 
   public function save()
   {
-    $this->em->persist($this->team_user);
+    $this->em->persist($this->schedule_user);
     $this->em->flush();
 
-    return $this->team_user;
+    return $this->schedule_user;
   }
 
   public function remove()
   {
-    $res = $this->em->getRepository('ClubTeamBundle:TeamUser')->findOneBy(array(
+    $res = $this->em->getRepository('ClubTeamBundle:ScheduleUser')->findOneBy(array(
       'user' => $this->user->getId(),
-      'team' => $this->team->getId()
+      'schedule' => $this->schedule->getId()
     ));
 
     $this->em->remove($res);
@@ -121,17 +121,17 @@ class Team
 
   protected function validate()
   {
-    $c = clone $this->team->getFirstDate();
+    $c = clone $this->schedule->getFirstDate();
 
     if ($c < new \DateTime())
       $this->setError('You cannot attend in the past');
 
     $r = $this->em->createQueryBuilder()
       ->select('su')
-      ->from('ClubTeamBundle:TeamUser','su')
-      ->where('su.team = :team')
+      ->from('ClubTeamBundle:ScheduleUser','su')
+      ->where('su.schedule = :schedule')
       ->andWhere('su.user = :user')
-      ->setParameter('team', $this->team->getId())
+      ->setParameter('schedule', $this->schedule->getId())
       ->setParameter('user', $this->user->getId())
       ->getQuery()
       ->getOneOrNullResult();
@@ -141,14 +141,14 @@ class Team
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
-      ->from('ClubTeamBundle:TeamUser', 'su')
-      ->leftJoin('su.team', 's')
+      ->from('ClubTeamBundle:ScheduleUser', 'su')
+      ->leftJoin('su.schedule', 's')
       ->where('s.first_date > :first')
       ->andWhere('s.first_date < :end')
       ->andWhere('su.user = :user')
       ->setParameter('user', $this->user->getId())
-      ->setParameter('first', $this->team->getFirstDate()->format('Y-m-d').' 00:00:00')
-      ->setParameter('end', $this->team->getFirstDate()->format('Y-m-d').' 23:59:59')
+      ->setParameter('first', $this->schedule->getFirstDate()->format('Y-m-d').' 00:00:00')
+      ->setParameter('end', $this->schedule->getFirstDate()->format('Y-m-d').' 23:59:59')
       ->getQuery()
       ->getSingleResult();
 
@@ -157,8 +157,8 @@ class Team
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
-      ->from('ClubTeamBundle:TeamUser', 'su')
-      ->leftJoin('su.team', 's')
+      ->from('ClubTeamBundle:ScheduleUser', 'su')
+      ->leftJoin('su.schedule', 's')
       ->where('s.first_date >= CURRENT_DATE()')
       ->andWhere('su.user = :user')
       ->setParameter('user', $this->user->getId())
@@ -184,32 +184,32 @@ class Team
       if ($subscription->hasAttribute('team')) {
         foreach ($subscription->getLocation() as $location) {
 
-          if ($location == $this->team->getLocation()) {
+          if ($location == $this->schedule->getLocation()) {
             $this->users[] = $user;
             return true;
           }
 
           foreach ($subscription->getLocation() as $child) {
-            if ($child == $this->team->getLocation()) {
+            if ($child == $this->schedule->getLocation()) {
               $this->users[] = $user;
               return true;
             }
 
             foreach ($child->getChilds() as $child2) {
-              if ($child2 == $this->team->getLocation()) {
+              if ($child2 == $this->schedule->getLocation()) {
                 $this->users[] = $user;
                 return true;
               }
             }
 
             foreach ($child2->getChilds() as $child3) {
-              if ($child3 == $this->team->getLocation()) {
+              if ($child3 == $this->schedule->getLocation()) {
                 $this->users[] = $user;
                 return true;
               }
 
               foreach ($child3->getChilds() as $child4) {
-                if ($child4 == $this->team->getLocation()) {
+                if ($child4 == $this->schedule->getLocation()) {
                   $this->users[] = $user;
                   return true;
                 }

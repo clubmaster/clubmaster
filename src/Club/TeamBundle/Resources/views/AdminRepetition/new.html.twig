@@ -2,6 +2,6 @@
 
 {% block body %}
 
-{% include "ClubTeamBundle:AdminRepetition:form.html.twig" with {'path':path('club_team_adminrepetition_new', {'team_id':team.id,'team_id':team.teamCategory.id})} %}
+{% include "ClubTeamBundle:AdminRepetition:form.html.twig" with {'path':path('club_team_adminrepetition_new', {'schedule_id':schedule.id,'team_id':schedule.team.id})} %}
 
 {% endblock %}

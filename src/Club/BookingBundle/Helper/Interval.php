@@ -38,9 +38,9 @@ class Interval
       $interval->setBooking($bookings[0]);
     }
 
-    $teams = $this->em->getRepository('ClubTeamBundle:Team')->getAllBetween($start, $end, null, $interval->getField()->getLocation(), $interval->getField());
-    if ($teams) {
-      $interval->setTeam($teams[0]);
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $interval->getField()->getLocation(), $interval->getField());
+    if ($schedules) {
+      $interval->setSchedule($schedules[0]);
     }
 
     $plans = $this->em->getRepository('ClubBookingBundle:Plan')->getAllBetween($start, $end, null, $interval->getField());

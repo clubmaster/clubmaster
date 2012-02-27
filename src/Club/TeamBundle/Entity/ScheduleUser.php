@@ -8,16 +8,16 @@ use Symfony\Component\Validator\ExecutionContext;
 
 
 /**
- * Club\TeamBundle\Entity\TeamUser
+ * Club\TeamBundle\Entity\ScheduleUser
  *
- * @ORM\Table(name="club_team_team_user",
- *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"user_id","team_id"})}
+ * @ORM\Table(name="club_team_schedule_user",
+ *    uniqueConstraints={@ORM\UniqueConstraint(name="unique_idx", columns={"user_id","schedule_id"})}
  * )
- * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamUserRepository")
+ * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleUserRepository")
  * @ORM\HasLifecycleCallbacks()
  * @Assert\Callback(groups={"attend"}, methods={"isFull","isExpired"})
  */
-class TeamUser
+class ScheduleUser
 {
     /**
      * @var integer $id
@@ -34,9 +34,9 @@ class TeamUser
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\TeamBundle\Entity\Team")
+     * @ORM\ManyToOne(targetEntity="Club\TeamBundle\Entity\Schedule")
      */
-    protected $team;
+    protected $schedule;
 
     /**
      * @var datetime $created_at
@@ -105,28 +105,28 @@ class TeamUser
     }
 
     /**
-     * Set team
+     * Set schedule
      *
-     * @param Club\TeamBundle\Entity\Team $team
+     * @param Club\TeamBundle\Entity\Schedule $schedule
      */
-    public function setTeam(\Club\TeamBundle\Entity\Team $team)
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule)
     {
-        $this->team = $team;
+        $this->schedule = $schedule;
     }
 
     /**
-     * Get team
+     * Get schedule
      *
-     * @return Club\TeamBundle\Entity\Team
+     * @return Club\TeamBundle\Entity\Schedule
      */
-    public function getTeam()
+    public function getSchedule()
     {
-        return $this->team;
+        return $this->schedule;
     }
 
     public function isFull(ExecutionContext $context)
     {
-      if (count($this->getTeam()->getUsers()) >= $this->getTeam()->getMaxAttend()) {
+      if (count($this->getSchedule()->getUsers()) >= $this->getSchedule()->getMaxAttend()) {
         $property_path = $context->getPropertyPath() . '.users';
         $context->setPropertyPath($property_path);
         $context->addViolation('The team is already full!', array(), null);
@@ -135,7 +135,7 @@ class TeamUser
 
     public function isExpired(ExecutionContext $context)
     {
-      if ($this->getTeam()->getFirstDate()->getTimestamp() < time()) {
+      if ($this->getSchedule()->getFirstDate()->getTimestamp() < time()) {
         $property_path = $context->getPropertyPath() . '.users';
         $context->setPropertyPath($property_path);
         $context->addViolation('The team is already started!', array(), null);
