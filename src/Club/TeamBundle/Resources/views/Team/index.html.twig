@@ -27,7 +27,7 @@
     {% endif %}
     <tr>
       <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
-      <td>{{ schedule.team.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
+      <td>{{ schedule.teamCategory.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
       <td>{{ schedule.location.locationName }}</td>
       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       <td>

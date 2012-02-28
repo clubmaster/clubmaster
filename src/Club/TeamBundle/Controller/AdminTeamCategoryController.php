@@ -7,16 +7,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class AdminTeamController extends Controller
+class AdminTeamCategoryController extends Controller
 {
   /**
-   * @Route("/team/team")
+   * @Route("/")
    * @Template()
    */
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $teams = $em->getRepository('ClubTeamBundle:Team')->findAll();
+    $teams = $em->getRepository('ClubTeamBundle:TeamCategory')->findAll();
 
     return array(
       'teams' => $teams
@@ -24,12 +24,12 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/team/team/new")
+   * @Route("/new")
    * @Template()
    */
   public function newAction()
   {
-    $team = new \Club\TeamBundle\Entity\Team();
+    $team = new \Club\TeamBundle\Entity\TeamCategory();
 
     $res = $this->process($team);
 
@@ -42,13 +42,13 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/team/team/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    */
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team',$id);
+    $team = $em->find('ClubTeamBundle:TeamCategory',$id);
 
     $res = $this->process($team);
 
@@ -62,24 +62,24 @@ class AdminTeamController extends Controller
   }
 
   /**
-   * @Route("/team/team/delete/{id}")
+   * @Route("/delete/{id}")
    */
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team',$this->getRequest()->get('id'));
+    $team = $em->find('ClubTeamBundle:TeamCategory',$this->getRequest()->get('id'));
 
     $em->remove($team);
     $em->flush();
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_team_adminteam_index'));
+    return $this->redirect($this->generateUrl('club_team_adminteamcategory_index'));
   }
 
   protected function process($team)
   {
-    $form = $this->createForm(new \Club\TeamBundle\Form\Team(), $team);
+    $form = $this->createForm(new \Club\TeamBundle\Form\TeamCategory(), $team);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -90,7 +90,7 @@ class AdminTeamController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_team_adminteam_index'));
+        return $this->redirect($this->generateUrl('club_team_adminteamcategory_index'));
       }
     }
 

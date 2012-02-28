@@ -84,10 +84,10 @@ class Schedule
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="TeamCategory")
+     * @ORM\JoinColumn(name="team_category_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $team;
+    protected $team_category;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
@@ -247,26 +247,6 @@ class Schedule
     public function getUpdatedAt()
     {
         return $this->updated_at;
-    }
-
-    /**
-     * Set team
-     *
-     * @param Club\TeamBundle\Entity\Team $team
-     */
-    public function setTeam(\Club\TeamBundle\Entity\Team $team)
-    {
-        $this->team = $team;
-    }
-
-    /**
-     * Get team
-     *
-     * @return Club\TeamBundle\Entity\Team
-     */
-    public function getTeam()
-    {
-        return $this->team;
     }
 
     /**
@@ -432,7 +412,7 @@ class Schedule
       $res = array(
         'id' => $this->getId(),
         'type' => 'team',
-        'team_name' => $this->getTeam()->getTeamName(),
+        'team_name' => $this->getTeamCategory()->getTeamName(),
         'description' => $this->getDescription(),
         'level' => $this->getLevel()->getLevelName(),
         'first_date' => $this->getFirstDate()->format('c'),
@@ -549,5 +529,45 @@ class Schedule
     public function getFields()
     {
         return $this->fields;
+    }
+
+    /**
+     * Set team_category
+     *
+     * @param Club\TeamBundle\Entity\TeamCategory $teamCategory
+     */
+    public function setTeamCategory(\Club\TeamBundle\Entity\TeamCategory $teamCategory)
+    {
+        $this->team_category = $teamCategory;
+    }
+
+    /**
+     * Get team_category
+     *
+     * @return Club\TeamBundle\Entity\TeamCategory
+     */
+    public function getTeamCategory()
+    {
+        return $this->team_category;
+    }
+
+    /**
+     * Add instructors
+     *
+     * @param Club\UserBundle\Entity\User $instructors
+     */
+    public function addUser(\Club\UserBundle\Entity\User $instructors)
+    {
+        $this->instructors[] = $instructors;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\TeamBundle\Entity\ScheduleUser $users
+     */
+    public function addScheduleUser(\Club\TeamBundle\Entity\ScheduleUser $users)
+    {
+        $this->users[] = $users;
     }
 }

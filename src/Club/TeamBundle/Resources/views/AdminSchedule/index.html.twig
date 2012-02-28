@@ -21,7 +21,7 @@
   <tbody>
   {% for schedule in schedules %}
     <tr>
-      <td>{{ schedule.team.teamName }}</td>
+      <td>{{ schedule.teamCategory.teamName }}</td>
       <td>{{ schedule.firstDate|club_datetime }}</td>
       <td>{{ schedule.endDate|club_datetime }}</td>
       <td>{{ schedule.level.levelName }}</td>

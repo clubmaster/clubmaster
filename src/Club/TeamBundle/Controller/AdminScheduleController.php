@@ -18,11 +18,11 @@ class AdminScheduleController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->findBy(array(
-      'team' => $team_id
+      'team_category' => $team_id
     ), array(
       'first_date' => 'ASC'
     ));
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $team = $em->find('ClubTeamBundle:TeamCategory', $team_id);
 
     return array(
       'team' => $team,
@@ -64,7 +64,7 @@ class AdminScheduleController extends Controller
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
     return array(
-      'team' => $schedule->getTeam()->getId(),
+      'team' => $schedule->getTeamCategory()->getId(),
       'schedule' => $schedule
     );
   }
@@ -104,10 +104,10 @@ class AdminScheduleController extends Controller
   public function newAction($team_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team', $team_id);
+    $team = $em->find('ClubTeamBundle:TeamCategory', $team_id);
 
     $schedule = new \Club\TeamBundle\Entity\Schedule();
-    $schedule->setTeam($team);
+    $schedule->setTeamCategory($team);
     $schedule->setDescription($team->getDescription());
     $schedule->setPenalty($team->getPenalty());
     $schedule->setFirstDate(new \DateTime(date('Y-m-d 14:00:00')));
@@ -132,7 +132,7 @@ class AdminScheduleController extends Controller
   public function editAction($team_id,$id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:Team',$team_id);
+    $team = $em->find('ClubTeamBundle:TeamCategory',$team_id);
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $res = $this->process($schedule);
@@ -141,7 +141,7 @@ class AdminScheduleController extends Controller
       if (count($schedule->getSchedules()) || $schedule->getSchedule())
         return $this->redirect($this->generateUrl('club_team_adminschedule_editchoice', array(
           'id' => $schedule->getId(),
-          'team_id' => $schedule->getTeam()->getId()
+          'team_id' => $schedule->getTeamCategory()->getId()
         )));
     }
 
@@ -183,7 +183,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -216,7 +216,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -261,7 +261,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -279,7 +279,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -346,7 +346,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -369,7 +369,7 @@ class AdminScheduleController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -447,7 +447,7 @@ class AdminScheduleController extends Controller
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-          'team_id' => $schedule->getTeam()->getId()
+          'team_id' => $schedule->getTeamCategory()->getId()
         )));
       }
     }

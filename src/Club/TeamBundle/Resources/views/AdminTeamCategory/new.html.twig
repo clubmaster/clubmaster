@@ -1,0 +1,9 @@
+{% extends "ClubTeamBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_team_adminteamcategory_new') }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'form': form} %}
+</form>
+
+{% endblock %}

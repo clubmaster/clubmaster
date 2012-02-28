@@ -215,7 +215,7 @@ class AdminRepetitionController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $schedule->getTeam()->getId()
+      'team_id' => $schedule->getTeamCategory()->getId()
     )));
   }
 
@@ -256,7 +256,7 @@ class AdminRepetitionController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-      'team_id' => $repetition->getSchedule()->getTeam()->getId()
+      'team_id' => $repetition->getSchedule()->getTeamCategory()->getId()
     )));
   }
 
@@ -274,7 +274,7 @@ class AdminRepetitionController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminrepetition_index', array(
-      'team_id' => $repetition->getTeam()->getId()
+      'team_id' => $repetition->getTeamCategory()->getId()
     )));
   }
 
@@ -299,14 +299,14 @@ class AdminRepetitionController extends Controller
           } else {
 
             return $this->redirect($this->generateUrl('club_team_adminrepetition_editchoice', array(
-              'team_id' => $repetition->getSchedule()->getTeam()->getId(),
+              'team_id' => $repetition->getSchedule()->getTeamCategory()->getId(),
               'schedule_id' => $repetition->getSchedule()->getId(),
               'id' => $repetition->getId()
             )));
           }
 
           return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-            'team_id' => $repetition->getSchedule()->getTeam()->getId()
+            'team_id' => $repetition->getSchedule()->getTeamCategory()->getId()
           )));
         }
       }

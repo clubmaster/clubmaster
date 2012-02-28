@@ -174,7 +174,7 @@ class GenerateScheduleListener
     $new->setPenalty($schedule->getPenalty());
     $new->setFirstDate($new_first);
     $new->setEndDate($new_end);
-    $new->setTeam($schedule->getTeam());
+    $new->setTeamCategory($schedule->getTeamCategory());
     $new->setLevel($schedule->getLevel());
     $new->setLocation($schedule->getLocation());
     $new->setSchedule($parent);

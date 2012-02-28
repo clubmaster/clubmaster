@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Club\TeamBundle\Entity\Team
+ * Club\TeamBundle\Entity\TeamCategory
  *
- * @ORM\Table(name="club_team_team")
- * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamRepository")
+ * @ORM\Table(name="club_team_team_category")
+ * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamCategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Team
+class TeamCategory
 {
     /**
      * @var integer $id

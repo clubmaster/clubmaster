@@ -24,7 +24,7 @@ class SubscriptionUseListener
       $log->setTickets(1);
       $log->setSubscription($subscription);
       $note =
-        'Attend '.$schedule->getTeam()->getTeamName().
+        'Attend '.$schedule->getTeamCategory()->getTeamName().
         ' on '.$schedule->getFirstDate()->format('Y-m-d').
         ', from '.$schedule->getFirstDate()->format('H:i').
         ' to '.$schedule->getEndDate()->format('H:i');
@@ -47,7 +47,7 @@ class SubscriptionUseListener
       $log->setTickets(-1);
       $log->setSubscription($subscription);
       $note =
-        'Cancelled '.$schedule->getTeam()->getTeamName().
+        'Cancelled '.$schedule->getTeamCategory()->getTeamName().
         ' on '.$schedule->getFirstDate()->format('Y-m-d').
         ', from '.$schedule->getFirstDate()->format('H:i').
         ' to '.$schedule->getEndDate()->format('H:i');
