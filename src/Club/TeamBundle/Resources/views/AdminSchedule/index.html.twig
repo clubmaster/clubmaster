@@ -1,7 +1,7 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_team_adminschedule_new', {'team_id':team.id}) }}" class="btn-create"><span>{% trans %}Create schedule{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_team_adminschedule_new', {'category_id':category.id}) }}" class="btn-create"><span>{% trans %}Create schedule{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -26,10 +26,10 @@
       <td>{{ schedule.endDate|club_datetime }}</td>
       <td>{{ schedule.level.levelName }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminschedule_edit', { 'id':schedule.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_delete', { 'id':schedule.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'schedule_id':schedule.id,'team_id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_team_adminschedule_participant', { 'id':schedule.id,'team_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminschedule_edit', { 'id':schedule.id,'category_id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_delete', { 'id':schedule.id,'category_id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:repetition_link.html.twig" with {'url':path('club_team_adminrepetition_index', { 'schedule_id':schedule.id })} %}
+        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_team_adminschedule_participant', { 'id':schedule.id })} %}
       </td>
     </tr>
   {% else %}

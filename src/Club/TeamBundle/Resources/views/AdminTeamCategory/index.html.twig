@@ -24,7 +24,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':team.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'team_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'category_id':team.id })} %}
       </td>
     </tr>
   {% else %}

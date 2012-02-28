@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_team_adminschedule_edit', {'id':schedule.id, 'team_id':schedule.teamCategory.id}) }}">
-{% include "ClubTeamBundle:AdminSchedule:form.html.twig" with {'form': form} %}
+<form method="post" action="{{ path('club_team_adminschedule_edit', {'id':schedule.id, 'category_id':schedule.teamCategory.id}) }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}
