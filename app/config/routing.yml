@@ -15,7 +15,8 @@ _user:
   resource: "@ClubUserBundle/Resources/config/routing.yml"
 
 _task:
-  resource: "@ClubTaskBundle/Resources/config/routing.yml"
+  resource: "@ClubTaskBundle/Controller/"
+  type:     annotation
 
 _mail:
   resource: "@ClubMailBundle/Resources/config/routing.yml"

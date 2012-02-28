@@ -16,10 +16,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class TaskController extends Controller
+/**
+ * @Route("/admin/task")
+ */
+class AdminTaskController extends Controller
 {
   /**
-   * @Route("/task", name="admin_task")
+   * @Route("/", name="admin_task")
    * @Template()
    */
   public function indexAction()
@@ -34,7 +37,7 @@ class TaskController extends Controller
   }
 
   /**
-   * @Route("/task/disable/{id}", name="admin_task_disable")
+   * @Route("/disable/{id}", name="admin_task_disable")
    */
   public function disableAction($id)
   {
@@ -50,7 +53,7 @@ class TaskController extends Controller
   }
 
   /**
-   * @Route("/task/enable/{id}", name="admin_task_enable")
+   * @Route("/enable/{id}", name="admin_task_enable")
    */
   public function enableAction($id)
   {
@@ -66,7 +69,7 @@ class TaskController extends Controller
   }
 
   /**
-   * @Route("/task/run/{id}", name="admin_task_run")
+   * @Route("/run/{id}", name="admin_task_run")
    */
   public function runAction($id)
   {
@@ -85,7 +88,7 @@ class TaskController extends Controller
   }
 
   /**
-   * @Route("/task/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    */
   public function editAction($id)
