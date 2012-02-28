@@ -6,8 +6,8 @@
 
 <p>Would you like to change all events in the series or this and all following events in the series?</p>
 
-<p><a href="{{ path('club_team_adminrepetition_editfuture', {'id':repetition.id, 'schedule_id':repetition.schedule.id, 'team_id':repetition.schedule.teamCategory.id}) }}">All the following</a> This and all the following events will be changed.<br />
+<p><a href="{{ path('club_team_adminrepetition_editfuture', {'id':repetition.id}) }}">All the following</a> This and all the following events will be changed.<br />
 Any changes to future events will be lost.</p>
-<p><a href="{{ path('club_team_adminrepetition_editall', {'id':repetition.id, 'schedule_id':repetition.schedule.id, 'team_id':repetition.schedule.teamCategory.id}) }}">All events in the series</a> All events in the series will be changed.<br />
+<p><a href="{{ path('club_team_adminrepetition_editall', {'id':repetition.id}) }}">All events in the series</a> All events in the series will be changed.<br />
 Any changes made to other events will be kept.</p>
 {% endblock %}
