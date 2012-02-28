@@ -10,7 +10,7 @@
     <p><label>{% trans %}Date{% endtrans %}</label>{{ plan.firstDate|club_date }}</p>
     <p><label>{% trans %}Time{% endtrans %}</label>{{ plan.firstDate|club_time }} - {{ plan.endDate|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ field.name }}</p>
-    <p><label>{% trans %}Team{% endtrans %}</label>{{ plan.name }}</p>
+    <p><label>{% trans %}Plan{% endtrans %}</label>{{ plan.planCategory.name }}</p>
 
     {% if field.information %}
       <h3>{% trans %}Information{% endtrans %}</h3>
@@ -18,7 +18,7 @@
     {% endif %}
 
     <h3>{% trans %}Description{% endtrans %}</h3>
-    <p>{{ plan.description }}</p>
+    <p>{{ plan.planCategory.description }}</p>
   </div>
 </fieldset>
 

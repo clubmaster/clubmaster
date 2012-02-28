@@ -1,4 +1,8 @@
 == NOTES TO THIS RELEASE ==
+fix booking plan period times
+auto complete booking, only active members
+obey rules of book time
+on booking plan, booking overview remember description
 problems with generate repetitions, check up on this
 test ban
 view product attribute product view
