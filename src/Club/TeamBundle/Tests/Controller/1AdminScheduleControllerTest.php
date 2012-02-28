@@ -39,7 +39,7 @@ class AdminScheduleControllerTest extends WebTestCase
 
   public function testRepetition()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team/1/schedule/1/repetition');
+    $crawler = $this->client->request('GET', '/admin/team/team/schedule/1/repetition');
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 

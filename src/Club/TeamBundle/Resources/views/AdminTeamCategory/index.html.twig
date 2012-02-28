@@ -1,7 +1,7 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_team_adminteamcategory_new') }}" class="btn-create"><span>{% trans %}Create team{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_team_adminteamcategory_new') }}" class="btn-create"><span>{% trans %}Create category{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -17,19 +17,19 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for team in teams %}
+  {% for category in categories %}
     <tr>
-      <td>{{ team.teamName }}</td>
-      <td>{{ team.createdAt|club_datetime }}</td>
+      <td>{{ category.teamName }}</td>
+      <td>{{ category.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'category_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'category_id':category.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}There are no teams.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no categories.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

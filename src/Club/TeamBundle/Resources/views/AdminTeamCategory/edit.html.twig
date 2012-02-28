@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_team_adminteamcategory_edit', {'id':team.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'form': form} %}
+<form method="post" action="{{ path('club_team_adminteamcategory_edit', {'id':category.id}) }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}
