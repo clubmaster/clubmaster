@@ -25,7 +25,6 @@ class AdminRepetitionController extends Controller
 
     if (count($repetitions)) {
       return $this->redirect($this->generateUrl('club_team_adminrepetition_edit', array(
-        'schedule_id' => $schedule_id,
         'id' => $repetitions->getId()
       )));
     } else {

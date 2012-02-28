@@ -1,4 +1,6 @@
 == NOTES TO THIS RELEASE ==
+problems with generate repetitions, check up on this
+test ban
 view product attribute product view
 do routing to annotation instead of, check default install of symfony bundle
 $request->getPreferredLanguage(array('en', 'fr'));
