@@ -14,11 +14,11 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for team in teams %}
+  {% for schedule in schedules %}
     <tr>
-      <td>{{ team.team.teamName }}</td>
-      <td>{{ team.firstDate|club_date }}</td>
-      <td>{{ team.firstDate|club_time }} - {{ team.endDate|club_time }}</td>
+      <td>{{ schedule.team.teamName }}</td>
+      <td>{{ schedule.firstDate|club_date }}</td>
+      <td>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</td>
     </tr>
   {% else %}
   <tr>

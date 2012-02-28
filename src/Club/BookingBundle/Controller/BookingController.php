@@ -123,11 +123,11 @@ class BookingController extends Controller
    public function viewTeamAction($id, $field_id)
    {
      $em = $this->getDoctrine()->getEntityManager();
-     $team = $em->find('ClubTeamBundle:Team', $id);
+     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
      $field = $em->find('ClubBookingBundle:Field', $field_id);
 
      return array(
-       'team' => $team,
+       'schedule' => $schedule,
        'field' => $field
      );
    }

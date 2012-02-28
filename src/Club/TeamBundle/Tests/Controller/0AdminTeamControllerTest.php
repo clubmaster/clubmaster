@@ -15,30 +15,30 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team');
+    $crawler = $this->client->request('GET', '/admin/team/category/');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team/new');
+    $crawler = $this->client->request('GET', '/admin/team/category/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'team[team_name]' => 'Test',
-      'team[description]' => 'Test',
-      'team[penalty]' => '50'
+      'team_category[team_name]' => 'Test',
+      'team_category[description]' => 'Test',
+      'team_category[penalty]' => '50'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
 
-    $crawler = $this->client->request('GET', '/admin/team/team/new');
+    $crawler = $this->client->request('GET', '/admin/team/category/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'team[team_name]' => 'Test2',
-      'team[description]' => 'Test2',
-      'team[penalty]' => '50'
+      'team_category[team_name]' => 'Test2',
+      'team_category[description]' => 'Test2',
+      'team_category[penalty]' => '50'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -46,7 +46,7 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/team/team');
+    $crawler = $this->client->request('GET', '/admin/team/category/');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

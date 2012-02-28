@@ -17,19 +17,19 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for team in teams %}
+  {% for category in categories %}
     <tr>
-      <td>{{ team.teamName }}</td>
-      <td>{{ team.createdAt|club_datetime }}</td>
+      <td>{{ category.teamName }}</td>
+      <td>{{ category.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':team.id })} %}
-        {% include "ClubLayoutBundle:Default:team_link.html.twig" with {'url':path('club_team_adminteam_index', { 'team_category_id':team.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_team_adminteamcategory_edit', { 'id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteamcategory_delete', { 'id':category.id })} %}
+        {% include "ClubLayoutBundle:Default:schedule_link.html.twig" with {'url':path('club_team_adminschedule_index', { 'category_id':category.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}There are no teams.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no categories.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

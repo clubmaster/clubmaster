@@ -7,13 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * Club\TeamBundle\Entity\Team
+ * Club\TeamBundle\Entity\Schedule
  *
- * @ORM\Table(name="club_team_team")
- * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\TeamRepository")
+ * @ORM\Table(name="club_team_schedule")
+ * @ORM\Entity(repositoryClass="Club\TeamBundle\Entity\ScheduleRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Team
+class Schedule
 {
     /**
      * @var integer $id
@@ -23,6 +23,22 @@ class Team
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var text $description
+     *
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     */
+    protected $description;
+
+    /**
+     * @var text $penalty
+     *
+     * @ORM\Column(type="decimal", scale="2")
+     * @Assert\NotBlank()
+     */
+    protected $penalty;
 
     /**
      * @var text $max_attend
@@ -74,31 +90,36 @@ class Team
     protected $team_category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
      */
-    protected $team;
+    protected $location;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="team")
+     * @ORM\ManyToOne(targetEntity="Schedule")
+     * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
-    protected $teams;
+    protected $schedule;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="schedule")
+     */
+    protected $schedules;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_team_team_instructor")
+     * @ORM\JoinTable(name="club_team_schedule_instructor")
      */
     protected $instructors;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\TeamUser", mappedBy="team")
-     * @ORM\JoinTable(name="club_team_team_user")
+     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\ScheduleUser", mappedBy="schedule")
+     * @ORM\JoinTable(name="club_team_schedule_user")
      */
     protected $users;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\BookingBundle\Entity\Field")
-     * @ORM\JoinTable(name="club_team_team_field")
+     * @ORM\JoinTable(name="club_team_schedule_field")
      */
     protected $fields;
 
@@ -126,6 +147,26 @@ class Team
     public function __construct()
     {
         $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -257,43 +298,43 @@ class Team
     }
 
     /**
-     * Set team
+     * Set schedule
      *
-     * @param Club\TeamBundle\Entity\Team $team
+     * @param Club\TeamBundle\Entity\Schedule $schedule
      */
-    public function setTeam(\Club\TeamBundle\Entity\Team $team=null)
+    public function setSchedule(\Club\TeamBundle\Entity\Schedule $schedule=null)
     {
-        $this->team = $team;
+        $this->schedule = $schedule;
     }
 
     /**
-     * Get team
+     * Get schedule
      *
-     * @return Club\TeamBundle\Entity\Team
+     * @return Club\TeamBundle\Entity\Schedule
      */
-    public function getTeam()
+    public function getSchedule()
     {
-        return $this->team;
+        return $this->schedule;
     }
 
     /**
-     * Add teams
+     * Add schedules
      *
-     * @param Club\TeamBundle\Entity\Team $teams
+     * @param Club\TeamBundle\Entity\Schedule $schedules
      */
-    public function addTeam(\Club\TeamBundle\Entity\Team $teams)
+    public function addSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
     {
-        $this->teams[] = $teams;
+        $this->schedules[] = $schedules;
     }
 
     /**
-     * Get teams
+     * Get schedules
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getTeams()
+    public function getSchedules()
     {
-        return $this->teams;
+        return $this->schedules;
     }
 
     /**
@@ -372,7 +413,7 @@ class Team
         'id' => $this->getId(),
         'type' => 'team',
         'team_name' => $this->getTeamCategory()->getTeamName(),
-        'description' => $this->getTeamCategory()->getDescription(),
+        'description' => $this->getDescription(),
         'level' => $this->getLevel()->getLevelName(),
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
@@ -395,9 +436,49 @@ class Team
       return $res;
     }
 
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
     public function resetInstructors()
     {
       $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set penalty
+     *
+     * @param decimal $penalty
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return decimal
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
     }
 
     /**
@@ -483,9 +564,9 @@ class Team
     /**
      * Add users
      *
-     * @param Club\TeamBundle\Entity\TeamUser $users
+     * @param Club\TeamBundle\Entity\ScheduleUser $users
      */
-    public function addTeamUser(\Club\TeamBundle\Entity\TeamUser $users)
+    public function addScheduleUser(\Club\TeamBundle\Entity\ScheduleUser $users)
     {
         $this->users[] = $users;
     }

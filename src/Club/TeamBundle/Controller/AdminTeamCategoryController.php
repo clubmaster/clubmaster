@@ -16,10 +16,10 @@ class AdminTeamCategoryController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $teams = $em->getRepository('ClubTeamBundle:TeamCategory')->findAll();
+    $categories = $em->getRepository('ClubTeamBundle:TeamCategory')->findAll();
 
     return array(
-      'teams' => $teams
+      'categories' => $categories
     );
   }
 
@@ -29,9 +29,9 @@ class AdminTeamCategoryController extends Controller
    */
   public function newAction()
   {
-    $team = new \Club\TeamBundle\Entity\TeamCategory();
+    $category = new \Club\TeamBundle\Entity\TeamCategory();
 
-    $res = $this->process($team);
+    $res = $this->process($category);
 
     if ($res instanceOf RedirectResponse)
       return $res;
@@ -48,15 +48,15 @@ class AdminTeamCategoryController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:TeamCategory',$id);
+    $category = $em->find('ClubTeamBundle:TeamCategory',$id);
 
-    $res = $this->process($team);
+    $res = $this->process($category);
 
     if ($res instanceOf RedirectResponse)
       return $res;
 
     return array(
-      'team' => $team,
+      'category' => $category,
       'form' => $res->createView()
     );
   }
@@ -67,9 +67,9 @@ class AdminTeamCategoryController extends Controller
   public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->find('ClubTeamBundle:TeamCategory',$this->getRequest()->get('id'));
+    $category = $em->find('ClubTeamBundle:TeamCategory',$this->getRequest()->get('id'));
 
-    $em->remove($team);
+    $em->remove($category);
     $em->flush();
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
@@ -77,15 +77,15 @@ class AdminTeamCategoryController extends Controller
     return $this->redirect($this->generateUrl('club_team_adminteamcategory_index'));
   }
 
-  protected function process($team)
+  protected function process($category)
   {
-    $form = $this->createForm(new \Club\TeamBundle\Form\TeamCategory(), $team);
+    $form = $this->createForm(new \Club\TeamBundle\Form\TeamCategory(), $category);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($team);
+        $em->persist($category);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));

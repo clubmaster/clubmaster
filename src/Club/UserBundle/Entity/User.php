@@ -134,9 +134,9 @@ class User implements AdvancedUserInterface
     protected $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\TeamUser", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Club\TeamBundle\Entity\ScheduleUser", mappedBy="user")
      */
-    protected $teams;
+    protected $schedules;
 
     /**
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\Subscription", mappedBy="user")
@@ -761,29 +761,29 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * Add teams
+     * Add schedules
      *
-     * @param Club\TeamBundle\Entity\Team $teams
+     * @param Club\TeamBundle\Entity\Schedule $schedules
      */
-    public function addTeam(\Club\TeamBundle\Entity\Team $teams)
+    public function addSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
     {
-        $this->teams[] = $teams;
+        $this->schedules[] = $schedules;
     }
 
     /**
-     * Get teams
+     * Get schedules
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getTeams()
+    public function getSchedules()
     {
-        return $this->teams;
+        return $this->schedules;
     }
 
-    public function isAttend(\Club\TeamBundle\Entity\Team $team)
+    public function isAttend(\Club\TeamBundle\Entity\Schedule $schedule)
     {
-      foreach ($this->getTeams() as $sch) {
-        if ($team->getId() == $sch->getTeam()->getId())
+      foreach ($this->getSchedules() as $sch) {
+        if ($schedule->getId() == $sch->getSchedule()->getId())
           return true;
       }
 
@@ -811,12 +811,12 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * Add teams
+     * Add schedules
      *
-     * @param Club\TeamBundle\Entity\TeamUser $teams
+     * @param Club\TeamBundle\Entity\ScheduleUser $schedules
      */
-    public function addTeamUser(\Club\TeamBundle\Entity\TeamUser $teams)
+    public function addScheduleUser(\Club\TeamBundle\Entity\ScheduleUser $schedules)
     {
-        $this->teams[] = $teams;
+        $this->schedules[] = $schedules;
     }
 }

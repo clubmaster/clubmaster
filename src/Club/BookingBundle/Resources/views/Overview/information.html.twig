@@ -18,8 +18,8 @@
       </p>
       {% endif %}
 
-    {% elseif interval.team %}
-      <p><label>{% trans %}Team{% endtrans %}</label>{{ interval.team.team.teamName }}</p>
+    {% elseif interval.schedule %}
+      <p><label>{% trans %}Team{% endtrans %}</label>{{ interval.schedule.team.teamName }}</p>
 
     {% endif %}
 

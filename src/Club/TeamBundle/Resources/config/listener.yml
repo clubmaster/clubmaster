@@ -10,17 +10,17 @@ services:
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
   club.team.repetition.change:
-    class: Club\TeamBundle\Listener\GenerateTeamListener
+    class: Club\TeamBundle\Listener\GenerateScheduleListener
     arguments: [@doctrine.orm.entity_manager, %club_team.future_occurs%]
     tags:
       - { name: kernel.event_listener, event: repetition.change, method: onRepetitionChange }
   club.team.team.task:
-    class: Club\TeamBundle\Listener\GenerateTeamListener
+    class: Club\TeamBundle\Listener\GenerateScheduleListener
     arguments: [@doctrine.orm.entity_manager, %club_team.future_occurs%]
     tags:
       - { name: kernel.event_listener, event: team.task, method: onTeamTask }
   club.team.team.penalty:
     class: Club\TeamBundle\Listener\TeamPenaltyListener
-    arguments: [@doctrine.orm.entity_manager, %club_team.minutes_before_team%, %club_team.penalty_enabled%, @order, %club_team.penalty_product_name%]
+    arguments: [@doctrine.orm.entity_manager, %club_team.minutes_before_schedule%, %club_team.penalty_enabled%, @order, %club_team.penalty_product_name%]
     tags:
       - { name: kernel.event_listener, event: team.penalty, method: onTeamPenalty }

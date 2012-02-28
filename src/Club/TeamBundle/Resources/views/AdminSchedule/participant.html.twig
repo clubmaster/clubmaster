@@ -17,12 +17,12 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for participant in team.users %}
+  {% for participant in schedule.users %}
     <tr>
-      <td>{{ team.team.teamName }}</td>
+      <td>{{ schedule.team.teamName }}</td>
       <td>{{ participant.user.profile.name }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminteam_unattend', {'team_id':team.team.id,'team_id':team.id, 'id':participant.id})} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_team_adminschedule_unattend', {'schedule_id':schedule.id, 'id':participant.id})} %}
       </td>
     </tr>
   {% else %}

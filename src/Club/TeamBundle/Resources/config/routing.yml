@@ -17,10 +17,10 @@ _admin_team_category:
   type: annotation
   prefix: /admin/team/category
 
-_admin_team:
-  resource: "@ClubTeamBundle/Controller/AdminTeamController.php"
+_admin_schedule:
+  resource: "@ClubTeamBundle/Controller/AdminScheduleController.php"
   type: annotation
-  prefix: /admin/team/team
+  prefix: /admin
 
 _admin_repetition:
   resource: "@ClubTeamBundle/Controller/AdminRepetitionController.php"

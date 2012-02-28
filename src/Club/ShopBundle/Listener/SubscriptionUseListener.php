@@ -13,21 +13,21 @@ class SubscriptionUseListener
     $this->security_context = $security_context;
   }
 
-  public function onTeamAttend(\Club\TeamBundle\Event\FilterTeamEvent $event)
+  public function onTeamAttend(\Club\TeamBundle\Event\FilterScheduleEvent $event)
   {
     $user = $event->getUser();
     $subscription = $this->em->getRepository('ClubShopBundle:Subscription')->getSingleActiveSubscriptionForTeam($user);
-    $team = $event->getTeam();
+    $schedule = $event->getSchedule();
 
     if ($subscription->getType() == 'ticket') {
       $log = new \Club\ShopBundle\Entity\SubscriptionTicket();
       $log->setTickets(1);
       $log->setSubscription($subscription);
       $note =
-        'Attend '.$team->getTeam()->getTeamName().
-        ' on '.$team->getFirstDate()->format('Y-m-d').
-        ', from '.$team->getFirstDate()->format('H:i').
-        ' to '.$team->getEndDate()->format('H:i');
+        'Attend '.$schedule->getTeamCategory()->getTeamName().
+        ' on '.$schedule->getFirstDate()->format('Y-m-d').
+        ', from '.$schedule->getFirstDate()->format('H:i').
+        ' to '.$schedule->getEndDate()->format('H:i');
       $log->setNote($note);
 
       $this->em->persist($log);
@@ -35,10 +35,10 @@ class SubscriptionUseListener
     }
   }
 
-  public function onTeamUnattend(\Club\TeamBundle\Event\FilterTeamEvent $event)
+  public function onTeamUnattend(\Club\TeamBundle\Event\FilterScheduleEvent $event)
   {
     $user = $event->getUser();
-    $team = $event->getTeam();
+    $schedule = $event->getSchedule();
     $subscription = $this->em->getRepository('ClubShopBundle:Subscription')->getSingleActiveSubscriptionForTeam($user);
 
     if ($subscription->getType() == 'ticket') {
@@ -47,10 +47,10 @@ class SubscriptionUseListener
       $log->setTickets(-1);
       $log->setSubscription($subscription);
       $note =
-        'Cancelled '.$team->getTeam()->getTeamName().
-        ' on '.$team->getFirstDate()->format('Y-m-d').
-        ', from '.$team->getFirstDate()->format('H:i').
-        ' to '.$team->getEndDate()->format('H:i');
+        'Cancelled '.$schedule->getTeamCategory()->getTeamName().
+        ' on '.$schedule->getFirstDate()->format('Y-m-d').
+        ', from '.$schedule->getFirstDate()->format('H:i').
+        ' to '.$schedule->getEndDate()->format('H:i');
       $log->setNote($note);
 
       $this->em->persist($log);

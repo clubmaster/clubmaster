@@ -8,7 +8,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration,
 /**
  * Auto-generated Migration: Please modify to your need!
  */
-class Version20120221094345 extends AbstractMigration
+class Version20120228073954 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -82,13 +82,13 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("CREATE TABLE club_message_message_filter (message_id INT NOT NULL, filter_id INT NOT NULL, INDEX IDX_43E06D0F537A1329 (message_id), INDEX IDX_43E06D0FD395B25E (filter_id), PRIMARY KEY(message_id, filter_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_message_message_attachment (id INT AUTO_INCREMENT NOT NULL, message_id INT DEFAULT NULL, file_path VARCHAR(255) NOT NULL, file_name VARCHAR(255) NOT NULL, file_type VARCHAR(255) NOT NULL, file_size VARCHAR(255) NOT NULL, file_hash VARCHAR(255) NOT NULL, INDEX IDX_7A27EA70537A1329 (message_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_team_level (id INT AUTO_INCREMENT NOT NULL, level_name VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_team_team_user (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, team_id INT DEFAULT NULL, created_at DATETIME NOT NULL, INDEX IDX_27C68C06A76ED395 (user_id), INDEX IDX_27C68C06296CD8AE (team_id), UNIQUE INDEX unique_idx (user_id, team_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_team_participant (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, created_at DATETIME NOT NULL, INDEX IDX_5DDB6DBDA76ED395 (user_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_team_repetition (id INT AUTO_INCREMENT NOT NULL, team_id INT DEFAULT NULL, type VARCHAR(255) NOT NULL, first_date DATETIME NOT NULL, last_date DATETIME DEFAULT NULL, end_occurrences INT DEFAULT NULL, repeat_every INT NOT NULL, days_in_week VARCHAR(255) DEFAULT NULL, day_of_month TINYINT(1) DEFAULT NULL, week VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_BC76ED49296CD8AE (team_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_team_team (id INT AUTO_INCREMENT NOT NULL, team_category_id INT DEFAULT NULL, location_id INT DEFAULT NULL, team_id INT DEFAULT NULL, level_id INT DEFAULT NULL, repetition_id INT DEFAULT NULL, description LONGTEXT NOT NULL, penalty NUMERIC(10, 2) NOT NULL, max_attend INT NOT NULL, first_date DATETIME NOT NULL, end_date DATETIME DEFAULT NULL, processed TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_BA08F282F97672AF (team_category_id), INDEX IDX_BA08F28264D218E (location_id), INDEX IDX_BA08F282296CD8AE (team_id), INDEX IDX_BA08F2825FB14BA7 (level_id), UNIQUE INDEX UNIQ_BA08F282A06DF6FF (repetition_id), PRIMARY KEY(id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_team_team_instructor (team_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_956D0B28296CD8AE (team_id), INDEX IDX_956D0B28A76ED395 (user_id), PRIMARY KEY(team_id, user_id)) ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE club_team_team_field (team_id INT NOT NULL, field_id INT NOT NULL, INDEX IDX_BD3C4C03296CD8AE (team_id), INDEX IDX_BD3C4C03443707B0 (field_id), PRIMARY KEY(team_id, field_id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_team_repetition (id INT AUTO_INCREMENT NOT NULL, schedule_id INT DEFAULT NULL, type VARCHAR(255) NOT NULL, first_date DATETIME NOT NULL, last_date DATETIME DEFAULT NULL, end_occurrences INT DEFAULT NULL, repeat_every INT NOT NULL, days_in_week VARCHAR(255) DEFAULT NULL, day_of_month TINYINT(1) DEFAULT NULL, week VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_BC76ED49A40BC2D5 (schedule_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_team_team_category (id INT AUTO_INCREMENT NOT NULL, team_name VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, penalty NUMERIC(10, 2) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_team_schedule_user (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, schedule_id INT DEFAULT NULL, created_at DATETIME NOT NULL, INDEX IDX_860A2A86A76ED395 (user_id), INDEX IDX_860A2A86A40BC2D5 (schedule_id), UNIQUE INDEX unique_idx (user_id, schedule_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_team_schedule (id INT AUTO_INCREMENT NOT NULL, team_category_id INT DEFAULT NULL, location_id INT DEFAULT NULL, schedule_id INT DEFAULT NULL, level_id INT DEFAULT NULL, repetition_id INT DEFAULT NULL, description LONGTEXT NOT NULL, penalty NUMERIC(10, 2) NOT NULL, max_attend INT NOT NULL, first_date DATETIME NOT NULL, end_date DATETIME DEFAULT NULL, processed TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_5FBD8B31F97672AF (team_category_id), INDEX IDX_5FBD8B3164D218E (location_id), INDEX IDX_5FBD8B31A40BC2D5 (schedule_id), INDEX IDX_5FBD8B315FB14BA7 (level_id), UNIQUE INDEX UNIQ_5FBD8B31A06DF6FF (repetition_id), PRIMARY KEY(id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_team_schedule_instructor (schedule_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_909B132FA40BC2D5 (schedule_id), INDEX IDX_909B132FA76ED395 (user_id), PRIMARY KEY(schedule_id, user_id)) ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE club_team_schedule_field (schedule_id INT NOT NULL, field_id INT NOT NULL, INDEX IDX_50250385A40BC2D5 (schedule_id), INDEX IDX_50250385443707B0 (field_id), PRIMARY KEY(schedule_id, field_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_booking_plan (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, plan_category_id INT DEFAULT NULL, period_start DATETIME NOT NULL, period_end DATETIME NOT NULL, day INT NOT NULL, first_date TIME NOT NULL, end_date TIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_BF7FD1C3A76ED395 (user_id), INDEX IDX_BF7FD1C3E6FF4589 (plan_category_id), PRIMARY KEY(id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_booking_plan_field (plan_id INT NOT NULL, field_id INT NOT NULL, INDEX IDX_F7A9AD0E899029B (plan_id), INDEX IDX_F7A9AD0443707B0 (field_id), PRIMARY KEY(plan_id, field_id)) ENGINE = InnoDB");
         $this->addSql("CREATE TABLE club_booking_booking (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, field_id INT DEFAULT NULL, first_date DATETIME NOT NULL, end_date DATETIME NOT NULL, guest TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX IDX_A5A49A20A76ED395 (user_id), INDEX IDX_A5A49A20443707B0 (field_id), PRIMARY KEY(id)) ENGINE = InnoDB");
@@ -194,19 +194,19 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("ALTER TABLE club_message_message_filter ADD CONSTRAINT FK_43E06D0F537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
         $this->addSql("ALTER TABLE club_message_message_filter ADD CONSTRAINT FK_43E06D0FD395B25E FOREIGN KEY (filter_id) REFERENCES club_user_filter(id)");
         $this->addSql("ALTER TABLE club_message_message_attachment ADD CONSTRAINT FK_7A27EA70537A1329 FOREIGN KEY (message_id) REFERENCES club_message_message(id)");
-        $this->addSql("ALTER TABLE club_team_team_user ADD CONSTRAINT FK_27C68C06A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
-        $this->addSql("ALTER TABLE club_team_team_user ADD CONSTRAINT FK_27C68C06296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id)");
         $this->addSql("ALTER TABLE club_team_participant ADD CONSTRAINT FK_5DDB6DBDA76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
-        $this->addSql("ALTER TABLE club_team_repetition ADD CONSTRAINT FK_BC76ED49296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team ADD CONSTRAINT FK_BA08F282F97672AF FOREIGN KEY (team_category_id) REFERENCES club_team_team_category(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team ADD CONSTRAINT FK_BA08F28264D218E FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
-        $this->addSql("ALTER TABLE club_team_team ADD CONSTRAINT FK_BA08F282296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team ADD CONSTRAINT FK_BA08F2825FB14BA7 FOREIGN KEY (level_id) REFERENCES club_team_level(id)");
-        $this->addSql("ALTER TABLE club_team_team ADD CONSTRAINT FK_BA08F282A06DF6FF FOREIGN KEY (repetition_id) REFERENCES club_team_repetition(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team_instructor ADD CONSTRAINT FK_956D0B28296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team_instructor ADD CONSTRAINT FK_956D0B28A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team_field ADD CONSTRAINT FK_BD3C4C03296CD8AE FOREIGN KEY (team_id) REFERENCES club_team_team(id) ON DELETE CASCADE");
-        $this->addSql("ALTER TABLE club_team_team_field ADD CONSTRAINT FK_BD3C4C03443707B0 FOREIGN KEY (field_id) REFERENCES club_booking_field(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_repetition ADD CONSTRAINT FK_BC76ED49A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule_user ADD CONSTRAINT FK_860A2A86A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
+        $this->addSql("ALTER TABLE club_team_schedule_user ADD CONSTRAINT FK_860A2A86A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id)");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31F97672AF FOREIGN KEY (team_category_id) REFERENCES club_team_team_category(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B3164D218E FOREIGN KEY (location_id) REFERENCES club_user_location(id)");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B315FB14BA7 FOREIGN KEY (level_id) REFERENCES club_team_level(id)");
+        $this->addSql("ALTER TABLE club_team_schedule ADD CONSTRAINT FK_5FBD8B31A06DF6FF FOREIGN KEY (repetition_id) REFERENCES club_team_repetition(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule_instructor ADD CONSTRAINT FK_909B132FA40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule_instructor ADD CONSTRAINT FK_909B132FA76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule_field ADD CONSTRAINT FK_50250385A40BC2D5 FOREIGN KEY (schedule_id) REFERENCES club_team_schedule(id) ON DELETE CASCADE");
+        $this->addSql("ALTER TABLE club_team_schedule_field ADD CONSTRAINT FK_50250385443707B0 FOREIGN KEY (field_id) REFERENCES club_booking_field(id) ON DELETE CASCADE");
         $this->addSql("ALTER TABLE club_booking_plan ADD CONSTRAINT FK_BF7FD1C3A76ED395 FOREIGN KEY (user_id) REFERENCES club_user_user(id)");
         $this->addSql("ALTER TABLE club_booking_plan ADD CONSTRAINT FK_BF7FD1C3E6FF4589 FOREIGN KEY (plan_category_id) REFERENCES club_booking_plan_category(id)");
         $this->addSql("ALTER TABLE club_booking_plan_field ADD CONSTRAINT FK_F7A9AD0E899029B FOREIGN KEY (plan_id) REFERENCES club_booking_plan(id)");
@@ -256,9 +256,9 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("ALTER TABLE club_event_attend DROP FOREIGN KEY FK_2DF53999A76ED395");
         $this->addSql("ALTER TABLE club_message_message DROP FOREIGN KEY FK_392338ADA76ED395");
         $this->addSql("ALTER TABLE club_message_message_user DROP FOREIGN KEY FK_59115838A76ED395");
-        $this->addSql("ALTER TABLE club_team_team_user DROP FOREIGN KEY FK_27C68C06A76ED395");
         $this->addSql("ALTER TABLE club_team_participant DROP FOREIGN KEY FK_5DDB6DBDA76ED395");
-        $this->addSql("ALTER TABLE club_team_team_instructor DROP FOREIGN KEY FK_956D0B28A76ED395");
+        $this->addSql("ALTER TABLE club_team_schedule_user DROP FOREIGN KEY FK_860A2A86A76ED395");
+        $this->addSql("ALTER TABLE club_team_schedule_instructor DROP FOREIGN KEY FK_909B132FA76ED395");
         $this->addSql("ALTER TABLE club_booking_plan DROP FOREIGN KEY FK_BF7FD1C3A76ED395");
         $this->addSql("ALTER TABLE club_booking_booking DROP FOREIGN KEY FK_A5A49A20A76ED395");
         $this->addSql("ALTER TABLE club_booking_booking_user DROP FOREIGN KEY FK_CE8B3586A76ED395");
@@ -286,7 +286,7 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("ALTER TABLE club_shop_subscription_location DROP FOREIGN KEY FK_2AD5EE3E64D218E");
         $this->addSql("ALTER TABLE club_shop_cart DROP FOREIGN KEY FK_6558CE2A64D218E");
         $this->addSql("ALTER TABLE club_shop_category DROP FOREIGN KEY FK_6033A5E364D218E");
-        $this->addSql("ALTER TABLE club_team_team DROP FOREIGN KEY FK_BA08F28264D218E");
+        $this->addSql("ALTER TABLE club_team_schedule DROP FOREIGN KEY FK_5FBD8B3164D218E");
         $this->addSql("ALTER TABLE club_booking_field DROP FOREIGN KEY FK_774EFE5964D218E");
         $this->addSql("ALTER TABLE club_welcome DROP FOREIGN KEY FK_3A83C43164D218E");
         $this->addSql("ALTER TABLE club_shop_order DROP FOREIGN KEY FK_7BF987275AA1164F");
@@ -335,17 +335,17 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("ALTER TABLE club_message_message_event DROP FOREIGN KEY FK_1C78C983537A1329");
         $this->addSql("ALTER TABLE club_message_message_filter DROP FOREIGN KEY FK_43E06D0F537A1329");
         $this->addSql("ALTER TABLE club_message_message_attachment DROP FOREIGN KEY FK_7A27EA70537A1329");
-        $this->addSql("ALTER TABLE club_team_team DROP FOREIGN KEY FK_BA08F2825FB14BA7");
-        $this->addSql("ALTER TABLE club_team_team DROP FOREIGN KEY FK_BA08F282A06DF6FF");
-        $this->addSql("ALTER TABLE club_team_team_user DROP FOREIGN KEY FK_27C68C06296CD8AE");
-        $this->addSql("ALTER TABLE club_team_repetition DROP FOREIGN KEY FK_BC76ED49296CD8AE");
-        $this->addSql("ALTER TABLE club_team_team DROP FOREIGN KEY FK_BA08F282296CD8AE");
-        $this->addSql("ALTER TABLE club_team_team_instructor DROP FOREIGN KEY FK_956D0B28296CD8AE");
-        $this->addSql("ALTER TABLE club_team_team_field DROP FOREIGN KEY FK_BD3C4C03296CD8AE");
-        $this->addSql("ALTER TABLE club_team_team DROP FOREIGN KEY FK_BA08F282F97672AF");
+        $this->addSql("ALTER TABLE club_team_schedule DROP FOREIGN KEY FK_5FBD8B315FB14BA7");
+        $this->addSql("ALTER TABLE club_team_schedule DROP FOREIGN KEY FK_5FBD8B31A06DF6FF");
+        $this->addSql("ALTER TABLE club_team_schedule DROP FOREIGN KEY FK_5FBD8B31F97672AF");
+        $this->addSql("ALTER TABLE club_team_repetition DROP FOREIGN KEY FK_BC76ED49A40BC2D5");
+        $this->addSql("ALTER TABLE club_team_schedule_user DROP FOREIGN KEY FK_860A2A86A40BC2D5");
+        $this->addSql("ALTER TABLE club_team_schedule DROP FOREIGN KEY FK_5FBD8B31A40BC2D5");
+        $this->addSql("ALTER TABLE club_team_schedule_instructor DROP FOREIGN KEY FK_909B132FA40BC2D5");
+        $this->addSql("ALTER TABLE club_team_schedule_field DROP FOREIGN KEY FK_50250385A40BC2D5");
         $this->addSql("ALTER TABLE club_booking_plan_field DROP FOREIGN KEY FK_F7A9AD0E899029B");
         $this->addSql("ALTER TABLE club_booking_booking_user DROP FOREIGN KEY FK_CE8B35863301C60");
-        $this->addSql("ALTER TABLE club_team_team_field DROP FOREIGN KEY FK_BD3C4C03443707B0");
+        $this->addSql("ALTER TABLE club_team_schedule_field DROP FOREIGN KEY FK_50250385443707B0");
         $this->addSql("ALTER TABLE club_booking_plan_field DROP FOREIGN KEY FK_F7A9AD0443707B0");
         $this->addSql("ALTER TABLE club_booking_booking DROP FOREIGN KEY FK_A5A49A20443707B0");
         $this->addSql("ALTER TABLE club_booking_interval DROP FOREIGN KEY FK_438698A7443707B0");
@@ -422,13 +422,13 @@ class Version20120221094345 extends AbstractMigration
         $this->addSql("DROP TABLE club_message_message_filter");
         $this->addSql("DROP TABLE club_message_message_attachment");
         $this->addSql("DROP TABLE club_team_level");
-        $this->addSql("DROP TABLE club_team_team_user");
         $this->addSql("DROP TABLE club_team_participant");
         $this->addSql("DROP TABLE club_team_repetition");
-        $this->addSql("DROP TABLE club_team_team");
-        $this->addSql("DROP TABLE club_team_team_instructor");
-        $this->addSql("DROP TABLE club_team_team_field");
         $this->addSql("DROP TABLE club_team_team_category");
+        $this->addSql("DROP TABLE club_team_schedule_user");
+        $this->addSql("DROP TABLE club_team_schedule");
+        $this->addSql("DROP TABLE club_team_schedule_instructor");
+        $this->addSql("DROP TABLE club_team_schedule_field");
         $this->addSql("DROP TABLE club_booking_plan");
         $this->addSql("DROP TABLE club_booking_plan_field");
         $this->addSql("DROP TABLE club_booking_booking");

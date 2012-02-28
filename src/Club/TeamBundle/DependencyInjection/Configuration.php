@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
           ->children()
             ->scalarNode('enabled')->isRequired()->end()
             ->scalarNode('future_occurs')->isRequired()->end()
-            ->scalarNode('minutes_before_team')->isRequired()->end()
+            ->scalarNode('minutes_before_schedule')->isRequired()->end()
             ->scalarNode('penalty_enabled')->isRequired()->end()
             ->scalarNode('cancel_minute_before')->isRequired()->end()
             ->scalarNode('cancel_minute_created')->isRequired()->end()
