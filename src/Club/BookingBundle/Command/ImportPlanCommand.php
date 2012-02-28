@@ -46,16 +46,30 @@ EOF
           $name,
           $start,
           $stop,
+          $interval_start,
+          $interval_stop,
+          $day
         )  = preg_split($field_delimiter, $line);
 
+        $day++;
         $start_time = new \DateTime($start.' 00:00:00');
         $stop_time = new \DateTime($stop.' 23:59:59');
 
+        $t1 = new \DateTime(date('Y-m-d').' '.$interval_start);
+        $t2 = new \DateTime(date('Y-m-d').' '.$interval_stop);
+
+        $category = new \Club\BookingBundle\Entity\PlanCategory();
+        $category->setName($name);
+        $category->setDescription($name);
+        $em->persist($category);
+
         $plan = new \Club\BookingBundle\Entity\Plan();
-        $plan->setName($name);
-        $plan->setDescription($name);
-        $plan->setFirstDate($start_time);
-        $plan->setEndDate($stop_time);
+        $plan->setPlanCategory($category);
+        $plan->setPeriodStart($start_time);
+        $plan->setPeriodEnd($stop_time);
+        $plan->setDay($day);
+        $plan->setFirstDate($t1);
+        $plan->setEndDate($t2);
         $plan->setUser($user);
         $plan->addField($field);
 
