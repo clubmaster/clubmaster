@@ -57,6 +57,14 @@ class ProductAttribute extends AbstractType
       'choices' => $bool,
       'label' => 'Use team'
     ));
+    $builder->add('start_time', 'time', array(
+      'required' => false,
+      'label' => 'Start time'
+    ));
+    $builder->add('stop_time', 'time', array(
+      'required' => false,
+      'label' => 'Stop time'
+    ));
     $builder->add('start_date', 'date', array(
       'required' => false,
       'label' => 'Start date'

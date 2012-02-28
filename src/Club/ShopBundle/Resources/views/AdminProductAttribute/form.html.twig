@@ -14,6 +14,10 @@
   <span class="smaller low">{% trans %}Info: Is allowed to use bookings?{% endtrans %}</span>
   {{ form_row(form.team) }}
   <span class="smaller low">{% trans %}Info: Is allowed to use teams?{% endtrans %}</span>
+  {{ form_row(form.start_time) }}
+  <span class="smaller low">{% trans %}Info: From what time on day will user be active?{% endtrans %}</span>
+  {{ form_row(form.stop_time) }}
+  <span class="smaller low">{% trans %}Info: What time on day will membership not be active anymore?{% endtrans %}</span>
   {{ form_row(form.start_date) }}
   <span class="smaller low">{% trans %}Info: What will be the first day of this subscription?{% endtrans %}</span>
   {{ form_row(form.expire_date) }}

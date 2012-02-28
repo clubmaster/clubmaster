@@ -1,4 +1,5 @@
 == NOTES TO THIS RELEASE ==
+view product attribute product view
 do routing to annotation instead of, check default install of symfony bundle
 $request->getPreferredLanguage(array('en', 'fr'));
 make time on day where users can book subscription

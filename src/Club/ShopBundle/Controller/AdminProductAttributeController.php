@@ -70,8 +70,10 @@ class AdminProductAttributeController extends Controller
         $value = ($str != '') ? $str : null;
       }
 
-      if (($attribute == 'start_date' || $attribute == 'expire_date') && $value != '')
+      if (preg_match("/^(start_date|expire_date)$/", $attribute) && $value != '')
         $value = $value->format('Y-m-d');
+      if (preg_match("/^(start_time|stop_time)$/", $attribute) && $value != '')
+        $value = $value->format('H:i:s');
 
       $prod_attr = $em->getRepository('ClubShopBundle:ProductAttribute')->findOneBy(array(
         'product' => $product->getId(),

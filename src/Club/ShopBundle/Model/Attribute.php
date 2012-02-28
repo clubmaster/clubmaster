@@ -45,6 +45,16 @@ class Attribute
    */
   public $expire_date;
 
+  /**
+   * @Assert\Date()
+   */
+  public $start_time;
+
+  /**
+   * @Assert\Date()
+   */
+  public $stop_time;
+
   public $location;
 
   public $booking;
@@ -116,6 +126,38 @@ class Attribute
   public function getExpireDate()
   {
     return $this->expire_date;
+  }
+
+  public function setStartTime($start_time)
+  {
+    if ($start_time == '') return;
+
+    if (!($start_time instanceof \DateTime)) {
+      $this->start_time = new \DateTime(date('Y-m-d').' '.$start_time);
+    } else {
+      $this->start_time = $start_time;
+    }
+  }
+
+  public function getStartTime()
+  {
+    return $this->start_time;
+  }
+
+  public function setStopTime($stop_time)
+  {
+    if ($stop_time == '') return;
+
+    if (!($stop_time instanceof \DateTime)) {
+      $this->stop_time = new \DateTime(date('Y-m-d').' '.$stop_time);
+    } else {
+      $this->stop_time = $stop_time;
+    }
+  }
+
+  public function getStopTime()
+  {
+    return $this->stop_time;
   }
 
   public function setTicket($ticket)
