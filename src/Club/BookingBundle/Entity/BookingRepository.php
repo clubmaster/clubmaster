@@ -50,4 +50,17 @@ class BookingRepository extends EntityRepository
   public function getIntervals(\Club\BookingBundle\Entity\Booking $booking)
   {
   }
+
+  public function getAllFutureBookings(\Club\UserBundle\Entity\User $user, \DateTime $start)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('b')
+      ->from('ClubBookingBundle:Booking','b')
+      ->where('b.first_date >= :start')
+      ->andWhere('b.user = :user')
+      ->setParameter('user', $user->getId())
+      ->setParameter('start', $start)
+      ->getQuery()
+      ->getResult();
+  }
 }

@@ -1,0 +1,35 @@
+<h2>{% trans %}Your bookings{% endtrans %}</h2>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Time{% endtrans %}</th>
+      <th>{% trans %}Partner{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.firstDate|club_date }}</td>
+      <td>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</td>
+
+      {% if booking.guest %}
+      <td>{% trans %}Guest{% endtrans %}</td>
+      {% else %}
+      <td>{{ booking.firstPartner }}</td>
+      {% endif %}
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}You have no coming bookings.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+

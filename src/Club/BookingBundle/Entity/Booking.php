@@ -292,4 +292,10 @@ class Booking
     {
         return $this->field;
     }
+
+    public function getFirstPartner()
+    {
+      if (count($this->getUsers()))
+        return $this->users[0];
+    }
 }
