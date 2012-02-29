@@ -1746,6 +1746,10 @@
         <source>Guest</source>
         <target>Gæst</target>
       </trans-unit>
+      <trans-unit id="439">
+        <source>You have no coming bookings.</source>
+        <target>Du har ingen kommende bookinger.</target>
+      </trans-unit>
 
     </body>
   </file>
