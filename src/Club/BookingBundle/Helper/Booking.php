@@ -165,6 +165,34 @@ class Booking
       return;
     }
 
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date = CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->setParameter('user', $this->partner->getId())
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day')) {
+      $this->setError('Your partner cannot have more bookings this day');
+      return;
+    }
+
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date >= CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->setParameter('user', $this->partner->getId())
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future')) {
+      $this->setError($this->translator->trans('Your partner cannot have more bookings'));
+      return;
+    }
+
     $this->bind();
   }
 
