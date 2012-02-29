@@ -1750,6 +1750,10 @@
         <source>You have no coming bookings.</source>
         <target>Du har ingen kommende bookinger.</target>
       </trans-unit>
+      <trans-unit id="440">
+        <source>You cannot have more bookings</source>
+        <target>Du kan ikke have flere bookinger</target>
+      </trans-unit>
 
     </body>
   </file>

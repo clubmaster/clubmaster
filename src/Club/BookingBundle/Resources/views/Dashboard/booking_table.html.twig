@@ -5,7 +5,7 @@
     <tr>
       <th>{% trans %}Date{% endtrans %}</th>
       <th>{% trans %}Time{% endtrans %}</th>
-      <th>{% trans %}Partner{% endtrans %}</th>
+      <th>{% trans %}Users{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -21,9 +21,9 @@
       <td>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</td>
 
       {% if booking.guest %}
-      <td>{% trans %}Guest{% endtrans %}</td>
+      <td>{{ booking.user }} - {% trans %}Guest{% endtrans %}</td>
       {% else %}
-      <td>{{ booking.firstPartner }}</td>
+      <td>{{ booking.user }} - {{ booking.firstPartner }}</td>
       {% endif %}
       <td>
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_booking_booking_viewbooking', { 'id':booking.id })} %}

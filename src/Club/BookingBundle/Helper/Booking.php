@@ -54,7 +54,7 @@ class Booking
     if ($diff < $this->container->getParameter('club_booking.cancel_minute_created')*60)
       return;
 
-    $delete_within = clone $book_time;
+    $delete_within = clone $booking->getFirstDate();
     $delete_within->sub(new \DateInterval('PT'.$this->container->getParameter('club_booking.cancel_minute_before').'M'));
     if ($delete_within < new \DateTime())
       $this->setError('Cannot delete booking because time range is too small');
@@ -283,7 +283,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_future')) {
-      $this->setError('You cannot have more bookings');
+      $this->setError($this->translator->trans('You cannot have more bookings'));
       return;
     }
   }
