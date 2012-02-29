@@ -1738,6 +1738,14 @@
         <source>You are welcome to post anything to the other members here. The post will end up on the frontpage.</source>
         <target>Du er velkommen til at poste noget her til de andre medlemmer. Posten vil komme op på forsiden.</target>
       </trans-unit>
+      <trans-unit id="437">
+        <source>Your bookings</source>
+        <target>Dine bookinger</target>
+      </trans-unit>
+      <trans-unit id="438">
+        <source>Guest</source>
+        <target>Gæst</target>
+      </trans-unit>
 
     </body>
   </file>
