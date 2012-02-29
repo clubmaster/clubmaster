@@ -39,10 +39,8 @@ class Booking
     if ($this->security_context->isGranted('ROLE_BOOKING_ADMIN'))
       return;
 
-    if ($this->booking->getUser() != $this->security_context->getToken()->getUser()) {
+    if (!$this->booking->isOwner($this->security_context->getToken()->getUser()))
       $this->setError('You do not have permissions to delete this booking');
-      return;
-    }
 
     if ($this->booking->getFirstDate() < new \DateTime()) {
       $this->setError('You cannot delete bookings in the past');

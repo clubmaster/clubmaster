@@ -298,4 +298,15 @@ class Booking
       if (count($this->getUsers()))
         return $this->users[0];
     }
+
+    public function isOwner(\Club\UserBundle\Entity\User $user)
+    {
+      if ($user == $this->getUser()) return true;
+
+      foreach ($this->getUsers() as $u) {
+        if ($u == $user) return true;
+      }
+
+      return false;
+    }
 }
