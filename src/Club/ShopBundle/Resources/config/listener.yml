@@ -44,3 +44,8 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+  club.shopbundle.dashboard_listener:
+    class: Club\ShopBundle\Listener\DashboardListener
+    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    tags:
+      - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }

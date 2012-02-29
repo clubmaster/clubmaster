@@ -24,3 +24,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, %club_team.minutes_before_schedule%, %club_team.penalty_enabled%, @order, %club_team.penalty_product_name%]
     tags:
       - { name: kernel.event_listener, event: team.penalty, method: onTeamPenalty }
+  club.teambundle.dashboard_listener:
+    class: Club\TeamBundle\Listener\DashboardListener
+    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    tags:
+      - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }

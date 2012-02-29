@@ -1,3 +1,15 @@
+== HOT ==
+push items into dashboard:
+  coming teams
+  played matches
+  coming events
+view bookings at the dashboard
+only one total booking at the time
+turn booking overview has to be a setting
+all names in a booking
+if allowed to change plan, go to plan when clicking on it
+click on a booking plan, might be wrong dates
+
 == NOTES TO THIS RELEASE ==
 fix booking plan period times
 auto complete booking, only active members
@@ -14,10 +26,6 @@ quick create intervals when creating the field
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 does lifetime membership works?
 make a ranking list, look at scorekeepr, nice project :)
-push items into dashboard:
-  coming teams
-  played matches
-  coming events
 
 == NOTES TO LATER ==
 make a quick way to remove all team penalties

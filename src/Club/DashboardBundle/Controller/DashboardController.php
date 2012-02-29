@@ -17,17 +17,11 @@ class DashboardController extends Controller
   {
     $em = $this->getDoctrine();
 
-    $orders = $em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$this->get('security.context')->getToken()->getUser());
-
-    $start = new \DateTime();
-    $end = clone $start;
-    $end->add(new \DateInterval('P1M'));
-
-    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
+    $event = new \Club\DashboardBundle\Event\FilterDashboardEvent();
+    $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onDashboardView, $event);
 
     return array(
-      'orders' => $orders,
-      'schedules' => $schedules
+      'output' => $event->getOutput()
     );
   }
 }
