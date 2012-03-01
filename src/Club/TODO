@@ -1,24 +1,22 @@
 == HOT ==
+obey rules of book time
 turn booking overview has to be a setting
 all names in a booking
 if allowed to change plan, go to plan when clicking on it
 click on a booking plan, might be wrong dates
+make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 
 == NOTES TO THIS RELEASE ==
 is it possible to return in the dependency injector when bundle is disabled?
-fix booking plan period times
 auto complete booking, only active members
-obey rules of book time
 on booking plan, booking overview remember description
 problems with generate repetitions, check up on this
-test ban
+test for banning does not work, it pick wrong user
 view product attribute product view
 do routing to annotation instead of, check default install of symfony bundle
 $request->getPreferredLanguage(array('en', 'fr'));
-make time on day where users can book subscription
 merge migrations into one file
 quick create intervals when creating the field
-make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 does lifetime membership works?
 make a ranking list, look at scorekeepr, nice project :)
 
