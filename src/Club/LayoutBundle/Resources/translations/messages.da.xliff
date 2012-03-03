@@ -1794,6 +1794,10 @@
         <source>Info: What fields should be booked for the plan?</source>
         <target>Info: Hvilke baner skal bookes til denne plan?</target>
       </trans-unit>
+      <trans-unit id="451">
+        <source>Your partner cannot have more bookings</source>
+        <target>Din partner kan ikke have flere bookings</target>
+      </trans-unit>
 
     </body>
   </file>
