@@ -1798,6 +1798,10 @@
         <source>Your partner cannot have more bookings</source>
         <target>Din partner kan ikke have flere bookings</target>
       </trans-unit>
+      <trans-unit id="452">
+        <source>There are no plans.</source>
+        <target>Der er ingen planer.</target>
+      </trans-unit>
 
     </body>
   </file>
