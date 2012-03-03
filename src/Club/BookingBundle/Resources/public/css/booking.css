@@ -56,6 +56,14 @@ div#booking div#intervals
   z-index: 10;
 }
 
+div#booking div#bookings
+{
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  z-index: 10;
+}
+
 div#booking a
 {
   text-decoration: none;
@@ -93,22 +101,46 @@ div#booking div.past:hover
   background-color: #e3e3e3;
 }
 
-div#booking div.booking
+div#booking div#bookings div
 {
   position: absolute;
-  background-color: #db9696;
   font-size: 11px;
   border: dotted 1px #aeaeae;
   padding: 5px 0px 0px 0px;
   z-index: 30;
 }
 
-div#booking div.booking:hover
+div#booking div#bookings div.booking
+{
+  background-color: #bd6c6c;
+}
+
+div#booking div#bookings div.booking:hover
 {
   background-color: #cb7c7c;
 }
 
-div#booking div.time
+div#booking div#bookings div.plan
+{
+  background-color: #a9c0d5;
+}
+
+div#booking div#bookings div.plan:hover
+{
+  background-color: #95b1cb;
+}
+
+div#booking div#bookings div.team
+{
+  background-color: #a9c0d5;
+}
+
+div#booking div#bookings div.team:hover
+{
+  background-color: #95b1cb;
+}
+
+div#booking div#times div
 {
   position: absolute;
   height: 100%;
@@ -127,7 +159,7 @@ div#booking div.field
   color: #ffffff;
 }
 
-.link
+div#booking .link
 {
   cursor: pointer;
 }

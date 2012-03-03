@@ -43,7 +43,7 @@ function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
   var end = Date.parse(booking.end_date);
   var diff=(end-start)/1000/60;
   var day_diff=(start-day_start)/1000/60;
-  var ret = '';
+  var ret;
 
   var width=((diff*pixel_size)-1)+'px';
   var left=(day_diff*pixel_size)+'px';
@@ -58,13 +58,13 @@ function makeBookedUrl(booking, url, pixel_size, field_height, day_start)
     $.each(booking.fields, function() {
       var top=$("#field_"+this.id).css('top');
 
-      if (top) ret = ret+'<div class="link team" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/team/'+booking.id+'/'+this.id+'\'">&#160;'+booking.team_name+'</div>';
+      if (top) ret = ret+'<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/team/'+booking.id+'/'+this.id+'\'">&#160;'+booking.team_name+'</div>';
     });
   } else if (booking.type == 'plan') {
     $.each(booking.fields, function() {
       var top=$("#field_"+this.id).css('top');
 
-      if (top) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/plan/'+booking.id+'/'+this.id+'\'">&#160;'+booking.name+'</div>';
+      if (top) ret = ret+'<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/plan/'+booking.id+'/'+this.id+'\'">&#160;'+booking.name+'</div>';
     });
 
   }
@@ -100,7 +100,7 @@ function initTable(location, date, url, hour_width, field_height)
 
     while (startTime.getTime() < endTime.getTime()) {
       times++;
-      $("#times").append('<div style="width: '+hour_width+'px; left: '+left+'px">'+checkTime(startTime.getHours())+':'+checkTime(startTime.getMinutes())+'</div>');
+      $("#times").append('<div class="time" style="width: '+hour_width+'px; left: '+left+'px">'+checkTime(startTime.getHours())+':'+checkTime(startTime.getMinutes())+'</div>');
       left = left+hour_width;
       startTime.setHours(startTime.getHours()+1);
     }
@@ -167,7 +167,6 @@ function initTable(location, date, url, hour_width, field_height)
 
     $('div#times').css('left', start_position+'px');
     $('div#intervals').css('left', start_position+'px');
-    $('div#bookings').css('left', start_position+'px');
 
     initBookings(location, date, url, pixel_size, field_height, day_start);
 
@@ -187,7 +186,6 @@ $(function() {
 
     $("#times").css('left', new_pos+'px');
     $("#intervals").css('left', new_pos+'px');
-    $("#bookings").css('left', new_pos+'px');
   });
   $("#next").click(function() {
     var overlay_width = $("#overlay").width();
@@ -203,6 +201,5 @@ $(function() {
 
     $("#times").css('left', new_pos+'px');
     $("#intervals").css('left', new_pos+'px');
-    $("#bookings").css('left', new_pos+'px');
   });
 });
