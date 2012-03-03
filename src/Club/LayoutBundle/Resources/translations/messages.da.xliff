@@ -1758,6 +1758,42 @@
         <source>Plan category</source>
         <target>Plan kategori</target>
       </trans-unit>
+      <trans-unit id="442">
+        <source>Create plan</source>
+        <target>Opret plan</target>
+      </trans-unit>
+      <trans-unit id="443">
+        <source>Period start</source>
+        <target>Periode start</target>
+      </trans-unit>
+      <trans-unit id="444">
+        <source>Period end</source>
+        <target>Periode slut</target>
+      </trans-unit>
+      <trans-unit id="445">
+        <source>Info: When is the first date the plan will be valid from?</source>
+        <target>Info: Hvornår vil denne plan blive gyldig fra?</target>
+      </trans-unit>
+      <trans-unit id="446">
+        <source>Info: When is the last day the plan will be valid?</source>
+        <target>Info: Hvornår vil denne plan ikke længere være gyldig?</target>
+      </trans-unit>
+      <trans-unit id="447">
+        <source>Info: What time on the day will the plan be valid from?</source>
+        <target>Info: Hvornår på dagen vil planen være gyldig?</target>
+      </trans-unit>
+      <trans-unit id="448">
+        <source>Info: What day on the week should the plan be booked?</source>
+        <target>Info: Hvilken dag på ugen skal planen være gyldig?</target>
+      </trans-unit>
+      <trans-unit id="449">
+        <source>Info: What time on the day will the plan end?</source>
+        <target>Info: Hvornår på dagen skal planen ikke længere være gyldig?</target>
+      </trans-unit>
+      <trans-unit id="450">
+        <source>Info: What fields should be booked for the plan?</source>
+        <target>Info: Hvilke baner skal bookes til denne plan?</target>
+      </trans-unit>
 
     </body>
   </file>

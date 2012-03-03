@@ -3,7 +3,7 @@
 {% block body %}
 
 <form method="post" action="{{ path('club_booking_adminplan_edit', {'plan_category_id':plan.planCategory.id, 'id':plan.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
+{% include "ClubBookingBundle:AdminPlan:form.html.twig" %}
 </form>
 
 {% endblock %}
