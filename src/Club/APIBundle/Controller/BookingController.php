@@ -78,9 +78,9 @@ class BookingController extends Controller
 
     $date = ($date == null) ? new \DateTime() : new \DateTime($date);
     $start = clone $date;
-    $start->setTime(0,0,0);
     $end = clone $date;
-    $end->setTime(23,59,59);
+    $start->setTime(23,59,59);
+    $end->setTime(0,0,0);
 
     $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
