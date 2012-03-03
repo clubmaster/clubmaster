@@ -1754,6 +1754,10 @@
         <source>You cannot have more bookings</source>
         <target>Du kan ikke have flere bookinger</target>
       </trans-unit>
+      <trans-unit id="441">
+        <source>Plan category</source>
+        <target>Plan kategori</target>
+      </trans-unit>
 
     </body>
   </file>

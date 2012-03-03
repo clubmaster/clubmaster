@@ -335,4 +335,9 @@ class Field
     {
         return $this->close;
     }
+
+    public function getFormString()
+    {
+      return $this->getLocation()->getLocationName().', '.$this->getName();
+    }
 }

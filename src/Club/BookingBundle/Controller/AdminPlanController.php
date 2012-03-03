@@ -118,7 +118,11 @@ class AdminPlanController extends Controller
       ->add('period_end')
       ->add('first_date')
       ->add('end_date')
-      ->add('fields')
+      ->add('fields', 'entity', array(
+        'class' => 'Club\BookingBundle\Entity\Field',
+        'multiple' => true,
+        'property' => 'formString'
+      ))
       ->add('day', 'choice', array(
         'choices' => $days
       ))
