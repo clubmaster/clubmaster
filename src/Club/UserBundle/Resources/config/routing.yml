@@ -12,6 +12,10 @@ _user:
   resource: "@ClubUserBundle/Controller/UserController.php"
   type: annotation
 
+_members:
+  resource: "@ClubUserBundle/Controller/MemberController.php"
+  type: annotation
+
 _location:
   resource: "@ClubUserBundle/Controller/LocationController.php"
   type: annotation

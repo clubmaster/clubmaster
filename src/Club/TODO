@@ -1,5 +1,4 @@
 == HOT ==
-make confirmed teams, and use confirmed field on team -> user
 users should be able to view each other, only active membership can view details
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 obey rules of book time
@@ -10,6 +9,7 @@ make integrations to economic
 make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
+make confirmed teams, and use confirmed field on team -> user
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general

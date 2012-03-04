@@ -1,0 +1,32 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>[x]</th>
+      <th>{% trans %}Number{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="2"></td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.memberNumber }}</td>
+      <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="2">{% trans %}There are no users in the system.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
