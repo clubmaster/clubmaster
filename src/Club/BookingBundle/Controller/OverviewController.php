@@ -52,11 +52,11 @@ class OverviewController extends Controller
        return $this->redirect($this->generateUrl('club_user_location_index'));
      }
 
-     return array(
+     return $this->render('ClubBookingBundle:Overview:'.$this->container->getParameter('club_booking.booking_style').'.html.twig', array(
        'date' => $date,
        'nav' => $nav,
-       'location' => $location
-    );
+       'location' => $location,
+     ));
    }
 
    protected function getNav()

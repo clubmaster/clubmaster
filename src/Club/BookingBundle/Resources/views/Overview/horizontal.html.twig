@@ -1,0 +1,64 @@
+{% extends "ClubBookingBundle::base.html.twig" %}
+
+{% block javascripts %}
+  <script src="{{ asset('bundles/clubbooking/js/booking_horizontal.js') }}" type="text/javascript"></script>
+  <script>
+  $(document).ready(function() {
+    $("#date").datepicker({
+      showOn: "button",
+      buttonImage: "{{ asset('bundles/clublayout/images/icons/16x16/calendar.png') }}",
+      buttonImageOnly: true,
+      dateFormat: "yy-mm-dd",
+      onSelect: function (dateText, inst) {
+        location.href="{{ path('homepage') }}booking/"+dateText
+      }
+    });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    var date = Date.parse("{{ date|date('c')}}");
+    var url = "{{ path('homepage') }}";
+    var location = {{ location.id }};
+    var hour_height = 80;
+    var field_width = 90;
+
+    initTable(location, date, url, hour_height, field_width);
+  });
+  </script>
+
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clubbooking/css/booking_horizontal.css') }}" />
+{% endblock %}
+
+{% block body %}
+<form method="post">
+<h2>{{ date|club_date('full') }} <input type="hidden" name="date" id="date" /></h2>
+</form>
+
+<p class="box">
+{% for item in nav %}
+  <a class="btn" href="{{ path('club_booking_overview_index', {'date':item|date('Y-m-d')}) }}"><span>{{ item|club_day }} &raquo;</span></a>
+{% endfor %}
+</p>
+
+<div class="fix"></div>
+
+<p><a class="link" id="prev"><img src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_left.png') }}" /></a> <a class="link" id="next"><img src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_right.png') }}" /></a></p>
+
+<div id="overlay">
+  <div id="booking">
+    <div id="times"></div> <!-- this is for field names -->
+     <div id="nav_overlay">
+      <div id="fields"></div> <!-- this is for time periods -->
+      <div id="intervals"></div> <!-- this is for intervals -->
+      <div id="bookings"></div> <!-- this is for bookings -->
+    </div>
+  </div>
+</div>
+<div id="preloader"><img src="{{ asset('bundles/clublayout/images/ajax-loader.gif') }}"></div>
+
+{% endblock %}

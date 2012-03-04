@@ -15,6 +15,18 @@
     });
   });
   </script>
+
+  <script>
+  $(document).ready(function() {
+    var date = Date.parse("{{ date|date('c')}}");
+    var url = "{{ path('homepage') }}";
+    var location = {{ location.id }};
+    var hour_width = 120;
+    var field_height = 45;
+
+    initTable(location, date, url, hour_width, field_height);
+  });
+  </script>
 {% endblock %}
 
 {% block stylesheets %}
@@ -32,6 +44,20 @@
 {% endfor %}
 </p>
 
-{% include "ClubBookingBundle:Overview:table.html.twig" %}
+<div class="fix"></div>
+
+<p><a class="link" id="prev"><img src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_left.png') }}" /></a> <a class="link" id="next"><img src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_right.png') }}" /></a></p>
+
+<div id="overlay">
+  <div id="booking">
+    <div id="fields"></div> <!-- this is for field names -->
+     <div id="nav_overlay">
+      <div id="times"></div> <!-- this is for time periods -->
+      <div id="intervals"></div> <!-- this is for intervals -->
+      <div id="bookings"></div> <!-- this is for bookings -->
+    </div>
+  </div>
+</div>
+<div id="preloader"><img src="{{ asset('bundles/clublayout/images/ajax-loader.gif') }}"></div>
 
 {% endblock %}

@@ -36,5 +36,6 @@ class ClubBookingExtension extends Extension
         $container->setParameter('club_booking.num_book_future', $config['num_book_future']);
         $container->setParameter('club_booking.cancel_minute_before', $config['cancel_minute_before']);
         $container->setParameter('club_booking.cancel_minute_created', $config['cancel_minute_created']);
+        $container->setParameter('club_booking.booking_style', $config['booking_style']);
     }
 }
