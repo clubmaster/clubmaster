@@ -9,18 +9,19 @@ click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 make integrations to economic
 make integrations to quickpay
-
-== NOTES TO THIS RELEASE ==
 add users latest booking on profile page
 add users latest teams on profile page
 make confirmed teams, and use confirmed field on team -> user
+auto complete booking, only active members
+on booking plan, booking overview remember description
+make a ranking list, look at scorekeepr, nice project :)
+
+== NOTES TO THIS RELEASE ==
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
 add first booking plan on create booking plan category page
 is it possible to return in the dependency injector when bundle is disabled?
-auto complete booking, only active members
-on booking plan, booking overview remember description
 problems with generate repetitions, check up on this
 test for banning does not work, it pick wrong user
 view product attribute product view
@@ -29,7 +30,6 @@ $request->getPreferredLanguage(array('en', 'fr'));
 merge migrations into one file
 quick create intervals when creating the field
 does lifetime membership works?
-make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO LATER ==
 make a quick way to remove all team penalties
