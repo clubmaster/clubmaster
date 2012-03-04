@@ -1,4 +1,6 @@
 == HOT ==
+there are renewals in atk at the time, there should be none
+problems with renewal orders without payment
 add first booking plan on create booking plan category page
 send booking confirm mail
 make confirmed teams, and use confirmed field on team -> user
@@ -8,6 +10,8 @@ obey rules of book time
 if allowed to change plan, go to plan when clicking on it
 click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+make integrations to economic
+make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
 is it possible to return in the dependency injector when bundle is disabled?
