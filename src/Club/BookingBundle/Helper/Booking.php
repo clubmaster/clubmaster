@@ -12,6 +12,7 @@ class Booking
   protected $session;
   protected $club_interval;
   protected $translator;
+  protected $event_dispatcher;
   protected $error;
   protected $user;
   protected $date;
@@ -22,7 +23,7 @@ class Booking
   protected $is_valid = true;
   protected $price;
 
-  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval, $translator)
+  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval, $translator, $event_dispatcher)
   {
     $this->em = $em;
     $this->container = $container;
@@ -30,6 +31,7 @@ class Booking
     $this->session = $session;
     $this->club_interval = $club_interval;
     $this->translator = $translator;
+    $this->event_dispatcher = $event_dispatcher;
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -240,6 +242,9 @@ class Booking
     $this->em->persist($this->booking);
     $this->em->flush();
 
+    $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+    $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
+
     return $this->booking;
   }
 
@@ -247,6 +252,9 @@ class Booking
   {
     $this->em->remove($this->booking);
     $this->em->flush();
+
+    $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+    $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
   }
 
   protected function setError($error)

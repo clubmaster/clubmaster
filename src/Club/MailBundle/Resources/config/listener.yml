@@ -24,3 +24,13 @@ services:
     arguments: [@doctrine.orm.entity_manager, @mailer, @swiftmailer.transport.real, @clubmaster_mailer, @event_dispatcher]
     tags:
       - { name: kernel.event_listener, event: mail.task, method: onMailTask }
+  club.mailbundle.listener.booking_confirm_listener:
+    class: Club\MailBundle\Listener\BookingListener
+    arguments: [@doctrine.orm.entity_manager, @templating, @router, @clubmaster_mailer]
+    tags:
+      - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
+  club.mailbundle.listener.booking_cancel_listener:
+    class: Club\MailBundle\Listener\BookingListener
+    arguments: [@doctrine.orm.entity_manager, @templating, @router, @clubmaster_mailer]
+    tags:
+      - { name: kernel.event_listener, event: booking.cancel, method: onBookingCancel }

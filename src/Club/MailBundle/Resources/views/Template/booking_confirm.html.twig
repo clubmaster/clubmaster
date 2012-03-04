@@ -1,0 +1,19 @@
+Dear {{ user.profile.name }},
+
+This is a confirmation of your booking.
+
+Location: {{ booking.field.location.locationName }}
+Date: {{ booking.firstDate|club_date }}
+Time:  {{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}
+Field:  {{ booking.field }}
+
+{% if booking.guest %}
+Partner: Guest
+{% else %}
+  {% for partner in booking.users %}
+Partner: partner.profile.name
+  {% endfor %}
+{% endif %}
+
+Best regards,
+ClubMaster
