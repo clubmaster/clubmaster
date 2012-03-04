@@ -118,8 +118,9 @@ function initTable(location, date, url, hour_height, field_width)
       fields++;
     });
 
-    if (fields*field_width < $("#overlay").width()) {
-      field_width = ($("#overlay").width()/fields)-(fields*3);
+    var max = $("#overlay").width()-100;
+    if (fields*field_width < max) {
+      field_width = max/fields;
     }
 
     fields = 0;
