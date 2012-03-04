@@ -5,7 +5,6 @@ make confirmed teams, and use confirmed field on team -> user
 users should be able to view each other, only active membership can view details
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 obey rules of book time
-turn booking overview has to be a setting
 if allowed to change plan, go to plan when clicking on it
 click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
