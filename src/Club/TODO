@@ -1,6 +1,6 @@
 == HOT ==
-there are renewals in atk at the time, there should be none
-problems with renewal orders without payment
+remove dublicated subscriptions on ATK
+update all payment_ids and shipping_ids on ATK
 add first booking plan on create booking plan category page
 send booking confirm mail
 make confirmed teams, and use confirmed field on team -> user
