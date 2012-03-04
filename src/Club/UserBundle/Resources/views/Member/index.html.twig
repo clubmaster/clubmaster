@@ -18,7 +18,7 @@
   {% for user in users %}
     <tr>
       <td>{{ user.memberNumber }}</td>
-      <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+      <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.profile.firstName }} {{ user.profile.lastName }}</a></td>
     </tr>
   {% else %}
   <tr>

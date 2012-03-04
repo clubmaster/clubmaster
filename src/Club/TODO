@@ -11,6 +11,8 @@ make integrations to economic
 make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
+add users latest booking on profile page
+add users latest teams on profile page
 make confirmed teams, and use confirmed field on team -> user
 improve documentation of config file
 improve documentation of overwrite mail template files

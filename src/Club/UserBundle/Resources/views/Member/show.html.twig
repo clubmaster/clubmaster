@@ -1,0 +1,23 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>{% trans %}User{% endtrans %}</h2>
+
+<div class="box-03 noimage box">
+
+  <h2 class="nomb">{{ user.profile.name }}</h2>
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+  <p class="nomt low">
+    {% if user.profile.profileEmail %}
+      {% trans with {'%email%':user.profile.profileEmail.emailAddress} %}Email: %email%{% endtrans %}<br />
+    {% endif %}
+    {% if user.profile.profilePhone %}
+      {% trans with {'%phone%':user.profile.profilePhone.phoneNumber} %}Phone: %phone%{% endtrans %}
+    {% endif %}
+  </p>
+  {% endif %}
+
+</div> <!-- /box-03 -->
+
+{% endblock %}

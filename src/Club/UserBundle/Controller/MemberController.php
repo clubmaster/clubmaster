@@ -15,11 +15,24 @@ class MemberController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $users = $em->getRepository('ClubUserBundle:User')->findAll();
 
     return array(
       'users' => $users
+    );
+  }
+
+  /**
+   * @Template()
+   * @Route("/members/{id}")
+   */
+  public function showAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $user = $em->find('ClubUserBundle:User', $id);
+
+    return array(
+      'user' => $user
     );
   }
 }

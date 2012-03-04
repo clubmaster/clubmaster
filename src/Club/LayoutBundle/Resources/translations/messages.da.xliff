@@ -1802,6 +1802,14 @@
         <source>There are no plans.</source>
         <target>Der er ingen planer.</target>
       </trans-unit>
+      <trans-unit id="453">
+        <source>Members</source>
+        <target>Medlemmer</target>
+      </trans-unit>
+      <trans-unit id="454">
+        <source>My profile</source>
+        <target>Min profil</target>
+      </trans-unit>
 
     </body>
   </file>
