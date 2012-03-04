@@ -1,5 +1,4 @@
 == HOT ==
-send booking confirm mail
 make confirmed teams, and use confirmed field on team -> user
 users should be able to view each other, only active membership can view details
 make that you have to checkin in order to confirm your booking, otherwice it will be free
@@ -12,6 +11,8 @@ make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
 improve documentation of config file
+improve documentation of overwrite mail template files
+improve documentation of overwrite pages in general
 add first booking plan on create booking plan category page
 is it possible to return in the dependency injector when bundle is disabled?
 auto complete booking, only active members
