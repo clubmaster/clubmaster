@@ -116,6 +116,15 @@ function initTable(location, date, url, hour_height, field_width)
     var left=0;
     $.each(json.data.fields, function() {
       fields++;
+    });
+
+    if (fields*field_width < $("#overlay").width()) {
+      field_width = ($("#overlay").width()/fields)-(fields*3);
+    }
+
+    fields = 0;
+    $.each(json.data.fields, function() {
+      fields++;
 
       $("#fields").append('<div id="field_'+this.id+'" style="width: '+field_width+'px; left: '+left+'px">&#160;'+this.name+'</div>');
 
@@ -146,7 +155,7 @@ function initTable(location, date, url, hour_height, field_width)
       left = left+field_width;
     });
 
-    var height=((times)*hour_height);
+    var height=((times)*hour_height)+40;
     var fields_width=(fields*field_width)+1;
     var width=fields_width+100;
 
