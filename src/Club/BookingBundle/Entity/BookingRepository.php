@@ -64,4 +64,21 @@ class BookingRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getLatest(\Club\UserBundle\Entity\User $user, $limit=10)
+  {
+    $date = new \DateTime();
+
+    return $this->_em->createQueryBuilder()
+      ->select('b')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.first_date < :date')
+      ->andWhere('(b.user = :user OR u.id = :user)')
+      ->setMaxResults($limit)
+      ->setParameter('user', $user->getId())
+      ->setParameter('date', $date)
+      ->getQuery()
+      ->getResult();
+  }
 }

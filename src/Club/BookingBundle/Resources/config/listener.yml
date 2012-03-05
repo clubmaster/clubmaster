@@ -14,3 +14,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
+  club.bookingbundle.member_listener:
+    class: Club\BookingBundle\Listener\DashboardListener
+    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    tags:
+      - { name: kernel.event_listener, event: member.view, method: onMemberView }

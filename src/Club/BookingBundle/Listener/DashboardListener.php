@@ -15,6 +15,19 @@ class DashboardListener
     $this->templating = $templating;
   }
 
+  public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  {
+    $user = $event->getUser();
+    $output = $event->getOutput();
+
+    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getLatest($user);
+    $output .= $this->templating->render('ClubBookingBundle:Dashboard:member_table.html.twig', array(
+      'bookings' => $bookings
+    ));
+
+    $event->setOutput($output);
+  }
+
   public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
     $output = $event->getOutput();
