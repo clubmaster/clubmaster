@@ -24,7 +24,7 @@ class MenuListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $menu[] = array(
+      $menu[10] = array(
         'name' => $this->translator->trans('Dashboard'),
         'route' => $this->router->generate('club_dashboard_dashboard_index')
       );

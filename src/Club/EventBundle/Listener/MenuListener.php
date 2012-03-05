@@ -23,7 +23,7 @@ class MenuListener
 
     $menu = $event->getMenu();
 
-    $menu['event'] = array(
+    $menu[150] = array(
       'name' => $this->translator->trans('Event'),
       'route' => $this->router->generate('event_event')
     );
@@ -37,7 +37,7 @@ class MenuListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
-      $menu['event'] = array(
+      $menu[55] = array(
         'name' => $this->translator->trans('Event'),
         'route' => $this->router->generate('admin_event_event'),
         'items' => array()

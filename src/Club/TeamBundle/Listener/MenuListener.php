@@ -24,7 +24,7 @@ class MenuListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
-      $menu['team'] = array(
+      $menu[65] = array(
         'name' => $this->translator->trans('Team'),
         'route' => $this->router->generate('club_team_adminteamcategory_index'),
         'items' => array(
@@ -49,7 +49,7 @@ class MenuListener
 
     $menu = $event->getMenu();
 
-    $menu[] = array(
+    $menu[55] = array(
       'name' => $this->translator->trans('Team'),
       'route' => $this->router->generate('club_team_team_index')
     );

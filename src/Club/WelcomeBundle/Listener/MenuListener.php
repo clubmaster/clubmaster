@@ -19,7 +19,7 @@ class MenuListener
   {
     $menu = $event->getMenu();
 
-    $menu['welcome'] = array(
+    $menu[29] = array(
       'name' => $this->translator->trans('Blog'),
       'route' => $this->router->generate('club_welcome_adminblog_index'),
       'items' => array()

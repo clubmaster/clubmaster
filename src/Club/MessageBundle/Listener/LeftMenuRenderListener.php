@@ -20,7 +20,7 @@ class LeftMenuRenderListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('ROLE_MESSAGE_ADMIN')) {
-      $menu['message'] = array(
+      $menu[33] = array(
         'name' => $this->translator->trans('Message'),
         'route' => $this->router->generate('club_message_adminmessage_index'),
         'items' => array()

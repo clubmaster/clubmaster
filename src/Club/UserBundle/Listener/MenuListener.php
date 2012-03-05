@@ -19,19 +19,19 @@ class MenuListener
   {
     $menu = $event->getMenu();
 
-    $menu['user'] = array(
+    $menu[10] = array(
       'name' => $this->translator->trans('User'),
       'route' => $this->router->generate('admin_user'),
     );
-    $menu['group'] = array(
+    $menu[12] = array(
       'name' => $this->translator->trans('Group'),
       'route' => $this->router->generate('admin_group')
     );
-    $menu['location'] = array(
+    $menu[14] = array(
       'name' => $this->translator->trans('Location'),
       'route' => $this->router->generate('admin_location')
     );
-    $menu['admin'] = array(
+    $menu[16] = array(
       'name' => $this->translator->trans('Administration'),
       'route' => $this->router->generate('ban'),
       'items' => array(
@@ -66,13 +66,13 @@ class MenuListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $menu[] = array(
+      $menu[15] = array(
         'name' => $this->translator->trans('My profile'),
         'route' => $this->router->generate('user')
       );
     }
 
-    $menu[] = array(
+    $menu[20] = array(
       'name' => $this->translator->trans('Members'),
       'route' => $this->router->generate('club_user_member_index')
     );

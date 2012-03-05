@@ -23,7 +23,7 @@ class MenuListener
 
     $menu = $event->getMenu();
 
-    $menu['event'] = array(
+    $menu[100] = array(
       'name' => $this->translator->trans('Ranking'),
       'route' => $this->router->generate('club_ranking_game_index')
     );
@@ -37,7 +37,7 @@ class MenuListener
     $menu = $event->getMenu();
 
     if ($this->security_context->isGranted('ROLE_RANKING_ADMIN')) {
-      $menu['event'] = array(
+      $menu[75] = array(
         'name' => $this->translator->trans('Ranking'),
         'route' => $this->router->generate('club_ranking_admingame_index'),
         'items' => array(

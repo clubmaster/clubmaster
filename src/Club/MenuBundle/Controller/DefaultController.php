@@ -15,6 +15,8 @@ class DefaultController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onTopMenuRender, $event);
     $menu = $event->getMenu();
 
+    ksort($menu);
+
     return $this->render('ClubMenuBundle:Default:topMenu.html.twig', array(
       'menu' => $menu
     ));
@@ -29,6 +31,7 @@ class DefaultController extends Controller
       $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onLeftMenuRender, $event);
       $menu = $event->getMenu();
 
+      ksort($menu);
       if (preg_match("/admin\/([^\/]+)?.*$/", $this->getRequest()->getRequestUri(),$rtn)) {
         if (isset($menu[$rtn[1]])) {
           $menu[$rtn[1]]['active'] = 1;

@@ -23,7 +23,7 @@ class MenuListener
 
     $menu = $event->getMenu();
 
-    $menu[] = array(
+    $menu[45] = array(
       'name' => $this->translator->trans('Booking'),
       'route' => $this->router->generate('club_booking_adminfield_index'),
       'items' => array(
@@ -48,7 +48,7 @@ class MenuListener
 
     $menu = $event->getMenu();
 
-    $menu[] = array(
+    $menu[35] = array(
       'name' => $this->translator->trans('Booking'),
       'route' => $this->router->generate('club_booking_overview_index')
     );

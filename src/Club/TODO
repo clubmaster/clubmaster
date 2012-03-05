@@ -1,5 +1,5 @@
 == HOT ==
-make order in menu items, priority i guess
+disable bundles by disable its listeners
 hide dashboard items if stuff is disabled
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 obey rules of book time
@@ -16,6 +16,7 @@ on booking plan, booking overview remember description
 make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO THIS RELEASE ==
+make sure menu items cannot overwrite each other
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general

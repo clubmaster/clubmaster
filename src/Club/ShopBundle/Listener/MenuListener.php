@@ -19,7 +19,7 @@ class MenuListener
   {
     $menu = $event->getMenu();
 
-    $menu['shop'] = array(
+    $menu[22] = array(
       'name' => $this->translator->trans('Shop'),
       'route' => $this->router->generate('admin_shop_product'),
       'items' => array(
@@ -65,7 +65,7 @@ class MenuListener
   {
     $menu = $event->getMenu();
 
-    $menu[] = array(
+    $menu[30] = array(
       'name' => $this->translator->trans('Shop'),
       'route' => $this->router->generate('shop')
     );
