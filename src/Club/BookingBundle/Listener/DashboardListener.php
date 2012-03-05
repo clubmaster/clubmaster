@@ -15,7 +15,7 @@ class DashboardListener
     $this->templating = $templating;
   }
 
-  public function onDashboardView(\Club\DashboardBundle\Event\FilterDashboardEvent $event)
+  public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
     $output = $event->getOutput();
 

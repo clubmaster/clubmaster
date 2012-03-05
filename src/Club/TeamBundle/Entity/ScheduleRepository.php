@@ -109,6 +109,23 @@ class ScheduleRepository extends EntityRepository
       ->getSingleResult();
   }
 
+  public function getLatest(\Club\UserBundle\Entity\User $user, $limit=10)
+  {
+    $date = new \DateTime();
+
+    return $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubTeamBundle:Schedule', 's')
+      ->leftJoin('s.users', 'u')
+      ->where('u.user = :user')
+      ->andWhere('s.first_date < :date')
+      ->setParameter('user', $user->getId())
+      ->setParameter('date', $date)
+      ->setMaxResults($limit)
+      ->getQuery()
+      ->getResult();
+  }
+
   public function getNotProcessed()
   {
     return $this->_em->createQueryBuilder()

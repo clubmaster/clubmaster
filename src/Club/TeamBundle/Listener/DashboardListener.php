@@ -15,7 +15,20 @@ class DashboardListener
     $this->templating = $templating;
   }
 
-  public function onDashboardView(\Club\DashboardBundle\Event\FilterDashboardEvent $event)
+  public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  {
+    $user = $event->getUser();
+    $output = $event->getOutput();
+
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getLatest($user);
+    $output .= $this->templating->render('ClubTeamBundle:Dashboard:member_table.html.twig', array(
+      'schedules' => $schedules
+    ));
+
+    $event->setOutput($output);
+  }
+
+  public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
     $output = $event->getOutput();
 

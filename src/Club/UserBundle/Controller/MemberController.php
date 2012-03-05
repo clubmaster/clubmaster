@@ -41,8 +41,13 @@ class MemberController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);
 
+    $event = new \Club\UserBundle\Event\FilterOutputEvent();
+    $event->setUser($user);
+    $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onMemberView, $event);
+
     return array(
-      'user' => $user
+      'user' => $user,
+      'output' => $event->getOutput()
     );
   }
 }
