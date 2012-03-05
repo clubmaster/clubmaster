@@ -1,5 +1,5 @@
 == HOT ==
-on booking plan, booking overview remember description
+add first booking plan on create booking plan category page
 auto complete booking, only active members
 obey rules of book time
 make that you have to checkin in order to confirm your booking, otherwice it will be free
@@ -15,7 +15,6 @@ make a ranking list, look at scorekeepr, nice project :)
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
-add first booking plan on create booking plan category page
 problems with generate repetitions, check up on this
 test for banning does not work, it pick wrong user
 view product attribute product view
