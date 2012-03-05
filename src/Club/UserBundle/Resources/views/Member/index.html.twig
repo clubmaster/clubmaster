@@ -9,16 +9,13 @@
 <div class="box-02 bottom box">
   <div class="f-right">
     <strong>Sort by:</strong>
-    <select name="" class="input-text">
-      <option value="">Member number</option>
-      <option value="">First name</option>
-      <option value="">Last name</option>
-    </select>
+    {{ form_widget(form.sort) }}
   </div> <!-- /f-right -->
   <strong>Search:</strong>
-  <input type="text" name="query" class="input-text" />
+  {{ form_widget(form.query) }}
   <input type="submit" value="OK" />
 </div> <!-- /box-02 -->
+{{ form_rest(form) }}
 </form>
 
 <div class="fix" style="height: 10px;"></div>

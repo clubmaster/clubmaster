@@ -15,9 +15,19 @@ class MemberController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $users = $em->getRepository('ClubUserBundle:User')->findAll();
+    $form = $this->createForm(new \Club\UserBundle\Form\UserQuery);
+
+    $data = array();
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) $data = $form->getData();
+    }
+
+    $sort = isset($data['sort']) ? $data['sort'] : 'u.member_number';
+    $users = $em->getRepository('ClubUserBundle:User')->getBySearch($data, $sort);
 
     return array(
+      'form' => $form->createView(),
       'users' => $users
     );
   }

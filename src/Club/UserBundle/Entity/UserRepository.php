@@ -416,7 +416,7 @@ class UserRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getBySearch(array $user)
+  public function getBySearch(array $user, $sort = 'u.member_number')
   {
     $qb = $this->_em->createQueryBuilder()
       ->select('u')
@@ -427,6 +427,8 @@ class UserRepository extends EntityRepository
         ->where('u.id = :id')
         ->setParameter('id', $user['id']);
     } else {
+
+      $user['query'] = isset($user['query']) ? $user['query'] : '';
       $qb
         ->leftJoin('u.profile', 'p')
         ->where('u.member_number = :number')
@@ -436,6 +438,7 @@ class UserRepository extends EntityRepository
     }
 
     return $qb
+      ->orderBy($sort, 'ASC')
       ->getQuery()
       ->getResult();
   }
