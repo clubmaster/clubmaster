@@ -1,12 +1,12 @@
 services:
   club.teambundle.left_menu_listener:
     class: Club\TeamBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator, %club_team.enabled%]
+    arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
   club.teambundle.top_menu_listener:
     class: Club\TeamBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator, %club_team.enabled%]
+    arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
   club.team.repetition.change:

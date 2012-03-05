@@ -1,11 +1,11 @@
 services:
   club.eventbundle.listener.top_menu_render_listener:
     class: Club\EventBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator, %club_event.enabled%]
+    arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
   club.eventbundle.listener.left_menu_render_listener:
     class: Club\EventBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator, %club_event.enabled%]
+    arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }

@@ -1,6 +1,4 @@
 == HOT ==
-disable bundles by disable its listeners
-hide dashboard items if stuff is disabled
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 obey rules of book time
 if allowed to change plan, go to plan when clicking on it
@@ -21,7 +19,6 @@ improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
 add first booking plan on create booking plan category page
-is it possible to return in the dependency injector when bundle is disabled?
 problems with generate repetitions, check up on this
 test for banning does not work, it pick wrong user
 view product attribute product view
