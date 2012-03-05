@@ -22,4 +22,13 @@ class FilterMenuEvent extends Event
   {
     $this->menu = $menu;
   }
+
+  public function appendItem($menu)
+  {
+    foreach ($menu as $key => $item) {
+      if (isset($this->menu[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
+
+      $this->menu[$key] = $item;
+    }
+  }
 }

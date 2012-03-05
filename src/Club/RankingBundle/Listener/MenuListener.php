@@ -17,20 +17,16 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[100] = array(
       'name' => $this->translator->trans('Ranking'),
       'route' => $this->router->generate('club_ranking_game_index')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     if ($this->security_context->isGranted('ROLE_RANKING_ADMIN')) {
       $menu[75] = array(
         'name' => $this->translator->trans('Ranking'),
@@ -44,6 +40,6 @@ class MenuListener
       );
     }
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

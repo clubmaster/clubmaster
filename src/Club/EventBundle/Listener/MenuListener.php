@@ -17,20 +17,16 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[150] = array(
       'name' => $this->translator->trans('Event'),
       'route' => $this->router->generate('event_event')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
       $menu[55] = array(
         'name' => $this->translator->trans('Event'),
@@ -39,6 +35,6 @@ class MenuListener
       );
     }
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

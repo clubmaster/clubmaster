@@ -17,14 +17,12 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[29] = array(
       'name' => $this->translator->trans('Blog'),
       'route' => $this->router->generate('club_welcome_adminblog_index'),
       'items' => array()
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

@@ -17,8 +17,6 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[10] = array(
       'name' => $this->translator->trans('User'),
       'route' => $this->router->generate('admin_user'),
@@ -58,13 +56,11 @@ class MenuListener
       )
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
       $menu[15] = array(
         'name' => $this->translator->trans('My profile'),
@@ -77,6 +73,6 @@ class MenuListener
       'route' => $this->router->generate('club_user_member_index')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

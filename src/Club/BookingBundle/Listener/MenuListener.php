@@ -17,8 +17,6 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[45] = array(
       'name' => $this->translator->trans('Booking'),
       'route' => $this->router->generate('club_booking_adminfield_index'),
@@ -34,19 +32,17 @@ class MenuListener
       )
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
 
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[35] = array(
       'name' => $this->translator->trans('Booking'),
       'route' => $this->router->generate('club_booking_overview_index')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

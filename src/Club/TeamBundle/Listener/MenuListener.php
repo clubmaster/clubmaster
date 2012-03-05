@@ -17,8 +17,6 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
       $menu[65] = array(
         'name' => $this->translator->trans('Team'),
@@ -36,18 +34,16 @@ class MenuListener
       );
     }
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[55] = array(
       'name' => $this->translator->trans('Team'),
       'route' => $this->router->generate('club_team_team_index')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

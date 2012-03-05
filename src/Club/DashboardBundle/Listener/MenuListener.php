@@ -21,8 +21,6 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
       $menu[10] = array(
         'name' => $this->translator->trans('Dashboard'),
@@ -30,6 +28,6 @@ class MenuListener
       );
     }
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

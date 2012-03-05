@@ -17,8 +17,6 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[22] = array(
       'name' => $this->translator->trans('Shop'),
       'route' => $this->router->generate('admin_shop_product'),
@@ -58,18 +56,16 @@ class MenuListener
       ),
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenu();
-
     $menu[30] = array(
       'name' => $this->translator->trans('Shop'),
       'route' => $this->router->generate('shop')
     );
 
-    $event->setMenu($menu);
+    $event->appendItem($menu);
   }
 }

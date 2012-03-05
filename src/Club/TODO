@@ -12,7 +12,6 @@ make integrations to quickpay
 make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO THIS RELEASE ==
-make sure menu items cannot overwrite each other
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
