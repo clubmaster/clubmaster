@@ -1,3 +1,18 @@
+== RANKING ==
+cannot add matches when not logged in
+validate sets match
+validate players can play
+only have to choose opponent
+ajax request for find player
+improve form for new match
+improve design for recent played matches
+start and end for add matches to game
+remove newbie
+obey locked and invite only
+add ranking
+obey rules of game
+add comment to a match
+
 == HOT ==
 add first booking plan on create booking plan category page
 auto complete booking, only active members
@@ -9,7 +24,6 @@ click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 make integrations to economic
 make integrations to quickpay
-make a ranking list, look at scorekeepr, nice project :)
 
 == NOTES TO THIS RELEASE ==
 improve documentation of config file
