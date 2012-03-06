@@ -223,4 +223,24 @@ class Rule
     {
       $this->setUpdatedAt(new \DateTime());
     }
+
+    /**
+     * Set newbie_limit
+     *
+     * @param integer $newbieLimit
+     */
+    public function setNewbieLimit($newbieLimit)
+    {
+        $this->newbie_limit = $newbieLimit;
+    }
+
+    /**
+     * Get newbie_limit
+     *
+     * @return integer
+     */
+    public function getNewbieLimit()
+    {
+        return $this->newbie_limit;
+    }
 }
