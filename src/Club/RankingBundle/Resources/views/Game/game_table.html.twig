@@ -9,7 +9,7 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -18,10 +18,11 @@
       <td>{{ match.teamOne.teamName }}</td>
       <td>{{ match.displayResult }}</td>
       <td>{{ match.teamTwo.teamName }}</td>
+      <td>&#160;</td>
     </tr>
     {% else %}
     <tr>
-      <td>{% trans %}No matches has been played.{% endtrans %}</td>
+      <td colspan="4">{% trans %}No matches has been played.{% endtrans %}</td>
     </tr>
     {% endfor %}
   </tbody>

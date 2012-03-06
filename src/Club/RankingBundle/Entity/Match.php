@@ -44,6 +44,11 @@ class Match
     private $updated_at;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\RankingBundle\Entity\MatchTeam")
+     */
+    protected $winner;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\RankingBundle\Entity\Game")
      */
     protected $game;
@@ -199,5 +204,25 @@ class Match
       $teams = $this->getMatchTeams();
 
       return ($teams[0]->getId() > $teams[1]->getId()) ? $teams[0] : $teams[1];
+    }
+
+    /**
+     * Set winner
+     *
+     * @param Club\RankingBundle\Entity\MatchTeam $winner
+     */
+    public function setWinner(\Club\RankingBundle\Entity\MatchTeam $winner)
+    {
+        $this->winner = $winner;
+    }
+
+    /**
+     * Get winner
+     *
+     * @return Club\RankingBundle\Entity\MatchTeam
+     */
+    public function getWinner()
+    {
+        return $this->winner;
     }
 }

@@ -36,12 +36,24 @@ class Match
     }
 
     $str = $this->buildResultString($display);
+    $winner = $this->findWinner($display);
+
     $match->setDisplayResult($str);
 
     $this->em->persist($match);
     $this->em->flush();
 
     $this->setMatch($match);
+  }
+
+  private function findWinner(array $display)
+  {
+    $res = array();
+    for ($i = 0; $i < count($display[0]); $i++) {
+      $ret .= $display[0][$i].'/'.$display[1][$i].' ';
+    }
+
+    return trim($ret);
   }
 
   private function buildResultString(array $display)
