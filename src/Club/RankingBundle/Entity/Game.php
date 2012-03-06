@@ -338,6 +338,11 @@ class Game
         $this->matches[] = $matches;
     }
 
+    public function setMatches($matches)
+    {
+      $this->matches = $matches;
+    }
+
     /**
      * Get matches
      *

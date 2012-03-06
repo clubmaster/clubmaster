@@ -16,7 +16,7 @@ class GameController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $games = $em->getRepository('ClubRankingBundle:Game')->findAll();
+    $games = $em->getRepository('ClubRankingBundle:Game')->getTopLists();
 
     return array(
       'games' => $games
