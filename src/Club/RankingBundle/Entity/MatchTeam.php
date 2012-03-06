@@ -23,6 +23,8 @@ class MatchTeam
 
     /**
      * @ORM\ManyToOne(targetEntity="Match")
+     * @ORM\JoinColumn(name="match_id", onDelete="cascade")
+     *
      * @var Club\RankingBundle\Entity\Match
      */
     protected $match;
@@ -30,7 +32,7 @@ class MatchTeam
     /**
      * @var Club\RankingBundle\Entity\MatchTeamUser
      *
-     * @ORM\OneToMany(targetEntity="MatchTeamUser", mappedBy="match_team")
+     * @ORM\OneToMany(targetEntity="MatchTeamUser", mappedBy="match_team", cascade={"persist"})
      */
     protected $match_team_users;
 
@@ -87,5 +89,15 @@ class MatchTeam
     public function getMatchTeamUsers()
     {
         return $this->match_team_users;
+    }
+
+    public function getTeamName()
+    {
+      $res = array();
+      foreach ($this->getMatchTeamUsers() as $user) {
+        $res[] = $user->getUser()->getName();
+      }
+
+      return implode(' - ', $res);
     }
 }

@@ -43,7 +43,7 @@ class MatchController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        var_dump($form->getData());die();
+        $this->buildMatch($game, $form->getData());
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('club_ranking_game_index'));
       }
@@ -75,24 +75,53 @@ class MatchController extends Controller
     return $this->redirect($this->generateUrl('club_ranking_admingame_index'));
   }
 
-  private function buildMatch()
+  private function buildMatch(\Club\RankingBundle\Entity\Game $game, $data)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
     $match = new \Club\RankingBundle\Entity\Match();
     $match->setGame($game);
 
     $team = new \Club\RankingBundle\Entity\MatchTeam();
+    $team->setMatch($match);
     $team_user = new \Club\RankingBundle\Entity\MatchTeamUser();
-    $team_user->setUser(new \Club\UserBundle\Entity\User());
+    $team_user->setUser($data['user0']);
     $team_user->setMatchTeam($team);
     $team->addMatchTeamUser($team_user);
-
-    $match->addMatchTeam($team);
     $match->addMatchTeam($team);
 
-    $set = new \Club\RankingBundle\Entity\MatchSet();
+    $team = new \Club\RankingBundle\Entity\MatchTeam();
+    $team->setMatch($match);
+    $team_user = new \Club\RankingBundle\Entity\MatchTeamUser();
+    $team_user->setUser($data['user1']);
+    $team_user->setMatchTeam($team);
+    $team->addMatchTeamUser($team_user);
+    $match->addMatchTeam($team);
+
+    $display = '';
     for ($i = 0; $i < $game->getGameSet(); $i++) {
-      $match->addMatchSet($set);
+      if (strlen($data['user0set'.$i])) {
+        $set = new \Club\RankingBundle\Entity\MatchSet();
+        $set->setMatch($match);
+        $set->setGameSet($i+1);
+        $set->setValue($data['user0set'.$i]);
+        $match->addMatchSet($set);
+
+        $set = new \Club\RankingBundle\Entity\MatchSet();
+        $set->setMatch($match);
+        $set->setGameSet($i+1);
+        $set->setValue($data['user1set'.$i]);
+        $match->addMatchSet($set);
+
+        $display .= $data['user0set'.$i].'/'.$data['user1set'.$i].' ';
+      }
     }
+
+    $display = trim($display);
+    $match->setDisplayResult($display);
+
+    $em->persist($match);
+    $em->flush();
 
     return $match;
   }

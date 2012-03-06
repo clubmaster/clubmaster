@@ -1,19 +1,23 @@
 <table class="style">
   <thead>
     <tr>
-      <th>{% trans %}Game{% endtrans %}</th>
+      <th>{% trans %}Team one{% endtrans %}</th>
+      <th>{% trans %}Score{% endtrans %}</th>
+      <th>{% trans %}Team two{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="2">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
     {% for match in game.matches %}
     <tr>
-      <td>Match</td>
+      <td>{{ match.teamOne.teamName }}</td>
+      <td>{{ match.displayResult }}</td>
+      <td>{{ match.teamTwo.teamName }}</td>
     </tr>
     {% else %}
     <tr>

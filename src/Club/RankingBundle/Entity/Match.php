@@ -23,6 +23,13 @@ class Match
     private $id;
 
     /**
+     * @var string $display_result
+     *
+     * @ORM\Column(type="string")
+     */
+    private $display_result;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(type="datetime")
@@ -44,14 +51,14 @@ class Match
     /**
      * @var Club\RankingBundle\Entity\MatchTeam
      *
-     * @ORM\OneToMany(targetEntity="MatchTeam", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="MatchTeam", mappedBy="match", cascade={"persist"})
      */
     protected $match_teams;
 
     /**
      * @var Club\RankingBundle\Entity\MatchSet
      *
-     * @ORM\OneToMany(targetEntity="MatchSet", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="MatchSet", mappedBy="match", cascade={"persist"})
      */
     protected $match_sets;
 
@@ -186,4 +193,39 @@ class Match
     {
         return $this->match_sets;
     }
+
+    /**
+     * Set display_result
+     *
+     * @param string $displayResult
+     */
+    public function setDisplayResult($displayResult)
+    {
+        $this->display_result = $displayResult;
+    }
+
+    /**
+     * Get display_result
+     *
+     * @return string
+     */
+    public function getDisplayResult()
+    {
+        return $this->display_result;
+    }
+
+    public function getTeamOne()
+    {
+      $teams = $this->getMatchTeams();
+
+      return ($teams[0]->getId() > $teams[1]->getId()) ? $teams[1] : $teams[0];
+    }
+
+    public function getTeamTwo()
+    {
+      $teams = $this->getMatchTeams();
+
+      return ($teams[0]->getId() > $teams[1]->getId()) ? $teams[0] : $teams[1];
+    }
+
 }

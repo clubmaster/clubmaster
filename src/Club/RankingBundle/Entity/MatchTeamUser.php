@@ -23,6 +23,8 @@ class MatchTeamUser
 
     /**
      * @ORM\ManyToOne(targetEntity="MatchTeam")
+     * @ORM\JoinColumn(name="match_team_id", onDelete="cascade")
+     *
      * @var Club\RankingBundle\Entity\MatchTeam
      */
     protected $match_team;

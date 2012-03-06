@@ -37,6 +37,8 @@ class MatchSet
 
     /**
      * @ORM\ManyToOne(targetEntity="Match")
+     * @ORM\JoinColumn(name="match_id", onDelete="cascade")
+     *
      * @var Club\RankingBundle\Entity\Match
      */
     protected $match;
