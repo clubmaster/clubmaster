@@ -5,12 +5,12 @@ namespace Club\RankingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Club\RankingBundle\Entity\MatchSet
+ * Club\RankingBundle\Entity\MatchTeamSet
  *
- * @ORM\Table(name="club_ranking_match_set")
- * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\MatchSetRepository")
+ * @ORM\Table(name="club_ranking_match_team_set")
+ * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\MatchTeamSetRepository")
  */
-class MatchSet
+class MatchTeamSet
 {
     /**
      * @var integer $id
@@ -36,12 +36,12 @@ class MatchSet
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Match")
-     * @ORM\JoinColumn(name="match_id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="MatchTeam")
+     * @ORM\JoinColumn(name="match_team_id", onDelete="cascade")
      *
-     * @var Club\RankingBundle\Entity\Match
+     * @var Club\RankingBundle\Entity\MatchTeam
      */
-    protected $match;
+    protected $match_team;
 
 
     /**
@@ -52,26 +52,6 @@ class MatchSet
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set match
-     *
-     * @param Club\RankingBundle\Entity\Match $match
-     */
-    public function setMatch(\Club\RankingBundle\Entity\Match $match)
-    {
-        $this->match = $match;
-    }
-
-    /**
-     * Get match
-     *
-     * @return Club\RankingBundle\Entity\Match
-     */
-    public function getMatch()
-    {
-        return $this->match;
     }
 
     /**
@@ -112,5 +92,25 @@ class MatchSet
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Set match_team
+     *
+     * @param Club\RankingBundle\Entity\MatchTeam $matchTeam
+     */
+    public function setMatchTeam(\Club\RankingBundle\Entity\MatchTeam $matchTeam)
+    {
+        $this->match_team = $matchTeam;
+    }
+
+    /**
+     * Get match_team
+     *
+     * @return Club\RankingBundle\Entity\MatchTeam
+     */
+    public function getMatchTeam()
+    {
+        return $this->match_team;
     }
 }

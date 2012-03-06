@@ -55,13 +55,6 @@ class Match
      */
     protected $match_teams;
 
-    /**
-     * @var Club\RankingBundle\Entity\MatchSet
-     *
-     * @ORM\OneToMany(targetEntity="MatchSet", mappedBy="match", cascade={"persist"})
-     */
-    protected $match_sets;
-
 
     /**
      * @ORM\PrePersist()
@@ -175,26 +168,6 @@ class Match
     }
 
     /**
-     * Add match_sets
-     *
-     * @param Club\RankingBundle\Entity\MatchSet $matchSets
-     */
-    public function addMatchSet(\Club\RankingBundle\Entity\MatchSet $matchSets)
-    {
-        $this->match_sets[] = $matchSets;
-    }
-
-    /**
-     * Get match_sets
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getMatchSets()
-    {
-        return $this->match_sets;
-    }
-
-    /**
      * Set display_result
      *
      * @param string $displayResult
@@ -227,5 +200,4 @@ class Match
 
       return ($teams[0]->getId() > $teams[1]->getId()) ? $teams[0] : $teams[1];
     }
-
 }

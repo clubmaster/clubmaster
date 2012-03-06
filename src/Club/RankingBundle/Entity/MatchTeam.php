@@ -30,6 +30,13 @@ class MatchTeam
     protected $match;
 
     /**
+     * @var Club\RankingBundle\Entity\MatchTeamSet
+     *
+     * @ORM\OneToMany(targetEntity="MatchTeamSet", mappedBy="match_team", cascade={"persist"})
+     */
+    protected $match_team_set;
+
+    /**
      * @var Club\RankingBundle\Entity\MatchTeamUser
      *
      * @ORM\OneToMany(targetEntity="MatchTeamUser", mappedBy="match_team", cascade={"persist"})
@@ -99,5 +106,25 @@ class MatchTeam
       }
 
       return implode(' - ', $res);
+    }
+
+    /**
+     * Add match_team_set
+     *
+     * @param Club\RankingBundle\Entity\MatchTeamSet $matchTeamSet
+     */
+    public function addMatchTeamSet(\Club\RankingBundle\Entity\MatchTeamSet $matchTeamSet)
+    {
+        $this->match_team_set[] = $matchTeamSet;
+    }
+
+    /**
+     * Get match_team_set
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMatchTeamSet()
+    {
+        return $this->match_team_set;
     }
 }
