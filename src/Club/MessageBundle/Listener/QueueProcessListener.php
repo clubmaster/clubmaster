@@ -21,9 +21,18 @@ class QueueProcessListener
     $messages = $this->em->getRepository('ClubMessageBundle:Message')->getAllReady();
 
     foreach ($messages as $message) {
+      // init message
+      $this->clubmaster_mailer
+        ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
+        ->setFrom($message->getSenderAddress(), $message->getSenderName())
+        ->setBody($message->getMessage(), 'text/html');
+
+      foreach ($message->getMessageAttachment() as $attachment) {
+        $this->clubmaster_mailer->attach($attachment);
+      }
+
       // just to check if user has received the message once
       $this->recipients = array();
-
       foreach ($message->getFilters() as $filter) {
         $this->processUsers($message, $this->em->getRepository('ClubUserBundle:User')->getUsers($filter));
       }
@@ -67,17 +76,10 @@ class QueueProcessListener
     if (isset($this->recipients[$user->getId()])) return;
 
     $this->recipients[$user->getId()] = 1;
+    if (!$user->getProfile()->getProfileEmail()) return;
 
     $this->clubmaster_mailer
       ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
-      ->setFrom($message->getSenderAddress(), $message->getSenderName())
-      ->setBody($message->getMessage(), 'text/html');
-
-    foreach ($message->getMessageAttachment() as $attachment) {
-      $this->clubmaster_mailer->attach($attachment);
-    }
-
-    $this->clubmaster_mailer->send();
+      ->send();
   }
-
 }
