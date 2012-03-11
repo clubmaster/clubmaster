@@ -14,6 +14,10 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+fix mailer, dont build the mail all the times, and only add attachment once
+problems with lagging of log when bad email syntax
+checkup sending mails.. icon is wrong
+the filter does not work, the name does not tell us anything
 add first booking plan on create booking plan category page
 auto complete booking, only active members
 obey rules of book time
