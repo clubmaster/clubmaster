@@ -74,7 +74,6 @@ class QueueProcessListener
   private function sendMail(\Club\MessageBundle\Entity\Message $message, \Club\UserBundle\Entity\User $user)
   {
     if (isset($this->recipients[$user->getId()])) return;
-
     $this->recipients[$user->getId()] = 1;
     if (!$user->getProfile()->getProfileEmail()) return;
 

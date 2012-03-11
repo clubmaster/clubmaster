@@ -1,5 +1,6 @@
 == RANKING ==
 cannot add matches when not logged in
+cannot add match if no permissions
 validate sets match
 validate players can play
 only have to choose opponent
