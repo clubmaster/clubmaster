@@ -1810,8 +1810,23 @@
         <source>My profile</source>
         <target>Min profil</target>
       </trans-unit>
+      <trans-unit id="455">
+        <source>Posted on %date% by %author%.</source>
+        <target>Skrevet den %date% af %author%.</target>
+      </trans-unit>
+      <trans-unit id="456">
+        <source>There are %comments% comments on this post.</source>
+        <target>Der er %comments% kommentarer på denne post.</target>
+      </trans-unit>
+      <trans-unit id="457">
+        <source>Comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
+      <trans-unit id="458">
+        <source>Comments</source>
+        <target>Kommentarer</target>
+      </trans-unit>
 
     </body>
   </file>
 </xliff>
-
