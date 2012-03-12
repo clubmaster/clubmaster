@@ -10,6 +10,39 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class BlogController extends Controller
 {
   /**
+   * @Route("/welcome/blog/comment/{blog_id}")
+   * @Template()
+   */
+  public function commentAction($blog_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
+
+    $comment = new \Club\WelcomeBundle\Entity\Comment();
+    $comment->setUser($this->get('security.context')->getToken()->getUser());
+    $comment->setBlog($blog);
+
+    $form = $this->createForm(new \Club\WelcomeBundle\Form\Comment, $comment);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      if ($form->isValid()) {
+        $em->persist($comment);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('club_welcome_welcome_index'));
+      }
+    }
+
+    return array(
+      'blog' => $blog,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
    * @Route("/welcome/blog/new")
    * @Template()
    */

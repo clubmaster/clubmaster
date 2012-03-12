@@ -7,17 +7,7 @@
 {% endif %}
 
 {% for post in posts %}
-
-<h3 class="tit">{{ post.title }}</h3>
-<p><span class="label label-02">{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
-
-{% if post.user == app.user %}
-{% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_blog_edit', {'id':post.id})} %}
-{% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', {'id':post.id})} %}
-{% endif %}
-
-<p>{{ post.message|raw }}</p>
-
+{% include "ClubWelcomeBundle:Welcome:blog.html.twig" %}
 {% endfor %}
 
 {% endblock %}

@@ -60,6 +60,13 @@ class Blog
      */
     protected $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
+     *
+     * @var Club\WelcomeBundle\Entity\Comment
+     */
+    protected $comments;
+
 
     /**
      * Get id
@@ -186,5 +193,29 @@ class Blog
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Club\WelcomeBundle\Entity\Comment $comments
+     */
+    public function addComment(\Club\WelcomeBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

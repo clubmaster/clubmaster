@@ -5,13 +5,13 @@ namespace Club\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Club\WelcomeBundle\Entity\Welcome
+ * Club\WelcomeBundle\Entity\Comment
  *
- * @ORM\Table(name="club_welcome")
- * @ORM\Entity(repositoryClass="Club\WelcomeBundle\Entity\WelcomeRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\Table(name="club_welcome_comment")
+ * @ORM\Entity(repositoryClass="Club\WelcomeBundle\Entity\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Welcome
+class Comment
 {
     /**
      * @var integer $id
@@ -23,18 +23,25 @@ class Welcome
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     * @var Club\WelcomeBundle\Entity\Blog
      *
-     * @var Club\UserBundle\Entity\Location
+     * @ORM\ManyToOne(targetEntity="Blog")
      */
-    private $location;
+    private $blog;
 
     /**
-     * @var text $content
+     * @var Club\UserBundle\Entity\User
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    private $content;
+    private $user;
+
+    /**
+     * @var text $comment
+     *
+     * @ORM\Column(name="comment", type="text")
+     */
+    private $comment;
 
     /**
      * @var datetime $created_at
@@ -62,23 +69,23 @@ class Welcome
     }
 
     /**
-     * Set content
+     * Set comment
      *
-     * @param text $content
+     * @param text $comment
      */
-    public function setContent($content)
+    public function setComment($comment)
     {
-        $this->content = $content;
+        $this->comment = $comment;
     }
 
     /**
-     * Get content
+     * Get comment
      *
      * @return text
      */
-    public function getContent()
+    public function getComment()
     {
-        return $this->content;
+        return $this->comment;
     }
 
     /**
@@ -139,22 +146,42 @@ class Welcome
     }
 
     /**
-     * Set location
+     * Set blog
      *
-     * @param Club\UserBundle\Entity\Location $location
+     * @param Club\WelcomeBundle\Entity\Blog $blog
      */
-    public function setLocation(\Club\UserBundle\Entity\Location $location)
+    public function setBlog(\Club\WelcomeBundle\Entity\Blog $blog)
     {
-        $this->location = $location;
+        $this->blog = $blog;
     }
 
     /**
-     * Get location
+     * Get blog
      *
-     * @return Club\UserBundle\Entity\Location
+     * @return Club\WelcomeBundle\Entity\Blog 
      */
-    public function getLocation()
+    public function getBlog()
     {
-        return $this->location;
+        return $this->blog;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
