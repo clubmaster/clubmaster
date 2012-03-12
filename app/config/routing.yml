@@ -1,3 +1,8 @@
+ClubPaymentCashBundle:
+    resource: "@ClubPaymentCashBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ClubPaymentQuickpayBundle:
     resource: "@ClubPaymentQuickpayBundle/Controller/"
     type:     annotation

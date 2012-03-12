@@ -151,7 +151,7 @@ class Welcome
     /**
      * Get location
      *
-     * @return Club\UserBundle\Entity\Location 
+     * @return Club\UserBundle\Entity\Location
      */
     public function getLocation()
     {
