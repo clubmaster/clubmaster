@@ -10,6 +10,20 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class BlogController extends Controller
 {
   /**
+   * @Route("/welcome/blog/show/{blog_id}")
+   * @Template()
+   */
+  public function showAction($blog_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
+
+    return array(
+      'blog' => $blog,
+    );
+  }
+
+  /**
    * @Route("/welcome/blog/comment/{blog_id}")
    * @Template()
    */
@@ -32,7 +46,9 @@ class BlogController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
-        return $this->redirect($this->generateUrl('club_welcome_welcome_index'));
+        return $this->redirect($this->generateUrl('club_welcome_blog_show', array(
+          'blog_id' => $blog->getId()
+        )));
       }
     }
 

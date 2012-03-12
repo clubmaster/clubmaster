@@ -7,7 +7,22 @@
 {% block body %}
 
 <form method="post" action="{{ path('club_welcome_blog_comment', {'blog_id':blog.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
+
+  <fieldset>
+    <legend>{% trans %}Message{% endtrans %}</legend>
+    <p>
+      {{ form_label(form.comment) }}<br />
+      {{ form_widget(form.comment, {'attr': {'class':'big' }}) }}
+      {{ form_errors(form.comment) }}<br />
+    </p>
+    {{ form_rest(form) }}
+  </fieldset>
+
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input formnovalidate="true" type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+
 </form>
 
 {% endblock %}

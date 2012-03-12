@@ -11,8 +11,12 @@ class Game extends AbstractType
   {
     $builder->add('name');
     $builder->add('rule');
-    $builder->add('locked');
-    $builder->add('invite_only');
+    $builder->add('locked', 'checkbox', array(
+      'required' => false
+    ));
+    $builder->add('invite_only', 'checkbox', array(
+      'required' => false
+    ));
     $builder->add('game_set');
   }
 
