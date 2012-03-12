@@ -17,7 +17,7 @@ class Cash
     $controller = 'club_payment_cash_cash_index';
 
     $method = $this->em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
-      'payment_method_name' => $name
+      'controller' => $controller
     ));
 
     if (!$method) {
@@ -28,6 +28,12 @@ class Cash
 <h2>Thank you</h2>
 <p>Your order has been successful completed.</p>
 <p>We will complete your order as soon as we receive the payment.</p>
+EOF
+);
+      $method->setErrorPage(<<<EOF
+<h2>Sorry</h2>
+  <p>Your order has not been completed.</p>
+  <p>There was a problem with the payment.</p>
 EOF
 );
 
