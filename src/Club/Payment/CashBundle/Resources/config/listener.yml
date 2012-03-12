@@ -1,0 +1,6 @@
+services:
+  club.payment.cash.listener:
+    class: Club\Payment\CashBundle\Listener\Cash
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: paymentmethod.get, method: onPaymentMethodGet }

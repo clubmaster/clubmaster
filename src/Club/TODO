@@ -14,6 +14,12 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+only show active payment methods, from the plugins
+seems to make problem:
+  - create cart not logged in.
+  - login to the left, with wrong credentials
+  - login with right credentials
+  - now carts seems broken
 check design for comment
 fix mailer, dont build the mail all the times, and only add attachment once
 problems with lagging of log when bad email syntax
