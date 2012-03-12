@@ -43,6 +43,7 @@ class QuickpayController extends Controller
 
     $form = $this->getForm($order);
     return array(
+      'quickpay_url' => $this->container->getParameter('quickpay_url'),
       'form' => $form->createView(),
       'order' => $order
     );
