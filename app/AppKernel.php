@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Club\WelcomeBundle\ClubWelcomeBundle(),
             new Club\ConfiguratorBundle\ClubConfiguratorBundle(),
             new Club\RankingBundle\ClubRankingBundle(),
+            new Club\Payment\QuickpayBundle\ClubPaymentQuickpayBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
         );
 

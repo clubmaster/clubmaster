@@ -1,54 +1,59 @@
+ClubPaymentQuickpayBundle:
+    resource: "@ClubPaymentQuickpayBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 homepage:
-  pattern: /
-  defaults: { _controller: ClubWelcomeBundle:Welcome:index }
+    pattern: /
+    defaults: { _controller: ClubWelcomeBundle:Welcome:index }
 
-_api:
-  resource: "@ClubAPIBundle/Resources/config/routing.yml"
+ClubAPIBundle:
+    resource: "@ClubAPIBundle/Resources/config/routing.yml"
 
-_team:
-  resource: "@ClubTeamBundle/Resources/config/routing.yml"
+ClubTeamBundle:
+    resource: "@ClubTeamBundle/Resources/config/routing.yml"
 
-_shop:
-  resource: "@ClubShopBundle/Resources/config/routing.yml"
+ClubShopBundle:
+    resource: "@ClubShopBundle/Resources/config/routing.yml"
 
-_user:
-  resource: "@ClubUserBundle/Resources/config/routing.yml"
+ClubUserBundle:
+    resource: "@ClubUserBundle/Resources/config/routing.yml"
 
-_task:
-  resource: "@ClubTaskBundle/Controller/"
-  type:     annotation
+ClubTaskBundle:
+    resource: "@ClubTaskBundle/Controller/"
+    type:     annotation
 
-_mail:
-  resource: "@ClubMailBundle/Resources/config/routing.yml"
+ClubMailBundle:
+    resource: "@ClubMailBundle/Resources/config/routing.yml"
 
-_log:
-  resource: "@ClubLogBundle/Resources/config/routing.yml"
+ClubLogBundle:
+    resource: "@ClubLogBundle/Resources/config/routing.yml"
 
-_event:
-  resource: "@ClubEventBundle/Resources/config/routing.yml"
+ClubEventBundle:
+    resource: "@ClubEventBundle/Resources/config/routing.yml"
 
-_installer:
-  resource: "@ClubInstallerBundle/Resources/config/routing.yml"
-  prefix: /installer
+ClubInstallBundle:
+    resource: "@ClubInstallerBundle/Resources/config/routing.yml"
+    prefix: /installer
 
-_configurator:
-  resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-  prefix: /configurator
+ClubConfiguratorBundle:
+    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
+    prefix: /configurator
 
-_message:
-  resource: "@ClubMessageBundle/Resources/config/routing.yml"
+ClubMessageBundle:
+    resource: "@ClubMessageBundle/Resources/config/routing.yml"
 
-_booking:
-  resource: "@ClubBookingBundle/Resources/config/routing.yml"
+ClubBookingBundle:
+    resource: "@ClubBookingBundle/Resources/config/routing.yml"
 
-_dashboard:
-  resource: "@ClubDashboardBundle/Resources/config/routing.yml"
+ClubDashboardBundle:
+    resource: "@ClubDashboardBundle/Resources/config/routing.yml"
 
-_welcome:
-  resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
+ClubWelcomeBundle:
+    resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
 
-_feedback:
-  resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
+ClubFeedbackBundle:
+    resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
 
-_ranking:
-  resource: "@ClubRankingBundle/Resources/config/routing.yml"
+ClubRankingBundle:
+    resource: "@ClubRankingBundle/Resources/config/routing.yml"
