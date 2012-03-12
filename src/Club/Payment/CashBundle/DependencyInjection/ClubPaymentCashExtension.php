@@ -24,6 +24,9 @@ class ClubPaymentCashExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        $loader->load('listener.yml');
+
+        if ($config['enabled']) $loader->load('listener.yml');
+
+        $container->setParameter('club_payment_cash.enabled', $config['enabled']);
     }
 }
