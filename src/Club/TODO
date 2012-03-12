@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+add paid to orders, to verify if an order has been paid
 remove countries, and use country form field
 seems to make problem:
   - create cart not logged in.
