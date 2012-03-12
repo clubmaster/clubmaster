@@ -21,7 +21,6 @@ seems to make problem:
   - login to the left, with wrong credentials
   - login with right credentials
   - now carts seems broken
-check design for comment
 fix mailer, dont build the mail all the times, and only add attachment once
 problems with lagging of log when bad email syntax
 checkup sending mails.. icon is wrong

@@ -12,10 +12,4 @@
 {% endif %}
 <p>{{ post.message|raw }}</p>
 
-<i>{% trans with {'%comments%':post.comments|length} %}There are %comments% for this post.{% endtrans %}</i>
-{% for comment in post.comments %}
-<p><span class="label label-02">{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
-<p>{{ comment.comment|raw }}</p>
-{% else %}
-<p>There are no comments for this post.</p>
-{% endfor %}
+<i><a href="{{ path('club_welcome_blog_show', {'blog_id':post.id}) }}">{% trans with {'%comments%':post.comments|length} %}There are %comments% comments on this post.{% endtrans %}</a></i>
