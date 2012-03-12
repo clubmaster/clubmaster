@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\OrderProductAttribute")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\OrderProductAttributeRepository")
  * @ORM\Table(name="club_shop_order_product_attribute")
  *
  */
@@ -79,5 +79,15 @@ class OrderProductAttribute
     public function setValue($value)
     {
         $this->value = $value;
+    }
+
+    /**
+     * Get order_product
+     *
+     * @return Club\ShopBundle\Entity\OrderProduct
+     */
+    public function getOrderProduct()
+    {
+        return $this->order_product;
     }
 }

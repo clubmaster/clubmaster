@@ -110,4 +110,64 @@ class OrderProductVariant
     {
         return $this->price;
     }
+
+    /**
+     * Set variant
+     *
+     * @param string $variant
+     */
+    public function setVariant($variant)
+    {
+        $this->variant = $variant;
+    }
+
+    /**
+     * Get variant
+     *
+     * @return string 
+     */
+    public function getVariant()
+    {
+        return $this->variant;
+    }
+
+    /**
+     * Set variant_value
+     *
+     * @param string $variantValue
+     */
+    public function setVariantValue($variantValue)
+    {
+        $this->variant_value = $variantValue;
+    }
+
+    /**
+     * Get variant_value
+     *
+     * @return string 
+     */
+    public function getVariantValue()
+    {
+        return $this->variant_value;
+    }
+
+    /**
+     * Set order_product
+     *
+     * @param Club\ShopBundle\Entity\OrderProduct $orderProduct
+     */
+    public function setOrderProduct(\Club\ShopBundle\Entity\OrderProduct $orderProduct)
+    {
+        $this->order_product = $orderProduct;
+    }
+
+    /**
+     * Get order_product
+     *
+     * @return Club\ShopBundle\Entity\OrderProduct 
+     */
+    public function getOrderProduct()
+    {
+        return $this->order_product;
+    }
 }

@@ -28,6 +28,13 @@ class PaymentMethod
     protected $payment_method_name;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $service
+     */
+    protected $service;
+
+    /**
      * @ORM\Column(type="text")
      *
      * @var string $page
@@ -83,5 +90,25 @@ class PaymentMethod
     public function getPage()
     {
       return $this->page;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string 
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 }

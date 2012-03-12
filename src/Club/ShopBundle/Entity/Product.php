@@ -277,4 +277,44 @@ class Product
       }
       return $this->getPrice();
     }
+
+    /**
+     * Add variant_groups
+     *
+     * @param Club\ShopBundle\Entity\VariantGroup $variantGroups
+     */
+    public function addVariantGroup(\Club\ShopBundle\Entity\VariantGroup $variantGroups)
+    {
+        $this->variant_groups[] = $variantGroups;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Club\ShopBundle\Entity\Category $categories
+     */
+    public function addCategory(\Club\ShopBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+    }
+
+    /**
+     * Add product_attributes
+     *
+     * @param Club\ShopBundle\Entity\ProductAttribute $productAttributes
+     */
+    public function addProductAttribute(\Club\ShopBundle\Entity\ProductAttribute $productAttributes)
+    {
+        $this->product_attributes[] = $productAttributes;
+    }
+
+    /**
+     * Add specials
+     *
+     * @param Club\ShopBundle\Entity\Special $specials
+     */
+    public function addSpecial(\Club\ShopBundle\Entity\Special $specials)
+    {
+        $this->specials[] = $specials;
+    }
 }

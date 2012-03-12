@@ -97,4 +97,24 @@ class VariantGroup
     {
         return $this->price;
     }
+
+    /**
+     * Set variant_group_name
+     *
+     * @param string $variantGroupName
+     */
+    public function setVariantGroupName($variantGroupName)
+    {
+        $this->variant_group_name = $variantGroupName;
+    }
+
+    /**
+     * Get variant_group_name
+     *
+     * @return string 
+     */
+    public function getVariantGroupName()
+    {
+        return $this->variant_group_name;
+    }
 }

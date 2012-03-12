@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Club\ShopBundle\Repository\CartProductAttribute")
+ * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\CartProductAttributeRepository")
  * @ORM\Table(name="club_shop_cart_product_attribute")
- *
  */
 class CartProductAttribute
 {
@@ -79,5 +78,15 @@ class CartProductAttribute
     public function setValue($value)
     {
         $this->value = $value;
+    }
+
+    /**
+     * Get cart_product
+     *
+     * @return Club\ShopBundle\Entity\CartProduct
+     */
+    public function getCartProduct()
+    {
+        return $this->cart_product;
     }
 }

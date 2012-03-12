@@ -103,4 +103,44 @@ class VariantValue
     {
         return $this->price;
     }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string 
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set variant_group
+     *
+     * @param Club\ShopBundle\Entity\VariantGroup $variantGroup
+     */
+    public function setVariantGroup(\Club\ShopBundle\Entity\VariantGroup $variantGroup)
+    {
+        $this->variant_group = $variantGroup;
+    }
+
+    /**
+     * Get variant_group
+     *
+     * @return Club\ShopBundle\Entity\VariantGroup 
+     */
+    public function getVariantGroup()
+    {
+        return $this->variant_group;
+    }
 }
