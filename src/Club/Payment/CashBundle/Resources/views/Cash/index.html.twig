@@ -1,1 +1,5 @@
-Hello {{ name }}!
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+{{ order.paymentmethod.successPage|raw }}
+{% endblock %}

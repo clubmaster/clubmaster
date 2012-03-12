@@ -1,3 +1,21 @@
-  <p>{{ form_widget(form) }}</p>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+    {{ form_row(form.payment_method_name) }}
+
+    <p>
+      {{ form_label(form.success_page) }}<br />
+      {{ form_widget(form.success_page, {'attr': {'class':'big' }}) }}
+      {{ form_errors(form.success_page) }}<br />
+    </p>
+
+    <p>
+      {{ form_label(form.error_page) }}<br />
+      {{ form_widget(form.error_page, {'attr': {'class':'big' }}) }}
+      {{ form_errors(form.error_page) }}<br />
+    </p>
+
+    {{ form_rest(form) }}
+
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input formnovalidate="true" type="submit" value="{% trans %}Save{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
 

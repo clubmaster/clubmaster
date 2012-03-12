@@ -178,21 +178,9 @@ class CheckoutController extends Controller
       return $this->redirect($this->generateUrl('shop'));
     }
 
-    return $this->forward($order->getPaymentMethod()->getService().':indexAction');
-  }
-
-  /**
-   * @Route("/shop/checkout/confirm/{id}", name="shop_checkout_confirm")
-   * @Template()
-   */
-  public function confirmAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('ClubShopBundle:Order',$id);
-
-    return array(
-      'order' => $order
-    );
+    return $this->redirect($this->generateUrl($order->getPaymentMethod()->getController(), array(
+      'order_id' => $order->getId()
+    )));
   }
 
   /**

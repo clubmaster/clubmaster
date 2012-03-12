@@ -30,16 +30,23 @@ class PaymentMethod
     /**
      * @ORM\Column(type="string")
      *
-     * @var string $service
+     * @var string $controller
      */
-    protected $service;
+    protected $controller;
 
     /**
      * @ORM\Column(type="text")
      *
-     * @var string $page
+     * @var string $success_page
      */
-    protected $page;
+    protected $success_page;
+
+    /**
+     * @ORM\Column(type="text")
+     *
+     * @var string $error_page
+     */
+    protected $error_page;
 
 
     public function __toString()
@@ -82,33 +89,63 @@ class PaymentMethod
         return $this->payment_method_name;
     }
 
-    public function setPage($page)
-    {
-      $this->page = $page;
-    }
-
-    public function getPage()
-    {
-      return $this->page;
-    }
-
     /**
-     * Set service
+     * Set controller
      *
-     * @param string $service
+     * @param string $controller
      */
-    public function setService($service)
+    public function setController($controller)
     {
-        $this->service = $service;
+        $this->controller = $controller;
     }
 
     /**
-     * Get service
+     * Get controller
      *
      * @return string 
      */
-    public function getService()
+    public function getController()
     {
-        return $this->service;
+        return $this->controller;
+    }
+
+    /**
+     * Set success_page
+     *
+     * @param text $successPage
+     */
+    public function setSuccessPage($successPage)
+    {
+        $this->success_page = $successPage;
+    }
+
+    /**
+     * Get success_page
+     *
+     * @return text 
+     */
+    public function getSuccessPage()
+    {
+        return $this->success_page;
+    }
+
+    /**
+     * Set error_page
+     *
+     * @param text $errorPage
+     */
+    public function setErrorPage($errorPage)
+    {
+        $this->error_page = $errorPage;
+    }
+
+    /**
+     * Get error_page
+     *
+     * @return text 
+     */
+    public function getErrorPage()
+    {
+        return $this->error_page;
     }
 }

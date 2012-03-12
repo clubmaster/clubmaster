@@ -15,6 +15,10 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+add default text to payment plugins
+enable and disable payment plugins
+shold be able to change success page on payment method
+add error page and success page for paymentmethod
 only show active payment methods, from the plugins
 seems to make problem:
   - create cart not logged in.
@@ -96,3 +100,4 @@ not 2 schedules can have the same interval
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 on switch location, stay on last visited page
 move database install and upgrade to the same library
+tag users on images

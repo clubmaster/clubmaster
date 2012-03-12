@@ -13,8 +13,8 @@ class Cash
 
   public function onPaymentMethodGet(\Club\ShopBundle\Event\FilterPaymentMethodEvent $event)
   {
-    $name = 'Cash2';
-    $service = 'club.payment.cash';
+    $name = 'Cash';
+    $controller = 'club_payment_cash_cash_index';
 
     $method = $this->em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
       'payment_method_name' => $name
@@ -23,10 +23,11 @@ class Cash
     if (!$method) {
       $method = new \Club\ShopBundle\Entity\PaymentMethod();
       $method->setPaymentMethodName($name);
-      $method->setService($service);
-      $method->setPage(<<<EOF
+      $method->setController($controller);
+      $method->setSuccessPage(<<<EOF
 <h2>Thank you</h2>
-<p>Your order has been successful completed.</p><p>We will complete your order as soon as we receive the payment.</p>
+<p>Your order has been successful completed.</p>
+<p>We will complete your order as soon as we receive the payment.</p>
 EOF
 );
 

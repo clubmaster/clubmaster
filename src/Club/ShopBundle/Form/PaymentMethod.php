@@ -10,7 +10,8 @@ class PaymentMethod extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('payment_method_name');
-    $builder->add('page');
+    $builder->add('success_page');
+    $builder->add('error_page');
   }
 
   public function getDefaultOptions(array $options)
