@@ -114,23 +114,31 @@ class CheckoutController extends Controller
   public function paymentAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $payments = $this->get('shop_paymentmethod')->getAll();
+    $payments = $this->get('shop_paymentmethod')->getAllArray();
 
     if (!count($payments))
       throw new Exception('You need to have at leats one payment method');
 
     if (count($payments) == 1) {
-      $this->get('cart')->setPayment($payments[0]);
+      $method = $em->find('ClubShopBundle:PaymentMethod', key($payments));
+      $this->get('cart')->setPayment($method);
       return $this->redirect($this->generateUrl('shop_checkout_review'));
     }
 
+    $form = $this->createFormBuilder()
+      ->add('payment_method', 'choice', array(
+        'choices' => $payments
+      ))
+      ->getForm();
+
     $cart = $this->get('cart')->getCart();
-    $form = $this->createForm(new \Club\ShopBundle\Form\CheckoutPayment(), $cart);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
-        $this->get('cart')->setCart($cart);
+        $r = $form->getData();
+        $method = $em->find('ClubShopBundle:PaymentMethod', $r['payment_method']);
+        $this->get('cart')->setPayment($method);
 
         return $this->redirect($this->generateUrl('shop_checkout_review'));
       }

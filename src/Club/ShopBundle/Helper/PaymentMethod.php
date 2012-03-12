@@ -17,4 +17,15 @@ class PaymentMethod
 
     return $event->getMethods();
   }
+
+  public function getAllArray()
+  {
+    $res = array();
+
+    foreach ($this->getAll() as $method) {
+      $res[$method->getId()] = $method->getPaymentMethodName();
+    }
+
+    return $res;
+  }
 }
