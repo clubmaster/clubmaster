@@ -398,7 +398,7 @@ class Order
 
     public function getOrderNumber()
     {
-      return '#'.$this->getId();
+      return $this->getId();
     }
 
     /**

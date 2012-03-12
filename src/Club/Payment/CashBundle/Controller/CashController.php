@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class CashController extends Controller
 {
     /**
-     * @Route("/payment/cash/{order_id}")
+     * @Route("/cash/{order_id}")
      * @Template()
      */
     public function indexAction($order_id)

@@ -29,13 +29,6 @@ class Quickpay extends AbstractType
     $builder->add('ipaddress','hidden');
   }
 
-  public function getDefaultOptions(array $options)
-  {
-    return array(
-      'data_class' => 'Club\Payment\QuickpayBundle\Entity\Quickpay'
-    );
-  }
-
   public function getName()
   {
     return 'quickpay';

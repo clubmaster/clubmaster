@@ -28,10 +28,15 @@ class ClubPaymentQuickpayExtension extends Extension
 
         $container->setParameter('club_payment_quickpay.enabled', $config['enabled']);
         $container->setParameter('club_payment_quickpay.merchant', $config['merchant']);
+        $container->setParameter('club_payment_quickpay.secret', $config['secret']);
         $container->setParameter('club_payment_quickpay.protocol', $config['protocol']);
         $container->setParameter('club_payment_quickpay.language', $config['language']);
         $container->setParameter('club_payment_quickpay.currency', $config['currency']);
         $container->setParameter('club_payment_quickpay.autocapture', $config['autocapture']);
         $container->setParameter('club_payment_quickpay.cardtypelock', $config['cardtypelock']);
+        $container->setParameter('club_payment_quickpay.autofee', $config['autofee']);
+        $container->setParameter('club_payment_quickpay.testmode', $config['testmode']);
+        $container->setParameter('club_payment_quickpay.splitpayment', $config['splitpayment']);
+        $container->setParameter('club_payment_quickpay.quickpay_url', $config['quickpay_url']);
     }
 }
