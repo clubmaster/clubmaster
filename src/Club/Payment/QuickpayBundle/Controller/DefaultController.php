@@ -8,12 +8,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
-    }
+  /**
+   * @Route("/payment/quickpay/{order_id}")
+   * @Template()
+   */
+  public function indexAction($order_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $order = $em->find('ClubShopBundle:Order', $order_id);
+
+    $form = $this->createFormBuilder()
+    return array(
+      'order' => $order
+    );
+  }
 }

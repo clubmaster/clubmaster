@@ -7,6 +7,12 @@ club_payment_cash:
 
 club_payment_quickpay:
     enabled: true
+    merchant: example
+    protocol: 4
+    language: en
+    currency: DKK
+    autocapture: 1
+    cardtypelock:
 
 club_api:
     api_key: THIS_IS_A_DEMO_KEY

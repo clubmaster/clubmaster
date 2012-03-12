@@ -27,6 +27,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
             ->scalarNode('enabled')->isRequired()->end()
+            ->scalarNode('protocol')->isRequired()->end()
+            ->scalarNode('language')->isRequired()->end()
+            ->scalarNode('currency')->isRequired()->end()
+            ->scalarNode('autocapture')->isRequired()->end()
+            ->scalarNode('cardtypelock')->defaultValue(null)->end()
+            ->scalarNode('merchant')->isRequired()->end()
           ->end();
 
         return $treeBuilder;
