@@ -172,13 +172,13 @@ class CheckoutController extends Controller
         $this->get('cart')->addToCart($product);
       }
       $this->get('order')->convertToOrder($cart);
+      $order = $this->get('order')->getOrder();
+
     } else {
       return $this->redirect($this->generateUrl('shop'));
     }
 
-    return $this->redirect($this->generateUrl('shop_checkout_confirm',array(
-      'id' => $this->get('order')->getOrder()->getId()
-    )));
+    return $this->forward($order->getPaymentMethod()->getService().':indexAction');
   }
 
   /**

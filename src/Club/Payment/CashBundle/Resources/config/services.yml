@@ -1,0 +1,3 @@
+services:
+    club.payment.cash:
+        class: Club\Payment\CashBundle\Controller\CashController
