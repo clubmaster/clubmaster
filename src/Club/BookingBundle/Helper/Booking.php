@@ -23,15 +23,15 @@ class Booking
   protected $is_valid = true;
   protected $price;
 
-  public function __construct(EntityManager $em, $container, $security_context, $session, $club_interval, $translator, $event_dispatcher)
+  public function __construct($container)
   {
-    $this->em = $em;
     $this->container = $container;
-    $this->security_context = $security_context;
-    $this->session = $session;
-    $this->club_interval = $club_interval;
-    $this->translator = $translator;
-    $this->event_dispatcher = $event_dispatcher;
+    $this->club_interval = $container->get('club_booking.interval');
+    $this->security_context = $container->get('security.context');
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->session = $container->get('session');
+    $this->translator = $container->get('translator');
+    $this->event_dispatcher = $container->get('event_dispatcher');
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -230,6 +230,10 @@ class Booking
     $this->booking->setField($this->interval->getField());
     $this->booking->setEndDate($stop);
     $this->booking->setGuest($this->guest);
+
+    $confirm = ($this->container->get('club_booking.auto_confirm')) ? true : false;
+    $this->booking->setConfirm($confirm);
+
 
     if ($this->partner)
       $this->booking->addUser($this->partner);

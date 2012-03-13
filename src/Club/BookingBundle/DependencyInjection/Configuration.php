@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('cancel_minute_before')->isRequired()->end()
             ->scalarNode('cancel_minute_created')->isRequired()->end()
             ->scalarNode('booking_style')->isRequired()->end()
+            ->scalarNode('auto_confirm')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

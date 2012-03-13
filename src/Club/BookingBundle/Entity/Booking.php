@@ -45,6 +45,13 @@ class Booking
     protected $guest;
 
     /**
+     * @var boolean $confirmed
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $confirmed;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -308,5 +315,25 @@ class Booking
       }
 
       return false;
+    }
+
+    /**
+     * Set confirmed
+     *
+     * @param boolean $confirmed
+     */
+    public function setConfirmed($confirmed)
+    {
+        $this->confirmed = $confirmed;
+    }
+
+    /**
+     * Get confirmed
+     *
+     * @return boolean 
+     */
+    public function getConfirmed()
+    {
+        return $this->confirmed;
     }
 }
