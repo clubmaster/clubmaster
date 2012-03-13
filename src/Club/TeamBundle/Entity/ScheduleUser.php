@@ -29,6 +29,20 @@ class ScheduleUser
     protected $id;
 
     /**
+     * @var boolean $confirmed
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $confirmed;
+
+    /**
+     * @var datetime $created_at
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $created_at;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     protected $user;
@@ -38,13 +52,11 @@ class ScheduleUser
      */
     protected $schedule;
 
-    /**
-     * @var datetime $created_at
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    protected $created_at;
 
+    public function __construct()
+    {
+      $this->setConfirmed(false);
+    }
 
     /**
      * Get id
@@ -140,5 +152,25 @@ class ScheduleUser
         $context->setPropertyPath($property_path);
         $context->addViolation('The team is already started!', array(), null);
       }
+    }
+
+    /**
+     * Set confirmed
+     *
+     * @param boolean $confirmed
+     */
+    public function setConfirmed($confirmed)
+    {
+        $this->confirmed = $confirmed;
+    }
+
+    /**
+     * Get confirmed
+     *
+     * @return boolean
+     */
+    public function getConfirmed()
+    {
+        return $this->confirmed;
     }
 }

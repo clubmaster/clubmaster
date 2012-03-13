@@ -330,7 +330,7 @@ class Booking
     /**
      * Get confirmed
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getConfirmed()
     {
