@@ -16,7 +16,6 @@ add comment to a match
 
 == HOT ==
 make that you have to checkin in order to confirm your booking, otherwice it will be free
-make confirmed teams, and use confirmed field on team -> user
 remove all fixtures, find a way to init all data in an another way
 seems to make problem:
   - create cart not logged in.

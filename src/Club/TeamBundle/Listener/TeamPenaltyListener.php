@@ -21,28 +21,23 @@ class TeamPenaltyListener
 
   public function onTeamPenalty(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
+    if (!$this->penalty_enabled) return;
+
     $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getNotProcessed();
 
     foreach ($schedules as $schedule) {
       foreach ($schedule->getUsers() as $user) {
 
-        $last = clone $schedule->getFirstDate();
-        $diff = new \DateInterval('PT'.$this->minutes_before_schedule.'M');
-        $first = clone $schedule->getFirstDate()->sub($diff);
+        if (!$user->getConfirmed()) {
+          $product = new \Club\ShopBundle\Entity\CartProduct();
+          $product->setPrice($schedule->getPenalty());
+          $product->setQuantity(1);
+          $product->setType('team_fee');
+          $product->setProductName($this->penalty_product_name);
 
-        $checkin = $this->em->getRepository('ClubCheckinBundle:Checkin')->getUserInRange($user->getUser(), $first, $last);
-        if (!count($checkin)) {
-          if ($this->penalty_enabled) {
-            $product = new \Club\ShopBundle\Entity\CartProduct();
-            $product->setPrice($schedule->getPenalty());
-            $product->setQuantity(1);
-            $product->setType('team_fee');
-            $product->setProductName($this->penalty_product_name);
-
-            $this->order->createSimpleOrder($user->getUser(),$schedule->getLocation());
-            $this->order->addSimpleProduct($product);
-            $this->order->save();
-          }
+          $this->order->createSimpleOrder($user->getUser(),$schedule->getLocation());
+          $this->order->addSimpleProduct($product);
+          $this->order->save();
         }
       }
 
