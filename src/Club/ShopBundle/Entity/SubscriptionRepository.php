@@ -26,9 +26,10 @@ class SubscriptionRepository extends EntityRepository
     return $pause;
   }
 
-  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null, $type=null, $attr=null)
+  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null, $type=null, $attr=null, \DateTime $date=null)
   {
-    $d = new \DateTime();
+    if (!$date)
+      $d = new \DateTime();
 
     $qb = $this->_em->createQueryBuilder()
       ->select('s')
