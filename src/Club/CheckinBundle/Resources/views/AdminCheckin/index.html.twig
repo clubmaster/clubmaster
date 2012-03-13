@@ -1,8 +1,8 @@
-{% extends "ClubTeamBundle::base.html.twig" %}
+{% extends "ClubCheckinBundle::base.html.twig" %}
 
 {% block body %}
 
-<h2>{% trans %}Participant{% endtrans %}</h2>
+<h2>{% trans %}Checkin{% endtrans %}</h2>
 
 <table class="style">
   <thead>
@@ -17,14 +17,14 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for participant in participants %}
+  {% for checkin in checkins %}
     <tr>
-      <td>{{ participant.user.profile.name }}</td>
-      <td>{{ participant.createdAt|club_datetime }}</td>
+      <td>{{ checkin.user.profile.name }}</td>
+      <td>{{ checkin.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}There are no participants.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no checkins.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

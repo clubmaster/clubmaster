@@ -25,10 +25,6 @@ class MenuListener
           array(
             'name' => $this->translator->trans('Level'),
             'route' => $this->router->generate('club_team_adminlevel_index')
-          ),
-          array(
-            'name' => $this->translator->trans('Participant'),
-            'route' => $this->router->generate('club_team_adminparticipant_index')
           )
         )
       );

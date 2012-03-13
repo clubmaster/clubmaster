@@ -1,0 +1,6 @@
+services:
+  club.checkin.listener.left_menu:
+    class: Club\CheckinBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }

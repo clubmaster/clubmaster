@@ -2,11 +2,6 @@ _team:
   resource: "@ClubTeamBundle/Controller/TeamController.php"
   type: annotation
 
-_admin_participant:
-  resource: "@ClubTeamBundle/Controller/AdminParticipantController.php"
-  type: annotation
-  prefix: /admin
-
 _admin_level:
   resource: "@ClubTeamBundle/Controller/AdminLevelController.php"
   type: annotation
