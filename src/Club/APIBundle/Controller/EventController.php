@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
-
+/**
+ * @Route("/events")
+ */
 class EventController extends Controller
 {
   /**

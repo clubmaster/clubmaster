@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 
-
+/**
+ * @Route("/users")
+ */
 class UserController extends Controller
 {
   /**

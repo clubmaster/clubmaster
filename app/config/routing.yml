@@ -13,12 +13,10 @@ ClubPaymentQuickpayBundle:
     type:     annotation
     prefix:   /payment/
 
-homepage:
-    pattern: /
-    defaults: { _controller: ClubWelcomeBundle:Welcome:index }
-
 ClubAPIBundle:
-    resource: "@ClubAPIBundle/Resources/config/routing.yml"
+    resource: "@ClubAPIBundle/Controller/"
+    type: annotation
+    prefix: /api/
 
 ClubTeamBundle:
     resource: "@ClubTeamBundle/Resources/config/routing.yml"
@@ -67,3 +65,7 @@ ClubFeedbackBundle:
 
 ClubRankingBundle:
     resource: "@ClubRankingBundle/Resources/config/routing.yml"
+
+homepage:
+    pattern: /
+    defaults: { _controller: ClubWelcomeBundle:Welcome:index }
