@@ -30,8 +30,8 @@ class TeamPenaltyListener
         $diff = new \DateInterval('PT'.$this->minutes_before_schedule.'M');
         $first = clone $schedule->getFirstDate()->sub($diff);
 
-        $participant = $this->em->getRepository('ClubTeamBundle:Participant')->getUserInRange($user->getUser(), $first, $last);
-        if (!count($participant)) {
+        $checkin = $this->em->getRepository('ClubCheckinBundle:Checkin')->getUserInRange($user->getUser(), $first, $last);
+        if (!count($checkin)) {
           if ($this->penalty_enabled) {
             $product = new \Club\ShopBundle\Entity\CartProduct();
             $product->setPrice($schedule->getPenalty());

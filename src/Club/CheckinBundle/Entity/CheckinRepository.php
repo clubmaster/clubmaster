@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class CheckinRepository extends EntityRepository
 {
+  public function getUserInRange(\Club\UserBundle\Entity\User $user, \DateTime $first, \DateTime $last)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('c')
+      ->from('ClubCheckinBundle:Checkin', 'c')
+      ->where('c.user = :user')
+      ->andWhere('c.created_at >= :first')
+      ->andWhere('c.created_at <= :last')
+      ->setParameter('user', $user->getId())
+      ->setParameter('first', $first)
+      ->setParameter('last', $last)
+      ->getQuery()
+      ->getResult();
+  }
 }
