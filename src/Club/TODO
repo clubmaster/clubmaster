@@ -15,7 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
-add paid to orders, to verify if an order has been paid
+remove all fixtures, find a way to init all data in an another way
 seems to make problem:
   - create cart not logged in.
   - login to the left, with wrong credentials
