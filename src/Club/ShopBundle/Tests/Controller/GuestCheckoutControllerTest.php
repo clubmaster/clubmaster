@@ -52,7 +52,7 @@ class GuestCheckoutControllerTest extends WebTestCase
       'user[profile][profile_address][street]' => 'Oesterbro 62, 2tv',
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
-      'user[profile][profile_address][country]' => '47',
+      'user[profile][profile_address][country]' => 'DK',
       'user[profile][profile_email][email_address]' => 'info@clubmaster.org',
       'user[profile][profile_phone][phone_number]' => '80808080'
     ));

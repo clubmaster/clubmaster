@@ -217,7 +217,7 @@ class Cart
     $address->setStreet($addr->getStreet());
     $address->setPostalCode($addr->getPostalCode());
     $address->setCity($addr->getCity());
-    $address->setCountry($addr->getCountry()->getCountry());
+    $address->setCountry($addr->getCountry());
 
     return $address;
   }

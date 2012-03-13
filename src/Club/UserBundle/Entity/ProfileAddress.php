@@ -57,7 +57,8 @@ class ProfileAddress
 
     /**
      * @ORM\Column(type="string")
-     *
+     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"user"})
      * @var string $country
      */
     protected $country;
