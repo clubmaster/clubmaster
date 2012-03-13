@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+obey rules of book time
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
 seems to make problem:
@@ -28,7 +29,6 @@ checkup sending mails.. icon is wrong
 the filter does not work, the name does not tell us anything
 add first booking plan on create booking plan category page
 auto complete booking, only active members
-obey rules of book time
 if allowed to change plan, go to plan when clicking on it
 click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
