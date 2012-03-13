@@ -29,6 +29,7 @@ club_team:
     enabled: true
     future_occurs: 14
     minutes_before_schedule: 120
+    minutes_after_schedule: 5
     penalty_enabled: true
     cancel_minute_before: 120
     cancel_minute_created: 5
