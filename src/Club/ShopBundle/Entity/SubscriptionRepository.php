@@ -26,19 +26,31 @@ class SubscriptionRepository extends EntityRepository
     return $pause;
   }
 
-  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null)
+  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null, $type=null, $attr=null)
   {
+    $d = new \DateTime();
+
     $qb = $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubShopBundle:Subscription','s')
-      ->where('s.expire_date > :expire_date')
-      ->orWhere('s.expire_date IS NULL')
-      ->setParameter('expire_date',date('Y-m-d H:i:s'));
+      ->where('(s.expire_date > :date OR s.expire_date IS NULL)')
+      ->andWhere('s.start_date < :date')
+      ->setParameter('date', $d);
 
+    if ($type) {
+      $qb
+        ->andWhere('s.type = :type')
+        ->setParameter('type', $type);
+    }
     if ($user) {
       $qb
         ->andWhere('s.user = :user')
         ->setParameter('user', $user->getId());
+    }
+    if ($attr) {
+      $qb->leftJoin('s.subscription_attributes', 'sa')
+        ->andWhere('sa.attribute_name = :attr')
+        ->setParameter('attr', $attr);
     }
 
     return $qb
@@ -67,42 +79,10 @@ class SubscriptionRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getActiveTicketSubscriptions()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('s')
-      ->from('ClubShopBundle:Subscription','s')
-      ->where('s.type = :type')
-      ->setParameter('type','ticket')
-      ->getQuery()
-      ->getResult();
-  }
-
-  public function getSingleActiveSubscriptionForTeam(\Club\UserBundle\Entity\User $user)
-  {
-    $subscriptions = $this->_em->createQueryBuilder()
-      ->select('s')
-      ->from('ClubShopBundle:Subscription','s')
-      ->where('s.user = :user')
-      ->andWhere('(s.expire_date > :date OR s.expire_date IS NULL)')
-      ->orderBy('s.type, s.expire_date')
-      ->setParameter('date', date('Y-m-d H:i:s'))
-      ->setParameter('user', $user->getId())
-      ->getQuery()
-      ->getResult();
-
-    foreach ($subscriptions as $sub) {
-      if ($sub->hasAttribute('team'))
-        return $sub;
-    }
-
-    return false;
-  }
-
   public function getEmptyTicketAutoRenewalSubscriptions()
   {
     $res = array();
-    foreach ($this->getActiveTicketSubscriptions() as $subscription) {
+    foreach ($this->getActiveSubscriptions(null, 'ticket') as $subscription) {
       if (!$this->getTicketsLeft($subscription) && $this->isAutoRenewal($subscription))
         $res[] = $subscription;
     }

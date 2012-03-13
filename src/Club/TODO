@@ -15,6 +15,9 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+validate all usages of getSubscriptios, that we only use the active subscriptions
+view when a subscription works from and to.. time 10 - 14
+prices to book with guest, use normal checkout procedure
 obey rules of book time
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
@@ -36,6 +39,7 @@ make integrations to economic
 make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
+view coming subscriptions on subscription page
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
@@ -98,3 +102,4 @@ much better debugging on errors from API.. make sure all errors is wrapped in en
 on switch location, stay on last visited page
 move database install and upgrade to the same library
 tag users on images
+validate what happens with multiple active memberships
