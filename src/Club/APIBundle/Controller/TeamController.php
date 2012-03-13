@@ -61,29 +61,6 @@ class TeamController extends Controller
   }
 
   /**
-   * @Route("/participant")
-   * @Secure(roles="ROLE_USER")
-   */
-  public function participantAction()
-  {
-    if (!$this->validateKey())
-      return new Response($this->get('club_api.encode')->encodeError('Wrong API key'), 403);
-
-    $em = $this->getDoctrine()->getEntityManager();
-    $participant = new \Club\TeamBundle\Entity\Participant();
-    $participant->setUser($this->get('security.context')->getToken()->getUser());
-
-    $em->persist($participant);
-    $em->flush();
-
-    $event = new \Club\TeamBundle\Event\FilterParticipantEvent($participant);
-    $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamParticipant, $event);
-
-    $response = new Response();
-    return $response;
-  }
-
-  /**
    * @Route("/", defaults={"start" = null, "end" = null})
    * @Route("/{start}", defaults={"end" = null})
    * @Route("/{start}/{end}")
