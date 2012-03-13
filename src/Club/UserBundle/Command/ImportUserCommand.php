@@ -80,10 +80,6 @@ EOF
         $phone = (preg_match("/^(|0)$/", $phone)) ? null : $phone;
         $email = trim($email);
 
-        $country_ng = $em->getRepository('ClubUserBundle:Country')->findOneBy(array( 'country' => $country ));
-        if (!$country_ng) throw new \Exception('No country: '.$country);
-        // end cleanup
-
         $this->getContainer()->get('clubmaster.user')->buildUser();
         $user = $this->getContainer()->get('clubmaster.user')->get();
 
@@ -100,7 +96,7 @@ EOF
         $p_address->setStreet($street);
         $p_address->setPostalCode($postalcode);
         $p_address->setCity($city);
-        $p_address->setCountry($country_ng);
+        $p_address->setCountry($country);
 
         if (!strlen($phone)) {
           $profile->setProfilePhone(null);

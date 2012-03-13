@@ -45,8 +45,7 @@ class Filter extends AbstractType
     $builder->add('city', 'text', array(
       'required' => false
     ));
-    $builder->add('country', 'entity', array(
-      'class' => 'Club\UserBundle\Entity\Country',
+    $builder->add('country', 'country', array(
       'required' => false
     ));
     $builder->add('active', 'choice', array(

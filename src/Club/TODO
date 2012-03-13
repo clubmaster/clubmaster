@@ -16,7 +16,6 @@ add comment to a match
 
 == HOT ==
 add paid to orders, to verify if an order has been paid
-remove countries, and use country form field
 seems to make problem:
   - create cart not logged in.
   - login to the left, with wrong credentials
@@ -51,6 +50,8 @@ quick create intervals when creating the field
 does lifetime membership works?
 
 == NOTES TO LATER ==
+cannot install when parameter is not on english
+cannot install with multiple payment plugins
 make a quick way to remove all team penalties
 use attribute class as product attribute converter
 add defaults during install:

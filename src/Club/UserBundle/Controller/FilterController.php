@@ -164,7 +164,7 @@ class FilterController extends Controller
     $gender = ($data->gender != '') ? $data->gender : null;
     $postal_code = ($data->postal_code != '') ? $data->postal_code : null;
     $city = ($data->city != '') ? $data->city : null;
-    $country = ($data->country != '') ? $data->country->getId() : null;
+    $country = ($data->country != '') ? $data->country : null;
     $active = ($data->active != '') ? $data->active : null;
     $has_ticket= ($data->has_ticket != '') ? $data->has_ticket : null;
     $has_subscription = ($data->has_subscription != '') ? $data->has_subscription : null;
@@ -288,7 +288,7 @@ class FilterController extends Controller
         $form_filter->city = $attribute->getValue();
         break;
       case 'country':
-        $form_filter->country = $em->find('ClubUserBundle:Country',$attribute->getValue());
+        $form_filter->country = $attribute->getValue();
         break;
       case 'active':
         $form_filter->active = $attribute->getValue();

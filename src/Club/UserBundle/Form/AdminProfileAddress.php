@@ -13,7 +13,7 @@ class AdminProfileAddress extends AbstractType
     $builder->add('postal_code');
     $builder->add('city');
     $builder->add('state');
-    $builder->add('country');
+    $builder->add('country', 'country');
   }
 
   public function getDefaultOptions(array $options)

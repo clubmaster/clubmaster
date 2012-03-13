@@ -15,10 +15,7 @@ class Location extends AbstractType
     $builder->add('postal_code');
     $builder->add('city');
     $builder->add('state');
-    $builder->add('country', 'entity', array(
-      'class' => 'Club\UserBundle\Entity\Country',
-      'required' => false
-    ));
+    $builder->add('country', 'country');
     $builder->add('location','entity', array(
       'class' => 'Club\UserBundle\Entity\Location',
       'required' => false

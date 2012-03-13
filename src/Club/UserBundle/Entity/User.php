@@ -479,7 +479,7 @@ class User implements AdvancedUserInterface
           $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
           $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
           $res['state'] = $this->getProfile()->getProfileAddress()->getState();
-          $res['country'] = $this->getProfile()->getProfileAddress()->getCountry()->getCountry();
+          $res['country'] = $this->getProfile()->getProfileAddress()->getCountry();
         }
 
         if ($this->getProfile()->getProfilePhone()) {

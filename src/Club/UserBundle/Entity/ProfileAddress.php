@@ -57,6 +57,13 @@ class ProfileAddress
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @var string $country
+     */
+    protected $country;
+
+    /**
+     * @ORM\Column(type="string")
      * @Assert\NotBlank()
      * @Assert\NotBlank(groups={"user"})
      *
@@ -71,11 +78,6 @@ class ProfileAddress
      * @var Club\UserBundle\Entity\Profile
      */
     protected $profile;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Country")
-     */
-    protected $country;
 
 
     public function __construct()

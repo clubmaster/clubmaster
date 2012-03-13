@@ -64,7 +64,9 @@ class Location
     protected $state;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\Column(type="string")
+     *
+     * @var string $country
      */
     protected $country;
 
@@ -169,8 +171,6 @@ class Location
 
     public function toArray()
     {
-      $country = ($this->getCountry()) ? $this->getCountry()->getCountry() : null;
-
       return array(
         'id' => $this->getId(),
         'location_name' => $this->getLocationName(),
@@ -178,7 +178,7 @@ class Location
         'postal_code' => $this->getPostalCode(),
         'city' => $this->getCity(),
         'state' => $this->getState(),
-        'country' => $country
+        'country' => $this->getCountry()
       );
     }
 
@@ -285,9 +285,9 @@ class Location
     /**
      * Set country
      *
-     * @param Club\UserBundle\Entity\Country $country
+     * @param string $country
      */
-    public function setCountry(\Club\UserBundle\Entity\Country $country=null)
+    public function setCountry($country)
     {
         $this->country = $country;
     }
@@ -295,7 +295,7 @@ class Location
     /**
      * Get country
      *
-     * @return Club\UserBundle\Entity\Country
+     * @return string
      */
     public function getCountry()
     {
