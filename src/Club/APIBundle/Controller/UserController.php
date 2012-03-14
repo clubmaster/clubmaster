@@ -23,7 +23,7 @@ class UserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     if ($query == null) {
-      $users = $em->getRepository('ClubUserBundle:User')->findAll();
+      $users = $em->getRepository('ClubUserBundle:User')->getBySearch();
     } else {
       $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
         'query' => $query

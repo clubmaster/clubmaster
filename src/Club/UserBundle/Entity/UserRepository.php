@@ -419,11 +419,9 @@ class UserRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getBySearch(array $user, $sort = 'u.member_number')
+  public function getBySearch(array $user = null, $sort = 'u.member_number', $active = true)
   {
-    $qb = $this->_em->createQueryBuilder()
-      ->select('u')
-      ->from('ClubUserBundle:User', 'u');
+    $qb = $this->getQueryBuilder();
 
     if (isset($user['id']) && $user['id'] != '') {
       $qb
@@ -433,12 +431,13 @@ class UserRepository extends EntityRepository
 
       $user['query'] = isset($user['query']) ? $user['query'] : '';
       $qb
-        ->leftJoin('u.profile', 'p')
         ->where('u.member_number = :number')
         ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
     }
+
+    if ($active) $qb = $this->filterActive($qb, true);
 
     return $qb
       ->orderBy($sort, 'ASC')
