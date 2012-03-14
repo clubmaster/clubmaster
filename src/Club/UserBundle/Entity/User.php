@@ -468,7 +468,6 @@ class User implements AdvancedUserInterface
         'last_name' => $this->getProfile()->getLastName(),
         'gender' => $this->getProfile()->getGender(),
         'day_of_birth' => $this->getProfile()->getDayOfBirth()->format('c'),
-        'member_status' => $this->getMemberStatus(),
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
@@ -707,27 +706,6 @@ class User implements AdvancedUserInterface
     public function addGroups(\Club\UserBundle\Entity\Group $groups)
     {
       $this->groups[] = $groups;
-    }
-
-    public function getMemberStatus(array $attr=null)
-    {
-      foreach ($this->getSubscriptions() as $s) {
-        if ($s->getStartDate()->getTimestamp() <= time()) {
-          if ($s->getExpireDate()->getTimestamp() >= time() || $s->getExpireDate() == '') {
-            if ($s->getActive())
-              if (is_array($attr)) {
-                foreach ($attr as $key => $value) {
-                  if ($s->hasAttribute($value))
-                    return true;
-                }
-              } else {
-                return true;
-              }
-          }
-        }
-      }
-
-      return false;
     }
 
     /**

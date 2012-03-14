@@ -124,7 +124,7 @@ class Booking
     if ($user == $partner)
       $this->setError('You cannot book with yourself');
 
-    if (!$this->partner->getMemberStatus(array('booking'))) {
+    if (!$this->validateSubscription($this->partner)) {
       $this->setError($this->translator->trans('Your partner must have an active membership'));
       return;
     }
@@ -231,8 +231,8 @@ class Booking
     $this->booking->setEndDate($stop);
     $this->booking->setGuest($this->guest);
 
-    $confirm = ($this->container->get('club_booking.auto_confirm')) ? true : false;
-    $this->booking->setConfirm($confirm);
+    $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
+    $this->booking->setConfirmed($confirm);
 
 
     if ($this->partner)
@@ -292,7 +292,7 @@ class Booking
       return;
     }
 
-    if (!$this->user->getMemberStatus(array('booking'))) {
+    if (!$this->validateSubscription($this->user)) {
       $this->setError('You do not have an active membership');
       return;
     }
@@ -373,5 +373,14 @@ class Booking
     $this->price = $r['price'];
 
     if (isset($partner)) $this->partner = $partner;
+  }
+
+  protected function validateSubscription(\Club\UserBundle\Entity\User $user)
+  {
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'booking');
+    if (!$subs)
+      return false;
+
+    return true;
   }
 }

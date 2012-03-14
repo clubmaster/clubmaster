@@ -397,6 +397,9 @@ class UserRepository extends EntityRepository
       }
     }
 
+    $subs = $this->_em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user);
+    $active = !$subs ? false : true;
+
     return $this->_em->createQueryBuilder()
       ->select('g')
       ->from('ClubUserBundle:Group', 'g')
@@ -411,7 +414,7 @@ class UserRepository extends EntityRepository
       ->setParameter('gender', $user->getProfile()->getGender())
       ->setParameter('min_age', $user->getProfile()->getAge())
       ->setParameter('max_age', $user->getProfile()->getAge())
-      ->setParameter('active_member', $user->getMemberStatus())
+      ->setParameter('active_member', $active)
       ->getQuery()
       ->getResult();
   }
