@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+view coming subscriptions on subscription page
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
@@ -26,18 +27,18 @@ make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
 remove all fixtures, find a way to init all data in an another way
-view coming subscriptions on subscription page
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
 problems with generate repetitions, check up on this
 test for banning does not work, it pick wrong user
-view product attribute product view
 do routing to annotation instead of, check default install of symfony bundle
 $request->getPreferredLanguage(array('en', 'fr'));
 merge migrations into one file
 quick create intervals when creating the field
 does lifetime membership works?
+on a fresh install, let index.php redirect to config.php
+configurationbundle and installerbundle should be disabled after install
 
 == NOTES TO LATER ==
 cannot install when parameter is not on english
@@ -47,23 +48,19 @@ use attribute class as product attribute converter
 add defaults during install:
   - categories
   - products
-let users be able to browser other active members
 fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
-in checkout shipping form, country has to be entity
 make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 avoid try / catch on kernel.request listeners
 set system locale for logging messages
 improve paginator
-any way to install database with webinterface
 correct links in paginator
 better timesupport on booking schema, its on danish today
-rules for when on the day a subscription can use booking
 implement payment for booking
 on admin interval manager, put a default interval in top, that will set the same for everyone
-make sure either create or updated always comes first
+make sure either created_at always comes before updated_at
 make sure widgets works:
   - datetime
   - date
@@ -75,7 +72,6 @@ dynamic number of partners for a booking, from 0 to 888
 
 == NOTES FOR EVEN LATER ==
 something is broken when creating more intervals on the same field, fix it
-what happens if you put schema on already booked interval
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
@@ -83,10 +79,9 @@ change all equal form.html.twig to layout default
 jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product
-move all login pages to /user
+move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 on switch location, stay on last visited page
 move database install and upgrade to the same library
 tag users on images
-validate what happens with multiple active memberships
