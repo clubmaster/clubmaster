@@ -76,8 +76,11 @@ class QueueProcessListener
     $this->recipients[$user->getId()] = 1;
     if (!$user->getProfile()->getProfileEmail()) return;
 
+    try {
     $this->clubmaster_mailer
       ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
       ->send();
+    } catch (\Exception $e) {
+    }
   }
 }
