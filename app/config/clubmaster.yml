@@ -40,6 +40,7 @@ club_team:
 club_booking:
     enabled: true
     enable_guest: true
+    guest_price: 50
     num_book_guest_day: 1
     num_book_guest_future: 1
     num_book_same_partner_day: 1
