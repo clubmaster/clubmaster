@@ -36,6 +36,14 @@
     {% if attr.allowed_pauses %}
     <li>{% trans with {'%pauses%':attr.allowed_pauses} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
     {% endif %}
+    {% if attr.start_time and attr.stop_time %}
+    <li>{% trans with {'%start_time%':attr.start_time|club_time,'%stop_time%':attr.stop_time|club_time} %}This membership is active between <b>%start_time% - %stop_time%</b> in the day{% endtrans %}</li>
+    {% elseif attr.start_time %}
+    <li>{% trans with {'%start_time%':attr.start_time|club_time} %}This membership is active from <b>%start_time%</b> in the day{% endtrans %}</li>
+    {% elseif attr.stop_time %}
+    <li>{% trans with {'%stop_time%':attr.stop_time|club_time} %}This membership is active until <b>%stop_time%</b> in the day{% endtrans %}</li>
+    {% endif %}
+
   </ul>
   {% endif %}
 
