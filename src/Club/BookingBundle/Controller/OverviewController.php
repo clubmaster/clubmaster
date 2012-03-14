@@ -24,10 +24,14 @@ class OverviewController extends Controller
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
      $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
+     $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->get('security.context')->getToken()->getUser(), null, 'booking');
+     $active = (!$subs) ? false : true;
+
      return array(
        'interval' => $interval,
        'date' => $date,
-       'form' => $form->createView()
+       'form' => $form->createView(),
+       'active' => $active
      );
    }
 

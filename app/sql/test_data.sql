@@ -101,6 +101,7 @@ INSERT INTO club_shop_product_attribute (product_id,attribute,value) VALUES
   (1,'allowed_pauses',3),
   (1,'location',1),
   (1,'team',1),
+  (1,'booking',1),
   (2,'time_interval','2M'),
   (2,'allowed_pauses',5),
   (2,'location',1),
