@@ -18,7 +18,6 @@ add comment to a match
 validate all usages of getSubscriptios, that we only use the active subscriptions
 view when a subscription works from and to.. time 10 - 14
 prices to book with guest, use normal checkout procedure
-obey rules of book time
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
 seems to make problem:
@@ -37,6 +36,7 @@ click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 make integrations to economic
 make integrations to quickpay
+only send active members to API
 
 == NOTES TO THIS RELEASE ==
 view coming subscriptions on subscription page
