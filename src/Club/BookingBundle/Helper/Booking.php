@@ -156,6 +156,11 @@ class Booking
       return;
     }
 
+    if (!$this->validateSubscriptionTime($this->partner, $this->interval)) {
+      $this->setError($this->translator->trans('Your partner is not allowed to book this time.'));
+      return;
+    }
+
     if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
       $this->setError('You cannot have more bookings with this partner this day');
       return;
@@ -270,6 +275,11 @@ class Booking
       return;
     }
 
+    if (!$this->validateSubscriptionTime($this->user, $this->interval)) {
+      $this->setError('You are not allowed to book this time');
+      return;
+    }
+
     if (!$this->validateBookingDay($this->date, $this->user)) {
       $this->setError('You cannot have more bookings this day');
       return;
@@ -338,6 +348,48 @@ class Booking
 
     return true;
   }
+
+  protected function validateSubscriptionTime(\Club\UserBundle\Entity\User $user, \Club\BookingBundle\Entity\Interval $interval)
+  {
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'booking');
+    if (!$subs)
+      return false;
+
+    foreach ($subs as $sub) {
+      foreach ($sub->getSubscriptionAttributes() as $attr) {
+        switch ($attr->getAttributeName()) {
+        case 'start_time':
+          $start = clone $interval->getStartTime();
+          $start->setDate(
+            date('Y'),
+            date('m'),
+            date('d')
+          );
+          $t = new \DateTime(date('Y-m-d ').$attr->getValue());
+
+          if ($start < $t)
+            return false;
+
+          break;
+        case 'stop_time':
+          $end = clone $interval->getStopTime();
+          $end->setDate(
+            date('Y'),
+            date('m'),
+            date('d')
+          );
+          $t = new \DateTime(date('Y-m-d ').$attr->getValue());
+
+          if ($end > $t)
+            return false;
+
+          break;
+        }
+      }
+    }
+    return true;
+  }
+
 
   protected function validateIntervalDay(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
   {
