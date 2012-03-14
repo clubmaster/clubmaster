@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+delete booking with partner cascade delete?
 validate all usages of getSubscriptios, that we only use the active subscriptions
 view when a subscription works from and to.. time 10 - 14
 prices to book with guest, use normal checkout procedure

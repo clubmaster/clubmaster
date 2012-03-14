@@ -75,39 +75,64 @@ class Booking
     if (!$this->container->getParameter('club_booking.enable_guest'))
       $this->setError('Guest booking is not enabled');
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date = CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('user', $this->user->getId())
-      ->setParameter('is_guest', true)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day')) {
+    if (!$this->validateBookingGuestDay($this->date, $this->user)) {
       $this->setError($this->translator->trans('You cannot have more guest bookings this day'));
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('user', $this->user->getId())
-      ->setParameter('is_guest', true)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future')) {
+    if (!$this->validateBookingGuestFuture($this->user)) {
       $this->setError($this->translator->trans('You cannot have more guest bookings'));
       return;
     }
 
     $this->bind();
+  }
+
+  protected function validateBookingPartnerDay(\DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.first_date >= :start')
+      ->andWhere('b.first_date <= :end')
+      ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
+      ->setParameter('end', $date->format('Y-m-d 23:59:59'))
+      ->setParameter('user', $user->getId())
+      ->setParameter('partner', $partner->getId())
+      ->setParameter('is_guest', false)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingPartnerFuture(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.first_date >= CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('user', $user->getId())
+      ->setParameter('partner', $partner->getId())
+      ->setParameter('is_guest', false)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future'))
+      return false;
+
+    return true;
   }
 
   public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
@@ -121,76 +146,32 @@ class Booking
     if (!$this->isValid())
       return;
 
-    if ($user == $partner)
+    if ($user == $partner) {
       $this->setError('You cannot book with yourself');
+      return;
+    }
 
     if (!$this->validateSubscription($this->partner)) {
       $this->setError($this->translator->trans('Your partner must have an active membership'));
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->leftJoin('b.users', 'u')
-      ->where('b.first_date = CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->andWhere('u.id = :partner')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('user', $this->user->getId())
-      ->setParameter('partner', $this->partner->getId())
-      ->setParameter('is_guest', false)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day')) {
+    if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
       $this->setError('You cannot have more bookings with this partner this day');
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->andWhere('u.id = :partner')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('user', $this->user->getId())
-      ->setParameter('partner', $this->partner->getId())
-      ->setParameter('is_guest', false)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future')) {
+    if (!$this->validateBookingPartnerFuture($this->user, $this->partner)) {
       $this->setError('You cannot have more bookings with this partner');
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date = CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->setParameter('user', $this->partner->getId())
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day')) {
+    if (!$this->validateBookingDay($this->date, $this->partner)) {
       $this->setError('Your partner cannot have more bookings this day');
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->setParameter('user', $this->partner->getId())
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future')) {
+    if (!$this->validateBookingFuture($this->partner)) {
       $this->setError($this->translator->trans('Your partner cannot have more bookings'));
       return;
     }
@@ -269,25 +250,17 @@ class Booking
 
   protected function validate()
   {
-    if ($this->date->format('N') != $this->interval->getDay()) {
+    if (!$this->validateIntervalDay($this->date, $this->interval)) {
       $this->setError('Interval does not exists that day');
       return;
     }
 
-    $c = clone $this->date;
-    $c->setTime(
-      $this->interval->getStartTime()->format('H'),
-      $this->interval->getStartTime()->format('i'),
-      $this->interval->getStartTime()->format('s')
-    );
-
-    if ($c < new \DateTime()) {
+    if (!$this->validatePast($this->date, $this->interval)) {
       $this->setError('You cannot book in the past');
       return;
     }
 
-    $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
-    if (!$interval->getAvailable()) {
+    if (!$this->validateAvailable($this->date, $this->interval)) {
       $this->setError('Interval is not available');
       return;
     }
@@ -297,30 +270,12 @@ class Booking
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date = CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->setParameter('user', $this->user->getId())
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day')) {
+    if (!$this->validateBookingDay($this->date, $this->user)) {
       $this->setError('You cannot have more bookings this day');
       return;
     }
 
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->setParameter('user', $this->user->getId())
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future')) {
+    if (!$this->validateBookingFuture($this->user)) {
       $this->setError($this->translator->trans('You cannot have more bookings'));
       return;
     }
@@ -379,6 +334,116 @@ class Booking
   {
     $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'booking');
     if (!$subs)
+      return false;
+
+    return true;
+  }
+
+  protected function validateIntervalDay(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  {
+    if ($date->format('N') != $interval->getDay())
+      return false;
+
+    return true;
+  }
+
+  protected function validatePast(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  {
+    $c = clone $date;
+    $c->setTime(
+      $interval->getStartTime()->format('H'),
+      $interval->getStartTime()->format('i'),
+      $interval->getStartTime()->format('s')
+    );
+
+    if ($c < new \DateTime())
+      return false;
+
+    return true;
+  }
+
+  protected function validateAvailable(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  {
+    $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
+    if (!$interval->getAvailable())
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date >= :start')
+      ->andWhere('b.first_date <= :end')
+      ->andWhere('b.user = :user')
+      ->setParameter('user', $user->getId())
+      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
+      ->setParameter('end', $date->format('Y-m-d 23:59:59'))
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_day'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingFuture(\Club\UserBundle\Entity\User $user)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date >= CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->setParameter('user', $user->getId())
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_future'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingGuestDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date >= :start')
+      ->andWhere('b.first_date <= :end')
+      ->andWhere('b.user = :user')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('user', $user->getId())
+      ->setParameter('is_guest', true)
+      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
+      ->setParameter('end', $date->format('Y-m-d 23.59:59'))
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingGuestFuture(\Club\UserBundle\Entity\User $user)
+  {
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->where('b.first_date >= CURRENT_DATE()')
+      ->andWhere('b.user = :user')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('user', $user->getId())
+      ->setParameter('is_guest', true)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future'))
       return false;
 
     return true;
