@@ -252,8 +252,18 @@ class AdminMessageController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
+    $qb = $em->createQueryBuilder()
+      ->select('f')
+      ->from('ClubUserBundle:Filter', 'f')
+      ->where('f.user = :user')
+      ->setParameter('user', $this->get('security.context')->getToken()->getUser());
+
     $form = $this->createFormBuilder($message)
-      ->add('filters')
+      ->add('filters', 'entity', array(
+        'class' => 'Club\UserBundle\Entity\Filter',
+        'multiple' => true,
+        'query_builder' => $qb
+      ))
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {

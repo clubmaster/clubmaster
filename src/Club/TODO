@@ -14,19 +14,14 @@ add ranking
 obey rules of game
 add comment to a match
 
-== HOT ==
-prices to book with guest, use normal checkout procedure
-make that you have to checkin in order to confirm your booking, otherwice it will be free
-remove all fixtures, find a way to init all data in an another way
-seems to make problem:
-  - create cart not logged in.
-  - login to the left, with wrong credentials
-  - login with right credentials
-  - now carts seems broken
+== MAIL STUFF ==
 fix mailer, dont build the mail all the times, and only add attachment once
 problems with lagging of log when bad email syntax
 checkup sending mails.. icon is wrong
-the filter does not work, the name does not tell us anything
+
+== HOT ==
+prices to book with guest, use normal checkout procedure
+make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
 auto complete booking, only active members
 if allowed to change plan, go to plan when clicking on it
@@ -37,6 +32,7 @@ make integrations to quickpay
 only send active members to API
 
 == NOTES TO THIS RELEASE ==
+remove all fixtures, find a way to init all data in an another way
 view coming subscriptions on subscription page
 improve documentation of config file
 improve documentation of overwrite mail template files
