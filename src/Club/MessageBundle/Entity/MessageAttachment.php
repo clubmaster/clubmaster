@@ -66,6 +66,7 @@ class MessageAttachment
 
     /**
      * @ORM\ManyToOne(targetEntity="Message")
+     * @ORM\JoinColumn(name="message_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\MessageBundle\Entity\Message
      */

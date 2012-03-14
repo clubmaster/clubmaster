@@ -113,6 +113,22 @@ class AdminMessageController extends Controller
   }
 
   /**
+   * @Route("/message/delete/{id}")
+   * @Template()
+   */
+  public function deleteAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $message = $em->find('ClubMessageBundle:Message',$id);
+
+    $em->remove($message);
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
+  }
+
+  /**
    * @Route("/message/edit/{id}")
    * @Template()
    */

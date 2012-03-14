@@ -24,7 +24,9 @@
       <tr>
         <td>{{ line.type }}</td>
         <td>{{ line.message }}</td>
-        <td><a href="{{ line.path }}">Delete</a></td>
+        <td>
+          {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':line.path} %}
+        </td>
       </tr>
       {% else %}
       <tr>
