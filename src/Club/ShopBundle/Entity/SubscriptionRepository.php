@@ -60,6 +60,27 @@ class SubscriptionRepository extends EntityRepository
   }
 
 
+  public function getComingSubscriptions(\Club\UserBundle\Entity\User $user=null)
+  {
+    $d = new \DateTime();
+
+    $qb = $this->_em->createQueryBuilder()
+      ->select('s')
+      ->from('ClubShopBundle:Subscription','s')
+      ->where('s.start_date > :date')
+      ->setParameter('date',$d);
+
+    if ($user) {
+      $qb
+        ->andWhere('s.user = :user')
+        ->setParameter('user', $user->getId());
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
+
   public function getExpiredSubscriptions(\Club\UserBundle\Entity\User $user=null)
   {
     $qb = $this->_em->createQueryBuilder()

@@ -408,6 +408,11 @@ class Subscription
 
     public function getActive()
     {
+      $d = new \DateTime();
+
+      if ($d < $this->getStartDate())
+        return false;
+
       if ($this->isExpired())
         return false;
 
