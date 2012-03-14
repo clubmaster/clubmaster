@@ -23,7 +23,6 @@ class QueueProcessListener
     foreach ($messages as $message) {
       // init message
       $this->clubmaster_mailer
-        ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
         ->setFrom($message->getSenderAddress(), $message->getSenderName())
         ->setBody($message->getMessage(), 'text/html');
 
