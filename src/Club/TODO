@@ -17,7 +17,6 @@ add comment to a match
 == MAIL STUFF ==
 fix mailer, dont build the mail all the times, and only add attachment once
 problems with lagging of log when bad email syntax
-checkup sending mails.. icon is wrong
 
 == HOT ==
 prices to book with guest, use normal checkout procedure
