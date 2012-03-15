@@ -15,16 +15,16 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+make integrations to economic
+make integrations to quickpay
+click on a booking plan, might be wrong dates
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
-if allowed to change plan, go to plan when clicking on it
-click on a booking plan, might be wrong dates
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
-make integrations to economic
-make integrations to quickpay
 
 == NOTES TO THIS RELEASE ==
+if allowed to change plan, go to plan when clicking on it
 remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
 improve documentation of overwrite mail template files
@@ -32,7 +32,6 @@ improve documentation of overwrite pages in general
 problems with generate repetitions, check up on this
 test for banning does not work, it pick wrong user
 do routing to annotation instead of, check default install of symfony bundle
-$request->getPreferredLanguage(array('en', 'fr'));
 merge migrations into one file
 quick create intervals when creating the field
 does lifetime membership works?
