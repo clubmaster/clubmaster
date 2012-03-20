@@ -15,6 +15,11 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+cart bug:
+  - create basket
+  - let session timeout
+  - checkout
+  - some error occur
 make integrations to economic
 make integrations to quickpay
 click on a booking plan, might be wrong dates
