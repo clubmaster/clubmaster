@@ -3,9 +3,10 @@
 {% block body %}
 
 <form method="POST" action="{{ quickpay_url }}">
+
 {{ form_widget(form) }}
 
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Pay with creditcard'} %}
 </form>
 
 {% endblock %}
