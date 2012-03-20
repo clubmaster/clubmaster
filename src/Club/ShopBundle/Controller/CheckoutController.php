@@ -166,6 +166,10 @@ class CheckoutController extends Controller
   public function processAction()
   {
     $cart = $this->get('cart')->getCart();
+    if (!count($cart->getCartProducts())) {
+      $this->get('session')->setFlash('error', 'This order has no products.');
+      return $this->redirect($this->generateUrl('shop'));
+    }
 
     if ($cart) {
       $em = $this->getDoctrine()->getEntityManager();
