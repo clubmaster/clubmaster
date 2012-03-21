@@ -15,14 +15,14 @@ obey rules of game
 add comment to a match
 
 == HOT ==
-change amount on order to be without decimal, and in the lowest decimal a country
+style quickpay flow
+style purchase log for order
 cart bug:
   - create basket
   - let session timeout
   - checkout
   - some error occur
 make integrations to economic
-make integrations to quickpay
 click on a booking plan, might be wrong dates
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
