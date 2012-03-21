@@ -38,5 +38,6 @@ class ClubPaymentQuickpayExtension extends Extension
         $container->setParameter('club_payment_quickpay.testmode', $config['testmode']);
         $container->setParameter('club_payment_quickpay.splitpayment', $config['splitpayment']);
         $container->setParameter('club_payment_quickpay.quickpay_url', $config['quickpay_url']);
+        $container->setParameter('club_payment_quickpay.testmode', $config['testmode']);
     }
 }

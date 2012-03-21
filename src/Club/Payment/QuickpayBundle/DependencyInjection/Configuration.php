@@ -38,6 +38,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('autofee')->defaultValue('0')->end()
             ->scalarNode('testmode')->defaultValue('0')->end()
             ->scalarNode('splitpayment')->defaultValue('0')->end()
+            ->scalarNode('testmode')->defaultValue('0')->end()
           ->end();
 
         return $treeBuilder;

@@ -413,7 +413,7 @@ class Order
 
     public function getOrderNumber()
     {
-      return $this->getId();
+      return sprintf('%04s',$this->getId());
     }
 
     /**

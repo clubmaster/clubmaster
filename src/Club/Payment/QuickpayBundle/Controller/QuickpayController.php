@@ -85,7 +85,7 @@ class QuickpayController extends Controller
   protected function getForm(\Club\ShopBundle\Entity\Order $order)
   {
     $res = array(
-      'msgtype' => 'capture',
+      'msgtype' => 'authorize',
       'ordernumber' => $order->getOrderNumber(),
       'amount' => ($order->getPrice()*100),
       'continueurl' => $this->generateUrl('club_payment_quickpay_quickpay_success', array(
@@ -106,6 +106,7 @@ class QuickpayController extends Controller
       'cardtypelock' => $this->container->getParameter('club_payment_quickpay.cardtypelock'),
       'testmode' => $this->container->getParameter('club_payment_quickpay.testmode'),
       'splitpayment' => $this->container->getParameter('club_payment_quickpay.splitpayment'),
+      'ipaddress' => $this->getRequest()->getClientIP()
     );
 
     $md5check = md5(
@@ -120,8 +121,9 @@ class QuickpayController extends Controller
       $res['cancelurl'].
       $res['callbackurl'].
       $res['autocapture'].
-      $res['autofee'].
+      //$res['autofee'].
       $res['cardtypelock'].
+      $res['ipaddress'].
       $res['testmode'].
       $res['splitpayment'].
       $this->container->getParameter('club_payment_quickpay.secret')

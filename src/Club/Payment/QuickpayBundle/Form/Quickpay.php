@@ -25,8 +25,8 @@ class Quickpay extends AbstractType
     $builder->add('description','hidden');
     $builder->add('testmode','hidden');
     $builder->add('splitpayment','hidden');
-    $builder->add('secret','hidden');
     $builder->add('ipaddress','hidden');
+    $builder->add('md5check','hidden');
   }
 
   public function getName()
