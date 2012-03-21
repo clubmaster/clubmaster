@@ -16,6 +16,7 @@ class QuickpayController extends Controller
    */
   public function successAction()
   {
+    return array();
   }
 
   /**
@@ -24,6 +25,7 @@ class QuickpayController extends Controller
    */
   public function cancelAction()
   {
+    return array();
   }
 
   /**
