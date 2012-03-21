@@ -1,3 +1,4 @@
+{% if order.purchaseLog|length > 0 %}
 <h2>{% trans %}Purchase Log{% endtrans %}</h2>
 <table class="style">
   <thead>
@@ -25,3 +26,4 @@
   {% endfor %}
   </tbody>
 </table>
+{% endif %}
