@@ -57,6 +57,20 @@ class Order
     protected $price;
 
     /**
+     * @ORM\Column(type="decimal", scale="2")
+     *
+     * @var string $amount_left
+     */
+    protected $amount_left;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var string $paid
+     */
+    protected $paid;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
      * @Assert\NotBlank(groups={"PaymentMethod"})
      *
@@ -144,6 +158,7 @@ class Order
     public function __construct() {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
       $this->order_status_history = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->setPaid(false);
     }
 
     /**
@@ -459,5 +474,45 @@ class Order
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set amount_left
+     *
+     * @param decimal $amountLeft
+     */
+    public function setAmountLeft($amountLeft)
+    {
+        $this->amount_left = $amountLeft;
+    }
+
+    /**
+     * Get amount_left
+     *
+     * @return decimal
+     */
+    public function getAmountLeft()
+    {
+        return $this->amount_left;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid()
+    {
+        return $this->paid;
     }
 }

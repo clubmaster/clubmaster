@@ -136,6 +136,7 @@ class Order
     }
 
     $this->order->setPrice($price);
+    $this->order->setAmountLeft($price);
   }
 
   public function save()
@@ -181,6 +182,7 @@ class Order
     $this->order->setCurrency($data->getCurrency());
     $this->order->setCurrencyValue($data->getCurrencyValue());
     $this->order->setPrice($data->getPrice());
+    $this->order->setAmountLeft($data->getPrice());
     $this->order->setPaymentMethod($this->em->find('ClubShopBundle:PaymentMethod',$data->getPaymentMethod()->getId()));
     $this->order->setShipping($this->em->find('ClubShopBundle:Shipping',$data->getShipping()->getId()));
     $this->order->setOrderStatus($this->getDefaultOrderStatus());

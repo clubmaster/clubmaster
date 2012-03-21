@@ -9,10 +9,11 @@
 <fieldset>
   <legend>Payment Information</legend>
 
-  <p>{{ form_row(form) }}</p>
+  <p>{{ form_widget(form) }}</p>
 
-  <p><input type="submit" value="Continue" class="input-submit" /></p>
 </fieldset>
+
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Continue'} %}
 </form>
 
 {% endblock %}

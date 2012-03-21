@@ -7,6 +7,7 @@ use Symfony\Component\EventDispatcher\Event;
 class FilterPaymentMethodEvent extends Event
 {
   protected $methods = array();
+  protected $credentials = array();
 
   public function setMethod($method)
   {
@@ -17,4 +18,15 @@ class FilterPaymentMethodEvent extends Event
   {
     return $this->methods;
   }
+
+  public function setCredentials($credentials)
+  {
+    $this->credentials = $credentials;
+  }
+
+  public function getCredentials()
+  {
+    return $this->credentials;
+  }
+
 }

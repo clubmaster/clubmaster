@@ -4,7 +4,24 @@
 
 <form method="POST" action="{{ quickpay_url }}">
 
-{{ form_widget(form) }}
+<input size="40" type="hidden" id="protocol" name="protocol" value="{{ form.protocol.vars.value }}" />
+<input size="40" type="hidden" id="msgtype" name="msgtype" value="{{ form.msgtype.vars.value }}" />
+<input size="40" type="hidden" id="merchant" name="merchant" value="{{ form.merchant.vars.value }}" />
+<input size="40" type="hidden" id="language" name="language" value="{{ form.language.vars.value }}" />
+<input size="40" type="hidden" id="ordernumber" name="ordernumber" value="{{ form.ordernumber.vars.value }}" />
+<input size="40" type="hidden" id="amount" name="amount" value="{{ form.amount.vars.value }}" />
+<input size="40" type="hidden" id="currency" name="currency" value="{{ form.currency.vars.value }}" />
+<input size="40" type="hidden" id="continueurl" name="continueurl" value="{{ form.continueurl.vars.value }}" />
+<input size="40" type="hidden" id="cancelurl" name="cancelurl" value="{{ form.cancelurl.vars.value }}" />
+<input size="40" type="hidden" id="callbackurl" name="callbackurl" value="{{ form.callbackurl.vars.value }}" />
+<input size="40" type="hidden" id="autocapture" name="autocapture" value="{{ form.autocapture.vars.value }}" />
+<input size="40" type="hidden" id="autofee" name="autofee" value="{{ form.autofee.vars.value }}" />
+<input size="40" type="hidden" id="cardtypelock" name="cardtypelock" value="{{ form.cardtypelock.vars.value }}" />
+<input size="40" type="hidden" id="description" name="description" value="{{ form.description.vars.value }}" />
+<input size="40" type="hidden" id="testmode" name="testmode" value="{{ form.testmode.vars.value }}" />
+<input size="40" type="hidden" id="splitpayment" name="splitpayment" value="{{ form.splitpayment.vars.value }}" />
+<input size="40" type="hidden" id="secret" name="secret" value="{{ form.secret.vars.value }}" />
+<input size="40" type="hidden" id="ipaddress" name="ipaddress" value="{{ form.ipaddress.vars.value }}" />
 
 {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Pay with creditcard'} %}
 </form>

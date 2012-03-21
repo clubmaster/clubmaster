@@ -10,19 +10,21 @@ class PaymentMethod
     $this->event_dispatcher = $event_dispatcher;
   }
 
-  public function getAll()
+  public function getAll(array $credentials = array())
   {
     $event = new \Club\ShopBundle\Event\FilterPaymentMethodEvent();
+    $event->setCredentials($credentials);
+
     $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onPaymentMethodGet, $event);
 
-    return $event->getMethods();
+    return $event->getMethods($credentials);
   }
 
-  public function getAllArray()
+  public function getAllArray(array $credentials = array())
   {
     $res = array();
 
-    foreach ($this->getAll() as $method) {
+    foreach ($this->getAll($credentials) as $method) {
       $res[$method->getId()] = $method->getPaymentMethodName();
     }
 

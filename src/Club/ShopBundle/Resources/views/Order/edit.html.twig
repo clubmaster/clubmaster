@@ -6,6 +6,19 @@
 {% include "ClubShopBundle:Order:order_form.html.twig" %}
 {% include "ClubShopBundle:Order:order_history.html.twig" %}
 
+{% if order.paid == false %}
+{% for method in payments %}
+<fieldset>
+  <legend>{{ method.paymentMethodName }}</legend>
+
+  <p>{% trans %}Click here to pay order.{% endtrans %}</p>
+  <form method="post" action="{{ path(method.controller, {'order_id':order.id}) }}">
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Pay order'} %}
+  </form>
+</fieldset>
+{% endfor %}
+{% endif %}
+
 {% if order.orderStatusHistory|length == 1 %}
 <fieldset>
   <legend>{% trans %}Cancel order{% endtrans %}</legend>

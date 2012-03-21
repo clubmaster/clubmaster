@@ -15,6 +15,10 @@ class Cash
   {
     $name = 'Cash';
     $controller = 'club_payment_cash_cash_index';
+    $online_payment = false;
+
+    $credentials = $event->getCredentials();
+    if (isset($credentials['online_payment']) && $credentials['online_payment'] != $online_payment) return;
 
     $method = $this->em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
       'controller' => $controller

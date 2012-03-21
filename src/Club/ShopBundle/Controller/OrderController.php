@@ -35,9 +35,14 @@ class OrderController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
+    $payments = $this->get('shop_paymentmethod')->getAll(
+      array('online_payment' => true)
+    );
+
     $this->validateOwner($order);
     return array(
       'order' => $order,
+      'payments' => $payments
     );
   }
 

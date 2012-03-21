@@ -5,6 +5,8 @@ namespace Club\Payment\QuickpayBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuickpayController extends Controller
 {
@@ -27,9 +29,40 @@ class QuickpayController extends Controller
   /**
    * @Route("/quickpay/callback/{order_id}")
    * @Template()
+   * @Method("POST")
    */
   public function callbackAction($order_id)
   {
+    $r = $this->getRequest();
+
+    $t = new \Club\Payment\QuickpayBundle\Entity\Transaction();
+    $t->setMsgtype($r->get('msgtype'));
+    $t->setOrdernumber($r->get('ordernumber'));
+    $t->setAmount($r->get('amount'));
+    $t->setCurrency($r->get('currency'));
+    $t->setTime($r->get('time'));
+    $t->setState($r->get('state'));
+    $t->setQpstat($r->get('qpstat'));
+    $t->setQpstatmsg($r->get('qpstatmsg'));
+    $t->setChstat($r->get('chstat'));
+    $t->setChstatmsg($r->get('chstatmsg'));
+    $t->setMerchant($r->get('merchant'));
+    $t->setMerchantemail($r->get('merchantemail'));
+    $t->setTransaction($r->get('transaction'));
+    $t->setCardtype($r->get('cardtype'));
+    $t->setCardnumber($r->get('cardnumber'));
+    $t->setCardexpire($r->get('cardexpire'));
+    $t->setSplitpayment($r->get('splitpayment'));
+    $t->setFraudprobability($r->get('fraudprobability'));
+    $t->setFraudremarks($r->get('fraudremarks'));
+    $t->setFee($r->get('fee'));
+    $t->setMd5check($r->get('md5check'));
+
+    $em = $this->getDoctrine()->getEntityManager();
+    $em->persist($t);
+    $em->flush();
+
+    return new Response('OK');
   }
 
   /**
@@ -51,8 +84,6 @@ class QuickpayController extends Controller
 
   protected function getForm(\Club\ShopBundle\Entity\Order $order)
   {
-      //'secret' => $this->container->getParameter('club_payment_quickpay.secret'),
-
     $res = array(
       'msgtype' => 'capture',
       'ordernumber' => $order->getOrderNumber(),
