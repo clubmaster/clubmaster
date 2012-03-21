@@ -1,0 +1,27 @@
+<h2>{% trans %}Purchase Log{% endtrans %}</h2>
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Amount{% endtrans %}</th>
+      <th>{% trans %}Currency{% endtrans %}</th>
+      <th>{% trans %}Accepted{% endtrans %}</th>
+      <th>{% trans %}Transaction{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th colspan="5">&#160;</th>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for log in order.purchaseLog %}
+    <tr>
+      <td>{{ log.createdAt|club_datetime }}</td>
+      <td>{{ log.amount/100 }}</td>
+      <td>{{ log.currency }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':log.accepted} %}</td>
+      <td>{{ log.transaction }}</td>
+  {% endfor %}
+  </tbody>
+</table>

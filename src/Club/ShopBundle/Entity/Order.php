@@ -146,6 +146,13 @@ class Order
     protected $order_products;
 
     /**
+     * @ORM\OneToMany(targetEntity="PurchaseLog", mappedBy="order")
+     *
+     * @var Club\ShopBundle\Entity\PurchaseLog
+     */
+    protected $purchase_log;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created_at;
@@ -514,5 +521,25 @@ class Order
     public function getPaid()
     {
         return $this->paid;
+    }
+
+    /**
+     * Add purchase_log
+     *
+     * @param Club\ShopBundle\Entity\PurchaseLog $purchaseLog
+     */
+    public function addPurchaseLog(\Club\ShopBundle\Entity\PurchaseLog $purchaseLog)
+    {
+        $this->purchase_log[] = $purchaseLog;
+    }
+
+    /**
+     * Get purchase_log
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPurchaseLog()
+    {
+        return $this->purchase_log;
     }
 }

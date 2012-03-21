@@ -2,12 +2,13 @@
 
 {% block body %}
 
-{% include "ClubShopBundle:Order:order_information.html.twig" %}
-{% include "ClubShopBundle:Order:order_form.html.twig" %}
-{% include "ClubShopBundle:Order:order_history.html.twig" %}
-
 <form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
 {% include "ClubShopBundle:AdminOrder:form.html.twig" with {'form': form} %}
 </form>
+
+{% include "ClubShopBundle:Order:order_information.html.twig" %}
+{% include "ClubShopBundle:Order:order_form.html.twig" %}
+{% include "ClubShopBundle:Order:order_history.html.twig" %}
+{% include "ClubShopBundle:Order:purchase_log.html.twig" %}
 
 {% endblock %}
