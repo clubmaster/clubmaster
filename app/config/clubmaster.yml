@@ -4,9 +4,11 @@ parameters:
 
 club_payment_cash:
     enabled: true
+    controller: club_payment_cash_cash_index
 
 club_payment_quickpay:
     enabled: true
+    controller: club_payment_quickpay_quickpay_index
     merchant: example
     secret: xxxxx
     protocol: 4
