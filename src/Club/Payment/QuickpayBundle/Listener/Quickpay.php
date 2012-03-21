@@ -4,17 +4,20 @@ namespace Club\Payment\QuickpayBundle\Listener;
 
 class Quickpay
 {
+  protected $container;
   protected $em;
 
-  public function __construct($em)
+  public function __construct($container)
   {
-    $this->em = $em;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
   }
 
   public function onPaymentMethodGet(\Club\ShopBundle\Event\FilterPaymentMethodEvent $event)
   {
     $name = 'Credit card';
-    $controller = 'club_payment_quickpay_quickpay_index';
+    $controller = $this->container->getParameter('club_payment_quickpay.controller');
+
     $online_payment = true;
 
     $credentials = $event->getCredentials();

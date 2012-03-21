@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+change amount on order to be without decimal, and in the lowest decimal a country
 cart bug:
   - create basket
   - let session timeout

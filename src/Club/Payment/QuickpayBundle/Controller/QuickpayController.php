@@ -35,44 +35,30 @@ class QuickpayController extends Controller
    */
   public function callbackAction($order_id)
   {
-    $fields = array('msgtype','ordernumber','amount','currency','time','state','qpstat','qpstatmsg','chstat','chstatmsg','merchant','merchantemail','transaction','cardtype','cardnumber','md5check');
-    // Loop through $fields array, check if key exists in $_POST array, if so collect the value
-    $message = '-X POST -d "';
-    while (list(,$k) = each($fields)) {
-      if (isset($_POST[$k])) {
-        $message .= "$k=".$_POST[$k]."&";
-      }
-    }
-    $message = preg_replace('/&$/', '"', $message); 
-    // Send an email with the data posted to your resultpage
-    mail('hollo@hollo.dk', 'resultpage', $message);
-
     $r = $this->getRequest();
+    $accepted = false;
 
-    $t = new \Club\Payment\QuickpayBundle\Entity\Transaction();
-    $t->setMsgtype($r->get('msgtype'));
-    $t->setOrdernumber($r->get('ordernumber'));
-    $t->setAmount($r->get('amount'));
-    $t->setCurrency($r->get('currency'));
-    $t->setTime($r->get('time'));
-    $t->setState($r->get('state'));
-    $t->setQpstat($r->get('qpstat'));
-    $t->setQpstatmsg($r->get('qpstatmsg'));
-    $t->setChstat($r->get('chstat'));
-    $t->setChstatmsg($r->get('chstatmsg'));
-    $t->setMerchant($r->get('merchant'));
-    $t->setMerchantemail($r->get('merchantemail'));
-    $t->setTransaction($r->get('transaction'));
-    $t->setCardtype($r->get('cardtype'));
-    $t->setCardnumber($r->get('cardnumber'));
-    $t->setCardexpire($r->get('cardexpire'));
-    $t->setSplitpayment($r->get('splitpayment'));
-    $t->setFraudprobability($r->get('fraudprobability'));
-    $t->setFraudremarks($r->get('fraudremarks'));
-    $t->setFee($r->get('fee'));
-    $t->setMd5check($r->get('md5check'));
+    if ($r->get('qpstat') == '000')
+      $accepted = $this->validateTransaction();
 
     $em = $this->getDoctrine()->getEntityManager();
+    $order = $em->find('ClubShopBundle:Order', $order_id);
+
+    $t = new \Club\ShopBundle\Entity\PurchaseLog();
+    $t->setAmount($r->get('amount'));
+    $t->setCurrency($r->get('currency'));
+    $t->setMerchant($r->get('merchant'));
+    $t->setTransaction($r->get('transaction'));
+    $t->setCardtype($r->get('cardtype'));
+    $t->setOrder($order);
+    $t->setAccepted($accepted);
+    $t->setResponse(json_encode($this->getRequest()->request->all()));
+
+    $payment = $em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
+      'controller' => $this->container->getParameter('club_payment_quickpay.controller')
+    ));
+    $t->setPaymentMethod($payment);
+
     $em->persist($t);
     $em->flush();
 
@@ -147,5 +133,37 @@ class QuickpayController extends Controller
     $form = $this->createForm(new \Club\Payment\QuickpayBundle\Form\Quickpay, $res);
 
     return $form;
+  }
+
+  protected function validateTransaction()
+  {
+    $r = $this->getRequest();
+
+    $md5check = md5(
+      $r->get('msgtype').
+      $r->get('ordernumber').
+      $r->get('amount').
+      $r->get('currency').
+      $r->get('time').
+      $r->get('state').
+      $r->get('qpstat').
+      $r->get('qpstatmsg').
+      $r->get('chstat').
+      $r->get('chstatmsg').
+      $r->get('merchant').
+      $r->get('merchantemail').
+      $r->get('transaction').
+      $r->get('cardtype').
+      $r->get('cardnumber').
+      $r->get('cardexpire').
+      $r->get('splitpayment').
+      $r->get('fraudprobability').
+      $r->get('fraudremarks').
+      $r->get('fraudreport').
+      $r->get('fee').
+      $this->container->getParameter('club_payment_quickpay.secret')
+    );
+
+    return ($md5check == $r->get('md5check')) ? true : false;
   }
 }

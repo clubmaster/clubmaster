@@ -27,6 +27,7 @@ class ClubPaymentQuickpayExtension extends Extension
         if ($config['enabled']) $loader->load('listener.yml');
 
         $container->setParameter('club_payment_quickpay.enabled', $config['enabled']);
+        $container->setParameter('club_payment_quickpay.controller', $config['controller']);
         $container->setParameter('club_payment_quickpay.merchant', $config['merchant']);
         $container->setParameter('club_payment_quickpay.secret', $config['secret']);
         $container->setParameter('club_payment_quickpay.protocol', $config['protocol']);

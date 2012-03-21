@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
             ->scalarNode('enabled')->isRequired()->end()
+            ->scalarNode('controller')->isRequired()->end()
             ->scalarNode('merchant')->isRequired()->end()
             ->scalarNode('secret')->isRequired()->end()
             ->scalarNode('protocol')->isRequired()->end()

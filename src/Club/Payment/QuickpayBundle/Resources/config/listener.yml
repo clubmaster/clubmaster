@@ -1,6 +1,6 @@
 services:
   club.payment.quickpay.listener:
     class: Club\Payment\QuickpayBundle\Listener\Quickpay
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: paymentmethod.get, method: onPaymentMethodGet }

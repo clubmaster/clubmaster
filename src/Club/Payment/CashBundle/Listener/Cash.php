@@ -4,17 +4,19 @@ namespace Club\Payment\CashBundle\Listener;
 
 class Cash
 {
+  protected $container;
   protected $em;
 
-  public function __construct($em)
+  public function __construct($container)
   {
-    $this->em = $em;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
   }
 
   public function onPaymentMethodGet(\Club\ShopBundle\Event\FilterPaymentMethodEvent $event)
   {
     $name = 'Cash';
-    $controller = 'club_payment_cash_cash_index';
+    $controller = $this->container->getParameter('club_payment_cash.controller');
     $online_payment = false;
 
     $credentials = $event->getCredentials();

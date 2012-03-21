@@ -65,6 +65,13 @@ class PurchaseLog
     private $cardtype;
 
     /**
+     * @var string $response
+     *
+     * @ORM\Column(type="text", nullable="true")
+     */
+    private $response;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -277,10 +284,30 @@ class PurchaseLog
     /**
      * Get payment_method
      *
-     * @return Club\ShopBundle\Entity\PaymentMethod 
+     * @return Club\ShopBundle\Entity\PaymentMethod
      */
     public function getPaymentMethod()
     {
         return $this->payment_method;
+    }
+
+    /**
+     * Set response
+     *
+     * @param text $response
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
+    }
+
+    /**
+     * Get response
+     *
+     * @return text
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
