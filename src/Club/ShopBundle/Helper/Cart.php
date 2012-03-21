@@ -136,7 +136,9 @@ class Cart
       $op->setProductName($product->getProductName());
       $op->setPrice($product->getSpecialPrice());
       $op->setQuantity(1);
-      $op->setType('product');
+
+      $type = (!count($product->getProductAttributes())) ? 'product' : 'subscription';
+      $op->setType($type);
 
       foreach ($product->getProductAttributes() as $attr) {
         $opa = new \Club\ShopBundle\Entity\CartProductAttribute();

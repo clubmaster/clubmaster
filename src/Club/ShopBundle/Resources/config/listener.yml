@@ -9,6 +9,7 @@ services:
     arguments: [@doctrine.orm.entity_manager, @order]
     tags:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
+      - { name: kernel.event_listener, event: order.pay, method: onOrderPay, priority: 10 }
   club.shopbundle.listener.on_order_change_listener:
     class: Club\ShopBundle\Listener\OrderChangeListener
     arguments: [@doctrine.orm.entity_manager]

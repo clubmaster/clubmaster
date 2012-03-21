@@ -249,4 +249,25 @@ class Order
     $this->order->setCurrency($currency);
     $this->order->setCurrencyValue(1);
   }
+
+  public function setPaid()
+  {
+    if ($this->order->getPaid()) return;
+
+    $this->order->setPaid(true);
+    $this->em->persist($this->order);
+    $this->em->flush();
+
+    $delivered = true;
+    foreach ($this->order->getProducts() as $prod) {
+      if ($prod->getType() != 'subscription') $delivered = false;
+    }
+
+    if ($delivered) {
+      $status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getAcceptedStatus();
+      $this->changeStatus($status);
+    }
+
+    $this->em->flush();
+  }
 }

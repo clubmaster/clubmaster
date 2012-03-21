@@ -17,6 +17,8 @@ class OrderStatusRepository extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('s')
       ->from('ClubShopBundle:OrderStatus','s')
+      ->where('s.cancelled = false')
+      ->andWhere('s.accepted = false')
       ->orderBy('s.priority')
       ->setMaxResults(1)
       ->getQuery()

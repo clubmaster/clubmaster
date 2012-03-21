@@ -62,6 +62,11 @@ class QuickpayController extends Controller
     $em->persist($t);
     $em->flush();
 
+    if ($accepted) {
+      $this->get('order')->setOrder($order);
+      $this->get('order')->setPaid();
+    }
+
     return new Response('OK');
   }
 
