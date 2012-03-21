@@ -35,6 +35,18 @@ class QuickpayController extends Controller
    */
   public function callbackAction($order_id)
   {
+    $fields = array('msgtype','ordernumber','amount','currency','time','state','qpstat','qpstatmsg','chstat','chstatmsg','merchant','merchantemail','transaction','cardtype','cardnumber','md5check');
+    // Loop through $fields array, check if key exists in $_POST array, if so collect the value
+    $message = '-X POST -d "';
+    while (list(,$k) = each($fields)) {
+      if (isset($_POST[$k])) {
+        $message .= "$k=".$_POST[$k]."&";
+      }
+    }
+    $message = preg_replace('/&$/', '"', $message); 
+    // Send an email with the data posted to your resultpage
+    mail('hollo@hollo.dk', 'resultpage', $message);
+
     $r = $this->getRequest();
 
     $t = new \Club\Payment\QuickpayBundle\Entity\Transaction();
