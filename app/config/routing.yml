@@ -1,6 +1,12 @@
+ClubAccountEConomicBundle:
+    resource: "@ClubAccountEConomicBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ClubCheckinBundle:
     resource: "@ClubCheckinBundle/Controller/"
     type:     annotation
+    prefix:   /
 
 ClubPaymentCashBundle:
     resource: "@ClubPaymentCashBundle/Controller/"
