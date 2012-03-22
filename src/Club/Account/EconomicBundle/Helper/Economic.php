@@ -4,14 +4,18 @@ namespace Club\Account\EconomicBundle\Helper;
 
 class Economic
 {
-  public function __construct()
+  protected $container;
+
+  public function __construct($container)
   {
-    $this->economic_connect();
+    $this->container = $container;
+
+    $this->connect();
   }
 
   public function __destruct()
   {
-    $this->economic_disconnect();
+    $this->disconnect();
   }
 
   public function addEconomic($user,$order_number)
@@ -25,12 +29,10 @@ class Economic
 
   public function addCashBookEntry($product)
   {
-    $parameters = $this->container->getParameter('economic');
-
     $cashbook = $this->client->CashBookEntry_CreateFinanceVoucher(array(
-      'cashBookHandle' => $this->getCashBookByName($parameters['cashbook']),
+      'cashBookHandle' => $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook')),
       'accountHandle' => array('Number' => $product->getAccount()),
-      'contraAccountHandle' => array('Number' => $parameters['contraAccount'])
+      'contraAccountHandle' => array('Number' => $this->container->getParameter('club_account_economic.contraAccount'))
     ))->CashBookEntry_CreateFinanceVoucherResult;
 
     return $this->getCashBookEntry($cashbook);
@@ -38,12 +40,10 @@ class Economic
 
   public function addItem($user,$product,$order_number,$voucherNumber=null)
   {
-    $parameters = $this->container->getParameter('economic');
-
     $data = array(
-      'CashBookHandle' => $this->getCashBookByName($parameters['cashbook']),
+      'CashBookHandle' => $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook')),
       'AccountHandle' => array('Number' => $product->getAccount()),
-      'ContraAccountHandle' => array('Number' => $parameters['contraAccount']),
+      'ContraAccountHandle' => array('Number' => $this->container->getParameter('club_account_economic.contraAccount')),
       'Type' => 'FinanceVoucher',
       'Date' => date('Y-m-d').'T00:00:00',
       'AmountDefaultCurrency' => $product->getPrice()*-1,
@@ -117,18 +117,17 @@ class Economic
     return $cashbook->CashBook_FindByNameResult;
   }
 
-  public function economic_connect()
+  public function connect()
   {
-    $parameter = $this->container->getParameter('economic');
-
-    $this->client = new \SoapClient($parameter['url'], array("trace" => 1, "exceptions" => 1));
+    $this->client = new \SoapClient($this->container->getParameter('club_account_economic.economic_url'), array("trace" => 1, "exceptions" => 1));
     $this->client->Connect(array(
-      'agreementNumber' => $parameter['agreement'],
-      'userName'        => $parameter['user'],
-      'password'        => $parameter['password']));
+      'agreementNumber' => $this->container->getParameter('club_account_economic.agreement'),
+      'userName'        => $this->container->getParameter('club_account_economic.user'),
+      'password'        => $this->container->getParameter('club_account_economic.password')
+    ));
   }
 
-  public function economic_disconnect()
+  public function disconnect()
   {
     $this->client->Disconnect();
   }

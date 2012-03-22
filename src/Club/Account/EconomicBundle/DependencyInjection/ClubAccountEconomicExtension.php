@@ -31,5 +31,6 @@ class ClubAccountEconomicExtension extends Extension
         $container->setParameter('club_account_economic.password', $config['password']);
         $container->setParameter('club_account_economic.economic_url', $config['economic_url']);
         $container->setParameter('club_account_economic.contraAccount', $config['contraAccount']);
+        $container->setParameter('club_account_economic.cashbook', $config['cashbook']);
     }
 }
