@@ -48,7 +48,7 @@ class Economic
       'Date' => date('Y-m-d').'T00:00:00',
       'AmountDefaultCurrency' => $product->getPrice()*-1,
       'Amount' => $product->getPrice()*-1,
-      'CurrencyHandle' => $this->getCurrencyByCode('DKK'),
+      'CurrencyHandle' => $this->getCurrencyByCode($this->container->getParameter('club_account_economic.currency')),
       'Text' => '#'.$order_number.' - '.$user->getName()
     );
 

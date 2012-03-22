@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('economic_url')->isRequired()->end()
             ->scalarNode('contraAccount')->defaultValue(null)->end()
             ->scalarNode('cashbook')->defaultValue(null)->end()
+            ->scalarNode('currency')->defaultValue(null)->end()
           ->end();
 
         return $treeBuilder;
