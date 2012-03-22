@@ -9,4 +9,5 @@ final class Events
   const onOrderPay = 'order.pay';
   const onCouponUse = 'coupon.use';
   const onPaymentMethodGet = 'paymentmethod.get';
+  const onPurchaseCreate = 'purchase.create';
 }

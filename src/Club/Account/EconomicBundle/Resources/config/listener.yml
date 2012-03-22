@@ -1,0 +1,6 @@
+services:
+  club_account_economic.purchase_create:
+    class: Club\Account\EconomicBundle\Listener\EconomicLog
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: purchase.create, method: onPurchaseCreate }

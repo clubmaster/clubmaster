@@ -25,6 +25,8 @@ class ClubAccountEconomicExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
+        if ($config['enabled']) $loader->load('listener.yml');
+
         $container->setParameter('club_account_economic.enabled', $config['enabled']);
         $container->setParameter('club_account_economic.agreement', $config['agreement']);
         $container->setParameter('club_account_economic.user', $config['user']);

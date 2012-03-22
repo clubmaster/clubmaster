@@ -37,6 +37,13 @@ class Product
     protected $description;
 
     /**
+     * @ORM\Column(type="string", nullable="true")
+     *
+     * @var string $account_number
+     */
+    protected $account_number;
+
+    /**
      * @ORM\Column(type="decimal", scale="2")
      * @Assert\NotBlank()
      *
@@ -316,5 +323,25 @@ class Product
     public function addSpecial(\Club\ShopBundle\Entity\Special $specials)
     {
         $this->specials[] = $specials;
+    }
+
+    /**
+     * Set account_number
+     *
+     * @param string $accountNumber
+     */
+    public function setAccountNumber($accountNumber)
+    {
+        $this->account_number = $accountNumber;
+    }
+
+    /**
+     * Get account_number
+     *
+     * @return string 
+     */
+    public function getAccountNumber()
+    {
+        return $this->account_number;
     }
 }

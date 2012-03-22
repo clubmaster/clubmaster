@@ -14,6 +14,7 @@ class Product extends AbstractType
     $builder->add('description');
     $builder->add('price');
     $builder->add('categories');
+    $builder->add('account_number');
   }
 
   public function getDefaultOptions(array $options)

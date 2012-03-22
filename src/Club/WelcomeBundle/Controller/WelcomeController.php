@@ -16,6 +16,11 @@ class WelcomeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $log = $em->find('ClubShopBundle:PurchaseLog', 1);
+    $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
+    $event->setPurchaseLog($log);
+    $this->container->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
+
     $welcome = $em->getRepository('ClubWelcomeBundle:Welcome')->findOneBy(array(
       'location' => 1
     ));
