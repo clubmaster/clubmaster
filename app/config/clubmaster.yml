@@ -2,6 +2,13 @@ parameters:
     web_path: %kernel.root_dir%/../web
     upload_path: uploads
 
+club_account_economic:
+    enabled: true
+    agreement: xxxxx
+    user: xxx
+    password: xxxxxx
+    economic_url: https://www.e-conomic.com/secure/api1/EconomicWebservice.asmx?WSDL
+
 club_payment_cash:
     enabled: true
     controller: club_payment_cash_cash_index
