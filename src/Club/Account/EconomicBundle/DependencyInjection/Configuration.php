@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\Account\EConomicBundle\DependencyInjection;
+namespace Club\Account\EconomicBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -23,6 +23,15 @@ class Configuration implements ConfigurationInterface
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
+        $rootNode
+          ->children()
+            ->scalarNode('enabled')->isRequired()->end()
+            ->scalarNode('agreement')->isRequired()->end()
+            ->scalarNode('user')->isRequired()->end()
+            ->scalarNode('password')->isRequired()->end()
+            ->scalarNode('economic_url')->isRequired()->end()
+            ->scalarNode('contraAccount')->defaultValue(null)->end()
+          ->end();
 
         return $treeBuilder;
     }

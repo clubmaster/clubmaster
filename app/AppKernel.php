@@ -41,7 +41,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Club\Payment\CashBundle\ClubPaymentCashBundle(),
             new Club\CheckinBundle\ClubCheckinBundle(),
-            new Club\Account\EConomicBundle\ClubAccountEConomicBundle(),
+            new Club\Account\EconomicBundle\ClubAccountEconomicBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

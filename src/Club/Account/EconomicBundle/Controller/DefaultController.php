@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\Account\EConomicBundle\Controller;
+namespace Club\Account\EconomicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

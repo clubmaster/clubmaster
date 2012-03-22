@@ -1,5 +1,5 @@
-ClubAccountEConomicBundle:
-    resource: "@ClubAccountEConomicBundle/Controller/"
+ClubAccountEconomicBundle:
+    resource: "@ClubAccountEconomicBundle/Controller/"
     type:     annotation
     prefix:   /
 

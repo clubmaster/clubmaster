@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\Account\EConomicBundle\Tests\Controller;
+namespace Club\Account\EconomicBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
