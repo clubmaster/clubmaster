@@ -30,9 +30,9 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('user')->isRequired()->end()
             ->scalarNode('password')->isRequired()->end()
             ->scalarNode('economic_url')->isRequired()->end()
-            ->scalarNode('contraAccount')->defaultValue(null)->end()
-            ->scalarNode('cashbook')->defaultValue(null)->end()
-            ->scalarNode('currency')->defaultValue(null)->end()
+            ->scalarNode('contraAccount')->isRequired()->end()
+            ->scalarNode('cashbook')->isRequired()->end()
+            ->scalarNode('currency')->isRequired()->end()
           ->end();
 
         return $treeBuilder;
