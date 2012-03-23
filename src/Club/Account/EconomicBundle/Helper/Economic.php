@@ -168,6 +168,7 @@ class Economic
     ))->CashBookEntry_CreateResult;
 
     $entry = $this->getCashBookEntry($r);
+    $d = new \DateTime();
 
     return $this->client->CashBookEntry_UpdateFromData(array(
       'data' => array(
@@ -176,10 +177,10 @@ class Economic
         'CashBookHandle' => $cashbook,
         'DebtorHandle' => $user,
         'ContraAccountHandle' => $contra_account,
-        'Date' => date('Y-m-d').'T00:00:00',
+        'Date' => $d->format('c'),
         'VoucherNumber' => $entry->VoucherNumber,
-        'AmountDefaultCurrency' => '100',
-        'Amount' => '100',
+        'AmountDefaultCurrency' => $purchase_log->getAmount()/100,
+        'Amount' => $purchase_log->getAmount()/100,
         'CurrencyHandle' => $currency,
         'Text' => 'Payment from '.$purchase_log->getOrder()->getUser()->getName()
       )))->CashBookEntry_UpdateFromDataResult;

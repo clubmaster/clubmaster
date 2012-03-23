@@ -254,9 +254,15 @@ class Order
   {
     if ($this->order->getPaid()) return;
 
-    $this->order->setPaid(true);
+    $this->order->setAmountLeft(0);
+
+    if ($this->getAmountLeft() == 0)
+      $this->order->setPaid(true);
+
     $this->em->persist($this->order);
     $this->em->flush();
+
+    if ($this->getAmountLeft() > 0) return;
 
     $delivered = true;
     foreach ($this->order->getProducts() as $prod) {

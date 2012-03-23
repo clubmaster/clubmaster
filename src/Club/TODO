@@ -15,7 +15,6 @@ obey rules of game
 add comment to a match
 
 == HOT ==
-remember moms on economic, U25
 validate that amount_left works
 style quickpay flow
 cart bug:
@@ -23,7 +22,6 @@ cart bug:
   - let session timeout
   - checkout
   - some error occur
-make integrations to economic
 click on a booking plan, might be wrong dates
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free

@@ -65,6 +65,10 @@ class QuickpayController extends Controller
     if ($accepted) {
       $this->get('order')->setOrder($order);
       $this->get('order')->setPaid();
+
+      $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
+      $event->setPurchaseLog($log);
+      $this->container->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
     }
 
     return new Response('OK');
