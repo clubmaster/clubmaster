@@ -1826,6 +1826,10 @@
         <source>Comments</source>
         <target>Kommentarer</target>
       </trans-unit>
+      <trans-unit id="459">
+        <source>Players</source>
+        <target>Spillere</target>
+      </trans-unit>
 
     </body>
   </file>

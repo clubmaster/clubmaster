@@ -70,7 +70,8 @@ class BookingController extends Controller
      $ret = array(
        'guest' => $guest,
        'booking' => $this->get('club_booking.booking')->getBooking(),
-       'interval' => $interval
+       'interval' => $interval,
+       'price' => $this->get('club_booking.booking')->getPrice()
      );
 
      if (isset($user))

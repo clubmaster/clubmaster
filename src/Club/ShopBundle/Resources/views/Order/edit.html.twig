@@ -20,18 +20,4 @@
 {% endfor %}
 {% endif %}
 
-{% if order.orderStatusHistory|length == 1 %}
-<fieldset>
-  <legend>{% trans %}Cancel order{% endtrans %}</legend>
-
-  <p>{% trans %}Click here to cancel your order.{% endtrans %}</p>
-  <form method="post" action="{{ path('shop_order_cancel', {'id':order.id}) }}">
-    <hr class="noscreen" />
-    <div class="box-01">
-      <p class="nom"><input type="submit" value="{% trans %}Cancel{% endtrans %}" class="input-submit" /></p>
-    </div> <!-- /box-01 -->
-  </form>
-</fieldset>
-{% endif %}
-
 {% endblock %}

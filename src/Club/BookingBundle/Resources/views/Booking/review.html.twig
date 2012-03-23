@@ -10,6 +10,9 @@
     <p><label>{% trans %}Date{% endtrans %}</label>{{ booking.firstDate|club_date('long') }}</p>
     <p><label>{% trans %}Time{% endtrans %}</label>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ interval.field.name }}</p>
+    <p><label>{% trans %}Price{% endtrans %}</label>{{ price|club_price }}</p>
+
+    <h3>{% trans %}Players{% endtrans %}</h3>
     <p><label>{% trans %}Booker{% endtrans %}</label>{{ booking.user.name }}</p>
     {% if booking.guest %}
     <p><label>{% trans %}Partner{% endtrans %}</label>Guest</p>

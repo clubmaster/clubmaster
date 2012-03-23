@@ -32,6 +32,7 @@ class Booking
     $this->session = $container->get('session');
     $this->translator = $container->get('translator');
     $this->event_dispatcher = $container->get('event_dispatcher');
+    $this->price = 0;
   }
 
   public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
@@ -85,6 +86,7 @@ class Booking
       return;
     }
 
+    $this->setPrice($this->container->getParameter('club_booking.guest_price'));
     $this->bind();
   }
 
@@ -235,6 +237,18 @@ class Booking
     $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
     $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
 
+    if ($this->getPrice() > 0) {
+      $product = new \Club\ShopBundle\Entity\CartProduct();
+      $product->setPrice($this->container->getParameter('club_booking.guest_price'));
+      $product->setQuantity(1);
+      $product->setType('guest_booking');
+      $product->setProductName('Guest booking');
+
+      $this->container->get('order')->createSimpleOrder($this->container->get('security.context')->getToken()->getUser(), $this->booking->getField()->getLocation());
+      $this->container->get('order')->addSimpleProduct($product);
+      $this->container->get('order')->save();
+    }
+
     return $this->booking;
   }
 
@@ -291,8 +305,14 @@ class Booking
     }
   }
 
+  public function setPrice($price)
+  {
+    $this->price = $price;
+  }
+
   public function getPrice()
   {
+    return $this->price;
   }
 
   public function getBooking()
