@@ -5,7 +5,7 @@ parameters:
 club_account_economic:
     enabled: true
     agreement: xxxxxx
-    user: xxx
+    username: xxx
     password: xxxxxxxx
     economic_url: https://www.e-conomic.com/secure/api1/EconomicWebservice.asmx?WSDL
     contraAccount: 5820

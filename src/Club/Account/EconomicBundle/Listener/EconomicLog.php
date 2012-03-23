@@ -14,8 +14,8 @@ class EconomicLog
   public function onPurchaseCreate(\Club\ShopBundle\Event\FilterPurchaseLogEvent $event)
   {
     $purchase = $event->getPurchaseLog();
-    return;
 
+    $user = $purchase->getOrder()->getUser();
     $economic = $this->container->get('club_account_economic.economic');
     $economic->addCashBookEntry($purchase);
   }

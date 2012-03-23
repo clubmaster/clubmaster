@@ -159,6 +159,13 @@ class User implements AdvancedUserInterface
       return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
     }
 
+    public function getEmail()
+    {
+      if (!$this->getProfile()->getProfileEmail()) return false;
+
+      return $this->getProfile()->getProfileEmail()->getEmailAddress();
+    }
+
     public function getName()
     {
       return $this->getProfile()->getName();

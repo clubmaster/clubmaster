@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
           ->children()
             ->scalarNode('enabled')->isRequired()->end()
             ->scalarNode('agreement')->isRequired()->end()
-            ->scalarNode('user')->isRequired()->end()
+            ->scalarNode('username')->isRequired()->end()
             ->scalarNode('password')->isRequired()->end()
             ->scalarNode('economic_url')->isRequired()->end()
             ->scalarNode('contraAccount')->isRequired()->end()

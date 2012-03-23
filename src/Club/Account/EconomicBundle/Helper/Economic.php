@@ -5,21 +5,23 @@ namespace Club\Account\EconomicBundle\Helper;
 class Economic
 {
   protected $container;
+  protected $client;
 
   public function __construct($container)
   {
     $this->container = $container;
-
     $this->connect();
   }
 
-  function findDebtor($number)
+  protected function findDebtor(\Club\UserBundle\Entity\User $user)
   {
-    $this->debtor = $this->client->Debtor_FindByNumber(array('number' => $number))->Debtor_FindByNumberResult;
+    $this->debtor = $this->client->Debtor_FindByNumber(array('number' => $user->getMemberNumber()));
+    if (count($this->debtor)) return $this->debtor->Debtor_FindByNumberResult;
+
     return $this->debtor;
   }
 
-  function updateDebtor($number, $name, $email, $phone)
+  public function updateDebtor($number, $name, $email, $phone)
   {
     $data = array(
       'Handle' => array('Number' => $number),
@@ -37,13 +39,13 @@ class Economic
     $this->debtor = $this->client->Debtor_UpdateFromData(array('data' => $data))->Debtor_UpdateFromDataResult;
   }
 
-  function addDebtor($number, $name, $email)
+  public function addDebtor(\Club\UserBundle\Entity\User $user)
   {
     $data = array(
       'VatZone' => 'HomeCountry',
-      'Number' => $number,
-      'Name' => $name,
-      'Email' => $email,
+      'Number' => $user->getMemberNumber(),
+      'Name' => $user->getName(),
+      'Email' => $user->getEmail(),
       'DebtorGroupHandle' => array('Number' => 1),
       'CurrencyHandle' => array('Code' => 'DKK'),
       'TermOfPaymentHandle' => array('Id' => 1),
@@ -54,7 +56,7 @@ class Economic
     $this->debtor = $this->client->Debtor_CreateFromData(array('data' => $data))->Debtor_CreateFromDataResult;
   }
 
-  function addOrder($order_number, $debtor_number, $name)
+  public function addOrder($order_number, $debtor_number, $name)
   {
     $data = array(
       'Number' => $order_number,
@@ -81,7 +83,7 @@ class Economic
     ))->Order_CreateFromDataResult;
   }
 
-  function addOrderItem($item_number, $quantity, $name, $unit_price)
+  public function addOrderItem($item_number, $quantity, $name, $unit_price)
   {
     $data = array(
       'OrderHandle' => $this->order,
@@ -106,23 +108,23 @@ class Economic
     $this->order_items[] = $item;
   }
 
-  function getOrder()
+  public function getOrder()
   {
     return $this->order;
   }
 
-  function findOrder($number)
+  public function findOrder($number)
   {
     $this->order = $this->client->Order_FindByNumber(array('number' => $number));
     return $this->order;
   }
 
-  function getOrderNumber()
+  public function getOrderNumber()
   {
     return $this->client->Order_GetNumber(array('orderHandle' => $this->order))->Order_GetNumberResult;
   }
 
-  function upgradeOrder()
+  public function upgradeOrder()
   {
     $item = $this->client->OrderLine_CreateFromData(array(
       'data' => $data
@@ -135,61 +137,52 @@ class Economic
     $this->disconnect();
   }
 
-  public function addEconomic($user,$order_number)
+  protected function getAccount($account)
   {
-    $cashbook = $this->addItem($user,$user->getProduct(),$order_number);
+    return $this->client->Account_FindByNumber(array(
+      'number' => $account
+    ))->Account_FindByNumberResult;
+  }
 
-    foreach ($user->getItems() as $item) {
-      $this->addItem($user,$item,$order_number,$cashbook->VoucherNumber);
-    }
+  protected function getCurrencyByCode($currency)
+  {
+    return $this->client->Currency_FindByCode(array(
+      'code' => $currency
+    ))->Currency_FindByCodeResult;
   }
 
   public function addCashBookEntry(\Club\ShopBundle\Entity\PurchaseLog $purchase_log)
   {
-    $cashbook = $this->client->CashBookEntry_CreateFinanceVoucher(array(
-      'cashBookHandle' => $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook')),
-      'accountHandle' => array('Number' => $product->getAccountNumber()),
-      'contraAccountHandle' => array('Number' => $this->container->getParameter('club_account_economic.contraAccount'))
-    ))->CashBookEntry_CreateFinanceVoucherResult;
+    $user = $this->findDebtor($purchase_log->getOrder()->getUser());
+    if (!count($user)) $user = $this->addDebtor($user);
 
-    return $this->getCashBookEntry($cashbook);
-  }
+    $contra_account = $this->getAccount($this->container->getParameter('club_account_economic.contraAccount'));
+    $cashbook = $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook'));
+    $currency = $this->getCurrencyByCode($this->container->getParameter('club_account_economic.currency'));
 
-  public function addItem(\Club\UserBundle\Entity\User $user,$product,$order_number,$voucherNumber=null)
-  {
-    $data = array(
-      'CashBookHandle' => $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook')),
-      'AccountHandle' => array('Number' => $product->getAccount()),
-      'ContraAccountHandle' => array('Number' => $this->container->getParameter('club_account_economic.contraAccount')),
-      'Type' => 'FinanceVoucher',
-      'Date' => date('Y-m-d').'T00:00:00',
-      'AmountDefaultCurrency' => $product->getPrice()*-1,
-      'Amount' => $product->getPrice()*-1,
-      'CurrencyHandle' => $this->getCurrencyByCode($this->container->getParameter('club_account_economic.currency')),
-      'Text' => '#'.$order_number.' - '.$user->getName()
-    );
+    $r = $this->client->CashBookEntry_Create(array(
+      'type' => 'DebtorPayment',
+      'cashBookHandle' => $cashbook,
+      'debtorHandle' => $user,
+      'contraAccountHandle' => $contra_account,
+    ))->CashBookEntry_CreateResult;
 
-    if (!isset($voucherNumber)) {
-      $cashbook = $this->addCashBookEntry($product);
+    $entry = $this->getCashBookEntry($r);
 
-      $data['Handle'] = array(
-        'Id1' => $cashbook->Id1,
-        'Id2' => $cashbook->Id2,
-      );
-      $data['VoucherNumber'] = $cashbook->VoucherNumber;
-
-      $cashbook = $this->client->CashBookEntry_UpdateFromData(array(
-        'data' => $data
-      ))->CashBookEntry_UpdateFromDataResult;
-    } else {
-      $data['VoucherNumber'] = $voucherNumber;
-
-      $cashbook = $this->client->CashBookEntry_CreateFromData(array(
-        'data' => $data
-      ))->CashBookEntry_CreateFromDataResult;
-    }
-
-    return $this->getCashBookEntry($cashbook);
+    return $this->client->CashBookEntry_UpdateFromData(array(
+      'data' => array(
+        'Handle' => $r,
+        'Type' => 'DebtorPayment',
+        'CashBookHandle' => $cashbook,
+        'DebtorHandle' => $user,
+        'ContraAccountHandle' => $contra_account,
+        'Date' => date('Y-m-d').'T00:00:00',
+        'VoucherNumber' => $entry->VoucherNumber,
+        'AmountDefaultCurrency' => '100',
+        'Amount' => '100',
+        'CurrencyHandle' => $currency,
+        'Text' => 'Payment from '.$purchase_log->getOrder()->getUser()->getName()
+      )))->CashBookEntry_UpdateFromDataResult;
   }
 
   public function getCashBookEntry($entry)
@@ -199,34 +192,20 @@ class Economic
     ))->CashBookEntry_GetDataResult;
   }
 
-  public function getNextNumber()
-  {
-    return $this->client->Entry_GetLastUsedSerialNumber()->Entry_GetLastUsedSerialNumberResult+1;
-  }
-
-  public function getAllCurrencies()
+  protected function getAllCurrencies()
   {
     $currencies = $this->client->Currency_GetAll()->Currency_GetAllResult;
 
     return $currencies;
   }
 
-  public function getCurrencyByCode($currency)
-  {
-    $curr = $this->client->Currency_FindByCode(array(
-      'code' => $currency
-    ))->Currency_FindByCodeResult;
-
-    return $curr;
-  }
-
-  public function getCashBooks()
+  protected function getCashBooks()
   {
     $cashbooks = $this->client->CashBook_GetAll();
     return $cashbooks;
   }
 
-  public function getCashBookByName($name)
+  protected function getCashBookByName($name)
   {
     $cashbook = $this->client->CashBook_FindByName(array(
       'name' => $name
@@ -234,17 +213,17 @@ class Economic
     return $cashbook->CashBook_FindByNameResult;
   }
 
-  public function connect()
+  protected function connect()
   {
     $this->client = new \SoapClient($this->container->getParameter('club_account_economic.economic_url'), array("trace" => 1, "exceptions" => 1));
     $this->client->Connect(array(
       'agreementNumber' => $this->container->getParameter('club_account_economic.agreement'),
-      'userName'        => $this->container->getParameter('club_account_economic.user'),
+      'userName'        => $this->container->getParameter('club_account_economic.username'),
       'password'        => $this->container->getParameter('club_account_economic.password')
     ));
   }
 
-  public function disconnect()
+  protected function disconnect()
   {
     $this->client->Disconnect();
   }
