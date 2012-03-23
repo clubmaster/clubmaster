@@ -67,7 +67,7 @@ class QuickpayController extends Controller
       $this->get('order')->setPaid();
 
       $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
-      $event->setPurchaseLog($log);
+      $event->setPurchaseLog($t);
       $this->container->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
     }
 
@@ -130,7 +130,7 @@ class QuickpayController extends Controller
       $res['cancelurl'].
       $res['callbackurl'].
       $res['autocapture'].
-      //$res['autofee'].
+      $res['autofee'].
       $res['cardtypelock'].
       $res['ipaddress'].
       $res['testmode'].

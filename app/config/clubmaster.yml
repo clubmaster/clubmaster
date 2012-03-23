@@ -25,8 +25,10 @@ club_payment_quickpay:
     language: en
     currency: DKK
     autocapture: 1
-    cardtypelock:
+    #cardtypelock:
+    autofee: 0
     quickpay_url: https://secure.quickpay.dk/form/
+    testmode: 1
 
 club_api:
     api_key: THIS_IS_A_DEMO_KEY

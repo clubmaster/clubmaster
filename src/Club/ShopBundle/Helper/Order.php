@@ -256,13 +256,13 @@ class Order
 
     $this->order->setAmountLeft(0);
 
-    if ($this->getAmountLeft() == 0)
+    if ($this->order->getAmountLeft() == 0)
       $this->order->setPaid(true);
 
     $this->em->persist($this->order);
     $this->em->flush();
 
-    if ($this->getAmountLeft() > 0) return;
+    if ($this->order->getAmountLeft() > 0) return;
 
     $delivered = true;
     foreach ($this->order->getProducts() as $prod) {
