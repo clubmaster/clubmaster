@@ -57,7 +57,8 @@ class Interval
     $i = new \DateInterval('P1D');
     $p = new \DatePeriod($d, $i, 6);
 
-    $fmt = new \IntlDateFormatter($this->session->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
+
+    $fmt = new \IntlDateFormatter($this->session->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, date_default_timezone_get());
     $fmt->setPattern('eeee');
 
     $days = array();

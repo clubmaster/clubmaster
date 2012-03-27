@@ -17,12 +17,10 @@ add comment to a match
 == HOT ==
 javascript calender icon, wrong date
 style quickpay flow
-click on a booking plan, might be wrong dates
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
-there are ways that booking plan pick wrong date, find it and fix it (friday was thursday)
 
 == NOTES TO THIS RELEASE ==
 if allowed to change plan, go to plan when clicking on it
