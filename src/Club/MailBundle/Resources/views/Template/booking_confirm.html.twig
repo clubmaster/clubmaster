@@ -6,13 +6,12 @@ Location: {{ booking.field.location.locationName }}
 Date: {{ booking.firstDate|club_date }}
 Time:  {{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}
 Field:  {{ booking.field }}
-
 {% if booking.guest %}
-Partner: Guest
+Members: {{ booking.user.name }} - Guest
 {% else %}
-  {% for partner in booking.users %}
-Partner: {{ partner.profile.name }}
-  {% endfor %}
+{% for partner in booking.users %}
+Members: {{ booking.user.name }} - {{ partner.profile.name }}
+{% endfor %}
 {% endif %}
 
 Best regards,

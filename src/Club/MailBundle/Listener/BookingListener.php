@@ -19,13 +19,14 @@ class BookingListener
 
   public function onBookingConfirm(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
-    $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
+
+    $this->clubmaster_mailer
+      ->setSubject('Booking confirm')
+      ->setFrom();
 
     foreach ($recipients as $user) {
       $this->clubmaster_mailer
-        ->setSubject('Booking confirm')
-        ->setFrom()
         ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:booking_confirm.html.twig', array(
           'user' => $user,
@@ -40,10 +41,12 @@ class BookingListener
     $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
 
+    $this->clubmaster_mailer
+      ->setSubject('Booking cancel')
+      ->setFrom();
+
     foreach ($recipients as $user) {
       $this->clubmaster_mailer
-        ->setSubject('Booking cancel')
-        ->setFrom()
         ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
         ->setBody($this->templating->render('ClubMailBundle:Template:booking_cancel.html.twig',array(
           'user' => $user,
