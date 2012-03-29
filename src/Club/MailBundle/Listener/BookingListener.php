@@ -19,6 +19,7 @@ class BookingListener
 
   public function onBookingConfirm(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
+    $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
 
     $this->clubmaster_mailer
