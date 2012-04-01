@@ -1858,7 +1858,14 @@
         <source>Create account</source>
         <target>Opret konto</target>
       </trans-unit>
-
+      <trans-unit id="467">
+        <source>First time</source>
+        <target>Første tid</target>
+      </trans-unit>
+      <trans-unit id="468">
+        <source>End time</source>
+        <target>Slut tid</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

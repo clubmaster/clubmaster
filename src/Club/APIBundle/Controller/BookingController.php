@@ -96,12 +96,12 @@ class BookingController extends Controller
       $res[] = $schedule->toArray();
     }
     foreach ($plans as $plan) {
-      $plan->getFirstDate()->setDate(
+      $plan->getFirstTime()->setDate(
         $date->format('Y'),
         $date->format('m'),
         $date->format('d')
       );
-      $plan->getEndDate()->setDate(
+      $plan->getEndTime()->setDate(
         $date->format('Y'),
         $date->format('m'),
         $date->format('d')

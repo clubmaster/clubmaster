@@ -5,6 +5,8 @@ prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+remove delete bottom from admin users, move to something other more in the background
+make a way to manually receive money from orders, to avoid change order status manually
 
 == RANKING ==
 cannot add matches when not logged in

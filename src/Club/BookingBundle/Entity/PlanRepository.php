@@ -20,7 +20,7 @@ class PlanRepository extends EntityRepository
       ->leftJoin('p.fields', 'f')
       ->where('p.day = :day')
       ->andWhere('p.period_start <= :period_start AND p.period_end >= :period_end')
-      ->andWhere('(p.first_date <= :start and p.end_date >= :end) OR (p.first_date <= :start and p.end_date <= :end and p.end_date >= :start) OR (p.first_date >= :start and p.end_date >= :end and p.first_date < :end) OR (p.end_date >= :start and p.end_date <= :end and p.end_date >= :start)')
+      ->andWhere('(p.first_time <= :start and p.end_time >= :end) OR (p.first_time <= :start and p.end_time <= :end and p.end_time >= :start) OR (p.first_time >= :start and p.end_time >= :end and p.first_time < :end) OR (p.end_time >= :start and p.end_time <= :end and p.end_time >= :start)')
       ->setParameter('day', $start->format('N'))
       ->setParameter('period_start', $start)
       ->setParameter('period_end', $end)

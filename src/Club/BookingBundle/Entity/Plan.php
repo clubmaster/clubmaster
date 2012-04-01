@@ -45,18 +45,18 @@ class Plan
     protected $day;
 
     /**
-     * @var date $first_date
+     * @var date $first_time
      *
      * @ORM\Column(type="time")
      */
-    protected $first_date;
+    protected $first_time;
 
     /**
-     * @var date $end_date
+     * @var date $end_time
      *
      * @ORM\Column(type="time")
      */
-    protected $end_date;
+    protected $end_time;
 
     /**
      * @var datetime $created_at
@@ -180,46 +180,6 @@ class Plan
     }
 
     /**
-     * Set first_date
-     *
-     * @param datetime $firstDate
-     */
-    public function setFirstDate($firstDate)
-    {
-        $this->first_date = $firstDate;
-    }
-
-    /**
-     * Get first_date
-     *
-     * @return datetime
-     */
-    public function getFirstDate()
-    {
-        return $this->first_date;
-    }
-
-    /**
-     * Set end_date
-     *
-     * @param datetime $endDate
-     */
-    public function setEndDate($endDate)
-    {
-        $this->end_date = $endDate;
-    }
-
-    /**
-     * Get end_date
-     *
-     * @return datetime
-     */
-    public function getEndDate()
-    {
-        return $this->end_date;
-    }
-
-    /**
      * Add fields
      *
      * @param Club\BookingBundle\Entity\Field $fields
@@ -246,8 +206,8 @@ class Plan
         'type' => 'plan',
         'name' => $this->getPlanCategory()->getName(),
         'description' => $this->getPlanCategory()->getDescription(),
-        'first_date' => $this->getFirstDate()->format('c'),
-        'end_date' => $this->getEndDate()->format('c'),
+        'first_date' => $this->getFirstTime()->format('c'),
+        'end_date' => $this->getEndTime()->format('c'),
         'fields' => array()
       );
 
@@ -340,5 +300,45 @@ class Plan
     public function getDay()
     {
         return $this->day;
+    }
+
+    /**
+     * Set first_time
+     *
+     * @param time $firstTime
+     */
+    public function setFirstTime($firstTime)
+    {
+        $this->first_time = $firstTime;
+    }
+
+    /**
+     * Get first_time
+     *
+     * @return time
+     */
+    public function getFirstTime()
+    {
+        return $this->first_time;
+    }
+
+    /**
+     * Set end_time
+     *
+     * @param time $endTime
+     */
+    public function setEndTime($endTime)
+    {
+        $this->end_time = $endTime;
+    }
+
+    /**
+     * Get end_time
+     *
+     * @return time
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
     }
 }

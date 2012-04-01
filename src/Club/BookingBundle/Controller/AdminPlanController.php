@@ -116,8 +116,8 @@ class AdminPlanController extends Controller
     return $this->createFormBuilder($plan)
       ->add('period_start')
       ->add('period_end')
-      ->add('first_date')
-      ->add('end_date')
+      ->add('first_time')
+      ->add('end_time')
       ->add('fields', 'entity', array(
         'class' => 'Club\BookingBundle\Entity\Field',
         'multiple' => true,

@@ -8,7 +8,7 @@
   <div class="list">
     <p><label>{% trans %}Location{% endtrans %}</label>{{ field.location.locationName }}</p>
     <p><label>{% trans %}Date{% endtrans %}</label>{{ date|club_date }}</p>
-    <p><label>{% trans %}Time{% endtrans %}</label>{{ plan.firstDate|club_time }} - {{ plan.endDate|club_time }}</p>
+    <p><label>{% trans %}Time{% endtrans %}</label>{{ plan.firstTime|club_time }} - {{ plan.endTime|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ field.name }}</p>
     <p><label>{% trans %}Plan{% endtrans %}</label>{{ plan.planCategory.name }}</p>
 
