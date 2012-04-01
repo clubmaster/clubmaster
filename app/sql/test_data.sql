@@ -64,7 +64,7 @@ Praesent scelerisque aliquam purus, vitae accumsan erat bibendum ut. Curabitur a
   (11,'Subscription + 3Month + Renewal(A) + Start date','Lorem ipsum...',100,'1010'),
   (12,'Subscription + Start date + Expire date','Lorem ipsum...',100,'1010'),
   (13,'Subscription + Lifetime','Lorem ipsum...',100,'1010'),
-  (14,'Subscription + Start date + Expire date + Renewal(Y)','Lorem ipsum...',100),
+  (14,'Subscription + Start date + Expire date + Renewal(Y)','Lorem ipsum...',100,'1010'),
   (15,'10 tickets + Renewal(A) + Location + Pauses','Lorem ipsum...',100,'1010'),
   (16,'Subscription + 3Month + Renewal(A) + Start date in future','Lorem ipsum...',100,'1010'),
   (17,'Subscription + 1Month + Start date + Renewal(Y)','Lorem ipsum...',100,'1010'),
