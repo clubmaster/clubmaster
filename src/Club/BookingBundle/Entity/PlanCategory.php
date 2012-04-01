@@ -27,6 +27,7 @@ class PlanCategory
      * @var date $name
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $name;
 
@@ -34,6 +35,7 @@ class PlanCategory
      * @var date $description
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $description;
 
