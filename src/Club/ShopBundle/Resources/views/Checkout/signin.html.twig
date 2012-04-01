@@ -5,13 +5,18 @@
 
 <div class="col50">
   <fieldset>
-    <legend>{% trans %}Existing customer{% endtrans %}</legend>
+    <legend>{% trans %}Existing member{% endtrans %}</legend>
     <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
 
     <form method="post" action="{{ path('login_check') }}">
-    <p><label class="req" for="_username">Username:</label><br /><input size="40" type="text" id="_username" name="_username" required="required" class="input-text" /></p>
-    <p><label class="req" for="_password">Password:</label><br /><input size="40" type="password" id="_password" name="_password" required="required" class="input-text" /></p>
-    {% include 'ClubLayoutBundle:Default:submit_button.html.twig' with {'button':'login'} %}
+    <p><label class="req" for="_username">{% trans %}Username{% endtrans %}</label><br /><input size="40" type="text" id="_username" name="_username" required="required" class="input-text" /></p>
+    <p><label class="req" for="_password">{% trans %}Password{% endtrans %}</label><br /><input size="40" type="password" id="_password" name="_password" required="required" class="input-text" /></p>
+
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+
     </form>
 
   </fieldset>
@@ -19,7 +24,7 @@
 
 <div class="col50 f-right">
   <fieldset>
-    <legend>{% trans %}New customer{% endtrans %}</legend>
+    <legend>{% trans %}New member{% endtrans %}</legend>
     <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
 
     <form method="POST" action="{{ path('club_shop_checkout_signin') }}">
@@ -64,7 +69,11 @@
 
   {{ form_row(form._token) }}
 
-    {% include 'ClubLayoutBundle:Default:form.html.twig' with {'button':'Sign up'} %}
+  <hr class="noscreen" />
+  <div class="box-01">
+    <p class="nom"><input type="submit" value="{% trans %}Create account{% endtrans %}" class="input-submit" /></p>
+  </div> <!-- /box-01 -->
+
     </form>
   </fieldset>
 </div>

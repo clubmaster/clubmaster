@@ -1830,6 +1830,34 @@
         <source>Players</source>
         <target>Spillere</target>
       </trans-unit>
+      <trans-unit id="460">
+        <source>New member</source>
+        <target>Nyt medlem</target>
+      </trans-unit>
+      <trans-unit id="461">
+        <source>Existing member</source>
+        <target>Eksisterende medlem</target>
+      </trans-unit>
+      <trans-unit id="462">
+        <source>If you already have an account, please signin here.</source>
+        <target>Hvis du allerede har en konto, kan du logge ind her.</target>
+      </trans-unit>
+      <trans-unit id="463">
+        <source>Username</source>
+        <target>Brugernavn</target>
+      </trans-unit>
+      <trans-unit id="464">
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="465">
+        <source>If you do not have an account, please enter you details here.</source>
+        <target>Hvis du ikke har en konto, indtast venligst dine oplysninger her.</target>
+      </trans-unit>
+      <trans-unit id="466">
+        <source>Create account</source>
+        <target>Opret konto</target>
+      </trans-unit>
 
     </body>
   </file>
