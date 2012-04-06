@@ -1,6 +1,7 @@
 == HOT ==
 prices to book with guest, use normal checkout procedure
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+if allowed to change plan, go to plan when clicking on it
 
 == RANKING ==
 cannot add matches when not logged in
@@ -20,7 +21,6 @@ add comment to a match
 
 == NOTES TO THIS RELEASE ==
 make that you have to checkin in order to confirm your booking, otherwice it will be free
-if allowed to change plan, go to plan when clicking on it
 remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
 improve documentation of overwrite mail template files
