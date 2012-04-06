@@ -2,7 +2,6 @@
 make the amount_left on order
 dynamic currency in cash payment
 check bookings in IE > 6
-improve manuel payments, not do stuff like change delivery status
 prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
