@@ -22,7 +22,6 @@
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_edit', { 'id':user.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_delete', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:ban_link.html.twig" with {'url':path('admin_user_ban', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:note_link.html.twig" with {'url':path('admin_user_note', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:shop_as_link.html.twig" with {'url':path('club_user_adminuser_shop', { 'id':user.id })} %}
