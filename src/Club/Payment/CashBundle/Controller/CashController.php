@@ -25,7 +25,7 @@ class CashController extends Controller
       $log->setPaymentMethod($payment);
       $log->setAmount($order->getPrice());
       $log->setAccepted(true);
-      $log->setCurrency('DKK');
+      $log->setCurrency($order->getCurrency());
 
       $form = $this->createFormBuilder($log)
         ->add('amount')
