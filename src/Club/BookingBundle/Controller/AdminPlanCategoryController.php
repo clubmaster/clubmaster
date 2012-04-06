@@ -29,16 +29,22 @@ class AdminPlanCategoryController extends Controller
    */
   public function newAction()
   {
-    $plan_category = new \Club\BookingBundle\Entity\PlanCategory();
-    $plan_category->setUser($this->get('security.context')->getToken()->getUser());
+    $category = new \Club\BookingBundle\Entity\PlanCategory();
+    $category->setUser($this->get('security.context')->getToken()->getUser());
 
-    $form = $this->createForm(new \Club\BookingBundle\Form\PlanCategory(), $plan_category);
+    $plan = new \Club\BookingBundle\Entity\Plan();
+    $plan->setPlanCategory($category);
+    $plan->setPeriodStart(new \DateTime(date('Y-m-d 00:00:00')));
+    $plan->setPeriodEnd(new \DateTime(date('Y-m-d 23:59:59')));
+    $plan->setDay(date('N'));
+
+    $form = $this->getPlanForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($plan_category);
+        $em->persist($plan);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
@@ -95,5 +101,26 @@ class AdminPlanCategoryController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_booking_adminplancategory_index'));
+  }
+
+  private function getPlanForm(\Club\BookingBundle\Entity\Plan $plan)
+  {
+    $days = $this->get('club_booking.interval')->getDays();
+
+    return $this->createFormBuilder($plan)
+      ->add('plan_category', new \Club\BookingBundle\Form\PlanCategory())
+      ->add('period_start')
+      ->add('period_end')
+      ->add('first_date')
+      ->add('end_date')
+      ->add('fields', 'entity', array(
+        'class' => 'Club\BookingBundle\Entity\Field',
+        'multiple' => true,
+        'property' => 'formString'
+      ))
+      ->add('day', 'choice', array(
+        'choices' => $days
+      ))
+      ->getForm();
   }
 }
