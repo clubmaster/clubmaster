@@ -39,11 +39,7 @@ class CashController extends Controller
           $em->flush();
 
           $this->get('order')->setOrder($order);
-          $this->get('order')->setPaid();
-
-          $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
-          $event->setPurchaseLog($log);
-          $this->container->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
+          $this->get('order')->makePayment($log);
 
           return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
         }
