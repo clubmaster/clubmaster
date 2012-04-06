@@ -90,35 +90,24 @@ class AdminUserController extends Controller
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 
-    $order_by = array();
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
-    if ('POST' === $this->getRequest()->getMethod() && isset($_POST['filter_order'])) {
-        $order_by = array($_POST['filter_order'] => $_POST['filter_order_Dir']);
-        $sort_direction = $_POST['filter_order_Dir'] == 'asc' ? 'desc' : 'asc';
+    $sort = $this->get('session')->get('admin_module:admin_user');
 
-        $this->get('session')->set('lang_list_order_by', $order_by);
-        $this->get('session')->set('lang_list_sort_dir', $sort_direction);
+    if (isset($sort) && isset($sort['sort'])) {
+      $order_by = $sort['sort'];
     } else {
-
-        if ($this->get('session')->get('admin_user_list_order_by') != null) {
-            $order_by = $this->get('session')->get('admin_user_list_order_by');
-        } else {
-            $order_by = array('sort_order' => 'asc', 'id' => 'asc');
-        }
-        if ($this->get('session')->get('admin_user_list_sort_dir') != null) {
-            $sort_direction = $this->get('session')->get('admin_user_list_sort_dir');
-        } else {
-            $sort_direction = 'desc';
-        }
+      $order_by = array('member_number' => 'asc');
     }
+
     $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
+      'sort_name' => key($order_by),
+      'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'sort_dir' => $sort_direction,
       'paginator' => $paginator
     );
   }
@@ -279,6 +268,18 @@ class AdminUserController extends Controller
       'user' => $user,
       'form' => $form->createView()
     );
+  }
+
+  /**
+   * @Route("/user/sort/{name}/{type}")
+   */
+  public function sortAction($name, $type)
+  {
+    $filter = $this->get('session')->get('admin_module:admin_user');
+    $filter['sort'] = array($name => $type);
+    $this->get('session')->set('admin_module:admin_user', $filter);
+
+    return $this->redirect($this->getRequest()->server->get('HTTP_REFERER'));
   }
 
   protected function getUser($user)

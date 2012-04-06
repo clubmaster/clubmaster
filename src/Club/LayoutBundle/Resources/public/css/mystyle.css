@@ -36,3 +36,5 @@ div.list label {
 #ui-datepicker-div { z-index: 500 !important; }
 
 div#search_box input { width: 200px; }
+
+table.style a { color: #FFF; }
