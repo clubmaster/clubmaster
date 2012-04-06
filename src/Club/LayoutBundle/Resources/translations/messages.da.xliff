@@ -1846,6 +1846,18 @@
         <source>You are about to pay your order.</source>
         <target>Du er ved at betale din ordre.</target>
       </trans-unit>
+      <trans-unit id="464">
+        <source>Payment</source>
+        <target>Betaling</target>
+      </trans-unit>
+      <trans-unit id="465">
+        <source>Your payment has been cancelled.</source>
+        <target>Din betaling er blevet annulleret.</target>
+      </trans-unit>
+      <trans-unit id="466">
+        <source>Your payment was accepted.</source>
+        <target>Din betaling er gået igennem.</target>
+      </trans-unit>
 
     </body>
   </file>
