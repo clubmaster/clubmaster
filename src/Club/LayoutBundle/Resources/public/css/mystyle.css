@@ -37,4 +37,6 @@ div.list label {
 
 div#search_box input { width: 200px; }
 
-table.style a { color: #FFF; }
+table.style th a { color: #FFF; }
+
+table.style td a { color: #000; }
