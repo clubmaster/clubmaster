@@ -133,22 +133,6 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/delete/{id}", name="admin_user_delete")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User',$id);
-
-    $em->remove($user);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-    return $this->redirect($this->generateUrl('admin_user'));
-  }
-
-  /**
    * @Route("/user/batch", name="admin_user_batch")
    */
   public function batchAction()
