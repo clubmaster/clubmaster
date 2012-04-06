@@ -5,9 +5,81 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminUserController extends Controller
 {
+  /**
+   * @Route("/user/export/csv")
+   */
+  public function csvAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
+
+    // field delimiter
+    $fd = ',';
+    // row delimiter
+    $rd = PHP_EOL;
+    // text delimiter
+    $td = '"';
+
+    $r =
+      $td.'Member number'.$td.$fd.
+      $td.'First name'.$td.$fd.
+      $td.'Last name'.$td.$fd.
+      $td.'Gender'.$td.$fd.
+      $td.'Day of birth'.$td.$fd.
+      $td.'Street'.$td.$fd.
+      $td.'Postal'.$td.$fd.
+      $td.'City'.$td.$fd.
+      $td.'Country'.$td.$fd.
+      $td.'Email'.$td.$fd.
+      $td.'Phone'.$td.$rd;
+
+    foreach ($users as $user) {
+      $profile = $user->getProfile();
+      $address = $profile->getProfileAddress();
+      $email = $profile->getProfileEmail();
+      $phone = $profile->getProfilePhone();
+
+      $r .=
+        $td.$user->getMemberNumber().$td.$fd.
+        $td.$profile->getFirstName().$td.$fd.
+        $td.$profile->getLastName().$td.$fd.
+        $td.$profile->getGender().$td.$fd.
+        $td.$profile->getDayOfBirth()->format('Y-m-d').$td.$fd;
+
+      if ($address) {
+        $r .=
+          $td.trim($address->getStreet()).$td.$fd.
+          $td.$address->getPostalCode().$td.$fd.
+          $td.$address->getCity().$td.$fd.
+          $td.$address->getCountry().$td.$fd;
+      } else {
+        $r .= $fd.$fd.$fd.$fd;
+      }
+
+      if ($email) {
+        $r .= $td.$email->getEmailAddress().$td.$fd;
+      } else {
+        $r .= $fd;
+      }
+
+      if ($phone)
+        $r .= $td.$phone->getPhoneNumber().$td;
+
+      $r .= $rd;
+    }
+
+    $response = new Response($r);
+    $response->headers->set('Content-Disposition', 'attachment;filename=clubmaster_members.csv');
+
+    return $response;
+  }
+
   /**
    * @Route("/user", name="admin_user")
    * @Template()
