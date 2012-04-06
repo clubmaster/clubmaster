@@ -10,6 +10,33 @@ use Symfony\Component\HttpFoundation\Response;
 class FilterController extends Controller
 {
   /**
+   * @Route("/filter/quick")
+   */
+  public function quickAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
+      'query' => $this->getRequest()->get('query')
+    ), 'u.member_number', false);
+
+    if (!$users) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('No such user'));
+      return $this->redirect($this->generateUrl('admin_user'));
+
+    } elseif (count($users) > 1) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('Too many matches'));
+      return $this->redirect($this->generateUrl('admin_user'));
+
+    } else {
+      $u = $users[0];
+      return $this->redirect($this->generateUrl('admin_user_edit', array(
+        'id' => $u->getId()
+      )));
+    }
+  }
+
+  /**
    * @Route("/filter/filter")
    */
   public function filterAction()
