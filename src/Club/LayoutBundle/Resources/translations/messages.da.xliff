@@ -1830,6 +1830,22 @@
         <source>Players</source>
         <target>Spillere</target>
       </trans-unit>
+      <trans-unit id="460">
+        <source>Order number: %order%</source>
+        <target>Ordernummer: %order%</target>
+      </trans-unit>
+      <trans-unit id="461">
+        <source>Amount: %price%</source>
+        <target>Beløb: %price%</target>
+      </trans-unit>
+      <trans-unit id="462">
+        <source>Pay with creditcard</source>
+        <target>Betal med kreditkort</target>
+      </trans-unit>
+      <trans-unit id="463">
+        <source>You are about to pay your order.</source>
+        <target>Du er ved at betale din ordre.</target>
+      </trans-unit>
 
     </body>
   </file>
