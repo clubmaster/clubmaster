@@ -2,6 +2,12 @@
 
 {% block body %}
 
+<p class="box">
+  <a href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}" class="btn-info"><span>{% trans %}Register Payment{% endtrans %}</span></a>
+</p>
+
+<h2>{% trans %}Order Information{% endtrans %}</h2>
+
 <form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
 {% include "ClubShopBundle:AdminOrder:form.html.twig" with {'form': form} %}
 </form>

@@ -46,21 +46,21 @@ class PurchaseLog
     /**
      * @var string $merchant
      *
-     * @ORM\Column(name="merchant", type="string", length=255)
+     * @ORM\Column(name="merchant", type="string", length=255, nullable=true)
      */
     private $merchant;
 
     /**
      * @var string $transaction
      *
-     * @ORM\Column(name="transaction", type="string", length=255)
+     * @ORM\Column(name="transaction", type="string", length=255, nullable=true)
      */
     private $transaction;
 
     /**
      * @var string $cardtype
      *
-     * @ORM\Column(name="cardtype", type="string", length=255)
+     * @ORM\Column(name="cardtype", type="string", length=255, nullable=true)
      */
     private $cardtype;
 

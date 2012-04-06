@@ -1858,6 +1858,14 @@
         <source>Your payment was accepted.</source>
         <target>Din betaling er gået igennem.</target>
       </trans-unit>
+      <trans-unit id="467">
+        <source>Order Information</source>
+        <target>Ordre Information</target>
+      </trans-unit>
+      <trans-unit id="468">
+        <source>Register payment</source>
+        <target>Register betaling</target>
+      </trans-unit>
 
     </body>
   </file>
