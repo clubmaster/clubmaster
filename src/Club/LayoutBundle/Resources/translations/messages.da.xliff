@@ -1874,6 +1874,14 @@
         <source>Enter the amount the user has paid, and the system will automatically process the order.</source>
         <target>Indtast det beløb brugeren har indbetalt, og systemet vil automatisk fortsætte behandlingen af ordren.</target>
       </trans-unit>
+      <trans-unit id="471">
+        <source>Coming subscriptions</source>
+        <target>Kommende abonnementer</target>
+      </trans-unit>
+      <trans-unit id="472">
+        <source>Your subscriptions</source>
+        <target>Dine abonnementer</target>
+      </trans-unit>
 
     </body>
   </file>
