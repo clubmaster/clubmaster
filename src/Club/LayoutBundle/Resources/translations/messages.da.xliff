@@ -1882,6 +1882,14 @@
         <source>Your subscriptions</source>
         <target>Dine abonnementer</target>
       </trans-unit>
+      <trans-unit id="473">
+        <source>Cancel subscription</source>
+        <target>Annuller abonnement</target>
+      </trans-unit>
+      <trans-unit id="474">
+        <source>Click here to cancel this subscription.</source>
+        <target>Klik her for at annullere dit abonnement.</target>
+      </trans-unit>
 
     </body>
   </file>
