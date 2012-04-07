@@ -24,26 +24,45 @@ class AdminPlanCategoryController extends Controller
   }
 
   /**
-   * @Route("/new")
+   * @Route("/new", defaults={"date" = null, "interval_id" = null})
+   * @Route("/new/{date}/{interval_id}", name="club_booking_adminplancategory_new1")
    * @Template()
    */
-  public function newAction()
+  public function newAction($date, $interval_id)
   {
     $category = new \Club\BookingBundle\Entity\PlanCategory();
     $category->setUser($this->get('security.context')->getToken()->getUser());
 
     $plan = new \Club\BookingBundle\Entity\Plan();
+
+    $em = $this->getDoctrine()->getEntityManager();
+    if ($date != '') {
+      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+      $start = new \DateTime($date.' 00:00:00');
+      $end = new \DateTime($date.' 23:59:59');
+
+      $t_start = new \DateTime(date('Y-m-d '.$interval->getStartTime()->format('H:i:s')));
+      $t_end = new \DateTime(date('Y-m-d '.$interval->getStopTime()->format('H:i:s')));
+      $plan->setFirstDate($t_start);
+      $plan->setEndDate($t_end);
+      $plan->addField($interval->getField());
+
+    } else {
+      $start = new \DateTime(date('Y-m-d 00:00:00'));
+      $end = new \DateTime(date('Y-m-d 23:59:59'));
+    }
+
     $plan->setPlanCategory($category);
-    $plan->setPeriodStart(new \DateTime(date('Y-m-d 00:00:00')));
-    $plan->setPeriodEnd(new \DateTime(date('Y-m-d 23:59:59')));
-    $plan->setDay(date('N'));
+    $plan->setPeriodStart($start);
+    $plan->setPeriodEnd($end);
+    $plan->setDay($start->format('N'));
 
     $form = $this->getPlanForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($plan);
         $em->flush();
 

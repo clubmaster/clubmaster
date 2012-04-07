@@ -1890,6 +1890,10 @@
         <source>Click here to cancel this subscription.</source>
         <target>Klik her for at annullere dit abonnement.</target>
       </trans-unit>
+      <trans-unit id="475">
+        <source>Click here if you want to create a booking plan.</source>
+        <target>Klik her hvis du vil oprette en booking plan.</target>
+      </trans-unit>
 
     </body>
   </file>
