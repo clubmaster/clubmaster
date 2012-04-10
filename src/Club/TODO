@@ -1,9 +1,9 @@
 == HOT ==
+make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 fix economic to handle as before, dont use indbetalinger
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
-search booking plan category as tags, autocomplete
 prices to book with guest, use normal checkout procedure
-make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+search booking plan category as tags, autocomplete
 
 == RANKING ==
 cannot add matches when not logged in
