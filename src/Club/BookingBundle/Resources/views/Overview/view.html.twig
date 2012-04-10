@@ -8,7 +8,7 @@
   {% include "ClubBookingBundle:Overview:book_form.html.twig" %}
 {% endif %}
 
-{% if (is_granted('ROLE_BOOKING_ADMIN')) and interval.available and active %}
+{% if (is_granted('ROLE_BOOKING_ADMIN')) and interval.available %}
   {% include "ClubBookingBundle:Overview:book_plan_form.html.twig" %}
 {% endif %}
 
