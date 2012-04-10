@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
 use Club\UserBundle\Form\GroupForm;
 
-class GroupController extends Controller
+class AdminGroupController extends Controller
 {
   /**
    * @Route("/group", name="admin_group")

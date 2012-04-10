@@ -30,8 +30,8 @@ _user_note:
   type: annotation
   prefix: /admin
 
-_group:
-  resource: "@ClubUserBundle/Controller/GroupController.php"
+_admin_group:
+  resource: "@ClubUserBundle/Controller/AdminGroupController.php"
   type: annotation
   prefix: /admin
 
