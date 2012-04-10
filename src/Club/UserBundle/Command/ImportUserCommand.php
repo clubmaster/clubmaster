@@ -16,6 +16,10 @@ class ImportUserCommand extends ContainerAwareCommand
       ->setName('club:import:user')
       ->setDescription('Import users')
       ->addArgument('file', InputArgument::REQUIRED, 'What filename to import')
+      ->addOption('name_not_split', null, InputOption::VALUE_NONE, 'Is full name in firstname column?')
+      ->addOption('dob_format', null, InputOption::VALUE_REQUIRED, 'Write syntax for birthday?','Y-m-d')
+      ->addOption('field_delimiter', null, InputOption::VALUE_REQUIRED, 'Field delimiter', ',')
+      ->addOption('row_delimiter', null, InputOption::VALUE_REQUIRED, 'Field delimiter', '\n')
       ->setHelp(<<<EOF
 A short description of the required file format:
 
@@ -31,7 +35,7 @@ Country
 Phone
 Phone 2
 Email
-Day of birth (yyyy-mm-dd)
+Day of birth
 Gender
 Created at (yyyy-mm-dd hh:ii:ss)
 EOF
@@ -43,11 +47,8 @@ EOF
   {
     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-    $field_delimiter = "/\t/";
-    $row_delimiter = "/\n/";
-
     $content = file_get_contents($input->getArgument('file'));
-    $rows = preg_split($row_delimiter, $content);
+    $rows = preg_split("/".$input->getOption('row_delimiter')."/", $content);
 
     foreach ($rows as $line) {
       if (strlen($line) > 0) {
@@ -64,14 +65,26 @@ EOF
           $phone,
           $phone2,
           $email,
-          $day_of_birth,
+          $dob,
           $gender,
           $created_at
-        )  = preg_split($field_delimiter, $line);
+        )  = preg_split("/".$input->getOption('field_delimiter')."/", $line);
 
         // clean data
+        $first_name = preg_replace("/\"/", "", $first_name);
+        $last_name = preg_replace("/\"/", "", $last_name);
+        $dob = preg_replace("/\"/", "", $dob);
+        $street = preg_replace("/\"/", "", $street);
+        $phone = preg_replace("/\"/", "", $phone);
+
         $first_name = trim($first_name);
         $last_name = trim($last_name);
+
+        if ($input->getOption('name_not_split')) {
+          preg_match("/^(.*)\s(.*)?$/", $first_name, $o);
+          $first_name = $o[1];
+          $last_name = $o[2];
+        }
 
         $gender = strtolower(trim($gender));
         $gender = preg_match("/^(male)$/", $gender) ? 'male' : 'female';
@@ -79,6 +92,8 @@ EOF
         $street = implode("\n", array($street, $street2));
         $phone = (preg_match("/^(|0)$/", $phone)) ? null : $phone;
         $email = trim($email);
+
+        $dob = \DateTime::createFromFormat($input->getOption('dob_format'), $dob);
 
         $this->getContainer()->get('clubmaster.user')->buildUser();
         $user = $this->getContainer()->get('clubmaster.user')->get();
@@ -89,7 +104,7 @@ EOF
         $profile = $user->getProfile();
         $profile->setFirstName($first_name);
         $profile->setLastName($last_name);
-        $profile->setDayOfBirth(new \DateTime($day_of_birth));
+        $profile->setDayOfBirth($dob);
         $profile->setGender($gender);
 
         $p_address = $profile->getProfileAddress();

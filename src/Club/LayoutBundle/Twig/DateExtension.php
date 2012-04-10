@@ -44,7 +44,7 @@ class DateExtension extends \Twig_Extension
       $date = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, $date, \IntlDateFormatter::NONE);
+    $fmt = new \IntlDateFormatter('da_DK', $date, \IntlDateFormatter::NONE, date_default_timezone_get());
     return $fmt->format($value);
   }
 
@@ -69,7 +69,7 @@ class DateExtension extends \Twig_Extension
       $time = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, $date, $time);
+    $fmt = new \IntlDateFormatter($this->locale, $date, $time, date_default_timezone_get());
     return $fmt->format($value);
   }
 
@@ -90,7 +90,7 @@ class DateExtension extends \Twig_Extension
       $time = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, $time);
+    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, $time, date_default_timezone_get());
     return $fmt->format($value);
   }
 

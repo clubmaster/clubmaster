@@ -54,4 +54,13 @@
   {% include "ClubShopBundle:Subscription:location_table.html.twig" %}
 {% endif %}
 
+<fieldset>
+  <legend>{% trans %}Cancel subscription{% endtrans %}</legend>
+
+  <p>{% trans %}Click here to cancel this subscription.{% endtrans %}</p>
+  <form method="post" action="{{ path('club_shop_subscription_stop', {'id':subscription.id}) }}">
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Cancel subscription'|trans} %}
+  </form>
+</fieldset>
+
 {% endblock %}

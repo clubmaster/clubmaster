@@ -1830,6 +1830,70 @@
         <source>Players</source>
         <target>Spillere</target>
       </trans-unit>
+      <trans-unit id="460">
+        <source>Order number: %order%</source>
+        <target>Ordernummer: %order%</target>
+      </trans-unit>
+      <trans-unit id="461">
+        <source>Amount: %price%</source>
+        <target>Beløb: %price%</target>
+      </trans-unit>
+      <trans-unit id="462">
+        <source>Pay with creditcard</source>
+        <target>Betal med kreditkort</target>
+      </trans-unit>
+      <trans-unit id="463">
+        <source>You are about to pay your order.</source>
+        <target>Du er ved at betale din ordre.</target>
+      </trans-unit>
+      <trans-unit id="464">
+        <source>Payment</source>
+        <target>Betaling</target>
+      </trans-unit>
+      <trans-unit id="465">
+        <source>Your payment has been cancelled.</source>
+        <target>Din betaling er blevet annulleret.</target>
+      </trans-unit>
+      <trans-unit id="466">
+        <source>Your payment was accepted.</source>
+        <target>Din betaling er gået igennem.</target>
+      </trans-unit>
+      <trans-unit id="467">
+        <source>Order Information</source>
+        <target>Ordre Information</target>
+      </trans-unit>
+      <trans-unit id="468">
+        <source>Register payment</source>
+        <target>Register betaling</target>
+      </trans-unit>
+      <trans-unit id="469">
+        <source>Amount</source>
+        <target>Beløb</target>
+      </trans-unit>
+      <trans-unit id="470">
+        <source>Enter the amount the user has paid, and the system will automatically process the order.</source>
+        <target>Indtast det beløb brugeren har indbetalt, og systemet vil automatisk fortsætte behandlingen af ordren.</target>
+      </trans-unit>
+      <trans-unit id="471">
+        <source>Coming subscriptions</source>
+        <target>Kommende abonnementer</target>
+      </trans-unit>
+      <trans-unit id="472">
+        <source>Your subscriptions</source>
+        <target>Dine abonnementer</target>
+      </trans-unit>
+      <trans-unit id="473">
+        <source>Cancel subscription</source>
+        <target>Annuller abonnement</target>
+      </trans-unit>
+      <trans-unit id="474">
+        <source>Click here to cancel this subscription.</source>
+        <target>Klik her for at annullere dit abonnement.</target>
+      </trans-unit>
+      <trans-unit id="475">
+        <source>Click here if you want to create a booking plan.</source>
+        <target>Klik her hvis du vil oprette en booking plan.</target>
+      </trans-unit>
 
     </body>
   </file>

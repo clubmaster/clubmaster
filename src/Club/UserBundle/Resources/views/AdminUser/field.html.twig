@@ -1,0 +1,9 @@
+      <th>
+      {% if sort_name == field_name and sort_type == 'asc' %}
+      <a href="{{ path('club_user_adminuser_sort', {'name':field_name, 'type': 'desc'}) }}">
+      {% else %}
+      <a href="{{ path('club_user_adminuser_sort', {'name':field_name, 'type': 'asc'}) }}">
+      {% endif %}
+      {{ field_text}}</a>
+      </th>
+

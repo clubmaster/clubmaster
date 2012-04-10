@@ -19,6 +19,11 @@ class DashboardListener
   {
     $output = $event->getOutput();
 
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->security_context->getToken()->getUser());
+    $output .= $this->templating->render('ClubShopBundle:Dashboard:subscription_table.html.twig', array(
+      'subscriptions' => $subs
+    ));
+
     $orders = $this->em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$this->security_context->getToken()->getUser());
     $output .= $this->templating->render('ClubShopBundle:Dashboard:order_table.html.twig', array(
       'orders' => $orders

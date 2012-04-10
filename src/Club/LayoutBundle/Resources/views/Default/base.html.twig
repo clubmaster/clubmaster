@@ -13,13 +13,13 @@
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/style.css') }}" /> <!-- GRAPHIC THEME -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
         <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.17.custom.css') }}" /> <!-- JQUERY -->
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.7.1.min.js') }}"></script>
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.18.custom.css') }}" /> <!-- JQUERY -->
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.7.2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.slimbox2.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.switcher.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/toggle.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/clublayout/js/iso8601.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.17.custom.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.18.custom.min.js') }}"></script>
         <script type="text/javascript">
         $(document).ready(function(){
           $(".tabs > ul").tabs();
@@ -75,20 +75,30 @@
 
                         <div class="padding box">
 
-                                <!-- Logo (Max. width = 200px) -->
-                                <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
+                          <!-- Logo (Max. width = 200px) -->
+                          <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
 
-                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <!-- Login form -->
-                        <form method="post" action="{{ path('login_check') }}" id="search">
-                          <fieldset>
-                            <legend>{% trans %}Login{% endtrans %}</legend>
-                            <p><input type="text" class="input-text" name="_username" id="login_username" /></p>
-                            <p><input type="password" class="input-text" name="_password" /></p>
-                            <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
-                          </fieldset>
-                        </form>
-                        {% endif %}
+                          {% if is_granted('ROLE_ADMIN') %}
+                          <!-- Search -->
+                          <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search">
+                            <fieldset>
+                              <legend>{% trans %}Search{% endtrans %}</legend>
+                              <p><input type="text" size="17" name="query" class="input-text" />&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" class="input-submit-02" /></p>
+                            </fieldset>
+                          </form>
+                          {% endif %}
+
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                          <!-- Login form -->
+                          <form method="post" action="{{ path('login_check') }}" id="search">
+                            <fieldset>
+                              <legend>{% trans %}Login{% endtrans %}</legend>
+                              <p><input type="text" class="input-text" name="_username" id="login_username" /></p>
+                              <p><input type="password" class="input-text" name="_password" /></p>
+                              <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
+                            </fieldset>
+                          </form>
+                          {% endif %}
 
                         </div> <!-- /padding -->
 

@@ -250,11 +250,21 @@ class Order
     $this->order->setCurrencyValue(1);
   }
 
+  public function makePayment(\Club\ShopBundle\Entity\PurchaseLog $log)
+  {
+    $left = $this->order->getAmountLeft()-($log->getAmount()/100);
+
+    $this->order->setAmountLeft($left);
+    $this->setPaid();
+
+    $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
+    $event->setPurchaseLog($log);
+    $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
+  }
+
   public function setPaid()
   {
     if ($this->order->getPaid()) return;
-
-    $this->order->setAmountLeft(0);
 
     if ($this->order->getAmountLeft() == 0)
       $this->order->setPaid(true);

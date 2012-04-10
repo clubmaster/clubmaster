@@ -72,7 +72,7 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
     $.each(booking.fields, function() {
       var left=$("#field_"+this.id).css('left');
 
-      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/plan/'+booking.id+'/'+this.id+'\'">&#160;'+booking.name+'</div>';
+      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/plan/'+booking.id+'/'+this.id+'/'+getDate(date)+'\'">&#160;'+booking.name+'</div>';
     });
 
   }

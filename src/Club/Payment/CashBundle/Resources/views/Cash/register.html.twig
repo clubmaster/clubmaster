@@ -1,0 +1,13 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>{% trans %}Register payment{% endtrans %}</h2>
+
+<p>{% trans %}Enter the amount the user has paid, and the system will automatically process the order.{% endtrans %}</p>
+
+<form method="post" action="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
+</form>
+
+{% endblock %}

@@ -56,6 +56,11 @@ class PlanCategory
      */
     protected $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Plan", mappedBy="plan")
+     */
+    protected $plans;
+
 
     /**
      * Get id
@@ -186,5 +191,25 @@ class PlanCategory
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add plans
+     *
+     * @param Club\BookingBundle\Entity\Plan $plans
+     */
+    public function addPlan(\Club\BookingBundle\Entity\Plan $plans)
+    {
+        $this->plans[] = $plans;
+    }
+
+    /**
+     * Get plans
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPlans()
+    {
+        return $this->plans;
     }
 }

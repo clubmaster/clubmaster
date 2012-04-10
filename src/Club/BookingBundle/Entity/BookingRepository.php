@@ -75,6 +75,7 @@ class BookingRepository extends EntityRepository
       ->leftJoin('b.users', 'u')
       ->where('b.first_date < :date')
       ->andWhere('(b.user = :user OR u.id = :user)')
+      ->orderBy('b.first_date', 'DESC')
       ->setMaxResults($limit)
       ->setParameter('user', $user->getId())
       ->setParameter('date', $date)

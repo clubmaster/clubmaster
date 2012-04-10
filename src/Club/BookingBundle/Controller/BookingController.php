@@ -135,17 +135,19 @@ class BookingController extends Controller
 
    /**
     * @Template()
-    * @Route("/booking/view/plan/{id}/{field_id}")
+    * @Route("/booking/view/plan/{id}/{field_id}/{date}")
     */
-   public function viewPlanAction($id, $field_id)
+   public function viewPlanAction($id, $field_id, $date)
    {
      $em = $this->getDoctrine()->getEntityManager();
      $plan = $em->find('ClubBookingBundle:Plan', $id);
      $field = $em->find('ClubBookingBundle:Field', $field_id);
+     $date = new \DateTime($date.' 00:00:00');
 
      return array(
        'plan' => $plan,
-       'field' => $field
+       'field' => $field,
+       'date' => $date
      );
    }
 

@@ -37,9 +37,19 @@ class UserRepository extends EntityRepository
       }
       //else we want to display all items on one page
     }
+
     //Adding defined sorting parameters from variable into query
     foreach ($order_by as $key => $value) {
-      $qb->add('orderBy', 'u.' . $key . ' ' . $value);
+      switch ($key) {
+      case 'id':
+      case 'member_number':
+      case 'created_at':
+        $qb->add('orderBy', 'u.' . $key . ' ' . $value);
+        break;
+      case 'first_name':
+        $qb->add('orderBy', 'p.' . $key . ' ' . $value);
+        break;
+      }
     }
     //Get our query
     $q = $qb->getQuery();

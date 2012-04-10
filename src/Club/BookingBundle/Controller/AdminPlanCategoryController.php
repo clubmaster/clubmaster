@@ -24,21 +24,46 @@ class AdminPlanCategoryController extends Controller
   }
 
   /**
-   * @Route("/new")
+   * @Route("/new", defaults={"date" = null, "interval_id" = null})
+   * @Route("/new/{date}/{interval_id}", name="club_booking_adminplancategory_new1")
    * @Template()
    */
-  public function newAction()
+  public function newAction($date, $interval_id)
   {
-    $plan_category = new \Club\BookingBundle\Entity\PlanCategory();
-    $plan_category->setUser($this->get('security.context')->getToken()->getUser());
+    $category = new \Club\BookingBundle\Entity\PlanCategory();
+    $category->setUser($this->get('security.context')->getToken()->getUser());
 
-    $form = $this->createForm(new \Club\BookingBundle\Form\PlanCategory(), $plan_category);
+    $plan = new \Club\BookingBundle\Entity\Plan();
+
+    $em = $this->getDoctrine()->getEntityManager();
+    if ($date != '') {
+      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+      $start = new \DateTime($date.' 00:00:00');
+      $end = new \DateTime($date.' 23:59:59');
+
+      $t_start = new \DateTime(date('Y-m-d '.$interval->getStartTime()->format('H:i:s')));
+      $t_end = new \DateTime(date('Y-m-d '.$interval->getStopTime()->format('H:i:s')));
+      $plan->setFirstDate($t_start);
+      $plan->setEndDate($t_end);
+      $plan->addField($interval->getField());
+
+    } else {
+      $start = new \DateTime(date('Y-m-d 00:00:00'));
+      $end = new \DateTime(date('Y-m-d 23:59:59'));
+    }
+
+    $plan->setPlanCategory($category);
+    $plan->setPeriodStart($start);
+    $plan->setPeriodEnd($end);
+    $plan->setDay($start->format('N'));
+
+    $form = $this->getPlanForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($plan_category);
+        $em->persist($plan);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
@@ -95,5 +120,26 @@ class AdminPlanCategoryController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_booking_adminplancategory_index'));
+  }
+
+  private function getPlanForm(\Club\BookingBundle\Entity\Plan $plan)
+  {
+    $days = $this->get('club_booking.interval')->getDays();
+
+    return $this->createFormBuilder($plan)
+      ->add('plan_category', new \Club\BookingBundle\Form\PlanCategory())
+      ->add('period_start')
+      ->add('period_end')
+      ->add('first_date')
+      ->add('end_date')
+      ->add('fields', 'entity', array(
+        'class' => 'Club\BookingBundle\Entity\Field',
+        'multiple' => true,
+        'property' => 'formString'
+      ))
+      ->add('day', 'choice', array(
+        'choices' => $days
+      ))
+      ->getForm();
   }
 }
