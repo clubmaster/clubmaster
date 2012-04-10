@@ -1902,6 +1902,10 @@
         <source>End time</source>
         <target>Slut tid</target>
       </trans-unit>
+      <trans-unit id="478">
+        <source>Plans</source>
+        <target>Planer</target>
+      </trans-unit>
 
     </body>
   </file>
