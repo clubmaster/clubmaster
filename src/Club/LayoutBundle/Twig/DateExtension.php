@@ -103,7 +103,7 @@ class DateExtension extends \Twig_Extension
       $date = $value;
     }
 
-    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE);
+    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, date_default_timezone_get());
     $fmt->setPattern('eeee');
     return $fmt->format($date);
   }
