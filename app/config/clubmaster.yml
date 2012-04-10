@@ -9,7 +9,7 @@ club_account_economic:
     password: xxxxxxxx
     economic_url: https://www.e-conomic.com/secure/api1/EconomicWebservice.asmx?WSDL
     contraAccount: 5820
-    cashbook: Indbetalinger
+    cashbook: Daglig
     currency: DKK
 
 club_payment_cash:
