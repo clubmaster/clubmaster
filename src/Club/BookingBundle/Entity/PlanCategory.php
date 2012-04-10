@@ -33,7 +33,7 @@ class PlanCategory
     /**
      * @var date $description
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable="true")
      */
     protected $description;
 
