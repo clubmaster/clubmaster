@@ -18,7 +18,7 @@ class CashController extends Controller
       $order = $em->find('ClubShopBundle:Order', $order_id);
 
       $payment = $em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
-        'controller' => $this->container->getParameter('club_payment_quickpay.controller')
+        'controller' => $this->container->getParameter('club_payment_cash.controller')
       ));
       $log = new \Club\ShopBundle\Entity\PurchaseLog();
       $log->setOrder($order);
