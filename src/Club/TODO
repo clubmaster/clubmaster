@@ -1,7 +1,6 @@
 == HOT ==
-error when deleting a filter
+make dynamic admin dashboard, and remove cancel from subscription
 change status will not be able to give subscription
-remove cancel order from admin dashboard
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -24,6 +23,7 @@ obey rules of game
 add comment to a match
 
 == NOTES TO THIS RELEASE ==
+find a way to delete filters, eventho we have sent mails to this filter
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
