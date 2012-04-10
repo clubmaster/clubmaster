@@ -130,8 +130,12 @@ class AdminPlanCategoryController extends Controller
       ->add('plan_category', new \Club\BookingBundle\Form\PlanCategory())
       ->add('period_start')
       ->add('period_end')
-      ->add('first_date')
-      ->add('end_date')
+      ->add('first_date', 'time', array(
+        'label' => 'First time'
+      ))
+      ->add('end_date', 'time', array(
+        'label' => 'End time'
+      ))
       ->add('fields', 'entity', array(
         'class' => 'Club\BookingBundle\Entity\Field',
         'multiple' => true,

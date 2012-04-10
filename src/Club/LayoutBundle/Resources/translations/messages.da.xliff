@@ -1894,6 +1894,14 @@
         <source>Click here if you want to create a booking plan.</source>
         <target>Klik her hvis du vil oprette en booking plan.</target>
       </trans-unit>
+      <trans-unit id="476">
+        <source>First time</source>
+        <target>Første tid</target>
+      </trans-unit>
+      <trans-unit id="477">
+        <source>End time</source>
+        <target>Slut tid</target>
+      </trans-unit>
 
     </body>
   </file>
