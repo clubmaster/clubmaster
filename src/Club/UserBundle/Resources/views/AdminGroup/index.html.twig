@@ -1,7 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
-<h2>{% trans %}Groups{% endtrans %}</h2>
+
+<p class="box">
+  <a href="{{ path('admin_group_new') }}" class="btn-info"><span>{% trans %}Create group{% endtrans %}</span></a>
+</p>
 
 <table class="style">
   <thead>
