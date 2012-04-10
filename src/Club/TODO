@@ -1,6 +1,8 @@
 == HOT ==
+error when deleting a filter
+change status will not be able to give subscription
+remove cancel order from admin dashboard
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
-fix economic to handle as before, dont use indbetalinger
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 search booking plan category as tags, autocomplete

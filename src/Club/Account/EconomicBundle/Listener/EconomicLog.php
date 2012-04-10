@@ -15,8 +15,9 @@ class EconomicLog
   {
     $purchase = $event->getPurchaseLog();
 
-    $user = $purchase->getOrder()->getUser();
     $economic = $this->container->get('club_account_economic.economic');
-    $economic->addCashBookEntry($purchase);
+    foreach ($purchase->getOrder()->getOrderProducts() as $prod) {
+      $economic->addFinanceVoucher($prod);
+    }
   }
 }

@@ -151,7 +151,40 @@ class Economic
     ))->Currency_FindByCodeResult;
   }
 
-  public function addCashBookEntry(\Club\ShopBundle\Entity\PurchaseLog $purchase_log)
+  public function addFinanceVoucher(\Club\ShopBundle\Entity\OrderProduct $order_product)
+  {
+    $contra_account = $this->getAccount($this->container->getParameter('club_account_economic.contraAccount'));
+    $account = $this->getAccount($order_product->getProduct()->getAccountNumber());
+    $cashbook = $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook'));
+    $currency = $this->getCurrencyByCode($this->container->getParameter('club_account_economic.currency'));
+
+    $r = $this->client->CashBookEntry_Create(array(
+      'type' => 'FinanceVoucher',
+      'cashBookHandle' => $cashbook,
+      'accountHandle' => $account,
+      'contraAccountHandle' => $contra_account,
+    ))->CashBookEntry_CreateResult;
+
+    $entry = $this->getCashBookEntry($r);
+    $d = new \DateTime();
+
+    return $this->client->CashBookEntry_UpdateFromData(array(
+      'data' => array(
+        'Handle' => $r,
+        'Type' => 'FinanceVoucher',
+        'CashBookHandle' => $cashbook,
+        'AccountHandle' => $account,
+        'ContraAccountHandle' => $contra_account,
+        'Date' => $d->format('c'),
+        'VoucherNumber' => $entry->VoucherNumber,
+        'AmountDefaultCurrency' => $order_product->getPrice()*-1,
+        'Amount' => $order_product->getPrice()*-1,
+        'CurrencyHandle' => $currency,
+        'Text' => 'Payment from '.$order_product->getOrder()->getUser()->getName()
+      )))->CashBookEntry_UpdateFromDataResult;
+  }
+
+  public function addDebtorPayment(\Club\ShopBundle\Entity\PurchaseLog $purchase_log)
   {
     $user = $this->findDebtor($purchase_log->getOrder()->getUser());
     if (!count($user)) $user = $this->addDebtor($user);

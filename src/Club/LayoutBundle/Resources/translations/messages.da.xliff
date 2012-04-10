@@ -1942,6 +1942,10 @@
         <source>Username or email</source>
         <target>Brugernavn ell. email</target>
       </trans-unit>
+      <trans-unit id="488">
+        <source>Purchase Log</source>
+        <target>Betalingshistorik</target>
+      </trans-unit>
 
     </body>
   </file>
