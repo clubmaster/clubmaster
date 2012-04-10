@@ -1910,6 +1910,38 @@
         <source>Subscription start</source>
         <target>Abonnement start</target>
       </trans-unit>
+      <trans-unit id="480">
+        <source>Enter your username and password.</source>
+        <target>Indtast dit brugernavn og password.</target>
+      </trans-unit>
+      <trans-unit id="481">
+        <source>Username</source>
+        <target>Brugernavn</target>
+      </trans-unit>
+      <trans-unit id="482">
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="483">
+        <source>Sign In</source>
+        <target>Log Ind</target>
+      </trans-unit>
+      <trans-unit id="484">
+        <source>Forgot password?</source>
+        <target>Glemt password?</target>
+      </trans-unit>
+      <trans-unit id="485">
+        <source>Enter your username or email address, and you will receive a reset password email within a few minutes.</source>
+        <target>Indtast brugernavn eller email adresse, og du vil modtage en forny password email indenfor få minutter.</target>
+      </trans-unit>
+      <trans-unit id="486">
+        <source>Send Password</source>
+        <target>Send Password</target>
+      </trans-unit>
+      <trans-unit id="487">
+        <source>Username or email</source>
+        <target>Brugernavn ell. email</target>
+      </trans-unit>
 
     </body>
   </file>

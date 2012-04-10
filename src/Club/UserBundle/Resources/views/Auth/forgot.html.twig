@@ -9,22 +9,22 @@
                 <p class="nom t-center"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
 
                 <!-- Messages -->
-                <p class="msg info">Enter your username or email address, and you will receive a reset password email within a few minutes.</p>
+                <p class="msg info">{% trans %}Enter your username or email address, and you will receive a reset password email within a few minutes.{% endtrans %}</p>
 
                 <!-- Form -->
                 <form method="POST" action="{{ path('auth_forgot') }}">
                 <table class="nom nostyle">
                         <tr>
-                          <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.username,'Username or e-mail') }}</strong></label></td>
+                          <td style="width:75px;"><label for="login-user"><strong>{{ form_label(form.username,'Username or email'|trans) }}</strong></label></td>
                           <td>{{ form_widget(form.username) }}</td>
                         </tr>
                         <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Send Password &raquo;" /></td>
+                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="{% trans %}Send Password{% endtrans %} &raquo;" /></td>
                         </tr>
                         <tr>
                                 <td></td>
                                 <td>
-                                  <span class="f-right"><a href="{{ path('login') }}">Login</a></span>
+                                  <span class="f-right"><a href="{{ path('login') }}">{% trans %}Login{% endtrans %}</a></span>
                                 </td>
                         </tr>
                 </table>

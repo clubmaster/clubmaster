@@ -11,26 +11,26 @@
                 <!-- Messages -->
                 {% include "ClubLayoutBundle:Default:flash.html.twig" %}
 
-                <p class="msg info">Enter your username and password.</p>
+                <p class="msg info">{% trans %}Enter your username and password.{% endtrans %}</p>
 
                 <!-- Form -->
                 <form method="POST" action="{{ path('login_check') }}">
                 <table class="nom nostyle">
                         <tr>
-                                <td style="width:75px;"><label for="login-user"><strong>Username:</strong></label></td>
+                                <td style="width:75px;"><label for="login-user"><strong>{% trans %}Username{% endtrans %}</strong></label></td>
                                 <td><input type="text" style="width: 300px;" name="_username" class="input-text" id="login-user" /></td>
                         </tr>
                         <tr>
-                                <td><label for="login-pass"><strong>Password:</strong></label></td>
+                                <td><label for="login-pass"><strong>{% trans %}Password{% endtrans %}</strong></label></td>
                                 <td><input type="password" style="width: 300px;" name="_password" class="input-text" id="login-pass" /></td>
                         </tr>
                         <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="Sign In &raquo;" /></td>
+                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="{% trans %}Sign In{% endtrans %} &raquo;" /></td>
                         </tr>
                         <tr>
                                 <td></td>
                                 <td>
-                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">Forgot password?</a></span><br />
+                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a></span><br />
                                 </td>
                         </tr>
                 </table>
