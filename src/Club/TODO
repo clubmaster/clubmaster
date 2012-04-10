@@ -15,6 +15,7 @@ obey rules of game
 add comment to a match
 
 == HOT ==
+cannot add groups
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 style quickpay flow
 click on a booking plan, might be wrong dates
@@ -22,6 +23,7 @@ prices to book with guest, use normal checkout procedure
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 add first booking plan on create booking plan category page
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
+make it posible to extract list of users from system
 
 == NOTES TO THIS RELEASE ==
 if allowed to change plan, go to plan when clicking on it
