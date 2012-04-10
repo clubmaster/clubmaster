@@ -1906,6 +1906,10 @@
         <source>Plans</source>
         <target>Planer</target>
       </trans-unit>
+      <trans-unit id="479">
+        <source>Subscription start</source>
+        <target>Abonnement start</target>
+      </trans-unit>
 
     </body>
   </file>
