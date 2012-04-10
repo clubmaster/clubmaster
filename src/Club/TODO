@@ -1,5 +1,4 @@
 == HOT ==
-day in booking plan form does not match day in the list
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 cannot add groups
 search booking plan category as tags, autocomplete
