@@ -50,3 +50,4 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
+      - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView, priority: 5 }

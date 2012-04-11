@@ -31,4 +31,17 @@ class DashboardListener
 
     $event->setOutput($output);
   }
+
+  public function onAdminDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  {
+    $output = $event->getOutput();
+
+    $orders = $this->em->getRepository('ClubShopBundle:Order')->getOpenOrders(10);
+    $output .= $this->templating->render('ClubShopBundle:Dashboard:admin_order_table.html.twig', array(
+      'orders' => $orders
+    ));
+
+    $event->setOutput($output);
+  }
+
 }

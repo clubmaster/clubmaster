@@ -1,5 +1,4 @@
 == HOT ==
-make dynamic admin dashboard, and remove cancel from subscription
 change status will not be able to give subscription
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
