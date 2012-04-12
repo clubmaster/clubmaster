@@ -6,7 +6,7 @@ final class Events
 {
   const onShopOrder = 'shop.order';
   const onOrderChange = 'order.change';
-  const onOrderPay = 'order.pay';
+  const onOrderPaid = 'order.paid';
   const onCouponUse = 'coupon.use';
   const onPaymentMethodGet = 'paymentmethod.get';
   const onPurchaseCreate = 'purchase.create';

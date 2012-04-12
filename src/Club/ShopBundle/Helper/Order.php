@@ -85,6 +85,13 @@ class Order
   {
     $this->order->setOrderStatus($order_status);
     $this->em->persist($this->order);
+
+    $status = new \Club\ShopBundle\Entity\OrderStatusHistory();
+    $status->setOrder($this->order);
+    $status->setOrderStatus($this->order->getOrderStatus());
+    $status->setNote($this->order->getNote());
+    $this->em->persist($status);
+
     $this->em->flush();
 
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
@@ -285,5 +292,8 @@ class Order
     }
 
     $this->em->flush();
+
+    $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
+    $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onOrderPaid, $event);
   }
 }
