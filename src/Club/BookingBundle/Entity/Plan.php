@@ -24,6 +24,21 @@ class Plan
     protected $id;
 
     /**
+     * @var string $name
+     *
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    protected $name;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(type="text", nullable="true")
+     */
+    protected $description;
+
+    /**
      * @var date $period_start
      *
      * @ORM\Column(type="datetime")
@@ -203,8 +218,8 @@ class Plan
       $res = array(
         'id' => $this->getId(),
         'type' => 'plan',
-        'name' => $this->getPlanCategory()->getName(),
-        'description' => $this->getPlanCategory()->getDescription(),
+        'name' => $this->getName(),
+        'description' => $this->getDescription(),
         'first_date' => $this->getFirstTime()->format('c'),
         'end_date' => $this->getEndTime()->format('c'),
         'fields' => array()
@@ -319,5 +334,45 @@ class Plan
     public function getEndTime()
     {
         return $this->end_time;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

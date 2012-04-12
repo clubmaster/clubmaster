@@ -1,7 +1,7 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_booking_adminplan_new', {'plan_category_id':plan_category.id}) }}" class="btn-create"><span>{% trans %}Create plan{% endtrans %}</span></a></p>
+<p class="box"><a href="{{ path('club_booking_adminplan_new') }}" class="btn-create"><span>{% trans %}Create plan{% endtrans %}</span></a></p>
 
 <table class="style">
   <thead>
@@ -22,14 +22,14 @@
   <tbody>
   {% for plan in plans %}
     <tr>
-      <td>{{ plan.planCategory.name }}</td>
+      <td>{{ plan.name }}</td>
       <td>{{ plan.periodStart|club_datetime }}</td>
       <td>{{ plan.periodEnd|club_datetime }}</td>
       <td>{{ plan.firstTime|club_time }} - {{ plan.endTime|club_time }}</td>
       <td>{{ plan.day|club_day }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'plan_category_id':plan.planCategory.id, 'id':plan.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'plan_category_id':plan.planCategory.id, 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'id':plan.id })} %}
       </td>
     </tr>
   {% else %}

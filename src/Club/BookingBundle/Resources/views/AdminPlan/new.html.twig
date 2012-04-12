@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_booking_adminplan_new', {'plan_category_id':plan_category.id}) }}">
+<form method="post" action="{{ path('club_booking_adminplan_new') }}">
 {% include "ClubBookingBundle:AdminPlan:form.html.twig" %}
 </form>
 

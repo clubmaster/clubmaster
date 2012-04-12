@@ -27,7 +27,7 @@ class MenuListener
         ),
         array(
           'name' => $this->translator->trans('Plans'),
-          'route' => $this->router->generate('club_booking_adminplancategory_index')
+          'route' => $this->router->generate('club_booking_adminplan_index')
         ),
       )
     );

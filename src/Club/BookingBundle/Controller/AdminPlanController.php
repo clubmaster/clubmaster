@@ -10,35 +10,29 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminPlanController extends Controller
 {
   /**
-   * @Route("/{plan_category_id}")
+   * @Route("/")
    * @Template()
    */
-  public function indexAction($plan_category_id)
+  public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $plan_category = $em->find('ClubBookingBundle:PlanCategory', $plan_category_id);
-    $plans = $em->getRepository('ClubBookingBundle:Plan')->findBy(array(
-      'plan_category' => $plan_category_id
-    ));
+    $plans = $em->getRepository('ClubBookingBundle:Plan')->findAll();
 
     return array(
-      'plans' => $plans,
-      'plan_category' => $plan_category
+      'plans' => $plans
     );
   }
 
   /**
-   * @Route("/{plan_category_id}/new")
+   * @Route("/new")
    * @Template()
    */
-  public function newAction($plan_category_id)
+  public function newAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $plan_category = $em->find('ClubBookingBundle:PlanCategory', $plan_category_id);
     $plan = new \Club\BookingBundle\Entity\Plan();
-    $plan->setPlanCategory($plan_category);
     $plan->setUser($this->get('security.context')->getToken()->getUser());
     $plan->setPeriodStart(new \DateTime());
     $plan->setPeriodEnd(new \DateTime());
@@ -54,21 +48,20 @@ class AdminPlanController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_adminplan_index', array('plan_category_id' => $plan_category_id)));
+        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
       }
     }
 
     return array(
-      'form' => $form->createView(),
-      'plan_category' => $plan_category
+      'form' => $form->createView()
     );
   }
 
   /**
-   * @Route("/{plan_category_id}/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    */
-  public function editAction($plan_category_id, $id)
+  public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = $em->find('ClubBookingBundle:Plan',$id);
@@ -83,7 +76,7 @@ class AdminPlanController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_adminplan_index', array('plan_category_id' => $plan_category_id)));
+        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
       }
     }
 
@@ -94,9 +87,9 @@ class AdminPlanController extends Controller
   }
 
   /**
-   * @Route("/{plan_category_id}/delete/{id}")
+   * @Route("/delete/{id}")
    */
-  public function deleteAction($plan_category_id, $id)
+  public function deleteAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = $em->find('ClubBookingBundle:Plan',$this->getRequest()->get('id'));
@@ -106,7 +99,7 @@ class AdminPlanController extends Controller
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_booking_adminplan_index', array('plan_category_id' => $plan_category_id)));
+    return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
   }
 
   private function getForm(\Club\BookingBundle\Entity\Plan $plan)
@@ -114,6 +107,8 @@ class AdminPlanController extends Controller
     $days = $this->get('club_booking.interval')->getDays();
 
     return $this->createFormBuilder($plan)
+      ->add('name')
+      ->add('description')
       ->add('period_start')
       ->add('period_end')
       ->add('first_time')
