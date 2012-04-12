@@ -54,6 +54,7 @@ class AdminPlanController extends Controller
       $end = new \DateTime(date('Y-m-d 23:59:59'));
     }
 
+    $plan->setUser($this->get('security.context')->getToken()->getUser());
     $plan->setPeriodStart($start);
     $plan->setPeriodEnd($end);
     $plan->setDay($start->format('N'));

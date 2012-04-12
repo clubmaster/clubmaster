@@ -11,10 +11,10 @@
 <div class="box-02 bottom box">
   <div class="f-right">
     <strong>Sort by:</strong>
-    {{ form_widget(form.sort) }}
+    {{ form_widget(form.sort, {'attr': {'class':'input-text'} }) }}
   </div> <!-- /f-right -->
   <strong>Search:</strong>
-  {{ form_widget(form.query) }}
+  {{ form_widget(form.query, {'attr': {'class':'input-text'} }) }}
   <input type="submit" value="OK" />
 </div> <!-- /box-02 -->
 {{ form_rest(form) }}
