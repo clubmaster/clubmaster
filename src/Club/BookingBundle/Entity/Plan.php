@@ -82,12 +82,6 @@ class Plan
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanCategory", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="cascade")
-     */
-    protected $plan_category;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Field")
      * @ORM\JoinTable(name="club_booking_plan_field",
      *   joinColumns={@ORM\JoinColumn(name="plan_id", referencedColumnName="id", onDelete="cascade")},
@@ -265,26 +259,6 @@ class Plan
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set plan_category
-     *
-     * @param Club\BookingBundle\Entity\PlanCategory $planCategory
-     */
-    public function setPlanCategory(\Club\BookingBundle\Entity\PlanCategory $planCategory)
-    {
-        $this->plan_category = $planCategory;
-    }
-
-    /**
-     * Get plan_category
-     *
-     * @return Club\BookingBundle\Entity\PlanCategory
-     */
-    public function getPlanCategory()
-    {
-        return $this->plan_category;
     }
 
     /**

@@ -1,6 +1,4 @@
 == HOT ==
-use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
-prices to book with guest, use normal checkout procedure
 search booking plan category as tags, autocomplete
 
 == RANKING ==
@@ -20,6 +18,8 @@ obey rules of game
 add comment to a match
 
 == NOTES TO THIS RELEASE ==
+use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
+prices to book with guest, use normal checkout procedure
 find a way to delete filters, eventho we have sent mails to this filter
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way

@@ -5,13 +5,6 @@ namespace Club\BookingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * Club\BookingBundle\Entity\PlanCategory
- *
- * @ORM\Table(name="club_booking_plan_category")
- * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\PlanCategoryRepository")
- * @ORM\HasLifecycleCallbacks()
- */
 class PlanCategory
 {
     /**
