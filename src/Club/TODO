@@ -3,7 +3,6 @@ cannot add match if no permissions
 validate sets match
 validate players can play
 only have to choose opponent
-improve form for new match
 improve design for recent played matches
 start and end for add matches to game
 obey locked and invite only
@@ -30,6 +29,7 @@ on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
 
 == NOTES TO LATER ==
+consider using knpmenu bundle instead of our own
 cannot install when parameter is not on english
 cannot install with multiple payment plugins
 make a quick way to remove all team penalties

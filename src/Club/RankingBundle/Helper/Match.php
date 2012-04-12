@@ -21,7 +21,9 @@ class Match
 
     $display = array();
     for ($i = 0; $i < $teams; $i++) {
-      $team = $this->addTeam($match, $data['user'.$i]);
+      $user = $this->em->find('ClubUserBundle:User', $data['user'.$i.'_id']);
+
+      $team = $this->addTeam($match, $user);
 
       for ($j = 0; $j < $game->getGameSet(); $j++) {
         $set_str = 'user'.$i.'set'.$j;
@@ -49,6 +51,7 @@ class Match
   private function findWinner(array $display)
   {
     $res = array();
+    $ret = '';
     for ($i = 0; $i < count($display[0]); $i++) {
       $ret .= $display[0][$i].'/'.$display[1][$i].' ';
     }

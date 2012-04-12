@@ -7,52 +7,54 @@
 
 <form method="post" action="{{ path('club_ranking_match_new', {'game_id':game.id}) }}">
 
-        <!-- Input Text -->
-        <fieldset>
-          <legend>Match Result</legend>
+  <!-- Input Text -->
+  <fieldset>
+    <legend>Match Result</legend>
 
-          <!-- Left column -->
-          <div class="col50">
+    <!-- Left column -->
+    <div class="col50">
+      <p class="nomt">
+        <label for="inp-01">User:</label><br />
+        {{ form_widget(form.user0, {'attr': {'class':'input-text'}}) }}<br />
+        <span class="smaller low">Info: Insert name of first user.</span>
+      </p>
 
-            <p class="nomt">
-              <label for="inp-01">User:</label><br />
-              {{ form_widget(form.user0) }}<br />
-              <span class="smaller low">Info: Insert name of first user.</span>
-            </p>
+      <p class="nomb">
+        <label for="inp-02">User:</label><br />
+        {{ form_widget(form.user1, {'attr': {'class':'input-text'}}) }}<br />
+        <span class="smaller low">Info: Insert name of second user.</span>
+      </p>
+    </div> <!-- /col50 -->
 
-            <p class="nomb">
-              <label for="inp-02">User:</label><br />
-              {{ form_widget(form.user1) }}<br />
-              <span class="smaller low">Info: Insert name of second user.</span>
-            </p>
+    <!-- Right column -->
+    <div class="col50 f-right">
+      <p class="nomt">
+        <label for="inp-04">Result:</label><br />
+        {% if game.gameSet > 0 %}{{ form_widget(form.user0set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 1 %}{{ form_widget(form.user0set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 2 %}{{ form_widget(form.user0set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 3 %}{{ form_widget(form.user0set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 4 %}{{ form_widget(form.user0set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        <br /><span class="smaller low">Info: Insert match result for user.</span>
+      </p>
 
-          </div> <!-- /col50 -->
+      <p class="nomb">
+        <label for="inp-06">Result:</label><br />
+        {% if game.gameSet > 0 %}{{ form_widget(form.user1set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 1 %}{{ form_widget(form.user1set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 2 %}{{ form_widget(form.user1set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 3 %}{{ form_widget(form.user1set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if game.gameSet > 4 %}{{ form_widget(form.user1set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        <br /><span class="smaller low">Info: Insert match result for user.</span>
+      </p>
+    </div> <!-- /col50 -->
 
-          <!-- Right column -->
-          <div class="col50 f-right">
+    <div class="fix"></div>
+  </fieldset>
 
-            <p class="nomt">
-              <label for="inp-04">Result:</label><br />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" /><br />
-              <span class="smaller low">Info: Insert match result for user.</span>
-            </p>
+  {{ form_rest(form) }}
 
-            <p class="nomb">
-              <label for="inp-06">Result:</label><br />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" />
-              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" /><br />
-              <span class="smaller low">Info: Insert match result for user.</span>
-            </p>
-
-          </div> <!-- /col50 -->
-          <div class="fix"></div>
-
-        </fieldset>
-
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 </form>
 
 {% endblock %}

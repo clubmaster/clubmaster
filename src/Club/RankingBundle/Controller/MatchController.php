@@ -28,10 +28,12 @@ class MatchController extends Controller
 
     for ($i = 0; $game->getGameSet() > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(
-        'label' => 'Set '.($i+1)
+        'label' => 'Set '.($i+1),
+        'required' => false
       ));
       $form = $form->add('user1set'.$i,'text', array(
-        'label' => 'Set '.($i+1)
+        'label' => 'Set '.($i+1),
+        'required' => false
       ));
     }
 
