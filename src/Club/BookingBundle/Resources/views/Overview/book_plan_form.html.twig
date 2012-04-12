@@ -1,0 +1,10 @@
+<fieldset>
+  <form method="get" action="{{ path('club_booking_adminplancategory_new1', {'date':date|date('Y-m-d'),'interval_id':interval.id}) }}">
+    <legend>{% trans %}Booking plan{% endtrans %}</legend>
+
+    <p>{% trans %}Click here if you want to create a booking plan.{% endtrans %}</p>
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+  </form>
+</fieldset>
+

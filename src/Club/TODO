@@ -1,12 +1,8 @@
 == HOT ==
-user reporting system, export users from a search to CSV
-style quickpay flow
-prices to book with guest, use normal checkout procedure
-make that you have to checkin in order to confirm your booking, otherwice it will be free
-add first booking plan on create booking plan category page
 make sure yearly expire subscriptions will auto renew in the beginning of a new subscription
-remove delete bottom from admin users, move to something other more in the background
-make a way to manually receive money from orders, to avoid change order status manually
+use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
+prices to book with guest, use normal checkout procedure
+search booking plan category as tags, autocomplete
 
 == RANKING ==
 cannot add matches when not logged in
@@ -25,7 +21,8 @@ obey rules of game
 add comment to a match
 
 == NOTES TO THIS RELEASE ==
-if allowed to change plan, go to plan when clicking on it
+find a way to delete filters, eventho we have sent mails to this filter
+make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
 improve documentation of overwrite mail template files

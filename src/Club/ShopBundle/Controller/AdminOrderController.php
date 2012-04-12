@@ -65,8 +65,9 @@ class AdminOrderController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
-    $em->remove($order);
-    $em->flush();
+    $this->container->get('order')->setOrder($order);
+    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelledStatus();
+    $this->container->get('order')->changeStatus($status);
 
     return $this->redirect($this->generateUrl('admin_shop_order'));
   }

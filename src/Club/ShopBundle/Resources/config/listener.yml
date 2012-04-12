@@ -8,13 +8,7 @@ services:
     class: Club\ShopBundle\Listener\NewSubscriptionListener
     arguments: [@doctrine.orm.entity_manager, @order]
     tags:
-      - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
-      - { name: kernel.event_listener, event: order.pay, method: onOrderPay, priority: 10 }
-  club.shopbundle.listener.on_order_change_listener:
-    class: Club\ShopBundle\Listener\OrderChangeListener
-    arguments: [@doctrine.orm.entity_manager]
-    tags:
-      - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 5 }
+      - { name: kernel.event_listener, event: order.paid, method: onOrderPaid, priority: 10 }
   club.shopbundle.listener.auto_renewal.listener:
     class: Club\ShopBundle\Listener\AutoRenewalListener
     arguments: [@doctrine.orm.entity_manager,@order]
@@ -50,3 +44,4 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
+      - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView, priority: 5 }

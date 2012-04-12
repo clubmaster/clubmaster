@@ -41,6 +41,10 @@ class Plan
      * @var integer $day
      *
      * @ORM\Column(type="integer")
+     * @Assert\Choice(
+     *  choices = { "1","2","3","4","5","6","7" },
+     *  message = "Not a valid day"
+     * )
      */
     protected $day;
 
@@ -78,14 +82,15 @@ class Plan
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanCategory")
+     * @ORM\ManyToOne(targetEntity="PlanCategory", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $plan_category;
 
     /**
      * @ORM\ManyToMany(targetEntity="Field")
      * @ORM\JoinTable(name="club_booking_plan_field",
-     *   joinColumns={@ORM\JoinColumn(name="plan_id", referencedColumnName="id")},
+     *   joinColumns={@ORM\JoinColumn(name="plan_id", referencedColumnName="id", onDelete="cascade")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")}
      * )
      */

@@ -11,28 +11,13 @@ class NewSubscriptionListener
     $this->em = $em;
   }
 
-  public function onOrderPay(\Club\ShopBundle\Event\FilterOrderEvent $event)
+  public function onOrderPaid(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
     $order = $event->getOrder();
 
     foreach ($order->getProducts() as $prod) {
       if ($prod->getType() == 'subscription') {
         $this->createSubscription($order, $prod);
-      }
-    }
-  }
-
-  public function onOrderChange(\Club\ShopBundle\Event\FilterOrderEvent $event)
-  {
-    $order = $event->getOrder();
-
-    if (!$this->em->getRepository('ClubShopBundle:Order')->isFirstAccepted($order))
-      return;
-
-    foreach ($order->getProducts() as $product) {
-
-      if ($product->getType() == 'subscription') {
-        $this->createSubscription($order, $product);
       }
     }
 

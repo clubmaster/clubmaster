@@ -29,14 +29,14 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="2"></td>
+      <td colspan="2">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for user in users %}
     <tr>
       <td>{{ user.memberNumber }}</td>
-      <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.profile.firstName }} {{ user.profile.lastName }}</a></td>
+      <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.name }}</a></td>
     </tr>
   {% else %}
   <tr>

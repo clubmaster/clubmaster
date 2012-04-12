@@ -338,7 +338,7 @@ class Product
     /**
      * Get account_number
      *
-     * @return string 
+     * @return string
      */
     public function getAccountNumber()
     {

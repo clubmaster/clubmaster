@@ -5,9 +5,81 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminUserController extends Controller
 {
+  /**
+   * @Route("/user/export/csv")
+   */
+  public function csvAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
+
+    // field delimiter
+    $fd = ',';
+    // row delimiter
+    $rd = PHP_EOL;
+    // text delimiter
+    $td = '"';
+
+    $r =
+      $td.'Member number'.$td.$fd.
+      $td.'First name'.$td.$fd.
+      $td.'Last name'.$td.$fd.
+      $td.'Gender'.$td.$fd.
+      $td.'Day of birth'.$td.$fd.
+      $td.'Street'.$td.$fd.
+      $td.'Postal'.$td.$fd.
+      $td.'City'.$td.$fd.
+      $td.'Country'.$td.$fd.
+      $td.'Email'.$td.$fd.
+      $td.'Phone'.$td.$rd;
+
+    foreach ($users as $user) {
+      $profile = $user->getProfile();
+      $address = $profile->getProfileAddress();
+      $email = $profile->getProfileEmail();
+      $phone = $profile->getProfilePhone();
+
+      $r .=
+        $td.$user->getMemberNumber().$td.$fd.
+        $td.$profile->getFirstName().$td.$fd.
+        $td.$profile->getLastName().$td.$fd.
+        $td.$profile->getGender().$td.$fd.
+        $td.$profile->getDayOfBirth()->format('Y-m-d').$td.$fd;
+
+      if ($address) {
+        $r .=
+          $td.trim($address->getStreet()).$td.$fd.
+          $td.$address->getPostalCode().$td.$fd.
+          $td.$address->getCity().$td.$fd.
+          $td.$address->getCountry().$td.$fd;
+      } else {
+        $r .= $fd.$fd.$fd.$fd;
+      }
+
+      if ($email) {
+        $r .= $td.$email->getEmailAddress().$td.$fd;
+      } else {
+        $r .= $fd;
+      }
+
+      if ($phone)
+        $r .= $td.$phone->getPhoneNumber().$td;
+
+      $r .= $rd;
+    }
+
+    $response = new Response($r);
+    $response->headers->set('Content-Disposition', 'attachment;filename=clubmaster_members.csv');
+
+    return $response;
+  }
+
   /**
    * @Route("/user", name="admin_user")
    * @Template()
@@ -18,35 +90,24 @@ class AdminUserController extends Controller
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
 
-    $order_by = array();
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
     $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
 
-    if ('POST' === $this->getRequest()->getMethod() && isset($_POST['filter_order'])) {
-        $order_by = array($_POST['filter_order'] => $_POST['filter_order_Dir']);
-        $sort_direction = $_POST['filter_order_Dir'] == 'asc' ? 'desc' : 'asc';
+    $sort = $this->get('session')->get('admin_module:admin_user');
 
-        $this->get('session')->set('lang_list_order_by', $order_by);
-        $this->get('session')->set('lang_list_sort_dir', $sort_direction);
+    if (isset($sort) && isset($sort['sort'])) {
+      $order_by = $sort['sort'];
     } else {
-
-        if ($this->get('session')->get('admin_user_list_order_by') != null) {
-            $order_by = $this->get('session')->get('admin_user_list_order_by');
-        } else {
-            $order_by = array('sort_order' => 'asc', 'id' => 'asc');
-        }
-        if ($this->get('session')->get('admin_user_list_sort_dir') != null) {
-            $sort_direction = $this->get('session')->get('admin_user_list_sort_dir');
-        } else {
-            $sort_direction = 'desc';
-        }
+      $order_by = array('member_number' => 'asc');
     }
+
     $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
+      'sort_name' => key($order_by),
+      'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'sort_dir' => $sort_direction,
       'paginator' => $paginator
     );
   }
@@ -133,22 +194,6 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/delete/{id}", name="admin_user_delete")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User',$id);
-
-    $em->remove($user);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-    return $this->redirect($this->generateUrl('admin_user'));
-  }
-
-  /**
    * @Route("/user/batch", name="admin_user_batch")
    */
   public function batchAction()
@@ -223,6 +268,18 @@ class AdminUserController extends Controller
       'user' => $user,
       'form' => $form->createView()
     );
+  }
+
+  /**
+   * @Route("/user/sort/{name}/{type}")
+   */
+  public function sortAction($name, $type)
+  {
+    $filter = $this->get('session')->get('admin_module:admin_user');
+    $filter['sort'] = array($name => $type);
+    $this->get('session')->set('admin_module:admin_user', $filter);
+
+    return $this->redirect($this->getRequest()->server->get('HTTP_REFERER'));
   }
 
   protected function getUser($user)

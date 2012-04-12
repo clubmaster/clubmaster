@@ -1,5 +1,7 @@
 #!/bin/bash
 
+touch app/installer
+
 sudo rm -rf app/cache/*
 sudo chmod 777 app/logs app/cache
 

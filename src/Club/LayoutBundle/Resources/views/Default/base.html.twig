@@ -75,20 +75,30 @@
 
                         <div class="padding box">
 
-                                <!-- Logo (Max. width = 200px) -->
-                                <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
+                          <!-- Logo (Max. width = 200px) -->
+                          <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
 
-                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <!-- Login form -->
-                        <form method="post" action="{{ path('login_check') }}" id="search">
-                          <fieldset>
-                            <legend>{% trans %}Login{% endtrans %}</legend>
-                            <p><input type="text" class="input-text" name="_username" id="login_username" /></p>
-                            <p><input type="password" class="input-text" name="_password" /></p>
-                            <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
-                          </fieldset>
-                        </form>
-                        {% endif %}
+                          {% if is_granted('ROLE_ADMIN') %}
+                          <!-- Search -->
+                          <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search">
+                            <fieldset>
+                              <legend>{% trans %}Search{% endtrans %}</legend>
+                              <p><input type="text" size="17" name="query" class="input-text" />&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" class="input-submit-02" /></p>
+                            </fieldset>
+                          </form>
+                          {% endif %}
+
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                          <!-- Login form -->
+                          <form method="post" action="{{ path('login_check') }}" id="search">
+                            <fieldset>
+                              <legend>{% trans %}Login{% endtrans %}</legend>
+                              <p><input type="text" class="input-text" name="_username" id="login_username" /></p>
+                              <p><input type="password" class="input-text" name="_password" /></p>
+                              <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
+                            </fieldset>
+                          </form>
+                          {% endif %}
 
                         </div> <!-- /padding -->
 

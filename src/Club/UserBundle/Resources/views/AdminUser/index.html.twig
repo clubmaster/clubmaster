@@ -15,14 +15,16 @@
 </div>
 
 <div>
+[ <a href="{{ path('club_user_adminuser_csv') }}">{% trans %}Export CSV{% endtrans %}</a> ]
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table class="style">
   <thead>
     <tr>
       <th>[x]</th>
-      <th>{% trans %}Number{% endtrans %}</th>
-      <th>{% trans %}Name{% endtrans %}</th>
-      <th>{% trans %}Created at{% endtrans %}</th>
+
+      {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'member_number', 'field_text':'Number'|trans} %}
+      {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'first_name', 'field_text':'Name'|trans} %}
+      {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'created_at', 'field_text':'Created at'|trans} %}
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -44,7 +46,6 @@
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_edit', { 'id':user.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_delete', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:ban_link.html.twig" with {'url':path('admin_user_ban', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:note_link.html.twig" with {'url':path('admin_user_note', { 'id':user.id })} %}
         {% include "ClubLayoutBundle:Default:shop_as_link.html.twig" with {'url':path('club_user_adminuser_shop', { 'id':user.id })} %}

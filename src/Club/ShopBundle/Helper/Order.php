@@ -85,6 +85,13 @@ class Order
   {
     $this->order->setOrderStatus($order_status);
     $this->em->persist($this->order);
+
+    $status = new \Club\ShopBundle\Entity\OrderStatusHistory();
+    $status->setOrder($this->order);
+    $status->setOrderStatus($this->order->getOrderStatus());
+    $status->setNote($this->order->getNote());
+    $this->em->persist($status);
+
     $this->em->flush();
 
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
@@ -250,19 +257,29 @@ class Order
     $this->order->setCurrencyValue(1);
   }
 
+  public function makePayment(\Club\ShopBundle\Entity\PurchaseLog $log)
+  {
+    $left = $this->order->getAmountLeft()-($log->getAmount()/100);
+
+    $this->order->setAmountLeft($left);
+    $this->setPaid();
+
+    $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
+    $event->setPurchaseLog($log);
+    $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
+  }
+
   public function setPaid()
   {
     if ($this->order->getPaid()) return;
 
-    $this->order->setAmountLeft(0);
-
-    if ($this->getAmountLeft() == 0)
+    if ($this->order->getAmountLeft() == 0)
       $this->order->setPaid(true);
 
     $this->em->persist($this->order);
     $this->em->flush();
 
-    if ($this->getAmountLeft() > 0) return;
+    if ($this->order->getAmountLeft() > 0) return;
 
     $delivered = true;
     foreach ($this->order->getProducts() as $prod) {
@@ -275,5 +292,8 @@ class Order
     }
 
     $this->em->flush();
+
+    $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
+    $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onOrderPaid, $event);
   }
 }

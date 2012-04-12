@@ -34,8 +34,7 @@ class PlanCategory
     /**
      * @var date $description
      *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="text", nullable="true")
      */
     protected $description;
 
@@ -57,6 +56,11 @@ class PlanCategory
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Plan", mappedBy="plan")
+     */
+    protected $plans;
 
 
     /**
@@ -188,5 +192,25 @@ class PlanCategory
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add plans
+     *
+     * @param Club\BookingBundle\Entity\Plan $plans
+     */
+    public function addPlan(\Club\BookingBundle\Entity\Plan $plans)
+    {
+        $this->plans[] = $plans;
+    }
+
+    /**
+     * Get plans
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPlans()
+    {
+        return $this->plans;
     }
 }

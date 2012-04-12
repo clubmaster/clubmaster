@@ -17,22 +17,11 @@ class AdminDashboardController extends Controller
   {
     $em = $this->getDoctrine();
 
-    $orders = $em->getRepository('ClubShopBundle:Order')->getOpenOrders(10);
-
-    $users = $em->getRepository('ClubUserBundle:User')->findBy(
-      array(),
-      array(
-        'id' => 'DESC'
-      ),
-      10
-    );
-
-    $logs = $em->getRepository('ClubLogBundle:Log')->getRecent(10);
+    $event = new \Club\UserBundle\Event\FilterOutputEvent();
+    $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onAdminDashboardView, $event);
 
     return array(
-      'orders' => $orders,
-      'users' => $users,
-      'logs' => $logs
+      'output' => $event->getOutput()
     );
   }
 }

@@ -15,8 +15,6 @@ class DashboardController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine();
-
     $event = new \Club\UserBundle\Event\FilterOutputEvent();
     $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onDashboardView, $event);
 
