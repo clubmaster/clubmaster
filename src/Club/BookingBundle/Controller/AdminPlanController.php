@@ -25,18 +25,35 @@ class AdminPlanController extends Controller
   }
 
   /**
-   * @Route("/new")
+   * @Route("/new", defaults={"date" = null, "interval_id" = null})
+   * @Route("/new/{date}/{interval_id}", name="club_booking_plan_pre")
    * @Template()
    */
-  public function newAction()
+  public function newAction($date, $interval_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $plan = new \Club\BookingBundle\Entity\Plan();
-    $plan->setUser($this->get('security.context')->getToken()->getUser());
-    $plan->setPeriodStart(new \DateTime());
-    $plan->setPeriodEnd(new \DateTime());
-    $plan->getPeriodEnd()->setTime(23,59,59);
+
+    if ($date != '') {
+      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
+
+      $start = new \DateTime($date.' 00:00:00');
+      $end = new \DateTime($date.' 23:59:59');
+
+      $t_start = new \DateTime(date('Y-m-d '.$interval->getStartTime()->format('H:i:s')));
+      $t_end = new \DateTime(date('Y-m-d '.$interval->getStopTime()->format('H:i:s')));
+      $plan->setFirstTime($t_start);
+      $plan->setEndTime($t_end);
+      $plan->addField($interval->getField());
+
+    } else {
+      $start = new \DateTime(date('Y-m-d 00:00:00'));
+      $end = new \DateTime(date('Y-m-d 23:59:59'));
+    }
+
+    $plan->setPeriodStart($start);
+    $plan->setPeriodEnd($end);
+    $plan->setDay($start->format('N'));
 
     $form = $this->getForm($plan);
 
