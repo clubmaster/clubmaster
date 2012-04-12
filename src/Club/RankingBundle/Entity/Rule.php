@@ -51,13 +51,6 @@ class Rule
     private $match_same_player;
 
     /**
-     * @var integer $newbie_limit
-     *
-     * @ORM\Column(type="integer")
-     */
-    private $newbie_limit;
-
-    /**
      * @var datetime $created_at
      *
      * @ORM\Column(type="datetime")
@@ -222,25 +215,5 @@ class Rule
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
-    }
-
-    /**
-     * Set newbie_limit
-     *
-     * @param integer $newbieLimit
-     */
-    public function setNewbieLimit($newbieLimit)
-    {
-        $this->newbie_limit = $newbieLimit;
-    }
-
-    /**
-     * Get newbie_limit
-     *
-     * @return integer
-     */
-    public function getNewbieLimit()
-    {
-        return $this->newbie_limit;
     }
 }

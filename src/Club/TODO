@@ -1,14 +1,11 @@
 == RANKING ==
-cannot add matches when not logged in
 cannot add match if no permissions
 validate sets match
 validate players can play
 only have to choose opponent
-ajax request for find player
 improve form for new match
 improve design for recent played matches
 start and end for add matches to game
-remove newbie
 obey locked and invite only
 add ranking
 obey rules of game
