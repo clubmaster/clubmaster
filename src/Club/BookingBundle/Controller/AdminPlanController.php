@@ -17,7 +17,10 @@ class AdminPlanController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $plans = $em->getRepository('ClubBookingBundle:Plan')->findAll();
+    $plans = $em->getRepository('ClubBookingBundle:Plan')->findBy(
+      array(),
+      array('updated_at' => 'DESC')
+    );
 
     return array(
       'plans' => $plans
