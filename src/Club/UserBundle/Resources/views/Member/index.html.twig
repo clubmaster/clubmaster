@@ -2,6 +2,8 @@
 
 {% block body %}
 
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#query_query', 'input_id':''} %}
+
 <h2>{% trans %}Members{% endtrans %}</h2>
 
 <!-- Actions -->
