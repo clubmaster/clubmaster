@@ -21,12 +21,10 @@ class MatchController extends Controller
     $res = array();
 
     $form = $this->createFormBuilder($res)
-      ->add('user0', 'entity', array(
-        'class' => 'ClubUserBundle:User'
-      ))
-      ->add('user1', 'entity', array(
-        'class' => 'ClubUserBundle:User'
-      ));
+      ->add('user0_id', 'hidden')
+      ->add('user1_id', 'hidden')
+      ->add('user0', 'text')
+      ->add('user1', 'text');
 
     for ($i = 0; $game->getGameSet() > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(

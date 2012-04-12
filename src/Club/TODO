@@ -1,3 +1,6 @@
+== TODO ==
+make right class for form_widget: user_members, rank_match
+
 == RANKING ==
 cannot add match if no permissions
 validate sets match

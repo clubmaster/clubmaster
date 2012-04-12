@@ -2,7 +2,56 @@
 
 {% block body %}
 
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0', 'input_id':'#form_user0_id'} %}
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1', 'input_id':'#form_user1_id'} %}
+
 <form method="post" action="{{ path('club_ranking_match_new', {'game_id':game.id}) }}">
+
+        <!-- Input Text -->
+        <fieldset>
+          <legend>Match Result</legend>
+
+          <!-- Left column -->
+          <div class="col50">
+
+            <p class="nomt">
+              <label for="inp-01">User:</label><br />
+              {{ form_widget(form.user0) }}<br />
+              <span class="smaller low">Info: Insert name of first user.</span>
+            </p>
+
+            <p class="nomb">
+              <label for="inp-02">User:</label><br />
+              {{ form_widget(form.user1) }}<br />
+              <span class="smaller low">Info: Insert name of second user.</span>
+            </p>
+
+          </div> <!-- /col50 -->
+
+          <!-- Right column -->
+          <div class="col50 f-right">
+
+            <p class="nomt">
+              <label for="inp-04">Result:</label><br />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-04" /><br />
+              <span class="smaller low">Info: Insert match result for user.</span>
+            </p>
+
+            <p class="nomb">
+              <label for="inp-06">Result:</label><br />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" />
+              <input type="text" size="5" name="" value="" class="input-text" id="inp-06" /><br />
+              <span class="smaller low">Info: Insert match result for user.</span>
+            </p>
+
+          </div> <!-- /col50 -->
+          <div class="fix"></div>
+
+        </fieldset>
+
 {% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
