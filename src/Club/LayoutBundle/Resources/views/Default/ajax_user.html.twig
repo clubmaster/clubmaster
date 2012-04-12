@@ -1,0 +1,37 @@
+{% block javascripts %}
+
+<script type="text/javascript">
+  var url = "{{ path('homepage') }}";
+
+  $(document).ready(function() {
+    $( "{{ search_field }}" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: url + "api/users/search/" + $("{{ search_field }}").attr("value"),
+          dataType: "json",
+          success: function( data ) {
+            response( $.map( data.data, function( item ) {
+              return {
+                label: item.first_name + " " + item.last_name,
+                value: item.first_name + " " + item.last_name,
+                id: item.id
+              }
+            }));
+          }
+        });
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        $("{{ input_id }}").attr("value", ui.item.id);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+  });
+</script>
+{% endblock %}
+
