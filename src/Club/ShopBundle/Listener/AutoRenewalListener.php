@@ -18,16 +18,26 @@ class AutoRenewalListener
 
   public function onAutoRenewalTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
-    $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getExpiredSubscriptions();
-    foreach ($subscriptions as $subscription) {
+    $sub_attrs = $this->em->getRepository('ClubShopBundle:SubscriptionAttribute')->getExpiredAutoSubscriptions('after');
+    foreach ($sub_attrs as $sub_attr) {
+      $subscription = $sub_attr->getSubscription();
 
-      if ($this->em->getRepository('ClubShopBundle:Subscription')->isAutoRenewal($subscription)) {
+      $this->copySubscription($subscription);
+      $this->em->persist($subscription);
+    }
+
+    $sub_attrs = $this->em->getRepository('ClubShopBundle:SubscriptionAttribute')->getExpiredAutoSubscriptions('yearly');
+    foreach ($sub_attrs as $sub_attr) {
+      $subscription = $sub_attr->getSubscription();
+
+      $date_str = $subscription->getStartDate()->format(date('Y').'-m-d H:i:s');
+      $d = new \DateTime($date_str);
+
+      if ($d < new \DateTime()) {
         $this->copySubscription($subscription);
-      } else {
         $this->em->persist($subscription);
       }
     }
-    $this->em->flush();
 
     $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getEmptyTicketAutoRenewalSubscriptions();
     foreach ($subscriptions as $subscription) {

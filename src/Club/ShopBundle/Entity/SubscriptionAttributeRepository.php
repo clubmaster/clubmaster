@@ -12,4 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class SubscriptionAttributeRepository extends EntityRepository
 {
+  public function getExpiredAutoSubscriptions($type)
+  {
+    $qb = $this->_em->createQueryBuilder()
+      ->select('sa')
+      ->from('ClubShopBundle:SubscriptionAttribute','sa')
+      ->leftJoin('sa.subscription','s')
+      ->where('sa.attribute_name = :attr')
+      ->andWhere('sa.value = :attr_val')
+      ->andWhere('s.expire_date <= :expire_date')
+      ->andWhere('s.expire_date IS NOT NULL')
+      ->setParameter('expire_date',new \DateTime())
+      ->setParameter('attr', 'auto_renewal');
+
+    switch ($type) {
+    case 'yearly':
+      $qb->setParameter('attr_val', 'Y');
+      break;
+    case 'after':
+      $qb->setParameter('attr_val', 'A');
+      break;
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
 }
