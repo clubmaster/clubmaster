@@ -1,12 +1,11 @@
 == RANKING ==
+improve design for recent played matches
+start and end for add matches to game
+add ranking
 cannot add match if no permissions
 validate sets match
 validate players can play
-only have to choose opponent
-improve design for recent played matches
-start and end for add matches to game
 obey locked and invite only
-add ranking
 obey rules of game
 add comment to a match
 
