@@ -468,8 +468,9 @@ class Booking
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
       ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
+      ->andWhere('(b.user = :user OR u.id = :user)')
       ->setParameter('user', $user->getId())
       ->getQuery()
       ->getSingleResult();
