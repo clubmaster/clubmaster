@@ -344,4 +344,12 @@ class Product
     {
         return $this->account_number;
     }
+
+    public function getType()
+    {
+      if (count($this->getProductAttributes()))
+        return 'subscription';
+
+      return 'product';
+    }
 }

@@ -124,6 +124,8 @@ class Cart
     // check if its already in the cart
     foreach ($this->cart->getCartProducts() as $prod) {
       if ($prod->getProduct() && $prod->getProduct()->getId() == $product->getId()) {
+        if ($prod->getProduct()->getType() == 'subscription') return;
+
         $prod = $this->modifyQuantity($prod);
         $trigger = 1;
       }
@@ -137,7 +139,7 @@ class Cart
       $op->setPrice($product->getSpecialPrice());
       $op->setQuantity(1);
 
-      $type = (!count($product->getProductAttributes())) ? 'product' : 'subscription';
+      $type = $product->getType();
       $op->setType($type);
 
       foreach ($product->getProductAttributes() as $attr) {

@@ -1,4 +1,5 @@
 == TODO ==
+add error codes to booking errors
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
 what happens on dobbelt click on confirm order
@@ -9,7 +10,6 @@ use ajax in groups (dynamic / static)
 better show order ???
 make sure coupon works with economic
 dont have specific error login page
-cannot put multiple subscriptions in basket
 bulk create order to users
 sort users in IE9 missing style
 group need translation
