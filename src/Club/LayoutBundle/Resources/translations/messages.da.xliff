@@ -2010,6 +2010,30 @@
         <source>You cannot have more bookings with this partner this day</source>
         <target>Du kan ikke have flere bookings med denne mkker denne dag</target>
       </trans-unit>
+      <trans-unit id="506">
+        <source>Interval does not exists that day</source>
+        <target>Intervallet findes ikke denne dag</target>
+      </trans-unit>
+      <trans-unit id="507">
+        <source>You cannot book in the past</source>
+        <target>Du kan ikke booke i fortiden</target>
+      </trans-unit>
+      <trans-unit id="508">
+        <source>Interval is not available</source>
+        <target>Intervallet er ikke ledigt</target>
+      </trans-unit>
+      <trans-unit id="509">
+        <source>You do not have an active membership</source>
+        <target>Du har ikke et aktivt medlemskab</target>
+      </trans-unit>
+      <trans-unit id="510">
+        <source>You are not allowed to book this time</source>
+        <target>Du har ikke lov at reservere denne time</target>
+      </trans-unit>
+      <trans-unit id="511">
+        <source>You cannot have more bookings this day</source>
+        <target>Du kan ikke have flere bookings denne dag</target>
+      </trans-unit>
 
     </body>
   </file>

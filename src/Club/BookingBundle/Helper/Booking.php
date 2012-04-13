@@ -270,32 +270,32 @@ class Booking
   protected function validate()
   {
     if (!$this->validateIntervalDay($this->date, $this->interval)) {
-      $this->setError('Interval does not exists that day');
+      $this->setError($this->translator->trans('Interval does not exists that day'));
       return;
     }
 
     if (!$this->validatePast($this->date, $this->interval)) {
-      $this->setError('You cannot book in the past');
+      $this->setError($this->translator->trans('You cannot book in the past'));
       return;
     }
 
     if (!$this->validateAvailable($this->date, $this->interval)) {
-      $this->setError('Interval is not available');
+      $this->setError($this->translator->trans('Interval is not available'));
       return;
     }
 
     if (!$this->validateSubscription($this->user)) {
-      $this->setError('You do not have an active membership');
+      $this->setError($this->translator->trans('You do not have an active membership'));
       return;
     }
 
     if (!$this->validateSubscriptionTime($this->user, $this->interval)) {
-      $this->setError('You are not allowed to book this time');
+      $this->setError($this->translator->trans('You are not allowed to book this time'));
       return;
     }
 
     if (!$this->validateBookingDay($this->date, $this->user)) {
-      $this->setError('You cannot have more bookings this day');
+      $this->setError($this->translator->trans('You cannot have more bookings this day'));
       return;
     }
 
