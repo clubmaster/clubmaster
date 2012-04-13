@@ -10,7 +10,6 @@ better show order ???
 make sure coupon works with economic
 dont have specific error login page
 cannot put multiple subscriptions in basket
-go to payment on admin dashboard
 bulk create order to users
 sort users in IE9 missing style
 group need translation
@@ -24,6 +23,7 @@ atk delete jørgen ib, 952
 atk check for doubles
 remove register payment, when order has been payed
 latest members on admin dashboard does not seems right
+vis tydeligere flow af checkout
 
 == RANKING ==
 improve design for recent played matches
