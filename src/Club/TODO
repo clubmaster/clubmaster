@@ -1,3 +1,33 @@
+== TODO ==
+plan has to give error if booking already exists
+quick search on multiple users, go to search and put query in name
+what happens on dobbelt click on confirm order
+view all products if below 10
+on mail sending, click the same button to process
+on mail sending, next instead of save on submit button
+explain groups better
+use ajax in groups (dynamic / static)
+better show order ???
+error when using a coupon
+make sure coupon works with economic
+dont have specific error login page
+cannot put multiple subscriptions in basket
+go to payment on admin dashboard
+bulk create order to users
+sort users in IE9 missing style
+group need translation
+make button for admin dashboard
+talk with EF sikring regarding to import of users:
+  - change bulk users
+  - import users
+view phone number on booking screen
+mette løth can book and be booked with, thats not correct
+make atk members smaller, start from 620 and something, michael holm on 700 is an error
+atk delete jørgen ib, 952
+atk check for doubles
+remove register payment, when order has been payed
+latest members on admin dashboard does not seems right
+
 == RANKING ==
 improve design for recent played matches
 start and end for add matches to game

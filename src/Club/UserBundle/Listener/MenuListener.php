@@ -18,7 +18,7 @@ class MenuListener
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
     $menu[10] = array(
-      'name' => $this->translator->trans('User'),
+      'name' => $this->translator->trans('Members'),
       'route' => $this->router->generate('admin_user'),
     );
     $menu[12] = array(
