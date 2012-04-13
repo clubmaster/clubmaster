@@ -1,5 +1,6 @@
 == TODO ==
 add error codes to booking API errors
+add API call to check last modified time for booking
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
 on mail sending, click the same button to process
@@ -16,7 +17,6 @@ talk with EF sikring regarding to import of users:
   - import users
 view phone number on booking screen
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
-atk delete jørgen ib, 952
 atk check for doubles
 remove register payment, when order has been payed
 latest members on admin dashboard does not seems right
