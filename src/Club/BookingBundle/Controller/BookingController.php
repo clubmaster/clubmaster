@@ -41,13 +41,13 @@ class BookingController extends Controller
          $user = $em->getRepository('ClubUserBundle:User')->getBySearch($form->getData());
 
          if (!count($user)) {
-           $this->get('session')->setFlash('error', 'User does not exist');
+           $this->get('session')->setFlash('error', $this->get('translator')->trans('User does not exist'));
            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
              'interval_id' => $interval->getId(),
              'date' => $date->format('Y-m-d')
            )));
          } elseif (count($user) > 1) {
-           $this->get('session')->setFlash('error', 'Too many users match this search');
+           $this->get('session')->setFlash('error', $this->get('translator')->trans('Too many users match this search'));
            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
              'interval_id' => $interval->getId(),
              'date' => $date->format('Y-m-d')

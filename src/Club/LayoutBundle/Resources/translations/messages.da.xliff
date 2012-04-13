@@ -1986,6 +1986,30 @@
         <source>Members of %group%</source>
         <target>Medlemmer af %group%</target>
       </trans-unit>
+      <trans-unit id="500">
+        <source>Your partner cannot have more bookings this day</source>
+        <target>Din makker kan ikke have flere bookings denne dag</target>
+      </trans-unit>
+      <trans-unit id="501">
+        <source>You cannot have more bookings with this partner</source>
+        <target>Du kan ikke have flere reservationer med denne makker</target>
+      </trans-unit>
+      <trans-unit id="502">
+        <source>User does not exist</source>
+        <target>Bruger findes ikke</target>
+      </trans-unit>
+      <trans-unit id="503">
+        <source>Too many users match this search</source>
+        <target>For mange brugere passer til denne søgning</target>
+      </trans-unit>
+      <trans-unit id="504">
+        <source>Your partner is not allowed to book this time.</source>
+        <target>Din makker har ikke lov at booke denne tid.</target>
+      </trans-unit>
+      <trans-unit id="505">
+        <source>You cannot have more bookings with this partner this day</source>
+        <target>Du kan ikke have flere bookings med denne mkker denne dag</target>
+      </trans-unit>
 
     </body>
   </file>

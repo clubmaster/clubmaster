@@ -164,17 +164,17 @@ class Booking
     }
 
     if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
-      $this->setError('You cannot have more bookings with this partner this day');
+      $this->setError($this->translator->trans('You cannot have more bookings with this partner this day'));
       return;
     }
 
     if (!$this->validateBookingPartnerFuture($this->user, $this->partner)) {
-      $this->setError('You cannot have more bookings with this partner');
+      $this->setError($this->translator->trans('You cannot have more bookings with this partner'));
       return;
     }
 
     if (!$this->validateBookingDay($this->date, $this->partner)) {
-      $this->setError('Your partner cannot have more bookings this day');
+      $this->setError($this->translator->trans('Your partner cannot have more bookings this day'));
       return;
     }
 
