@@ -22,6 +22,11 @@
 {% endfor %}
 
 <div class="fix"></div>
+
+{% if products %}
+  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'products':products} %}
+{% endif %}
+
 {% endif %}
 
 {% endblock %}

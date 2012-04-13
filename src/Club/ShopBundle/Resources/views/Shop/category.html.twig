@@ -25,7 +25,7 @@
 {% endif %}
 
 {% if category %}
-  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'category':category} %}
+  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'products':category.products} %}
 {% endif %}
 
 {% endblock %}

@@ -13,7 +13,7 @@
     </tr>
   </tfoot>
   <tbody>
-    {% for product in category.getProducts %}
+    {% for product in products %}
     <tr>
       <td><img src="{{ asset('bundles/clublayout/images/icons/32x32/page_white_camera.png') }}" title="{% trans %}No image{% endtrans %}" alt="{% trans %}No image{% endtrans %}" />
       <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a> <em>{{ product.description|truncate(200) }}</em></td>
