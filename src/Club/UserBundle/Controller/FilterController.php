@@ -43,20 +43,16 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
-      $this->get('security.context')->getToken()->getUser()
-    );
+    $filter = $this->getActiveFilter();
 
     $form_filter = new \Club\UserBundle\Filter\UserFilter($filter);
-    $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
+    $form = $this->getForm($form_filter);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
         $data = $form->getData();
-
-        $filter = $this->getActiveFilter();
         $filter = $this->syncFilters($filter,$data);
       }
     }
@@ -149,7 +145,6 @@ class FilterController extends Controller
           $data['filter']
         );
         $em->flush();
-
       }
     }
 
@@ -164,13 +159,12 @@ class FilterController extends Controller
     $filters = $repos->findBy(array(
       'user' => $this->get('security.context')->getToken()->getUser()
     ));
-    $filter = $repos->findActive(
-      $this->get('security.context')->getToken()->getUser()
-    );
+
+    $filter = $this->getActiveFilter();
 
     $form_filters = $this->buildFormFilters($filter);
     $form_filter = $this->buildFormFilter($filter);
-    $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
+    $form = $this->getForm($form_filter);
 
     return $this->render('ClubUserBundle:Filter:form.html.twig', array(
       'filter' => $filter,
@@ -184,39 +178,28 @@ class FilterController extends Controller
    */
   private function syncFilters($filter,$data)
   {
-    $name = ($data->name != '') ? $data->name : null;
-    $member_number = ($data->member_number != '') ? $data->member_number : null;
-    $min_age = ($data->min_age != '') ? $data->min_age : null;
-    $max_age = ($data->max_age != '') ? $data->max_age : null;
-    $gender = ($data->gender != '') ? $data->gender : null;
-    $postal_code = ($data->postal_code != '') ? $data->postal_code : null;
-    $city = ($data->city != '') ? $data->city : null;
-    $country = ($data->country != '') ? $data->country : null;
-    $active = ($data->active != '') ? $data->active : null;
-    $has_ticket= ($data->has_ticket != '') ? $data->has_ticket : null;
-    $has_subscription = ($data->has_subscription != '') ? $data->has_subscription : null;
-    $subscription_start = ($data->subscription_start != '') ? serialize($data->subscription_start) : null;
+    foreach ($data as $key => $value) {
+      switch ($key) {
+      case 'location':
+        $str = '';
+        foreach ($value as $l) {
+          $str .= $l->getId().',';
+        }
+        $str = preg_replace("/,$/","",$str);
+        $str = ($str != '') ? $str : null;
+        $this->syncColumn($filter, $key, $str);
 
-    $this->syncColumn($filter, 'name', $name);
-    $this->syncColumn($filter, 'member_number', $member_number);
-    $this->syncColumn($filter, 'min_age', $min_age);
-    $this->syncColumn($filter, 'max_age', $max_age);
-    $this->syncColumn($filter, 'gender', $gender);
-    $this->syncColumn($filter, 'postal_code', $postal_code);
-    $this->syncColumn($filter, 'city', $data->city);
-    $this->syncColumn($filter, 'country', $country);
-    $this->syncColumn($filter, 'active', $active);
-    $this->syncColumn($filter, 'has_ticket', $has_ticket);
-    $this->syncColumn($filter, 'has_subscription', $has_subscription);
-    $this->syncColumn($filter, 'subscription_start', $subscription_start);
-
-    $str = '';
-    foreach ($data->location as $l) {
-      $str .= $l->getId().',';
+        break;
+      case 'subscription_start':
+        $value = ($value != '') ? serialize($value) : null;
+        $this->syncColumn($filter, $key, $value);
+        break;
+      default:
+        $value = ($value != '') ? $value : null;
+        $this->syncColumn($filter, $key, $value);
+        break;
+      }
     }
-    $str = preg_replace("/,$/","",$str);
-    $str = ($str != '') ? $str : null;
-    $this->syncColumn($filter, 'location', $str);
 
     $em = $this->getDoctrine()->getEntityManager();
     $em->flush();
@@ -229,13 +212,22 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter_attr = $em->getRepository('ClubUserBundle:FilterAttribute')->findOneBy(array(
+    $attr = $em->getRepository('ClubUserBundle:FilterAttribute')->findOneBy(array(
       'filter' => $filter->getId(),
       'attribute' => $column
     ));
-    $filter_attr->setValue($value);
 
-    $em->persist($filter_attr);
+    if (!strlen($value) && $attr) {
+      $em->remove($attr);
+    } elseif (strlen($value)) {
+      if (!$attr) {
+        $attr = new \Club\UserBundle\Entity\FilterAttribute();
+        $attr->setFilter($filter);
+        $attr->setAttribute($column);
+      }
+      $attr->setValue($value);
+      $em->persist($attr);
+    }
   }
 
   /**
@@ -292,40 +284,9 @@ class FilterController extends Controller
     $form_filter = new \Club\UserBundle\Filter\UserFilter();
 
     foreach ($filter->getAttributes() as $attribute) {
-      switch ($attribute->getAttribute()) {
-      case 'name':
-        $form_filter->name = $attribute->getValue();
-        break;
-      case 'member_number':
-        $form_filter->member_number = $attribute->getValue();
-        break;
-      case 'min_age':
-        $form_filter->min_age = $attribute->getValue();
-        break;
-      case 'max_age':
-        $form_filter->max_age = $attribute->getValue();
-        break;
-      case 'gender':
-        $form_filter->gender = $attribute->getValue();
-        break;
-      case 'postal_code':
-        $form_filter->postal_code = $attribute->getValue();
-        break;
-      case 'city':
-        $form_filter->city = $attribute->getValue();
-        break;
-      case 'country':
-        $form_filter->country = $attribute->getValue();
-        break;
-      case 'active':
-        $form_filter->active = $attribute->getValue();
-        break;
-      case 'has_ticket':
-        $form_filter->has_ticket = $attribute->getValue();
-        break;
-      case 'has_subscription':
-        $form_filter->has_subscription = $attribute->getValue();
-        break;
+      $key = $attribute->getAttribute();
+
+      switch ($key) {
       case 'subscription_start':
         if ($attribute->getValue() != '')
           $form_filter->subscription_start = unserialize($attribute->getValue());
@@ -340,9 +301,18 @@ class FilterController extends Controller
 
         $form_filter->location = $res;
         break;
+      default:
+        $form_filter->$key = $attribute->getValue();
+        break;
       }
     }
 
     return $form_filter;
+  }
+
+  private function getForm($form_filter)
+  {
+    $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
+    return $form;
   }
 }
