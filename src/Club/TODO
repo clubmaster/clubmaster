@@ -2,7 +2,6 @@
 add error codes to booking API errors
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
-what happens on dobbelt click on confirm order
 on mail sending, click the same button to process
 on mail sending, next instead of save on submit button
 explain groups better
