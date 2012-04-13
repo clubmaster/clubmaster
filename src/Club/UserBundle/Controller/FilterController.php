@@ -76,9 +76,7 @@ class FilterController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $filter = $em->find('ClubUserBundle:Filter',$id);
-
-    $em->remove($filter);
-    $em->flush();
+    $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
 
     return $this->redirect($this->generateUrl('admin_user'));
   }

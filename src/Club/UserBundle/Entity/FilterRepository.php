@@ -47,20 +47,6 @@ class FilterRepository extends EntityRepository
     $filter->setActive(0);
     $filter->setUser($user);
 
-    $attributes = new \Club\UserBundle\Filter\UserFilter();
-    foreach ($attributes as $attr => $value) {
-      $filter_attr = new \Club\UserBundle\Entity\FilterAttribute();
-      $filter_attr->setFilter($filter);
-      $filter_attr->setAttribute($attr);
-
-      if ($attr == 'active')
-        $filter_attr->setValue(1);
-
-      $filter->addAttributes($filter_attr);
-
-      $this->_em->persist($filter_attr);
-    }
-
     $this->_em->persist($filter);
 
     return $filter;
