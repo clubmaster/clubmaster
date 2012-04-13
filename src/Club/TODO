@@ -2,7 +2,6 @@
 ajax on quick search box
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
-quick search on multiple users, go to search and put query in name
 what happens on dobbelt click on confirm order
 view all products if below 10
 on mail sending, click the same button to process

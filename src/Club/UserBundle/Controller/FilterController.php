@@ -20,12 +20,20 @@ class FilterController extends Controller
       'query' => $this->getRequest()->get('query')
     ), 'u.member_number', false);
 
-    if (!$users) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('No such user'));
-      return $this->redirect($this->generateUrl('admin_user'));
+    if (!$users || count($users) > 1) {
 
-    } elseif (count($users) > 1) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('Too many matches'));
+      $filter = $this->getActiveFilter();
+      $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
+
+      $attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $attr->setFilter($filter);
+      $attr->setAttribute('name');
+      $attr->setValue($this->getRequest()->get('query'));
+      $filter->addAttributes($attr);
+
+      $em->persist($filter);
+      $em->flush();
+
       return $this->redirect($this->generateUrl('admin_user'));
 
     } else {

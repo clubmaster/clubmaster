@@ -65,4 +65,14 @@ class FilterRepository extends EntityRepository
 
     return $filter;
   }
+
+  public function deleteAttributes(\Club\UserBundle\Entity\Filter $filter)
+  {
+    return $this->_em->createQueryBuilder()
+      ->delete('ClubUserBundle:FilterAttribute', 'fa')
+      ->where('fa.filter = :filter')
+      ->setParameter('filter', $filter->getId())
+      ->getQuery()
+      ->getResult();
+  }
 }
