@@ -18,8 +18,10 @@ class CouponListener
     $coupon = $event->getCoupon();
 
     $log = new \Club\ShopBundle\Entity\CouponLog();
-    $log->setUser($this->security_context->getToken()->getUser());
     $log->setCoupon($coupon);
+
+    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+      $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);
     $this->em->flush();

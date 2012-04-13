@@ -20,7 +20,7 @@
   {% for coupon in coupons %}
     <tr>
       <td>{{ coupon.coupon.couponKey }}</td>
-      <td>{{ coupon.user.profile.name }}</td>
+      <td>{% if coupon.user %}{{ coupon.user.profile.name }}{% else %}{% trans %}Guest{% endtrans %}{% endif %}</td>
       <td>{{ coupon.createdAt|club_datetime }}</td>
     </tr>
   {% else %}
