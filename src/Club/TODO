@@ -1,5 +1,4 @@
 == TODO ==
-ajax on quick search box
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
 what happens on dobbelt click on confirm order
