@@ -42,7 +42,7 @@
     <tr>
       <td><input type="checkbox" name="ids[{{ user.id }}]"/></td>
       <td>{{ user.memberNumber }}</td>
-      <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+      <td><a href="{{ path('admin_user_edit', {'id':user.id}) }}">{{ user.profile.firstName }} {{ user.profile.lastName }}</a></td>
       <td>{{ user.createdAt|date("Y-m-d") }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_edit', { 'id':user.id })} %}
