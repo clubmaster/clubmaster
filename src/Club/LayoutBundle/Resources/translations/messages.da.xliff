@@ -1982,6 +1982,11 @@
         <source>Order number: %order%</source>
         <target>Ordernummer: %order%</target>
       </trans-unit>
+      <trans-unit id="499">
+        <source>Members of %group%</source>
+        <target>Medlemmer af %group%</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
