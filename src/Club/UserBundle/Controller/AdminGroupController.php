@@ -48,6 +48,8 @@ class AdminGroupController extends Controller
   public function newAction()
   {
     $group = new Group();
+    $group->setGroupType('dynamic');
+
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)

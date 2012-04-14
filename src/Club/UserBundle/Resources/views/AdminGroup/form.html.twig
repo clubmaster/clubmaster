@@ -1,14 +1,34 @@
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#group_group_type").change(function() {
+    var value = $("#group_group_type option:selected").val();
+    if (value == 'dynamic') {
+      $("#dynamic").show();
+    } else {
+      $("#dynamic").hide();
+    }
+  });
+});
+</script>
+{% endblock %}
+
   <fieldset>
     <legend>{% trans %}Group Information{% endtrans %}</legend>
 
     {{ form_row(form.group_name) }}
     {{ form_row(form.group_type) }}
+
+  </fieldset>
+
+  <fieldset id="dynamic">
+    <legend>{% trans %}Dynamic group{% endtrans %}</legend>
+
     {{ form_row(form.active_member) }}
     {{ form_row(form.min_age) }}
     {{ form_row(form.max_age) }}
     {{ form_row(form.gender) }}
     {{ form_row(form.location) }}
-
   </fieldset>
 
   <fieldset>
@@ -16,6 +36,7 @@
     {{ form_row(form.role) }}
     <span class="smaller low">{% trans %}Info: The members of this group will get all the roles that you select in this field.{% endtrans %}</span>
   </fieldset>
+
   {{ form_rest(form) }}
 
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}

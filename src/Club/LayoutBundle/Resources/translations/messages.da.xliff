@@ -2062,6 +2062,10 @@
         <source>Filter has been added as recipient for the mail.</source>
         <target>Filter er blevet tilføjet som modtager til mailen.</target>
       </trans-unit>
+      <trans-unit id="519">
+        <source>Dynamic group</source>
+        <target>Dynamisk gruppe</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -2,8 +2,6 @@
 add error codes to booking API errors
 add API call to check last modified time for booking
 plan has to give error if booking already exists
-explain groups better
-use ajax in groups (dynamic / static)
 better show order ???
 make sure coupon works with economic
 dont have specific error login page
