@@ -2,7 +2,6 @@
 add error codes to booking API errors
 add API call to check last modified time for booking
 plan has to give error if booking already exists
-better show order ???
 make sure coupon works with economic
 dont have specific error login page
 bulk create order to users
@@ -11,8 +10,11 @@ talk with EF sikring regarding to import of users:
   - change bulk users
   - import users
 view phone number on booking screen
-make atk members smaller, start from 620 and something, michael holm on 700 is an error
+on update or create group, recalc users
+
+== ATK ==
 atk check for doubles
+make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
 == RANKING ==
 improve design for recent played matches
