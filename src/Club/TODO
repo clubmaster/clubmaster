@@ -1,9 +1,3 @@
-== TODO ==
-plan has to give error if booking already exists
-make sure coupon works with economic
-bulk create order to users
-sort users in IE9 missing style
-
 == ATK ==
 atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
@@ -20,6 +14,11 @@ obey rules of game
 add comment to a match
 
 == NOTES TO THIS RELEASE ==
+make sure coupon works with economic
+support multiple times on the same interval
+sort users in IE9 missing style
+preselect country to something automatic
+bulk create order to users
 add error codes to booking API errors
 talk with EF sikring regarding to import of users:
   - change bulk users
