@@ -3,8 +3,6 @@ plan has to give error if booking already exists
 make sure coupon works with economic
 bulk create order to users
 sort users in IE9 missing style
-view phone number on booking screen
-on update or create group, recalc users
 
 == ATK ==
 atk check for doubles

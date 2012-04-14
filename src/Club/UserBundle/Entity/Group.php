@@ -312,6 +312,11 @@ class Group
       return $this->users;
     }
 
+    public function resetUsers()
+    {
+      $this->users = null;
+    }
+
     public function setProduct($location)
     {
       $this->product[] = $product;
@@ -350,6 +355,14 @@ class Group
     public function addProduct(\Club\ShopBundle\Entity\Product $product)
     {
         $this->product[] = $product;
+    }
+
+    /**
+     * set users
+     */
+    public function setUsers($users)
+    {
+      $this->users = $users;
     }
 
     /**

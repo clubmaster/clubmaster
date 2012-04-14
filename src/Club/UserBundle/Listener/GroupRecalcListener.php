@@ -16,28 +16,33 @@ class GroupRecalcListener
     $this->user = $user;
   }
 
+  public function onGroupEdit(\Club\UserBundle\Event\FilterGroupEvent $event)
+  {
+    $group = $event->getGroup();
+    $this->recalcUsers($group);
+  }
+
   public function onGroupTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $groups = $this->em->getRepository('ClubUserBundle:Group')->findBy(array(
       'group_type' => 'dynamic'
     ));
 
-    $res = array();
-    foreach ($this->em->getRepository('ClubUserBundle:User')->findAll() as $user) {
-      $groups = $this->em->getRepository('ClubUserBundle:User')->getGroupsByUser($user);
-      foreach ($groups as $group) {
-        $group->addUsers($user);
-        $res[$group->getId().'_'.$user->getId()] = 1;
-      }
-    }
-
     foreach ($groups as $group) {
-      foreach ($group->getUsers() as $user) {
-        if (!isset($res[$group->getId().'_'.$user->getId()]))
-          $group->getUsers()->removeElement($user);
-      }
+      $this->recalcUsers($group);
     }
+  }
 
+  private function recalcUsers(\Club\UserBundle\Entity\Group $group)
+  {
+    if ($group->getGroupType() == 'static') return;
+
+    $group->resetUsers();
+    $this->em->persist($group);
+
+    $users = $this->em->getRepository('ClubUserBundle:Group')->getDynamicUsers($group);
+    $group->setUsers($users);
+    $this->em->persist($group);
     $this->em->flush();
   }
 }

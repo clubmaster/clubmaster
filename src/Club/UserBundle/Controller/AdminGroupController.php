@@ -100,8 +100,10 @@ class AdminGroupController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\Group(), $group);
 
     if ($this->getRequest()->getMethod() == 'POST') {
+
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
+
         if ($group->getActiveMember() == '')
           $group->setActiveMember(null);
         if ($group->getGender() == '')
@@ -110,6 +112,9 @@ class AdminGroupController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($group);
         $em->flush();
+
+        $event = new \Club\UserBundle\Event\FilterGroupEvent($group);
+        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onGroupEdit, $event);
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 

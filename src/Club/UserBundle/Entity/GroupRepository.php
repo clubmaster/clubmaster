@@ -12,4 +12,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class GroupRepository extends EntityRepository
 {
+  public function getDynamicUsers(\Club\UserBundle\Entity\Group $group)
+  {
+    $filter = new \Club\UserBundle\Entity\Filter();
+    if ($group->getGender() != null) {
+      $attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $attr->setAttribute('gender');
+      $attr->setValue($group->getGender());
+      $filter->addAttributes($attr);
+    }
+    if ($group->getMinAge() != null) {
+      $attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $attr->setAttribute('min_age');
+      $attr->setValue($group->getMinAge());
+      $filter->addAttributes($attr);
+    }
+    if ($group->getActiveMember() != null) {
+      $attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $attr->setAttribute('active');
+      $attr->setValue(1);
+      $filter->addAttributes($attr);
+    }
+
+    return $this->_em->getRepository('ClubUserBundle:User')->getUsers($filter);
+  }
 }
