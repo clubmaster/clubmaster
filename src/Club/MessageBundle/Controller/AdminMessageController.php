@@ -289,7 +289,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Filter has been added as recipient for the mail.'));
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
@@ -320,7 +320,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Event has been added as recipient for the mail.'));
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
@@ -351,7 +351,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Group has been added as recipient for the mail.'));
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
@@ -451,7 +451,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('User has been added as recipient for the mail.'));
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }

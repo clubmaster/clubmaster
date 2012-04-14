@@ -2034,6 +2034,34 @@
         <source>You cannot have more bookings this day</source>
         <target>Du kan ikke have flere bookings denne dag</target>
       </trans-unit>
+      <trans-unit id="512">
+        <source>Next</source>
+        <target>Næste</target>
+      </trans-unit>
+      <trans-unit id="513">
+        <source>Attach file</source>
+        <target>Vedhæft fil</target>
+      </trans-unit>
+      <trans-unit id="514">
+        <source>Here is a list of files which is attached to the message.</source>
+        <target>Her er en liste over alle filer vedhæftet mailen.</target>
+      </trans-unit>
+      <trans-unit id="515">
+        <source>User has been added as recipient for the mail.</source>
+        <target>Bruger er blevet tilføjet som modtager til mailen.</target>
+      </trans-unit>
+      <trans-unit id="516">
+        <source>Group has been added as recipient for the mail.</source>
+        <target>Gruppe er blevet tilføjet som modtager til mailen.</target>
+      </trans-unit>
+      <trans-unit id="517">
+        <source>Event has been added as recipient for the mail.</source>
+        <target>Begivenhed er blevet tilføjet som modtager til mailen.</target>
+      </trans-unit>
+      <trans-unit id="518">
+        <source>Filter has been added as recipient for the mail.</source>
+        <target>Filter er blevet tilføjet som modtager til mailen.</target>
+      </trans-unit>
 
     </body>
   </file>

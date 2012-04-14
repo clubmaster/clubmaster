@@ -1,12 +1,18 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box">
-  <a href="{{ path('club_message_adminmessage_recipient', {'id':message.id}) }}" class="btn-create"><span>{% trans %}Add recipients{% endtrans %}</span></a>
-</p>
+
+<form method="post" action="{{ path('club_message_adminmessage_attachment', {'id':message.id}) }}" {{ form_enctype(form) }}>
+  <fieldset>
+    <legend>{% trans %}Upload Attachment{% endtrans %}</legend>
+    {{ form_widget(form) }}
+  </fieldset>
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Attach file'|trans}  %}
+</form>
+
 <fieldset>
   <legend>{% trans %}Attachments{% endtrans %}</legend>
-
+  <p>{% trans %}Here is a list of files which is attached to the message.{% endtrans %}</p>
   <table class="style">
     <thead>
       <tr>
@@ -34,12 +40,8 @@
 
 </fieldset>
 
-<form method="post" action="{{ path('club_message_adminmessage_attachment', {'id':message.id}) }}" {{ form_enctype(form) }}>
-  <fieldset>
-    <legend>{% trans %}Upload Attachment{% endtrans %}</legend>
-    {{ form_widget(form) }}
-  </fieldset>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
+<form method="get" action="{{ path('club_message_adminmessage_recipient', {'id':message.id}) }}">
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Next'|trans} %}
 </form>
+
 {% endblock %}

@@ -1,10 +1,9 @@
 == TODO ==
+get all users events from API
 add error codes to booking API errors
 add API call to check last modified time for booking
 when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
-on mail sending, click the same button to process
-on mail sending, next instead of save on submit button
 explain groups better
 use ajax in groups (dynamic / static)
 better show order ???
