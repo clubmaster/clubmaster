@@ -46,6 +46,7 @@ quick create intervals when creating the field
 does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
+find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
 consider using knpmenu bundle instead of our own
