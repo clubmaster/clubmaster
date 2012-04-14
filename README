@@ -348,6 +348,14 @@ Parameters:
 Success response will be HTTP response code 200, and a json response with all fields in a location
 
 
+Get fields modified
+~~~~~~~~~~~~~~~~~~~
+URL: /api/fields/
+Method: GET
+
+Success response will be HTTP response code 200, and a json response with all fields with latest modified time
+
+
 Get bookings
 ~~~~~~~~~~~~
 URL: /api/bookings/{location_id}

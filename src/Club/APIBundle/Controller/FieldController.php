@@ -14,6 +14,39 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class FieldController extends Controller
 {
   /**
+   * @Route("/modified")
+   * @Method("GET")
+   */
+  public function modifiedAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $fields = $em->getRepository('ClubBookingBundle:Field')->findAll();
+
+    $res = array();
+    foreach ($fields as $field) {
+      $i = $em->createQueryBuilder()
+        ->select('i')
+        ->from('ClubBookingBundle:Interval', 'i')
+        ->where('i.field = :field')
+        ->orderBy('i.updated_at', 'DESC')
+        ->setMaxResults(1)
+        ->setParameter('field', $field->getId())
+        ->getQuery()
+        ->getOneOrNullResult();
+
+      $res[] = array(
+        'field_id' => $field->getId(),
+        'updated_at' => $i->getUpdatedAt()->format('c')
+      );
+    }
+
+    $response = new Response($this->get('club_api.encode')->encode($res));
+
+    return $response;
+  }
+
+  /**
    * @Route("/{location_id}", defaults={"date" = null})
    * @Route("/{location_id}/{date}")
    * @Method("GET")

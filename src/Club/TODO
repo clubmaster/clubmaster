@@ -1,14 +1,8 @@
 == TODO ==
-add error codes to booking API errors
-add API call to check last modified time for booking
 plan has to give error if booking already exists
 make sure coupon works with economic
-dont have specific error login page
 bulk create order to users
 sort users in IE9 missing style
-talk with EF sikring regarding to import of users:
-  - change bulk users
-  - import users
 view phone number on booking screen
 on update or create group, recalc users
 
@@ -28,6 +22,11 @@ obey rules of game
 add comment to a match
 
 == NOTES TO THIS RELEASE ==
+add error codes to booking API errors
+talk with EF sikring regarding to import of users:
+  - change bulk users
+  - import users
+dont have specific error login page
 improve documentation with phpMyAdmin
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -47,6 +46,7 @@ configurationbundle and installerbundle should be disabled after install
 find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
+add group on product
 consider using knpmenu bundle instead of our own
 cannot install when parameter is not on english
 cannot install with multiple payment plugins
