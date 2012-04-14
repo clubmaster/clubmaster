@@ -507,4 +507,44 @@ class Message
     {
         return $this->message_attachment;
     }
+
+    /**
+     * Add groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function addGroup(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Add events
+     *
+     * @param Club\EventBundle\Entity\Event $events
+     */
+    public function addEvent(\Club\EventBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+    }
+
+    /**
+     * Add filters
+     *
+     * @param Club\UserBundle\Entity\Filter $filters
+     */
+    public function addFilter(\Club\UserBundle\Entity\Filter $filters)
+    {
+        $this->filters[] = $filters;
+    }
 }
