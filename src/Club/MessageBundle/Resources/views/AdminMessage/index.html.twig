@@ -40,7 +40,6 @@
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_message_adminmessage_delete', {'id':message.id})} %}
         {% else %}
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_message_adminmessage_show', {'id':message.id})} %}
-        {% include "ClubLayoutBundle:Default:copy_link.html.twig" with {'url':path('club_message_adminmessage_copy', {'id':message.id})} %}
         {% endif %}
       </td>
     </tr>
