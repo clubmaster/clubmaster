@@ -1,0 +1,4 @@
+services:
+  club_message.message:
+    class: Club\MessageBundle\Helper\Message
+    arguments: [@doctrine.orm.entity_manager]

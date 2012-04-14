@@ -37,9 +37,14 @@ class MessageRecipient
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\MessageBundle\Entity\Message")
+     * @ORM\ManyToOne(targetEntity="Message")
      */
     protected $message;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     */
+    protected $user;
 
 
     /**
@@ -118,5 +123,25 @@ class MessageRecipient
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

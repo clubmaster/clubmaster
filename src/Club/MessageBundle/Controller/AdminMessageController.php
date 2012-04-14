@@ -441,13 +441,19 @@ class AdminMessageController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
-    $message->setReady(1);
-    $message->setSentAt(new \DateTime());
 
-    $em->persist($message);
-    $em->flush();
+    if (!$message->getReady()) {
+      $message->setReady(1);
+      $message->setSentAt(new \DateTime());
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+      $this->get('club_message.message')->migrateRecipients($message);
+      $message->resetRecipients();
+
+      $em->persist($message);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+    }
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
   }
 

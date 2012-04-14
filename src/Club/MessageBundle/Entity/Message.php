@@ -101,6 +101,13 @@ class Message
     protected $message_attachment;
 
     /**
+     * @ORM\OneToMany(targetEntity="MessageRecipient", mappedBy="message")
+     *
+     * @var Club\MessageBundle\Entity\MessageRecipient
+     */
+    protected $message_recipients;
+
+    /**
      * @ORM\ManytoMany(targetEntity="Club\UserBundle\Entity\Group")
      * @ORM\JoinTable(name="club_message_message_group",
      *   joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
@@ -528,6 +535,14 @@ class Message
         $this->users[] = $users;
     }
 
+    public function resetRecipients()
+    {
+      $this->users = null;
+      $this->filters = null;
+      $this->events = null;
+      $this->groups = null;
+    }
+
     /**
      * Add events
      *
@@ -546,5 +561,25 @@ class Message
     public function addFilter(\Club\UserBundle\Entity\Filter $filters)
     {
         $this->filters[] = $filters;
+    }
+
+    /**
+     * Add message_recipients
+     *
+     * @param Club\MessageBundle\Entity\MessageRecipient $messageRecipients
+     */
+    public function addMessageRecipient(\Club\MessageBundle\Entity\MessageRecipient $messageRecipients)
+    {
+        $this->message_recipients[] = $messageRecipients;
+    }
+
+    /**
+     * Get message_recipients
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMessageRecipients()
+    {
+        return $this->message_recipients;
     }
 }

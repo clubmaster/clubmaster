@@ -1,7 +1,6 @@
 == TODO ==
 add error codes to booking API errors
 add API call to check last modified time for booking
-when sending mails to a search, copy search into static filter only used by mail module
 plan has to give error if booking already exists
 explain groups better
 use ajax in groups (dynamic / static)
@@ -32,7 +31,6 @@ add comment to a match
 improve documentation with phpMyAdmin
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
-find a way to delete filters, eventho we have sent mails to this filter
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 remove all fixtures, find a way to init all data in an another way
 improve documentation of config file

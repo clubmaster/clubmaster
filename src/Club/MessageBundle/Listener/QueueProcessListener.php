@@ -32,18 +32,8 @@ class QueueProcessListener
 
       // just to check if user has received the message once
       $this->recipients = array();
-      foreach ($message->getFilters() as $filter) {
-        $this->processUsers($message, $this->em->getRepository('ClubUserBundle:User')->getUsers($filter));
-      }
-
-      $this->processUsers($message, $message->getUsers());
-
-      foreach ($message->getGroups() as $group) {
-        $this->processUsers($message, $group->getUsers());
-      }
-
-      foreach ($message->getEvents() as $event) {
-        $this->processAttends($message, $event->getAttends());
+      foreach ($message->getMessageRecipients() as $recipient) {
+        $this->sendMail($recipient);
       }
 
       $message->setProcessed(1);
@@ -52,34 +42,12 @@ class QueueProcessListener
     $this->em->flush();
   }
 
-  private function processAttends(\Club\MessageBundle\Entity\Message $message, $attends)
+  private function sendMail(\Club\MessageBundle\Entity\MessageRecipient $recipient)
   {
-    foreach ($attends as $attend) {
-      if ($message->getType() == 'mail') {
-        $this->sendMail($message,$attend->getUser());
-      }
-    }
-  }
-
-  private function processUsers(\Club\MessageBundle\Entity\Message $message, $users)
-  {
-    foreach ($users as $user) {
-      if ($message->getType() == 'mail') {
-        $this->sendMail($message,$user);
-      }
-    }
-  }
-
-  private function sendMail(\Club\MessageBundle\Entity\Message $message, \Club\UserBundle\Entity\User $user)
-  {
-    if (isset($this->recipients[$user->getId()])) return;
-    $this->recipients[$user->getId()] = 1;
-    if (!$user->getProfile()->getProfileEmail()) return;
-
     try {
-    $this->clubmaster_mailer
-      ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
-      ->send();
+      $this->clubmaster_mailer
+        ->setTo($recipient->getRecipient())
+        ->send();
     } catch (\Exception $e) {
     }
   }
