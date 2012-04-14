@@ -3,7 +3,7 @@ ClubMaster
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
 :Date:      2012-04-14
-:Revision:  21
+:Revision:  22
 
 
 Feedback
@@ -258,6 +258,20 @@ Header: API_KEY
 Success response will be HTTP response code 200, and a json response with specified user
 
 
+Get users events
+~~~~~~~~~~~~~~~~
+URL: /api/users/events/
+URL: /api/users/events/{start}
+URL: /api/users/events/{start}/{end}
+Method: GET
+
+Parameters:
+{start}: 2011-01-01
+{end}: 2011-01-02
+
+Success response will be HTTP response code 200, and a json response with all events
+
+
 Get all teams
 ~~~~~~~~~~~~~
 URL: /api/teams/
@@ -284,20 +298,6 @@ Parameters:
 {end}: 2011-01-02
 
 Success response will be HTTP response code 200, and a json response with all teams
-
-
-Get users events
-~~~~~~~~~~~~~~~~
-URL: /api/users/events/
-URL: /api/users/events/{start}
-URL: /api/users/events/{start}/{end}
-Method: GET
-
-Parameters:
-{start}: 2011-01-01
-{end}: 2011-01-02
-
-Success response will be HTTP response code 200, and a json response with all events
 
 
 Attend team
