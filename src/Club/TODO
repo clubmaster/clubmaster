@@ -1,5 +1,4 @@
 == TODO ==
-get all users events from API
 add error codes to booking API errors
 add API call to check last modified time for booking
 when sending mails to a search, copy search into static filter only used by mail module

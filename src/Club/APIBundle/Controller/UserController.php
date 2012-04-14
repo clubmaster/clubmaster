@@ -40,6 +40,30 @@ class UserController extends Controller
   }
 
   /**
+   * @Route("/events", defaults={"start" = null, "end" = null})
+   * @Route("/events/{start}", defaults={"end" = null})
+   * @Route("/events/{start}/{end}")
+   * @Method("GET")
+   * @Secure(roles="ROLE_USER")
+   */
+  public function eventsAction($start, $end)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
+    $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
+
+    $events = $em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
+    $res = array();
+    foreach ($events as $event) {
+      $res[] = $event->toArray();
+    }
+
+    $response = new Response($this->get('club_api.encode')->encode($res));
+    return $response;
+  }
+
+  /**
    * @Route("/teams", defaults={"start" = null, "end" = null})
    * @Route("/teams/{start}", defaults={"end" = null})
    * @Route("/teams/{start}/{end}")

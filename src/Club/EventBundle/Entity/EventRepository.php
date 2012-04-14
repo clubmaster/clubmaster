@@ -43,7 +43,7 @@ class EventRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getAllBetween(\DateTime $start, \DateTime $end=null)
+  public function getAllBetween(\DateTime $start, \DateTime $end=null, \Club\UserBundle\Entity\User $user=null)
   {
     $qb = $this->_em->createQueryBuilder()
       ->select('e')
@@ -55,6 +55,13 @@ class EventRepository extends EntityRepository
       $qb
       ->andWhere('e.start_date <= :stop_date')
       ->setParameter('stop_date', $end->format('Y-m-d H:i:s'));
+    }
+
+    if ($user != null) {
+      $qb
+        ->leftJoin('e.attends', 'a')
+        ->andWhere('a.user = :user')
+        ->setParameter('user', $user->getId());
     }
 
     return $qb->getQuery()->getResult();
