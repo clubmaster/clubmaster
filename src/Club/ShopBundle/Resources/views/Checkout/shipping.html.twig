@@ -3,7 +3,7 @@
 {% block body %}
 <h2>{% trans %}Payment Information{% endtrans %}</h2>
 
-{% include "ClubShopBundle:Checkout:checkouttop.html.twig" %}
+{% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'shipping'}  %}
 
 <form method="POST" action="{{ path('shop_checkout_shipping') }}">
 <fieldset>

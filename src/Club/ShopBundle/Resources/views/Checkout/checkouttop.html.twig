@@ -1,6 +1,6 @@
-        <span class="label label-06"><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></span>
-        <span class="label label-06"><a href="{{ path('shop_checkout_payment') }}">{% trans %}Choose payment{% endtrans %}</a></span>
-        <span class="label label-06"><a href="{{ path('shop_checkout_review') }}">{% trans %}Review order{% endtrans %}</a></span>
+        <span class="label {% if page == 'view' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></span>
+        <span class="label {% if page == 'shipping' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_shipping') }}">{% trans %}Choose shipping{% endtrans %}</a></span>
+        <span class="label {% if page == 'payment' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_payment') }}">{% trans %}Choose payment{% endtrans %}</a></span>
+        <span class="label {% if page == 'review' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_review') }}">{% trans %}Review order{% endtrans %}</a></span>
         <span class="label label-06">{% trans %}Done{% endtrans %}</span>
-
 
