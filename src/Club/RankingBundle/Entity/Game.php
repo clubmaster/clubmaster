@@ -31,13 +31,6 @@ class Game
     private $name;
 
     /**
-     * @var boolean $locked
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $locked;
-
-    /**
      * @var boolean $invite_only
      *
      * @ORM\Column(type="boolean")
@@ -139,26 +132,6 @@ class Game
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set locked
-     *
-     * @param boolean $locked
-     */
-    public function setLocked($locked)
-    {
-        $this->locked = $locked;
-    }
-
-    /**
-     * Get locked
-     *
-     * @return boolean
-     */
-    public function getLocked()
-    {
-        return $this->locked;
     }
 
     /**

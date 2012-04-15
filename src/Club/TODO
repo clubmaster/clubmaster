@@ -3,13 +3,12 @@ atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
 == RANKING ==
-cannot add match if no permissions
+obey locked and invite only
+find winner of match
 validate sets match
 validate players can play
-obey locked and invite only
 obey rules of game
 add comment to a match
-find winner of match
 add ranking
 
 == NOTES TO THIS RELEASE ==
