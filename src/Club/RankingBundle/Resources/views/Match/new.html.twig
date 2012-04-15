@@ -5,11 +5,12 @@
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0', 'input_id':'#form_user0_id'} %}
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1', 'input_id':'#form_user1_id'} %}
 
+<h2>{{ game.name }}</h2>
 <form method="post" action="{{ path('club_ranking_match_new', {'game_id':game.id}) }}">
 
   <!-- Input Text -->
   <fieldset>
-    <legend>Match Result</legend>
+    <legend>{% trans %}Insert match{% endtrans %}</legend>
 
     <!-- Left column -->
     <div class="col50">

@@ -19,6 +19,8 @@ class MatchController extends Controller
     $game = $em->find('ClubRankingBundle:Game', $game_id);
 
     $res = array();
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
 
     $form = $this->createFormBuilder($res)
       ->add('user0_id', 'hidden')
@@ -43,10 +45,17 @@ class MatchController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $this->get('club_ranking.match')->buildMatch($game, $form->getData());
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-        return $this->redirect($this->generateUrl('club_ranking_game_index'));
+        $this->get('club_ranking.match')->bindMatch($game, $form->getData());
+
+        if ($this->get('club_ranking.match')->isValid()) {
+          $this->get('club_ranking.match')->save();
+          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        } else {
+          $this->get('session')->setFlash('error', $this->get('club_ranking.match')->getError());
+        }
       }
+
+      return $this->redirect($this->generateUrl('club_ranking_game_index'));
     }
 
     return array(

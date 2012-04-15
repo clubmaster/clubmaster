@@ -2066,6 +2066,14 @@
         <source>Dynamic group</source>
         <target>Dynamisk gruppe</target>
       </trans-unit>
+      <trans-unit id="520">
+        <source>Insert match</source>
+        <target>Indsæt kamp</target>
+      </trans-unit>
+      <trans-unit id="521">
+        <source>%user% is not allowed to play in this game.</source>
+        <target>%user% har ikke lov at spille i dette spil.</target>
+      </trans-unit>
 
     </body>
   </file>

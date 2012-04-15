@@ -5,25 +5,38 @@ namespace Club\RankingBundle\Helper;
 class Match
 {
   protected $em;
+  protected $translator;
   protected $match;
+  protected $error;
+  protected $is_valid = true;
 
-  public function __construct($em)
+  public function __construct($em, $translator)
   {
     $this->em = $em;
+    $this->translator = $translator;
   }
 
-  public function buildMatch(\Club\RankingBundle\Entity\Game $game, $data)
+  public function bindMatch(\Club\RankingBundle\Entity\Game $game, $data)
   {
     $teams = 2;
 
-    $match = new \Club\RankingBundle\Entity\Match();
-    $match->setGame($game);
+    $this->match = new \Club\RankingBundle\Entity\Match();
+    $this->match->setGame($game);
 
     $display = array();
     for ($i = 0; $i < $teams; $i++) {
       $user = $this->em->find('ClubUserBundle:User', $data['user'.$i.'_id']);
 
-      $team = $this->addTeam($match, $user);
+      if ($game->getInviteOnly()) {
+        if (!$game->canPlay($user)) {
+          $this->setError($this->translator->trans('%user% is not allowed to play in this game.', array(
+            '%user%' => $user->getName()
+          )));
+          return;
+        }
+      }
+
+      $team = $this->addTeam($user);
 
       for ($j = 0; $j < $game->getGameSet(); $j++) {
         $set_str = 'user'.$i.'set'.$j;
@@ -40,12 +53,13 @@ class Match
     $str = $this->buildResultString($display);
     $winner = $this->findWinner($display);
 
-    $match->setDisplayResult($str);
+    $this->match->setDisplayResult($str);
+  }
 
-    $this->em->persist($match);
+  public function save()
+  {
+    $this->em->persist($this->match);
     $this->em->flush();
-
-    $this->setMatch($match);
   }
 
   private function findWinner(array $display)
@@ -70,15 +84,15 @@ class Match
     return trim($ret);
   }
 
-  private function addTeam(\Club\RankingBundle\Entity\Match $match, \Club\UserBundle\Entity\User $user)
+  private function addTeam(\Club\UserBundle\Entity\User $user)
   {
     $team = new \Club\RankingBundle\Entity\MatchTeam();
-    $team->setMatch($match);
+    $team->setMatch($this->match);
     $team_user = new \Club\RankingBundle\Entity\MatchTeamUser();
     $team_user->setUser($user);
     $team_user->setMatchTeam($team);
     $team->addMatchTeamUser($team_user);
-    $match->addMatchTeam($team);
+    $this->match->addMatchTeam($team);
 
     return $team;
   }
@@ -102,5 +116,21 @@ class Match
   public function getMatch()
   {
     return $this->match;
+  }
+
+  public function setError($error)
+  {
+    $this->error = $error;
+    $this->is_valid = false;
+  }
+
+  public function getError()
+  {
+    return $this->error;
+  }
+
+  public function isValid()
+  {
+    return $this->is_valid;
   }
 }
