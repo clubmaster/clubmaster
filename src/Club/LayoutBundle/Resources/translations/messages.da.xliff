@@ -2074,6 +2074,10 @@
         <source>%user% is not allowed to play in this game.</source>
         <target>%user% har ikke lov at spille i dette spil.</target>
       </trans-unit>
+      <trans-unit id="522">
+        <source>You have not played enough set</source>
+        <target>Du har ikke spillet nok sæt</target>
+      </trans-unit>
 
     </body>
   </file>

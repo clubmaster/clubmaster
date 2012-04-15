@@ -50,6 +50,11 @@ class Match
       }
     }
 
+    if (!$this->validateSets($display)) {
+      $this->setError($this->translator->trans('You have not played enough set'));
+      return;
+    }
+
     $str = $this->buildResultString($display);
     $this->match->setDisplayResult($str);
 
@@ -61,6 +66,17 @@ class Match
   {
     $this->em->persist($this->match);
     $this->em->flush();
+  }
+
+  private function validateSets($display)
+  {
+    for ($i = 0; $i < 2; $i++) {
+      $sets = count($display[$i]);
+      if ($sets < ($this->match->getGame()->getGameSet()/2))
+        return false;
+    }
+
+    return true;
   }
 
   private function findWinner($display)
