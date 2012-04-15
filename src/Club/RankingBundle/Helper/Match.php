@@ -51,9 +51,10 @@ class Match
     }
 
     $str = $this->buildResultString($display);
-    $winner = $this->findWinner($display);
-
     $this->match->setDisplayResult($str);
+
+    $winner = $this->findWinner($display);
+    $this->match->setWinner($winner);
   }
 
   public function save()
@@ -62,15 +63,32 @@ class Match
     $this->em->flush();
   }
 
-  private function findWinner(array $display)
+  private function findWinner($display)
   {
-    $res = array();
-    $ret = '';
+    $won = array(
+      0 => 0,
+      1 => 0
+    );
+
     for ($i = 0; $i < count($display[0]); $i++) {
-      $ret .= $display[0][$i].'/'.$display[1][$i].' ';
+      if ($display[0][$i] > $display[1][$i]) {
+        $won[0]++;
+      } else {
+        $won[1]++;
+      }
     }
 
-    return trim($ret);
+    $teams = $this->match->getMatchTeams();
+
+    if ($won[0] == $won[1]) {
+      return false;
+    } elseif ($won[0] > $won[1]) {
+      $team = $teams[0];
+    } else {
+      $team = $teams[1];
+    }
+
+    return $team;
   }
 
   private function buildResultString(array $display)
