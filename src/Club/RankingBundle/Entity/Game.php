@@ -3,6 +3,7 @@
 namespace Club\RankingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\RankingBundle\Entity\Game
@@ -56,6 +57,21 @@ class Game
      * @ORM\Column(type="string", length=255)
      */
     private $type;
+
+    /**
+     * @var datetime $start_date
+     *
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
+     */
+    private $start_date;
+
+    /**
+     * @var datetime $end_date
+     *
+     * @ORM\Column(type="datetime", nullable="true")
+     */
+    private $end_date;
 
     /**
      * @var datetime $created_at
@@ -351,5 +367,45 @@ class Game
     public function getMatches()
     {
         return $this->matches;
+    }
+
+    /**
+     * Set start_date
+     *
+     * @param datetime $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->start_date = $startDate;
+    }
+
+    /**
+     * Get start_date
+     *
+     * @return datetime 
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set end_date
+     *
+     * @param datetime $endDate
+     */
+    public function setEndDate($endDate)
+    {
+        $this->end_date = $endDate;
+    }
+
+    /**
+     * Get end_date
+     *
+     * @return datetime 
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
     }
 }
