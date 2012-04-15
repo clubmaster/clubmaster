@@ -1,0 +1,8 @@
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+  {% if game.isOpen %}
+  <p class="box">
+    <a href="{{ path('club_ranking_match_new', {'game_id':game.id}) }}" class="btn-create"><span>{% trans %}Create match{% endtrans %}</span></a>
+  </p>
+  {% endif %}
+  {% endif %}

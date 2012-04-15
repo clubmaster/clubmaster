@@ -382,7 +382,7 @@ class Game
     /**
      * Get start_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getStartDate()
     {
@@ -402,10 +402,19 @@ class Game
     /**
      * Get end_date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getEndDate()
     {
         return $this->end_date;
+    }
+
+    public function isOpen()
+    {
+      $t = new \DateTime();
+
+      if ($this->getStartDate() < $t && ($this->getEndDate() == null || $this->getEndDate() > $t)) return true;
+
+      return false;
     }
 }
