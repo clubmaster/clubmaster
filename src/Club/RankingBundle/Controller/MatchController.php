@@ -19,14 +19,7 @@ class MatchController extends Controller
     $game = $em->find('ClubRankingBundle:Game', $game_id);
 
     $res = array();
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
-
-    $form = $this->createFormBuilder($res)
-      ->add('user0_id', 'hidden')
-      ->add('user1_id', 'hidden')
-      ->add('user0', 'text')
-      ->add('user1', 'text');
+    $form = $this->getForm($res);
 
     for ($i = 0; $game->getGameSet() > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(
@@ -82,5 +75,19 @@ class MatchController extends Controller
     }
 
     return $this->redirect($this->generateUrl('club_ranking_admingame_index'));
+  }
+
+  public function getForm($res)
+  {
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
+
+    $form = $this->createFormBuilder($res)
+      ->add('user0_id', 'hidden')
+      ->add('user1_id', 'hidden')
+      ->add('user0', 'text')
+      ->add('user1', 'text');
+
+    return $form;
   }
 }
