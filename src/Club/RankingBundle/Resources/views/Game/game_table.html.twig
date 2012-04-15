@@ -1,10 +1,10 @@
 <table class="style">
   <thead>
     <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
       <th>{% trans %}Team one{% endtrans %}</th>
-      <th>{% trans %}Score{% endtrans %}</th>
+      <th style="width: 150px; text-align: center;">{% trans %}Score{% endtrans %}</th>
       <th>{% trans %}Team two{% endtrans %}</th>
-      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
@@ -15,10 +15,16 @@
   <tbody>
     {% for match in game.matches %}
     <tr>
+      <td>{{ match.createdAt|club_datetime }}</td>
       <td>{{ match.teamOne.teamName }}</td>
-      <td>{{ match.displayResult }}</td>
+      <td style="text-align: center;">
+
+        {% if match.winner == match.teamOne %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
+        {{ match.displayResult }}
+        {% if match.winner == match.teamTwo %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
+
+      </td>
       <td>{{ match.teamTwo.teamName }}</td>
-      <td>&#160;</td>
     </tr>
     {% else %}
     <tr>
