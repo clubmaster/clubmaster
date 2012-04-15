@@ -18,6 +18,8 @@ class Game extends AbstractType
       'required' => false
     ));
     $builder->add('game_set');
+    $builder->add('start_date');
+    $builder->add('end_date');
   }
 
   public function getDefaultOptions(array $options)

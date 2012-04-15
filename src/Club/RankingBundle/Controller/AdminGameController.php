@@ -29,7 +29,14 @@ class AdminGameController extends Controller
    */
   public function newAction()
   {
+    $start = new \DateTime(date('Y-m-d 00:00:00'));
+    $end = clone $start;
+    $i = new \DateInterval('P1Y');
+    $end->add($i);
+
     $game = new \Club\RankingBundle\Entity\Game();
+    $game->setStartDate($start);
+    $game->setEndDate($end);
     $game->addAdministrator($this->get('security.context')->getToken()->getUser());
 
     $res = $this->process($game);
