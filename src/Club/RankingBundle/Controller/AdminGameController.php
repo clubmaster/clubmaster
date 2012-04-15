@@ -89,6 +89,75 @@ class AdminGameController extends Controller
     return $this->redirect($this->generateUrl('club_ranking_admingame_index'));
   }
 
+  /**
+   * @Route("/users/add/{id}")
+   * @Template()
+   */
+  public function usersAddAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $res = array();
+    $form = $this->getForm($res);
+
+    $form->bindRequest($this->getRequest());
+    if ($form->isValid()) {
+      $res = $form->getData();
+      $user = $em->find('ClubUserBundle:User', $res['user_id']);
+      $game = $em->find('ClubRankingBundle:Game', $id);
+
+      $game->addUser($user);
+      $em->persist($game);
+
+      $em->flush();
+      $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+    }
+
+    return $this->redirect($this->generateUrl('club_ranking_admingame_users', array(
+      'id' => $id
+    )));
+  }
+
+  /**
+   * @Route("/users/delete/{id}/{user_id}")
+   */
+  public function usersDeleteAction($id, $user_id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $game = $em->find('ClubRankingBundle:Game', $id);
+    $user = $em->find('ClubUserBundle:User', $user_id);
+
+    $game->getUsers()->removeElement($user);
+    $em->persist($game);
+    $em->flush();
+
+    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_ranking_admingame_users', array(
+      'id' => $id
+    )));
+  }
+
+  /**
+   * @Route("/users/{id}")
+   * @Template()
+   */
+  public function usersAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $res = array();
+    $form = $this->getForm($res);
+
+    $game = $em->find('ClubRankingBundle:Game', $id);
+
+    return array(
+      'game' => $game,
+      'form' => $form->createView()
+    );
+  }
+
   protected function process($game)
   {
     $form = $this->createForm(new \Club\RankingBundle\Form\Game(), $game);
@@ -105,6 +174,16 @@ class AdminGameController extends Controller
         return $this->redirect($this->generateUrl('club_ranking_admingame_index'));
       }
     }
+
+    return $form;
+  }
+
+  protected function getForm($res)
+  {
+    $form = $this->createFormBuilder($res)
+      ->add('user', 'text')
+      ->add('user_id', 'hidden')
+      ->getForm();
 
     return $form;
   }

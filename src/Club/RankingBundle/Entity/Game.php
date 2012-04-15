@@ -81,13 +81,13 @@ class Game
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\UserBundle\Entity\User", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_ranking_game_user")
      */
     protected $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\UserBundle\Entity\User", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
      * @ORM\JoinTable(name="club_ranking_game_administrators")
      */
     protected $administrators;
@@ -209,52 +209,6 @@ class Game
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
-    }
-    public function __construct()
-    {
-      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->type = '1-on-1';
-    }
-
-    /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUser(\Club\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * Get administrators
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getAdministrators()
-    {
-        return $this->administrators;
-    }
-
-    /**
-     * Add administrators
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addAdministrator(\Club\UserBundle\Entity\User $administrator)
-    {
-        $this->administrators[] = $administrator;
     }
 
     /**
@@ -389,5 +343,42 @@ class Game
       if ($this->getStartDate() < $t && ($this->getEndDate() == null || $this->getEndDate() > $t)) return true;
 
       return false;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Get administrators
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getAdministrators()
+    {
+        return $this->administrators;
+    }
+    public function __construct()
+    {
+      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->matches = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->type = '1-on-1';
     }
 }

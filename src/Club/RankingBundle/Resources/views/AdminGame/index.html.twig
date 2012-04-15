@@ -8,14 +8,13 @@
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
       <th>{% trans %}Set{% endtrans %}</th>
-      <th>{% trans %}Locked{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="5">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -23,16 +22,16 @@
     <tr>
       <td>{{ game.name }}</td>
       <td>{{ game.gameSet }}</td>
-      <td>{{ game.locked }}</td>
       <td>{{ game.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_ranking_admingame_edit', { 'id':game.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_ranking_admingame_delete', { 'id':game.id })} %}
+        {% include "ClubLayoutBundle:Default:group_link.html.twig" with {'url':path('club_ranking_admingame_users', { 'id':game.id })} %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="5">{% trans %}There are no games.{% endtrans %}</td>
+    <td colspan="4">{% trans %}There are no games.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
