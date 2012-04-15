@@ -381,4 +381,13 @@ class Game
       $this->matches = new \Doctrine\Common\Collections\ArrayCollection();
       $this->type = '1-on-1';
     }
+
+    public function canPlay(\Club\UserBundle\Entity\User $user)
+    {
+      foreach ($this->getUsers() as $u) {
+        if ($u == $user) return true;
+      }
+
+      return false;
+    }
 }
