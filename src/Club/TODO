@@ -5,7 +5,6 @@ make atk members smaller, start from 620 and something, michael holm on 700 is a
 == RANKING ==
 find winner of match
 validate sets match
-validate players can play
 obey rules of game
 add comment to a match
 add ranking
