@@ -16,7 +16,7 @@
     {% for match in game.matches %}
     <tr>
       <td>{{ match.createdAt|club_datetime }}</td>
-      <td>{{ match.teamOne.teamName }}</td>
+      <td>{{ match.teamOne.team.teamName }}</td>
       <td style="text-align: center;">
 
         {% if match.winner == match.teamOne %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
@@ -24,7 +24,7 @@
         {% if match.winner == match.teamTwo %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
 
       </td>
-      <td>{{ match.teamTwo.teamName }}</td>
+      <td>{{ match.teamTwo.team.teamName }}</td>
     </tr>
     {% else %}
     <tr>

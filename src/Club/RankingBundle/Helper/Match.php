@@ -52,7 +52,8 @@ class Match
         }
       }
 
-      $team = $this->addTeam($user);
+      $team = $this->getTeam($user);
+      $match_team = $this->addTeam($team);
 
       for ($j = 0; $j < $game->getGameSet(); $j++) {
         $set_str = 'user'.$i.'set'.$j;
@@ -61,7 +62,7 @@ class Match
           if (!isset($display[$i])) $display[$i] = array();
           $display[$i][$j] = $data[$set_str];
 
-          $this->addSet($team, $j+1, $data[$set_str]);
+          $this->addSet($match_team, $j+1, $data[$set_str]);
         }
       }
     }
@@ -82,6 +83,10 @@ class Match
   {
     $this->em->persist($this->match);
     $this->em->flush();
+  }
+
+  private function validateRules()
+  {
   }
 
   private function validateSets($display)
@@ -134,17 +139,27 @@ class Match
     return trim($ret);
   }
 
-  private function addTeam(\Club\UserBundle\Entity\User $user)
+  private function getTeam(\Club\UserBundle\Entity\User $user)
   {
-    $team = new \Club\RankingBundle\Entity\MatchTeam();
-    $team->setMatch($this->match);
-    $team_user = new \Club\RankingBundle\Entity\MatchTeamUser();
-    $team_user->setUser($user);
-    $team_user->setMatchTeam($team);
-    $team->addMatchTeamUser($team_user);
-    $this->match->addMatchTeam($team);
+    $team = $this->em->getRepository('ClubRankingBundle:Team')->getTeamByUser($user);
+    if (!$team) {
+      $team = new \Club\RankingBundle\Entity\Team();
+      $team->addUser($user);
+
+      $this->em->persist($team);
+    }
 
     return $team;
+  }
+
+  private function addTeam(\Club\RankingBundle\Entity\Team $team)
+  {
+    $match_team = new \Club\RankingBundle\Entity\MatchTeam();
+    $match_team->setMatch($this->match);
+    $match_team->setTeam($team);
+    $this->match->addMatchTeam($match_team);
+
+    return $match_team;
   }
 
   private function addSet(\Club\RankingBundle\Entity\MatchTeam $team, $game_set, $value)

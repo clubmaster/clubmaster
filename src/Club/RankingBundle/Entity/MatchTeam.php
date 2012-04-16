@@ -30,18 +30,19 @@ class MatchTeam
     protected $match;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(onDelete="cascade")
+     *
+     * @var Club\RankingBundle\Entity\Team
+     */
+    protected $team;
+
+    /**
      * @var Club\RankingBundle\Entity\MatchTeamSet
      *
      * @ORM\OneToMany(targetEntity="MatchTeamSet", mappedBy="match_team", cascade={"persist"})
      */
     protected $match_team_set;
-
-    /**
-     * @var Club\RankingBundle\Entity\MatchTeamUser
-     *
-     * @ORM\OneToMany(targetEntity="MatchTeamUser", mappedBy="match_team", cascade={"persist"})
-     */
-    protected $match_team_users;
 
 
     /**
@@ -73,40 +74,6 @@ class MatchTeam
     {
         return $this->match;
     }
-    public function __construct()
-    {
-        $this->match_team_users = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add match_team_users
-     *
-     * @param Club\RankingBundle\Entity\MatchTeamUser $matchTeamUsers
-     */
-    public function addMatchTeamUser(\Club\RankingBundle\Entity\MatchTeamUser $matchTeamUsers)
-    {
-        $this->match_team_users[] = $matchTeamUsers;
-    }
-
-    /**
-     * Get match_team_users
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getMatchTeamUsers()
-    {
-        return $this->match_team_users;
-    }
-
-    public function getTeamName()
-    {
-      $res = array();
-      foreach ($this->getMatchTeamUsers() as $user) {
-        $res[] = $user->getUser()->getName();
-      }
-
-      return implode(' - ', $res);
-    }
 
     /**
      * Add match_team_set
@@ -126,5 +93,29 @@ class MatchTeam
     public function getMatchTeamSet()
     {
         return $this->match_team_set;
+    }
+    public function __construct()
+    {
+        $this->match_team_set = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set team
+     *
+     * @param Club\RankingBundle\Entity\Team $team
+     */
+    public function setTeam(\Club\RankingBundle\Entity\Team $team)
+    {
+        $this->team = $team;
+    }
+
+    /**
+     * Get team
+     *
+     * @return Club\RankingBundle\Entity\Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 }
