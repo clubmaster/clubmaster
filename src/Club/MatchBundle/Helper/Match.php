@@ -125,6 +125,11 @@ class Match
 
   private function validateSets($display)
   {
+    if (!count($display)) {
+      $this->setError($this->translator->trans('You have not played enough set'));
+      return;
+    }
+
     foreach ($display as $team) {
       $i = 0;
       foreach ($team as $set => $data) {
