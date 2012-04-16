@@ -60,6 +60,13 @@ class Match
      */
     protected $match_teams;
 
+    /**
+     * @var Club\RankingBundle\Entity\MatchComment
+     *
+     * @ORM\OneToMany(targetEntity="MatchComment", mappedBy="match")
+     */
+    protected $match_comment;
+
 
     /**
      * @ORM\PrePersist()
@@ -224,5 +231,25 @@ class Match
     public function getWinner()
     {
         return $this->winner;
+    }
+
+    /**
+     * Add match_comment
+     *
+     * @param Club\RankingBundle\Entity\MatchComment $matchComment
+     */
+    public function addMatchComment(\Club\RankingBundle\Entity\MatchComment $matchComment)
+    {
+        $this->match_comment[] = $matchComment;
+    }
+
+    /**
+     * Get match_comment
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMatchComment()
+    {
+        return $this->match_comment;
     }
 }
