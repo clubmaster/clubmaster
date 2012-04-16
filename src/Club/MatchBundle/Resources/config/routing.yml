@@ -1,0 +1,24 @@
+_match_game:
+  resource: "@ClubMatchBundle/Controller/GameController.php"
+  type: annotation
+  prefix: /match/game
+
+_match_match:
+  resource: "@ClubMatchBundle/Controller/MatchController.php"
+  type: annotation
+  prefix: /match/match
+
+_match_match_comment:
+  resource: "@ClubMatchBundle/Controller/MatchCommentController.php"
+  type: annotation
+  prefix: /match/match/comment
+
+_admin_match_game:
+  resource: "@ClubMatchBundle/Controller/AdminGameController.php"
+  type: annotation
+  prefix: /admin/match/game
+
+_admin_match_rule:
+  resource: "@ClubMatchBundle/Controller/AdminRuleController.php"
+  type: annotation
+  prefix: /admin/match/rule

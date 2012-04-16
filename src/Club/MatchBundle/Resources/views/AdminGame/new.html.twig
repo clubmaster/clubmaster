@@ -1,0 +1,9 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+
+<form method="post" action="{{ path('club_match_admingame_new') }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
+</form>
+
+{% endblock %}

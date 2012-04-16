@@ -1,4 +1,0 @@
-services:
-    club_ranking.match:
-        class: Club\RankingBundle\Helper\Match
-        arguments: [@doctrine.orm.entity_manager, @translator]

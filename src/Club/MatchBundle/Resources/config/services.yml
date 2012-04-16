@@ -1,0 +1,4 @@
+services:
+    club_match.match:
+        class: Club\MatchBundle\Helper\Match
+        arguments: [@doctrine.orm.entity_manager, @translator]
