@@ -1,0 +1,16 @@
+    <tr>
+      <td>{{ match.createdAt|club_datetime }}</td>
+      <td>{{ match.teamOne.team.teamName }}</td>
+      <td style="text-align: center;">
+
+        {% if match.winner == match.teamOne %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
+        {{ match.displayResult }}
+        {% if match.winner == match.teamTwo %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
+
+      </td>
+      <td>{{ match.teamTwo.team.teamName }}</td>
+      {% if nocomment is not defined %}
+      <td>{% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_ranking_matchcomment_new', {'match_id':match.id})} %} ({{ match.matchComments|length }})</td>
+      {% endif %}
+    </tr>
+

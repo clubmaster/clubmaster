@@ -5,30 +5,20 @@
       <th>{% trans %}Team one{% endtrans %}</th>
       <th style="width: 150px; text-align: center;">{% trans %}Score{% endtrans %}</th>
       <th>{% trans %}Team two{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
     {% for match in game.matches %}
-    <tr>
-      <td>{{ match.createdAt|club_datetime }}</td>
-      <td>{{ match.teamOne.team.teamName }}</td>
-      <td style="text-align: center;">
-
-        {% if match.winner == match.teamOne %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
-        {{ match.displayResult }}
-        {% if match.winner == match.teamTwo %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
-
-      </td>
-      <td>{{ match.teamTwo.team.teamName }}</td>
-    </tr>
+      {% include "ClubRankingBundle:Game:match.html.twig" %}
     {% else %}
     <tr>
-      <td colspan="4">{% trans %}No matches has been played.{% endtrans %}</td>
+      <td colspan="5">{% trans %}No matches has been played.{% endtrans %}</td>
     </tr>
     {% endfor %}
   </tbody>

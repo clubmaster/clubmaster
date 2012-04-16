@@ -65,7 +65,7 @@ class Match
      *
      * @ORM\OneToMany(targetEntity="MatchComment", mappedBy="match")
      */
-    protected $match_comment;
+    protected $match_comments;
 
 
     /**
@@ -234,22 +234,22 @@ class Match
     }
 
     /**
-     * Add match_comment
+     * Add match_comments
      *
-     * @param Club\RankingBundle\Entity\MatchComment $matchComment
+     * @param Club\RankingBundle\Entity\MatchComment $matchComments
      */
-    public function addMatchComment(\Club\RankingBundle\Entity\MatchComment $matchComment)
+    public function addMatchComment(\Club\RankingBundle\Entity\MatchComment $matchComments)
     {
-        $this->match_comment[] = $matchComment;
+        $this->match_comments[] = $matchComments;
     }
 
     /**
-     * Get match_comment
+     * Get match_comments
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getMatchComment()
+    public function getMatchComments()
     {
-        return $this->match_comment;
+        return $this->match_comments;
     }
 }

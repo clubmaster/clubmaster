@@ -77,6 +77,20 @@ class MatchController extends Controller
     return $this->redirect($this->generateUrl('club_ranking_admingame_index'));
   }
 
+  /**
+   * @Route("/show/{id}")
+   * @Template()
+   */
+  public function showAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $match = $em->find('ClubRankingBundle:Match',$id);
+
+    return array(
+      'match' => $match
+    );
+  }
+
   public function getForm($res)
   {
     $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();

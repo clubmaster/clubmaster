@@ -8,6 +8,11 @@ _ranking_match:
   type: annotation
   prefix: /ranking/match
 
+_ranking_match_comment:
+  resource: "@ClubRankingBundle/Controller/MatchCommentController.php"
+  type: annotation
+  prefix: /ranking/match/comment
+
 _admin_ranking_game:
   resource: "@ClubRankingBundle/Controller/AdminGameController.php"
   type: annotation
