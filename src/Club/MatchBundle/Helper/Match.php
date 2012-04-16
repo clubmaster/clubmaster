@@ -113,7 +113,7 @@ class Match
 
     $total = $this->match->getGame()->getRule()->getMatchSamePlayer();
 
-    if ($matches >= $total) {
+    if (count($matches) >= $total) {
       $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
         '%count%' => count($matches)
       )));
