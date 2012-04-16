@@ -5,7 +5,6 @@ make atk members smaller, start from 620 and something, michael holm on 700 is a
 == RANKING ==
 add comment to a match
 add ranking
-check count for played matches, does not seems right
 
 == NOTES TO THIS RELEASE ==
 make that you have to checkin in order to confirm your booking, otherwice it will be free

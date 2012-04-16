@@ -107,11 +107,10 @@ class Match
         ->setParameter($i, $match_team->getTeam()->getId());
     }
 
-    $res = $qb
+    $matches = $qb
       ->getQuery()
       ->getResult();
 
-    $matches = count($res);
     $total = $this->match->getGame()->getRule()->getMatchSamePlayer();
 
     if ($matches >= $total) {
