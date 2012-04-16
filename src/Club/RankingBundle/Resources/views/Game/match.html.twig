@@ -4,7 +4,7 @@
       <td style="text-align: center;">
 
         {% if match.winner == match.teamOne %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
-        {{ match.displayResult }}
+        <a href="{{ path('club_ranking_match_show', {'id':match.id}) }}">{{ match.displayResult }}</a>
         {% if match.winner == match.teamTwo %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/award_star_gold_1.png') }}" />{% endif %}
 
       </td>
