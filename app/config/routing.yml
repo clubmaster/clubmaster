@@ -63,8 +63,8 @@ ClubWelcomeBundle:
 ClubFeedbackBundle:
     resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
 
-ClubRankingBundle:
-    resource: "@ClubRankingBundle/Resources/config/routing.yml"
+ClubMatchBundle:
+    resource: "@ClubMatchBundle/Resources/config/routing.yml"
 
 homepage:
     pattern: /
