@@ -1,0 +1,42 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_match_adminleague_new') }}" class="btn-create"><span>{% trans %}Create league{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}League{% endtrans %}</th>
+      <th>{% trans %}Set{% endtrans %}</th>
+      <th>{% trans %}Invite only{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for league in leagues %}
+    <tr>
+      <td>{{ league.name }}</td>
+      <td>{{ league.gameSet }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':league.inviteOnly} %}</td>
+      <td>{{ league.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_match_adminleague_edit', { 'id':league.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminleague_delete', { 'id':league.id })} %}
+        {% include "ClubLayoutBundle:Default:group_link.html.twig" with {'url':path('club_match_adminleague_users', { 'id':league.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no leagues.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

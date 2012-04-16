@@ -5,7 +5,7 @@ namespace Club\MatchBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class Game extends AbstractType
+class League extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
@@ -22,12 +22,12 @@ class Game extends AbstractType
   public function getDefaultOptions(array $options)
   {
     return array(
-      'data_class' => 'Club\MatchBundle\Entity\Game'
+      'data_class' => 'Club\MatchBundle\Entity\League'
     );
   }
 
   public function getName()
   {
-    return 'game';
+    return 'league';
   }
 }

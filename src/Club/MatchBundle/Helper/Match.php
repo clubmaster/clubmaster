@@ -16,12 +16,12 @@ class Match
     $this->translator = $translator;
   }
 
-  public function bindMatch(\Club\MatchBundle\Entity\Game $game, $data)
+  public function bindMatch(\Club\MatchBundle\Entity\League $league, $data)
   {
     $teams = 2;
 
     $this->match = new \Club\MatchBundle\Entity\Match();
-    $this->match->setGame($game);
+    $this->match->setLeague($league);
 
     $display = array();
     for ($i = 0; $i < $teams; $i++) {
@@ -43,9 +43,9 @@ class Match
           return;
       }
 
-      if ($game->getInviteOnly()) {
-        if (!$game->canPlay($user)) {
-          $this->setError($this->translator->trans('%user% is not allowed to play in this game.', array(
+      if ($league->getInviteOnly()) {
+        if (!$league->canPlay($user)) {
+          $this->setError($this->translator->trans('%user% is not allowed to play in this league.', array(
             '%user%' => $user->getName()
           )));
           return;
@@ -55,7 +55,7 @@ class Match
       $team = $this->getTeam($user);
       $match_team = $this->addTeam($team);
 
-      for ($j = 0; $j < $game->getGameSet(); $j++) {
+      for ($j = 0; $j < $league->getGameSet(); $j++) {
         $set_str = 'user'.$i.'set'.$j;
 
         if (strlen($data[$set_str])) {
@@ -94,11 +94,11 @@ class Match
       ->select('count(mt.team)')
       ->from('ClubMatchBundle:MatchTeam', 'mt')
       ->leftJoin('mt.match', 'm')
-      ->where('m.game = :game')
+      ->where('m.league = :league')
       ->andWhere('mt.team = ?1 OR mt.team = ?2')
       ->groupBy('mt.match')
       ->having('count(mt.team) = 2')
-      ->setParameter('game', $this->match->getGame()->getId());
+      ->setParameter('league', $this->match->getLeague()->getId());
 
     $i = 0;
     foreach ($this->match->getMatchTeams() as $match_team) {
@@ -111,7 +111,7 @@ class Match
       ->getQuery()
       ->getResult();
 
-    $total = $this->match->getGame()->getRule()->getMatchSamePlayer();
+    $total = $this->match->getLeague()->getRule()->getMatchSamePlayer();
 
     if (count($matches) >= $total) {
       $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
@@ -147,7 +147,7 @@ class Match
 
     }
 
-    if (count($display[0]) < ($this->match->getGame()->getGameSet()/2) || count($display[1]) < ($this->match->getGame()->getGameSet()/2)) {
+    if (count($display[0]) < ($this->match->getLeague()->getGameSet()/2) || count($display[1]) < ($this->match->getLeague()->getGameSet()/2)) {
       $this->setError($this->translator->trans('You have not played enough set'));
       return false;
     }

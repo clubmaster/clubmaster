@@ -10,18 +10,18 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class MatchController extends Controller
 {
   /**
-   * @Route("/new/{game_id}")
+   * @Route("/new/{league_id}")
    * @Template()
    */
-  public function newAction($game_id)
+  public function newAction($league_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $game = $em->find('ClubMatchBundle:Game', $game_id);
+    $league = $em->find('ClubMatchBundle:League', $league_id);
 
     $res = array();
     $form = $this->getForm($res);
 
-    for ($i = 0; $game->getGameSet() > $i; $i++) {
+    for ($i = 0; $league->getGameSet() > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(
         'label' => 'Set '.($i+1),
         'required' => false
@@ -38,7 +38,7 @@ class MatchController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $this->get('club_match.match')->bindMatch($game, $form->getData());
+        $this->get('club_match.match')->bindMatch($league, $form->getData());
 
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
@@ -48,12 +48,12 @@ class MatchController extends Controller
         }
       }
 
-      return $this->redirect($this->generateUrl('club_match_game_index'));
+      return $this->redirect($this->generateUrl('club_match_league_index'));
     }
 
     return array(
       'form' => $form->createView(),
-      'game' => $game
+      'league' => $league
     );
   }
 
@@ -64,17 +64,17 @@ class MatchController extends Controller
   {
     try {
       $em = $this->getDoctrine()->getEntityManager();
-      $game = $em->find('ClubMatchBundle:Game',$this->getRequest()->get('id'));
+      $league = $em->find('ClubMatchBundle:League',$this->getRequest()->get('id'));
 
-      $em->remove($game);
+      $em->remove($league);
       $em->flush();
 
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete game which is already being used.'));
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_match_admingame_index'));
+    return $this->redirect($this->generateUrl('club_match_adminleague_index'));
   }
 
   /**

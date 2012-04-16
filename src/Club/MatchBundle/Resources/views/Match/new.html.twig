@@ -5,8 +5,8 @@
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0', 'input_id':'#form_user0_id'} %}
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1', 'input_id':'#form_user1_id'} %}
 
-<h2>{{ game.name }}</h2>
-<form method="post" action="{{ path('club_match_match_new', {'game_id':game.id}) }}">
+<h2>{{ league.name }}</h2>
+<form method="post" action="{{ path('club_match_match_new', {'league_id':league.id}) }}">
 
   <!-- Input Text -->
   <fieldset>
@@ -31,21 +31,21 @@
     <div class="col50 f-right">
       <p class="nomt">
         <label for="inp-04">Result:</label><br />
-        {% if game.gameSet > 0 %}{{ form_widget(form.user0set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 1 %}{{ form_widget(form.user0set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 2 %}{{ form_widget(form.user0set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 3 %}{{ form_widget(form.user0set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 4 %}{{ form_widget(form.user0set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 0 %}{{ form_widget(form.user0set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 1 %}{{ form_widget(form.user0set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 2 %}{{ form_widget(form.user0set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 3 %}{{ form_widget(form.user0set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 4 %}{{ form_widget(form.user0set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
         <br /><span class="smaller low">Info: Insert match result for user.</span>
       </p>
 
       <p class="nomb">
         <label for="inp-06">Result:</label><br />
-        {% if game.gameSet > 0 %}{{ form_widget(form.user1set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 1 %}{{ form_widget(form.user1set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 2 %}{{ form_widget(form.user1set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 3 %}{{ form_widget(form.user1set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if game.gameSet > 4 %}{{ form_widget(form.user1set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 0 %}{{ form_widget(form.user1set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 1 %}{{ form_widget(form.user1set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 2 %}{{ form_widget(form.user1set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 3 %}{{ form_widget(form.user1set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
+        {% if league.gameSet > 4 %}{{ form_widget(form.user1set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
         <br /><span class="smaller low">Info: Insert match result for user.</span>
       </p>
     </div> <!-- /col50 -->

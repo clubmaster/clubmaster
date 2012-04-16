@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Club\MatchBundle\Entity\Game
+ * Club\MatchBundle\Entity\League
  *
- * @ORM\Table(name="club_match_game")
- * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\GameRepository")
+ * @ORM\Table(name="club_match_league")
+ * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\LeagueRepository")
  * @ORM\HasLifeCycleCallbacks()
  */
-class Game
+class League
 {
     /**
      * @var integer $id
@@ -82,7 +82,7 @@ class Game
 
     /**
      * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_match_game_user")
+     * @ORM\JoinTable(name="club_match_league_user")
      */
     protected $users;
 
@@ -93,7 +93,7 @@ class Game
     protected $rule;
 
     /**
-     * @ORM\OneToMany(targetEntity="Club\MatchBundle\Entity\Match", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="Club\MatchBundle\Entity\Match", mappedBy="league")
      */
     protected $matches;
 

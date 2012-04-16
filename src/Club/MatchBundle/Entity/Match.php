@@ -49,9 +49,9 @@ class Match
     protected $winner;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\Game")
+     * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\League")
      */
-    protected $game;
+    protected $league;
 
     /**
      * @var Club\MatchBundle\Entity\MatchTeam
@@ -136,23 +136,23 @@ class Match
     }
 
     /**
-     * Set game
+     * Set league
      *
-     * @param Club\MatchBundle\Entity\Game $game
+     * @param Club\MatchBundle\Entity\League $league
      */
-    public function setGame(\Club\MatchBundle\Entity\Game $game)
+    public function setLeague(\Club\MatchBundle\Entity\League $league)
     {
-        $this->game = $game;
+        $this->league = $league;
     }
 
     /**
-     * Get game
+     * Get league
      *
-     * @return Club\MatchBundle\Entity\Game
+     * @return Club\MatchBundle\Entity\League
      */
-    public function getGame()
+    public function getLeague()
     {
-        return $this->game;
+        return $this->league;
     }
     public function __construct()
     {
@@ -246,7 +246,7 @@ class Match
     /**
      * Get match_comments
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMatchComments()
     {

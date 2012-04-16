@@ -14,8 +14,8 @@
     </tr>
   </tfoot>
   <tbody>
-    {% for match in game.matches %}
-      {% include "ClubMatchBundle:Game:match.html.twig" %}
+    {% for match in league.matches %}
+      {% include "ClubMatchBundle:League:match.html.twig" %}
     {% else %}
     <tr>
       <td colspan="5">{% trans %}No matches has been played.{% endtrans %}</td>

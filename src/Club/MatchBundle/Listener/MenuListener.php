@@ -19,7 +19,7 @@ class MenuListener
   {
     $menu[100] = array(
       'name' => $this->translator->trans('Match'),
-      'route' => $this->router->generate('club_match_game_index')
+      'route' => $this->router->generate('club_match_league_index')
     );
 
     $event->appendItem($menu);
@@ -30,7 +30,7 @@ class MenuListener
     if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
       $menu[75] = array(
         'name' => $this->translator->trans('Match'),
-        'route' => $this->router->generate('club_match_admingame_index'),
+        'route' => $this->router->generate('club_match_adminleague_index'),
         'items' => array(
           array(
             'name' => $this->translator->trans('Rule'),

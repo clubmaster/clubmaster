@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class GameController extends Controller
+class LeagueController extends Controller
 {
   /**
    * @Route("/")
@@ -16,10 +16,10 @@ class GameController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $games = $em->getRepository('ClubMatchBundle:Game')->getTopLists();
+    $leagues = $em->getRepository('ClubMatchBundle:League')->getTopLists();
 
     return array(
-      'games' => $games
+      'leagues' => $leagues
     );
   }
 
@@ -29,9 +29,9 @@ class GameController extends Controller
    */
   public function newAction()
   {
-    $game = new \Club\MatchBundle\Entity\Game();
+    $league = new \Club\MatchBundle\Entity\League();
 
-    $res = $this->process($game);
+    $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
       return $res;
@@ -48,15 +48,15 @@ class GameController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $game = $em->find('ClubMatchBundle:Game',$id);
+    $league = $em->find('ClubMatchBundle:League',$id);
 
-    $res = $this->process($game);
+    $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
       return $res;
 
     return array(
-      'game' => $game,
+      'league' => $league,
       'form' => $res->createView()
     );
   }
@@ -68,33 +68,33 @@ class GameController extends Controller
   {
     try {
       $em = $this->getDoctrine()->getEntityManager();
-      $game = $em->find('ClubMatchBundle:Game',$this->getRequest()->get('id'));
+      $league = $em->find('ClubMatchBundle:League',$this->getRequest()->get('id'));
 
-      $em->remove($game);
+      $em->remove($league);
       $em->flush();
 
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete game which is already being used.'));
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_match_admingame_index'));
+    return $this->redirect($this->generateUrl('club_match_adminleague_index'));
   }
 
-  protected function process($game)
+  protected function process($league)
   {
-    $form = $this->createForm(new \Club\MatchBundle\Form\Game(), $game);
+    $form = $this->createForm(new \Club\MatchBundle\Form\League(), $league);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($game);
+        $em->persist($league);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_match_admingame_index'));
+        return $this->redirect($this->generateUrl('club_match_adminleague_index'));
       }
     }
 

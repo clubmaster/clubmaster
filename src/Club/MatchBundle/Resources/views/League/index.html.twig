@@ -1,0 +1,15 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+
+{% for league in leagues %}
+  <h3>{{ league.name }}</h3>
+
+  {% include "ClubMatchBundle:League:match_button.html.twig" %}
+  {% include "ClubMatchBundle:League:league_table.html.twig" %}
+
+{% else %}
+  <p>{% trans %}There are no leagues.{% endtrans %}</p>
+{% endfor %}
+
+{% endblock %}
