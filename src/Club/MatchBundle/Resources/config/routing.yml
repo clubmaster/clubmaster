@@ -1,5 +1,5 @@
 _match_league:
-  resource: "@ClubMatchBundle/Controller/GameController.php"
+  resource: "@ClubMatchBundle/Controller/LeagueController.php"
   type: annotation
   prefix: /match/league
 
@@ -14,7 +14,7 @@ _match_match_comment:
   prefix: /match/match/comment
 
 _admin_match_league:
-  resource: "@ClubMatchBundle/Controller/AdminGameController.php"
+  resource: "@ClubMatchBundle/Controller/AdminLeagueController.php"
   type: annotation
   prefix: /admin/match/league
 

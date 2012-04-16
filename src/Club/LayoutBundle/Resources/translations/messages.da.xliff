@@ -2071,8 +2071,8 @@
         <target>Indsæt kamp</target>
       </trans-unit>
       <trans-unit id="521">
-        <source>%user% is not allowed to play in this game.</source>
-        <target>%user% har ikke lov at spille i dette spil.</target>
+        <source>%user% is not allowed to play in this league.</source>
+        <target>%user% har ikke lov at spille i denne liga.</target>
       </trans-unit>
       <trans-unit id="522">
         <source>You have not played enough set</source>
