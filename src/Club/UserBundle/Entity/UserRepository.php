@@ -429,7 +429,7 @@ class UserRepository extends EntityRepository
       ->getResult();
   }
 
-  public function getBySearch(array $user = null, $sort = 'u.member_number', $active = true)
+  private function getBySearchQuery(array $user = null, $sort = 'u.member_number', $active = true)
   {
     $qb = $this->getQueryBuilder();
 
@@ -443,14 +443,26 @@ class UserRepository extends EntityRepository
       $qb
         ->where('u.member_number = :number')
         ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
+        ->orderBy($sort, 'ASC')
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
+
+      if ($active) $qb = $this->filterActive($qb, true);
     }
 
-    if ($active) $qb = $this->filterActive($qb, true);
+    return $qb;
+  }
 
-    return $qb
-      ->orderBy($sort, 'ASC')
+  public function getOneBySearch(array $user = null, $sort = 'u.member_number', $active = true)
+  {
+    return $this->getBySearchQuery($user, $sort, $active)
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
+
+  public function getBySearch(array $user = null, $sort = 'u.member_number', $active = true)
+  {
+    return $this->getBySearchQuery($user, $sort, $active)
       ->getQuery()
       ->getResult();
   }

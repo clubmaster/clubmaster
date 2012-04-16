@@ -25,7 +25,23 @@ class Match
 
     $display = array();
     for ($i = 0; $i < $teams; $i++) {
-      $user = $this->em->find('ClubUserBundle:User', $data['user'.$i.'_id']);
+      $r = array();
+      if ($data['user'.$i.'_id'] != '') {
+        $r['id'] = $data['user'.$i.'_id'];
+      } else {
+        $r['query'] = $data['user'.$i];
+      }
+
+      try {
+        $user = $this->em->getRepository('ClubUserBundle:User')->getOneBySearch($r);
+      } catch (\Doctrine\ORM\NonUniqueResultException $e) {
+        $this->setError($this->translator->trans('Too many users match this search'));
+        return;
+      }
+      if (!$user) {
+          $this->setError($this->translator->trans('No such user'));
+          return;
+      }
 
       if ($game->getInviteOnly()) {
         if (!$game->canPlay($user)) {

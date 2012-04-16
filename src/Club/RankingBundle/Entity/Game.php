@@ -87,12 +87,6 @@ class Game
     protected $users;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_ranking_game_administrators")
-     */
-    protected $administrators;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Rule")
      * @var Club\RankingBundle\Entity\Rule
      */
@@ -365,19 +359,9 @@ class Game
         return $this->users;
     }
 
-    /**
-     * Get administrators
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getAdministrators()
-    {
-        return $this->administrators;
-    }
     public function __construct()
     {
       $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->administrators = new \Doctrine\Common\Collections\ArrayCollection();
       $this->matches = new \Doctrine\Common\Collections\ArrayCollection();
       $this->type = '1-on-1';
     }

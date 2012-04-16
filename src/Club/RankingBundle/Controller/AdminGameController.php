@@ -37,7 +37,6 @@ class AdminGameController extends Controller
     $game = new \Club\RankingBundle\Entity\Game();
     $game->setStartDate($start);
     $game->setEndDate($end);
-    $game->addAdministrator($this->get('security.context')->getToken()->getUser());
 
     $res = $this->process($game);
 
