@@ -68,7 +68,6 @@ class Match
     }
 
     if (!$this->validateSets($display)) {
-      $this->setError($this->translator->trans('You have not played enough set'));
       return;
     }
 
@@ -127,10 +126,31 @@ class Match
 
   private function validateSets($display)
   {
-    for ($i = 0; $i < 2; $i++) {
-      $sets = count($display[$i]);
-      if ($sets < ($this->match->getGame()->getGameSet()/2))
-        return false;
+    foreach ($display as $team) {
+      $i = 0;
+      foreach ($team as $set => $data) {
+        $i++;
+        if ($set+1 != $i) {
+          $this->setError($this->translator->trans('You has to enter set in the right order.'));
+          return;
+        }
+      }
+    }
+
+    foreach ($display[0] as $set => $data) {
+      $set1 = $display[0][$set];
+      $set2 = $display[1][$set];
+
+      if ($set1 < 6 && $set2 < 6) {
+        $this->setError($this->translator->trans('The match result is not valid.'));
+        return;
+      }
+
+    }
+
+    if (count($display[0]) < ($this->match->getGame()->getGameSet()/2) || count($display[1]) < ($this->match->getGame()->getGameSet()/2)) {
+      $this->setError($this->translator->trans('You have not played enough set'));
+      return false;
     }
 
     return true;

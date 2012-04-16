@@ -3,9 +3,9 @@ atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
 == RANKING ==
-validate set does not work, check set 1 and 3 will be valid, thats wrong
 add comment to a match
 add ranking
+check count for played matches, does not seems right
 
 == NOTES TO THIS RELEASE ==
 make that you have to checkin in order to confirm your booking, otherwice it will be free

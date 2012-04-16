@@ -2082,6 +2082,10 @@
         <source>Teams has already played %count% matches against each other.</source>
         <target>Holdene har allerede spillet %count% kampe mod hinanden.</target>
       </trans-unit>
+      <trans-unit id="524">
+        <source>You has to enter set in the right order.</source>
+        <target>Du skal indtaste sæt i den rette rækkefølgende.</target>
+      </trans-unit>
 
     </body>
   </file>
