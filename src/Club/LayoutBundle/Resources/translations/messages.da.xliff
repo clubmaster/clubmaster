@@ -2078,6 +2078,10 @@
         <source>You have not played enough set</source>
         <target>Du har ikke spillet nok sæt</target>
       </trans-unit>
+      <trans-unit id="523">
+        <source>Teams has already played %count% matches against each other.</source>
+        <target>Holdene har allerede spillet %count% kampe mod hinanden.</target>
+      </trans-unit>
 
     </body>
   </file>

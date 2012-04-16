@@ -72,6 +72,10 @@ class Match
       return;
     }
 
+    if (!$this->validateRules()) {
+      return;
+    }
+
     $str = $this->buildResultString($display);
     $this->match->setDisplayResult($str);
 
@@ -87,6 +91,38 @@ class Match
 
   private function validateRules()
   {
+    $qb = $this->em->createQueryBuilder()
+      ->select('count(mt.team)')
+      ->from('ClubRankingBundle:MatchTeam', 'mt')
+      ->leftJoin('mt.match', 'm')
+      ->where('m.game = :game')
+      ->andWhere('mt.team = ?1 OR mt.team = ?2')
+      ->groupBy('mt.match')
+      ->having('count(mt.team) = 2')
+      ->setParameter('game', $this->match->getGame()->getId());
+
+    $i = 0;
+    foreach ($this->match->getMatchTeams() as $match_team) {
+      $i++;
+      $qb
+        ->setParameter($i, $match_team->getTeam()->getId());
+    }
+
+    $res = $qb
+      ->getQuery()
+      ->getResult();
+
+    $matches = count($res);
+    $total = $this->match->getGame()->getRule()->getMatchSamePlayer();
+
+    if ($matches >= $total) {
+      $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
+        '%count%' => count($matches)
+      )));
+      return false;
+    }
+
+    return true;
   }
 
   private function validateSets($display)

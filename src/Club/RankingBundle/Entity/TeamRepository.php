@@ -14,7 +14,7 @@ class TeamRepository extends EntityRepository
 {
   public function getTeamByUser(\Club\UserBundle\Entity\User $user)
   {
-    $team = $this->_em->createQueryBuilder()
+    return $this->_em->createQueryBuilder()
       ->select('t')
       ->from('ClubRankingBundle:Team', 't')
       ->leftJoin('t.users', 'u')

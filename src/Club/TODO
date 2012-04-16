@@ -3,7 +3,7 @@ atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
 == RANKING ==
-obey rules of game
+validate set does not work, check set 1 and 3 will be valid, thats wrong
 add comment to a match
 add ranking
 
