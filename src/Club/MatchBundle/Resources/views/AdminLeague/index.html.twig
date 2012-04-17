@@ -7,7 +7,6 @@
   <thead>
     <tr>
       <th>{% trans %}League{% endtrans %}</th>
-      <th>{% trans %}Set{% endtrans %}</th>
       <th>{% trans %}Invite only{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
@@ -22,8 +21,7 @@
   {% for league in leagues %}
     <tr>
       <td>{{ league.name }}</td>
-      <td>{{ league.gameSet }}</td>
-      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':league.inviteOnly} %}</td>
+      <td>{% if league.inviteOnly %}Invite only{% else %}Open for all{% endif %}</td>
       <td>{{ league.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_match_adminleague_edit', { 'id':league.id })} %}
