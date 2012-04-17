@@ -26,7 +26,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_match_adminleague_edit', { 'id':league.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminleague_delete', { 'id':league.id })} %}
-        {% include "ClubLayoutBundle:Default:group_link.html.twig" with {'url':path('club_match_adminleague_users', { 'id':league.id })} %}
+        {% include "ClubLayoutBundle:Default:players_link.html.twig" with {'url':path('club_match_adminleague_users', { 'id':league.id })} %}
       </td>
     </tr>
   {% else %}

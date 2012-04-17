@@ -8,6 +8,8 @@
 <form method="post" action="{{ path('club_match_adminleague_usersadd', {'id':league.id}) }}">
   <fieldset>
     <legend>{% trans %}Add user{% endtrans %}</legend>
+
+    <p>{% trans %}Here you can add players for this tournament.{% endtrans %}</p>
     {{ form_widget(form) }}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
   </fieldset>
