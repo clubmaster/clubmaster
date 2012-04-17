@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\MatchBundle\Entity\LeagueTable
  *
- * @ORM\Table(name="club_match_match_league_table")
+ * @ORM\Table(name="club_match_league_table")
  * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\LeagueTableRepository")
  */
 class LeagueTable

@@ -167,15 +167,17 @@ class Match
       1 => 0
     );
 
+    $teams = $this->match->getMatchTeams();
+
     for ($i = 0; $i < count($display[0]); $i++) {
       if ($display[0][$i] > $display[1][$i]) {
+        $teams[0]->setSetWon($teams[0]->getSetWon()+1);
         $won[0]++;
       } else {
+        $teams[1]->setSetWon($teams[1]->getSetWon()+1);
         $won[1]++;
       }
     }
-
-    $teams = $this->match->getMatchTeams();
 
     if ($won[0] == $won[1]) {
       return false;

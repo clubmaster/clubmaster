@@ -16,6 +16,10 @@ class WelcomeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $task = $em->find('ClubTaskBundle:Task', 1);
+    $event = new \Club\TaskBundle\Event\FilterTaskEvent($task);
+    $this->get('event_dispatcher')->dispatch(\Club\TaskBundle\Event\Events::onMatchTask, $event);
+
     $welcome = $em->getRepository('ClubWelcomeBundle:Welcome')->findOneBy(array(
       'location' => 1
     ));

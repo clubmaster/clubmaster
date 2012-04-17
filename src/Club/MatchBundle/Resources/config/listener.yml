@@ -9,3 +9,8 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+  club.match.listener.league:
+    class: Club\MatchBundle\Listener\League
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: match.task, method: onMatchTask }

@@ -99,6 +99,16 @@ class LoadTaskData implements FixtureInterface
     $task->setMethod('onTeamPenalty');
     $manager->persist($task);
 
+    $task = new \Club\TaskBundle\Entity\Task();
+    $task->setTaskName('Process matches');
+    $task->setEnabled(1);
+    $task->setLocked(0);
+    $task->setNextRunAt(new \DateTime());
+    $task->setTaskInterval('T15M');
+    $task->setEvent('\Club\TaskBundle\Event\Events');
+    $task->setMethod('onMatchTask');
+    $manager->persist($task);
+
     $manager->flush();
   }
 }

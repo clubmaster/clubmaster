@@ -22,6 +22,13 @@ class MatchTeam
     private $id;
 
     /**
+     * @var integer $set_won
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $set_won;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Match")
      * @ORM\JoinColumn(name="match_id", onDelete="cascade")
      *
@@ -97,6 +104,7 @@ class MatchTeam
     public function __construct()
     {
         $this->match_team_set = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setSetWon(0);
     }
 
     /**
@@ -117,5 +125,25 @@ class MatchTeam
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set set_won
+     *
+     * @param integer $setWon
+     */
+    public function setSetWon($setWon)
+    {
+        $this->set_won = $setWon;
+    }
+
+    /**
+     * Get set_won
+     *
+     * @return integer
+     */
+    public function getSetWon()
+    {
+        return $this->set_won;
     }
 }

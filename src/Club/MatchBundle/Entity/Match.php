@@ -280,4 +280,23 @@ class Match
     {
         return $this->processed;
     }
+
+    public function getMatchStats()
+    {
+      $res = array(
+        'winner' => '',
+        'looser' => '',
+        'is_draw' => false
+      );
+
+      if ($this->getTeamOne()->getSetWon() > $this->getTeamTwo()->getSetWon()) {
+        $res['winner'] = $this->getTeamOne();
+        $res['looser'] = $this->getTeamTwo();
+      } elseif ($this->getTeamTwo()->getSetWon() > $this->getTeamOne()->getSetWon()) {
+        $res['winner'] = $this->getTeamTwo();
+        $res['looser'] = $this->getTeamOne();
+      }
+
+      return $res;
+    }
 }
