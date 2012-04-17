@@ -1,7 +1,5 @@
 == ATK ==
 atk check for doubles
-make atk members smaller, start from 620 and something, michael holm on 700 is an error
-set account_numbers correct on new products
 
 == NEXT TOPICS ==
 ranking only for men, women or both
@@ -14,6 +12,7 @@ fix economic
 sort users in IE9 missing style
 
 == NOTES TO THIS RELEASE ==
+fill all empty member numbers
 make a button to accept business terms
 fix colors in checkout
 list undelivered orders on admin dashboard
