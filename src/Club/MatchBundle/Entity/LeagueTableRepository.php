@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class LeagueTableRepository extends EntityRepository
 {
+  public function getUser(\Club\MatchBundle\Entity\MatchTeam $match_team)
+  {
+    $team = $this->_em->getRepository('ClubMatchBundle:LeagueTable')->findOneBy(array(
+      'league' => $match_team->getMatch()->getLeague()->getId(),
+      'team' => $match_team->getTeam()->getId()
+    ));
+
+    if (!$team) {
+      $team = new \Club\MatchBundle\Entity\LeagueTable();
+      $team->setLeague($match_team->getMatch()->getLeague());
+      $team->setTeam($match_team->getTeam());
+
+      $this->_em->persist($team);
+    }
+
+    return $team;
+  }
 }

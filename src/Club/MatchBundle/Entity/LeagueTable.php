@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_match_league_table")
  * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\LeagueTableRepository")
+ * @ORM\HasLifeCycleCallbacks()
+ *
  */
 class LeagueTable
 {
@@ -79,6 +81,14 @@ class LeagueTable
      */
     protected $team;
 
+
+    public function __construct()
+    {
+      $this->win = 0;
+      $this->loss = 0;
+      $this->point = 0;
+      $this->played = 0;
+    }
 
     /**
      * Get id
