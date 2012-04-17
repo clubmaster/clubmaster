@@ -39,6 +39,7 @@ configurationbundle and installerbundle should be disabled after install
 find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
+add leagues to tournaments, use of tags or something
 add product on dynamic group
 cannot install when parameter is not on english
 cannot install with multiple payment plugins
