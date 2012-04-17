@@ -17,6 +17,11 @@ _booking:
   resource: "@ClubBookingBundle/Controller/BookingController.php"
   type: annotation
 
+_location:
+  resource: "@ClubBookingBundle/Controller/LocationController.php"
+  type: annotation
+  prefix: /booking
+
 _overview:
   resource: "@ClubBookingBundle/Controller/OverviewController.php"
   type: annotation

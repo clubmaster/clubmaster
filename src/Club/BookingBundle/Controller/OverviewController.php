@@ -53,11 +53,8 @@ class OverviewController extends Controller
        'location' => $location->getId()
      ));
 
-     if (!count($fields)) {
-       $this->get('session')->setFlash('warning', $this->get('translator')->trans('There are no fields in this location, choose another location.'));
-       $this->get('session')->set('switch_location', $this->generateUrl('club_booking_overview_index'));
-       return $this->redirect($this->generateUrl('club_user_location_index'));
-     }
+     if (!count($fields))
+       return $this->redirect($this->generateUrl('club_booking_location_index'));
 
      return $this->render('ClubBookingBundle:Overview:'.$this->container->getParameter('club_booking.booking_style').'.html.twig', array(
        'date' => $date,
