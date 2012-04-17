@@ -264,8 +264,7 @@ class Order
     $this->order->setAmountLeft($left);
     $this->setPaid();
 
-    $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent();
-    $event->setPurchaseLog($log);
+    $event = new \Club\ShopBundle\Event\FilterPurchaseLogEvent($log);
     $this->event_dispatcher->dispatch(\Club\ShopBundle\Event\Events::onPurchaseCreate, $event);
   }
 

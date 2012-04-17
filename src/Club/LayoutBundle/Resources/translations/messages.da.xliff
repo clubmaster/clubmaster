@@ -2094,6 +2094,10 @@
         <source>Dashboard</source>
         <target>Aktivitetsoversigt</target>
       </trans-unit>
+      <trans-unit id="527">
+        <source>Payment from %user%, order %order%</source>
+        <target>Betaling fra %user%, ordre %order%</target>
+      </trans-unit>
 
     </body>
   </file>

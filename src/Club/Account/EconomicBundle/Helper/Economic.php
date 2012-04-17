@@ -5,11 +5,13 @@ namespace Club\Account\EconomicBundle\Helper;
 class Economic
 {
   protected $container;
+  protected $translator;
   protected $client;
 
   public function __construct($container)
   {
     $this->container = $container;
+    $this->translator = $container->get('translator');
     $this->connect();
   }
 
@@ -168,6 +170,8 @@ class Economic
     $entry = $this->getCashBookEntry($r);
     $d = new \DateTime();
 
+    $price = $order_product->getPrice()*$order_product->getQuantity()*-1;
+
     return $this->client->CashBookEntry_UpdateFromData(array(
       'data' => array(
         'Handle' => $r,
@@ -177,10 +181,13 @@ class Economic
         'ContraAccountHandle' => $contra_account,
         'Date' => $d->format('c'),
         'VoucherNumber' => $entry->VoucherNumber,
-        'AmountDefaultCurrency' => $order_product->getPrice()*-1,
-        'Amount' => $order_product->getPrice()*-1,
+        'AmountDefaultCurrency' => $price,
+        'Amount' => $price,
         'CurrencyHandle' => $currency,
-        'Text' => 'Payment from '.$order_product->getOrder()->getUser()->getName()
+        'Text' => $this->translator->trans('Payment from %user%, order %order%', array(
+          '%user%' => $order_product->getOrder()->getUser()->getName(),
+          '%order%' => $order_product->getOrder()->getOrderNumber()
+        ))
       )))->CashBookEntry_UpdateFromDataResult;
   }
 
@@ -215,7 +222,10 @@ class Economic
         'AmountDefaultCurrency' => $purchase_log->getAmount()/100,
         'Amount' => $purchase_log->getAmount()/100,
         'CurrencyHandle' => $currency,
-        'Text' => 'Payment from '.$purchase_log->getOrder()->getUser()->getName()
+        'Text' => $this->translator->trans('Payment from %user%, order %order%', array(
+          '%user%' => $purchase_log->getOrder()->getUser()->getName(),
+          '%order%' => $purchase_log->getOrder()->getOrderNumber()
+        ))
       )))->CashBookEntry_UpdateFromDataResult;
   }
 
