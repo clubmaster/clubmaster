@@ -71,6 +71,8 @@ what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 
 == NOTES FOR EVEN LATER ==
+admin feature, that give administrator option to give product the price he wants to.
+check if a product on discount, what will the price be the following year
 something is broken when creating more intervals on the same field, fix it
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
