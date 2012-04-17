@@ -13,6 +13,7 @@ fix economic
 sort users in IE9 missing style
 
 == NOTES TO THIS RELEASE ==
+make a button to accept business terms
 fix colors in checkout
 list undelivered orders on admin dashboard
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
