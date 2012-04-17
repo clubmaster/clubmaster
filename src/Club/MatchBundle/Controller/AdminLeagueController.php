@@ -187,7 +187,9 @@ class AdminLeagueController extends Controller
   protected function getForm($res)
   {
     $form = $this->createFormBuilder($res)
-      ->add('user', 'text')
+      ->add('user', 'text', array(
+        'label' => 'Player'
+      ))
       ->add('user_id', 'hidden')
       ->getForm();
 
