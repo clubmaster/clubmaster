@@ -30,6 +30,13 @@ class Match
     private $display_result;
 
     /**
+     * @var boolean $processed
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $processed;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(type="datetime")
@@ -157,6 +164,7 @@ class Match
     public function __construct()
     {
         $this->match_teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->processed = 0;
     }
 
     /**
@@ -251,5 +259,25 @@ class Match
     public function getMatchComments()
     {
         return $this->match_comments;
+    }
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
     }
 }

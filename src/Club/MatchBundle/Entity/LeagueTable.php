@@ -140,7 +140,7 @@ class LeagueTable
     /**
      * Get played
      *
-     * @return integer 
+     * @return integer
      */
     public function getPlayed()
     {
@@ -160,7 +160,7 @@ class LeagueTable
     /**
      * Get win
      *
-     * @return integer 
+     * @return integer
      */
     public function getWin()
     {
@@ -180,7 +180,7 @@ class LeagueTable
     /**
      * Get loss
      *
-     * @return integer 
+     * @return integer
      */
     public function getLoss()
     {
@@ -200,7 +200,7 @@ class LeagueTable
     /**
      * Get point
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoint()
     {
@@ -220,7 +220,7 @@ class LeagueTable
     /**
      * Get created_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -240,7 +240,7 @@ class LeagueTable
     /**
      * Get updated_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {
@@ -260,7 +260,7 @@ class LeagueTable
     /**
      * Get league
      *
-     * @return Club\MatchBundle\Entity\League 
+     * @return Club\MatchBundle\Entity\League
      */
     public function getLeague()
     {
