@@ -2,6 +2,9 @@ parameters:
     web_path: %kernel.root_dir%/../web
     upload_path: uploads
 
+club_user:
+    default_country: DK
+
 club_account_economic:
     enabled: true
     agreement: xxxxxx
