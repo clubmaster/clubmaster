@@ -2,8 +2,9 @@
 
 {% block body %}
 
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0', 'input_id':'#form_user0_id'} %}
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1', 'input_id':'#form_user1_id'} %}
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0','input_id':'#form_user0_id','url': 'api/matches/search/' ~ league.id } %}
+
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1','input_id':'#form_user1_id','url': 'api/matches/search/' ~ league.id } %}
 
 <h2>{{ league.name }}</h2>
 <form method="post" action="{{ path('club_match_match_new', {'league_id':league.id}) }}">

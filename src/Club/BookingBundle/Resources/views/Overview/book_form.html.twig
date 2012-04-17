@@ -1,4 +1,4 @@
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#booking_query', 'input_id':'#booking_id'} %}
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#booking_query', 'input_id':'#booking_id','url':'api/users/search'} %}
 
 <fieldset>
   <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">

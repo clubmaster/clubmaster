@@ -69,5 +69,4 @@ class LeagueController extends Controller
       'rank' => $rank
     );
   }
-
 }

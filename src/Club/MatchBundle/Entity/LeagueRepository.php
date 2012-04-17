@@ -41,4 +41,20 @@ class LeagueRepository extends EntityRepository
 
     return $rank;
   }
+
+  public function getUsersBySearch(\Club\MatchBundle\Entity\League $league, $query)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select(array('l', 'u'))
+      ->from('ClubMatchBundle:League','l')
+      ->leftJoin('l.users', 'u')
+      ->leftJoin('u.profile','p')
+      ->where('l.id = :league')
+      ->andWhere("u.member_number = :number OR CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
+      ->setParameter('league', $league->getId())
+      ->setParameter('number', $query)
+      ->setParameter('query', '%'.$query.'%')
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
 }
