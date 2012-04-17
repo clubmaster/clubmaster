@@ -6,7 +6,6 @@ make atk members smaller, start from 620 and something, michael holm on 700 is a
 add ranking
 
 == NOTES TO THIS RELEASE ==
-start using composer
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
