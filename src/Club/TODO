@@ -2,10 +2,6 @@
 atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
-== RANKING ==
-can we avoid double click on forms, like save a match
-delete match
-
 == NOTES TO THIS RELEASE ==
 make that you have to checkin in order to confirm your booking, otherwice it will be free
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking

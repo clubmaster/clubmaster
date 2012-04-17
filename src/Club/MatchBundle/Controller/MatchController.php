@@ -62,19 +62,18 @@ class MatchController extends Controller
    */
   public function deleteAction($id)
   {
-    try {
-      $em = $this->getDoctrine()->getEntityManager();
-      $league = $em->find('ClubMatchBundle:League',$this->getRequest()->get('id'));
+    $em = $this->getDoctrine()->getEntityManager();
+    $match = $em->find('ClubMatchBundle:Match',$id);
 
-      $em->remove($league);
-      $em->flush();
+    if ($match->getProcessed(1))
+      $this->get('club_match.league')->revokePoint($match);
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-    } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
-    }
+    $em->remove($match);
+    $em->flush();
 
-    return $this->redirect($this->generateUrl('club_match_adminleague_index'));
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_match_league_index'));
   }
 
   /**

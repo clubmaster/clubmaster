@@ -5,6 +5,9 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <p class="box">
   <a href="{{ path('club_match_matchcomment_new', { 'match_id':match.id }) }}" class="btn-info"><span>{% trans %}Add comment{% endtrans %}</span></a>
+  {% if match.isOwner(app.user) %}
+  <a href="{{ path('club_match_match_delete', { 'id':match.id }) }}" class="btn-info"><span>{% trans %}Delete match{% endtrans %}</span></a>
+  {% endif %}
 </p>
 {% endif %}
 

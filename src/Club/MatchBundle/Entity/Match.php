@@ -281,4 +281,17 @@ class Match
     {
         return $this->processed;
     }
+
+    public function isOwner(\Club\UserBundle\Entity\User $user)
+    {
+      foreach ($this->getMatchTeams() as $mt) {
+        foreach ($mt->getTeam()->getUsers() as $u) {
+          if ($user == $u) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
 }

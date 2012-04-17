@@ -5,10 +5,12 @@ namespace Club\MatchBundle\Listener;
 class League
 {
   private $em;
+  private $club_league;
 
-  public function __construct($em)
+  public function __construct($em, $club_league)
   {
     $this->em = $em;
+    $this->club_league = $club_league;
   }
 
   public function onMatchTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
@@ -16,24 +18,7 @@ class League
     $matches = $this->em->getRepository('ClubMatchBundle:Match')->getUnprocessed();
 
     foreach ($matches as $match) {
-      foreach ($match->getMatchTeams() as $match_team) {
-
-        $lt = $this->em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($match_team->getMatch()->getLeague(), $match_team->getTeam());
-
-        if ($match_team == $match->getWinner()) {
-          $lt->setPlayed($lt->getPlayed()+1);
-          $lt->setWon($lt->getWon()+1);
-          $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointWon());
-
-        } else {
-          $lt->setPlayed($lt->getPlayed()+1);
-          $lt->setLost($lt->getLost()+1);
-          $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointLost());
-
-        }
-
-        $this->em->persist($lt);
-      }
+      $this->club_league->addPoint($match);
 
       $match->setProcessed(1);
       $this->em->persist($match);

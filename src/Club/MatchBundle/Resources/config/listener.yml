@@ -11,6 +11,6 @@ services:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
   club.match.listener.league:
     class: Club\MatchBundle\Listener\League
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.entity_manager, @club_match.league]
     tags:
       - { name: kernel.event_listener, event: match.task, method: onMatchTask }
