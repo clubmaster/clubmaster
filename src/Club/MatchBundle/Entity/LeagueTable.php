@@ -279,6 +279,6 @@ class LeagueTable
 
     public function getPercentWon()
     {
-      return 1;
+      return sprintf('%d', $this->getWon()/$this->getPlayed()*100);
     }
 }

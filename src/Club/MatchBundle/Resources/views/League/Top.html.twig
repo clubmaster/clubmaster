@@ -7,11 +7,12 @@
       <th>{% trans %}Won{% endtrans %}</th>
       <th>{% trans %}Lost{% endtrans %}</th>
       <th>{% trans %}Won %{% endtrans %}</th>
+      <th>{% trans %}Point{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="7">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -21,7 +22,7 @@
       {% set pos = pos+1 %}
     {% else %}
     <tr>
-      <td colspan="6">{% trans %}No teams in the league.{% endtrans %}</td>
+      <td colspan="7">{% trans %}No teams in the league.{% endtrans %}</td>
     </tr>
     {% endfor %}
   </tbody>

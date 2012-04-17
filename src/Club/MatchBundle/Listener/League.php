@@ -37,8 +37,7 @@ class League
 
       $match->setProcessed(1);
       $this->em->persist($match);
+      $this->em->flush();
     }
-
-    $this->em->flush();
   }
 }
