@@ -26,4 +26,19 @@ class LeagueRepository extends EntityRepository
 
     return $matches;
   }
+
+  public function getTop(\Club\MatchBundle\Entity\League $league, $limit=4)
+  {
+    $rank = $this->_em->createQueryBuilder()
+      ->select('lt')
+      ->from('ClubMatchBundle:LeagueTable', 'lt')
+      ->where('lt.league = :league')
+      ->orderBy('lt.point', 'DESC')
+      ->setMaxResults($limit)
+      ->setParameter('league', $league->getId())
+      ->getQuery()
+      ->getResult();
+
+    return $rank;
+  }
 }

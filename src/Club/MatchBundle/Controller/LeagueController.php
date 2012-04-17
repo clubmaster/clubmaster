@@ -38,4 +38,21 @@ class LeagueController extends Controller
       'matches' => $matches
     );
   }
+
+  /**
+   * @Route("/top/{id}")
+   * @Template()
+   */
+  public function topAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $league = $em->find('ClubMatchBundle:League', $id);
+    $rank = $em->getRepository('ClubMatchBundle:League')->getTop($league);
+
+    return array(
+      'rank' => $rank
+    );
+  }
+
 }

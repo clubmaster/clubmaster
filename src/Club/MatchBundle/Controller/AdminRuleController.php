@@ -31,7 +31,7 @@ class AdminRuleController extends Controller
   {
     $rule = new \Club\MatchBundle\Entity\Rule();
     $rule->setPointWon(2);
-    $rule->setPointLoss(0);
+    $rule->setPointLost(0);
     $rule->setMatchSamePlayer(2);
 
     $res = $this->process($rule);

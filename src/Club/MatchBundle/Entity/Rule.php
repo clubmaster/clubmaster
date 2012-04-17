@@ -37,11 +37,11 @@ class Rule
     private $point_won;
 
     /**
-     * @var integer $point_loss
+     * @var integer $point_lost
      *
      * @ORM\Column(type="integer")
      */
-    private $point_loss;
+    private $point_lost;
 
     /**
      * @var integer $match_same_player
@@ -121,23 +121,23 @@ class Rule
     }
 
     /**
-     * Set point_loss
+     * Set point_lost
      *
-     * @param integer $pointLoss
+     * @param integer $pointLost
      */
-    public function setPointLoss($pointLoss)
+    public function setPointLost($pointLost)
     {
-        $this->point_loss = $pointLoss;
+        $this->point_lost = $pointLost;
     }
 
     /**
-     * Get point_loss
+     * Get point_lost
      *
      * @return integer
      */
-    public function getPointLoss()
+    public function getPointLost()
     {
-        return $this->point_loss;
+        return $this->point_lost;
     }
 
     /**

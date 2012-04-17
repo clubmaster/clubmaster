@@ -22,13 +22,13 @@ class League
 
         if ($match_team == $match->getWinner()) {
           $lt->setPlayed($lt->getPlayed()+1);
-          $lt->setWin($lt->getWin()+1);
+          $lt->setWon($lt->getWon()+1);
           $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointWon());
 
         } else {
           $lt->setPlayed($lt->getPlayed()+1);
-          $lt->setLoss($lt->getLoss()+1);
-          $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointLoss());
+          $lt->setLost($lt->getLost()+1);
+          $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointLost());
 
         }
 

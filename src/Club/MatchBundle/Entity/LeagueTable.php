@@ -31,18 +31,18 @@ class LeagueTable
     private $played;
 
     /**
-     * @var integer $win
+     * @var integer $won
      *
      * @ORM\Column(type="integer")
      */
-    private $win;
+    private $won;
 
     /**
-     * @var integer $loss
+     * @var integer $lost
      *
      * @ORM\Column(type="integer")
      */
-    private $loss;
+    private $lost;
 
     /**
      * @var integer $point
@@ -84,8 +84,8 @@ class LeagueTable
 
     public function __construct()
     {
-      $this->win = 0;
-      $this->loss = 0;
+      $this->won = 0;
+      $this->lost = 0;
       $this->point = 0;
       $this->played = 0;
     }
@@ -158,43 +158,43 @@ class LeagueTable
     }
 
     /**
-     * Set win
+     * Set won
      *
-     * @param integer $win
+     * @param integer $won
      */
-    public function setWin($win)
+    public function setWon($won)
     {
-        $this->win = $win;
+        $this->won = $won;
     }
 
     /**
-     * Get win
+     * Get won
      *
      * @return integer
      */
-    public function getWin()
+    public function getWon()
     {
-        return $this->win;
+        return $this->won;
     }
 
     /**
-     * Set loss
+     * Set lost
      *
-     * @param integer $loss
+     * @param integer $lost
      */
-    public function setLoss($loss)
+    public function setLost($lost)
     {
-        $this->loss = $loss;
+        $this->lost = $lost;
     }
 
     /**
-     * Get loss
+     * Get lost
      *
      * @return integer
      */
-    public function getLoss()
+    public function getLost()
     {
-        return $this->loss;
+        return $this->lost;
     }
 
     /**
@@ -275,5 +275,10 @@ class LeagueTable
     public function getLeague()
     {
         return $this->league;
+    }
+
+    public function getPercentWon()
+    {
+      return 1;
     }
 }

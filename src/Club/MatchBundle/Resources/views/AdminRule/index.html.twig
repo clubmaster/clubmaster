@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
-      <th>{% trans %}Point loss{% endtrans %}</th>
+      <th>{% trans %}Point lost{% endtrans %}</th>
       <th>{% trans %}Point won{% endtrans %}</th>
       <th>{% trans %}Match same player{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
@@ -24,7 +24,7 @@
     <tr>
       <td>{{ rule.name }}</td>
       <td>{{ rule.pointWon }}</td>
-      <td>{{ rule.pointLoss }}</td>
+      <td>{{ rule.pointLost }}</td>
       <td>{{ rule.matchSamePlayer }}</td>
       <td>{{ rule.createdAt|club_datetime }}</td>
       <td>
