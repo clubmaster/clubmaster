@@ -45,6 +45,7 @@ class MatchComment
 
     /**
      * @ORM\ManyToOne(targetEntity="Match")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $match;
 

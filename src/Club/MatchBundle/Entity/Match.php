@@ -52,6 +52,7 @@ class Match
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\MatchTeam")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $winner;
 

@@ -2086,6 +2086,10 @@
         <source>You has to enter set in the right order.</source>
         <target>Du skal indtaste sæt i den rette rækkefølgende.</target>
       </trans-unit>
+      <trans-unit id="525">
+        <source>League</source>
+        <target>Liga</target>
+      </trans-unit>
 
     </body>
   </file>
