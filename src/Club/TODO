@@ -2,19 +2,24 @@
 atk check for doubles
 make atk members smaller, start from 620 and something, michael holm on 700 is an error
 
-== NOTES TO THIS RELEASE ==
+== NEXT TOPICS ==
+on switch location, stay on last visited page
+translate match module
+design on match module
 make that you have to checkin in order to confirm your booking, otherwice it will be free
+quick create intervals when creating the field
+make sure coupon works with economic
+fix economic
+sort users in IE9 missing style
+
+== NOTES TO THIS RELEASE ==
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 problems with generate repetitions, check up on this
 add error codes to booking API errors
-quick create intervals when creating the field
 can we avoid use intl?
 can we avoid migrations to use so much memory?
-make sure coupon works with economic
 support multiple times on the same interval
-sort users in IE9 missing style
-preselect country to something automatic
 bulk create order to users
 talk with EF sikring regarding to import of users:
   - change bulk users
@@ -35,7 +40,6 @@ find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
 add product on dynamic group
-consider using knpmenu bundle instead of our own
 cannot install when parameter is not on english
 cannot install with multiple payment plugins
 make a quick way to remove all team penalties
@@ -70,13 +74,11 @@ something is broken when creating more intervals on the same field, fix it
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
-change all equal form.html.twig to layout default
 jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
-on switch location, stay on last visited page
 move database install and upgrade to the same library
 tag users on images

@@ -4,15 +4,17 @@ namespace Club\UserBundle\Helper;
 
 class User
 {
+  protected $container;
   protected $em;
   protected $event_dispatcher;
   protected $user;
 
-  public function __construct($em, $event_dispatcher)
+  public function __construct($container)
   {
-    $this->em = $em;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->event_dispatcher = $container->get('event_dispatcher');
     $this->buildUser();
-    $this->event_dispatcher = $event_dispatcher;
   }
 
   public function buildUser()
@@ -26,6 +28,7 @@ class User
     $this->user->setMemberNumber($this->em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
 
     $address = new \Club\UserBundle\Entity\ProfileAddress();
+    $address->setCountry($this->container->getParameter('club_user.default_country'));
     $phone = new \Club\UserBundle\Entity\ProfilePhone();
     $email = new \Club\UserBundle\Entity\ProfileEmail();
 
