@@ -1340,7 +1340,7 @@
       </trans-unit>
       <trans-unit id="336">
         <source>Admin Dashboard</source>
-        <target>Admin Dashboard</target>
+        <target>Admin Aktivitetsoversigt</target>
       </trans-unit>
       <trans-unit id="337">
         <source>Your teams</source>
@@ -2089,6 +2089,10 @@
       <trans-unit id="525">
         <source>League</source>
         <target>Liga</target>
+      </trans-unit>
+      <trans-unit id="526">
+        <source>Dashboard</source>
+        <target>Aktivitetsoversigt</target>
       </trans-unit>
 
     </body>
