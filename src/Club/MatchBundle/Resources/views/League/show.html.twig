@@ -1,0 +1,45 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+
+<h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
+
+<table class="style">
+  <tbody>
+    <tr>
+      <th>{% trans %}Period{% endtrans %}</th>
+      <td>{{ league.startDate|club_date }} - {{ league.endDate|club_date }}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}League type{% endtrans %}</th>
+      {% if league.inviteOnly %}
+      <td>{% trans %}Invite only{% endtrans %}</td>
+      {% else %}
+      <td>{% trans %}Open for all{% endtrans %}</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th>{% trans %}Game set{% endtrans %}</th>
+      <td>{{ league.gameSet }}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Point for victory{% endtrans %}</th>
+      <td>{{ league.rule.pointWon }}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Point for defeat{% endtrans %}</th>
+      <td>{{ league.rule.pointLost }}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Meat same player{% endtrans %}</th>
+      <td>{{ league.rule.matchSamePlayer }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+{% include "ClubMatchBundle:League:match_button.html.twig" %}
+{% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':50} %}
+{% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id, 'limit':50} %}
+
+{% endblock %}

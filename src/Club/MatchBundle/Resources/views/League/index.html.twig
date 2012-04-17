@@ -3,11 +3,11 @@
 {% block body %}
 
 {% for league in leagues %}
-  <h3>{{ league.name }}</h3>
+  <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
 
   {% include "ClubMatchBundle:League:match_button.html.twig" %}
-  {% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id} %}
-  {% render "ClubMatchBundle:League:Top" with {'id':league.id} %}
+  {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':4} %}
+  {% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id, 'limit':10} %}
 
 {% else %}
   <p>{% trans %}There are no leagues.{% endtrans %}</p>

@@ -24,15 +24,30 @@ class LeagueController extends Controller
   }
 
   /**
-   * @Route("/recent/{id}")
+   * @Route("/show/{id}")
    * @Template()
    */
-  public function recentMatchesAction($id)
+  public function showAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $league = $em->find('ClubMatchBundle:League', $id);
-    $matches = $em->getRepository('ClubMatchBundle:League')->getRecentMatches($league);
+
+    return array(
+      'league' => $league
+    );
+  }
+
+  /**
+   * @Route("/recent/{id}/{limit}")
+   * @Template()
+   */
+  public function recentMatchesAction($id, $limit)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $league = $em->find('ClubMatchBundle:League', $id);
+    $matches = $em->getRepository('ClubMatchBundle:League')->getRecentMatches($league, $limit);
 
     return array(
       'matches' => $matches
@@ -40,15 +55,15 @@ class LeagueController extends Controller
   }
 
   /**
-   * @Route("/top/{id}")
+   * @Route("/top/{id}/{limit}")
    * @Template()
    */
-  public function topAction($id)
+  public function topAction($id, $limit)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $league = $em->find('ClubMatchBundle:League', $id);
-    $rank = $em->getRepository('ClubMatchBundle:League')->getTop($league);
+    $rank = $em->getRepository('ClubMatchBundle:League')->getTop($league, $limit);
 
     return array(
       'rank' => $rank
