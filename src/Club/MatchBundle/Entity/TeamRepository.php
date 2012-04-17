@@ -14,7 +14,7 @@ class TeamRepository extends EntityRepository
 {
   public function getTeamByUser(\Club\UserBundle\Entity\User $user)
   {
-    return $this->_em->createQueryBuilder()
+    $team = $this->_em->createQueryBuilder()
       ->select('t')
       ->from('ClubMatchBundle:Team', 't')
       ->leftJoin('t.users', 'u')
@@ -22,5 +22,13 @@ class TeamRepository extends EntityRepository
       ->setParameter('user', $user->getId())
       ->getQuery()
       ->getOneOrNullResult();
+
+    if (!$team) {
+      $team = new \Club\MatchBundle\Entity\Team();
+      $team->addUser($user);
+      $this->_em->persist($team);
+    }
+
+    return $team;
   }
 }

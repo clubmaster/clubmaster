@@ -204,7 +204,10 @@ class LeagueTable
      */
     public function setPoint($point)
     {
-        $this->point = $point;
+      if ($point < 0)
+        $point = 0;
+
+      $this->point = $point;
     }
 
     /**
@@ -279,6 +282,8 @@ class LeagueTable
 
     public function getPercentWon()
     {
+      if (!$this->getPlayed()) return 0;
+
       return sprintf('%d', $this->getWon()/$this->getPlayed()*100);
     }
 }

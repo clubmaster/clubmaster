@@ -18,7 +18,7 @@ class League
     foreach ($matches as $match) {
       foreach ($match->getMatchTeams() as $match_team) {
 
-        $lt = $this->em->getRepository('ClubMatchBundle:LeagueTable')->getUser($match_team);
+        $lt = $this->em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($match_team->getMatch()->getLeague(), $match_team->getTeam());
 
         if ($match_team == $match->getWinner()) {
           $lt->setPlayed($lt->getPlayed()+1);

@@ -203,15 +203,7 @@ class Match
 
   private function getTeam(\Club\UserBundle\Entity\User $user)
   {
-    $team = $this->em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-    if (!$team) {
-      $team = new \Club\MatchBundle\Entity\Team();
-      $team->addUser($user);
-
-      $this->em->persist($team);
-    }
-
-    return $team;
+    return $this->em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
   }
 
   private function addTeam(\Club\MatchBundle\Entity\Team $team)

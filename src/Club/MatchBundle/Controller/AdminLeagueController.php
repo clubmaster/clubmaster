@@ -103,12 +103,19 @@ class AdminLeagueController extends Controller
     if ($form->isValid()) {
       $res = $form->getData();
       $user = $em->find('ClubUserBundle:User', $res['user_id']);
+      if (!$user)
+        $user = $em->getRepository('ClubUserBundle:User')->getOneBySearch(array('query' => $res['user']));
+
       $league = $em->find('ClubMatchBundle:League', $id);
 
       $league->addUser($user);
       $em->persist($league);
-
       $em->flush();
+
+      $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
+      $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
+      $em->flush();
+
       $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
     }
 

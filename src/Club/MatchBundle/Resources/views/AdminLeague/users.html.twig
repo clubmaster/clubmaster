@@ -17,20 +17,22 @@
   <thead>
     <tr>
       <th>{% trans %}Number{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
       <th>{% trans %}League{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for user in league.users %}
     <tr>
       <td>{{ user.memberNumber }}</td>
-      <td>{{ user.league }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ league.name }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminleague_usersdelete', { 'id':league.id, 'user_id':user.id })} %}
       </td>
