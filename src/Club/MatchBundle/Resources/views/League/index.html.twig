@@ -6,7 +6,7 @@
   <h3>{{ league.name }}</h3>
 
   {% include "ClubMatchBundle:League:match_button.html.twig" %}
-  {% include "ClubMatchBundle:League:league_table.html.twig" %}
+  {% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id} %}
 
 {% else %}
   <p>{% trans %}There are no leagues.{% endtrans %}</p>

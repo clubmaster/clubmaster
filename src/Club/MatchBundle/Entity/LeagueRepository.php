@@ -12,24 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class LeagueRepository extends EntityRepository
 {
-  public function getTopLists($limit=10)
+  public function getRecentMatches(\Club\MatchBundle\Entity\League $league, $limit=10)
   {
-    $games = $this->_em->getRepository('ClubMatchBundle:League', 'l')->findAll();
+    $matches = $this->_em->createQueryBuilder()
+      ->select('m')
+      ->from('ClubMatchBundle:Match', 'm')
+      ->where('m.league = :league')
+      ->orderBy('m.id', 'DESC')
+      ->setMaxResults($limit)
+      ->setParameter('league', $league->getId())
+      ->getQuery()
+      ->getResult();
 
-    foreach ($games as $league) {
-      $matches = $this->_em->createQueryBuilder()
-        ->select('m')
-        ->from('ClubMatchBundle:Match', 'm')
-        ->where('m.league = :league')
-        ->orderBy('m.id', 'DESC')
-        ->setMaxResults($limit)
-        ->setParameter('league', $league->getId())
-        ->getQuery()
-        ->getResult();
-
-      $league->setMatches($matches);
-    }
-
-    return $games;
+    return $matches;
   }
 }
