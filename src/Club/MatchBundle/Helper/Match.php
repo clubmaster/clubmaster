@@ -34,8 +34,12 @@ class Match
 
       try {
         $user = $this->em->getRepository('ClubUserBundle:User')->getOneBySearch($r);
+        $this->validateUser($user);
+
       } catch (\Doctrine\ORM\NonUniqueResultException $e) {
         $this->setError($this->translator->trans('Too many users match this search'));
+        return;
+      } catch (\Exception $e) {
         return;
       }
       if (!$user) {
@@ -86,6 +90,22 @@ class Match
   {
     $this->em->persist($this->match);
     $this->em->flush();
+  }
+
+  private function validateUser(\Club\UserBundle\Entity\User $user)
+  {
+    if ($this->match->getLeague()->getGender()) {
+
+      $match_gender = $this->match->getLeague()->getGender();
+
+      if ($user->getProfile()->getGender() != $match_gender) {
+        $this->setError($this->translator->trans('Only %gender% is allowed to play in this league.', array(
+          '%gender%' => $match_gender
+        )));
+
+        throw new \Exception();
+      }
+    }
   }
 
   private function validateRules()
