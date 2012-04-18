@@ -35,6 +35,7 @@ class League
      * @var string $gender
      *
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices = {"male", "female", ""})
      */
     private $gender;
 

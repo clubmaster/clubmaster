@@ -24,10 +24,11 @@ class MatchController extends Controller
 
     $res = array();
     if (!$league->getInviteOnly()) {
-      $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
-        'query' => $query
-      ));
 
+      $search = array('query' => $query);
+      if ($league->getGender()) $search['gender'] = $league->getGender();
+
+      $users = $em->getRepository('ClubUserBundle:User')->getBySearch($search);
       foreach ($users as $user) {
         $res[] = $user->toArray('simple');
       }

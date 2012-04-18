@@ -447,6 +447,11 @@ class UserRepository extends EntityRepository
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
 
+      if (isset($user['gender'])) {
+        $qb->andWhere('p.gender = :gender')
+          ->setParameter('gender', $user['gender']);
+      }
+
       if ($active) $qb = $this->filterActive($qb, true);
     }
 
