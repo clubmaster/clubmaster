@@ -11,6 +11,10 @@ class League extends AbstractType
   {
     $builder->add('name');
     $builder->add('rule');
+    $builder->add('gender', 'choice', array(
+      'choices' => \Club\UserBundle\Helper\Util::getGenders(),
+      'required' => false
+    ));
     $builder->add('invite_only', 'checkbox', array(
       'required' => false
     ));
