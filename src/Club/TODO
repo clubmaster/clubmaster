@@ -24,9 +24,7 @@ add error codes to booking API errors
 can we avoid migrations to use so much memory?
 support multiple times on the same interval
 bulk create order to users
-talk with EF sikring regarding to import of users:
-  - change bulk users
-  - import users
+integration with pro-sec PROFI alarm system
 dont have specific error login page
 improve documentation with phpMyAdmin
 improve documentation of config file
