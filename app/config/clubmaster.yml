@@ -69,6 +69,8 @@ club_booking:
     cancel_minute_created: 5
     booking_style: horizontal
     auto_confirm: true
+    confirm_minutes_before: 120
+    confirm_minutes_after: 5
 
 club_mail:
     default_sender_address: info@clubmaster.org
