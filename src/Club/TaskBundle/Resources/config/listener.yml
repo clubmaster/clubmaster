@@ -4,3 +4,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+  club.task.fixtures.load:
+    class: Club\TaskBundle\Fixtures\Load
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
