@@ -2238,6 +2238,10 @@
         <source>Matches with same opponent</source>
         <target>Kampe med samme modstander</target>
       </trans-unit>
+      <trans-unit id="563">
+        <source>There are no leagues.</source>
+        <target>Der er ingen ligaer.</target>
+      </trans-unit>
 
     </body>
   </file>
