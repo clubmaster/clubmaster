@@ -32,7 +32,7 @@ ClubTaskBundle:
     type:     annotation
 
 ClubMailBundle:
-    resource: "@ClubMailBundle/Resources/config/routing.yml"
+    resource: "@ClubMailBundle/Controller/"
 
 ClubLogBundle:
     resource: "@ClubLogBundle/Resources/config/routing.yml"
