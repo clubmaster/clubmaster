@@ -13,7 +13,7 @@ class CleanupBooking
     $this->em = $container->get('doctrine.orm.entity_manager');
   }
 
-  public function onBookingCleanup(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
+  public function onBookingCleanup(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $after = new \DateTime();
     $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_after').'M');
@@ -22,7 +22,7 @@ class CleanupBooking
     $bookings = $this->em->createQueryBuilder()
       ->select('b')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->wWhere('b.first_date < :after')
+      ->where('b.first_date < :after')
       ->andWhere('b.confirmed = false')
       ->setParameter('after', $after)
       ->getQuery()
@@ -32,6 +32,7 @@ class CleanupBooking
       $this->container->get('club_booking.booking')->setBooking($booking);
       $this->container->get('club_booking.booking')->remove();
     }
+    return;
 
     $this->em->flush();
   }
