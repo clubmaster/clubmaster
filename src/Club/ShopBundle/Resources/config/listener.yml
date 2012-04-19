@@ -31,12 +31,12 @@ services:
       - { name: kernel.event_listener, event: coupon.use, method: onCouponUse }
   club.shopbundle.top_menu_listener:
     class: Club\ShopBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator]
+    arguments: [@router, @security.context, @translator, @service_container]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
   club.shopbundle.left_menu_listener:
     class: Club\ShopBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator]
+    arguments: [@router, @security.context, @translator, @service_container]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
   club.shopbundle.dashboard_listener:

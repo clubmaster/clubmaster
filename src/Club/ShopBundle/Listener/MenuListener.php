@@ -7,12 +7,14 @@ class MenuListener
   private $router;
   private $security_context;
   private $translator;
+  private $container;
 
-  public function __construct($router, $security_context, $translator)
+  public function __construct($router, $security_context, $translator, $container)
   {
     $this->router = $router;
     $this->security_context = $security_context;
     $this->translator = $translator;
+    $this->container = $container;
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -61,11 +63,12 @@ class MenuListener
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu[30] = array(
-      'name' => $this->translator->trans('Shop'),
-      'route' => $this->router->generate('shop')
-    );
-
-    $event->appendItem($menu);
+    if ($this->container->getParameter('club_shop.view_shop')) {
+      $menu[30] = array(
+        'name' => $this->translator->trans('Shop'),
+        'route' => $this->router->generate('shop')
+      );
+      $event->appendItem($menu);
+    }
   }
 }

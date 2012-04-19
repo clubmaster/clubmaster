@@ -155,8 +155,18 @@ class Economic
 
   public function addFinanceVoucher(\Club\ShopBundle\Entity\OrderProduct $order_product)
   {
+    switch ($order_product->getType()) {
+    case 'coupon':
+      $account = $this->getAccount($this->container->getParameter('club_shop.coupon_account_number'));
+      break;
+    case 'product':
+      $account = $this->getAccount($order_product->getProduct()->getAccountNumber());
+      break;
+    default:
+      return;
+    }
+
     $contra_account = $this->getAccount($this->container->getParameter('club_account_economic.contraAccount'));
-    $account = $this->getAccount($order_product->getProduct()->getAccountNumber());
     $cashbook = $this->getCashBookByName($this->container->getParameter('club_account_economic.cashbook'));
     $currency = $this->getCurrencyByCode($this->container->getParameter('club_account_economic.currency'));
 
