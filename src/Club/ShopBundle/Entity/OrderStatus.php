@@ -30,9 +30,16 @@ class OrderStatus
     /**
      * @ORM\Column(type="boolean")
      *
-     * var boolean $accepted
+     * var boolean $paid
      */
-    protected $accepted;
+    protected $paid;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * var boolean $delivered
+     */
+    protected $delivered;
 
     /**
      * @ORM\Column(type="boolean")
@@ -85,26 +92,6 @@ class OrderStatus
     }
 
     /**
-     * Set accepted
-     *
-     * @param string $accepted
-     */
-    public function setAccepted($accepted)
-    {
-        $this->accepted = $accepted;
-    }
-
-    /**
-     * Get accepted
-     *
-     * @return string $accepted
-     */
-    public function getAccepted()
-    {
-        return $this->accepted;
-    }
-
-    /**
      * Set cancelled
      *
      * @param string $cancelled
@@ -142,5 +129,45 @@ class OrderStatus
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid()
+    {
+        return $this->paid;
+    }
+
+    /**
+     * Set delivered
+     *
+     * @param boolean $delivered
+     */
+    public function setDelivered($delivered)
+    {
+        $this->delivered = $delivered;
+    }
+
+    /**
+     * Get delivered
+     *
+     * @return boolean
+     */
+    public function getDelivered()
+    {
+        return $this->delivered;
     }
 }

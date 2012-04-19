@@ -92,6 +92,17 @@ class Order
     $status->setNote($this->order->getNote());
     $this->em->persist($status);
 
+    if ($order_status->getDelivered()) {
+      $this->order->setDelivered(true);
+      $this->em->persist($this->order);
+    } elseif ($order_status->getPaid()) {
+      $this->order->setPaid(true);
+      $this->em->persist($this->order);
+    } elseif ($order_status->getCancelled()) {
+      $this->order->setCancelled(true);
+      $this->em->persist($this->order);
+    }
+
     $this->em->flush();
 
     $event = new \Club\ShopBundle\Event\FilterOrderEvent($this->order);
@@ -273,9 +284,10 @@ class Order
     if ($this->order->getPaid()) return;
 
     if ($this->order->getAmountLeft() == 0)
-      $this->order->setPaid(true);
+      $status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getPaid();
+      $this->changeStatus($status);
+    }
 
-    $this->em->persist($this->order);
     $this->em->flush();
 
     if ($this->order->getAmountLeft() > 0) return;
@@ -286,7 +298,7 @@ class Order
     }
 
     if ($delivered) {
-      $status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getAcceptedStatus();
+      $status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getDelivered();
       $this->changeStatus($status);
     }
 

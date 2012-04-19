@@ -66,7 +66,7 @@ class AdminOrderController extends Controller
     $order = $em->find('ClubShopBundle:Order',$id);
 
     $this->container->get('order')->setOrder($order);
-    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelledStatus();
+    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelled();
     $this->container->get('order')->changeStatus($status);
 
     return $this->redirect($this->generateUrl('admin_shop_order'));
