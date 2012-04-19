@@ -45,3 +45,8 @@ services:
     tags:
       - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
       - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView, priority: 5 }
+  club.shop.fixtures.load:
+    class: Club\ShopBundle\Fixtures\Load
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
