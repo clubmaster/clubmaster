@@ -124,7 +124,5 @@ class Load
         $this->em->persist($cur);
       }
     }
-
-    $this->em->flush();
   }
 }
