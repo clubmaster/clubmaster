@@ -40,8 +40,8 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView }
-  club.user.listener.fixtures:
-    class: Club\UserBundle\Fixtures\Currency
+  club.user.fixtures.load:
+    class: Club\UserBundle\Fixtures\Load
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
