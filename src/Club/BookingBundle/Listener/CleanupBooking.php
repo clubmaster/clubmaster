@@ -22,7 +22,7 @@ class CleanupBooking
     $bookings = $this->em->createQueryBuilder()
       ->select('b')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date < :after')
+      ->where('b.end_date < :after')
       ->andWhere('b.confirmed = false')
       ->setParameter('after', $after)
       ->getQuery()
@@ -32,7 +32,6 @@ class CleanupBooking
       $this->container->get('club_booking.booking')->setBooking($booking);
       $this->container->get('club_booking.booking')->remove();
     }
-    return;
 
     $this->em->flush();
   }
