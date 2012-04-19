@@ -13,7 +13,6 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 remove all fixtures, find a way to init all data in an another way
-better view shipping and payment method used in order view
 problems with generate repetitions, check up on this
 
 == NOTES TO THIS RELEASE ==

@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Payment method{% endtrans %}</th>
       <th>{% trans %}Amount{% endtrans %}</th>
       <th>{% trans %}Currency{% endtrans %}</th>
       <th>{% trans %}Accepted{% endtrans %}</th>
@@ -12,13 +13,14 @@
   </thead>
   <tfoot>
     <tr>
-      <th colspan="5">&#160;</th>
+      <th colspan="6">&#160;</th>
     </tr>
   </tfoot>
   <tbody>
   {% for log in order.purchaseLog %}
     <tr>
       <td>{{ log.createdAt|club_datetime }}</td>
+      <td>{{ log.paymentMethod.paymentMethodName }}</td>
       <td>{{ log.amount/100 }}</td>
       <td>{{ log.currency }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':log.accepted} %}</td>

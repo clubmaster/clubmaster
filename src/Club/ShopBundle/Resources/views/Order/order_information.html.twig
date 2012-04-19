@@ -16,7 +16,6 @@
   <label>{% trans %}Postal{% endtrans %}</label>{{ order.shippingAddress.postalCode }}<br />
   <label>{% trans %}City{% endtrans %}</label>{{ order.shippingAddress.city }}<br />
   <label>{% trans %}Country{% endtrans %}</label>{{ order.shippingAddress.country }}</p>
-  <p>{{ order.shipping }}</p>
 
   <h2>{% trans %}Billing{% endtrans %}</h2>
   <p><label>{% trans %}Company{% endtrans %}</label>{{order.billingAddress.companyName }}<br />
@@ -26,5 +25,4 @@
   <label>{% trans %}Postal{% endtrans %}</label>{{ order.billingAddress.postalCode }}<br />
   <label>{% trans %}City{% endtrans %}</label>{{ order.billingAddress.city }}<br />
   <label>{% trans %}Country{% endtrans %}</label>{{ order.billingAddress.country }}</p>
-  <p>{{ order.paymentMethod }}</p>
 </div>
