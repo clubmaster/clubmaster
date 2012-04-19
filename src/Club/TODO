@@ -43,7 +43,6 @@ does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
 find a way that the api does not care if it ends on / or not
-mark a search, and create an order to the group
 
 == NOTES TO LATER ==
 add leagues to tournaments, use of tags or something
