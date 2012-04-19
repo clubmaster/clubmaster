@@ -9,13 +9,15 @@ make sure all orders taht is cancelled is cancelled
 
 == ATK ==
 atk check for doubles
+make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
+whats up with empty plans?
 remove all fixtures, find a way to init all data in an another way
-make sure guest book works with economic
 problems with generate repetitions, check up on this
 
 == NOTES TO THIS RELEASE ==
+guest_bookings products will also be auto delivery
 better view shipping and payment method used in order view
 consider make guest book and coupon to products too, that will make the account_number much easier
 make the API force browser to refresh
