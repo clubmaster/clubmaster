@@ -23,7 +23,7 @@ class CashController extends Controller
       $log = new \Club\ShopBundle\Entity\PurchaseLog();
       $log->setOrder($order);
       $log->setPaymentMethod($payment);
-      $log->setAmount($order->getPrice());
+      $log->setAmount($order->getAmountLeft());
       $log->setAccepted(true);
       $log->setCurrency($order->getCurrency());
 
