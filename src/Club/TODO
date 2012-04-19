@@ -13,6 +13,7 @@ make sure all orders taht is cancelled is cancelled
 make rigth order statuses
 
 == NEXT TOPICS ==
+remove all fixtures, find a way to init all data in an another way
 design on match module
 quick create intervals when creating the field
 make sure coupon works with economic
@@ -31,7 +32,6 @@ talk with EF sikring regarding to import of users:
   - import users
 dont have specific error login page
 improve documentation with phpMyAdmin
-remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
