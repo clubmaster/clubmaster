@@ -175,16 +175,19 @@ class InstallerController extends Controller
     $configuration = $this->getMigrationsConfiguration();
     $migration = new \Doctrine\DBAL\Migrations\Migration($configuration);
 
-    $from = $configuration->getCurrentVersion();
+    //$from = $configuration->getCurrentVersion();
     $to = $configuration->getLatestVersion();
     $migrations = $configuration->getMigrations();
 
+    $migration->migrate($to);
+    /*
     foreach ($migrations as $version) {
       if ($version->getVersion() > $from) {
         $migration->migrate($version->getVersion());
         $this->loadFixtures($version->getVersion());
       }
     }
+     */
   }
 
   private function loadFixtures($version)
@@ -204,5 +207,4 @@ class InstallerController extends Controller
 
     $executor->execute($fixtures, true);
   }
-
 }
