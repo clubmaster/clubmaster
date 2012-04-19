@@ -8,9 +8,6 @@ make sure all orders taht is cancelled is cancelled
 
 == ATK ==
 atk check for doubles
-make sure all orders that is delivered is delivered
-make sure all orders taht is cancelled is cancelled
-make rigth order statuses
 
 == NEXT TOPICS ==
 fix currentcy intl class must not be required

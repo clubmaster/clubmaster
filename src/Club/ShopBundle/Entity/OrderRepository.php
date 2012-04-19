@@ -60,9 +60,8 @@ class OrderRepository extends EntityRepository
   public function getOpenOrders($limit=10, \Club\UserBundle\Entity\User $user=null)
   {
     $qb = $this->getQueryBuilder()
-      ->where('o.paid = false')
-      ->orWhere('o.delivered = false')
-      ->orWhere('o.cancelled = false')
+      ->where('o.paid = false OR o.delivered = false')
+      ->andWhere('o.cancelled = false')
       ->setMaxResults($limit)
       ->orderBy('o.updated_at', 'DESC');
 
