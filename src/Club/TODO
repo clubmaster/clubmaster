@@ -1,8 +1,10 @@
 == ATK ==
 atk check for doubles
+make sure all orders that is delivered is delivered
+make sure all orders taht is cancelled is cancelled
+make rigth order statuses for ATK and nibe
 
 == NEXT TOPICS ==
-list undelivered orders on admin dashboard
 design on match module
 quick create intervals when creating the field
 make sure coupon works with economic

@@ -11,7 +11,10 @@ class OrderStatus extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('status_name');
-    $builder->add('accepted','checkbox',array(
+    $builder->add('paid','checkbox',array(
+      'required' => false
+    ));
+    $builder->add('delivered','checkbox',array(
       'required' => false
     ));
     $builder->add('cancelled','checkbox',array(
