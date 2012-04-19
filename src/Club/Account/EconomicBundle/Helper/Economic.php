@@ -160,6 +160,7 @@ class Economic
       $account = $this->getAccount($this->container->getParameter('club_shop.coupon_account_number'));
       break;
     case 'product':
+    case 'subscription':
       $account = $this->getAccount($order_product->getProduct()->getAccountNumber());
       break;
     default:
