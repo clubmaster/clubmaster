@@ -22,7 +22,7 @@
     <tr>
       <td>{{ ban.type }}</td>
       <td>{{ ban.value }}</td>
-      <td>{{ ban.expireDate|date("Y-m-d H:i:s") }}</td>
+      <td>{{ ban.expireDate|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:expire_link.html.twig" with {'url':path('ban_expire', {'id':ban.id})} %}
         {% include "ClubLayoutBundle:Default:extend_link.html.twig" with {'url':path('ban_extend', {'id':ban.id})} %}

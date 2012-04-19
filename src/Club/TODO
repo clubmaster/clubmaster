@@ -24,7 +24,6 @@ make a button to accept business terms
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 add error codes to booking API errors
-can we avoid use intl?
 can we avoid migrations to use so much memory?
 support multiple times on the same interval
 bulk create order to users
