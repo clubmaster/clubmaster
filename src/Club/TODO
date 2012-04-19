@@ -13,12 +13,10 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 remove all fixtures, find a way to init all data in an another way
+better view shipping and payment method used in order view
 problems with generate repetitions, check up on this
 
 == NOTES TO THIS RELEASE ==
-guest_bookings products will also be auto delivery
-better view shipping and payment method used in order view
-consider make guest book and coupon to products too, that will make the account_number much easier
 make the API force browser to refresh
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 make a button to accept business terms
@@ -43,6 +41,7 @@ configurationbundle and installerbundle should be disabled after install
 find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
+consider make guest book and coupon to products too, that will make the account_number much easier
 quick create intervals when creating the field
 add leagues to tournaments, use of tags or something
 add product on dynamic group

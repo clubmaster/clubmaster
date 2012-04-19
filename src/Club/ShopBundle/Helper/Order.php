@@ -294,7 +294,7 @@ class Order
 
     $delivered = true;
     foreach ($this->order->getProducts() as $prod) {
-      if ($prod->getType() != 'subscription') $delivered = false;
+      if (!preg_match("/(subscription|guest_booking|coupon)/", $prod->getType())) $delivered = false;
     }
 
     if ($delivered) {
