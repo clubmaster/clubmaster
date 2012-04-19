@@ -6,7 +6,7 @@ club_user:
     default_country: DK
 
 club_account_economic:
-    enabled: true
+    enabled: false
     agreement: xxxxxx
     username: xxx
     password: xxxxxxxx
@@ -41,6 +41,11 @@ club_event:
 
 club_match:
     enabled: true
+
+club_shop:
+    view_shop: true
+    coupon_account_number: 1010
+    guest_account_number: 1010
 
 club_team:
     enabled: true
