@@ -3,6 +3,7 @@ create memberships to all
 remove all products except senior
 rename senior to more default membership name
 make rigth order statuses
+add task for booking cleanup
 make sure all orders that is delivered is delivered
 make sure all orders taht is cancelled is cancelled
 
