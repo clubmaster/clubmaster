@@ -310,6 +310,11 @@ class Booking
     $this->price = $price;
   }
 
+  public function setBooking($booking)
+  {
+    $this->booking = $booking;
+  }
+
   public function getPrice()
   {
     return $this->price;

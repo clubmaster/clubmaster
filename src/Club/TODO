@@ -4,15 +4,12 @@ mark all bookings as confirmed
 
 == NEXT TOPICS ==
 design on match module
-make that you have to checkin in order to confirm your booking, otherwice it will be free
 quick create intervals when creating the field
 make sure coupon works with economic
-sort users in IE9 missing style
 
 == NOTES TO THIS RELEASE ==
 fill all empty member numbers
 make a button to accept business terms
-fix colors in checkout
 list undelivered orders on admin dashboard
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -38,6 +35,7 @@ does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
 find a way that the api does not care if it ends on / or not
+mark a search, and create an order to the group
 
 == NOTES TO LATER ==
 add leagues to tournaments, use of tags or something

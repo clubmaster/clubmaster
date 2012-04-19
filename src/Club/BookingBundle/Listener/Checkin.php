@@ -20,11 +20,11 @@ class Checkin
     $checkin = $event->getCheckin();
 
     $before = new \DateTime();
-    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.minutes_before').'M');
+    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirn_minutes_before').'M');
     $before->add($i);
 
     $after = new \DateTime();
-    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.minutes_after').'M');
+    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_after').'M');
     $after->sub($i);
 
     $bookings = $this->em->createQueryBuilder()
