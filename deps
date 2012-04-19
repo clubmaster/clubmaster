@@ -69,13 +69,6 @@
     git=https://github.com/symfony/DoctrineMigrationsBundle.git
     target=/bundles/Symfony/Bundle/DoctrineMigrationsBundle
 
-[doctrine-fixtures]
-    git=http://github.com/doctrine/data-fixtures.git
-
-[DoctrineFixturesBundle]
-    git=http://github.com/symfony/DoctrineFixturesBundle.git
-    target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
-
 [OrnicarGravatarBundle]
     git=http://github.com/ornicar/GravatarBundle.git
     target=/bundles/Ornicar/GravatarBundle
