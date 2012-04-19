@@ -22,11 +22,11 @@ class MenuListener
       'route' => $this->router->generate('club_welcome_adminwelcome_index'),
       'items' => array(
         array(
-          'name' => 'Welcome page',
+          'name' => $this->translator->trans('Welcome page'),
           'route' => $this->router->generate('club_welcome_adminwelcome_index')
         ),
         array(
-          'name' => 'Blog',
+          'name' => $this->translator->trans('Blog'),
           'route' => $this->router->generate('club_welcome_adminblog_index')
         )
       )

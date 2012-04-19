@@ -2250,6 +2250,14 @@
         <source>League info</source>
         <target>Liga info</target>
       </trans-unit>
+      <trans-unit id="566">
+        <source>Welcome page</source>
+        <target>Velkomst side</target>
+      </trans-unit>
+      <trans-unit id="568">
+        <source>Content</source>
+        <target>Indhold</target>
+      </trans-unit>
 
     </body>
   </file>
