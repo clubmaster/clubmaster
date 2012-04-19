@@ -10,7 +10,6 @@ make sure all orders taht is cancelled is cancelled
 atk check for doubles
 
 == NEXT TOPICS ==
-fix currentcy intl class must not be required
 remove all fixtures, find a way to init all data in an another way
 design on match module
 quick create intervals when creating the field

@@ -24,6 +24,9 @@ class CurrencyExtension extends \Twig_Extension
 
   public function getPrice($value)
   {
+    if (!$this->intlExists())
+      return $value;
+
     $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(
       'default_currency',
       $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
@@ -31,6 +34,11 @@ class CurrencyExtension extends \Twig_Extension
 
     $fmt = new \NumberFormatter($this->session->getLocale(), \NumberFormatter::CURRENCY);
     return $fmt->formatCurrency($value, $currency->getCode());
+  }
+
+  protected function intlExists()
+  {
+    return (class_exists('NumberFormatter')) ? true : false;
   }
 
   public function getName()
