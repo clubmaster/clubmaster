@@ -53,10 +53,6 @@ class MenuListener
           'name' => $this->translator->trans('Currency'),
           'route' => $this->router->generate('admin_currency')
         ),
-        array(
-          'name' => $this->translator->trans('Mail Templates'),
-          'route' => $this->router->generate('club_mail_adminmail_index')
-        )
       )
     );
 
