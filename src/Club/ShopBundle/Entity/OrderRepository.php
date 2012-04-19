@@ -57,28 +57,12 @@ class OrderRepository extends EntityRepository
     return $qb;
   }
 
-  public function isFirstAccepted(\Club\ShopBundle\Entity\Order $order)
-  {
-    if (!$order->getOrderStatus()->getAccepted())
-      return false;
-
-    foreach ($order->getOrderStatusHistory() as $status) {
-      // check if order already has been accepted
-      if ($status->getOrderStatus()->getAccepted()) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   public function getOpenOrders($limit=10, \Club\UserBundle\Entity\User $user=null)
   {
     $qb = $this->getQueryBuilder()
-      ->leftJoin('o.order_status', 'os')
-      ->andWhere('o.paid = false')
-      ->andWhere('os.accepted = false')
-      ->andWhere('os.cancelled = false')
+      ->where('o.paid = false')
+      ->orWhere('o.delivered = false')
+      ->orWhere('o.cancelled = false')
       ->setMaxResults($limit)
       ->orderBy('o.updated_at', 'DESC');
 

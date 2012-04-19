@@ -14,15 +14,15 @@ class UserRepository extends EntityRepository
 {
   public function findNextMemberNumber()
   {
-    $dql = "SELECT u FROM ClubUserBundle:User u ORDER BY u.member_number DESC";
+    $i = 0;
+    $users = $this->_em->getRepository('ClubUserBundle:User')->findBy(array(),array('member_number' => 'asc'));
+    if (!$users) return 1;
 
-    $query = $this->_em->createQuery($dql);
-    $query->setMaxResults(1);
-
-    $r = $query->getResult();
-
-    if (!count($r)) return 1;
-    return $r[0]->getMemberNumber()+1;
+    foreach ($users as $user) {
+      $i++;
+      if ($user->getMemberNumber() != $i)
+        return $i;
+    }
   }
 
   public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
@@ -446,6 +446,11 @@ class UserRepository extends EntityRepository
         ->orderBy($sort, 'ASC')
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
+
+      if (isset($user['gender'])) {
+        $qb->andWhere('p.gender = :gender')
+          ->setParameter('gender', $user['gender']);
+      }
 
       if ($active) $qb = $this->filterActive($qb, true);
     }

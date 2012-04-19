@@ -1,23 +1,30 @@
+== NIBE ==
+create memberships to all
+remove all products except senior
+rename senior to more default membership name
+make rigth order statuses
+make sure all orders that is delivered is delivered
+make sure all orders taht is cancelled is cancelled
+
 == ATK ==
 atk check for doubles
-make atk members smaller, start from 620 and something, michael holm on 700 is an error
+make sure all orders that is delivered is delivered
+make sure all orders taht is cancelled is cancelled
+make rigth order statuses
 
 == NEXT TOPICS ==
-ranking only for men, women or both
-translate match module
+fix currentcy intl class must not be required
+remove all fixtures, find a way to init all data in an another way
 design on match module
-make that you have to checkin in order to confirm your booking, otherwice it will be free
 quick create intervals when creating the field
 make sure coupon works with economic
-fix economic
-sort users in IE9 missing style
+problems with generate repetitions, check up on this
 
 == NOTES TO THIS RELEASE ==
+make a button to accept business terms
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
-problems with generate repetitions, check up on this
 add error codes to booking API errors
-can we avoid use intl?
 can we avoid migrations to use so much memory?
 support multiple times on the same interval
 bulk create order to users
@@ -26,7 +33,6 @@ talk with EF sikring regarding to import of users:
   - import users
 dont have specific error login page
 improve documentation with phpMyAdmin
-remove all fixtures, find a way to init all data in an another way
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general

@@ -15,4 +15,5 @@ final class Events
   const onTeamPenalty = 'team.penalty';
   const onTaskError = 'task.error';
   const onMatchTask = 'match.task';
+  const onBookingCleanup = 'booking.cleanup';
 }

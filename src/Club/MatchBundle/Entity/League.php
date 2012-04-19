@@ -4,6 +4,7 @@ namespace Club\MatchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Club\UserBundle\Helper\Util;
 
 /**
  * Club\MatchBundle\Entity\League
@@ -29,6 +30,14 @@ class League
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string $gender
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices = {"male", "female", ""})
+     */
+    private $gender;
 
     /**
      * @var boolean $invite_only
@@ -373,5 +382,29 @@ class League
       }
 
       return false;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+      if (!strlen($gender)) {
+        $this->gender = null;
+      } else {
+        $this->gender = $gender;
+      }
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 }

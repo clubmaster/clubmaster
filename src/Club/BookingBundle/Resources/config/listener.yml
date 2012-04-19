@@ -19,3 +19,13 @@ services:
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: member.view, method: onMemberView }
+  club.booking.listener.checkin:
+    class: Club\BookingBundle\Listener\Checkin
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: checkin, method: onCheckin }
+  club.booking.listener.checkin:
+    class: Club\BookingBundle\Listener\CleanupBooking
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: booking.cleanup, method: onBookingCleanup }

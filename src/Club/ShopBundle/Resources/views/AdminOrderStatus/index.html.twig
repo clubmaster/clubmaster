@@ -7,7 +7,8 @@
   <thead>
     <tr>
       <th>{% trans %}Status name{% endtrans %}</th>
-      <th>{% trans %}Accepted{% endtrans %}</th>
+      <th>{% trans %}Paid{% endtrans %}</th>
+      <th>{% trans %}Delivered{% endtrans %}</th>
       <th>{% trans %}Cancelled{% endtrans %}</th>
       <th>{% trans %}Priority{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
@@ -15,14 +16,15 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="5">&#160;</td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for status in orderstatuses %}
     <tr>
       <td>{{ status.statusName }}</td>
-      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.accepted} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.paid} %}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.delivered} %}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':status.cancelled} %}</td>
       <td>{{ status.priority }}</td>
       <td>
@@ -32,7 +34,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="5">{% trans %}There are no statuses.{% endtrans %}</td>
+    <td colspan="6">{% trans %}There are no statuses.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

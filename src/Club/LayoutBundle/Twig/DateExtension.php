@@ -29,6 +29,9 @@ class DateExtension extends \Twig_Extension
 
   public function getDate($value, $type='SHORT')
   {
+    if (!$this->intlExists())
+      return $value->format('Y-m-d');
+
     $type = strtoupper($type);
     switch ($type) {
     case 'FULL':
@@ -50,6 +53,9 @@ class DateExtension extends \Twig_Extension
 
   public function getDateTime($value, $type='SHORT')
   {
+    if (!$this->intlExists())
+      return $value->format('Y-m-d H:i');
+
     $type = strtoupper($type);
     switch ($type) {
     case 'FULL':
@@ -75,6 +81,9 @@ class DateExtension extends \Twig_Extension
 
   public function getTime($value, $type='SHORT')
   {
+    if (!$this->intlExists())
+      return $value->format('H:i');
+
     $type = strtoupper($type);
     switch ($type) {
     case 'FULL':
@@ -103,9 +112,17 @@ class DateExtension extends \Twig_Extension
       $date = $value;
     }
 
+    if (!$this->intlExists())
+      return strtolower($date->format('l'));
+
     $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, date_default_timezone_get());
     $fmt->setPattern('eeee');
     return $fmt->format($date);
+  }
+
+  protected function intlExists()
+  {
+    return (class_exists('IntlDateFormatter')) ? true : false;
   }
 
   public function getName()

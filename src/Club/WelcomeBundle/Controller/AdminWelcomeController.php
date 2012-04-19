@@ -10,6 +10,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminWelcomeController extends Controller
 {
   /**
+   * @Route("/welcome")
+   * @Template()
+   */
+  public function indexAction()
+  {
+    return $this->redirect($this->generateUrl('club_welcome_adminwelcome_edit', array('location_id' => 1)));
+  }
+
+  /**
    * @Route("/welcome/edit/{location_id}")
    * @Template()
    */

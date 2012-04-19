@@ -40,6 +40,8 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('auto_confirm')->isRequired()->end()
             ->scalarNode('guest_price')->isRequired()->end()
             ->scalarNode('guest_unpaid_allowed')->isRequired()->end()
+            ->scalarNode('confirm_minutes_before')->isRequired()->end()
+            ->scalarNode('confirm_minutes_after')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

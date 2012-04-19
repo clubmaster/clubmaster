@@ -125,8 +125,6 @@ class AdminPlanController extends Controller
 
   private function getForm(\Club\BookingBundle\Entity\Plan $plan)
   {
-    $days = $this->get('club_booking.interval')->getDays();
-
     return $this->createFormBuilder($plan)
       ->add('name')
       ->add('description')
@@ -140,7 +138,7 @@ class AdminPlanController extends Controller
         'property' => 'formString'
       ))
       ->add('day', 'choice', array(
-        'choices' => $days
+        'choices' => $this->get('club_booking.interval')->getDays()
       ))
       ->getForm();
   }

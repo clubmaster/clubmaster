@@ -21,9 +21,6 @@ class OrderAcceptedListener
   {
     $order = $event->getOrder();
 
-    if (!$this->em->getRepository('ClubShopBundle:Order')->isFirstAccepted($order))
-      return;
-
     $email = $order->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {

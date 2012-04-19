@@ -71,6 +71,20 @@ class Order
     protected $paid;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var string $delivered
+     */
+    protected $delivered;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var string $cancelled
+     */
+    protected $cancelled;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PaymentMethod")
      * @Assert\NotBlank(groups={"PaymentMethod"})
      *
@@ -166,6 +180,8 @@ class Order
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
       $this->order_status_history = new \Doctrine\Common\Collections\ArrayCollection();
       $this->setPaid(false);
+      $this->setDelivered(false);
+      $this->setCancelled(false);
     }
 
     /**
@@ -541,5 +557,45 @@ class Order
     public function getPurchaseLog()
     {
         return $this->purchase_log;
+    }
+
+    /**
+     * Set delivered
+     *
+     * @param boolean $delivered
+     */
+    public function setDelivered($delivered)
+    {
+        $this->delivered = $delivered;
+    }
+
+    /**
+     * Get delivered
+     *
+     * @return boolean
+     */
+    public function getDelivered()
+    {
+        return $this->delivered;
+    }
+
+    /**
+     * Set cancelled
+     *
+     * @param boolean $cancelled
+     */
+    public function setCancelled($cancelled)
+    {
+        $this->cancelled = $cancelled;
+    }
+
+    /**
+     * Get cancelled
+     *
+     * @return boolean
+     */
+    public function getCancelled()
+    {
+        return $this->cancelled;
     }
 }
