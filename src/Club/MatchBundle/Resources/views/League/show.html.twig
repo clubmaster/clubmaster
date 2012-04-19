@@ -2,8 +2,11 @@
 
 {% block body %}
 
+{% include "ClubMatchBundle:League:match_button.html.twig" %}
+
 <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
 
+<h4>{% trans %}League info{% endtrans %}</h4>
 <table class="style">
   <tbody>
     <tr>
@@ -34,11 +37,9 @@
       <th>{% trans %}Matches with same opponent{% endtrans %}</th>
       <td>{{ league.rule.matchSamePlayer }}</td>
     </tr>
-
   </tbody>
 </table>
 
-{% include "ClubMatchBundle:League:match_button.html.twig" %}
 {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':50} %}
 {% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id, 'limit':50} %}
 

@@ -6,10 +6,8 @@
   <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
 
   {% include "ClubMatchBundle:League:match_button.html.twig" %}
-  <h4>{% trans %}Ranking{% endtrans %}</h4>
-  {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':4} %}
 
-  <h4>{% trans %}Recent matches{% endtrans %}</h4>
+  {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':4} %}
   {% render "ClubMatchBundle:League:RecentMatches" with {'id':league.id, 'limit':10} %}
 
 {% else %}

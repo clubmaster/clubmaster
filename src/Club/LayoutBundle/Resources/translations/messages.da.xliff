@@ -2246,6 +2246,10 @@
         <source>No matches has been played.</source>
         <target>Der er ikke spillet nogen kampe.</target>
       </trans-unit>
+      <trans-unit id="565">
+        <source>League info</source>
+        <target>Liga info</target>
+      </trans-unit>
 
     </body>
   </file>
