@@ -7,8 +7,6 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
-
-== NOTES TO THIS RELEASE ==
 move away from migrations, cannot be used due to use of third party applications
 improve documentation with phpMyAdmin
 improve documentation of config file
