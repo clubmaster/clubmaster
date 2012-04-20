@@ -2,7 +2,7 @@
 create memberships to all
 remove all products except senior
 rename senior to more default membership name
-make rigth order statuses
+make right order statuses
 add task for booking cleanup
 make sure all orders that is delivered is delivered
 make sure all orders taht is cancelled is cancelled
@@ -15,13 +15,13 @@ make subscriptions start 20.04.2012
 problems with generate repetitions, check up on this
 
 == NOTES TO THIS RELEASE ==
+move away from migrations, cannot be used due to use of third party applications
 make the API force browser to refresh
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 make a button to accept business terms
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 add error codes to booking API errors
-can we avoid migrations to use so much memory?
 support multiple times on the same interval
 bulk create order to users
 integration with pro-sec PROFI alarm system
@@ -32,7 +32,6 @@ improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
 test for banning does not work, it pick wrong user
 do routing to annotation instead of, check default install of symfony bundle
-merge migrations into one file
 does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
