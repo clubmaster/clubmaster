@@ -1,11 +1,5 @@
 == NIBE ==
 create memberships to all
-remove all products except senior
-rename senior to more default membership name
-make right order statuses
-add task for booking cleanup
-make sure all orders that is delivered is delivered
-make sure all orders taht is cancelled is cancelled
 
 == ATK ==
 atk check for doubles
@@ -13,6 +7,8 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
+reset users password when administrator
+add password when creating user as admin
 
 == NOTES TO THIS RELEASE ==
 move away from migrations, cannot be used due to use of third party applications
