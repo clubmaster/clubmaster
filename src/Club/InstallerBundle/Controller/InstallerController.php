@@ -33,16 +33,7 @@ class InstallerController extends Controller
    */
   public function databaseAction()
   {
-    try {
-      $configuration = $this->getMigrationsConfiguration();
-      $current = $configuration->getCurrentVersion();
-    } catch (\Exception $e) {
-      $this->get('session')->setFlash('error', $e->getMessage());
-    }
-
-    return array(
-      'configuration' => $configuration
-    );
+    return array();
   }
 
   /**
@@ -147,38 +138,9 @@ class InstallerController extends Controller
    */
   public function migrateAction()
   {
-    $this->migrate();
+    $this->get('club_installer.database')->migrate();
 
     $this->get('session')->setFlash('notice', 'Database was successful installed');
     return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
-  }
-
-  private function getMigrationsConfiguration()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $dir = $this->container->getParameter('doctrine_migrations.dir_name');
-    $configuration = new \Doctrine\DBAL\Migrations\Configuration\Configuration($em->getConnection());
-    $configuration->setMigrationsNamespace($this->container->getParameter('doctrine_migrations.namespace'));
-    $configuration->setMigrationsDirectory($dir);
-    $configuration->registerMigrationsFromDirectory($dir);
-    $configuration->setName($this->container->getParameter('doctrine_migrations.name'));
-    $configuration->setMigrationsTableName($this->container->getParameter('doctrine_migrations.table_name'));
-
-    return $configuration;
-  }
-
-  private function migrate()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $configuration = $this->getMigrationsConfiguration();
-    $migration = new \Doctrine\DBAL\Migrations\Migration($configuration);
-
-    $to = $configuration->getLatestVersion();
-    $migrations = $configuration->getMigrations();
-    $migration->migrate($to);
-
-    $this->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onFixturesInit);
   }
 }

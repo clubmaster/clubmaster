@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-04-14
-:Revision:  22
+:Date:      2012-04-20
+:Revision:  23
 
 
 Feedback
@@ -25,75 +25,17 @@ Besides it higly suggested to:
 - AllowOverride All in your apache configuration
 
 
-Quickstart
-----------
+Installation
+------------
+In order to install ClubMaster, do the following:
 
-If you just want to be up and running and have access to the shell, here is what you have to do:
-
-  cd /var/www
-  tar xzf clubmaster-XXX.tgz
-  cd clubmaster-XXX
-
-Now browse to:
-
-http://localhost/clubmaster/web/config.php
-
-
-Manual Installation
--------------------
-
-If you dont have access to the shell, then you have to do then manual installation.
-
-
-Get the archive
----------------
-
-First get the archive from our website http://www.clubmaster.org.
-
-Now extract the archive some place that your webserver can see.
-
-Go to the newly created folder clubmaster/.
-
-
-Edit configuration
-------------------
-
-Edit the file app/config/parameters.yml to fit to your needs.
-
-
-Create database
----------------
-
-First manually create the database that you want to use:
-
-$ mysql -u root -e"CREATE DATABASE clubmaster"
-
-Now when the database is in place, import the schema files located in the folder app/sql/.
-
-$ mysql -u root clubmaster < app/sql/install.sql
-
-
-File permissions
-----------------
-
-Before you can complete the installation online, you have to make some files writeable for the webserver, do the following:
-
-$ chmod -R 777 app/cache app/logs web/uploads
-
-
-Complete installation
----------------------
-
-Now your installation is in place, go to this url an follow the onscreen installation:
-
-http://localhost/clubmaster/web/config.php
-
-That page will tell you everything you will need to know in order to get up and running.
+- Extract files to your server
+- Create the database
+- Locate the web/ folder in your browser, and follow onscreen installation
 
 
 Upgrade
 -------
-
 In order to upgrade from a previous installation:
 
 - Backup your current database and files.
@@ -107,7 +49,6 @@ In order to upgrade from a previous installation:
 
 Development
 -----------
-
 If you want to support the system and help developing it, you are so welcome. All you have to know about getting started with development can you read about in this section.
 
 First of all, ClubMaster is written in Symfony2, you can read all about the framework on www.symfony.com, its a great PHP framework to ease development of PHP projects. Take a good look at the framework before you go any further, that is a really important step.
@@ -117,7 +58,6 @@ Afterwards, if you just want to get up and running in a development environment 
 
 Fork on GitHub
 ~~~~~~~~~~~~~~
-
 Make a fork of our project on GitHub, https://www.github.com/clubmaster/clubmaster.
 
 Follow the help provided by github.
@@ -125,7 +65,6 @@ Follow the help provided by github.
 
 Get dependencies
 ~~~~~~~~~~~~~~~~
-
 To get all dependencies of the project, run the following command:
 
 php bin/vendors install
@@ -133,7 +72,6 @@ php bin/vendors install
 
 Initialize data
 ~~~~~~~~~~~~~~~
-
 I have made a shell script to prepare the database schema, and load some test data. Just run the following script and see the onscreen magic :)
 
 ./bin/remake_schema.sh
@@ -141,7 +79,6 @@ I have made a shell script to prepare the database schema, and load some test da
 
 Start coding
 ~~~~~~~~~~~~
-
 When you are developing in Symfony2 there are multiple environmens:
 
 Production where you have enabled all the cache, and everything is optimized for optimal performance.
@@ -159,7 +96,6 @@ http://localhost/clubmaster/web/index_dev.php
 
 Login
 ~~~~~
-
 As in the demo project, just log in with:
 
 Administrator user:
@@ -173,7 +109,6 @@ password: 1234
 
 API
 ---
-
 We have developed an API which is open for everyone. However the API has some limitations what security is conserned. Some functions is locked with basic access authentication other functions is locked with an API key. More about that under each function section.
 
 The API key is a value defined in the application in the file:
@@ -197,7 +132,6 @@ That pretty much all you need to know before you can use our API.
 
 Date format
 ~~~~~~~~~~~
-
 Date format will always be transmitted in ISO 8601 format.
 
 You can read about it here:

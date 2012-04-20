@@ -1,0 +1,4 @@
+services:
+  club_installer.database:
+    class: Club\InstallerBundle\Helper\Database
+    arguments: [@service_container]
