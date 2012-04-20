@@ -1,0 +1,25 @@
+<div class="paginator">
+    <ul>
+        {% if paginator.currentpage != 1 %}
+            <li> <a class="previous" href="{{ path('_items', {  'offset': paginator.currentpage-1 }) }}">Previous</a>
+        {% endif %}
+        {% for i in 1..paginator.numpages%}
+            {% if paginator.range.0 > 2 and i == paginator.range.0 %}
+                  ...
+            {% endif %}
+
+            {%  if(i==1 or i==paginator.numpages or i in paginator.range) %}
+                {% if i==paginator.currentpage %}
+                    <li><a class="active" href="{{ path('_items', {  'offset': i })}}">{{i}}</a></li>
+                {% else %}
+                <li><a href="{{ path('_items', {  'offset': i }) }}"> {{i}}</a></li>
+                {% endif %}
+            {% endif %}
+
+            {% if paginator.range[paginator.midrange -1] < paginator.numpages -1 and i == paginator.range[paginator.midrange-1] %}
+                ...
+            {% endif %}
+        {% endfor %}
+        <li> <a class="next" href="{{ path('_items', {  'offset': paginator.currentpage+1 }) }}">Next</a>
+    </ul>
+</div>

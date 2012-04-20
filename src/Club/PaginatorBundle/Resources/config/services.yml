@@ -1,0 +1,3 @@
+services:
+  club_paginator_paginator:
+    class: Club\UserBundle\Helper\Paginator
