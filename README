@@ -39,6 +39,13 @@ Upgrade
 In version 1.2 we will introduce a new way of migration that will go much easier than before, unfortunately that will result in no way to upgrade from version 1.1 to 1.2.
 
 
+Configuration
+-------------
+In app/config/clubmaster.yml if will find a config file, where you can change almost anything in the system.
+
+You can enable and disable different modules, you should take a look at this file in order to fit ClubMaster to your needs.
+
+
 Mail Templating
 ---------------
 The system will send mails out at different events. The filenames should explain pretty good when the mail is sent out.

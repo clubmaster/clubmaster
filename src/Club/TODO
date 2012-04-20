@@ -9,7 +9,6 @@ drop migration_version table && create new table, with insert
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
-improve documentation of config file
 
 == NOTES TO LATER ==
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
