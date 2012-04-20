@@ -8,6 +8,18 @@ atk check for doubles
 == TODO ==
 change priority for payment modules, cash before creditcard
 
+== NEXT FIXES ==
+set locale as of browser preferred
+test for banning does not work, it pick wrong user
+improve paginator
+correct links in paginator
+better timesupport on booking schema, its on danish today
+make sure either created_at always comes before updated_at
+make sure widgets works:
+  - datetime
+  - date
+  - time
+
 == NOTES TO LATER ==
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -15,8 +27,6 @@ make a button to accept business terms
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 bulk create order to users
 make the API force browser to refresh
-add error codes to booking API errors
-test for banning does not work, it pick wrong user
 configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
@@ -40,22 +50,13 @@ make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 avoid try / catch on kernel.request listeners
 set system locale for logging messages
-improve paginator
-correct links in paginator
-better timesupport on booking schema, its on danish today
 implement payment for booking
 on admin interval manager, put a default interval in top, that will set the same for everyone
-make sure either created_at always comes before updated_at
-make sure widgets works:
-  - datetime
-  - date
-  - time
 login through booking page
 login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 jquery overlay form on booking
-move database install and upgrade to the same library
 
 == NOTES FOR EVEN LATER ==
 admin feature, that give administrator option to give product the price he wants to.
