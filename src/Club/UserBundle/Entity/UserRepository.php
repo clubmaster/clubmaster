@@ -23,6 +23,9 @@ class UserRepository extends EntityRepository
       if ($user->getMemberNumber() != $i)
         return $i;
     }
+
+    $i++;
+    return $i;
   }
 
   public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
