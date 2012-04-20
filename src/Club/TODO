@@ -9,19 +9,23 @@ make subscriptions start 20.04.2012
 problems with generate repetitions, check up on this
 reset users password when administrator
 add password when creating user as admin
+add error codes to booking API errors
+make the API force browser to refresh
+bulk create order to users
+add more initial groups, (senior, junior)
 
 == NOTES TO THIS RELEASE ==
+cannot install with multiple payment plugins
+give user more info about when submitted to missing password
+correct form for missing password
+dont have specific error login page
 move away from migrations, cannot be used due to use of third party applications
-make the API force browser to refresh
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 make a button to accept business terms
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
-add error codes to booking API errors
 support multiple times on the same interval
-bulk create order to users
 integration with pro-sec PROFI alarm system
-dont have specific error login page
 improve documentation with phpMyAdmin
 improve documentation of config file
 improve documentation of overwrite mail template files
@@ -31,15 +35,14 @@ do routing to annotation instead of, check default install of symfony bundle
 does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
-find a way that the api does not care if it ends on / or not
 
 == NOTES TO LATER ==
+find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
 quick create intervals when creating the field
 add leagues to tournaments, use of tags or something
 add product on dynamic group
 cannot install when parameter is not on english
-cannot install with multiple payment plugins
 make a quick way to remove all team penalties
 use attribute class as product attribute converter
 add defaults during install:
@@ -66,19 +69,19 @@ login through booking page
 login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
+jquery overlay form on booking
+move database install and upgrade to the same library
 
 == NOTES FOR EVEN LATER ==
 admin feature, that give administrator option to give product the price he wants to.
-check if a product on discount, what will the price be the following year
+check if a product on discount, what will the price be the following year on autorenewal
 something is broken when creating more intervals on the same field, fix it
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
-jquery overlay form on booking
 find a smart way to get default location, might be with the url
 bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
-move database install and upgrade to the same library
 tag users on images
