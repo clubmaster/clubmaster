@@ -9,6 +9,12 @@ class AdminUser extends AbstractType
 {
   public function buildForm(FormBuilder $builder, array $options)
   {
+    $builder->add('password', 'repeated', array(
+      'type' => 'password',
+      'first_name' => 'Password',
+      'second_name' => 'Password again',
+      'required' => false
+    ));
     $builder->add('member_number','text');
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
