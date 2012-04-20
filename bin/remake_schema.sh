@@ -27,7 +27,5 @@ phpunit -c app/ src/Club/TeamBundle/Tests/Controller/1AdminScheduleControllerTes
 phpunit -c app/ src/Club/ShopBundle/Tests/Controller/AdminCouponControllerTest.php
 phpunit -c app/ src/Club/ShopBundle/Tests/Controller/CheckoutControllerTest.php
 
-php app/console cache:warmup
-
 sudo chmod 777 -R app/logs app/cache
 sudo chown www-data:www-data app/cache app/logs
