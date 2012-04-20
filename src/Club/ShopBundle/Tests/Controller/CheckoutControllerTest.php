@@ -100,21 +100,6 @@ class CheckoutControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
-  public function testSubscription()
-  {
-    $crawler = $this->client->request('GET', '/shop/subscription');
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $link = $crawler->selectLink('Pause')->link();
-    $crawler = $this->client->click($link);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
-
-    $link = $crawler->selectLink('Resume')->link();
-    $crawler = $this->client->click($link);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  }
-
   public function testUserCheckout()
   {
     $this->client = static::createClient();
@@ -148,9 +133,5 @@ class CheckoutControllerTest extends WebTestCase
     $link = end($links);
     $crawler = $this->client->click($link);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $form = $crawler->selectButton('Cancel')->form();
-    $crawler = $this->client->submit($form);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }
