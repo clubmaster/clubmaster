@@ -17,7 +17,6 @@ bulk create order to users
 make the API force browser to refresh
 add error codes to booking API errors
 test for banning does not work, it pick wrong user
-on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
