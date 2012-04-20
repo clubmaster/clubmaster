@@ -7,7 +7,6 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
-add password when creating user as admin
 add error codes to booking API errors
 make the API force browser to refresh
 bulk create order to users
