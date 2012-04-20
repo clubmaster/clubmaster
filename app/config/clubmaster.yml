@@ -20,7 +20,7 @@ club_payment_cash:
     controller: club_payment_cash_cash_index
 
 club_payment_quickpay:
-    enabled: true
+    enabled: false
     controller: club_payment_quickpay_quickpay_index
     merchant: 89898978
     secret: 29p61DveBZ79c3144LW61lVz1qrwk2gfAFCxPyi5sn49m3Y3IRK5M6SN5d8a68u7

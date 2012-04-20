@@ -12,13 +12,11 @@ add password when creating user as admin
 add error codes to booking API errors
 make the API force browser to refresh
 bulk create order to users
-add more initial groups, (senior, junior)
-
-== NOTES TO THIS RELEASE ==
-cannot install with multiple payment plugins
 give user more info about when submitted to missing password
 correct form for missing password
 dont have specific error login page
+
+== NOTES TO THIS RELEASE ==
 move away from migrations, cannot be used due to use of third party applications
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 make a button to accept business terms
@@ -31,12 +29,12 @@ improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
 test for banning does not work, it pick wrong user
-do routing to annotation instead of, check default install of symfony bundle
-does lifetime membership works?
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
 
 == NOTES TO LATER ==
+does lifetime membership works?
+do routing to annotation instead of, check default install of symfony bundle
 find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
 quick create intervals when creating the field
