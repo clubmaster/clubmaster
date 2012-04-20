@@ -7,30 +7,28 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
-add error codes to booking API errors
-make the API force browser to refresh
-bulk create order to users
 give user more info about when submitted to missing password
-correct form for missing password
-dont have specific error login page
 
 == NOTES TO THIS RELEASE ==
 move away from migrations, cannot be used due to use of third party applications
-make a way to configure the touch screen client, ever cookie and configure through clubmaster?
-make a button to accept business terms
-use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
-prices to book with guest, use normal checkout procedure
-support multiple times on the same interval
-integration with pro-sec PROFI alarm system
 improve documentation with phpMyAdmin
 improve documentation of config file
 improve documentation of overwrite mail template files
 improve documentation of overwrite pages in general
+
+== NOTES TO LATER ==
+use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
+prices to book with guest, use normal checkout procedure
+make a button to accept business terms
+make a way to configure the touch screen client, ever cookie and configure through clubmaster?
+bulk create order to users
+make the API force browser to refresh
+add error codes to booking API errors
 test for banning does not work, it pick wrong user
 on a fresh install, let index.php redirect to config.php
 configurationbundle and installerbundle should be disabled after install
-
-== NOTES TO LATER ==
+integration with pro-sec PROFI alarm system
+support multiple times on the same interval
 does lifetime membership works?
 do routing to annotation instead of, check default install of symfony bundle
 find a way that the api does not care if it ends on / or not
