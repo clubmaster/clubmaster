@@ -7,7 +7,6 @@ make subscriptions start 20.04.2012
 
 == NEXT TOPICS ==
 problems with generate repetitions, check up on this
-give user more info about when submitted to missing password
 
 == NOTES TO THIS RELEASE ==
 move away from migrations, cannot be used due to use of third party applications

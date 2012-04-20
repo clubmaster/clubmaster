@@ -2258,6 +2258,11 @@
         <source>Content</source>
         <target>Indhold</target>
       </trans-unit>
+      <trans-unit id="569">
+        <source>You will receive an email within a few minutes.</source>
+        <target>Du vil modtage en e-mail indenfor få minutter.</target>
+      </trans-unit>
+
 
     </body>
   </file>
