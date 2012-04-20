@@ -9,7 +9,6 @@ atk check for doubles
 change priority for payment modules, cash before creditcard
 
 == NEXT FIXES ==
-set locale as of browser preferred
 test for banning does not work, it pick wrong user
 improve paginator
 correct links in paginator

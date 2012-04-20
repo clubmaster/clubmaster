@@ -7,17 +7,21 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class LocationListener
 {
+  protected $container;
   protected $em;
   protected $session;
 
-  public function __construct($em, $session)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->session = $session;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->session = $container->get('session');
   }
 
   public function onKernelRequest()
   {
+    $this->session->setLocale($this->container->get('request')->getPreferredLanguage());
+
     try {
       if ($this->session->get('location_id')) return;
 
