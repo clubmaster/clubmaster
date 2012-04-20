@@ -14,13 +14,7 @@
 
 {% else %}
   <p class="box">
-  {% if configuration.currentVersion == configuration.latestVersion %}
-    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>{% trans %}Start installation{% endtrans %}</span></a>
-
-  {% else %}
     <a href="{{ path("club_installer_installer_migrate") }}" class="btn"><span>{% trans %}Install database{% endtrans %}</span></a>
-
-  {% endif %}
   </p>
 {% endif %}
 {% endblock %}

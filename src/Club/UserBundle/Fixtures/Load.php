@@ -15,8 +15,9 @@ class Load
   {
     $this->initCurrency();
     $this->initRole();
-    $this->initGroup();
+    $this->em->flush();
 
+    $this->initGroup();
     $this->em->flush();
   }
 
