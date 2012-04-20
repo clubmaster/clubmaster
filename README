@@ -36,15 +36,22 @@ In order to install ClubMaster, do the following:
 
 Upgrade
 -------
-In order to upgrade from a previous installation:
+In version 1.2 we will introduce a new way of migration that will go much easier than before, unfortunately that will result in no way to upgrade from version 1.1 to 1.2.
 
-- Backup your current database and files.
-- Extract the new clubmaster package in a new directory
-- Copy app/config/parameters.ini file from old directory
-- Make sure any changes you have made to app/config/clubmaster.yml is moved
-- $ chmod 777 -R app/cache app/logs in the new clubmaster installation
-- Go to the website, http://localhost/clubmaster/web/upgrade
-- Empty the cache, rm -rf app/cache/*
+
+Mail Templating
+---------------
+The system will send mails out at different events. The filenames should explain pretty good when the mail is sent out.
+
+You can find all the templates in:
+
+src/Club/MailBundle/Resources/views/Template/
+
+If you want to change any of the context of the default messages ClubMaster send out, you should make a copy of the folder to:
+
+app/Resources/ClubMailBundle/views/Template/
+
+Just give the files the exact same name, and you can do whatever you like with the messages.
 
 
 Development
