@@ -1,11 +1,12 @@
 == NIBE ==
 create memberships to all
-drop migration_version table && create new table, with insert
 
 == ATK ==
+2 medlemmer med 65 har betalt, hvem er de?
 atk check for doubles
-make subscriptions start 20.04.2012
-drop migration_version table && create new table, with insert
+
+== TODO ==
+change priority for payment modules, cash before creditcard
 
 == NOTES TO LATER ==
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
