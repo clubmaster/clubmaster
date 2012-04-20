@@ -76,9 +76,7 @@ class Load
     );
 
     foreach ($groups as $group) {
-      $r = $this->em->getRepository('ClubUserBundle:Group')->findOneBy(array(
-        'group_name' => $group['name']
-      ));
+      $r = $this->em->getRepository('ClubUserBundle:Group')->getOneGroupByRoles($group['roles']);
 
       if (!$r) {
         $g = new \Club\UserBundle\Entity\Group();

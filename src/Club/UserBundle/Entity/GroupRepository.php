@@ -36,4 +36,17 @@ class GroupRepository extends EntityRepository
 
     return $this->_em->getRepository('ClubUserBundle:User')->getUsers($filter);
   }
+
+  public function getOneGroupByRoles(array $roles)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('g')
+      ->from('ClubUserBundle:Group', 'g')
+      ->leftJoin('g.role', 'r')
+      ->where('r.role_name IN (:roles)')
+      ->setParameter('roles', $roles)
+      ->setMaxResults(1)
+      ->getQuery()
+      ->getOneOrNullResult();
+  }
 }
