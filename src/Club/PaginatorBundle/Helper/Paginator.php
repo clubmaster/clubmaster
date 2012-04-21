@@ -3,10 +3,10 @@
  * Class to paginate a list of items in a old digg style
  *
  * @author Darko Goleš
- * @author Carlos Mafla <gigo6000@hotmail.com> 
+ * @author Carlos Mafla <gigo6000@hotmail.com>
  * @www.inchoo.net
  */
-namespace Paginator;
+namespace Club\PaginatorBundle\Helper;
 
 class Paginator {
 
@@ -51,13 +51,17 @@ class Paginator {
    * @param int $limit
    * @param int $midRange
    */
-  function __construct($itemsCount, $currentPage = 1, $limit = 20, $midRange = 7)
+  function __construct($limit, $midRange)
+  {
+    $this->limit = $limit;
+    $this->midRange = $midRange;
+  }
+
+  public function init($itemsCount, $currentPage = 1)
   {
     //set total items count from controller
     $this->itemsCount = $itemsCount;
     $this->currentPage = $currentPage;
-    $this->limit = $limit;
-    $this->midRange= $midRange;
 
     //Set defaults
     $this->setDefaults();
@@ -102,13 +106,18 @@ class Paginator {
     if ($this->limit == null)
     {
       $this->limit = 20;
-      //if limit is any number less than 1 then set it to 0 for displaying 
+      //if limit is any number less than 1 then set it to 0 for displaying
       //items without limit
     }
     else if ($this->limit < 1)
     {
       $this->limit = 0;
     }
+  }
+
+  public function setCurrentUrl($currentUrl)
+  {
+    $this->currentUrl = $currentUrl;
   }
 
   private function getInternalNumPages()
@@ -121,10 +130,10 @@ class Paginator {
     }
     else
     {
-      //Calculate rest numbers from dividing operation so we can add one 
+      //Calculate rest numbers from dividing operation so we can add one
       //more page for this items
       $restItemsNum = $this->itemsCount % $this->limit;
-      //if rest items > 0 then add one more page else just divide items 
+      //if rest items > 0 then add one more page else just divide items
       //by limit
       $this->numPages = $restItemsNum > 0 ? intval($this->itemsCount / $this->limit) + 1 : intval($this->itemsCount / $this->limit);
     }
@@ -158,6 +167,14 @@ class Paginator {
   public function getCurrentUrl()
   {
     return $this->currentUrl;
+  }
+
+  /**
+   * @return int items count
+   */
+  public function getItemsCount()
+  {
+    return $this->itemsCount;
   }
 
   /**

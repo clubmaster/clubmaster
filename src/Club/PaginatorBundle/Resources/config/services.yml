@@ -1,3 +1,4 @@
 services:
-  club_paginator_paginator:
-    class: Club\UserBundle\Helper\Paginator
+  club_paginator.paginator:
+    class: Club\PaginatorBundle\Helper\Paginator
+    arguments: [5, 7]

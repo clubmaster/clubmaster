@@ -80,37 +80,6 @@ class AdminUserController extends Controller
     return $response;
   }
 
-  /**
-   * @Route("/user", name="admin_user")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
-
-    $repository = $em->getRepository('ClubUserBundle:User');
-    $usersCount = $repository->getUsersCount($filter);
-    $paginator = new \Club\UserBundle\Helper\Paginator($usersCount, $this->generateUrl('admin_user'));
-
-    $sort = $this->get('session')->get('admin_module:admin_user');
-
-    if (isset($sort) && isset($sort['sort'])) {
-      $order_by = $sort['sort'];
-    } else {
-      $order_by = array('member_number' => 'asc');
-    }
-
-    $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
-
-    return array(
-      'sort_name' => key($order_by),
-      'sort_type' => $order_by[key($order_by)],
-      'users' => $users,
-      'paginator' => $paginator
-    );
-  }
 
   /**
    * @Template()
@@ -280,6 +249,42 @@ class AdminUserController extends Controller
     $this->get('session')->set('admin_module:admin_user', $filter);
 
     return $this->redirect($this->getRequest()->server->get('HTTP_REFERER'));
+  }
+
+  /**
+   * @Route("/user", name="admin_user")
+   * @Route("/user/offset/{offset}", name="admin_user_offset")
+   * @Template()
+   */
+  public function indexAction($offset = null)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+
+    $repository = $em->getRepository('ClubUserBundle:User');
+    $usersCount = $repository->getUsersCount($filter);
+
+    $paginator = $this->get('club_paginator.paginator');
+    $paginator->init($usersCount, $offset);
+    $paginator->setCurrentUrl('admin_user_offset');
+
+    $sort = $this->get('session')->get('admin_module:admin_user');
+
+    if (isset($sort) && isset($sort['sort'])) {
+      $order_by = $sort['sort'];
+    } else {
+      $order_by = array('member_number' => 'asc');
+    }
+
+    $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
+
+    return array(
+      'sort_name' => key($order_by),
+      'sort_type' => $order_by[key($order_by)],
+      'users' => $users,
+      'paginator' => $paginator
+    );
   }
 
   protected function getUser($user)

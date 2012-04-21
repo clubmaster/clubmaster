@@ -5,7 +5,7 @@
   <a href="{{ path('admin_user_new') }}" class="btn-create"><span>{% trans %}Create user{% endtrans %}</span></a>
 </p>
 
-{% include "ClubLayoutBundle:Default:paginator.html.twig" %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 <div id="user_search" style="float: right;">
   <fieldset>
@@ -62,6 +62,6 @@
 </div>
 </form>
 
-{% include "ClubLayoutBundle:Default:paginator.html.twig" %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 {% endblock %}
