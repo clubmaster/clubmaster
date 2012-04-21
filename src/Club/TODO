@@ -11,8 +11,11 @@ make sure widgets works:
   - datetime
   - date
   - time
+make multiple fields available in user index, (phone, email evt. adresse)
 
 == NOTES TO LATER ==
+make readonly roles for members
+make teams without ability to attend the team, its for preassigned users only
 can we use mono logger to ease task of our logger
 find a way to make discount prices 100% custom
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
