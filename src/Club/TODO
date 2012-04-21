@@ -1,10 +1,6 @@
 == NIBE ==
 create memberships to all
 
-== ATK ==
-2 medlemmer med 65 har betalt, hvem er de?
-atk check for doubles
-
 == NEXT FIXES ==
 search on email
 search on phone
@@ -17,6 +13,7 @@ make sure widgets works:
   - time
 
 == NOTES TO LATER ==
+can we use mono logger to ease task of our logger
 find a way to make discount prices 100% custom
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
