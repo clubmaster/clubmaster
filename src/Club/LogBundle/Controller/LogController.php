@@ -19,15 +19,19 @@ use Symfony\Component\HttpFoundation\Response;
 class LogController extends Controller
 {
   /**
+   * @Route("/log/action/offset/{offset}", name="club_log_log_index_offset")
    * @Route("/log/action")
    * @Template()
    */
-  public function indexAction()
+  public function indexAction($offset = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
-    $paginator = new \Club\UserBundle\Helper\Paginator($logs_count, $this->generateUrl('club_log_log_index'));
+    $paginator = $this->get('club_paginator.paginator');
+    $paginator->init($logs_count, $offset);
+    $paginator->setCurrentUrl('club_log_log_index_offset');
+
     $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($paginator->getOffset(), $paginator->getLimit());
 
     return array(

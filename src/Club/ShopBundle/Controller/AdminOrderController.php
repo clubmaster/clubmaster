@@ -9,15 +9,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminOrderController extends Controller
 {
   /**
+   * @Route("/shop/order/offset/{offset}", name="admin_shop_order_offset")
    * @Route("/shop/order", name="admin_shop_order")
    * @Template()
    */
-  public function indexAction()
+  public function indexAction($offset = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $count = $em->getRepository('ClubShopBundle:Order')->getCount($this->getFilter());
-    $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('admin_shop_order'));
+    $paginator = $this->get('club_paginator.paginator');
+    $paginator->init($count, $offset);
+    $paginator->setCurrentUrl('admin_shop_order_offset');
+
     $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination($this->getFilter(), null, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
