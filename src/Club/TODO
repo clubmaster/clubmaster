@@ -6,6 +6,8 @@ create memberships to all
 atk check for doubles
 
 == NEXT FIXES ==
+search on email
+search on phone
 use order status priority
 change priority for payment modules, cash before creditcard
 better timesupport on booking schema, its on danish today
