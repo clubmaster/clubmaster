@@ -17,6 +17,24 @@ class AdminOrderController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    $form = $this->createForm(new \Club\ShopBundle\Form\OrderQuery);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $data = $form->getData();
+
+        $order = $em->getRepository('ClubShopBundle:Order')->findOneBy(array(
+          'id' => $data['query']
+        ));
+
+        if ($order)
+          return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
+
+        $this->get('session')->setFlash('error', $this->get('translator')->trans('There is no order with this number'));
+      }
+    }
+
     $count = $em->getRepository('ClubShopBundle:Order')->getCount($this->getFilter());
     $paginator = $this->get('club_paginator.paginator');
     $paginator->init($count, $offset);
@@ -26,7 +44,8 @@ class AdminOrderController extends Controller
 
     return array(
       'orders' => $orders,
-      'paginator' => $paginator
+      'paginator' => $paginator,
+      'form' => $form->createView()
     );
   }
 

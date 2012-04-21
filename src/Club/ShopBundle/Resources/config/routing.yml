@@ -61,11 +61,6 @@ _admin_shop_order:
   type: annotation
   prefix: /admin
 
-_admin_shop_order_filter:
-  resource: "@ClubShopBundle/Controller/AdminOrderFilterController.php"
-  type: annotation
-  prefix: /admin
-
 _admin_shop_payment_method:
   resource: "@ClubShopBundle/Controller/AdminPaymentMethodController.php"
   type: annotation

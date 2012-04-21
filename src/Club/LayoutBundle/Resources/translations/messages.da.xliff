@@ -2262,8 +2262,10 @@
         <source>You will receive an email within a few minutes.</source>
         <target>Du vil modtage en e-mail indenfor få minutter.</target>
       </trans-unit>
-
-
+      <trans-unit id="570">
+        <source>There is no order with this number</source>
+        <target>Der er ingen ordre med dette nummer</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
