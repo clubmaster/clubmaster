@@ -17,6 +17,7 @@ make sure widgets works:
   - time
 
 == NOTES TO LATER ==
+find a way to make discount prices 100% custom
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 make a button to accept business terms
