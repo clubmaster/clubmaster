@@ -145,7 +145,7 @@ class Order
     $this->order->setBillingAddress($address);
   }
 
-  private function recalcPrice()
+  public function recalcPrice()
   {
     $price = 0;
 

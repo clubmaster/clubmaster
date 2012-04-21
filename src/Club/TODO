@@ -2,7 +2,6 @@
 create memberships to all
 
 == NEXT FIXES ==
-change price on product on new orders
 search on email
 search on phone
 use order status priority
@@ -15,6 +14,13 @@ make sure widgets works:
 make multiple fields available in user index, (phone, email evt. adresse)
 
 == NOTES TO LATER ==
+add paginator to:
+  - member list
+  - group members
+  - team attends
+  - admin blog
+  - team schedules
+  - checkins
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 can we use mono logger to ease task of our logger

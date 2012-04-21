@@ -5,6 +5,7 @@
 {% if not order.paid %}
 <p class="box">
   <a href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}" class="btn-info"><span>{% trans %}Register payment{% endtrans %}</span></a>
+  <a href="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}" class="btn-info"><span>{% trans %}Edit products{% endtrans %}</span></a>
 </p>
 {% endif %}
 

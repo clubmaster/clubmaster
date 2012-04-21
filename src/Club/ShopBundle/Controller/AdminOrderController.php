@@ -99,4 +99,43 @@ class AdminOrderController extends Controller
   {
     return unserialize($this->get('session')->get('order_filter'));
   }
+
+  /**
+   * @Route("/shop/order/product/edit/{id}")
+   * @Template()
+   */
+  public function productEditAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $order = $em->find('ClubShopBundle:Order',$id);
+    if ($order->getPaid() || $order->getCancelled() || $order->getDelivered()) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));
+      return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
+    }
+
+    $form = $this->createForm(new \Club\ShopBundle\Form\OrderType, $order);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+
+        $this->get('order')->setOrder($order);
+        $this->get('order')->recalcPrice();
+
+        $em->persist($order);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('admin_shop_order'));
+      }
+    }
+
+    return array(
+      'order' => $order,
+      'form' => $form->createView()
+    );
+  }
+
 }
