@@ -10,15 +10,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminMessageController extends Controller
 {
   /**
+   * @Route("/message/offset/{offset}", name="club_message_adminmessage_index_offset")
    * @Route("/message")
    * @Template()
    */
-  public function indexAction()
+  public function indexAction($offset = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $count = $em->getRepository('ClubMessageBundle:Message')->getCount();
-    $paginator = new \Club\UserBundle\Helper\Paginator($count, $this->generateUrl('club_message_adminmessage_index'));
+    $paginator = $this->get('club_paginator.paginator');
+    $paginator->init($count, $offset);
+    $paginator->setCurrentUrl('club_message_adminmessage_index_offset');
 
     $messages = $em->getRepository('ClubMessageBundle:Message')->getWithPagination($paginator->getOffset(),$paginator->getLimit());
 
