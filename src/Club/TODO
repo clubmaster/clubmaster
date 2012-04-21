@@ -5,12 +5,10 @@ create memberships to all
 2 medlemmer med 65 har betalt, hvem er de?
 atk check for doubles
 
-== TODO ==
-change priority for payment modules, cash before creditcard
-
 == NEXT FIXES ==
+use order status priority
+change priority for payment modules, cash before creditcard
 better timesupport on booking schema, its on danish today
-make sure either created_at always comes before updated_at
 make sure widgets works:
   - datetime
   - date
