@@ -2266,6 +2266,19 @@
         <source>There is no order with this number</source>
         <target>Der er ingen ordre med dette nummer</target>
       </trans-unit>
+      <trans-unit id="571">
+        <source>You cannot book with yourself</source>
+        <target>Du kan ikke booke med dig selv</target>
+      </trans-unit>
+      <trans-unit id="572">
+        <source>Guest booking</source>
+        <target>Gæste booking</target>
+      </trans-unit>
+      <trans-unit id="573">
+        <source>You has to be logged in.</source>
+        <target>Du skal være logget ind.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

@@ -2,7 +2,6 @@
 create memberships to all
 
 == NEXT FIXES ==
-support multiple subscriptions at once
 search on email
 search on phone
 use order status priority
@@ -13,6 +12,8 @@ make sure widgets works:
   - date
   - time
 make multiple fields available in user index, (phone, email evt. adresse)
+put link to post blog on welcome page
+change location could be a dropdown menu
 
 == NOTES TO LATER ==
 add paginator to:

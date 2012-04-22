@@ -22,6 +22,7 @@ class Booking
   protected $guest = false;
   protected $is_valid = true;
   protected $price;
+  protected $subscriptions;
 
   public function __construct($container)
   {
@@ -43,10 +44,10 @@ class Booking
       return;
 
     if (!$this->booking->isOwner($this->security_context->getToken()->getUser()))
-      $this->setError('You do not have permissions to delete this booking');
+      $this->setError($this->translator->trans('You do not have permissions to delete this booking'));
 
     if ($this->booking->getFirstDate() < new \DateTime()) {
-      $this->setError('You cannot delete bookings in the past');
+      $this->setError($this->translator->trans('You cannot delete bookings in the past'));
       return;
     }
 
@@ -58,7 +59,56 @@ class Booking
     $delete_within = clone $booking->getFirstDate();
     $delete_within->sub(new \DateInterval('PT'.$this->container->getParameter('club_booking.cancel_minute_before').'M'));
     if ($delete_within < new \DateTime())
-      $this->setError('Cannot delete booking because time range is too small');
+      $this->setError($this->translator->trans('Cannot delete booking because time range is too small'));
+  }
+
+  public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+  {
+    $this->interval = $interval;
+    $this->date = $date;
+    $this->user = $user;
+    $this->partner = $partner;
+
+    $this->validate();
+    if (!$this->isValid())
+      return;
+
+    if ($user == $partner) {
+      $this->setError($this->translator->trans('You cannot book with yourself'));
+      return;
+    }
+
+    if (!$this->validateSubscription($this->partner)) {
+      $this->setError($this->translator->trans('Your partner must have an active membership'));
+      return;
+    }
+
+    if (!$this->validateSubscriptionTime($this->partner)) {
+      $this->setError($this->translator->trans('Your partner is not allowed to book this time.'));
+      return;
+    }
+
+    if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
+      $this->setError($this->translator->trans('You cannot have more bookings with this partner this day'));
+      return;
+    }
+
+    if (!$this->validateBookingPartnerFuture($this->user, $this->partner)) {
+      $this->setError($this->translator->trans('You cannot have more bookings with this partner'));
+      return;
+    }
+
+    if (!$this->validateBookingDay($this->date, $this->partner)) {
+      $this->setError($this->translator->trans('Your partner cannot have more bookings this day'));
+      return;
+    }
+
+    if (!$this->validateBookingFuture($this->partner)) {
+      $this->setError($this->translator->trans('Your partner cannot have more bookings'));
+      return;
+    }
+
+    $this->bind();
   }
 
   public function bindGuest(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user)
@@ -74,7 +124,7 @@ class Booking
       return;
 
     if (!$this->container->getParameter('club_booking.enable_guest'))
-      $this->setError('Guest booking is not enabled');
+      $this->setError($this->translator->trans('Guest booking is not enabled'));
 
     if (!$this->validateBookingGuestDay($this->date, $this->user)) {
       $this->setError($this->translator->trans('You cannot have more guest bookings this day'));
@@ -137,55 +187,6 @@ class Booking
     return true;
   }
 
-  public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
-  {
-    $this->interval = $interval;
-    $this->date = $date;
-    $this->user = $user;
-    $this->partner = $partner;
-
-    $this->validate();
-    if (!$this->isValid())
-      return;
-
-    if ($user == $partner) {
-      $this->setError('You cannot book with yourself');
-      return;
-    }
-
-    if (!$this->validateSubscription($this->partner)) {
-      $this->setError($this->translator->trans('Your partner must have an active membership'));
-      return;
-    }
-
-    if (!$this->validateSubscriptionTime($this->partner, $this->interval)) {
-      $this->setError($this->translator->trans('Your partner is not allowed to book this time.'));
-      return;
-    }
-
-    if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
-      $this->setError($this->translator->trans('You cannot have more bookings with this partner this day'));
-      return;
-    }
-
-    if (!$this->validateBookingPartnerFuture($this->user, $this->partner)) {
-      $this->setError($this->translator->trans('You cannot have more bookings with this partner'));
-      return;
-    }
-
-    if (!$this->validateBookingDay($this->date, $this->partner)) {
-      $this->setError($this->translator->trans('Your partner cannot have more bookings this day'));
-      return;
-    }
-
-    if (!$this->validateBookingFuture($this->partner)) {
-      $this->setError($this->translator->trans('Your partner cannot have more bookings'));
-      return;
-    }
-
-    $this->bind();
-  }
-
   public function getError()
   {
     return $this->error;
@@ -222,7 +223,6 @@ class Booking
     $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
     $this->booking->setConfirmed($confirm);
 
-
     if ($this->partner)
       $this->booking->addUser($this->partner);
   }
@@ -242,7 +242,7 @@ class Booking
       $product->setPrice($this->container->getParameter('club_booking.guest_price'));
       $product->setQuantity(1);
       $product->setType('guest_booking');
-      $product->setProductName('Guest booking');
+      $product->setProductName($this->translator->trans('Guest booking'));
 
       $this->container->get('order')->createSimpleOrder($this->container->get('security.context')->getToken()->getUser(), $this->booking->getField()->getLocation());
       $this->container->get('order')->addSimpleProduct($product);
@@ -269,17 +269,17 @@ class Booking
 
   protected function validate()
   {
-    if (!$this->validateIntervalDay($this->date, $this->interval)) {
+    if (!$this->validateIntervalDay($this->date)) {
       $this->setError($this->translator->trans('Interval does not exists that day'));
       return;
     }
 
-    if (!$this->validatePast($this->date, $this->interval)) {
+    if (!$this->validatePast($this->date)) {
       $this->setError($this->translator->trans('You cannot book in the past'));
       return;
     }
 
-    if (!$this->validateAvailable($this->date, $this->interval)) {
+    if (!$this->validateAvailable($this->date)) {
       $this->setError($this->translator->trans('Interval is not available'));
       return;
     }
@@ -289,7 +289,7 @@ class Booking
       return;
     }
 
-    if (!$this->validateSubscriptionTime($this->user, $this->interval)) {
+    if (!$this->validateSubscriptionTime($this->user)) {
       $this->setError($this->translator->trans('You are not allowed to book this time'));
       return;
     }
@@ -367,24 +367,26 @@ class Booking
 
   protected function validateSubscription(\Club\UserBundle\Entity\User $user)
   {
-    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'booking');
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $this->interval->getField()->getLocation());
     if (!$subs)
       return false;
 
     return true;
   }
 
-  protected function validateSubscriptionTime(\Club\UserBundle\Entity\User $user, \Club\BookingBundle\Entity\Interval $interval)
+  protected function validateSubscriptionTime(\Club\UserBundle\Entity\User $user)
   {
-    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'booking');
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $this->interval->getField()->getLocation());
     if (!$subs)
       return false;
 
+
     foreach ($subs as $sub) {
+      var_dump($sub->getId());
       foreach ($sub->getSubscriptionAttributes() as $attr) {
         switch ($attr->getAttributeName()) {
         case 'start_time':
-          $start = clone $interval->getStartTime();
+          $start = clone $this->interval->getStartTime();
           $start->setDate(
             date('Y'),
             date('m'),
@@ -397,7 +399,7 @@ class Booking
 
           break;
         case 'stop_time':
-          $end = clone $interval->getStopTime();
+          $end = clone $this->interval->getStopTime();
           $end->setDate(
             date('Y'),
             date('m'),
@@ -415,22 +417,21 @@ class Booking
     return true;
   }
 
-
-  protected function validateIntervalDay(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  protected function validateIntervalDay(\DateTime $date)
   {
-    if ($date->format('N') != $interval->getDay())
+    if ($date->format('N') != $this->interval->getDay())
       return false;
 
     return true;
   }
 
-  protected function validatePast(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  protected function validatePast(\DateTime $date)
   {
     $c = clone $date;
     $c->setTime(
-      $interval->getStartTime()->format('H'),
-      $interval->getStartTime()->format('i'),
-      $interval->getStartTime()->format('s')
+      $this->interval->getStartTime()->format('H'),
+      $this->interval->getStartTime()->format('i'),
+      $this->interval->getStartTime()->format('s')
     );
 
     if ($c < new \DateTime())
@@ -439,7 +440,7 @@ class Booking
     return true;
   }
 
-  protected function validateAvailable(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+  protected function validateAvailable(\DateTime $date)
   {
     $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
     if (!$interval->getAvailable())

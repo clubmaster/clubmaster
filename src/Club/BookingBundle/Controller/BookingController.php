@@ -18,7 +18,8 @@ class BookingController extends Controller
    public function reviewAction($interval_id, $date)
    {
      if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-       $this->get('session')->setFlash('error', 'You has to be logged in.');
+       $this->get('session')->setFlash('error', $this->get('translator')->trans('You has to be logged in.'));
+
        return $this->redirect($this->generateUrl('club_booking_overview_view', array(
          'date' => $date,
          'interval_id' => $interval_id

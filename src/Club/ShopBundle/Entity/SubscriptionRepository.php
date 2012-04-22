@@ -26,7 +26,7 @@ class SubscriptionRepository extends EntityRepository
     return $pause;
   }
 
-  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null, $type=null, $attr=null, \DateTime $date=null)
+  public function getActiveSubscriptions(\Club\UserBundle\Entity\User $user=null, $type=null, $attr=null, \DateTime $date=null, \Club\UserBundle\Entity\Location $location=null)
   {
     if (!$date)
       $d = new \DateTime();
@@ -54,11 +54,24 @@ class SubscriptionRepository extends EntityRepository
         ->setParameter('attr', $attr);
     }
 
-    return $qb
+    $subscriptions = $qb
       ->getQuery()
       ->getResult();
-  }
 
+    if ($location) {
+      $res = array();
+      foreach ($subscriptions as $s) {
+        foreach ($s->getLocation() as $l) {
+          if ($l == $location)
+            $res[] = $s;
+        }
+      }
+
+      $subscriptions = $res;
+    }
+
+    return $subscriptions;
+  }
 
   public function getComingSubscriptions(\Club\UserBundle\Entity\User $user=null)
   {
