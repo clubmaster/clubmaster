@@ -10,6 +10,8 @@
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
 
     {{ form_row(form.name) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.email_address) }}
     {{ form_row(form.member_number) }}
     {{ form_row(form.min_age) }}
     {{ form_row(form.max_age) }}

@@ -21,6 +21,12 @@ class Filter extends AbstractType
     $builder->add('name','text', array(
       'required' => false
     ));
+    $builder->add('phone','text', array(
+      'required' => false
+    ));
+    $builder->add('email_address','text', array(
+      'required' => false
+    ));
     $builder->add('member_number', 'text', array(
       'required' => false
     ));

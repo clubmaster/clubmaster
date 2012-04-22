@@ -6,6 +6,10 @@ class UserFilter
 {
   public $name;
 
+  public $phone;
+
+  public $email_address;
+
   public $member_number;
 
   public $min_age;

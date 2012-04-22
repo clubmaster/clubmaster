@@ -79,6 +79,12 @@ class UserRepository extends EntityRepository
         case 'name':
           $qb = $this->filterName($qb,$attr->getValue());
           break;
+        case 'phone':
+          $qb = $this->filterPhone($qb,$attr->getValue());
+          break;
+        case 'email_address':
+          $qb = $this->filterEmailAddress($qb,$attr->getValue());
+          break;
         case 'member_number':
           $qb = $this->filterMemberNumber($qb,$attr->getValue());
           break;
@@ -166,6 +172,8 @@ class UserRepository extends EntityRepository
   protected function getQueryBuilder()
   {
     $this->has_joined_addr = false;
+    $this->has_joined_phone = false;
+    $this->has_joined_email = false;
     $this->has_joined_sub = false;
 
     return $this->_em->createQueryBuilder()
@@ -218,6 +226,36 @@ class UserRepository extends EntityRepository
       $qb->expr()->eq('p.gender',':gender')
     );
     $qb->setParameter('gender', $value);
+
+    return $qb;
+  }
+
+  protected function filterPhone($qb,$value)
+  {
+    if (!$this->has_joined_phone) {
+      $qb->join('p.profile_phone','pp');
+      $this->has_joined_phone = true;
+    }
+
+    $qb->andWhere(
+      $qb->expr()->eq('pp.phone_number',':phone')
+    );
+    $qb->setParameter('phone', $value);
+
+    return $qb;
+  }
+
+  protected function filterEmailAddress($qb,$value)
+  {
+    if (!$this->has_joined_email) {
+      $qb->join('p.profile_email','pe');
+      $this->has_joined_email = true;
+    }
+
+    $qb->andWhere(
+      $qb->expr()->eq('pe.email_address',':email')
+    );
+    $qb->setParameter('email', $value);
 
     return $qb;
   }

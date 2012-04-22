@@ -2,8 +2,6 @@
 create memberships to all
 
 == NEXT FIXES ==
-search on email
-search on phone
 use order status priority
 change priority for payment modules, cash before creditcard
 better timesupport on booking schema, its on danish today
