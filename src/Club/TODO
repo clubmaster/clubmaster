@@ -2,10 +2,6 @@
 create memberships to all
 update database
 
-== ATK ==
-update database
-fix prio for payment methods
-
 == NOTES TO LATER ==
 improve form design with bootstrap:
   - date
