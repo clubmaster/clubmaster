@@ -51,7 +51,7 @@ class OrderStatus
     /**
      * @ORM\Column(type="integer")
      *
-     * var boolean $priority
+     * var integer $priority
      */
     protected $priority;
 

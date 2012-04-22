@@ -23,11 +23,15 @@ class PaymentMethod
   public function getAllArray(array $credentials = array())
   {
     $res = array();
-
-    foreach ($this->getAll($credentials) as $method) {
-      $res[$method->getId()] = $method->getPaymentMethodName();
+    foreach ($this->getAll($credentials) as $p) {
+      $res[$p->getPriority()] = $p;
     }
+    ksort($res);
 
-    return $res;
+    $r = array();
+    foreach ($res as $method) {
+      $r[$method->getId()] = $method->getPaymentMethodName();
+    }
+    return $r;
   }
 }

@@ -1,8 +1,12 @@
 = NIBE ==
 create memberships to all
+update database
+
+== ATK ==
+update database
+fix prio for payment methods
 
 == NEXT FIXES ==
-change priority for payment modules, cash before creditcard
 make sure widgets works:
   - datetime
   - date

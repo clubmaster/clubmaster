@@ -48,6 +48,13 @@ class PaymentMethod
      */
     protected $error_page;
 
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer $priority
+     */
+    protected $priority;
+
 
     public function __toString()
     {
@@ -102,7 +109,7 @@ class PaymentMethod
     /**
      * Get controller
      *
-     * @return string 
+     * @return string
      */
     public function getController()
     {
@@ -122,7 +129,7 @@ class PaymentMethod
     /**
      * Get success_page
      *
-     * @return text 
+     * @return text
      */
     public function getSuccessPage()
     {
@@ -142,10 +149,30 @@ class PaymentMethod
     /**
      * Get error_page
      *
-     * @return text 
+     * @return text
      */
     public function getErrorPage()
     {
         return $this->error_page;
+    }
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 }
