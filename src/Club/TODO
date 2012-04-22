@@ -11,7 +11,6 @@ make sure widgets works:
   - datetime
   - date
   - time
-make multiple fields available in user index, (phone, email evt. adresse)
 put link to post blog on welcome page
 change location could be a dropdown menu
 
@@ -23,6 +22,7 @@ add paginator to:
   - admin blog
   - team schedules
   - checkins
+  - blog
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 can we use mono logger to ease task of our logger
