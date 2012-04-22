@@ -3,15 +3,15 @@ create memberships to all
 
 == NEXT FIXES ==
 change priority for payment modules, cash before creditcard
-better timesupport on booking schema, its on danish today
 make sure widgets works:
   - datetime
   - date
   - time
 put link to post blog on welcome page
-change location could be a dropdown menu
 
 == NOTES TO LATER ==
+better timesupport on booking schema, its on danish today
+change location could be a dropdown menu
 add paginator to:
   - member list
   - group members
