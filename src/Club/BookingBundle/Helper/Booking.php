@@ -382,7 +382,6 @@ class Booking
 
 
     foreach ($subs as $sub) {
-      var_dump($sub->getId());
       foreach ($sub->getSubscriptionAttributes() as $attr) {
         switch ($attr->getAttributeName()) {
         case 'start_time':

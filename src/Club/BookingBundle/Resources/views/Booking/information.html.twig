@@ -6,13 +6,13 @@
     <p><label>{% trans %}Time{% endtrans %}</label>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</p>
     <p><label>{% trans %}Field{% endtrans %}</label>{{ booking.field.name }}</p>
 
-    <p><label>{% trans %}Booker{% endtrans %}</label>{{ booking.user.name }}</p>
+    <p><label>{% trans %}Booker{% endtrans %}</label><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }}</a></p>
     {% if booking.guest %}
-    <p><label>{% trans %}Partner{% endtrans %}</label>Guest</p>
+    <p><label>{% trans %}Partner{% endtrans %}</label>{% trans %}Guest{% endtrans %}</p>
     {% else %}
     <p><label>{% trans %}Partner{% endtrans %}</label>
     {% for partner in booking.users %}
-      {{ partner.name }}
+      <a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }}</a>
     {% endfor %}
     </p>
     {% endif %}
