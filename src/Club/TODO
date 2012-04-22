@@ -6,13 +6,13 @@ update database
 update database
 fix prio for payment methods
 
-== NEXT FIXES ==
-make sure widgets works:
-  - datetime
-  - date
-  - time
-
 == NOTES TO LATER ==
+improve form design with bootstrap:
+  - date
+  - datetime
+  - time
+  - input
+  - textarea
 better timesupport on booking schema, its on danish today
 change location could be a dropdown menu
 add paginator to:
