@@ -1,0 +1,4 @@
+services:
+  club_checkin.checkin:
+    class: Club\CheckinBundle\Helper\Checkin
+    arguments: [@doctrine.orm.entity_manager, @security.context, @event_dispatcher]

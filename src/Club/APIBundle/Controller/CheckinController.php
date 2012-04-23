@@ -19,15 +19,7 @@ class CheckinController extends Controller
     if (!$this->validateKey())
       return new Response($this->get('club_api.encode')->encodeError('Wrong API key'), 403);
 
-    $em = $this->getDoctrine()->getEntityManager();
-    $checkin = new \Club\CheckinBundle\Entity\Checkin();
-    $checkin->setUser($this->get('security.context')->getToken()->getUser());
-
-    $em->persist($checkin);
-    $em->flush();
-
-    $event = new \Club\CheckinBundle\Event\FilterCheckinEvent($checkin);
-    $this->get('event_dispatcher')->dispatch(\Club\CheckinBundle\Event\Events::onCheckin, $event);
+    $this->get('club_checkin.checkin')->checkin();
 
     $response = new Response();
     return $response;
