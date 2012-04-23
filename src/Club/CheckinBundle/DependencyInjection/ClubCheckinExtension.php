@@ -24,5 +24,7 @@ class ClubCheckinExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener.yml');
+
+        $container->setParameter('club_checkin.allowed_ip', $config['allowed_ip']);
     }
 }

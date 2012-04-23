@@ -84,6 +84,10 @@ club_mail:
 club_feedback:
     enabled: true
 
+club_checkin:
+    allowed_ip:
+        - 127.0.0.1
+
 ornicar_gravatar:
     rating: g
     size: 160
