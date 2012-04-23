@@ -409,9 +409,9 @@ class Booking
     if ($start->format('Ymd') == date('Ymd')) {
       $start = new \DateTime();
     } else {
-      $start->setHour(0,0,0);
+      $start->setTime(0,0,0);
     }
-    $end->setHour(23,59,59);
+    $end->setTime(23,59,59);
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -433,13 +433,16 @@ class Booking
 
   protected function validateBookingFuture(\Club\UserBundle\Entity\User $user)
   {
+    $date = new \DateTime();
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= CURRENT_DATE()')
+      ->where('b.first_date >= :date')
       ->andWhere('(b.user = :user OR u.id = :user)')
       ->setParameter('user', $user->getId())
+      ->setParameter('date', $date)
       ->getQuery()
       ->getSingleResult();
 
@@ -457,9 +460,9 @@ class Booking
     if ($start->format('Ymd') == date('Ymd')) {
       $start = new \DateTime();
     } else {
-      $start->setHour(0,0,0);
+      $start->setTime(0,0,0);
     }
-    $end->setHour(23,59,59);
+    $end->setTime(23,59,59);
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -483,14 +486,17 @@ class Booking
 
   protected function validateBookingGuestFuture(\Club\UserBundle\Entity\User $user)
   {
+    $date = new \DateTime();
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date >= CURRENT_DATE()')
+      ->where('b.first_date >= :date')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $user->getId())
       ->setParameter('is_guest', true)
+      ->setParameter('date', $date)
       ->getQuery()
       ->getSingleResult();
 
@@ -508,9 +514,9 @@ class Booking
     if ($start->format('Ymd') == date('Ymd')) {
       $start = new \DateTime();
     } else {
-      $start->setHour(0,0,0);
+      $start->setTime(0,0,0);
     }
-    $end->setHour(23,59,59);
+    $end->setTime(23,59,59);
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
@@ -537,17 +543,20 @@ class Booking
 
   protected function validateBookingPartnerFuture(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
   {
+    $date = new \DateTime();
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= CURRENT_DATE()')
+      ->where('b.first_date >= :date')
       ->andWhere('b.user = :user')
       ->andWhere('u.id = :partner')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $user->getId())
       ->setParameter('partner', $partner->getId())
       ->setParameter('is_guest', false)
+      ->setParameter('date', $date)
       ->getQuery()
       ->getSingleResult();
 
