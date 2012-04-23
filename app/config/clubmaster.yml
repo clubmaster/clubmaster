@@ -81,6 +81,9 @@ club_mail:
     default_sender_address: info@clubmaster.org
     default_sender_name: ClubMaster Administrator
 
+club_feedback:
+    enabled: true
+
 ornicar_gravatar:
     rating: g
     size: 160

@@ -1,0 +1,6 @@
+services:
+  club.feedback.listener.menu:
+    class: Club\FeedbackBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
