@@ -66,6 +66,7 @@ class FeedbackController extends Controller
     $host = 'loopback.clubmaster.dk';
     $fp = @fsockopen($host,80);
 
+    $data['host'] = $this->generateUrl('homepage', array(), true);
     $str = '';
     foreach ($data as $key=>$value) {
       $str .= $key.'='.$value.'&';
