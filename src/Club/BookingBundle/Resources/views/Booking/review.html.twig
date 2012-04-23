@@ -13,13 +13,13 @@
     <p><label>{% trans %}Price{% endtrans %}</label>{{ price|club_price }}</p>
 
     <h3>{% trans %}Players{% endtrans %}</h3>
-    <p><label>{% trans %}Booker{% endtrans %}</label><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }}</a></p>
+    <p><label>{% trans %}Booker{% endtrans %}</label><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }} ({{ booking.user.memberNumber }})</a></p>
     {% if booking.guest %}
     <p><label>{% trans %}Partner{% endtrans %}</label>{% trans %}Guest{% endtrans %}</p>
     {% else %}
       <p><label>{% trans %}Partner{% endtrans %}</label>
       {% for partner in booking.users %}
-        <a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }}</a>
+        <a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }} ({{ partner.memberNumber }})</a>
       {% endfor %}
       </p>
     {% endif %}
