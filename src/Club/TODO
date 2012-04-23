@@ -1,9 +1,6 @@
 = NIBE ==
 create memberships to all
 
-== TODO ==
-have a fixed ip-addr to be the club, when logging in from this IP, perform a checkin
-
 == NOTES TO LATER ==
 improve form design with bootstrap:
   - date
