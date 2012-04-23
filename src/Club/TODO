@@ -1,6 +1,11 @@
 = NIBE ==
 create memberships to all
 
+== HIGH PRIO ==
+has to be able to see member numbers when you make a booking.
+remove warning about no locations from booking system, the end user does not care.. he wants to see solutions
+everything send from feedback form, make sure we can trace the installation with an url for instance
+
 == NOTES TO LATER ==
 improve form design with bootstrap:
   - date
