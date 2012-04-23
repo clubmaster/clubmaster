@@ -9,7 +9,7 @@ class FilterMenuEvent extends Event
   protected $menu;
   protected $menu_right;
 
-  public function __construct($menu, $menu_right)
+  public function __construct($menu, $menu_right = null)
   {
     $this->menu = $menu;
     $this->menu_right = $menu_right;
