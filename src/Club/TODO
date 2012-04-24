@@ -5,6 +5,8 @@ keyboard animation when pressing the password
 timeout user session after 30 seconds
 show the name of user which is logged in
 make API_KEY dynamic
+buttons to navigate back and forth in time
+view players of the interval on the interval
 
 == FIXME ==
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
