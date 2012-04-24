@@ -24,7 +24,6 @@ class Checkin
     $this->em->flush();
 
     $event = new \Club\CheckinBundle\Event\FilterCheckinEvent($checkin);
-    $this->event_dispatcher->dispatch(\Club\CheckinBundle\Event\Events::onCheckin, $event);
-
+    $this->event_dispatcher->dispatch(\Club\CheckinBundle\Event\Events::onCheckinUser, $event);
   }
 }

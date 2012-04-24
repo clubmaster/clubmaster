@@ -13,14 +13,14 @@ class Checkin
     $this->em = $container->get('doctrine.orm.entity_manager');
   }
 
-  public function onCheckin(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
+  public function onCheckinUser(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
   {
     if ($this->container->getParameter('club_booking.auto_confirm')) return;
 
     $checkin = $event->getCheckin();
 
     $before = new \DateTime();
-    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirn_minutes_before').'M');
+    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_before').'M');
     $before->add($i);
 
     $after = new \DateTime();

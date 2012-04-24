@@ -23,8 +23,8 @@ services:
     class: Club\BookingBundle\Listener\Checkin
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: checkin, method: onCheckin }
-  club.booking.listener.checkin:
+      - { name: kernel.event_listener, event: checkin.user, method: onCheckinUser }
+  club.booking.listener.cleanup:
     class: Club\BookingBundle\Listener\CleanupBooking
     arguments: [@service_container]
     tags:

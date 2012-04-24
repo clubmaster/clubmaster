@@ -4,5 +4,5 @@ namespace Club\CheckinBundle\Event;
 
 final class Events
 {
-  const onCheckin = 'checkin';
+  const onCheckinUser = 'checkin.user';
 }
