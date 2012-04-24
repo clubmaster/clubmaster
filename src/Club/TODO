@@ -1,17 +1,16 @@
 == TOUCH ==
-better dialog
-book with guest
-checkin
-find user by member number
-better background
-login through booking dialog
-line with fields to the left
 line with time in the top
-schema should start on the time of the day
+schema has to view current time intervals
+keyboard animation when pressing the password
+timeout user session after 30 seconds
+show the name of user which is logged in
+make API_KEY dynamic
 
 == FIXME ==
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
+seems like you can perform a booking when you are not authenticated, API
+booking overview, team does not work
 
 == NOTES TO LATER ==
 booking plan, it should be possible to plan a booking plan a week on the same page
