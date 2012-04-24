@@ -45,7 +45,11 @@ class Mailer
 
   public function setTo($to)
   {
-    $this->message->setTo($to);
+    try {
+      $this->message->setTo($to);
+    } catch (\Exception $e) {
+      // we tried to set an invalid email address
+    }
 
     return $this;
   }
@@ -69,6 +73,10 @@ class Mailer
 
   public function send()
   {
-    $this->mailer->send($this->message);
+    try {
+      $this->mailer->send($this->message);
+    } catch (\Exception $e) {
+      // some error has occur, the email is not valid
+    }
   }
 }
