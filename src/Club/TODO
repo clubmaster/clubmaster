@@ -1,9 +1,6 @@
 = NIBE ==
 create memberships to all
 
-== ATK ==
-correct text on ATK about right and left side with login box
-
 == FIXME ==
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
