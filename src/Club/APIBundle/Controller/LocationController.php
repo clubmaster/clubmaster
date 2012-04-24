@@ -19,9 +19,6 @@ class LocationController extends Controller
    */
   public function indexAction()
   {
-    if (!$this->validateKey())
-      return new Response('Wrong API key', 403);
-
     $em = $this->getDoctrine()->getEntityManager();
     $locations = $em->getRepository('ClubUserBundle:Location')->findAll();
 
