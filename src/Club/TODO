@@ -17,6 +17,7 @@ improve text on change location to something more meaning full, especially on bo
 load users from csv file
 
 == NOTES TO LATER ==
+payment has to be the same value, orders price in kr, purchase_log in øre
 upload logo
 improve form design with bootstrap:
   - date
