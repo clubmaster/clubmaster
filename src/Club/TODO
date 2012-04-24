@@ -1,6 +1,17 @@
 = NIBE ==
 create memberships to all
 
+== TOUCH ==
+better dialog
+book with guest
+checkin
+find user by member number
+better background
+login through booking dialog
+line with fields to the left
+line with time in the top
+schema should start on the time of the day
+
 == FIXME ==
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
