@@ -1,12 +1,12 @@
 == TOUCH ==
-line with time in the top
-schema has to view current time intervals
-keyboard animation when pressing the password
-timeout user session after 30 seconds
 show the name of user which is logged in
+dynamic set the height to match the window height
+schema has to view current time intervals
 make API_KEY dynamic
+
+line with time in the top
+keyboard animation when pressing the password
 buttons to navigate back and forth in time
-view players of the interval on the interval
 
 == FIXME ==
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
