@@ -1,10 +1,6 @@
 == TOUCH ==
-does not seems like screen refetches latest booking (setInterval, init.js)
-make it more visible that you log out
-show the name of user which is logged in
 schema has to view current time intervals
 turn booking screen around
-make sure we cannot select text on the booking screen
 line with time in the top
 keyboard animation when pressing the password
 buttons to navigate back and forth in time
