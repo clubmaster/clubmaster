@@ -1,16 +1,45 @@
+== MISC, AND DONT REMEMBER ==
+book day i tilmelding
+
+== NIBE ==
+fix logo
+settings:
+  add league
+  only 7 days in future
+  max 2 bookings
+change subscription to never expire
+
 == TOUCH ==
+when a user has been auto logged out, we can still cancel the reservation :/
+type member number in box with username on kiosk pc
+something weird happended on the booking screen, logged out while working on a booking
 turn booking screen around
 line with time in the top
 keyboard animation when pressing the password
 buttons to navigate back and forth in time
 
 == FIXME ==
+excel friendly csv format
+view member number and password in box to the left
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
 seems like you can perform a booking when you are not authenticated, API
 booking overview, team does not work
+add notification option for users, receive email on booking
+male and female on danish
+groups does not work (check nibe)
+only book 7 days in the future
 
 == NOTES TO LATER ==
+remove dynamic filters, only work on a single filter
+change password on first login
+match integration facebook, share match
+batch assign users to a league
+remove all subscriptions in admin batch
+default batch empty on admin batch
+add custom fields on profiles
+dynamic pick colors for booking, plan and teams
+pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page
 payment has to be the same value, orders price in kr, purchase_log in øre
 upload logo
