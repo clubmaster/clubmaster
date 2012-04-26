@@ -1,12 +1,7 @@
-== MISC, AND DONT REMEMBER ==
-book day i tilmelding
-
 == NIBE ==
 fix logo
 settings:
-  add league
   only 7 days in future
-  max 2 bookings
 change subscription to never expire
 
 == TOUCH ==
@@ -19,6 +14,7 @@ keyboard animation when pressing the password
 buttons to navigate back and forth in time
 
 == FIXME ==
+auto confirm booking if booked within confirm interval
 make dynamic link on CLUB logo
 excel friendly csv format
 view member number and password in box to the left
@@ -27,7 +23,6 @@ load users from csv file
 seems like you can perform a booking when you are not authenticated, API
 booking overview, team does not work
 add notification option for users, receive email on booking
-male and female on danish
 groups does not work (check nibe)
 only book 7 days in the future
 make a filter so users can disable sharing his booking activities

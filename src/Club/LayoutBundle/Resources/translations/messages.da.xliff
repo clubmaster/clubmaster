@@ -2278,6 +2278,22 @@
         <source>You has to be logged in.</source>
         <target>Du skal være logget ind.</target>
       </trans-unit>
+      <trans-unit id="574">
+        <source>male</source>
+        <target>mand</target>
+      </trans-unit>
+      <trans-unit id="575">
+        <source>female</source>
+        <target>kvinde</target>
+      </trans-unit>
+      <trans-unit id="576">
+        <source>Male</source>
+        <target>Mand</target>
+      </trans-unit>
+      <trans-unit id="577">
+        <source>Female</source>
+        <target>Kvinde</target>
+      </trans-unit>
 
     </body>
   </file>
