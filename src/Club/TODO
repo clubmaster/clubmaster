@@ -30,6 +30,7 @@ add notification option for users, receive email on booking
 male and female on danish
 groups does not work (check nibe)
 only book 7 days in the future
+make a filter so users can disable sharing his booking activities
 
 == NOTES TO LATER ==
 remove dynamic filters, only work on a single filter
