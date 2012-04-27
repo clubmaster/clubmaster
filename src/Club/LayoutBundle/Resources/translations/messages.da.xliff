@@ -2346,6 +2346,10 @@
         <source>User has not attended any teams.</source>
         <target>Medlemmet har ikke tiltaget i nogen hold.</target>
       </trans-unit>
+      <trans-unit id="591">
+        <source>Attended teams</source>
+        <target>Deltaget hold</target>
+      </trans-unit>
 
     </body>
   </file>
