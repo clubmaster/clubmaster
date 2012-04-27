@@ -5,8 +5,6 @@ change subscription to never expire
 == FIXME ==
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
-auto confirm booking if booked within confirm interval
-excel friendly csv format
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
 fix database schema, missing payment method prio

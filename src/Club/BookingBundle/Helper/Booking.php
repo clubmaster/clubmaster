@@ -173,11 +173,24 @@ class Booking
     $this->booking->setEndDate($stop);
     $this->booking->setGuest($this->guest);
 
-    $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
+    $confirm = $this->getConfirmStatus($start);
     $this->booking->setConfirmed($confirm);
 
     if ($this->partner)
       $this->booking->addUser($this->partner);
+  }
+
+  private function getConfirmStatus(\DateTime $start)
+  {
+    $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
+    if ($confirm) return $confirm;
+
+    $now = new \DateTime();
+    $before = clone $start;
+    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_before').'M');
+    $before->sub($i);
+
+    return ($now > $before) ? true : false;
   }
 
   public function save()
