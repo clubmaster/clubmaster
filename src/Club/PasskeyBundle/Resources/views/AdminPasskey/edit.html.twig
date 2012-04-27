@@ -6,4 +6,25 @@
 {% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
+{% if not passkey.user %}
+<h2>{% trans %}Add user{% endtrans %}</h2>
+<p>{% trans %}Here you have to enter the member that has this key.{% endtrans %}</p>
+<form method="post" action="{{ path('club_passkey_adminpasskey_user', {'id':passkey.id}) }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'form':user_form} %}
+</form>
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user', 'input_id':'#form_user_id','url':'api/users/search'} %}
+
+{% else %}
+<h2>{% trans %}Assign user{% endtrans %}</h2>
+<p>{% trans with {'%name%':passkey.user.name} %}%name% is current assign to this key.{% endtrans %}</p>
+
+<hr class="noscreen" />
+<div class="box-01">
+  <form method="POST" action="{{ path('club_passkey_adminpasskey_reset', {'id':passkey.id}) }}">
+    <p class="nom"><input type="submit" value="{% trans %}Reset user{% endtrans %}" class="input-submit" /></p>
+  </form>
+</div> <!-- /box-01 -->
+
+{% endif %}
+
 {% endblock %}

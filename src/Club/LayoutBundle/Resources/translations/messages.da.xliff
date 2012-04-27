@@ -2310,6 +2310,11 @@
         <source>Your password has been expired, please enter a new one below.</source>
         <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
       </trans-unit>
+      <trans-unit id="582">
+        <source>No such user</source>
+        <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
+      </trans-unit>
+
 
     </body>
   </file>

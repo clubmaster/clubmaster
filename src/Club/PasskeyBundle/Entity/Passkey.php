@@ -142,7 +142,7 @@ class Passkey
      *
      * @param Club\UserBundle\Entity\User $user
      */
-    public function setUser(\Club\UserBundle\Entity\User $user)
+    public function setUser(\Club\UserBundle\Entity\User $user=null)
     {
         $this->user = $user;
     }
@@ -150,7 +150,7 @@ class Passkey
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {

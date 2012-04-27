@@ -62,6 +62,10 @@ class AdminPasskeyController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
     $form = $this->createForm(new \Club\PasskeyBundle\Form\Passkey(), $passkey);
+    $user_form = $this->createFormBuilder()
+      ->add('user_id', 'hidden')
+      ->add('user', 'text')
+      ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -78,8 +82,68 @@ class AdminPasskeyController extends Controller
 
     return array(
       'passkey' => $passkey,
-      'form' => $form->createView()
+      'form' => $form->createView(),
+      'user_form' => $user_form->createView()
     );
+  }
+
+  /**
+   * @Route("/user/{id}")
+   * @Template()
+   */
+  public function userAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
+    $form = $this->createFormBuilder()
+      ->add('user_id', 'hidden')
+      ->add('user', 'text')
+      ->getForm();
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $r = $form->getData();
+        $user = $em->find('ClubUserBundle:User', $r['user_id']);
+
+        if (!$user) {
+          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such user'));
+          return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
+        }
+
+        $passkey->setUser($user);
+        $em->persist($passkey);
+
+        $em->flush();
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
+      }
+    }
+
+    return array(
+      'passkey' => $passkey,
+      'form' => $form->createView(),
+      'user_form' => $user_form->createView()
+    );
+  }
+
+
+  /**
+   * @Route("/reset/{id}")
+   */
+  public function resetAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $passkey = $em->find('ClubPasskeyBundle:Passkey',$this->getRequest()->get('id'));
+    $passkey->setUser(null);
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
   }
 
   /**
