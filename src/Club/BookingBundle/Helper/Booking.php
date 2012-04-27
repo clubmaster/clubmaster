@@ -232,6 +232,11 @@ class Booking
       return;
     }
 
+    if (!$this->validateFuture($this->date)) {
+      $this->setError($this->translator->trans('You cannot book that much in the future'));
+      return;
+    }
+
     if (!$this->validateAvailable($this->date)) {
       $this->setError($this->translator->trans('Interval is not available'));
       return;
@@ -372,6 +377,24 @@ class Booking
   protected function validateIntervalDay(\DateTime $date)
   {
     if ($date->format('N') != $this->interval->getDay())
+      return false;
+
+    return true;
+  }
+
+  protected function validateFuture(\DateTime $date)
+  {
+    $c = clone $date;
+    $c->setTime(
+      $this->interval->getStartTime()->format('H'),
+      $this->interval->getStartTime()->format('i'),
+      $this->interval->getStartTime()->format('s')
+    );
+
+    $check_time = new \DateTime();
+    $check_time->add(new \DateInterval('P'.$this->container->getParameter('club_booking.days_book_future').'D'));
+
+    if ($c > $check_time)
       return false;
 
     return true;
