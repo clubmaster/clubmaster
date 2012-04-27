@@ -119,4 +119,28 @@ class FieldRepository extends EntityRepository
     $ret = ($r) ? $r->getPosition()+1 : 1;
     return $ret;
   }
+
+  public function getLocationWithFields()
+  {
+    $res = $this->_em->createQueryBuilder()
+      ->select('DISTINCT l.id')
+      ->from('ClubBookingBundle:Field', 'f')
+      ->leftJoin('f.location', 'l')
+      ->getQuery()
+      ->getResult();
+
+    $qb = $this->_em->createQueryBuilder()
+      ->select('l')
+      ->from('ClubUserBundle:Location', 'l');
+
+    foreach ($res as $r) {
+      $qb
+        ->orWhere('l.id = ?'.$r['id'])
+        ->setParameter($r['id'], $r['id']);
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
 }

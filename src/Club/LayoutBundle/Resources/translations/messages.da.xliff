@@ -2302,6 +2302,10 @@
         <source>Reset</source>
         <target>Nulstil</target>
       </trans-unit>
+      <trans-unit id="580">
+        <source>There is no fields in the current location, what location do you want to go to?</source>
+        <target>Der er ingen baner i dit nuværende område, hvilket område vil du gå til?</target>
+      </trans-unit>
 
     </body>
   </file>

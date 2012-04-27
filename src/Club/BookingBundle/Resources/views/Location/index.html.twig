@@ -3,7 +3,7 @@
 {% block body %}
 <h2>{% trans %}Locations{% endtrans %}</h2>
 
-<p>{% trans %}If you want to change your current location, just click on the location you want to go to.{% endtrans %}</p>
+<p>{% trans %}There is no fields in the current location, what location do you want to go to?{% endtrans %}</p>
 {% for location in locations %}
   <p><a href="{{ path('club_booking_location_switch', {'id':location.id}) }}">{{ location.locationName }}</a></p>
 {% endfor %}
