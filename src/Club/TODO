@@ -3,7 +3,6 @@ fix logo
 change subscription to never expire
 
 == FIXME ==
-fix issue with edit tasks
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 auto confirm booking if booked within confirm interval
