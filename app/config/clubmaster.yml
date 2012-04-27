@@ -89,6 +89,9 @@ club_checkin:
     allowed_ip:
         - 127.0.0.1
 
+club_layout:
+    logo: nibe_logo.png
+
 ornicar_gravatar:
     rating: g
     size: 160
