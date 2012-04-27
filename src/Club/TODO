@@ -2,14 +2,15 @@
 change subscription to never expire
 
 == FIXME ==
-can we clear cache from website
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file
-add custom fields on profiles
 fix database schema
+cup management
 
 == NOTES TO LATER ==
+add custom fields on profiles
+can we clear cache from website
 jquery overlay form on booking
 enter matches outside of the leagues
 admin user batch, select all
