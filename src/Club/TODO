@@ -3,7 +3,6 @@ fix logo
 change subscription to never expire
 
 == FIXME ==
-remove all subscriptions in admin batch
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file

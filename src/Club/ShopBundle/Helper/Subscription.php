@@ -77,6 +77,15 @@ class Subscription
     $this->em->flush();
   }
 
+  public function expireAllSubscriptions(\Club\UserBundle\Entity\User $user)
+  {
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user);
+
+    foreach ($subs as $sub) {
+      $this->expireSubscription($sub);
+    }
+  }
+
   public function expireSubscription($subscription)
   {
     $this->stopSubscription($subscription);

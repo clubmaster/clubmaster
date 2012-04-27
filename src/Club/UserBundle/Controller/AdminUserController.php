@@ -181,6 +181,11 @@ class AdminUserController extends Controller
         $this->get('club_user.reset_password')->passwordExpire($em->find('ClubUserBundle:User',$id));
       }
       break;
+    case 'subscription_expire':
+      foreach ($ids as $id => $value) {
+        $this->get('subscription')->expireAllSubscriptions($em->find('ClubUserBundle:User',$id));
+      }
+      break;
     }
 
     $em->flush();
