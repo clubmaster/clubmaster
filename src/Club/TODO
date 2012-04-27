@@ -1,10 +1,9 @@
 == NIBE ==
 fix logo
-settings:
-  only 7 days in future
 change subscription to never expire
 
 == FIXME ==
+can only book 7 days in future
 add notification option for users, receive email on booking
 groups does not work (check nibe)
 only book 7 days in the future

@@ -42,5 +42,6 @@ class ClubBookingExtension extends Extension
         $container->setParameter('club_booking.guest_unpaid_allowed', $config['guest_unpaid_allowed']);
         $container->setParameter('club_booking.confirm_minutes_before', $config['confirm_minutes_before']);
         $container->setParameter('club_booking.confirm_minutes_after', $config['confirm_minutes_after']);
+        $container->setParameter('club_booking.days_book_future', $config['days_book_future']);
     }
 }

@@ -70,6 +70,7 @@ club_booking:
     num_book_same_partner_future: 1
     num_book_day: 1
     num_book_future: 4
+    days_book_future: 6
     cancel_minute_before: 120
     cancel_minute_created: 5
     booking_style: horizontal
