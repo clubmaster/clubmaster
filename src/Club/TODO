@@ -24,6 +24,9 @@ make dynamic link on CLUB logo
 excel friendly csv format
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
+seems like you can perform a booking when you are not authenticated, API
+booking overview, team does not work
+fix database schema, missing payment method prio
 
 == NOTES TO LATER ==
 remove dynamic filters, only work on a single filter
