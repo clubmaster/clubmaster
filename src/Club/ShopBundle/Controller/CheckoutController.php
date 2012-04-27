@@ -5,6 +5,7 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class CheckoutController extends Controller
 {
@@ -242,6 +243,7 @@ class CheckoutController extends Controller
   /**
    * @Route("/shop/login")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function loginAction()
   {
