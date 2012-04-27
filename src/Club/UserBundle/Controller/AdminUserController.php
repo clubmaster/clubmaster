@@ -20,7 +20,7 @@ class AdminUserController extends Controller
     $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
 
     // field delimiter
-    $fd = ',';
+    $fd = "\t";
     // row delimiter
     $rd = PHP_EOL;
     // text delimiter
