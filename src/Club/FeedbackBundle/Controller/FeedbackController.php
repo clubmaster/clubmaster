@@ -24,9 +24,11 @@ class FeedbackController extends Controller
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
       $user = $this->get('security.context')->getToken()->getUser();
       $data = array(
-        'name' => $user->getProfile()->getName(),
-        'email' => $user->getProfile()->getProfileEmail()->getEmailAddress()
+        'name' => $user->getProfile()->getName()
       );
+
+      if ($user->getProfile()->getProfileEmail())
+        $data['email'] = $user->getProfile()->getProfileEmail()->getEmailAddress();
     }
     $form = $this->createFormBuilder($data)
       ->add('name','text',array(
