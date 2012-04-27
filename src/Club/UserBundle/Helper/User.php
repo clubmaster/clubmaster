@@ -54,4 +54,12 @@ class User
     $event = new \Club\UserBundle\Event\FilterUserEvent($this->user);
     $this->event_dispatcher->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
   }
+
+  public function passwordExpire(\Club\UserBundle\Entity\User $user)
+  {
+    $reset = new \Club\UserBundle\Entity\ResetPassword();
+    $reset->setUser($user);
+
+    $this->em->persist($reset);
+  }
 }

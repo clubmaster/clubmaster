@@ -10,3 +10,6 @@ services:
   clubmaster.user:
     class: Club\UserBundle\Helper\User
     arguments: [@service_container]
+  club_user.reset_password:
+    class: Club\UserBundle\Helper\ResetPassword
+    arguments: [@doctrine.orm.entity_manager]
