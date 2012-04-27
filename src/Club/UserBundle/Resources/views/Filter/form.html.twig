@@ -1,10 +1,5 @@
 <!-- Submit -->
 <div id="search_box">
-  <p>{% trans %}This is your current working filter.{% endtrans %}</p>
-  <form method="post" action="{{ path('club_user_filter_change') }}">
-  {{ form_row(form_filters.filter) }}
-  <input type="submit" value="{% trans %}Change{% endtrans %}" class="input-submit" />
-  </form>
 
   <p>{% trans %}This is your filter, make your search here.{% endtrans %}</p>
   <form method="POST" action="{{ path('club_user_filter_filter') }}">
@@ -27,9 +22,7 @@
     {{ form_row(form._token) }}
 
     <input type="submit" value="Filter" class="input-submit" />
-    <a href="{{ path('club_user_filter_save', {'id':filter.id}) }}">{% trans %}Save{% endtrans %}</a>
-    <a href="{{ path('club_user_filter_delete', {'id':filter.id}) }}">{% trans %}Delete{% endtrans %}</a>
-    <a href="{{ path('club_user_filter_new') }}">{% trans %}New{% endtrans %}</a>
+    <a href="{{ path('club_user_filter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
 
   </form>
 </div>

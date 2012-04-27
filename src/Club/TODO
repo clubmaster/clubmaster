@@ -10,15 +10,14 @@ excel friendly csv format
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
 fix database schema, missing payment method prio
+add custom fields on profiles
 
 == NOTES TO LATER ==
-remove dynamic filters, only work on a single filter
 change password on first login
 match integration facebook, share match
 batch assign users to a league
 remove all subscriptions in admin batch
 default batch empty on admin batch
-add custom fields on profiles
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page

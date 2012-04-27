@@ -2298,6 +2298,10 @@
         <source>You cannot book that much in the future</source>
         <target>Du kan ikke booke så mange dage frem i tiden</target>
       </trans-unit>
+      <trans-unit id="579">
+        <source>Reset</source>
+        <target>Nulstil</target>
+      </trans-unit>
 
     </body>
   </file>
