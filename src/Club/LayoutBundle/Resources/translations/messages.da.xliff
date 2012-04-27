@@ -2314,7 +2314,34 @@
         <source>No such user</source>
         <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
       </trans-unit>
-
+      <trans-unit id="583">
+        <source>Passkey</source>
+        <target>Adgangsnøgle</target>
+      </trans-unit>
+      <trans-unit id="584">
+        <source>Create passkey</source>
+        <target>Opret adgangsnøgle</target>
+      </trans-unit>
+      <trans-unit id="585">
+        <source>Key</source>
+        <target>Nøgle</target>
+      </trans-unit>
+      <trans-unit id="586">
+        <source>Key identity</source>
+        <target>Nøgle identitet</target>
+      </trans-unit>
+      <trans-unit id="587">
+        <source>Assign user</source>
+        <target>Tildel bruger</target>
+      </trans-unit>
+      <trans-unit id="588">
+        <source>%name% is current assign to this key.</source>
+        <target>%name% er for øjeblikket tildelt denne nøgle.</target>
+      </trans-unit>
+      <trans-unit id="589">
+        <source>Reset user</source>
+        <target>Nulstil bruger</target>
+      </trans-unit>
 
     </body>
   </file>
