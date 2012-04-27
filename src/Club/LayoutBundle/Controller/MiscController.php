@@ -8,11 +8,19 @@ class MiscController extends Controller
 {
   public function logoAction()
   {
-    $logo_url = $this->container->getParameter('club_layout.logo_url');
     try {
-      $r = $this->get('router')->match($logo_url);
-      $url = $this->get('router')->generate($r['_route']);
-    } catch (\Symfony\Component\Routing\Exception\ResourceNotFoundException $e) {
+      $logo_url = $this->container->getParameter('club_layout.logo_url');
+      $url = $this->get('router')->generate($logo_url);
+    } catch (\Symfony\Component\Routing\Exception\RouteNotFoundException $e) {
+
+      try {
+        $r = $this->get('router')->match($logo_url);
+        $url = $this->get('router')->generate($r['_route']);
+      } catch (\Symfony\Component\Routing\Exception\ResourceNotFoundException $e) {
+      }
+    }
+
+    if (!isset($url)) {
       if (preg_match("/^http:\/\//", $logo_url)) {
         $url = $logo_url;
       } else {
