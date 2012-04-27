@@ -17,6 +17,8 @@ class ClubLayoutExtension extends Extension
     $loader = new YamlFileLoader($container,new FileLocator(__DIR__.'/../Resources/config'));
     $loader->load('twig.yml');
 
-    $container->setParameter('club_layout.logo', $config['logo']);
+    $container->setParameter('club_layout.logo_path', $config['logo_path']);
+    $container->setParameter('club_layout.logo_url', $config['logo_url']);
+    $container->setParameter('club_layout.logo_title', $config['logo_title']);
   }
 }

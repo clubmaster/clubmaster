@@ -26,7 +26,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
           ->children()
-          ->scalarNode('logo')->defaultValue(null)->end()
+          ->scalarNode('logo_path')->defaultValue('bundles/clublayout/images/logo.png')->end()
+          ->scalarNode('logo_url')->defaultValue('homepage')->end()
+          ->scalarNode('logo_title')->defaultValue('ClubMaster')->end()
           ->end();
 
         return $treeBuilder;
