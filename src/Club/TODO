@@ -6,10 +6,12 @@ change subscription to never expire
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file
-fix database schema, missing payment method prio
 add custom fields on profiles
+fix database schema
 
 == NOTES TO LATER ==
+jquery overlay form on booking
+enter matches outside of the leagues
 admin user batch, select all
 admin user batch, select search
 does lifetime membership works?
@@ -71,7 +73,6 @@ login through booking page
 login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
-jquery overlay form on booking
 
 == NOTES FOR EVEN LATER ==
 admin feature, that give administrator option to give product the price he wants to.
