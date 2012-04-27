@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class BookingController extends Controller
 {
@@ -86,6 +86,8 @@ class BookingController extends Controller
    /**
     * @Template()
     * @Route("/booking/book/confirm")
+    * @Secure(roles="ROLE_USER")
+    *
     */
    public function confirmAction()
    {

@@ -2,6 +2,7 @@
 change subscription to never expire
 
 == FIXME ==
+can we clear cache from website
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file
