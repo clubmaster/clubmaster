@@ -44,7 +44,9 @@ class AdminPasskeyController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
+        return $this->redirect($this->generateUrl('club_passkey_adminpasskey_edit', array(
+          'id' => $passkey->getId()
+        )));
       }
     }
 
