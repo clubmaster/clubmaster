@@ -26,13 +26,9 @@ services:
       - { name: kernel.event_listener, event: team.penalty, method: onTeamPenalty }
   club.teambundle.dashboard_listener:
     class: Club\TeamBundle\Listener\DashboardListener
-    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
-  club.teambundle.member_listener:
-    class: Club\TeamBundle\Listener\DashboardListener
-    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
-    tags:
       - { name: kernel.event_listener, event: member.view, method: onMemberView }
   club.team.listener.checkin:
     class: Club\TeamBundle\Listener\Checkin

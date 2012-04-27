@@ -38,7 +38,6 @@ security:
                 default_target_path: /user/dashboard
             logout:
                 path: /logout
-                target: /
 
     access_control:
         - { path: ^/admin/booking, roles: ROLE_BOOKING_ADMIN }

@@ -58,6 +58,7 @@ club_team:
     num_team_day: 1
     num_team_future: 4
     penalty_product_name: 'Penalty for missed team'
+    public_user_activity: true
 
 club_booking:
     enabled: true
@@ -77,6 +78,7 @@ club_booking:
     auto_confirm: true
     confirm_minutes_before: 120
     confirm_minutes_after: 5
+    public_user_activity: true
 
 club_mail:
     default_sender_address: info@clubmaster.org

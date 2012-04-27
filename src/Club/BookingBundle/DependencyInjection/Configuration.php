@@ -43,6 +43,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('confirm_minutes_before')->isRequired()->end()
             ->scalarNode('confirm_minutes_after')->isRequired()->end()
             ->scalarNode('days_book_future')->isRequired()->end()
+            ->scalarNode('public_user_activity')->isRequired()->end()
           ->end();
 
         return $treeBuilder;
