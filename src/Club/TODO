@@ -3,6 +3,8 @@ fix logo
 change subscription to never expire
 
 == FIXME ==
+change password on first login / next
+remove all subscriptions in admin batch
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file
@@ -10,15 +12,13 @@ fix database schema, missing payment method prio
 add custom fields on profiles
 
 == NOTES TO LATER ==
-change password on first login
+does lifetime membership works?
 match integration facebook, share match
 batch assign users to a league
-remove all subscriptions in admin batch
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page
 payment has to be the same value, orders price in kr, purchase_log in øre
-upload logo
 improve form design with bootstrap:
   - date
   - datetime
@@ -43,11 +43,9 @@ prices to book with guest, use normal checkout procedure
 make a button to accept business terms
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
 bulk create order to users
-make the API force browser to refresh
 configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
-does lifetime membership works?
 do routing to annotation instead of, check default install of symfony bundle
 find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
