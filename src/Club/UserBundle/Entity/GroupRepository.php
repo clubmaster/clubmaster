@@ -21,6 +21,12 @@ class GroupRepository extends EntityRepository
       $attr->setValue($group->getGender());
       $filter->addAttributes($attr);
     }
+    if ($group->getMaxAge() != null) {
+      $attr = new \Club\UserBundle\Entity\FilterAttribute();
+      $attr->setAttribute('max_age');
+      $attr->setValue($group->getMaxAge());
+      $filter->addAttributes($attr);
+    }
     if ($group->getMinAge() != null) {
       $attr = new \Club\UserBundle\Entity\FilterAttribute();
       $attr->setAttribute('min_age');
