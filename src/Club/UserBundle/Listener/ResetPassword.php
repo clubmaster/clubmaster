@@ -25,9 +25,7 @@ class ResetPassword
     if (preg_match("/user\/reset$/", $request->getURI())) return;
 
     if ($this->security->getToken() && $this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $reset = $this->em->getRepository('ClubUserBundle:ResetPassword')->findOneBy(array(
-        'user' => $this->security->getToken()->getUser()->getId()
-      ));
+      $reset = $this->em->getRepository('ClubUserBundle:ResetPassword')->getByUser($this->security->getToken()->getUser());
 
       if ($reset) {
         $response = new RedirectResponse($this->router->generate('club_user_user_reset'));

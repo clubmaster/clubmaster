@@ -11,6 +11,8 @@ fix database schema, missing payment method prio
 add custom fields on profiles
 
 == NOTES TO LATER ==
+admin user batch, select all
+admin user batch, select search
 does lifetime membership works?
 match integration facebook, share match
 batch assign users to a league
