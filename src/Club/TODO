@@ -17,7 +17,6 @@ change password on first login
 match integration facebook, share match
 batch assign users to a league
 remove all subscriptions in admin batch
-default batch empty on admin batch
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page

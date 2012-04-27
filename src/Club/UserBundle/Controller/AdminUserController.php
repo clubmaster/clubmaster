@@ -167,12 +167,14 @@ class AdminUserController extends Controller
    */
   public function batchAction()
   {
-    // FIXME, not a pretty symfony way
-    $ids = $_POST['ids'];
-    $em = $this->getDoctrine()->getEntityManager();
+    if ($this->getRequest()->get('batch_option') == 'ban') {
+      // FIXME, not a pretty symfony way
+      $ids = $_POST['ids'];
+      $em = $this->getDoctrine()->getEntityManager();
 
-    foreach ($ids as $id=>$value) {
-      $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+      foreach ($ids as $id => $value) {
+        $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+      }
     }
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
