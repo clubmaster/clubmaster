@@ -92,7 +92,7 @@ club_checkin:
         - 127.0.0.1
 
 club_layout:
-    #logo_path: nibe_logo.png
+    #logo_path:
     #logo_url:
     #logo_title:
 
