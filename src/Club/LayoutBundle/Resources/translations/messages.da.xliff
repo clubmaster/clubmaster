@@ -2294,6 +2294,10 @@
         <source>Female</source>
         <target>Kvinde</target>
       </trans-unit>
+      <trans-unit id="578">
+        <source>You cannot book that much in the future</source>
+        <target>Du kan ikke booke så mange dage frem i tiden</target>
+      </trans-unit>
 
     </body>
   </file>
