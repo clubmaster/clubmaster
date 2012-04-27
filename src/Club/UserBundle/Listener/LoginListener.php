@@ -39,6 +39,17 @@ class LoginListener
     $this->setLocation();
     $this->setLocale();
     $this->checkin();
+
+    $reset = $this->em->createQueryBuilder()
+      ->select('r')
+      ->from('ClubUserBundle:ResetPassword', 'r')
+      ->where('r.user = :user')
+      ->setParameter('user', $user->getId())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if ($reset) {
+    }
   }
 
   private function setLocale()

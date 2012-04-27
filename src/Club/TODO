@@ -3,7 +3,6 @@ fix logo
 change subscription to never expire
 
 == FIXME ==
-change password on first login / next
 remove all subscriptions in admin batch
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities

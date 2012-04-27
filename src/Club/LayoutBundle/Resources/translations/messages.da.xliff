@@ -2306,6 +2306,10 @@
         <source>There is no fields in the current location, what location do you want to go to?</source>
         <target>Der er ingen baner i dit nuværende område, hvilket område vil du gå til?</target>
       </trans-unit>
+      <trans-unit id="581">
+        <source>Your password has been expired, please enter a new one below.</source>
+        <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
+      </trans-unit>
 
     </body>
   </file>

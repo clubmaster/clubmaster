@@ -25,6 +25,11 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+  club.userbundle.reset_password:
+    class: Club\UserBundle\Listener\ResetPassword
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
   club.userbundle.top_menu_listener:
     class: Club\UserBundle\Listener\MenuListener
     arguments: [@router, @security.context, @translator]

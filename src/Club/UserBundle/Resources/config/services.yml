@@ -2,6 +2,9 @@ services:
   failure.password.handler:
     class: Club\UserBundle\Helper\FailurePasswordHandler
     arguments: [@doctrine.orm.entity_manager]
+  login_success_handler:
+    class: Club\UserBundle\Helper\LoginSuccessHandler
+    arguments: [@service_container]
   clubmaster.version:
     class: Club\UserBundle\Helper\Version
   clubmaster.ban:
