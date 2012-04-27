@@ -4,16 +4,6 @@ settings:
   only 7 days in future
 change subscription to never expire
 
-== TOUCH ==
-when a user has been auto logged out, we can still cancel the reservation :/
-seems like you can perform a booking when you are not authenticated, any bad defaults?
-type member number in box with username on kiosk pc
-something weird happended on the booking screen, logged out while working on a booking
-turn booking screen around
-line with time in the top
-keyboard animation when pressing the password
-buttons to navigate back and forth in time
-
 == FIXME ==
 add notification option for users, receive email on booking
 groups does not work (check nibe)
