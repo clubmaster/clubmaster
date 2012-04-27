@@ -3,18 +3,14 @@ fix logo
 change subscription to never expire
 
 == FIXME ==
-can only book 7 days in future
+can only book 6 days in future
 add notification option for users, receive email on booking
 groups does not work (check nibe)
-only book 7 days in the future
 make a filter so users can disable sharing his booking activities
 auto confirm booking if booked within confirm interval
-make dynamic link on CLUB logo
 excel friendly csv format
 improve text on change location to something more meaning full, especially on booking page its miss leaing, and remove area without fields
 load users from csv file
-seems like you can perform a booking when you are not authenticated, API
-booking overview, team does not work
 fix database schema, missing payment method prio
 
 == NOTES TO LATER ==
