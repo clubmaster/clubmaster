@@ -177,7 +177,7 @@ class UserSetting
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {

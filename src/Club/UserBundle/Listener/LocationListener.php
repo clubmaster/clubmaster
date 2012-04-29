@@ -20,8 +20,6 @@ class LocationListener
 
   public function onKernelRequest()
   {
-    $this->session->setLocale($this->container->get('request')->getPreferredLanguage());
-
     try {
       if ($this->session->get('location_id')) return;
 

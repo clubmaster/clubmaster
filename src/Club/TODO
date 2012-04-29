@@ -3,8 +3,6 @@ change subscription to never expire
 remove send order, welcome mails
 
 == FIXME ==
-add notification option for users, receive email on booking
-make a filter so users can disable sharing his booking activities
 fix database schema
 load users from csv file
 does lifetime membership works?

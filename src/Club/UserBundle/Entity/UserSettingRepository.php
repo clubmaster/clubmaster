@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserSettingRepository extends EntityRepository
 {
+  public function getUserArray(\Club\UserBundle\Entity\User $user)
+  {
+    $settings = $this->_em->getRepository('ClubUserBundle:UserSetting')->findBy(array(
+      'user' => $user->getId()
+    ));
+
+    $res = array();
+    foreach ($settings as $setting) {
+      $res[$setting->getAttribute()] = $setting->getValue();
+    }
+
+    return $res;
+  }
 }

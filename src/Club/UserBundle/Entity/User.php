@@ -33,13 +33,6 @@ class User implements AdvancedUserInterface
 
     /**
      * @ORM\Column(type="string", nullable="true")
-     *
-     * @var string $locale
-     */
-    protected $locale;
-
-    /**
-     * @ORM\Column(type="string", nullable="true")
      * @Assert\NotBlank(groups={"user"})
      *
      * @var string $password
@@ -773,26 +766,6 @@ class User implements AdvancedUserInterface
       }
 
       return false;
-    }
-
-    /**
-     * Set locale
-     *
-     * @param string $locale
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
     }
 
     /**

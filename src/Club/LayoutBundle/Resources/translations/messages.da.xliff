@@ -2362,6 +2362,26 @@
         <source>Subscription expire</source>
         <target>Medlemskab udløb</target>
       </trans-unit>
+      <trans-unit id="595">
+        <source>User settings</source>
+        <target>Bruger opsætning</target>
+      </trans-unit>
+      <trans-unit id="596">
+        <source>Here you have some different settings that can make your profile more personal.</source>
+        <target>Her har du nogen forskellige indstillinger som kan gøre din profil mere personlig.</target>
+      </trans-unit>
+      <trans-unit id="597">
+        <source>Receive email on booking</source>
+        <target>Modtag e-mail ved booking</target>
+      </trans-unit>
+      <trans-unit id="598">
+        <source>Public booking activity</source>
+        <target>Offentlig booking aktivitet</target>
+      </trans-unit>
+      <trans-unit id="599">
+        <source>Timezone</source>
+        <target>Tidszone</target>
+      </trans-unit>
 
     </body>
   </file>

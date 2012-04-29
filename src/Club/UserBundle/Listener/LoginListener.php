@@ -37,7 +37,7 @@ class LoginListener
     $this->em->flush();
 
     $this->setLocation();
-    $this->setLocale();
+    $this->setUserSessions();
     $this->checkin();
 
     $reset = $this->em->createQueryBuilder()
@@ -52,13 +52,10 @@ class LoginListener
     }
   }
 
-  private function setLocale()
+  private function setUserSessions()
   {
-    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY') && ($locale = $this->security_context->getToken()->getUser()->getLocale()))
-      $this->session->setLocale($locale);
-
-    if ($this->session->getLocale())
-      return;
+    $this->session->setLocale($this->container->get('request')->getPreferredLanguage());
+    $this->container->get('clubmaster.user')->updateUserSettings();
   }
 
   private function setLocation()
