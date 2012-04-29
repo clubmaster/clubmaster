@@ -5,7 +5,6 @@ remove send order, welcome mails
 == FIXME ==
 fix database schema
 load users from csv file
-does lifetime membership works?
 
 == NOTES TO LATER ==
 cup management
