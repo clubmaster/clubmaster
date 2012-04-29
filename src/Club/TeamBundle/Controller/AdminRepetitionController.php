@@ -98,8 +98,10 @@ class AdminRepetitionController extends Controller
     $schedule = $repetition->getSchedule();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $repetition = new \Club\TeamBundle\Entity\Repetition();
-      $repetition->setSchedule($schedule);
+      if (!$schedule->getRepetition()) {
+        $repetition = new \Club\TeamBundle\Entity\Repetition();
+        $repetition->setSchedule($schedule);
+      }
     }
 
     $repetition->setType('daily');
