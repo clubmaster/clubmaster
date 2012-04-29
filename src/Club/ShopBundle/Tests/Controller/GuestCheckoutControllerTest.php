@@ -42,11 +42,11 @@ class GuestCheckoutControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 
-    $form = $crawler->selectButton('Sign up')->form();
+    $form = $crawler->selectButton('Create account')->form();
     $crawler = $this->client->submit($form);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Sign up')->form(array(
+    $form = $crawler->selectButton('Create account')->form(array(
       'user[profile][first_name]' => 'Michael Holm',
       'user[profile][last_name]' => 'Kristensen',
       'user[profile][profile_address][street]' => 'Oesterbro 62, 2tv',
