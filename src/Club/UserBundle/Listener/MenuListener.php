@@ -35,7 +35,7 @@ class MenuListener
     );
     $menu[16] = array(
       'name' => $this->translator->trans('Administration'),
-      'route' => $this->router->generate('club_log_log_index')
+      'route' => $this->router->generate('club_log_log_index'),
       'items' => array(
         array(
           'name' => $this->translator->trans('Task'),
