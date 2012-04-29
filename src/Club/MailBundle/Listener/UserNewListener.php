@@ -21,14 +21,13 @@ class UserNewListener
 
   public function onUserNew(\Club\UserBundle\Event\FilterUserEvent $event)
   {
-    if (!$this->container->get('club_mail.mail_on_welcome')) return false;
+    if (!$this->container->getParameter('club_mail.mail_on_welcome')) return false;
 
     $user = $event->getUser();
     $email = $user->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer
-        ->setType('system')
         ->setSubject('Welcome')
         ->setFrom()
         ->setTo($email->getEmailAddress())

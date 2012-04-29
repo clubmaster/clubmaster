@@ -21,14 +21,13 @@ class OrderAcceptedListener
 
   public function onOrderChange(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
-    if (!$this->container->get('club_mail.mail_on_order')) return false;
+    if (!$this->container->getParameter('club_mail.mail_on_order')) return false;
 
     $order = $event->getOrder();
     $email = $order->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {
       $this->clubmaster_mailer
-        ->setType('system')
         ->setSubject('Order '.$order->getOrderNumber())
         ->setFrom()
         ->setTo($email->getEmailAddress())

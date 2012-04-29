@@ -21,7 +21,7 @@ class BookingListener
 
   public function onBookingConfirm(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
-    if (!$this->container->get('club_mail.mail_on_booking')) return false;
+    if (!$this->container->getParameter('club_mail.mail_on_booking')) return false;
 
     $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
@@ -43,13 +43,12 @@ class BookingListener
 
   public function onBookingCancel(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
-    if (!$this->container->get('club_mail.mail_on_booking')) return false;
+    if (!$this->container->getParameter('club_mail.mail_on_booking')) return false;
 
     $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
 
     $this->clubmaster_mailer
-      ->setType('system')
       ->setSubject('Booking cancel')
       ->setFrom();
 
