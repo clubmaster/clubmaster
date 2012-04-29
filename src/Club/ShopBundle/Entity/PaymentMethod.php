@@ -56,6 +56,11 @@ class PaymentMethod
     protected $priority;
 
 
+    public function __construct()
+    {
+      $this->priority = 10;
+    }
+
     public function __toString()
     {
       return $this->getPaymentMethodName();
