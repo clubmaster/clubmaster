@@ -1,9 +1,9 @@
 == NIBE ==
 change subscription to never expire
+remove send system mails
 
 == FIXME ==
-create a read form in admin batch
-translate admin batch
+make option to remove system emails
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
 load users from csv file

@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
           ->children()
             ->scalarNode('default_sender_address')->isRequired()->end()
             ->scalarNode('default_sender_name')->isRequired()->end()
+            ->scalarNode('send_system_mails')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

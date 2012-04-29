@@ -20,5 +20,6 @@ class ClubMailExtension extends Extension
 
     $container->setParameter('club_mail.default_sender_address', $config['default_sender_address']);
     $container->setParameter('club_mail.default_sender_name', $config['default_sender_name']);
+    $container->setParameter('club_mail.send_system_mails', $config['send_system_mails']);
   }
 }

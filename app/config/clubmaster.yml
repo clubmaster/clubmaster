@@ -64,13 +64,13 @@ club_booking:
     enabled: true
     enable_guest: true
     guest_price: 50
-    guest_unpaid_allowed: 1
-    num_book_guest_day: 1
-    num_book_guest_future: 1
-    num_book_same_partner_day: 1
-    num_book_same_partner_future: 1
-    num_book_day: 1
-    num_book_future: 4
+    guest_unpaid_allowed: 2
+    num_book_guest_day: 2
+    num_book_guest_future: 2
+    num_book_same_partner_day: 2
+    num_book_same_partner_future: 2
+    num_book_day: 2
+    num_book_future: 2
     days_book_future: 6
     cancel_minute_before: 120
     cancel_minute_created: 5
@@ -83,6 +83,7 @@ club_booking:
 club_mail:
     default_sender_address: info@clubmaster.org
     default_sender_name: ClubMaster Administrator
+    send_system_mails: true
 
 club_feedback:
     enabled: true
@@ -90,6 +91,7 @@ club_feedback:
 club_checkin:
     allowed_ip:
         - 127.0.0.1
+        - ::1
 
 club_layout:
     #logo_path:
