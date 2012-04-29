@@ -1,6 +1,6 @@
 == NIBE ==
 change subscription to never expire
-remove send system mails
+remove send order, welcome mails
 
 == FIXME ==
 translate ban
