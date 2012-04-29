@@ -2,10 +2,6 @@
 change subscription to never expire
 remove send order, welcome mails
 
-== FIXME ==
-use putcsv function instead of homemade version
-work some more with the team bundle, is everything perfect?
-
 == NOTES TO LATER ==
 knockout management
 add custom fields on profiles
