@@ -22,7 +22,7 @@
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|club_datetime }}</td>
       {% if subscription.expireDate == '' %}
-      <td>Never</td>
+      <td>{% trans %}Never{% endtrans %}</td>
       {% else %}
       <td>{{ subscription.expireDate|club_datetime }}</td>
       {% endif %}

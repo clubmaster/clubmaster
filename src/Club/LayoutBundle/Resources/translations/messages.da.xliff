@@ -2386,6 +2386,10 @@
         <source>You has to specify a time for the subscription.</source>
         <target>Du skal vælge en tid for medlemskabet.</target>
       </trans-unit>
+      <trans-unit id="601">
+        <source>Never</source>
+        <target>Aldrig</target>
+      </trans-unit>
 
     </body>
   </file>
