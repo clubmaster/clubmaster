@@ -170,26 +170,32 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $ids = $this->getRequest()->get('ids');
 
-    switch ($this->getRequest()->get('batch_option')) {
-    case 'ban':
-      foreach ($ids as $id => $value) {
-        $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
-      }
-      break;
-    case 'password_expire':
-      foreach ($ids as $id => $value) {
-        $this->get('club_user.reset_password')->passwordExpire($em->find('ClubUserBundle:User',$id));
-      }
-      break;
-    case 'subscription_expire':
-      foreach ($ids as $id => $value) {
-        $this->get('subscription')->expireAllSubscriptions($em->find('ClubUserBundle:User',$id));
-      }
-      break;
-    }
+    $form = $this->createForm(new \Club\UserBundle\Form\Batch());
+    $form->bindRequest($this->getRequest());
+    if ($form->isValid()) {
 
-    $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $r = $form->getData();
+      switch ($r['batch']) {
+      case 'ban':
+        foreach ($ids as $id => $value) {
+          $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      case 'password_expire':
+        foreach ($ids as $id => $value) {
+          $this->get('club_user.reset_password')->passwordExpire($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      case 'subscription_expire':
+        foreach ($ids as $id => $value) {
+          $this->get('subscription')->expireAllSubscriptions($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      }
+
+      $em->flush();
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    }
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -291,13 +297,16 @@ class AdminUserController extends Controller
       $order_by = array('member_number' => 'asc');
     }
 
+    $form = $this->createForm(new \Club\UserBundle\Form\Batch());
+
     $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
       'sort_name' => key($order_by),
       'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'paginator' => $paginator
+      'paginator' => $paginator,
+      'form' => $form->createView()
     );
   }
 

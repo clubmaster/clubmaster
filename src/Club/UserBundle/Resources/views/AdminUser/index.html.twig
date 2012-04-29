@@ -32,12 +32,8 @@
   <tfoot>
     <tr class="bg">
       <td colspan="7" class="arrow-01">
-        <select name="batch_option" class="input-text">
-          <option value=""></option>
-          <option value="ban">{% trans %}Ban selected{% endtrans %}</option>
-          <option value="password_expire">{% trans %}Password expire{% endtrans %}</option>
-          <option value="subscription_expire">{% trans %}Subscription expire{% endtrans %}</option>
-        </select>&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" />
+        {{ form_widget(form.batch, {'attr': {'class':'input-text' }}) }}&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" class="input-submit-02" />
+        {{ form_rest(form) }}
       </td>
     </tr>
   </tfoot>

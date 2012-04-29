@@ -2350,6 +2350,18 @@
         <source>Attended teams</source>
         <target>Deltaget hold</target>
       </trans-unit>
+      <trans-unit id="592">
+        <source>Ban selected</source>
+        <target>Ban valgte</target>
+      </trans-unit>
+      <trans-unit id="593">
+        <source>Password expire</source>
+        <target>Password udløb</target>
+      </trans-unit>
+      <trans-unit id="594">
+        <source>Subscription expire</source>
+        <target>Medlemskab udløb</target>
+      </trans-unit>
 
     </body>
   </file>
