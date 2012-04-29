@@ -9,11 +9,11 @@ class Mailer
   protected $container;
   protected $message;
 
-  public function __construct($em, $mailer, $container)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->mailer = $mailer;
     $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->mailer = $container->get('mailer');
 
     $this->message = \Swift_Message::newInstance();
   }
