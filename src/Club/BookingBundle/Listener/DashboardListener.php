@@ -19,7 +19,12 @@ class DashboardListener
 
   public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
-    if (!$this->container->getParameter('club_booking.public_user_activity')) return;
+    $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
+      'user' => $this->security_context->getToken()->getUser()->getId(),
+      'attribute' => 'public_booking_activity'
+    ));
+    if ($s && !$s->getValue()) return;
+    if (!$s && !$this->container->getParameter('club_booking.public_user_activity')) return;
 
     $user = $event->getUser();
     $output = $event->getOutput();
