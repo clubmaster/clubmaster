@@ -20,6 +20,10 @@ _location:
   resource: "@ClubUserBundle/Controller/LocationController.php"
   type: annotation
 
+_user_setting:
+  resource: "@ClubUserBundle/Controller/UserSettingController.php"
+  type: annotation
+
 _admin_user:
   resource: "@ClubUserBundle/Controller/AdminUserController.php"
   type: annotation
