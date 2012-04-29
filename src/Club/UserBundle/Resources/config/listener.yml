@@ -10,11 +10,6 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: login_attempt.task, method: onLoginAttemptTask }
-  club.userbundle.listener.ban.listener:
-    class: Club\UserBundle\Listener\CleanupBanListener
-    arguments: [@doctrine.orm.entity_manager]
-    tags:
-      - { name: kernel.event_listener, event: ban.task, method: onBanTask }
   club.userbundle.login_listener:
     class: Club\UserBundle\Listener\LoginListener
     arguments: [@service_container]
