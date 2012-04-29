@@ -21,6 +21,7 @@ mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/event_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_fields.sql
 
+phpunit -c app/ src/Club/UserBundle/Tests/Controller/AdminUserImportControllerTest.php
 phpunit -c app/ src/Club/TeamBundle/Tests/Controller/0AdminTeamControllerTest.php
 phpunit -c app/ src/Club/TeamBundle/Tests/Controller/1AdminScheduleControllerTest.php
 phpunit -c app/ src/Club/ShopBundle/Tests/Controller/AdminCouponControllerTest.php

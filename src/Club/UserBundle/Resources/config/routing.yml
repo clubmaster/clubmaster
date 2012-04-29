@@ -72,4 +72,3 @@ _login_log:
 _admin_user_import:
   resource: "@ClubUserBundle/Controller/AdminUserImportController.php"
   type: annotation
-  prefix: /admin
