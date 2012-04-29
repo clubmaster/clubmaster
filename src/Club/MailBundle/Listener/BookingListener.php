@@ -21,8 +21,6 @@ class BookingListener
 
   public function onBookingConfirm(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
-    if (!$this->container->getParameter('club_mail.mail_on_booking')) return false;
-
     $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
 
@@ -43,8 +41,6 @@ class BookingListener
 
   public function onBookingCancel(\Club\BookingBundle\Event\FilterBookingEvent $event)
   {
-    if (!$this->container->getParameter('club_mail.mail_on_booking')) return false;
-
     $booking = $event->getBooking();
     $recipients = $this->getRecipients($booking);
 
@@ -68,15 +64,31 @@ class BookingListener
     $recipients = array();
 
     if ($booking->getUser()->getProfile()->getProfileEmail()) {
-      $recipients[] = $booking->getUser();
+      if ($this->receiveMail($booking->getUser())) {
+        $recipients[] = $booking->getUser();
+      }
     }
 
     foreach ($booking->getUsers() as $user) {
-      if ($user->getProfile()->getProfileEmail()) {
-        $recipients[] = $user;
+      if ($this->receiveMail($user)) {
+        if ($user->getProfile()->getProfileEmail()) {
+          $recipients[] = $user;
+        }
       }
     }
 
     return $recipients;
+  }
+
+  protected function receiveMail(\Club\UserBundle\Entity\User $user)
+  {
+    $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
+      'user' => $user->getId(),
+      'attribute' => 'receive_email_on_booking'
+    ));
+    if ($s && !$s->getValue()) return false;
+    if (!$s && !$this->container->getParameter('club_mail.mail_on_booking')) return false;
+
+    return true;
   }
 }
