@@ -3,7 +3,6 @@ change subscription to never expire
 remove send order, welcome mails
 
 == FIXME ==
-fix database schema
 load users from csv file
 
 == NOTES TO LATER ==
