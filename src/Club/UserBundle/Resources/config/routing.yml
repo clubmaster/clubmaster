@@ -68,3 +68,8 @@ _login_log:
   resource: "@ClubUserBundle/Controller/LoginLogController.php"
   type: annotation
   prefix: /admin
+
+_admin_user_import:
+  resource: "@ClubUserBundle/Controller/AdminUserImportController.php"
+  type: annotation
+  prefix: /admin
