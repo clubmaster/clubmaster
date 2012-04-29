@@ -5,18 +5,18 @@ remove send order, welcome mails
 == FIXME ==
 add notification option for users, receive email on booking
 make a filter so users can disable sharing his booking activities
-load users from csv file
 fix database schema
-cup management
+load users from csv file
+does lifetime membership works?
 
 == NOTES TO LATER ==
+cup management
 add custom fields on profiles
 can we clear cache from website
 jquery overlay form on booking
 enter matches outside of the leagues
 admin user batch, select all
 admin user batch, select search
-does lifetime membership works?
 match integration facebook, share match
 batch assign users to a league
 dynamic pick colors for booking, plan and teams
