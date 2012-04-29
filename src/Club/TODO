@@ -3,6 +3,7 @@ change subscription to never expire
 remove send order, welcome mails
 
 == FIXME ==
+make country list smaller in user filter
 load users from csv file
 
 == NOTES TO LATER ==
