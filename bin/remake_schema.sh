@@ -1,5 +1,11 @@
 #!/bin/bash
 
+cat app/config/parameters.ini | grep locale | grep en &> /dev/null
+if [ "$?" !=  "0" ]; then
+  echo "Installer is not on english"
+  exit
+fi
+
 touch app/installer
 
 sudo rm -rf app/cache/*

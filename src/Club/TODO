@@ -2,12 +2,16 @@
 change subscription to never expire
 remove send order, welcome mails
 
+== FIXME ==
+add product on dynamic group
+admin user batch, select all
+make sure user only can book in member status period
+
 == NOTES TO LATER ==
 knockout management
 add custom fields on profiles
 jquery overlay form on booking
 enter matches outside of the leagues
-admin user batch, select all
 admin user batch, select search
 match integration facebook, share match
 batch assign users to a league
@@ -47,8 +51,6 @@ find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
 quick create intervals when creating the field
 add leagues to tournaments, use of tags or something
-add product on dynamic group
-cannot install when parameter is not on english
 make a quick way to remove all team penalties
 use attribute class as product attribute converter
 add defaults during install:
@@ -57,20 +59,14 @@ add defaults during install:
 fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
-make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 avoid try / catch on kernel.request listeners
-set system locale for logging messages
 implement payment for booking
 on admin interval manager, put a default interval in top, that will set the same for everyone
 login through booking page
 login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
-
-== NOTES FOR EVEN LATER ==
-admin feature, that give administrator option to give product the price he wants to.
-check if a product on discount, what will the price be the following year on autorenewal
 something is broken when creating more intervals on the same field, fix it
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
@@ -79,5 +75,4 @@ find a smart way to get default location, might be with the url
 bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
-much better debugging on errors from API.. make sure all errors is wrapped in encode->encodeError()
 tag users on images
