@@ -3,7 +3,7 @@ change subscription to never expire
 remove send order, welcome mails
 
 == FIXME ==
-load users from csv file
+use putcsv function instead of homemade version
 work some more with the team bundle, is everything perfect?
 
 == NOTES TO LATER ==

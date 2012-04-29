@@ -10,15 +10,14 @@ php app/console doctrine:database:create
 phpunit -c app/installunit.xml
 php app/console assets:install web
 
-MYSQL_PASSWORD=""
-MYSQL_DATABASE=clubmaster
+MYSQL_PASSWORD="Ig5IiAu9"
+MYSQL_DATABASE=clubmaster_dev
 
 if [ "${MYSQL_PASSWORD}" != "" ]; then
   MYSQL_PASSWORD="-p"${MYSQL_PASSWORD}
 fi
 
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
-mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/users_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/event_data.sql
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_fields.sql
 

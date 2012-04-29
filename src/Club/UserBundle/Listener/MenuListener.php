@@ -24,6 +24,12 @@ class MenuListener
     $menu[10] = array(
       'name' => $this->translator->trans('Members'),
       'route' => $this->router->generate('admin_user'),
+      'items' => array(
+        array(
+          'name' => $this->translator->trans('Import'),
+          'route' => $this->router->generate('club_user_adminuserimport_index')
+        )
+      )
     );
     $menu[12] = array(
       'name' => $this->translator->trans('Group'),
