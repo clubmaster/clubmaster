@@ -83,9 +83,9 @@ club_booking:
 club_mail:
     default_sender_address: info@clubmaster.org
     default_sender_name: ClubMaster Administrator
-    mail_on_welcome: false
-    mail_on_booking: false
-    mail_on_order: false
+    mail_on_welcome: true
+    mail_on_booking: true
+    mail_on_order: true
 
 club_feedback:
     enabled: true
