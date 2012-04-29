@@ -45,11 +45,6 @@ _admin_location_config:
   type: annotation
   prefix: /admin
 
-_ban:
-  resource: "@ClubUserBundle/Controller/BanController.php"
-  type: annotation
-  prefix: /admin
-
 _config:
   resource: "@ClubUserBundle/Controller/ConfigController.php"
   type: annotation

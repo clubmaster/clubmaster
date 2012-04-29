@@ -38,10 +38,6 @@ class MenuListener
       'route' => $this->router->generate('ban'),
       'items' => array(
         array(
-          'name' => $this->translator->trans('Ban'),
-          'route' => $this->router->generate('ban')
-        ),
-        array(
           'name' => $this->translator->trans('Task'),
           'route' => $this->router->generate('admin_task')
         ),

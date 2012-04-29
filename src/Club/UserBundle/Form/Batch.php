@@ -9,7 +9,6 @@ class Batch extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $res = array(
-      'ban' => 'Ban selected',
       'password_expire' => 'Password expire',
       'subscription_expire' => 'Subscription expire'
     );
