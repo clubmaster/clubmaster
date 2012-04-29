@@ -30,10 +30,6 @@ if [ $? -ne 0 ]; then
   exit
 fi
 
-SQL_DUMP_FILE=`mktemp`
-chmod 644 ${SQL_DUMP_FILE}
-mysqldump -u root clubmaster > ${SQL_DUMP_FILE}
-
 mkdir ${BUILD_PATH}
 
 TRUNK_PATH=`pwd`
@@ -43,15 +39,12 @@ cp -r ${TRUNK_PATH}/* ${BUILD_PATH}
 sed -i 's/\-dev//' ${BUILD_PATH}/src/Club/UserBundle/Helper/Version.php
 rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/deps
+rm -rf ${BUILD_PATH}/app/sql
 rm -rf ${BUILD_PATH}/app/cache/*
 rm -rf ${BUILD_PATH}/app/logs/*
-rm -rf ${BUILD_PATH}/app/sql/*
 rm -rf ${BUILD_PATH}/deps.lock
 rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
-rm -rf ${BUILD_PATH}/web/index_dev.php
 rm -rf ${BUILD_PATH}/web/uploads/*
-
-cp ${SQL_DUMP_FILE} ${BUILD_PATH}/app/sql/install.sql
 
 rm ${SQL_DUMP_FILE}
 find ${BUILD_PATH} -name .git | xargs rm -rf
@@ -79,5 +72,5 @@ EOF
 cd /tmp
 tar czf clubmaster_${VERSION}.tgz clubmaster_${VERSION}
 
-rm -f app/installer
+rm -rf app/installer
 rm -rf ${BUILD_PATH}
