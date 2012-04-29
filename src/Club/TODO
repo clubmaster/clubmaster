@@ -2,12 +2,10 @@
 change subscription to never expire
 remove send order, welcome mails
 
-== FIXME ==
-add product on dynamic group
+== NOTES TO LATER ==
 admin user batch, select all
 make sure user only can book in member status period
-
-== NOTES TO LATER ==
+add product on dynamic group
 knockout management
 add custom fields on profiles
 jquery overlay form on booking
