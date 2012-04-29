@@ -1,3 +1,6 @@
+== FIXME ==
+report to the user if he uses a bad timezone, http://dk2.php.net/manual/en/timezones.others.php
+
 == NOTES TO LATER ==
 admin user batch, select all
 make sure user only can book in member status period
