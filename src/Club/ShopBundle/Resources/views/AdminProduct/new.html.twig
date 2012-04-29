@@ -1,10 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-
 {% block body %}
 
 <form method="post" action="{{ path('admin_shop_product_new') }}">
-{% include "ClubShopBundle:AdminProduct:form.html.twig" with {'form': form} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}
