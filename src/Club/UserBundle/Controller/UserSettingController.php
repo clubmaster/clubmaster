@@ -77,11 +77,6 @@ class UserSettingController extends Controller
       'da' => 'Danish',
       'en' => 'English'
     );
-    $dateformat = array(
-      'da' => 'Danish',
-      'en_GB' => 'English British',
-      'en_US' => 'English American'
-    );
 
     $form  = $this->createFormBuilder($settings)
       ->add('receive_email_on_booking', 'choice', array(
@@ -96,11 +91,9 @@ class UserSettingController extends Controller
         'choices' => $languages,
         'required' => false
       ))
-      ->add('dateformat', 'choice', array(
-        'choices' => $dateformat,
+      ->add('dateformat', 'language', array(
         'required' => false
       ))
-
       ->add('timezone', 'timezone', array(
         'required' => false
       ))
