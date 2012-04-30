@@ -16,9 +16,6 @@ make sure user only can use teams in member ship status period
 implement payment for booking
 find a smart way to get default location, might be with the url
 
-== FIXME ==
-report to the user if he uses a bad timezone, http://dk2.php.net/manual/en/timezones.others.php
-
 == NOTES TO LATER ==
 add product on dynamic group
 add custom fields on profiles
