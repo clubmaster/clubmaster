@@ -2390,6 +2390,54 @@
         <source>Never</source>
         <target>Aldrig</target>
       </trans-unit>
+      <trans-unit id="602">
+        <source>If you have a long list of users you want to import, you can use this page.</source>
+        <target>Hvis du har en lang liste af brugere du vil importere, brug formularen herunder.</target>
+      </trans-unit>
+      <trans-unit id="603">
+        <source>User file</source>
+        <target>Bruger fil</target>
+      </trans-unit>
+      <trans-unit id="604">
+        <source>Skip first line</source>
+        <target>Slet første linie</target>
+      </trans-unit>
+      <trans-unit id="605">
+        <source>Field delimiter</source>
+        <target>Felt afgrænser</target>
+      </trans-unit>
+      <trans-unit id="606">
+        <source>Explation</source>
+        <target>Forklaring</target>
+      </trans-unit>
+      <trans-unit id="607">
+        <source>Yes</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="608">
+        <source>No</source>
+        <target>Nej</target>
+      </trans-unit>
+      <trans-unit id="609">
+        <source>If left blank user will get the next number in the line.</source>
+        <target>Hvis tomt vil brugeren få det næste medlemsnummer i rækken</target>
+      </trans-unit>
+      <trans-unit id="610">
+        <source>If left blank set password to password, and user has to set it after first login.</source>
+        <target>Hvis tomt vil password blive sat til password, og brugeren vil blive bedt om at ændre password ved første login.</target>
+      </trans-unit>
+      <trans-unit id="611">
+        <source>Enter male or female.</source>
+        <target>Indtast male eller female</target>
+      </trans-unit>
+      <trans-unit id="612">
+        <source>The birthday syntax should be YYYY-MM-DD.</source>
+        <target>Fødselsdagen skal angives i formatet YYYY-MM-DD.</target>
+      </trans-unit>
+      <trans-unit id="613">
+        <source>Enter country code like DK, GB, DE and so on.</source>
+        <target>Indtast landekode som DK, GB, DE og så videre.</target>
+      </trans-unit>
 
     </body>
   </file>
