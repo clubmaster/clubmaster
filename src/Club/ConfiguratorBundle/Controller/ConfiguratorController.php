@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Club\ConfiguratorBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -18,11 +9,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * ConfiguratorController.
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ * @Route("/configurator")
  */
 class ConfiguratorController extends ContainerAware
 {
     /**
      * @return Response A Response instance
+     * @Route("/step/{index}")
      */
     public function stepAction($index = 0)
     {
@@ -56,6 +49,9 @@ class ConfiguratorController extends ContainerAware
         ));
     }
 
+    /**
+     * @Route("/")
+     */
     public function checkAction()
     {
         $configurator = $this->container->get('club.configurator.webconfigurator');
@@ -78,6 +74,9 @@ class ConfiguratorController extends ContainerAware
         ));
     }
 
+    /**
+     * @Route("/final")
+     */
     public function finalAction()
     {
         $configurator = $this->container->get('club.configurator.webconfigurator');

@@ -48,12 +48,13 @@ ClubEventBundle:
     type:     annotation
 
 ClubInstallBundle:
-    resource: "@ClubInstallerBundle/Resources/config/routing.yml"
+    resource: "@ClubInstallerBundle/Controller/"
     prefix: /installer
+    type:     annotation
 
 ClubConfiguratorBundle:
-    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-    prefix: /configurator
+    resource: "@ClubConfiguratorBundle/Controller/"
+    type:     annotation
 
 ClubMessageBundle:
     resource: "@ClubMessageBundle/Controller/"
