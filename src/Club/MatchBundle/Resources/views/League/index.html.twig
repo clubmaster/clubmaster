@@ -2,6 +2,10 @@
 
 {% block body %}
 
+<p class="box">
+  <a href="" class="btn-create"><span>{% trans %}Create match{% endtrans %}</span></a>
+</p>
+
 {% for league in leagues %}
   <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
 

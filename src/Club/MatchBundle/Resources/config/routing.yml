@@ -8,6 +8,11 @@ _match_match:
   type: annotation
   prefix: /match/match
 
+_match_match:
+  resource: "@ClubMatchBundle/Controller/LeagueMatchController.php"
+  type: annotation
+  prefix: /match/league/match
+
 _match_match_comment:
   resource: "@ClubMatchBundle/Controller/MatchCommentController.php"
   type: annotation

@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class MatchController extends Controller
+class LeagueMatchController extends Controller
 {
   /**
    * @Route("/new/{league_id}")
@@ -51,10 +51,10 @@ class MatchController extends Controller
       return $this->redirect($this->generateUrl('club_match_league_index'));
     }
 
-    return array(
-      'form' => $form->createView(),
-      'league' => $league
-    );
+    $param = array('form' => $form->createView());
+    if ($league) $param['league'] = $league;
+
+    return $param;
   }
 
   /**
