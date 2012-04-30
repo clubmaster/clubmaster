@@ -44,7 +44,8 @@ ClubLogBundle:
     type:     annotation
 
 ClubEventBundle:
-    resource: "@ClubEventBundle/Resources/config/routing.yml"
+    resource: "@ClubEventBundle/Controller/"
+    type:     annotation
 
 ClubInstallBundle:
     resource: "@ClubInstallerBundle/Resources/config/routing.yml"
