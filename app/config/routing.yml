@@ -1,12 +1,10 @@
 ClubPasskeyBundle:
     resource: "@ClubPasskeyBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 ClubCheckinBundle:
     resource: "@ClubCheckinBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 ClubPaymentCashBundle:
     resource: "@ClubPaymentCashBundle/Controller/"
@@ -24,7 +22,8 @@ ClubAPIBundle:
     prefix: /api/
 
 ClubTeamBundle:
-    resource: "@ClubTeamBundle/Resources/config/routing.yml"
+    resource: "@ClubTeamBundle/Controller/"
+    type: annotation
 
 ClubShopBundle:
     resource: "@ClubShopBundle/Resources/config/routing.yml"
