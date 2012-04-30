@@ -30,7 +30,8 @@ ClubShopBundle:
     type: annotation
 
 ClubUserBundle:
-    resource: "@ClubUserBundle/Resources/config/routing.yml"
+    resource: "@ClubUserBundle/Controller/"
+    type: annotation
 
 ClubTaskBundle:
     resource: "@ClubTaskBundle/Controller/"

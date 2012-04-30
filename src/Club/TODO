@@ -13,7 +13,6 @@ use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_
 prices to book with guest, use normal checkout procedure
 make a button to accept business terms
 bulk create order to users
-do routing to annotation instead of, check default install of symfony bundle
 quick create intervals when creating the field
 make a quick way to remove all team penalties
 make sure user only can use teams in member ship status period

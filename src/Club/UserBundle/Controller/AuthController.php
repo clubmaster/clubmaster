@@ -10,7 +10,23 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AuthController extends Controller
 {
   /**
-   * @Route("/login",name="login")
+   * @Route("/login_check", name="login_check")
+   */
+  public function loginCheck()
+  {
+  }
+
+  /**
+   * @Route("/logout", name="logout")
+   * @Template()
+   */
+  public function logoutAction()
+  {
+    return array();
+  }
+
+  /**
+   * @Route("/login", name="login")
    * @Template()
    */
   public function loginAction()
