@@ -62,7 +62,8 @@ ClubDashboardBundle:
     resource: "@ClubDashboardBundle/Resources/config/routing.yml"
 
 ClubWelcomeBundle:
-    resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
+    resource: "@ClubWelcomeBundle/Controller/"
+    type:     annotation
 
 ClubFeedbackBundle:
     resource: "@ClubFeedbackBundle/Controller/"
