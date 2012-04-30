@@ -2,10 +2,63 @@
 
 {% block body %}
 
-<p>If you have a long list of users you want to import, you can use this page.</p>
+<p>{% trans %}If you have a long list of users you want to import, you can use this page.{% endtrans %}</p>
 
 <form method="post" action="{{ path('club_user_adminuserimport_import') }}" {{ form_enctype(form) }}>
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'legend':'Import CSV','button':'Import'|trans} %}
 </form>
 
+<h2>{% trans %}Explation{% endtrans %}</h2>
+<table class="style">
+  <tbody>
+    <tr>
+      <th>{% trans %}Member number{% endtrans %}</th>
+      <td>{% trans %}If left blank user will get the next number in the line.{% endtrans %}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Password{% endtrans %}</th>
+      <td>{% trans %}If left blank set password to password, and user has to set it after first login.{% endtrans %}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}First name{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}Last name{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}Gender{% endtrans %}</th>
+      <td>{% trans %}Enter male or female.{% endtrans %}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Day of birth{% endtrans %}</th>
+      <td>{% trans %}The birthday syntax should be YYYY-MM-DD.{% endtrans %}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Street{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}Postal code{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}City{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}Country{% endtrans %}</th>
+      <td>{% trans %}Enter country code like DK, GB, DE and so on.{% endtrans %}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}Phone number{% endtrans %}</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>{% trans %}Email address{% endtrans %}</th>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}

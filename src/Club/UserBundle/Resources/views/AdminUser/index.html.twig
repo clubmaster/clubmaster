@@ -1,3 +1,17 @@
+{% block javascripts %}
+<script>
+$(document).ready(function() {
+  $('#select_all').click(function() {
+    if ($('#select_all').attr('checked')) {
+      $('.user_checklist').attr('checked', true);
+    } else {
+      $('.user_checklist').attr('checked', false);
+    }
+  });
+});
+</script>
+{% endblock %}
+
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block body %}
@@ -20,7 +34,7 @@
 <table class="style">
   <thead>
     <tr>
-      <th>[x]</th>
+      <th><input type="checkbox" id="select_all" /></th>
 
       {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'member_number', 'field_text':'Number'|trans} %}
       {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'first_name', 'field_text':'Name'|trans} %}
@@ -40,7 +54,7 @@
   <tbody>
   {% for user in users %}
     <tr>
-      <td><input type="checkbox" name="ids[{{ user.id }}]"/></td>
+      <td><input type="checkbox" class="user_checklist" name="ids[{{ user.id }}]"/></td>
       <td>{{ user.memberNumber }}</td>
       <td><a href="{{ path('admin_user_edit', {'id':user.id}) }}">{{ user.profile.firstName }} {{ user.profile.lastName }}</a></td>
       <td>{% if user.profile.profilePhone %}{{ user.profile.profilePhone.phoneNumber }}{% endif %}</td>

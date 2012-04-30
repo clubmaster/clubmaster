@@ -59,22 +59,38 @@ class AdminUserImportController extends Controller
     }
 
     $em = $this->getDoctrine()->getEntityManager();
-    $em->flush();
     return $this->redirect($this->generateUrl('club_user_adminuserimport_index'));
   }
 
   private function addUser(array $data)
   {
+    $em = $this->getDoctrine()->getEntityManager();
+
     $this->get('clubmaster.user')->buildUser();
     $user = $this->get('clubmaster.user')->get();
 
-    $user->setMemberNumber($data[0]);
-    $user->setPassword($data[1]);
+    if (strlen($data[0])) {
+      $user->setMemberNumber($data[0]);
+    } else {
+      $number = $em->getRepository('ClubUserBundle:User')->findNextMemberNumber();
+      $user->setMemberNumber($number);
+    }
+
+    if (strlen($data[1])) {
+      $user->setPassword($data[1]);
+    } else {
+      $user->setPassword('password');
+      $reset = new \Club\UserBundle\Entity\ResetPassword();
+      $reset->setUser($user);
+      $em->persist($reset);
+    }
 
     $profile = $user->getProfile();
     $profile->setFirstName($data[2]);
     $profile->setLastName($data[3]);
-    $profile->setGender($data[4]);
+
+    $gender = ($data[4] == 'female') ? 'female' : 'male';
+    $profile->setGender($gender);
     $profile->setDayOfBirth(new \DateTime($data[5]));
 
     $p_address = $profile->getProfileAddress();
@@ -97,8 +113,8 @@ class AdminUserImportController extends Controller
       $p_email->setEmailAddress($data[11]);
     }
 
-    $em = $this->getDoctrine()->getEntityManager();
     $em->persist($user);
+    $em->flush();
 
     return $user;
   }
