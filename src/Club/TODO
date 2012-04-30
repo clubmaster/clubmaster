@@ -1,10 +1,15 @@
 == VERSION 1.3 ==
+enter matches outside of the leagues
+internal message system
+rewrite failure handler to a listerner
+users should be able to create multiple emails, phone
+add images to products
+add category priority regarding to account numbers
 request partner
 admin user batch, select search
 make sure user only can book in member status period
 knockout management
 jquery overlay form on booking
-enter matches outside of the leagues
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 make a button to accept business terms
