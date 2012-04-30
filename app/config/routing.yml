@@ -26,7 +26,8 @@ ClubTeamBundle:
     type: annotation
 
 ClubShopBundle:
-    resource: "@ClubShopBundle/Resources/config/routing.yml"
+    resource: "@ClubShopBundle/Controller/"
+    type: annotation
 
 ClubUserBundle:
     resource: "@ClubUserBundle/Resources/config/routing.yml"
@@ -53,7 +54,8 @@ ClubConfiguratorBundle:
     prefix: /configurator
 
 ClubMessageBundle:
-    resource: "@ClubMessageBundle/Resources/config/routing.yml"
+    resource: "@ClubMessageBundle/Controller/"
+    type:     annotation
 
 ClubBookingBundle:
     resource: "@ClubBookingBundle/Controller/"
