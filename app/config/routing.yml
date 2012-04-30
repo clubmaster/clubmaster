@@ -69,7 +69,7 @@ ClubFeedbackBundle:
     resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
 
 ClubMatchBundle:
-    resource: "@ClubMatchBundle/Resources/config/routing.yml"
+    resource: "@ClubMatchBundle/Controller/"
 
 homepage:
     pattern: /
