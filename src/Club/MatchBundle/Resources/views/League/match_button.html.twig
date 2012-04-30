@@ -2,13 +2,13 @@
   {% if league.inviteOnly and league.canPlay(app.user) %}
 
   <p class="box">
-    <a href="{{ path('club_match_match_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Create match{% endtrans %}</span></a>
+    <a href="{{ path('club_match_match_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
   </p>
 
   {% elseif not league.inviteOnly  %}
 
   <p class="box">
-    <a href="{{ path('club_match_match_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Create match{% endtrans %}</span></a>
+    <a href="{{ path('club_match_match_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
   </p>
 
   {% endif %}
