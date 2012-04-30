@@ -1,9 +1,0 @@
-_log:
-  resource: "@ClubLogBundle/Controller/LogController.php"
-  type: annotation
-  prefix: /admin
-
-_log_php:
-  resource: "@ClubLogBundle/Controller/PhpLogController.php"
-  type: annotation
-  prefix: /admin

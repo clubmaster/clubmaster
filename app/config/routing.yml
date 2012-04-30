@@ -40,7 +40,8 @@ ClubMailBundle:
     resource: "@ClubMailBundle/Controller/"
 
 ClubLogBundle:
-    resource: "@ClubLogBundle/Resources/config/routing.yml"
+    resource: "@ClubLogBundle/Controller/"
+    type:     annotation
 
 ClubEventBundle:
     resource: "@ClubEventBundle/Resources/config/routing.yml"
