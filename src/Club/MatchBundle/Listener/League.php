@@ -18,7 +18,7 @@ class League
     $matches = $this->em->getRepository('ClubMatchBundle:Match')->getUnprocessed();
 
     foreach ($matches as $match) {
-      $this->club_league->addPoint($match);
+      if ($match->getLeague()) $this->club_league->addPoint($match);
 
       $match->setProcessed(1);
       $this->em->persist($match);

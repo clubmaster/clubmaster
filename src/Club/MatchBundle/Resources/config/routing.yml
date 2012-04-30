@@ -8,7 +8,7 @@ _match_match:
   type: annotation
   prefix: /match/match
 
-_match_match:
+_match_league_match:
   resource: "@ClubMatchBundle/Controller/LeagueMatchController.php"
   type: annotation
   prefix: /match/league/match

@@ -7,21 +7,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class LeagueMatchController extends Controller
+class MatchController extends Controller
 {
   /**
-   * @Route("/new/{league_id}")
+   * @Route("/new")
    * @Template()
    */
-  public function newAction($league_id)
+  public function newAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $league = $em->find('ClubMatchBundle:League', $league_id);
 
     $res = array();
     $form = $this->getForm($res);
 
-    for ($i = 0; $league->getGameSet() > $i; $i++) {
+    $sets = 5;
+    for ($i = 0; $sets > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(
         'label' => 'Set '.($i+1),
         'required' => false
@@ -38,7 +38,7 @@ class LeagueMatchController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $this->get('club_match.match')->bindMatch($form->getData(), $league);
+        $this->get('club_match.match')->bindMatch($form->getData());
 
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
@@ -51,10 +51,10 @@ class LeagueMatchController extends Controller
       return $this->redirect($this->generateUrl('club_match_league_index'));
     }
 
-    $param = array('form' => $form->createView());
-    if ($league) $param['league'] = $league;
-
-    return $param;
+    return array(
+      'form' => $form->createView(),
+      'sets' => $sets
+    );
   }
 
   /**

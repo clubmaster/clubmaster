@@ -16,12 +16,12 @@ class Match
     $this->translator = $translator;
   }
 
-  public function bindMatch(\Club\MatchBundle\Entity\League $league, $data)
+  public function bindMatch(array $data, \Club\MatchBundle\Entity\League $league=null)
   {
     $teams = 2;
 
     $this->match = new \Club\MatchBundle\Entity\Match();
-    $this->match->setLeague($league);
+    if ($league) $this->match->setLeague($league);
 
     $display = array();
     for ($i = 0; $i < $teams; $i++) {
@@ -34,7 +34,7 @@ class Match
 
       try {
         $user = $this->em->getRepository('ClubUserBundle:User')->getOneBySearch($r);
-        $this->validateUser($user);
+        if ($league) $this->validateUser($user);
 
       } catch (\Doctrine\ORM\NonUniqueResultException $e) {
         $this->setError($this->translator->trans('Too many users match this search'));
@@ -47,7 +47,7 @@ class Match
           return;
       }
 
-      if ($league->getInviteOnly()) {
+      if ($league && $league->getInviteOnly()) {
         if (!$league->canPlay($user)) {
           $this->setError($this->translator->trans('%user% is not allowed to play in this league.', array(
             '%user%' => $user->getName()
@@ -59,7 +59,23 @@ class Match
       $team = $this->getTeam($user);
       $match_team = $this->addTeam($team);
 
-      for ($j = 0; $j < $league->getGameSet(); $j++) {
+      if ($league) {
+        $sets = $league->getGameSet();
+      } else {
+        if (strlen($data['user0set4'])) {
+          $sets = 5;
+        } elseif (strlen($data['user0set3'])) {
+          $sets = 5;
+        } elseif (strlen($data['user0set2'])) {
+          $sets = 3;
+        } elseif (strlen($data['user0set1'])) {
+          $sets = 3;
+        } elseif (strlen($data['user0set0'])) {
+          $sets = 1;
+        }
+      }
+
+      for ($j = 0; $j < $sets; $j++) {
         $set_str = 'user'.$i.'set'.$j;
 
         if (strlen($data[$set_str])) {
@@ -71,11 +87,11 @@ class Match
       }
     }
 
-    if (!$this->validateSets($display)) {
+    if (!$this->validateSets($display, $sets)) {
       return;
     }
 
-    if (!$this->validateRules()) {
+    if ($league && !$this->validateRules()) {
       return;
     }
 
@@ -143,7 +159,7 @@ class Match
     return true;
   }
 
-  private function validateSets($display)
+  private function validateSets($display, $sets)
   {
     if (!count($display)) {
       $this->setError($this->translator->trans('You have not played enough set'));
@@ -172,7 +188,7 @@ class Match
 
     }
 
-    if (count($display[0]) < ($this->match->getLeague()->getGameSet()/2) || count($display[1]) < ($this->match->getLeague()->getGameSet()/2)) {
+    if (count($display[0]) < ($sets/2) || count($display[1]) < ($sets/2)) {
       $this->setError($this->translator->trans('You have not played enough set'));
       return false;
     }
