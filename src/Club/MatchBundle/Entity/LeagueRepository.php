@@ -12,21 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class LeagueRepository extends EntityRepository
 {
-  public function getRecentMatches(\Club\MatchBundle\Entity\League $league, $limit=10)
-  {
-    $matches = $this->_em->createQueryBuilder()
-      ->select('m')
-      ->from('ClubMatchBundle:Match', 'm')
-      ->where('m.league = :league')
-      ->orderBy('m.id', 'DESC')
-      ->setMaxResults($limit)
-      ->setParameter('league', $league->getId())
-      ->getQuery()
-      ->getResult();
-
-    return $matches;
-  }
-
   public function getTop(\Club\MatchBundle\Entity\League $league, $limit=4)
   {
     $rank = $this->_em->createQueryBuilder()

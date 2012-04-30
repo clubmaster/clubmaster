@@ -10,6 +10,19 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class MatchController extends Controller
 {
   /**
+   * @Route("/recent/{limit}")
+   */
+  public function recentAction($limit)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
+
+    return $this->render('ClubMatchBundle:League:RecentMatches.html.twig', array(
+      'matches' => $matches
+    ));
+  }
+
+  /**
    * @Route("/new")
    * @Template()
    */

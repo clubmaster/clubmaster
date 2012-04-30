@@ -47,7 +47,7 @@ class LeagueController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $league = $em->find('ClubMatchBundle:League', $id);
-    $matches = $em->getRepository('ClubMatchBundle:League')->getRecentMatches($league, $limit);
+    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches($league, $limit);
 
     return array(
       'matches' => $matches
