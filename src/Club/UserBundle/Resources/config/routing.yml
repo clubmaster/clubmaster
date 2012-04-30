@@ -20,6 +20,10 @@ _location:
   resource: "@ClubUserBundle/Controller/LocationController.php"
   type: annotation
 
+_user_setting:
+  resource: "@ClubUserBundle/Controller/UserSettingController.php"
+  type: annotation
+
 _admin_user:
   resource: "@ClubUserBundle/Controller/AdminUserController.php"
   type: annotation
@@ -45,11 +49,6 @@ _admin_location_config:
   type: annotation
   prefix: /admin
 
-_ban:
-  resource: "@ClubUserBundle/Controller/BanController.php"
-  type: annotation
-  prefix: /admin
-
 _config:
   resource: "@ClubUserBundle/Controller/ConfigController.php"
   type: annotation
@@ -69,3 +68,7 @@ _login_log:
   resource: "@ClubUserBundle/Controller/LoginLogController.php"
   type: annotation
   prefix: /admin
+
+_admin_user_import:
+  resource: "@ClubUserBundle/Controller/AdminUserImportController.php"
+  type: annotation

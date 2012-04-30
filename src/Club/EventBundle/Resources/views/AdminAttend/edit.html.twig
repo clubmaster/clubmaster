@@ -3,7 +3,7 @@
 {% block body %}
 
 <form method="post" action="{{ path('admin_event_event_edit', {'id':event.id}) }}">
-{% include "ClubEventBundle:AdminEvent:form.html.twig" with {'form': form} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}

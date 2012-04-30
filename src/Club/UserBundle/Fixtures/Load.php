@@ -34,6 +34,7 @@ class Load
     $roles[] = 'ROLE_RANKING_ADMIN';
     $roles[] = 'ROLE_SHOP_ADMIN';
     $roles[] = 'ROLE_TEAM_ADMIN';
+    $roles[] = 'ROLE_PASSKEY_ADMIN';
     $roles[] = 'ROLE_STAFF';
 
     foreach ($roles as $role) {

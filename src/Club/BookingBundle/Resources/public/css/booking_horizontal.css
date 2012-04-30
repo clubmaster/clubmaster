@@ -101,10 +101,11 @@ div#booking div.past:hover
   background-color: #e3e3e3;
 }
 
-div#booking div#bookings div
+div#booking div#bookings div, div#booking div#intervals div
 {
   position: absolute;
-  font-size: 11px;
+  font-size: 12px;
+  text-align: center;
   border: dotted 1px #aeaeae;
   padding: 5px 0px 0px 0px;
   z-index: 30;
@@ -162,4 +163,10 @@ div#booking div#times div
 div#booking .link
 {
   cursor: pointer;
+}
+
+div#fields div {
+  padding-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
 }

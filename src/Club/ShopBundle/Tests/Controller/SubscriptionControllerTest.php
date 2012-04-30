@@ -10,7 +10,7 @@ class SubscriptionControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/shop/subscription');
+    $crawler = $client->request('GET', '/shop/subscription/');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }

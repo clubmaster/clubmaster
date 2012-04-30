@@ -18,6 +18,7 @@ class ImportOrderCommand extends ContainerAwareCommand
       ->addArgument('file', InputArgument::REQUIRED, 'What filename to import')
       ->addArgument('location', InputArgument::REQUIRED, 'What location to shop from?')
       ->addArgument('product', InputArgument::REQUIRED, 'What product id to let the users buy?')
+      ->addOption('bought', null, InputOption::VALUE_NONE, 'Should the product be set as bought?')
       ->setHelp(<<<EOF
 The required filename just has to have a list of member numbers.
 EOF
@@ -30,6 +31,7 @@ EOF
     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
     $product = $em->find('ClubShopBundle:Product', $input->getArgument('product'));
     $location = $em->find('ClubUserBundle:Location', $input->getArgument('location'));
+    $payment = $em->find('ClubShopBundle:PaymentMethod', 1);
 
     $fh = fopen($input->getArgument('file'), 'r');
     while (!feof($fh)) {
@@ -42,7 +44,7 @@ EOF
         $order = $this->getContainer()->get('order');
         $order->createSimpleOrder($user, $location);
         $cart_prod = new \Club\ShopBundle\Entity\CartProduct();
-        $cart_prod->setType('product');
+        $cart_prod->setType('subscription');
         $cart_prod->setQuantity(1);
         $cart_prod->setPrice($product->getPrice());
         $cart_prod->setProductName($product->getProductName());
@@ -59,8 +61,17 @@ EOF
         $order->addCartProduct($cart_prod);
         $order->save();
 
-        $status = $em->getRepository('ClubShopBundle:OrderStatus')->getAcceptedStatus();
-        $order->changeStatus($status);
+        $p = new \Club\ShopBundle\Entity\PurchaseLog();
+        $p->setAmount($order->getOrder()->getAmountLeft()*100);
+        $p->setCurrency('DKK');
+        $p->setAccepted(true);
+        $p->setOrder($order->getOrder());
+        $p->setPaymentMethod($payment);
+
+        $em->persist($p);
+        $order->makePayment($p);
+
+        $em->flush();
       }
     }
     $em->flush();

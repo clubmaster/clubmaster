@@ -2,11 +2,10 @@
 
 {% block body %}
 
-<h2>{% trans %}User{% endtrans %}</h2>
+<h2>{% trans with {'%name%':user.profile.name, '%number%':user.memberNumber} %}%name% (%number%){% endtrans %}</h2>
 
 <div class="box-03 noimage box">
 
-  <h2 class="nomb">{{ user.profile.name }}</h2>
   {% if is_granted('IS_AUTHENTICATED_FULLY') %}
   <p class="nomt low">
     {% if user.profile.profileEmail %}

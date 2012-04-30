@@ -7,7 +7,7 @@
 {% block body %}
 
 <form method="post" action="{{ path('admin_shop_payment_method_edit', {'id':payment_method.id}) }}">
-{% include "ClubShopBundle:AdminPaymentMethod:form.html.twig" with {'form': form} %}
+{% include "ClubShopBundle:AdminPaymentMethod:form.html.twig" %}
 </form>
 
 {% endblock %}

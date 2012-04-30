@@ -20,5 +20,8 @@ class ClubMailExtension extends Extension
 
     $container->setParameter('club_mail.default_sender_address', $config['default_sender_address']);
     $container->setParameter('club_mail.default_sender_name', $config['default_sender_name']);
+    $container->setParameter('club_mail.mail_on_welcome', $config['mail_on_welcome']);
+    $container->setParameter('club_mail.mail_on_booking', $config['mail_on_booking']);
+    $container->setParameter('club_mail.mail_on_order', $config['mail_on_order']);
   }
 }

@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class BlogController extends Controller
 {
@@ -26,6 +27,7 @@ class BlogController extends Controller
   /**
    * @Route("/welcome/blog/comment/{blog_id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function commentAction($blog_id)
   {
@@ -61,6 +63,7 @@ class BlogController extends Controller
   /**
    * @Route("/welcome/blog/new")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function newAction()
   {
@@ -80,6 +83,7 @@ class BlogController extends Controller
   /**
    * @Route("/welcome/blog/edit/{id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function editAction($id)
   {
@@ -100,6 +104,7 @@ class BlogController extends Controller
 
   /**
    * @Route("/welcome/blog/delete/{id}")
+   * @Secure(roles="ROLE_USER")
    */
   public function deleteAction($id)
   {

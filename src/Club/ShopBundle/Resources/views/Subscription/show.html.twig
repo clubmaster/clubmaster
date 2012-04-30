@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <th>{% trans %}Period{% endtrans %}</th>
-      <td>{{ subscription.startDate|club_datetime }} - {% if subscription.expireDate == '' %}Never{% else %}{{ subscription.expireDate|club_datetime }}{% endif %}</td>
+      <td>{{ subscription.startDate|club_datetime }} - {% if subscription.expireDate == '' %}{% trans %}Never{% endtrans %}{% else %}{{ subscription.expireDate|club_datetime }}{% endif %}</td>
     </tr>
     <tr>
       <th>{% trans %}Auto renewal{% endtrans %}</th>

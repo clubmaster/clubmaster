@@ -4,17 +4,19 @@ namespace Club\MailBundle\Listener;
 
 class BookingListener
 {
+  protected $container;
   protected $em;
   protected $templating;
   protected $router;
   protected $clubmaster_mailer;
 
-  public function __construct($em, $templating, $router, $clubmaster_mailer)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->templating = $templating;
-    $this->router = $router;
-    $this->clubmaster_mailer = $clubmaster_mailer;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->templating = $container->get('templating');
+    $this->router = $container->get('router');
+    $this->clubmaster_mailer = $container->get('clubmaster_mailer');
   }
 
   public function onBookingConfirm(\Club\BookingBundle\Event\FilterBookingEvent $event)
@@ -62,15 +64,31 @@ class BookingListener
     $recipients = array();
 
     if ($booking->getUser()->getProfile()->getProfileEmail()) {
-      $recipients[] = $booking->getUser();
+      if ($this->receiveMail($booking->getUser())) {
+        $recipients[] = $booking->getUser();
+      }
     }
 
     foreach ($booking->getUsers() as $user) {
-      if ($user->getProfile()->getProfileEmail()) {
-        $recipients[] = $user;
+      if ($this->receiveMail($user)) {
+        if ($user->getProfile()->getProfileEmail()) {
+          $recipients[] = $user;
+        }
       }
     }
 
     return $recipients;
+  }
+
+  protected function receiveMail(\Club\UserBundle\Entity\User $user)
+  {
+    $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
+      'user' => $user->getId(),
+      'attribute' => 'receive_email_on_booking'
+    ));
+    if ($s && !$s->getValue()) return false;
+    if (!$s && !$this->container->getParameter('club_mail.mail_on_booking')) return false;
+
+    return true;
   }
 }

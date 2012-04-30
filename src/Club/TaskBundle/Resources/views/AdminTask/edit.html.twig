@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_task_task_edit', {'id':task.id}) }}">
-{% include "ClubTaskBundle:Task:form.html.twig" %}
+<form method="post" action="{{ path('club_task_admintask_edit', {'id':task.id}) }}">
+{% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
 {% endblock %}

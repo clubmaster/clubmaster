@@ -19,6 +19,9 @@ class AuthController extends Controller
   {
     $user = $this->get('security.context')->getToken()->getUser();
 
+    if ($this->validateKey())
+      $this->get('club_checkin.checkin')->checkin();
+
     $response = new Response($this->get('club_api.encode')->encode($user->toArray()));
     return $response;
   }

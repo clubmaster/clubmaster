@@ -343,8 +343,8 @@
         <target>Info: Hvad vil være den første dag af medlemskabet?</target>
       </trans-unit>
       <trans-unit id="87">
-        <source>Info: When will subscription expire? (Has to be used with StartDate)</source>
-        <target>Info: Hvad vil være den sidste dag af medlemskabet? (Skal bruges med StartDate)</target>
+        <source>Info: When will subscription expire?</source>
+        <target>Info: Hvad vil være den sidste dag af medlemskabet?</target>
       </trans-unit>
       <trans-unit id="88">
         <source>Info: Which locations will the user be a member of?</source>
@@ -2277,6 +2277,118 @@
       <trans-unit id="573">
         <source>You has to be logged in.</source>
         <target>Du skal være logget ind.</target>
+      </trans-unit>
+      <trans-unit id="574">
+        <source>male</source>
+        <target>mand</target>
+      </trans-unit>
+      <trans-unit id="575">
+        <source>female</source>
+        <target>kvinde</target>
+      </trans-unit>
+      <trans-unit id="576">
+        <source>Male</source>
+        <target>Mand</target>
+      </trans-unit>
+      <trans-unit id="577">
+        <source>Female</source>
+        <target>Kvinde</target>
+      </trans-unit>
+      <trans-unit id="578">
+        <source>You cannot book that much in the future</source>
+        <target>Du kan ikke booke så mange dage frem i tiden</target>
+      </trans-unit>
+      <trans-unit id="579">
+        <source>Reset</source>
+        <target>Nulstil</target>
+      </trans-unit>
+      <trans-unit id="580">
+        <source>There is no fields in the current location, what location do you want to go to?</source>
+        <target>Der er ingen baner i dit nuværende område, hvilket område vil du gå til?</target>
+      </trans-unit>
+      <trans-unit id="581">
+        <source>Your password has been expired, please enter a new one below.</source>
+        <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
+      </trans-unit>
+      <trans-unit id="582">
+        <source>No such user</source>
+        <target>Dit password er udløbet, vælg venligst et nyt herunder.</target>
+      </trans-unit>
+      <trans-unit id="583">
+        <source>Passkey</source>
+        <target>Adgangsnøgle</target>
+      </trans-unit>
+      <trans-unit id="584">
+        <source>Create passkey</source>
+        <target>Opret adgangsnøgle</target>
+      </trans-unit>
+      <trans-unit id="585">
+        <source>Key</source>
+        <target>Nøgle</target>
+      </trans-unit>
+      <trans-unit id="586">
+        <source>Key identity</source>
+        <target>Nøgle identitet</target>
+      </trans-unit>
+      <trans-unit id="587">
+        <source>Assign user</source>
+        <target>Tildel bruger</target>
+      </trans-unit>
+      <trans-unit id="588">
+        <source>%name% is current assign to this key.</source>
+        <target>%name% er for øjeblikket tildelt denne nøgle.</target>
+      </trans-unit>
+      <trans-unit id="589">
+        <source>Reset user</source>
+        <target>Nulstil bruger</target>
+      </trans-unit>
+      <trans-unit id="590">
+        <source>User has not attended any teams.</source>
+        <target>Medlemmet har ikke tiltaget i nogen hold.</target>
+      </trans-unit>
+      <trans-unit id="591">
+        <source>Attended teams</source>
+        <target>Deltaget hold</target>
+      </trans-unit>
+      <trans-unit id="592">
+        <source>Ban selected</source>
+        <target>Ban valgte</target>
+      </trans-unit>
+      <trans-unit id="593">
+        <source>Password expire</source>
+        <target>Password udløb</target>
+      </trans-unit>
+      <trans-unit id="594">
+        <source>Subscription expire</source>
+        <target>Medlemskab udløb</target>
+      </trans-unit>
+      <trans-unit id="595">
+        <source>User settings</source>
+        <target>Bruger opsætning</target>
+      </trans-unit>
+      <trans-unit id="596">
+        <source>Here you have some different settings that can make your profile more personal.</source>
+        <target>Her har du nogen forskellige indstillinger som kan gøre din profil mere personlig.</target>
+      </trans-unit>
+      <trans-unit id="597">
+        <source>Receive email on booking</source>
+        <target>Modtag e-mail ved booking</target>
+      </trans-unit>
+      <trans-unit id="598">
+        <source>Public booking activity</source>
+        <target>Offentlig booking aktivitet</target>
+      </trans-unit>
+      <trans-unit id="599">
+        <source>Timezone</source>
+        <target>Tidszone</target>
+      </trans-unit>
+      <trans-unit id="600">
+        <source>You has to specify a time for the subscription.</source>
+        <target>Du skal vælge en tid for medlemskabet.</target>
+      </trans-unit>
+      <trans-unit id="601">
+        <source>Never</source>
+        <target>Aldrig</target>
       </trans-unit>
 
     </body>

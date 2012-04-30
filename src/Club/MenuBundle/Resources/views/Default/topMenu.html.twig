@@ -1,9 +1,10 @@
         <!-- Menu -->
         <div id="menu" class="box">
           <ul class="box f-right">
-            <li><a href="{{ path('club_feedback_feedback_index') }}"><span><strong>{% trans %}Feedback{% endtrans %}</strong></span></a></li>
+            {% for item in menu_right %}
+            <li><a href="{{ item.route }}"><span><strong>{{ item.name }}</strong></span></a></li>
+            {% endfor %}
           </ul>
-
 
           <ul class="box">
             {% for item in menu %}

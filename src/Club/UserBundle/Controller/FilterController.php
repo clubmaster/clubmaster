@@ -69,90 +69,14 @@ class FilterController extends Controller
   }
 
   /**
-   * @Route("/filter/delete/{id}")
+   * @Route("/filter/reset/{id}")
    */
-  public function deleteAction($id)
+  public function resetAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $filter = $em->find('ClubUserBundle:Filter',$id);
     $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
-
-    return $this->redirect($this->generateUrl('admin_user'));
-  }
-
-  /**
-   * @Route("/filter/new")
-   */
-  public function newAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $filter = $em->getRepository('ClubUserBundle:Filter')->createFilter(
-      $this->get('security.context')->getToken()->getUser()
-    );
-
-    $em->getRepository('ClubUserBundle:Filter')->activateFilter(
-      $this->get('security.context')->getToken()->getUser(),
-      $filter
-    );
-
-    $em->persist($filter);
-    $em->flush();
-
-    return $this->redirect($this->generateUrl('admin_user'));
-  }
-
-  /**
-   * @Route("/filter/save/{id}")
-   * @Template()
-   */
-  public function saveAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $filter = $em->find('ClubUserBundle:Filter',$id);
-
-    $form = $this->createFormBuilder($filter)
-      ->add('filter_name')
-      ->getForm();
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-
-      if ($form->isValid()) {
-        $em->persist($filter);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('admin_user'));
-      }
-    }
-
-    return array(
-      'filter' => $filter,
-      'form' => $form->createView()
-    );
-  }
-
-  /**
-   * @Route("/filter/change")
-   */
-  public function changeAction()
-  {
-    $form = $this->buildFormFilters();
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-
-      if ($form->isValid()) {
-        $data = $form->getData();
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->getRepository('ClubUserBundle:Filter')->activateFilter(
-          $this->get('security.context')->getToken()->getUser(),
-          $data['filter']
-        );
-        $em->flush();
-      }
-    }
 
     return $this->redirect($this->generateUrl('admin_user'));
   }

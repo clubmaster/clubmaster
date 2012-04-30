@@ -5,12 +5,18 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
+/**
+ * @Route("/shop/subscription")
+ */
 class SubscriptionController extends Controller
 {
   /**
-   * @Route("/shop/subscription", name="shop_subscription")
+   * @Route("/", name="shop_subscription")
    * @Template()
+   * @Secure(roles="ROLE_USER")
+   *
    */
   public function indexAction()
   {
@@ -30,8 +36,9 @@ class SubscriptionController extends Controller
   }
 
   /**
-   * @Route("/shop/subscription/show/{id}")
+   * @Route("/show/{id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function showAction($id)
   {
@@ -44,8 +51,9 @@ class SubscriptionController extends Controller
   }
 
   /**
-   * @Route("/shop/subscription/stop/{id}")
+   * @Route("/stop/{id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function stopAction($id)
   {
@@ -59,8 +67,9 @@ class SubscriptionController extends Controller
   }
 
   /**
-   * @Route("/shop/subscription/expire/{id}")
+   * @Route("/expire/{id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function expireAction($id)
   {
@@ -73,8 +82,9 @@ class SubscriptionController extends Controller
   }
 
   /**
-   * @Route("/shop/subscription/pause/{id}", name="shop_subscription_pause")
+   * @Route("/pause/{id}", name="shop_subscription_pause")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function pauseAction($id)
   {
@@ -88,8 +98,9 @@ class SubscriptionController extends Controller
   }
 
   /**
-   * @Route("/shop/subscription/resume/{id}", name="shop_subscription_resume")
+   * @Route("/resume/{id}", name="shop_subscription_resume")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function resumeAction($id)
   {

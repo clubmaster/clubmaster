@@ -140,53 +140,6 @@ class Booking
     $this->bind();
   }
 
-  protected function validateBookingPartnerDay(\DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
-  {
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= :start')
-      ->andWhere('b.first_date <= :end')
-      ->andWhere('b.user = :user')
-      ->andWhere('u.id = :partner')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
-      ->setParameter('end', $date->format('Y-m-d 23:59:59'))
-      ->setParameter('user', $user->getId())
-      ->setParameter('partner', $partner->getId())
-      ->setParameter('is_guest', false)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day'))
-      return false;
-
-    return true;
-  }
-
-  protected function validateBookingPartnerFuture(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
-  {
-    $res = $this->em->createQueryBuilder()
-      ->select('COUNT(b)')
-      ->from('ClubBookingBundle:Booking', 'b')
-      ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= CURRENT_DATE()')
-      ->andWhere('b.user = :user')
-      ->andWhere('u.id = :partner')
-      ->andWhere('b.guest = :is_guest')
-      ->setParameter('user', $user->getId())
-      ->setParameter('partner', $partner->getId())
-      ->setParameter('is_guest', false)
-      ->getQuery()
-      ->getSingleResult();
-
-    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future'))
-      return false;
-
-    return true;
-  }
-
   public function getError()
   {
     return $this->error;
@@ -220,11 +173,24 @@ class Booking
     $this->booking->setEndDate($stop);
     $this->booking->setGuest($this->guest);
 
-    $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
+    $confirm = $this->getConfirmStatus($start);
     $this->booking->setConfirmed($confirm);
 
     if ($this->partner)
       $this->booking->addUser($this->partner);
+  }
+
+  private function getConfirmStatus(\DateTime $start)
+  {
+    $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
+    if ($confirm) return $confirm;
+
+    $now = new \DateTime();
+    $before = clone $start;
+    $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_before').'M');
+    $before->sub($i);
+
+    return ($now > $before) ? true : false;
   }
 
   public function save()
@@ -276,6 +242,11 @@ class Booking
 
     if (!$this->validatePast($this->date)) {
       $this->setError($this->translator->trans('You cannot book in the past'));
+      return;
+    }
+
+    if (!$this->validateFuture($this->date)) {
+      $this->setError($this->translator->trans('You cannot book that much in the future'));
       return;
     }
 
@@ -424,6 +395,24 @@ class Booking
     return true;
   }
 
+  protected function validateFuture(\DateTime $date)
+  {
+    $c = clone $date;
+    $c->setTime(
+      $this->interval->getStartTime()->format('H'),
+      $this->interval->getStartTime()->format('i'),
+      $this->interval->getStartTime()->format('s')
+    );
+
+    $check_time = new \DateTime();
+    $check_time->add(new \DateInterval('P'.$this->container->getParameter('club_booking.days_book_future').'D'));
+
+    if ($c > $check_time)
+      return false;
+
+    return true;
+  }
+
   protected function validatePast(\DateTime $date)
   {
     $c = clone $date;
@@ -450,6 +439,16 @@ class Booking
 
   protected function validateBookingDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
   {
+    $start = clone $date;
+    $end = clone $date;
+
+    if ($start->format('Ymd') == date('Ymd')) {
+      $start = new \DateTime();
+    } else {
+      $start->setTime(0,0,0);
+    }
+    $end->setTime(23,59,59);
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
@@ -457,8 +456,8 @@ class Booking
       ->andWhere('b.first_date <= :end')
       ->andWhere('b.user = :user')
       ->setParameter('user', $user->getId())
-      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
-      ->setParameter('end', $date->format('Y-m-d 23:59:59'))
+      ->setParameter('start', $start)
+      ->setParameter('end', $end)
       ->getQuery()
       ->getSingleResult();
 
@@ -470,13 +469,16 @@ class Booking
 
   protected function validateBookingFuture(\Club\UserBundle\Entity\User $user)
   {
+    $date = new \DateTime();
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
       ->leftJoin('b.users', 'u')
-      ->where('b.first_date >= CURRENT_DATE()')
+      ->where('b.first_date >= :date')
       ->andWhere('(b.user = :user OR u.id = :user)')
       ->setParameter('user', $user->getId())
+      ->setParameter('date', $date)
       ->getQuery()
       ->getSingleResult();
 
@@ -488,6 +490,16 @@ class Booking
 
   protected function validateBookingGuestDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
   {
+    $start = clone $date;
+    $end = clone $date;
+
+    if ($start->format('Ymd') == date('Ymd')) {
+      $start = new \DateTime();
+    } else {
+      $start->setTime(0,0,0);
+    }
+    $end->setTime(23,59,59);
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
@@ -497,8 +509,8 @@ class Booking
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $user->getId())
       ->setParameter('is_guest', true)
-      ->setParameter('start', $date->format('Y-m-d 00:00:00'))
-      ->setParameter('end', $date->format('Y-m-d 23.59:59'))
+      ->setParameter('start', $start)
+      ->setParameter('end', $end)
       ->getQuery()
       ->getSingleResult();
 
@@ -510,18 +522,81 @@ class Booking
 
   protected function validateBookingGuestFuture(\Club\UserBundle\Entity\User $user)
   {
+    $date = new \DateTime();
+
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(b)')
       ->from('ClubBookingBundle:Booking', 'b')
-      ->where('b.first_date >= CURRENT_DATE()')
+      ->where('b.first_date >= :date')
       ->andWhere('b.user = :user')
       ->andWhere('b.guest = :is_guest')
       ->setParameter('user', $user->getId())
       ->setParameter('is_guest', true)
+      ->setParameter('date', $date)
       ->getQuery()
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingPartnerDay(\DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+  {
+    $start = clone $date;
+    $end = clone $date;
+
+    if ($start->format('Ymd') == date('Ymd')) {
+      $start = new \DateTime();
+    } else {
+      $start->setTime(0,0,0);
+    }
+    $end->setTime(23,59,59);
+
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.first_date >= :start')
+      ->andWhere('b.first_date <= :end')
+      ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('start', $start)
+      ->setParameter('end', $end)
+      ->setParameter('user', $user->getId())
+      ->setParameter('partner', $partner->getId())
+      ->setParameter('is_guest', false)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day'))
+      return false;
+
+    return true;
+  }
+
+  protected function validateBookingPartnerFuture(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+  {
+    $date = new \DateTime();
+
+    $res = $this->em->createQueryBuilder()
+      ->select('COUNT(b)')
+      ->from('ClubBookingBundle:Booking', 'b')
+      ->leftJoin('b.users', 'u')
+      ->where('b.first_date >= :date')
+      ->andWhere('b.user = :user')
+      ->andWhere('u.id = :partner')
+      ->andWhere('b.guest = :is_guest')
+      ->setParameter('user', $user->getId())
+      ->setParameter('partner', $partner->getId())
+      ->setParameter('is_guest', false)
+      ->setParameter('date', $date)
+      ->getQuery()
+      ->getSingleResult();
+
+    if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future'))
       return false;
 
     return true;

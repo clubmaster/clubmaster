@@ -13,7 +13,7 @@ class Checkin
     $this->em = $container->get('doctrine.orm.entity_manager');
   }
 
-  public function onCheckin(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
+  public function onCheckinUser(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
   {
     if (!$this->container->getParameter('club_team.penalty_enabled')) return;
 

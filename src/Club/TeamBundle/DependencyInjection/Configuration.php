@@ -36,6 +36,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('num_team_day')->isRequired()->end()
             ->scalarNode('num_team_future')->isRequired()->end()
             ->scalarNode('penalty_product_name')->isRequired()->end()
+            ->scalarNode('public_user_activity')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

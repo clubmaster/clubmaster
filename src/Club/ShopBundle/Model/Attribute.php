@@ -232,6 +232,9 @@ class Attribute
 
   public function isValid(ExecutionContext $context)
   {
+    if ($this->start_date == '' && $this->expire_date == '' && $this->time_interval == '')
+      $context->addViolation('You has to specify a time for the subscription.', array(), null);
+
     if ($this->auto_renewal == 'Y' && $this->time_interval != '')
       $context->addViolation('You are not able to make yearly renewal with a time interval, choose a start date instead.', array(), null);
 

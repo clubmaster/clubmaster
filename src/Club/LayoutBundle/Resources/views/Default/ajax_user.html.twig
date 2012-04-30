@@ -12,8 +12,8 @@
           success: function( data ) {
             response( $.map( data.data, function( item ) {
               return {
-                label: item.first_name + " " + item.last_name,
                 value: item.first_name + " " + item.last_name,
+                label: "("+item.member_number+") "+item.first_name + " " + item.last_name,
                 id: item.id
               }
             }));

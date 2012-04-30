@@ -24,11 +24,11 @@ class AdminMessageControllerTest extends WebTestCase
     $crawler = $this->client->request('GET', '/admin/message/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Save')->form();
+    $form = $crawler->selectButton('Next')->form();
     $crawler = $this->client->submit($form);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Save')->form(array(
+    $form = $crawler->selectButton('Next')->form(array(
       'message[subject]' => 'Test',
       'message[message]' => 'Testing'
     ));
@@ -36,8 +36,8 @@ class AdminMessageControllerTest extends WebTestCase
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     $crawler = $this->client->followRedirect();
 
-    $link = $crawler->selectLink('Add recipients')->link();
-    $crawler = $this->client->click($link);
+    $form = $crawler->selectButton('Next')->form();
+    $crawler = $this->client->submit($form);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Send message')->form();

@@ -24,6 +24,12 @@ class MenuListener
     $menu[10] = array(
       'name' => $this->translator->trans('Members'),
       'route' => $this->router->generate('admin_user'),
+      'items' => array(
+        array(
+          'name' => $this->translator->trans('Import'),
+          'route' => $this->router->generate('club_user_adminuserimport_index')
+        )
+      )
     );
     $menu[12] = array(
       'name' => $this->translator->trans('Group'),
@@ -35,12 +41,8 @@ class MenuListener
     );
     $menu[16] = array(
       'name' => $this->translator->trans('Administration'),
-      'route' => $this->router->generate('ban'),
+      'route' => $this->router->generate('club_log_log_index'),
       'items' => array(
-        array(
-          'name' => $this->translator->trans('Ban'),
-          'route' => $this->router->generate('ban')
-        ),
         array(
           'name' => $this->translator->trans('Task'),
           'route' => $this->router->generate('admin_task')

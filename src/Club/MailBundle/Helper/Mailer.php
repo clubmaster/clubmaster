@@ -9,11 +9,11 @@ class Mailer
   protected $container;
   protected $message;
 
-  public function __construct($em, $mailer, $container)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->mailer = $mailer;
     $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->mailer = $container->get('mailer');
 
     $this->message = \Swift_Message::newInstance();
   }
@@ -45,7 +45,11 @@ class Mailer
 
   public function setTo($to)
   {
-    $this->message->setTo($to);
+    try {
+      $this->message->setTo($to);
+    } catch (\Exception $e) {
+      // we tried to set an invalid email address
+    }
 
     return $this;
   }
@@ -69,6 +73,10 @@ class Mailer
 
   public function send()
   {
-    $this->mailer->send($this->message);
+    try {
+      $this->mailer->send($this->message);
+    } catch (\Exception $e) {
+      // some error has occur, the email is not valid
+    }
   }
 }

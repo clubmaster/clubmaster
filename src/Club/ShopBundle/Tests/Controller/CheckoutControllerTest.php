@@ -93,45 +93,12 @@ class CheckoutControllerTest extends WebTestCase
     $crawler = $this->client->click($links[0]);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Save')->form(array(
-      'order[order_status]' => '3'
-    ));
+    $link = $crawler->selectLink('Register payment')->link();
+    $crawler = $this->client->click($link);
+    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+    $form = $crawler->selectButton('Save')->form();
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  }
-
-  public function testUserCheckout()
-  {
-    $this->client = static::createClient();
-    $this->login($this->client, 10, 1234);
-
-    $crawler = $this->client->request('GET', '/shop/product/1');
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $link = $crawler->selectLink('Put in cart')->link();
-    $crawler = $this->client->click($link);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
-
-    $link = $crawler->selectLink('Checkout')->link();
-    $crawler = $this->client->click($link);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
-
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $form = $crawler->selectButton('Confirm order')->form();
-    $crawler = $this->client->submit($form);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-
-    $crawler = $this->client->request('GET', '/shop/order');
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $links = $crawler->selectLink('Edit')->links();
-    $link = end($links);
-    $crawler = $this->client->click($link);
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 }

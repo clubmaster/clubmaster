@@ -54,4 +54,36 @@ class User
     $event = new \Club\UserBundle\Event\FilterUserEvent($this->user);
     $this->event_dispatcher->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
   }
+
+  public function passwordExpire(\Club\UserBundle\Entity\User $user)
+  {
+    $reset = new \Club\UserBundle\Entity\ResetPassword();
+    $reset->setUser($user);
+
+    $this->em->persist($reset);
+  }
+
+  public function updateUserSettings()
+  {
+    $user = $this->container->get('security.context')->getToken()->getUser();
+    $session = $this->container->get('session');
+
+    $settings = $this->em->getRepository('ClubUserBundle:UserSetting')->findBy(array(
+      'user' => $user->getId()
+    ));
+
+    foreach ($settings as $setting) {
+      switch ($setting->getAttribute()) {
+      case 'language':
+        $session->setLocale($setting->getValue());
+        break;
+      case 'dateformat':
+        $session->set('club_user_dateformat', $setting->getValue());
+        break;
+      case 'timezone':
+        $session->set('club_user_timezone', $setting->getValue());
+        break;
+      }
+    }
+  }
 }

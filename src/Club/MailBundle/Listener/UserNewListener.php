@@ -4,21 +4,25 @@ namespace Club\MailBundle\Listener;
 
 class UserNewListener
 {
+  protected $container;
   protected $em;
   protected $templating;
   protected $router;
   protected $clubmaster_mailer;
 
-  public function __construct($em, $templating, $router, $clubmaster_mailer)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->templating = $templating;
-    $this->router = $router;
-    $this->clubmaster_mailer = $clubmaster_mailer;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->templating = $container->get('templating');
+    $this->router = $container->get('router');
+    $this->clubmaster_mailer = $container->get('clubmaster_mailer');
   }
 
   public function onUserNew(\Club\UserBundle\Event\FilterUserEvent $event)
   {
+    if (!$this->container->getParameter('club_mail.mail_on_welcome')) return false;
+
     $user = $event->getUser();
     $email = $user->getProfile()->getProfileEmail();
 

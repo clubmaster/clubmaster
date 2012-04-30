@@ -20,7 +20,7 @@ class AdminUserController extends Controller
     $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
 
     // field delimiter
-    $fd = ',';
+    $fd = "\t";
     // row delimiter
     $rd = PHP_EOL;
     // text delimiter
@@ -167,15 +167,35 @@ class AdminUserController extends Controller
    */
   public function batchAction()
   {
-    // FIXME, not a pretty symfony way
-    $ids = $_POST['ids'];
     $em = $this->getDoctrine()->getEntityManager();
+    $ids = $this->getRequest()->get('ids');
 
-    foreach ($ids as $id=>$value) {
-      $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+    $form = $this->createForm(new \Club\UserBundle\Form\Batch());
+    $form->bindRequest($this->getRequest());
+    if ($form->isValid()) {
+
+      $r = $form->getData();
+      switch ($r['batch']) {
+      case 'ban':
+        foreach ($ids as $id => $value) {
+          $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      case 'password_expire':
+        foreach ($ids as $id => $value) {
+          $this->get('club_user.reset_password')->passwordExpire($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      case 'subscription_expire':
+        foreach ($ids as $id => $value) {
+          $this->get('subscription')->expireAllSubscriptions($em->find('ClubUserBundle:User',$id));
+        }
+        break;
+      }
+
+      $em->flush();
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     }
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -277,13 +297,16 @@ class AdminUserController extends Controller
       $order_by = array('member_number' => 'asc');
     }
 
+    $form = $this->createForm(new \Club\UserBundle\Form\Batch());
+
     $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
 
     return array(
       'sort_name' => key($order_by),
       'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'paginator' => $paginator
+      'paginator' => $paginator,
+      'form' => $form->createView()
     );
   }
 

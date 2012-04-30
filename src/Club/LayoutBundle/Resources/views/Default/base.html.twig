@@ -76,7 +76,7 @@
                         <div class="padding box">
 
                           <!-- Logo (Max. width = 200px) -->
-                          <p id="logo"><a href="{{ path('homepage') }}"><img src="{{ asset('bundles/clublayout/images/logo.png') }}" alt="ClubMaster" title="ClubMaster" /></a></p>
+                          <p id="logo">{% render "ClubLayoutBundle:Misc:Logo" %}</p>
 
                           {% if is_granted('ROLE_ADMIN') %}
                           <!-- Search -->
@@ -94,8 +94,8 @@
                           <form method="post" action="{{ path('login_check') }}" id="search">
                             <fieldset>
                               <legend>{% trans %}Login{% endtrans %}</legend>
-                              <p><input type="text" class="input-text" name="_username" id="login_username" /></p>
-                              <p><input type="password" class="input-text" name="_password" /></p>
+                              <p><input type="text" class="input-text" name="_username" id="login_username" placeholder="{% trans %}Member number{% endtrans %}" /></p>
+                              <p><input type="password" class="input-text" name="_password" placeholder="{% trans %}Password{% endtrans %}" /></p>
                               <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
                             </fieldset>
                           </form>
@@ -126,7 +126,7 @@
 
         <!-- Footer -->
         <div id="footer" class="box">
-          <p class="f-left">&copy; 2011 <a href="{{ path('homepage') }}">ClubMaster</a>, All Rights Reserved &reg;</p>
+          <p class="f-left"><a href="http://www.clubmaster.org" target="_open">ClubMaster</a></p>
           <p class="f-right">{% render "ClubUserBundle:Misc:versionBar" %}</p>
         </div> <!-- /footer -->
       </div> <!-- /main -->
