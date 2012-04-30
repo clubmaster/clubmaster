@@ -57,39 +57,6 @@ class LeagueMatchController extends Controller
     return $param;
   }
 
-  /**
-   * @Route("/delete/{id}")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $match = $em->find('ClubMatchBundle:Match',$id);
-
-    if ($match->getProcessed(1))
-      $this->get('club_match.league')->revokePoint($match);
-
-    $em->remove($match);
-    $em->flush();
-
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-    return $this->redirect($this->generateUrl('club_match_league_index'));
-  }
-
-  /**
-   * @Route("/show/{id}")
-   * @Template()
-   */
-  public function showAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $match = $em->find('ClubMatchBundle:Match',$id);
-
-    return array(
-      'match' => $match
-    );
-  }
-
   public function getForm($res)
   {
     $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
