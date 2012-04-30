@@ -1,5 +1,4 @@
 == VERSION 1.3 ==
-enter matches outside of the leagues
 internal message system
 rewrite failure handler to a listerner
 users should be able to create multiple emails, phone
