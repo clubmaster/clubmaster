@@ -68,3 +68,4 @@ bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 tag users on images
+print labels from a search
