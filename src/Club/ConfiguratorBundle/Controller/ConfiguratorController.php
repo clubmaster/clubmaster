@@ -4,18 +4,16 @@ namespace Club\ConfiguratorBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * ConfiguratorController.
- *
- * @author Fabien Potencier <fabien@symfony.com>
  * @Route("/configurator")
  */
 class ConfiguratorController extends ContainerAware
 {
     /**
-     * @return Response A Response instance
-     * @Route("/step/{index}")
+     * @Route("/step/{index}", name="_configurator_step")
      */
     public function stepAction($index = 0)
     {
@@ -75,7 +73,7 @@ class ConfiguratorController extends ContainerAware
     }
 
     /**
-     * @Route("/final")
+     * @Route("/final", name="_configurator_final")
      */
     public function finalAction()
     {

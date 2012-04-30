@@ -49,7 +49,7 @@ ClubEventBundle:
 
 ClubInstallBundle:
     resource: "@ClubInstallerBundle/Controller/"
-    prefix: /installer
+    prefix:   /installer
     type:     annotation
 
 ClubConfiguratorBundle:
