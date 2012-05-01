@@ -2438,6 +2438,10 @@
         <source>Enter country code like DK, GB, DE and so on.</source>
         <target>Indtast landekode som DK, GB, DE og så videre.</target>
       </trans-unit>
+      <trans-unit id="614">
+        <source>There are no attends at the time</source>
+        <target>Der er ingen tilmeldte for øjeblikket</target>
+      </trans-unit>
 
     </body>
   </file>

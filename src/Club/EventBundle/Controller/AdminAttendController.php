@@ -15,11 +15,8 @@ class AdminAttendController extends Controller
    * @Route("/event/attend/{id}", name="admin_event_attend")
    * @Template()
    */
-  public function indexAction($id)
+  public function indexAction(\Club\EventBundle\Entity\Event $event)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event', $id);
-
     return array(
       'event' => $event
     );
@@ -28,11 +25,9 @@ class AdminAttendController extends Controller
   /**
    * @Route("/event/attend/delete/{id}", name="admin_event_attend_delete")
    */
-  public function deleteAction($id)
+  public function deleteAction(\Club\EventBundle\Entity\Attend $attend)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $attend = $em->find('ClubEventBundle:Attend',$id);
-
     $em->remove($attend);
     $em->flush();
 
