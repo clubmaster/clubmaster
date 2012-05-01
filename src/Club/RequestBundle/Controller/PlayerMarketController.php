@@ -11,12 +11,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class PlayerMarketController extends Controller
 {
-    /**
-     * @Route("/")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        return array();
-    }
+  /**
+   * @Route("/")
+   * @Template()
+   */
+  public function indexAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $market = $em->getRepository('ClubRequestBundle:Request')->findAll();
+    return array(
+      'market' => $market
+    );
+  }
+
+  /**
+   * @Route("/new")
+   * @Template()
+   */
+  public function newAction()
+  {
+    return array();
+  }
 }
