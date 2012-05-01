@@ -54,6 +54,11 @@ class CheckoutController extends Controller
    */
   public function shippingAction()
   {
+    if (!count($this->get('cart')->getCart()->getCartProducts())) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
+      return $this->redirect($this->generateUrl('shop_checkout'));
+    }
+
     if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
       return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
 
