@@ -4,6 +4,7 @@ namespace Club\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MemberController extends Controller
@@ -36,11 +37,8 @@ class MemberController extends Controller
    * @Template()
    * @Route("/members/{id}")
    */
-  public function showAction($id)
+  public function showAction(\Club\UserBundle\Entity\User $user)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User', $id);
-
     $event = new \Club\UserBundle\Event\FilterOutputEvent();
     $event->setUser($user);
     $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onMemberView, $event);

@@ -1,4 +1,7 @@
 == VERSION 1.3 ==
+you have to be able to see all orders from a user
+put book and cancel bookings into log information (master branch)
+need tool so we can monitor how many bookings a member have active
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 be able to create product packages
@@ -21,6 +24,7 @@ make a quick way to remove all team penalties
 make sure user only can use teams in member ship status period
 implement payment for booking
 find a smart way to get default location, might be with the url
+use ParamConverter more
 
 == NOTES TO LATER ==
 add product on dynamic group
