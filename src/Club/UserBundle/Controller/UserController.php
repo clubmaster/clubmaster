@@ -10,6 +10,41 @@ class UserController extends Controller
 {
   /**
    * @Template()
+   * @Route("/user", name="user")
+   */
+  public function indexAction()
+  {
+    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser($user);
+
+    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+
+      foreach ($user->getProfile()->getProfileEmails() as $email) {
+        var_dump($email->getEmailAddress());
+        $email->setProfile($user->getProfile());
+      }
+
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('user'));
+      }
+    }
+
+    return array(
+      'user' => $user,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Template()
    * @Route("/user/reset")
    */
   public function resetAction()
@@ -36,36 +71,6 @@ class UserController extends Controller
         ));
         $em->remove($reset);
 
-        $em->flush();
-
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
-        return $this->redirect($this->generateUrl('user'));
-      }
-    }
-
-    return array(
-      'user' => $user,
-      'form' => $form->createView()
-    );
-  }
-
-  /**
-   * @Template()
-   * @Route("/user", name="user")
-   */
-  public function indexAction()
-  {
-    $user = $this->get('security.context')->getToken()->getUser();
-    $user = $this->getUser($user);
-
-    $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-
-      if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($user);
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
