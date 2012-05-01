@@ -1,4 +1,10 @@
 services:
+  club.log.booking:
+    class: Club\LogBundle\Listener\Booking
+    arguments: [@doctrine.orm.entity_manager,@security.context]
+    tags:
+      - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
+      - { name: kernel.event_listener, event: booking.cancel, method: onBookingCancel }
   club.logbundle.listener.on_shop_order_listener:
     class: Club\LogBundle\Listener\NewOrderListener
     arguments: [@doctrine.orm.entity_manager,@security.context]
