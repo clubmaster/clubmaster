@@ -2438,6 +2438,10 @@
         <source>Enter country code like DK, GB, DE and so on.</source>
         <target>Indtast landekode som DK, GB, DE og så videre.</target>
       </trans-unit>
+      <trans-unit id="614">
+        <source>You need to add products to your cart before you can checkout.</source>
+        <target>Du skal tilføje produkter til din kurv før du kan gå til kassen.</target>
+      </trans-unit>
 
     </body>
   </file>
