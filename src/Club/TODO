@@ -1,4 +1,7 @@
 == VERSION 1.3 ==
+view if the booking is confirmed on booking overview
+administrator should see which booking has been cancelled due to unconfirmed
+be able to create product packages
 internal message system
 rewrite failure handler to a listerner
 users should be able to create multiple emails, phone
