@@ -173,7 +173,7 @@ class CheckoutController extends Controller
   {
     $cart = $this->get('cart')->getCart();
     if (!count($cart->getCartProducts())) {
-      $this->get('session')->setFlash('error', 'This order has no products.');
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
       return $this->redirect($this->generateUrl('shop'));
     }
 

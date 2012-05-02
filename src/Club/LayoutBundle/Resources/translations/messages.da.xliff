@@ -2442,6 +2442,10 @@
         <source>You need to add products to your cart before you can checkout.</source>
         <target>Du skal tilføje produkter til din kurv før du kan gå til kassen.</target>
       </trans-unit>
+      <trans-unit id="615">
+        <source>This order has no products.</source>
+        <target>Denne ordre har ingen produkter.</target>
+      </trans-unit>
 
     </body>
   </file>
