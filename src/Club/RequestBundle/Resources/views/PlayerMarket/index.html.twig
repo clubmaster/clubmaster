@@ -24,14 +24,13 @@
   <tbody>
   {% for item in market %}
     <tr>
-      <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
-      <td>{{ schedule.teamCategory.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
-      <td>{{ schedule.location.locationName }}</td>
-      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <td>{{ item.playtime|club_datetime }}</td>
+      <td>{{ item.user.name }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}
-      </td>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% include "ClubLayoutBundle:Default:respond_link.html.twig" with {'url':path('club_request_playermarket_comment', { 'id':item.id })} %}
       {% endif %}
+      </td>
     </tr>
   {% else %}
     <tr>

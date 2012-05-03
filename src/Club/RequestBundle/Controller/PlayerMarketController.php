@@ -32,8 +32,20 @@ class PlayerMarketController extends Controller
   public function newAction()
   {
     $request = new \Club\RequestBundle\Entity\Request();
+    $request->setUser($this->get('security.context')->getToken()->getUser());
 
     $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($request);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+      }
+    }
 
     return array(
       'form' => $form->createView()

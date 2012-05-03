@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\RequestBundle\Entity\Request
  *
- * @ORM\Table()
+ * @ORM\Table(name="club_request_request")
  * @ORM\Entity(repositoryClass="Club\RequestBundle\Entity\RequestRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Request
 {
@@ -41,6 +42,13 @@ class Request
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     *
+     * @var Club\UserBundle\Entity\User
+     */
+    protected $user;
 
 
     public function __construct()
@@ -118,5 +126,42 @@ class Request
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\preUpdate
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
