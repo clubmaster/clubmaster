@@ -51,4 +51,18 @@ class PlayerMarketController extends Controller
       'form' => $form->createView()
     );
   }
+
+  /**
+   * @Route("/delete/{id}")
+   * @Template()
+   */
+  public function deleteAction(\Club\RequestBundle\Entity\Request $request)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $em->remove($request);
+    $em->flush();
+
+    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+    return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+  }
 }
