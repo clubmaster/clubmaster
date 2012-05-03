@@ -54,6 +54,11 @@ class CheckoutController extends Controller
    */
   public function shippingAction()
   {
+    if (!count($this->get('cart')->getCart()->getCartProducts())) {
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
+      return $this->redirect($this->generateUrl('shop_checkout'));
+    }
+
     if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
       return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
 
@@ -168,7 +173,7 @@ class CheckoutController extends Controller
   {
     $cart = $this->get('cart')->getCart();
     if (!count($cart->getCartProducts())) {
-      $this->get('session')->setFlash('error', 'This order has no products.');
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
       return $this->redirect($this->generateUrl('shop'));
     }
 
