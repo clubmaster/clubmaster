@@ -50,6 +50,13 @@ class Request
      */
     protected $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="RequestComment", mappedBy="request")
+     *
+     * @var Club\RequestBundle\Entity\RequestComment
+     */
+    protected $request_comments;
+
 
     public function __construct()
     {
@@ -163,5 +170,25 @@ class Request
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add request_comments
+     *
+     * @param Club\RequestBundle\Entity\RequestComment $requestComments
+     */
+    public function addRequestComment(\Club\RequestBundle\Entity\RequestComment $requestComments)
+    {
+        $this->request_comments[] = $requestComments;
+    }
+
+    /**
+     * Get request_comments
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getRequestComments()
+    {
+        return $this->request_comments;
     }
 }

@@ -41,4 +41,15 @@ class CommentController extends Controller
       'form' => $form->createView()
     );
   }
+
+  /**
+   * @Route("/{id}")
+   * @Template()
+   */
+  public function indexAction(\Club\RequestBundle\Entity\Request $request)
+  {
+    return array(
+      'request' => $request,
+    );
+  }
 }

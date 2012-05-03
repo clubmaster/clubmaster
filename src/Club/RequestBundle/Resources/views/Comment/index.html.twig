@@ -1,0 +1,32 @@
+{% extends "ClubRequestBundle::base.html.twig" %}
+
+{% block body %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<p class="box">
+  <a href="{{ path('club_request_comment_new', {'id':request.id}) }}" class="btn-info"><span>{% trans %}Create comment{% endtrans %}</span></a>
+</p>
+{% endif %}
+
+<table class="style">
+  <tbody>
+    <tr>
+      <th>Time</th>
+      <td>{{ request.playtime|club_datetime }}</td>
+    </tr>
+    <tr>
+      <th>User</th>
+      <td>{{ request.user.name }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>{% trans %}Comments{% endtrans %}</h4>
+{% for comment in request.requestComments %}
+<p><span class="label label-03">{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
+<p>{{ comment.comment|raw }}</p>
+{% else %}
+<p>{% trans %}There are no comments for this request.{% endtrans %}</p>
+{% endfor %}
+
+{% endblock %}
