@@ -43,10 +43,17 @@ class Request
     private $updated_at;
 
 
+    public function __construct()
+    {
+      $this->setPlayTime(new \DateTime(date('Y-m-d 15:00:00')));
+      $i = new \DateInterval('P1D');
+      $this->getPlayTime()->add($i);
+    }
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +73,7 @@ class Request
     /**
      * Get play_time
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getPlayTime()
     {
@@ -86,7 +93,7 @@ class Request
     /**
      * Get created_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -106,7 +113,7 @@ class Request
     /**
      * Get updated_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {

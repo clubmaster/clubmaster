@@ -31,6 +31,12 @@ class PlayerMarketController extends Controller
    */
   public function newAction()
   {
-    return array();
+    $request = new \Club\RequestBundle\Entity\Request();
+
+    $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
+
+    return array(
+      'form' => $form->createView()
+    );
   }
 }
