@@ -19,9 +19,35 @@ class PlayerMarketController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $market = $em->getRepository('ClubRequestBundle:Request')->findAll();
+    $market = $em->getRepository('ClubRequestBundle:Request')->getOpen();
     return array(
       'market' => $market
+    );
+  }
+
+  /**
+   * @Route("/edit/{id}")
+   * @Template()
+   */
+  public function editAction(\Club\RequestBundle\Entity\Request $request)
+  {
+    $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($request);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+      }
+    }
+
+    return array(
+      'request' => $request,
+      'form' => $form->createView()
     );
   }
 

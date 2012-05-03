@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class RequestRepository extends EntityRepository
 {
+  public function getOpen()
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('r')
+      ->from('ClubRequestBundle:Request', 'r')
+      ->where('r.play_time > :date')
+      ->orderBy('r.play_time')
+      ->setParameter('date', new \DateTime())
+      ->getQuery()
+      ->getResult();
+  }
 }
