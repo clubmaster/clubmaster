@@ -30,6 +30,13 @@ class Request
     private $play_time;
 
     /**
+     * @var boolean $closed
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $closed;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -60,6 +67,7 @@ class Request
 
     public function __construct()
     {
+      $this->setClosed(false);
       $this->setPlayTime(new \DateTime(date('Y-m-d 15:00:00')));
       $i = new \DateInterval('P1D');
       $this->getPlayTime()->add($i);
@@ -190,5 +198,25 @@ class Request
     public function getRequestComments()
     {
         return $this->request_comments;
+    }
+
+    /**
+     * Set closed
+     *
+     * @param boolean $closed
+     */
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
+    }
+
+    /**
+     * Get closed
+     *
+     * @return boolean
+     */
+    public function getClosed()
+    {
+        return $this->closed;
     }
 }

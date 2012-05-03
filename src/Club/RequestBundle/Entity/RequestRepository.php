@@ -18,6 +18,7 @@ class RequestRepository extends EntityRepository
       ->select('r')
       ->from('ClubRequestBundle:Request', 'r')
       ->where('r.play_time > :date')
+      ->andWhere('r.closed = false')
       ->orderBy('r.play_time')
       ->setParameter('date', new \DateTime())
       ->getQuery()
