@@ -335,6 +335,20 @@ class Profile
     }
 
     /**
+     * Set profile_emails
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmails
+     */
+    public function setProfileEmails($profileEmails)
+    {
+      foreach ($profileEmails as $email) {
+        $email->setProfile($this);
+      }
+
+      $this->profile_emails = $profileEmails;
+    }
+
+    /**
      * Add profile_emails
      *
      * @param Club\UserBundle\Entity\ProfileEmail $profileEmails

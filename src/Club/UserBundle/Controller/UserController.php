@@ -22,11 +22,6 @@ class UserController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
 
-      foreach ($user->getProfile()->getProfileEmails() as $email) {
-        var_dump($email->getEmailAddress());
-        $email->setProfile($user->getProfile());
-      }
-
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($user);

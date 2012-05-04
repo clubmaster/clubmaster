@@ -22,7 +22,8 @@ class AdminProfile extends AbstractType
     $builder->add('profile_emails', 'collection', array(
       'type' => new \Club\UserBundle\Form\AdminProfileEmail(),
       'allow_add' => true,
-      'allow_delete' => true
+      'allow_delete' => true,
+      'by_reference' => false
     ));
     $builder->add('profile_phone', new \Club\UserBundle\Form\AdminProfilePhone());
   }
