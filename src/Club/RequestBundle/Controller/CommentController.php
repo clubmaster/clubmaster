@@ -31,6 +31,9 @@ class CommentController extends Controller
         $em->persist($comment);
         $em->flush();
 
+        $event = new \Club\RequestBundle\Event\FilterRequestCommentEvent($comment);
+        $this->get('event_dispatcher')->dispatch(\Club\RequestBundle\Event\Events::onRequestCommentNew, $event);
+
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
         return $this->redirect($this->generateUrl('club_request_playermarket_index'));
       }
