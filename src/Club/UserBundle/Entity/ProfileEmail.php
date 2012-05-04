@@ -107,7 +107,7 @@ class ProfileEmail
      *
      * @param Club\UserBundle\Entity\Profile $profile
      */
-    public function setProfile(\Club\UserBundle\Entity\Profile $profile)
+    public function setProfile(\Club\UserBundle\Entity\Profile $profile=null)
     {
         $this->profile = $profile;
     }
