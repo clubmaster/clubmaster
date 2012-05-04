@@ -8,16 +8,16 @@
 </p>
 {% endif %}
 
-<h2>Players market</h2>
+<h2>{% trans %}Player market{% endtrans %}</h2>
 
-<p>If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.</p>
+<p>{% trans %}If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.{% endtrans %}</p>
 <table class="style">
   <thead>
     <tr class="bg">
-      <th>Time</th>
-      <th>User</th>
-      <th>Comments</th>
-      <th>Action</th>
+      <th>{% trans %}Play time{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Comments{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   <thead>
   <tfoot>
@@ -41,7 +41,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="4">There are not items in the players market.</td>
+      <td colspan="4">{% trans %}There are not requests in the players market.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>
