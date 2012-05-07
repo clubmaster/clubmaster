@@ -17,6 +17,21 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
+    $users = array(
+      'Michael Holm',
+      'Rikke Jensen',
+      'Lars Johannesen',
+      'Poul Larsen',
+      'Henrik Hansen',
+      'Cecilie Eriksson',
+      'Poul Larsen',
+      'Anders Kvist'
+    );
+
+    $this->get('club_tournament.tournament')->setUsers($users);
+    $tournament = $this->get('club_tournament.tournament')->getBracket();
+
+    /*
     $tournament = array(
       array(
         'round' => 1,
@@ -114,6 +129,7 @@ class TournamentController extends Controller
         )
       )
     );
+     */
 
     return array(
       'tournament' => $tournament
