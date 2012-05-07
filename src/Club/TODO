@@ -81,3 +81,4 @@ move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 tag users on images
 print labels from a search
+find a way to alert if a touch client goes away
