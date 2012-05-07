@@ -180,6 +180,7 @@ class Booking
         'field_id' => $this->getField()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
+        'confirmed' => $this->getConfirmed(),
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
