@@ -1,59 +1,40 @@
-<html>
-<head>
-<link rel="stylesheet" href="{{ asset('bundles/clubtournament/css/bracket.css') }}" />
-</head>
-<body>
+{% extends "ClubTournamentBundle::base.html.twig" %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/clubtournament/css/bracket.css') }}" />
+{% endblock %}
+
+{% block body %}
 <div id="bracket_base">
   <div id="bracket_body">
-    <div class='round' id='r1'>
-      <div class='header'>Round 1&nbsp;</div>
-      <div class='top'><p>Burton</p></div>
-      <div class='odd'><p>PUSD</p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div><p>Competitor2</p></div>
-      <div class='odd'><p>Competitor3</p></div>
-      <div><p>Competitor4</p></div>
-      <div class='odd'><p>Competitor5</p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-      <div><p>Competitor6</p></div>
-      <div class='odd'><p>Competitor7</p></div>
+    {% for round in tournament %}
+    <div class='round' id='r{{ round.round }}'>
+      <div class='header'>{{ round.name }}</div>
+
+    {% if round.round == tournament|length %}
+      <div class='champ'><p>{{ round.winner.name }}</p></div>
+
+    {% else %}
+
+      {% set top = true %}
+      {% for match in round.matches %}
+
+      {% if top %}
+        <div class='top'><p>{{ match.0.name }} {% if match.0.result != '' %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
+        <div class='odd'><p>{{ match.1.name }} {% if match.1.result != '' %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
+        {% set top = false %}
+      {% else %}
+        <div><p>{{ match.0.name }} {% if match.0.result %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
+        <div class='odd'><p>{{ match.1.name }} {% if match.1.result %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
+      {% endif %}
+
+      {% endfor %}
+
+    {% endif %}
     </div>
-    <div class='round' id='r2'>
-      <div class='header'>Round 2&nbsp;</div>
-      <div class='top'><p>Burton<span class="score">7/6 7/6</span></p></div>
-      <div class='odd'><p>Young's</p></div>
-      <div><p>Competitor9</p></div>
-      <div class='odd'><p></p></div>
-      <div><p></p></div>
-      <div class='odd'><p>Competitor10</p></div>
-      <div><p>Competitor11</p></div>
-      <div class='odd'><p></p></div>
-    </div>
-    <div class='round' id='r3'>
-      <div class='header'>Round 3&nbsp;</div>
-      <div class='top'><p></p></div>
-      <div class='odd'><p></p></div>
-      <div><p></p></div>
-      <div class='odd'><p></p></div>
-    </div>
-    <div class='round' id='r4'>
-      <div class='header'>Round 4&nbsp;</div>
-      <div class='top'><p></p></div>
-      <div class='odd'><p></p></div>
-    </div>
-    <div class='round' id='r5'>
-      <div class='header'>Champion&nbsp;</div>
-      <div class='champ'><p></p></div>
-    </div>
+    {% endfor %}
+
   </div>
 </div>
 
-</body>
-</html>
+{% endblock %}

@@ -19,91 +19,98 @@ class TournamentController extends Controller
   {
     $tournament = array(
       array(
-        'round' => 0,
+        'round' => 1,
         'name' => 'First round',
         'matches' => array(
           array(
             array(
               'name' => 'Michael Holm',
-              'result' => 3
+              'result' => '6-6'
             ),
             array(
               'name' => 'Poul Larsen',
-              'result' => 1
+              'result' => '4-4'
             )
           ),
           array(
             array(
               'name' => 'Kresten Kjeldsen',
-              'result' => 1
+              'result' => '1-1'
             ),
             array(
               'name' => 'Lars Johannesen',
-              'result' => 3
+              'result' => '6-6'
             )
           ),
           array(
             array(
               'name' => 'Rikke Jensen',
-              'result' => 3
+              'result' => '6-6'
             ),
             array(
               'name' => 'Mona Larsen',
-              'result' => 1
+              'result' => '1-1'
             )
           ),
           array(
             array(
               'name' => 'Lonni Petersen',
-              'result' => 1
+              'result' => '1-1'
             ),
             array(
               'name' => 'Henrik Hansen',
-              'result' => 3
+              'result' => '6-6'
             )
           ),
         ),
       ),
       array(
         'name' => 'Semi final',
-        'round' => 1,
+        'round' => 2,
         'matches' => array(
           array(
             array(
               'name' => 'Michael Holm',
-              'result' => 3
+              'result' => '6-6'
             ),
             array(
               'name' => 'Lars Johannesen',
-              'result' => 1
+              'result' => '0-0'
             )
           ),
           array(
             array(
               'name' => 'Rikke Jsensen',
-              'result' => 3
+              'result' => '6-6'
             ),
             array(
               'name' => 'Henrik Hansen',
-              'result' => 1
+              'result' => '1-1'
             )
           ),
         ),
       ),
       array(
         'name' => 'Final',
-        'round' => 2,
+        'round' => 3,
         'matches' => array(
           array(
             array(
               'name' => 'Michael Holm',
-              'result' => -1
+              'result' => '6-6'
             ),
             array(
               'name' => 'Rikke Jensen',
-              'result' => -1
+              'result' => '0-3'
             )
           )
+        ),
+      ),
+      array(
+        'name' => 'Champion',
+        'round' => 4,
+        'winner' => array(
+          'name' => 'Michael Holm'
         )
       )
     );
