@@ -11,7 +11,7 @@ add images to products
 add category priority regarding to account numbers
 admin user batch, select search
 make sure user only can book in member status period
-knockout management
+knockout management, checkout myplayoffs.com
 jquery overlay form on booking
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -80,3 +80,4 @@ move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 tag users on images
 print labels from a search
+find a way to alert if a touch client goes away

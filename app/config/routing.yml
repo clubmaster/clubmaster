@@ -1,3 +1,8 @@
+ClubTournamentBundle:
+    resource: "@ClubTournamentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ClubRequestBundle:
     resource: "@ClubRequestBundle/Controller/"
     type:     annotation
