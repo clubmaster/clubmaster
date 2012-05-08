@@ -23,6 +23,10 @@
       <div class='top'><p>{{ match.0.name }} {% if match.0.result != '' %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
       <div class='odd'><p>{{ match.1.name }} {% if match.1.result != '' %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
       {% set top = false %}
+
+      {% elseif match.blank is defined %}
+      <div class='blank'><p></p></div>
+
       {% else %}
       <div><p>{{ match.0.name }} {% if match.0.result %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
       <div class='odd'><p>{{ match.1.name }} {% if match.1.result %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
