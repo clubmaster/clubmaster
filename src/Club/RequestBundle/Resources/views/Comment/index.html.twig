@@ -11,11 +11,11 @@
 <table class="style">
   <tbody>
     <tr>
-      <th>Time</th>
+      <th>{% trans %}Play time{% endtrans %}</th>
       <td>{{ request.playtime|club_datetime }}</td>
     </tr>
     <tr>
-      <th>User</th>
+      <th>{% trans %}User{% endtrans %}</th>
       <td>{{ request.user.name }}</td>
     </tr>
   </tbody>
