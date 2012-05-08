@@ -87,7 +87,6 @@ class BookingController extends Controller
     * @Template()
     * @Route("/booking/book/confirm")
     * @Secure(roles="ROLE_USER")
-    *
     */
    public function confirmAction()
    {
