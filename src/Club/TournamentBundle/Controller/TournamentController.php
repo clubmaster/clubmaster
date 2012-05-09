@@ -17,15 +17,22 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $total = 44;
+    $total = 4;
+    $seeds = 2;
 
+    // fix seeds
+    // add names of rounds
     $users = array();
     for ($i = 0; $i < $total; $i++) {
       $users[] = 'Player '.($i+1);
     }
 
-    $this->get('club_tournament.tournament')->setUsers($users);
-    $tournament = $this->get('club_tournament.tournament')->getBracket();
+    $t = $this->get('club_tournament.tournament');
+    $t->setUsers($users);
+    $t->setSeeds($seeds);
+    $t->shuffleUsers();
+    $tournament = $t->getBracket();
+    print_r($tournament);
 
     return array(
       'tournament' => $tournament
