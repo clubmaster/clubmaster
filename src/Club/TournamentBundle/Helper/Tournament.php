@@ -15,70 +15,48 @@ class Tournament
 
   public function getBracket()
   {
-    $round = array(
-      'round' => $this->round_number,
-      'name' => 'Round '.$this->round_number,
-      'matches' => array()
-    );
-    while (count($this->users) > 1) {
-      array_push($round['matches'], array(
-        array( 'name' => array_shift($this->users), 'result' => null ),
-        array( 'name' => array_shift($this->users), 'result' => null )
-      ));
-    }
-    if (count($this->users) > 0) array_push($round['matches'], array('blank' => true));
-    array_push($this->bracket, $round);
-    $this->round_number++;
+    $n = count($this->users);
+    // In round 1, there are $r1 competitors. The number of competitors must match 2^x, where x is a whole number.
+    $r1 = pow(2, floor(log($n, 2)));
+    // ...this leaves $r0 competitors, who must compete in the play-in round, round 0.
+    $r0 = $n - $r1;
 
-    if (count($this->users) > 0) {
-      $round = array(
-        'round' => $this->round_number,
-        'name' => 'Round '.$this->round_number,
-        'matches' => array()
-      );
-      while (count($this->users) > 0) {
+    if ($r0 > 0) {
+      $round = $this->getNewRound();
+      for ($i = 0; $i < $r0; $i++) {
+        $round = $this->addPlayers($round, 2);
+      }
+      $round = $this->addBlank($round);
+      $this->merge($round);
+    }
+
+    $round = $this->getNewRound();
+    while (count($this->users) > 0) {
+
+      $prev = count($round['matches'])*2;
+      if (isset($this->bracket[0]['matches'][$prev][1]) && isset($this->bracket[0]['matches'][$prev+1][1])) {
+        $round = $this->addPlayers($round, 0);
+      } elseif (isset($this->bracket[0]['matches'][$prev][1])) {
+        $round = $this->addPlayers($round, 1);
+      } else {
         if (count($this->users) == 1) {
-          array_push($round['matches'], array(
-            array( 'name' => null, 'result' => null ),
-            array( 'name' => array_shift($this->users), 'result' => null )
-          ));
+          $round = $this->addPlayers($round, 1);
         } else {
-          array_push($round['matches'], array(
-            array( 'name' => array_shift($this->users), 'result' => null ),
-            array( 'name' => array_shift($this->users), 'result' => null )
-          ));
+          $round = $this->addPlayers($round, 2);
         }
       }
-      array_push($this->bracket, $round);
-      $this->round_number++;
     }
+    $this->merge($round);
 
     $end_bracket = end($this->bracket);
     for ($r = 1, $n = count($end_bracket['matches']); $n > 1; $r++, $n /= 2) {
-      switch ($n) {
-      case 16: $name = 'Round of 16'; break;
-      case 8:  $name = 'Quarter-finals'; break;
-      case 4:  $name = 'Semi-finals'; break;
-      case 2:  $name = 'Final'; break;
-      default: $name = "Round ".$this->round_number; break;
-      }
 
-      $matches = array();
+      $round = $this->getNewRound();
       for ($i = 0; $i < $n/2; $i++) {
-        $matches[] = array(
-          array( 'name' => null, 'result' => null ),
-          array( 'name' => null, 'result' => null )
-        );
+        $round = $this->addPlayers($round, 0);
       }
 
-      $round = array(
-        'round' => $this->round_number,
-        'name' => $name,
-        'matches' => $matches
-      );
-
-      array_push($this->bracket, $round);
-      $this->round_number++;
+      $this->merge($round);
     }
 
     array_push($this->bracket, array(
@@ -88,5 +66,55 @@ class Tournament
     ));
 
     return $this->bracket;
+  }
+
+  private function getNewRound()
+  {
+    return array(
+      'round' => $this->round_number,
+      'name' => 'Round '.$this->round_number,
+      'matches' => array()
+    );
+  }
+
+  private function addPlayers($round, $amount)
+  {
+    switch ($amount) {
+    case 0:
+      array_push($round['matches'], array(
+        array( 'name' => null, 'result' => null ),
+        array( 'name' => null, 'result' => null )
+      ));
+
+      break;
+    case 1:
+      array_push($round['matches'], array(
+        array( 'name' => null, 'result' => null ),
+        array( 'name' => array_shift($this->users), 'result' => null )
+      ));
+
+      break;
+    case 2:
+      array_push($round['matches'], array(
+        array( 'name' => array_shift($this->users), 'result' => null ),
+        array( 'name' => array_shift($this->users), 'result' => null )
+      ));
+
+      break;
+    }
+
+    return $round;
+  }
+
+  private function merge($round)
+  {
+    array_push($this->bracket, $round);
+    $this->round_number++;
+  }
+
+  private function addBlank($round)
+  {
+    array_push($round['matches'], array('blank' => true));
+    return $round;
   }
 }

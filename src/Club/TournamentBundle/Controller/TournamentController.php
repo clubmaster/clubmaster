@@ -17,7 +17,8 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $total = 5;
+    $total = 44;
+
     $users = array();
     for ($i = 0; $i < $total; $i++) {
       $users[] = 'Player '.($i+1);
@@ -25,7 +26,6 @@ class TournamentController extends Controller
 
     $this->get('club_tournament.tournament')->setUsers($users);
     $tournament = $this->get('club_tournament.tournament')->getBracket();
-    print_r($tournament);
 
     return array(
       'tournament' => $tournament

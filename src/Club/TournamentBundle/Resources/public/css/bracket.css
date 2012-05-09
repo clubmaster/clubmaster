@@ -1,6 +1,8 @@
 div#bracket_base {
   margin: 0px 0px 0px 15px;
-  position:relative; height: 466px; width: 675px
+  position:relative;
+  min-height: 1000px;
+  width: 2000px;
 }
 
 div#bracket_base div {
@@ -38,6 +40,10 @@ div#r3 {left:270px;}
 div#r4 {left:405px;}
 
 div#r5 {left:540px;}
+
+div#r6 {left:675px;}
+
+div#r7 {left:810px;}
 
 div#bracket_base div.round div {
   position:relative;
