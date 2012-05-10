@@ -10,6 +10,8 @@ class Tournament
   private $seeds;
   private $bracket = array();
   private $round_number = 1;
+  private $seed_number = 0;
+  private $seed_odd = false;
 
   public function shuffleUsers()
   {
@@ -32,14 +34,13 @@ class Tournament
 
   public function getBracket()
   {
-    $n = count($this->users);
+    $this->working_users = array_merge($this->users_seed, $this->users);
+
+    $n = count($this->working_users);
     // In round 1, there are $r1 competitors. The number of competitors must match 2^x, where x is a whole number.
     $r1 = pow(2, floor(log($n, 2)));
     // ...this leaves $r0 competitors, who must compete in the play-in round, round 0.
     $r0 = $n - $r1;
-
-    $this->working_users = array_merge($this->users_seed, $this->users);
-    $seed_number = count($this->working_users)+1;
 
     if ($r0 > 0) {
       $round = $this->getNewRound();
@@ -51,7 +52,7 @@ class Tournament
     }
 
     $round = $this->getNewRound();
-    while (count($this->working_users) > 0) {
+    while ($this->seed_number*2 < count($this->working_users)) {
 
       $prev = count($round['matches'])*2;
       if (isset($this->bracket[0]['matches'][$prev][1]) && isset($this->bracket[0]['matches'][$prev+1][1])) {
@@ -115,9 +116,22 @@ class Tournament
 
       break;
     case 2:
+      if (!$this->seed_odd) {
+        $id1 = $this->seed_number;
+        $id2 = count($this->working_users)-1-$this->seed_number;
+        $this->seed_number++;
+        $this->seed_odd = true;
+      } else {
+        $id1 = $this->seed_number;
+        $id2 = count($this->working_users)-1-$this->seed_number;
+        $this->seed_odd = false;
+
+      }
+      var_dump($id1);
+
       array_push($round['matches'], array(
-        array( 'name' => array_shift($this->working_users), 'result' => null ),
-        array( 'name' => array_shift($this->working_users), 'result' => null )
+        array( 'name' => $this->working_users[$id1], 'result' => null ),
+        array( 'name' => $this->working_users[$id2], 'result' => null )
       ));
 
       break;

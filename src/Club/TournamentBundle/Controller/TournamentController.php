@@ -17,8 +17,8 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $total = 4;
-    $seeds = 2;
+    $total = 8;
+    $seeds = $total;
 
     // fix seeds
     // add names of rounds
