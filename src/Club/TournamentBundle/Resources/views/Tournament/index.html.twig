@@ -20,16 +20,16 @@
       {% for match in round.matches %}
 
       {% if top %}
-      <div class='top'><p>{{ match.0.name }} {% if match.0.result != '' %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
-      <div class='odd'><p>{{ match.1.name }} {% if match.1.result != '' %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
+      <div class='top'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
       {% set top = false %}
 
       {% elseif match.blank is defined %}
       <div class='blank'><p></p></div>
 
       {% else %}
-      <div><p>{{ match.0.name }} {% if match.0.result %}<span class="score">{{ match.0.result }}</span>{% endif %}</p></div>
-      <div class='odd'><p>{{ match.1.name }} {% if match.1.result %}<span class="score">{{ match.1.result }}</span>{% endif %}</p></div>
+      <div>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
       {% endif %}
 
       {% endfor %}

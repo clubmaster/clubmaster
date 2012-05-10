@@ -17,8 +17,8 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $total = 8;
-    $seeds = $total;
+    $total = 12;
+    $seeds = 0;
 
     // fix seeds
     // add names of rounds
@@ -32,7 +32,6 @@ class TournamentController extends Controller
     $t->setSeeds($seeds);
     $t->shuffleUsers();
     $tournament = $t->getBracket();
-    print_r($tournament);
 
     return array(
       'tournament' => $tournament
