@@ -20,8 +20,6 @@ class TournamentController extends Controller
     $total = 12;
     $seeds = 0;
 
-    // fix seeds
-    // add names of rounds
     $users = array();
     for ($i = 0; $i < $total; $i++) {
       $users[] = 'Player '.($i+1);

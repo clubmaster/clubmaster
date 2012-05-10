@@ -59,11 +59,39 @@ class Tournament
     }
 
     array_push($this->bracket, array(
-      'name' => 'Champion',
+      'name' => null,
       'round' => count($this->bracket)+1,
       'winner' => array( 'name' => null )
     ));
 
+    $this->fixUsers();
+    $this->fixRoundNames();
+
+    return $this->bracket;
+  }
+
+  private function fixRoundNames()
+  {
+    foreach ($this->bracket as $i => $round) {
+      switch ($this->round_number-$i) {
+      case 1:
+        $this->bracket[$i]['name'] = 'Champion';
+        break;
+      case 2:
+        $this->bracket[$i]['name'] = 'Final';
+        break;
+      case 3:
+        $this->bracket[$i]['name'] = 'Semi-finals';
+        break;
+      case 4:
+        $this->bracket[$i]['name'] = 'Quarter-finals';
+        break;
+      }
+    }
+  }
+
+  private function fixUsers()
+  {
     foreach ($this->working_users as $seed => $user) {
       foreach ($this->bracket[0]['matches'] as $match_id => $match) {
         foreach ($match as $row_id => $row) {
@@ -73,8 +101,6 @@ class Tournament
         }
       }
     }
-
-    return $this->bracket;
   }
 
   private function getNewRound()
