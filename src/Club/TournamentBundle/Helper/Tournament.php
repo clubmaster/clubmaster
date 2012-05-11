@@ -4,7 +4,7 @@ namespace Club\TournamentBundle\Helper;
 
 class Tournament
 {
-  private $users = array();
+  private $users;
   private $seeds;
   private $bracket = array();
   private $round_number = 1;
@@ -29,9 +29,12 @@ class Tournament
     $this->seeds = $seeds;
   }
 
-  public function setUsers(array $users)
+  public function setUsers($users)
   {
-    $this->users = $users;
+    $this->users = array();
+    foreach ($users as $user) {
+      array_push($this->users, $user);
+    }
   }
 
   public function getBracket()
@@ -105,7 +108,7 @@ class Tournament
       foreach ($this->bracket[0]['matches'] as $match_id => $match) {
         foreach ($match as $row_id => $row) {
           if ($row['seed']-1 == $seed) {
-            $this->bracket[0]['matches'][$match_id][$row_id]['name'] = $user;
+            $this->bracket[0]['matches'][$match_id][$row_id]['name'] = $user->getName();
           }
         }
       }
