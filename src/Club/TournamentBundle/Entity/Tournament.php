@@ -51,6 +51,13 @@ class Tournament
     private $seeds;
 
     /**
+     * @var integer $rounds
+     *
+     * @ORM\Column(type="integer", nullable="true")
+     */
+    private $rounds;
+
+    /**
      * @var datetime $start_time
      *
      * @ORM\Column(name="start_time", type="datetime")
@@ -253,11 +260,12 @@ class Tournament
     {
       $this->setUpdatedAt(new \DateTime());
     }
+
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set min_attend
      *
@@ -271,7 +279,7 @@ class Tournament
     /**
      * Get min_attend
      *
-     * @return integer 
+     * @return integer
      */
     public function getMinAttend()
     {
@@ -291,10 +299,30 @@ class Tournament
     /**
      * Get users
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set rounds
+     *
+     * @param integer $rounds
+     */
+    public function setRounds($rounds)
+    {
+        $this->rounds = $rounds;
+    }
+
+    /**
+     * Get rounds
+     *
+     * @return integer
+     */
+    public function getRounds()
+    {
+        return $this->rounds;
     }
 }
