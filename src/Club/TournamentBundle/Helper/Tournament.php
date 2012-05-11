@@ -67,6 +67,16 @@ class Tournament
     $this->fixUsers();
     $this->fixRoundNames();
 
+    foreach ($this->bracket[0]['matches'] as $id => $match) {
+      if (!strlen($match[0]['name'])) {
+        $this->bracket[0]['matches'][$id] = $this->addBlank();
+        $this->bracket[1]['matches'][$id/2][1]['name'] = $match[1]['name'];
+      } elseif (!strlen($match[1]['name'])) {
+        $this->bracket[0]['matches'][$id] = $this->addBlank();
+        $this->bracket[1]['matches'][$id/2][0]['name'] = $match[0]['name'];
+      }
+    }
+
     return $this->bracket;
   }
 
@@ -195,9 +205,8 @@ class Tournament
     $this->round_number++;
   }
 
-  private function addBlank($round)
+  private function addBlank()
   {
-    array_push($round['matches'], array('blank' => true));
-    return $round;
+    return array('blank' => true);
   }
 }

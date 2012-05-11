@@ -19,12 +19,18 @@
       {% set top = true %}
       {% for match in round.matches %}
 
-      {% if top %}
+      {% if top and match.blank is defined %}
+      <div class='blank top'><p></p></div>
+      <div class='blank'><p></p></div>
+      {% set top = false %}
+
+      {% elseif top %}
       <div class='top'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
       <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
       {% set top = false %}
 
       {% elseif match.blank is defined %}
+      <div class='blank'><p></p></div>
       <div class='blank'><p></p></div>
 
       {% else %}
