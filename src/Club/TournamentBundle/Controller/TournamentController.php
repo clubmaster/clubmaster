@@ -12,24 +12,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class TournamentController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("/{id}")
    * @Template()
    */
-  public function indexAction()
+  public function indexAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $total = 16;
-    $seeds = $total;
-
-    $users = array();
-    for ($i = 0; $i < $total; $i++) {
-      $users[] = 'Player '.($i+1);
-    }
-
-    $t = $this->get('club_tournament.tournament');
-    $t->setUsers($users);
-    $t->setSeeds($seeds);
-    $t->shuffleUsers();
-    $tournament = $t->getBracket();
+    $tournament = $this->get('club_tournament.tournament')
+      ->setUsers($tournament->getUsers())
+      ->setSeeds($tournament->getSeeds())
+      ->shuffleUsers()
+      ->getBracket();
 
     return array(
       'tournament' => $tournament

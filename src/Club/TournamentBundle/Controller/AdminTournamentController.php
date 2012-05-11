@@ -103,4 +103,21 @@ class AdminTournamentController extends Controller
 
     return $form;
   }
+
+  /**
+   * @Route("/generate/{id}")
+   * @Template()
+   */
+  public function generateAction(\Club\TournamentBundle\Entity\Tournament $tournament)
+  {
+    $tournament = $this->get('club_tournament.tournament')
+      ->setUsers($tournament->getUsers())
+      ->setSeeds($tournament->getSeeds())
+      ->shuffleUsers()
+      ->getBracket();
+
+    return array(
+      'tournament' => $tournament
+    );
+  }
 }
