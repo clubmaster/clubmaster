@@ -30,11 +30,11 @@ class Tournament
     private $name;
 
     /**
-     * @var integer $min_attends
+     * @var integer $min_attend
      *
-     * @ORM\Column(name="min_attends", type="integer")
+     * @ORM\Column(name="min_attend", type="integer")
      */
-    private $min_attends;
+    private $min_attend;
 
     /**
      * @var integer $max_attend
@@ -238,26 +238,6 @@ class Tournament
     }
 
     /**
-     * Set min_attends
-     *
-     * @param integer $minAttends
-     */
-    public function setMinAttends($minAttends)
-    {
-        $this->min_attends = $minAttends;
-    }
-
-    /**
-     * Get min_attends
-     *
-     * @return integer
-     */
-    public function getMinAttends()
-    {
-        return $this->min_attends;
-    }
-
-    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -272,5 +252,49 @@ class Tournament
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set min_attend
+     *
+     * @param integer $minAttend
+     */
+    public function setMinAttend($minAttend)
+    {
+        $this->min_attend = $minAttend;
+    }
+
+    /**
+     * Get min_attend
+     *
+     * @return integer 
+     */
+    public function getMinAttend()
+    {
+        return $this->min_attend;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
