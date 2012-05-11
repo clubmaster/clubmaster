@@ -39,7 +39,7 @@ class TournamentGame
     /**
      * @var string $result
      *
-     * @ORM\Column(name="result", type="string", length=255)
+     * @ORM\Column(name="result", type="string", length=255, nullable="true")
      */
     private $result;
 
@@ -65,13 +65,17 @@ class TournamentGame
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    private $winner;
+    private $team_one;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_tournament_tournament_game_user")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    protected $users;
+    private $team_two;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     */
+    private $winner;
 
 
     /**
@@ -229,26 +233,6 @@ class TournamentGame
     }
 
     /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUser(\Club\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -263,5 +247,45 @@ class TournamentGame
     public function preUpdate()
     {
       $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set team_one
+     *
+     * @param Club\UserBundle\Entity\User $teamOne
+     */
+    public function setTeamOne(\Club\UserBundle\Entity\User $teamOne)
+    {
+        $this->team_one = $teamOne;
+    }
+
+    /**
+     * Get team_one
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getTeamOne()
+    {
+        return $this->team_one;
+    }
+
+    /**
+     * Set team_two
+     *
+     * @param Club\UserBundle\Entity\User $teamTwo
+     */
+    public function setTeamTwo(\Club\UserBundle\Entity\User $teamTwo)
+    {
+        $this->team_two = $teamTwo;
+    }
+
+    /**
+     * Get team_two
+     *
+     * @return Club\UserBundle\Entity\User
+     */
+    public function getTeamTwo()
+    {
+        return $this->team_two;
     }
 }

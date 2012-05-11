@@ -110,14 +110,48 @@ class AdminTournamentController extends Controller
    */
   public function generateAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $tournament = $this->get('club_tournament.tournament')
+    $bracket = $this->get('club_tournament.tournament')
       ->setUsers($tournament->getUsers())
       ->setSeeds($tournament->getSeeds())
       ->shuffleUsers()
       ->getBracket();
 
     return array(
+      'bracket' => $bracket,
       'tournament' => $tournament
     );
+  }
+
+  /**
+   * @Route("/build/{id}")
+   * @Template()
+   */
+  public function buildAction(\Club\TournamentBundle\Entity\Tournament $tournament)
+  {
+    $bracket = $this->get('club_tournament.tournament')
+      ->setUsers($tournament->getUsers())
+      ->setSeeds($tournament->getSeeds())
+      ->shuffleUsers()
+      ->getBracket();
+
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $tournament->setRounds(count($bracket));
+    $em->persist($tournament);
+
+    foreach ($bracket as $round_id => $round) {
+      foreach ($round['matches'] as $match_id => $match) {
+        $tg = new \Club\TournamentBundle\Entity\TournamentGame();
+        $tg->setTournament($tournament);
+        $tg->setRound($round_id);
+        $tg->setGame($match_id);
+
+        $em->persist($tg);
+      }
+    }
+
+    $em->flush();
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    return $this->redirect($this->generateUrl('club_tournament_admintournament_index'));
   }
 }

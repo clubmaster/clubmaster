@@ -67,19 +67,19 @@ class Tournament
     array_push($this->bracket, array(
       'name' => null,
       'round' => count($this->bracket)+1,
-      'winner' => array( 'name' => null )
+      'winner' => array( 'user' => null )
     ));
 
     $this->fixUsers();
     $this->fixRoundNames();
 
     foreach ($this->bracket[0]['matches'] as $id => $match) {
-      if (!strlen($match[0]['name'])) {
+      if (!strlen($match[0]['user'])) {
         $this->bracket[0]['matches'][$id] = $this->getBlank();
-        $this->bracket[1]['matches'][$id/2][1]['name'] = $match[1]['name'];
-      } elseif (!strlen($match[1]['name'])) {
+        $this->bracket[1]['matches'][$id/2][1]['user'] = $match[1]['user'];
+      } elseif (!strlen($match[1]['user'])) {
         $this->bracket[0]['matches'][$id] = $this->getBlank();
-        $this->bracket[1]['matches'][$id/2][0]['name'] = $match[0]['name'];
+        $this->bracket[1]['matches'][$id/2][0]['user'] = $match[0]['user'];
       }
     }
 
@@ -112,7 +112,7 @@ class Tournament
       foreach ($this->bracket[0]['matches'] as $match_id => $match) {
         foreach ($match as $row_id => $row) {
           if ($row['seed']-1 == $seed) {
-            $this->bracket[0]['matches'][$match_id][$row_id]['name'] = $user->getName();
+            $this->bracket[0]['matches'][$match_id][$row_id]['user'] = $user;
           }
         }
       }
@@ -202,8 +202,8 @@ class Tournament
   private function getMatchArray($seed1=null, $seed2=null)
   {
     return array(
-      array( 'seed' => $seed1, 'name' => null, 'result' => null ),
-      array( 'seed' => $seed2, 'name' => null, 'result' => null )
+      array( 'seed' => $seed1, 'user' => null, 'result' => null ),
+      array( 'seed' => $seed2, 'user' => null, 'result' => null )
     );
   }
 

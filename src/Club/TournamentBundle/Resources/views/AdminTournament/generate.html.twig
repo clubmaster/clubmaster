@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block body %}
+<p><a href="{{ path('club_tournament_admintournament_build', {'id':tournament.id}) }}">Build list</a></p>
+
 <div id="bracket_base">
   <div id="bracket_body">
 
-    {% for round in tournament %}
+    {% for round in bracket %}
     <div class='round' id='r{{ round.round }}'>
       <div class='header'>{{ round.name }}</div>
 
-      {% if round.round == tournament|length %}
-      <div class='champ'><p>{{ round.winner.name }} </p></div>
+      {% if round.round == bracket|length %}
+      <div class='champ'><p>{% if round.winner.user %}{{ round.winner.user }}{% endif %}</p></div>
       {% else %}
 
       {% set top = true %}
@@ -25,8 +27,8 @@
       {% set top = false %}
 
       {% elseif top %}
-      <div class='top'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
-      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
+      <div class='top'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.1} %}</div>
       {% set top = false %}
 
       {% elseif match.blank is defined %}
@@ -34,8 +36,8 @@
       <div class='blank'><p></p></div>
 
       {% else %}
-      <div>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
-      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
+      <div>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.1} %}</div>
       {% endif %}
 
       {% endfor %}
