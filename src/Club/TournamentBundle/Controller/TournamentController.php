@@ -17,8 +17,8 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $total = 24;
-    $seeds = 0;
+    $total = 16;
+    $seeds = $total;
 
     $users = array();
     for ($i = 0; $i < $total; $i++) {

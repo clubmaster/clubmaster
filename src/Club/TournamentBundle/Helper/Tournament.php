@@ -5,8 +5,6 @@ namespace Club\TournamentBundle\Helper;
 class Tournament
 {
   private $users = array();
-  private $users_seed = array();
-  private $working_users = array();
   private $seeds;
   private $bracket = array();
   private $round_number = 1;
@@ -16,16 +14,19 @@ class Tournament
 
   public function shuffleUsers()
   {
+    $c = array();
+    for ($i = 0; $i < $this->seeds; $i++) {
+      $r = array_shift($this->users);
+      array_push($c, $r);
+    }
+
     shuffle($this->users);
+    $this->users = array_merge($c, $this->users);
   }
 
   public function setSeeds($seeds)
   {
     $this->seeds = $seeds;
-    for ($i = 0; $i < $seeds; $i++) {
-      $r = array_shift($this->users);
-      array_push($this->users_seed, $r);
-    }
   }
 
   public function setUsers(array $users)
@@ -35,9 +36,7 @@ class Tournament
 
   public function getBracket()
   {
-    $this->working_users = array_merge($this->users_seed, $this->users);
-
-    $n = count($this->working_users);
+    $n = count($this->users);
     $this->rounds = pow(2, floor(log($n, 2)));
     if ($n - $this->rounds > 0) $this->rounds *= 2;
 
@@ -69,10 +68,10 @@ class Tournament
 
     foreach ($this->bracket[0]['matches'] as $id => $match) {
       if (!strlen($match[0]['name'])) {
-        $this->bracket[0]['matches'][$id] = $this->addBlank();
+        $this->bracket[0]['matches'][$id] = $this->getBlank();
         $this->bracket[1]['matches'][$id/2][1]['name'] = $match[1]['name'];
       } elseif (!strlen($match[1]['name'])) {
-        $this->bracket[0]['matches'][$id] = $this->addBlank();
+        $this->bracket[0]['matches'][$id] = $this->getBlank();
         $this->bracket[1]['matches'][$id/2][0]['name'] = $match[0]['name'];
       }
     }
@@ -102,7 +101,7 @@ class Tournament
 
   private function fixUsers()
   {
-    foreach ($this->working_users as $seed => $user) {
+    foreach ($this->users as $seed => $user) {
       foreach ($this->bracket[0]['matches'] as $match_id => $match) {
         foreach ($match as $row_id => $row) {
           if ($row['seed']-1 == $seed) {
@@ -184,19 +183,21 @@ class Tournament
         }
       }
 
-      array_push($round['matches'], array(
-        array( 'seed' => $num1, 'name' => null, 'result' => null ),
-        array( 'seed' => $num2, 'name' => null, 'result' => null )
-      ));
+      array_push($round['matches'], $this->getMatchArray($num1, $num2));
 
     } else {
-      array_push($round['matches'], array(
-        array( 'seed' => null, 'name' => null, 'result' => null ),
-        array( 'seed' => null, 'name' => null, 'result' => null )
-      ));
+      array_push($round['matches'], $this->getMatchArray());
     }
 
     return $round;
+  }
+
+  private function getMatchArray($seed1=null, $seed2=null)
+  {
+    return array(
+      array( 'seed' => $seed1, 'name' => null, 'result' => null ),
+      array( 'seed' => $seed2, 'name' => null, 'result' => null )
+    );
   }
 
   private function merge($round)
@@ -205,7 +206,7 @@ class Tournament
     $this->round_number++;
   }
 
-  private function addBlank()
+  private function getBlank()
   {
     return array('blank' => true);
   }
