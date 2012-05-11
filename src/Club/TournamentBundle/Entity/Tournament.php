@@ -78,6 +78,14 @@ class Tournament
      */
     private $updated_at;
 
+    /**
+     * @var Club\UserBundle\Entity\User
+     *
+     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="club_tournament_tournament_users")
+     */
+    protected $users;
+
 
     /**
      * Get id
