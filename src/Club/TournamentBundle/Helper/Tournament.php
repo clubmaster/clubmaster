@@ -22,11 +22,14 @@ class Tournament
 
     shuffle($this->users);
     $this->users = array_merge($c, $this->users);
+
+    return $this;
   }
 
   public function setSeeds($seeds)
   {
     $this->seeds = $seeds;
+    return $this;
   }
 
   public function setUsers($users)
@@ -35,6 +38,7 @@ class Tournament
     foreach ($users as $user) {
       array_push($this->users, $user);
     }
+    return $this;
   }
 
   public function getBracket()
