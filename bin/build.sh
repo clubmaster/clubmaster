@@ -7,21 +7,25 @@ if [ -d "${BUILD_PATH}" ]; then
   rm -rf ${BUILD_PATH}
 fi
 
+echo "Testing remake_schema"
 ./bin/remake_schema.sh
 if [ $? -ne 0 ]; then
   exit
 fi
 
+echo "Testing all other"
 phpunit -c app/phpunit.xml.dist
 if [ $? -ne 0 ]; then
   exit
 fi
 
+echo "Testing API"
 phpunit -c app/apiunit.xml
 if [ $? -ne 0 ]; then
   exit
 fi
 
+echo "Testing a simple installer"
 touch app/installer
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
@@ -30,6 +34,7 @@ if [ $? -ne 0 ]; then
   exit
 fi
 
+echo "Everything OK, continue to build package."
 mkdir ${BUILD_PATH}
 
 TRUNK_PATH=`pwd`
