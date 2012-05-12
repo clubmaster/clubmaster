@@ -2446,6 +2446,10 @@
         <source>This order has no products.</source>
         <target>Denne ordre har ingen produkter.</target>
       </trans-unit>
+      <trans-unit id="616">
+        <source>There are no passkeys.</source>
+        <target>Der er ingen adgangsnøgler.</target>
+      </trans-unit>
 
     </body>
   </file>
