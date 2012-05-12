@@ -21,4 +21,22 @@ class MatchRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getRecentMatches(\Club\MatchBundle\Entity\League $league=null, $limit=10)
+  {
+    $qb = $this->_em->createQueryBuilder()
+      ->select('m')
+      ->from('ClubMatchBundle:Match', 'm')
+      ->orderBy('m.id', 'DESC')
+      ->setMaxResults($limit);
+
+    if ($league) {
+      $qb->where('m.league = :league')
+      ->setParameter('league', $league->getId());
+    }
+
+    return $qb
+      ->getQuery()
+      ->getResult();
+  }
 }

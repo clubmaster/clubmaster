@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * @Route("/match/league")
+ */
 class LeagueController extends Controller
 {
   /**
@@ -47,7 +50,7 @@ class LeagueController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $league = $em->find('ClubMatchBundle:League', $id);
-    $matches = $em->getRepository('ClubMatchBundle:League')->getRecentMatches($league, $limit);
+    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches($league, $limit);
 
     return array(
       'matches' => $matches

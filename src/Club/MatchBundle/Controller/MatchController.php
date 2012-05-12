@@ -7,21 +7,37 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * @Route("/match/match")
+ */
 class MatchController extends Controller
 {
   /**
-   * @Route("/new/{league_id}")
-   * @Template()
+   * @Route("/recent/{limit}")
    */
-  public function newAction($league_id)
+  public function recentAction($limit)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $league = $em->find('ClubMatchBundle:League', $league_id);
+    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
+
+    return $this->render('ClubMatchBundle:League:RecentMatches.html.twig', array(
+      'matches' => $matches
+    ));
+  }
+
+  /**
+   * @Route("/new")
+   * @Template()
+   */
+  public function newAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
 
     $res = array();
     $form = $this->getForm($res);
 
-    for ($i = 0; $league->getGameSet() > $i; $i++) {
+    $sets = 5;
+    for ($i = 0; $sets > $i; $i++) {
       $form = $form->add('user0set'.$i,'text', array(
         'label' => 'Set '.($i+1),
         'required' => false
@@ -38,7 +54,7 @@ class MatchController extends Controller
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $this->get('club_match.match')->bindMatch($league, $form->getData());
+        $this->get('club_match.match')->bindMatch($form->getData());
 
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
@@ -53,7 +69,7 @@ class MatchController extends Controller
 
     return array(
       'form' => $form->createView(),
-      'league' => $league
+      'sets' => $sets
     );
   }
 

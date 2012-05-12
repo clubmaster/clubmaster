@@ -1,0 +1,38 @@
+{% extends "ClubTournamentBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_tournament_admintournament_new') }}" class="btn-create"><span>{% trans %}Create tournament{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="3">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for tournament in tournaments %}
+    <tr>
+      <td>{{ tournament.name }}</td>
+      <td>{{ tournament.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_tournament_admintournament_edit', { 'id':tournament.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_tournament_admintournament_delete', { 'id':tournament.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}There are no tournaments.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

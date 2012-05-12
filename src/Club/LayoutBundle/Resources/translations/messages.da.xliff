@@ -2439,18 +2439,53 @@
         <target>Indtast landekode som DK, GB, DE og så videre.</target>
       </trans-unit>
       <trans-unit id="614">
+        <source>There are no attends at the time</source>
+        <target>Der er ingen tilmeldte for øjeblikket</target>
+      </trans-unit>
+      <trans-unit id="615">
         <source>You need to add products to your cart before you can checkout.</source>
         <target>Du skal tilføje produkter til din kurv før du kan gå til kassen.</target>
       </trans-unit>
-      <trans-unit id="615">
+      <trans-unit id="616">
         <source>This order has no products.</source>
         <target>Denne ordre har ingen produkter.</target>
       </trans-unit>
-      <trans-unit id="616">
+      <trans-unit id="617">
+        <source>Choose shipping</source>
+        <target>Vælg fragt</target>
+      </trans-unit>
+      <trans-unit id="618">
+        <source>Player market</source>
+        <target>Spillermarked</target>
+      </trans-unit>
+      <trans-unit id="619">
+        <source>Create comment</source>
+        <target>Opret kommentar</target>
+      </trans-unit>
+      <trans-unit id="620">
+        <source>Play time</source>
+        <target>Spilletid</target>
+      </trans-unit>
+      <trans-unit id="621">
+        <source>There are no comments for this request.</source>
+        <target>Der er ingen kommentarer i denne anmodning.</target>
+      </trans-unit>
+      <trans-unit id="622">
+        <source>Create request</source>
+        <target>Opret anmodning</target>
+      </trans-unit>
+      <trans-unit id="623">
+        <source>If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.</source>
+        <target>Hvis du mangler en makker men gerne vil ned at spille, kan du skrive et tidspunkt her for hvornår du vil spille. Andre kan så kontakte dig i kommentar feltet og i kan tage ned og spille.</target>
+      </trans-unit>
+      <trans-unit id="624">
+        <source>There are not requests in the players market.</source>
+        <target>Der er ingen anmodninger i spillermarkedet.</target>
+      </trans-unit>
+      <trans-unit id="625">
         <source>There are no passkeys.</source>
         <target>Der er ingen adgangsnøgler.</target>
-      </trans-unit>
-
+      </trans>
     </body>
   </file>
 </xliff>

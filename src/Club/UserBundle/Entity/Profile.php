@@ -64,19 +64,19 @@ class Profile
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileAddress", cascade={"persist"})
-     * @ORM\JoinColumn(name="profile_address_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\JoinColumn(name="profile_address_id", referencedColumnName="id")
      */
     protected $profile_address;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfilePhone", cascade={"persist"})
-     * @ORM\JoinColumn(name="profile_phone_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\JoinColumn(name="profile_phone_id", referencedColumnName="id")
      */
     protected $profile_phone;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfileEmail", cascade={"persist"})
-     * @ORM\JoinColumn(name="profile_email_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\JoinColumn(name="profile_email_id", referencedColumnName="id")
      */
     protected $profile_email;
 
@@ -332,6 +332,20 @@ class Profile
     public function getProfilePhones()
     {
         return $this->profile_phones;
+    }
+
+    /**
+     * Set profile_emails
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmails
+     */
+    public function setProfileEmails($profileEmails)
+    {
+      foreach ($profileEmails as $email) {
+        $email->setProfile($this);
+      }
+
+      $this->profile_emails = $profileEmails;
     }
 
     /**

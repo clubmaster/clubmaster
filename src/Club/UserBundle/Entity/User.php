@@ -103,7 +103,7 @@ class User implements AdvancedUserInterface
     protected $updated_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="Profile", fetch="EAGER", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Profile

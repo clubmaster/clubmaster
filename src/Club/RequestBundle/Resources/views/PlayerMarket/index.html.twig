@@ -1,0 +1,50 @@
+{% extends "ClubRequestBundle::base.html.twig" %}
+
+{% block body %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<p class="box">
+  <a href="{{ path('club_request_playermarket_new') }}" class="btn-info"><span>{% trans %}Create request{% endtrans %}</span></a>
+</p>
+{% endif %}
+
+<h2>{% trans %}Player market{% endtrans %}</h2>
+
+<p>{% trans %}If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.{% endtrans %}</p>
+<table class="style">
+  <thead>
+    <tr class="bg">
+      <th>{% trans %}Play time{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Comments{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  <thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for item in market %}
+    <tr>
+      <td>{{ item.playtime|club_datetime }}</td>
+      <td>{{ item.user.name }}</td>
+      <td>{{ item.requestComments|length }}</td>
+      <td>
+      {% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_request_comment_index', { 'id':item.id })} %}
+      {% if item.user == app.user %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_request_playermarket_edit', { 'id':item.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_request_playermarket_delete', { 'id':item.id })} %}
+      {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td colspan="4">{% trans %}There are not requests in the players market.{% endtrans %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

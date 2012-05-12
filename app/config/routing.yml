@@ -1,12 +1,20 @@
+ClubTournamentBundle:
+    resource: "@ClubTournamentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+ClubRequestBundle:
+    resource: "@ClubRequestBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ClubPasskeyBundle:
     resource: "@ClubPasskeyBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 ClubCheckinBundle:
     resource: "@ClubCheckinBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 ClubPaymentCashBundle:
     resource: "@ClubPaymentCashBundle/Controller/"
@@ -24,13 +32,16 @@ ClubAPIBundle:
     prefix: /api/
 
 ClubTeamBundle:
-    resource: "@ClubTeamBundle/Resources/config/routing.yml"
+    resource: "@ClubTeamBundle/Controller/"
+    type: annotation
 
 ClubShopBundle:
-    resource: "@ClubShopBundle/Resources/config/routing.yml"
+    resource: "@ClubShopBundle/Controller/"
+    type: annotation
 
 ClubUserBundle:
-    resource: "@ClubUserBundle/Resources/config/routing.yml"
+    resource: "@ClubUserBundle/Controller/"
+    type: annotation
 
 ClubTaskBundle:
     resource: "@ClubTaskBundle/Controller/"
@@ -40,36 +51,43 @@ ClubMailBundle:
     resource: "@ClubMailBundle/Controller/"
 
 ClubLogBundle:
-    resource: "@ClubLogBundle/Resources/config/routing.yml"
+    resource: "@ClubLogBundle/Controller/"
+    type:     annotation
 
 ClubEventBundle:
-    resource: "@ClubEventBundle/Resources/config/routing.yml"
+    resource: "@ClubEventBundle/Controller/"
+    type:     annotation
 
 ClubInstallBundle:
-    resource: "@ClubInstallerBundle/Resources/config/routing.yml"
-    prefix: /installer
+    resource: "@ClubInstallerBundle/Controller/"
+    prefix:   /installer
+    type:     annotation
 
 ClubConfiguratorBundle:
-    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-    prefix: /configurator
+    resource: "@ClubConfiguratorBundle/Controller/"
+    type:     annotation
 
 ClubMessageBundle:
-    resource: "@ClubMessageBundle/Resources/config/routing.yml"
+    resource: "@ClubMessageBundle/Controller/"
+    type:     annotation
 
 ClubBookingBundle:
-    resource: "@ClubBookingBundle/Resources/config/routing.yml"
+    resource: "@ClubBookingBundle/Controller/"
+    type:     annotation
 
 ClubDashboardBundle:
-    resource: "@ClubDashboardBundle/Resources/config/routing.yml"
+    resource: "@ClubDashboardBundle/Controller/"
+    type:     annotation
 
 ClubWelcomeBundle:
-    resource: "@ClubWelcomeBundle/Resources/config/routing.yml"
+    resource: "@ClubWelcomeBundle/Controller/"
+    type:     annotation
 
 ClubFeedbackBundle:
-    resource: "@ClubFeedbackBundle/Resources/config/routing.yml"
+    resource: "@ClubFeedbackBundle/Controller/"
 
 ClubMatchBundle:
-    resource: "@ClubMatchBundle/Resources/config/routing.yml"
+    resource: "@ClubMatchBundle/Controller/"
 
 homepage:
     pattern: /

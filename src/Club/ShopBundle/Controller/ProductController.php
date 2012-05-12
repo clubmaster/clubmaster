@@ -12,11 +12,8 @@ class ProductController extends Controller
    * @Route("/shop/product/{id}", name="shop_product")
    * @Template()
    */
-  public function indexAction($id)
+  public function indexAction(\Club\ShopBundle\Entity\Product $product)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $product = $em->find('ClubShopBundle:Product',$id);
     $attr = $this->get('club_shop.product')->getAttribute($product);
 
     return array(
@@ -29,10 +26,9 @@ class ProductController extends Controller
    * @Route("/shop/product/cart/{id}", name="shop_product_cart")
    * @Template()
    */
-  public function cartAction($id)
+  public function cartAction(\Club\ShopBundle\Entity\Product $product)
   {
     try {
-      $product = $this->getDoctrine()->getEntityManager()->find('ClubShopBundle:Product',$id);
       $this->get('cart')->addToCart($product);
 
     } catch (\Exception $e) {

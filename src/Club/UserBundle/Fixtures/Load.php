@@ -32,6 +32,7 @@ class Load
     $roles[] = 'ROLE_MEMBER_ADMIN';
     $roles[] = 'ROLE_MESSAGE_ADMIN';
     $roles[] = 'ROLE_RANKING_ADMIN';
+    $roles[] = 'ROLE_TOURNAMENT_ADMIN';
     $roles[] = 'ROLE_SHOP_ADMIN';
     $roles[] = 'ROLE_TEAM_ADMIN';
     $roles[] = 'ROLE_PASSKEY_ADMIN';

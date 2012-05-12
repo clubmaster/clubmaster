@@ -1,0 +1,52 @@
+{% extends "ClubTournamentBundle::base.html.twig" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/clubtournament/css/bracket.css') }}" />
+{% endblock %}
+
+{% block body %}
+<p><a href="{{ path('club_tournament_admintournament_build', {'id':tournament.id}) }}">Build list</a></p>
+
+<div id="bracket_base">
+  <div id="bracket_body">
+
+    {% for round in bracket %}
+    <div class='round' id='r{{ round.round }}'>
+      <div class='header'>{{ round.name }}</div>
+
+      {% if round.round == bracket|length %}
+      <div class='champ'><p>{% if round.winner.user %}{{ round.winner.user }}{% endif %}</p></div>
+      {% else %}
+
+      {% set top = true %}
+      {% for match in round.matches %}
+
+      {% if top and match.blank is defined %}
+      <div class='blank top'><p></p></div>
+      <div class='blank'><p></p></div>
+      {% set top = false %}
+
+      {% elseif top %}
+      <div class='top'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.1} %}</div>
+      {% set top = false %}
+
+      {% elseif match.blank is defined %}
+      <div class='blank'><p></p></div>
+      <div class='blank'><p></p></div>
+
+      {% else %}
+      <div>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.0} %}</div>
+      <div class='odd'>{% include "ClubTournamentBundle:AdminTournament:row.html.twig" with {'row':match.1} %}</div>
+      {% endif %}
+
+      {% endfor %}
+      {% endif %}
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}

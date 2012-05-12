@@ -20,6 +20,7 @@ class DashboardListener
   public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
     if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
+
     $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
       'user' => $this->security_context->getToken()->getUser()->getId(),
       'attribute' => 'public_booking_activity'

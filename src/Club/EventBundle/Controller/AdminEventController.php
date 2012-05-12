@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * @Route("/admin")
+ */
 class AdminEventController extends Controller
 {
   /**
@@ -87,11 +90,8 @@ class AdminEventController extends Controller
    * @Route("/event/event/edit/{id}", name="admin_event_event_edit")
    * @Template()
    */
-  public function editAction($id)
+  public function editAction(\Club\EventBundle\Entity\Event $event)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event',$id);
-
     $res = $this->process($event);
 
     if ($res instanceOf RedirectResponse)
@@ -106,11 +106,9 @@ class AdminEventController extends Controller
   /**
    * @Route("/event/event/delete/{id}", name="admin_event_event_delete")
    */
-  public function deleteAction($id)
+  public function deleteAction(\Club\EventBundle\Entity\Event $event)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event',$this->getRequest()->get('id'));
-
     $em->remove($event);
     $em->flush();
 

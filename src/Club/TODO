@@ -1,11 +1,34 @@
-== NOTES TO LATER ==
-make sure user only can book in member status period
-add product on dynamic group
-knockout management
-add custom fields on profiles
-jquery overlay form on booking
-enter matches outside of the leagues
+== VERSION 1.3 ==
+checkout whats up with STUB Locale
+check out if we can do anything about confirm booking controller, have got some error about line 105, getFirstDate on a non object
+you have to be able to see all orders from a user
+need tool so we can monitor how many bookings a member have active
+view if the booking is confirmed on booking overview
+administrator should see which booking has been cancelled due to unconfirmed
+be able to create product packages
+internal message system
+rewrite failure handler to a listerner
+users should be able to create multiple emails, phone
+add images to products
+add category priority regarding to account numbers
 admin user batch, select search
+make sure user only can book in member status period
+knockout management, checkout myplayoffs.com
+jquery overlay form on booking
+use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
+prices to book with guest, use normal checkout procedure
+make a button to accept business terms
+bulk create order to users
+quick create intervals when creating the field
+make a quick way to remove all team penalties
+make sure user only can use teams in member ship status period
+implement payment for booking
+find a smart way to get default location, might be with the url
+use ParamConverter more
+
+== NOTES TO LATER ==
+add product on dynamic group
+add custom fields on profiles
 match integration facebook, share match
 batch assign users to a league
 dynamic pick colors for booking, plan and teams
@@ -30,20 +53,13 @@ add paginator to:
   - blog
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
-use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
-prices to book with guest, use normal checkout procedure
-make a button to accept business terms
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
-bulk create order to users
 configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
-do routing to annotation instead of, check default install of symfony bundle
 find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
-quick create intervals when creating the field
 add leagues to tournaments, use of tags or something
-make a quick way to remove all team penalties
 use attribute class as product attribute converter
 add defaults during install:
   - categories
@@ -51,9 +67,7 @@ add defaults during install:
 fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
-make sure user only can use teams in member ship status period
 avoid try / catch on kernel.request listeners
-implement payment for booking
 on admin interval manager, put a default interval in top, that will set the same for everyone
 login through booking page
 login through team attend page
@@ -63,9 +77,9 @@ something is broken when creating more intervals on the same field, fix it
 gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
-find a smart way to get default location, might be with the url
 bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
 tag users on images
 print labels from a search
+find a way to alert if a touch client goes away

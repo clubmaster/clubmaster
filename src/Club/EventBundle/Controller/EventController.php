@@ -28,11 +28,8 @@ class EventController extends Controller
    * @Route("/event/event/show/{id}", name="event_event_show")
    * @Template()
    */
-  public function showAction($id)
+  public function showAction(\Club\EventBundle\Entity\Event $event)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event',$id);
-
     return array(
       'event' => $event,
       'user' => $this->get('security.context')->getToken()->getUser()
@@ -42,11 +39,8 @@ class EventController extends Controller
   /**
    * @Route("/event/event/attend/{id}", name="event_event_attend")
    */
-  public function attendAction($id)
+  public function attendAction(\Club\EventBundle\Entity\Event $event)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $event = $em->find('ClubEventBundle:Event',$id);
-
     $attend = new \Club\EventBundle\Entity\Attend();
     $attend->setUser($this->get('security.context')->getToken()->getUser());
     $attend->setEvent($event);
@@ -57,6 +51,7 @@ class EventController extends Controller
         $this->get('session')->setFlash('error',$error->getMessage());
       }
     } else {
+      $em = $this->getDoctrine()->getEntityManager();
       $em->persist($attend);
       $em->flush();
 
@@ -72,12 +67,9 @@ class EventController extends Controller
   /**
    * @Route("/event/event/unattend/{id}", name="event_event_unattend")
    */
-  public function unattendAction($id)
+  public function unattendAction(\Club\EventBundle\Entity\Event $event)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $event = $em->find('ClubEventBundle:Event', $id);
-
     $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
       'user' => $this->get('security.context')->getToken()->getUser()->getId(),
       'event' => $event->getId()

@@ -1,4 +1,0 @@
-_admin_message:
-  resource: "@ClubMessageBundle/Controller/AdminMessageController.php"
-  type: annotation
-  prefix: /admin

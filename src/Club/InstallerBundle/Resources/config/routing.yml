@@ -1,7 +1,0 @@
-_installer:
-  resource: "@ClubInstallerBundle/Controller/InstallerController.php"
-  type: annotation
-
-_upgrade:
-  resource: "@ClubInstallerBundle/Controller/UpgradeController.php"
-  type: annotation

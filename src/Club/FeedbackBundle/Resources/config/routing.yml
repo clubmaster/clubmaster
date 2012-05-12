@@ -1,3 +1,0 @@
-_feedback:
-  resource: "@ClubFeedbackBundle/Controller/FeedbackController.php"
-  type: annotation
