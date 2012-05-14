@@ -39,7 +39,7 @@ class TournamentGame
     /**
      * @var string $result
      *
-     * @ORM\Column(name="result", type="string", length=255, nullable="true")
+     * @ORM\Column(name="result", type="string", length=255, nullable=true)
      */
     private $result;
 

@@ -23,14 +23,14 @@ class CartAddress
     /**
      * @var string $company_name
      *
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $company_name;
 
     /**
      * @var string $cvr
      *
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $cvr;
 
@@ -73,7 +73,7 @@ class CartAddress
     protected $city;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $state
      */

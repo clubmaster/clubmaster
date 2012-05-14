@@ -42,21 +42,21 @@ class Field
     /**
      * @var text $information
      *
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $information;
 
     /**
      * @var date $open
      *
-     * @ORM\Column(type="date", nullable="true")
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $open;
 
     /**
      * @var date $close
      *
-     * @ORM\Column(type="date", nullable="true")
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $close;
 

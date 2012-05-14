@@ -53,7 +53,7 @@ class Tournament
     /**
      * @var integer $rounds
      *
-     * @ORM\Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $rounds;
 

@@ -57,7 +57,7 @@ class Task
     protected $method;
 
     /**
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var date $last_run_at
      */

@@ -37,28 +37,28 @@ class Group
     protected $group_type;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $gender
      */
     protected $gender;
 
     /**
-     * @ORM\Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer $min_age
      */
     protected $min_age;
 
     /**
-     * @ORM\Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer $max_age
      */
     protected $max_age;
 
     /**
-     * @ORM\Column(type="boolean", nullable="true")
+     * @ORM\Column(type="boolean", nullable=true)
      *
      * @var boolean $active_member
      */
