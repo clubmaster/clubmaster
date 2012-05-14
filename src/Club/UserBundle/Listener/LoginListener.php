@@ -54,7 +54,7 @@ class LoginListener
 
   private function setUserSessions()
   {
-    $this->session->setLocale($this->container->get('request')->getPreferredLanguage());
+    $this->request->setLocale($this->container->get('request')->getPreferredLanguage());
     $this->container->get('clubmaster.user')->updateUserSettings();
   }
 
