@@ -61,7 +61,3 @@
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=v1.0.1
-
-[OrnicarGravatarBundle]
-    git=http://github.com/ornicar/GravatarBundle.git
-    target=/bundles/Ornicar/GravatarBundle
