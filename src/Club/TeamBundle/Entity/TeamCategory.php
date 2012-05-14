@@ -43,7 +43,7 @@ class TeamCategory
     /**
      * @var text $penalty
      *
-     * @ORM\Column(name="penalty", type="decimal", scale="2")
+     * @ORM\Column(name="penalty", type="decimal", scale=2)
      * @Assert\NotBlank()
      */
     protected $penalty;

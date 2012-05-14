@@ -35,7 +35,7 @@ class Schedule
     /**
      * @var text $penalty
      *
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      */
     protected $penalty;

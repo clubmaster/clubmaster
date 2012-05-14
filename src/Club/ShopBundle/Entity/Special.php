@@ -36,7 +36,7 @@ class Special
     protected $expire_date;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
      * @var float $price

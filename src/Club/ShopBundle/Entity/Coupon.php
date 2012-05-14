@@ -30,7 +30,7 @@ class Coupon
     protected $coupon_key;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
      * @var float $value

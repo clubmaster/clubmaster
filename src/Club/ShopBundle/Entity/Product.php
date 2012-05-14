@@ -44,7 +44,7 @@ class Product
     protected $account_number;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
      * @var float $price
