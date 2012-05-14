@@ -47,7 +47,7 @@ class UserController extends Controller
       ->add('password', 'repeated', array(
         'type' => 'password',
         'first_name' => 'Password',
-        'second_name' => 'Password again',
+        'second_name' => 'Password_again',
         'required' => false
       ))
       ->getForm();
