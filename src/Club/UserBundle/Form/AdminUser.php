@@ -12,7 +12,7 @@ class AdminUser extends AbstractType
     $builder->add('password', 'repeated', array(
       'type' => 'password',
       'first_name' => 'Password',
-      'second_name' => 'Password again',
+      'second_name' => 'Password_again',
       'required' => false
     ));
     $builder->add('member_number','text');

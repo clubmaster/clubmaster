@@ -11,7 +11,7 @@ class ForgotPassword extends AbstractType
   {
     $builder->add('password', 'repeated', array(
       'first_name' => 'Password',
-      'second_name' => 'Password again',
+      'second_name' => 'Password_again',
       'type' => 'password'
     ));
   }
