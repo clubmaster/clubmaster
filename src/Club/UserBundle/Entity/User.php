@@ -25,7 +25,7 @@ class User implements AdvancedUserInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="integer", unique="true")
+     * @ORM\Column(type="integer", unique=true)
      *
      * @var integer $member_number
      */
