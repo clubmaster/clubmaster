@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User implements AdvancedUserInterface
+class User implements AdvancedUserInterface, EquatableInterface
 {
     /**
      * @ORM\Id
@@ -534,7 +535,7 @@ class User implements AdvancedUserInterface
       return array_unique($roles);
     }
 
-    public function equals(UserInterface $user)
+    public function isEqualTo(UserInterface $user)
     {
       if (!$user instanceof User) {
         return false;
