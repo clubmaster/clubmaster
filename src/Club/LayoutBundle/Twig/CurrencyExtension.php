@@ -4,15 +4,19 @@ namespace Club\LayoutBundle\Twig;
 
 class CurrencyExtension extends \Twig_Extension
 {
+  private $container;
   private $em;
   private $security_context;
   private $session;
+  private $locale;
 
-  public function __construct($em, $security_context, $session)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->security_context = $security_context;
-    $this->session = $session;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->security_context = $container->get('security.context');
+    $this->session = $container->get('session');
+    $this->locale = $container->get('request')->getLocale();
   }
 
   public function getFilters()
@@ -32,7 +36,7 @@ class CurrencyExtension extends \Twig_Extension
       $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
     );
 
-    $fmt = new \NumberFormatter($this->session->getLocale(), \NumberFormatter::CURRENCY);
+    $fmt = new \NumberFormatter($this->locale, \NumberFormatter::CURRENCY);
     return $fmt->formatCurrency($value, $currency->getCode());
   }
 

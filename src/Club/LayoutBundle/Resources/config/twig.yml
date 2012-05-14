@@ -1,11 +1,11 @@
 services:
   club_layout_twig_currency_extension:
     class: Club\LayoutBundle\Twig\CurrencyExtension
-    arguments: [@doctrine.orm.entity_manager, @security.context, @session]
+    arguments: [@service_container]
     tags:
       - { name: twig.extension }
   club_layout_twig_date_extension:
     class: Club\LayoutBundle\Twig\DateExtension
-    arguments: [@doctrine.orm.entity_manager, @security.context, @session]
+    arguments: [@service_container]
     tags:
       - { name: twig.extension }
