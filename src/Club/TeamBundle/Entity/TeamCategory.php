@@ -26,7 +26,7 @@ class TeamCategory
     /**
      * @var string $team_name
      *
-     * @ORM\Column(name="team_name", type="string", length="255")
+     * @ORM\Column(name="team_name", type="string", length=255)
      * @Assert\NotBlank()
      *
      */
