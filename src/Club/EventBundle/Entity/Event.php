@@ -37,7 +37,7 @@ class Event
     protected $description;
 
     /**
-     * @ORM\Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var string $max_attends
      */

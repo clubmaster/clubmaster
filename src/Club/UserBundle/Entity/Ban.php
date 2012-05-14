@@ -42,7 +42,7 @@ class Ban
     protected $expire_date;
 
     /**
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string $note
      */

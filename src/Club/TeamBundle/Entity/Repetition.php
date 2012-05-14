@@ -44,14 +44,14 @@ class Repetition
     /**
      * @var datetime $last_date
      *
-     * @ORM\Column(name="last_date", type="datetime", nullable="true")
+     * @ORM\Column(name="last_date", type="datetime", nullable=true)
      */
     protected $last_date;
 
     /**
      * @var end_occurrences
      *
-     * @ORM\Column(name="end_occurrences", type="integer", nullable="true")
+     * @ORM\Column(name="end_occurrences", type="integer", nullable=true)
      */
     protected $end_occurrences;
 
@@ -65,21 +65,21 @@ class Repetition
     /**
      * @var string $days_in_week
      *
-     * @ORM\Column(name="days_in_week", type="string", nullable="true")
+     * @ORM\Column(name="days_in_week", type="string", nullable=true)
      */
     protected $days_in_week;
 
     /**
      * @var integer $day_of_month
      *
-     * @ORM\Column(name="day_of_month", type="boolean", nullable="true")
+     * @ORM\Column(name="day_of_month", type="boolean", nullable=true)
      */
     protected $day_of_month;
 
     /**
      * @var integer $week
      *
-     * @ORM\Column(name="week", type="string", nullable="true")
+     * @ORM\Column(name="week", type="string", nullable=true)
      * @Assert\Choice({ "", "first", "second", "third", "fourth", "last"})
      */
     protected $week;

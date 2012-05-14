@@ -22,14 +22,14 @@ class Order
     protected $id;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $order_memo
      */
     protected $order_memo;
 
     /**
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string $note
      */

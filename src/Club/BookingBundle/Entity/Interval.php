@@ -53,7 +53,7 @@ class Interval
     /**
      * @var datetime $valid_to
      *
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $valid_to;
 

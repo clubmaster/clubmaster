@@ -34,7 +34,7 @@ class Plan
     /**
      * @var string $description
      *
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
 

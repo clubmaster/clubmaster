@@ -58,7 +58,7 @@ class Schedule
     /**
      * @var datetime $end_date
      *
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $end_date;
 

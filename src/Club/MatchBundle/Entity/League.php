@@ -71,7 +71,7 @@ class League
     /**
      * @var datetime $end_date
      *
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $end_date;
 

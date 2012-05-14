@@ -49,7 +49,7 @@ class ProfileAddress
     protected $city;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $state
      */
