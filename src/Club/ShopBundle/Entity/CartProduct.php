@@ -28,7 +28,7 @@ class CartProduct
     protected $product_name;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      *
      * @var float $price
      */

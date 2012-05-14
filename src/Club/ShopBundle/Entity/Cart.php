@@ -43,7 +43,7 @@ class Cart
     protected $currency_value;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      *
      * @var string $price
      */

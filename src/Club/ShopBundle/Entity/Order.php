@@ -50,14 +50,14 @@ class Order
     protected $currency_value;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      *
      * @var string $price
      */
     protected $price;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      *
      * @var string $amount_left
      */
