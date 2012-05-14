@@ -138,7 +138,7 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $user = $em->find('ClubUserBundle:User',$id);
-    $user = $this->getUser($user);
+    $user = $this->buildUser($user);
 
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
@@ -313,7 +313,7 @@ class AdminUserController extends Controller
     );
   }
 
-  protected function getUser($user)
+  protected function buildUser($user)
   {
     $em = $this->getDoctrine()->getEntityManager();
 

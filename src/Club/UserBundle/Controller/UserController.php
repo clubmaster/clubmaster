@@ -14,7 +14,7 @@ class UserController extends Controller
    */
   public function indexAction()
   {
-    $user = $this->getUser();
+    $user = $this->buildUser();
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -77,7 +77,7 @@ class UserController extends Controller
     );
   }
 
-  protected function getUser()
+  protected function buildUser()
   {
     $user = $this->get('security.context')->getToken()->getUser();
     $em = $this->getDoctrine()->getEntityManager();
