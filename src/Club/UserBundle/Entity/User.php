@@ -32,7 +32,7 @@ class User implements AdvancedUserInterface
     protected $member_number;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"user"})
      *
      * @var string $password
@@ -40,14 +40,14 @@ class User implements AdvancedUserInterface
     protected $password;
 
     /**
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var date $last_login_time
      */
     protected $last_login_time;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $last_login_ip
      */
@@ -452,7 +452,7 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * @ORM\preUpdate
+     * @ORM\PreUpdate
      */
     public function preUpdate()
     {
