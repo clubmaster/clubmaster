@@ -12,7 +12,7 @@ class Passkey extends AbstractType
     $builder->add('key_identity');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\PasskeyBundle\Entity\Passkey'

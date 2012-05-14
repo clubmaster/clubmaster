@@ -12,7 +12,7 @@ class Request extends AbstractType
     $builder->add('play_time');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\RequestBundle\Entity\Request'

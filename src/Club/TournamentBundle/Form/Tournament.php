@@ -17,7 +17,7 @@ class Tournament extends AbstractType
     $builder->add('start_time');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\TournamentBundle\Entity\Tournament'

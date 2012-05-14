@@ -23,7 +23,7 @@ class OrderStatus extends AbstractType
     $builder->add('priority');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\OrderStatus'

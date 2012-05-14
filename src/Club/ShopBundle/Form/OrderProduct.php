@@ -14,7 +14,7 @@ class OrderProduct extends AbstractType
     $builder->add('price');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\OrderProduct'

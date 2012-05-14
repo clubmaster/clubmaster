@@ -19,7 +19,7 @@ class AdminUser extends AbstractType
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

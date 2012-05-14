@@ -15,7 +15,7 @@ class Rule extends AbstractType
     $builder->add('match_same_player');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\MatchBundle\Entity\Rule'

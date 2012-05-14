@@ -15,7 +15,7 @@ class Message extends AbstractType
     $builder->add('message');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\MessageBundle\Entity\Message'

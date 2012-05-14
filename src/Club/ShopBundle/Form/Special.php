@@ -15,7 +15,7 @@ class Special extends AbstractType
     $builder->add('expire_date');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\Special'

@@ -12,7 +12,7 @@ class SwitchLocation extends AbstractType
     $builder->add('location');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

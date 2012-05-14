@@ -18,7 +18,7 @@ class AdministratorStep extends AbstractType
     $builder->add('profile', new \Club\InstallerBundle\Form\AdministratorProfile());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

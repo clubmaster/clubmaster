@@ -17,7 +17,7 @@ class Product extends AbstractType
     $builder->add('account_number');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\Product'

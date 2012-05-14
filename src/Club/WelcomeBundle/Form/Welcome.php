@@ -12,7 +12,7 @@ class Welcome extends AbstractType
     $builder->add('content');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\WelcomeBundle\Entity\Welcome'
