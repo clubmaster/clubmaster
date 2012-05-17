@@ -8,9 +8,24 @@
 
           <ul class="box">
             {% for item in menu %}
+            {% if item.items is defined %}
+
+            <li onmouseover="this.className = 'dropdown-on'" onmouseout="this.className = 'dropdown-off'"><div><a href="{{ item.route }}"><span>{{ item.name }}</span></a>
+            <!-- Dropdown menu -->
+            <div class="drop">
+              <ul class="box">
+              {% for sub in item.items %}
+                <li><a href="{{ sub.route }}">{{ sub.name }}</a></li>
+              {% endfor %}
+              </ul>
+            </li>
+
+            {% else %}
+
             <li {% if app.request.attributes.get('_route') == item.route %} id="menu-active"{% endif %}>
             <a href="{{ item.route }}"><span>{{ item.name }}</span></a>
             </li>
+            {% endif %}
 
             {% endfor %}
           </ul>
