@@ -57,7 +57,7 @@ class GuestCheckoutControllerTest extends WebTestCase
       'user[profile][profile_phone][phone_number]' => '80808080'
     ));
     $form['user[password][Password]'] = '1234';
-    $form['user[password][Password again]'] = '1234';
+    $form['user[password][Password_again]'] = '1234';
 
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
