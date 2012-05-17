@@ -11,6 +11,7 @@ make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 
 == NOTES TO LATER ==
+search users on creating date
 build new gravatar support
 need tool so we can monitor how many bookings a member have active
 be able to create product packages
