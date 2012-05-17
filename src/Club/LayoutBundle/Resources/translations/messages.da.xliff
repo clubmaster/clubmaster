@@ -2485,7 +2485,7 @@
       <trans-unit id="625">
         <source>There are no passkeys.</source>
         <target>Der er ingen adgangsnøgler.</target>
-      </trans>
+      </trans-unit>
     </body>
   </file>
 </xliff>
