@@ -1,0 +1,11 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+
+<h3>All matches</h3>
+<p class="box">
+  <a href="{{ path('club_match_match_new') }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
+</p>
+{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+
+{% endblock %}

@@ -18,8 +18,8 @@ class MenuListener
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
     $menu[100] = array(
-      'name' => $this->translator->trans('League'),
-      'route' => $this->router->generate('club_match_league_index')
+      'name' => $this->translator->trans('Matches'),
+      'route' => $this->router->generate('club_match_match_index')
     );
 
     $event->appendItem($menu);
@@ -29,7 +29,7 @@ class MenuListener
   {
     if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
       $menu[75] = array(
-        'name' => $this->translator->trans('League'),
+        'name' => $this->translator->trans('Matche'),
         'route' => $this->router->generate('club_match_adminleague_index'),
         'items' => array(
           array(
