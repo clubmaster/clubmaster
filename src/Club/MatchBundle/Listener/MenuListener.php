@@ -19,7 +19,21 @@ class MenuListener
   {
     $menu[100] = array(
       'name' => $this->translator->trans('Matches'),
-      'route' => $this->router->generate('club_match_match_index')
+      'route' => $this->router->generate('club_match_match_index'),
+      'items' => array(
+        array(
+          'name' => 'Matches',
+          'route' => $this->router->generate('club_match_match_index')
+        ),
+        array(
+          'name' => 'League',
+          'route' => $this->router->generate('club_match_league_index')
+        ),
+        array(
+          'name' => 'Tournament',
+          'route' => $this->router->generate('club_tournament_tournament_index')
+        )
+      )
     );
 
     $event->appendItem($menu);

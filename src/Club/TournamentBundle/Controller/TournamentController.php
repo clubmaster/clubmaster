@@ -12,10 +12,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class TournamentController extends Controller
 {
   /**
-   * @Route("/{id}")
+   * @Route("/")
    * @Template()
    */
   public function indexAction(\Club\TournamentBundle\Entity\Tournament $tournament)
+  {
+    return array();
+  }
+
+  /**
+   * @Route("/show/{id}")
+   * @Template()
+   */
+  public function showAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
     $tournament = $this->get('club_tournament.tournament')
       ->setUsers($tournament->getUsers())
