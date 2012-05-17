@@ -35,3 +35,7 @@ phpunit -c app/ src/Club/ShopBundle/Tests/Controller/CheckoutControllerTest.php
 
 sudo chmod 777 -R app/logs app/cache
 sudo chown www-data:www-data app/cache app/logs
+
+rm app/installer
+mkdir -p web/uploads
+chmod 777 -R web/uploads
