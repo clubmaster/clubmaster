@@ -43,6 +43,19 @@ class Tournament
 
   public function validate()
   {
+    $r = $this->em->createQueryBuilder()
+      ->select('a')
+      ->from('ClubTournamentBundle:Attend', 'a')
+      ->where('a.tournament = :tournament')
+      ->andWhere('a.user = :user')
+      ->setParameter('tournament', $this->tournament->getId())
+      ->setParameter('user', $this->user->getId())
+      ->getQuery()
+      ->getOneOrNullResult();
+
+    if ($r)
+      throw new \Exception($this->translator->trans('User is already in the tournament'));
+
     if ($this->tournament->getMaxAttend() <= count($this->tournament->getAttends()))
       throw new \Exception($this->translator->trans('The max attend level has already been reached'));
 
