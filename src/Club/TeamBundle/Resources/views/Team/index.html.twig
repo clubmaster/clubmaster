@@ -2,11 +2,11 @@
 
 {% block body %}
 
-<h2>{% trans %}Team{% endtrans %}</h2>
-
 {% if schedules|length == 0 %}
 <p class="msg info">{% trans %}There are no teams.{% endtrans %}</p>
 {% else %}
+
+<h2>{% trans %}Team{% endtrans %}</h2>
 <table class="style">
   <tfoot>
     <tr class="bg">
