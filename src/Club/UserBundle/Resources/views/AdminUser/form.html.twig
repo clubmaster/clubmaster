@@ -33,13 +33,18 @@
       {{ form_widget(email.email_address, {'attr': {'class':'input-text'}}) }}
     </p>
     {% endfor %}
-
   </fieldset>
 
   <fieldset>
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
 
-    {{ form_row(form.profile.profile_phone.phone_number) }}
+    {% for phone in form.profile.profile_phones %}
+    <p>
+      {{ form_label(phone.phone_number) }}<br />
+      {{ form_widget(phone.contact_type, {'attr': {'class':'input-text'}}) }}
+      {{ form_widget(phone.phone_number, {'attr': {'class':'input-text'}}) }}
+    </p>
+    {% endfor %}
   </fieldset>
 
   {{ form_row(form._token) }}
