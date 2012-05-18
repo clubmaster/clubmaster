@@ -27,5 +27,6 @@ class ClubMatchExtension extends Extension
         if ($config['enabled']) $loader->load('listener.yml');
 
         $container->setParameter('club_match.enabled', $config['enabled']);
+        $container->setParameter('club_match.league_view_top', $config['league_view_top']);
     }
 }
