@@ -86,3 +86,4 @@ not 2 schedules can have the same interval
 tag users on images
 print labels from a search
 find a way to alert if a touch client goes away
+has to find a way to explicit remove a bookingplan for a specified day
