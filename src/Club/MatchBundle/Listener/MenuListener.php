@@ -43,9 +43,17 @@ class MenuListener
   {
     if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
       $menu[75] = array(
-        'name' => $this->translator->trans('League'),
-        'route' => $this->router->generate('club_match_adminleague_index'),
+        'name' => $this->translator->trans('Tournament'),
+        'route' => $this->router->generate('club_tournament_admintournament_index'),
         'items' => array(
+          array(
+            'name' => $this->translator->trans('Tournament'),
+            'route' => $this->router->generate('club_tournament_admintournament_index')
+          ),
+          array(
+            'name' => $this->translator->trans('League'),
+            'route' => $this->router->generate('club_match_adminleague_index')
+          ),
           array(
             'name' => $this->translator->trans('Rule'),
             'route' => $this->router->generate('club_match_adminrule_index')
