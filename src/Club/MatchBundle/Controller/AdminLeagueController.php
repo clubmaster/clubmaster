@@ -104,22 +104,28 @@ class AdminLeagueController extends Controller
 
     $form->bindRequest($this->getRequest());
     if ($form->isValid()) {
-      $res = $form->getData();
-      $user = $em->find('ClubUserBundle:User', $res['user_id']);
-      if (!$user)
-        $user = $em->getRepository('ClubUserBundle:User')->getOneBySearch(array('query' => $res['user']));
+      try {
+        $res = $form->getData();
+        $user = $em->find('ClubUserBundle:User', $res['user_id']);
+        if (!$user)
+          $user = $em->getRepository('ClubUserBundle:User')->getOneBySearch(array('query' => $res['user']));
+        if (!$user)
+          throw new \Exception($this->get('translator')->trans('No such user'));
 
-      $league = $em->find('ClubMatchBundle:League', $id);
+        $league = $em->find('ClubMatchBundle:League', $id);
 
-      $league->addUser($user);
-      $em->persist($league);
-      $em->flush();
+        $league->addUser($user);
+        $em->persist($league);
+        $em->flush();
 
-      $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-      $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
-      $em->flush();
+        $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
+        $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
+        $em->flush();
 
-      $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+      } catch (\Exception $e) {
+        $this->get('session')->setFlash('error', $e->getMessage());
+      }
     }
 
     return $this->redirect($this->generateUrl('club_match_adminleague_users', array(
