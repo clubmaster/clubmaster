@@ -2486,6 +2486,18 @@
         <source>There are no passkeys.</source>
         <target>Der er ingen adgangsnøgler.</target>
       </trans-unit>
+      <trans-unit id="626">
+        <source>The team has not played equal amount of set.</source>
+        <target>Holdene har ikke spillet et lige antal sæt.</target>
+      </trans-unit>
+      <trans-unit id="627">
+        <source>Team one has not played any set.</source>
+        <target>Hold et har ikke spillet nogen sæt.</target>
+      </trans-unit>
+      <trans-unit id="628">
+        <source>Team two has not played any set.</source>
+        <target>Hold to har ikke spillet nogen sæt.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

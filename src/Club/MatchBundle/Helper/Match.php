@@ -166,6 +166,21 @@ class Match
       return;
     }
 
+    if (!isset($display[0])) {
+      $this->setError($this->translator->trans('Team one has not played any set.'));
+      return;
+    }
+
+    if (!isset($display[1])) {
+      $this->setError($this->translator->trans('Team two has not played any set.'));
+      return;
+    }
+
+    if (count($display[0]) != count($display[1])) {
+      $this->setError($this->translator->trans('The team has not played equal amount of set.'));
+      return;
+    }
+
     foreach ($display as $team) {
       $i = 0;
       foreach ($team as $set => $data) {

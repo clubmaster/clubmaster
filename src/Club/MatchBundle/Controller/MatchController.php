@@ -74,12 +74,13 @@ class MatchController extends Controller
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+          return $this->redirect($this->generateUrl('club_match_match_index'));
         } else {
           $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
         }
       }
 
-      return $this->redirect($this->generateUrl('club_match_match_index'));
     }
 
     return array(

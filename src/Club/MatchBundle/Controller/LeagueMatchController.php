@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/match/league/match")
@@ -15,6 +16,7 @@ class LeagueMatchController extends Controller
   /**
    * @Route("/new/{league_id}")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function newAction($league_id)
   {
@@ -46,12 +48,12 @@ class LeagueMatchController extends Controller
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+          return $this->redirect($this->generateUrl('club_match_league_index'));
         } else {
           $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
         }
       }
-
-      return $this->redirect($this->generateUrl('club_match_league_index'));
     }
 
     $param = array('form' => $form->createView());
