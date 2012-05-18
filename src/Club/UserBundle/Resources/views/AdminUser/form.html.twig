@@ -26,7 +26,14 @@
   <fieldset>
     <legend>{% trans %}Email Information{% endtrans %}</legend>
 
-    {{ form_row(form.profile.profile_email.email_address) }}
+    {% for email in form.profile.profile_emails %}
+    <p>
+      {{ form_label(email.email_address) }}<br />
+      {{ form_widget(email.contact_type, {'attr': {'class':'input-text'}}) }}
+      {{ form_widget(email.email_address, {'attr': {'class':'input-text'}}) }}
+    </p>
+    {% endfor %}
+
   </fieldset>
 
   <fieldset>
