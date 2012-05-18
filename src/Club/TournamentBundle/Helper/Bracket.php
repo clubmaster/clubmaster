@@ -141,10 +141,10 @@ class Bracket
       case 6: $id1 = $this->rounds/8*3; break;
       case 7: $id1 = $this->rounds/8*5; break;
       case 8: $id1 = $this->rounds/8*1; break;
-      case 9: $id1 = $this->rounds/16*3; break;
+      case 9: $id1 = $this->rounds/16*15; break;
       case 10: $id1 = $this->rounds/16*11; break;
       case 11: $id1 = $this->rounds/16*7; break;
-      case 12: $id1 = $this->rounds/16*15; break;
+      case 12: $id1 = $this->rounds/16*3; break;
       case 13: $id1 = $this->rounds/16*13; break;
       case 14: $id1 = $this->rounds/16*5; break;
       case 15: $id1 = $this->rounds/16*9; break;
