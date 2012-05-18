@@ -2,21 +2,12 @@
 
 {% block body %}
 
-<h3>All matches</h3>
-<p class="box">
-  <a href="{{ path('club_match_match_new') }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
-</p>
-{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
-
 {% for league in leagues %}
   <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
-
-  {% include "ClubMatchBundle:League:match_button.html.twig" %}
-
   {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':4} %}
 
 {% else %}
-  <p>{% trans %}There are no leagues.{% endtrans %}</p>
+  <p class="msg info">{% trans %}There are no leagues.{% endtrans %}</p>
 {% endfor %}
 
 {% endblock %}

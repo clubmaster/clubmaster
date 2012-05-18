@@ -43,7 +43,7 @@ class MenuListener
   {
     if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
       $menu[75] = array(
-        'name' => $this->translator->trans('Matche'),
+        'name' => $this->translator->trans('League'),
         'route' => $this->router->generate('club_match_adminleague_index'),
         'items' => array(
           array(
