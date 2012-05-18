@@ -12,6 +12,7 @@ make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 
 == NOTES TO LATER ==
+make it a setting if all should be able to make events
 menu bundle, you should be able to append stuff to sub items
 search users on creating date
 build new gravatar support

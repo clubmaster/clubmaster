@@ -1,50 +1,39 @@
 {% extends "ClubTournamentBundle::base.html.twig" %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('bundles/clubtournament/css/bracket.css') }}" />
-{% endblock %}
-
 {% block body %}
-<div id="bracket_base">
-  <div id="bracket_body">
 
-    {% for round in tournament %}
-    <div class='round' id='r{{ round.round }}'>
-      <div class='header'>{{ round.name }}</div>
+<h2>{% trans %}Tournaments{% endtrans %}</h2>
 
-      {% if round.round == tournament|length %}
-      <div class='champ'><p>{{ round.winner.name }} </p></div>
-      {% else %}
-
-      {% set top = true %}
-      {% for match in round.matches %}
-
-      {% if top and match.blank is defined %}
-      <div class='blank top'><p></p></div>
-      <div class='blank'><p></p></div>
-      {% set top = false %}
-
-      {% elseif top %}
-      <div class='top'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
-      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
-      {% set top = false %}
-
-      {% elseif match.blank is defined %}
-      <div class='blank'><p></p></div>
-      <div class='blank'><p></p></div>
-
-      {% else %}
-      <div>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.0} %}</div>
-      <div class='odd'>{% include "ClubTournamentBundle:Tournament:row.html.twig" with {'row':match.1} %}</div>
-      {% endif %}
-
-      {% endfor %}
-      {% endif %}
-
-    </div>
-    {% endfor %}
-
-  </div>
-</div>
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Tournament{% endtrans %}</th>
+      <th>{% trans %}Players{% endtrans %}</th>
+      <th>{% trans %}Start{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for tournament in tournaments %}
+    <tr>
+      <td>{{ tournament.name }}</td>
+      <td>{{ tournament.users|length }}</td>
+      <td>{{ tournament.startTime|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_tournament_tournament_show', { 'id':tournament.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">{% trans %}There are no tournaments.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

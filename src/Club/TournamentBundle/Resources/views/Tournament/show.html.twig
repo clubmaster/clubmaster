@@ -1,0 +1,33 @@
+{% extends "ClubTournamentBundle::base.html.twig" %}
+
+{% block body %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<p class="box">
+  {% if attending %}
+  <a href="{{ path('club_tournament_tournament_unattend', {'id':tournament.id}) }}" class="btn-delete"><span>{% trans %}Unattend{% endtrans %}</span></a>
+  {% else %}
+  <a href="{{ path('club_tournament_tournament_attend', {'id':tournament.id}) }}" class="btn-create"><span>{% trans %}Attend{% endtrans %}</span></a>
+  {% endif %}
+</p>
+{% endif %}
+
+{% if attending %}
+<p class="msg done">{% trans %}You are attending this tournament.{% endtrans %}</p>
+{% endif %}
+
+<div class="box-03 event box">
+
+  <h2 class="nomb">{{ tournament.name }}</h2>
+  <p class="nomt low">
+    {% trans with {'%date%':tournament.startTime|club_datetime} %}Start date: %date%{% endtrans %}<br />
+    {% trans with {'%seeds%':tournament.seeds} %}Number of seeds: %seeds%{% endtrans %}<br />
+    {% trans with {'%min%':tournament.minAttend, '%max%':tournament.maxAttend,'%curr%':tournament.users|length} %}Min/Max/Current attends: %min%/%max%/%curr%{% endtrans %}<br />
+  </p>
+
+  <h2>{% trans %}Description{% endtrans %}</h2>
+  <p class="nomt low">{{ tournament.description|raw }}</p>
+
+</div> <!-- /box-03 -->
+
+{% endblock %}
