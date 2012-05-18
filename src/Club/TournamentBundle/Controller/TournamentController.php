@@ -39,8 +39,6 @@ class TournamentController extends Controller
 
     $bracket = $this->get('club_tournament.bracket')
       ->setUsers($tournament->getAttends())
-      ->setSeeds($tournament->getSeeds())
-      ->shuffleUsers()
       ->getBracket();
 
     return array(

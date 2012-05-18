@@ -99,6 +99,13 @@ class Tournament
      */
     protected $attends;
 
+    /**
+     * @var Club\TournamentBundle\Entity\TournamentGame
+     *
+     * @ORM\OneToMany(targetEntity="TournamentGame", mappedBy="tournament")
+     */
+    protected $tournament_games;
+
 
     /**
      * Get id
@@ -351,5 +358,25 @@ class Tournament
     public function getBuild()
     {
         return $this->build;
+    }
+
+    /**
+     * Add tournament_games
+     *
+     * @param Club\TournamentBundle\Entity\TournamentGame $tournamentGames
+     */
+    public function addTournamentGame(\Club\TournamentBundle\Entity\TournamentGame $tournamentGames)
+    {
+        $this->tournament_games[] = $tournamentGames;
+    }
+
+    /**
+     * Get tournament_games
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getTournamentGames()
+    {
+        return $this->tournament_games;
     }
 }
