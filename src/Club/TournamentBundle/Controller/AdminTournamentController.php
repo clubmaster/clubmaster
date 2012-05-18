@@ -116,7 +116,7 @@ class AdminTournamentController extends Controller
   public function generateAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
     $bracket = $this->get('club_tournament.bracket')
-      ->setUsers($tournament->getUsers())
+      ->setUsers($tournament->getAttends())
       ->setSeeds($tournament->getSeeds())
       ->shuffleUsers()
       ->getBracket();
@@ -134,7 +134,7 @@ class AdminTournamentController extends Controller
   public function buildAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
     $bracket = $this->get('club_tournament.bracket')
-      ->setUsers($tournament->getUsers())
+      ->setUsers($tournament->getAttends())
       ->setSeeds($tournament->getSeeds())
       ->shuffleUsers()
       ->getBracket();

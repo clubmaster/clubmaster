@@ -12,6 +12,8 @@
 </p>
 {% endif %}
 
+<h2>{{ tournament.name }}</h2>
+
 {% if attending %}
 <p class="msg done">{% trans %}You are attending this tournament.{% endtrans %}</p>
 {% endif %}
@@ -22,7 +24,7 @@
   <p class="nomt low">
     {% trans with {'%date%':tournament.startTime|club_datetime} %}Start date: %date%{% endtrans %}<br />
     {% trans with {'%seeds%':tournament.seeds} %}Number of seeds: %seeds%{% endtrans %}<br />
-    {% trans with {'%min%':tournament.minAttend, '%max%':tournament.maxAttend,'%curr%':tournament.users|length} %}Min/Max/Current attends: %min%/%max%/%curr%{% endtrans %}<br />
+    {% trans with {'%min%':tournament.minAttend, '%max%':tournament.maxAttend,'%curr%':tournament.attends|length} %}Min/Max/Current attends: %min%/%max%/%curr%{% endtrans %}<br />
   </p>
 
   <h2>{% trans %}Description{% endtrans %}</h2>

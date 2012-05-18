@@ -22,7 +22,7 @@
   {% for tournament in tournaments %}
     <tr>
       <td>{{ tournament.name }}</td>
-      <td>{{ tournament.users|length }}</td>
+      <td>{{ tournament.attends|length }}</td>
       <td>{{ tournament.startTime|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_tournament_tournament_show', { 'id':tournament.id })} %}

@@ -86,12 +86,11 @@ class Tournament
     private $updated_at;
 
     /**
-     * @var Club\UserBundle\Entity\User
+     * @var Club\TournamentBundle\Entity\Attend
      *
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_tournament_tournament_users")
+     * @ORM\OneToMany(targetEntity="Attend", mappedBy="tournament")
      */
-    protected $users;
+    protected $attends;
 
 
     /**
@@ -287,26 +286,6 @@ class Tournament
     }
 
     /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUser(\Club\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Set rounds
      *
      * @param integer $rounds
@@ -324,5 +303,25 @@ class Tournament
     public function getRounds()
     {
         return $this->rounds;
+    }
+
+    /**
+     * Add attends
+     *
+     * @param Club\TournamentBundle\Entity\Attend $attends
+     */
+    public function addAttend(\Club\TournamentBundle\Entity\Attend $attends)
+    {
+        $this->attends[] = $attends;
+    }
+
+    /**
+     * Get attends
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getAttends()
+    {
+        return $this->attends;
     }
 }

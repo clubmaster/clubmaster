@@ -112,7 +112,8 @@ class Bracket
       foreach ($this->bracket[0]['matches'] as $match_id => $match) {
         foreach ($match as $row_id => $row) {
           if ($row['seed']-1 == $seed) {
-            $this->bracket[0]['matches'][$match_id][$row_id]['user'] = $user;
+            if ($user)
+              $this->bracket[0]['matches'][$match_id][$row_id]['user'] = $user->getUser();
           }
         }
       }
