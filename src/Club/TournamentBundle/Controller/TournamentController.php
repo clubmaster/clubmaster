@@ -54,11 +54,14 @@ class TournamentController extends Controller
    */
   public function attendAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $tournament->addUser($this->get('security.context')->getToken()->getUser());
-    $em->persist($tournament);
-    $em->flush();
+    try {
+      $this->get('club_tournament.tournament')
+        ->bindUser($tournament, $this->get('security.context')->getToken()->getUser())
+        ->validate()
+        ->save();
+    } catch (\Exception $e) {
+      $this->get('session')->setFlash('error', $e->getMessage());
+    }
 
     return $this->redirect($this->generateUrl('club_tournament_tournament_show', array('id' => $tournament->getId())));
   }
@@ -69,11 +72,13 @@ class TournamentController extends Controller
    */
   public function unattendAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $tournament->getUsers()->removeElement($this->get('security.context')->getToken()->getUser());
-    $em->persist($tournament);
-    $em->flush();
+    try {
+      $this->get('club_tournament.tournament')
+        ->removeUser($tournament, $this->get('security.context')->getToken()->getUser())
+        ->save();
+    } catch (\Exception $e) {
+      $this->get('session')->setFlash('error', $e->getMessage());
+    }
 
     return $this->redirect($this->generateUrl('club_tournament_tournament_show', array('id' => $tournament->getId())));
   }

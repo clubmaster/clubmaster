@@ -2,3 +2,6 @@ services:
   club_tournament.bracket:
     class: Club\TournamentBundle\Helper\Bracket
     arguments: []
+  club_tournament.tournament:
+    class: Club\TournamentBundle\Helper\Tournament
+    arguments: [@doctrine.orm.entity_manager, @translator]
