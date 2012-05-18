@@ -2498,6 +2498,11 @@
         <source>Team two has not played any set.</source>
         <target>Hold to har ikke spillet nogen sæt.</target>
       </trans-unit>
+      <trans-unit id="629">
+        <source>No teams in the league.</source>
+        <target>Der er ingen hold i denne liga.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
