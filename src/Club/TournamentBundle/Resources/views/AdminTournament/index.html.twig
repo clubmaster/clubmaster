@@ -22,9 +22,10 @@
       <td>{{ tournament.name }}</td>
       <td>{{ tournament.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_tournament_admintournament_edit', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_tournament_admintournament_delete', { 'id':tournament.id })} %}
+        {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
+        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_tournament_admintournamentattend_index', { 'tournament_id':tournament.id })} %}
       </td>
     </tr>
   {% else %}

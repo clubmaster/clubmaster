@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class AttendRepository extends EntityRepository
 {
+  public function getSeeds(\Club\TournamentBundle\Entity\Tournament $tournament)
+  {
+    return $this->_em->createQueryBuilder()
+      ->select('a')
+      ->from('ClubTournamentBundle:Attend', 'a')
+      ->where('a.tournament = :tournament')
+      ->orderBy('a.seed')
+      ->setParameter('tournament', $tournament->getId())
+      ->getQuery()
+      ->getResult();
+  }
 }
