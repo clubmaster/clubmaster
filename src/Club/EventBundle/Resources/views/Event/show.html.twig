@@ -4,13 +4,15 @@
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <p class="box">
-{% if event.isAttending(user) %}
-<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-delete"><span>{% trans %}Unattend{% endtrans %}</span></a>
-{% else %}
-<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>{% trans %}Attend{% endtrans %}</span></a>
-{% endif %}
+  {% if event.isAttending(user) %}
+  <a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-delete"><span>{% trans %}Unattend{% endtrans %}</span></a>
+  {% else %}
+  <a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>{% trans %}Attend{% endtrans %}</span></a>
+  {% endif %}
 </p>
 {% endif %}
+
+<h2>{{ event.eventName }}</h2>
 
 <div class="box-03 event box">
 
