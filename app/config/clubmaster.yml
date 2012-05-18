@@ -91,6 +91,9 @@ club_mail:
 club_feedback:
     enabled: true
 
+club_request:
+    enabled: true
+
 club_checkin:
     allowed_ip:
         - 127.0.0.1
