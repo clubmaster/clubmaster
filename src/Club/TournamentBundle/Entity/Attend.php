@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\TournamentBundle\Entity\Attend
  *
- * @ORM\Table(name="club_tournament_tournament_attend")
+ * @ORM\Table(name="club_tournament_tournament_attend", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_idx", columns={"tournament_id","user_id"})})
  * @ORM\Entity(repositoryClass="Club\TournamentBundle\Entity\AttendRepository")
  * @ORM\HasLifecycleCallbacks()
  */
