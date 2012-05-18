@@ -4,7 +4,7 @@
 
 {% for league in leagues %}
   <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
-  {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':4} %}
+  {% render "ClubMatchBundle:League:Top" with {'id':league.id, 'limit':league_view_top} %}
 
 {% else %}
   <p class="msg info">{% trans %}There are no leagues.{% endtrans %}</p>

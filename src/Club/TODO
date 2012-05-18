@@ -1,4 +1,8 @@
+== ON ATK DEPLOY ==
+set default league_view_top: 5
+
 == VERSION 1.2.1 ==
+add double in league
 when sending booking mails, names has been switched
 knockout management, checkout myplayoffs.com
 requst bundle

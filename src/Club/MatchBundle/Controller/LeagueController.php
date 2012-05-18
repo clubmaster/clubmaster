@@ -22,7 +22,8 @@ class LeagueController extends Controller
     $leagues = $em->getRepository('ClubMatchBundle:League')->findAll();
 
     return array(
-      'leagues' => $leagues
+      'leagues' => $leagues,
+      'league_view_top' => $this->get('service_container')->getParameter('club_match.league_view_top')
     );
   }
 
