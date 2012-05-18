@@ -30,8 +30,11 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_tournament_admintournament_edit', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_tournament_admintournament_delete', { 'id':tournament.id })} %}
+
+        {% if tournament.build == false %}
         {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_tournament_admintournamentattend_index', { 'tournament_id':tournament.id })} %}
+        {% endif %}
       </td>
     </tr>
   {% else %}

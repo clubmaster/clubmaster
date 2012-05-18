@@ -39,14 +39,14 @@ class Tournament
     /**
      * @var integer $max_attend
      *
-     * @ORM\Column(name="max_attend", type="integer")
+     * @ORM\Column(name="max_attend", type="integer", nullable=true)
      */
     private $max_attend;
 
     /**
      * @var integer $seeds
      *
-     * @ORM\Column(name="seeds", type="integer")
+     * @ORM\Column(name="seeds", type="integer", nullable=true)
      */
     private $seeds;
 

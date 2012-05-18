@@ -38,6 +38,7 @@ class AdminTournamentController extends Controller
 
     $tournament = new \Club\TournamentBundle\Entity\Tournament();
     $tournament->setStartTime($start_time);
+    $tournament->setMinAttend(4);
 
     $res = $this->process($tournament);
 

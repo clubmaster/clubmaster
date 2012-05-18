@@ -5,6 +5,8 @@
   <a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" href="{{ path('club_tournament_admintournament_build', {'id':tournament.id}) }}" class="btn-info"><span>Start tournament</span></a></p>
 </p>
 
+<p>This is just a preview, its not the final bracket. Click on <strong>Start Tournament</strong> to generate the final bracket.</p>
+
 {% include "ClubTournamentBundle:AdminTournament:bracket.html.twig" %}
 
 {% endblock %}
