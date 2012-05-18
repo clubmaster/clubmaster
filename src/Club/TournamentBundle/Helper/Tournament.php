@@ -24,6 +24,7 @@ class Tournament
     $this->attend = new \Club\TournamentBundle\Entity\Attend();
     $this->attend->setUser($user);
     $this->attend->setTournament($tournament);
+    $this->attend->setSeed(1000);
 
     return $this;
   }

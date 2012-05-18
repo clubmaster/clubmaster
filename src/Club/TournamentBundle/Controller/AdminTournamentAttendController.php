@@ -51,6 +51,35 @@ class AdminTournamentAttendController extends Controller
   }
 
   /**
+   * @Route("/edit/{id}")
+   * @Template()
+   */
+  public function editAction(\Club\TournamentBundle\Entity\Attend $attend)
+  {
+    $form = $this->createForm(new \Club\TournamentBundle\Form\Attend, $attend);
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($attend);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_tournament_admintournamentattend_index', array(
+          'tournament_id' => $attend->getTournament()->getId()
+        )));
+      }
+    }
+
+    return array(
+      'attend' => $attend,
+      'form' => $form->createView()
+    );
+  }
+
+  /**
    * @Route("/delete//{id}")
    */
   public function deleteAction(\Club\TournamentBundle\Entity\Attend $attend)
@@ -63,42 +92,6 @@ class AdminTournamentAttendController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     return $this->redirect($this->generateUrl('club_tournament_admintournamentattend_index', array(
       'tournament_id' => $attend->getTournament()->getId()
-    )));
-  }
-
-  /**
-   * @Route("/users/add/{id}")
-   * @Template()
-   */
-  public function usersAddAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $res = array();
-    $form = $this->getForm($res);
-
-    $form->bindRequest($this->getRequest());
-    if ($form->isValid()) {
-      $res = $form->getData();
-      $user = $em->find('ClubUserBundle:User', $res['user_id']);
-      if (!$user)
-        $user = $em->getRepository('ClubUserBundle:User')->getOneBySearch(array('query' => $res['user']));
-
-      $league = $em->find('ClubMatchBundle:League', $id);
-
-      $league->addUser($user);
-      $em->persist($league);
-      $em->flush();
-
-      $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-      $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
-      $em->flush();
-
-      $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
-    }
-
-    return $this->redirect($this->generateUrl('club_match_adminleague_users', array(
-      'id' => $id
     )));
   }
 
