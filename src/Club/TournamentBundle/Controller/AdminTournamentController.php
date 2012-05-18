@@ -142,6 +142,7 @@ class AdminTournamentController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $tournament->setRounds(count($bracket));
+    $tournament->setBuild(true);
     $em->persist($tournament);
 
     foreach ($bracket as $round_id => $round) {

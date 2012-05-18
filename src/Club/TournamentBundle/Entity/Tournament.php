@@ -51,6 +51,13 @@ class Tournament
     private $seeds;
 
     /**
+     * @var integer $build
+     *
+     * @ORM\Column(name="build", type="boolean")
+     */
+    private $build;
+
+    /**
      * @var integer $rounds
      *
      * @ORM\Column(type="integer", nullable=true)
@@ -262,7 +269,8 @@ class Tournament
 
     public function __construct()
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->setBuild(false);
+      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -323,5 +331,25 @@ class Tournament
     public function getAttends()
     {
         return $this->attends;
+    }
+
+    /**
+     * Set build
+     *
+     * @param boolean $build
+     */
+    public function setBuild($build)
+    {
+        $this->build = $build;
+    }
+
+    /**
+     * Get build
+     *
+     * @return boolean
+     */
+    public function getBuild()
+    {
+        return $this->build;
     }
 }
