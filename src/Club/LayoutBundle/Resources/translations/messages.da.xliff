@@ -2502,6 +2502,10 @@
         <source>No teams in the league.</source>
         <target>Der er ingen hold i denne liga.</target>
       </trans-unit>
+      <trans-unit id="630">
+        <source>Orders</source>
+        <target>Ordrer</target>
+      </trans-unit>
 
     </body>
   </file>
