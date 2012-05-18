@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<p><a href="{{ path('club_tournament_admintournament_build', {'id':tournament.id}) }}">Build list</a></p>
+<p class="box">
+  <a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" href="{{ path('club_tournament_admintournament_build', {'id':tournament.id}) }}" class="btn-info"><span>Start tournament</span></a></p>
+</p>
 
 <div id="bracket_base">
   <div id="bracket_body">
