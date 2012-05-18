@@ -32,7 +32,12 @@ class AdminTournamentController extends Controller
    */
   public function newAction()
   {
+    $start_time = new \DateTime(date('Y-m-d 15:00:00'));
+    $i = new \DateInterval('P1M');
+    $start_time->add($i);
+
     $tournament = new \Club\TournamentBundle\Entity\Tournament();
+    $tournament->setStartTime($start_time);
 
     $res = $this->process($tournament);
 
