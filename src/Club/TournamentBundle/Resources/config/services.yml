@@ -1,4 +1,4 @@
 services:
-  club_tournament.tournament:
-    class: Club\TournamentBundle\Helper\Tournament
+  club_tournament.bracket:
+    class: Club\TournamentBundle\Helper\Bracket
     arguments: []

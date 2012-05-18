@@ -2,7 +2,7 @@
 
 namespace Club\TournamentBundle\Helper;
 
-class Tournament
+class Bracket
 {
   private $users;
   private $seeds;
