@@ -36,16 +36,21 @@ class User
       $address->setCountry($this->container->getParameter('club_user.default_country'));
       $address->setProfile($profile);
       $profile->setProfileAddress($address);
+      $profile->addProfileAddresses($address);
     }
     if (!$profile->getProfilePhone()) {
       $phone = new \Club\UserBundle\Entity\ProfilePhone();
       $phone->setProfile($profile);
+      $phone->setContactType('mobile');
       $profile->setProfilePhone($phone);
+      $profile->addProfilePhones($phone);
     }
     if (!$profile->getProfileEmail()) {
       $email = new \Club\UserBundle\Entity\ProfileEmail();
       $email->setProfile($profile);
+      $email->setContactType('home');
       $profile->setProfileEmail($email);
+      $profile->addProfileEmails($email);
     }
 
     return $this;
@@ -95,5 +100,16 @@ class User
         break;
       }
     }
+  }
+
+  public function loginAs(\Club\UserBundle\Entity\User $user)
+  {
+    $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+      $user,
+      null,
+      'user'
+    );
+
+    $this->container->get('security.context')->setToken($token);
   }
 }
