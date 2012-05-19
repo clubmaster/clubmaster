@@ -7,11 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/booking/overview")
+ */
 class OverviewController extends Controller
 {
    /**
     * @Template()
-    * @Route("/booking/{date}/{interval_id}")
+    * @Route("/{date}/{interval_id}")
     */
    public function viewAction($date, $interval_id)
    {
@@ -39,7 +42,7 @@ class OverviewController extends Controller
 
   /**
    * @Template()
-   * @Route("/booking/{date}", defaults={"date" = null})
+   * @Route("/{date}", defaults={"date" = null})
    */
    public function indexAction($date)
    {
