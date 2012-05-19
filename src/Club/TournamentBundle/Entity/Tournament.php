@@ -30,6 +30,13 @@ class Tournament
     private $name;
 
     /**
+     * @var integer $game_set
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $game_set;
+
+    /**
      * @var integer $min_attend
      *
      * @ORM\Column(name="min_attend", type="integer")
@@ -378,5 +385,25 @@ class Tournament
     public function getTournamentGames()
     {
         return $this->tournament_games;
+    }
+
+    /**
+     * Set game_set
+     *
+     * @param integer $gameSet
+     */
+    public function setGameSet($gameSet)
+    {
+        $this->game_set = $gameSet;
+    }
+
+    /**
+     * Get game_set
+     *
+     * @return integer 
+     */
+    public function getGameSet()
+    {
+        return $this->game_set;
     }
 }
