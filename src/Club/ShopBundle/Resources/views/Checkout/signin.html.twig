@@ -58,13 +58,25 @@
   <fieldset>
     <legend>{% trans %}Email Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
+    {% for email in form.profile.profile_emails %}
+    <p>
+      {{ form_label(email.email_address) }}<br />
+      {{ form_widget(email.contact_type, {'attr': {'class':'input-text'}}) }}
+      {{ form_widget(email.email_address, {'attr': {'class':'input-text'}}) }}
+    </p>
+    {% endfor %}
   </fieldset>
 
   <fieldset>
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
+    {% for phone in form.profile.profile_phones %}
+    <p>
+      {{ form_label(phone.phone_number) }}<br />
+      {{ form_widget(phone.contact_type, {'attr': {'class':'input-text'}}) }}
+      {{ form_widget(phone.phone_number, {'attr': {'class':'input-text'}}) }}
+    </p>
+    {% endfor %}
   </fieldset>
 
   {{ form_row(form._token) }}
