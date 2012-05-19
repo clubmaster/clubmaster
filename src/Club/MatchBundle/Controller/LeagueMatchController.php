@@ -24,20 +24,10 @@ class LeagueMatchController extends Controller
     $league = $em->find('ClubMatchBundle:League', $league_id);
 
     $res = array();
-    $form = $this->getForm($res);
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
 
-    for ($i = 0; $league->getGameSet() > $i; $i++) {
-      $form = $form->add('user0set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-      $form = $form->add('user1set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-    }
-
-    $form = $form->getForm();
+    $form = $this->get('club_match.match')->getMatchForm($res, $league->getGameSet());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -60,19 +50,5 @@ class LeagueMatchController extends Controller
     if ($league) $param['league'] = $league;
 
     return $param;
-  }
-
-  public function getForm($res)
-  {
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
-
-    $form = $this->createFormBuilder($res)
-      ->add('user0_id', 'hidden')
-      ->add('user1_id', 'hidden')
-      ->add('user0', 'text')
-      ->add('user1', 'text');
-
-    return $form;
   }
 }
