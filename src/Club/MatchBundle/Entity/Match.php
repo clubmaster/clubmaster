@@ -62,6 +62,11 @@ class Match
     protected $league;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\TournamentBundle\Entity\Tournament")
+     */
+    protected $tournament;
+
+    /**
      * @var Club\MatchBundle\Entity\MatchTeam
      *
      * @ORM\OneToMany(targetEntity="MatchTeam", mappedBy="match", cascade={"persist"})
@@ -293,5 +298,25 @@ class Match
       }
 
       return false;
+    }
+
+    /**
+     * Set tournament
+     *
+     * @param Club\TournamentBundle\Entity\Tournament $tournament
+     */
+    public function setTournament(\Club\TournamentBundle\Entity\Tournament $tournament)
+    {
+        $this->tournament = $tournament;
+    }
+
+    /**
+     * Get tournament
+     *
+     * @return Club\TournamentBundle\Entity\Tournament 
+     */
+    public function getTournament()
+    {
+        return $this->tournament;
     }
 }
