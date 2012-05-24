@@ -8,6 +8,8 @@
 </p>
 {% endif %}
 
+<h2>{% trans with {'%name%':request.user.name} %}Request from %name%{% endtrans %}</h2>
+
 <table class="style">
   <tbody>
     <tr>
@@ -20,6 +22,9 @@
     </tr>
   </tbody>
 </table>
+
+<h3>{% trans %}Message{% endtrans %}</h3>
+<p>{{ request.message|raw }}</p>
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in request.requestComments %}

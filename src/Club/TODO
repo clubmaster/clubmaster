@@ -4,7 +4,6 @@ set default league_view_top: 5
 == VERSION 1.2.1 ==
 enter result in cup
 add double in league
-add small message to request
 checkout whats up with STUB Locale
 you have to be able to see all orders from a user
 view if the booking is confirmed on booking overview

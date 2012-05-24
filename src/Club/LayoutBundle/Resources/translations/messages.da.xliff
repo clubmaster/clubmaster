@@ -2506,6 +2506,14 @@
         <source>Orders</source>
         <target>Ordrer</target>
       </trans-unit>
+      <trans-unit id="631">
+        <source>Players market</source>
+        <target>Spillermarked</target>
+      </trans-unit>
+      <trans-unit id="632">
+        <source>Request from %name%</source>
+        <target>Anmodning fra %name%</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -10,6 +10,7 @@ class Request extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder->add('play_time');
+    $builder->add('message');
   }
 
   public function getDefaultOptions(array $options)
