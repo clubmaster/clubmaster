@@ -24,7 +24,7 @@ class MatchController extends Controller
     $tournament = $em->find('ClubTournamentBundle:Tournament', $tournament_id);
 
     $res = array();
-    $form = $this->get('club_match.match')->getMatchForm($res);
+    $form = $this->get('club_match.match')->getMatchForm($res, $tournament->getGameSet());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());

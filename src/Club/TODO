@@ -3,7 +3,6 @@ set default league_view_top: 5
 
 == VERSION 1.2.1 ==
 enter result in cup
-view cup the right way when generated
 add double in league
 add small message to request
 checkout whats up with STUB Locale
