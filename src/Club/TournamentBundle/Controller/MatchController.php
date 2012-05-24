@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\MatchBundle\Controller;
+namespace Club\TournamentBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -9,31 +9,28 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
- * @Route("/match/league/match")
+ * @Route("/tournament/match")
  */
-class LeagueMatchController extends Controller
+class MatchController extends Controller
 {
   /**
-   * @Route("/new/{league_id}")
+   * @Route("/new/{tournament_id}")
    * @Template()
    * @Secure(roles="ROLE_USER")
    */
-  public function newAction($league_id)
+  public function newAction($tournament_id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $league = $em->find('ClubMatchBundle:League', $league_id);
+    $tournament = $em->find('ClubTournamentBundle:Tournament', $tournament_id);
 
     $res = array();
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
-
-    $form = $this->get('club_match.match')->getMatchForm($res, $league->getGameSet());
+    $form = $this->get('club_match.match')->getMatchForm($res, $tournament->getGameSet());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
 
-        $this->get('club_match.match')->bindMatch($form->getData(), $league);
+        $this->get('club_match.match')->bindMatch($form->getData(), $tournament);
 
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
@@ -46,9 +43,23 @@ class LeagueMatchController extends Controller
       }
     }
 
-    $param = array('form' => $form->createView());
-    if ($league) $param['league'] = $league;
+    return array(
+      'form' => $form->createView(),
+      'tournament' => $tournament
+    );
+  }
 
-    return $param;
+  public function getForm($res)
+  {
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
+
+    $form = $this->createFormBuilder($res)
+      ->add('user0_id', 'hidden')
+      ->add('user1_id', 'hidden')
+      ->add('user0', 'text')
+      ->add('user1', 'text');
+
+    return $form;
   }
 }

@@ -37,8 +37,8 @@ class TournamentController extends Controller
       $attending = $em->getRepository('ClubTournamentBundle:Tournament')->isAttending($tournament, $this->get('security.context')->getToken()->getUser());
     }
 
-    $bracket = $this->get('club_tournament.bracket')
-      ->setUsers($tournament->getAttends())
+    $bracket = $this->get('club_tournament.tournament')
+      ->setTournament($tournament)
       ->getBracket();
 
     return array(

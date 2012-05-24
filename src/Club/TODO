@@ -2,14 +2,10 @@
 set default league_view_top: 5
 
 == VERSION 1.2.1 ==
-use user service in user and adminuser controllers
 enter result in cup
-view cup the right way when generated
 add double in league
-when sending booking mails, names has been switched
 add small message to request
 checkout whats up with STUB Locale
-check out if we can do anything about confirm booking controller, have got some error about line 105, getFirstDate on a non object
 you have to be able to see all orders from a user
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed

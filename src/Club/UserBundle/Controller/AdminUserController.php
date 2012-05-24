@@ -138,7 +138,9 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $user = $em->find('ClubUserBundle:User',$id);
-    $user = $this->getUser($user);
+    $user = $this->get('clubmaster.user')
+      ->buildUser($user)
+      ->get();
 
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
@@ -311,28 +313,5 @@ class AdminUserController extends Controller
       'paginator' => $paginator,
       'form' => $form->createView()
     );
-  }
-
-  protected function getUser($user)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    if (!count($user->getProfile()->getProfileAddress())) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!count($user->getProfile()->getProfilePhone())) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!count($user->getProfile()->getProfileEmail())) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    return $user;
   }
 }

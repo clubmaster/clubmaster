@@ -17,28 +17,43 @@ class User
     $this->buildUser();
   }
 
-  public function buildUser()
+  public function buildUser(\Club\UserBundle\Entity\User $user=null)
   {
-    $this->user = new \Club\UserBundle\Entity\User();
-    $profile = new \Club\UserBundle\Entity\Profile();
+    if (!$user) {
+      $this->user = new \Club\UserBundle\Entity\User();
+      $profile = new \Club\UserBundle\Entity\Profile();
+      $this->user->setProfile($profile);
+      $profile->setUser($this->user);
+      $this->user->setMemberNumber($this->em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
 
-    $this->user->setProfile($profile);
-    $profile->setUser($this->user);
+    } else {
+      $this->user = $user;
+      $profile = $user->getProfile();
+    }
 
-    $this->user->setMemberNumber($this->em->getRepository('ClubUserBundle:User')->findNextMemberNumber());
+    if (!$profile->getProfileAddress()) {
+      $address = new \Club\UserBundle\Entity\ProfileAddress();
+      $address->setCountry($this->container->getParameter('club_user.default_country'));
+      $address->setProfile($profile);
+      $profile->setProfileAddress($address);
+      $profile->addProfileAddresses($address);
+    }
+    if (!$profile->getProfilePhone()) {
+      $phone = new \Club\UserBundle\Entity\ProfilePhone();
+      $phone->setProfile($profile);
+      $phone->setContactType('mobile');
+      $profile->setProfilePhone($phone);
+      $profile->addProfilePhones($phone);
+    }
+    if (!$profile->getProfileEmail()) {
+      $email = new \Club\UserBundle\Entity\ProfileEmail();
+      $email->setProfile($profile);
+      $email->setContactType('home');
+      $profile->setProfileEmail($email);
+      $profile->addProfileEmails($email);
+    }
 
-    $address = new \Club\UserBundle\Entity\ProfileAddress();
-    $address->setCountry($this->container->getParameter('club_user.default_country'));
-    $phone = new \Club\UserBundle\Entity\ProfilePhone();
-    $email = new \Club\UserBundle\Entity\ProfileEmail();
-
-    $profile->setProfileAddress($address);
-    $profile->setProfilePhone($phone);
-    $profile->setProfileEmail($email);
-
-    $address->setProfile($profile);
-    $phone->setProfile($profile);
-    $email->setProfile($profile);
+    return $this;
   }
 
   public function get()
@@ -85,5 +100,16 @@ class User
         break;
       }
     }
+  }
+
+  public function loginAs(\Club\UserBundle\Entity\User $user)
+  {
+    $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+      $user,
+      null,
+      'user'
+    );
+
+    $this->container->get('security.context')->setToken($token);
   }
 }

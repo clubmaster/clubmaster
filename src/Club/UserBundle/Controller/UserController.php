@@ -5,16 +5,21 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class UserController extends Controller
 {
   /**
    * @Template()
    * @Route("/user", name="user")
+   * @Secure(roles="ROLE_USER")
    */
   public function indexAction()
   {
-    $user = $this->getUser();
+    $user = $this->get('clubmaster.user')
+      ->buildUser($this->get('security.context')->getToken()->getUser())
+      ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -75,32 +80,5 @@ class UserController extends Controller
       'user' => $user,
       'form' => $form->createView()
     );
-  }
-
-  protected function getUser()
-  {
-    $user = $this->get('security.context')->getToken()->getUser();
-    $em = $this->getDoctrine()->getEntityManager();
-
-    if (!$user->getProfile()->getProfileAddress()) {
-      $address = new \Club\UserBundle\Entity\ProfileAddress();
-      $address->setContactType('home');
-      $address->setProfile($user->getProfile());
-      $user->getProfile()->setProfileAddress($address);
-    }
-    if (!$user->getProfile()->getProfilePhone()) {
-      $phone = new \Club\UserBundle\Entity\ProfilePhone();
-      $phone->setContactType('home');
-      $phone->setProfile($user->getProfile());
-      $user->getProfile()->setProfilePhone($phone);
-    }
-    if (!$user->getProfile()->getProfileEmail()) {
-      $email = new \Club\UserBundle\Entity\ProfileEmail();
-      $email->setContactType('home');
-      $email->setProfile($user->getProfile());
-      $user->getProfile()->setProfileEmail($email);
-    }
-
-    return $user;
   }
 }

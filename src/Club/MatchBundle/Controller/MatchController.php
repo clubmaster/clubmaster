@@ -49,21 +49,11 @@ class MatchController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $res = array();
-    $form = $this->getForm($res);
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
 
     $sets = 5;
-    for ($i = 0; $sets > $i; $i++) {
-      $form = $form->add('user0set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-      $form = $form->add('user1set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-    }
-
-    $form = $form->getForm();
+    $form = $this->get('club_match.match')->getMatchForm($res, $sets);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -80,7 +70,6 @@ class MatchController extends Controller
           $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
         }
       }
-
     }
 
     return array(
@@ -121,19 +110,5 @@ class MatchController extends Controller
     return array(
       'match' => $match
     );
-  }
-
-  public function getForm($res)
-  {
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
-
-    $form = $this->createFormBuilder($res)
-      ->add('user0_id', 'hidden')
-      ->add('user1_id', 'hidden')
-      ->add('user0', 'text')
-      ->add('user1', 'text');
-
-    return $form;
   }
 }

@@ -151,11 +151,17 @@ class AdminTournamentController extends Controller
     $em->persist($tournament);
 
     foreach ($bracket as $round_id => $round) {
+      $tr = new \Club\TournamentBundle\Entity\TournamentRound();
+      $tr->setTournament($tournament);
+      $tr->setRound($round_id);
+      $tr->setRoundName($round['name']);
+
+      $em->persist($tr);
       if (isset($round['matches'])) {
         foreach ($round['matches'] as $match_id => $match) {
           $tg = new \Club\TournamentBundle\Entity\TournamentGame();
           $tg->setTournament($tournament);
-          $tg->setRound($round_id);
+          $tg->setTournamentRound($tr);
           $tg->setGame($match_id);
 
           if (isset($match[0])) {
