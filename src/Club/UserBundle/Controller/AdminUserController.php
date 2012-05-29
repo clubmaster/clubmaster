@@ -8,12 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/user")
  */
 class AdminUserController extends Controller
 {
   /**
-   * @Route("/user/export/csv")
+   * @Route("/export/csv")
    */
   public function csvAction()
   {
@@ -85,7 +85,7 @@ class AdminUserController extends Controller
 
   /**
    * @Template()
-   * @Route("/user/new", name="admin_user_new")
+   * @Route("/new", name="admin_user_new")
    */
   public function newAction()
   {
@@ -98,7 +98,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/create", name="admin_user_create")
+   * @Route("/create", name="admin_user_create")
    * @Template()
    */
   public function createAction()
@@ -130,7 +130,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/edit/{id}", name="admin_user_edit")
+   * @Route("/edit/{id}", name="admin_user_edit")
    * @Template()
    */
   public function editAction($id)
@@ -169,7 +169,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/batch", name="admin_user_batch")
+   * @Route("/batch", name="admin_user_batch")
    */
   public function batchAction()
   {
@@ -207,7 +207,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/ban/{id}", name="admin_user_ban")
+   * @Route("/ban/{id}", name="admin_user_ban")
    */
   public function banAction($id)
   {
@@ -220,7 +220,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/shop/{id}")
+   * @Route("/shop/{id}")
    */
   public function shopAction($id)
   {
@@ -236,7 +236,22 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/group/{id}", name="admin_user_group")
+   * @Route("/log/{id}")
+   * @Template()
+   */
+  public function logAction(\Club\UserBundle\Entity\User $user)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $logs = $em->getRepository("ClubLogBundle:Log")->getByUser($user);
+
+    return array(
+      'user' => $user,
+      'logs' => $logs
+    );
+  }
+
+  /**
+   * @Route("/group/{id}", name="admin_user_group")
    * @Template()
    */
   public function groupAction($id)
@@ -269,7 +284,7 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user/sort/{name}/{type}")
+   * @Route("/sort/{name}/{type}")
    */
   public function sortAction($name, $type)
   {
@@ -281,8 +296,8 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user", name="admin_user")
-   * @Route("/user/offset/{offset}", name="admin_user_offset")
+   * @Route("/", name="admin_user")
+   * @Route("/offset/{offset}", name="admin_user_offset")
    * @Template()
    */
   public function indexAction($offset = null)

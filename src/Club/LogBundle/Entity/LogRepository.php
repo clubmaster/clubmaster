@@ -61,4 +61,17 @@ class LogRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getByUser(\Club\UserBundle\Entity\User $user)
+  {
+      return $this->_em->createQueryBuilder()
+          ->select('l')
+          ->from('ClubLogBundle:Log', 'l')
+          ->where('l.user = :user')
+          ->orderBy('l.id', 'DESC')
+          ->setMaxResults(20)
+          ->setParameter('user', $user->getId())
+          ->getQuery()
+          ->getResult();
+  }
 }

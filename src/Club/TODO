@@ -12,8 +12,10 @@ users should be able to create multiple emails, phone
 make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 results has to be updated almost emidiatly when a match has been entered, change next run date for instance
+should be able to update fields without phone number
 
 == NOTES TO LATER ==
+when client on search on quicksearch, search while clicking
 upload profil billede til alle medlemmerne
 eller aktivt aktiver gravator extension
 we might need a mailing list
