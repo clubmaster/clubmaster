@@ -8,6 +8,7 @@ class Match
   protected $em;
   protected $translator;
   protected $form_factory;
+  protected $event_dispatcher;
   protected $match;
   protected $error;
   protected $is_valid = true;
@@ -18,6 +19,7 @@ class Match
     $this->em = $container->get('doctrine.orm.entity_manager');
     $this->translator = $container->get('translator');
     $this->form_factory = $container->get('form.factory');
+    $this->event_dispatcher = $container->get('event_dispatcher');
   }
 
   public function bindMatch(array $data, \Club\MatchBundle\Entity\League $league=null)
@@ -110,6 +112,9 @@ class Match
   {
     $this->em->persist($this->match);
     $this->em->flush();
+
+    $event = new \Club\MatchBundle\Event\FilterMatchEvent($this->match);
+    $this->event_dispatcher->dispatch(\Club\MatchBundle\Event\Events::onMatchNew, $event);
   }
 
   private function validateUser(\Club\UserBundle\Entity\User $user)
