@@ -2,7 +2,6 @@
 
 namespace Club\LogBundle\Listener;
 
-
 class CleanupLogListener
 {
   protected $em;

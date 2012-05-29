@@ -2,7 +2,6 @@
 
 namespace Club\UserBundle\Listener;
 
-
 class LocationListener
 {
   protected $container;

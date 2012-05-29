@@ -2,7 +2,6 @@
 
 namespace Club\BookingBundle\Helper;
 
-
 class Booking
 {
   protected $em;

@@ -2,7 +2,6 @@
 
 namespace Club\ShopBundle\Listener;
 
-
 class AutoRenewalListener
 {
   protected $em;

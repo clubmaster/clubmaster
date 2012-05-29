@@ -2,7 +2,6 @@
 
 namespace Club\UserBundle\Listener;
 
-
 class CleanupLoginAttemptListener
 {
   protected $em;

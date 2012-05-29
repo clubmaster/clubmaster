@@ -2,7 +2,6 @@
 
 namespace Club\MailBundle\Listener;
 
-
 class MailSendListener
 {
   protected $em;

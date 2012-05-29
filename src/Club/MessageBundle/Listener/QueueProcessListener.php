@@ -2,7 +2,6 @@
 
 namespace Club\MessageBundle\Listener;
 
-
 class QueueProcessListener
 {
   protected $em;
