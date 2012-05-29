@@ -80,7 +80,6 @@ class Match
      */
     protected $match_comments;
 
-
     /**
      * @ORM\PrePersist()
      */
@@ -313,7 +312,7 @@ class Match
     /**
      * Get tournament
      *
-     * @return Club\TournamentBundle\Entity\Tournament 
+     * @return Club\TournamentBundle\Entity\Tournament
      */
     public function getTournament()
     {

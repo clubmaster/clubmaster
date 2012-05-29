@@ -13,7 +13,8 @@ class FilterMatchEvent extends Event
     $this->match = $match;
   }
 
-  public function getMatch() {
+  public function getMatch()
+  {
     return $this->match;
   }
 }

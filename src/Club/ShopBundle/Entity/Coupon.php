@@ -62,7 +62,6 @@ class Coupon
      */
     protected $coupon_log;
 
-
     public function __construct()
     {
       $this->setCouponKey(uniqid());

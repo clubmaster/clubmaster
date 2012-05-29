@@ -13,7 +13,8 @@ class FilterRequestCommentEvent extends Event
     $this->request_comment = $request_comment;
   }
 
-  public function getRequestComment() {
+  public function getRequestComment()
+  {
     return $this->request_comment;
   }
 }

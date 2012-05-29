@@ -5,7 +5,6 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("/admin")
@@ -30,6 +29,7 @@ class AdminProductAttributeController extends Controller
         $this->setData($product,$form->getData());
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('admin_shop_product_attribute',array(
           'id' => $id
         )));

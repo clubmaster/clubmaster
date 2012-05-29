@@ -40,6 +40,7 @@ class AdminRuleController extends Controller
     $res = $this->process($rule);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -59,6 +60,7 @@ class AdminRuleController extends Controller
     $res = $this->process($rule);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

@@ -44,12 +44,14 @@ class Match
 
       } catch (\Doctrine\ORM\NonUniqueResultException $e) {
         $this->setError($this->translator->trans('Too many users match this search'));
+
         return;
       } catch (\Exception $e) {
         return;
       }
       if (!$user) {
           $this->setError($this->translator->trans('No such user'));
+
           return;
       }
 
@@ -58,6 +60,7 @@ class Match
           $this->setError($this->translator->trans('%user% is not allowed to play in this league.', array(
             '%user%' => $user->getName()
           )));
+
           return;
         }
       }
@@ -162,6 +165,7 @@ class Match
       $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
         '%count%' => count($matches)
       )));
+
       return false;
     }
 
@@ -172,21 +176,25 @@ class Match
   {
     if (!count($display)) {
       $this->setError($this->translator->trans('You have not played enough set'));
+
       return;
     }
 
     if (!isset($display[0])) {
       $this->setError($this->translator->trans('Team one has not played any set.'));
+
       return;
     }
 
     if (!isset($display[1])) {
       $this->setError($this->translator->trans('Team two has not played any set.'));
+
       return;
     }
 
     if (count($display[0]) != count($display[1])) {
       $this->setError($this->translator->trans('The team has not played equal amount of set.'));
+
       return;
     }
 
@@ -196,6 +204,7 @@ class Match
         $i++;
         if ($set+1 != $i) {
           $this->setError($this->translator->trans('You has to enter set in the right order.'));
+
           return;
         }
       }
@@ -207,6 +216,7 @@ class Match
 
       if ($set1 < 6 && $set2 < 6) {
         $this->setError($this->translator->trans('The match result is not valid.'));
+
         return;
       }
 
@@ -214,6 +224,7 @@ class Match
 
     if (count($display[0]) < ($sets/2) || count($display[1]) < ($sets/2)) {
       $this->setError($this->translator->trans('You have not played enough set'));
+
       return false;
     }
 

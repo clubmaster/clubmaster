@@ -25,10 +25,12 @@ class LogRepository extends EntityRepository
   public function getCount()
   {
     $qb = $this->getQueryBuilder();
+
     return count($qb->getQuery()->getResult());
   }
 
-  public function getWithPagination($offset = 0, $limit = 0) {
+  public function getWithPagination($offset = 0, $limit = 0)
+  {
     $qb = $this->getQueryBuilder();
 
     if ((isset($offset)) && (isset($limit))) {

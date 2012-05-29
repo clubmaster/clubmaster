@@ -117,6 +117,7 @@ class FieldRepository extends EntityRepository
       ->getOneOrNullResult();
 
     $ret = ($r) ? $r->getPosition()+1 : 1;
+
     return $ret;
   }
 

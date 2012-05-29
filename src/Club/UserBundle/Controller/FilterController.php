@@ -3,9 +3,7 @@
 namespace Club\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/admin")
@@ -41,6 +39,7 @@ class FilterController extends Controller
 
     } else {
       $u = $users[0];
+
       return $this->redirect($this->generateUrl('admin_user_edit', array(
         'id' => $u->getId()
       )));
@@ -246,6 +245,7 @@ class FilterController extends Controller
   private function getForm($form_filter)
   {
     $form = $this->createForm(new \Club\UserBundle\Form\Filter(), $form_filter);
+
     return $form;
   }
 }

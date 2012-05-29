@@ -114,7 +114,6 @@ class Group
      */
     protected $product;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="groups")
      * @ORM\JoinTable(name="club_user_user_group",

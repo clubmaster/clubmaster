@@ -55,7 +55,6 @@ class TournamentRound
      */
     private $tournament;
 
-
     /**
      * Get id
      *

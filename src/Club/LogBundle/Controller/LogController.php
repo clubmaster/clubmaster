@@ -5,7 +5,6 @@ namespace Club\LogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/admin")
@@ -86,6 +85,7 @@ class LogController extends Controller
     $path = $this->container->getParameter('upload_path');
 
     if (is_writeable($path))
+
       return true;
 
     return false;
@@ -97,6 +97,7 @@ class LogController extends Controller
     $installer_file = $this->get('kernel')->getRootDir().'/installer';
 
     if (file_exists($installer_file))
+
       return true;
 
     return false;

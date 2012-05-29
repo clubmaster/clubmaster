@@ -50,7 +50,6 @@ class Welcome
      */
     private $updated_at;
 
-
     /**
      * Get id
      *

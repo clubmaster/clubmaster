@@ -36,6 +36,7 @@ class AdminPaymentMethodController extends Controller
     $res = $this->process($payment_method);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminPaymentMethodController extends Controller
     $res = $this->process($payment_method);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

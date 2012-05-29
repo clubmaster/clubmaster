@@ -3,7 +3,6 @@
 namespace Club\TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\TaskBundle\Entity\TaskRepository")
@@ -241,7 +240,6 @@ class Task
     {
         return $this->next_run_at;
     }
-
 
     /**
      * Set task_interval

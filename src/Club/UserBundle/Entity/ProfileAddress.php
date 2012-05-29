@@ -80,7 +80,6 @@ class ProfileAddress
      */
     protected $profile;
 
-
     public function __construct()
     {
       $this->setContactType('home');

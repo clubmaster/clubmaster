@@ -56,7 +56,6 @@ class UserSetting
      */
     private $updated_at;
 
-
     /**
      * Get id
      *

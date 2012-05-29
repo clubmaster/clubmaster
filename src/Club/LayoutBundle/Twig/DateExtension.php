@@ -38,6 +38,7 @@ class DateExtension extends \Twig_Extension
   public function getDate($value, $type='SHORT')
   {
     if (!$this->intlExists())
+
       return $value->format('Y-m-d');
 
     $type = strtoupper($type);
@@ -56,12 +57,14 @@ class DateExtension extends \Twig_Extension
       break;
     }
     $fmt = new \IntlDateFormatter($this->locale, $date, \IntlDateFormatter::NONE, $this->timezone);
+
     return $fmt->format($value);
   }
 
   public function getDateTime($value, $type='SHORT')
   {
     if (!$this->intlExists())
+
       return $value->format('Y-m-d H:i');
 
     $type = strtoupper($type);
@@ -84,12 +87,14 @@ class DateExtension extends \Twig_Extension
       break;
     }
     $fmt = new \IntlDateFormatter($this->locale, $date, $time, $this->timezone);
+
     return $fmt->format($value);
   }
 
   public function getTime($value, $type='SHORT')
   {
     if (!$this->intlExists())
+
       return $value->format('H:i');
 
     $type = strtoupper($type);
@@ -108,6 +113,7 @@ class DateExtension extends \Twig_Extension
       break;
     }
     $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, $time, $this->timezone);
+
     return $fmt->format($value);
   }
 
@@ -121,10 +127,12 @@ class DateExtension extends \Twig_Extension
     }
 
     if (!$this->intlExists())
+
       return strtolower($date->format('l'));
 
     $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, $this->timezone);
     $fmt->setPattern('eeee');
+
     return $fmt->format($date);
   }
 

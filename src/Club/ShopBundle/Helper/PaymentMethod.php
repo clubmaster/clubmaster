@@ -32,6 +32,7 @@ class PaymentMethod
     foreach ($res as $method) {
       $r[$method->getId()] = $method->getPaymentMethodName();
     }
+
     return $r;
   }
 }

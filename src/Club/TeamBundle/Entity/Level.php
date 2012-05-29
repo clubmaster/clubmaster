@@ -43,7 +43,6 @@ class Level
      */
     protected $updated_at;
 
-
     public function __toString()
     {
       return $this->getLevelName();
@@ -109,7 +108,7 @@ class Level
     /**
      * Get created_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -129,7 +128,7 @@ class Level
     /**
      * Get updated_at
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdatedAt()
     {

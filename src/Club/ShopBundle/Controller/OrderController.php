@@ -40,6 +40,7 @@ class OrderController extends Controller
     );
 
     $this->validateOwner($order);
+
     return array(
       'order' => $order,
       'payments' => $payments

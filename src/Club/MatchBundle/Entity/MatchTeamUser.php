@@ -35,7 +35,6 @@ class MatchTeamUser
      */
     protected $user;
 
-
     /**
      * Get id
      *

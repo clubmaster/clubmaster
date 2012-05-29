@@ -30,9 +30,11 @@ class LocationConfigRepository extends EntityRepository
       ->getOneOrNullResult();
 
     if ($config)
+
       return $config;
 
     if (!count($config) && !$fallback)
+
       return false;
 
     if (!count($config)) {
@@ -59,6 +61,7 @@ class LocationConfigRepository extends EntityRepository
     $config = $this->getByKey($key, $location, $fallback);
 
     if (!$config)
+
       return;
 
     switch ($config->getConfig()) {

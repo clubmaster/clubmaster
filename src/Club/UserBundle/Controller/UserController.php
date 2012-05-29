@@ -31,6 +31,7 @@ class UserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('user'));
       }
     }
@@ -72,6 +73,7 @@ class UserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('user'));
       }
     }

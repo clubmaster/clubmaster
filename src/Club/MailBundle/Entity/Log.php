@@ -50,7 +50,6 @@ class Log
      */
     protected $created_at;
 
-
     /**
      * Get id
      *

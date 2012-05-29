@@ -36,6 +36,7 @@ class AdminCouponController extends Controller
     $res = $this->process($coupon);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminCouponController extends Controller
     $res = $this->process($coupon);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

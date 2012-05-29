@@ -94,7 +94,6 @@ class OrderAddress
      */
     protected $order;
 
-
     /**
      * Get id
      *

@@ -113,7 +113,6 @@ class Profile
      */
     protected $profile_companies;
 
-
     /**
      * Get id
      *

@@ -80,6 +80,7 @@ class QuickpayController extends Controller
     $order = $em->find('ClubShopBundle:Order', $order_id);
 
     $form = $this->getForm($order);
+
     return array(
       'quickpay_url' => $this->container->getParameter('club_payment_quickpay.quickpay_url'),
       'form' => $form->createView(),

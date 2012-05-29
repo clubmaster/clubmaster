@@ -29,6 +29,7 @@ class Bracket
   public function setSeeds($seeds)
   {
     $this->seeds = $seeds;
+
     return $this;
   }
 
@@ -38,6 +39,7 @@ class Bracket
     foreach ($users as $user) {
       array_push($this->users, $user);
     }
+
     return $this;
   }
 

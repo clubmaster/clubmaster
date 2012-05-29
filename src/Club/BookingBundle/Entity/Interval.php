@@ -97,7 +97,6 @@ class Interval
      */
     protected $available = true;
 
-
     /**
      * Get id
      *

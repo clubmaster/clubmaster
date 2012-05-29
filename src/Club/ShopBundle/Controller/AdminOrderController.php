@@ -32,6 +32,7 @@ class AdminOrderController extends Controller
         ));
 
         if ($order)
+
           return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
 
         $this->get('session')->setFlash('error', $this->get('translator')->trans('There is no order with this number'));
@@ -114,6 +115,7 @@ class AdminOrderController extends Controller
     $order = $em->find('ClubShopBundle:Order',$id);
     if ($order->getPaid() || $order->getCancelled() || $order->getDelivered()) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));
+
       return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
     }
 

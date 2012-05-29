@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\SubscriptionAttributeRepository")
@@ -40,7 +39,6 @@ class SubscriptionAttribute
      * @ORM\Column(type="string")
      */
     protected $attribute_name;
-
 
     /**
      * Get id

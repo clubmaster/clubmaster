@@ -2,8 +2,6 @@
 
 namespace Club\MessageBundle\Listener;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class QueueProcessListener
 {

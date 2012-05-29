@@ -67,7 +67,6 @@ class Blog
      */
     protected $comments;
 
-
     /**
      * Get id
      *

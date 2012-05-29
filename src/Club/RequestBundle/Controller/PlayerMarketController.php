@@ -20,6 +20,7 @@ class PlayerMarketController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $market = $em->getRepository('ClubRequestBundle:Request')->getOpen();
+
     return array(
       'market' => $market
     );
@@ -41,6 +42,7 @@ class PlayerMarketController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('club_request_playermarket_index'));
       }
     }
@@ -69,6 +71,7 @@ class PlayerMarketController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('club_request_playermarket_index'));
       }
     }
@@ -91,6 +94,7 @@ class PlayerMarketController extends Controller
     $em->flush();
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('club_request_playermarket_index'));
   }
 }

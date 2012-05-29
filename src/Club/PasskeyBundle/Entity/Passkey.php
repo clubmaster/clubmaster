@@ -49,7 +49,6 @@ class Passkey
      */
     private $updated_at;
 
-
     /**
      * Get id
      *

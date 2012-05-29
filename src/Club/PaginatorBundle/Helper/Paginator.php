@@ -8,8 +8,8 @@
  */
 namespace Club\PaginatorBundle\Helper;
 
-class Paginator {
-
+class Paginator
+{
   /**
    * @var int current displayed page
    */
@@ -79,14 +79,12 @@ class Paginator {
     $startRange = $this->currentPage - floor($this->midRange/2);
     $endRange = $this->currentPage + floor($this->midRange/2);
 
-    if($startRange <= 0)
-    {
+    if ($startRange <= 0) {
       $endRange += abs($startRange)+1;
       $startRange = 1;
     }
 
-    if($endRange > $this->numPages)
-    {
+    if ($endRange > $this->numPages) {
       $startRange -= $endRange-$this->numPages;
       $endRange = $this->numPages;
     }
@@ -98,19 +96,15 @@ class Paginator {
   {
     //If currentPage is set to null or is set to 0 or less
     //set it to default (1)
-    if ($this->currentPage == null || $this->currentPage < 1)
-    {
+    if ($this->currentPage == null || $this->currentPage < 1) {
       $this->currentPage = 1;
     }
     //if limit is set to null set it to default (20)
-    if ($this->limit == null)
-    {
+    if ($this->limit == null) {
       $this->limit = 20;
       //if limit is any number less than 1 then set it to 0 for displaying
       //items without limit
-    }
-    else if ($this->limit < 1)
-    {
+    } elseif ($this->limit < 1) {
       $this->limit = 0;
     }
   }
@@ -124,12 +118,9 @@ class Paginator {
   {
     //If limit is set to 0 or set to number bigger then total items count
     //display all in one page
-    if ($this->limit < 1 || $this->limit > $this->itemsCount)
-    {
+    if ($this->limit < 1 || $this->limit > $this->itemsCount) {
       $this->numPages = 1;
-    }
-    else
-    {
+    } else {
       //Calculate rest numbers from dividing operation so we can add one
       //more page for this items
       $restItemsNum = $this->itemsCount % $this->limit;

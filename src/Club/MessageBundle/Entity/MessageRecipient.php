@@ -46,7 +46,6 @@ class MessageRecipient
      */
     protected $user;
 
-
     /**
      * Get id
      *

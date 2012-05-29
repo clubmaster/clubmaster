@@ -132,6 +132,7 @@ class SubscriptionRepository extends EntityRepository
       ->getResult();
 
     if ($attr)
+
       return true;
 
     return false;
@@ -144,6 +145,7 @@ class SubscriptionRepository extends EntityRepository
       ->getResult();
 
     if (!count($res))
+
       return false;
 
     return $res[0];
@@ -156,6 +158,7 @@ class SubscriptionRepository extends EntityRepository
       ->getResult();
 
     if (!count($res))
+
       return 0;
 
     return $res[0]->getValue();
@@ -170,6 +173,7 @@ class SubscriptionRepository extends EntityRepository
       ->getResult();
 
     if (!count($res))
+
       return 0;
 
     return $res[0]->getValue()-$used;
@@ -186,6 +190,7 @@ class SubscriptionRepository extends EntityRepository
       ->getSingleScalarResult();
 
     if (!$tickets)
+
       return 0;
 
     return $tickets;

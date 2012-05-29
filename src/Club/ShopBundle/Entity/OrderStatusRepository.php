@@ -48,7 +48,6 @@ class OrderStatusRepository extends EntityRepository
       ->getSingleResult();
   }
 
-
   public function getCancelled()
   {
     return $this->_em->createQueryBuilder()

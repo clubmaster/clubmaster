@@ -54,7 +54,6 @@ class MatchComment
      */
     protected $user;
 
-
     /**
      * @ORM\PrePersist()
      */

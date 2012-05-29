@@ -5,7 +5,6 @@ namespace Club\ConfiguratorBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @Route("/configurator")
@@ -83,6 +82,7 @@ class ConfiguratorController extends ContainerAware
         $welcomeUrl = $this->container->get('router')->generate('club_installer_installer_index');
 
         $this->container->get('club_user.application')->clearCache();
+
         return $this->container->get('templating')->renderResponse('ClubConfiguratorBundle::Configurator/final.html.twig', array(
             'welcome_url' => $welcomeUrl,
             'parameters'  => $configurator->render(),

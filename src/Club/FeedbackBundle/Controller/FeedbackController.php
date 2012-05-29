@@ -61,6 +61,7 @@ class FeedbackController extends Controller
         return $this->redirect($this->generateUrl('club_feedback_feedback_index'));
       }
     }
+
     return array(
       'form' => $form->createView()
     );
@@ -92,6 +93,7 @@ class FeedbackController extends Controller
 
       if (strpos($res,'200 OK')) {
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message has been sent.'));
+
         return;
       }
     }

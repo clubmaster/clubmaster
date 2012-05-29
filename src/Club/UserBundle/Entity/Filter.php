@@ -43,7 +43,6 @@ class Filter
      */
     protected $user;
 
-
     public function __toString()
     {
       return $this->getFilterName();

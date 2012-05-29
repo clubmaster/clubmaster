@@ -103,7 +103,6 @@ class Economic
       'MarginAsPercent' => 0
     );
 
-
     $item = $this->client->OrderLine_CreateFromData(array(
       'data' => $data
     ))->OrderLine_CreateFromDataResult;
@@ -118,6 +117,7 @@ class Economic
   public function findOrder($number)
   {
     $this->order = $this->client->Order_FindByNumber(array('number' => $number));
+
     return $this->order;
   }
 
@@ -260,6 +260,7 @@ class Economic
   protected function getCashBooks()
   {
     $cashbooks = $this->client->CashBook_GetAll();
+
     return $cashbooks;
   }
 
@@ -268,6 +269,7 @@ class Economic
     $cashbook = $this->client->CashBook_FindByName(array(
       'name' => $name
     ));
+
     return $cashbook->CashBook_FindByNameResult;
   }
 

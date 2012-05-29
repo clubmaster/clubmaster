@@ -73,7 +73,6 @@ class Request
      */
     protected $request_comments;
 
-
     public function __construct()
     {
       $this->setClosed(false);
@@ -242,7 +241,7 @@ class Request
     /**
      * Get message
      *
-     * @return text 
+     * @return text
      */
     public function getMessage()
     {

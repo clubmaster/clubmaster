@@ -5,7 +5,6 @@ namespace Club\TournamentBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("/admin/tournament/attend")
@@ -90,6 +89,7 @@ class AdminTournamentAttendController extends Controller
     $em->flush();
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('club_tournament_admintournamentattend_index', array(
       'tournament_id' => $attend->getTournament()->getId()
     )));

@@ -36,6 +36,7 @@ class AdminOrderStatusController extends Controller
     $res = $this->process($orderstatus);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminOrderStatusController extends Controller
     $res = $this->process($orderstatus);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

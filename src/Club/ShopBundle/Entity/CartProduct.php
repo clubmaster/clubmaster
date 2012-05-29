@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\CartProductRepository")
@@ -67,7 +66,6 @@ class CartProduct
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\CartProductAttribute", mappedBy="cart_product", cascade={"persist","remove"})
      */
     protected $cart_product_attributes;
-
 
     public function __construct()
     {

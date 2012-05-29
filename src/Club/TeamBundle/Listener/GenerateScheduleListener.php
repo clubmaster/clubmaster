@@ -155,12 +155,14 @@ class GenerateScheduleListener
       ->getResult();
 
     if (count($res))
+
       return;
 
     // find new times
     $new_format = $start->format('Y-m-d').' '.$schedule->getFirstDate()->format('H:i:s');
 
     if ($new_format == $schedule->getFirstDate()->format('Y-m-d H:i:s'))
+
       return;
 
     $new_first = new \DateTime($new_format);

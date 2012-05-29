@@ -3,7 +3,6 @@
 namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\WhoisOnlineRepository")
@@ -24,7 +23,6 @@ class WhoisOnline
      * @var Club\UserBundle\Entity\User
      */
     protected $user;
-
 
     /**
      * Get id

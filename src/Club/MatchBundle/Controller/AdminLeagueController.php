@@ -44,6 +44,7 @@ class AdminLeagueController extends Controller
     $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -63,6 +64,7 @@ class AdminLeagueController extends Controller
     $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

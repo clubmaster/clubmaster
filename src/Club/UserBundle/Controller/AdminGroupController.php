@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
-use Club\UserBundle\Form\GroupForm;
 
 /**
  * @Route("/admin")
@@ -56,6 +55,7 @@ class AdminGroupController extends Controller
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -74,6 +74,7 @@ class AdminGroupController extends Controller
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

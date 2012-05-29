@@ -66,6 +66,7 @@ class InstallerController extends Controller
         $this->get('clubmaster.user')->save();
 
         $this->get('session')->set('installer_user_id',$user->getId());
+
         return $this->redirect($this->generateUrl('club_installer_installer_location'));
       }
     }
@@ -114,6 +115,7 @@ class InstallerController extends Controller
         $em->flush();
 
         $this->get('session')->set('installer_location_id', $location->getId());
+
         return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
       }
     }
@@ -141,6 +143,7 @@ class InstallerController extends Controller
     $this->get('club_installer.database')->migrate();
 
     $this->get('session')->setFlash('notice', 'Database was successful installed');
+
     return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
   }
 }

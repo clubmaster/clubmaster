@@ -32,6 +32,7 @@ class Tournament
   public function setTournament(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
     $this->tournament = $tournament;
+
     return $this;
   }
 

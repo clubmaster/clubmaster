@@ -57,7 +57,6 @@ class Comment
      */
     private $updated_at;
 
-
     /**
      * Get id
      *
@@ -158,7 +157,7 @@ class Comment
     /**
      * Get blog
      *
-     * @return Club\WelcomeBundle\Entity\Blog 
+     * @return Club\WelcomeBundle\Entity\Blog
      */
     public function getBlog()
     {
@@ -178,7 +177,7 @@ class Comment
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {

@@ -57,7 +57,6 @@ class Attend
      */
     private $user;
 
-
     /**
      * Get id
      *

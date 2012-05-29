@@ -3,7 +3,6 @@
 namespace Club\BookingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -56,6 +55,7 @@ class OverviewController extends Controller
      ));
 
      if (!count($fields))
+
        return $this->redirect($this->generateUrl('club_booking_location_index'));
 
      return $this->render('ClubBookingBundle:Overview:'.$this->container->getParameter('club_booking.booking_style').'.html.twig', array(

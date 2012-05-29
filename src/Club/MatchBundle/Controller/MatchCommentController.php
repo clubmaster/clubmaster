@@ -48,6 +48,7 @@ class MatchCommentController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('club_match_match_show', array(
           'id' => $match->getId()
         )));
@@ -71,6 +72,7 @@ class MatchCommentController extends Controller
     $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

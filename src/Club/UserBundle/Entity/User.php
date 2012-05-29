@@ -146,7 +146,6 @@ class User implements AdvancedUserInterface
      */
     protected $groups;
 
-
     public function __toString()
     {
       return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
@@ -580,6 +579,7 @@ class User implements AdvancedUserInterface
     public function isAccountNonLocked()
     {
       if ($this->getLocked() == 1)
+
         return false;
 
       return true;
@@ -767,6 +767,7 @@ class User implements AdvancedUserInterface
     {
       foreach ($this->getSchedules() as $sch) {
         if ($schedule->getId() == $sch->getSchedule()->getId())
+
           return true;
       }
 

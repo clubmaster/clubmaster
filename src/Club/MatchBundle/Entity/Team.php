@@ -29,7 +29,6 @@ class Team
      */
     protected $users;
 
-
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();

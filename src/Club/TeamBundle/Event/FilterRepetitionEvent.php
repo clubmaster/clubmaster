@@ -13,7 +13,8 @@ class FilterRepetitionEvent extends Event
     $this->repetition = $repetition;
   }
 
-  public function getRepetition() {
+  public function getRepetition()
+  {
     return $this->repetition;
   }
 }

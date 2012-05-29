@@ -43,6 +43,7 @@ class AdminIntervalController extends Controller
     $res = $this->process($interval);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -63,6 +64,7 @@ class AdminIntervalController extends Controller
     $res = $this->process($interval);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -158,6 +160,7 @@ class AdminIntervalController extends Controller
       $em->flush();
 
       $this->get('session')->setFlash('notice', 'Field has been created');
+
       return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $field->getId())));
     }
 

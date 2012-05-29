@@ -36,7 +36,6 @@ class MigrationVersion
      */
     private $created_at;
 
-
     /**
      * Get id
      *

@@ -62,7 +62,6 @@ class TeamCategory
      */
     protected $updated_at;
 
-
     public function __construct()
     {
         $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();

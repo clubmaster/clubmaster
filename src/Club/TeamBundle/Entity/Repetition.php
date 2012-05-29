@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContext;
 
-
 /**
  * Club\TeamBundle\Entity\Repetition
  *
@@ -103,7 +102,6 @@ class Repetition
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $schedule;
-
 
     /**
      * Get id
@@ -273,6 +271,7 @@ class Repetition
     public function getDaysInWeek()
     {
       if (!unserialize($this->days_in_week))
+
         return array();
 
       return unserialize($this->days_in_week);

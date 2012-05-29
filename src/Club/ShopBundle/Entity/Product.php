@@ -280,8 +280,10 @@ class Product
     {
       foreach ($this->getSpecials() as $special) {
         if ($special->getStartDate()->getTimestamp() < time() && $special->getExpireDate()->getTimestamp() > time())
+
           return $special->getPrice();
       }
+
       return $this->getPrice();
     }
 
@@ -348,6 +350,7 @@ class Product
     public function getType()
     {
       if (count($this->getProductAttributes()))
+
         return 'subscription';
 
       return 'product';

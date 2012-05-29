@@ -13,7 +13,8 @@ class FilterEventEvent extends Event
     $this->event = $event;
   }
 
-  public function getEvent() {
+  public function getEvent()
+  {
     return $this->event;
   }
 }

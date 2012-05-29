@@ -129,6 +129,7 @@ class Attend
       if ($this->getEvent()->getMaxAttends() == null) return true;
 
       if (count($this->getEvent()->getAttends()) >= $this->getEvent()->getMaxAttends())
+
         return false;
 
       return true;

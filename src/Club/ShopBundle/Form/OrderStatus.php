@@ -4,7 +4,6 @@ namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use Doctrine\ORM\EntityRepository;
 
 class OrderStatus extends AbstractType
 {

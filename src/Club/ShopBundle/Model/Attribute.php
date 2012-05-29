@@ -87,12 +87,14 @@ class Attribute
   public function getNextStartDate()
   {
     $r = $this->getNextDates();
+
     return $r['next_start_date'];
   }
 
   public function getNextExpireDate()
   {
     $r = $this->getNextDates();
+
     return $r['next_expire_date'];
   }
 

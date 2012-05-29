@@ -35,6 +35,7 @@ class EventController extends Controller
     $em->flush();
 
     $response = new Response();
+
     return $response;
   }
 
@@ -58,6 +59,7 @@ class EventController extends Controller
     $em->flush();
 
     $response = new Response();
+
     return $response;
   }
 

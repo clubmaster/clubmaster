@@ -43,7 +43,6 @@ class MatchTeamSet
      */
     protected $match_team;
 
-
     /**
      * Get id
      *

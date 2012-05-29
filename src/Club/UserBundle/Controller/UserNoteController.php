@@ -46,6 +46,7 @@ class UserNoteController extends Controller
     $res = $this->process($user_note);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -65,6 +66,7 @@ class UserNoteController extends Controller
     $res = $this->process($user_note);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

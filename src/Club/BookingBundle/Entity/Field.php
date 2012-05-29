@@ -5,7 +5,6 @@ namespace Club\BookingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * Club\BookingBundle\Entity\Field
  *

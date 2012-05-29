@@ -113,7 +113,6 @@ class Tournament
      */
     protected $tournament_games;
 
-
     /**
      * Get id
      *
@@ -400,7 +399,7 @@ class Tournament
     /**
      * Get game_set
      *
-     * @return integer 
+     * @return integer
      */
     public function getGameSet()
     {

@@ -83,7 +83,6 @@ class AdminUserController extends Controller
     return $response;
   }
 
-
   /**
    * @Template()
    * @Route("/user/new", name="admin_user_new")
@@ -120,6 +119,7 @@ class AdminUserController extends Controller
 
         $this->get('clubmaster.user')->save();
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('admin_user'));
       }
     }
@@ -157,6 +157,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('admin_user'));
       }
     }
@@ -201,6 +202,7 @@ class AdminUserController extends Controller
       $em->flush();
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     }
+
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -213,6 +215,7 @@ class AdminUserController extends Controller
     $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('admin_user'));
   }
 
@@ -254,6 +257,7 @@ class AdminUserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('admin_user'));
       }
     }

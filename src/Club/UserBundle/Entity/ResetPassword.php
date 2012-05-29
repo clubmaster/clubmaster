@@ -3,7 +3,6 @@
 namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\ResetPasswordRepository")
@@ -41,7 +40,6 @@ class ResetPassword
      * @var Club\UserBundle\Entity\User
      */
     protected $user;
-
 
     public function __construct()
     {

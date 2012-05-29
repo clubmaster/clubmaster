@@ -43,6 +43,7 @@ class AdminTournamentController extends Controller
     $res = $this->process($tournament);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -62,6 +63,7 @@ class AdminTournamentController extends Controller
     $res = $this->process($tournament);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -176,6 +178,7 @@ class AdminTournamentController extends Controller
 
     $em->flush();
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('club_tournament_admintournament_index'));
   }
 }

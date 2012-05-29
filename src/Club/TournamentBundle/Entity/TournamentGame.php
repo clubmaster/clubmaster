@@ -75,7 +75,6 @@ class TournamentGame
      */
     private $winner;
 
-
     /**
      * Get id
      *
