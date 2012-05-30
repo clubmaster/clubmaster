@@ -15,6 +15,7 @@ results has to be updated almost emidiatly when a match has been entered, change
 should be able to update fields without phone number
 
 == NOTES TO LATER ==
+give warning if you try to make a booking plan above a booking
 when client on search on quicksearch, search while clicking
 upload profil billede til alle medlemmerne
 eller aktivt aktiver gravator extension
