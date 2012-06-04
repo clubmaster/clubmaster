@@ -61,3 +61,7 @@
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=v1.0.1
+
+[ClubAccountEconomicBundle]
+    git=http://github.com/clubmaster/ClubAccountEconomicBundle.git
+    target=/bundles/Club/Account/EconomicBundle
