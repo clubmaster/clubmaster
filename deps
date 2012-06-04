@@ -65,3 +65,7 @@
 [ClubAccountEconomicBundle]
     git=http://github.com/clubmaster/ClubAccountEconomicBundle.git
     target=/bundles/Club/Account/EconomicBundle
+
+[ClubPaymentQuickpayBundle]
+    git=http://github.com/clubmaster/ClubPaymentQuickpayBundle.git
+    target=/bundles/Club/Payment/QuickpayBundle
