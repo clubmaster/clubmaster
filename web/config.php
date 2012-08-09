@@ -24,24 +24,27 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="bundles/clubconfigurator/webconfigurator/css/install.css" media="all" />
-        <title>ClubMaster Configuration</title>
+        <link rel="stylesheet" href="bundles/sensiodistribution/webconfigurator/css/install.css" media="all" />
+        <title>Symfony Configuration</title>
     </head>
     <body>
         <div id="symfony-wrapper">
             <div id="symfony-content">
                 <div class="symfony-blocks-install">
                     <div class="symfony-block-logo">
-                        <img src="bundles/clublayout/images/logo-big.png" alt="ClubMaster" />
+                        <img src="bundles/sensiodistribution/webconfigurator/images/logo-big.gif" alt="Symfony logo" />
                     </div>
 
                     <div class="symfony-block-content">
                         <h1>Welcome!</h1>
-                        <p>Welcome to your new ClubMaster project.</p>
-                        <p>This script will guide you through the basic configuration of your project.</p>
+                        <p>Welcome to your new Symfony project.</p>
+                        <p>
+                            This script will guide you through the basic configuration of your project.
+                            You can also do the same by editing the ‘<strong>app/config/parameters.yml</strong>’ file directly.
+                        </p>
 
                         <?php if (count($majorProblems)): ?>
-                            <h2>Major problems</h2>
+                            <h2 class="ko">Major problems</h2>
                             <p>Major problems have been detected and <strong>must</strong> be fixed before continuing:</p>
                             <ol>
                                 <?php foreach ($majorProblems as $problem): ?>
@@ -53,7 +56,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                         <?php if (count($minorProblems)): ?>
                             <h2>Recommendations</h2>
                             <p>
-                                <?php if (count($majorProblems)): ?>Additionally, to<?php else: ?>To<?php endif; ?> enhance your ClubMaster experience,
+                                <?php if (count($majorProblems)): ?>Additionally, to<?php else: ?>To<?php endif; ?> enhance your Symfony experience,
                                 it’s recommended that you fix the following:
                             </p>
                             <ol>
@@ -73,16 +76,23 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                             </p>
                         <?php endif; ?>
 
+                        <?php if (!count($majorProblems) && !count($minorProblems)): ?>
+                            <p class="ok">Your configuration looks good to run Symfony.</p>
+                        <?php endif; ?>
+
                         <ul class="symfony-install-continue">
                             <?php if (!count($majorProblems)): ?>
-                                <li><a href="index.php/configurator">Configure your ClubMaster Application online</a></li>
+                                <li><a href="app_dev.php/_configurator/">Configure your Symfony Application online</a></li>
+                                <li><a href="app_dev.php/">Bypass configuration and go to the Welcome page</a></li>
                             <?php endif; ?>
-                            <li><a href="config.php">Re-check configuration</a></li>
+                            <?php if (count($majorProblems) || count($minorProblems)): ?>
+                                <li><a href="config.php">Re-check configuration</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
             </div>
+            <div class="version">Symfony Standard Edition</div>
         </div>
-        <div class="version">ClubMaster</div>
     </body>
 </html>
