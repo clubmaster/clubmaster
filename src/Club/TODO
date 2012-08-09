@@ -2,6 +2,7 @@
 set default league_view_top: 5
 
 == VERSION 1.2.1 ==
+Cannot delete booking because time range is too small, not translated
 enter result in cup
 add double in league
 checkout whats up with STUB Locale
@@ -15,6 +16,7 @@ results has to be updated almost emidiatly when a match has been entered, change
 should be able to update fields without phone number
 
 == NOTES TO LATER ==
+create weather forecast
 give warning if you try to make a booking plan above a booking
 when client on search on quicksearch, search while clicking
 upload profil billede til alle medlemmerne
