@@ -1,9 +1,11 @@
 app/installer
+app/bootstrap.php.cache
 app/logs
 app/cache
 app/spool
 vendor/
 web/bundles
 web/uploads/
+composer.phar
 *.swp
 *~

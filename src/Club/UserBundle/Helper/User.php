@@ -8,12 +8,14 @@ class User
   protected $em;
   protected $event_dispatcher;
   protected $user;
+  protected $request;
 
   public function __construct($container)
   {
     $this->container = $container;
     $this->em = $container->get('doctrine.orm.entity_manager');
     $this->event_dispatcher = $container->get('event_dispatcher');
+    $this->request = $container->get('request');
     $this->buildUser();
   }
 
@@ -75,7 +77,7 @@ class User
     foreach ($settings as $setting) {
       switch ($setting->getAttribute()) {
       case 'language':
-        $session->setLocale($setting->getValue());
+        $this->request->setLocale($setting->getValue());
         break;
       case 'dateformat':
         $session->set('club_user_dateformat', $setting->getValue());

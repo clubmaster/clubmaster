@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 /**
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User implements AdvancedUserInterface
+class User implements AdvancedUserInterface, EquatableInterface
 {
     /**
      * @ORM\Id
@@ -25,14 +26,14 @@ class User implements AdvancedUserInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="integer", unique="true")
+     * @ORM\Column(type="integer", unique=true)
      *
      * @var integer $member_number
      */
     protected $member_number;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"user"})
      *
      * @var string $password
@@ -40,14 +41,14 @@ class User implements AdvancedUserInterface
     protected $password;
 
     /**
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var date $last_login_time
      */
     protected $last_login_time;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $last_login_ip
      */
@@ -452,7 +453,7 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * @ORM\preUpdate
+     * @ORM\PreUpdate
      */
     public function preUpdate()
     {
@@ -534,7 +535,7 @@ class User implements AdvancedUserInterface
       return array_unique($roles);
     }
 
-    public function equals(UserInterface $user)
+    public function isEqualTo(UserInterface $user)
     {
       if (!$user instanceof User) {
         return false;

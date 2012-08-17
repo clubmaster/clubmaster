@@ -1,63 +1,51 @@
 <?php
 
-if (!$iniPath = get_cfg_var('cfg_file_path')) {
-    $iniPath = 'WARNING: not using a php.ini file';
-}
+require_once dirname(__FILE__).'/SymfonyRequirements.php';
+
+$symfonyRequirements = new SymfonyRequirements();
+
+$iniPath = $symfonyRequirements->getPhpIniConfigPath();
 
 echo "********************************\n";
 echo "*                              *\n";
 echo "*  Symfony requirements check  *\n";
 echo "*                              *\n";
 echo "********************************\n\n";
-echo sprintf("php.ini used by PHP: %s\n\n", $iniPath);
 
-// mandatory
-echo_title("Mandatory requirements");
-check(version_compare(phpversion(), '5.3.2', '>='), sprintf('Checking that PHP version is at least 5.3.2 (%s installed)', phpversion()), 'Install PHP 5.3.2 or newer (current version is '.phpversion(), true);
-check(is_writable(__DIR__.'/../app/cache'), sprintf('Checking that app/cache/ directory is writable'), 'Change the permissions of the app/cache/ directory so that the web server can write in it', true);
-check(is_writable(__DIR__.'/../app/logs'), sprintf('Checking that the app/logs/ directory is writable'), 'Change the permissions of the app/logs/ directory so that the web server can write in it', true);
-check(function_exists('json_encode'), 'Checking that the json_encode() is available', 'Install and enable the json extension', true);
-check(class_exists('Locale'), 'Checking that the intl extension is available', 'Install and enable the intl extension (used for validators)', false);
-if (class_exists('Locale')) {
-    $version = '';
+echo $iniPath ? sprintf("* Configuration file used by PHP: %s\n\n", $iniPath) : "* WARNING: No configuration file (php.ini) used by PHP!\n\n";
 
-    if (defined('INTL_ICU_VERSION')) {
-        $version =  INTL_ICU_VERSION;
-    } else {
-        $reflector = new \ReflectionExtension('intl');
+echo "** ATTENTION **\n";
+echo "*  The PHP CLI can use a different php.ini file\n";
+echo "*  than the one used with your web server.\n";
+if ('\\' == DIRECTORY_SEPARATOR) {
+    echo "*  (especially on the Windows platform)\n";
+}
+echo "*  To be on the safe side, please also launch the requirements check\n";
+echo "*  from your web server using the web/config.php script.\n";
 
-        ob_start();
-        $reflector->info();
-        $output = strip_tags(ob_get_clean());
+echo_title('Mandatory requirements');
 
-        preg_match('/^ICU version +(?:=> )?(.*)$/m', $output, $matches);
-        $version = $matches[1];
-    }
-
-    check(version_compare($version, '4.0', '>='), 'Checking that the intl ICU version is at least 4+', 'Upgrade your intl extension with a newer ICU version (4+)', false);
+foreach ($symfonyRequirements->getRequirements() as $req) {
+    echo_requirement($req);
 }
 
-echo_title("Optional checks (Doctrine)");
+echo_title('Optional recommendations');
 
-check(class_exists('PDO'), 'Checking that PDO is installed', 'Install PDO (mandatory for Doctrine)', false);
-if (class_exists('PDO')) {
-    $drivers = PDO::getAvailableDrivers();
-    check(count($drivers), 'Checking that PDO has some drivers installed: '.implode(', ', $drivers), 'Install PDO drivers (mandatory for Doctrine)');
+foreach ($symfonyRequirements->getRecommendations() as $req) {
+    echo_requirement($req);
 }
 
 /**
- * Checks a configuration.
+ * Prints a Requirement instance
  */
-function check($boolean, $message, $help = '', $fatal = false)
+function echo_requirement(Requirement $requirement)
 {
-    echo $boolean ? "  OK        " : sprintf("\n\n[[%s]] ", $fatal ? ' ERROR ' : 'WARNING');
-    echo sprintf("$message%s\n", $boolean ? '' : ': FAILED');
+    $result = $requirement->isFulfilled() ? 'OK' : ($requirement->isOptional() ? 'WARNING' : 'ERROR');
+    echo ' ' . str_pad($result, 9);
+    echo $requirement->getTestMessage() . "\n";
 
-    if (!$boolean) {
-        echo "            *** $help ***\n";
-        if ($fatal) {
-            die("You must fix this problem before resuming the check.\n");
-        }
+    if (!$requirement->isFulfilled()) {
+        echo sprintf("          %s\n\n", $requirement->getHelpText());
     }
 }
 

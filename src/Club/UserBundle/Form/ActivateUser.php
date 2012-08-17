@@ -11,12 +11,12 @@ class ActivateUser extends AbstractType
   {
     $builder->add('password','repeated', array(
       'first_name' => 'Password',
-      'second_name' => 'Password again',
+      'second_name' => 'Password_again',
       'type' => 'password'
     ));
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

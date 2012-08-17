@@ -26,7 +26,7 @@ class TeamCategory
     /**
      * @var string $team_name
      *
-     * @ORM\Column(name="team_name", type="string", length="255")
+     * @ORM\Column(name="team_name", type="string", length=255)
      * @Assert\NotBlank()
      *
      */
@@ -43,7 +43,7 @@ class TeamCategory
     /**
      * @var text $penalty
      *
-     * @ORM\Column(name="penalty", type="decimal", scale="2")
+     * @ORM\Column(name="penalty", type="decimal", scale=2)
      * @Assert\NotBlank()
      */
     protected $penalty;

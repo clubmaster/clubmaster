@@ -19,7 +19,7 @@ class AdministratorProfile extends AbstractType
     $builder->add('profile_email', new \Club\InstallerBundle\Form\AdministratorEmail());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\Profile'

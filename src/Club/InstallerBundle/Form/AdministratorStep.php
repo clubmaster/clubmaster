@@ -13,12 +13,12 @@ class AdministratorStep extends AbstractType
       'required' => true,
       'type' => 'password',
       'first_name' => 'Password',
-      'second_name' => 'Password again'
+      'second_name' => 'Password_again'
     ));
     $builder->add('profile', new \Club\InstallerBundle\Form\AdministratorProfile());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

@@ -12,7 +12,7 @@ class UserNote extends AbstractType
     $builder->add('note');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\UserNote'

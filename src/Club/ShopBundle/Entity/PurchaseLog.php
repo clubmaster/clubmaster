@@ -67,7 +67,7 @@ class PurchaseLog
     /**
      * @var string $response
      *
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $response;
 

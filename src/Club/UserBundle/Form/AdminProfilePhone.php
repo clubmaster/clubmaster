@@ -12,7 +12,7 @@ class AdminProfilePhone extends AbstractType
     $builder->add('phone_number');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\ProfilePhone'

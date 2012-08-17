@@ -13,7 +13,7 @@ class Currency extends AbstractType
     $builder->add('code');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\Currency'

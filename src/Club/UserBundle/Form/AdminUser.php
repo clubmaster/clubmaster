@@ -12,14 +12,14 @@ class AdminUser extends AbstractType
     $builder->add('password', 'repeated', array(
       'type' => 'password',
       'first_name' => 'Password',
-      'second_name' => 'Password again',
+      'second_name' => 'Password_again',
       'required' => false
     ));
     $builder->add('member_number','text');
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\User'

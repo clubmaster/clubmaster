@@ -45,7 +45,7 @@ class Message
     protected $message;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $sender_name
      */
@@ -73,7 +73,7 @@ class Message
     protected $processed;
 
     /**
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var text $sent_at
      */

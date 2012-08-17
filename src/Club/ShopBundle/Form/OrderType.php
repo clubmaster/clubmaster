@@ -14,7 +14,7 @@ class OrderType extends AbstractType
     ));
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\Order'

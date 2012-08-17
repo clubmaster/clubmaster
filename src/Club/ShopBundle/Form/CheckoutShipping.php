@@ -12,7 +12,7 @@ class CheckoutShipping extends AbstractType
     $builder->add('shipping');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\Cart'

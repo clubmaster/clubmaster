@@ -76,7 +76,7 @@ class Filter extends AbstractType
     ));
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Filter\UserFilter'

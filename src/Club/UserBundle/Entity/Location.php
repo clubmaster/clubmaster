@@ -29,42 +29,42 @@ class Location
     protected $location_name;
 
     /**
-     * @ORM\Column(type="boolean", nullable="true")
+     * @ORM\Column(type="boolean", nullable=true)
      *
      * @var string $club
      */
     protected $club;
 
     /**
-     * @ORM\Column(type="text", nullable="true")
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string $street
      */
     protected $street;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $postal_code
      */
     protected $postal_code;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $city
      */
     protected $city;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $state
      */
     protected $state;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $country
      */

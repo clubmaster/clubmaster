@@ -12,7 +12,7 @@ class Comment extends AbstractType
     $builder->add('comment');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\WelcomeBundle\Entity\Comment'

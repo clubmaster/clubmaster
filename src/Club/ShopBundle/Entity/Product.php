@@ -37,14 +37,14 @@ class Product
     protected $description;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $account_number
      */
     protected $account_number;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
      * @var float $price
@@ -52,7 +52,7 @@ class Product
     protected $price;
 
     /**
-     * @ORM\Column(type="integer", nullable="true")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer $quantity
      */

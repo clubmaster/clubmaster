@@ -20,7 +20,7 @@ class CheckoutAddress extends AbstractType
     $builder->add('country');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\ShopBundle\Entity\CartAddress'

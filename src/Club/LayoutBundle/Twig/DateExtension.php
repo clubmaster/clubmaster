@@ -4,18 +4,20 @@ namespace Club\LayoutBundle\Twig;
 
 class DateExtension extends \Twig_Extension
 {
+  private $container;
   private $em;
   private $security_context;
   private $session;
   private $locale;
   private $timezone;
 
-  public function __construct($em, $security_context, $session)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->security_context = $security_context;
-    $this->session = $session;
-    $this->locale = $this->session->getLocale();
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->security_context = $container->get('security.context');
+    $this->session = $container->get('session');
+    $this->locale = $container->get('request')->getLocale();
     $this->timezone = date_default_timezone_get();
 
     $dateformat = $this->session->get('club_user_dateformat');

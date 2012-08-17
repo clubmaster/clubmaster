@@ -13,7 +13,7 @@ class LocationConfig extends AbstractType
     $builder->add('value');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\LocationConfig'

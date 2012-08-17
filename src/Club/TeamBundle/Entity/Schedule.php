@@ -35,7 +35,7 @@ class Schedule
     /**
      * @var text $penalty
      *
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      */
     protected $penalty;
@@ -58,7 +58,7 @@ class Schedule
     /**
      * @var datetime $end_date
      *
-     * @ORM\Column(type="datetime", nullable="true")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $end_date;
 

@@ -12,7 +12,7 @@ class MessageAttachment extends AbstractType
     $builder->add('file');
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\MessageBundle\Entity\MessageAttachment'

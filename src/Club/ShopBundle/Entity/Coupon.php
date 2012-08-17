@@ -23,14 +23,14 @@ class Coupon
     protected $id;
 
     /**
-     * @ORM\Column(type="string", unique="true")
+     * @ORM\Column(type="string", unique=true)
      *
      * @var string $coupon_key
      */
     protected $coupon_key;
 
     /**
-     * @ORM\Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
      * @var float $value

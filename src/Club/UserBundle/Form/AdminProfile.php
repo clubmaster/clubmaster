@@ -28,7 +28,7 @@ class AdminProfile extends AbstractType
     $builder->add('profile_phone', new \Club\UserBundle\Form\AdminProfilePhone());
   }
 
-  public function getDefaultOptions(array $options)
+  public function getDefaultOptions()
   {
     return array(
       'data_class' => 'Club\UserBundle\Entity\Profile'

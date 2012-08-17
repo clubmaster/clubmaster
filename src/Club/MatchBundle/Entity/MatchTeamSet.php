@@ -31,7 +31,7 @@ class MatchTeamSet
     /**
      * @var string $value
      *
-     * @ORM\Column(type="string", length="255")
+     * @ORM\Column(type="string", length=255)
      */
     private $value;
 

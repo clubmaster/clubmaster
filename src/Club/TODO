@@ -2,6 +2,7 @@ should be able to disable products, atk, remove pay and play
 user forgot password constraint
 
 == VERSION 1.3 ==
+build new gravatar support
 checkout whats up with STUB Locale
 check out if we can do anything about confirm booking controller, have got some error about line 105, getFirstDate on a non object
 you have to be able to see all orders from a user
