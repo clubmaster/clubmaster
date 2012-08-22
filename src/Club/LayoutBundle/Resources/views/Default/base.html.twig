@@ -1,136 +1,76 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta http-equiv="content-language" content="en" />
-        <meta name="robots" content="noindex,nofollow" />
-        <title>{% block title %}ClubMaster{% endblock %}</title>
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/reset.css') }}" /> <!-- RESET -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/main.css') }}" /> <!-- MAIN STYLE SHEET -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/2col.css') }}" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
-        <link rel="alternate stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/1col.css') }}" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
-        <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/main-ie6.css') }}" /><![endif]--> <!-- MSIE6 -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/style.css') }}" /> <!-- GRAPHIC THEME -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/slimbox2.css') }}" /> <!-- LIGHTBOX -->
-        <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.18.custom.css') }}" /> <!-- JQUERY -->
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.7.2.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.slimbox2.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery.switcher.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/toggle.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/iso8601.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.18.custom.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/clublayout/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript">
-        $(document).ready(function(){
-          $(".tabs > ul").tabs();
+    <meta charset=utf-8" />
+    <title>{% block title %}ClubMaster{% endblock %}</title>
+    <meta name="description" content="ClubMaster is an open source management tool">
+    <meta name="author" content="Michael Holm">
 
-          $('#login_username').click(function() {
-            this.select();
-          });
-        });
-        </script>
+    <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" /> <!-- WRITE YOUR CSS CODE HERE -->
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.18.custom.css') }}" /> <!-- JQUERY -->
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
 
-        {% block stylesheets %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-      </head>
-    <body>
-    <div id="main">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-        <!-- Tray -->
-        <div id="tray" class="box">
+    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.7.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.18.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/iso8601.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('#login_username').click(function() {
+        this.select();
+      });
+    });
+    </script>
 
-                <p class="f-left box">
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
 
-                        <!-- Switcher -->
-                        <span class="f-left" id="switcher">
-                          <a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="{{ asset('bundles/clublayout/images/switcher-1col.gif') }}" alt="1 Column" /></a>
-                          <a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="{{ asset('bundles/clublayout/images/switcher-2col.gif') }}" alt="2 Columns" /></a>
-                        </span>
+    {% render "ClubMenuBundle:Default:topMenu" %}
 
-                        {% trans with {'%name%':'ClubMaster'} %}Project: <strong>%name%</strong>{% endtrans %}
-                </p>
+    <div class="container-fluid">
+      <div class="row-fluid">
 
-                <p class="f-right">
-                {% render 'ClubUserBundle:Misc:LocationBar' %}
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                {% trans with {'%name%':app.user} %}User: <strong>%name%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <strong><a href="{{ path('logout') }}" id="logout">{% trans %}Log out{% endtrans %}</a></strong>
-                {% endif %}
-                </p>
+        <div class="span3">
+            {% render "ClubLayoutBundle:Misc:Logo" %}
+            {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
+            {% include "ClubLayoutBundle:Default:search_form.html.twig" %}
+            {% render "ClubMenuBundle:Default:leftMenu" %}
+        </div><!--/span-->
 
-        </div> <!--  /tray -->
+        <div class="span9">
+            {% block header %}<h1>ClubMaster</h1>{% endblock %}
+            {% if is_granted('ROLE_ADMIN') %}
+                {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
+            {% endif %}
+            {% include 'ClubLayoutBundle:Default:flash.html.twig' %}
+            {% block body %}{% endblock %}
+        </div>
+      </div><!--/row-fluid -->
 
-        <hr class="noscreen" />
+      <hr>
 
-        {% render "ClubMenuBundle:Default:topMenu" %}
+      <footer>
+          <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {% render "ClubUserBundle:Misc:versionBar" %}</p>
+      </footer>
 
-        <hr class="noscreen" />
+    </div><!--/container-fluid -->
 
-        <!-- Columns -->
-        <div id="cols" class="box">
-
-                <!-- Aside (Left Column) -->
-                <div id="aside" class="box">
-
-                        <div class="padding box">
-
-                          <!-- Logo (Max. width = 200px) -->
-                          <p id="logo">{% render "ClubLayoutBundle:Misc:Logo" %}</p>
-
-                          {% if is_granted('ROLE_ADMIN') %}
-                          <!-- Search -->
-                          {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#query', 'input_id':'#query_id','url':'api/users/search'} %}
-                          <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search">
-                            <fieldset>
-                              <legend>{% trans %}Search{% endtrans %}</legend>
-                              <p><input type="text" size="17" id="query" name="query" class="input-text" />&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" class="input-submit-02" /></p>
-                            </fieldset>
-                          </form>
-                          {% endif %}
-
-                          {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                          <!-- Login form -->
-                          <form method="post" action="{{ path('login_check') }}" id="search">
-                            <fieldset>
-                              <legend>{% trans %}Login{% endtrans %}</legend>
-                              <p><input type="text" class="input-text" name="_username" id="login_username" placeholder="{% trans %}Member number{% endtrans %}" /></p>
-                              <p><input type="password" class="input-text" name="_password" placeholder="{% trans %}Password{% endtrans %}" /></p>
-                              <p><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit-02" /></p>
-                            </fieldset>
-                          </form>
-                          {% endif %}
-
-                        </div> <!-- /padding -->
-
-                        {% render "ClubMenuBundle:Default:leftMenu" %}
-
-                </div> <!-- /aside -->
-
-                <hr class="noscreen" />
-
-                <!-- Content (Right Column) -->
-                <div id="content" class="box">
-
-                        {% block header %}<h1>ClubMaster</h1>{% endblock %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                          {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
-                        {% endif %}
-                        {% include 'ClubLayoutBundle:Default:flash.html.twig' %}
-
-                        {% block body %}{% endblock %}
-                </div> <!-- /content -->
-        </div> <!-- /cols -->
-
-        <hr class="noscreen" />
-
-        <!-- Footer -->
-        <div id="footer" class="box">
-          <p class="f-left"><a href="http://www.clubmaster.org" target="_open">ClubMaster</a></p>
-          <p class="f-right">{% render "ClubUserBundle:Misc:versionBar" %}</p>
-        </div> <!-- /footer -->
-      </div> <!-- /main -->
-    </body>
+</body>
 </html>

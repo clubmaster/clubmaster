@@ -9,7 +9,6 @@
 HTML - styles
 ============================================================================= */
 
-body {font:0.8em/1.5 "arial", sans-serif;}
 #content table.style {margin:0; border-collapse:collapse;}
 #content table.width100 {width:100%;}
 #content table.style th, #content table.style td {padding:5px 5px;}

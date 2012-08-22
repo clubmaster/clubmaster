@@ -1,14 +1,15 @@
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
 
-<ul class="box">
-  {% for item in menu %}
-  <li {% if item.active is defined %}id="submenu-active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a>
-    <ul>
-    {% if item.items is defined %}
-    {% for subitem in item.items %}
-      <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
-    {% endfor %}
-    {% endif %}
+        {% for item in menu %}
+        <li class="nav-header">{{ item.name }}</li>
+        <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
+
+        {% if item.items is defined %}
+        {% for subitem in item.items %}
+        <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
     </ul>
-  </li>
-  {% endfor %}
-</ul>
+</div><!--/.well -->
