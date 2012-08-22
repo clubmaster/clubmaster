@@ -1,27 +1,4 @@
-{% if app.session.hasFlash('notice') %}
-<div class="alert alert-success">
-    <strong>{% trans %}Well done!{% endtrans %}</strong>
-    {{ app.session.flash('notice') }}
-</div>
-{% endif %}
-
-{% if app.session.hasFlash('error') %}
-<div class="alert alert-error">
-    <strong>{% trans %}Oh snap!{% endtrans %}</strong>
-    {{ app.session.flash('error') }}
-</div>
-{% endif %}
-
-{% if app.session.hasFlash('warning') %}
-<div class="alert alert-block">
-    <strong>{% trans %}Warning!{% endtrans %}</strong>
-    {{ app.session.flash('warning') }}
-</div>
-{% endif %}
-
-{% if app.session.hasFlash('info') %}
-<div class="alert alert-info">
-    <strong>{% trans %}Heads up!{% endtrans %}</strong>
-    {{ app.session.flash('info') }}
-</div>
-{% endif %}
+{% include "ClubLayoutBundle:Default:flash_success.html.twig" %}
+{% include "ClubLayoutBundle:Default:flash_info.html.twig" %}
+{% include "ClubLayoutBundle:Default:flash_warning.html.twig" %}
+{% include "ClubLayoutBundle:Default:flash_error.html.twig" %}

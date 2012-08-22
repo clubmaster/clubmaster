@@ -4,7 +4,7 @@
         <div id="login-box">
 
                 <!-- Messages -->
-                <p class="msg info">{% trans %}Enter your username or email address, and you will receive a reset password email within a few minutes.{% endtrans %}</p>
+                {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'Enter your username or email address, and you will receive a reset password email within a few minutes.'|trans} %}
 
                 <!-- Form -->
                 <form method="POST" action="{{ path('auth_forgot') }}">

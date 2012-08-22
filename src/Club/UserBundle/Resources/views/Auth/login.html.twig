@@ -6,7 +6,7 @@
                 <!-- Messages -->
                 {% include "ClubLayoutBundle:Default:flash.html.twig" %}
 
-                <p class="msg info">{% trans %}Enter your username and password.{% endtrans %}</p>
+                {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'Enter your username and password.'|trans} %}
 
                 <!-- Form -->
                 <form method="POST" action="{{ path('login_check') }}">

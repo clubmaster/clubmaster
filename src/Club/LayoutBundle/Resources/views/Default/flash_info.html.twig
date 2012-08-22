@@ -1,0 +1,13 @@
+{% if app.session.hasFlash('info') %}
+<div class="alert alert-info">
+    <strong>{% trans %}Heads up!{% endtrans %}</strong>
+    {{ app.session.flash('info') }}
+</div>
+{% endif %}
+
+{% if msg is defined %}
+<div class="alert alert-info">
+    <strong>{% trans %}Heads up!{% endtrans %}</strong>
+    {{ msg }}
+</div>
+{% endif %}
