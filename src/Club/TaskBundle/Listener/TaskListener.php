@@ -36,7 +36,7 @@ class TaskListener
 
         $this->stopTask($task);
       }
-    } catch (\PDOException $e) {
+    } catch (\Exception $e) {
     }
   }
 
