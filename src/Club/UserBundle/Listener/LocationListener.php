@@ -25,7 +25,7 @@ class LocationListener
 
       $location = $this->em->getRepository('ClubUserBundle:Location')->getFirstLocation();
       if ($location) $this->session->set('location_id', $location->getId());
-    } catch (\PDOException $e) {
+    } catch (\Exception $e) {
     }
   }
 }
