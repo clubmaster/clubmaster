@@ -1,5 +1,8 @@
 {% for log in logs %}
   {% if logs|length > 0 %}
-    <p class="msg warning">{{ log|raw }} <a href="{{ path('club_log_log_index') }}">&rArr;</a></p>
+    <div class="alert alert-block">
+    <h4>{% trans %}Warning!{% endtrans %}</h4>
+    {{ log|raw }} <a href="{{ path('club_log_log_index') }}">&rArr;</a>
+</div>
   {% endif %}
 {% endfor %}
