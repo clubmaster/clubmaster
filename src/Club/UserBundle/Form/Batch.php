@@ -2,11 +2,12 @@
 namespace Club\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Batch extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $res = array(
       'password_expire' => 'Password expire',
@@ -18,9 +19,9 @@ class Batch extends AbstractType
     ));
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array();
+    $resolver->setDefaults(array());
   }
 
   public function getName()

@@ -3,12 +3,13 @@
 namespace Club\TeamBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Schedule extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('description');
     $builder->add('penalty');
@@ -27,7 +28,7 @@ class Schedule extends AbstractType
       'required' => false,
       'multiple' => true,
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('u')
+        return $er->createQueryBuilderInterface('u')
           ->leftJoin('u.groups', 'g')
           ->leftJoin('g.role', 'r')
           ->where('r.role_name = :role')
@@ -36,11 +37,11 @@ class Schedule extends AbstractType
     ));
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\TeamBundle\Entity\Schedule'
-    );
+    ));
   }
 
   public function getName()

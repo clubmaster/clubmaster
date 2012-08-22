@@ -3,22 +3,23 @@
 namespace Club\TeamBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TeamCategory extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('team_name');
     $builder->add('description');
     $builder->add('penalty');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\TeamBundle\Entity\TeamCategory'
-    );
+    ));
   }
 
   public function getName()

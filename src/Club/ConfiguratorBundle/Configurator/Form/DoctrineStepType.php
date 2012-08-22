@@ -13,7 +13,8 @@ namespace Club\ConfiguratorBundle\Configurator\Form;
 
 use Club\ConfiguratorBundle\Configurator\Step\DoctrineStep;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Doctrine Form Type.
@@ -22,7 +23,7 @@ use Symfony\Component\Form\FormBuilder;
  */
 class DoctrineStepType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('driver', 'choice', array('choices' => DoctrineStep::getDrivers()))

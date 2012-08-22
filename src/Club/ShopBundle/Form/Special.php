@@ -3,11 +3,12 @@
 namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Special extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('product');
     $builder->add('price');
@@ -15,11 +16,11 @@ class Special extends AbstractType
     $builder->add('expire_date');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\ShopBundle\Entity\Special'
-    );
+    ));
   }
 
   public function getName()

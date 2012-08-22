@@ -3,11 +3,12 @@
 namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CheckoutAddress extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('company_name');
     $builder->add('cvr');
@@ -20,11 +21,11 @@ class CheckoutAddress extends AbstractType
     $builder->add('country');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\ShopBundle\Entity\CartAddress'
-    );
+    ));
   }
 
   public function getName()

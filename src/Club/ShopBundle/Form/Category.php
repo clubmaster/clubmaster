@@ -3,12 +3,13 @@
 namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Category extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('category_name');
     $builder->add('description');
@@ -20,17 +21,17 @@ class Category extends AbstractType
       'class' => 'Club\UserBundle\Entity\Location',
       'required' => true,
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('l')
+        return $er->createQueryBuilderInterface('l')
           ->where('l.club = 1');
       }
     ));
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\ShopBundle\Entity\Category'
-    );
+    ));
   }
 
   public function getName()

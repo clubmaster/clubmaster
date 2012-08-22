@@ -3,11 +3,12 @@
 namespace Club\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AdminUser extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('password', 'repeated', array(
       'type' => 'password',
@@ -19,11 +20,11 @@ class AdminUser extends AbstractType
     $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\UserBundle\Entity\User'
-    );
+    ));
   }
 
   public function getName()

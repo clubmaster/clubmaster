@@ -3,11 +3,12 @@
 namespace Club\MatchBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Rule extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('name');
     $builder->add('point_won');
@@ -15,11 +16,11 @@ class Rule extends AbstractType
     $builder->add('match_same_player');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
-      'data_class' => 'Club\MatchBundle\Entity\Rule'
-    );
+      $resolver->setDefaults(array(
+          'data_class' => 'Club\MatchBundle\Entity\Rule'
+      ));
   }
 
   public function getName()

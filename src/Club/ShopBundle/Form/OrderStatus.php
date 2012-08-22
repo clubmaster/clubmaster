@@ -3,12 +3,13 @@
 namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class OrderStatus extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('status_name');
     $builder->add('paid','checkbox',array(
@@ -23,11 +24,11 @@ class OrderStatus extends AbstractType
     $builder->add('priority');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\ShopBundle\Entity\OrderStatus'
-    );
+    ));
   }
 
   public function getName()
