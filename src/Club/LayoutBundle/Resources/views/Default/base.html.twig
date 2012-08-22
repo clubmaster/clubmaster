@@ -36,9 +36,11 @@
     });
     </script>
 
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
     {% block stylesheets %}{% endblock %}
     {% block javascripts %}{% endblock %}
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
 </head>
 <body>
 
@@ -49,6 +51,7 @@
 
         <div class="span3">
             {% render "ClubLayoutBundle:Misc:Logo" %}
+            {% include "ClubLayoutBundle:Default:user_form.html.twig" %}
             {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
             {% include "ClubLayoutBundle:Default:search_form.html.twig" %}
             {% render "ClubMenuBundle:Default:leftMenu" %}
