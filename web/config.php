@@ -24,7 +24,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="bundles/sensiodistribution/webconfigurator/css/install.css" media="all" />
+        <link rel="stylesheet" href="bundles/clubinstaller/css/install.css" media="all" />
         <title>Symfony Configuration</title>
     </head>
     <body>
@@ -32,7 +32,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
             <div id="symfony-content">
                 <div class="symfony-blocks-install">
                     <div class="symfony-block-logo">
-                        <img src="bundles/sensiodistribution/webconfigurator/images/logo-big.gif" alt="Symfony logo" />
+                        <img src="bundles/clubinstaller/images/logo-big.gif" alt="Symfony logo" />
                     </div>
 
                     <div class="symfony-block-content">
@@ -82,7 +82,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
 
                         <ul class="symfony-install-continue">
                             <?php if (!count($majorProblems)): ?>
-                                <li><a href="app_dev.php/_configurator/">Configure your Symfony Application online</a></li>
+                                <li><a href="index_dev.php/_configurator/">Configure your Symfony Application online</a></li>
                                 <li><a href="app_dev.php/">Bypass configuration and go to the Welcome page</a></li>
                             <?php endif; ?>
                             <?php if (count($majorProblems) || count($minorProblems)): ?>
