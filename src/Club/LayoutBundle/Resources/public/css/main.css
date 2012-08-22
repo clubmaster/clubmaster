@@ -148,7 +148,7 @@ PAGE: FORMS
 ============================================================================= */
 
 #content fieldset p {margin:10px 0;}
-#content .req {font-weight:bold;}
+#content .required {font-weight:bold;}
 
 /* =============================================================================
 PAGE: LOGIN
