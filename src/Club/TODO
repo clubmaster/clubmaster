@@ -1,5 +1,12 @@
 should be able to disable products, atk, remove pay and play
 user forgot password constraint
+fix forms:
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+:%s/Builder/BuilderInterface/g
+:%s/getDefaultOptions()/setDefaultOptions\(OptionsResolverInterface \$resolver\)/g
+:%s/return arr/\$resolver->setDefaults(arr
+
 
 == VERSION 1.3 ==
 build new gravatar support

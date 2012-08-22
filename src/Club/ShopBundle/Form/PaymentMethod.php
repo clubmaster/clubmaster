@@ -3,11 +3,12 @@
 namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PaymentMethod extends AbstractType
 {
-  public function buildForm(FormBuilder $builder, array $options)
+  public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('payment_method_name');
     $builder->add('priority');
@@ -15,11 +16,11 @@ class PaymentMethod extends AbstractType
     $builder->add('error_page');
   }
 
-  public function getDefaultOptions()
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-    return array(
+    $resolver->setDefaults(array(
       'data_class' => 'Club\ShopBundle\Entity\PaymentMethod'
-    );
+    ));
   }
 
   public function getName()
