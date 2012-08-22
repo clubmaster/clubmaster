@@ -1,27 +1,27 @@
 {% if app.session.hasFlash('notice') %}
 <div class="alert alert-success">
-    <h4>{% trans %}Well done!{% endtrans %}</h4>
+    <strong>{% trans %}Well done!{% endtrans %}</strong>
     {{ app.session.flash('notice') }}
 </div>
 {% endif %}
 
 {% if app.session.hasFlash('error') %}
 <div class="alert alert-error">
-    <h4>{% trans %}Oh snap!{% endtrans %}</h4>
+    <strong>{% trans %}Oh snap!{% endtrans %}</strong>
     {{ app.session.flash('error') }}
 </div>
 {% endif %}
 
 {% if app.session.hasFlash('warning') %}
 <div class="alert alert-block">
-    <h4>{% trans %}Warning!{% endtrans %}</h4>
+    <strong>{% trans %}Warning!{% endtrans %}</strong>
     {{ app.session.flash('warning') }}
 </div>
 {% endif %}
 
 {% if app.session.hasFlash('info') %}
 <div class="alert alert-info">
-    <h4>{% trans %}Heads up!{% endtrans %}</h4>
+    <strong>{% trans %}Heads up!{% endtrans %}</strong>
     {{ app.session.flash('info') }}
 </div>
 {% endif %}
