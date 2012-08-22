@@ -12,7 +12,6 @@ HTML - styles
 body {background-color:#eaeaea; color:#303030;}
 a {color:#0085cc;}
 a:hover, a:active, a:focus {color:#df0000;}
-#content h2 {color:#0085cc;}
 #content table.style {border:2px solid #cfcfcf;}
 #content table.style th {border-right:1px solid #0074B3; background-color:#0085cc; color:#fff;}
 #content table.style td {border:1px solid #cfcfcf;}
@@ -126,7 +125,6 @@ OTHERS
 #aside ul ul li a, #aside ul li#submenu-active ul li a {border-bottom:1px solid #cfcfcf; background-color:#f5f5f5; color:#303030;}
 #aside ul li ul li a {background-color:#e3e3e3;}
 #aside ul ul li a:hover, #aside ul ul li a:active, #aside ul ul li a:focus, #aside ul li#submenu-active ul li a:hover, #aside ul li#submenu-active ul li a:active, #aside ul li#submenu-active ul li a:focus {color:#df0000;}
-#content h1 {background-color:#303030; color:#fff;}
 #content .box-01 {border:2px solid #F2DD8C; background:#FFF5CC;}
 #content .box-01 a {color:#303030;}
 #content .box-01 a:hover, #content .box-01 a:active, #content .box-01 a:focus {color:#df0000;}
