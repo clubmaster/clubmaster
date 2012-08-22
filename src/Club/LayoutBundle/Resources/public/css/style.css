@@ -151,13 +151,3 @@ OTHERS
 .high {color:#df0000;}
 .high-bg {background:#FFB;}
 .low {color:#707070;}
-
-/* =============================================================================
-MESSAGES
-============================================================================= */
-
-.msg.warning {border:2px solid #F2DD8C; background-color:#FFF5CC;}
-.msg.warning a {color:#df0000;} .msg.warning a:hover, .msg.warning a:active, .msg.warning a:focus {color:#303030;}
-.msg.info {border:2px solid #B8E2FB; background-color:#E8F6FF;}
-.msg.done {border:2px solid #BBDF8D; background-color:#EAF7D9;}
-.msg.error {border:2px solid #FFAEAE; background-color:#FEEBEB;}
