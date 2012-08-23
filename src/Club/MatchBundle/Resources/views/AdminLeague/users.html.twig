@@ -1,9 +1,16 @@
 {% extends "ClubMatchBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_match_adminleague_index') }}">{% trans %}Back to league{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
-
-<p class="box"><a href="{{ path('club_match_adminleague_index') }}" class="btn-create"><span>{% trans %}Back to league{% endtrans %}</span></a></p>
-
 <h2>{% trans %}Add players to league{% endtrans %}</h2>
 
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user','input_id':'#form_user_id', 'url':'api/users/search'} %}

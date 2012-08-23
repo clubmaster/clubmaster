@@ -1,8 +1,16 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
-<p class="box"><a href="{{ path('admin_shop_product_new') }}" class="btn-create"><span>{% trans %}Create product{% endtrans %}</span></a></p>
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_shop_product_new') }}">{% trans %}Create product{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
+{% block body %}
 <table class="table">
   <thead>
     <tr>

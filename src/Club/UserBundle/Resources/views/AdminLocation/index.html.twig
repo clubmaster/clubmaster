@@ -1,8 +1,16 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
-<p class="box"><a href="{{ path('admin_location_new') }}" class="btn-create"><span>{% trans %}Create location{% endtrans %}</span></a></p>
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_location_new') }}">{% trans %}Create location{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
+{% block body %}
 <p>{% trans %}Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.{% endtrans %}</p>
 <p>{% trans %}If you want to change some configuration, you can change it for all child elements by change the root element configurations.{% endtrans %}</p>
 

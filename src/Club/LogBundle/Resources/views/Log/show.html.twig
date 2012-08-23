@@ -1,11 +1,16 @@
 {% extends "ClubLogBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path("club_log_log_index") }}">{% trans %}Back to list{% endtrans %}</a>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
-
-<p class="box">
-  <a class="btn" href="{{ path("club_log_log_index") }}"><span>{% trans %}Back to list{% endtrans %}</span></a>
-</p>
-
 <div class="box-03 noimage box">
 
   <h2 class="nomb">{{ log.severity }}</h2>

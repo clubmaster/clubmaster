@@ -1,3 +1,5 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
 {% block javascripts %}
 <script>
 $(document).ready(function() {
@@ -12,13 +14,17 @@ $(document).ready(function() {
 </script>
 {% endblock %}
 
-{% extends "ClubUserBundle::base.html.twig" %}
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_user_new') }}">{% trans %}Create user{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
 {% block body %}
-<p class="box">
-  <a href="{{ path('admin_user_new') }}" class="btn-create"><span>{% trans %}Create user{% endtrans %}</span></a>
-</p>
-
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 <div id="user_search" style="float: right;">

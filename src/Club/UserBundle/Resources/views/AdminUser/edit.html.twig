@@ -4,7 +4,7 @@
 
 {% include "ClubUserBundle:AdminUser:header.html.twig" %}
 
-<form method="post" action="{{ path('admin_user_edit', {'id':user.id}) }}">
+<form method="post" action="{{ path('admin_user_edit', {'id':user.id}) }}" class="form-horizontal">
   {% include "ClubUserBundle:AdminUser:form.html.twig" %}
 </form>
 

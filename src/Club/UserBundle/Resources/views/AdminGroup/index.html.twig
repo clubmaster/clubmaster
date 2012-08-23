@@ -1,11 +1,16 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_group_new') }}">{% trans %}Create group{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
-
-<p class="box">
-  <a href="{{ path('admin_group_new') }}" class="btn-info"><span>{% trans %}Create group{% endtrans %}</span></a>
-</p>
-
 <table class="table">
   <thead>
     <tr>

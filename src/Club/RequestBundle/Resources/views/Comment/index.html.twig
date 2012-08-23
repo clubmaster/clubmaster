@@ -1,13 +1,18 @@
 {% extends "ClubRequestBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<p class="box">
-  <a href="{{ path('club_request_comment_new', {'id':request.id}) }}" class="btn-info"><span>{% trans %}Create comment{% endtrans %}</span></a>
-</p>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_request_comment_new', {'id':request.id}) }}">{% trans %}Create comment{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
 {% endif %}
+{% endblock %}
 
+{% block body %}
 <table class="table">
   <tbody>
     <tr>

@@ -1,13 +1,20 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_event_adminevent_new', {'year':current|date('Y'), 'month':current|date('n')}) }}">{% trans %}Create event{% endtrans %}</a></li>
+            <li><a href="{{ path('club_event_event_ical') }}">{% trans %}iCal format{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
-
-<div class="nav-top box">
-  {% include "ClubEventBundle:AdminEvent:_navigation.html.twig" %}
-</div> <!-- /nav-top -->
-
-<p class="box"><a href="{{ path('club_event_adminevent_new', {'year':current|date('Y'), 'month':current|date('n')}) }}" class="btn-create"><span>{% trans %}Create event{% endtrans %}</span></a></p>
-
+    <div class="nav-top box">
+        {% include "ClubEventBundle:AdminEvent:_navigation.html.twig" %}
+    </div> <!-- /nav-top -->
       <!-- Calendar -->
       <table id="calendar-02" class="width100 style">
         {% for event in events %}

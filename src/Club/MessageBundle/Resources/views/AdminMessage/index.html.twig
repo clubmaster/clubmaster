@@ -1,10 +1,16 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
-{% block body %}
-<p class="box">
-  <a href="{{ path('club_message_adminmessage_new') }}" class="btn-create"><span>{% trans %}Create message{% endtrans %}</span></a>
-</p>
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_message_adminmessage_new') }}">{% trans %}Create message{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
+{% block body %}
 <table class="table">
   <thead>
     <tr>

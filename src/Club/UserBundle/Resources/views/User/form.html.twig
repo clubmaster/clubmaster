@@ -2,29 +2,24 @@
     {{ form_row(form.password) }}
 
     <legend>{% trans %}Personal Information{% endtrans %}</legend>
-
     {{ form_row(form.profile.first_name) }}
     {{ form_row(form.profile.last_name) }}
     {{ form_row(form.profile.gender) }}
     {{ form_row(form.profile.day_of_birth) }}
 
     <legend>{% trans %}Address Information{% endtrans %}</legend>
-
     {{ form_row(form.profile.profile_address.street) }}
     {{ form_row(form.profile.profile_address.postal_code) }}
     {{ form_row(form.profile.profile_address.city) }}
     {{ form_row(form.profile.profile_address.country) }}
 
     <legend>{% trans %}Email Information{% endtrans %}</legend>
-
     {% for email in form.profile.profile_emails %}
         {{ form_row(email.email_address) }}
     {% endfor %}
 
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
-
     {{ form_row(form.profile.profile_phone.phone_number) }}
 
-  {{ form_row(form._token) }}
-
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+    {{ form_row(form._token) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}

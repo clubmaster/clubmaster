@@ -1,13 +1,12 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block body %}
-
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<p class="box">
+<p>
 {% if event.isAttending(user) %}
-<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn-delete"><span>{% trans %}Unattend{% endtrans %}</span></a>
+<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn btn-danger">{% trans %}Unattend{% endtrans %}</a>
 {% else %}
-<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn-create"><span>{% trans %}Attend{% endtrans %}</span></a>
+<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn btn-success">{% trans %}Attend{% endtrans %}</a>
 {% endif %}
 </p>
 {% endif %}
