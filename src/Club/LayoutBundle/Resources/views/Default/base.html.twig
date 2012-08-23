@@ -62,13 +62,16 @@
         <div class="span9">
             {% block header %}
             <div class="page-header">
-                <h1>ClubMaster</h1>{% endblock %}
+                <h1>ClubMaster</h1>
             </div>
+            {% endblock %}
             {% if is_granted('ROLE_ADMIN') %}
                 {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
             {% endif %}
+
             {% include 'ClubLayoutBundle:Default:flash.html.twig' %}
             {% block body %}{% endblock %}
+
         </div>
       </div><!--/row-fluid -->
 
