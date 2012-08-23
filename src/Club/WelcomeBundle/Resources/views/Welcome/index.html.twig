@@ -1,7 +1,6 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="navbar">
     <div class="navbar-inner">
@@ -11,6 +10,9 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block body %}
 
 {% if welcome.content is defined %}
 {{ welcome.content|raw }}

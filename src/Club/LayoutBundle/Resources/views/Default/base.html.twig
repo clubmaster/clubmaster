@@ -61,11 +61,10 @@
         </div><!--/span-->
 
         <div class="span9">
-            {% block header %}
-            <div class="page-header">
-                <h1>ClubMaster</h1>
-            </div>
-            {% endblock %}
+
+            {% block header %}<div class="page-header"><h1>ClubMaster</h1></div>{% endblock %}
+            {% block pagenav %}{% endblock %}
+
             {% if is_granted('ROLE_ADMIN') %}
                 {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
             {% endif %}
