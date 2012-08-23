@@ -1,28 +1,20 @@
-  <fieldset>
     <legend>{% trans %}Password{% endtrans %}</legend>
+    {{ form_row(form.password) }}
 
-    <p>{{ form_row(form.password) }}</p>
-  </fieldset>
-
-  <fieldset>
     <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.first_name) }}</p>
-    <p>{{ form_row(form.profile.last_name) }}</p>
-    <p>{{ form_row(form.profile.gender) }}</p>
-    <p>{{ form_row(form.profile.day_of_birth) }}</p>
-  </fieldset>
+    {{ form_row(form.profile.first_name) }}
+    {{ form_row(form.profile.last_name) }}
+    {{ form_row(form.profile.gender) }}
+    {{ form_row(form.profile.day_of_birth) }}
 
-  <fieldset>
     <legend>{% trans %}Address Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.profile_address.street) }}</p>
     <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
     <p>{{ form_row(form.profile.profile_address.city) }}</p>
     <p>{{ form_row(form.profile.profile_address.country) }}</p>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Email Information{% endtrans %}</legend>
     <span id="email-fields" data-prototype="&lt;p&gt;&lt;label class=&quot;req&quot; for=&quot;user_profile_profile_emails_$$name$$_email_address&quot;&gt;E-mail adresse:&lt;/label&gt;&lt;br /&gt;&lt;select id=&quot;user_profile_profile_emails_$$name$$_contact_type&quot; name=&quot;user[profile][profile_emails][$$name$$][contact_type]&quot; required=&quot;required&quot;class=&quot;input-text&quot;&gt;&lt;option value=&quot;home&quot;&gt;Home&lt;/option&gt;&lt;option value=&quot;business&quot;&gt;Business&lt;/option&gt;&lt;/select&gt; &lt;input size=&quot;40&quot; type=&quot;email&quot; id=&quot;user_profile_profile_emails_$$name$$_email_address&quot; name=&quot;user[profile][profile_emails][$$name$$][email_address]&quot; required=&quot;required&quot;class=&quot;input-text&quot; value=&quot;&quot; /&gt;&lt;/p&gt;"></span>
 
@@ -35,13 +27,10 @@
     {% endfor %}
 
     <a href="#" id="add-another-email">Add another email</a>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
-  </fieldset>
 
   {{ form_row(form._token) }}
 

@@ -18,7 +18,9 @@ class AdminProfile extends AbstractType
         'female' => 'Female'
       )
     ));
-    $builder->add('day_of_birth','birthday');
+    $builder->add('day_of_birth','birthday', array(
+        'widget' => 'single_text'
+    ));
     $builder->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress());
     $builder->add('profile_emails', 'collection', array(
       'type' => new \Club\UserBundle\Form\AdminProfileEmail(),
