@@ -14,7 +14,7 @@ class UserGroup extends AbstractType
     $builder->add('groups','entity',array(
       'class' => 'Club\UserBundle\Entity\Group',
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilderInterface('g')
+        return $er->createQueryBuilder('g')
           ->where("g.group_type=:type")
           ->setParameter('type','static');
       },

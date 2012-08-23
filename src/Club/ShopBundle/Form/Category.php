@@ -21,7 +21,7 @@ class Category extends AbstractType
       'class' => 'Club\UserBundle\Entity\Location',
       'required' => true,
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilderInterface('l')
+        return $er->createQueryBuilder('l')
           ->where('l.club = 1');
       }
     ));

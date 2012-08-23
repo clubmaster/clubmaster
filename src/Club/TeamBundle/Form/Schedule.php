@@ -28,7 +28,7 @@ class Schedule extends AbstractType
       'required' => false,
       'multiple' => true,
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilderInterface('u')
+        return $er->createQueryBuilder('u')
           ->leftJoin('u.groups', 'g')
           ->leftJoin('g.role', 'r')
           ->where('r.role_name = :role')

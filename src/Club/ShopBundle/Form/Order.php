@@ -14,7 +14,7 @@ class Order extends AbstractType
     $builder->add('order_status', 'entity', array(
       'class' => 'Club\ShopBundle\Entity\OrderStatus',
       'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilderInterface('os')
+        return $er->createQueryBuilder('os')
           ->orderBy('os.priority', 'ASC');
       }
     ));
