@@ -1,7 +1,13 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_event_event_ical') }}" class="btn-info"><span>{% trans %}iCal format{% endtrans %}</span></a></p>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_event_event_ical') }}">{% trans %}iCal format{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
 
 {% for event in events %}
 <div class="box-03 event box">
@@ -15,9 +21,6 @@
 </div> <!-- /box-03 -->
 
 {% else %}
-<div class="box-03 event box">
-  <h2 class="nomb">{% trans %}No events{% endtrans %}</h2>
-    <p class="nomt low"><em>{% trans %}There are no planned events.{% endtrans %}</em></p>
-  </div> <!-- /box-03 -->
+    {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'There are no planned events.'|trans} %}
 {% endfor %}
 {% endblock %}
