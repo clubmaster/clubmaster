@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_request_playermarket_edit', {'id':request.id}) }}">
+<form method="post" action="{{ path('club_request_playermarket_edit', {'id':request.id}) }}" class="form-horizontal">
 {% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 

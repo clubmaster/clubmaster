@@ -1,7 +1,6 @@
 {% extends "ClubRequestBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="navbar">
     <div class="navbar-inner">
@@ -11,7 +10,9 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
 
+{% block body %}
 <p>{% trans %}If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.{% endtrans %}</p>
 <table class="table">
   <thead>
