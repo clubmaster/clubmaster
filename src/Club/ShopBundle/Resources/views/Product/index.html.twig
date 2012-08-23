@@ -1,7 +1,7 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<p class="box"><a class="btn-create" href="{{ path("shop_product_cart",{"id":product.id}) }}"><span>{% trans %}Put in cart{% endtrans %}</span></a></p>
+<p><a class="btn btn-primary" href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a></p>
 
 <div class="box-03 noimage box">
 

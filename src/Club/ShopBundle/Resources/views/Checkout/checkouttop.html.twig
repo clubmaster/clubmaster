@@ -1,21 +1,22 @@
-<span class="label {% if page == 'view' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></span>
+<p>
+    <a class="btn btn-primary" href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a>
 
 {% if cart.cartProducts|length > 0 %}
-<span class="label {% if page == 'shipping' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_shipping') }}">{% trans %}Choose shipping{% endtrans %}</a></span>
+<a class="btn btn-primary" href="{{ path('shop_checkout_shipping') }}">{% trans %}Choose shipping{% endtrans %}</a>
 {% else %}
-<span class="label label-06">{% trans %}Choose shipping{% endtrans %}</span>
+<button class="btn">{% trans %}Choose shipping{% endtrans %}</button>
 {% endif %}
 
-{% if cart.shipping %}<span class="label {% if page == 'payment' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_payment') }}">{% trans %}Choose payment{% endtrans %}</a></span>
+{% if cart.shipping %}<a class="btn btn-primary" href="{{ path('shop_checkout_payment') }}">{% trans %}Choose payment{% endtrans %}</a>
 {% else %}
-<span class="label label-06">{% trans %}Choose payment{% endtrans %}</span>
+<button class="btn">{% trans %}Choose payment{% endtrans %}</button>
 {% endif %}
 
 {% if cart.paymentMethod %}
-<span class="label {% if page == 'review' %}label-03{% else %}label-06{% endif %}"><a href="{{ path('shop_checkout_review') }}">{% trans %}Review order{% endtrans %}</a></span>
+<a class="btn btn-primary" href="{{ path('shop_checkout_review') }}">{% trans %}Review order{% endtrans %}</a>
 {% else %}
-<span class="label label-06">{% trans %}Review order{% endtrans %}</span>
+<button class="btn">{% trans %}Review order{% endtrans %}</button>
 {% endif %}
 
-<span class="label label-06">{% trans %}Done{% endtrans %}</span>
+<button class="btn">{% trans %}Done{% endtrans %}</button>
 

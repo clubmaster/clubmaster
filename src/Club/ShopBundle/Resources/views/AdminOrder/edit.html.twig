@@ -1,14 +1,20 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% if not order.paid %}
-<p class="box">
-  <a href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}" class="btn-info"><span>{% trans %}Register payment{% endtrans %}</span></a>
-  <a href="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}" class="btn-info"><span>{% trans %}Edit products{% endtrans %}</span></a>
-</p>
-{% endif %}
 
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">{% trans %}Register payment{% endtrans %}</a></li>
+            <li><a href="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}">{% trans %}Edit products{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block body %}
 <h2>{% trans %}Order Information{% endtrans %}</h2>
 
 <form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">

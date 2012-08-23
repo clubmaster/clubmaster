@@ -9,12 +9,13 @@
 <h3>{% trans %}Order{% endtrans %}</h3>
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
+</div>
 
-<p class="box">
-  <a href="{{ path('shop_checkout_empty') }}" class="btn-info"><span>{% trans %}Empty cart{% endtrans %}</span></a>
-  <a href="{{ path('shop') }}" class="btn-info"><span>{% trans %}Continue shopping{% endtrans %}</span></a>
-  <a href="{{ path('club_shop_coupon_add') }}" class="btn-info"><span>{% trans %}Use coupon{% endtrans %}</span></a>
-  <a href="{{ path('shop_checkout_shipping') }}" class="btn-info"><span>{% trans %}Checkout{% endtrans %}</span></a>
+<p>
+  <a href="{{ path('shop_checkout_empty') }}" class="btn btn-primary">{% trans %}Empty cart{% endtrans %}</a>
+  <a href="{{ path('shop') }}" class="btn btn-primary">{% trans %}Continue shopping{% endtrans %}</a>
+  <a href="{{ path('club_shop_coupon_add') }}" class="btn btn-primary">{% trans %}Use coupon{% endtrans %}</a>
+  <a href="{{ path('shop_checkout_shipping') }}" class="btn btn-primary">{% trans %}Checkout{% endtrans %}</a>
 </p>
 
 {% endblock %}
