@@ -1,8 +1,8 @@
 should be able to disable products, atk, remove pay and play
 user forgot password constraint
 obey limit on ajax search request
-add feedback subject constraint
 replace all p class="box"
+fix error handling on forms
 
 == VERSION 1.3 ==
 build new gravatar support

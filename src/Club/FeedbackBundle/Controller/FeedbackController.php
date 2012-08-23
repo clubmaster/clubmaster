@@ -23,17 +23,15 @@ class FeedbackController extends Controller
       'other' => $this->get('translator')->trans('Other')
     );
 
-    $data = array();
+    $feedback = new \Club\FeedbackBundle\Model\Feedback();
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
       $user = $this->get('security.context')->getToken()->getUser();
-      $data = array(
-        'name' => $user->getProfile()->getName()
-      );
+      $feedback->name = $user->getProfile()->getName();
 
       if ($user->getProfile()->getProfileEmail())
-        $data['email'] = $user->getProfile()->getProfileEmail()->getEmailAddress();
+        $feedback->email = $user->getProfile()->getProfileEmail()->getEmailAddress();
     }
-    $form = $this->createFormBuilder($data)
+    $form = $this->createFormBuilder($feedback)
       ->add('name','text',array(
         'required' => false
       ))
@@ -58,8 +56,7 @@ class FeedbackController extends Controller
       $form->bindRequest($this->getRequest());
 
       if ($form->isValid()) {
-        $data = $form->getData();
-        $this->sendData($data);
+        $this->sendData($feedback);
 
         return $this->redirect($this->generateUrl('club_feedback_feedback_index'));
       }
@@ -69,14 +66,14 @@ class FeedbackController extends Controller
     );
   }
 
-  private function sendData(array $data)
+  private function sendData(\Club\FeedbackBundle\Model\Feedback $feedback)
   {
     $host = 'loopback.clubmaster.dk';
     $fp = @fsockopen($host,80);
 
-    $data['host'] = $this->generateUrl('homepage', array(), true);
+    $feedback->host = $this->generateUrl('homepage', array(), true);
     $str = '';
-    foreach ($data as $key=>$value) {
+    foreach ($feedback as $key=>$value) {
       $str .= $key.'='.$value.'&';
     }
 
