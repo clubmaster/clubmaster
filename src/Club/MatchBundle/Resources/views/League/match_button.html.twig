@@ -1,15 +1,8 @@
   {% if is_granted('IS_AUTHENTICATED_FULLY') and league.isOpen %}
   {% if league.inviteOnly and league.canPlay(app.user) %}
 
-  <p class="box">
-    <a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
-  </p>
-
+  <p><a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
   {% elseif not league.inviteOnly  %}
-
-  <p class="box">
-    <a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
-  </p>
-
+    <p><a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
   {% endif %}
   {% endif %}

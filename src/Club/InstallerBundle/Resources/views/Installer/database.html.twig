@@ -8,13 +8,13 @@
 {% if app.session.hasFlash('error') %}
   <p>{% trans %}An error occur, please correct the problem and try again.{% endtrans %}</p>
 
-  <p class="box">
-    <a href="{{ path("club_installer_installer_database") }}" class="btn"><span>{% trans %}Try again{% endtrans %}</span></a>
+  <p>
+    <a href="{{ path("club_installer_installer_database") }}" class="btn">{% trans %}Try again{% endtrans %}</a>
   </p>
 
 {% else %}
-  <p class="box">
-    <a href="{{ path("club_installer_installer_migrate") }}" class="btn"><span>{% trans %}Install database{% endtrans %}</span></a>
+  <p>
+    <a href="{{ path("club_installer_installer_migrate") }}" class="btn">{% trans %}Install database{% endtrans %}</a>
   </p>
 {% endif %}
 {% endblock %}

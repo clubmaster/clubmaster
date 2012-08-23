@@ -38,7 +38,7 @@
 <h2>{{ date|club_date('full') }} <input type="hidden" name="date" id="date" /></h2>
 </form>
 
-<p class="box">
+<p>
 {% for item in nav %}
   <a class="btn" href="{{ path('club_booking_overview_index', {'date':item|date('Y-m-d')}) }}"><span>{{ item|club_day }} &raquo;</span></a>
 {% endfor %}

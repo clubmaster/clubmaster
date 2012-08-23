@@ -1,6 +1,5 @@
 should be able to disable products, atk, remove pay and play
 obey limit on ajax search request
-replace all p class="box"
 fix error handling on forms
 
 == VERSION 1.3 ==
