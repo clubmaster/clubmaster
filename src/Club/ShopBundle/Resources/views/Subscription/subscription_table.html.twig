@@ -1,7 +1,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>{% trans %}Active{% endtrans %}</th>
       <th>{% trans %}Type{% endtrans %}</th>
       <th>{% trans %}Name{% endtrans %}</th>
       <th>{% trans %}Start date{% endtrans %}</th>
@@ -11,13 +10,12 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for subscription in subscriptions %}
-    <tr>
-      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.active} %}</td>
+    <tr class="{% if subscription.active %}success{% else %}error{% endif %}">
       <td>{{ subscription.type|capitalize }}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|club_datetime }}</td>
@@ -38,7 +36,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="6">{% trans %}You do not have any subscriptions.{% endtrans %}</td>
+      <td colspan="5">{% trans %}You do not have any subscriptions.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>
