@@ -11,7 +11,11 @@ class Blog extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('title');
-    $builder->add('message');
+    $builder->add('message', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
