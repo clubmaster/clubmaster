@@ -40,7 +40,7 @@ $(document).ready(function() {
       {% include "ClubUserBundle:AdminUser:field.html.twig" with {'field_name':'first_name', 'field_text':'Name'|trans} %}
       <th>{% trans %}Phone{% endtrans %}</th>
       <th>{% trans %}Email{% endtrans %}</th>
-      <th>{% trans %}Action{% endtrans %}</th>
+      <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
