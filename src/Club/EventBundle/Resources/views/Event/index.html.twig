@@ -1,6 +1,6 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
@@ -8,7 +8,9 @@
         </ul>
     </div>
 </div>
+{% endblock %}
 
+{% block body %}
 {% for event in events %}
 <div class="box-03 event box">
 

@@ -1,4 +1,9 @@
 /* WRITE YOUR CSS CODE HERE */
+textarea.big {
+    width: 80%;
+    height: 300px;
+}
+
 div.time_period {
   width: 100%;
   border: none;

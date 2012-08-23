@@ -47,7 +47,10 @@ class FeedbackController extends Controller
         'required' => true
       ))
       ->add('message','textarea',array(
-        'required' => true
+          'required' => true,
+          'attr' => array(
+              'class' => 'big'
+          )
       ))
       ->getForm();
 
@@ -56,6 +59,7 @@ class FeedbackController extends Controller
 
       if ($form->isValid()) {
         $data = $form->getData();
+        die('meh');
         $this->sendData($data);
 
         return $this->redirect($this->generateUrl('club_feedback_feedback_index'));

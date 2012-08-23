@@ -2,20 +2,14 @@
 
 {% block body %}
 
-        <p>{% trans %}All messages in this form will go back to the developers of the system, so feel free to give any feedback that could help improve the system.{% endtrans %}</p>
-        <!-- Contact -->
-        <fieldset>
-          <legend>Feedback</legend>
+<p>{% trans %}All messages in this form will go back to the developers of the system, so feel free to give any feedback that could help improve the system.{% endtrans %}</p>
 
-          <form method="POST" action="{{ path('club_feedback_feedback_index') }}">
-          {{ form_widget(form) }}
+<form method="POST" action="{{ path('club_feedback_feedback_index') }}" class="form-horizontal">
 
-        <hr class="noscreen" />
-        <div class="box-01">
-          <p class="nom"><input type="submit" value="{% trans %}Send{% endtrans %}" class="input-submit" /></p>
-        </div> <!-- /box-01 -->
-        </form>
+    <legend>Feedback</legend>
+    {{ form_widget(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'novalidate':true} %}
 
-        </fieldset>
+</form>
 
 {% endblock %}
