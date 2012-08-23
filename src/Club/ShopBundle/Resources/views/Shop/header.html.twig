@@ -1,8 +1,16 @@
-<p class="box">
-  <a href="{{ path('shop_checkout') }}" class="btn-info"><span>{% trans %}View cart{% endtrans %}</span></a>
-  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-  <a href="{{ path('shop_order') }}" class="btn-info"><span>{% trans %}Order{% endtrans %}</span></a>
-  <a href="{{ path('shop_subscription') }}" class="btn-info"><span>{% trans %}Subscription{% endtrans %}</span></a>
-  {% endif %}
-</p>
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+
+            <li><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="{{ path('shop_order') }}">{% trans %}Order{% endtrans %}</a></li>
+            <li><a href="{{ path('shop_subscription') }}">{% trans %}Subscription{% endtrans %}</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
