@@ -15,28 +15,30 @@ class UserController extends Controller
 {
   /**
    * @Route("/", defaults={"query" = null})
+   * @Route("/search")
    * @Route("/search/{query}")
    * @Method("GET")
    */
-  public function indexAction($query)
+  public function indexAction($query=null)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+      $request = $this->getRequest();
+      $query = ($request->get('query')) ? $request->get('query') : $query;
+      $em = $this->getDoctrine()->getEntityManager();
 
-    if ($query == null) {
-      $users = $em->getRepository('ClubUserBundle:User')->getBySearch();
-    } else {
-      $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
-        'query' => $query
-      ));
-    }
+      if ($query == null) {
+          $users = $em->getRepository('ClubUserBundle:User')->getBySearch();
+      } else {
+          $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
+              'query' => $query
+          ));
+      }
 
-    $res = array();
-    foreach ($users as $user) {
-      $res[] = $user->toArray('simple');
-    }
+      $res = array();
+      foreach ($users as $user) {
+          $res[] = $user->toArray('simple');
+      }
 
-    $response = new Response($this->get('club_api.encode')->encode($res));
-    return $response;
+      return new Response($this->get('club_api.encode')->encode($res));
   }
 
   /**

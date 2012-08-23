@@ -1,10 +1,22 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block header  %}
+<div class="page-header">
+    <h1>{% trans %}Members{% endtrans %}</h1>
+</div>
+{% endblock %}
+
 {% block body %}
 
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#query_query', 'input_id':'','url':'api/users/search'} %}
 
-<h2>{% trans %}Members{% endtrans %}</h2>
+<div class="navbar">
+  <div class="navbar-inner">
+    <form class="navbar-search pull-right">
+      <input type="text" class="search-query" placeholder="Search" id="">
+    </form>
+  </div>
+</div>
 
 <!-- Actions -->
 <form method="post" action="">
@@ -25,24 +37,22 @@
 <table class="table">
   <thead>
     <tr>
-      <th>{% trans %}Number{% endtrans %}</th>
       <th>{% trans %}Name{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="2">&#160;</td>
+      <td>&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for user in users %}
     <tr>
-      <td>{{ user.memberNumber }}</td>
       <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.name }}</a></td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="2">{% trans %}There are no users in the system.{% endtrans %}</td>
+    <td>{% trans %}There are no users in the system.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

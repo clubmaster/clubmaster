@@ -4,33 +4,32 @@
   var url = "{{ path('homepage') }}";
 
   $(document).ready(function() {
-    $( "{{ search_field }}" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax({
-          url: url + "{{ url }}/" + $("{{ search_field }}").attr("value"),
-          dataType: "json",
-          success: function( data ) {
-            response( $.map( data.data, function( item ) {
-              return {
-                value: item.first_name + " " + item.last_name,
-                label: "("+item.member_number+") "+item.first_name + " " + item.last_name,
-                id: item.id
-              }
-            }));
-          }
-        });
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        $("{{ input_id }}").attr("value", ui.item.id);
-      },
-      open: function() {
-        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-      },
-      close: function() {
-        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-      }
+
+    $('.search-query').autocomplete({
+        source: function( request, response) {
+            $.ajax({
+                url: url + "api/users/search",
+                dataType: "json",
+                data: {
+                    maxRows: 12,
+                    query: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.data, function( item ) {
+                        return {
+                            label: (item.first_name +' ' + item.last_name),
+                            value: (item.first_name +' ' + item.last_name),
+                            id: item.id
+                        }
+                    }));
+                }
+            });
+        },
+        select: function( event, ui ) {
+            window.location = '{{ path('homepage') }}members/' + ui.item.id;
+        }
     });
+
   });
 </script>
 {% endblock %}
