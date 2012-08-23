@@ -81,7 +81,7 @@ class UserSettingController extends Controller
     $form  = $this->createFormBuilder($settings)
       ->add('receive_email_on_booking', 'choice', array(
         'choices' => $boolean,
-        'required' => false
+        'required' => false,
       ))
       ->add('public_booking_activity', 'choice', array(
         'choices' => $boolean,

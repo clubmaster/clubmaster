@@ -4,6 +4,9 @@
         {{ form_label(form) }}
         <div class="controls">
             {{ form_widget(form) }}
+            {% if help is defined %}
+                <span class="help-block">{{ help }}</span>
+            {% endif %}
         </div>
     </div>
     {{ form_errors(form) }}

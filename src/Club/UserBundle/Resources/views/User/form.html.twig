@@ -10,59 +10,21 @@
 
     <legend>{% trans %}Address Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.profile_address.street) }}</p>
-    <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
-    <p>{{ form_row(form.profile.profile_address.city) }}</p>
-    <p>{{ form_row(form.profile.profile_address.country) }}</p>
+    {{ form_row(form.profile.profile_address.street) }}
+    {{ form_row(form.profile.profile_address.postal_code) }}
+    {{ form_row(form.profile.profile_address.city) }}
+    {{ form_row(form.profile.profile_address.country) }}
 
     <legend>{% trans %}Email Information{% endtrans %}</legend>
-    <span id="email-fields" data-prototype="&lt;p&gt;&lt;label class=&quot;req&quot; for=&quot;user_profile_profile_emails_$$name$$_email_address&quot;&gt;E-mail adresse:&lt;/label&gt;&lt;br /&gt;&lt;select id=&quot;user_profile_profile_emails_$$name$$_contact_type&quot; name=&quot;user[profile][profile_emails][$$name$$][contact_type]&quot; required=&quot;required&quot;class=&quot;input-text&quot;&gt;&lt;option value=&quot;home&quot;&gt;Home&lt;/option&gt;&lt;option value=&quot;business&quot;&gt;Business&lt;/option&gt;&lt;/select&gt; &lt;input size=&quot;40&quot; type=&quot;email&quot; id=&quot;user_profile_profile_emails_$$name$$_email_address&quot; name=&quot;user[profile][profile_emails][$$name$$][email_address]&quot; required=&quot;required&quot;class=&quot;input-text&quot; value=&quot;&quot; /&gt;&lt;/p&gt;"></span>
 
     {% for email in form.profile.profile_emails %}
-    <p>
-      {{ form_label(email.email_address) }}<br />
-      {{ form_widget(email.contact_type, {'attr': {'class':'input-text'}}) }}
-      {{ form_widget(email.email_address, {'attr': {'class':'input-text'}}) }} <a href="#" class="delete_email">Slet</a>
-    </p>
+        {{ form_row(email.email_address) }}
     {% endfor %}
-
-    <a href="#" id="add-another-email">Add another email</a>
 
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
+    {{ form_row(form.profile.profile_phone.phone_number) }}
 
   {{ form_row(form._token) }}
 
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
-{% block javascripts %}
-<script type="text/javascript">
-    // keep track of how many email fields have been rendered
-    var emailCount = '{{ form.profile.profile_emails | length }}';
-
-    jQuery(document).ready(function() {
-        jQuery('#add-another-email').click(function() {
-            var emailList = jQuery('#email-fields');
-
-            // grab the prototype template
-            var newWidget = emailList.attr('data-prototype');
-            // replace the "$$name$$" used in the id and name of the prototype
-            // with a number that's unique to our emails
-            // end name attribute looks like name="contact[emails][2]"
-            newWidget = newWidget.replace(/\$\$name\$\$/g, emailCount);
-            emailCount++;
-
-            // create a new list element and add it to our list
-            var newLi = jQuery('<p></p>').html(newWidget);
-            newLi.appendTo(jQuery('#email-fields'));
-
-            return false;
-        });
-
-        jQuery('.delete_email').click(function() {
-          $(this).parent("p:first").remove();
-        });
-    })
-</script>
-{% endblock %}

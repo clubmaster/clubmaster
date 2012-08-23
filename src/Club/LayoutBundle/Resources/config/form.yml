@@ -1,0 +1,5 @@
+services:
+  club_layout_form_extension:
+    class: Club\LayoutBundle\Form\HelpTypeExtension
+    tags:
+      - { name: "form.type_extension", alias: "field" }
