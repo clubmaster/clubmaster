@@ -60,7 +60,10 @@
         </div><!--/span-->
 
         <div class="span9">
-            {% block header %}<h1>ClubMaster</h1>{% endblock %}
+            {% block header %}
+            <div class="page-header">
+                <h1>ClubMaster</h1>{% endblock %}
+            </div>
             {% if is_granted('ROLE_ADMIN') %}
                 {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
             {% endif %}
