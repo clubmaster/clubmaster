@@ -1,5 +1,5 @@
+            {% if is_granted('ROLE_ADMIN') %}
             <div class="well sidebar-nav">
-                {% if is_granted('ROLE_ADMIN') %}
                 <!-- Search -->
                 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#query', 'input_id':'#query_id','url':'api/users/search'} %}
                 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search">
@@ -8,6 +8,6 @@
                            <p><input type="text" size="17" id="query" name="query" class="input-text" />&nbsp;<input type="submit" value="{% trans %}OK{% endtrans %}" class="input-submit-02" /></p>
                     </fieldset>
                 </form>
-                {% endif %}
             </div>
+            {% endif %}
 
