@@ -3,9 +3,13 @@
 {% block body %}
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<p class="box">
-  <a href="{{ path('club_welcome_blog_new') }}" class="btn-info"><span>{% trans %}Post blog{% endtrans %}</span></a>
-</p>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_welcome_blog_new') }}">{% trans %}Post blog{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
 {% endif %}
 
 {% if welcome.content is defined %}

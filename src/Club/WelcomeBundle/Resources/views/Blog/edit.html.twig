@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_welcome_blog_edit', {'id':blog.id}) }}">
+<form method="post" action="{{ path('club_welcome_blog_edit', {'id':blog.id}) }}" class="form-horizontal">
 {% include "ClubWelcomeBundle:Blog:form.html.twig" %}
 </form>
 
