@@ -37,6 +37,7 @@ class ForgotPassword
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
+     * @Orm\JoinColumn(onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\User
      */

@@ -1,5 +1,4 @@
 should be able to disable products, atk, remove pay and play
-user forgot password constraint
 obey limit on ajax search request
 replace all p class="box"
 fix error handling on forms
