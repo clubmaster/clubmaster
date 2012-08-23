@@ -1,4 +1,8 @@
 /* WRITE YOUR CSS CODE HERE */
+table.table th.action {
+    width: 120px;
+}
+
 textarea.big {
     width: 80%;
     height: 300px;

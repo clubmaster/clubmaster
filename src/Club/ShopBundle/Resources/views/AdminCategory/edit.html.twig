@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('admin_shop_category_edit', {'id':category.id}) }}">
+<form method="post" action="{{ path('admin_shop_category_edit', {'id':category.id}) }}" class="form-horizontal">
 {% include "ClubLayoutBundle:Default:form.html.twig" %}
 </form>
 
