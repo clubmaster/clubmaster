@@ -4,9 +4,7 @@
 
 <p>{% trans %}If you have a long list of users you want to import, you can use this page.{% endtrans %}</p>
 
-<form method="post" action="{{ path('club_user_adminuserimport_import') }}" {{ form_enctype(form) }}>
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'legend':'Import CSV','button':'Import'|trans} %}
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'legend':'Import CSV','button':'Import'|trans, 'path':path('club_user_adminuserimport_import')} %}
 
 <h2>{% trans %}Explation{% endtrans %}</h2>
 <table class="table">

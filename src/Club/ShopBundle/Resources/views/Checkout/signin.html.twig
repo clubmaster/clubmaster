@@ -4,78 +4,50 @@
 <h2>{% trans %}Checkout{% endtrans %}</h2>
 
 <div class="col50">
-  <fieldset>
+    <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
     <legend>{% trans %}Existing member{% endtrans %}</legend>
     <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
 
-    <form method="post" action="{{ path('login_check') }}">
     <p><label class="req" for="_username">{% trans %}Username{% endtrans %}</label><br /><input size="40" type="text" id="_username" name="_username" required="required" class="input-text" /></p>
     <p><label class="req" for="_password">{% trans %}Password{% endtrans %}</label><br /><input size="40" type="password" id="_password" name="_password" required="required" class="input-text" /></p>
 
-  <hr class="noscreen" />
-  <div class="box-01">
-    <p class="nom"><input type="submit" value="{% trans %}Login{% endtrans %}" class="input-submit" /></p>
-  </div> <!-- /box-01 -->
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Login'|trans} %}
 
     </form>
-
-  </fieldset>
 </div>
 
 <div class="col50 f-right">
-  <fieldset>
+    <form method="POST" action="{{ path('club_shop_checkout_signin') }}" class="form-horizontal">
     <legend>{% trans %}New member{% endtrans %}</legend>
     <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
 
-    <form method="POST" action="{{ path('club_shop_checkout_signin') }}">
-
-
-  <fieldset>
     <legend>{% trans %}Password{% endtrans %}</legend>
-
     <p>{{ form_row(form.password) }}</p>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
     <p>{{ form_row(form.profile.first_name) }}</p>
     <p>{{ form_row(form.profile.last_name) }}</p>
     <p>{{ form_row(form.profile.gender) }}</p>
     <p>{{ form_row(form.profile.day_of_birth) }}</p>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Address Information{% endtrans %}</legend>
-
     <p>{{ form_row(form.profile.profile_address.street) }}</p>
     <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
     <p>{{ form_row(form.profile.profile_address.city) }}</p>
     <p>{{ form_row(form.profile.profile_address.state) }}</p>
     <p>{{ form_row(form.profile.profile_address.country) }}</p>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Email Information{% endtrans %}</legend>
-
     <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
-  </fieldset>
 
-  <fieldset>
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
-
     <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
-  </fieldset>
 
-  {{ form_row(form._token) }}
+    {{ form_row(form._token) }}
 
-  <hr class="noscreen" />
-  <div class="box-01">
-    <p class="nom"><input type="submit" value="{% trans %}Create account{% endtrans %}" class="input-submit" /></p>
-  </div> <!-- /box-01 -->
-
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Create account'|trans} %}
     </form>
-  </fieldset>
 </div>
 
 {% endblock %}

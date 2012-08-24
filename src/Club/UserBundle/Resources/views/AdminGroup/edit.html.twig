@@ -3,7 +3,7 @@
 {% block body %}
 <h2>{% trans %}Group{% endtrans %}</h2>
 
-<form method="post" action="{{ path('admin_group_edit', {'id':group.id}) }}">
+<form method="post" action="{{ path('admin_group_edit', {'id':group.id}) }}" class="form-horizontal">
 {% include "ClubUserBundle:AdminGroup:form.html.twig" %}
 </form>
 

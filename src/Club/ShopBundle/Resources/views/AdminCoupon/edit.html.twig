@@ -1,9 +1,5 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('club_shop_admincoupon_edit', {'id':coupon.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_shop_admincoupon_edit', {'id':coupon.id})} %}
 {% endblock %}

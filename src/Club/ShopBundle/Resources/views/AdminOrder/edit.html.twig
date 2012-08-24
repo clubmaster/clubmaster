@@ -17,9 +17,7 @@
 {% block body %}
 <h2>{% trans %}Order Information{% endtrans %}</h2>
 
-<form method="post" action="{{ path('admin_shop_order_edit', {'id':order.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_shop_order_edit', {'id':order.id})} %}
 
 {% include "ClubShopBundle:Order:order_form.html.twig" %}
 {% include "ClubShopBundle:Order:order_history.html.twig" %}

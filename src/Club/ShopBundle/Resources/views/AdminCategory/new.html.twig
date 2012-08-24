@@ -1,9 +1,5 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('admin_shop_category_new') }}" class="form-horizontal">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_shop_category_new')} %}
 {% endblock %}

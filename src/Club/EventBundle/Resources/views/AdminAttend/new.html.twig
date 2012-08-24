@@ -1,9 +1,5 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('club_event_adminevent_new') }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_event_adminevent_new')} %}
 {% endblock %}

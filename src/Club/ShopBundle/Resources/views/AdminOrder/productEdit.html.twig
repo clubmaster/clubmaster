@@ -4,15 +4,15 @@
 
 <h2>{% trans with {'%order%':order.orderNumber} %}Edit order %order%{% endtrans %}</h2>
 
-<form method="post" action="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}">
+<form method="post" action="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}" class="form-horizontal">
 
 {% for product in form.order_products %}
   {{ form_label(product, product.vars.value.product.productName) }}
   {{ form_widget(product) }}
 {% endfor %}
 
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 {{ form_rest(form) }}
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
 </form>
 

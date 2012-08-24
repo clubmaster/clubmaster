@@ -9,10 +9,9 @@
 <h2>{% trans %}Other match{% endtrans %}</h2>
 <p>{% trans %}This match is just to keep track of your wins and losses, it will not end up on any ranking list.{% endtrans %}</p>
 
-<form method="post" action="{{ path('club_match_match_new') }}">
+<form method="post" action="{{ path('club_match_match_new') }}" class="form-horizontal">
 
   <!-- Input Text -->
-  <fieldset>
     <legend>{% trans %}Insert match{% endtrans %}</legend>
 
     <!-- Left column -->
@@ -54,7 +53,6 @@
     </div> <!-- /col50 -->
 
     <div class="fix"></div>
-  </fieldset>
 
   {{ form_rest(form) }}
 
