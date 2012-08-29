@@ -28,9 +28,8 @@ class MenuListener
           )
         )
       );
+      $event->appendItem($menu);
     }
-
-    $event->appendItem($menu);
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)

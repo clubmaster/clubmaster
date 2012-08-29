@@ -22,9 +22,8 @@ class MenuListener
         'name' => $this->translator->trans('Tournament'),
         'route' => $this->router->generate('club_tournament_admintournament_index')
       );
+      $event->appendItem($menu);
     }
-
-    $event->appendItem($menu);
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)

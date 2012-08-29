@@ -23,8 +23,7 @@ class MenuListener
         'route' => $this->router->generate('club_checkin_admincheckin_index'),
         'items' => array()
       );
+      $event->appendItem($menu);
     }
-
-    $event->appendItem($menu);
   }
 }

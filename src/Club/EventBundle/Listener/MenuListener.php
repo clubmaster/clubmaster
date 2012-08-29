@@ -33,8 +33,8 @@ class MenuListener
         'route' => $this->router->generate('admin_event_event'),
         'items' => array()
       );
-    }
 
-    $event->appendItem($menu);
+      $event->appendItem($menu);
+    }
   }
 }
