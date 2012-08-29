@@ -2,6 +2,7 @@ should be able to disable products, atk, remove pay and play
 obey limit on ajax search request
 fix error handling on forms
 fix all forms class="form-horizontal"
+dont show that many blogs on frontpage, link to the blog page where we have to list all blogs
 
 == VERSION 1.3 ==
 build new gravatar support
