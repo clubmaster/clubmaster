@@ -87,7 +87,7 @@ class MenuListener
 
         $menu[11] = array(
             'name' => $this->translator->trans('Members'),
-            'route' => $this->router->generate('club_request_playermarket_index'),
+            'route' => $this->router->generate('club_user_member_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/group.png',
             'text' => 'Se en liste over alle medlemmerne, skal du kontakte en bestemt spiller så er der her du kan finde frem til vedkommende.'
         );

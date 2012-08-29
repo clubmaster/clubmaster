@@ -48,7 +48,7 @@ class MenuListener
 
       $menu[15] = array(
           'name' => $this->translator->trans('Team'),
-          'route' => $this->router->generate('club_request_playermarket_index'),
+          'route' => $this->router->generate('club_team_team_index'),
           'image' => 'bundles/clublayout/images/icons/32x32/book.png',
           'text' => 'Her kan du finde alle vores hold, gå på opdagelse og se hvad vi tilbyder.'
       );

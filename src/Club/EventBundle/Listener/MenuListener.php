@@ -44,7 +44,7 @@ class MenuListener
 
       $menu[] = array(
           'name' => $this->translator->trans('Events'),
-          'route' => $this->router->generate('club_request_playermarket_index'),
+          'route' => $this->router->generate('event_event'),
           'image' => 'bundles/clublayout/images/icons/32x32/calendar.png',
           'text' => 'Hvad sker der i klubben, er der nogen grill arrangementer, er der nogen turneringer klik her og følg med.'
       );

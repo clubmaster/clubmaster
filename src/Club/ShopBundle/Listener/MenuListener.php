@@ -81,7 +81,7 @@ class MenuListener
 
         $menu[45] = array(
             'name' => $this->translator->trans('Shop'),
-            'route' => $this->router->generate('club_request_playermarket_index'),
+            'route' => $this->router->generate('shop'),
             'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
             'text' => 'Gå op opdagelse i butikken, her finder du alt klubben tilbyder af abonnementer og services.'
         );

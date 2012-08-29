@@ -54,7 +54,7 @@ class MenuListener
 
         $menu[35] = array(
             'name' => $this->translator->trans('Booking'),
-            'route' => $this->router->generate('club_request_playermarket_index'),
+            'route' => $this->router->generate('club_booking_overview_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/time.png',
             'text' => 'Velkommen til booking siden, her kan du finde og reservere dine kommende tider.'
         );
