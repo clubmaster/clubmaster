@@ -74,4 +74,17 @@ class MenuListener
             $event->appendItem($menu);
         }
     }
+
+    public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+    {
+        $menu = array();
+
+        $menu[45] = array(
+            'name' => $this->translator->trans('Shop'),
+            'route' => $this->router->generate('club_request_playermarket_index'),
+            'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
+            'text' => 'Gå op opdagelse i butikken, her finder du alt klubben tilbyder af abonnementer og services.'
+        );
+        $event->appendItemDash($menu);
+    }
 }

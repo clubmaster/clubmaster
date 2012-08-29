@@ -41,4 +41,18 @@ class MenuListener
       $event->appendItem($menu);
     }
   }
+
+  public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+  {
+      $menu = array();
+
+      $menu[22] = array(
+          'name' => $this->translator->trans('League'),
+          'route' => $this->router->generate('club_request_playermarket_index'),
+          'image' => 'bundles/clublayout/images/icons/32x32/medal_gold_1.png',
+          'text' => 'Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.'
+      );
+
+      $event->appendItemDash($menu);
+  }
 }

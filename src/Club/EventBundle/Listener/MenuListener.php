@@ -37,4 +37,18 @@ class MenuListener
       $event->appendItem($menu);
     }
   }
+
+  public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+  {
+      $menu = array();
+
+      $menu[] = array(
+          'name' => $this->translator->trans('Events'),
+          'route' => $this->router->generate('club_request_playermarket_index'),
+          'image' => 'bundles/clublayout/images/icons/32x32/calendar.png',
+          'text' => 'Hvad sker der i klubben, er der nogen grill arrangementer, er der nogen turneringer klik her og følg med.'
+      );
+
+      $event->appendItemDash($menu);
+  }
 }

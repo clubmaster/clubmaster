@@ -39,4 +39,16 @@ class DefaultController extends Controller
             'menu' => $menu
         ));
     }
+
+    public function dashMenuAction()
+    {
+        $event = new \Club\MenuBundle\Event\FilterMenuEvent();
+        $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onDashMenuRender, $event);
+        $menu = $event->getMenuDash();
+
+        ksort($menu);
+        return $this->render('ClubMenuBundle:Default:dashMenu.html.twig', array(
+            'menu' => $menu,
+        ));
+    }
 }

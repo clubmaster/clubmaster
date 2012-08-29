@@ -3,12 +3,9 @@ services:
     class: Club\BookingBundle\Listener\MenuListener
     arguments: [@router, @security.context, @translator]
     tags:
-      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
-  club.bookingbundle.top_menu_listener:
-    class: Club\BookingBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator]
-    tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.bookingbundle.dashboard_listener:
     class: Club\BookingBundle\Listener\DashboardListener
     arguments: [@service_container]

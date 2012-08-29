@@ -54,4 +54,24 @@ class FilterMenuEvent extends Event
       $this->menu_right[$key] = $item;
     }
   }
+
+  public function getMenuDash()
+  {
+    return $this->menu_dash;
+  }
+
+  public function setMenuDash($menu_dash)
+  {
+    $this->menu_dash = $menu_dash;
+  }
+
+  public function appendItemDash($menu_dash)
+  {
+    foreach ($menu_dash as $key => $item) {
+      if (isset($this->menu_dash[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
+
+      $this->menu_dash[$key] = $item;
+    }
+  }
+
 }

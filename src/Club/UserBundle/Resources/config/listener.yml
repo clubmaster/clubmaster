@@ -30,11 +30,8 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
-  club.userbundle.left_menu_listener:
-    class: Club\UserBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator]
-    tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.user.dashboard_listener:
     class: Club\UserBundle\Listener\DashboardListener
     arguments: [@doctrine.orm.entity_manager, @security.context, @templating]

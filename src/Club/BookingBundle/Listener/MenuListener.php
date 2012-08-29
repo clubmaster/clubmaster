@@ -47,4 +47,18 @@ class MenuListener
 
         $event->appendItem($menu);
     }
+
+    public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+    {
+        $menu = array();
+
+        $menu[35] = array(
+            'name' => $this->translator->trans('Booking'),
+            'route' => $this->router->generate('club_request_playermarket_index'),
+            'image' => 'bundles/clublayout/images/icons/32x32/time.png',
+            'text' => 'Velkommen til booking siden, her kan du finde og reservere dine kommende tider.'
+        );
+
+        $event->appendItemDash($menu);
+    }
 }

@@ -4,11 +4,8 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
-  club.match.listener.left_menu_render_listener:
-    class: Club\MatchBundle\Listener\MenuListener
-    arguments: [@router, @security.context, @translator]
-    tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.match.listener.league:
     class: Club\MatchBundle\Listener\League
     arguments: [@doctrine.orm.entity_manager, @club_match.league]

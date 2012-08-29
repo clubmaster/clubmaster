@@ -1,0 +1,19 @@
+{% for item in menu %}
+    {% if loop.index0 is divisibleby(3) %}
+      <div class="row-fluid">
+    {% endif %}
+
+        <div class="span4">
+          <h2><img src="{{ asset(item.image) }}" />
+          <a href="{{ item.route }}">{{ item.name }}</a></h2>
+          <p>{{ item.text }}</p>
+        </div>
+
+    {% if loop.index is divisibleby(3) or loop.last %}
+      </div>
+    {% endif %}
+
+{% endfor %}
+
+<hr>
+
