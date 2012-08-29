@@ -67,9 +67,10 @@ class MenuListener
     public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
         if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $menu[15] = array(
-                'name' => $this->translator->trans('My profile'),
-                'route' => $this->router->generate('user')
+            $menu['user'] = array(
+                'name' => $this->translator->trans('Profile'),
+                'route' => $this->router->generate('user'),
+                'items' => array()
             );
         }
 
