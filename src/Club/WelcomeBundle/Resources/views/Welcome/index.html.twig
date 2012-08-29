@@ -16,8 +16,10 @@
 
 {% if welcome.content is defined %}
 {{ welcome.content|raw }}
+<hr>
 {% endif %}
 
+<div class="page-header"><h1>{% trans %}Blog{% endtrans %}</h1></div>
 {% for post in posts %}
 {% include "ClubWelcomeBundle:Welcome:blog.html.twig" %}
 {% endfor %}

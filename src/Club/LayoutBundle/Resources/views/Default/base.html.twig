@@ -7,7 +7,6 @@
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.23.custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" />
@@ -62,8 +61,53 @@
 
         <div class="span9">
 
+
             {% block header %}<div class="page-header"><h1>ClubMaster</h1></div>{% endblock %}
             {% block pagenav %}{% endblock %}
+
+      <div class="row-fluid">
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/connect.png') }}" />
+          Marked</h2>
+          <p>Gå på opdagelse i spiller markedet, har kan du finde andre spillere som leder efter en makker som gerne vil ned at spille.</p>
+        </div>
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/group.png') }}" />
+          Medlemmer</h2>
+          <p>Se en liste over alle medlemmerne, skal du kontakte en bestemt spiller så er der her du kan finde frem til vedkommende.</p>
+       </div>
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/basket.png') }}" />
+          Butik</h2>
+          <p>Gå op opdagelse i butikken, her finder du alt klubben tilbyder af abonnementer og services.</p>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/time.png') }}" />
+          Booking</h2>
+          <p>Velkommen til booking siden, her kan du finde og reservere dine kommende tider.</p>
+        </div>
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/book.png') }}" />
+          Hold</h2>
+          <p>Her kan du finde alle vores hold, gå på opdagelse og se hvad vi tilbyder.</p>
+       </div>
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/medal_gold_1.png') }}" />
+          Liga</h2>
+          <p>Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.</p>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
+          <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/calendar.png') }}" />
+          Begivenheder</h2>
+          <p>Hvad sker der i klubben, er der nogen grill arrangementer, er der nogen turneringer klik her og følg med.</p>
+        </div>
+      </div>
+
+        <hr>
 
             {% if is_granted('ROLE_ADMIN') %}
                 {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
