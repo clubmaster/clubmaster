@@ -6,16 +6,17 @@
       <div class="row-fluid">
     {% endif %}
 
-        <div class="span4">
+        <div class="span4 thumbnail">
           <h4><a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a> ({{ item.getProducts|length }})</h4>
           <p>{{ item.description|truncate(40) }}</p>
         </div>
 
     {% if loop.index is divisibleby(3) or loop.last %}
       </div>
+      <br />
     {% endif %}
 {% endfor %}
 
-<div class="fix"></div>
+<hr>
 {% endif %}
 
