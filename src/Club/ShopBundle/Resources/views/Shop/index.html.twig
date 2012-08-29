@@ -3,30 +3,10 @@
 {% block body %}
 
 {% include "ClubShopBundle:Shop:header.html.twig" %}
-
-{% if categories|length > 0 %}
-<h3>{% trans %}Categories{% endtrans %}</h3>
-
-{% for cat in categories %}
-<!-- Button -->
-<div class="btn-box">
-<div class="btn-top"></div>
-<div class="btn">
-  <dl>
-    <dt><a href="{{ path('shop_prod_view', {'id':cat.id}) }}">{{ cat.categoryName }}</a> ({{ cat.getProducts|length }})</dt>
-    <dd>{{ cat.description|truncate(40) }}</dd>
-  </dl>
-</div> <!-- /btn -->
-<div class="btn-bottom"></div>
-</div> <!-- /btn-box -->
-{% endfor %}
-
-<div class="fix"></div>
+{% include "ClubShopBundle:Shop:categories.html.twig" %}
 
 {% if products %}
   {% include "ClubShopBundle:Shop:product_table.html.twig" with {'products':products} %}
-{% endif %}
-
 {% endif %}
 
 {% endblock %}
