@@ -491,12 +491,15 @@ class User implements AdvancedUserInterface
 
         $res['subscriptions'] = array();
         foreach ($this->getSubscriptions() as $sub) {
-          $res['subscriptions'][] = array(
+          $o = array(
             'id' => $sub->getId(),
             'type' => $sub->getType(),
             'start_date' => $sub->getStartDate()->format('c'),
-            'expire_date' => $sub->getExpireDate()->format('c')
           );
+          if ($sub->getExpireDate()) {
+            $o['expire_date'] = $sub->getExpireDate()->format('c');
+          }
+          $res['subscriptions'][] = $o;
         }
 
         $res['groups'] = array();

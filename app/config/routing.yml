@@ -1,3 +1,8 @@
+ClubNewsBundle:
+    resource: "@ClubNewsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 ClubPasskeyBundle:
     resource: "@ClubPasskeyBundle/Controller/"
     type:     annotation
