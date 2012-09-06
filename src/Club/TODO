@@ -6,6 +6,8 @@ dont show that many blogs on frontpage, link to the blog page where we have to l
 point menu event to kernel request, no need to have this addition event
 create a dropdown menu for PROFILE
 more simple to book fields, if no payment, no need to confirm
+confirm split payment in order handling
+when you book, always could the entire day.. like today at 12:03, you will have to book 6 days ahead.. like today + 6 days, and till the END of the day
 
 == VERSION 1.3 ==
 build new gravatar support
