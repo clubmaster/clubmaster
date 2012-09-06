@@ -134,7 +134,7 @@ class Ticker
     /**
      * Get message
      *
-     * @return text 
+     * @return text
      */
     public function getMessage()
     {
@@ -154,10 +154,21 @@ class Ticker
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function toArray()
+    {
+      return array(
+        'id' => $this->getId(),
+        'message' => $this->getMessage(),
+        'user' => $this->getUser()->toArray('simple'),
+        'created_at' => $this->getCreatedAt()->format('c'),
+        'updated_at' => $this->getUpdatedAt()->format('c')
+      );
     }
 }
