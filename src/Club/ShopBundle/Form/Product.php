@@ -16,6 +16,7 @@ class Product extends AbstractType
     $builder->add('price');
     $builder->add('categories');
     $builder->add('account_number');
+    $builder->add('active');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -106,6 +106,7 @@ class Product
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->type = 'product';
+        $this->active = true;
     }
 
     public function __toString()

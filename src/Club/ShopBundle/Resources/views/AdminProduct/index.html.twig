@@ -15,6 +15,7 @@
   <thead>
     <tr>
       <th>{% trans %}Product{% endtrans %}</th>
+      <th>{% trans %}Active{% endtrans %}</th>
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
   {% for product in products %}
     <tr>
       <td>{{ product.productName }}</td>
+      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':product.active} %}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_product_delete', { 'id':product.id })} %}
