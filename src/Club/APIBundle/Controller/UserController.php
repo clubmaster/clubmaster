@@ -25,12 +25,13 @@ class UserController extends Controller
       $query = ($request->get('query')) ? $request->get('query') : $query;
       $em = $this->getDoctrine()->getEntityManager();
 
+      $limit = $request->get('maxRows');
       if ($query == null) {
-          $users = $em->getRepository('ClubUserBundle:User')->getBySearch();
+          $users = $em->getRepository('ClubUserBundle:User')->getBySearch(null,'u.member_number', true, $limit);
       } else {
           $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
               'query' => $query
-          ));
+          ), 'u.member_number', true, $limit);
       }
 
       $res = array();

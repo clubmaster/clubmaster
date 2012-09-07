@@ -470,7 +470,7 @@ class UserRepository extends EntityRepository
       ->getResult();
   }
 
-  private function getBySearchQuery(array $user = null, $sort = 'u.member_number', $active = true)
+  private function getBySearchQuery(array $user = null, $sort = 'u.member_number', $active = true, $limit = null)
   {
     $qb = $this->getQueryBuilder();
 
@@ -494,6 +494,9 @@ class UserRepository extends EntityRepository
       }
 
       if ($active) $qb = $this->filterActive($qb, true);
+      if ($limit) {
+          $qb->setMaxResults($limit);
+      }
     }
 
     return $qb;
@@ -506,10 +509,10 @@ class UserRepository extends EntityRepository
       ->getOneOrNullResult();
   }
 
-  public function getBySearch(array $user = null, $sort = 'u.member_number', $active = true)
+  public function getBySearch(array $user = null, $sort = 'u.member_number', $active = true, $limit = null)
   {
-    return $this->getBySearchQuery($user, $sort, $active)
-      ->getQuery()
-      ->getResult();
+    return $this->getBySearchQuery($user, $sort, $active, $limit)
+        ->getQuery()
+        ->getResult();
   }
 }
