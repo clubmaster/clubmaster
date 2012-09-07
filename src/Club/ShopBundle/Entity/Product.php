@@ -37,6 +37,13 @@ class Product
     protected $description;
 
     /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean $active
+     */
+    protected $active;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      *
      * @var string $account_number
@@ -351,5 +358,81 @@ class Product
         return 'subscription';
 
       return 'product';
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Product
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Remove variant_groups
+     *
+     * @param Club\ShopBundle\Entity\VariantGroup $variantGroups
+     */
+    public function removeVariantGroup(\Club\ShopBundle\Entity\VariantGroup $variantGroups)
+    {
+        $this->variant_groups->removeElement($variantGroups);
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Club\ShopBundle\Entity\Category $categories
+     * @return Product
+     */
+    public function addCategorie(\Club\ShopBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param Club\ShopBundle\Entity\Category $categories
+     */
+    public function removeCategorie(\Club\ShopBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Remove product_attributes
+     *
+     * @param Club\ShopBundle\Entity\ProductAttribute $productAttributes
+     */
+    public function removeProductAttribute(\Club\ShopBundle\Entity\ProductAttribute $productAttributes)
+    {
+        $this->product_attributes->removeElement($productAttributes);
+    }
+
+    /**
+     * Remove specials
+     *
+     * @param Club\ShopBundle\Entity\Special $specials
+     */
+    public function removeSpecial(\Club\ShopBundle\Entity\Special $specials)
+    {
+        $this->specials->removeElement($specials);
     }
 }
