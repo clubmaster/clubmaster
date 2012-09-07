@@ -213,4 +213,20 @@ class Category
     {
         $this->products[] = $products;
     }
+
+    /**
+     * Get active products
+     *
+     * @return Doctrine\Common\Collections\Collection $Product
+     */
+    public function getActiveProducts()
+    {
+        foreach ($this->products as $i => $prod) {
+            if (!$prod->getActive())
+                unset($this->products[$i]);
+        }
+
+        return $this->products;
+    }
+
 }

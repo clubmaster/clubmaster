@@ -8,7 +8,7 @@
     {% endif %}
         <li class="span4">
             <div class="thumbnail">
-                <h4><a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a> ({{ item.getProducts|length }})</h4>
+                <h4><a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a> ({{ item.activeProducts|length }})</h4>
                 <p>{{ item.description|truncate(40) }}</p>
             </div>
         </li>

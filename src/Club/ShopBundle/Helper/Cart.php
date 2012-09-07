@@ -75,13 +75,16 @@ class Cart
 
   public function addToCart($product)
   {
-    if ($product instanceOf \Club\ShopBundle\Entity\Product) {
-      $this->addProductToCart($product);
-    } else {
-      $this->addArrayToCart($product);
-    }
+      if (!$product->getActive())
+          throw new \Exception('You cannot add disabled products to cart.');
 
-    $this->save();
+      if ($product instanceOf \Club\ShopBundle\Entity\Product) {
+          $this->addProductToCart($product);
+      } else {
+          $this->addArrayToCart($product);
+      }
+
+      $this->save();
   }
 
   private function updateProductToCart(\Club\ShopBundle\Entity\CartProduct $cart_product)
