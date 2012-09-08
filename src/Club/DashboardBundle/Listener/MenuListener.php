@@ -22,7 +22,7 @@ class MenuListener
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $menu[10] = array(
+      $menu[0] = array(
         'name' => $this->translator->trans('Dashboard'),
         'route' => $this->router->generate('club_dashboard_dashboard_index')
       );

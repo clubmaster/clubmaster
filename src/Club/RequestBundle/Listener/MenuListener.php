@@ -17,7 +17,7 @@ class MenuListener
 
     public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        $menu[] = array(
+        $menu[22] = array(
             'name' => $this->translator->trans('Market'),
             'route' => $this->router->generate('club_request_playermarket_index')
         );
