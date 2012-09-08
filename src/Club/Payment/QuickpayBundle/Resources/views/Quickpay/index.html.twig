@@ -12,7 +12,7 @@
   <li>{% trans with {'%price%':order.price|club_price} %}Amount: %price%{% endtrans %}</li>
 </ul>
 
-<form method="POST" action="{{ quickpay_url }}">
+<form method="POST" action="{{ quickpay_url }}" class="form-horizontal">
 <input type="hidden" id="protocol" name="protocol" value="{{ form.protocol.vars.value }}" />
 <input type="hidden" id="msgtype" name="msgtype" value="{{ form.msgtype.vars.value }}" />
 <input type="hidden" id="merchant" name="merchant" value="{{ form.merchant.vars.value }}" />
@@ -31,10 +31,7 @@
 <input type="hidden" id="md5check" name="md5check" value="{{ form.md5check.vars.value }}" />
 <input type="hidden" id="ipaddress" name="ipaddress" value="{{ form.ipaddress.vars.value }}" />
 
-<hr class="noscreen" />
-<div class="box-01">
-  <p class="nom"><input type="submit" value="{% trans %}Pay with creditcard{% endtrans %}" class="input-submit" /></p>
-</div> <!-- /box-01 -->
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Pay with creditcard'|trans} %}
 </form>
 
 {% endblock %}
