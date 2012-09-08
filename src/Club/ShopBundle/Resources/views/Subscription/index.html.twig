@@ -4,13 +4,13 @@
 
 {% include "ClubShopBundle:Shop:header.html.twig" %}
 
-<h2>{% trans %}Active subscriptions{% endtrans %}</h2>
+<h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard.png') }}" /> {% trans %}Active subscriptions{% endtrans %}</h2>
 {% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':active} %}
 
-<h2>{% trans %}Coming subscriptions{% endtrans %}</h2>
+<h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard_add.png') }}" /> {% trans %}Coming subscriptions{% endtrans %}</h2>
 {% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':coming} %}
 
-<h2>{% trans %}Expired subscriptions{% endtrans %}</h2>
+<h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard_delete.png') }}" /> {% trans %}Expired subscriptions{% endtrans %}</h2>
 {% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':expired} %}
 
 {% endblock %}

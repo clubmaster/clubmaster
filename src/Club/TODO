@@ -2,6 +2,7 @@ fix all forms class="form-horizontal"
     redo:
         ./ShopBundle/Resources/views/AdminProductAttribute/index.html.twig
         ./ShopBundle/Resources/views/AdminOrder/productEdit.html.twig
+fix auth page, forgot password, and so on
 find all datetime forms, and replace with single_text
 find and fix all ajax stuff
 style order checkout
@@ -15,6 +16,7 @@ confirm split payment in order handling
 when you book, always could the entire day.. like today at 12:03, you will have to book 6 days ahead.. like today + 6 days, and till the END of the day
 when orders is sent out as autorenewal, seems like all users gets a copy of the same email, with name and everything
 add notice to the admin when he login, if there is a coming date with auto renewal dates
+make admin menu more simple
 
 when upgrading, remember to enable all products
 
