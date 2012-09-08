@@ -4,12 +4,6 @@
 
 <p>{% trans %}All messages in this form will go back to the developers of the system, so feel free to give any feedback that could help improve the system.{% endtrans %}</p>
 
-<form method="POST" action="{{ path('club_feedback_feedback_index') }}" class="form-horizontal">
-
-    <legend>Feedback</legend>
-    {{ form_widget(form) }}
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'novalidate':true} %}
-
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_feedback_feedback_index')} %}
 
 {% endblock %}
