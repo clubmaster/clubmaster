@@ -67,12 +67,14 @@ class ProductAttribute extends AbstractType
       'label' => 'Stop time'
     ));
     $builder->add('start_date', 'date', array(
-      'required' => false,
-      'label' => 'Start date'
+        'widget' => 'single_text',
+        'required' => false,
+        'label' => 'Start date'
     ));
     $builder->add('expire_date', 'date', array(
-      'required' => false,
-      'label' => 'Expire date'
+        'widget' => 'single_text',
+        'required' => false,
+        'label' => 'Expire date'
     ));
     $builder->add('location','entity',array(
       'class' => 'Club\UserBundle\Entity\Location',

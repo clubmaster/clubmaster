@@ -7,8 +7,9 @@
 <form method="post" action="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}" class="form-horizontal">
 
 {% for product in form.order_products %}
-  {{ form_label(product, product.vars.value.product.productName) }}
-  {{ form_widget(product) }}
+    <h3>{{ product.vars.value.product.productName }}</h3>
+    {{ form_widget(product) }}
+    <hr>
 {% endfor %}
 
 {{ form_rest(form) }}

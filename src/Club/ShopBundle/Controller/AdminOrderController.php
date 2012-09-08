@@ -131,7 +131,7 @@ class AdminOrderController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('admin_shop_order'));
+        return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
       }
     }
 
