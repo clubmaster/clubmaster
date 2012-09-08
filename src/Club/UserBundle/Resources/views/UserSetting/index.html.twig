@@ -4,8 +4,6 @@
 
 <p>{% trans %}Here you have some different settings that can make your profile more personal.{% endtrans %}</p>
 
-<form method="post" action="{{ path('club_user_usersetting_index') }}" class="form-horizontal">
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'legend':'User settings'|trans} %}
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_user_usersetting_index'),'legend':'User settings'|trans} %}
 
 {% endblock %}
