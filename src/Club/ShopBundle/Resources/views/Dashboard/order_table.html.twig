@@ -19,7 +19,7 @@
   </tfoot>
   <tbody>
   {% for order in orders %}
-    <tr>
+    <tr class="warning">
       <td>{{ order.orderNumber }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price|club_price }}</td>
