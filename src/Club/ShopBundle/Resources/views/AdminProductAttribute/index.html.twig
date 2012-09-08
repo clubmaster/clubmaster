@@ -7,7 +7,7 @@
 
 {{ form_errors(form) }}
 
-<form method="post" action="{{ path('admin_shop_product_attribute', {'id':product.id}) }}">
+<form method="post" action="{{ path('admin_shop_product_attribute', {'id':product.id}) }}" class="form-horizontal">
 {% include "ClubShopBundle:AdminProductAttribute:form.html.twig" %}
 </form>
 

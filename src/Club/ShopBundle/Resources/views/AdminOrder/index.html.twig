@@ -4,14 +4,15 @@
 <h2>{% trans %}Orders{% endtrans %}</h2>
 
 <!-- Actions -->
-<form method="post" action="">
-<div class="box-02 bottom box">
-  <strong>Search:</strong>
-  {{ form_widget(form.query, {'attr': {'class':'input-text'} }) }}
-  <input type="submit" value="OK" />
-</div> <!-- /box-02 -->
-{{ form_rest(form) }}
-</form>
+<div class="navbar">
+  <div class="navbar-inner">
+    <form method="post" action="" class="navbar-search pull-right">
+        {{ form_widget(form.query, {'attr': {'class':'search-query'} }) }}
+        {{ form_rest(form) }}
+        <input type="submit" value="{% trans %}Search{% endtrans %}" />
+    </form>
+  </div>
+</div>
 
 <div class="fix" style="height: 10px;"></div>
 

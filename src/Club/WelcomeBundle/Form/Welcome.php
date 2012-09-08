@@ -10,7 +10,11 @@ class Welcome extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('content');
+      $builder->add('content', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

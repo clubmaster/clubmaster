@@ -6,7 +6,6 @@
 {% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'review'} %}
 
 <h3>{% trans %}Order{% endtrans %}</h3>
-<div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_confirm.html.twig" %}
 
 <h3>{% trans %}Customer Information{% endtrans %}</h3>
@@ -24,11 +23,8 @@
 <h3>{% trans %}Shipping Information{% endtrans %}</h3>
 <p>{{ cart.shipping }}</p>
 
-<form method="POST" action="{{ path('shop_checkout_process') }}">
-  <div class="box-01">
-    <p class="nom"><input type="submit" value="{% trans %}Confirm order{% endtrans %}" class="input-submit" /></p>
-  </div> <!-- /box-01 -->
+<form method="POST" action="{{ path('shop_checkout_process') }}" class="form-horizontal">
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Confirm order'|trans} %}
 </form>
-</div>
 
 {% endblock %}

@@ -58,7 +58,7 @@
   <legend>{% trans %}Cancel subscription{% endtrans %}</legend>
 
   <p>{% trans %}Click here to cancel this subscription.{% endtrans %}</p>
-  <form method="post" action="{{ path('club_shop_subscription_stop', {'id':subscription.id}) }}">
+  <form method="post" action="{{ path('club_shop_subscription_stop', {'id':subscription.id}) }}" class="form-horizontal">
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Cancel subscription'|trans} %}
   </form>
 </fieldset>

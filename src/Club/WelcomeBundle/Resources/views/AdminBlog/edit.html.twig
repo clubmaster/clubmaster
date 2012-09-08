@@ -6,8 +6,6 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_welcome_adminblog_edit', {'id':blog.id}) }}">
-{% include "ClubWelcomeBundle:AdminBlog:form.html.twig" %}
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_welcome_adminblog_edit', {'id':blog.id}), 'novalidate':true} %}
 
 {% endblock %}

@@ -1,9 +1,0 @@
-    <legend>{% trans %}Post blog{% endtrans %}</legend>
-
-    <p>{% trans %}You are welcome to post anything to the other members here. The post will end up on the frontpage.{% endtrans %}</p>
-
-    {{ form_row(form.title) }}
-    {{ form_row(form.message) }}
-    {{ form_rest(form) }}
-
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'novalidate':true} %}

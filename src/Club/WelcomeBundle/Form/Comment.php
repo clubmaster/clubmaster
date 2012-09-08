@@ -10,7 +10,11 @@ class Comment extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('comment');
+      $builder->add('comment', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

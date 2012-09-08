@@ -1,4 +1,10 @@
 fix all forms class="form-horizontal"
+    redo:
+        ./ShopBundle/Resources/views/AdminProductAttribute/index.html.twig
+        ./ShopBundle/Resources/views/AdminOrder/productEdit.html.twig
+style order checkout
+remake configuration bundle
+fix allocate passkey to user
 dont show that many blogs on frontpage, link to the blog page where we have to list all blogs
 point menu event to kernel request, no need to have this addition event
 create a dropdown menu for PROFILE

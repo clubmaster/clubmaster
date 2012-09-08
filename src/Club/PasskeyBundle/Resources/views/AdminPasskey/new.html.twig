@@ -1,9 +1,5 @@
 {% extends "ClubPasskeyBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('club_passkey_adminpasskey_new') }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_passkey_adminpasskey_new')} %}
 {% endblock %}

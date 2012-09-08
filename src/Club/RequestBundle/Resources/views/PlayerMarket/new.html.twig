@@ -1,7 +1,5 @@
 {% extends "ClubRequestBundle::base.html.twig" %}
 
 {% block body %}
-
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_request_playermarket_new'),'novalidate':true} %}
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_request_playermarket_new')} %}
 {% endblock %}

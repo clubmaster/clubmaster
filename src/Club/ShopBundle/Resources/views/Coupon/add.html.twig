@@ -3,9 +3,5 @@
 {% block body %}
 
 <p>{% trans %}If you have a coupon, you can enter the key here, and we will add it to your cart.{% endtrans %}</p>
-
-<form method="post" action="{{ path('club_shop_coupon_add') }}" class="form-horizontal">
-{% include "ClubShopBundle:Coupon:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_shop_coupon_add')} %}
 {% endblock %}

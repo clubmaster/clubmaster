@@ -110,6 +110,7 @@ class CheckoutController extends Controller
     return array(
       'form1' => $form1->createView(),
       'form2' => $form2->createView(),
+      'cart' => $cart
     );
   }
 

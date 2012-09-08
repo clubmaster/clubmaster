@@ -6,8 +6,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_welcome_blog_new') }}" class="form-horizontal">
-{% include "ClubWelcomeBundle:Blog:form.html.twig" %}
-</form>
+<p>{% trans %}You are welcome to post anything to the other members here. The post will end up on the frontpage.{% endtrans %}</p>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_welcome_blog_new'), 'novalidate':true} %}
 
 {% endblock %}
