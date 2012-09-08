@@ -1,15 +1,15 @@
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group">
+    <div class="control-group {% if errors|length > 0%}error{% endif %}">
         {{ form_label(form) }}
         <div class="controls">
             {{ form_widget(form) }}
             {% if help is defined %}
                 <span class="help-block">{{ help }}</span>
             {% endif %}
+            {{ form_errors(form) }}
         </div>
     </div>
-    {{ form_errors(form) }}
 {% endspaceless %}
 {% endblock form_row %}
 
@@ -31,15 +31,13 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <ul>
         {% for error in errors %}
-            <li>{{
+            <span class="help-inline">{{
                 error.messagePluralization is null
                     ? error.messageTemplate|trans(error.messageParameters, 'validators')
                     : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-            }}</li>
+            }}</span>
         {% endfor %}
-    </ul>
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}

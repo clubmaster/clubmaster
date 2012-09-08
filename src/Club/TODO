@@ -1,4 +1,3 @@
-fix error handling on forms
 fix all forms class="form-horizontal"
 dont show that many blogs on frontpage, link to the blog page where we have to list all blogs
 point menu event to kernel request, no need to have this addition event
