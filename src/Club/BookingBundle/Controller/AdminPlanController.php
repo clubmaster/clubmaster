@@ -129,19 +129,33 @@ class AdminPlanController extends Controller
   private function getForm(\Club\BookingBundle\Entity\Plan $plan)
   {
     return $this->createFormBuilder($plan)
-      ->add('name')
-      ->add('description')
-      ->add('period_start')
-      ->add('period_end')
-      ->add('first_time')
-      ->add('end_time')
+        ->add('name', 'text', array(
+            'help' => 'Info: When is the first date the plan will be valid from?'
+        ))
+        ->add('description', 'textarea', array(
+            'help' => 'Info: When is the last day the plan will be valid?'
+        ))
+        ->add('period_start', 'datetime', array(
+            'help' => 'Info: When is the first date the plan will be valid from?'
+        ))
+        ->add('period_end', 'datetime', array(
+            'help' => 'Info: When is the last day the plan will be valid?'
+        ))
+        ->add('day', 'choice', array(
+            'choices' => $this->get('club_booking.interval')->getDays(),
+            'help' => 'Info: What day on the week should the plan be booked?'
+        ))
+        ->add('first_time', 'time', array(
+            'help' => 'Info: What time on the day will the plan be valid from?'
+        ))
+        ->add('end_time', 'time', array(
+            'help' => 'Info: What time on the day will the plan end?'
+        ))
       ->add('fields', 'entity', array(
         'class' => 'Club\BookingBundle\Entity\Field',
         'multiple' => true,
-        'property' => 'formString'
-      ))
-      ->add('day', 'choice', array(
-        'choices' => $this->get('club_booking.interval')->getDays()
+        'property' => 'formString',
+        'help' => 'Info: What fields should be booked for the plan?'
       ))
       ->getForm();
   }

@@ -2,13 +2,7 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_message_adminmessage_attachment', {'id':message.id}) }}" {{ form_enctype(form) }}>
-  <fieldset>
-    <legend>{% trans %}Upload Attachment{% endtrans %}</legend>
-    {{ form_widget(form) }}
-  </fieldset>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Attach file'|trans}  %}
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_message_adminmessage_attachment', {'id':message.id}), 'button':'Attach file'|trans, 'legend':'Upload Attachment'|trans} %}
 
 <fieldset>
   <legend>{% trans %}Attachments{% endtrans %}</legend>
@@ -28,7 +22,7 @@
         <td>{{ attachment.fileName }}</td>
         <td>{{ attachment.fileType }}</td>
         <td>{{ attachment.fileSize }} bytes</td>
-        <td><a href="{{ path('club_message_adminmessage_attachmentdelete', {'id':attachment.id}) }}">Delete</a></td>
+        <td>{% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_message_adminmessage_attachmentdelete', {'id':attachment.id})} %}</td>
       </tr>
       {% else %}
       <tr>
@@ -40,7 +34,7 @@
 
 </fieldset>
 
-<form method="get" action="{{ path('club_message_adminmessage_recipient', {'id':message.id}) }}">
+<form method="get" action="{{ path('club_message_adminmessage_recipient', {'id':message.id}) }}" class="form-horizontal">
   {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Next'|trans} %}
 </form>
 

@@ -34,12 +34,7 @@
 <fieldset>
   <legend>{% trans %}Confirm{% endtrans %}</legend>
     <p>{% trans %}Click here to confirm your booking.{% endtrans %}</p>
-    <form method="post" action="{{ path('club_booking_booking_confirm') }}">
-      <hr class="noscreen" />
-      <div class="box-01">
-        <p class="nom"><input type="submit" value="{% trans %}Confirm{% endtrans %}" class="input-submit" /></p>
-      </div> <!-- /box-01 -->
-    </form>
+    {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_confirm'), 'button':'Confirm'|trans} %}
 </fieldset>
 
 {% endblock %}

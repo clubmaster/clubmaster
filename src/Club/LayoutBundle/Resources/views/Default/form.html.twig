@@ -1,5 +1,5 @@
-<form method="post" action="{{ path }}" class="form-horizontal" {{ form_enctype(form) }}>
+<form method="post" action="{{ path }}" class="form-horizontal" {% if form is defined %}{{ form_enctype(form) }}{% endif %}>
     {% if legend is defined %}<legend>{{ legend}}</legend>{% endif %}
-    {{ form_widget(form) }}
+    {% if form is defined %}{{ form_widget(form) }}{% endif %}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 </form>

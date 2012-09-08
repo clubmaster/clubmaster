@@ -1,36 +1,11 @@
-<form method="post" action="{{ path }}">
-  <fieldset>
-    <legend>{% trans %}Repetition Daily{% endtrans %}</legend>
-    {{ form_widget(form_daily) }}
+<h2>{% trans %}Repetition Daily{% endtrans %}</h2>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path, 'form':form_daily} %}
 
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-  </fieldset>
-</form>
+<h2>{% trans %}Repetition Weekly{% endtrans %}</h2>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path, 'form':form_weekly} %}
 
-<form method="post" action="{{ path }}">
-  <fieldset>
-    <legend>{% trans %}Repetition Weekly{% endtrans %}</legend>
-    {{ form_widget(form_weekly) }}
+<h2>{% trans %}Repetition Monthly{% endtrans %}</h2>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path, 'form':form_monthly} %}
 
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-  </fieldset>
-</form>
-
-<form method="post" action="{{ path }}">
-  <fieldset>
-    <legend>{% trans %}Repetition Monthly{% endtrans %}</legend>
-    {{ form_widget(form_monthly) }}
-
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-  </fieldset>
-</form>
-
-<form method="post" action="{{ path }}">
-  <fieldset>
-    <legend>{% trans %}Repetition Yearly{% endtrans %}</legend>
-    {{ form_widget(form_yearly) }}
-
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-  </fieldset>
-</form>
-
+<h2>{% trans %}Repetition Yearly{% endtrans %}</h2>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path, 'form':form_yearly} %}

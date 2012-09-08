@@ -2,6 +2,8 @@ fix all forms class="form-horizontal"
     redo:
         ./ShopBundle/Resources/views/AdminProductAttribute/index.html.twig
         ./ShopBundle/Resources/views/AdminOrder/productEdit.html.twig
+find all datetime forms, and replace with single_text
+find and fix all ajax stuff
 style order checkout
 remake configuration bundle
 fix allocate passkey to user

@@ -1,14 +1,5 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
 {% block body %}
-<form method="post" action="{{ path('club_message_adminmessage_recipientuser', {'id':message.id}) }}">
-  <fieldset>
-    <legend>{% trans %}Message{% endtrans %}</legend>
-
-    {{ form_widget(form) }}
-
-  </fieldset>
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
-</form>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_message_adminmessage_recipientuser', {'id':message.id})} %}
 {% endblock %}

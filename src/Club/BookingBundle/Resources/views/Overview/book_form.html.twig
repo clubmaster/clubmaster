@@ -1,24 +1,16 @@
 {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#booking_query', 'input_id':'#booking_id','url':'api/users/search'} %}
 
-<fieldset>
-  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>{% trans %}Booking{% endtrans %}</legend>
-
+<h2>{% trans %}Booking{% endtrans %}</h2>
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}" class="form-horizontal">
     <p>{% trans %}Find your partner and complete your booking.{% endtrans %}</p>
     {{ form_widget(form) }}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
   </form>
-</fieldset>
 
-<fieldset>
-  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-    <legend>{% trans %}Guest Booking{% endtrans %}</legend>
-
+<h2>{% trans %}Guest booking{% endtrans %}</h2>
+  <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}" class="form-horizontal">
     <p>{% trans %}Click here if you want to book with a guest.{% endtrans %}</p>
     <input type="hidden" name="guest" value="1" />
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
   </form>
-</fieldset>
 

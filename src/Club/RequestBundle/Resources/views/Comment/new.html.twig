@@ -1,9 +1,5 @@
 {% extends "ClubRequestBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('club_request_comment_new', {'id':request.id}) }}">
-{% include "ClubLayoutBundle:Default:form.html.twig" %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_request_comment_new', {'id':request.id})} %}
 {% endblock %}

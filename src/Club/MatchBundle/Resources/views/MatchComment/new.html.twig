@@ -1,20 +1,5 @@
-{% extends "ClubWelcomeBundle::base.html.twig" %}
+{% extends "ClubMatchBundle::base.html.twig" %}
 
 {% block body %}
-
-<form method="post" action="{{ path('club_match_matchcomment_new', {'match_id':match.id}) }}">
-
-  <fieldset>
-    <legend>{% trans %}Comment{% endtrans %}</legend>
-    <p>
-      {{ form_label(form.comment) }}<br />
-      {{ form_widget(form.comment, {'attr': {'class':'big' }}) }}
-      {{ form_errors(form.comment) }}<br />
-    </p>
-    {{ form_rest(form) }}
-  </fieldset>
-
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'novalidate':true} %}
-</form>
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_match_matchcomment_new', {'match_id':match.id})} %}
 {% endblock %}
