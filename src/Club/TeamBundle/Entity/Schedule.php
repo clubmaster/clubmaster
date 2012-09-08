@@ -570,4 +570,44 @@ class Schedule
     {
         $this->users[] = $users;
     }
+
+    /**
+     * Remove schedules
+     *
+     * @param Club\TeamBundle\Entity\Schedule $schedules
+     */
+    public function removeSchedule(\Club\TeamBundle\Entity\Schedule $schedules)
+    {
+        $this->schedules->removeElement($schedules);
+    }
+
+    /**
+     * Remove instructors
+     *
+     * @param Club\UserBundle\Entity\User $instructors
+     */
+    public function removeInstructor(\Club\UserBundle\Entity\User $instructors)
+    {
+        $this->instructors->removeElement($instructors);
+    }
+
+    /**
+     * Remove users
+     *
+     * @param Club\TeamBundle\Entity\ScheduleUser $users
+     */
+    public function removeUser(\Club\TeamBundle\Entity\ScheduleUser $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Remove fields
+     *
+     * @param Club\BookingBundle\Entity\Field $fields
+     */
+    public function removeField(\Club\BookingBundle\Entity\Field $fields)
+    {
+        $this->fields->removeElement($fields);
+    }
 }
