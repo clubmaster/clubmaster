@@ -97,7 +97,7 @@ class AdminOrderController extends Controller
     $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelled();
     $this->container->get('order')->changeStatus($status);
 
-    $this->get('session')->setFlash('notify', $this->get('translator')->trans('Your order has been cancelled'));
+    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your order has been cancelled'));
 
     return $this->redirect($this->generateUrl('admin_shop_order'));
   }
