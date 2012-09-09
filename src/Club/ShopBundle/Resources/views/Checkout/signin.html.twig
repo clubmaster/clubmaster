@@ -39,7 +39,9 @@
     <p>{{ form_row(form.profile.profile_address.country) }}</p>
 
     <legend>{% trans %}Email Information{% endtrans %}</legend>
-    <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
+    {% for email in form.profile.profile_emails %}
+        <p>{{ form_row(email.email_address) }}</p>
+    {% endfor %}
 
     <legend>{% trans %}Phone Information{% endtrans %}</legend>
     <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
