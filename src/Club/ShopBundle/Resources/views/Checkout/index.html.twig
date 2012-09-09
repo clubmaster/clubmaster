@@ -1,20 +1,24 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}
+<div class="page-header">
+    <h1><img class="img-polaroid" src="/clubmaster/web/bundles/clublayout/images/icons/32x32/basket.png" /> Checkout</h1>
+</div>
+{% endblock %}
 
-{% include "ClubShopBundle:Shop:header.html.twig" %}
+{% block body %}
 
 {% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'view'} %}
 
-<h3>{% trans %}Order{% endtrans %}</h3>
+<h3>{% trans %}View cart{% endtrans %}</h3>
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
 </div>
 
 <p>
-  <a href="{{ path('shop_checkout_empty') }}" class="btn btn-primary">{% trans %}Empty cart{% endtrans %}</a>
-  <a href="{{ path('shop') }}" class="btn btn-primary">{% trans %}Continue shopping{% endtrans %}</a>
-  <a href="{{ path('club_shop_coupon_add') }}" class="btn btn-primary">{% trans %}Use coupon{% endtrans %}</a>
+  <a href="{{ path('shop_checkout_empty') }}" class="btn btn-danger">{% trans %}Empty cart{% endtrans %}</a>
+  <a href="{{ path('shop') }}" class="btn btn-warning">{% trans %}Continue shopping{% endtrans %}</a>
+  <a href="{{ path('club_shop_coupon_add') }}" class="btn btn-info">{% trans %}Use coupon{% endtrans %}</a>
   <a href="{{ path('shop_checkout_shipping') }}" class="btn btn-primary">{% trans %}Checkout{% endtrans %}</a>
 </p>
 

@@ -1,22 +1,33 @@
-<p>
-    <a class="btn btn-primary" href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a>
+<ul class="breadcrumb">
+    {% if active_page == 'cart' %}
+    <li>View cart <span class="divider">/</span></li>
+    {% else %}
+    <li><a href="{{ path('shop_checkout') }}">View cart</a> <span class="divider">/</span></li>
+    {% endif %}
 
-{% if cart.cartProducts|length > 0 %}
-<a class="btn btn-primary" href="{{ path('shop_checkout_shipping') }}">{% trans %}Choose shipping{% endtrans %}</a>
-{% else %}
-<button class="btn">{% trans %}Choose shipping{% endtrans %}</button>
-{% endif %}
+    {% if active_page == 'shipping' %}
+    <li>Choose shipping <span class="divider">/</span></li>
+    {% elseif cart.shipping is defined %}
+    <li><a href="{{ path('shop_checkout_shipping') }}">Choose shipping</a> <span class="divider">/</span></li>
+    {% else %}
+    <li class="active">Choose shipping <span class="divider">/</span></li>
+    {% endif %}
 
-{% if cart.shipping %}<a class="btn btn-primary" href="{{ path('shop_checkout_payment') }}">{% trans %}Choose payment{% endtrans %}</a>
-{% else %}
-<button class="btn">{% trans %}Choose payment{% endtrans %}</button>
-{% endif %}
+    {% if active_page == 'payment' %}
+    <li>Choose payment <span class="divider">/</span></li>
+    {% elseif cart.paymentMethod is defined %}
+    <li><a href="{{ path('shop_checkout_payment') }}">Choose payment</a> <span class="divider">/</span></li>
+    {% else %}
+    <li class="active">Choose payment <span class="divider">/</span></li>
+    {% endif %}
 
-{% if cart.paymentMethod %}
-<a class="btn btn-primary" href="{{ path('shop_checkout_review') }}">{% trans %}Review order{% endtrans %}</a>
-{% else %}
-<button class="btn">{% trans %}Review order{% endtrans %}</button>
-{% endif %}
+    {% if active_page == 'review' %}
+    <li>Review order <span class="divider">/</span></li>
+    {% elseif cart.paymentMethod is defined %}
+    <li><a href="{{ path('shop_checkout_review') }}">Review order</a> <span class="divider">/</span></li>
+    {% else %}
+    <li class="active">Review order <span class="divider">/</span></li>
+    {% endif %}
 
-<button class="btn">{% trans %}Done{% endtrans %}</button>
-
+    <li class="active">Done</li>
+</ul>

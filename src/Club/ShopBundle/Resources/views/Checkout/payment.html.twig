@@ -1,14 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<h2>Payment Information</h2>
 
 {% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'payment'} %}
 
-<form method="POST" action="{{ path('shop_checkout_payment') }}" class="form-horizontal">
-    <legend>{% trans %}Payment Information{% endtrans %}</legend>
-    <p>{{ form_widget(form) }}</p>
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Continue'} %}
-</form>
-
+<h3>Choose payment</h3>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('shop_checkout_payment')} %}
 {% endblock %}

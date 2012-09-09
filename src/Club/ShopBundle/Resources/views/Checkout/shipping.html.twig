@@ -1,16 +1,16 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-<h2>{% trans %}Payment Information{% endtrans %}</h2>
 
 {% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'shipping'}  %}
 
+<h3>{% trans %}Choose shipping{% endtrans %}</h3>
 <form method="POST" action="{{ path('shop_checkout_shipping') }}" class="form-horizontal">
 
-  <legend>{% trans %}Shipping Information{% endtrans %}</legend>
   <p>{{ form_widget(form1) }}</p>
   <p>{{ form_widget(form2) }}</p>
-  <p><input type="submit" value="Continue" class="input-submit" /></p>
+
+  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
 </form>
 

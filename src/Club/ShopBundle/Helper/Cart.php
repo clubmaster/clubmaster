@@ -75,9 +75,6 @@ class Cart
 
   public function addToCart($product)
   {
-      if (!$product->getActive())
-          throw new \Exception('You cannot add disabled products to cart.');
-
       if ($product instanceOf \Club\ShopBundle\Entity\Product) {
           $this->addProductToCart($product);
       } else {
@@ -121,6 +118,9 @@ class Cart
 
   private function addProductToCart(\Club\ShopBundle\Entity\Product $product)
   {
+      if (!$product->getActive())
+          throw new \Exception('You cannot add disabled products to cart.');
+
     $this->checkLocation($product);
 
     $trigger = 0;

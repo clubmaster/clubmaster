@@ -18,7 +18,8 @@ class CheckoutController extends Controller
     $cart = $this->get('cart')->getCart();
 
     return array(
-      'cart' => $cart
+        'cart' => $cart,
+        'active_page' => 'cart'
     );
   }
 
@@ -110,7 +111,8 @@ class CheckoutController extends Controller
     return array(
       'form1' => $form1->createView(),
       'form2' => $form2->createView(),
-      'cart' => $cart
+      'cart' => $cart,
+      'active_page' => 'shipping'
     );
   }
 
@@ -151,7 +153,9 @@ class CheckoutController extends Controller
       }
     }
     return array(
-      'form' => $form->createView()
+        'form' => $form->createView(),
+        'cart' => $cart,
+        'active_page' => 'payment'
     );
   }
 
@@ -162,7 +166,8 @@ class CheckoutController extends Controller
   public function reviewAction()
   {
     return array(
-      'cart' => $this->get('cart')->getCart()
+        'cart' => $this->get('cart')->getCart(),
+        'active_page' => 'review'
     );
   }
 
