@@ -415,7 +415,6 @@ class Booking
           );
       }
 
-      var_dump($check_time);die();
       if ($c > $check_time)
           return false;
 
