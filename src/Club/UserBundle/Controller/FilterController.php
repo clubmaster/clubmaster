@@ -19,11 +19,16 @@ class FilterController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
-      'query' => $this->getRequest()->get('query')
-    ), 'u.member_number', false);
+    $users = $em->getRepository('ClubUserBundle:User')->getByAjax(
+        $this->getRequest()->get('query'),
+        $this->getRequest()->get('query_id')
+    );
 
-    if (!$users || count($users) > 1) {
+    if ($users instanceOf \Club\UserBundle\Entity\User) {
+      return $this->redirect($this->generateUrl('admin_user_edit', array(
+        'id' => $users->getId()
+      )));
+    } else {
 
       $filter = $this->getActiveFilter();
       $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
@@ -38,12 +43,6 @@ class FilterController extends Controller
       $em->flush();
 
       return $this->redirect($this->generateUrl('admin_user'));
-
-    } else {
-      $u = $users[0];
-      return $this->redirect($this->generateUrl('admin_user_edit', array(
-        'id' => $u->getId()
-      )));
     }
   }
 

@@ -1,11 +1,19 @@
 {% block javascripts %}
 
+    {% if f is not defined %}
+        {% set f = '#query' %}
+    {% endif %}
+
+    {% if f_id is not defined %}
+        {% set f_id = '#query_id' %}
+    {% endif %}
+
 <script type="text/javascript">
   var url = "{{ path('homepage') }}";
 
   $(document).ready(function() {
 
-    $('.search-query').autocomplete({
+    $('{{ f }}').autocomplete({
         source: function( request, response) {
             $.ajax({
                 url: url + "api/users/search",
@@ -26,10 +34,10 @@
             });
         },
         select: function( event, ui ) {
-            window.location = '{{ path('homepage') }}members/' + ui.item.id;
+            $('{{ f_id }}').attr("value", ui.item.id);
+            $('{{ f }}').closest('form').submit();
         }
     });
-
   });
 </script>
 {% endblock %}

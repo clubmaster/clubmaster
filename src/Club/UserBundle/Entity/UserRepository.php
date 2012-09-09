@@ -515,4 +515,17 @@ class UserRepository extends EntityRepository
         ->getQuery()
         ->getResult();
   }
+
+  public function getByAjax($query, $query_id)
+  {
+      if (strlen($query_id)) {
+          return $this->_em->getRepository('ClubUserBundle:User')->find($query_id);
+      } else {
+          return $this->getBySearch(
+              array('query' => $query),
+              'u.member_number',
+              false
+          );
+      }
+  }
 }

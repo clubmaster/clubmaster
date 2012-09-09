@@ -11,6 +11,7 @@ make admin menu more simple
 make feedback as a popdown form
 put jquery calendar in all single_text fields
 find and fix all ajax stuff
+improve paginator
 
 when upgrading, remember to enable all products
 
