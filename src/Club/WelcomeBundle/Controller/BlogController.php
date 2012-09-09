@@ -22,21 +22,12 @@ class BlogController extends Controller
   public function indexAction($page)
   {
     $results = 5;
-    $offset = ($page < 1) ? 1 : ($page-1)*$results;
 
     $em = $this->getDoctrine()->getEntityManager();
-    $dql = "SELECT b FROM Club\WelcomeBundle\Entity\Blog b ORDER BY b.id DESC";
-    $query = $em->createQuery($dql)
-        ->setFirstResult($offset)
-        ->setMaxResults($results);
-    $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
+    $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
 
     $nav = $this->get('club_paginator.paginator_ng')
-        ->setLimit($results)
-        ->setPaginator($paginator)
-        ->setCurrentPage($page)
-        ->setUrl('welcome_blog_offset')
-        ->init();
+        ->init($results, $paginator, $page, 'welcome_blog_offset');
 
     return array(
         'paginator' => $paginator,

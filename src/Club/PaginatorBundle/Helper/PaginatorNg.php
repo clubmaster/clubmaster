@@ -83,8 +83,13 @@ class PaginatorNg {
         return $this;
     }
 
-    public function init()
+    public function init($results=null, $paginator = null, $page = null, $url = null)
     {
+        if ($results) $this->setLimit($results);
+        if ($paginator) $this->setPaginator($paginator);
+        if ($page) $this->setCurrentPage($page);
+        if ($url) $this->setUrl($url);
+
         //Set defaults
         $this->setDefaults();
 

@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class BlogRepository extends EntityRepository
 {
+    public function getPaginator($results, $page)
+    {
+        $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+        $dql = "SELECT b FROM Club\WelcomeBundle\Entity\Blog b ORDER BY b.id DESC";
+        $query = $this->_em->createQuery($dql)
+            ->setFirstResult($offset)
+            ->setMaxResults($results);
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
+    }
 }
