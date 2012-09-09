@@ -397,20 +397,29 @@ class Booking
 
   protected function validateFuture(\DateTime $date)
   {
-    $c = clone $date;
-    $c->setTime(
-      $this->interval->getStartTime()->format('H'),
-      $this->interval->getStartTime()->format('i'),
-      $this->interval->getStartTime()->format('s')
-    );
+      $c = clone $date;
+      $c->setTime(
+          $this->interval->getStartTime()->format('H'),
+          $this->interval->getStartTime()->format('i'),
+          $this->interval->getStartTime()->format('s')
+      );
 
-    $check_time = new \DateTime();
-    $check_time->add(new \DateInterval('P'.$this->container->getParameter('club_booking.days_book_future').'D'));
+      $check_time = new \DateTime();
+      $check_time->add(new \DateInterval('P'.$this->container->getParameter('club_booking.days_book_future').'D'));
 
-    if ($c > $check_time)
-      return false;
+      if ($this->container->getParameter('club_booking.days_book_future_entire_day')) {
+          $check_time->setTime(
+              23,
+              59,
+              59
+          );
+      }
 
-    return true;
+      var_dump($check_time);die();
+      if ($c > $check_time)
+          return false;
+
+      return true;
   }
 
   protected function validatePast(\DateTime $date)

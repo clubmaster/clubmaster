@@ -1,4 +1,3 @@
-when you book, always could the entire day.. like today at 12:03, you will have to book 6 days ahead.. like today + 6 days, and till the END of the day
 when orders is sent out as autorenewal, seems like all users gets a copy of the same email, with name and everything
 add notice to the admin when he login, if there is a coming date with auto renewal dates
 make admin menu more simple
@@ -8,6 +7,7 @@ improve paginator
 find all ajax pages, and fix em
 use new economic bundle
 use new quickpay bundle
+find out how the economic works on split payment
 
 make feedback as a popdown form
 when upgrading, remember to enable all products

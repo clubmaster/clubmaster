@@ -72,6 +72,7 @@ club_booking:
     num_book_day: 2
     num_book_future: 2
     days_book_future: 6
+    days_book_future_entire_day: true
     cancel_minute_before: 120
     cancel_minute_created: 5
     booking_style: horizontal
