@@ -1,4 +1,3 @@
-point menu event to kernel request, no need to have this addition event
 create a dropdown menu for PROFILE
 more simple to book fields, if no payment, no need to confirm
 confirm split payment in order handling
