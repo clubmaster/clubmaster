@@ -13,8 +13,14 @@ class Event extends AbstractType
     $builder->add('event_name');
     $builder->add('description');
     $builder->add('max_attends');
-    $builder->add('start_date');
-    $builder->add('stop_date');
+    $builder->add('start_date', 'datetime', array(
+        'date_widget' => 'single_text',
+        'time_widget' => 'single_text'
+    ));
+    $builder->add('stop_date', 'datetime', array(
+        'date_widget' => 'single_text',
+        'time_widget' => 'single_text'
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

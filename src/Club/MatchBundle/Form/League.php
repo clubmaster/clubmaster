@@ -27,8 +27,14 @@ class League extends AbstractType
     $builder->add('game_set', 'choice', array(
       'choices' => $set
     ));
-    $builder->add('start_date');
-    $builder->add('end_date');
+    $builder->add('start_date', 'datetime', array(
+        'date_widget' => 'single_text',
+        'time_widget' => 'single_text'
+    ));
+    $builder->add('end_date', 'datetime', array(
+        'date_widget' => 'single_text',
+        'time_widget' => 'single_text'
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

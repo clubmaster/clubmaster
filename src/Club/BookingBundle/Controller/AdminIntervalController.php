@@ -169,15 +169,21 @@ class AdminIntervalController extends Controller
 
   protected function getForm($interval)
   {
-    return $this->createFormBuilder($interval)
-      ->add('day', 'choice', array(
-        'choices' => $this->get('club_booking.interval')->getDays()
-      ))
-      ->add('start_time')
-      ->add('stop_time')
-      ->add('field')
-      ->add('valid_from')
-      ->add('valid_to')
-      ->getForm();
+      return $this->createFormBuilder($interval)
+          ->add('day', 'choice', array(
+              'choices' => $this->get('club_booking.interval')->getDays()
+          ))
+          ->add('start_time')
+          ->add('stop_time')
+          ->add('field')
+          ->add('valid_from', 'datetime', array(
+              'date_widget' => 'single_text',
+              'time_widget' => 'single_text'
+          ))
+          ->add('valid_to', 'datetime', array(
+              'date_widget' => 'single_text',
+              'time_widget' => 'single_text'
+          ))
+          ->getForm();
   }
 }

@@ -10,7 +10,9 @@ class ManageDays extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('start_date', 'date');
+      $builder->add('start_date', 'date', array(
+        'widget' => 'single_text'
+    ));
 
     $date = new \DateTime('next monday');
     $int = new \DateInterval('P1D');

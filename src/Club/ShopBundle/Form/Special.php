@@ -12,8 +12,12 @@ class Special extends AbstractType
   {
     $builder->add('product');
     $builder->add('price');
-    $builder->add('start_date');
-    $builder->add('expire_date');
+    $builder->add('start_date', 'date', array(
+        'widget' => 'single_text'
+    ));
+    $builder->add('expire_date', 'date', array(
+        'widget' => 'single_text'
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

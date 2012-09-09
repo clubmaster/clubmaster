@@ -10,18 +10,24 @@ class RepetitionYearly extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('first_date');
-    $builder->add('last_date');
-    $builder->add('end_occurrences');
-    $builder->add('type', 'hidden');
+      $builder->add('first_date', 'datetime', array(
+          'date_widget' => 'single_text',
+          'time_widget' => 'single_text'
+      ));
+      $builder->add('last_date', 'datetime', array(
+          'date_widget' => 'single_text',
+          'time_widget' => 'single_text'
+      ));
+      $builder->add('end_occurrences');
+      $builder->add('type', 'hidden');
 
-    $range = array();
-    foreach (range(1,50) as $value) {
-      $range[$value] = $value;
-    }
-    $builder->add('repeat_every', 'choice', array(
-      'choices' => $range
-    ));
+      $range = array();
+      foreach (range(1,50) as $value) {
+          $range[$value] = $value;
+      }
+      $builder->add('repeat_every', 'choice', array(
+          'choices' => $range
+      ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

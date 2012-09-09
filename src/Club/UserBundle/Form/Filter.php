@@ -73,7 +73,8 @@ class Filter extends AbstractType
       'multiple' => true
     ));
     $builder->add('subscription_start', 'date', array(
-      'required' => false
+        'required' => false,
+        'widget' => 'single_text'
     ));
   }
 
