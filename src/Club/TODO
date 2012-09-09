@@ -1,4 +1,3 @@
-when orders is sent out as autorenewal, seems like all users gets a copy of the same email, with name and everything
 add notice to the admin when he login, if there is a coming date with auto renewal dates
 make admin menu more simple
 put jquery calendar in all single_text fields
