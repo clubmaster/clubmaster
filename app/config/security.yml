@@ -22,10 +22,6 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        login:
-            pattern: ^/login$
-            security: false
-
         api:
             pattern: ^/api
             anonymous: ~

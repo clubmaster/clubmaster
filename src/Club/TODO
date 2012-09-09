@@ -1,4 +1,3 @@
-fix auth page, forgot password, and so on
 find all datetime forms, and replace with single_text
 find and fix all ajax stuff
 style order checkout
