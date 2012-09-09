@@ -10,13 +10,6 @@ class AdminProfileEmail extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $types = array(
-      'home' => 'Home',
-      'business' => 'Business'
-    );
-    $builder->add('contact_type', 'choice', array(
-      'choices' => $types
-    ));
     $builder->add('email_address');
   }
 

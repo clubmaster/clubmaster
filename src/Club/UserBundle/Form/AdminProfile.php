@@ -22,12 +22,7 @@ class AdminProfile extends AbstractType
         'widget' => 'single_text'
     ));
     $builder->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress());
-    $builder->add('profile_emails', 'collection', array(
-      'type' => new \Club\UserBundle\Form\AdminProfileEmail(),
-      'allow_add' => true,
-      'allow_delete' => true,
-      'by_reference' => false
-    ));
+    $builder->add('profile_email', new \Club\UserBundle\Form\AdminProfileEmail());
     $builder->add('profile_phone', new \Club\UserBundle\Form\AdminProfilePhone());
   }
 
