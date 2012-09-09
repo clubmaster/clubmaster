@@ -1,8 +1,12 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}
+    <div class="page-header">
+        <h1>{% trans with {'%number%':order.orderNumber} %}Order #%number%{% endtrans %}</h1>
+    </div>
+{% endblock %}
 
-<h2>{% trans with {'%order%':order.orderNumber} %}Edit order %order%{% endtrans %}</h2>
+{% block body %}
 
 <form method="post" action="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}" class="form-horizontal">
 

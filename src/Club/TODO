@@ -1,6 +1,3 @@
-fix all forms class="form-horizontal"
-    redo:
-        ./ShopBundle/Resources/views/AdminOrder/edit.html.twig
 fix auth page, forgot password, and so on
 find all datetime forms, and replace with single_text
 find and fix all ajax stuff

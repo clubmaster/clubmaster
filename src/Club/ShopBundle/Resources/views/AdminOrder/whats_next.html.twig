@@ -1,0 +1,60 @@
+<h2>{% trans %}Whats next{% endtrans %}</h2>
+
+<table class="table">
+    <!-- ORDER HAS BEEN MADE -->
+    <tr class="success">
+        <td>#1</td>
+        <td colspan="2">{% trans %}The order has been made.{% endtrans %}</td>
+    </tr>
+
+    <!-- ORDER PAID -->
+    {% if order.paid %}
+    <tr class="success">
+        <td>#2</td>
+        <td colspan="2">{% trans %}The order has been paid.{% endtrans %}</td>
+    </tr>
+    {% else %}
+    <tr class="error">
+        <td>#2</td>
+        <td>{% trans %}The order has not been paid.{% endtrans %}</td>
+        {% if order.cancelled == false %}
+        <td><a class="btn" href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">Pay order</a></td>
+        {% else %}
+        <td>&#160;</td>
+        {% endif %}
+    </tr>
+    {% endif %}
+
+    <!-- ORDER DELIVERED -->
+    {% if order.delivered %}
+    <tr class="success">
+        <td>#3</td>
+        <td colspan="2">{% trans %}The order has been delivered.{% endtrans %}</td>
+    </tr>
+    {% else %}
+    <tr class="error">
+        <td>#3</td>
+        <td>{% trans %}The order has not been delivered.{% endtrans %}</td>
+        {% if order.paid and order.cancelled == false %}
+        <td><a class="btn" href="{{ path('club_shop_adminorder_deliver', {'id':order.id}) }}">Deliver order</a></td>
+        {% else %}
+        <td>&#160;</td>
+        {% endif %}
+    </tr>
+    {% endif %}
+
+    <!-- ORDER CANCELLED -->
+    {% if order.cancelled %}
+    <tr class="success">
+        <td>#4</td>
+        <td colspan="2">{% trans %}The order has been cancelled.{% endtrans %}</td>
+    </tr>
+    {% elseif order.delivered == false %}
+    <tr class="warning">
+        <td>#4</td>
+        <td>{% trans %}The order has not been cancelled.{% endtrans %}</td>
+        <td><a class="btn" href="{{ path('admin_shop_order_delete', {'id':order.id}) }}">Cancel order</a></td>
+    </tr>
+    {% endif %}
+
+</table>

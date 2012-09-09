@@ -1,0 +1,31 @@
+    <table class="table table-bordered">
+        <tr>
+            <th>{% trans %}Company{% endtrans %}</th>
+            <td>{{ address.companyName }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}CVR{% endtrans %}</th>
+            <td>{{ address.cvr }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Name{% endtrans %}</th>
+            <td>{{ address.firstName }} {{ address.lastName }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Street{% endtrans %}</th>
+            <td>{{ address.street }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Postal{% endtrans %}</th>
+            <td>{{ address.postalCode }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}City{% endtrans %}</th>
+            <td>{{ address.city }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Country{% endtrans %}</th>
+            <td>{{ address.country }}</td>
+        </tr>
+</table>
+

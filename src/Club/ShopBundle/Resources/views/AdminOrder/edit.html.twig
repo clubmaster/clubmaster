@@ -1,12 +1,16 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block pagenav %}
-{% if not order.paid %}
+{% block header %}
+    <div class="page-header">
+        <h1>{% trans with {'%number%':order.orderNumber} %}Order #%number%{% endtrans %}</h1>
+    </div>
+{% endblock %}
 
+{% block pagenav %}
+{% if not order.paid and not order.cancelled %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">{% trans %}Register payment{% endtrans %}</a></li>
             <li><a href="{{ path('club_shop_adminorder_productedit', {'id':order.id}) }}">{% trans %}Edit products{% endtrans %}</a></li>
         </ul>
     </div>
@@ -15,11 +19,9 @@
 {% endblock %}
 
 {% block body %}
-<h2>{% trans %}Order Information{% endtrans %}</h2>
-
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_shop_order_edit', {'id':order.id})} %}
 
 {% include "ClubShopBundle:Order:order_form.html.twig" %}
+{% include "ClubShopBundle:AdminOrder:whats_next.html.twig" %}
 {% include "ClubShopBundle:Order:order_history.html.twig" %}
 {% include "ClubShopBundle:Order:purchase_log.html.twig" %}
 {% include "ClubShopBundle:Order:shipping.html.twig" %}

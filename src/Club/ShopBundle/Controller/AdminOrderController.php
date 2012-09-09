@@ -61,6 +61,7 @@ class AdminOrderController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
+    /**
     $form = $this->createForm(new \Club\ShopBundle\Form\Order(), $order);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -76,10 +77,11 @@ class AdminOrderController extends Controller
         return $this->redirect($this->generateUrl('admin_shop_order'));
       }
     }
+     */
 
     return array(
-      'order' => $order,
-      'form' => $form->createView()
+      'order' => $order
+      //,'form' => $form->createView()
     );
   }
 
@@ -95,12 +97,34 @@ class AdminOrderController extends Controller
     $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelled();
     $this->container->get('order')->changeStatus($status);
 
+    $this->get('session')->setFlash('notify', $this->get('translator')->trans('Your order has been cancelled'));
+
     return $this->redirect($this->generateUrl('admin_shop_order'));
   }
 
   private function getFilter()
   {
     return unserialize($this->get('session')->get('order_filter'));
+  }
+
+  /**
+   * @Route("/shop/order/deliver/{id}")
+   */
+  public function deliverAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $order = $em->find('ClubShopBundle:Order',$id);
+
+    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getDelivered();
+
+    $this->get('order')->setOrder($order);
+    $this->get('order')->changeStatus($status);
+
+    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    return $this->redirect($this->generateUrl('admin_shop_order_edit', array(
+        'id' => $order->getId()
+    )));
   }
 
   /**

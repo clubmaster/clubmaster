@@ -1,28 +1,8 @@
-<div class="list">
-  <h2>{% trans %}Customer{% endtrans %}</h2>
-  <p><label>{% trans %}Company{% endtrans %}</label>{{order.customerAddress.companyName }}<br />
-  <label>{% trans %}CVR{% endtrans %}</label>{{ order.customerAddress.cvr }}<br />
-  <label>{% trans %}Name{% endtrans %}</label>{{ order.customerAddress.firstName }} {{ order.customerAddress.lastName }}<br />
-  <label>{% trans %}Street{% endtrans %}</label>{{ order.customerAddress.street }}<br />
-  <label>{% trans %}Postal{% endtrans %}</label>{{ order.customerAddress.postalCode }}<br />
-  <label>{% trans %}City{% endtrans %}</label>{{ order.customerAddress.city }}<br />
-  <label>{% trans %}Country{% endtrans %}</label>{{ order.customerAddress.country }}</p>
+    <h2>{% trans %}Customer{% endtrans %}</h2>
+    {% include "ClubShopBundle:Order:address_table.html.twig" with {'address':order.customerAddress} %}
 
-  <h2>{% trans %}Shipping{% endtrans %}</h2>
-  <p><label>{% trans %}Company{% endtrans %}</label>{{order.shippingAddress.companyName }}<br />
-  <label>{% trans %}CVR{% endtrans %}</label>{{ order.shippingAddress.cvr }}<br />
-  <label>{% trans %}Name{% endtrans %}</label>{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}<br />
-  <label>{% trans %}Street{% endtrans %}</label>{{ order.shippingAddress.street }}<br />
-  <label>{% trans %}Postal{% endtrans %}</label>{{ order.shippingAddress.postalCode }}<br />
-  <label>{% trans %}City{% endtrans %}</label>{{ order.shippingAddress.city }}<br />
-  <label>{% trans %}Country{% endtrans %}</label>{{ order.shippingAddress.country }}</p>
+    <h2>{% trans %}Shipping{% endtrans %}</h2>
+    {% include "ClubShopBundle:Order:address_table.html.twig" with {'address':order.shippingAddress} %}
 
-  <h2>{% trans %}Billing{% endtrans %}</h2>
-  <p><label>{% trans %}Company{% endtrans %}</label>{{order.billingAddress.companyName }}<br />
-  <label>{% trans %}CVR{% endtrans %}</label>{{ order.billingAddress.cvr }}<br />
-  <label>{% trans %}Name{% endtrans %}</label>{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}<br />
-  <label>{% trans %}Street{% endtrans %}</label>{{ order.billingAddress.street }}<br />
-  <label>{% trans %}Postal{% endtrans %}</label>{{ order.billingAddress.postalCode }}<br />
-  <label>{% trans %}City{% endtrans %}</label>{{ order.billingAddress.city }}<br />
-  <label>{% trans %}Country{% endtrans %}</label>{{ order.billingAddress.country }}</p>
-</div>
+    <h2>{% trans %}Billing{% endtrans %}</h2>
+    {% include "ClubShopBundle:Order:address_table.html.twig" with {'address':order.billingAddress} %}

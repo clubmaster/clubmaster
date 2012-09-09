@@ -1,6 +1,8 @@
 {% if order.shipping %}
-<div class="list">
-  <h2>{% trans %}Shipping{% endtrans %}</h2>
-  <p><label>&#160;</label>{{order.shipping.shippingName }}<br />
-</div>
+    <h2>{% trans %}Shipping{% endtrans %}</h2>
+    <table class="table table-bordered">
+        <tr>
+            <td>{{order.shipping.shippingName }}</td>
+        </tr>
+    </table>
 {% endif %}
