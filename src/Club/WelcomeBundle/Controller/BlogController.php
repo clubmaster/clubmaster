@@ -8,10 +8,44 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
+/**
+ * @Route("/welcome/blog")
+ */
 class BlogController extends Controller
 {
   /**
-   * @Route("/welcome/blog/show/{blog_id}")
+   * @Route("/", defaults={"page" = 1})
+   * @Route("/{page}", name="welcome_blog_offset")
+   *
+   * @Template()
+   */
+  public function indexAction($page)
+  {
+    $results = 5;
+    $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+    $em = $this->getDoctrine()->getEntityManager();
+    $dql = "SELECT b FROM Club\WelcomeBundle\Entity\Blog b ORDER BY b.id DESC";
+    $query = $em->createQuery($dql)
+        ->setFirstResult($offset)
+        ->setMaxResults($results);
+    $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
+
+    $nav = $this->get('club_paginator.paginator_ng')
+        ->setLimit($results)
+        ->setPaginator($paginator)
+        ->setCurrentPage($page)
+        ->setUrl('welcome_blog_offset')
+        ->init();
+
+    return array(
+        'paginator' => $paginator,
+        'nav' => $nav
+    );
+  }
+
+  /**
+   * @Route("/show/{blog_id}")
    * @Template()
    */
   public function showAction($blog_id)
@@ -25,7 +59,7 @@ class BlogController extends Controller
   }
 
   /**
-   * @Route("/welcome/blog/comment/{blog_id}")
+   * @Route("/comment/{blog_id}")
    * @Template()
    * @Secure(roles="ROLE_USER")
    */
@@ -61,7 +95,7 @@ class BlogController extends Controller
   }
 
   /**
-   * @Route("/welcome/blog/new")
+   * @Route("/new")
    * @Template()
    * @Secure(roles="ROLE_USER")
    */
@@ -81,7 +115,7 @@ class BlogController extends Controller
   }
 
   /**
-   * @Route("/welcome/blog/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    * @Secure(roles="ROLE_USER")
    */
@@ -103,7 +137,7 @@ class BlogController extends Controller
   }
 
   /**
-   * @Route("/welcome/blog/delete/{id}")
+   * @Route("/delete/{id}")
    * @Secure(roles="ROLE_USER")
    */
   public function deleteAction($id)

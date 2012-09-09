@@ -22,6 +22,9 @@
 {% endif %}
 
 <div class="page-header"><h1>{% trans %}Blog{% endtrans %}</h1></div>
+<p><a href="{{ path('club_welcome_blog_index') }}">Read all blog posts</a></p>
+<hr>
+
 {% for post in posts %}
 {% include "ClubWelcomeBundle:Welcome:blog.html.twig" %}
 {% endfor %}

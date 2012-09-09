@@ -2,3 +2,6 @@ services:
   club_paginator.paginator:
     class: Club\PaginatorBundle\Helper\Paginator
     arguments: [50, 7]
+  club_paginator.paginator_ng:
+    class: Club\PaginatorBundle\Helper\PaginatorNg
+    arguments: [50, 7]
