@@ -63,9 +63,9 @@ ClubInstallBundle:
     prefix:   /installer
     type:     annotation
 
-#ClubConfiguratorBundle:
-    #resource: "@ClubConfiguratorBundle/Controller/"
-    #type:     annotation
+ClubConfiguratorBundle:
+    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
+    prefix: /configurator
 
 ClubMessageBundle:
     resource: "@ClubMessageBundle/Controller/"
