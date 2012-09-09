@@ -1,0 +1,26 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<p>{% trans %}You are about to make a split payment, the order will not be processed before the complete amount is paid.{% endtrans %}</p>
+<p>{% trans %}Please confirm the action.{% endtrans %}</p>
+
+<h2>{% trans %}Confirm split payment{% endtrans %}</h2>
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('payment_cash_confirm', {'order_id':order.id, 'allow_split':true})} %}
+
+<table class="table">
+    <tr>
+        <th>Order amount</th>
+        <td>{{ order.price|club_price }}</td>
+    </tr>
+    <tr>
+        <th>Your payment</th>
+        <td>{{ log.amount|club_price }}</td>
+    </tr>
+    <tr class="error">
+        <td>Missing payment</td>
+        <td>{{ (log.amount-order.price)|club_price }}</td>
+    </tr>
+</table>
+
+{% endblock %}
