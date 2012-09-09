@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   {% for subscription in user.subscriptions %}
-    <tr>
+    <tr class="{% if subscription.active %}success{% else %}error{% endif %}">
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':subscription.active} %}</td>
       <td>{{ subscription.user.profile.firstName }} {{ subscription.user.profile.lastName }}</td>
       <td>{{ subscription.startDate|club_datetime }}</td>
