@@ -14,28 +14,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class BlogController extends Controller
 {
   /**
-   * @Route("/", defaults={"page" = 1})
-   * @Route("/{page}", name="welcome_blog_offset")
-   *
-   * @Template()
-   */
-  public function indexAction($page)
-  {
-    $results = 5;
-
-    $em = $this->getDoctrine()->getEntityManager();
-    $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
-
-    $nav = $this->get('club_paginator.paginator_ng')
-        ->init($results, $paginator, $page, 'welcome_blog_offset');
-
-    return array(
-        'paginator' => $paginator,
-        'nav' => $nav
-    );
-  }
-
-  /**
    * @Route("/show/{blog_id}")
    * @Template()
    */
@@ -143,6 +121,28 @@ class BlogController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('homepage'));
+  }
+
+  /**
+   * @Route("/", defaults={"page" = 1})
+   * @Route("/{page}", name="welcome_blog_offset")
+   *
+   * @Template()
+   */
+  public function indexAction($page)
+  {
+    $results = 5;
+
+    $em = $this->getDoctrine()->getEntityManager();
+    $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
+
+    $nav = $this->get('club_paginator.paginator_ng')
+        ->init($results, $paginator, $page, 'welcome_blog_offset');
+
+    return array(
+        'paginator' => $paginator,
+        'nav' => $nav
+    );
   }
 
   protected function process($blog)
