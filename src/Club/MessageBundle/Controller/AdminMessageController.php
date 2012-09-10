@@ -22,7 +22,7 @@ class AdminMessageController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $count = $em->getRepository('ClubMessageBundle:Message')->getCount();
-    $nav = $this->get('club_paginator.paginator_ng')
+    $nav = $this->get('club_paginator.paginator')
         ->init(20, $count, $page, 'club_message_adminmessage_index_page');
 
     $messages = $em->getRepository('ClubMessageBundle:Message')->getWithPagination($nav->getOffset(),$nav->getLimit());

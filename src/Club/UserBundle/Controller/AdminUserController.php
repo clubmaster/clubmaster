@@ -288,7 +288,7 @@ class AdminUserController extends Controller
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
 
-    $nav = $this->get('club_paginator.paginator_ng')
+    $nav = $this->get('club_paginator.paginator')
         ->init(50, $usersCount, $page, 'admin_user_page');
 
     $sort = $this->get('session')->get('admin_module:admin_user');

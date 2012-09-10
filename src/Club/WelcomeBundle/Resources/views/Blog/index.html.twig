@@ -2,12 +2,12 @@
 
 {% block body %}
 
-{% include "ClubPaginatorBundle:Paginator:paginator_ng.html.twig" %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 {% for post in paginator %}
 {% include "ClubWelcomeBundle:Welcome:blog.html.twig" %}
 {% endfor %}
 
-{% include "ClubPaginatorBundle:Paginator:paginator_ng.html.twig" %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 {% endblock %}

@@ -1,28 +1,12 @@
-<div class="paginator">
-  <div class="pagination box">
-    <p class="f-right">
-        {% if paginator.currentpage != 1 %}
-            <a class="previous" href="{{ path(paginator.currentUrl, {  'offset': paginator.currentpage-1 }) }}">&laquo;</a>
-        {% endif %}
-        {% for i in 1..paginator.numpages%}
-            {% if paginator.range.0 > 2 and i == paginator.range.0 %}
-                  ...
-            {% endif %}
+<div class="pagination">
+  <ul>
+    <li {% if nav.currentPage == 1 %}class="disabled"{% endif %}><a href="{{ path(nav.url, {'page':nav.currentPage-1}) }}">Prev</a></li>
 
-            {%  if(i==1 or i==paginator.numpages or i in paginator.range) %}
-                {% if i==paginator.currentpage %}
-                    <a class="pagination-active" href="{{ path(paginator.currentUrl, {  'offset': i })}}">{{i}}</a>
-                {% else %}
-                <a href="{{ path(paginator.currentUrl, {  'offset': i }) }}"> {{i}}</a>
-                {% endif %}
-            {% endif %}
+    {% for i in nav.range %}
+    <li {% if nav.currentPage == i %}class="active"{% endif %}><a href="{{ path(nav.url, { 'page':i}) }}">{{ i }}</a></li>
+    {% endfor %}
 
-            {% if paginator.range[paginator.midrange -1] < paginator.numpages -1 and i == paginator.range[paginator.midrange-1] %}
-                ...
-            {% endif %}
-        {% endfor %}
-        <a class="next" href="{{ path(paginator.currentUrl, {  'offset': paginator.currentpage+1 }) }}">&raquo;</a>
-    </p>
-    <p class="f-left">{% trans with {'%first%':paginator.offset+1,'%last%':paginator.offset+paginator.limit,'%count%':paginator.itemsCount} %}Showing <strong>%first%-%last%</strong> of <strong>%count%</strong> results{% endtrans %}</p>
-  </div>
+    <li {% if nav.endRange == nav.currentPage %}class="disabled"{% endif %}><a href="{{ path(nav.url, { 'page':nav.currentPage+1}) }}">Next</a></li>
+  </ul>
 </div>
+

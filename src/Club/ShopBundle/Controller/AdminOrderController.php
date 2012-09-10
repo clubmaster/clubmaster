@@ -39,7 +39,7 @@ class AdminOrderController extends Controller
     }
 
     $count = $em->getRepository('ClubShopBundle:Order')->getCount($this->getFilter());
-    $nav = $this->get('club_paginator.paginator_ng')
+    $nav = $this->get('club_paginator.paginator')
         ->init(20, $count, $page, 'admin_shop_order_page');
 
     $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination($this->getFilter(), null, $nav->getOffset(), $nav->getLimit());

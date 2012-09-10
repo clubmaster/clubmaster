@@ -10,202 +10,239 @@ namespace Club\PaginatorBundle\Helper;
 
 class Paginator {
 
-  /**
-   * @var int current displayed page
-   */
-  protected $currentPage;
+    /**
+     * @var int current displayed page
+     */
+    protected $currentPage;
 
-  /**
-   * @var int items limit (items per page)
-   */
-  protected $limit;
+    /**
+     * @var int items limit (items per page)
+     */
+    protected $limit;
 
-  /**
-   * @var int total number of pages
-   */
-  protected $numPages;
+    /**
+     * @var int total number of pages
+     */
+    protected $numPages;
 
-  /**
-   * @var int items limit (items per page)
-   */
-  protected $itemsCount;
+    /**
+     * @var int items limit (items per page)
+     */
+    protected $itemsCount;
 
-  /**
-   * @var int offset
-   */
-  protected $offset;
+    /**
+     * @var int offset
+     */
+    protected $offset;
 
-  /**
-   * @var int pages to show at left and right of current page
-   */
-  protected $midRange;
+    /**
+     * @var int shows the last page
+     */
+    protected $endRange;
 
-  /**
-   * @var array range
-   */
-  protected $range;
+    /**
+     * @var int pages to show at left and right of current page
+     */
+    protected $midRange;
 
-  /**
-   * @param int $itemsCount
-   * @param int $currentPage
-   * @param int $limit
-   * @param int $midRange
-   */
-  function __construct($limit, $midRange)
-  {
-    $this->limit = $limit;
-    $this->midRange = $midRange;
-  }
+    /**
+     * @var array range
+     */
+    protected $range;
 
-  public function init($itemsCount, $currentPage = 1)
-  {
-    //set total items count from controller
-    $this->itemsCount = $itemsCount;
-    $this->currentPage = $currentPage;
-
-    //Set defaults
-    $this->setDefaults();
-
-    //Calculate number of pages total
-    $this->getInternalNumPages();
-
-    //Calculate first shown item on current page
-    $this->calculateOffset();
-    $this->calculateRange();
-  }
-
-  private function calculateRange()
-  {
-    $startRange = $this->currentPage - floor($this->midRange/2);
-    $endRange = $this->currentPage + floor($this->midRange/2);
-
-    if($startRange <= 0)
+    function __construct($limit, $midRange)
     {
-      $endRange += abs($startRange)+1;
-      $startRange = 1;
+        $this->limit = $limit;
+        $this->midRange = $midRange;
     }
 
-    if($endRange > $this->numPages)
+    public function setLimit($limit)
     {
-      $startRange -= $endRange-$this->numPages;
-      $endRange = $this->numPages;
+        $this->limit = $limit;
+
+        return $this;
     }
 
-    $this->range = range($startRange, $endRange);
-  }
-
-  private function setDefaults()
-  {
-    //If currentPage is set to null or is set to 0 or less
-    //set it to default (1)
-    if ($this->currentPage == null || $this->currentPage < 1)
+    public function setItemsCount($itemsCount)
     {
-      $this->currentPage = 1;
+        $this->itemsCount = $itemsCount;
+
+        return $this;
     }
-    //if limit is set to null set it to default (20)
-    if ($this->limit == null)
+
+    public function setCurrentPage($currentPage = 1)
     {
-      $this->limit = 20;
-      //if limit is any number less than 1 then set it to 0 for displaying
-      //items without limit
+        $this->currentPage = $currentPage;
+
+        return $this;
     }
-    else if ($this->limit < 1)
+
+    public function init($results=null, $itemsCount = null, $page = null, $url = null)
     {
-      $this->limit = 0;
+        if ($results) $this->setLimit($results);
+        if ($itemsCount) $this->setItemsCount($itemsCount);
+        if ($page) $this->setCurrentPage($page);
+        if ($url) $this->setUrl($url);
+
+        //Set defaults
+        $this->setDefaults();
+
+        //Calculate number of pages total
+        $this->getInternalNumPages();
+
+        //Calculate first shown item on current page
+        $this->calculateOffset();
+        $this->calculateRange();
+
+        return $this;
     }
-  }
 
-  public function setCurrentUrl($currentUrl)
-  {
-    $this->currentUrl = $currentUrl;
-  }
-
-  private function getInternalNumPages()
-  {
-    //If limit is set to 0 or set to number bigger then total items count
-    //display all in one page
-    if ($this->limit < 1 || $this->limit > $this->itemsCount)
+    private function calculateRange()
     {
-      $this->numPages = 1;
+        $startRange = $this->currentPage - floor($this->midRange/2);
+        $endRange = $this->currentPage + floor($this->midRange/2);
+
+        if($startRange <= 0)
+        {
+            $endRange += abs($startRange)+1;
+            $startRange = 1;
+        }
+
+        if($endRange > $this->numPages)
+        {
+            $startRange -= $endRange-$this->numPages;
+            $endRange = $this->numPages;
+            if ($startRange <= 0) {
+                $startRange = 1;
+            }
+        }
+
+        $this->range = range($startRange, $endRange);
+        $this->endRange = $endRange;
     }
-    else
+
+    private function setDefaults()
     {
-      //Calculate rest numbers from dividing operation so we can add one
-      //more page for this items
-      $restItemsNum = $this->itemsCount % $this->limit;
-      //if rest items > 0 then add one more page else just divide items
-      //by limit
-      $this->numPages = $restItemsNum > 0 ? intval($this->itemsCount / $this->limit) + 1 : intval($this->itemsCount / $this->limit);
+        //If currentPage is set to null or is set to 0 or less
+        //set it to default (1)
+        if ($this->currentPage == null || $this->currentPage < 1)
+        {
+            $this->currentPage = 1;
+        }
+        //if limit is set to null set it to default (20)
+        if ($this->limit == null)
+        {
+            $this->limit = 20;
+            //if limit is any number less than 1 then set it to 0 for displaying
+            //items without limit
+        }
+        else if ($this->limit < 1)
+        {
+            $this->limit = 0;
+        }
     }
-  }
 
-  private function calculateOffset()
-  {
-    //Calculet offset for items based on current page number
-    $this->offset = ($this->currentPage - 1) * $this->limit;
-  }
+    public function setUrl($url)
+    {
+        $this->url = $url;
 
-  /**
-   * @return int number of pages
-   */
-  public function getNumPages()
-  {
-    return $this->numPages;
-  }
+        return $this;
+    }
 
-  /**
-   * @return int current page
-   */
-  public function getCurrentPage()
-  {
-    return $this->currentPage;
-  }
+    private function getInternalNumPages()
+    {
+        //If limit is set to 0 or set to number bigger then total items count
+        //display all in one page
+        if ($this->limit < 1 || $this->limit > $this->itemsCount)
+        {
+            $this->numPages = 1;
+        }
+        else
+        {
+            //Calculate rest numbers from dividing operation so we can add one
+            //more page for this items
+            $restItemsNum = $this->itemsCount % $this->limit;
+            //if rest items > 0 then add one more page else just divide items
+            //by limit
+            $this->numPages = $restItemsNum > 0 ? intval($this->itemsCount / $this->limit) + 1 : intval($this->itemsCount / $this->limit);
+        }
+    }
 
-  /**
-   * @return string current url
-   */
-  public function getCurrentUrl()
-  {
-    return $this->currentUrl;
-  }
+    private function calculateOffset()
+    {
+        //Calculet offset for items based on current page number
+        $this->offset = ($this->currentPage - 1) * $this->limit;
+    }
 
-  /**
-   * @return int items count
-   */
-  public function getItemsCount()
-  {
-    return $this->itemsCount;
-  }
+    /**
+     * @return int number of pages
+     */
+    public function getNumPages()
+    {
+        return $this->numPages;
+    }
 
-  /**
-   * @return int limit items per page
-   */
-  public function getLimit()
-  {
-    return $this->limit;
-  }
+    /**
+     * @return int current page
+     */
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
+    }
 
-  /**
-   * @return int offset
-   */
-  public function getOffset()
-  {
-    return $this->offset;
-  }
+    /**
+     * @return string url
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-  /**
-   * @return array range
-   */
-  public function getRange()
-  {
-    return $this->range;
-  }
+    /**
+     * @return int items count
+     */
+    public function getItemsCount()
+    {
+        return $this->itemsCount;
+    }
 
-  /**
-   * @return int mid range
-   */
-  public function getMidRange()
-  {
-    return $this->midRange;
-  }
+    /**
+     * @return int limit items per page
+     */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @return int offset
+     */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    /**
+     * @return array range
+     */
+    public function getRange()
+    {
+        return $this->range;
+    }
+
+    /**
+     * @return int mid range
+     */
+    public function getMidRange()
+    {
+        return $this->midRange;
+    }
+
+    /**
+     * @return int end range
+     */
+    public function getEndRange()
+    {
+        return $this->endRange;
+    }
 }
