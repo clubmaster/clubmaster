@@ -1,5 +1,4 @@
 build a form type for jquery (get inspiration from genemu)
-build a form type for tinymce
 build a form type for autocomplete
 use new economic bundle
 use new quickpay bundle
@@ -7,6 +6,7 @@ find out how the economic works on split payment
 style checkout as new member
 fix admin users page
 seems like helper text is not alligned as it should, check product attributes
+fix crud for events
 
 make feedback as a popdown form
 when upgrading, remember to enable all products

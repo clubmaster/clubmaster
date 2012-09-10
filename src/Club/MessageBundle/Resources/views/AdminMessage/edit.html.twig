@@ -1,9 +1,5 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
-{% block javascripts %}
-  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
-{% endblock %}
-
 {% block body %}
 <form method="post" action="{{ path('club_message_adminmessage_edit', {'id':message.id}) }}" class="form-horizontal">
 

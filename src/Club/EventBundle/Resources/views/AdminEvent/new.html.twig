@@ -1,9 +1,5 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
-{% block javascripts %}
-  {% include "ClubLayoutBundle:Default:tinymce.html.twig" %}
-{% endblock %}
-
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_event_adminevent_new')}  %}
 {% endblock %}
