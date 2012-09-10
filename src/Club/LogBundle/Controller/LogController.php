@@ -13,24 +13,23 @@ use Symfony\Component\HttpFoundation\Response;
 class LogController extends Controller
 {
   /**
-   * @Route("/log/action/offset/{offset}", name="club_log_log_index_offset")
+   * @Route("/log/action/page/{page}", name="club_log_log_index_page")
    * @Route("/log/action")
    * @Template()
    */
-  public function indexAction($offset = null)
+  public function indexAction($page = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
-    $paginator = $this->get('club_paginator.paginator');
-    $paginator->init($logs_count, $offset);
-    $paginator->setCurrentUrl('club_log_log_index_offset');
+    $nav = $this->get('club_paginator.paginator')
+        ->init(50, $logs_count, $page, 'club_log_log_index_page');
 
-    $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($paginator->getOffset(), $paginator->getLimit());
+    $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($nav->getOffset(), $nav->getLimit());
 
     return array(
       'logs' => $logs,
-      'paginator' => $paginator,
+      'nav' => $nav,
     );
   }
 
