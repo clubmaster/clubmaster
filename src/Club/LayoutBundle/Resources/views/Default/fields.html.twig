@@ -57,3 +57,31 @@
     {{ form_widget(form) }}
 {% endspaceless %}
 {% endblock %}
+
+{% block jquery_date_time_widget %}
+{% spaceless %}
+    <script>
+    $(function() {
+        if (!Modernizr.inputtypes.date) {
+            $( "#{{ id }}_date" ).datepicker();
+        }
+    });
+    </script>
+
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock %}
+
+{% block jquery_date_widget %}
+{% spaceless %}
+    <script>
+    $(function() {
+        if (!Modernizr.inputtypes.date) {
+            $( "#{{ id }}" ).datepicker();
+        }
+    });
+    </script>
+
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock %}

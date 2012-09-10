@@ -7,3 +7,11 @@ services:
         class: Club\LayoutBundle\Form\TinyMceType
         tags:
             - { name: "form.type_tinymce", alias: "tinymce" }
+    club_layout_form_jquery_calendar:
+        class: Club\LayoutBundle\Form\JQueryDateTimeType
+        tags:
+            - { name: "form.type_jquery_date_time", alias: "jquery_date_time" }
+    club_layout_form_jquery_date:
+        class: Club\LayoutBundle\Form\JQueryDateType
+        tags:
+            - { name: "form.type_jquery_date", alias: "jquery_date" }

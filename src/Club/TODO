@@ -8,11 +8,11 @@ fix admin users page
 seems like helper text is not alligned as it should, check product attributes
 fix crud for events
 
-make feedback as a popdown form
 when upgrading, remember to enable all products
 translation
 
 == VERSION 1.3 ==
+make feedback as a popdown form
 create a dropdown menu for PROFILE
 more simple to book fields, if no payment, no need to confirm
 build new gravatar support
