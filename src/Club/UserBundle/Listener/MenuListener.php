@@ -25,6 +25,7 @@ class MenuListener
             );
             $menu[10] = array(
                 'header' => 'General',
+                'image' => 'bundles/clublayout/images/icons/16x16/house.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Members'),
@@ -47,6 +48,7 @@ class MenuListener
 
             $menu[16] = array(
                 'header' => $this->translator->trans('Administration'),
+                'image' => 'bundles/clublayout/images/icons/16x16/wrench.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Task'),

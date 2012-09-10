@@ -22,6 +22,7 @@ class MenuListener
       if ($this->security_context->isGranted('ROLE_MESSAGE_ADMIN')) {
           $menu[33] = array(
               'header' => $this->translator->trans('Message'),
+              'image' => 'bundles/clublayout/images/icons/16x16/email.png',
               'items' => array(
                   array(
                       'name' => $this->translator->trans('Message'),

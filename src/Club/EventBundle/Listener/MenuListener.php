@@ -30,6 +30,7 @@ class MenuListener
       if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
           $menu[55] = array(
               'header' => $this->translator->trans('Event'),
+              'image' => 'bundles/clublayout/images/icons/16x16/calendar.png',
               'items' => array(
                   array(
                       'name' => $this->translator->trans('Event'),

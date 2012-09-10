@@ -30,6 +30,7 @@ class MenuListener
       if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
           $menu[23] = array(
               'header' => $this->translator->trans('Match'),
+              'image' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
               'items' => array(
                   array(
                       'name' => $this->translator->trans('League'),

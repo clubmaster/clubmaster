@@ -5,7 +5,7 @@
         {% for item in menu %}
 
             {% if item.header is defined %}
-                <li class="nav-header">{{ item.header }}</li>
+                <li class="nav-header">{% if item.image is defined %}<img src="{{ asset(item.image) }}" /> {% endif %}{{ item.header }}</li>
             {% else %}
                 <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
             {% endif %}

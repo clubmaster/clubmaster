@@ -20,6 +20,7 @@ class MenuListener
       if ($this->security_context->isGranted('ROLE_PASSKEY_ADMIN')) {
           $menu[64] = array(
               'header' => $this->translator->trans('Passkey'),
+              'image' => 'bundles/clublayout/images/icons/16x16/key.png',
               'items' => array(
                   array(
                       'name' => $this->translator->trans('Passkey'),

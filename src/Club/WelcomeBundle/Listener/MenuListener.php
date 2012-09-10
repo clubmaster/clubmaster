@@ -20,6 +20,7 @@ class MenuListener
         if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
             $menu[29] = array(
                 'header' => 'CMS',
+                'image' => 'bundles/clublayout/images/icons/16x16/layout.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Frontpage'),

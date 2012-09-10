@@ -23,6 +23,7 @@ class MenuListener
 
             $menu[22] = array(
                 'header' => 'Shop',
+                'image' => 'bundles/clublayout/images/icons/16x16/basket.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Products'),

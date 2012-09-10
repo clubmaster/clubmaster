@@ -21,6 +21,7 @@ class MenuListener
 
             $menu[45] = array(
                 'header' => $this->translator->trans('Booking'),
+                'image' => 'bundles/clublayout/images/icons/16x16/time.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Booking plans'),
