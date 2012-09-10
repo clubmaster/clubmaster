@@ -12,11 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminOrderController extends Controller
 {
   /**
-   * @Route("/shop/order/offset/{offset}", name="admin_shop_order_offset")
+   * @Route("/shop/order/page/{page}", name="admin_shop_order_page")
    * @Route("/shop/order", name="admin_shop_order")
    * @Template()
    */
-  public function indexAction($offset = null)
+  public function indexAction($page = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
@@ -39,15 +39,14 @@ class AdminOrderController extends Controller
     }
 
     $count = $em->getRepository('ClubShopBundle:Order')->getCount($this->getFilter());
-    $paginator = $this->get('club_paginator.paginator');
-    $paginator->init($count, $offset);
-    $paginator->setCurrentUrl('admin_shop_order_offset');
+    $nav = $this->get('club_paginator.paginator_ng')
+        ->init(20, $count, $page, 'admin_shop_order_page');
 
-    $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination($this->getFilter(), null, $paginator->getOffset(), $paginator->getLimit());
+    $orders = $em->getRepository('ClubShopBundle:Order')->getWithPagination($this->getFilter(), null, $nav->getOffset(), $nav->getLimit());
 
     return array(
       'orders' => $orders,
-      'paginator' => $paginator,
+      'nav' => $nav,
       'form' => $form->createView()
     );
   }

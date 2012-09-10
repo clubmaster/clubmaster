@@ -50,11 +50,6 @@ class PaginatorNg {
      */
     protected $range;
 
-    /**
-     * @var object paginator
-     */
-    protected $paginator;
-
     function __construct($limit, $midRange)
     {
         $this->limit = $limit;
@@ -68,10 +63,9 @@ class PaginatorNg {
         return $this;
     }
 
-    public function setPaginator(\Doctrine\ORM\Tools\Pagination\Paginator $paginator)
+    public function setItemsCount($itemsCount)
     {
-        $this->paginator = $paginator;
-        $this->itemsCount = count($paginator);
+        $this->itemsCount = $itemsCount;
 
         return $this;
     }
@@ -83,10 +77,10 @@ class PaginatorNg {
         return $this;
     }
 
-    public function init($results=null, $paginator = null, $page = null, $url = null)
+    public function init($results=null, $itemsCount = null, $page = null, $url = null)
     {
         if ($results) $this->setLimit($results);
-        if ($paginator) $this->setPaginator($paginator);
+        if ($itemsCount) $this->setItemsCount($itemsCount);
         if ($page) $this->setCurrentPage($page);
         if ($url) $this->setUrl($url);
 

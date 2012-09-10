@@ -276,10 +276,10 @@ class AdminUserController extends Controller
 
   /**
    * @Route("/user", name="admin_user")
-   * @Route("/user/offset/{offset}", name="admin_user_offset")
+   * @Route("/user/page/{page}", name="admin_user_page")
    * @Template()
    */
-  public function indexAction($offset = null)
+  public function indexAction($page = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
@@ -288,9 +288,8 @@ class AdminUserController extends Controller
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
 
-    $paginator = $this->get('club_paginator.paginator');
-    $paginator->init($usersCount, $offset);
-    $paginator->setCurrentUrl('admin_user_offset');
+    $nav = $this->get('club_paginator.paginator_ng')
+        ->init(50, $usersCount, $page, 'admin_user_page');
 
     $sort = $this->get('session')->get('admin_module:admin_user');
 
@@ -302,13 +301,13 @@ class AdminUserController extends Controller
 
     $form = $this->createForm(new \Club\UserBundle\Form\Batch());
 
-    $users = $repository->getUsersListWithPagination($filter, $order_by, $paginator->getOffset(), $paginator->getLimit());
+    $users = $repository->getUsersListWithPagination($filter, $order_by, $nav->getOffset(), $nav->getLimit());
 
     return array(
       'sort_name' => key($order_by),
       'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'paginator' => $paginator,
+      'nav' => $nav,
       'form' => $form->createView()
     );
   }
