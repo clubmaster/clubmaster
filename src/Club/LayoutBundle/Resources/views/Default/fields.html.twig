@@ -85,3 +85,17 @@
     {{ form_widget(form) }}
 {% endspaceless %}
 {% endblock %}
+
+{% block jquery_birthday_widget %}
+{% spaceless %}
+    <script>
+    $(function() {
+        if (!Modernizr.inputtypes.date) {
+            $( "#{{ id }}" ).datepicker();
+        }
+    });
+    </script>
+
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock %}

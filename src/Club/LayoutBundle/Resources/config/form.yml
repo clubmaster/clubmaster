@@ -15,3 +15,7 @@ services:
         class: Club\LayoutBundle\Form\JQueryDateType
         tags:
             - { name: "form.type_jquery_date", alias: "jquery_date" }
+    club_layout_form_jquery_birthday:
+        class: Club\LayoutBundle\Form\JQueryBirthdayType
+        tags:
+            - { name: "form.type_jquery_birthday", alias: "jquery_birthday" }

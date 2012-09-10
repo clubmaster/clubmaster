@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Club\LayoutBundle\Form\JQueryDateType;
 
 class ProductAttribute extends AbstractType
 {
@@ -66,12 +67,12 @@ class ProductAttribute extends AbstractType
       'required' => false,
       'label' => 'Stop time'
     ));
-    $builder->add('start_date', 'date', array(
+    $builder->add('start_date', new JQueryDateType(), array(
         'widget' => 'single_text',
         'required' => false,
         'label' => 'Start date'
     ));
-    $builder->add('expire_date', 'date', array(
+    $builder->add('expire_date', new JQueryDateType(), array(
         'widget' => 'single_text',
         'required' => false,
         'label' => 'Expire date'

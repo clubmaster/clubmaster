@@ -5,6 +5,7 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Club\LayoutBundle\Form\JQueryBirthdayType;
 
 class AdminProfile extends AbstractType
 {
@@ -18,7 +19,7 @@ class AdminProfile extends AbstractType
         'female' => 'Female'
       )
     ));
-    $builder->add('day_of_birth','birthday', array(
+    $builder->add('day_of_birth', new JQueryBirthdayType(), array(
         'widget' => 'single_text'
     ));
     $builder->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress());
