@@ -26,7 +26,7 @@ class MenuListener
         'name' => $this->translator->trans('Dashboard'),
         'route' => $this->router->generate('club_dashboard_dashboard_index')
       );
-      $event->appendItem($menu);
+      $event->appendMenu($menu);
     }
   }
 }

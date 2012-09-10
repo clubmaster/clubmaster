@@ -19,11 +19,10 @@ class MenuListener
     {
         if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
             $menu[29] = array(
-                'name' => $this->translator->trans('Page'),
-                'route' => $this->router->generate('club_welcome_adminwelcome_index'),
+                'header' => 'CMS',
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('Welcome page'),
+                        'name' => $this->translator->trans('Frontpage'),
                         'route' => $this->router->generate('club_welcome_adminwelcome_index')
                     ),
                     array(
@@ -33,7 +32,7 @@ class MenuListener
                 )
             );
 
-            $event->appendItem($menu);
+            $event->appendMenu($menu);
         }
     }
 }

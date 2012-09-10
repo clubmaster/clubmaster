@@ -7,14 +7,10 @@ use Symfony\Component\EventDispatcher\Event;
 class FilterMenuEvent extends Event
 {
   protected $menu;
-  protected $menu_right;
-  protected $menu_dash;
 
   public function __construct()
   {
-    $this->menu = array();;
-    $this->menu_right = array();
-    $this->menu_dash = array();
+    $this->menu = array();
   }
 
   public function getMenu()
@@ -27,51 +23,51 @@ class FilterMenuEvent extends Event
     $this->menu = $menu;
   }
 
+  public function appendMenu($menu)
+  {
+      foreach ($menu as $key => $item) {
+          if (isset($this->menu[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
+
+          $this->menu[$key] = $item;
+      }
+  }
+
   public function appendItem($menu)
   {
-    foreach ($menu as $key => $item) {
-      if (isset($this->menu[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
+      if (isset($menu['header']) && $this->headerExists($menu['header'])) {
+          $h = $menu['header'];
 
-      $this->menu[$key] = $item;
-    }
+          $res = $this->getItemByHeader($h);
+          foreach ($menu['items'] as $i) {
+            $res['item']['items'][] = $i;
+          }
+
+          $this->menu[$res['key']] = $res['item'];
+      } else {
+          $this->menu[] = $menu;
+      }
   }
 
-  public function getMenuRight()
+  public function headerExists($query)
   {
-    return $this->menu_right;
+      foreach ($this->menu as $item) {
+          if (isset($item['header']) && $item['header'] == $query)
+              return true;
+      }
+
+      return false;
   }
 
-  public function setMenuRight($menu_right)
+  public function getItemByHeader($query)
   {
-    $this->menu_right = $menu_right;
+      foreach ($this->menu as $key => $item) {
+          if (isset($item['header']) && $item['header'] == $query)
+              return array(
+                  'key' => $key,
+                  'item' => $item
+              );
+      }
+
+      return false;
   }
-
-  public function appendItemRight($menu_right)
-  {
-    foreach ($menu_right as $key => $item) {
-      if (isset($this->menu_right[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
-
-      $this->menu_right[$key] = $item;
-    }
-  }
-
-  public function getMenuDash()
-  {
-    return $this->menu_dash;
-  }
-
-  public function setMenuDash($menu_dash)
-  {
-    $this->menu_dash = $menu_dash;
-  }
-
-  public function appendItemDash($menu_dash)
-  {
-    foreach ($menu_dash as $key => $item) {
-      if (isset($this->menu_dash[$key])) throw new \Exception('Cannot overwrite menu item: '.$key);
-
-      $this->menu_dash[$key] = $item;
-    }
-  }
-
 }

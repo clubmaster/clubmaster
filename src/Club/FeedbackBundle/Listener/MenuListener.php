@@ -15,14 +15,13 @@ class MenuListener
     $this->translator = $translator;
   }
 
-  public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+  public function onTopRightMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    $menu = $event->getMenuRight();
-    $menu[] = array(
+    $menu = array(
       'name' => $this->translator->trans('Feedback'),
       'route' => $this->router->generate('club_feedback_feedback_index')
     );
 
-    $event->appendItemRight($menu);
+    $event->appendItem($menu);
   }
 }

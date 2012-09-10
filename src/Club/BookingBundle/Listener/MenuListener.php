@@ -20,21 +20,20 @@ class MenuListener
         if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
 
             $menu[45] = array(
-                'name' => $this->translator->trans('Booking'),
-                'route' => $this->router->generate('club_booking_adminfield_index'),
+                'header' => $this->translator->trans('Booking'),
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('Field'),
-                        'route' => $this->router->generate('club_booking_adminfield_index')
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Plans'),
+                        'name' => $this->translator->trans('Booking plans'),
                         'route' => $this->router->generate('club_booking_adminplan_index')
                     ),
+                    array(
+                        'name' => $this->translator->trans('Fields administration'),
+                        'route' => $this->router->generate('club_booking_adminfield_index'),
+                    )
                 )
             );
 
-            $event->appendItem($menu);
+            $event->appendMenu($menu);
         }
     }
 
@@ -45,7 +44,7 @@ class MenuListener
             'route' => $this->router->generate('club_booking_overview_index')
         );
 
-        $event->appendItem($menu);
+        $event->appendMenu($menu);
     }
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -59,6 +58,6 @@ class MenuListener
             'text' => 'Velkommen til booking siden, her kan du finde og reservere dine kommende tider.'
         );
 
-        $event->appendItemDash($menu);
+        $event->appendMenu($menu);
     }
 }

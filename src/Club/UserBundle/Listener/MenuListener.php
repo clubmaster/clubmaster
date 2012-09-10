@@ -24,26 +24,29 @@ class MenuListener
                 'route' => $this->router->generate('club_dashboard_admindashboard_index'),
             );
             $menu[10] = array(
-                'name' => $this->translator->trans('Members'),
-                'route' => $this->router->generate('admin_user'),
+                'header' => 'General',
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('Import'),
-                        'route' => $this->router->generate('club_user_adminuserimport_index')
+                        'name' => $this->translator->trans('Members'),
+                        'route' => $this->router->generate('admin_user')
+                    ),
+                    array(
+                        'name' => $this->translator->trans('Group'),
+                        'route' => $this->router->generate('admin_group')
+                    ),
+                    array(
+                        'name' => $this->translator->trans('Location'),
+                        'route' => $this->router->generate('admin_location')
+                    ),
+                    array(
+                        'name' => $this->translator->trans('Currency'),
+                        'route' => $this->router->generate('admin_currency')
                     )
                 )
             );
-            $menu[12] = array(
-                'name' => $this->translator->trans('Group'),
-                'route' => $this->router->generate('admin_group')
-            );
-            $menu[14] = array(
-                'name' => $this->translator->trans('Location'),
-                'route' => $this->router->generate('admin_location')
-            );
+
             $menu[16] = array(
-                'name' => $this->translator->trans('Administration'),
-                'route' => $this->router->generate('club_log_log_index'),
+                'header' => $this->translator->trans('Administration'),
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('Task'),
@@ -52,15 +55,11 @@ class MenuListener
                     array(
                         'name' => $this->translator->trans('Log'),
                         'route' => $this->router->generate('club_log_log_index')
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Currency'),
-                        'route' => $this->router->generate('admin_currency')
-                    ),
+                    )
                 )
             );
 
-            $event->appendItem($menu);
+            $event->appendMenu($menu);
         }
     }
 
@@ -79,7 +78,7 @@ class MenuListener
             'route' => $this->router->generate('club_user_member_index')
         );
 
-        $event->appendItem($menu);
+        $event->appendMenu($menu);
     }
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -93,6 +92,6 @@ class MenuListener
             'text' => 'Se en liste over alle medlemmerne, skal du kontakte en bestemt spiller så er der her du kan finde frem til vedkommende.'
         );
 
-        $event->appendItemDash($menu);
+        $event->appendMenu($menu);
     }
 }

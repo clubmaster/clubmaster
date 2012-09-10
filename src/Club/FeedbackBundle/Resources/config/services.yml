@@ -1,7 +1,0 @@
-parameters:
-#    club_feedback.example.class: Club\FeedbackBundle\Example
-
-services:
-#    club_feedback.example:
-#        class: %club_feedback.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

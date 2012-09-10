@@ -22,24 +22,28 @@ class MenuListener
       'route' => $this->router->generate('club_match_league_index')
     );
 
-    $event->appendItem($menu);
+    $event->appendMenu($menu);
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
-      $menu[75] = array(
-        'name' => $this->translator->trans('League'),
-        'route' => $this->router->generate('club_match_adminleague_index'),
-        'items' => array(
-          array(
-            'name' => $this->translator->trans('Rule'),
-            'route' => $this->router->generate('club_match_adminrule_index')
-          )
-        )
-      );
-      $event->appendItem($menu);
-    }
+      if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
+          $menu[23] = array(
+              'header' => $this->translator->trans('Match'),
+              'items' => array(
+                  array(
+                      'name' => $this->translator->trans('League'),
+                      'route' => $this->router->generate('club_match_adminleague_index'),
+                  ),
+                  array(
+                      'name' => $this->translator->trans('Rule'),
+                      'route' => $this->router->generate('club_match_adminrule_index')
+                  )
+              )
+          );
+
+          $event->appendMenu($menu);
+      }
   }
 
   public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -53,6 +57,6 @@ class MenuListener
           'text' => 'Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.'
       );
 
-      $event->appendItemDash($menu);
+      $event->appendMenu($menu);
   }
 }

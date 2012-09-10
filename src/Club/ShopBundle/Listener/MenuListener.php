@@ -22,11 +22,10 @@ class MenuListener
         if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
 
             $menu[22] = array(
-                'name' => $this->translator->trans('Shop'),
-                'route' => $this->router->generate('admin_shop_product'),
+                'header' => 'Shop',
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('Product'),
+                        'name' => $this->translator->trans('Products'),
                         'route' => $this->router->generate('admin_shop_product')
                     ),
                     array(
@@ -60,7 +59,7 @@ class MenuListener
                 ),
             );
 
-            $event->appendItem($menu);
+            $event->appendMenu($menu);
         }
     }
 
@@ -71,7 +70,7 @@ class MenuListener
                 'name' => $this->translator->trans('Shop'),
                 'route' => $this->router->generate('shop')
             );
-            $event->appendItem($menu);
+            $event->appendMenu($menu);
         }
     }
 
@@ -85,6 +84,6 @@ class MenuListener
             'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
             'text' => 'Gå op opdagelse i butikken, her finder du alt klubben tilbyder af abonnementer og services.'
         );
-        $event->appendItemDash($menu);
+        $event->appendMenu($menu);
     }
 }

@@ -22,20 +22,24 @@ class MenuListener
       'route' => $this->router->generate('event_event')
     );
 
-    $event->appendItem($menu);
+    $event->appendMenu($menu);
   }
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
-      $menu[55] = array(
-        'name' => $this->translator->trans('Event'),
-        'route' => $this->router->generate('admin_event_event'),
-        'items' => array()
-      );
+      if ($this->security_context->isGranted('ROLE_EVENT_ADMIN')) {
+          $menu[55] = array(
+              'header' => $this->translator->trans('Event'),
+              'items' => array(
+                  array(
+                      'name' => $this->translator->trans('Event'),
+                      'route' => $this->router->generate('admin_event_event'),
+                  )
+              )
+          );
 
-      $event->appendItem($menu);
-    }
+          $event->appendMenu($menu);
+      }
   }
 
   public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -49,6 +53,6 @@ class MenuListener
           'text' => 'Hvad sker der i klubben, er der nogen grill arrangementer, er der nogen turneringer klik her og følg med.'
       );
 
-      $event->appendItemDash($menu);
+      $event->appendMenu($menu);
   }
 }

@@ -22,7 +22,7 @@ class MenuListener
             'route' => $this->router->generate('club_request_playermarket_index')
         );
 
-        $event->appendItem($menu);
+        $event->appendMenu($menu);
     }
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -36,6 +36,6 @@ class MenuListener
             'text' => 'Gå på opdagelse i spiller markedet, har kan du finde andre spillere som leder efter en makker som gerne vil ned at spille.'
         );
 
-        $event->appendItemDash($menu);
+        $event->appendMenu($menu);
     }
 }

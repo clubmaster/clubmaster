@@ -11,7 +11,10 @@ class DefaultController extends Controller
         $event = new \Club\MenuBundle\Event\FilterMenuEvent();
         $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onTopMenuRender, $event);
         $menu = $event->getMenu();
-        $menu_right = $event->getMenuRight();
+
+        $event = new \Club\MenuBundle\Event\FilterMenuEvent();
+        $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onTopRightMenuRender, $event);
+        $menu_right = $event->getMenu();
 
         ksort($menu);
         ksort($menu_right);
@@ -44,7 +47,7 @@ class DefaultController extends Controller
     {
         $event = new \Club\MenuBundle\Event\FilterMenuEvent();
         $this->get('event_dispatcher')->dispatch(\Club\MenuBundle\Event\Events::onDashMenuRender, $event);
-        $menu = $event->getMenuDash();
+        $menu = $event->getMenu();
 
         ksort($menu);
         return $this->render('ClubMenuBundle:Default:dashMenu.html.twig', array(

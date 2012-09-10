@@ -3,15 +3,24 @@
     <ul class="nav nav-list">
 
         {% for item in menu %}
-        <li class="nav-header">{{ item.name }}</li>
-        <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
 
-        {% if item.items is defined %}
-        {% for subitem in item.items %}
-        <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+            {% if item.header is defined %}
+                <li class="nav-header">{{ item.header }}</li>
+            {% else %}
+                <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
+            {% endif %}
+
+            {% if item.items is defined %}
+
+                {% for subitem in item.items %}
+                    <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+                {% endfor %}
+
+            {% endif %}
+
+            <li class="divider"></li>
         {% endfor %}
-        {% endif %}
-        {% endfor %}
+
     </ul>
 </div><!--/.well -->
 {% endif %}

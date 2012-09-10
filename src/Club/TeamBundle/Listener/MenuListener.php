@@ -17,19 +17,22 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
-      $menu[65] = array(
-        'name' => $this->translator->trans('Team'),
-        'route' => $this->router->generate('club_team_adminteamcategory_index'),
-        'items' => array(
-          array(
-            'name' => $this->translator->trans('Level'),
-            'route' => $this->router->generate('club_team_adminlevel_index')
-          )
-        )
-      );
-      $event->appendItem($menu);
-    }
+      if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
+          $menu[65] = array(
+              'header' => $this->translator->trans('Team'),
+              'items' => array(
+                  array(
+                      'name' => $this->translator->trans('Team'),
+                      'route' => $this->router->generate('club_team_adminteamcategory_index'),
+                  ),
+                  array(
+                      'name' => $this->translator->trans('Level'),
+                      'route' => $this->router->generate('club_team_adminlevel_index')
+                  )
+              )
+          );
+          $event->appendMenu($menu);
+      }
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -39,7 +42,7 @@ class MenuListener
       'route' => $this->router->generate('club_team_team_index')
     );
 
-    $event->appendItem($menu);
+    $event->appendMenu($menu);
   }
 
   public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -53,6 +56,6 @@ class MenuListener
           'text' => 'Her kan du finde alle vores hold, gå på opdagelse og se hvad vi tilbyder.'
       );
 
-      $event->appendItemDash($menu);
+      $event->appendMenu($menu);
   }
 }

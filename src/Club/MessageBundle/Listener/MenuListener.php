@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\PasskeyBundle\Listener;
+namespace Club\MessageBundle\Listener;
 
 class MenuListener
 {
@@ -17,17 +17,20 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-      if ($this->security_context->isGranted('ROLE_PASSKEY_ADMIN')) {
-          $menu[64] = array(
-              'header' => $this->translator->trans('Passkey'),
+      $menu = $event->getMenu();
+
+      if ($this->security_context->isGranted('ROLE_MESSAGE_ADMIN')) {
+          $menu[33] = array(
+              'header' => $this->translator->trans('Message'),
               'items' => array(
                   array(
-                      'name' => $this->translator->trans('Passkey'),
-                      'route' => $this->router->generate('club_passkey_adminpasskey_index')
+                      'name' => $this->translator->trans('Message'),
+                      'route' => $this->router->generate('club_message_adminmessage_index'),
                   )
               )
           );
-          $event->appendMenu($menu);
       }
+
+      $event->setMenu($menu);
   }
 }

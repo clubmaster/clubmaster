@@ -17,13 +17,18 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    if ($this->security_context->isGranted('ROLE_TOURNAMENT_ADMIN')) {
-      $menu[42] = array(
-        'name' => $this->translator->trans('Tournament'),
-        'route' => $this->router->generate('club_tournament_admintournament_index')
-      );
-      $event->appendItem($menu);
-    }
+      if ($this->security_context->isGranted('ROLE_TOURNAMENT_ADMIN')) {
+          $menu = array(
+              'header' => $this->translator->trans('Match'),
+              'items' => array(
+                  array(
+                      'name' => $this->translator->trans('Tournament'),
+                      'route' => $this->router->generate('club_tournament_admintournament_index')
+                  )
+              )
+          );
+          $event->appendItem($menu);
+      }
   }
 
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -33,6 +38,6 @@ class MenuListener
       'route' => $this->router->generate('club_team_team_index')
     );
 
-    $event->appendItem($menu);
+    $event->appendMenu($menu);
   }
 }
