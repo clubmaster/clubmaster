@@ -5,6 +5,7 @@ namespace Club\MatchBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Club\LayoutBundle\Form\JQueryDateTimeType;
 
 class League extends AbstractType
 {
@@ -27,11 +28,11 @@ class League extends AbstractType
     $builder->add('game_set', 'choice', array(
       'choices' => $set
     ));
-    $builder->add('start_date', 'datetime', array(
+    $builder->add('start_date', new JQueryDateTimeType(), array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'
     ));
-    $builder->add('end_date', 'datetime', array(
+    $builder->add('end_date', new JQueryDateTimeType(), array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'
     ));
