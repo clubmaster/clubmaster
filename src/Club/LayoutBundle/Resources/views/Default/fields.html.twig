@@ -99,3 +99,14 @@
     {{ form_widget(form) }}
 {% endspaceless %}
 {% endblock %}
+
+{% block jquery_autocomplete_widget %}
+{% spaceless %}
+    {% include "ClubLayoutBundle:Default:ajax_user.html.twig" %}
+
+    <script>
+    </script>
+
+    {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock %}

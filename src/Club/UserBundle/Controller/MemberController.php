@@ -16,7 +16,7 @@ class MemberController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $form = $this->createForm(new \Club\UserBundle\Form\UserQuery);
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     $data = array();
     if ($this->getRequest()->getMethod() == 'POST') {

@@ -19,3 +19,7 @@ services:
         class: Club\LayoutBundle\Form\JQueryBirthdayType
         tags:
             - { name: "form.type_jquery_birthday", alias: "jquery_birthday" }
+    club_layout_form_jquery_autocomplete:
+        class: Club\LayoutBundle\Form\JQueryAutocompleteType
+        tags:
+            - { name: "form.type_jquery_autocomplete", alias: "jquery_autocomplete" }
