@@ -100,14 +100,11 @@ class AdminLeagueController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $res = array();
-    $form = $this->getForm($res);
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     $form->bindRequest($this->getRequest());
     if ($form->isValid()) {
-      $res = $form->getData();
-      $user = $em->find('ClubUserBundle:User', $res['user_id']);
-      if (!$user)
-        $user = $em->getRepository('ClubUserBundle:User')->getOneBySearch(array('query' => $res['user']));
+      $user = $form->get('user')->getData();
 
       $league = $em->find('ClubMatchBundle:League', $id);
 
@@ -155,10 +152,7 @@ class AdminLeagueController extends Controller
   public function usersAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $res = array();
-    $form = $this->getForm($res);
-
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
     $league = $em->find('ClubMatchBundle:League', $id);
 
     return array(
@@ -183,18 +177,6 @@ class AdminLeagueController extends Controller
         return $this->redirect($this->generateUrl('club_match_adminleague_index'));
       }
     }
-
-    return $form;
-  }
-
-  protected function getForm($res)
-  {
-    $form = $this->createFormBuilder($res)
-      ->add('user', 'text', array(
-        'label' => 'Player'
-      ))
-      ->add('user_id', 'hidden')
-      ->getForm();
 
     return $form;
   }

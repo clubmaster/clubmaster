@@ -7,6 +7,7 @@ seems like helper text is not alligned as it should, check product attributes
 fix crud for events
 add paginator on members page
 optimize queries used on members page
+fix insert match with jquery_autocomplete form class
 
 when upgrading, remember to enable all products
 translation

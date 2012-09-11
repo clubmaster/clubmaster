@@ -64,10 +64,7 @@ class AdminPasskeyController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
     $form = $this->createForm(new \Club\PasskeyBundle\Form\Passkey(), $passkey);
-    $user_form = $this->createFormBuilder()
-      ->add('user_id', 'hidden')
-      ->add('user', 'text')
-      ->getForm();
+    $user_form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -97,23 +94,14 @@ class AdminPasskeyController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
-    $form = $this->createFormBuilder()
-      ->add('user_id', 'hidden')
-      ->add('user', 'text')
-      ->getForm();
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $r = $form->getData();
-        $user = $em->find('ClubUserBundle:User', $r['user_id']);
-
-        if (!$user) {
-          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such user'));
-          return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
-        }
+        $user = $form->get('user')->getData();
 
         $passkey->setUser($user);
         $em->persist($passkey);
@@ -122,6 +110,12 @@ class AdminPasskeyController extends Controller
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
+      } else {
+          foreach ($form->get('user')->getErrors() as $error) {
+              $this->get('session')->setFlash('error',$error->getMessage());
+          }
+
+          return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
       }
     }
 
