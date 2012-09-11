@@ -2,7 +2,6 @@
             <div class="well">
                 <!-- Search -->
                 <h2>{% trans %}Search{% endtrans %}</h2>
-                {% include "ClubLayoutBundle:Default:ajax_user.html.twig" %}
                 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search" class="form-search">
                     <div class="input-prepend">
                         <button type="submit" class="btn">{% trans %}Search{% endtrans %}</button>
