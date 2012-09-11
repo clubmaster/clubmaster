@@ -8,7 +8,7 @@ class MiscController extends Controller
 {
     public function searchAction()
     {
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $form = $this->createForm(new \Club\UserBundle\Form\Search());
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
