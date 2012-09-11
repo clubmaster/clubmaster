@@ -43,6 +43,7 @@ class AppKernel extends Kernel
             new Club\PasskeyBundle\ClubPasskeyBundle(),
             new Club\RequestBundle\ClubRequestBundle(),
             new Club\TournamentBundle\ClubTournamentBundle(),
+            new Club\NewsBundle\ClubNewsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

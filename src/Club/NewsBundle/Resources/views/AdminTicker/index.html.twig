@@ -1,0 +1,39 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+<p class="box"><a href="{{ path('club_news_adminticker_new') }}" class="btn-create"><span>{% trans %}Create ticker{% endtrans %}</span></a></p>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Ticker{% endtrans %}</th>
+      <th>{% trans %}Author{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for ticker in tickers %}
+    <tr>
+      <td>{{ ticker.message }}</td>
+      <td>{{ ticker.user.name }}</td>
+      <td>{{ ticker.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_news_adminticker_edit', { 'id':ticker.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_news_adminticker_delete', { 'id':ticker.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no tickers.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

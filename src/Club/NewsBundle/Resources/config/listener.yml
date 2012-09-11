@@ -1,0 +1,7 @@
+services:
+  club.news.listener.menu:
+    class: Club\NewsBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+      - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
