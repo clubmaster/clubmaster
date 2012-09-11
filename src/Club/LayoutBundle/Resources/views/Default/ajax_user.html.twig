@@ -4,8 +4,10 @@
         {% set f = '#query' %}
     {% endif %}
 
-    {% if f_id is not defined %}
-        {% set f_id = '#query_id' %}
+    {% if v is not defined %}
+        {% set v = 'item.member_number' %}
+    {% elseif v == 'name' %}
+        {% set v = "item.first_name +' ' + item.last_name" %}
     {% endif %}
 
 <script type="text/javascript">
@@ -26,7 +28,7 @@
                     response( $.map( data.data, function( item ) {
                         return {
                             label: (item.first_name +' ' + item.last_name),
-                            value: (item.first_name +' ' + item.last_name),
+                            value: ({{ v|raw }}),
                             id: item.id
                         }
                     }));
@@ -34,7 +36,6 @@
             });
         },
         select: function( event, ui ) {
-            $('{{ f_id }}').attr("value", ui.item.id);
             $('{{ f }}').closest('form').submit();
         }
     });

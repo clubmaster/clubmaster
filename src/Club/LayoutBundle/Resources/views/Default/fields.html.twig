@@ -102,10 +102,13 @@
 
 {% block jquery_autocomplete_widget %}
 {% spaceless %}
-    {% include "ClubLayoutBundle:Default:ajax_user.html.twig" %}
+    {% set field_id = '#' ~ id %}
 
-    <script>
-    </script>
+    {% if v is defined %}
+        {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'f':field_id, 'v':v} %}
+    {% else %}
+        {% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'f':field_id} %}
+    {% endif %}
 
     {{ form_widget(form) }}
 {% endspaceless %}

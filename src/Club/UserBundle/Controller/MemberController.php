@@ -18,19 +18,29 @@ class MemberController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
-    $data = array();
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
-      if ($form->isValid()) $data = $form->getData();
-    }
-
-    $sort = isset($data['sort']) ? $data['sort'] : 'u.member_number';
-    $users = $em->getRepository('ClubUserBundle:User')->getBySearch($data, $sort);
+    $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array());
 
     return array(
       'form' => $form->createView(),
       'users' => $users
     );
+  }
+
+  /**
+   * @Template()
+   * @Route("/members/search")
+   */
+  public function searchAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bind($this->getRequest());
+      if ($form->isValid()) {
+          $user = $form->get('user')->getData();
+      }
+    }
   }
 
   /**

@@ -7,12 +7,11 @@
 {% endblock %}
 
 {% block pagenav %}
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#query_query', 'input_id':'','url':'api/users/search'} %}
-
 <div class="navbar">
   <div class="navbar-inner">
-    <form class="navbar-search pull-right">
-      <input type="text" class="search-query" placeholder="Search" id="">
+    <form method="post" action="{{ path('club_user_member_index') }}" class="navbar-search pull-right">
+      {{ form_widget(form.user, {'v':'name', 'attr': {'class':'search-query','placeholder':'Search'|trans}}) }}
+      {{ form_rest(form) }}
     </form>
   </div>
 </div>
