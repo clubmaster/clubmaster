@@ -25,6 +25,9 @@ class LoginListener
   public function onSecurityInteractiveLogin()
   {
     $user = $this->security_context->getToken()->getUser();
+    $user->setLastLoginTime(new \DateTime());
+    $user->setLastLoginIp($this->request->getClientIp());
+    $this->em->persist($user);
 
     $login = new \Club\UserBundle\Entity\LoginAttempt();
     $login->setUsername($user->getUsername());
