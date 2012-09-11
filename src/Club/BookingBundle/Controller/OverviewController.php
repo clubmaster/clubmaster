@@ -17,7 +17,7 @@ class OverviewController extends Controller
    {
      $em = $this->getDoctrine()->getEntityManager();
 
-     $form = $this->createForm(new \Club\BookingBundle\Form\User());
+     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
      $date = new \DateTime($date);
      $interval = $em->find('ClubBookingBundle:Interval', $interval_id);

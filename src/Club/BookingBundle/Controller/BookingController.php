@@ -35,28 +35,22 @@ class BookingController extends Controller
      if ($guest) {
        $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
      } else {
-       $form = $this->createForm(new \Club\BookingBundle\Form\User);
+       $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
        $form->bindRequest($this->getRequest());
 
        if ($form->isValid()) {
-         $user = $em->getRepository('ClubUserBundle:User')->getBySearch($form->getData());
+         $user = $form->get('user')->getData();
+       } else {
+           foreach ($form->get('user')->getErrors() as $error) {
+            $this->get('session')->setFlash('error', $error->getMessage());
+           }
 
-         if (!count($user)) {
-           $this->get('session')->setFlash('error', $this->get('translator')->trans('User does not exist'));
            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-             'interval_id' => $interval->getId(),
-             'date' => $date->format('Y-m-d')
+               'interval_id' => $interval->getId(),
+               'date' => $date->format('Y-m-d')
            )));
-         } elseif (count($user) > 1) {
-           $this->get('session')->setFlash('error', $this->get('translator')->trans('Too many users match this search'));
-           return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-             'interval_id' => $interval->getId(),
-             'date' => $date->format('Y-m-d')
-           )));
-         }
        }
 
-       $user = $user[0];
        $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $user);
      }
 
