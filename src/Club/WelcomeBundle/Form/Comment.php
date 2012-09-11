@@ -5,13 +5,12 @@ namespace Club\WelcomeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\TinyMceType;
 
 class Comment extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-      $builder->add('comment', new TinyMceType());
+      $builder->add('comment', 'tinymce');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

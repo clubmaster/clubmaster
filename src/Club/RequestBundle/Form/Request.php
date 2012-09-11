@@ -5,7 +5,6 @@ namespace Club\RequestBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\JQueryDateTimeType;
 
 class Request extends AbstractType
 {

@@ -5,7 +5,6 @@ namespace Club\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\JQueryDateType;
 
 class Filter extends AbstractType
 {
@@ -73,7 +72,7 @@ class Filter extends AbstractType
       'required' => false,
       'multiple' => true
     ));
-    $builder->add('subscription_start', new JQueryDateType(), array(
+    $builder->add('subscription_start', 'jquery_date', array(
         'required' => false,
         'widget' => 'single_text'
     ));

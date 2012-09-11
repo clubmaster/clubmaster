@@ -5,7 +5,6 @@ namespace Club\MessageBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\TinyMceType;
 
 class Message extends AbstractType
 {
@@ -14,7 +13,7 @@ class Message extends AbstractType
     $builder->add('sender_name');
     $builder->add('sender_address');
     $builder->add('subject');
-    $builder->add('message', new TinyMceType());
+    $builder->add('message', 'tinymce');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -5,7 +5,6 @@ namespace Club\ShopBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\JQueryDateType;
 
 class Special extends AbstractType
 {
@@ -13,10 +12,10 @@ class Special extends AbstractType
   {
     $builder->add('product');
     $builder->add('price');
-    $builder->add('start_date', new JQueryDateType(), array(
+    $builder->add('start_date', 'jquery_date', array(
         'widget' => 'single_text'
     ));
-    $builder->add('expire_date', new JQueryDateType(), array(
+    $builder->add('expire_date', 'jquery_date', array(
         'widget' => 'single_text'
     ));
   }

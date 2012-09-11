@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\JQueryDateTimeType;
 
 class Schedule extends AbstractType
 {
@@ -15,11 +14,11 @@ class Schedule extends AbstractType
     $builder->add('description');
     $builder->add('penalty');
     $builder->add('max_attend');
-    $builder->add('first_date', new JQueryDateTimeType(), array(
+    $builder->add('first_date', 'jquery_datetime', array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'
     ));
-    $builder->add('end_date', new JQueryDateTimeType(), array(
+    $builder->add('end_date', 'jquery_datetime', array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'
     ));

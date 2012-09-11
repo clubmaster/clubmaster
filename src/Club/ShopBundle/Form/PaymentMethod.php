@@ -5,7 +5,6 @@ namespace Club\ShopBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Club\LayoutBundle\Form\TinyMceType;
 
 class PaymentMethod extends AbstractType
 {
@@ -13,8 +12,8 @@ class PaymentMethod extends AbstractType
   {
     $builder->add('payment_method_name');
     $builder->add('priority');
-    $builder->add('success_page', new TinyMceType());
-    $builder->add('error_page', new TinyMceType());
+    $builder->add('success_page', 'tinymce');
+    $builder->add('error_page', 'tinymce');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
