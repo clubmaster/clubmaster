@@ -13,10 +13,6 @@ namespace Club\ConfiguratorBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-<<<<<<< HEAD
-=======
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
->>>>>>> master
 
 /**
  * ConfiguratorController.

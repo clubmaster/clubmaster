@@ -33,12 +33,13 @@ class MenuListener
 
   public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
-    if ($this->security_context->isGranted('ROLE_NEWS_ADMIN')) {
-      $menu[71] = array(
-        'name' => $this->translator->trans('News ticker'),
-        'route' => $this->router->generate('club_news_adminticker_index')
-      );
+      if ($this->security_context->isGranted('ROLE_NEWS_ADMIN')) {
+          $menu[71] = array(
+              'name' => $this->translator->trans('News ticker'),
+              'route' => $this->router->generate('club_news_adminticker_index')
+          );
 
-    $event->appendMenu($menu);
+          $event->appendMenu($menu);
+      }
   }
 }
