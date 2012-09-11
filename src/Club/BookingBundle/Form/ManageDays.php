@@ -5,12 +5,13 @@ namespace Club\BookingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Club\LayoutBundle\Form\JQueryDateType;
 
 class ManageDays extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-      $builder->add('start_date', 'date', array(
+      $builder->add('start_date', new JQueryDateType(), array(
         'widget' => 'single_text'
     ));
 

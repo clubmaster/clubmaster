@@ -5,16 +5,17 @@ namespace Club\TeamBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Club\LayoutBundle\Form\JQueryDateTimeType;
 
 class RepetitionDaily extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-      $builder->add('first_date', 'datetime', array(
+      $builder->add('first_date', new JQueryDateTimeType(), array(
           'date_widget' => 'single_text',
           'time_widget' => 'single_text'
       ));
-      $builder->add('last_date', 'datetime', array( 
+      $builder->add('last_date', new JQueryDateTimeType(), array(
           'date_widget' => 'single_text',
           'time_widget' => 'single_text'
       ));

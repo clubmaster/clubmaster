@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\LayoutBundle\Form\JQueryDateTimeType;
 
 /**
  * @Route("/admin")
@@ -176,11 +177,11 @@ class AdminIntervalController extends Controller
           ->add('start_time')
           ->add('stop_time')
           ->add('field')
-          ->add('valid_from', 'datetime', array(
+          ->add('valid_from', new JQueryDateTimeType(), array(
               'date_widget' => 'single_text',
               'time_widget' => 'single_text'
           ))
-          ->add('valid_to', 'datetime', array(
+          ->add('valid_to', new JQueryDateTimeType(), array(
               'date_widget' => 'single_text',
               'time_widget' => 'single_text'
           ))
