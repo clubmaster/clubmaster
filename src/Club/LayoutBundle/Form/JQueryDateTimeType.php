@@ -14,6 +14,6 @@ class JQueryDateTimeType extends AbstractType
 
     public function getName()
     {
-        return 'jquery_date_time';
+        return 'jquery_datetime';
     }
 }

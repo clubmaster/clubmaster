@@ -1,21 +1,26 @@
 services:
-  failure.password.handler:
-    class: Club\UserBundle\Helper\FailurePasswordHandler
-    arguments: [@doctrine.orm.entity_manager]
-  login_success_handler:
-    class: Club\UserBundle\Helper\LoginSuccessHandler
-    arguments: [@service_container]
-  clubmaster.version:
-    class: Club\UserBundle\Helper\Version
-  clubmaster.ban:
-    class: Club\UserBundle\Helper\Ban
-    arguments: [@doctrine.orm.entity_manager, @security.context]
-  clubmaster.user:
-    class: Club\UserBundle\Helper\User
-    arguments: [@service_container]
-  club_user.reset_password:
-    class: Club\UserBundle\Helper\ResetPassword
-    arguments: [@doctrine.orm.entity_manager]
-  club_user.application:
-    class: Club\UserBundle\Helper\Application
-    arguments: [@service_container]
+    failure.password.handler:
+        class: Club\UserBundle\Helper\FailurePasswordHandler
+        arguments: [@doctrine.orm.entity_manager]
+    login_success_handler:
+        class: Club\UserBundle\Helper\LoginSuccessHandler
+        arguments: [@service_container]
+    clubmaster.version:
+        class: Club\UserBundle\Helper\Version
+    clubmaster.ban:
+        class: Club\UserBundle\Helper\Ban
+        arguments: [@doctrine.orm.entity_manager, @security.context]
+    clubmaster.user:
+        class: Club\UserBundle\Helper\User
+        arguments: [@service_container]
+    club_user.reset_password:
+        class: Club\UserBundle\Helper\ResetPassword
+        arguments: [@doctrine.orm.entity_manager]
+    club_user.application:
+        class: Club\UserBundle\Helper\Application
+        arguments: [@service_container]
+    club_user.data_transformer:
+        class: Club\UserBundle\Form\DataTransformer
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: user_selector }

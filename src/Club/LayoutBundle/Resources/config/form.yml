@@ -6,20 +6,21 @@ services:
     club_layout_form_tinymce:
         class: Club\LayoutBundle\Form\TinyMceType
         tags:
-            - { name: "form.type_tinymce", alias: "tinymce" }
+            - { name: "form.type", alias: "tinymce" }
     club_layout_form_jquery_calendar:
         class: Club\LayoutBundle\Form\JQueryDateTimeType
         tags:
-            - { name: "form.type_jquery_date_time", alias: "jquery_date_time" }
+            - { name: "form.type", alias: "jquery_datetime" }
     club_layout_form_jquery_date:
         class: Club\LayoutBundle\Form\JQueryDateType
         tags:
-            - { name: "form.type_jquery_date", alias: "jquery_date" }
+            - { name: "form.type", alias: "jquery_date" }
     club_layout_form_jquery_birthday:
         class: Club\LayoutBundle\Form\JQueryBirthdayType
         tags:
-            - { name: "form.type_jquery_birthday", alias: "jquery_birthday" }
+            - { name: "form.type", alias: "jquery_birthday" }
     club_layout_form_jquery_autocomplete:
         class: Club\LayoutBundle\Form\JQueryAutocompleteType
+        arguments: [@doctrine.orm.entity_manager]
         tags:
-            - { name: "form.type_jquery_autocomplete", alias: "jquery_autocomplete" }
+            - { name: "form.type", alias: "jquery_autocomplete" }
