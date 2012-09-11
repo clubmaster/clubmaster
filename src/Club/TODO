@@ -3,7 +3,6 @@ use new quickpay bundle
 find out how the economic works on split payment
 style checkout as new member
 fix admin users page
-fix crud for events
 fix insert match with jquery_autocomplete form class
 
 when upgrading, remember to enable all products

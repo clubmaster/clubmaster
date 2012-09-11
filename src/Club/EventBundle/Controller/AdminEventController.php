@@ -18,50 +18,15 @@ class AdminEventController extends Controller
    */
   public function indexAction()
   {
-    $calendar_date = $this->get('session')->get('calendar_date');
-
-    if (!$calendar_date) {
-      $calendar_date = new \DateTime(date('Y-m-'.'01'));
-      $this->get('session')->set('calendar_date',$calendar_date);
-    }
-
     $em = $this->getDoctrine()->getEntityManager();
-    $events = $em->getRepository('ClubEventBundle:Event')->getByDate($calendar_date);
-
-    $current = new \DateTime($calendar_date->format('Y-m-d'));
-    $prev = new \DateTime($calendar_date->format('Y-m-d'));
-    $next = new \DateTime($calendar_date->format('Y-m-d'));
-    $prev->modify('-1 month');
-    $next->modify('+1 month');
+    $events = $em->getRepository('ClubEventBundle:Event')->findBy(
+        array(),
+        array('id' => 'DESC')
+    );
 
     return array(
-      'current' => $current,
-      'prev' => $prev,
-      'next' => $next,
       'events' => $events
     );
-  }
-
-  /**
-   * @Route("/event/event/prev")
-   */
-  public function prevAction()
-  {
-    $calendar_date = $this->get('session')->get('calendar_date');
-    $calendar_date->modify('-1 month');
-
-    return $this->redirect($this->generateUrl('admin_event_event'));
-  }
-
-  /**
-   * @Route("/event/event/next")
-   */
-  public function nextAction()
-  {
-    $calendar_date = $this->get('session')->get('calendar_date');
-    $calendar_date->modify('+1 month');
-
-    return $this->redirect($this->generateUrl('admin_event_event'));
   }
 
   /**
@@ -70,11 +35,9 @@ class AdminEventController extends Controller
    */
   public function newAction($year, $month)
   {
-    $time = mktime(0,0,0,$month,1,$year);
-
     $event = new \Club\EventBundle\Entity\Event();
-    $event->setStartDate(new \DateTime(date('Y-m-d', $time)));
-    $event->setStopDate(new \DateTime(date('Y-m-d', $time)));
+    $event->setStartDate(new \DateTime());
+    $event->setStopDate(new \DateTime());
 
     $res = $this->process($event);
 
