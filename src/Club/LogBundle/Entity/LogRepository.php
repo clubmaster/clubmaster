@@ -25,10 +25,12 @@ class LogRepository extends EntityRepository
   public function getCount()
   {
     $qb = $this->getQueryBuilder();
+
     return count($qb->getQuery()->getResult());
   }
 
-  public function getWithPagination($offset = 0, $limit = 0) {
+  public function getWithPagination($offset = 0, $limit = 0)
+  {
     $qb = $this->getQueryBuilder();
 
     if ((isset($offset)) && (isset($limit))) {
@@ -59,5 +61,18 @@ class LogRepository extends EntityRepository
       ->setMaxResults($limit)
       ->getQuery()
       ->getResult();
+  }
+
+  public function getByUser(\Club\UserBundle\Entity\User $user)
+  {
+      return $this->_em->createQueryBuilder()
+          ->select('l')
+          ->from('ClubLogBundle:Log', 'l')
+          ->where('l.user = :user')
+          ->orderBy('l.id', 'DESC')
+          ->setMaxResults(20)
+          ->setParameter('user', $user->getId())
+          ->getQuery()
+          ->getResult();
   }
 }

@@ -5,12 +5,14 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class UserController extends Controller
 {
   /**
    * @Template()
    * @Route("/user", name="user")
+   * @Secure(roles="ROLE_USER")
    */
   public function indexAction()
   {
@@ -26,6 +28,7 @@ class UserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('user'));
       }
     }
@@ -67,6 +70,7 @@ class UserController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('user'));
       }
     }

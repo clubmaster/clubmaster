@@ -2,9 +2,6 @@
 
 namespace Club\UserBundle\Listener;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-
 class LoginListener
 {
   protected $container;
@@ -72,6 +69,7 @@ class LoginListener
     $this->session->set('location_name', $this->location->getLocationName());
 
     if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+
       return;
 
     $user = $this->security_context->getToken()->getUser();

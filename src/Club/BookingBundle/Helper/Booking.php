@@ -2,8 +2,6 @@
 
 namespace Club\BookingBundle\Helper;
 
-use Doctrine\ORM\EntityManager;
-
 class Booking
 {
   protected $em;
@@ -41,6 +39,7 @@ class Booking
     $this->booking = $booking;
 
     if ($this->security_context->isGranted('ROLE_BOOKING_ADMIN'))
+
       return;
 
     if (!$this->booking->isOwner($this->security_context->getToken()->getUser()))
@@ -48,12 +47,14 @@ class Booking
 
     if ($this->booking->getFirstDate() < new \DateTime()) {
       $this->setError($this->translator->trans('You cannot delete bookings in the past'));
+
       return;
     }
 
     $now = new \DateTime();
     $diff = ($now->getTimestamp()-$this->booking->getCreatedAt()->getTimestamp());
     if ($diff < $this->container->getParameter('club_booking.cancel_minute_created')*60)
+
       return;
 
     $delete_within = clone $booking->getFirstDate();
@@ -71,40 +72,48 @@ class Booking
 
     $this->validate();
     if (!$this->isValid())
+
       return;
 
     if ($user == $partner) {
       $this->setError($this->translator->trans('You cannot book with yourself'));
+
       return;
     }
 
     if (!$this->validateSubscription($this->partner)) {
       $this->setError($this->translator->trans('Your partner must have an active membership'));
+
       return;
     }
 
     if (!$this->validateSubscriptionTime($this->partner)) {
       $this->setError($this->translator->trans('Your partner is not allowed to book this time.'));
+
       return;
     }
 
     if (!$this->validateBookingPartnerDay($this->date, $this->user, $this->partner)) {
       $this->setError($this->translator->trans('You cannot have more bookings with this partner this day'));
+
       return;
     }
 
     if (!$this->validateBookingPartnerFuture($this->user, $this->partner)) {
       $this->setError($this->translator->trans('You cannot have more bookings with this partner'));
+
       return;
     }
 
     if (!$this->validateBookingDay($this->date, $this->partner)) {
       $this->setError($this->translator->trans('Your partner cannot have more bookings this day'));
+
       return;
     }
 
     if (!$this->validateBookingFuture($this->partner)) {
       $this->setError($this->translator->trans('Your partner cannot have more bookings'));
+
       return;
     }
 
@@ -121,6 +130,7 @@ class Booking
     $this->validate();
 
     if (!$this->isValid())
+
       return;
 
     if (!$this->container->getParameter('club_booking.enable_guest'))
@@ -128,11 +138,13 @@ class Booking
 
     if (!$this->validateBookingGuestDay($this->date, $this->user)) {
       $this->setError($this->translator->trans('You cannot have more guest bookings this day'));
+
       return;
     }
 
     if (!$this->validateBookingGuestFuture($this->user)) {
       $this->setError($this->translator->trans('You cannot have more guest bookings'));
+
       return;
     }
 
@@ -237,41 +249,49 @@ class Booking
   {
     if (!$this->validateIntervalDay($this->date)) {
       $this->setError($this->translator->trans('Interval does not exists that day'));
+
       return;
     }
 
     if (!$this->validatePast($this->date)) {
       $this->setError($this->translator->trans('You cannot book in the past'));
+
       return;
     }
 
     if (!$this->validateFuture($this->date)) {
       $this->setError($this->translator->trans('You cannot book that much in the future'));
+
       return;
     }
 
     if (!$this->validateAvailable($this->date)) {
       $this->setError($this->translator->trans('Interval is not available'));
+
       return;
     }
 
     if (!$this->validateSubscription($this->user)) {
       $this->setError($this->translator->trans('You do not have an active membership'));
+
       return;
     }
 
     if (!$this->validateSubscriptionTime($this->user)) {
       $this->setError($this->translator->trans('You are not allowed to book this time'));
+
       return;
     }
 
     if (!$this->validateBookingDay($this->date, $this->user)) {
       $this->setError($this->translator->trans('You cannot have more bookings this day'));
+
       return;
     }
 
     if (!$this->validateBookingFuture($this->user)) {
       $this->setError($this->translator->trans('You cannot have more bookings'));
+
       return;
     }
   }
@@ -340,6 +360,7 @@ class Booking
   {
     $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $this->interval->getField()->getLocation());
     if (!$subs)
+
       return false;
 
     return true;
@@ -349,8 +370,8 @@ class Booking
   {
     $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $this->interval->getField()->getLocation());
     if (!$subs)
-      return false;
 
+      return false;
 
     foreach ($subs as $sub) {
       foreach ($sub->getSubscriptionAttributes() as $attr) {
@@ -365,6 +386,7 @@ class Booking
           $t = new \DateTime(date('Y-m-d ').$attr->getValue());
 
           if ($start < $t)
+
             return false;
 
           break;
@@ -378,18 +400,21 @@ class Booking
           $t = new \DateTime(date('Y-m-d ').$attr->getValue());
 
           if ($end > $t)
+
             return false;
 
           break;
         }
       }
     }
+
     return true;
   }
 
   protected function validateIntervalDay(\DateTime $date)
   {
     if ($date->format('N') != $this->interval->getDay())
+
       return false;
 
     return true;
@@ -431,6 +456,7 @@ class Booking
     );
 
     if ($c < new \DateTime())
+
       return false;
 
     return true;
@@ -440,6 +466,7 @@ class Booking
   {
     $interval = $this->club_interval->getVirtualInterval($this->interval, $this->date);
     if (!$interval->getAvailable())
+
       return false;
 
     return true;
@@ -470,6 +497,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_day'))
+
       return false;
 
     return true;
@@ -491,6 +519,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_future'))
+
       return false;
 
     return true;
@@ -523,6 +552,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_day'))
+
       return false;
 
     return true;
@@ -545,6 +575,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_guest_future'))
+
       return false;
 
     return true;
@@ -580,6 +611,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day'))
+
       return false;
 
     return true;
@@ -605,6 +637,7 @@ class Booking
       ->getSingleResult();
 
     if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_future'))
+
       return false;
 
     return true;

@@ -36,6 +36,7 @@ class AdminSpecialController extends Controller
     $res = $this->process($special);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminSpecialController extends Controller
     $res = $this->process($special);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

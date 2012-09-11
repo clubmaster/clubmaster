@@ -13,16 +13,26 @@ class League
     $this->club_league = $club_league;
   }
 
+  public function onMatchNew(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  {
+    $this->processMatch($match);
+  }
+
   public function onMatchTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
   {
     $matches = $this->em->getRepository('ClubMatchBundle:Match')->getUnprocessed();
 
     foreach ($matches as $match) {
-      if ($match->getLeague()) $this->club_league->addPoint($match);
-
-      $match->setProcessed(1);
-      $this->em->persist($match);
-      $this->em->flush();
+      $this->processMatch($match);
     }
+  }
+
+  private function processMatch(\Club\MatchBundle\Entity\Match $match)
+  {
+    if ($match->getLeague()) $this->club_league->addPoint($match);
+
+    $match->setProcessed(1);
+    $this->em->persist($match);
+    $this->em->flush();
   }
 }

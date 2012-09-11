@@ -19,6 +19,7 @@ class Subscription
   {
     if ($this->em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'Lifetime')) {
       $this->session->setFlash('error',$this->translator->trans('You cannot pause a lifetime membership.'));
+
       return;
     }
 
@@ -26,6 +27,7 @@ class Subscription
     $allowed = $this->em->getRepository('ClubShopBundle:Subscription')->getAllowedPauses($subscription);
     if (count($subscription->getSubscriptionPauses()) >= $allowed) {
       $this->session->setFlash('error',$this->translator->trans('You cannot have anymore pauses.'));
+
       return;
     }
 
@@ -101,6 +103,7 @@ class Subscription
 
     if (($left-$tickets) < 0) {
       $this->session->setFlash('error',$this->translator->trans('You do not have enough tickets.'));
+
       return false;
 
     } elseif (($left-$tickets) == 0) {

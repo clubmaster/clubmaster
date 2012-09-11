@@ -37,6 +37,7 @@ class AdminLevelController extends Controller
     $res = $this->process($level);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -56,6 +57,7 @@ class AdminLevelController extends Controller
     $res = $this->process($level);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

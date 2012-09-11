@@ -15,10 +15,12 @@ class OrderRepository extends EntityRepository
   public function getCount($filter = array())
   {
     $qb = $this->getQueryBuilder($filter);
+
     return count($qb->getQuery()->getResult());
   }
 
-  public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0) {
+  public function getWithPagination($filter = array(), $order_by = array(), $offset = 0, $limit = 0)
+  {
     $qb = $this->getQueryBuilder($filter);
 
     $qb->leftJoin('o.order_status','os')

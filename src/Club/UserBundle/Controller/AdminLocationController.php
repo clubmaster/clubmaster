@@ -36,6 +36,7 @@ class AdminLocationController extends Controller
     $res = $this->process($location);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminLocationController extends Controller
     $res = $this->process($location);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

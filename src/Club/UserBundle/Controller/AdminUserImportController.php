@@ -59,6 +59,7 @@ class AdminUserImportController extends Controller
     }
 
     $em = $this->getDoctrine()->getEntityManager();
+
     return $this->redirect($this->generateUrl('club_user_adminuserimport_index'));
   }
 

@@ -36,12 +36,14 @@ class BookingController extends Controller
     if (!$this->get('club_booking.booking')->isValid()) {
       $res = array($this->get('club_booking.booking')->getError());
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
+
       return $response;
     }
 
     $booking = $this->get('club_booking.booking')->save();
 
     $response = new Response($this->get('club_api.encode')->encode($booking->toArray()));
+
     return $response;
   }
 
@@ -60,11 +62,13 @@ class BookingController extends Controller
     if (!$this->get('club_booking.booking')->isValid()) {
       $res = array($this->get('club_booking.booking')->getError());
       $response = new Response($this->get('club_api.encode')->encode($res), 403);
+
       return $response;
     }
     $this->get('club_booking.booking')->remove();
 
     $response = new Response();
+
     return $response;
   }
 

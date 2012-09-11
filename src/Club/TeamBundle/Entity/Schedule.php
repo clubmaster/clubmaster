@@ -5,7 +5,6 @@ namespace Club\TeamBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * Club\TeamBundle\Entity\Schedule
  *
@@ -133,7 +132,6 @@ class Schedule
      * @ORM\JoinColumn(name="repetition_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $repetition;
-
 
     /**
      * Get id

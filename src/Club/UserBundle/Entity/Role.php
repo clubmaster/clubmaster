@@ -3,7 +3,6 @@
 namespace Club\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
@@ -32,7 +31,6 @@ class Role implements RoleInterface
      * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
     protected $users;
-
 
     public function __toString()
     {

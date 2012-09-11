@@ -30,6 +30,13 @@ class Tournament
     private $name;
 
     /**
+     * @var integer $game_set
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $game_set;
+
+    /**
      * @var integer $min_attend
      *
      * @ORM\Column(name="min_attend", type="integer")
@@ -39,16 +46,23 @@ class Tournament
     /**
      * @var integer $max_attend
      *
-     * @ORM\Column(name="max_attend", type="integer")
+     * @ORM\Column(name="max_attend", type="integer", nullable=true)
      */
     private $max_attend;
 
     /**
      * @var integer $seeds
      *
-     * @ORM\Column(name="seeds", type="integer")
+     * @ORM\Column(name="seeds", type="integer", nullable=true)
      */
     private $seeds;
+
+    /**
+     * @var integer $build
+     *
+     * @ORM\Column(name="build", type="boolean")
+     */
+    private $build;
 
     /**
      * @var integer $rounds
@@ -86,13 +100,18 @@ class Tournament
     private $updated_at;
 
     /**
-     * @var Club\UserBundle\Entity\User
+     * @var Club\TournamentBundle\Entity\Attend
      *
-     * @ORM\ManyToMany(targetEntity="Club\UserBundle\Entity\User")
-     * @ORM\JoinTable(name="club_tournament_tournament_users")
+     * @ORM\OneToMany(targetEntity="Attend", mappedBy="tournament")
      */
-    protected $users;
+    protected $attends;
 
+    /**
+     * @var Club\TournamentBundle\Entity\TournamentGame
+     *
+     * @ORM\OneToMany(targetEntity="TournamentGame", mappedBy="tournament")
+     */
+    protected $tournament_games;
 
     /**
      * Get id
@@ -263,7 +282,8 @@ class Tournament
 
     public function __construct()
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->setBuild(false);
+      $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -287,26 +307,6 @@ class Tournament
     }
 
     /**
-     * Add users
-     *
-     * @param Club\UserBundle\Entity\User $users
-     */
-    public function addUser(\Club\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Set rounds
      *
      * @param integer $rounds
@@ -324,5 +324,85 @@ class Tournament
     public function getRounds()
     {
         return $this->rounds;
+    }
+
+    /**
+     * Add attends
+     *
+     * @param Club\TournamentBundle\Entity\Attend $attends
+     */
+    public function addAttend(\Club\TournamentBundle\Entity\Attend $attends)
+    {
+        $this->attends[] = $attends;
+    }
+
+    /**
+     * Get attends
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getAttends()
+    {
+        return $this->attends;
+    }
+
+    /**
+     * Set build
+     *
+     * @param boolean $build
+     */
+    public function setBuild($build)
+    {
+        $this->build = $build;
+    }
+
+    /**
+     * Get build
+     *
+     * @return boolean
+     */
+    public function getBuild()
+    {
+        return $this->build;
+    }
+
+    /**
+     * Add tournament_games
+     *
+     * @param Club\TournamentBundle\Entity\TournamentGame $tournamentGames
+     */
+    public function addTournamentGame(\Club\TournamentBundle\Entity\TournamentGame $tournamentGames)
+    {
+        $this->tournament_games[] = $tournamentGames;
+    }
+
+    /**
+     * Get tournament_games
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getTournamentGames()
+    {
+        return $this->tournament_games;
+    }
+
+    /**
+     * Set game_set
+     *
+     * @param integer $gameSet
+     */
+    public function setGameSet($gameSet)
+    {
+        $this->game_set = $gameSet;
+    }
+
+    /**
+     * Get game_set
+     *
+     * @return integer
+     */
+    public function getGameSet()
+    {
+        return $this->game_set;
     }
 }

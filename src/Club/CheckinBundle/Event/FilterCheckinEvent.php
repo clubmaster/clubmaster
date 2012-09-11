@@ -13,7 +13,8 @@ class FilterCheckinEvent extends Event
     $this->checkin = $checkin;
   }
 
-  public function getCheckin() {
+  public function getCheckin()
+  {
     return $this->checkin;
   }
 }

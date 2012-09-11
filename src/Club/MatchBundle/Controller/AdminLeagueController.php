@@ -44,6 +44,7 @@ class AdminLeagueController extends Controller
     $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -63,6 +64,7 @@ class AdminLeagueController extends Controller
     $res = $this->process($league);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -106,17 +108,20 @@ class AdminLeagueController extends Controller
     if ($form->isValid()) {
       $user = $form->get('user')->getData();
 
-      $league = $em->find('ClubMatchBundle:League', $id);
+        $league = $em->find('ClubMatchBundle:League', $id);
 
-      $league->addUser($user);
-      $em->persist($league);
-      $em->flush();
+        $league->addUser($user);
+        $em->persist($league);
+        $em->flush();
 
-      $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-      $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
-      $em->flush();
+        $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
+        $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
+        $em->flush();
 
-      $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+      } catch (\Exception $e) {
+        $this->get('session')->setFlash('error', $e->getMessage());
+      }
     }
 
     return $this->redirect($this->generateUrl('club_match_adminleague_users', array(

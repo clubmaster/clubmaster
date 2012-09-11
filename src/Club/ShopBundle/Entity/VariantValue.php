@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\VariantValueRepository")
@@ -32,7 +31,6 @@ class VariantValue
      * @ORM\ManyToOne(targetEntity="VariantGroup")
      */
     protected $variant_group;
-
 
     /**
      * Get id
@@ -117,7 +115,7 @@ class VariantValue
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -137,7 +135,7 @@ class VariantValue
     /**
      * Get variant_group
      *
-     * @return Club\ShopBundle\Entity\VariantGroup 
+     * @return Club\ShopBundle\Entity\VariantGroup
      */
     public function getVariantGroup()
     {

@@ -5,7 +5,6 @@ namespace Club\PasskeyBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("/admin/passkey")
@@ -20,6 +19,7 @@ class AdminPasskeyController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $passkeys = $em->getRepository('ClubPasskeyBundle:Passkey')->findAll();
+
     return array(
       'passkeys' => $passkeys
     );
@@ -125,7 +125,6 @@ class AdminPasskeyController extends Controller
       'user_form' => $user_form->createView()
     );
   }
-
 
   /**
    * @Route("/reset/{id}")

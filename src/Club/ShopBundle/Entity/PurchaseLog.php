@@ -92,7 +92,6 @@ class PurchaseLog
      */
     private $payment_method;
 
-
     /**
      * Get id
      *

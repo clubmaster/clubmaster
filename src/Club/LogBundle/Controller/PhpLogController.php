@@ -5,7 +5,6 @@ namespace Club\LogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/admin")
@@ -37,7 +36,8 @@ class PhpLogController extends Controller
     );
   }
 
-  function read_file($file, $lines) {
+  function read_file($file, $lines)
+  {
     //global $fsize;
     $handle = fopen($file, "r");
     $linecounter = $lines;
@@ -47,7 +47,7 @@ class PhpLogController extends Controller
     while ($linecounter > 0) {
       $t = " ";
       while ($t != "\n") {
-        if(fseek($handle, $pos, SEEK_END) == -1) {
+        if (fseek($handle, $pos, SEEK_END) == -1) {
           $beginning = true;
           break;
         }
@@ -62,6 +62,7 @@ class PhpLogController extends Controller
       if ($beginning) break;
     }
     fclose ($handle);
+
     return array_reverse($text);
   }
 }

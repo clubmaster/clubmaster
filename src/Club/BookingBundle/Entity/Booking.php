@@ -3,7 +3,6 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\BookingBundle\Entity\Booking
@@ -83,7 +82,6 @@ class Booking
      * )
      */
     protected $users;
-
 
     /**
      * Get id
@@ -304,6 +302,7 @@ class Booking
     public function getFirstPartner()
     {
       if (count($this->getUsers()))
+
         return $this->users[0];
     }
 

@@ -5,7 +5,6 @@ namespace Club\MatchBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("/match/league")
@@ -22,7 +21,8 @@ class LeagueController extends Controller
     $leagues = $em->getRepository('ClubMatchBundle:League')->findAll();
 
     return array(
-      'leagues' => $leagues
+      'leagues' => $leagues,
+      'league_view_top' => $this->get('service_container')->getParameter('club_match.league_view_top')
     );
   }
 

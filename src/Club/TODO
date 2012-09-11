@@ -17,21 +17,43 @@ make feedback as a popdown form
 create a dropdown menu for PROFILE
 more simple to book fields, if no payment, no need to confirm
 build new gravatar support
+
+== ON ATK DEPLOY ==
+set default league_view_top: 5
+
+== VERSION 1.2.1 ==
+Cannot delete booking because time range is too small, not translated
+enter result in cup
+add double in league
 checkout whats up with STUB Locale
-check out if we can do anything about confirm booking controller, have got some error about line 105, getFirstDate on a non object
 you have to be able to see all orders from a user
-need tool so we can monitor how many bookings a member have active
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
+users should be able to create multiple emails, phone
+make sure user only can book in member status period
+make sure user only can use teams in member ship status period
+results has to be updated almost emidiatly when a match has been entered, change next run date for instance
+should be able to update fields without phone number
+
+== NOTES TO LATER ==
+create weather forecast
+give warning if you try to make a booking plan above a booking
+when client on search on quicksearch, search while clicking
+upload profil billede til alle medlemmerne
+eller aktivt aktiver gravator extension
+we might need a mailing list
+quick add users to group
+make it a setting if all should be able to make events
+menu bundle, you should be able to append stuff to sub items
+search users on creating date
+build new gravatar support
+need tool so we can monitor how many bookings a member have active
 be able to create product packages
 internal message system
 rewrite failure handler to a listerner
-users should be able to create multiple emails, phone
 add images to products
 add category priority regarding to account numbers
 admin user batch, select search
-make sure user only can book in member status period
-knockout management, checkout myplayoffs.com
 jquery overlay form on booking
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
@@ -39,12 +61,8 @@ make a button to accept business terms
 bulk create order to users
 quick create intervals when creating the field
 make a quick way to remove all team penalties
-make sure user only can use teams in member ship status period
 implement payment for booking
 find a smart way to get default location, might be with the url
-use ParamConverter more
-
-== NOTES TO LATER ==
 add product on dynamic group
 add custom fields on profiles
 match integration facebook, share match
@@ -101,3 +119,4 @@ not 2 schedules can have the same interval
 tag users on images
 print labels from a search
 find a way to alert if a touch client goes away
+has to find a way to explicit remove a bookingplan for a specified day

@@ -5,13 +5,26 @@ namespace Club\MatchBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/match/match")
  */
 class MatchController extends Controller
 {
+  /**
+   * @Route("/")
+   */
+  public function indexAction()
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, 50);
+
+    return $this->render('ClubMatchBundle:Match:index.html.twig', array(
+      'matches' => $matches
+    ));
+  }
+
   /**
    * @Route("/recent/{limit}")
    */
@@ -28,27 +41,18 @@ class MatchController extends Controller
   /**
    * @Route("/new")
    * @Template()
+   * @Secure(roles="ROLE_USER")
    */
   public function newAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
 
     $res = array();
-    $form = $this->getForm($res);
+    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
+    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
 
     $sets = 5;
-    for ($i = 0; $sets > $i; $i++) {
-      $form = $form->add('user0set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-      $form = $form->add('user1set'.$i,'text', array(
-        'label' => 'Set '.($i+1),
-        'required' => false
-      ));
-    }
-
-    $form = $form->getForm();
+    $form = $this->get('club_match.match')->getMatchForm($res, $sets);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -59,12 +63,12 @@ class MatchController extends Controller
         if ($this->get('club_match.match')->isValid()) {
           $this->get('club_match.match')->save();
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+          return $this->redirect($this->generateUrl('club_match_match_index'));
         } else {
           $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
         }
       }
-
-      return $this->redirect($this->generateUrl('club_match_league_index'));
     }
 
     return array(
@@ -75,6 +79,7 @@ class MatchController extends Controller
 
   /**
    * @Route("/delete/{id}")
+   * @Secure(roles="ROLE_USER")
    */
   public function deleteAction($id)
   {
@@ -89,7 +94,7 @@ class MatchController extends Controller
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_match_league_index'));
+    return $this->redirect($this->generateUrl('club_match_match_index'));
   }
 
   /**
@@ -104,19 +109,5 @@ class MatchController extends Controller
     return array(
       'match' => $match
     );
-  }
-
-  public function getForm($res)
-  {
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
-
-    $form = $this->createFormBuilder($res)
-      ->add('user0_id', 'hidden')
-      ->add('user1_id', 'hidden')
-      ->add('user0', 'text')
-      ->add('user1', 'text');
-
-    return $form;
   }
 }

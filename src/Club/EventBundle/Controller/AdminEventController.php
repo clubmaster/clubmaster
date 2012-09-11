@@ -42,6 +42,7 @@ class AdminEventController extends Controller
     $res = $this->process($event);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -58,6 +59,7 @@ class AdminEventController extends Controller
     $res = $this->process($event);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

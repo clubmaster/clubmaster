@@ -64,7 +64,6 @@ class Rule
      */
     private $updated_at;
 
-
     public function __toString()
     {
       return $this->getName();

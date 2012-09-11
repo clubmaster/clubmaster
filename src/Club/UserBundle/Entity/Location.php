@@ -89,7 +89,6 @@ class Location
      */
     protected $fields;
 
-
     public function __toString()
     {
       return $this->getLocationName();

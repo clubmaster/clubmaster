@@ -36,6 +36,7 @@ class AdminShippingController extends Controller
     $res = $this->process($shipping);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -55,6 +56,7 @@ class AdminShippingController extends Controller
     $res = $this->process($shipping);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

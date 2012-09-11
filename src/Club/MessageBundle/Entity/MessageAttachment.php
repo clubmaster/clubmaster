@@ -72,7 +72,6 @@ class MessageAttachment
      */
     protected $message;
 
-
     /**
      * Get id
      *

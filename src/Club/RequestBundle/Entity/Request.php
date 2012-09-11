@@ -3,6 +3,7 @@
 namespace Club\RequestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\RequestBundle\Entity\Request
@@ -28,6 +29,14 @@ class Request
      * @ORM\Column(name="play_time", type="datetime")
      */
     private $play_time;
+
+    /**
+     * @var string $message
+     *
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     */
+    private $message;
 
     /**
      * @var boolean $closed
@@ -63,7 +72,6 @@ class Request
      * @var Club\RequestBundle\Entity\RequestComment
      */
     protected $request_comments;
-
 
     public function __construct()
     {
@@ -218,5 +226,25 @@ class Request
     public function getClosed()
     {
         return $this->closed;
+    }
+
+    /**
+     * Set message
+     *
+     * @param text $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * Get message
+     *
+     * @return text
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }

@@ -13,7 +13,8 @@ class FilterCouponEvent extends Event
     $this->coupon = $coupon;
   }
 
-  public function getCoupon() {
+  public function getCoupon()
+  {
     return $this->coupon;
   }
 }

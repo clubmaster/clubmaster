@@ -176,7 +176,8 @@ class Order
      */
     protected $updated_at;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->order_products = new \Doctrine\Common\Collections\ArrayCollection();
       $this->order_status_history = new \Doctrine\Common\Collections\ArrayCollection();
       $this->setPaid(false);

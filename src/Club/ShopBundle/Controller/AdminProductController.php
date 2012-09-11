@@ -42,6 +42,7 @@ class AdminProductController extends Controller
     $res = $this->process($product);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -61,6 +62,7 @@ class AdminProductController extends Controller
     $res = $this->process($product);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

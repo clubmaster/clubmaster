@@ -2,9 +2,6 @@
 
 namespace Club\LogBundle\Listener;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-
 class CleanupLogListener
 {
   protected $em;

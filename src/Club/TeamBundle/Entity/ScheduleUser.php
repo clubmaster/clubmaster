@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContext;
 
-
 /**
  * Club\TeamBundle\Entity\ScheduleUser
  *
@@ -51,7 +50,6 @@ class ScheduleUser
      * @ORM\ManyToOne(targetEntity="Club\TeamBundle\Entity\Schedule")
      */
     protected $schedule;
-
 
     public function __construct()
     {

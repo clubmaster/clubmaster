@@ -42,6 +42,7 @@ class AdminWelcomeController extends Controller
     $res = $this->process($welcome);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

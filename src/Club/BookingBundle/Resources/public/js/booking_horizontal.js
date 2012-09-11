@@ -34,7 +34,7 @@ function makeIntervalUrl(interval, date, url)
   var start = Date.parse(interval.start_time);
   var end = Date.parse(interval.end_time);
 
-  return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
+  return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/overview/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeBookedUrl(booking, url, pixel_size, field_width, day_start)

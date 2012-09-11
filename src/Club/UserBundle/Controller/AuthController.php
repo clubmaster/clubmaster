@@ -5,7 +5,6 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -74,6 +73,7 @@ class AuthController extends Controller
       }
 
       $this->get('session')->setFlash('notice', $this->get('translator')->trans('You will receive an email within a few minutes.'));
+
       return $this->redirect($this->generateUrl('homepage'));
     }
 
@@ -110,6 +110,7 @@ class AuthController extends Controller
           $em->flush();
 
           $this->get('session')->set('notice','Your password has been set.');
+
           return $this->redirect($this->generateUrl('homepage'));
         }
       }

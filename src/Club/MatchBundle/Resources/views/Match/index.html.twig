@@ -1,0 +1,13 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block body %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<p class="box">
+  <a href="{{ path('club_match_match_new') }}" class="btn-create"><span>{% trans %}Insert match{% endtrans %}</span></a>
+</p>
+{% endif %}
+
+{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+
+{% endblock %}

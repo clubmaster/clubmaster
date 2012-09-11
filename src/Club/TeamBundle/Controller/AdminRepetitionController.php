@@ -56,6 +56,7 @@ class AdminRepetitionController extends Controller
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
     if (($form_daily = $this->process($repetition, $form_daily)) instanceOf RedirectResponse) {
       $em->persist($schedule);
+
       return $form_daily;
     }
 
@@ -64,6 +65,7 @@ class AdminRepetitionController extends Controller
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
     if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse) {
       $em->persist($schedule);
+
       return $form_weekly;
     }
 
@@ -71,6 +73,7 @@ class AdminRepetitionController extends Controller
     $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
     if (($form_monthly = $this->process($repetition, $form_monthly)) instanceOf RedirectResponse) {
       $em->persist($schedule);
+
       return $form_monthly;
     }
 
@@ -78,6 +81,7 @@ class AdminRepetitionController extends Controller
     $form_yearly = $this->createForm(new \Club\TeamBundle\Form\RepetitionYearly(), $repetition);
     if (($form_yearly = $this->process($repetition, $form_yearly)) instanceOf RedirectResponse) {
       $em->persist($schedule);
+
       return $form_yearly;
     }
 
@@ -110,21 +114,25 @@ class AdminRepetitionController extends Controller
     $repetition->setType('daily');
     $form_daily = $this->createForm(new \Club\TeamBundle\Form\RepetitionDaily(), $repetition);
     if (($form_daily = $this->process($repetition, $form_daily)) instanceOf RedirectResponse)
+
       return $form_daily;
 
     $repetition->setType('weekly');
     $form_weekly = $this->createForm(new \Club\TeamBundle\Form\RepetitionWeekly(), $repetition);
     if (($form_weekly = $this->process($repetition, $form_weekly)) instanceOf RedirectResponse)
+
       return $form_weekly;
 
     $repetition->setType('monthly');
     $form_monthly = $this->createForm(new \Club\TeamBundle\Form\RepetitionMonthly(), $repetition);
     if (($form_monthly = $this->process($repetition, $form_monthly)) instanceOf RedirectResponse)
+
       return $form_monthly;
 
     $repetition->setType('yearly');
     $form_yearly = $this->createForm(new \Club\TeamBundle\Form\RepetitionYearly(), $repetition);
     if (($form_yearly = $this->process($repetition, $form_yearly)) instanceOf RedirectResponse)
+
       return $form_yearly;
 
     return array(

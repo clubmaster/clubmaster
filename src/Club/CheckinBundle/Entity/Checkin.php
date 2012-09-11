@@ -34,7 +34,6 @@ class Checkin
      */
     protected $user;
 
-
     /**
      * Get id
      *

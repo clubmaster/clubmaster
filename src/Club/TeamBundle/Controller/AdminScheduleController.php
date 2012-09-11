@@ -119,6 +119,7 @@ class AdminScheduleController extends Controller
     $res = $this->process($schedule);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -140,12 +141,14 @@ class AdminScheduleController extends Controller
 
     if ($this->getRequest()->getMethod() == 'POST') {
       if (count($schedule->getSchedules()) || $schedule->getSchedule())
+
         return $this->redirect($this->generateUrl('club_team_adminschedule_editchoice', array(
           'id' => $schedule->getId(),
         )));
     }
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -171,6 +174,7 @@ class AdminScheduleController extends Controller
     }
 
     if (count($schedule->getSchedules()))
+
       return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
         'id' => $id
       )));
@@ -377,6 +381,7 @@ class AdminScheduleController extends Controller
   protected function updateSchedule(\Club\TeamBundle\Entity\Schedule $schedule, \Club\TeamBundle\Entity\Schedule $original)
   {
     if( $schedule == $original)
+
       return;
 
     $t1_first = new \DateTime(

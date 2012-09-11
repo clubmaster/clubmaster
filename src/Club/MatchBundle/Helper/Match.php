@@ -4,16 +4,22 @@ namespace Club\MatchBundle\Helper;
 
 class Match
 {
+  protected $container;
   protected $em;
   protected $translator;
+  protected $form_factory;
+  protected $event_dispatcher;
   protected $match;
   protected $error;
   protected $is_valid = true;
 
-  public function __construct($em, $translator)
+  public function __construct($container)
   {
-    $this->em = $em;
-    $this->translator = $translator;
+    $this->container = $container;
+    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->translator = $container->get('translator');
+    $this->form_factory = $container->get('form.factory');
+    $this->event_dispatcher = $container->get('event_dispatcher');
   }
 
   public function bindMatch(array $data, \Club\MatchBundle\Entity\League $league=null)
@@ -38,12 +44,14 @@ class Match
 
       } catch (\Doctrine\ORM\NonUniqueResultException $e) {
         $this->setError($this->translator->trans('Too many users match this search'));
+
         return;
       } catch (\Exception $e) {
         return;
       }
       if (!$user) {
           $this->setError($this->translator->trans('No such user'));
+
           return;
       }
 
@@ -52,6 +60,7 @@ class Match
           $this->setError($this->translator->trans('%user% is not allowed to play in this league.', array(
             '%user%' => $user->getName()
           )));
+
           return;
         }
       }
@@ -106,6 +115,9 @@ class Match
   {
     $this->em->persist($this->match);
     $this->em->flush();
+
+    $event = new \Club\MatchBundle\Event\FilterMatchEvent($this->match);
+    $this->event_dispatcher->dispatch(\Club\MatchBundle\Event\Events::onMatchNew, $event);
   }
 
   private function validateUser(\Club\UserBundle\Entity\User $user)
@@ -153,6 +165,7 @@ class Match
       $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
         '%count%' => count($matches)
       )));
+
       return false;
     }
 
@@ -163,6 +176,25 @@ class Match
   {
     if (!count($display)) {
       $this->setError($this->translator->trans('You have not played enough set'));
+
+      return;
+    }
+
+    if (!isset($display[0])) {
+      $this->setError($this->translator->trans('Team one has not played any set.'));
+
+      return;
+    }
+
+    if (!isset($display[1])) {
+      $this->setError($this->translator->trans('Team two has not played any set.'));
+
+      return;
+    }
+
+    if (count($display[0]) != count($display[1])) {
+      $this->setError($this->translator->trans('The team has not played equal amount of set.'));
+
       return;
     }
 
@@ -172,6 +204,7 @@ class Match
         $i++;
         if ($set+1 != $i) {
           $this->setError($this->translator->trans('You has to enter set in the right order.'));
+
           return;
         }
       }
@@ -183,6 +216,7 @@ class Match
 
       if ($set1 < 6 && $set2 < 6) {
         $this->setError($this->translator->trans('The match result is not valid.'));
+
         return;
       }
 
@@ -190,6 +224,7 @@ class Match
 
     if (count($display[0]) < ($sets/2) || count($display[1]) < ($sets/2)) {
       $this->setError($this->translator->trans('You have not played enough set'));
+
       return false;
     }
 
@@ -287,5 +322,27 @@ class Match
   public function isValid()
   {
     return $this->is_valid;
+  }
+
+  public function getMatchForm($res, $set)
+  {
+    $form = $this->form_factory->createBuilder('form', $res)
+      ->add('user0_id', 'hidden')
+      ->add('user1_id', 'hidden')
+      ->add('user0', 'text')
+      ->add('user1', 'text');
+
+    for ($i = 0; $set > $i; $i++) {
+      $form = $form->add('user0set'.$i,'text', array(
+        'label' => 'Set '.($i+1),
+        'required' => false
+      ));
+      $form = $form->add('user1set'.$i,'text', array(
+        'label' => 'Set '.($i+1),
+        'required' => false
+      ));
+    }
+
+    return $form->getForm();
   }
 }

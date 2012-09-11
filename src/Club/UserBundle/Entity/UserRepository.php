@@ -21,14 +21,17 @@ class UserRepository extends EntityRepository
     foreach ($users as $user) {
       $i++;
       if ($user->getMemberNumber() != $i)
+
         return $i;
     }
 
     $i++;
+
     return $i;
   }
 
-  public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0) {
+  public function getUsersListWithPagination($filter, $order_by = array(), $offset = 0, $limit = 0)
+  {
     //Create query builder for languages table
     $qb = $this->getQueryBuilderByFilter($filter);
 
@@ -60,12 +63,15 @@ class UserRepository extends EntityRepository
     return $q->getResult();
   }
 
-  public function getUsersCount($filter) {
+  public function getUsersCount($filter)
+  {
     return count($this->getUsers($filter));
   }
 
-  public function getUsers($filter) {
+  public function getUsers($filter)
+  {
     $qb = $this->getQueryBuilderByFilter($filter);
+
     return $qb->getQuery()->getResult();
   }
 

@@ -13,7 +13,8 @@ class FilterPurchaseLogEvent extends Event
     $this->purchase_log = $purchase_log;
   }
 
-  public function getPurchaseLog() {
+  public function getPurchaseLog()
+  {
     return $this->purchase_log;
   }
 }

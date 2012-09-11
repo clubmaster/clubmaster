@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\VariantGroupRepository")
@@ -111,7 +110,7 @@ class VariantGroup
     /**
      * Get variant_group_name
      *
-     * @return string 
+     * @return string
      */
     public function getVariantGroupName()
     {

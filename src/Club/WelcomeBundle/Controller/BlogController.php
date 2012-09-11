@@ -51,6 +51,7 @@ class BlogController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
         return $this->redirect($this->generateUrl('club_welcome_blog_show', array(
           'blog_id' => $blog->getId()
         )));
@@ -76,6 +77,7 @@ class BlogController extends Controller
     $res = $this->process($blog);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -97,6 +99,7 @@ class BlogController extends Controller
     $res = $this->process($blog);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

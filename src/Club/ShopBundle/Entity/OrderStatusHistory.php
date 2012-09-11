@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\OrderStatusHistoryRepository")
@@ -46,7 +45,6 @@ class OrderStatusHistory
      * @ORM\Column(type="datetime")
      */
     protected $created_at;
-
 
     /**
      * Get id

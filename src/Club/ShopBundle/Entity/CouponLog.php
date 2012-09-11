@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\CouponLogRepository")
@@ -41,7 +40,6 @@ class CouponLog
      * @ORM\Column(type="datetime")
      */
     protected $created_at;
-
 
     /**
      * Get id

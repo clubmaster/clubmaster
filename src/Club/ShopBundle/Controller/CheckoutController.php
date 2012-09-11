@@ -57,10 +57,12 @@ class CheckoutController extends Controller
   {
     if (!count($this->get('cart')->getCart()->getCartProducts())) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
+
       return $this->redirect($this->generateUrl('shop_checkout'));
     }
 
     if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
+
       return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
 
     $em = $this->getDoctrine()->getEntityManager();
@@ -74,6 +76,7 @@ class CheckoutController extends Controller
       $this->get('cart')->setShipping($shippings[0]);
 
     if (count($shippings) == 1 && $this->get('cart')->getCart()->getCustomerAddress())
+
       return $this->redirect($this->generateUrl('shop_checkout_payment'));
 
     $address = $this->get('cart')->getCart()->getCustomerAddress();
@@ -131,6 +134,7 @@ class CheckoutController extends Controller
     if (count($payments) == 1) {
       $method = $em->find('ClubShopBundle:PaymentMethod', key($payments));
       $this->get('cart')->setPayment($method);
+
       return $this->redirect($this->generateUrl('shop_checkout_review'));
     }
 
@@ -152,6 +156,7 @@ class CheckoutController extends Controller
         return $this->redirect($this->generateUrl('shop_checkout_review'));
       }
     }
+
     return array(
         'form' => $form->createView(),
         'cart' => $cart,
@@ -180,6 +185,7 @@ class CheckoutController extends Controller
     $cart = $this->get('cart')->getCart();
     if (!count($cart->getCartProducts())) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
+
       return $this->redirect($this->generateUrl('shop'));
     }
 
@@ -213,6 +219,7 @@ class CheckoutController extends Controller
   public function emptyCartAction()
   {
     $this->get('cart')->emptyCart();
+
     return $this->redirect($this->generateUrl('shop_checkout'));
   }
 
@@ -225,7 +232,10 @@ class CheckoutController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $this->get('session')->set('_security.target_path', '/shop/login');
 
-    $user = $this->get('clubmaster.user')->get();
+    $user = $this->get('clubmaster.user')
+      ->buildUser()
+      ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -233,14 +243,8 @@ class CheckoutController extends Controller
       if ($form->isValid()) {
 
         $this->get('clubmaster.user')->save();
+        $this->get('clubmaster.user')->loginAs($user);
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
-
-        $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
-          $user,
-          null,
-          'user'
-        );
-        $this->get('security.context')->setToken($token);
 
         return $this->redirect($this->generateUrl('club_shop_checkout_login'));
       }

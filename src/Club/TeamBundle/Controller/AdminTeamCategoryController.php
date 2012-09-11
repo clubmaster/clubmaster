@@ -37,6 +37,7 @@ class AdminTeamCategoryController extends Controller
     $res = $this->process($category);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -56,6 +57,7 @@ class AdminTeamCategoryController extends Controller
     $res = $this->process($category);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

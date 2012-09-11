@@ -26,6 +26,7 @@ class TeamController extends Controller
     $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
     if (!$this->get('club_team.team')->isValid()) {
       $res = $this->get('club_team.team')->getError();
+
       return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->save();
@@ -34,6 +35,7 @@ class TeamController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
 
     $response = new Response();
+
     return $response;
   }
 
@@ -51,6 +53,7 @@ class TeamController extends Controller
     $this->get('club_team.team')->bindUnattend($schedule, $user);
     if (!$this->get('club_team.team')->isValid()) {
       $res = $this->get('club_team.team')->getError();
+
       return new Response($this->get('club_api.encode')->encodeError($res), 403);
     }
     $this->get('club_team.team')->remove();
@@ -59,6 +62,7 @@ class TeamController extends Controller
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $response = new Response();
+
     return $response;
   }
 

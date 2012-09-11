@@ -3,7 +3,6 @@
 namespace Club\MessageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -112,6 +111,7 @@ class AdminMessageController extends Controller
         return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
     }
+
     return array(
       'form' => $form->createView()
     );
@@ -154,6 +154,7 @@ class AdminMessageController extends Controller
         return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
     }
+
     return array(
       'message' => $message,
       'form' => $form->createView()
@@ -212,6 +213,7 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Attachment was added to the message.'));
+
         return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
     }
@@ -254,9 +256,11 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Filter has been added as recipient for the mail.'));
+
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
+
     return array(
       'form' => $form->createView(),
       'message' => $message
@@ -285,9 +289,11 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Event has been added as recipient for the mail.'));
+
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
+
     return array(
       'form' => $form->createView(),
       'message' => $message
@@ -316,9 +322,11 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Group has been added as recipient for the mail.'));
+
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
+
     return array(
       'form' => $form->createView(),
       'message' => $message
@@ -394,7 +402,6 @@ class AdminMessageController extends Controller
     return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
   }
 
-
   /**
    * @Route("/message/recipient/user/{id}")
    * @Template()
@@ -416,9 +423,11 @@ class AdminMessageController extends Controller
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('User has been added as recipient for the mail.'));
+
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
     }
+
     return array(
       'form' => $form->createView(),
       'message' => $message
@@ -459,6 +468,7 @@ class AdminMessageController extends Controller
 
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
     }
+
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
   }
 

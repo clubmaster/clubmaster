@@ -10,12 +10,14 @@ class DateTimeValidator extends ConstraintValidator
   public function isValid($value, Constraint $constraint)
   {
     if (!strlen($value))
+
       return true;
 
     try {
       $date = new \DateInterval('P'.$value);
     } catch (\Exception $e) {
       $this->setMessage($constraint->message);
+
       return false;
     }
 

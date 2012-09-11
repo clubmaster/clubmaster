@@ -102,7 +102,6 @@ class Subscription
      */
     protected $location;
 
-
     public function __construct()
     {
         $this->subscription_pauses = new \Doctrine\Common\Collections\ArrayCollection();
@@ -358,9 +357,11 @@ class Subscription
     public function isExpired()
     {
       if ($this->getExpireDate() == null)
+
         return false;
 
       if ($this->getExpireDate()->getTimestamp() < time())
+
         return true;
 
       return false;
@@ -370,6 +371,7 @@ class Subscription
     {
       foreach ($this->getSubscriptionPauses() as $pause) {
         if ($pause->getExpireDate() == null)
+
           return true;
       }
 
@@ -411,9 +413,11 @@ class Subscription
       $d = new \DateTime();
 
       if ($d < $this->getStartDate())
+
         return false;
 
       if ($this->isExpired())
+
         return false;
 
       return true;
@@ -423,6 +427,7 @@ class Subscription
     {
       foreach ($this->getSubscriptionAttributes() as $attr) {
         if ($attr->getAttributeName() == $key)
+
           return true;
       }
 
@@ -433,6 +438,7 @@ class Subscription
     {
       foreach ($this->getSubscriptionAttributes() as $attr) {
         if ($attr->getAttributeName() == $key)
+
           return $attr;
       }
 

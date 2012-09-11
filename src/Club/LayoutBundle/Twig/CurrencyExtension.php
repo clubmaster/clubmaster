@@ -29,6 +29,7 @@ class CurrencyExtension extends \Twig_Extension
   public function getPrice($value)
   {
     if (!$this->intlExists())
+
       return $value;
 
     $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(

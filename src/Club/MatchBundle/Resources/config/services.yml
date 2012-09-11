@@ -1,7 +1,7 @@
 services:
     club_match.match:
         class: Club\MatchBundle\Helper\Match
-        arguments: [@doctrine.orm.entity_manager, @translator]
+        arguments: [@service_container]
     club_match.league:
         class: Club\MatchBundle\Helper\League
         arguments: [@doctrine.orm.entity_manager, @translator]

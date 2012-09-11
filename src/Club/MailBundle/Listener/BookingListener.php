@@ -8,6 +8,7 @@ class BookingListener
   protected $em;
   protected $templating;
   protected $router;
+  protected $translator;
   protected $clubmaster_mailer;
 
   public function __construct($container)
@@ -16,6 +17,7 @@ class BookingListener
     $this->em = $container->get('doctrine.orm.entity_manager');
     $this->templating = $container->get('templating');
     $this->router = $container->get('router');
+    $this->translator = $container->get('translator');
     $this->clubmaster_mailer = $container->get('clubmaster_mailer');
   }
 
@@ -25,7 +27,7 @@ class BookingListener
     $recipients = $this->getRecipients($booking);
 
     $this->clubmaster_mailer
-      ->setSubject('Booking confirm')
+      ->setSubject($this->translator->trans('Booking confirm'))
       ->setFrom();
 
     foreach ($recipients as $user) {
@@ -35,8 +37,10 @@ class BookingListener
           'user' => $user,
           'booking' => $booking,
         )))
-        ->send();
+        ->send()
+        ;
     }
+    die();
   }
 
   public function onBookingCancel(\Club\BookingBundle\Event\FilterBookingEvent $event)
@@ -45,7 +49,7 @@ class BookingListener
     $recipients = $this->getRecipients($booking);
 
     $this->clubmaster_mailer
-      ->setSubject('Booking cancel')
+      ->setSubject($this->translator->trans('Booking cancel'))
       ->setFrom();
 
     foreach ($recipients as $user) {

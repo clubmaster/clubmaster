@@ -64,7 +64,6 @@ class Special
      */
     protected $product;
 
-
     /**
      * Get id
      *

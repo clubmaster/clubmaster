@@ -105,7 +105,6 @@ class Plan
      */
     protected $fields;
 
-
     /**
      * Get id
      *

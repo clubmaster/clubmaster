@@ -23,13 +23,6 @@ class TournamentGame
     private $id;
 
     /**
-     * @var integer $round
-     *
-     * @ORM\Column(name="round", type="integer")
-     */
-    private $round;
-
-    /**
      * @var integer $game
      *
      * @ORM\Column(name="game", type="integer")
@@ -63,6 +56,11 @@ class TournamentGame
     private $tournament;
 
     /**
+     * @ORM\ManyToOne(targetEntity="TournamentRound")
+     */
+    private $tournament_round;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     private $team_one;
@@ -77,7 +75,6 @@ class TournamentGame
      */
     private $winner;
 
-
     /**
      * Get id
      *
@@ -86,26 +83,6 @@ class TournamentGame
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set round
-     *
-     * @param integer $round
-     */
-    public function setRound($round)
-    {
-        $this->round = $round;
-    }
-
-    /**
-     * Get round
-     *
-     * @return integer
-     */
-    public function getRound()
-    {
-        return $this->round;
     }
 
     /**
@@ -287,5 +264,25 @@ class TournamentGame
     public function getTeamTwo()
     {
         return $this->team_two;
+    }
+
+    /**
+     * Set tournament_round
+     *
+     * @param Club\TournamentBundle\Entity\TournamentRound $tournamentRound
+     */
+    public function setTournamentRound(\Club\TournamentBundle\Entity\TournamentRound $tournamentRound)
+    {
+        $this->tournament_round = $tournamentRound;
+    }
+
+    /**
+     * Get tournament_round
+     *
+     * @return Club\TournamentBundle\Entity\TournamentRound
+     */
+    public function getTournamentRound()
+    {
+        return $this->tournament_round;
     }
 }

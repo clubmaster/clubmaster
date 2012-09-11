@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\PaymentMethodRepository")
@@ -54,7 +53,6 @@ class PaymentMethod
      * @var integer $priority
      */
     protected $priority;
-
 
     public function __construct()
     {

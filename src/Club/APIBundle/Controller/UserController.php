@@ -63,6 +63,7 @@ class UserController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
+
     return $response;
   }
 
@@ -99,12 +100,14 @@ class UserController extends Controller
   {
     return;
     if (!$this->validateKey())
+
       return new Response($this->get('club_api.encode')->encode('Wrong API key'), 403);
 
     $em = $this->getDoctrine()->getEntityManager();
     $user = $em->find('ClubUserBundle:User', $id);
 
     $response = new Response($this->get('club_api.encode')->encode($user->toArray()));
+
     return $response;
   }
 }

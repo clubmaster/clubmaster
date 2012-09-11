@@ -15,29 +15,39 @@
   <thead>
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Min{% endtrans %}</th>
+      <th>{% trans %}Max{% endtrans %}</th>
+      <th>{% trans %}Current{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="6">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for tournament in tournaments %}
     <tr>
       <td>{{ tournament.name }}</td>
+      <td>{{ tournament.minAttend }}</td>
+      <td>{{ tournament.maxAttend }}</td>
+      <td>{{ tournament.attends|length }}</td>
       <td>{{ tournament.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_tournament_admintournament_edit', { 'id':tournament.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_tournament_admintournament_delete', { 'id':tournament.id })} %}
+
+        {% if tournament.build == false %}
+        {% include "ClubLayoutBundle:Default:generate_link.html.twig" with {'url':path('club_tournament_admintournament_generate', { 'id':tournament.id })} %}
+        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('club_tournament_admintournamentattend_index', { 'tournament_id':tournament.id })} %}
+        {% endif %}
       </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}There are no tournaments.{% endtrans %}</td>
+    <td colspan="6">{% trans %}There are no tournaments.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

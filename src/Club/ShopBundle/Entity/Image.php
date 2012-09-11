@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\ImageRepository")
@@ -54,7 +53,6 @@ class Image
      * @var string $file_hash
      */
     protected $file_hash;
-
 
     /**
      * Get id

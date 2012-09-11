@@ -147,7 +147,6 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     protected $groups;
 
-
     public function __toString()
     {
       return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
@@ -492,12 +491,17 @@ class User implements AdvancedUserInterface, EquatableInterface
 
         $res['subscriptions'] = array();
         foreach ($this->getSubscriptions() as $sub) {
-          $res['subscriptions'][] = array(
+          $o = array(
             'id' => $sub->getId(),
             'type' => $sub->getType(),
             'start_date' => $sub->getStartDate()->format('c'),
-            'expire_date' => $sub->getExpireDate()->format('c')
           );
+
+          if ($sub->getExpireDate()) {
+            $o['expire_date'] = $sub->getExpireDate()->format('c');
+          }
+
+          $res['subscriptions'][] = $o;
         }
 
         $res['groups'] = array();
@@ -576,6 +580,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     public function isAccountNonLocked()
     {
       if ($this->getLocked() == 1)
+
         return false;
 
       return true;
@@ -763,6 +768,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     {
       foreach ($this->getSchedules() as $sch) {
         if ($schedule->getId() == $sch->getSchedule()->getId())
+
           return true;
       }
 

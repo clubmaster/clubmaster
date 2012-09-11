@@ -30,10 +30,12 @@ class Team
     $this->user = $user;
 
     if ($this->security_context->isGranted('ROLE_TEAM_ADMIN'))
+
       return;
 
     if ($this->security_context->getToken()->getUser() != $user) {
       $this->setError('You do not have permissions to unattend this team');
+
       return;
     }
 
@@ -42,6 +44,7 @@ class Team
     $now = new \DateTime();
     if ($book_time < $now) {
       $this->setError('You cannot unattend teams in the past');
+
       return;
     }
 
@@ -52,6 +55,7 @@ class Team
 
     $diff = ($now->getTimestamp()-$attend->getCreatedAt()->getTimestamp());
     if ($diff < $this->container->getParameter('club_team.cancel_minute_created')*60)
+
       return;
 
     $delete_within = clone $book_time;
@@ -68,6 +72,7 @@ class Team
     $this->validate();
 
     if (!$this->isValid())
+
       return;
   }
 
@@ -90,6 +95,7 @@ class Team
     $errors = $this->validator->validate($this->schedule_user, array('attend'));
     foreach ($errors as $error) {
       $this->setError($error->getMessage());
+
       return;
     }
   }
@@ -167,11 +173,13 @@ class Team
 
     if ($res[1] >= $this->container->getParameter('club_team.num_team_future')) {
       $this->setError('You cannot attend more teams');
+
       return;
     }
 
     if (!$this->hasSubscription($this->user)) {
       $this->setError('You do not have permission to use teams.');
+
       return;
     }
 
@@ -186,18 +194,21 @@ class Team
 
           if ($location == $this->schedule->getLocation()) {
             $this->users[] = $user;
+
             return true;
           }
 
           foreach ($subscription->getLocation() as $child) {
             if ($child == $this->schedule->getLocation()) {
               $this->users[] = $user;
+
               return true;
             }
 
             foreach ($child->getChilds() as $child2) {
               if ($child2 == $this->schedule->getLocation()) {
                 $this->users[] = $user;
+
                 return true;
               }
             }
@@ -205,12 +216,14 @@ class Team
             foreach ($child2->getChilds() as $child3) {
               if ($child3 == $this->schedule->getLocation()) {
                 $this->users[] = $user;
+
                 return true;
               }
 
               foreach ($child3->getChilds() as $child4) {
                 if ($child4 == $this->schedule->getLocation()) {
                   $this->users[] = $user;
+
                   return true;
                 }
               }

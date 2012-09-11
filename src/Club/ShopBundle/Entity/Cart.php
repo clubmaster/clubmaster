@@ -118,7 +118,8 @@ class Cart
      */
     protected $created_at;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->cart_products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -298,7 +299,7 @@ class Cart
     /**
      * Get session
      *
-     * @return string 
+     * @return string
      */
     public function getSession()
     {

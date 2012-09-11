@@ -3,15 +3,17 @@
 namespace Club\BookingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/booking/overview")
+ */
 class OverviewController extends Controller
 {
    /**
     * @Template()
-    * @Route("/booking/{date}/{interval_id}")
+    * @Route("/{date}/{interval_id}")
     */
    public function viewAction($date, $interval_id)
    {
@@ -39,7 +41,7 @@ class OverviewController extends Controller
 
   /**
    * @Template()
-   * @Route("/booking/{date}", defaults={"date" = null})
+   * @Route("/{date}", defaults={"date" = null})
    */
    public function indexAction($date)
    {
@@ -53,6 +55,7 @@ class OverviewController extends Controller
      ));
 
      if (!count($fields))
+
        return $this->redirect($this->generateUrl('club_booking_location_index'));
 
      return $this->render('ClubBookingBundle:Overview:'.$this->container->getParameter('club_booking.booking_style').'.html.twig', array(

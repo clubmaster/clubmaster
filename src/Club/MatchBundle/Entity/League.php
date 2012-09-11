@@ -4,7 +4,6 @@ namespace Club\MatchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Club\UserBundle\Helper\Util;
 
 /**
  * Club\MatchBundle\Entity\League
@@ -105,7 +104,6 @@ class League
      * @ORM\OneToMany(targetEntity="Club\MatchBundle\Entity\Match", mappedBy="league")
      */
     protected $matches;
-
 
     /**
      * Get id

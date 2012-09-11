@@ -1,0 +1,54 @@
+{% extends "ClubTournamentBundle::base.html.twig" %}
+
+{% block body %}
+
+<h2>{% trans %}Add players to tournament{% endtrans %}</h2>
+
+{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user','input_id':'#form_user_id', 'url':'api/users/search'} %}
+<form method="post" action="{{ path('club_tournament_admintournamentattend_new', {'tournament_id':tournament.id}) }}">
+  <fieldset>
+    <legend>{% trans %}Add player{% endtrans %}</legend>
+
+    <p>{% trans %}Here you can add players for this tournament.{% endtrans %}</p>
+    {{ form_widget(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+</form>
+
+<table class="style">
+  <thead>
+    <tr>
+      <th>{% trans %}Seed{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Tournament{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="5">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for attend in attends %}
+    <tr>
+      <td>{{ attend.seed }}</td>
+      <td>{{ attend.user.name }} ({{attend.user.memberNumber }})</td>
+      <td>{{ tournament.name }}</td>
+      <td>{{ attend.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_tournament_admintournamentattend_edit', { 'id':attend.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_tournament_admintournamentattend_delete', { 'id':attend.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no users in the tournament.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</form>
+
+{% endblock %}

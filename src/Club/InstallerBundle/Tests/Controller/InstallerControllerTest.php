@@ -32,7 +32,7 @@ class InstallerControllerTest extends WebTestCase
       'administrator_step[profile][day_of_birth][month]' => '6',
       'administrator_step[profile][day_of_birth][year]' => '1984',
       'administrator_step[password][Password]' => '1234',
-      'administrator_step[password][Password again]' => '1234',
+      'administrator_step[password][Password_again]' => '1234',
       'administrator_step[profile][profile_email][email_address]' => 'info@clubmaster.org'
     ));
     $crawler = $client->submit($form);

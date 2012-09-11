@@ -51,7 +51,6 @@ class MatchTeam
      */
     protected $match_team_set;
 
-
     /**
      * Get id
      *

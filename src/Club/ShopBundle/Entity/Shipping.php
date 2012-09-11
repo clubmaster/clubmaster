@@ -44,7 +44,6 @@ class Shipping
      */
     protected $price;
 
-
     public function __toString()
     {
       return $this->getShippingName();

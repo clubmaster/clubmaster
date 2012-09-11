@@ -38,6 +38,7 @@ class AdminBlogController extends Controller
     $res = $this->process($blog);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -57,6 +58,7 @@ class AdminBlogController extends Controller
     $res = $this->process($blog);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(

@@ -3,7 +3,6 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\OrderProductRepository")
@@ -67,7 +66,6 @@ class OrderProduct
      * @ORM\OneToMany(targetEntity="Club\ShopBundle\Entity\OrderProductAttribute", mappedBy="order_product")
      */
     protected $order_product_attributes;
-
 
     public function __construct()
     {

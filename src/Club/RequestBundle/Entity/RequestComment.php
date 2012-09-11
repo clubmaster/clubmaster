@@ -54,7 +54,6 @@ class RequestComment
      */
     protected $user;
 
-
     /**
      * Get id
      *

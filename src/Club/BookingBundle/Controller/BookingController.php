@@ -56,6 +56,7 @@ class BookingController extends Controller
 
      if (!$this->get('club_booking.booking')->isValid()) {
        $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+
        return $this->redirect($this->generateUrl('club_booking_overview_view', array(
          'interval_id' => $interval->getId(),
          'date' => $date->format('Y-m-d')

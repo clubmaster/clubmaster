@@ -81,7 +81,6 @@ class LeagueTable
      */
     protected $team;
 
-
     public function __construct()
     {
       $this->won = 0;

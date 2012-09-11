@@ -46,6 +46,7 @@ class LocationController extends Controller
       : $this->generateUrl('homepage');
 
     $this->get('session')->set('switch_location', null);
+
     return $this->redirect($url);
   }
 }

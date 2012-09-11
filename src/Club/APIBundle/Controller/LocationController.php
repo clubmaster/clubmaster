@@ -3,7 +3,6 @@
 namespace Club\APIBundle\Controller;
 
 use Club\APIBundle\Controller\DefaultController as Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +27,7 @@ class LocationController extends Controller
     }
 
     $response = new Response($this->get('club_api.encode')->encode($res));
+
     return $response;
   }
 }

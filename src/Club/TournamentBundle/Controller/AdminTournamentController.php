@@ -32,11 +32,18 @@ class AdminTournamentController extends Controller
    */
   public function newAction()
   {
+    $start_time = new \DateTime(date('Y-m-d 15:00:00'));
+    $i = new \DateInterval('P1M');
+    $start_time->add($i);
+
     $tournament = new \Club\TournamentBundle\Entity\Tournament();
+    $tournament->setStartTime($start_time);
+    $tournament->setMinAttend(4);
 
     $res = $this->process($tournament);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -56,6 +63,7 @@ class AdminTournamentController extends Controller
     $res = $this->process($tournament);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -110,8 +118,10 @@ class AdminTournamentController extends Controller
    */
   public function generateAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $bracket = $this->get('club_tournament.tournament')
-      ->setUsers($tournament->getUsers())
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $bracket = $this->get('club_tournament.bracket')
+      ->setUsers($em->getRepository('ClubTournamentBundle:Attend')->getSeeds($tournament))
       ->setSeeds($tournament->getSeeds())
       ->shuffleUsers()
       ->getBracket();
@@ -128,8 +138,10 @@ class AdminTournamentController extends Controller
    */
   public function buildAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $bracket = $this->get('club_tournament.tournament')
-      ->setUsers($tournament->getUsers())
+    $em = $this->getDoctrine()->getEntityManager();
+
+    $bracket = $this->get('club_tournament.bracket')
+      ->setUsers($em->getRepository('ClubTournamentBundle:Attend')->getSeeds($tournament))
       ->setSeeds($tournament->getSeeds())
       ->shuffleUsers()
       ->getBracket();
@@ -137,14 +149,21 @@ class AdminTournamentController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $tournament->setRounds(count($bracket));
+    $tournament->setBuild(true);
     $em->persist($tournament);
 
     foreach ($bracket as $round_id => $round) {
+      $tr = new \Club\TournamentBundle\Entity\TournamentRound();
+      $tr->setTournament($tournament);
+      $tr->setRound($round_id);
+      $tr->setRoundName($round['name']);
+
+      $em->persist($tr);
       if (isset($round['matches'])) {
         foreach ($round['matches'] as $match_id => $match) {
           $tg = new \Club\TournamentBundle\Entity\TournamentGame();
           $tg->setTournament($tournament);
-          $tg->setRound($round_id);
+          $tg->setTournamentRound($tr);
           $tg->setGame($match_id);
 
           if (isset($match[0])) {
@@ -159,6 +178,7 @@ class AdminTournamentController extends Controller
 
     $em->flush();
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('club_tournament_admintournament_index'));
   }
 }

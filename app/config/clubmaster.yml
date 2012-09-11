@@ -41,6 +41,7 @@ club_event:
 
 club_match:
     enabled: true
+    league_view_top: 4
 
 club_shop:
     view_shop: true
@@ -89,6 +90,12 @@ club_mail:
     mail_on_order: true
 
 club_feedback:
+    enabled: true
+
+club_request:
+    enabled: true
+
+club_news:
     enabled: true
 
 club_checkin:

@@ -36,6 +36,7 @@ class CurrencyController extends Controller
     $res = $this->process($currency);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
@@ -54,6 +55,7 @@ class CurrencyController extends Controller
     $res = $this->process($currency);
 
     if ($res instanceOf RedirectResponse)
+
       return $res;
 
     return array(
