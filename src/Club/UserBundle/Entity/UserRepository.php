@@ -177,7 +177,7 @@ class UserRepository extends EntityRepository
     $this->has_joined_sub = false;
 
     return $this->_em->createQueryBuilder()
-      ->select('u')
+      ->select('u, p')
       ->from('ClubUserBundle:User','u')
       ->leftJoin('u.profile','p');
   }

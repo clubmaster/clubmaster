@@ -20,23 +20,16 @@ $(document).ready(function() {
         <ul class="nav">
             <li><a href="{{ path('admin_user_new') }}">{% trans %}Create user{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuserimport_index') }}">{% trans %}Import users{% endtrans %}</a></li>
+            <li><a href="{{ path('club_user_adminuser_csv') }}">{% trans %}Export CSV{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
 {% endblock %}
 
 {% block body %}
+
+<div class="span8">
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
-
-<div id="user_search" style="float: right;">
-  <fieldset>
-    <legend>Search</legend>
-    {% render "ClubUserBundle:Filter:getFilter" %}
-  </fieldset>
-</div>
-
-<div>
-[ <a href="{{ path('club_user_adminuser_csv') }}">{% trans %}Export CSV{% endtrans %}</a> ]
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table class="table">
   <thead>
@@ -80,9 +73,16 @@ $(document).ready(function() {
   {% endfor %}
   </tbody>
 </table>
-</div>
-</form>
 
+</form>
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+</div>
+
+<div class="span3">
+  <fieldset>
+    <legend>Search</legend>
+    {% render "ClubUserBundle:Filter:getFilter" %}
+  </fieldset>
+</div>
 
 {% endblock %}
