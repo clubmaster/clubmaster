@@ -19,7 +19,7 @@
 
              <ul class="nav">
                 {% for item in menu %}
-                <li {% if app.request.attributes.get('_route') == item.route %} class="active"{% endif %}>
+                <li>
                 <a href="{{ item.route }}">{{ item.name }}</a>
                 </li>
                 {% endfor %}
