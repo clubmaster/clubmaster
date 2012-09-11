@@ -1,5 +1,11 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block header %}
+<div class="page-header">
+    <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {{ user.name }}</h1>
+</div>
+{% endblock %}
+
 {% block body %}
 
 {% include "ClubUserBundle:AdminUser:header.html.twig" %}

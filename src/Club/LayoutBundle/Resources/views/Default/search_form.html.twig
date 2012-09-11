@@ -6,9 +6,9 @@
                 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search" class="form-search">
                     <div class="input-prepend">
                         <button type="submit" class="btn">{% trans %}Search{% endtrans %}</button>
-                        <input type="text" id="query" name="query" class="span5 search-query" />
+                        {{ form_widget(form.user, { 'attr':{ 'class':'span5 search-query'} }) }}
+                        {{ form_rest(form) }}
                     </div>
-                    <input type="hidden" name="query_id" id="query_id" value="" />
                 </form>
             </div>
             {% endif %}

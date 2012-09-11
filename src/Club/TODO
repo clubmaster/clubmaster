@@ -6,6 +6,8 @@ style checkout as new member
 fix admin users page
 seems like helper text is not alligned as it should, check product attributes
 fix crud for events
+add paginator on members page
+optimize queries used on members page
 
 when upgrading, remember to enable all products
 translation

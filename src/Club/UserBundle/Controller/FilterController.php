@@ -12,39 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class FilterController extends Controller
 {
-  /**
-   * @Route("/filter/quick")
-   */
-  public function quickAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
+    /**
+     * @Route("/filter/quick")
+     */
+    public function quickAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
-    $users = $em->getRepository('ClubUserBundle:User')->getByAjax(
-        $this->getRequest()->get('query'),
-        $this->getRequest()->get('query_id')
-    );
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
+                $user = $form->get('user')->getData();
+                return $this->redirect($this->generateUrl('admin_user_edit', array( 'id' => $user->getId() )));
+            } else {
+                foreach ($form->get('user')->getErrors() as $error) {
+                    $this->get('session')->setFlash('error', $error->getMessage());
+                }
+            }
+        }
 
-    if ($users instanceOf \Club\UserBundle\Entity\User) {
-      return $this->redirect($this->generateUrl('admin_user_edit', array(
-        'id' => $users->getId()
-      )));
-    } else {
-
-      $filter = $this->getActiveFilter();
-      $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
-
-      $attr = new \Club\UserBundle\Entity\FilterAttribute();
-      $attr->setFilter($filter);
-      $attr->setAttribute('name');
-      $attr->setValue($this->getRequest()->get('query'));
-      $filter->addAttributes($attr);
-
-      $em->persist($filter);
-      $em->flush();
-
-      return $this->redirect($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('admin_user'));
     }
-  }
 
   /**
    * @Route("/filter/filter")
