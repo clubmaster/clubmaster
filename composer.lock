@@ -1,6 +1,18 @@
 {
-    "hash": "c2639bd4ac21bfd8d3fd08e114f2f759",
+    "hash": "477e315a7dfe9efa3deda1c912c40c98",
     "packages": [
+        {
+            "package": "clubmaster/economic",
+            "version": "dev-master",
+            "source-reference": "18849496a2e9413c426248b1d6ff8234d45a10b8",
+            "commit-date": "1347401826"
+        },
+        {
+            "package": "clubmaster/quickpay",
+            "version": "dev-master",
+            "source-reference": "03019b2d6c043221b0ab0045ee8b985d8f5cfe4e",
+            "commit-date": "1347401680"
+        },
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
