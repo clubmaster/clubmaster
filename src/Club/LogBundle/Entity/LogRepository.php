@@ -55,6 +55,7 @@ class LogRepository extends EntityRepository
   {
     return $this->getQueryBuilder()
       ->where('l.user IS NOT NULL')
+      ->leftJoin('l.user', 'u')
       ->setMaxResults($limit)
       ->getQuery()
       ->getResult();
