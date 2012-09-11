@@ -528,4 +528,26 @@ class UserRepository extends EntityRepository
           );
       }
   }
+
+  public function getPaginator($results, $page)
+  {
+      $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+      $dql = "SELECT u, p ".
+          "FROM Club\UserBundle\Entity\User u LEFT JOIN ".
+          "u.profile p ".
+          "WHERE u.last_login_time > :login_time ".
+          "ORDER BY p.first_name";
+
+      $login_time = new \DateTime();
+      $i = new \DateInterval('P1Y');
+      $login_time->sub($i);
+
+      $query = $this->_em->createQuery($dql)
+          ->setParameter('login_time', $login_time)
+          ->setFirstResult($offset)
+          ->setMaxResults($results);
+
+      return new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+  }
 }

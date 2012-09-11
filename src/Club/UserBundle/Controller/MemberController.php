@@ -11,23 +11,6 @@ class MemberController extends Controller
 {
   /**
    * @Template()
-   * @Route("/members/")
-   */
-  public function indexAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-
-    $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array());
-
-    return array(
-      'form' => $form->createView(),
-      'users' => $users
-    );
-  }
-
-  /**
-   * @Template()
    * @Route("/members/search")
    */
   public function searchAction()
@@ -68,4 +51,30 @@ class MemberController extends Controller
       'output' => $event->getOutput()
     );
   }
+
+  /**
+   * @Template()
+   * @Route("/members/", defaults={"page" = 1 })
+   * @Route("/members/page/{page}", name="club_user_members_page")
+   */
+  public function indexAction($page)
+  {
+      $results = 50;
+
+      $em = $this->getDoctrine()->getEntityManager();
+      $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+
+      $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
+
+      $nav = $this->get('club_paginator.paginator')
+          ->init($results, count($paginator), $page, 'club_user_members_page');
+
+      return array(
+          'form' => $form->createView(),
+          'paginator' => $paginator,
+          'nav' => $nav
+      );
+  }
+
+
 }

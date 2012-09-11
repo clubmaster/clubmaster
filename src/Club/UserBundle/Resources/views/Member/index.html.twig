@@ -19,28 +19,33 @@
 
 {% block body %}
 
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 <table class="table">
   <thead>
     <tr>
+      <th width="150">{% trans %}Member number{% endtrans %}</th>
       <th>{% trans %}Name{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td>&#160;</td>
+      <td colspan="2">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
-  {% for user in users %}
+  {% for user in paginator %}
     <tr>
+      <td>{{ user.memberNumber }}</td>
       <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.name }}</a></td>
     </tr>
   {% else %}
   <tr>
-    <td>{% trans %}There are no users in the system.{% endtrans %}</td>
+    <td colspan="2">{% trans %}There are no users in the system.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
+
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 {% endblock %}
