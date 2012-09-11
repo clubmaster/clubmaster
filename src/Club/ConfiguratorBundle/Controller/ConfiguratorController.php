@@ -89,11 +89,8 @@ class ConfiguratorController extends ContainerAware
             $welcomeUrl = null;
         }
 
-<<<<<<< HEAD
-=======
         $this->container->get('club_user.application')->clearCache();
 
->>>>>>> master
         return $this->container->get('templating')->renderResponse('ClubConfiguratorBundle::Configurator/final.html.twig', array(
             'welcome_url' => $welcomeUrl,
             'parameters'  => $configurator->render(),
