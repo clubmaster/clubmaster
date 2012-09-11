@@ -15,12 +15,15 @@ class JQueryAutocompleteType extends AbstractType
      */
     private $om;
 
+    private $translator;
+
     /**
      * @param ObjectManager $om
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(ObjectManager $om, $translator)
     {
         $this->om = $om;
+        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -32,7 +35,7 @@ class JQueryAutocompleteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'invalid_message' => 'The selected user does not exist',
+            'invalid_message' => $this->translator->trans('The user does not exist'),
         ));
     }
 

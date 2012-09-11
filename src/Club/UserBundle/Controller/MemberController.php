@@ -39,8 +39,18 @@ class MemberController extends Controller
       $form->bind($this->getRequest());
       if ($form->isValid()) {
           $user = $form->get('user')->getData();
+
+          return $this->redirect($this->generateUrl('club_user_member_show', array('id' => $user->getId())));
+      } else {
+          $errors = $form->get('user')->getErrors();
+
+          foreach ($errors as $error) {
+              $this->get('session')->setFlash('error', $error->getMessage());
+          }
       }
     }
+
+    return $this->redirect($this->generateUrl('club_user_member_index'));
   }
 
   /**

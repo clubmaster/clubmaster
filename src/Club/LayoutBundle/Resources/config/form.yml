@@ -21,6 +21,6 @@ services:
             - { name: "form.type", alias: "jquery_birthday" }
     club_layout_form_jquery_autocomplete:
         class: Club\LayoutBundle\Form\JQueryAutocompleteType
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager, @translator]
         tags:
             - { name: "form.type", alias: "jquery_autocomplete" }
