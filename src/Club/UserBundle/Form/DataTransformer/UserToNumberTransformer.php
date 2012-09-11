@@ -5,6 +5,7 @@ namespace Club\UserBundle\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\NonUniqueResultException;
 
 class UserToNumberTransformer implements DataTransformerInterface
 {
@@ -55,10 +56,22 @@ class UserToNumberTransformer implements DataTransformerInterface
         ;
 
         if (null === $user) {
-            throw new TransformationFailedException(sprintf(
-                'An user with number "%s" does not exist!',
-                $member_number
-            ));
+            try {
+            $user = $this->om
+                ->getRepository('ClubUserBundle:User')
+                ->getOneBySearch(array(
+                    'query' => $member_number
+                ));
+            } catch (NonUniqueResultException $e) {
+                throw new TransformationFailedException($e->getMessage());
+            }
+
+            if (null === $user) {
+                throw new TransformationFailedException(sprintf(
+                    'An user with number "%s" does not exist!',
+                    $member_number
+                ));
+            }
         }
 
         return $user;
