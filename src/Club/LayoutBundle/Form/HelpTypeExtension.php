@@ -17,8 +17,14 @@ class HelpTypeExtension extends AbstractTypeExtension
 
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if (strlen($form->getAttribute('help'))) {
-            $view->set('help', $form->getAttribute('help'));
+        if ($form->getAttribute('help')) {
+            if (!is_array($form->getAttribute('help'))) {
+                $help = array($form->getAttribute('help'));
+            } else {
+                $help = $form->getAttribute('help');
+            }
+
+            $view->set('help', $help);
         }
     }
 

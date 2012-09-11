@@ -5,7 +5,9 @@
         <div class="controls">
             {{ form_widget(form) }}
             {% if help is defined %}
-                <span class="help-block">{{ help }}</span>
+                {% for h in help %}
+                    <span class="help-block">{{ h }}</span>
+                {% endfor %}
             {% endif %}
             {{ form_errors(form) }}
         </div>
