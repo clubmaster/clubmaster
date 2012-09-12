@@ -1,10 +1,8 @@
-fix clubpaymentcashbundle
 make the filter usefull on admin user page
 style checkout as new member
 use new economic bundle
 use new quickpay bundle
 find out how the economic works on split payment
-pull news ticker
 
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription

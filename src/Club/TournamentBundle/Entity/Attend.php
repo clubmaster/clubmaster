@@ -25,7 +25,7 @@ class Attend
     /**
      * @var integer $seed
      *
-     * @ORM\Column(name="seed", type="integer", nullable="true")
+     * @ORM\Column(name="seed", type="integer", nullable=true)
      */
     private $seed;
 
