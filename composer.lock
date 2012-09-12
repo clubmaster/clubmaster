@@ -4,8 +4,7 @@
         {
             "package": "clubmaster/economic",
             "version": "dev-master",
-            "source-reference": "18849496a2e9413c426248b1d6ff8234d45a10b8",
-            "commit-date": "1347401826"
+            "source-reference": "961977b928f71e355aeb5266af7a9f2b6578870c"
         },
         {
             "package": "clubmaster/quickpay",
