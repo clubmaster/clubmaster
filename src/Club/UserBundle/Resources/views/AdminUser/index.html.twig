@@ -28,8 +28,8 @@ $(document).ready(function() {
 
 {% block body %}
 
-<div class="span8">
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+<div>
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table class="table">
   <thead>
@@ -75,14 +75,7 @@ $(document).ready(function() {
 </table>
 
 </form>
+</div>
+
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
-</div>
-
-<div class="span3">
-  <fieldset>
-    <legend>Search</legend>
-    {% render "ClubUserBundle:Filter:getFilter" %}
-  </fieldset>
-</div>
-
 {% endblock %}
