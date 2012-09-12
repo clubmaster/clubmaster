@@ -232,10 +232,7 @@ class CheckoutController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $this->get('session')->set('_security.target_path', '/shop/login');
 
-    $user = $this->get('clubmaster.user')
-      ->buildUser()
-      ->get();
-
+    $user = $this->get('clubmaster.user')->get();
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -243,8 +240,14 @@ class CheckoutController extends Controller
       if ($form->isValid()) {
 
         $this->get('clubmaster.user')->save();
-        $this->get('clubmaster.user')->loginAs($user);
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
+
+        $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+          $user,
+          null,
+          'user'
+        );
+        $this->get('security.context')->setToken($token);
 
         return $this->redirect($this->generateUrl('club_shop_checkout_login'));
       }
