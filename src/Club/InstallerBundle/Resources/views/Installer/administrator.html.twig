@@ -11,7 +11,9 @@
 
     <p>{{ form_row(form.profile.first_name) }}</p>
     <p>{{ form_row(form.profile.last_name) }}</p>
-    <p>{{ form_row(form.profile.profile_email.email_address) }}</p>
+    {% for email in form.profile.profile_emails %}
+    <p>{{ form_row(email.email_address) }}</p>
+    {% endfor %}
     <p>{{ form_row(form.profile.gender) }}</p>
     <p>{{ form_row(form.profile.day_of_birth) }}</p>
   </fieldset>
