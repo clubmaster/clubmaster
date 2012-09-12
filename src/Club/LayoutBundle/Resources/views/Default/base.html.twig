@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset=utf-8" />
-    <title>{% block title %}ClubMaster{% endblock %}</title>
+    <title>{% block title %}{% render "ClubLayoutBundle:Misc:Title" %}{% endblock %}</title>
     <meta name="description" content="ClubMaster is an open source management tool">
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +53,7 @@
       <div class="row-fluid">
 
         <div class="span3">
-            {% render "ClubLayoutBundle:Misc:Logo" %}
+            <!-- {% render "ClubLayoutBundle:Misc:Logo" %} -->
             {% include "ClubLayoutBundle:Default:user_form.html.twig" %}
             {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
             {% render "ClubLayoutBundle:Misc:Search" %}

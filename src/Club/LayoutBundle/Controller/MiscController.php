@@ -3,6 +3,7 @@
 namespace Club\LayoutBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class MiscController extends Controller
 {
@@ -54,4 +55,10 @@ class MiscController extends Controller
             'logo_title' => $this->container->getParameter('club_layout.logo_title'),
         ));
     }
+
+    public function titleAction()
+    {
+        return new Response($this->container->getParameter('club_layout.title'));
+    }
+
 }

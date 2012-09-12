@@ -21,5 +21,6 @@ class ClubLayoutExtension extends Extension
     $container->setParameter('club_layout.logo_path', $config['logo_path']);
     $container->setParameter('club_layout.logo_url', $config['logo_url']);
     $container->setParameter('club_layout.logo_title', $config['logo_title']);
+    $container->setParameter('club_layout.title', $config['title']);
   }
 }
