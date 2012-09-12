@@ -19,6 +19,10 @@ class Cart
 
     if ($this->session->get('cart_id') != '') {
       $this->cart = $this->em->find('ClubShopBundle:Cart',$this->session->get('cart_id'));
+
+      if ($this->cart && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY') && !$this->cart->getUser()) {
+          $this->cart->setUser($this->security_context->getToken()->getUser());
+      }
     }
 
     if (!$this->cart) {
