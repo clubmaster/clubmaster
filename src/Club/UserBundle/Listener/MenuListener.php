@@ -21,7 +21,7 @@ class MenuListener
 
             $menu[9] = array(
                 'name' => $this->translator->trans('Admin Dashboard'),
-                'route' => $this->router->generate('club_dashboard_admindashboard_index'),
+                'route' => $this->router->generate('club_dashboard_admindashboard_index')
             );
             $menu[10] = array(
                 'header' => 'General',
@@ -71,15 +71,16 @@ class MenuListener
             $menu[4] = array(
                 'name' => $this->translator->trans('Profile'),
                 'route' => $this->router->generate('user'),
+                'items' => array(
+                    array(
+                        'name' => $this->translator->trans('Members'),
+                        'route' => $this->router->generate('club_user_member_index')
+                    )
+                )
             );
+
+            $event->appendMenu($menu);
         }
-
-        $menu[20] = array(
-            'name' => $this->translator->trans('Members'),
-            'route' => $this->router->generate('club_user_member_index')
-        );
-
-        $event->appendMenu($menu);
     }
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
