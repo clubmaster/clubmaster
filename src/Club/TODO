@@ -2,7 +2,6 @@ make the filter usefull on admin user page
 use new quickpay bundle
 find out how the economic works on split payment
 check that layout options is used
-check mail send event for mails.. has to be on orderpaid
 
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
