@@ -18,10 +18,9 @@ class AdminUserFilterController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $filter = $this->getActiveFilter();
 
-        $form_filter = new \Club\UserBundle\Filter\UserFilter($filter);
+        $form_filter = $this->buildFormFilter($filter);
         $form = $this->getForm($form_filter);
 
         if ($this->getRequest()->getMethod() == 'POST') {
@@ -42,29 +41,6 @@ class AdminUserFilterController extends Controller
     }
 
     /**
-     * @Route("/quick")
-     */
-    public function quickAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $form = $this->createForm(new \Club\UserBundle\Form\Search());
-
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $user = $form->get('user')->getData();
-                return $this->redirect($this->generateUrl('admin_user_edit', array( 'id' => $user->getId() )));
-            } else {
-                foreach ($form->get('user')->getErrors() as $error) {
-                    $this->get('session')->setFlash('error', $error->getMessage());
-                }
-            }
-        }
-
-        return $this->redirect($this->generateUrl('admin_user'));
-    }
-
-    /**
      * @Route("/filter/reset/{id}")
      */
     public function resetAction($id)
@@ -74,29 +50,7 @@ class AdminUserFilterController extends Controller
         $filter = $em->find('ClubUserBundle:Filter',$id);
         $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
 
-        return $this->redirect($this->generateUrl('admin_user'));
-    }
-
-    public function getFilterAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repos = $em->getRepository('ClubUserBundle:Filter');
-
-        $filters = $repos->findBy(array(
-            'user' => $this->get('security.context')->getToken()->getUser()
-        ));
-
-        $filter = $this->getActiveFilter();
-
-        $form_filters = $this->buildFormFilters($filter);
-        $form_filter = $this->buildFormFilter($filter);
-        $form = $this->getForm($form_filter);
-
-        return $this->render('ClubUserBundle:Filter:form.html.twig', array(
-            'filter' => $filter,
-            'form' => $form->createView(),
-            'form_filters' => $form_filters->createView()
-        ));
+        return $this->redirect($this->generateUrl('club_user_adminuserfilter_index'));
     }
 
     /**
@@ -169,35 +123,6 @@ class AdminUserFilterController extends Controller
         );
 
         return $filter;
-    }
-
-    private function buildFormFilters(\Club\UserBundle\Entity\Filter $filter = null)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repos = $em->getRepository('ClubUserBundle:Filter');
-
-        $filters = $repos->findBy(array(
-            'user' => $this->get('security.context')->getToken()->getUser()
-        ));
-
-        $qb = $em->createQueryBuilder()
-            ->select('f')
-            ->from('ClubUserBundle:Filter','f')
-            ->where('f.user = :user')
-            ->setParameter('user',$this->get('security.context')->getToken()->getUser()->getId())
-            ->orderBy('f.filter_name');
-
-        $arr = array();
-
-        if ($filter)
-            $arr['filter'] = $filter;
-
-        return $this->createFormBuilder($arr)
-            ->add('filter','entity',array(
-                'class' => 'ClubUserBundle:Filter',
-                'query_builder' => $qb
-            ))
-            ->getForm();
     }
 
     /**

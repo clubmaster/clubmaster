@@ -3,6 +3,7 @@
 {% block header %}
 <div class="page-header">
     <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {% trans %}User filter{% endtrans %}</h1>
+</div>
 {% endblock %}
 
 {% block body %}
@@ -27,7 +28,7 @@
 
     <div class="form-actions">
         <button {% if novalidate is defined %}formnovalidate="true"{% endif %} type="submit" class="btn btn-primary">{% if button is defined %}{{ button }}{% else %}{% trans %}Save changes{% endtrans %}{% endif %}</button>
-        <a class="btn" href="{{ path('club_user_filter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
+        <a class="btn" href="{{ path('club_user_adminuserfilter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
     </div>
 
 
