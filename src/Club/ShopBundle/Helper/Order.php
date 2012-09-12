@@ -295,6 +295,14 @@ class Order
     $delivered = true;
     foreach ($this->order->getProducts() as $prod) {
       if (!preg_match("/(subscription|guest_booking|coupon)/", $prod->getType())) $delivered = false;
+
+      // use for economic bundle
+      $prod->setAccountNumber($prod->getProduct()->getAccountNumber());
+      $prod->setVoucherText(sprintf(
+          "Payment from %s, %s",
+          $this->order->getUser()->getName(),
+          $prod->getProductName()
+      ));
     }
 
     if ($delivered) {

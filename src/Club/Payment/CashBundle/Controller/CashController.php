@@ -94,7 +94,7 @@ class CashController extends Controller
             if ($form->isValid()) {
                 $log->setAmount($log->getAmount()*100);
 
-                if (!$allow_split && $order->getPrice() != $log->getAmount()/100) {
+                if (!$allow_split && $order->getAmountLeft() != $log->getAmount()/100) {
                     return $this->redirect($this->generateUrl('club_payment_cash_cash_confirm', array(
                         'order_id' => $order->getId(),
                         'amount' => $log->getAmount()/100
