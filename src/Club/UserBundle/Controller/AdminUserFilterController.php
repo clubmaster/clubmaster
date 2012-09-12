@@ -31,6 +31,8 @@ class AdminUserFilterController extends Controller
                 $data = $form->getData();
                 $filter = $this->syncFilters($filter,$data);
             }
+
+            return $this->redirect($this->generateUrl('admin_user'));
         }
 
         return array(

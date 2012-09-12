@@ -1,7 +1,12 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block header %}
+<div class="page-header">
+    <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {% trans %}User filter{% endtrans %}</h1>
+{% endblock %}
+
 {% block body %}
-  <form method="POST" action="{{ path('club_user_filter_filter') }}" class="form-horizontal">
+  <form method="POST" action="{{ path('club_user_adminuserfilter_index') }}" class="form-horizontal">
 
     {{ form_row(form.name) }}
     {{ form_row(form.phone) }}
