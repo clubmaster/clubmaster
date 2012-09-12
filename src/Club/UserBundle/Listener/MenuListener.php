@@ -71,7 +71,6 @@ class MenuListener
             $menu[4] = array(
                 'name' => $this->translator->trans('Profile'),
                 'route' => $this->router->generate('user'),
-                'items' => array()
             );
         }
 
