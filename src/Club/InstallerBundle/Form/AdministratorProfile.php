@@ -13,7 +13,9 @@ class AdministratorProfile extends AbstractType
     $gender = array('male'=>'Male','female'=>'Female');
     $builder->add('first_name');
     $builder->add('last_name');
-    $builder->add('day_of_birth','birthday');
+    $builder->add('day_of_birth','jquery_birthday', array(
+      'widget' => 'single_text'
+    ));
     $builder->add('gender','choice',array(
       'choices' => $gender
     ));
