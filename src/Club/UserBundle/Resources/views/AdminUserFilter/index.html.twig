@@ -1,0 +1,30 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+  <form method="POST" action="{{ path('club_user_filter_filter') }}" class="form-horizontal">
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.email_address) }}
+    {{ form_row(form.member_number) }}
+    {{ form_row(form.min_age) }}
+    {{ form_row(form.max_age) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.postal_code) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.country) }}
+    {{ form_row(form.location) }}
+    {{ form_row(form.active) }}
+    {{ form_row(form.has_ticket) }}
+    {{ form_row(form.has_subscription) }}
+    {{ form_row(form.subscription_start) }}
+    {{ form_row(form._token) }}
+
+    <div class="form-actions">
+        <button {% if novalidate is defined %}formnovalidate="true"{% endif %} type="submit" class="btn btn-primary">{% if button is defined %}{{ button }}{% else %}{% trans %}Save changes{% endtrans %}{% endif %}</button>
+        <a class="btn" href="{{ path('club_user_filter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
+    </div>
+
+
+  </form>
+{% endblock %}

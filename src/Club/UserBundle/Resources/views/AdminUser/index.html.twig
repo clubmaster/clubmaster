@@ -19,6 +19,7 @@ $(document).ready(function() {
     <div class="navbar-inner">
         <ul class="nav">
             <li><a href="{{ path('admin_user_new') }}">{% trans %}Create user{% endtrans %}</a></li>
+            <li><a href="{{ path('club_user_adminuserfilter_index') }}">{% trans %}Search{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuserimport_index') }}">{% trans %}Import users{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuser_csv') }}">{% trans %}Export CSV{% endtrans %}</a></li>
         </ul>
