@@ -3,13 +3,13 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Club\Account\EconomicBundle\Model\Product;
+use Club\Account\EconomicBundle\Model\Product as EconomicProduct;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\OrderProductRepository")
  * @ORM\Table(name="club_shop_order_product")
  */
-class OrderProduct extends Product
+class OrderProduct extends EconomicProduct
 {
     /**
      * @ORM\Id
