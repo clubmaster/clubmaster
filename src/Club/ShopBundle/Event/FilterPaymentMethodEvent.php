@@ -9,7 +9,7 @@ class FilterPaymentMethodEvent extends Event
   protected $methods = array();
   protected $credentials = array();
 
-  public function setMethod($method)
+  public function addMethod($method)
   {
     $this->methods[] = $method;
   }

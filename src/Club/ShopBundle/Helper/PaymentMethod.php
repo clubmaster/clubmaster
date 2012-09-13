@@ -24,7 +24,11 @@ class PaymentMethod
   {
     $res = array();
     foreach ($this->getAll($credentials) as $p) {
-      $res[$p->getPriority()] = $p;
+      if (!isset($res[$p->getPriority()])) {
+        $res[$p->getPriority()] = $p;
+      } else {
+        $res[] = $p;
+      }
     }
     ksort($res);
 

@@ -9,8 +9,7 @@
         {
             "package": "clubmaster/quickpay",
             "version": "dev-master",
-            "source-reference": "03019b2d6c043221b0ab0045ee8b985d8f5cfe4e",
-            "commit-date": "1347401680"
+            "source-reference": "1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b",
         },
         {
             "package": "doctrine/common",

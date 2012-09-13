@@ -47,6 +47,6 @@ EOF
       $this->em->flush();
     }
 
-    $event->setMethod($method);
+    $event->addMethod($method);
   }
 }
