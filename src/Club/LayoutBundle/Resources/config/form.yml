@@ -24,3 +24,8 @@ services:
         arguments: [@doctrine.orm.entity_manager, @translator]
         tags:
             - { name: "form.type", alias: "jquery_autocomplete" }
+    club_layout_form_gender:
+        class: Club\LayoutBundle\Form\GenderType
+        arguments: [@translator]
+        tags:
+            - { name: "form.type", alias: "gender" }

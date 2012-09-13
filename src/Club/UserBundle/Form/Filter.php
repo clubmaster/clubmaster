@@ -39,11 +39,7 @@ class Filter extends AbstractType
       'choices' => $age,
       'required' => false
     ));
-    $builder->add('gender', 'choice', array(
-      'choices' => array(
-        'male' => 'Male',
-        'female' => 'Female'
-      ),
+    $builder->add('gender', 'gender', array(
       'required' => false
     ));
     $builder->add('postal_code', 'text', array(
