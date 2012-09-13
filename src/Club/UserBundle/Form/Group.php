@@ -27,11 +27,7 @@ class Group extends AbstractType
     ));
     $builder->add('min_age');
     $builder->add('max_age');
-    $builder->add('gender','choice',array(
-      'choices' => array(
-        'male' => 'Male',
-        'female' => 'Female'
-      ),
+    $builder->add('gender','gender',array(
       'required' => false
     ));
     $builder->add('location', 'entity', array(

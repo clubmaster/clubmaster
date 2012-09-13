@@ -13,12 +13,7 @@ class AdminProfile extends AbstractType
   {
     $builder->add('first_name');
     $builder->add('last_name');
-    $builder->add('gender','choice',array(
-      'choices' => array(
-        'male' => 'Male',
-        'female' => 'Female'
-      )
-    ));
+    $builder->add('gender','gender');
     $builder->add('day_of_birth', new JQueryBirthdayType(), array(
         'widget' => 'single_text'
     ));
