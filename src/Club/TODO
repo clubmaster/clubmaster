@@ -10,7 +10,6 @@ fix insert match with jquery_autocomplete form class
 make a is_active boolean on user entity
 rewrite active in user repository
 make feedback as a popdown form
-create a dropdown menu for PROFILE
 more simple to book fields, if no payment, no need to confirm
 build new gravatar support
 
