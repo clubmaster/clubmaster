@@ -103,6 +103,7 @@ class UserController extends Controller
       $email->setContactType('home');
       $email->setProfile($user->getProfile());
       $user->getProfile()->setProfileEmail($email);
+      $user->getProfile()->addProfileEmail($email);
     }
 
     return $user;
