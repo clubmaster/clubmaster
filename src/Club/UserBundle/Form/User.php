@@ -16,7 +16,7 @@ class User extends AbstractType
       'second_name' => 'Password_again',
       'required' => false
     ));
-    $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
+    $builder->add('profile', new \Club\UserBundle\Form\Profile());
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

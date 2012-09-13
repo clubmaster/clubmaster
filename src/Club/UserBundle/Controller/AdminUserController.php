@@ -114,7 +114,11 @@ class AdminUserController extends Controller
       if ($form->isValid()) {
         $profile = $user->getProfile();
 
-        if ($profile->getProfileEmail()->getEmailAddress() == '') $profile->setProfileEmail(null);
+        foreach ($profile->getProfileEmails() as $email) {
+          if (!strlen($email->getEmailAddress())) {
+            $profile->setProfileEmail(null);
+          }
+        }
         if ($profile->getProfilePhone()->getPhoneNumber() == '') $profile->setProfilePhone(null);
 
         $this->get('clubmaster.user')->save();

@@ -37,6 +37,7 @@ class User
         $profile->setProfileAddress($address);
         $profile->setProfilePhone($phone);
         $profile->addProfileEmails($email);
+        $profile->setProfileEmail($email);
 
         $address->setProfile($profile);
         $phone->setProfile($profile);

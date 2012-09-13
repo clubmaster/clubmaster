@@ -1,6 +1,6 @@
 use new quickpay bundle
-make a gender form type
 validate jquery date pick the right format
+something is wrong when saving email, phone and address, especially with the installer
 
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription

@@ -6,13 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AdminProfileEmail extends AbstractType
+class ProfileEmail extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('email_address', 'text', array(
-      'required' => false
-    ));
+    $builder->add('email_address');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -24,6 +22,6 @@ class AdminProfileEmail extends AbstractType
 
   public function getName()
   {
-    return 'admin_profile_email';
+    return 'profile_email';
   }
 }
