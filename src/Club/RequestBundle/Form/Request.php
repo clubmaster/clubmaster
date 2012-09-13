@@ -10,10 +10,11 @@ class Request extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-      $builder->add('play_time', 'jquery_datetime', array(
-        'date_widget' => 'single_text',
-        'time_widget' => 'single_text',
+    $builder->add('play_time', 'jquery_datetime', array(
+      'date_widget' => 'single_text',
+      'time_widget' => 'single_text',
     ));
+    $builder->add('message');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

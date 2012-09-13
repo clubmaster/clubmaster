@@ -65,7 +65,9 @@
     <script>
     $(function() {
         if (!Modernizr.inputtypes.date) {
-            $( "#{{ id }}_date" ).datepicker();
+            $( "#{{ id }}_date" ).datepicker({
+              "dateFormat":"yy-mm-dd"
+            });
         }
     });
     </script>
