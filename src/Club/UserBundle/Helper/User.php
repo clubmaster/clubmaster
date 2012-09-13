@@ -51,11 +51,11 @@ class User
 
     public function save()
     {
-        $this->em->persist($this->user);
-        $this->em->flush();
+      $this->em->persist($this->user);
+      $this->em->flush();
 
-        $event = new \Club\UserBundle\Event\FilterUserEvent($this->user);
-        $this->event_dispatcher->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
+      $event = new \Club\UserBundle\Event\FilterUserEvent($this->user);
+      $this->event_dispatcher->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
     }
 
     public function passwordExpire(\Club\UserBundle\Entity\User $user)
