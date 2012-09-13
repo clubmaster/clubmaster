@@ -117,6 +117,7 @@ class AdminUserController extends Controller
         foreach ($profile->getProfileEmails() as $email) {
           if (!strlen($email->getEmailAddress())) {
             $profile->setProfileEmail(null);
+            $profile->removeProfileEmail($email);
           }
         }
         if ($profile->getProfilePhone()->getPhoneNumber() == '') $profile->setProfilePhone(null);

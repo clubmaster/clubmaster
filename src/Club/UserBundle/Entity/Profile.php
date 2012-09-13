@@ -402,4 +402,106 @@ class Profile
 
       return floor($ageYears);
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profile_addresses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profile_phones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profile_emails = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profile_companies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add profile_addresses
+     *
+     * @param Club\UserBundle\Entity\ProfileAddress $profileAddresses
+     * @return Profile
+     */
+    public function addProfileAddresse(\Club\UserBundle\Entity\ProfileAddress $profileAddresses)
+    {
+        $this->profile_addresses[] = $profileAddresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile_addresses
+     *
+     * @param Club\UserBundle\Entity\ProfileAddress $profileAddresses
+     */
+    public function removeProfileAddresse(\Club\UserBundle\Entity\ProfileAddress $profileAddresses)
+    {
+        $this->profile_addresses->removeElement($profileAddresses);
+    }
+
+    /**
+     * Add profile_phones
+     *
+     * @param Club\UserBundle\Entity\ProfilePhone $profilePhones
+     * @return Profile
+     */
+    public function addProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhones)
+    {
+        $this->profile_phones[] = $profilePhones;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile_phones
+     *
+     * @param Club\UserBundle\Entity\ProfilePhone $profilePhones
+     */
+    public function removeProfilePhone(\Club\UserBundle\Entity\ProfilePhone $profilePhones)
+    {
+        $this->profile_phones->removeElement($profilePhones);
+    }
+
+    /**
+     * Add profile_emails
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmails
+     * @return Profile
+     */
+    public function addProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmails)
+    {
+        $this->profile_emails[] = $profileEmails;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile_emails
+     *
+     * @param Club\UserBundle\Entity\ProfileEmail $profileEmails
+     */
+    public function removeProfileEmail(\Club\UserBundle\Entity\ProfileEmail $profileEmails)
+    {
+        $this->profile_emails->removeElement($profileEmails);
+    }
+
+    /**
+     * Add profile_companies
+     *
+     * @param Club\UserBundle\Entity\ProfileCompany $profileCompanies
+     * @return Profile
+     */
+    public function addProfileCompanie(\Club\UserBundle\Entity\ProfileCompany $profileCompanies)
+    {
+        $this->profile_companies[] = $profileCompanies;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile_companies
+     *
+     * @param Club\UserBundle\Entity\ProfileCompany $profileCompanies
+     */
+    public function removeProfileCompanie(\Club\UserBundle\Entity\ProfileCompany $profileCompanies)
+    {
+        $this->profile_companies->removeElement($profileCompanies);
+    }
 }
