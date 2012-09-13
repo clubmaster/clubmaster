@@ -1,5 +1,3 @@
-use new quickpay bundle
-
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 translation
