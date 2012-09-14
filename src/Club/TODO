@@ -1,8 +1,7 @@
-fix translation, moved from session to request
 fix remake script
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
-translation
+move to dashboard on login
 
 == VERSION 1.3 ==
 make action alerts, email when user book or whatever

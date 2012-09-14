@@ -47,9 +47,6 @@ class LoginListener
       ->setParameter('user', $user->getId())
       ->getQuery()
       ->getOneOrNullResult();
-
-    if ($reset) {
-    }
   }
 
   private function setUserSessions()
