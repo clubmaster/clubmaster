@@ -2485,7 +2485,6 @@
       <trans-unit id="625">
         <source>There are no passkeys.</source>
         <target>Der er ingen adgangsnøgler.</target>
-      </trans>
       </trans-unit>
       <trans-unit id="626">
         <source>The team has not played equal amount of set.</source>
@@ -2518,7 +2517,7 @@
       <trans-unit id="633">
         <source>The user does not exists</source>
         <target>Brugeren findes ikke</target>
-      </trans>
+      </trans-unit>
     </body>
   </file>
 </xliff>
