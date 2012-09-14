@@ -89,4 +89,23 @@ class User
             }
         }
     }
+
+    public function cleanUser(\Club\UserBundle\Entity\User $user)
+    {
+        $profile = $user->getProfile();
+
+        foreach ($profile->getProfileEmails() as $email) {
+            if (!strlen($email->getEmailAddress())) {
+                $profile->setProfileEmail(null);
+                $profile->removeProfileEmail($email);
+
+                $this->em->remove($email);
+            }
+        }
+
+        if ($profile->getProfilePhone()->getPhoneNumber() == '') {
+            $this->em->remove($profile->getProfilePhone());
+            $profile->setProfilePhone(null);
+        }
+    }
 }

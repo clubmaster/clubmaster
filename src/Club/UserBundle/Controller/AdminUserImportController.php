@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminUserImportController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Template()
    */
   public function indexAction()
@@ -66,8 +66,6 @@ class AdminUserImportController extends Controller
   private function addUser(array $data)
   {
     $em = $this->getDoctrine()->getEntityManager();
-
-    $this->get('clubmaster.user')->buildUser();
     $user = $this->get('clubmaster.user')->get();
 
     if (strlen($data[0])) {
@@ -100,19 +98,17 @@ class AdminUserImportController extends Controller
     $p_address->setCity($data[8]);
     $p_address->setCountry($data[9]);
 
-    if (!isset($data[10]) || !strlen($data[10])) {
-      $profile->setProfilePhone(null);
-    } else {
+    if (isset($data[10]) && !strlen($data[10])) {
       $p_phone = $profile->getProfilePhone();
       $p_phone->setPhoneNumber($data[10]);
     }
 
-    if (!isset($data[11]) || !strlen($data[11])) {
-      $profile->setProfileEmail(null);
-    } else {
+    if (isset($data[11]) && !strlen($data[11])) {
       $p_email = $profile->getProfileEmail();
       $p_email->setEmailAddress($data[11]);
     }
+
+    $this->get('clubmaster.user')->cleanUser($user);
 
     $em->persist($user);
     $em->flush();

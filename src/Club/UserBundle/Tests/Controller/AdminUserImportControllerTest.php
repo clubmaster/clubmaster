@@ -16,7 +16,7 @@ class AdminUserImportControllerTest extends WebTestCase
   public function testIndex()
   {
 
-    $crawler = $this->client->request('GET', '/admin/user/import/');
+    $crawler = $this->client->request('GET', '/en/admin/user/import');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Import')->form(array(

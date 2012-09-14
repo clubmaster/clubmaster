@@ -65,12 +65,14 @@ class Profile
     /**
      * @ORM\ManyToOne(targetEntity="ProfileAddress", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_address_id", referencedColumnName="id")
+     * @Assert\Valid
      */
     protected $profile_address;
 
     /**
      * @ORM\ManyToOne(targetEntity="ProfilePhone", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_phone_id", referencedColumnName="id")
+     * @Assert\Valid
      */
     protected $profile_phone;
 
@@ -101,6 +103,7 @@ class Profile
 
     /**
      * @ORM\OneToMany(targetEntity="ProfileEmail", mappedBy="profile", cascade={"persist"})
+     * @Assert\Valid
      *
      * @var Club\UserBundle\Entity\ProfileEmail
      */

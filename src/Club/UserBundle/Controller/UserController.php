@@ -8,13 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
- * @Route("/{_locale}")
+ * @Route("/{_locale}/user")
  */
 class UserController extends Controller
 {
   /**
    * @Template()
-   * @Route("/", name="user")
+   * @Route("", name="user")
    * @Secure(roles="ROLE_USER")
    */
   public function indexAction()

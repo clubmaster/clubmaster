@@ -112,7 +112,7 @@ class AdminUserController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $this->cleanUser($user);
+        $this->get('clubmaster.user')->cleanUser($user);
 
         $this->get('clubmaster.user')->save();
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
@@ -143,7 +143,7 @@ class AdminUserController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $this->cleanUser($user);
+        $this->get('clubmaster.user')->cleanUser($user);
 
         $em->persist($user);
         $em->flush();
@@ -346,25 +346,5 @@ class AdminUserController extends Controller
     }
 
     return $user;
-  }
-
-  protected function cleanUser(\Club\UserBundle\Entity\User $user)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $profile = $user->getProfile();
-
-    foreach ($profile->getProfileEmails() as $email) {
-      if (!strlen($email->getEmailAddress())) {
-        $profile->setProfileEmail(null);
-        $profile->removeProfileEmail($email);
-
-        $em->remove($email);
-      }
-    }
-
-    if ($profile->getProfilePhone()->getPhoneNumber() == '') {
-      $em->remove($profile->getProfilePhone());
-      $profile->setProfilePhone(null);
-    }
   }
 }
