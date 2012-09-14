@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/user/setting")
+ * @Route("/{_locale}/user/setting")
  */
 class UserSettingController extends Controller
 {

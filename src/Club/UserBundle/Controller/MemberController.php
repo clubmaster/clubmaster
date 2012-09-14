@@ -6,11 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/{_locale}/members")
+ */
 class MemberController extends Controller
 {
   /**
    * @Template()
-   * @Route("/members/search")
+   * @Route("/search")
    */
   public function searchAction()
   {
@@ -37,7 +40,7 @@ class MemberController extends Controller
 
   /**
    * @Template()
-   * @Route("/members/{id}")
+   * @Route("/{id}")
    */
   public function showAction(\Club\UserBundle\Entity\User $user)
   {
@@ -53,8 +56,8 @@ class MemberController extends Controller
 
   /**
    * @Template()
-   * @Route("/members/", defaults={"page" = 1 })
-   * @Route("/members/page/{page}", name="club_user_members_page")
+   * @Route("/", defaults={"page" = 1 })
+   * @Route("/page/{page}", name="club_user_members_page")
    */
   public function indexAction($page)
   {
@@ -74,6 +77,4 @@ class MemberController extends Controller
           'nav' => $nav
       );
   }
-
-
 }

@@ -6,11 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/{_locale}/location")
+ */
 class LocationController extends Controller
 {
   /**
    * @Template()
-   * @Route("/location")
+   * @Route("/")
    */
   public function indexAction()
   {
@@ -23,7 +26,7 @@ class LocationController extends Controller
   }
 
   /**
-   * @Route("/location/{id}")
+   * @Route("/{id}")
    */
   public function switchAction($id)
   {

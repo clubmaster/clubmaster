@@ -1,35 +1,37 @@
 ClubTournamentBundle:
     resource: "@ClubTournamentBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}/
 
 ClubRequestBundle:
     resource: "@ClubRequestBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}/
 
 ClubNewsBundle:
     resource: "@ClubNewsBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}/
 
 ClubPasskeyBundle:
     resource: "@ClubPasskeyBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubCheckinBundle:
     resource: "@ClubCheckinBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubPaymentCashBundle:
     resource: "@ClubPaymentCashBundle/Controller/"
     type:     annotation
-    prefix:   /payment/
+    prefix:   /{_locale}/payment/
 
 ClubPaymentQuickpayBundle:
     resource: "@ClubPaymentQuickpayBundle/Controller/"
     type:     annotation
-    prefix:   /payment/
+    prefix:   /{_locale}/payment/
 
 ClubAPIBundle:
     resource: "@ClubAPIBundle/Controller/"
@@ -39,60 +41,76 @@ ClubAPIBundle:
 ClubTeamBundle:
     resource: "@ClubTeamBundle/Controller/"
     type: annotation
+    prefix:   /{_locale}/
 
 ClubShopBundle:
     resource: "@ClubShopBundle/Controller/"
     type: annotation
+    prefix:   /{_locale}/
 
 ClubUserBundle:
     resource: "@ClubUserBundle/Controller/"
     type: annotation
+    prefix:   /
 
 ClubTaskBundle:
     resource: "@ClubTaskBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubMailBundle:
     resource: "@ClubMailBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/
 
 ClubLogBundle:
     resource: "@ClubLogBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubEventBundle:
     resource: "@ClubEventBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubInstallBundle:
     resource: "@ClubInstallerBundle/Controller/"
-    prefix:   /installer
     type:     annotation
+    prefix:   /{_locale}/installer/
 
 ClubConfiguratorBundle:
     resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-    prefix: /configurator
+    prefix:   /{_locale}/configurator/
 
 ClubMessageBundle:
     resource: "@ClubMessageBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubBookingBundle:
     resource: "@ClubBookingBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubDashboardBundle:
     resource: "@ClubDashboardBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubWelcomeBundle:
     resource: "@ClubWelcomeBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}/
 
 ClubFeedbackBundle:
     resource: "@ClubFeedbackBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/
 
 ClubMatchBundle:
     resource: "@ClubMatchBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/
 
 homepage:
     pattern: /

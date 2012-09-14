@@ -7,11 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
+/**
+ * @Route("/{_locale}")
+ */
 class UserController extends Controller
 {
   /**
    * @Template()
-   * @Route("/user", name="user")
+   * @Route("/", name="user")
    * @Secure(roles="ROLE_USER")
    */
   public function indexAction()
@@ -41,7 +44,7 @@ class UserController extends Controller
 
   /**
    * @Template()
-   * @Route("/user/reset")
+   * @Route("/reset")
    */
   public function resetAction()
   {

@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/admin/user/import")
+ * @Route("/{_locale}/admin/user/import")
  */
 class AdminUserImportController extends Controller
 {

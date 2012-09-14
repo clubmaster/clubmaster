@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/admin/user")
+ * @Route("/{_locale}/admin/user")
  */
 class AdminUserController extends Controller
 {

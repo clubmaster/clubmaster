@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
 
 /**
- * @Route("/admin")
+ * @Route("/{_locale}/admin")
  */
 class AdminGroupController extends Controller
 {

@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/admin/user/filter")
+ * @Route("/{_locale}/admin/user/filter")
  */
 class AdminUserFilterController extends Controller
 {

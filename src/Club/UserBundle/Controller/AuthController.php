@@ -34,7 +34,7 @@ class AuthController extends Controller
   }
 
   /**
-   * @Route("/auth/forgot", name="auth_forgot")
+   * @Route("/{_locale}/auth/forgot", name="auth_forgot")
    * @Template()
    */
   public function forgotAction()
@@ -83,7 +83,7 @@ class AuthController extends Controller
   }
 
   /**
-   * @Route("/auth/reset/{hash}", name="auth_reset")
+   * @Route("/{_locale}/auth/reset/{hash}", name="auth_reset")
    * @Template()
    */
   public function resetPasswordAction($hash)
