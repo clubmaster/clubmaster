@@ -31,7 +31,7 @@ class DateExtension extends \Twig_Extension
         return $dateformat;
     }
 
-    return $container->get('request')->getLocale();
+    return $this->container->get('request')->getLocale();
   }
 
   public function getFilters()
