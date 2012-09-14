@@ -23,6 +23,7 @@ class LocationListener
       $location = $this->em->getRepository('ClubUserBundle:Location')->getFirstLocation();
       if ($location) $this->session->set('location_id', $location->getId());
     } catch (\Exception $e) {
+        $this->container->get('logger')->err($e->getMessage());
     }
   }
 }

@@ -1,3 +1,13 @@
+ClubInstallBundle:
+    resource: "@ClubInstallerBundle/Controller/"
+    type:     annotation
+    prefix:   /installer
+
+ClubConfiguratorBundle:
+    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
+    prefix:   /configurator/
+
+
 ClubTournamentBundle:
     resource: "@ClubTournamentBundle/Controller/"
     type:     annotation
@@ -72,15 +82,6 @@ ClubEventBundle:
     resource: "@ClubEventBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}/
-
-ClubInstallBundle:
-    resource: "@ClubInstallerBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/installer/
-
-ClubConfiguratorBundle:
-    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-    prefix:   /{_locale}/configurator/
 
 ClubMessageBundle:
     resource: "@ClubMessageBundle/Controller/"
