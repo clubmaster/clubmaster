@@ -10,15 +10,12 @@ class AdministratorProfile extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $gender = array('male'=>'Male','female'=>'Female');
     $builder->add('first_name');
     $builder->add('last_name');
     $builder->add('day_of_birth','jquery_birthday', array(
       'widget' => 'single_text'
     ));
-    $builder->add('gender','choice',array(
-      'choices' => $gender
-    ));
+    $builder->add('gender','gender');
     $builder->add('profile_emails', 'collection', array(
       'type' => new \Club\UserBundle\Form\AdminProfileEmail()
     ));

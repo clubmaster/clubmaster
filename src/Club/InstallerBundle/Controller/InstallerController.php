@@ -64,6 +64,7 @@ class InstallerController extends Controller
         ));
 
         $group->addUsers($user);
+
         $this->get('clubmaster.user')->save();
 
         $this->get('session')->set('installer_user_id',$user->getId());

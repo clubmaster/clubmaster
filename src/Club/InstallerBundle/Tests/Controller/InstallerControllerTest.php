@@ -28,12 +28,10 @@ class InstallerControllerTest extends WebTestCase
       'administrator_step[profile][first_name]' => 'John',
       'administrator_step[profile][last_name]' => 'Doe',
       'administrator_step[profile][gender]' => 'male',
-      'administrator_step[profile][day_of_birth][day]' => '29',
-      'administrator_step[profile][day_of_birth][month]' => '6',
-      'administrator_step[profile][day_of_birth][year]' => '1984',
+      'administrator_step[profile][day_of_birth]' => '1984-06-29',
       'administrator_step[password][Password]' => '1234',
       'administrator_step[password][Password_again]' => '1234',
-      'administrator_step[profile][profile_email][email_address]' => 'info@clubmaster.org'
+      'administrator_step[profile][profile_emails][0][email_address]' => 'info@clubmaster.org'
     ));
     $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
@@ -61,7 +59,7 @@ class InstallerControllerTest extends WebTestCase
     ));
     $crawler = $client->submit($form);
 
-    $crawler = $client->request('GET', '/user');
+    $crawler = $client->request('GET', '/en/user');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
