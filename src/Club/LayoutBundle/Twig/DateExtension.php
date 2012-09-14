@@ -17,14 +17,21 @@ class DateExtension extends \Twig_Extension
     $this->em = $container->get('doctrine.orm.entity_manager');
     $this->security_context = $container->get('security.context');
     $this->session = $container->get('session');
-    $this->locale = $container->get('request')->getLocale();
     $this->timezone = date_default_timezone_get();
-
-    $dateformat = $this->session->get('club_user_dateformat');
-    if ($dateformat) $this->locale = $dateformat;
 
     $timezone = $this->session->get('club_user_timezone');
     if ($timezone) $this->timezone = $timezone;
+  }
+
+  public function getLocale()
+  {
+    $dateformat = $this->session->get('club_user_dateformat');
+
+    if ($dateformat) {
+        return $dateformat;
+    }
+
+    return $container->get('request')->getLocale();
   }
 
   public function getFilters()
@@ -58,7 +65,7 @@ class DateExtension extends \Twig_Extension
       $date = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, $date, \IntlDateFormatter::NONE, $this->timezone);
+    $fmt = new \IntlDateFormatter($this->getLocale(), $date, \IntlDateFormatter::NONE, $this->timezone);
 
     return $fmt->format($value);
   }
@@ -88,7 +95,7 @@ class DateExtension extends \Twig_Extension
       $time = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, $date, $time, $this->timezone);
+    $fmt = new \IntlDateFormatter($this->getLocale(), $date, $time, $this->timezone);
 
     return $fmt->format($value);
   }
@@ -114,7 +121,7 @@ class DateExtension extends \Twig_Extension
       $time = \IntlDateFormatter::MEDIUM;
       break;
     }
-    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, $time, $this->timezone);
+    $fmt = new \IntlDateFormatter($this->getLocale(), \IntlDateFormatter::NONE, $time, $this->timezone);
 
     return $fmt->format($value);
   }
@@ -132,7 +139,7 @@ class DateExtension extends \Twig_Extension
 
       return strtolower($date->format('l'));
 
-    $fmt = new \IntlDateFormatter($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, $this->timezone);
+    $fmt = new \IntlDateFormatter($this->getLocale(), \IntlDateFormatter::NONE, \IntlDateFormatter::NONE, $this->timezone);
     $fmt->setPattern('eeee');
 
     return $fmt->format($date);

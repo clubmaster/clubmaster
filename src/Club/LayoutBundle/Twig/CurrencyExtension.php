@@ -16,7 +16,6 @@ class CurrencyExtension extends \Twig_Extension
     $this->em = $container->get('doctrine.orm.entity_manager');
     $this->security_context = $container->get('security.context');
     $this->session = $container->get('session');
-    $this->locale = $container->get('request')->getLocale();
   }
 
   public function getFilters()
@@ -37,6 +36,7 @@ class CurrencyExtension extends \Twig_Extension
       $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
     );
 
+    $this->locale = $this->container->get('request')->getLocale();
     $fmt = new \NumberFormatter($this->locale, \NumberFormatter::CURRENCY);
     return $fmt->formatCurrency($value, $currency->getCode());
   }
