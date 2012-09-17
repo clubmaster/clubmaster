@@ -47,17 +47,21 @@
 </head>
 <body>
 
+    {% block topmenu %}
     {% render "ClubMenuBundle:Default:topMenu" %}
+    {% endblock %}
 
     <div class="container-fluid">
       <div class="row-fluid">
 
         <div class="span3">
-            <!-- {% render "ClubLayoutBundle:Misc:Logo" %} -->
+            {% render "ClubLayoutBundle:Misc:Logo" %}
+            {% block leftmenu %}
             {% include "ClubLayoutBundle:Default:user_form.html.twig" %}
             {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
             {% render "ClubLayoutBundle:Misc:Search" %}
             {% render "ClubMenuBundle:Default:leftMenu" %}
+            {% endblock %}
         </div><!--/span-->
 
         <div class="span9">
