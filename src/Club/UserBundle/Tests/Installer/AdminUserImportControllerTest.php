@@ -1,5 +1,5 @@
 <?php
-namespace Club\UserBundle\Tests\Controller;
+namespace Club\UserBundle\Tests\Installer;
 
 use Club\UserBundle\Helper\TestCase as WebTestCase;
 
@@ -15,7 +15,6 @@ class AdminUserImportControllerTest extends WebTestCase
 
   public function testIndex()
   {
-
     $crawler = $this->client->request('GET', '/en/admin/user/import');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 

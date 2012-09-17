@@ -25,15 +25,6 @@ if [ $? -ne 0 ]; then
   exit
 fi
 
-echo "Testing a simple installer"
-touch app/installer
-php app/console doctrine:database:drop --force
-php app/console doctrine:database:create
-phpunit -c app/installunit.xml
-if [ $? -ne 0 ]; then
-  exit
-fi
-
 echo "Everything OK, continue to build package."
 mkdir ${BUILD_PATH}
 

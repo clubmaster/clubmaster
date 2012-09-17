@@ -1,5 +1,5 @@
 <?php
-namespace Club\ShopBundle\Tests\Controller;
+namespace Club\ShopBundle\Tests\Installer;
 
 use Club\UserBundle\Helper\TestCase as WebTestCase;
 
