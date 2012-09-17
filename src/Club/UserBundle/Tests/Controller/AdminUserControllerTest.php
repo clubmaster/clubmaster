@@ -31,6 +31,7 @@ class AdminUserControllerTest extends WebTestCase
     $form = $crawler->selectButton('Save')->form(array(
       'admin_user[profile][first_name]' => 'John',
       'admin_user[profile][last_name]' => 'Doe',
+      'admin_user[profile][day_of_birth]' => '1984-06-29',
       'admin_user[profile][profile_address][street]' => 'Clubby Strasse 14',
       'admin_user[profile][profile_address][postal_code]' => '9000',
       'admin_user[profile][profile_address][city]' => 'Aalborg',
@@ -46,6 +47,7 @@ class AdminUserControllerTest extends WebTestCase
     $form = $crawler->selectButton('Save')->form(array(
       'admin_user[profile][first_name]' => 'John',
       'admin_user[profile][last_name]' => 'Doe',
+      'admin_user[profile][day_of_birth]' => '1984-06-29',
       'admin_user[profile][profile_address][street]' => 'Clubby Strasse 14',
       'admin_user[profile][profile_address][postal_code]' => '9000',
       'admin_user[profile][profile_address][city]' => 'Aalborg',

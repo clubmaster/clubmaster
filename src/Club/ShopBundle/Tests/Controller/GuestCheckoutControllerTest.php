@@ -49,6 +49,7 @@ class GuestCheckoutControllerTest extends WebTestCase
     $form = $crawler->selectButton('Create account')->form(array(
       'user[profile][first_name]' => 'Michael Holm',
       'user[profile][last_name]' => 'Kristensen',
+      'user[profile][day_of_birth]' => '1984-06-29',
       'user[profile][profile_address][street]' => 'Oesterbro 62, 2tv',
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
