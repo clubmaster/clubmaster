@@ -15,13 +15,13 @@ class AdminProductControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/product');
+    $crawler = $this->client->request('GET', '/en/admin/shop/product');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/product/new');
+    $crawler = $this->client->request('GET', '/en/admin/shop/product/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -39,7 +39,7 @@ class AdminProductControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/product');
+    $crawler = $this->client->request('GET', '/en/admin/shop/product');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

@@ -15,13 +15,13 @@ class AdminLocationControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/location');
+    $crawler = $this->client->request('GET', '/en/admin/location');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/location/new');
+    $crawler = $this->client->request('GET', '/en/admin/location/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -39,7 +39,7 @@ class AdminLocationControllerTest extends WebTestCase
   public function testDelete()
   {
     return;
-    $crawler = $this->client->request('GET', '/admin/location');
+    $crawler = $this->client->request('GET', '/en/admin/location');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

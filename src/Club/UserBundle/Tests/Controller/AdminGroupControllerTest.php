@@ -15,13 +15,13 @@ class AdminGroupControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/group');
+    $crawler = $this->client->request('GET', '/en/admin/group');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/group/new');
+    $crawler = $this->client->request('GET', '/en/admin/group/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();

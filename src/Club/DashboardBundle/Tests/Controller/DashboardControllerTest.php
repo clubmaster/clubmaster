@@ -15,7 +15,7 @@ class DashboardControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/dashboard');
+    $crawler = $this->client->request('GET', '/en/admin/dashboard');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 }

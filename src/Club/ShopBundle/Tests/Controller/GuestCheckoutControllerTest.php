@@ -14,7 +14,7 @@ class GuestCheckoutControllerTest extends WebTestCase
 
   public function testEmptyCart()
   {
-    $crawler = $this->client->request('GET', '/shop/product/1');
+    $crawler = $this->client->request('GET', '/en/shop/product/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Put in cart')->link();
@@ -29,7 +29,7 @@ class GuestCheckoutControllerTest extends WebTestCase
 
   public function testCheckout()
   {
-    $crawler = $this->client->request('GET', '/shop/product/1');
+    $crawler = $this->client->request('GET', '/en/shop/product/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Put in cart')->link();

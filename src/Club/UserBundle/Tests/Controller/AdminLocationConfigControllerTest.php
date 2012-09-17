@@ -15,7 +15,7 @@ class AdminLocationConfigControllerTest extends WebTestCase
 
   public function testUpdate()
   {
-    $crawler = $this->client->request('GET', '/admin/location/config/1');
+    $crawler = $this->client->request('GET', '/en/admin/location/config/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();

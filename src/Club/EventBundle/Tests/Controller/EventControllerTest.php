@@ -8,7 +8,7 @@ class EventControllerTest extends WebTestCase
   public function testICal()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/event/ical');
+    $crawler = $client->request('GET', '/en/event/ical');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }

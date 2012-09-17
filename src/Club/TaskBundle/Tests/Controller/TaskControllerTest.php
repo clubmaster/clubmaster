@@ -15,7 +15,7 @@ class TaskControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/task/');
+    $crawler = $this->client->request('GET', '/en/admin/task/');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 }

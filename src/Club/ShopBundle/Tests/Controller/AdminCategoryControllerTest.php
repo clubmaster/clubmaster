@@ -15,13 +15,13 @@ class AdminCategoryControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/category');
+    $crawler = $this->client->request('GET', '/en/admin/shop/category');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/category/new');
+    $crawler = $this->client->request('GET', '/en/admin/shop/category/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -38,7 +38,7 @@ class AdminCategoryControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/category');
+    $crawler = $this->client->request('GET', '/en/admin/shop/category');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

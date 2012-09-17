@@ -15,13 +15,13 @@ class AdminMessageControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/message');
+    $crawler = $this->client->request('GET', '/en/admin/message');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/message/new');
+    $crawler = $this->client->request('GET', '/en/admin/message/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Next')->form();

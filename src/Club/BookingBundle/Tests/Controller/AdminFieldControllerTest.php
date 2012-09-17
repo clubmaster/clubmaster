@@ -15,13 +15,13 @@ class AdminFieldControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/booking/field');
+    $crawler = $this->client->request('GET', '/en/admin/booking/field');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/booking/field/new');
+    $crawler = $this->client->request('GET', '/en/admin/booking/field/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -39,7 +39,7 @@ class AdminFieldControllerTest extends WebTestCase
 
   public function testEdit()
   {
-    $crawler = $this->client->request('GET', '/admin/booking/field/edit/1');
+    $crawler = $this->client->request('GET', '/en/admin/booking/field/edit/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -49,7 +49,7 @@ class AdminFieldControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/booking/field');
+    $crawler = $this->client->request('GET', '/en/admin/booking/field');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

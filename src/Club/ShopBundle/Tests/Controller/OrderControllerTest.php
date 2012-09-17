@@ -10,7 +10,7 @@ class OrderControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/shop/order');
+    $crawler = $client->request('GET', '/en/shop/order');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }

@@ -15,13 +15,13 @@ class AdminCurrencyControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/currency');
+    $crawler = $this->client->request('GET', '/en/admin/currency');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/currency/new');
+    $crawler = $this->client->request('GET', '/en/admin/currency/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();

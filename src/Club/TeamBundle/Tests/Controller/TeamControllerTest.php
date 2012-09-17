@@ -15,19 +15,19 @@ class TeamControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/team/team');
+    $crawler = $this->client->request('GET', '/en/team/team');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testAttend()
   {
-    $crawler = $this->client->request('GET', '/team/team/1/attend');
+    $crawler = $this->client->request('GET', '/en/team/team/1/attend');
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 
   public function testUnattend()
   {
-    $crawler = $this->client->request('GET', '/team/team/1/unattend');
+    $crawler = $this->client->request('GET', '/en/team/team/1/unattend');
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
 }

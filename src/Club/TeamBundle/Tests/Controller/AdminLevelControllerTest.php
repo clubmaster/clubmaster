@@ -15,13 +15,13 @@ class AdminLevelControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/team/level');
+    $crawler = $this->client->request('GET', '/en/admin/team/level');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/team/level/new');
+    $crawler = $this->client->request('GET', '/en/admin/team/level/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
@@ -33,7 +33,7 @@ class AdminLevelControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/team/level');
+    $crawler = $this->client->request('GET', '/en/admin/team/level');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();

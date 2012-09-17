@@ -15,7 +15,7 @@ class BookingControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/booking');
+    $crawler = $this->client->request('GET', '/en/booking');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
@@ -23,7 +23,7 @@ class BookingControllerTest extends WebTestCase
   {
     $date = new \DateTime("Next monday");
 
-    $crawler = $this->client->request('GET', '/booking/book/1/'.$date->format('Y-m-d'));
+    $crawler = $this->client->request('GET', '/en/booking/book/1/'.$date->format('Y-m-d'));
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();

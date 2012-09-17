@@ -15,13 +15,13 @@ class AdminEventControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/event/event');
+    $crawler = $this->client->request('GET', '/en/event/event');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/event/event/new');
+    $crawler = $this->client->request('GET', '/en/admin/event/event/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(

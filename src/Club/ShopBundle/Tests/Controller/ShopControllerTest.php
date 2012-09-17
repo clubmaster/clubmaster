@@ -10,7 +10,7 @@ class ShopControllerTest extends WebTestCase
     $client = static::createClient();
     $this->login($client);
 
-    $crawler = $client->request('GET', '/shop');
+    $crawler = $client->request('GET', '/en/shop');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Ticket coupon')->link();
