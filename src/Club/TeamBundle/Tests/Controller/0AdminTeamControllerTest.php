@@ -15,13 +15,13 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/admin/team/category/');
+    $crawler = $this->client->request('GET', '/en/admin/team/category');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 
   public function testNew()
   {
-    $crawler = $this->client->request('GET', '/admin/team/category/new');
+    $crawler = $this->client->request('GET', '/en/admin/team/category/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
@@ -32,7 +32,7 @@ class AdminTeamControllerTest extends WebTestCase
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
 
-    $crawler = $this->client->request('GET', '/admin/team/category/new');
+    $crawler = $this->client->request('GET', '/en/admin/team/category/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
@@ -46,7 +46,7 @@ class AdminTeamControllerTest extends WebTestCase
 
   public function testDelete()
   {
-    $crawler = $this->client->request('GET', '/admin/team/category/');
+    $crawler = $this->client->request('GET', '/en/admin/team/category');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Delete')->links();
