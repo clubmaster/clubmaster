@@ -1,0 +1,32 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block header %}<div class="page-header">
+<h1>{% trans %}Errors occur{% endtrans %}</h1>
+</div>{% endblock %}
+
+{% block body %}
+<p>{% trans %}No imports has been made, because some error has occur. Correct the errors and try again.{% endtrans %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Line{% endtrans %}</th>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Error{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for error in errors %}
+    <tr>
+      <td>{{ error.line }}</td>
+      <td>{{ error.name }}</td>
+      <td>{% for e in error.errors %}{{ e.propertyPath }}: {{ e.message }}{% endfor %}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}There are no errors during the import.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

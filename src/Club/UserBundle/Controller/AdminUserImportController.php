@@ -11,130 +11,161 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class AdminUserImportController extends Controller
 {
-  /**
-   * @Route("")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $form = $this->getForm();
+    protected $errors = array();
+    protected $count = 0;
+    protected $added = 0;
+    protected $name;
 
-    return array(
-      'form' => $form->createView()
-    );
-  }
+    /**
+     * @Route("")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $form = $this->getForm();
 
-  /**
-   * @Route("/import")
-   */
-  public function importAction()
-  {
-    $form = $this->getForm();
-    $form->bindRequest($this->getRequest());
-    if ($form->isValid()) {
-      $r = $form->getData();
+        return array(
+            'form' => $form->createView()
+        );
+    }
 
-      $delimiter = null;
-      switch ($r['field_delimiter']) {
-      case 'tab':
-        $delimiter = "\t";
-        break;
-      case 'comma':
-        $delimiter = ',';
-        break;
-      }
+    /**
+     * @Route("/import")
+     */
+    public function importAction()
+    {
+        $form = $this->getForm();
+        $form->bindRequest($this->getRequest());
+        if ($form->isValid()) {
+            $r = $form->getData();
 
-      $first_line = true;
-      if (($handle = fopen($r['user_file']->getPathName(), "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+            $delimiter = null;
+            switch ($r['field_delimiter']) {
+            case 'tab':
+                $delimiter = "\t";
+                break;
+            case 'comma':
+                $delimiter = ',';
+                break;
+            }
 
-          if ($first_line && $r['skip_first_line']) {
-            $first_line = false;
-          } else {
-            $this->addUser($data);
-          }
+            $first_line = true;
+            if (($handle = fopen($r['user_file']->getPathName(), "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+                    $this->count++;
+
+                    if ($first_line && $r['skip_first_line']) {
+                        $first_line = false;
+                    } else {
+                        $this->addUser($data);
+                    }
+                }
+                fclose($handle);
+            }
         }
-        fclose($handle);
-      }
+
+        if (count($this->errors) > 0) {
+            $this->get('session')->setFlash('error', 'There was problems importing users.');
+
+            return $this->render('ClubUserBundle:AdminUserImport:errors.html.twig', array(
+                'errors' => $this->errors
+            ));
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->flush();
+        $this->get('session')->setFlash('notice', sprintf('Added %s new users.', $this->added));
+
+        return $this->redirect($this->generateUrl('club_user_adminuserimport_index'));
     }
 
-    $em = $this->getDoctrine()->getEntityManager();
+    private function addUser(array $data)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->get('clubmaster.user')
+            ->buildUser()
+            ->get();
 
-    return $this->redirect($this->generateUrl('club_user_adminuserimport_index'));
-  }
+        if (strlen($data[0])) {
+            $user->setMemberNumber($data[0]);
+        } else {
+            $number = $em->getRepository('ClubUserBundle:User')->findNextMemberNumber();
+            $user->setMemberNumber($number);
+        }
 
-  private function addUser(array $data)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $this->get('clubmaster.user')->get();
+        if (strlen($data[1])) {
+            $user->setPassword($data[1]);
+        } else {
+            $user->setPassword('password');
+            $reset = new \Club\UserBundle\Entity\ResetPassword();
+            $reset->setUser($user);
+            $em->persist($reset);
+        }
 
-    if (strlen($data[0])) {
-      $user->setMemberNumber($data[0]);
-    } else {
-      $number = $em->getRepository('ClubUserBundle:User')->findNextMemberNumber();
-      $user->setMemberNumber($number);
+        $profile = $user->getProfile();
+        $profile->setFirstName($data[2]);
+        $profile->setLastName($data[3]);
+        $this->name = $profile->getName();
+
+        $gender = ($data[4] == 'female') ? 'female' : 'male';
+        $profile->setGender($gender);
+        $profile->setDayOfBirth(new \DateTime($data[5]));
+
+        $p_address = $profile->getProfileAddress();
+        $p_address->setStreet($data[6]);
+        $p_address->setPostalCode($data[7]);
+        $p_address->setCity($data[8]);
+        $p_address->setCountry($data[9]);
+
+        if (isset($data[10]) && !strlen($data[10])) {
+            $p_phone = $profile->getProfilePhone();
+            $p_phone->setPhoneNumber($data[10]);
+        }
+
+        if (isset($data[11]) && !strlen($data[11])) {
+            $p_email = $profile->getProfileEmail();
+            $p_email->setEmailAddress($data[11]);
+        }
+
+        $this->get('clubmaster.user')->cleanUser($user);
+
+        $errors = $this->get('validator')->validate($user);
+        if (count($errors)) {
+            $this->addErrors($errors);
+        }
+
+        $em->persist($user);
+        $this->added++;
     }
 
-    if (strlen($data[1])) {
-      $user->setPassword($data[1]);
-    } else {
-      $user->setPassword('password');
-      $reset = new \Club\UserBundle\Entity\ResetPassword();
-      $reset->setUser($user);
-      $em->persist($reset);
+    private function getForm()
+    {
+        $boolean = array(
+            0 => 'No',
+            1 => 'Yes'
+        );
+
+        return $this->createFormBuilder()
+            ->add('user_file', 'file')
+            ->add('skip_first_line', 'choice', array(
+                'choices' => $boolean
+            ))
+            ->add('field_delimiter', 'choice', array(
+                'choices' => array(
+                    'tab' => 'TAB',
+                    'comma' => 'comma'
+                ),
+                'required' => false
+            ))
+            ->getForm();
     }
 
-    $profile = $user->getProfile();
-    $profile->setFirstName($data[2]);
-    $profile->setLastName($data[3]);
-
-    $gender = ($data[4] == 'female') ? 'female' : 'male';
-    $profile->setGender($gender);
-    $profile->setDayOfBirth(new \DateTime($data[5]));
-
-    $p_address = $profile->getProfileAddress();
-    $p_address->setStreet($data[6]);
-    $p_address->setPostalCode($data[7]);
-    $p_address->setCity($data[8]);
-    $p_address->setCountry($data[9]);
-
-    if (isset($data[10]) && !strlen($data[10])) {
-      $p_phone = $profile->getProfilePhone();
-      $p_phone->setPhoneNumber($data[10]);
+    protected function addErrors($errors)
+    {
+        $this->errors[] = array(
+            'line' => $this->count,
+            'name' => $this->name,
+            'errors' => $errors
+        );
     }
-
-    if (isset($data[11]) && !strlen($data[11])) {
-      $p_email = $profile->getProfileEmail();
-      $p_email->setEmailAddress($data[11]);
-    }
-
-    $this->get('clubmaster.user')->cleanUser($user);
-
-    $em->persist($user);
-    $em->flush();
-
-    return $user;
-  }
-
-  private function getForm()
-  {
-    $boolean = array(
-      0 => 'No',
-      1 => 'Yes'
-    );
-
-    return $this->createFormBuilder()
-      ->add('user_file', 'file')
-      ->add('skip_first_line', 'choice', array(
-        'choices' => $boolean
-      ))
-      ->add('field_delimiter', 'choice', array(
-        'choices' => array(
-          'tab' => 'TAB',
-          'comma' => 'comma'
-        ),
-        'required' => false
-      ))
-      ->getForm();
-  }
 }

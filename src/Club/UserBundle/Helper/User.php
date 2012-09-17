@@ -42,6 +42,8 @@ class User
         $address->setProfile($profile);
         $phone->setProfile($profile);
         $email->setProfile($profile);
+
+        return $this;
     }
 
     public function get()
@@ -103,7 +105,7 @@ class User
             }
         }
 
-        if ($profile->getProfilePhone()->getPhoneNumber() == '') {
+        if ($profile->getProfilePhone() && $profile->getProfilePhone()->getPhoneNumber() == '') {
             $this->em->remove($profile->getProfilePhone());
             $profile->setProfilePhone(null);
         }

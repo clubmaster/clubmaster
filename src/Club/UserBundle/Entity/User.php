@@ -8,11 +8,14 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\UserRepository")
  * @ORM\Table(name="club_user_user")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("member_number")
+ *
  */
 class User implements AdvancedUserInterface, EquatableInterface
 {
