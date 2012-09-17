@@ -29,3 +29,7 @@ services:
         arguments: [@translator]
         tags:
             - { name: "form.type", alias: "gender" }
+    club_layout_form_best_of_set:
+        class: Club\LayoutBundle\Form\BestOfSetType
+        tags:
+            - { name: "form.type", alias: "best_of_set" }
