@@ -40,8 +40,8 @@ security:
                 path: /logout
 
     access_control:
-        - { path: ^/admin/booking, roles: ROLE_BOOKING_ADMIN }
-        - { path: ^/admin/event, roles: ROLE_EVENT_ADMIN }
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/(en|da)/admin/booking, roles: ROLE_BOOKING_ADMIN }
+        - { path: ^/(en|da)/admin/event, roles: ROLE_EVENT_ADMIN }
+        - { path: ^/(en|da)/admin, roles: ROLE_ADMIN }
+        - { path: ^/(en|da)/user, roles: ROLE_USER }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

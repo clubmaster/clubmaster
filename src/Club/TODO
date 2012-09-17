@@ -1,6 +1,5 @@
 fix remake script
 remove headers from installer
-evaluete the firewall.yml file about access crontrol after {_locale}
 
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
