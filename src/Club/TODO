@@ -1,34 +1,35 @@
+fix insert match with jquery_autocomplete form class
+more simple to book fields, if no payment, no need to confirm
+Cannot delete booking because time range is too small, not translated
+checkout whats up with STUB Locale
+you have to be able to see all orders from a user
+results has to be updated almost emidiatly when a match has been entered, change next run date for instance
+should be able to update fields without phone number
+create weather forecast
+
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 
 == VERSION 1.3 ==
 make action alerts, email when user book or whatever
-fix insert match with jquery_autocomplete form class
 make a is_active boolean on user entity
 rewrite active in user repository
 make feedback as a popdown form
-more simple to book fields, if no payment, no need to confirm
 build new gravatar support
 
 == ON ATK DEPLOY ==
 set default league_view_top: 5
 
 == VERSION 1.2.1 ==
-Cannot delete booking because time range is too small, not translated
 enter result in cup
 add double in league
-checkout whats up with STUB Locale
-you have to be able to see all orders from a user
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 users should be able to create multiple emails, phone
 make sure user only can book in member status period
 make sure user only can use teams in member ship status period
-results has to be updated almost emidiatly when a match has been entered, change next run date for instance
-should be able to update fields without phone number
 
 == NOTES TO LATER ==
-create weather forecast
 give warning if you try to make a booking plan above a booking
 when client on search on quicksearch, search while clicking
 upload profil billede til alle medlemmerne
