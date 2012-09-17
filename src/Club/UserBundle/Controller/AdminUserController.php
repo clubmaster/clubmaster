@@ -287,8 +287,8 @@ class AdminUserController extends Controller
   }
 
   /**
-   * @Route("/user", name="admin_user")
-   * @Route("/user/page/{page}", name="admin_user_page")
+   * @Route("", name="admin_user")
+   * @Route("/page/{page}", name="admin_user_page")
    * @Template()
    */
   public function indexAction($page = null)

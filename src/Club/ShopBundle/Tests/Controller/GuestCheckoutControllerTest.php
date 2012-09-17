@@ -53,7 +53,7 @@ class GuestCheckoutControllerTest extends WebTestCase
       'user[profile][profile_address][postal_code]' => '9000',
       'user[profile][profile_address][city]' => 'Aalborg',
       'user[profile][profile_address][country]' => 'DK',
-      'user[profile][profile_email][email_address]' => 'info@clubmaster.org',
+      'user[profile][profile_emails][0][email_address]' => 'info@clubmaster.org',
       'user[profile][profile_phone][phone_number]' => '80808080'
     ));
     $form['user[password][Password]'] = '1234';

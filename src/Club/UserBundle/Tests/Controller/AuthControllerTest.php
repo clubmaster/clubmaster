@@ -8,7 +8,7 @@ class AuthControllerTest extends WebTestCase
   public function testForgot()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/auth/forgot');
+    $crawler = $client->request('GET', '/en/auth/forgot');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Send Password')->form(array(
