@@ -60,7 +60,9 @@ class Booking
     $delete_within = clone $booking->getFirstDate();
     $delete_within->sub(new \DateInterval('PT'.$this->container->getParameter('club_booking.cancel_minute_before').'M'));
     if ($delete_within < new \DateTime())
-      $this->setError($this->translator->trans('Cannot delete booking because time range is too small'));
+        $this->setError($this->translator->trans('Cannot delete booking %minutes% minutes before the time starts.', array(
+            '%minutes%' => $this->container->getParameter('club_booking.cancel_minute_before')
+        )));
   }
 
   public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)

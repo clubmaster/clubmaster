@@ -2518,6 +2518,11 @@
         <source>The user does not exists</source>
         <target>Brugeren findes ikke</target>
       </trans-unit>
+      <trans-unit id="634">
+        <source>Cannot delete booking %minutes% minutes before the time starts.</source>
+        <target>Kan ikke slette reservationen %minutes% minutter før tiden starter.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>
