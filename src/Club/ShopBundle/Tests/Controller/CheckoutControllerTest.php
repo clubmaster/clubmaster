@@ -18,7 +18,7 @@ class CheckoutControllerTest extends WebTestCase
   {
     $this->coupon_key = uniqid();
 
-    $crawler = $this->client->request('GET', '/admin/shop/coupon/new');
+    $crawler = $this->client->request('GET', '/en/admin/shop/coupon/new');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form();
@@ -35,7 +35,7 @@ class CheckoutControllerTest extends WebTestCase
 
   public function testEmptyCart()
   {
-    $crawler = $this->client->request('GET', '/shop/product/1');
+    $crawler = $this->client->request('GET', '/en/shop/product/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Put in cart')->link();
@@ -50,7 +50,7 @@ class CheckoutControllerTest extends WebTestCase
 
   public function testCheckout()
   {
-    $crawler = $this->client->request('GET', '/shop/product/1');
+    $crawler = $this->client->request('GET', '/en/shop/product/1');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Put in cart')->link();
@@ -86,14 +86,14 @@ class CheckoutControllerTest extends WebTestCase
 
   public function testOrder()
   {
-    $crawler = $this->client->request('GET', '/admin/shop/order');
+    $crawler = $this->client->request('GET', '/en/admin/shop/order');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $links = $crawler->selectLink('Edit')->links();
     $crawler = $this->client->click($links[0]);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-    $link = $crawler->selectLink('Register payment')->link();
+    $link = $crawler->selectLink('Pay order')->link();
     $crawler = $this->client->click($link);
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
