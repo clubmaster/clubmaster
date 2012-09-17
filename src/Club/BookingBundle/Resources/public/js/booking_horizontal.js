@@ -29,12 +29,12 @@ function makePastIntervalUrl(interval)
   return '<div class="past" id="interval_'+interval.id+'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
-function makeIntervalUrl(interval, date, url)
+function makeIntervalUrl(interval, date, url, locale)
 {
   var start = Date.parse(interval.start_time);
   var end = Date.parse(interval.end_time);
 
-  return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+'booking/overview/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
+  return '<div class="future link" id="interval_'+interval.id+'" onclick="location.href = \''+url+locale+'/booking/overview/'+getDate(date)+'/'+interval.id+'\'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
@@ -89,7 +89,7 @@ function initBookings(location, date, url, pixel_size, field_width, day_start)
   });
 }
 
-function initTable(location, date, url, hour_height, field_width)
+function initTable(location, date, url, hour_height, field_width, locale)
 {
   var fields=0;
   var times=0;
@@ -143,7 +143,7 @@ function initTable(location, date, url, hour_height, field_width)
         if (start < current_time) {
           $("#intervals").append(makePastIntervalUrl(this));
         } else {
-          $("#intervals").append(makeIntervalUrl(this,date,url));
+          $("#intervals").append(makeIntervalUrl(this,date,url,locale));
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', ((diff*pixel_size)-6)+'px');
