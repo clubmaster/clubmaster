@@ -26,12 +26,8 @@ class AdminScheduleControllerTest extends WebTestCase
 
     $time = strtotime('+1 day');
     $form = $crawler->selectButton('Save')->form(array(
-      'schedule[first_date][date][day]' => date('j', $time),
-      'schedule[first_date][date][month]' => date('n', $time),
-      'schedule[first_date][date][year]' => date('Y', $time),
-      'schedule[end_date][date][day]' => date('j', $time),
-      'schedule[end_date][date][month]' => date('n', $time),
-      'schedule[end_date][date][year]' => date('Y', $time)
+      'schedule[first_date][date]' => date('Y-m-d', $time),
+      'schedule[end_date][date]' => date('Y-m-d', $time),
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
