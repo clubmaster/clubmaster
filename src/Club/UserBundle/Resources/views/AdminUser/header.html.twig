@@ -4,6 +4,7 @@
         <ul class="nav">
             <li><a href="{{ path('admin_user_edit', { 'id':user.id }) }}">{% trans %}Edit{% endtrans %}</a></li>
             <li><a href="{{ path('admin_shop_subscription', { 'id':user.id }) }}">{% trans %}Subscription{% endtrans %}</a></li>
+            <li><a href="{{ path('club_shop_adminorder_user', { 'id':user.id }) }}">{% trans %}Order{% endtrans %}</a></li>
             <li><a href="{{ path('admin_user_group', { 'id':user.id }) }}">{% trans %}Group{% endtrans %}</a></li>
             <li><a href="{{ path('admin_user_note', { 'id':user.id }) }}">{% trans %}Notes{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuser_shop', { 'id':user.id }) }}">{% trans %}Shop as{% endtrans %}</a></li>

@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Order number{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Price{% endtrans %}</th>
+      <th>{% trans %}Status{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Updated at{% endtrans %}</th>
+      <th class="action">{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="7">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for order in orders %}
+    <tr class="{% if order.delivered %}success{% else %}warning{% endif %}">
+      <td>{{ order.orderNumber }}</td>
+      <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
+      <td>{{ order.price|club_price }}</td>
+      <td>{{ order.orderStatus.statusName }}</td>
+      <td>{{ order.createdAt|club_datetime }}</td>
+      <td>{{ order.updatedAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_order_edit', { 'id':order.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_order_delete', { 'id':order.id })} %}
+        {% include "ClubLayoutBundle:Default:payment_link.html.twig" with {'url':path('club_payment_cash_cash_register', { 'order_id':order.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="7">{% trans %}There are no orders.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>

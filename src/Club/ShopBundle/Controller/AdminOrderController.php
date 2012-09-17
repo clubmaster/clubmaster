@@ -7,13 +7,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/shop/order")
  */
 class AdminOrderController extends Controller
 {
   /**
-   * @Route("/shop/order/page/{page}", name="admin_shop_order_page")
-   * @Route("/shop/order", name="admin_shop_order")
+   * @Route("/user/{id}")
+   * @Template()
+   */
+  public function userAction(\Club\UserBundle\Entity\User $user)
+  {
+      $em = $this->getDoctrine()->getEntityManager();
+
+      $orders = $em->getRepository('ClubShopBundle:Order')->findBy(
+          array(
+              'user' => $user->getId(),
+          ),
+          array(
+              'id' => 'DESC'
+          ),
+          20
+      );
+
+      return array(
+          'orders' => $orders
+      );
+  }
+
+  /**
+   * @Route("/page/{page}", name="admin_shop_order_page")
+   * @Route("", name="admin_shop_order")
    * @Template()
    */
   public function indexAction($page = null)
@@ -53,7 +76,7 @@ class AdminOrderController extends Controller
   }
 
   /**
-   * @Route("/shop/order/edit/{id}", name="admin_shop_order_edit")
+   * @Route("/edit/{id}", name="admin_shop_order_edit")
    * @Template()
    */
   public function editAction($id)
@@ -86,7 +109,7 @@ class AdminOrderController extends Controller
   }
 
   /**
-   * @Route("/shop/order/delete/{id}", name="admin_shop_order_delete")
+   * @Route("/delete/{id}", name="admin_shop_order_delete")
    */
   public function deleteAction($id)
   {
@@ -108,7 +131,7 @@ class AdminOrderController extends Controller
   }
 
   /**
-   * @Route("/shop/order/deliver/{id}")
+   * @Route("/deliver/{id}")
    */
   public function deliverAction($id)
   {
@@ -128,7 +151,7 @@ class AdminOrderController extends Controller
   }
 
   /**
-   * @Route("/shop/order/product/edit/{id}")
+   * @Route("/product/edit/{id}")
    * @Template()
    */
   public function productEditAction($id)

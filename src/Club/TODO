@@ -2,9 +2,7 @@ fix insert match with jquery_autocomplete form class
 more simple to book fields, if no payment, no need to confirm
 Cannot delete booking because time range is too small, not translated
 checkout whats up with STUB Locale
-you have to be able to see all orders from a user
 results has to be updated almost emidiatly when a match has been entered, change next run date for instance
-should be able to update fields without phone number
 create weather forecast
 
 when upgrading, remember to enable all products

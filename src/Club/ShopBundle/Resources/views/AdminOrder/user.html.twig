@@ -1,0 +1,11 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block header %}
+<div class="page-header">
+    <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/basket.png') }}" /> {% trans %}Orders{% endtrans %}</h1>
+</div>
+{% endblock %}
+
+{% block body %}
+{% include "ClubShopBundle:AdminOrder:orders_table.html.twig" %}
+{% endblock %}
