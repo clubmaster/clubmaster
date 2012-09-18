@@ -1,8 +1,72 @@
-{% extends "ClubLayoutBundle:Default:base_simple.html.twig" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8" />
+    <title>ClubMaster</title>
+    <meta name="description" content="ClubMaster is an open source management tool">
+    <meta name="author" content="Michael Holm">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block body %}
-  <h2>Oops! An Error Occurred</h2>
-  <h3>The server returned a "{{ status_code }} {{ status_text }}".</h3>
+    <link rel="stylesheet" href="{{ asset('bundles/clublayout/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/clublayout/bootstrap/css/bootstrap-responsive.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
 
-  <p>Please contact the administrator if the error continue.</p>
-{% endblock %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="{{ asset('bundles/clublayout/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="{{ path('homepage') }}#">ClubMaster</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Oops! An Error Occurred</h1>
+
+        <h3>The server returned a "{{ status_code }} {{ status_text }}".</h3>
+        <p>Please contact the administrator if the error continue.</p>
+
+      </div>
+
+      <hr>
+
+      <footer>
+          <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {% render "ClubUserBundle:Misc:versionBar" %}</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+</body>
+</html>
+
