@@ -108,3 +108,7 @@ club_layout:
     #logo_url:
     #logo_title:
     title: ClubMaster
+
+club_weather:
+    city: Aalborg,Denmark
+    key: fdeb1d24d8174537121809

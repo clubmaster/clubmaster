@@ -1,0 +1,24 @@
+{% extends "ClubWeatherBundle::base.html.twig" %}
+
+{% block body %}
+        <div class="span11">
+          <div class="hero-unit">
+            <h1><img alt="{{ curr.weatherDesc.0.value }}" src="{{ curr.weatherIconUrl.0.value }}" /> {% trans %}Weather right now!{% endtrans %}</h1>
+            <p>
+                The weather location is {{ request.query }} at {{ curr.observation_time }}.<br>
+                Current temperature: {{ curr.temp_C }}&deg;.<br>
+                Current wind: {{ curr.windspeedKmph}} km/t, {{ curr.winddir16Point }}<br />
+            </p>
+          </div>
+          <div class="row-fluid">
+            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.0} %}
+            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.1} %}
+            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.2} %}
+          </div><!--/row-->
+          <div class="row-fluid">
+            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.3} %}
+            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.4} %}
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+{% endblock %}

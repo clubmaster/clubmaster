@@ -22,7 +22,10 @@ class ClubWeatherExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('listener.yml');
+
+        $container->setParameter('club_weather.city', $config['city']);
+        $container->setParameter('club_weather.key', $config['key']);
     }
 }
