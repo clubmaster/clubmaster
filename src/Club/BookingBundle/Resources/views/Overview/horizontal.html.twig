@@ -56,9 +56,17 @@
                 <input type="hidden" name="booking_id" value="" id="booking_id" />
                 </form>
 
+                <form method="POST" action="{{ path('club_booking_booking_viewplan', {'date':date|date('Y-m-d')}) }}">
                 <div id="bookings_plan"></div>
+                <input type="hidden" name="plan_id" value="" id="plan_id" />
+                <input type="hidden" name="field_id" value="" id="plan_field_id" />
+                </form>
 
+                <form method="POST" action="{{ path('club_booking_booking_viewteam') }}">
                 <div id="bookings_team"></div>
+                <input type="hidden" name="team_id" value="" id="team_id" />
+                <input type="hidden" name="field_id" value="" id="team_field_id" />
+                </form>
 
             </div> <!-- this is for bookings -->
         </div>

@@ -35,7 +35,27 @@ function setInterval(interval_id)
     $('#interval_id').closest('form').submit();
 }
 
-function makeIntervalUrl(interval, date, url, locale)
+function setBooking(booking_id)
+{
+    $('#booking_id').val(booking_id);
+    $('#booking_id').closest('form').submit();
+}
+
+function setTeam(team_id, field_id)
+{
+    $('#team_id').val(team_id);
+    $('#team_field_id').val(field_id);
+    $('#team_id').closest('form').submit();
+}
+
+function setPlan(plan_id, field_id)
+{
+    $('#plan_id').val(plan_id);
+    $('#plan_field_id').val(field_id);
+    $('#plan_id').closest('form').submit();
+}
+
+function makeIntervalUrl(interval)
 {
   var start = Date.parse(interval.start_time);
   var end = Date.parse(interval.end_time);
@@ -67,20 +87,26 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
         book_str = book_str+this.first_name+' '+this.last_name;
       });
     }
-    ret='<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/booking/'+booking.id+'\'">&#160;'+book_str+'</div>';
+
+    ret='<div class="link booking" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setBooking('+booking.id+')">&#160;'+book_str+'</div>';
+
+    $("#bookings_booking").append(ret);
   } else if (booking.type == 'team') {
     $.each(booking.fields, function() {
       var left=$("#field_"+this.id).css('left');
 
-      if (left) ret = ret+'<div class="link team" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/team/'+booking.id+'/'+this.id+'\'">&#160;'+booking.team_name+'</div>';
+      if (left) ret = ret+'<div class="link team" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setTeam('+booking.id+', '+this.id+')">&#160;'+booking.team_name+'</div>';
     });
+
+    $("#bookings_team").append(ret);
   } else if (booking.type == 'plan') {
     $.each(booking.fields, function() {
       var left=$("#field_"+this.id).css('left');
 
-      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="location.href=\''+url+'booking/view/plan/'+booking.id+'/'+this.id+'/'+getDate(date)+'\'">&#160;'+booking.name+'</div>';
+      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setPlan('+booking.id+','+this.id+')">&#160;'+booking.name+'</div>';
     });
 
+    $("#bookings_plan").append(ret);
   }
 
   return ret;
@@ -149,7 +175,7 @@ function initTable(location, date, url, hour_height, field_width, locale)
         if (start < current_time) {
           $("#intervals").append(makePastIntervalUrl(this));
         } else {
-          $("#intervals").append(makeIntervalUrl(this,date,url,locale));
+          $("#intervals").append(makeIntervalUrl(this));
         }
         $("div#interval_"+this.id).addClass('interval');
         $("div#interval_"+this.id).css('height', ((diff*pixel_size)-6)+'px');

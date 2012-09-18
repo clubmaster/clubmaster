@@ -1,4 +1,5 @@
-make booking urls 100% dynamic
+add booking plan multiple days
+do booking plan form better
 more simple to book fields, if no payment, no need to confirm
 create weather forecast
 give warning if you try to make a booking plan above a booking

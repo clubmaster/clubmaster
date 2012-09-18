@@ -123,12 +123,15 @@ class BookingController extends Controller
 
     /**
      * @Template()
-     * @Route("/view/team/{id}/{field_id}")
+     * @Route("/view/team")
      */
-    public function viewTeamAction($id, $field_id)
+    public function viewTeamAction()
     {
+        $team_id = $this->getRequest()->request->get('team_id');
+        $field_id = $this->getRequest()->request->get('field_id');
+
         $em = $this->getDoctrine()->getEntityManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+        $schedule = $em->find('ClubTeamBundle:Schedule', $team_id);
         $field = $em->find('ClubBookingBundle:Field', $field_id);
 
         return array(
@@ -139,12 +142,15 @@ class BookingController extends Controller
 
     /**
      * @Template()
-     * @Route("/view/plan/{id}/{field_id}/{date}")
+     * @Route("/view/plan/{date}")
      */
-    public function viewPlanAction($id, $field_id, $date)
+    public function viewPlanAction($date)
     {
+        $plan_id = $this->getRequest()->request->get('plan_id');
+        $field_id = $this->getRequest()->request->get('field_id');
+
         $em = $this->getDoctrine()->getEntityManager();
-        $plan = $em->find('ClubBookingBundle:Plan', $id);
+        $plan = $em->find('ClubBookingBundle:Plan', $plan_id);
         $field = $em->find('ClubBookingBundle:Field', $field_id);
         $date = new \DateTime($date.' 00:00:00');
 
