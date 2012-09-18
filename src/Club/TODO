@@ -1,6 +1,6 @@
+make booking urls 100% dynamic
 more simple to book fields, if no payment, no need to confirm
 create weather forecast
-find a way that the api does not care if it ends on / or not
 give warning if you try to make a booking plan above a booking
 make sure user only can book in member status period
 make sure user only can use teams in member ship status period

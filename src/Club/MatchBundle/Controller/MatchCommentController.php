@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class MatchCommentController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Template()
    */
   public function indexAction()

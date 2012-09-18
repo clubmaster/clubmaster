@@ -21,7 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminTaskController extends Controller
 {
   /**
-   * @Route("/", name="admin_task")
+   * @Route("", name="admin_task")
    * @Template()
    */
   public function indexAction()

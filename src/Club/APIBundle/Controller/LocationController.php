@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class LocationController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Method("GET")
    */
   public function indexAction()

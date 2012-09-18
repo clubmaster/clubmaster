@@ -13,7 +13,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class SubscriptionController extends Controller
 {
   /**
-   * @Route("/", name="shop_subscription")
+   * @Route("", name="shop_subscription")
    * @Template()
    * @Secure(roles="ROLE_USER")
    *

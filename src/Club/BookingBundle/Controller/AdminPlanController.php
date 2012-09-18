@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminPlanController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Template()
    */
   public function indexAction()

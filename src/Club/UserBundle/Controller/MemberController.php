@@ -56,7 +56,7 @@ class MemberController extends Controller
 
   /**
    * @Template()
-   * @Route("/", defaults={"page" = 1 })
+   * @Route("", defaults={"page" = 1 })
    * @Route("/page/{page}", name="club_user_members_page")
    */
   public function indexAction($page)

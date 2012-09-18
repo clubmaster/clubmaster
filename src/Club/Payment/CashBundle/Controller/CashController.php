@@ -14,7 +14,7 @@ class CashController extends Controller
 {
     /**
      * @Route("/register/{order_id}")
-     * @Route("/register/{order_id}/{allow_split}/", name="payment_cash_confirm")
+     * @Route("/register/{order_id}/{allow_split}", name="payment_cash_confirm")
      * @Template()
      */
     public function registerAction($order_id, $allow_split = false)

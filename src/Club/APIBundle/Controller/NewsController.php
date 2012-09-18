@@ -14,7 +14,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class NewsController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Method("GET")
    */
   public function indexAction()

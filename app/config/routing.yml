@@ -1,11 +1,9 @@
 ClubInstallBundle:
     resource: "@ClubInstallerBundle/Controller/"
     type:     annotation
-    prefix:   /installer
 
 ClubConfiguratorBundle:
     resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-    prefix:   /configurator/
 
 
 ClubTournamentBundle:

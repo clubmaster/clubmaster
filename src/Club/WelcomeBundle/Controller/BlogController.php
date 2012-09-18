@@ -127,7 +127,7 @@ class BlogController extends Controller
   }
 
   /**
-   * @Route("/", defaults={"page" = 1})
+   * @Route("", defaults={"page" = 1})
    * @Route("/{page}", name="welcome_blog_offset")
    *
    * @Template()

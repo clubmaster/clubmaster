@@ -67,7 +67,7 @@ class TeamController extends Controller
   }
 
   /**
-   * @Route("/", defaults={"start" = null, "end" = null})
+   * @Route("", defaults={"start" = null, "end" = null})
    * @Route("/{start}", defaults={"end" = null})
    * @Route("/{start}/{end}")
    * @Method("GET")

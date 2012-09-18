@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
   /**
-   * @Route("/", defaults={"query" = null})
+   * @Route("", defaults={"query" = null})
    * @Route("/search")
    * @Route("/search/{query}")
    * @Method("GET")
@@ -43,7 +43,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/events/", defaults={"start" = null, "end" = null})
+   * @Route("/events", defaults={"start" = null, "end" = null})
    * @Route("/events/{start}", defaults={"end" = null})
    * @Route("/events/{start}/{end}")
    * @Method("GET")
@@ -68,7 +68,7 @@ class UserController extends Controller
   }
 
   /**
-   * @Route("/teams/", defaults={"start" = null, "end" = null})
+   * @Route("/teams", defaults={"start" = null, "end" = null})
    * @Route("/teams/{start}", defaults={"end" = null})
    * @Route("/teams/{start}/{end}")
    * @Method("GET")

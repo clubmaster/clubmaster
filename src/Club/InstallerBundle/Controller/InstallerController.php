@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/installer")
+ */
 class InstallerController extends Controller
 {
   public function __construct()
@@ -17,7 +20,7 @@ class InstallerController extends Controller
   }
 
   /**
-   * @Route("/")
+   * @Route("")
    * @Template()
    */
   public function indexAction()

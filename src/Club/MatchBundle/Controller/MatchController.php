@@ -13,7 +13,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class MatchController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    */
   public function indexAction()
   {

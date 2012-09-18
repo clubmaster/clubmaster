@@ -449,7 +449,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/process/{id}/")
+   * @Route("/message/process/{id}")
    */
   public function processAction($id)
   {

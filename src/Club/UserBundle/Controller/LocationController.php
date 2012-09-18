@@ -13,7 +13,7 @@ class LocationController extends Controller
 {
   /**
    * @Template()
-   * @Route("/")
+   * @Route("")
    */
   public function indexAction()
   {
