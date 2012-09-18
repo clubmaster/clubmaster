@@ -10,43 +10,32 @@
   <!-- Input Text -->
     <legend>{% trans %}Insert match{% endtrans %}</legend>
 
-    <!-- Left column -->
-    <div class="col50">
-      <p class="nomt">
-        <label for="inp-01">User:</label><br />
-        {{ form_widget(form.user0, {'a': false}) }}<br />
-        <span class="smaller low">Info: Insert name of first user.</span>
-      </p>
+    {{ form_row(form.user0, {'a': false}) }}
+    {{ form_row(form.user1, {'a': false}) }}
 
-      <p class="nomb">
-        <label for="inp-02">User:</label><br />
-        {{ form_widget(form.user1, {'a': false}) }}<br />
-        <span class="smaller low">Info: Insert name of second user.</span>
-      </p>
-    </div> <!-- /col50 -->
+    <div class="control-group">
+        {{ form_label(form.user0set0) }}
+        <div class="controls">
+            {% if sets > 0 %}{{ form_widget(form.user0set0, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 1 %}{{ form_widget(form.user0set1, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 2 %}{{ form_widget(form.user0set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 3 %}{{ form_widget(form.user0set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 4 %}{{ form_widget(form.user0set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            <span class="help-block">Info: Insert match result for user.</span>
+        </div>
+    </div>
 
-    <!-- Right column -->
-    <div class="col50 f-right">
-      <p class="nomt">
-        <label for="inp-04">Result:</label><br />
-        {% if sets > 0 %}{{ form_widget(form.user0set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 1 %}{{ form_widget(form.user0set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 2 %}{{ form_widget(form.user0set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 3 %}{{ form_widget(form.user0set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 4 %}{{ form_widget(form.user0set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        <br /><span class="smaller low">Info: Insert match result for user.</span>
-      </p>
-
-      <p class="nomb">
-        <label for="inp-06">Result:</label><br />
-        {% if sets > 0 %}{{ form_widget(form.user1set0, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 1 %}{{ form_widget(form.user1set1, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 2 %}{{ form_widget(form.user1set2, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 3 %}{{ form_widget(form.user1set3, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        {% if sets > 4 %}{{ form_widget(form.user1set4, { 'attr': {'class':'input-text', 'style':'width: 25px'}}) }}{% endif %}
-        <br /><span class="smaller low">Info: Insert match result for user.</span>
-      </p>
-    </div> <!-- /col50 -->
+    <div class="control-group">
+        {{ form_label(form.user1set0) }}
+        <div class="controls">
+            {% if sets > 0 %}{{ form_widget(form.user1set0, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 1 %}{{ form_widget(form.user1set1, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 2 %}{{ form_widget(form.user1set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 3 %}{{ form_widget(form.user1set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            {% if sets > 4 %}{{ form_widget(form.user1set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
+            <span class="help-block">Info: Insert match result for user.</span>
+        </div>
+    </div>
 
   {{ form_rest(form) }}
 

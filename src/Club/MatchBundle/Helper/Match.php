@@ -320,16 +320,22 @@ class Match
     public function getMatchForm($res, $set)
     {
         $form = $this->form_factory->createBuilder('form', $res)
-            ->add('user0', 'jquery_autocomplete')
-            ->add('user1', 'jquery_autocomplete');
+            ->add('user0', 'jquery_autocomplete', array(
+                'help' => 'Info: Insert name of first user.',
+                'label' => 'Player'
+            ))
+            ->add('user1', 'jquery_autocomplete', array(
+                'help' => 'Info: Insert name of second user.',
+                'label' => 'Player'
+            ));
 
         for ($i = 0; $set > $i; $i++) {
             $form = $form->add('user0set'.$i,'text', array(
-                'label' => 'Set '.($i+1),
+                'label' => 'Result',
                 'required' => false
             ));
             $form = $form->add('user1set'.$i,'text', array(
-                'label' => 'Set '.($i+1),
+                'label' => 'Result',
                 'required' => false
             ));
         }
