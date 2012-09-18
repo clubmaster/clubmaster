@@ -1,7 +1,6 @@
 add booking plan multiple days
 more simple to book fields, if no payment, no need to confirm
 give warning if you try to make a booking plan above a booking
-make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 make it clear that league is only a ranking
 add double in league
