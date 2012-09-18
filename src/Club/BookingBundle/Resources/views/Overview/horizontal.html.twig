@@ -50,7 +50,17 @@
             <input type="hidden" name="interval_id" value="" id="interval_id" />
             </form>
 
-            <div id="bookings"></div> <!-- this is for bookings -->
+            <div id="bookings">
+                <form method="POST" action="{{ path('club_booking_booking_viewbooking') }}">
+                <div id="bookings_booking"></div>
+                <input type="hidden" name="booking_id" value="" id="booking_id" />
+                </form>
+
+                <div id="bookings_plan"></div>
+
+                <div id="bookings_team"></div>
+
+            </div> <!-- this is for bookings -->
         </div>
     </div>
 </div>

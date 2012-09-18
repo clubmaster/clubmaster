@@ -214,6 +214,7 @@ class Booking
     $this->em->persist($this->booking);
     $this->em->flush();
 
+
     $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
     $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
 

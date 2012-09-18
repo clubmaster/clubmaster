@@ -40,7 +40,6 @@ class BookingListener
         ->send()
         ;
     }
-    die();
   }
 
   public function onBookingCancel(\Club\BookingBundle\Event\FilterBookingEvent $event)
