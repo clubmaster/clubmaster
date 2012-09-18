@@ -29,7 +29,6 @@ class WeatherController extends Controller
         }
 
         if ($refresh) {
-            echo 'snoller';
             $city = $this->container->getParameter('club_weather.city');
             $key = $this->container->getParameter('club_weather.key');
             $days = 5;
