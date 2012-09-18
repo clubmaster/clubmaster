@@ -24,10 +24,6 @@ class MenuListener
         array(
           'name' => 'League',
           'route' => $this->router->generate('club_match_league_index')
-        ),
-        array(
-          'name' => 'Tournament',
-          'route' => $this->router->generate('club_tournament_tournament_index')
         )
       )
     );

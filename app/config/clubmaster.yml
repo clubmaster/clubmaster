@@ -110,5 +110,9 @@ club_layout:
     title: ClubMaster
 
 club_weather:
+    enabled: true
     city: Aalborg,Denmark
     key: fdeb1d24d8174537121809
+
+club_tournament:
+    enabled: true
