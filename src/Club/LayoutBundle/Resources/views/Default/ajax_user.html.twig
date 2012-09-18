@@ -4,6 +4,12 @@
         {% set f = '#query' %}
     {% endif %}
 
+    {% if a is not defined or a %}
+        {% set a = 1 %}
+    {% else %}
+        {% set a = 0 %}
+    {% endif %}
+
     {% if v is not defined %}
         {% set v = 'item.member_number' %}
     {% elseif v == 'name' %}
@@ -36,7 +42,9 @@
             });
         },
         select: function( event, ui ) {
+            {% if a %}
             $('{{ f }}').closest('form').submit();
+            {% endif %}
         }
     });
   });

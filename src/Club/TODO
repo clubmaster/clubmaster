@@ -1,6 +1,4 @@
-fix insert match with jquery_autocomplete form class
 more simple to book fields, if no payment, no need to confirm
-results has to be updated almost emidiatly when a match has been entered, change next run date for instance
 create weather forecast
 
 when upgrading, remember to enable all products

@@ -2,10 +2,6 @@
 
 {% block body %}
 
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user0','input_id':'#form_user0_id','url': 'api/users/search' } %}
-
-{% include "ClubLayoutBundle:Default:ajax_user.html.twig" with {'search_field':'#form_user1','input_id':'#form_user1_id','url': 'api/users/search' } %}
-
 <h2>{% trans %}Other match{% endtrans %}</h2>
 <p>{% trans %}This match is just to keep track of your wins and losses, it will not end up on any ranking list.{% endtrans %}</p>
 
@@ -18,13 +14,13 @@
     <div class="col50">
       <p class="nomt">
         <label for="inp-01">User:</label><br />
-        {{ form_widget(form.user0, {'attr': {'class':'input-text'}}) }}<br />
+        {{ form_widget(form.user0, {'a': false}) }}<br />
         <span class="smaller low">Info: Insert name of first user.</span>
       </p>
 
       <p class="nomb">
         <label for="inp-02">User:</label><br />
-        {{ form_widget(form.user1, {'attr': {'class':'input-text'}}) }}<br />
+        {{ form_widget(form.user1, {'a': false}) }}<br />
         <span class="smaller low">Info: Insert name of second user.</span>
       </p>
     </div> <!-- /col50 -->
@@ -51,8 +47,6 @@
         <br /><span class="smaller low">Info: Insert match result for user.</span>
       </p>
     </div> <!-- /col50 -->
-
-    <div class="fix"></div>
 
   {{ form_rest(form) }}
 

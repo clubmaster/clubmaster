@@ -10,11 +10,6 @@ class League extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $set = array(
-      1 => 1,
-      3 => 3,
-      5 => 5
-    );
     $builder->add('name');
     $builder->add('rule');
     $builder->add('gender', 'gender', array(
@@ -23,9 +18,7 @@ class League extends AbstractType
     $builder->add('invite_only', 'checkbox', array(
       'required' => false
     ));
-    $builder->add('game_set', 'choice', array(
-      'choices' => $set
-    ));
+    $builder->add('game_set', 'best_of_set');
     $builder->add('start_date', 'jquery_datetime', array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'

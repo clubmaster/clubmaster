@@ -2522,6 +2522,10 @@
         <source>Cannot delete booking %minutes% minutes before the time starts.</source>
         <target>Kan ikke slette reservationen %minutes% minutter før tiden starter.</target>
       </trans-unit>
+      <trans-unit id="635">
+        <source>Need to play at least one set.</source>
+        <target>Skal spille mindst et sæt.</target>
+      </trans-unit>
 
     </body>
   </file>

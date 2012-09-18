@@ -13,9 +13,9 @@ class League
     $this->club_league = $club_league;
   }
 
-  public function onMatchNew(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  public function onMatchNew(\Club\MatchBundle\Event\FilterMatchEvent $event)
   {
-    $this->processMatch($match);
+    $this->processMatch($event->getMatch());
   }
 
   public function onMatchTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
