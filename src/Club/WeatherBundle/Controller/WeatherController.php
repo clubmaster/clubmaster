@@ -5,12 +5,14 @@ namespace Club\WeatherBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class WeatherController extends Controller
 {
     /**
      * @Route("")
      * @Template()
+     * @Cache(smaxage="900")
      */
     public function indexAction()
     {
