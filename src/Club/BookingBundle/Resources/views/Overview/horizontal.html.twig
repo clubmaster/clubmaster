@@ -9,11 +9,10 @@
     var date = Date.parse("{{ date|date('c')}}");
     var url = "{{ path('homepage') }}";
     var location = {{ location.id }};
-    var locale = "en";
     var hour_height = 80;
     var field_width = 120;
 
-    initTable(location, date, url, hour_height, field_width, locale);
+    initTable(location, date, url, hour_height, field_width);
   });
   </script>
 

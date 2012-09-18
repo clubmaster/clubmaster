@@ -121,7 +121,7 @@ function initBookings(location, date, url, pixel_size, field_width, day_start)
   });
 }
 
-function initTable(location, date, url, hour_height, field_width, locale)
+function initTable(location, date, url, hour_height, field_width)
 {
   var fields=0;
   var times=0;
