@@ -40,14 +40,19 @@
 </p>
 
 <div id="overlay">
-  <div id="booking">
-    <div id="times"></div> <!-- this is for field names -->
-     <div id="nav_overlay">
-      <div id="fields"></div> <!-- this is for time periods -->
-      <div id="intervals"></div> <!-- this is for intervals -->
-      <div id="bookings"></div> <!-- this is for bookings -->
+    <div id="booking">
+        <div id="times"></div> <!-- this is for field names -->
+        <div id="nav_overlay">
+            <div id="fields"></div> <!-- this is for time periods -->
+
+            <form method="POST" action="{{ path('club_booking_overview_interval', {'date':date|date('Y-m-d')}) }}">
+            <div id="intervals"></div> <!-- this is for intervals -->
+            <input type="hidden" name="interval_id" value="" id="interval_id" />
+            </form>
+
+            <div id="bookings"></div> <!-- this is for bookings -->
+        </div>
     </div>
-  </div>
 </div>
 <div id="preloader"><img src="{{ asset('bundles/clublayout/images/ajax-loader.gif') }}"></div>
 

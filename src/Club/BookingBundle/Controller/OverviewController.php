@@ -12,6 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class OverviewController extends Controller
 {
     /**
+     * @Route("/interval/{date}")
+     */
+    public function intervalAction($date)
+    {
+        $request = $this->getRequest();
+
+        $date = new \DateTime($date);
+        $interval = $request->request->get('interval_id');
+
+        return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+            'date' => $date->format('Y-m-d'),
+            'interval_id' => $interval
+        )));
+    }
+
+    /**
      * @Template()
      * @Route("/{date}/{interval_id}")
      */
