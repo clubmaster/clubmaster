@@ -1,7 +1,6 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block body %}
-<h2>{% trans %}Booking{% endtrans %}</h2>
 {% include "ClubBookingBundle:Overview:information.html.twig" %}
 
 {% if (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available and active %}

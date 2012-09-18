@@ -1,10 +1,8 @@
-<fieldset>
-  <form method="get" action="{{ path('club_booking_plan_pre', {'date':date|date('Y-m-d'),'interval_id':interval.id}) }}" class="form-horizontal">
-    <legend>{% trans %}Booking plan{% endtrans %}</legend>
+<h2>{% trans %}Booking plan{% endtrans %}</h2>
+<form method="get" action="{{ path('club_booking_plan_pre', {'date':date|date('Y-m-d'),'interval_id':interval.id}) }}" class="form-horizontal">
 
-    <p>{% trans %}Click here if you want to create a booking plan.{% endtrans %}</p>
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+<p>{% trans %}Click here if you want to create a booking plan.{% endtrans %}</p>
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
 
-  </form>
-</fieldset>
+</form>
 
