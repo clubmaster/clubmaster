@@ -8,7 +8,7 @@ class InstallerControllerTest extends WebTestCase
   public function testIndex()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/installer/');
+    $crawler = $client->request('GET', '/installer');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Start installation')->link();
