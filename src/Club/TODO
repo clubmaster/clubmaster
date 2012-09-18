@@ -1,5 +1,18 @@
 more simple to book fields, if no payment, no need to confirm
 create weather forecast
+find a way that the api does not care if it ends on / or not
+give warning if you try to make a booking plan above a booking
+make sure user only can book in member status period
+make sure user only can use teams in member ship status period
+make it clear that league is only a ranking
+add double in league
+make it a setting if all should be able to make events
+menu bundle, you should be able to append stuff to sub items
+search users on creating date
+be able to create product packages
+internal message system
+rewrite failure handler to a listerner
+add images to products
 
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
@@ -9,36 +22,22 @@ make action alerts, email when user book or whatever
 make a is_active boolean on user entity
 rewrite active in user repository
 make feedback as a popdown form
-build new gravatar support
 
 == ON ATK DEPLOY ==
 set default league_view_top: 5
 
 == VERSION 1.2.1 ==
 enter result in cup
-add double in league
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 users should be able to create multiple emails, phone
-make sure user only can book in member status period
-make sure user only can use teams in member ship status period
 
 == NOTES TO LATER ==
-give warning if you try to make a booking plan above a booking
-when client on search on quicksearch, search while clicking
-upload profil billede til alle medlemmerne
-eller aktivt aktiver gravator extension
+upload profile image for all members
 we might need a mailing list
 quick add users to group
-make it a setting if all should be able to make events
-menu bundle, you should be able to append stuff to sub items
-search users on creating date
 build new gravatar support
 need tool so we can monitor how many bookings a member have active
-be able to create product packages
-internal message system
-rewrite failure handler to a listerner
-add images to products
 add category priority regarding to account numbers
 admin user batch, select search
 jquery overlay form on booking
@@ -80,7 +79,6 @@ make a way to configure the touch screen client, ever cookie and configure throu
 configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
-find a way that the api does not care if it ends on / or not
 consider make guest book and coupon to products too, that will make the account_number much easier
 add leagues to tournaments, use of tags or something
 use attribute class as product attribute converter
@@ -97,7 +95,6 @@ login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 something is broken when creating more intervals on the same field, fix it
-gravatar throw warning if gravatar does not work (missing network)
 find a way for family subscription
 price on event, has to be optional to use the club system, or pay on arrival
 bind coupon to specific product
