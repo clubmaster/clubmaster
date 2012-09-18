@@ -1,5 +1,4 @@
 make booking urls 100% dynamic
-make sure kiosk's links follow the new standard
 more simple to book fields, if no payment, no need to confirm
 create weather forecast
 give warning if you try to make a booking plan above a booking

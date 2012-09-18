@@ -1,0 +1,14 @@
+  <script src="{{ asset('bundles/clubbooking/js/booking_horizontal.js') }}" type="text/javascript"></script>
+  <script>
+  $(document).ready(function() {
+    $("#date").datepicker({
+      showOn: "button",
+      buttonImage: "{{ asset('bundles/clublayout/images/icons/16x16/calendar.png') }}",
+      buttonImageOnly: true,
+      dateFormat: "yy-mm-dd",
+      onSelect: function (dateText, inst) {
+        $(this).closest('form').submit();
+      }
+    });
+  });
+  </script>
