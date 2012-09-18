@@ -12,21 +12,41 @@ class WeatherController extends Controller
     /**
      * @Route("")
      * @Template()
-     * @Cache(smaxage="900")
+     * @Cache(smaxage="3600")
      */
     public function indexAction()
     {
-        $city = $this->container->getParameter('club_weather.city');
-        $key = $this->container->getParameter('club_weather.key');
-        $days = 5;
-        $host = 'http://free.worldweatheronline.com/feed/weather.ashx?q=%s&format=json&num_of_days=%s&key=%s';
+        $filename = $this->get('kernel')->getCacheDir().'/weather.json';
+        $refresh = true;
+        $renew = 3600;
 
-        $url = sprintf($host,
-            $city,
-            $days,
-            $key);
+        if (is_file($filename)) {
+            $stat = stat($filename);
 
-        $data = json_decode(file_get_contents($url));
+            if ($stat[9] > time()-$renew) {
+                $refresh = false;
+            }
+        }
+
+        if ($refresh) {
+            echo 'snoller';
+            $city = $this->container->getParameter('club_weather.city');
+            $key = $this->container->getParameter('club_weather.key');
+            $days = 5;
+            $host = 'http://free.worldweatheronline.com/feed/weather.ashx?q=%s&format=json&num_of_days=%s&key=%s';
+
+            $url = sprintf($host,
+                $city,
+                $days,
+                $key);
+
+            $r = file_get_contents($url);
+            $data = json_decode($r);
+
+            file_put_contents($filename, $r);
+        } else {
+            $data = json_decode(file_get_contents($filename));
+        }
 
         $weather = $data->data->weather;
         foreach ($weather as $i => $w) {
