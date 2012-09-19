@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" target-language="da" datatype="plaintext" original="file.ext">
+  <file source-language="en" target-language="da" datatype="plaintext">
     <body>
       <trans-unit id="1">
         <source>User</source>
@@ -2526,7 +2526,6 @@
         <source>Need to play at least one set.</source>
         <target>Skal spille mindst et sæt.</target>
       </trans-unit>
-
     </body>
   </file>
 </xliff>
