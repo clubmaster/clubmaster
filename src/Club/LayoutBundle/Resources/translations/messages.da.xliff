@@ -42,190 +42,98 @@
         <source>Transaction</source> <target state="signed-off">Transaktion</target> </trans-unit>
       <trans-unit id="20" approved="yes">
         <source>Account</source> <target state="signed-off">Konto</target> </trans-unit>
-      <trans-unit id="21">
-        <source>Personal Information</source>
-        <target>Personlig Information</target>
-      </trans-unit>
-      <trans-unit id="22">
-        <source>Address Information</source>
-        <target>Adresse Information</target>
-      </trans-unit>
-      <trans-unit id="23">
-        <source>Email Information</source>
-        <target>E-mail Information</target>
-      </trans-unit>
-      <trans-unit id="24">
-        <source>Phone Information</source>
-        <target>Telefon Information</target>
-      </trans-unit>
-      <trans-unit id="25">
-        <source>First name</source>
-        <target>Fornavn</target>
-      </trans-unit>
-      <trans-unit id="26">
-        <source>Last name</source>
-        <target>Efternavn</target>
-      </trans-unit>
-      <trans-unit id="27">
-        <source>Gender</source>
-        <target>Køn</target>
-      </trans-unit>
-      <trans-unit id="28">
-        <source>Day of birth</source>
-        <target>Fødselsdag</target>
-      </trans-unit>
-      <trans-unit id="29">
-        <source>Street</source>
-        <target>Adresse</target>
-      </trans-unit>
-      <trans-unit id="30">
-        <source>Postal code</source>
-        <target>Postnummer</target>
-      </trans-unit>
-      <trans-unit id="31">
-        <source>City</source>
-        <target>By</target>
-      </trans-unit>
-      <trans-unit id="32">
-        <source>Country</source>
-        <target>Land</target>
-      </trans-unit>
-      <trans-unit id="33">
-        <source>Email address</source>
-        <target>E-mail adresse</target>
-      </trans-unit>
-      <trans-unit id="34">
-        <source>Number</source>
-        <target>Nummer</target>
-      </trans-unit>
-      <trans-unit id="35">
-        <source>Save</source>
-        <target>Gem</target>
-      </trans-unit>
-      <trans-unit id="36">
-        <source>User: &lt;strong&gt;%name%&lt;/strong&gt;</source>
-        <target>Bruger: &lt;strong&gt;%name%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="37">
-        <source>Location: &lt;strong&gt;%location%&lt;/strong&gt;</source>
-        <target>Område: &lt;strong&gt;%location%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="38">
-        <source>Log out</source>
-        <target>Log ud</target>
-      </trans-unit>
-      <trans-unit id="39">
-        <source>Project: &lt;strong&gt;%name%&lt;/strong&gt;</source>
-        <target>Projekt: &lt;strong&gt;%name%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="40">
-        <source>Version: &lt;strong&gt;%version%&lt;/strong&gt;</source>
-        <target>Version: &lt;strong&gt;%version%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="41">
-        <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source>
-        <target>Område: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="42">
-        <source>Cannot write to mailer spool dir &lt;strong&gt;%path%&lt;/strong&gt;</source>
-        <target>Kan ikke skrive i mailer spool mappen &lt;strong&gt;%path%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="43">
-        <source>Remove installer file &lt;strong&gt;%path%&lt;/strong&gt;</source>
-        <target>Fjern installations filen &lt;strong&gt;%path%&lt;/strong&gt;</target>
-      </trans-unit>
-      <trans-unit id="44">
-        <source>View cart</source>
-        <target>Vis kurv</target>
-      </trans-unit>
-      <trans-unit id="45">
-        <source>Categories</source>
-        <target>Kategorier</target>
-      </trans-unit>
-      <trans-unit id="46">
-        <source>Products</source>
-        <target>Produkter</target>
-      </trans-unit>
-      <trans-unit id="47">
-        <source>Product name</source>
-        <target>Produkt navn</target>
-      </trans-unit>
-      <trans-unit id="48">
-        <source>Price</source>
-        <target>Pris</target>
-      </trans-unit>
-      <trans-unit id="49">
-        <source>Action</source>
-        <target>Handling</target>
-      </trans-unit>
-      <trans-unit id="50">
-        <source>No image</source>
-        <target>Ingen billede</target>
-      </trans-unit>
-      <trans-unit id="51">
-        <source>Put in cart</source>
-        <target>Læg i kurv</target>
-      </trans-unit>
-      <trans-unit id="52">
-        <source>There is no products in this category.</source>
-        <target>Der er ingen produkter i denne kategori.</target>
-      </trans-unit>
-      <trans-unit id="53">
-        <source>Price: %price%</source>
-        <target>Pris: %price%</target>
-      </trans-unit>
-      <trans-unit id="54">
-        <source>Price ex. vat: %price%</source>
-        <target>Pris u. moms: %price%</target>
-      </trans-unit>
-      <trans-unit id="55">
-        <source>Description</source>
-        <target>Beskrivelse</target>
-      </trans-unit>
-      <trans-unit id="56">
-        <source>Attributes</source>
-        <target>Attributter</target>
-      </trans-unit>
-      <trans-unit id="57">
-        <source>Your subscription will last for &lt;b&gt;%months% months&lt;/b&gt;.</source>
-        <target>Dit abonnement vil løbe i &lt;b&gt;%months% måneder&lt;/b&gt;.</target>
-      </trans-unit>
-      <trans-unit id="58">
-        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source>
-        <target>Du vil modtage &lt;b&gt;%tickets% klip&lt;/b&gt;.</target>
-      </trans-unit>
-      <trans-unit id="59">
-        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source>
-        <target>Dit abonnement vil blive &lt;b&gt;automatisk fornyet&lt;/b&gt;.</target>
-      </trans-unit>
-      <trans-unit id="60">
-        <source>Your subscription will &lt;b&gt;never expire&lt;/b&gt;.</source>
-        <target>Dit abonnement vil &lt;b&gt;aldrig udløbe&lt;/b&gt;.</target>
-      </trans-unit>
-      <trans-unit id="61">
-        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
-        <target>Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target>
-      </trans-unit>
-      <trans-unit id="62">
-        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
-        <target>Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target>
-      </trans-unit>
-      <trans-unit id="63">
-        <source>Order number</source>
-        <target>Ordre nummer</target>
-      </trans-unit>
-      <trans-unit id="64">
-        <source>Created at</source>
-        <target>Oprettet den</target>
-      </trans-unit>
-      <trans-unit id="65">
-        <source>Updated at</source>
-        <target>Opdateret den</target>
-      </trans-unit>
-      <trans-unit id="66">
-        <source>You have not completed any orders.</source>
-        <target>Du har ikke gennemført nogen ordre.</target>
-      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Personal Information</source> <target state="signed-off">Personlig Information</target> </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>Address Information</source> <target state="signed-off">Adresse Information</target> </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Email Information</source> <target state="signed-off">E-mail Information</target> </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Phone Information</source> <target state="signed-off">Telefon Information</target> </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>First name</source> <target state="signed-off">Fornavn</target> </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>Last name</source> <target state="signed-off">Efternavn</target> </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>Gender</source> <target state="signed-off">Køn</target> </trans-unit>
+      <trans-unit id="28" approved="yes">
+        <source>Day of birth</source> <target state="signed-off">Fødselsdag</target> </trans-unit>
+      <trans-unit id="29" approved="yes">
+        <source>Street</source> <target state="signed-off">Gade</target> </trans-unit>
+      <trans-unit id="30" approved="yes">
+        <source>Postal code</source> <target state="signed-off">Postnummer</target> </trans-unit>
+      <trans-unit id="31" approved="yes">
+        <source>City</source> <target state="signed-off">By</target> </trans-unit>
+      <trans-unit id="32" approved="yes">
+        <source>Country</source> <target state="signed-off">Land</target> </trans-unit>
+      <trans-unit id="33" approved="yes">
+        <source>Email address</source> <target state="signed-off">E-mail adresse</target> </trans-unit>
+      <trans-unit id="34" approved="yes">
+        <source>Number</source> <target state="signed-off">Nummer</target> </trans-unit>
+      <trans-unit id="35" approved="yes">
+        <source>Save</source> <target state="signed-off">Gem</target> </trans-unit>
+      <trans-unit id="36" approved="yes">
+        <source>User: &lt;strong&gt;%name%&lt;/strong&gt;</source> <target state="signed-off">Bruger: &lt;strong&gt;%name%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="37" approved="yes">
+        <source>Location: &lt;strong&gt;%location%&lt;/strong&gt;</source> <target state="signed-off">Område: &lt;strong&gt;%location%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="38" approved="yes">
+        <source>Log out</source> <target state="signed-off">Log ud</target> </trans-unit>
+      <trans-unit id="39" approved="yes">
+        <source>Project: &lt;strong&gt;%name%&lt;/strong&gt;</source> <target state="signed-off">Projekt: &lt;strong&gt;%name%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="40" approved="yes">
+        <source>Version: &lt;strong&gt;%version%&lt;/strong&gt;</source> <target state="signed-off">Version: &lt;strong&gt;%version%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="41" approved="yes">
+        <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source> <target state="signed-off">Område: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="42" approved="yes">
+        <source>Cannot write to mailer spool dir &lt;strong&gt;%path%&lt;/strong&gt;</source> <target state="signed-off">Kan ikke skrive i mailkø mappen &lt;strong&gt;%path%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="43" approved="yes">
+        <source>Remove installer file &lt;strong&gt;%path%&lt;/strong&gt;</source> <target state="signed-off">Fjern installations filen &lt;strong&gt;%path%&lt;/strong&gt;</target> </trans-unit>
+      <trans-unit id="44" approved="yes">
+        <source>View cart</source> <target state="signed-off">Vis kurv</target> </trans-unit>
+      <trans-unit id="45" approved="yes">
+        <source>Categories</source> <target state="signed-off">Kategorier</target> </trans-unit>
+      <trans-unit id="46" approved="yes">
+        <source>Products</source> <target state="signed-off">Produkter</target> </trans-unit>
+      <trans-unit id="47" approved="yes">
+        <source>Product name</source> <target state="signed-off">Produkt navn</target> </trans-unit>
+      <trans-unit id="48" approved="yes">
+        <source>Price</source> <target state="signed-off">Pris</target> </trans-unit>
+      <trans-unit id="49" approved="yes">
+        <source>Action</source> <target state="signed-off">Handling</target> </trans-unit>
+      <trans-unit id="50" approved="yes">
+        <source>No image</source> <target state="signed-off">Intet billede</target> </trans-unit>
+      <trans-unit id="51" approved="yes">
+        <source>Put in cart</source> <target state="signed-off">Læg i kurv</target> </trans-unit>
+      <trans-unit id="52" approved="yes">
+        <source>There is no products in this category.</source> <target state="signed-off">Der er ingen produkter i denne kategori.</target> </trans-unit>
+      <trans-unit id="53" approved="yes">
+        <source>Price: %price%</source> <target state="signed-off">Pris: %price%</target> </trans-unit>
+      <trans-unit id="54" approved="yes">
+        <source>Price ex. vat: %price%</source> <target state="signed-off">Pris u. moms: %price%</target> </trans-unit>
+      <trans-unit id="55" approved="yes">
+        <source>Description</source> <target state="signed-off">Beskrivelse</target> </trans-unit>
+      <trans-unit id="56" approved="yes">
+        <source>Attributes</source> <target state="signed-off">Attributter</target> </trans-unit>
+      <trans-unit id="57" approved="yes">
+        <source>Your subscription will last for &lt;b&gt;%months% months&lt;/b&gt;.</source> <target state="signed-off">Dit abonnement løber &lt;b&gt;%months% måneder&lt;/b&gt;.</target> </trans-unit>
+      <trans-unit id="58" approved="yes">
+        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source> <target state="signed-off">Du vil modtage &lt;b&gt;%tickets% klip&lt;/b&gt;.</target> </trans-unit>
+      <trans-unit id="59" approved="yes">
+        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source> <target state="signed-off">Dit abonnement bliver &lt;b&gt;automatisk fornyet&lt;/b&gt;.</target> </trans-unit>
+      <trans-unit id="60" approved="yes">
+        <source>Your subscription will &lt;b&gt;never expire&lt;/b&gt;.</source> <target state="signed-off">Dit abonnement vil &lt;b&gt;aldrig udløbe&lt;/b&gt;.</target> </trans-unit>
+      <trans-unit id="61" approved="no">
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source> <target state="needs-translation">Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target> </trans-unit>
+      <trans-unit id="62" approved="yes">
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source> <target state="signed-off">Du vil kunne tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i løbet af din medlemsperiode.</target> </trans-unit>
+      <trans-unit id="63" approved="yes">
+        <source>Order number</source> <target state="signed-off">Ordre nummer</target> </trans-unit>
+      <trans-unit id="64" approved="yes">
+        <source>Created at</source> <target state="signed-off">Oprettet den</target> </trans-unit>
+      <trans-unit id="65" approved="yes">
+        <source>Updated at</source> <target state="signed-off">Opdateret den</target> </trans-unit>
+      <trans-unit id="66" approved="yes">
+        <source>You have not completed any orders.</source> <target state="signed-off">Du har ikke gennemført nogen ordre.</target> </trans-unit>
       <trans-unit id="67">
         <source>Status</source>
         <target>Status</target>
