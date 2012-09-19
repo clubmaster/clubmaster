@@ -20,6 +20,7 @@ class MenuListener
         if ($this->security_context->isGranted('ROLE_NEWS_ADMIN')) {
             $menu[71] = array(
                 'header' => $this->translator->trans('News'),
+                'image' => 'bundles/clublayout/images/icons/16x16/newspaper.png',
                 'items' => array(
                     array(
                         'name' => $this->translator->trans('News ticker'),
