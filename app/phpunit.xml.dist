@@ -27,6 +27,7 @@
             <directory>../src/*/TaskBundle/Tests</directory>
             <directory>../src/*/TeamBundle/Tests/Controller</directory>
             <directory>../src/*/UserBundle/Tests/Controller</directory>
+            <directory>../src/*/WeatherBundle/Tests/Controller</directory>
         </testsuite>
     </testsuites>
 
