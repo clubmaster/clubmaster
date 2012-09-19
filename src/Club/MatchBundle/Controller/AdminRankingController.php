@@ -8,9 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/admin/match/league")
+ * @Route("/admin/match/ranking")
  */
-class AdminLeagueController extends Controller
+class AdminRankingController extends Controller
 {
   /**
    * @Route("")
@@ -90,7 +90,7 @@ class AdminLeagueController extends Controller
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_match_adminleague_index'));
+    return $this->redirect($this->generateUrl('club_match_adminranking_index'));
   }
 
   /**
@@ -125,7 +125,7 @@ class AdminLeagueController extends Controller
           }
       }
 
-      return $this->redirect($this->generateUrl('club_match_adminleague_users', array(
+      return $this->redirect($this->generateUrl('club_match_adminranking_users', array(
           'id' => $id
       )));
   }
@@ -146,7 +146,7 @@ class AdminLeagueController extends Controller
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_match_adminleague_users', array(
+    return $this->redirect($this->generateUrl('club_match_adminranking_users', array(
       'id' => $id
     )));
   }
@@ -180,7 +180,7 @@ class AdminLeagueController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_match_adminleague_index'));
+        return $this->redirect($this->generateUrl('club_match_adminranking_index'));
       }
     }
 

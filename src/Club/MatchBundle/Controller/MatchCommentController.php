@@ -98,7 +98,7 @@ class MatchCommentController extends Controller
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_match_adminleague_index'));
+    return $this->redirect($this->generateUrl('club_match_adminranking_index'));
   }
 
   protected function process($league)
@@ -114,7 +114,7 @@ class MatchCommentController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_match_adminleague_index'));
+        return $this->redirect($this->generateUrl('club_match_adminranking_index'));
       }
     }
 
