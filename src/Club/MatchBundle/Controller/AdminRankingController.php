@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/admin/match/ranking")
+ * @Route("/admin/ranking")
  */
 class AdminRankingController extends Controller
 {
