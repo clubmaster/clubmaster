@@ -38,7 +38,7 @@ class LeagueMatchController extends Controller
           $this->get('club_match.match')->save();
           $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-          return $this->redirect($this->generateUrl('club_match_league_index'));
+          return $this->redirect($this->generateUrl('club_match_ranking_index'));
         } else {
           $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
         }

@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @Route("/match/ranking")
  */
-class LeagueController extends Controller
+class RankingController extends Controller
 {
   /**
    * @Route("")
