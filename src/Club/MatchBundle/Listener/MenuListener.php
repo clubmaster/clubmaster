@@ -22,7 +22,7 @@ class MenuListener
       'route' => $this->router->generate('club_match_match_index'),
       'items' => array(
         array(
-          'name' => 'League',
+          'name' => 'Ranking',
           'route' => $this->router->generate('club_match_league_index')
         )
       )
@@ -39,7 +39,7 @@ class MenuListener
               'image' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
               'items' => array(
                   array(
-                      'name' => $this->translator->trans('League'),
+                      'name' => $this->translator->trans('Ranking'),
                       'route' => $this->router->generate('club_match_adminleague_index'),
                   ),
                   array(
@@ -58,7 +58,7 @@ class MenuListener
       $menu = array();
 
       $menu[22] = array(
-          'name' => $this->translator->trans('League'),
+          'name' => $this->translator->trans('Ranking'),
           'route' => $this->router->generate('club_match_league_index'),
           'image' => 'bundles/clublayout/images/icons/32x32/medal_gold_1.png',
           'text' => 'Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.'

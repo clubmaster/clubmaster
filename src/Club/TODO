@@ -1,3 +1,15 @@
+rename league to ranking
+when upgrading, remember to enable all products
+when upgrading, set last_login_time to when they bought last subscription
+
+== ON ATK DEPLOY ==
+set default league_view_top: 5
+
+== NOTES TO LATER ==
+enter result in cup
+view if the booking is confirmed on booking overview
+administrator should see which booking has been cancelled due to unconfirmed
+users should be able to create multiple emails, phone
 add booking plan multiple days
 more simple to book fields, if no payment, no need to confirm
 give warning if you try to make a booking plan above a booking
@@ -8,26 +20,10 @@ make it a setting if all should be able to make events
 search users on creating date
 be able to create product packages
 add images to products
-
-when upgrading, remember to enable all products
-when upgrading, set last_login_time to when they bought last subscription
-
-== VERSION 1.3 ==
 make action alerts, email when user book or whatever
 make a is_active boolean on user entity
 rewrite active in user repository
 make feedback as a popdown form
-
-== ON ATK DEPLOY ==
-set default league_view_top: 5
-
-== VERSION 1.2.1 ==
-enter result in cup
-view if the booking is confirmed on booking overview
-administrator should see which booking has been cancelled due to unconfirmed
-users should be able to create multiple emails, phone
-
-== NOTES TO LATER ==
 upload profile image for all members
 we might need a mailing list
 quick add users to group

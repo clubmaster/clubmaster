@@ -6,7 +6,7 @@
 
 <h3><a href="{{ path('club_match_league_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
 
-<h4>{% trans %}League info{% endtrans %}</h4>
+<h4>{% trans %}Ranking info{% endtrans %}</h4>
 <table class="table">
   <tbody>
     <tr>
@@ -14,7 +14,7 @@
       <td>{{ league.startDate|club_date }} - {{ league.endDate|club_date }}</td>
     </tr>
     <tr>
-      <th>{% trans %}League type{% endtrans %}</th>
+      <th>{% trans %}Ranking type{% endtrans %}</th>
       {% if league.inviteOnly %}
       <td>{% trans %}Invite only{% endtrans %}</td>
       {% else %}
