@@ -5,8 +5,6 @@
 
 <p>{% trans %}This is where you edit the different attributes for your product, if your product should have some special attributes.{% endtrans %}</p>
 
-{{ form_errors(form) }}
-
 <form method="post" action="{{ path('admin_shop_product_attribute', {'id':product.id}) }}" class="form-horizontal">
 {% include "ClubShopBundle:AdminProductAttribute:form.html.twig" %}
 </form>

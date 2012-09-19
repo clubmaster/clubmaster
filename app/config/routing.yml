@@ -1,3 +1,8 @@
+club_weather:
+    resource: "@ClubWeatherBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/weather
+
 ClubInstallBundle:
     resource: "@ClubInstallerBundle/Controller/"
     type:     annotation

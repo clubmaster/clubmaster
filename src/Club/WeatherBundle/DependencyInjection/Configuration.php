@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\TournamentBundle\DependencyInjection;
+namespace Club\WeatherBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('club_tournament');
+        $rootNode = $treeBuilder->root('club_weather');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
@@ -27,6 +27,8 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->scalarNode('enabled')->isRequired()->end()
+            ->scalarNode('city')->isRequired()->end()
+            ->scalarNode('key')->isRequired()->end()
             ->end();
 
         return $treeBuilder;

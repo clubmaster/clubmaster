@@ -134,11 +134,15 @@ class AdminPlanController extends Controller
         ->add('description', 'textarea', array(
             'help' => 'Info: When is the last day the plan will be valid?'
         ))
-        ->add('period_start', 'datetime', array(
-            'help' => 'Info: When is the first date the plan will be valid from?'
+        ->add('period_start', 'jquery_datetime', array(
+            'help' => 'Info: When is the first date the plan will be valid from?',
+            'date_widget' => 'single_text',
+            'time_widget' => 'single_text'
         ))
-        ->add('period_end', 'datetime', array(
-            'help' => 'Info: When is the last day the plan will be valid?'
+        ->add('period_end', 'jquery_datetime', array(
+            'help' => 'Info: When is the last day the plan will be valid?',
+            'date_widget' => 'single_text',
+            'time_widget' => 'single_text'
         ))
         ->add('day', 'choice', array(
             'choices' => $this->get('club_booking.interval')->getDays(),

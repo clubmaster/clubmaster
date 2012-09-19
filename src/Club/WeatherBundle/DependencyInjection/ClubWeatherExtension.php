@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\TournamentBundle\DependencyInjection;
+namespace Club\WeatherBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class ClubTournamentExtension extends Extension
+class ClubWeatherExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -23,8 +23,12 @@ class ClubTournamentExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        if ($config['enabled']) {
+            $loader->load('listener.yml');
+        }
 
-        $container->setParameter('club_tournament.enabled', $config['enabled']);
+        $container->setParameter('club_weather.enabled', $config['enabled']);
+        $container->setParameter('club_weather.city', $config['city']);
+        $container->setParameter('club_weather.key', $config['key']);
     }
 }

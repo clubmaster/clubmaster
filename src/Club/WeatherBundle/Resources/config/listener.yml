@@ -1,0 +1,6 @@
+services:
+  club.weather.listener.menu:
+    class: Club\WeatherBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }

@@ -1,18 +1,12 @@
 add booking plan multiple days
-do booking plan form better
 more simple to book fields, if no payment, no need to confirm
-create weather forecast
 give warning if you try to make a booking plan above a booking
-make sure user only can book in member status period
 make sure user only can use teams in member ship status period
 make it clear that league is only a ranking
 add double in league
 make it a setting if all should be able to make events
-menu bundle, you should be able to append stuff to sub items
 search users on creating date
 be able to create product packages
-internal message system
-rewrite failure handler to a listerner
 add images to products
 
 when upgrading, remember to enable all products
