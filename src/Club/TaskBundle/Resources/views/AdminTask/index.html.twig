@@ -15,14 +15,9 @@
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="7">&#160;</td>
-    </tr>
-  </tfoot>
   <tbody>
   {% for task in tasks %}
-    <tr>
+    <tr class="{% if task.enabled and not task.locked %}success{% else %}error{% endif %}">
       <td>{{ task.taskName }}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':task.enabled} %}</td>
       <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':task.locked} %}</td>
