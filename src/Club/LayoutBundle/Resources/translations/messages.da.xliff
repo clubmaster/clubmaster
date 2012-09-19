@@ -1,87 +1,47 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" target-language="da" datatype="plaintext" original="file.ext">
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="da" datatype="plaintext" original="message.da.xliff">
     <body>
-      <trans-unit id="1">
-        <source>User</source>
-        <target>Bruger</target>
-      </trans-unit>
-      <trans-unit id="2">
-        <source>Shop</source>
-        <target>Butik</target>
-      </trans-unit>
-      <trans-unit id="3">
-        <source>Order</source>
-        <target>Ordre</target>
-      </trans-unit>
-      <trans-unit id="4">
-        <source>Subscription</source>
-        <target>Abonnement</target>
-      </trans-unit>
-      <trans-unit id="5">
-        <source>Event</source>
-        <target>Begivenhed</target>
-      </trans-unit>
-      <trans-unit id="6">
-        <source>Location</source>
-        <target>Område</target>
-      </trans-unit>
-      <trans-unit id="7">
-        <source>Group</source>
-        <target>Gruppe</target>
-      </trans-unit>
-      <trans-unit id="8">
-        <source>Role</source>
-        <target>Rolle</target>
-      </trans-unit>
-      <trans-unit id="9">
-        <source>Currency</source>
-        <target>Valuta</target>
-      </trans-unit>
-      <trans-unit id="10">
-        <source>Language</source>
-        <target>Sprog</target>
-      </trans-unit>
-      <trans-unit id="11">
-        <source>Ban</source>
-        <target>Ban</target>
-      </trans-unit>
-      <trans-unit id="12">
-        <source>Task</source>
-        <target>Opgave</target>
-      </trans-unit>
-      <trans-unit id="13">
-        <source>Log</source>
-        <target>Log</target>
-      </trans-unit>
-      <trans-unit id="14">
-        <source>Product</source>
-        <target>Produkt</target>
-      </trans-unit>
-      <trans-unit id="15">
-        <source>Category</source>
-        <target>Kategori</target>
-      </trans-unit>
-      <trans-unit id="16">
-        <source>Payment Method</source>
-        <target>Betalingsmetode</target>
-      </trans-unit>
-      <trans-unit id="17">
-        <source>Shipping</source>
-        <target>Fragt</target>
-      </trans-unit>
-      <trans-unit id="18">
-        <source>Special Price</source>
-        <target>Særlig Pris</target>
-      </trans-unit>
-      <trans-unit id="19">
-        <source>Transaction</source>
-        <target>Transaktion</target>
-      </trans-unit>
-      <trans-unit id="20">
-        <source>Account</source>
-        <target>Bogholderi</target>
-      </trans-unit>
+      <trans-unit id="1" approved="yes">
+        <source>User</source> <target state="signed-off">Bruger</target> </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Shop</source> <target state="signed-off">Butik</target> </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>Order</source> <target state="signed-off">Ordre</target> </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Subscription</source> <target state="signed-off">Abonnement</target> </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Event</source> <target state="signed-off">Begivenhed</target> </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>Location</source> <target state="signed-off">Område</target> </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Group</source> <target state="signed-off">Gruppe</target> </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Role</source> <target state="signed-off">Rolle</target> </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>Currency</source> <target state="signed-off">Valuta</target> </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>Language</source> <target state="signed-off">Sprog</target> </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Ban</source> <target state="signed-off">Giv karantæne</target> </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Task</source> <target state="signed-off">Opgave</target> </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>Log</source> <target state="signed-off">Log</target> </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>Product</source> <target state="signed-off">Produkt</target> </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>Category</source> <target state="signed-off">Kategori</target> </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>Payment Method</source> <target state="signed-off">Betalingsmetode</target> </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Shipping</source> <target state="signed-off">Fragt</target> </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Special Price</source> <target state="signed-off">Særlig Pris</target> </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Transaction</source> <target state="signed-off">Transaktion</target> </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Account</source> <target state="signed-off">Konto</target> </trans-unit>
       <trans-unit id="21">
         <source>Personal Information</source>
         <target>Personlig Information</target>
@@ -2526,7 +2486,6 @@
         <source>Need to play at least one set.</source>
         <target>Skal spille mindst et sæt.</target>
       </trans-unit>
-
     </body>
   </file>
 </xliff>
