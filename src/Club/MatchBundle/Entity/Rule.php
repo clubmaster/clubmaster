@@ -44,11 +44,11 @@ class Rule
     private $point_lost;
 
     /**
-     * @var integer $match_same_player
+     * @var integer $same_player
      *
      * @ORM\Column(type="integer")
      */
-    private $match_same_player;
+    private $same_player;
 
     /**
      * @var datetime $created_at
@@ -140,23 +140,23 @@ class Rule
     }
 
     /**
-     * Set match_same_player
+     * Set same_player
      *
-     * @param integer $matchSamePlayer
+     * @param integer $samePlayer
      */
-    public function setMatchSamePlayer($matchSamePlayer)
+    public function setSamePlayer($samePlayer)
     {
-        $this->match_same_player = $matchSamePlayer;
+        $this->same_player = $samePlayer;
     }
 
     /**
-     * Get match_same_player
+     * Get same_player
      *
      * @return integer
      */
-    public function getMatchSamePlayer()
+    public function getSamePlayer()
     {
-        return $this->match_same_player;
+        return $this->same_player;
     }
 
     /**

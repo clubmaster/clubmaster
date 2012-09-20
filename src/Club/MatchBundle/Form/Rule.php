@@ -13,7 +13,7 @@ class Rule extends AbstractType
     $builder->add('name');
     $builder->add('point_won');
     $builder->add('point_lost');
-    $builder->add('match_same_player');
+    $builder->add('same_player');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -35,7 +35,7 @@ class AdminRuleController extends Controller
     $rule = new \Club\RankingBundle\Entity\Rule();
     $rule->setPointWon(2);
     $rule->setPointLost(0);
-    $rule->setRankingSamePlayer(2);
+    $rule->setSamePlayer(2);
 
     $res = $this->process($rule);
 

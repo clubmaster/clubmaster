@@ -44,11 +44,11 @@ class Rule
     private $point_lost;
 
     /**
-     * @var integer $ranking_same_player
+     * @var integer $same_player
      *
      * @ORM\Column(type="integer")
      */
-    private $ranking_same_player;
+    private $same_player;
 
     /**
      * @var datetime $created_at
