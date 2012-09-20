@@ -33,7 +33,7 @@ class MatchController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
 
-    return $this->render('ClubMatchBundle:Ranking:RecentMatches.html.twig', array(
+    return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
       'matches' => $matches
     ));
   }

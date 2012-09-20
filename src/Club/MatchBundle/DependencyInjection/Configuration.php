@@ -27,7 +27,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
           ->scalarNode('enabled')->isRequired()->end()
-          ->scalarNode('league_view_top')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

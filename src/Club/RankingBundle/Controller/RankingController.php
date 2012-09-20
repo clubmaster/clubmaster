@@ -22,7 +22,7 @@ class RankingController extends Controller
 
     return array(
       'rankings' => $rankings,
-      'ranking_view_top' => $this->get('service_container')->getParameter('club_match.ranking_view_top')
+      'ranking_view_top' => $this->get('service_container')->getParameter('club_ranking.ranking_top')
     );
   }
 
