@@ -16,7 +16,7 @@ class RankingRepository extends EntityRepository
   {
     $rank = $this->_em->createQueryBuilder()
       ->select('lt')
-      ->from('ClubRankingBundle:RankingTable', 'lt')
+      ->from('ClubRankingBundle:RankingEntry', 'lt')
       ->where('lt.ranking = :ranking')
       ->orderBy('lt.point', 'DESC')
       ->setMaxResults($limit)

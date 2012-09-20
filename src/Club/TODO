@@ -7,6 +7,7 @@ rename league tables to ranking tables
 set default league_view_top: 5
 
 == NOTES TO LATER ==
+rewrite stuff, in repository classes.. when we use the createquerybuilder, we can do a lot smarter
 style match comments
 rename rankingtable to rankingentry
 event on delete match, to revoke points on ranking

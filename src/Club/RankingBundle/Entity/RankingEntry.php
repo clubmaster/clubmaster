@@ -5,14 +5,14 @@ namespace Club\RankingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Club\RankingBundle\Entity\RankingTable
+ * Club\RankingBundle\Entity\RankingEntry
  *
- * @ORM\Table(name="club_ranking_ranking_table")
- * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\RankingTableRepository")
+ * @ORM\Table(name="club_ranking_ranking_entry")
+ * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\RankingEntryRepository")
  * @ORM\HasLifeCycleCallbacks()
  *
  */
-class RankingTable
+class RankingEntry
 {
     /**
      * @var integer $id

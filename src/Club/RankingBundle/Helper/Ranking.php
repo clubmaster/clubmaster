@@ -17,7 +17,7 @@ class Ranking
     {
         foreach ($match->getMatchTeams() as $match_team) {
 
-            $lt = $this->em->getRepository('ClubRankingBundle:RankingTable')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
+            $lt = $this->em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
 
             if ($match_team == $match->getWinner()) {
                 $lt->setPlayed($lt->getPlayed()+1);
@@ -44,7 +44,7 @@ class Ranking
 
         foreach ($match->getMatchTeams() as $match_team) {
 
-            $lt = $this->em->getRepository('ClubRankingBundle:RankingTable')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
+            $lt = $this->em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
 
             if ($match_team == $match->getWinner()) {
                 $lt->setPlayed($lt->getPlayed()-1);

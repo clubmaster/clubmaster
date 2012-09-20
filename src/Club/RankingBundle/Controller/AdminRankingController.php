@@ -115,7 +115,7 @@ class AdminRankingController extends Controller
           $em->flush();
 
           $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-          $em->getRepository('ClubRankingBundle:RankingTable')->getTeam($league, $team);
+          $em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($league, $team);
           $em->flush();
 
           $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
