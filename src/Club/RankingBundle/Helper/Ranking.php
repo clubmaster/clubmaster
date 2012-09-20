@@ -1,8 +1,8 @@
 <?php
 
-namespace Club\MatchBundle\Helper;
+namespace Club\RankingBundle\Helper;
 
-class League
+class Ranking
 {
   protected $em;
   protected $translator;
@@ -17,17 +17,17 @@ class League
   {
     foreach ($match->getMatchTeams() as $match_team) {
 
-      $lt = $this->em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($match_team->getMatch()->getLeague(), $match_team->getTeam());
+      $lt = $this->em->getRepository('ClubRankingBundle:RankingTable')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
 
       if ($match_team == $match->getWinner()) {
         $lt->setPlayed($lt->getPlayed()+1);
         $lt->setWon($lt->getWon()+1);
-        $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointWon());
+        $lt->setPoint($lt->getPoint()+$match->getRanking()->getRule()->getPointWon());
 
       } else {
         $lt->setPlayed($lt->getPlayed()+1);
         $lt->setLost($lt->getLost()+1);
-        $lt->setPoint($lt->getPoint()+$match->getLeague()->getRule()->getPointLost());
+        $lt->setPoint($lt->getPoint()+$match->getRanking()->getRule()->getPointLost());
 
       }
 
@@ -39,19 +39,19 @@ class League
   {
     foreach ($match->getMatchTeams() as $match_team) {
 
-      $lt = $this->em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($match_team->getMatch()->getLeague(), $match_team->getTeam());
+      $lt = $this->em->getRepository('ClubRankingBundle:RankingTable')->getTeam($match_team->getMatch()->getRanking(), $match_team->getTeam());
 
       if ($match_team == $match->getWinner()) {
         $lt->setPlayed($lt->getPlayed()-1);
         $lt->setWon($lt->getWon()-1);
-        $lt->setPoint($lt->getPoint()-$match->getLeague()->getRule()->getPointWon());
+        $lt->setPoint($lt->getPoint()-$match->getRanking()->getRule()->getPointWon());
 
       } else {
         $lt->setPlayed($lt->getPlayed()-1);
         $lt->setLost($lt->getLost()-1);
 
         if ($lt->getPoint() > 0)
-          $lt->setPoint($lt->getPoint()-$match->getLeague()->getRule()->getPointLost());
+          $lt->setPoint($lt->getPoint()-$match->getRanking()->getRule()->getPointLost());
 
       }
 

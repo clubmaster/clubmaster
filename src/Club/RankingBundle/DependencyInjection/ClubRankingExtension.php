@@ -23,6 +23,7 @@ class ClubRankingExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
         if ($config['enabled']) $loader->load('listener.yml');
 
         $container->setParameter('club_ranking.enabled', $config['enabled']);
