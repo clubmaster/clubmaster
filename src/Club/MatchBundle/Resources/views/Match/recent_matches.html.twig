@@ -16,7 +16,7 @@
   </tfoot>
   <tbody>
     {% for match in matches %}
-      {% include "ClubMatchBundle:Ranking:match.html.twig" %}
+      {% include "ClubMatchBundle:Match:match.html.twig" %}
     {% else %}
     <tr>
       <td colspan="5">{% trans %}No matches has been played.{% endtrans %}</td>

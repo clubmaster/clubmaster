@@ -6,3 +6,9 @@ services:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
       - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
+  club.match.listener.ranking:
+    class: Club\RankingBundle\Listener\Ranking
+    arguments: [@doctrine.orm.entity_manager, @club_ranking.ranking]
+    tags:
+      - { name: kernel.event_listener, event: match.task, method: onMatchTask }
+      - { name: kernel.event_listener, event: match.new, method: onMatchNew }

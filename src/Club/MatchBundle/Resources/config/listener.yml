@@ -5,9 +5,3 @@ services:
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender, priority: 50 }
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender, priority: 50 }
-  club.match.listener.league:
-    class: Club\MatchBundle\Listener\League
-    arguments: [@doctrine.orm.entity_manager, @club_match.league]
-    tags:
-      - { name: kernel.event_listener, event: match.task, method: onMatchTask }
-      - { name: kernel.event_listener, event: match.new, method: onMatchNew }
