@@ -1,7 +1,6 @@
 make a functional test with inserting some matches
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
-rename league tables to ranking tables
 
 == ON ATK DEPLOY ==
 set default league_view_top: 5
