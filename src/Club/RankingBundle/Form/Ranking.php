@@ -1,12 +1,12 @@
 <?php
 
-namespace Club\MatchBundle\Form;
+namespace Club\RankingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class League extends AbstractType
+class Ranking extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -32,12 +32,12 @@ class League extends AbstractType
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'Club\MatchBundle\Entity\League'
+      'data_class' => 'Club\RankingBundle\Entity\Ranking'
     ));
   }
 
   public function getName()
   {
-    return 'league';
+    return 'ranking';
   }
 }

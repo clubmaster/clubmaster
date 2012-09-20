@@ -6,25 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Rule extends AbstractType
+class MatchComment extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('name');
-    $builder->add('point_won');
-    $builder->add('point_lost');
-    $builder->add('same_player');
+      $builder->add('comment', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
-      $resolver->setDefaults(array(
-          'data_class' => 'Club\MatchBundle\Entity\Rule'
-      ));
+    $resolver->setDefaults(array(
+      'data_class' => 'Club\MatchBundle\Entity\MatchComment'
+    ));
   }
 
   public function getName()
   {
-    return 'rule';
+    return 'match_comment';
   }
 }
