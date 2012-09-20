@@ -19,10 +19,10 @@ class AdminRankingController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $leagues = $em->getRepository('ClubRankingBundle:Ranking')->findAll();
+    $rankings = $em->getRepository('ClubRankingBundle:Ranking')->findAll();
 
     return array(
-      'leagues' => $leagues
+      'rankings' => $rankings
     );
   }
 
@@ -37,11 +37,11 @@ class AdminRankingController extends Controller
     $i = new \DateInterval('P1Y');
     $end->add($i);
 
-    $league = new \Club\RankingBundle\Entity\Ranking();
-    $league->setStartDate($start);
-    $league->setEndDate($end);
+    $ranking = new \Club\RankingBundle\Entity\Ranking();
+    $ranking->setStartDate($start);
+    $ranking->setEndDate($end);
 
-    $res = $this->process($league);
+    $res = $this->process($ranking);
 
     if ($res instanceOf RedirectResponse)
 
@@ -59,16 +59,16 @@ class AdminRankingController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $league = $em->find('ClubRankingBundle:Ranking',$id);
+    $ranking = $em->find('ClubRankingBundle:Ranking',$id);
 
-    $res = $this->process($league);
+    $res = $this->process($ranking);
 
     if ($res instanceOf RedirectResponse)
 
       return $res;
 
     return array(
-      'league' => $league,
+      'ranking' => $ranking,
       'form' => $res->createView()
     );
   }
@@ -80,14 +80,14 @@ class AdminRankingController extends Controller
   {
     try {
       $em = $this->getDoctrine()->getEntityManager();
-      $league = $em->find('ClubRankingBundle:Ranking',$this->getRequest()->get('id'));
+      $ranking = $em->find('ClubRankingBundle:Ranking',$this->getRequest()->get('id'));
 
-      $em->remove($league);
+      $em->remove($ranking);
       $em->flush();
 
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete ranking which is already being used.'));
     }
 
     return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
@@ -108,14 +108,14 @@ class AdminRankingController extends Controller
       if ($form->isValid()) {
           $user = $form->get('user')->getData();
 
-          $league = $em->find('ClubRankingBundle:Ranking', $id);
+          $ranking = $em->find('ClubRankingBundle:Ranking', $id);
 
-          $league->addUser($user);
-          $em->persist($league);
+          $ranking->addUser($user);
+          $em->persist($ranking);
           $em->flush();
 
           $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-          $em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($league, $team);
+          $em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($ranking, $team);
           $em->flush();
 
           $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -137,11 +137,11 @@ class AdminRankingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $league = $em->find('ClubRankingBundle:Ranking', $id);
+    $ranking = $em->find('ClubRankingBundle:Ranking', $id);
     $user = $em->find('ClubUserBundle:User', $user_id);
 
-    $league->getUsers()->removeElement($user);
-    $em->persist($league);
+    $ranking->getUsers()->removeElement($user);
+    $em->persist($ranking);
     $em->flush();
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -159,23 +159,23 @@ class AdminRankingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-    $league = $em->find('ClubRankingBundle:Ranking', $id);
+    $ranking = $em->find('ClubRankingBundle:Ranking', $id);
 
     return array(
-      'league' => $league,
+      'ranking' => $ranking,
       'form' => $form->createView()
     );
   }
 
-  protected function process($league)
+  protected function process($ranking)
   {
-    $form = $this->createForm(new \Club\RankingBundle\Form\Ranking(), $league);
+    $form = $this->createForm(new \Club\RankingBundle\Form\Ranking(), $ranking);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($league);
+        $em->persist($ranking);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));

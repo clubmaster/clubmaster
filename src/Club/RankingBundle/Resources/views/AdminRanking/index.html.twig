@@ -4,7 +4,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_match_adminranking_new') }}">{% trans %}Create ranking{% endtrans %}</a></li>
+            <li><a href="{{ path('club_ranking_adminranking_new') }}">{% trans %}Create ranking{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
@@ -26,15 +26,15 @@
     </tr>
   </tfoot>
   <tbody>
-  {% for league in leagues %}
+  {% for ranking in rankings %}
     <tr>
-      <td>{{ league.name }}</td>
-      <td>{% if league.inviteOnly %}Invite only{% else %}{% trans %}Open for all{% endtrans %}{% endif %}</td>
-      <td>{{ league.createdAt|club_datetime }}</td>
+      <td>{{ ranking.name }}</td>
+      <td>{% if ranking.inviteOnly %}Invite only{% else %}{% trans %}Open for all{% endtrans %}{% endif %}</td>
+      <td>{{ ranking.createdAt|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_match_adminranking_edit', { 'id':league.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminranking_delete', { 'id':league.id })} %}
-        {% include "ClubLayoutBundle:Default:players_link.html.twig" with {'url':path('club_match_adminranking_users', { 'id':league.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_ranking_adminranking_edit', { 'id':ranking.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_ranking_adminranking_delete', { 'id':ranking.id })} %}
+        {% include "ClubLayoutBundle:Default:players_link.html.twig" with {'url':path('club_ranking_adminranking_users', { 'id':ranking.id })} %}
       </td>
     </tr>
   {% else %}
