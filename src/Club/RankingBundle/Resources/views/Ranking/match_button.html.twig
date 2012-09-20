@@ -1,8 +1,8 @@
-  {% if is_granted('IS_AUTHENTICATED_FULLY') and league.isOpen %}
-  {% if league.inviteOnly and league.canPlay(app.user) %}
+  {% if is_granted('IS_AUTHENTICATED_FULLY') and ranking.isOpen %}
+  {% if ranking.inviteOnly and ranking.canPlay(app.user) %}
 
-  <p><a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
-  {% elseif not league.inviteOnly  %}
-    <p><a href="{{ path('club_match_leaguematch_new', {'league_id':league.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
+  <p><a href="{{ path('club_ranking_rankingmatch_new', {'ranking_id':ranking.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
+  {% elseif not ranking.inviteOnly  %}
+    <p><a href="{{ path('club_ranking_rankingmatch_new', {'ranking_id':ranking.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
   {% endif %}
   {% endif %}
