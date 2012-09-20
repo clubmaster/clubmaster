@@ -12,3 +12,4 @@ services:
     tags:
       - { name: kernel.event_listener, event: match.task, method: onMatchTask }
       - { name: kernel.event_listener, event: match.new, method: onMatchNew }
+      - { name: kernel.event_listener, event: match.delete, method: onMatchDelete }

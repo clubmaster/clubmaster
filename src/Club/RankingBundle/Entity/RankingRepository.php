@@ -42,4 +42,16 @@ class RankingRepository extends EntityRepository
       ->getQuery()
       ->getOneOrNullResult();
   }
+
+  public function getByMatch(\Club\MatchBundle\Entity\Match $match)
+  {
+      $ranking = $this->createQueryBuilder('r')
+          ->innerJoin('r.matches', 'm', 'with', 'm.id = :match_id')
+          ->setParameter('match_id', $match->getId())
+          ->getQuery()
+          ->getOneOrNullResult();
+
+      return $ranking;
+  }
+
 }

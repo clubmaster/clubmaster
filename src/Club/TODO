@@ -7,6 +7,9 @@ rename league tables to ranking tables
 set default league_view_top: 5
 
 == NOTES TO LATER ==
+style match comments
+rename rankingtable to rankingentry
+event on delete match, to revoke points on ranking
 enter result in cup
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed

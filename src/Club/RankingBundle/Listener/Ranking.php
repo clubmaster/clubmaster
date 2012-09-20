@@ -13,6 +13,11 @@ class Ranking
     $this->club_ranking = $club_ranking;
   }
 
+  public function onMatchDelete(\Club\MatchBundle\Event\FilterMatchEvent $event)
+  {
+      $this->club_ranking->revokePoint($event->getMatch());
+  }
+
   public function onMatchNew(\Club\MatchBundle\Event\FilterMatchEvent $event)
   {
     $this->processMatch($event->getMatch());
