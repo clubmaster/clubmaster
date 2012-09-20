@@ -1,3 +1,8 @@
+club_ranking:
+    resource: "@ClubRankingBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 club_weather:
     resource: "@ClubWeatherBundle/Controller/"
     type:     annotation

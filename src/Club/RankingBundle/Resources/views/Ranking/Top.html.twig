@@ -1,0 +1,30 @@
+<h4>{% trans %}Ranking{% endtrans %}</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Rank{% endtrans %}</th>
+      <th>{% trans %}Team{% endtrans %}</th>
+      <th>{% trans %}Played{% endtrans %}</th>
+      <th>{% trans %}Won{% endtrans %}</th>
+      <th>{% trans %}Lost{% endtrans %}</th>
+      <th>{% trans %}Won %{% endtrans %}</th>
+      <th>{% trans %}Point{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="7">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    {% set pos = 1 %}
+    {% for team in rank %}
+      {% include "ClubMatchBundle:Ranking:table_entry.html.twig" %}
+      {% set pos = pos+1 %}
+    {% else %}
+    <tr>
+      <td colspan="7">{% trans %}No teams in the league.{% endtrans %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

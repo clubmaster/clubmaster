@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\MatchBundle\Controller;
+namespace Club\RankingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/admin/match/ranking")
+ * @Route("/admin/ranking")
  */
 class AdminRankingController extends Controller
 {
@@ -19,7 +19,7 @@ class AdminRankingController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $leagues = $em->getRepository('ClubMatchBundle:League')->findAll();
+    $leagues = $em->getRepository('ClubRankingBundle:Ranking')->findAll();
 
     return array(
       'leagues' => $leagues
@@ -37,7 +37,7 @@ class AdminRankingController extends Controller
     $i = new \DateInterval('P1Y');
     $end->add($i);
 
-    $league = new \Club\MatchBundle\Entity\League();
+    $league = new \Club\RankingBundle\Entity\Ranking();
     $league->setStartDate($start);
     $league->setEndDate($end);
 
@@ -59,7 +59,7 @@ class AdminRankingController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $league = $em->find('ClubMatchBundle:League',$id);
+    $league = $em->find('ClubRankingBundle:Ranking',$id);
 
     $res = $this->process($league);
 
@@ -80,7 +80,7 @@ class AdminRankingController extends Controller
   {
     try {
       $em = $this->getDoctrine()->getEntityManager();
-      $league = $em->find('ClubMatchBundle:League',$this->getRequest()->get('id'));
+      $league = $em->find('ClubRankingBundle:Ranking',$this->getRequest()->get('id'));
 
       $em->remove($league);
       $em->flush();
@@ -90,7 +90,7 @@ class AdminRankingController extends Controller
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_match_adminranking_index'));
+    return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
   }
 
   /**
@@ -108,14 +108,14 @@ class AdminRankingController extends Controller
       if ($form->isValid()) {
           $user = $form->get('user')->getData();
 
-          $league = $em->find('ClubMatchBundle:League', $id);
+          $league = $em->find('ClubRankingBundle:Ranking', $id);
 
           $league->addUser($user);
           $em->persist($league);
           $em->flush();
 
           $team = $em->getRepository('ClubMatchBundle:Team')->getTeamByUser($user);
-          $em->getRepository('ClubMatchBundle:LeagueTable')->getTeam($league, $team);
+          $em->getRepository('ClubRankingBundle:RankingTable')->getTeam($league, $team);
           $em->flush();
 
           $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -125,7 +125,7 @@ class AdminRankingController extends Controller
           }
       }
 
-      return $this->redirect($this->generateUrl('club_match_adminranking_users', array(
+      return $this->redirect($this->generateUrl('club_ranking_adminranking_users', array(
           'id' => $id
       )));
   }
@@ -137,7 +137,7 @@ class AdminRankingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $league = $em->find('ClubMatchBundle:League', $id);
+    $league = $em->find('ClubRankingBundle:Ranking', $id);
     $user = $em->find('ClubUserBundle:User', $user_id);
 
     $league->getUsers()->removeElement($user);
@@ -146,7 +146,7 @@ class AdminRankingController extends Controller
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_match_adminranking_users', array(
+    return $this->redirect($this->generateUrl('club_ranking_adminranking_users', array(
       'id' => $id
     )));
   }
@@ -159,7 +159,7 @@ class AdminRankingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-    $league = $em->find('ClubMatchBundle:League', $id);
+    $league = $em->find('ClubRankingBundle:Ranking', $id);
 
     return array(
       'league' => $league,
@@ -169,7 +169,7 @@ class AdminRankingController extends Controller
 
   protected function process($league)
   {
-    $form = $this->createForm(new \Club\MatchBundle\Form\League(), $league);
+    $form = $this->createForm(new \Club\RankingBundle\Form\Ranking(), $league);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
@@ -180,7 +180,7 @@ class AdminRankingController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_match_adminranking_index'));
+        return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
       }
     }
 

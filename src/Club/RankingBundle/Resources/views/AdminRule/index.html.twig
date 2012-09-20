@@ -1,0 +1,51 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_match_adminrule_new') }}">{% trans %}Create rule{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Name{% endtrans %}</th>
+      <th>{% trans %}Point won{% endtrans %}</th>
+      <th>{% trans %}Point lost{% endtrans %}</th>
+      <th>{% trans %}Match same player{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+      <th class="action">{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="6">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for rule in rules %}
+    <tr>
+      <td>{{ rule.name }}</td>
+      <td>{{ rule.pointWon }}</td>
+      <td>{{ rule.pointLost }}</td>
+      <td>{{ rule.matchSamePlayer }}</td>
+      <td>{{ rule.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_match_adminrule_edit', { 'id':rule.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminrule_delete', { 'id':rule.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="6">{% trans %}There are no rules.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

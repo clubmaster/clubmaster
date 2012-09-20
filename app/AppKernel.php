@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Club\TournamentBundle\ClubTournamentBundle(),
             new Club\NewsBundle\ClubNewsBundle(),
             new Club\WeatherBundle\ClubWeatherBundle(),
+            new Club\RankingBundle\ClubRankingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,24 @@
+{% extends "ClubMatchBundle::base.html.twig" %}
+
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_match_match_new') }}">{% trans %}Insert match{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+
+{% for league in leagues %}
+  <h3><a href="{{ path('club_match_ranking_show', {'id':league.id}) }}">{{ league.name }}</a></h3>
+  {% render "ClubMatchBundle:Ranking:Top" with {'id':league.id, 'limit':league_view_top} %}
+
+{% else %}
+  <p class="msg info">{% trans %}There are no leagues.{% endtrans %}</p>
+{% endfor %}
+
+{% endblock %}

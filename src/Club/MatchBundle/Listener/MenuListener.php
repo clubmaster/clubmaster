@@ -19,13 +19,7 @@ class MenuListener
   {
     $menu[100] = array(
       'name' => $this->translator->trans('Matches'),
-      'route' => $this->router->generate('club_match_match_index'),
-      'items' => array(
-        array(
-          'name' => 'Ranking',
-          'route' => $this->router->generate('club_match_ranking_index')
-        )
-      )
+      'route' => $this->router->generate('club_match_match_index')
     );
 
     $event->appendMenu($menu);
@@ -36,34 +30,10 @@ class MenuListener
       if ($this->security_context->isGranted('ROLE_MATCH_ADMIN')) {
           $menu[23] = array(
               'header' => $this->translator->trans('Match'),
-              'image' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
-              'items' => array(
-                  array(
-                      'name' => $this->translator->trans('Ranking'),
-                      'route' => $this->router->generate('club_match_adminranking_index'),
-                  ),
-                  array(
-                      'name' => $this->translator->trans('Rule'),
-                      'route' => $this->router->generate('club_match_adminrule_index')
-                  )
-              )
+              'image' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png'
           );
 
           $event->appendMenu($menu);
       }
-  }
-
-  public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
-  {
-      $menu = array();
-
-      $menu[22] = array(
-          'name' => $this->translator->trans('Ranking'),
-          'route' => $this->router->generate('club_match_ranking_index'),
-          'image' => 'bundles/clublayout/images/icons/32x32/medal_gold_1.png',
-          'text' => 'Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.'
-      );
-
-      $event->appendMenu($menu);
   }
 }
