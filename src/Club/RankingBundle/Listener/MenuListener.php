@@ -17,7 +17,6 @@ class MenuListener
 
     public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        return;
         $menu = array(
             'header' => $this->translator->trans('Matches'),
             'items' => array(
@@ -28,7 +27,7 @@ class MenuListener
             )
         );
 
-        $event->appendMenu($menu);
+        $event->appendItem($menu);
     }
 
     public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
@@ -48,7 +47,7 @@ class MenuListener
                 )
             );
 
-            $event->appendMenu($menu);
+            $event->appendItem($menu);
         }
     }
 
