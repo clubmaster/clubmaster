@@ -41,7 +41,10 @@ club_event:
 
 club_match:
     enabled: true
-    league_view_top: 4
+
+club_ranking:
+    enabled: true
+    ranking__top: 4
 
 club_shop:
     view_shop: true
