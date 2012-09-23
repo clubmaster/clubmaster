@@ -40,6 +40,7 @@ class AdminRankingController extends Controller
     $ranking = new \Club\RankingBundle\Entity\Ranking();
     $ranking->setStartDate($start);
     $ranking->setEndDate($end);
+    $ranking->setGameSet(3);
 
     $res = $this->process($ranking);
 
