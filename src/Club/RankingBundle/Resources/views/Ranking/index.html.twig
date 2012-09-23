@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+{% render "ClubMatchBundle:Match:Recent" with {'limit':7} %}
 
 {% for ranking in rankings %}
   <h3><a href="{{ path('club_ranking_ranking_show', {'id':ranking.id}) }}">{{ ranking.name }}</a></h3>
