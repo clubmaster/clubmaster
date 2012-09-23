@@ -7,7 +7,7 @@
         <ul class="nav">
             <li><a href="{{ path('club_match_matchcomment_new', { 'match_id':match.id }) }}">{% trans %}Add comment{% endtrans %}</a></li>
             {% if match.isOwner(app.user) %}
-            <li><a href="{{ path('club_match_match_delete', { 'id':match.id }) }}">{% trans %}Delete match{% endtrans %}</a></li>
+            <li><a href="{{ path('club_match_match_delete', { 'id':match.id }) }}" onclick="return confirm('{% trans %}Are you sure?{% endtrans %}')">{% trans %}Delete match{% endtrans %}</a></li>
             {% endif %}
         </ul>
     </div>
