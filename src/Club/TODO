@@ -1,3 +1,4 @@
+reintroduce match processed, but on ranking level
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 
@@ -6,7 +7,6 @@ match integration facebook, share match
 add custom fields on profiles
 batch assign users to a league
 add admin event log on user page
-reintroduce match processed, but on ranking level
 merge users
 delete users
 enter result in cup

@@ -1,6 +1,7 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
 {% block pagenav %}
+{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
@@ -8,6 +9,7 @@
         </ul>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block body %}
