@@ -38,6 +38,26 @@ class MatchControllerTest extends WebTestCase
             ));
             $crawler = $this->client->submit($form);
             $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+
+            $comment = (rand(0,1)) ? true : false;
+
+            if ($comment) {
+                $crawler = $this->client->followRedirect();
+                $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+                $link = $crawler->selectLink('Comment')->link();
+                $crawler = $this->client->click($link);
+
+                $form = $crawler->selectButton('Save')->form();
+                $crawler = $this->client->submit($form);
+                $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+                $form = $crawler->selectButton('Save')->form(array(
+                    'match_comment[comment]' => 'Lorem ipsum..'
+                ));
+                $crawler = $this->client->submit($form);
+                $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+            }
         }
     }
 }
