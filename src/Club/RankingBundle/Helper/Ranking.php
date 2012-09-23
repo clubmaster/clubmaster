@@ -6,16 +6,14 @@ class Ranking
 {
     protected $em;
     protected $translator;
-    protected $club_match;
 
     protected $ranking;
     protected $match;
 
-    public function __construct($em, $translator, $club_match)
+    public function __construct($em, $translator)
     {
         $this->em = $em;
         $this->translator = $translator;
-        $this->club_match = $club_match;
     }
 
     public function addPoint(\Club\MatchBundle\Entity\Match $match)
@@ -73,11 +71,11 @@ class Ranking
         }
     }
 
-    public function validateMatch(\Club\RankingBundle\Entity\Ranking $ranking)
+    public function validateMatch(\Club\RankingBundle\Entity\Ranking $ranking, $club_match)
     {
         try {
             $this->ranking = $ranking;
-            $this->match = $this->club_match->getMatch();
+            $this->match = $club_match->getMatch();
 
             $this->validateGender($this->match);
             if ($ranking->getInviteOnly()) {
@@ -88,31 +86,34 @@ class Ranking
                 }
             }
 
-            //$this->validateSets();
+            $this->validateSets($this->match);
             //$this->validateRules();
 
         } catch (\Exception $e) {
-            $this->club_match->setError($e->getMessage());
+            $club_match->setError($e->getMessage());
         }
     }
 
     private function validateSets(\Club\MatchBundle\Entity\Match $match)
     {
+        $best_of = $this->ranking->getGameSet();
+        $set = count(preg_split("/ /", $match->getDisplayResult()));
+
+        if ($set < $best_of/2)
+            throw new \Exception('You have not played enough sets.');
     }
 
     private function validateGender(\Club\MatchBundle\Entity\Match $match)
     {
-        if (!$this->ranking->getGender()) {
-            return;
+        if (!$this->ranking->getGender()) return;
 
-            foreach ($match->getMatchTeams() as $team) {
-                foreach ($team->getTeam()->getUsers() as $user) {
+        foreach ($match->getMatchTeams() as $team) {
+            foreach ($team->getTeam()->getUsers() as $user) {
 
-                    if ($user->getProfile()->getGender() != $this->ranking->getGender()) {
-                        throw new \Exception($this->translator->trans('Only %gender% is allowed to play in this league.', array(
-                            '%gender%' => $this->ranking->getGender()
-                        )));
-                    }
+                if ($user->getProfile()->getGender() != $this->ranking->getGender()) {
+                    throw new \Exception($this->translator->trans('Only %gender% is allowed to play in this league.', array(
+                        '%gender%' => $this->ranking->getGender()
+                    )));
                 }
             }
         }

@@ -32,7 +32,7 @@ class MatchController extends Controller
             if ($form->isValid()) {
 
                 $this->get('club_match.match')->bindMatch($form->getData());
-                $this->get('club_ranking.ranking')->validateMatch($ranking);
+                $this->get('club_ranking.ranking')->validateMatch($ranking, $this->get('club_match.match'));
 
                 if ($this->get('club_match.match')->isValid()) {
                     $ranking->addMatch($this->get('club_match.match')->getMatch());
