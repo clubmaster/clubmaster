@@ -5,7 +5,6 @@ when upgrading, set last_login_time to when they bought last subscription
 
 == NOTES TO LATER ==
 reintroduce match processed, but on ranking level
-add helper text to ranking rule form
 merge users
 delete users
 enter result in cup
