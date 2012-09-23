@@ -5,6 +5,7 @@ when upgrading, set last_login_time to when they bought last subscription
 set default league_view_top: 5
 
 == NOTES TO LATER ==
+improve design on match comment
 merge users
 delete users
 style match comments

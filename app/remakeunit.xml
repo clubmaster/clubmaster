@@ -18,6 +18,7 @@
             <directory>../src/*/UserBundle/Tests/Installer</directory>
             <directory>../src/*/ShopBundle/Tests/Installer</directory>
             <directory>../src/*/MatchBundle/Tests/Installer</directory>
+            <directory>../src/*/WelcomeBundle/Tests/Installer</directory>
             <file>src/Club/TeamBundle/Tests/Installer/0AdminTeamControllerTest.php</file>
             <file>src/Club/TeamBundle/Tests/Installer/1AdminScheduleControllerTest.php</file>
         </testsuite>
