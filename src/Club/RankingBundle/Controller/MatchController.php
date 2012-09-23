@@ -35,12 +35,9 @@ class MatchController extends Controller
                 $this->get('club_ranking.ranking')->validateMatch($ranking);
 
                 if ($this->get('club_match.match')->isValid()) {
+                    $ranking->addMatch($this->get('club_match.match')->getMatch());
                     $this->get('club_match.match')->save();
 
-                    $ranking->addMatch($this->get('club_match.match')->getMatch());
-
-                    $em->persist($ranking);
-                    $em->flush();
                     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                     return $this->redirect($this->generateUrl('club_ranking_ranking_show', array(
