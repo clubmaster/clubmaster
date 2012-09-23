@@ -43,7 +43,9 @@ class MatchController extends Controller
                     $em->flush();
                     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-                    return $this->redirect($this->generateUrl('club_ranking_ranking_index'));
+                    return $this->redirect($this->generateUrl('club_ranking_ranking_show', array(
+                        'id' => $ranking->getId()
+                    )));
                 } else {
                     $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
                 }

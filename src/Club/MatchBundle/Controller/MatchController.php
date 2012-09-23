@@ -13,25 +13,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class MatchController extends Controller
 {
     /**
-     * @Route("", defaults={"page" = 1})
-     * @Route("/{page}", name="club_match_offset")
-     */
-    public function indexAction($page)
-    {
-        $results = 35;
-        $em = $this->getDoctrine()->getEntityManager();
-        $paginator = $em->getRepository('ClubMatchBundle:Match')->getPaginator($results, $page);
-
-        $nav = $this->get('club_paginator.paginator')
-            ->init($results, count($paginator), $page, 'club_match_offset');
-
-        return $this->render('ClubMatchBundle:Match:index.html.twig', array(
-            'matches' => $paginator,
-            'nav' => $nav
-        ));
-    }
-
-    /**
      * @Route("/recent/{limit}")
      */
     public function recentAction($limit)
@@ -114,5 +95,24 @@ class MatchController extends Controller
         return array(
             'match' => $match
         );
+    }
+
+    /**
+     * @Route("", defaults={"page" = 1})
+     * @Route("/{page}", name="club_match_offset")
+     */
+    public function indexAction($page)
+    {
+        $results = 35;
+        $em = $this->getDoctrine()->getEntityManager();
+        $paginator = $em->getRepository('ClubMatchBundle:Match')->getPaginator($results, $page);
+
+        $nav = $this->get('club_paginator.paginator')
+            ->init($results, count($paginator), $page, 'club_match_offset');
+
+        return $this->render('ClubMatchBundle:Match:index.html.twig', array(
+            'matches' => $paginator,
+            'nav' => $nav
+        ));
     }
 }

@@ -19,7 +19,7 @@
   <tbody>
     {% set pos = 1 %}
     {% for team in rank %}
-      {% include "ClubMatchBundle:Ranking:table_entry.html.twig" %}
+      {% include "ClubRankingBundle:Ranking:table_entry.html.twig" %}
       {% set pos = pos+1 %}
     {% else %}
     <tr>

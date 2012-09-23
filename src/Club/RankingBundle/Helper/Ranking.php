@@ -40,6 +40,7 @@ class Ranking
             }
 
             $this->em->persist($lt);
+            $this->em->flush();
         }
     }
 
