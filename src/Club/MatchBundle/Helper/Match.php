@@ -22,59 +22,37 @@ class Match
         $this->event_dispatcher = $container->get('event_dispatcher');
     }
 
-    public function bindMatch(array $data, \Club\MatchBundle\Entity\League $league=null)
+    public function bindMatch(array $data)
     {
         $teams = 2;
 
         $this->match = new \Club\MatchBundle\Entity\Match();
-        if ($league) $this->match->setLeague($league);
 
         $display = array();
         for ($i = 0; $i < $teams; $i++) {
 
-            try {
-                $user = $data['user'.$i];
-                if ($league) $this->validateGender($user);
-
-            } catch (\Exception $e) {
-                return;
-            }
+            $user = $data['user'.$i];
             if (!$user) {
                 $this->setError($this->translator->trans('No such user'));
-
                 return;
-            }
-
-            if ($league && $league->getInviteOnly()) {
-                if (!$league->canPlay($user)) {
-                    $this->setError($this->translator->trans('%user% is not allowed to play in this league.', array(
-                        '%user%' => $user->getName()
-                    )));
-
-                    return;
-                }
             }
 
             $team = $this->getTeam($user);
             $match_team = $this->addTeam($team);
 
-            if ($league) {
-                $sets = $league->getGameSet();
+            if (isset($data['user0set4']) && strlen($data['user0set4'])) {
+                $sets = 5;
+            } elseif (isset($data['user0set3']) && strlen($data['user0set3'])) {
+                $sets = 5;
+            } elseif (isset($data['user0set2']) && strlen($data['user0set2'])) {
+                $sets = 3;
+            } elseif (isset($data['user0set1']) && strlen($data['user0set1'])) {
+                $sets = 3;
+            } elseif (isset($data['user0set0']) && strlen($data['user0set0'])) {
+                $sets = 1;
             } else {
-                if (strlen($data['user0set4'])) {
-                    $sets = 5;
-                } elseif (strlen($data['user0set3'])) {
-                    $sets = 5;
-                } elseif (strlen($data['user0set2'])) {
-                    $sets = 3;
-                } elseif (strlen($data['user0set1'])) {
-                    $sets = 3;
-                } elseif (strlen($data['user0set0'])) {
-                    $sets = 1;
-                } else {
-                    $this->setError($this->translator->trans('Need to play at least one set.'));
-                    return;
-                }
+                $this->setError($this->translator->trans('Need to play at least one set.'));
+                return;
             }
 
             for ($j = 0; $j < $sets; $j++) {
@@ -93,10 +71,6 @@ class Match
             return;
         }
 
-        if ($league && !$this->validateRules()) {
-            return;
-        }
-
         $str = $this->buildResultString($display);
         $this->match->setDisplayResult($str);
 
@@ -111,58 +85,6 @@ class Match
 
         $event = new \Club\MatchBundle\Event\FilterMatchEvent($this->match);
         $this->event_dispatcher->dispatch(\Club\MatchBundle\Event\Events::onMatchNew, $event);
-    }
-
-    private function validateGender(\Club\UserBundle\Entity\User $user)
-    {
-        if ($this->match->getLeague()->getGender()) {
-
-            $match_gender = $this->match->getLeague()->getGender();
-
-            if ($user->getProfile()->getGender() != $match_gender) {
-                $this->setError($this->translator->trans('Only %gender% is allowed to play in this league.', array(
-                    '%gender%' => $match_gender
-                )));
-
-                throw new \Exception();
-            }
-        }
-    }
-
-    private function validateRules()
-    {
-        $qb = $this->em->createQueryBuilder()
-            ->select('count(mt.team)')
-            ->from('ClubMatchBundle:MatchTeam', 'mt')
-            ->leftJoin('mt.match', 'm')
-            ->where('m.league = :league')
-            ->andWhere('mt.team = ?1 OR mt.team = ?2')
-            ->groupBy('mt.match')
-            ->having('count(mt.team) = 2')
-            ->setParameter('league', $this->match->getLeague()->getId());
-
-        $i = 0;
-        foreach ($this->match->getMatchTeams() as $match_team) {
-            $i++;
-            $qb
-                ->setParameter($i, $match_team->getTeam()->getId());
-        }
-
-        $matches = $qb
-            ->getQuery()
-            ->getResult();
-
-        $total = $this->match->getLeague()->getRule()->getSamePlayer();
-
-        if (count($matches) >= $total) {
-            $this->setError($this->translator->trans('Teams has already played %count% matches against each other.', array(
-                '%count%' => count($matches)
-            )));
-
-            return false;
-        }
-
-        return true;
     }
 
     private function validateSets($display, $sets)

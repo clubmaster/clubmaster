@@ -1,45 +1,10 @@
 {% extends "ClubMatchBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}<div class="page-header"><h1>{% trans %}Match Result{% endtrans %}</h1></div>{% endblock %}
 
-<h2>{% trans %}Other match{% endtrans %}</h2>
+{% block body %}
 <p>{% trans %}This match is just to keep track of your wins and losses, it will not end up on any ranking list.{% endtrans %}</p>
 
-<form method="post" action="{{ path('club_match_match_new') }}" class="form-horizontal">
-
-  <!-- Input Text -->
-    <legend>{% trans %}Insert match{% endtrans %}</legend>
-
-    {{ form_row(form.user0, {'a': false}) }}
-    {{ form_row(form.user1, {'a': false}) }}
-
-    <div class="control-group">
-        {{ form_label(form.user0set0) }}
-        <div class="controls">
-            {% if sets > 0 %}{{ form_widget(form.user0set0, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 1 %}{{ form_widget(form.user0set1, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 2 %}{{ form_widget(form.user0set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 3 %}{{ form_widget(form.user0set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 4 %}{{ form_widget(form.user0set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            <span class="help-block">Info: Insert match result for user.</span>
-        </div>
-    </div>
-
-    <div class="control-group">
-        {{ form_label(form.user1set0) }}
-        <div class="controls">
-            {% if sets > 0 %}{{ form_widget(form.user1set0, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 1 %}{{ form_widget(form.user1set1, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 2 %}{{ form_widget(form.user1set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 3 %}{{ form_widget(form.user1set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            {% if sets > 4 %}{{ form_widget(form.user1set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            <span class="help-block">Info: Insert match result for user.</span>
-        </div>
-    </div>
-
-  {{ form_rest(form) }}
-
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-</form>
+{% include "ClubMatchBundle:Match:match_form.html.twig" with {'path':path('club_match_match_new')} %}
 
 {% endblock %}

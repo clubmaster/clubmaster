@@ -1,10 +1,9 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
+{% block header %}<div class="page-header"><h1>{% trans with {'%name%':ranking.name} %}Ranking, %name%{% endtrans %}</h1></div>{% endblock %}
+
 {% block body %}
-
 {% include "ClubRankingBundle:Ranking:match_button.html.twig" %}
-
-<h3><a href="{{ path('club_match_ranking_show', {'id':ranking.id}) }}">{{ ranking.name }}</a></h3>
 
 <h4>{% trans %}Ranking info{% endtrans %}</h4>
 <table class="table">
@@ -40,7 +39,7 @@
   </tbody>
 </table>
 
-{% render "ClubMatchBundle:Ranking:Top" with {'id':ranking.id, 'limit':50} %}
-{% render "ClubMatchBundle:Ranking:RecentMatches" with {'id':ranking.id, 'limit':50} %}
+{% render "ClubRankingBundle:Ranking:Top" with {'id':ranking.id, 'limit':50} %}
+{% render "ClubRankingBundle:Ranking:RecentMatches" with {'id':ranking.id, 'limit':50} %}
 
 {% endblock %}

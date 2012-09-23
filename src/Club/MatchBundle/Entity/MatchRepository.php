@@ -30,11 +30,6 @@ class MatchRepository extends EntityRepository
       ->orderBy('m.id', 'DESC')
       ->setMaxResults($limit);
 
-    if ($league) {
-      $qb->where('m.league = :league')
-      ->setParameter('league', $league->getId());
-    }
-
     return $qb
       ->getQuery()
       ->getResult();

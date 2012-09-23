@@ -1,8 +1,13 @@
-  {% if is_granted('IS_AUTHENTICATED_FULLY') and ranking.isOpen %}
-  {% if ranking.inviteOnly and ranking.canPlay(app.user) %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') and ranking.isOpen %}
 
-  <p><a href="{{ path('club_ranking_rankingmatch_new', {'ranking_id':ranking.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
-  {% elseif not ranking.inviteOnly  %}
-    <p><a href="{{ path('club_ranking_rankingmatch_new', {'ranking_id':ranking.id}) }}" class="btn btn-primary">{% trans %}Insert match{% endtrans %}</a></p>
-  {% endif %}
-  {% endif %}
+{% if (ranking.inviteOnly and ranking.canPlay(app.user)) or not ranking.inviteOnly %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_ranking_match_new', {'ranking_id':ranking.id}) }}">{% trans %}Insert match{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+
+{% endif %}
