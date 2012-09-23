@@ -238,7 +238,7 @@ class AdminMessageController extends Controller
       ->select('f')
       ->from('ClubUserBundle:Filter', 'f')
       ->where('f.user = :user')
-      ->setParameter('user', $this->get('security.context')->getToken()->getUser());
+      ->setParameter('user', $this->getUser());
 
     $form = $this->createFormBuilder($message)
       ->add('filters', 'entity', array(
@@ -479,7 +479,7 @@ class AdminMessageController extends Controller
     $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
     $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
     $message->setType('mail');
-    $message->setUser($this->get('security.context')->getToken()->getUser());
+    $message->setUser($this->getUser());
 
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 

@@ -37,7 +37,7 @@ class AdminTickerController extends Controller
     $i = new \DateInterval('P1Y');
     $end->add($i);
 
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $ticker = new \Club\NewsBundle\Entity\Ticker();
     $ticker->setUser($user);
 

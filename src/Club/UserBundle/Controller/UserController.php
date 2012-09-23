@@ -48,7 +48,7 @@ class UserController extends Controller
    */
   public function resetAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $form = $this->createFormBuilder($user)
       ->add('password', 'repeated', array(
         'type' => 'password',
@@ -86,7 +86,7 @@ class UserController extends Controller
 
   protected function buildUser()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $em = $this->getDoctrine()->getEntityManager();
 
     if (!$user->getProfile()->getProfileAddress()) {

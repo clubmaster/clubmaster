@@ -50,8 +50,8 @@ class MatchController extends Controller
 
   public function getForm($res)
   {
-    $res['user0'] = $this->get('security.context')->getToken()->getUser()->getName();
-    $res['user0_id'] = $this->get('security.context')->getToken()->getUser()->getId();
+    $res['user0'] = $this->getUser()->getName();
+    $res['user0_id'] = $this->getUser()->getId();
 
     $form = $this->createFormBuilder($res)
       ->add('user0_id', 'hidden')

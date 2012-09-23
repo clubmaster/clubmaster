@@ -23,7 +23,7 @@ class EventController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
 
     $event = $em->find('ClubEventBundle:Event', $id);
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $attend = new \Club\EventBundle\Entity\Attend();
     $attend->setUser($user);
@@ -48,11 +48,11 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
       'event' => $id,
-      'user' => $this->get('security.context')->getToken()->getUser()->getId()
+      'user' => $this->getUser()->getId()
     ));
 
     $em->remove($attend);

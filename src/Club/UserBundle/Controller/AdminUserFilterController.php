@@ -119,7 +119,7 @@ class AdminUserFilterController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
-            $this->get('security.context')->getToken()->getUser()
+            $this->getUser()
         );
 
         return $filter;

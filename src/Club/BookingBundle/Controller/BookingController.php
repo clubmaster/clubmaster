@@ -36,7 +36,7 @@ class BookingController extends Controller
         $guest = $this->getRequest()->get('guest') ? 1 : 0;
 
         if ($guest) {
-            $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
+            $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
         } else {
             $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
             $form->bind($this->getRequest());
@@ -54,7 +54,7 @@ class BookingController extends Controller
                 )));
             }
 
-            $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $user);
+            $this->get('club_booking.booking')->bindUser($interval, $date, $this->getUser(), $user);
         }
 
         if (!$this->get('club_booking.booking')->isValid()) {

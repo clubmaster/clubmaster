@@ -267,7 +267,7 @@ class CheckoutController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $carts = $em->getRepository('ClubShopBundle:Cart')->findBy(array(
-      'user' => $this->get('security.context')->getToken()->getUser()->getId()
+      'user' => $this->getUser()->getId()
     ));
     foreach ($carts as $cart) {
       $em->remove($cart);

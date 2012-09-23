@@ -19,7 +19,7 @@ class UserSettingController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $settings = $em->getRepository('ClubUserBundle:UserSetting')->getUserArray($this->get('security.context')->getToken()->getUser());
+    $settings = $em->getRepository('ClubUserBundle:UserSetting')->getUserArray($this->getUser());
     $form = $this->getForm($settings);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -43,7 +43,7 @@ class UserSettingController extends Controller
   protected function sync(array $data)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     foreach ($data as $key=>$value) {
       $attr = $em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(

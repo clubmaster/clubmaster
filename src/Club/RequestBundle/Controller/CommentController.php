@@ -18,7 +18,7 @@ class CommentController extends Controller
   public function newAction(\Club\RequestBundle\Entity\Request $request)
   {
     $comment = new \Club\RequestBundle\Entity\RequestComment();
-    $comment->setUser($this->get('security.context')->getToken()->getUser());
+    $comment->setUser($this->getUser());
     $comment->setRequest($request);
 
     $form = $this->createForm(new \Club\RequestBundle\Form\RequestComment(), $comment);

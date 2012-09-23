@@ -60,7 +60,7 @@ class PlayerMarketController extends Controller
   public function newAction()
   {
     $request = new \Club\RequestBundle\Entity\Request();
-    $request->setUser($this->get('security.context')->getToken()->getUser());
+    $request->setUser($this->getUser());
 
     $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
     if ($this->getRequest()->getMethod() == 'POST') {

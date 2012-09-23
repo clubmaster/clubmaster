@@ -34,7 +34,7 @@ class TournamentController extends Controller
     $attending = false;
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
       $em = $this->getDoctrine()->getEntityManager();
-      $attending = $em->getRepository('ClubTournamentBundle:Tournament')->isAttending($tournament, $this->get('security.context')->getToken()->getUser());
+      $attending = $em->getRepository('ClubTournamentBundle:Tournament')->isAttending($tournament, $this->getUser());
     }
 
     $bracket = $this->get('club_tournament.tournament')
@@ -56,7 +56,7 @@ class TournamentController extends Controller
   {
     try {
       $this->get('club_tournament.tournament')
-        ->bindUser($tournament, $this->get('security.context')->getToken()->getUser())
+        ->bindUser($tournament, $this->getUser())
         ->validate()
         ->save();
     } catch (\Exception $e) {
@@ -74,7 +74,7 @@ class TournamentController extends Controller
   {
     try {
       $this->get('club_tournament.tournament')
-        ->removeUser($tournament, $this->get('security.context')->getToken()->getUser());
+        ->removeUser($tournament, $this->getUser());
     } catch (\Exception $e) {
       $this->get('session')->setFlash('error', $e->getMessage());
     }

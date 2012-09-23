@@ -19,7 +19,7 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
     $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
 
     // field delimiter
@@ -295,7 +295,7 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->get('security.context')->getToken()->getUser());
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
 
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);

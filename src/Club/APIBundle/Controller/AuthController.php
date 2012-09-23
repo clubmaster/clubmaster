@@ -15,7 +15,7 @@ class AuthController extends Controller
    */
   public function authAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     if ($this->validateKey())
       $this->get('club_checkin.checkin')->checkin();

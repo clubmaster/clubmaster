@@ -23,7 +23,7 @@ class TeamController extends Controller
 
     return array(
       'schedules' => $schedules,
-      'user' => $this->get('security.context')->getToken()->getUser()
+      'user' => $this->getUser()
     );
   }
 
@@ -36,11 +36,11 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
-    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    $this->get('club_team.team')->bindAttend($schedule, $this->getUser());
     if ($this->get('club_team.team')->isValid()) {
       $this->get('club_team.team')->save();
 
-      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+      $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->getUser());
       $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
       $this->get('session')->setFlash('notice', 'You are now attending the team.');
     } else {
@@ -58,7 +58,7 @@ class TeamController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $this->get('club_team.team')->bindUnattend($schedule, $user);
     if ($this->get('club_team.team')->isValid()) {

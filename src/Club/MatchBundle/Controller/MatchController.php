@@ -35,7 +35,7 @@ class MatchController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $res = array();
-        $res['user0'] = $this->get('security.context')->getToken()->getUser();
+        $res['user0'] = $this->getUser();
 
         $sets = 5;
         $form = $this->get('club_match.match')->getMatchForm($res, $sets);

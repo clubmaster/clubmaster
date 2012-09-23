@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $coming = $em->getRepository('ClubShopBundle:Subscription')->getComingSubscriptions($user);
     $active = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user);
@@ -115,7 +115,7 @@ class SubscriptionController extends Controller
 
   private function validateOwner(\Club\ShopBundle\Entity\Subscription $subscription)
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     // FIXME, does security not allowed exception exists
     if ($subscription->getUser()->getId() != $user->getId())

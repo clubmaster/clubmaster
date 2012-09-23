@@ -37,7 +37,7 @@ class MatchCommentController extends Controller
 
     $comment = new \Club\MatchBundle\Entity\MatchComment();
     $comment->setMatch($match);
-    $comment->setUser($this->get('security.context')->getToken()->getUser());
+    $comment->setUser($this->getUser());
 
     $form = $this->createForm(new \Club\MatchBundle\Form\MatchComment, $comment);
 
