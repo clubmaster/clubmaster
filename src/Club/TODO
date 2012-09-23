@@ -2,6 +2,10 @@ when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 
 == NOTES TO LATER ==
+match integration facebook, share match
+add custom fields on profiles
+batch assign users to a league
+add admin event log on user page
 reintroduce match processed, but on ranking level
 merge users
 delete users
@@ -13,7 +17,6 @@ add booking plan multiple days
 more simple to book fields, if no payment, no need to confirm
 give warning if you try to make a booking plan above a booking
 make sure user only can use teams in member ship status period
-make it clear that league is only a ranking
 add double in league
 make it a setting if all should be able to make events
 search users on creating date
@@ -27,7 +30,6 @@ upload profile image for all members
 we might need a mailing list
 quick add users to group
 build new gravatar support
-need tool so we can monitor how many bookings a member have active
 add category priority regarding to account numbers
 admin user batch, select search
 jquery overlay form on booking
@@ -40,9 +42,6 @@ make a quick way to remove all team penalties
 implement payment for booking
 find a smart way to get default location, might be with the url
 add product on dynamic group
-add custom fields on profiles
-match integration facebook, share match
-batch assign users to a league
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page
