@@ -1,16 +1,13 @@
-when upgrading, remember to enable all products
-when upgrading, set last_login_time to when they bought last subscription
-
-== ON ATK DEPLOY ==
-set default league_view_top: 5
-
-== NOTES TO LATER ==
-improve design on match comment
-merge users
-delete users
 style match comments
 rename rankingtable to rankingentry
 event on delete match, to revoke points on ranking
+
+when upgrading, remember to enable all products
+when upgrading, set last_login_time to when they bought last subscription
+
+== NOTES TO LATER ==
+merge users
+delete users
 enter result in cup
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed

@@ -44,7 +44,7 @@ club_match:
 
 club_ranking:
     enabled: true
-    ranking_top: 4
+    ranking_top: 5
 
 club_shop:
     view_shop: true
