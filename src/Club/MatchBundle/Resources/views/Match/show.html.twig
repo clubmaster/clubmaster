@@ -37,7 +37,8 @@
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in match.matchComments %}
-<p><span class="label label-03">{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
+
+<h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
 <p>{{ comment.comment|raw }}</p>
 {% else %}
 <p>{% trans %}There are no comments for this match.{% endtrans %}</p>

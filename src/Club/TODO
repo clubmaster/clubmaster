@@ -1,4 +1,3 @@
-style match comments
 rename rankingtable to rankingentry
 event on delete match, to revoke points on ranking
 
