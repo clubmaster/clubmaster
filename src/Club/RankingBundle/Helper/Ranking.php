@@ -87,7 +87,7 @@ class Ranking
             }
 
             $this->validateSets($this->match);
-            //$this->validateRules();
+            $this->validateRules($ranking);
 
         } catch (\Exception $e) {
             $club_match->setError($e->getMessage());
@@ -119,17 +119,18 @@ class Ranking
         }
     }
 
-    private function validateRules()
+    private function validateRules(\Club\RankingBundle\Entity\Ranking $ranking)
     {
         $qb = $this->em->createQueryBuilder()
             ->select('count(mt.team)')
-            ->from('ClubMatchBundle:MatchTeam', 'mt')
-            ->leftJoin('mt.match', 'm')
-            ->where('m.league = :league')
+            ->from('ClubRankingBundle:Ranking', 'r')
+            ->join('r.matches', 'm')
+            ->join('m.match_teams', 'mt')
+            ->where('r.id = :ranking')
             ->andWhere('mt.team = ?1 OR mt.team = ?2')
             ->groupBy('mt.match')
             ->having('count(mt.team) = 2')
-            ->setParameter('league', $this->match->getLeague()->getId());
+            ->setParameter('ranking', $ranking->getId());
 
         $i = 0;
         foreach ($this->match->getMatchTeams() as $match_team) {
@@ -142,7 +143,7 @@ class Ranking
             ->getQuery()
             ->getResult();
 
-        $total = $this->match->getLeague()->getRule()->getSamePlayer();
+        $total = $ranking->getRule()->getSamePlayer();
 
         if (count($matches) >= $total) {
             throw new \Exception($this->translator->trans('Teams has already played %count% matches against each other.', array(
