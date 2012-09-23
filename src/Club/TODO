@@ -6,7 +6,8 @@ when upgrading, set last_login_time to when they bought last subscription
 set default league_view_top: 5
 
 == NOTES TO LATER ==
-rewrite stuff, in repository classes.. when we use the createquerybuilder, we can do a lot smarter
+merge users
+delete users
 style match comments
 rename rankingtable to rankingentry
 event on delete match, to revoke points on ranking

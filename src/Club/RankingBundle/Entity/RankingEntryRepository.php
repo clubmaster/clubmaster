@@ -14,7 +14,7 @@ class RankingEntryRepository extends EntityRepository
 {
   public function getTeam(\Club\RankingBundle\Entity\Ranking $ranking, \Club\MatchBundle\Entity\Team $team)
   {
-    $lt = $this->_em->getRepository('ClubRankingBundle:RankingEntry')->findOneBy(array(
+    $lt = $this->findOneBy(array(
       'ranking' => $ranking->getId(),
       'team' => $team->getId()
     ));
