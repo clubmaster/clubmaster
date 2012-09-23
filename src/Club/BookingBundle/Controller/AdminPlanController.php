@@ -64,7 +64,7 @@ class AdminPlanController extends Controller
     $form = $this->getForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em->persist($plan);
         $em->flush();
@@ -91,7 +91,7 @@ class AdminPlanController extends Controller
     $form = $this->getForm($plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($plan);

@@ -24,7 +24,7 @@ class AdminLocationConfigController extends Controller
     $form->setData($this->getData($location));
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $this->setData($location, $form->getData());

@@ -98,7 +98,7 @@ class AdminTaskController extends Controller
     $form = $this->createForm(new \Club\TaskBundle\Form\Task, $task);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em->persist($task);
         $em->flush();

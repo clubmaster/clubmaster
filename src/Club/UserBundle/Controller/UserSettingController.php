@@ -23,7 +23,7 @@ class UserSettingController extends Controller
     $form = $this->getForm($settings);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $this->sync($form->getData());
 

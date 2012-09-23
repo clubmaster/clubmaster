@@ -87,7 +87,7 @@ class AdminEventController extends Controller
     $form = $this->createForm(new \Club\EventBundle\Form\Event(), $event);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         if (!$event->getId()) {
           $e = new \Club\EventBundle\Event\FilterEventEvent($event);

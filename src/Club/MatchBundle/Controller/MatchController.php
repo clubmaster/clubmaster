@@ -54,7 +54,7 @@ class MatchController extends Controller
     $form = $this->get('club_match.match')->getMatchForm($res, $sets);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
 
         $this->get('club_match.match')->bindMatch($form->getData());

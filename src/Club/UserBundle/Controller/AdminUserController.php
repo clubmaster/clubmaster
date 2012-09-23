@@ -168,7 +168,7 @@ class AdminUserController extends Controller
     $ids = $this->getRequest()->get('ids');
 
     $form = $this->createForm(new \Club\UserBundle\Form\Batch());
-    $form->bindRequest($this->getRequest());
+    $form->bind($this->getRequest());
     if ($form->isValid()) {
 
       $r = $form->getData();
@@ -253,7 +253,7 @@ class AdminUserController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         foreach ($user->getGroups() as $group) {
           $group = $em->find('ClubUserBundle:Group',$group->getId());

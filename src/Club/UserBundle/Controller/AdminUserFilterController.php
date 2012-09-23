@@ -24,7 +24,7 @@ class AdminUserFilterController extends Controller
         $form = $this->getForm($form_filter);
 
         if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
 
             if ($form->isValid()) {
                 $data = $form->getData();

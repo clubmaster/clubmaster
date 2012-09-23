@@ -94,7 +94,7 @@ class AdminIntervalController extends Controller
     $form = $this->getForm($interval);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($interval);
@@ -135,7 +135,7 @@ class AdminIntervalController extends Controller
     $form = $this->createForm(new \Club\BookingBundle\Form\ManageDays(), $data);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       $form_data = $form->getData();
 
       foreach ($form_data as $key=>$data) {

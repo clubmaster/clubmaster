@@ -100,7 +100,7 @@ class AdminMessageController extends Controller
     $form = $this->getForm($message);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -144,7 +144,7 @@ class AdminMessageController extends Controller
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
 
@@ -205,7 +205,7 @@ class AdminMessageController extends Controller
     $form = $this->createForm(new \Club\MessageBundle\Form\MessageAttachment(), $attachment);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
 
@@ -249,7 +249,7 @@ class AdminMessageController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($message);
@@ -282,7 +282,7 @@ class AdminMessageController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($message);
@@ -315,7 +315,7 @@ class AdminMessageController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($message);
@@ -416,7 +416,7 @@ class AdminMessageController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($message);

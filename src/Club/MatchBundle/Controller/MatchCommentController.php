@@ -42,7 +42,7 @@ class MatchCommentController extends Controller
     $form = $this->createForm(new \Club\MatchBundle\Form\MatchComment, $comment);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em->persist($comment);
         $em->flush();
@@ -106,7 +106,7 @@ class MatchCommentController extends Controller
     $form = $this->createForm(new \Club\MatchBundle\Form\League(), $league);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($league);

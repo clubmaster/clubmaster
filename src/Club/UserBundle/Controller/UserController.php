@@ -23,7 +23,7 @@ class UserController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -59,7 +59,7 @@ class UserController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();

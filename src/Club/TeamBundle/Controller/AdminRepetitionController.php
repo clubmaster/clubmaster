@@ -292,7 +292,7 @@ class AdminRepetitionController extends Controller
   {
     if ($this->getRequest()->getMethod() == 'POST') {
       if ($this->getRequest()->get($form->getName()) != '') {
-        $form->bindRequest($this->getRequest());
+        $form->bind($this->getRequest());
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getEntityManager();
           $em->persist($repetition);

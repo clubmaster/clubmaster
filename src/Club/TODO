@@ -5,7 +5,6 @@ when upgrading, set last_login_time to when they bought last subscription
 
 == NOTES TO LATER ==
 reintroduce match processed, but on ranking level
-rewrite all bindrequests to just bind
 rewrite get->security.text->getToken()->getUser() to ->getUser
 add pager to recent matches
 add helper text to ranking rule form

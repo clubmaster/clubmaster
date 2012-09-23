@@ -44,7 +44,7 @@ class AuthController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       $post = $form->getData();
 
       $em = $this->getDoctrine()->getEntityManager();
@@ -100,7 +100,7 @@ class AuthController extends Controller
       $form = $this->createForm(new \Club\UserBundle\Form\ForgotPassword(), $user);
 
       if ($this->getRequest()->getMethod() == 'POST') {
-        $form->bindRequest($this->getRequest());
+        $form->bind($this->getRequest());
 
         if ($form->isValid()) {
           $forgot->setExpireDate(new \DateTime());

@@ -98,7 +98,7 @@ class UserNoteController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\UserNote(), $user_note);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($user_note);

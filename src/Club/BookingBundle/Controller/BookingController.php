@@ -39,7 +39,7 @@ class BookingController extends Controller
             $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
         } else {
             $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
 
             if ($form->isValid()) {
                 $user = $form->get('user')->getData();

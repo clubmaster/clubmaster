@@ -101,7 +101,7 @@ class AdminProductController extends Controller
     $form = $this->createForm(new \Club\ShopBundle\Form\Product(), $product);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($product);

@@ -46,7 +46,7 @@ class AdminOrderController extends Controller
     $form = $this->createForm(new \Club\ShopBundle\Form\OrderQuery);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $data = $form->getData();
 
@@ -88,7 +88,7 @@ class AdminOrderController extends Controller
     $form = $this->createForm(new \Club\ShopBundle\Form\Order(), $order);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $data = $form->getData();
 
@@ -168,7 +168,7 @@ class AdminOrderController extends Controller
     $form = $this->createForm(new \Club\ShopBundle\Form\OrderType, $order);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
 
         $this->get('order')->setOrder($order);

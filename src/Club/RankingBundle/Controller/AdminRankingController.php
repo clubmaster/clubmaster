@@ -105,7 +105,7 @@ class AdminRankingController extends Controller
       $res = array();
       $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
           $user = $form->get('user')->getData();
 
@@ -173,7 +173,7 @@ class AdminRankingController extends Controller
     $form = $this->createForm(new \Club\RankingBundle\Form\Ranking(), $ranking);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($ranking);

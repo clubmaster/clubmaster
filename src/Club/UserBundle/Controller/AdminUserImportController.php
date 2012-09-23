@@ -35,7 +35,7 @@ class AdminUserImportController extends Controller
     public function importAction()
     {
         $form = $this->getForm();
-        $form->bindRequest($this->getRequest());
+        $form->bind($this->getRequest());
         if ($form->isValid()) {
             $r = $form->getData();
 

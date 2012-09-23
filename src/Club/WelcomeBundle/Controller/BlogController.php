@@ -44,7 +44,7 @@ class BlogController extends Controller
     $form = $this->createForm(new \Club\WelcomeBundle\Form\Comment, $comment);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($comment);
@@ -153,7 +153,7 @@ class BlogController extends Controller
     $form = $this->createForm(new \Club\WelcomeBundle\Form\Blog(), $blog);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($blog);
