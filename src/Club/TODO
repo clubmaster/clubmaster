@@ -6,7 +6,6 @@ when upgrading, set last_login_time to when they bought last subscription
 == NOTES TO LATER ==
 reintroduce match processed, but on ranking level
 rewrite get->security.text->getToken()->getUser() to ->getUser
-add pager to recent matches
 add helper text to ranking rule form
 merge users
 delete users
@@ -67,7 +66,6 @@ add paginator to:
   - admin blog
   - team schedules
   - checkins
-  - blog
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?

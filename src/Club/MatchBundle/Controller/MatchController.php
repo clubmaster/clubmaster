@@ -12,101 +12,107 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
  */
 class MatchController extends Controller
 {
-  /**
-   * @Route("")
-   */
-  public function indexAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, 50);
+    /**
+     * @Route("", defaults={"page" = 1})
+     * @Route("/{page}", name="club_match_offset")
+     */
+    public function indexAction($page)
+    {
+        $results = 35;
+        $em = $this->getDoctrine()->getEntityManager();
+        $paginator = $em->getRepository('ClubMatchBundle:Match')->getPaginator($results, $page);
 
-    return $this->render('ClubMatchBundle:Match:index.html.twig', array(
-      'matches' => $matches
-    ));
-  }
+        $nav = $this->get('club_paginator.paginator')
+            ->init($results, count($paginator), $page, 'club_match_offset');
 
-  /**
-   * @Route("/recent/{limit}")
-   */
-  public function recentAction($limit)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
-
-    return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
-      'matches' => $matches
-    ));
-  }
-
-  /**
-   * @Route("/new")
-   * @Template()
-   * @Secure(roles="ROLE_USER")
-   */
-  public function newAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $res = array();
-    $res['user0'] = $this->get('security.context')->getToken()->getUser();
-
-    $sets = 5;
-    $form = $this->get('club_match.match')->getMatchForm($res, $sets);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-      if ($form->isValid()) {
-
-        $this->get('club_match.match')->bindMatch($form->getData());
-
-        if ($this->get('club_match.match')->isValid()) {
-          $this->get('club_match.match')->save();
-          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-          return $this->redirect($this->generateUrl('club_match_match_index'));
-        } else {
-          $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
-        }
-      }
+        return $this->render('ClubMatchBundle:Match:index.html.twig', array(
+            'matches' => $paginator,
+            'nav' => $nav
+        ));
     }
 
-    return array(
-      'form' => $form->createView(),
-      'sets' => $sets
-    );
-  }
+    /**
+     * @Route("/recent/{limit}")
+     */
+    public function recentAction($limit)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
 
-  /**
-   * @Route("/delete/{id}")
-   * @Secure(roles="ROLE_USER")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $match = $em->find('ClubMatchBundle:Match',$id);
+        return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
+            'matches' => $matches
+        ));
+    }
 
-    $em->remove($match);
+    /**
+     * @Route("/new")
+     * @Template()
+     * @Secure(roles="ROLE_USER")
+     */
+    public function newAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
-    $event = new \Club\MatchBundle\Event\FilterMatchEvent($match);
-    $this->get('event_dispatcher')->dispatch(\Club\MatchBundle\Event\Events::onMatchDelete, $event);
+        $res = array();
+        $res['user0'] = $this->get('security.context')->getToken()->getUser();
 
-    $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $sets = 5;
+        $form = $this->get('club_match.match')->getMatchForm($res, $sets);
 
-    return $this->redirect($this->generateUrl('club_match_match_index'));
-  }
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
 
-  /**
-   * @Route("/show/{id}")
-   * @Template()
-   */
-  public function showAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $match = $em->find('ClubMatchBundle:Match',$id);
+                $this->get('club_match.match')->bindMatch($form->getData());
 
-    return array(
-      'match' => $match
-    );
-  }
+                if ($this->get('club_match.match')->isValid()) {
+                    $this->get('club_match.match')->save();
+                    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+                    return $this->redirect($this->generateUrl('club_match_match_index'));
+                } else {
+                    $this->get('session')->setFlash('error', $this->get('club_match.match')->getError());
+                }
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'sets' => $sets
+        );
+    }
+
+    /**
+     * @Route("/delete/{id}")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $match = $em->find('ClubMatchBundle:Match',$id);
+
+        $em->remove($match);
+
+        $event = new \Club\MatchBundle\Event\FilterMatchEvent($match);
+        $this->get('event_dispatcher')->dispatch(\Club\MatchBundle\Event\Events::onMatchDelete, $event);
+
+        $em->flush();
+        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_match_match_index'));
+    }
+
+    /**
+     * @Route("/show/{id}")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $match = $em->find('ClubMatchBundle:Match',$id);
+
+        return array(
+            'match' => $match
+        );
+    }
 }

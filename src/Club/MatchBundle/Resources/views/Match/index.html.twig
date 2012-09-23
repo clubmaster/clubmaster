@@ -12,6 +12,8 @@
 </div>
 {% endif %}
 
-{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{% include "ClubMatchBundle:Match:recent_matches.html.twig" %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 
 {% endblock %}
