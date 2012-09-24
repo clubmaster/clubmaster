@@ -43,7 +43,7 @@ class OverviewController extends Controller
 
         $active = false;
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->get('security.context')->getToken()->getUser(), null, 'booking', null, $interval->getField()->getLocation());
+            $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->getUser(), null, 'booking', null, $interval->getField()->getLocation());
             $active = (!$subs) ? false : true;
         }
 

@@ -38,13 +38,13 @@ class BlogController extends Controller
     $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
 
     $comment = new \Club\WelcomeBundle\Entity\Comment();
-    $comment->setUser($this->get('security.context')->getToken()->getUser());
+    $comment->setUser($this->getUser());
     $comment->setBlog($blog);
 
     $form = $this->createForm(new \Club\WelcomeBundle\Form\Comment, $comment);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em->persist($comment);
@@ -72,7 +72,7 @@ class BlogController extends Controller
   public function newAction()
   {
     $blog = new \Club\WelcomeBundle\Entity\Blog();
-    $blog->setUser($this->get('security.context')->getToken()->getUser());
+    $blog->setUser($this->getUser());
 
     $res = $this->process($blog);
 
@@ -153,7 +153,7 @@ class BlogController extends Controller
     $form = $this->createForm(new \Club\WelcomeBundle\Form\Blog(), $blog);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($blog);
@@ -170,7 +170,7 @@ class BlogController extends Controller
 
   protected function validateOwnership(\Club\WelcomeBundle\Entity\Blog $blog)
   {
-    if ($this->get('security.context')->getToken()->getUser() != $blog->getUser() && !$this->get('security.context')->isGranted('ROLE_ADMIN_BLOG'))
+    if ($this->getUser() != $blog->getUser() && !$this->get('security.context')->isGranted('ROLE_ADMIN_BLOG'))
       throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException;
   }
 }

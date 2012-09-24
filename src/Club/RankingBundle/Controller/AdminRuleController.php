@@ -94,7 +94,7 @@ class AdminRuleController extends Controller
     $form = $this->createForm(new \Club\RankingBundle\Form\Rule(), $rule);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($rule);

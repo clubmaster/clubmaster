@@ -23,7 +23,7 @@ class TeamController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
-    $this->get('club_team.team')->bindAttend($schedule, $this->get('security.context')->getToken()->getUser());
+    $this->get('club_team.team')->bindAttend($schedule, $this->getUser());
     if (!$this->get('club_team.team')->isValid()) {
       $res = $this->get('club_team.team')->getError();
 
@@ -31,7 +31,7 @@ class TeamController extends Controller
     }
     $this->get('club_team.team')->save();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
 
     $response = new Response();
@@ -48,7 +48,7 @@ class TeamController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $this->get('club_team.team')->bindUnattend($schedule, $user);
     if (!$this->get('club_team.team')->isValid()) {
@@ -58,7 +58,7 @@ class TeamController extends Controller
     }
     $this->get('club_team.team')->remove();
 
-    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->get('security.context')->getToken()->getUser());
+    $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
     $response = new Response();

@@ -15,7 +15,7 @@ class OrderController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     $orders = $em->getRepository('ClubShopBundle:Order')->findBy(array(
       'user' => $user->getId()
@@ -70,7 +70,7 @@ class OrderController extends Controller
 
   private function validateOwner(\Club\ShopBundle\Entity\Order $order)
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
 
     // FIXME, does security not allowed exception exists
     if ($order->getUser()->getId() != $user->getId())

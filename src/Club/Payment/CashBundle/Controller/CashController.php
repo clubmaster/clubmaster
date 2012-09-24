@@ -90,7 +90,7 @@ class CashController extends Controller
         $form = $this->getForm($log);
 
         if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
             if ($form->isValid()) {
                 $log->setAmount($log->getAmount()*100);
 

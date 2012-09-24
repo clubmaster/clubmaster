@@ -54,4 +54,19 @@ class RankingRepository extends EntityRepository
       return $ranking;
   }
 
+  public function getRecentMatches(\Club\RankingBundle\Entity\Ranking $ranking, $limit=10)
+  {
+    $ranking = $this->createQueryBuilder('r')
+        ->select('r', 'm')
+        ->join('r.matches', 'm', 'with', 'r.id = :ranking_id')
+        ->orderBy('m.id', 'DESC')
+        ->setMaxResults($limit)
+        ->setParameter('ranking_id', $ranking->getId())
+        ->getQuery()
+        ->getOneOrNullResult();
+
+    if (!$ranking) return $ranking;
+
+    return $ranking->getMatches();
+  }
 }

@@ -27,10 +27,10 @@ class BookingController extends Controller
     $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
 
     if ($user_id == 'guest') {
-      $this->get('club_booking.booking')->bindGuest($interval, $date, $this->get('security.context')->getToken()->getUser());
+      $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
     } else {
       $partner = $em->find('ClubUserBundle:User', $user_id);
-      $this->get('club_booking.booking')->bindUser($interval, $date, $this->get('security.context')->getToken()->getUser(), $partner);
+      $this->get('club_booking.booking')->bindUser($interval, $date, $this->getUser(), $partner);
     }
 
     if (!$this->get('club_booking.booking')->isValid()) {

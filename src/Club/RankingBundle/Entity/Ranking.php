@@ -380,4 +380,47 @@ class Ranking
     {
         return $this->gender;
     }
+
+    /**
+     * Remove users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Add matches
+     *
+     * @param Club\MatchBundle\Entity\Match $matches
+     * @return Ranking
+     */
+    public function addMatch(\Club\MatchBundle\Entity\Match $matches)
+    {
+        $this->matches[] = $matches;
+
+        return $this;
+    }
+
+    /**
+     * Remove matches
+     *
+     * @param Club\MatchBundle\Entity\Match $matches
+     */
+    public function removeMatch(\Club\MatchBundle\Entity\Match $matches)
+    {
+        $this->matches->removeElement($matches);
+    }
+
+    /**
+     * Get matches
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMatches()
+    {
+        return $this->matches;
+    }
 }

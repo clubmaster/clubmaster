@@ -30,31 +30,25 @@ class RankingController extends Controller
    * @Route("/show/{id}")
    * @Template()
    */
-  public function showAction($id)
+  public function showAction(\Club\RankingBundle\Entity\Ranking $ranking)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $ranking = $em->find('ClubRankingBundle:Ranking', $id);
-
-    return array(
-      'ranking' => $ranking
-    );
+      return array(
+          'ranking' => $ranking
+      );
   }
 
   /**
    * @Route("/recent/{id}/{limit}")
    * @Template()
    */
-  public function recentMatchesAction($id, $limit)
+  public function recentMatchesAction(\Club\RankingBundle\Entity\Ranking $ranking, $limit)
   {
     $em = $this->getDoctrine()->getEntityManager();
+    $matches = $em->getRepository('ClubRankingBundle:Ranking')->getRecentMatches($ranking, $limit);
 
-    $ranking = $em->find('ClubRankingBundle:Ranking', $id);
-    $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches($ranking, $limit);
-
-    return array(
+    return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
       'matches' => $matches
-    );
+    ));
   }
 
   /**

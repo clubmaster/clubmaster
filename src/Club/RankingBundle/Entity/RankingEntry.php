@@ -102,9 +102,9 @@ class RankingEntry
     /**
      * Set team
      *
-     * @param Club\RankingBundle\Entity\Team $team
+     * @param Club\MatchBundle\Entity\Team $team
      */
-    public function setTeam(\Club\RankingBundle\Entity\Team $team)
+    public function setTeam(\Club\MatchBundle\Entity\Team $team)
     {
         $this->team = $team;
     }
@@ -112,7 +112,7 @@ class RankingEntry
     /**
      * Get team
      *
-     * @return Club\RankingBundle\Entity\Team
+     * @return Club\MatchBundle\Entity\Team
      */
     public function getTeam()
     {

@@ -23,7 +23,7 @@ class UserController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -48,7 +48,7 @@ class UserController extends Controller
    */
   public function resetAction()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $form = $this->createFormBuilder($user)
       ->add('password', 'repeated', array(
         'type' => 'password',
@@ -59,7 +59,7 @@ class UserController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -86,7 +86,7 @@ class UserController extends Controller
 
   protected function buildUser()
   {
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $em = $this->getDoctrine()->getEntityManager();
 
     if (!$user->getProfile()->getProfileAddress()) {

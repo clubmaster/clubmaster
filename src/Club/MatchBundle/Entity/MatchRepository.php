@@ -30,13 +30,20 @@ class MatchRepository extends EntityRepository
       ->orderBy('m.id', 'DESC')
       ->setMaxResults($limit);
 
-    if ($league) {
-      $qb->where('m.league = :league')
-      ->setParameter('league', $league->getId());
-    }
-
     return $qb
       ->getQuery()
       ->getResult();
+  }
+
+  public function getPaginator($results, $page)
+  {
+      $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+      $dql = "SELECT m FROM ClubMatchBundle:Match m ORDER BY m.id DESC";
+      $query = $this->_em->createQuery($dql)
+          ->setFirstResult($offset)
+          ->setMaxResults($results);
+
+      return new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
   }
 }

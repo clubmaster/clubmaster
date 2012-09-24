@@ -35,7 +35,7 @@ class PlayerMarketController extends Controller
     $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($request);
@@ -60,11 +60,11 @@ class PlayerMarketController extends Controller
   public function newAction()
   {
     $request = new \Club\RequestBundle\Entity\Request();
-    $request->setUser($this->get('security.context')->getToken()->getUser());
+    $request->setUser($this->getUser());
 
     $form = $this->createForm(new \Club\RequestBundle\Form\Request(), $request);
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();

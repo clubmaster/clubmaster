@@ -1,15 +1,14 @@
-make a functional test with inserting some matches
+reintroduce match processed, but on ranking level
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 
-== ON ATK DEPLOY ==
-set default league_view_top: 5
-
 == NOTES TO LATER ==
-rewrite stuff, in repository classes.. when we use the createquerybuilder, we can do a lot smarter
-style match comments
-rename rankingtable to rankingentry
-event on delete match, to revoke points on ranking
+match integration facebook, share match
+add custom fields on profiles
+batch assign users to a league
+add admin event log on user page
+merge users
+delete users
 enter result in cup
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
@@ -18,7 +17,6 @@ add booking plan multiple days
 more simple to book fields, if no payment, no need to confirm
 give warning if you try to make a booking plan above a booking
 make sure user only can use teams in member ship status period
-make it clear that league is only a ranking
 add double in league
 make it a setting if all should be able to make events
 search users on creating date
@@ -32,7 +30,6 @@ upload profile image for all members
 we might need a mailing list
 quick add users to group
 build new gravatar support
-need tool so we can monitor how many bookings a member have active
 add category priority regarding to account numbers
 admin user batch, select search
 jquery overlay form on booking
@@ -45,9 +42,6 @@ make a quick way to remove all team penalties
 implement payment for booking
 find a smart way to get default location, might be with the url
 add product on dynamic group
-add custom fields on profiles
-match integration facebook, share match
-batch assign users to a league
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 booking plan, it should be possible to plan a booking plan a week on the same page
@@ -67,7 +61,6 @@ add paginator to:
   - admin blog
   - team schedules
   - checkins
-  - blog
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?

@@ -24,7 +24,7 @@ class AdminUserFilterController extends Controller
         $form = $this->getForm($form_filter);
 
         if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -119,7 +119,7 @@ class AdminUserFilterController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
-            $this->get('security.context')->getToken()->getUser()
+            $this->getUser()
         );
 
         return $filter;

@@ -22,7 +22,7 @@ class AdminTournamentAttendController extends Controller
     $res = array();
     $form = $this->getForm($res);
 
-    $form->bindRequest($this->getRequest());
+    $form->bind($this->getRequest());
     if ($form->isValid()) {
       try {
         $res = $form->getData();
@@ -58,7 +58,7 @@ class AdminTournamentAttendController extends Controller
     $form = $this->createForm(new \Club\TournamentBundle\Form\Attend, $attend);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($attend);

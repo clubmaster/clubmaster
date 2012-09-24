@@ -38,7 +38,7 @@ class AdminFieldController extends Controller
     $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -72,7 +72,7 @@ class AdminFieldController extends Controller
     $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($field);

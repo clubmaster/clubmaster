@@ -90,13 +90,13 @@ class CheckoutController extends Controller
 
     if ($this->getRequest()->getMethod() == 'POST') {
       if ($this->getRequest()->get($form1->getName())) {
-        $form1->bindRequest($this->getRequest());
+        $form1->bind($this->getRequest());
         if ($form1->isValid()) {
           $this->get('cart')->setCart($cart);
         }
       }
       if ($this->getRequest()->get($form2->getName())) {
-        $form2->bindRequest($this->getRequest());
+        $form2->bind($this->getRequest());
 
         if ($form2->isValid()) {
           $this->get('cart')->getCart()->setCustomerAddress($address);
@@ -147,7 +147,7 @@ class CheckoutController extends Controller
     $cart = $this->get('cart')->getCart();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $r = $form->getData();
         $method = $em->find('ClubShopBundle:PaymentMethod', $r['payment_method']);
@@ -236,7 +236,7 @@ class CheckoutController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
 
         $this->get('clubmaster.user')->save();
@@ -267,7 +267,7 @@ class CheckoutController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $carts = $em->getRepository('ClubShopBundle:Cart')->findBy(array(
-      'user' => $this->get('security.context')->getToken()->getUser()->getId()
+      'user' => $this->getUser()->getId()
     ));
     foreach ($carts as $cart) {
       $em->remove($cart);

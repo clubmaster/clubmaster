@@ -86,7 +86,7 @@ class AdminPaymentMethodController extends Controller
     $form = $this->createForm(new \Club\ShopBundle\Form\PaymentMethod(), $payment_method);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($payment_method);

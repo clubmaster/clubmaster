@@ -35,7 +35,7 @@ class AdminPasskeyController extends Controller
     $form = $this->createForm(new \Club\PasskeyBundle\Form\Passkey(), $passkey);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -67,7 +67,7 @@ class AdminPasskeyController extends Controller
     $user_form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($passkey);
@@ -97,7 +97,7 @@ class AdminPasskeyController extends Controller
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
 

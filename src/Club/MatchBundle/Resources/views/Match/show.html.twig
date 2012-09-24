@@ -7,7 +7,7 @@
         <ul class="nav">
             <li><a href="{{ path('club_match_matchcomment_new', { 'match_id':match.id }) }}">{% trans %}Add comment{% endtrans %}</a></li>
             {% if match.isOwner(app.user) %}
-            <li><a href="{{ path('club_match_match_delete', { 'id':match.id }) }}">{% trans %}Delete match{% endtrans %}</a></li>
+            <li><a href="{{ path('club_match_match_delete', { 'id':match.id }) }}" onclick="return confirm('{% trans %}Are you sure?{% endtrans %}')">{% trans %}Delete match{% endtrans %}</a></li>
             {% endif %}
         </ul>
     </div>
@@ -37,7 +37,8 @@
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in match.matchComments %}
-<p><span class="label label-03">{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
+
+<h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
 <p>{{ comment.comment|raw }}</p>
 {% else %}
 <p>{% trans %}There are no comments for this match.{% endtrans %}</p>

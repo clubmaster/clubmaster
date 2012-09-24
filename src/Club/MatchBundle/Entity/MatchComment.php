@@ -3,6 +3,7 @@
 namespace Club\MatchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\MatchBundle\Entity\MatchComment
@@ -26,6 +27,7 @@ class MatchComment
      * @var string $comment
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $comment;
 

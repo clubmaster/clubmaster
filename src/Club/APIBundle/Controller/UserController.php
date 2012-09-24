@@ -56,7 +56,7 @@ class UserController extends Controller
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
     $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
 
-    $events = $em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end, $this->get('security.context')->getToken()->getUser());
+    $events = $em->getRepository('ClubEventBundle:Event')->getAllBetween($start, $end, $this->getUser());
     $res = array();
     foreach ($events as $event) {
       $res[] = $event->toArray();
@@ -82,7 +82,7 @@ class UserController extends Controller
     $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
 
     $res = array();
-    foreach ($this->get('security.context')->getToken()->getUser()->getSchedules() as $schedule) {
+    foreach ($this->getUser()->getSchedules() as $schedule) {
       if ($schedule->getSchedule()->getFirstDate()->getTimestamp() >= $start->getTimestamp() && $schedule->getSchedule()->getFirstDate()->getTimestamp() <= $end->getTimestamp())
         $res[] = $schedule->getSchedule()->toArray();
     }

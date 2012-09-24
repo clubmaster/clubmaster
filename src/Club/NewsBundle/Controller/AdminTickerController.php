@@ -37,7 +37,7 @@ class AdminTickerController extends Controller
     $i = new \DateInterval('P1Y');
     $end->add($i);
 
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $ticker = new \Club\NewsBundle\Entity\Ticker();
     $ticker->setUser($user);
 
@@ -96,7 +96,7 @@ class AdminTickerController extends Controller
     $form = $this->createForm(new \Club\NewsBundle\Form\Ticker(), $ticker);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($ticker);

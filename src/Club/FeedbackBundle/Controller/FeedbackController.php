@@ -25,7 +25,7 @@ class FeedbackController extends Controller
 
     $feedback = new \Club\FeedbackBundle\Model\Feedback();
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $user = $this->get('security.context')->getToken()->getUser();
+      $user = $this->getUser();
       $feedback->name = $user->getProfile()->getName();
 
       if ($user->getProfile()->getProfileEmail())
@@ -53,7 +53,7 @@ class FeedbackController extends Controller
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $this->sendData($feedback);

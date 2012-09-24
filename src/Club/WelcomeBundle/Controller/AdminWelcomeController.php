@@ -56,7 +56,7 @@ class AdminWelcomeController extends Controller
     $form = $this->createForm(new \Club\WelcomeBundle\Form\Welcome(), $welcome);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($welcome);

@@ -20,7 +20,7 @@ class EventController extends Controller
 
     return array(
       'events' => $events,
-      'user' => $this->get('security.context')->getToken()->getUser()
+      'user' => $this->getUser()
     );
   }
 
@@ -32,7 +32,7 @@ class EventController extends Controller
   {
     return array(
       'event' => $event,
-      'user' => $this->get('security.context')->getToken()->getUser()
+      'user' => $this->getUser()
     );
   }
 
@@ -42,7 +42,7 @@ class EventController extends Controller
   public function attendAction(\Club\EventBundle\Entity\Event $event)
   {
     $attend = new \Club\EventBundle\Entity\Attend();
-    $attend->setUser($this->get('security.context')->getToken()->getUser());
+    $attend->setUser($this->getUser());
     $attend->setEvent($event);
 
     $errors = $this->get('validator')->validate($attend);
@@ -71,7 +71,7 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
-      'user' => $this->get('security.context')->getToken()->getUser()->getId(),
+      'user' => $this->getUser()->getId(),
       'event' => $event->getId()
     ));
 

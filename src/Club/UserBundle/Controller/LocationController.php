@@ -32,7 +32,7 @@ class LocationController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $user = $this->get('security.context')->getToken()->getUser();
+    $user = $this->getUser();
     $location = $em->find('ClubUserBundle:Location',$id);
 
     $this->get('session')->set('location_id', $location->getId());

@@ -59,7 +59,7 @@ class InstallerController extends Controller
     $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $group = $em->getRepository('ClubUserBundle:Group')->findOneBy(array(
@@ -93,7 +93,7 @@ class InstallerController extends Controller
     $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location_step);
 
     if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bindRequest($this->getRequest());
+      $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $location = new \Club\UserBundle\Entity\Location();

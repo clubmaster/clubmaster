@@ -1,6 +1,7 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
 {% block pagenav %}
+{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
@@ -8,10 +9,11 @@
         </ul>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block body %}
-{% render "ClubMatchBundle:Match:Recent" with {'limit':20} %}
+{% render "ClubMatchBundle:Match:Recent" with {'limit':7} %}
 
 {% for ranking in rankings %}
   <h3><a href="{{ path('club_ranking_ranking_show', {'id':ranking.id}) }}">{{ ranking.name }}</a></h3>
