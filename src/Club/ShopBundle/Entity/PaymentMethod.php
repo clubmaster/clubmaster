@@ -3,6 +3,7 @@
 namespace Club\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\PaymentMethodRepository")
@@ -21,6 +22,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $payment_method_name
      */
@@ -28,6 +30,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      *
      * @var string $controller
      */
@@ -35,6 +38,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      *
      * @var string $success_page
      */
@@ -42,6 +46,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      *
      * @var string $error_page
      */
@@ -49,6 +54,7 @@ class PaymentMethod
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      *
      * @var integer $priority
      */
