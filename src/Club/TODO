@@ -5,7 +5,6 @@ when upgrading, set last_login_time to when they bought last subscription
 == NOTES TO LATER ==
 check doctrine:schema:validate if there is any problems
 on cancel order, is the delivered mail sent, that seems like a bug
-update translations with symfony command
 match integration facebook, share match
 add custom fields on profiles
 batch assign users to a league
