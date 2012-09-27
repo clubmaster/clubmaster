@@ -47,7 +47,7 @@ class UserToNumberTransformer implements DataTransformerInterface
     public function reverseTransform($member_number)
     {
         if (!$member_number) {
-            return null;
+            throw new TransformationFailedException('No such user.');
         }
 
         $user = $this->om
