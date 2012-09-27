@@ -25,7 +25,7 @@ class BookingController extends Controller
 
             return $this->redirect($this->generateUrl('club_booking_overview_view', array(
                 'date' => $date,
-                'interval_id' => $interval_id
+                'id' => $interval_id
             )));
         }
 
@@ -49,7 +49,7 @@ class BookingController extends Controller
                 }
 
                 return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-                    'interval_id' => $interval->getId(),
+                    'id' => $interval->getId(),
                     'date' => $date->format('Y-m-d')
                 )));
             }
@@ -61,7 +61,7 @@ class BookingController extends Controller
             $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
 
             return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-                'interval_id' => $interval->getId(),
+                'id' => $interval->getId(),
                 'date' => $date->format('Y-m-d')
             )));
         }

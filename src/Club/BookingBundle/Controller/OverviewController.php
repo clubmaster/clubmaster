@@ -23,24 +23,21 @@ class OverviewController extends Controller
 
         return $this->redirect($this->generateUrl('club_booking_overview_view', array(
             'date' => $date->format('Y-m-d'),
-            'interval_id' => $interval
+            'id' => $interval
         )));
     }
 
     /**
      * @Template()
-     * @Route("/{date}/{interval_id}")
+     * @Route("/{date}/{id}")
      */
-    public function viewAction($date, $interval_id)
+    public function viewAction($date, \Club\BookingBundle\Entity\Interval $interval)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-
         $date = new \DateTime($date);
-        $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
         $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
+        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $em = $this->getDoctrine()->getEntityManager();
         $active = false;
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->getUser(), null, 'booking', null, $interval->getField()->getLocation());
