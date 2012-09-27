@@ -1,223 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="da" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="file.ext" target-language="da">
     <body>
       <trans-unit id="1">
-        <source>Booking</source>
-        <target>__Booking</target>
-      </trans-unit>
+        <source>Booking</source> <target state="needs-translation">Booking</target> </trans-unit>
       <trans-unit id="2">
-        <source>Find your partner and complete your booking.</source>
-        <target>__Find your partner and complete your booking.</target>
-      </trans-unit>
+        <source>Find your partner and complete your booking.</source> <target state="needs-translation">Find din partner og afslut din reservation.</target> </trans-unit>
       <trans-unit id="3">
-        <source>Guest booking</source>
-        <target>__Guest booking</target>
-      </trans-unit>
+        <source>Guest booking</source> <target state="needs-translation">Gæste reservation</target> </trans-unit>
       <trans-unit id="4">
-        <source>Click here if you want to book with a guest.</source>
-        <target>__Click here if you want to book with a guest.</target>
-      </trans-unit>
-      <trans-unit id="5">
-        <source>Booking plan</source>
-        <target>__Booking plan</target>
-      </trans-unit>
+        <source>Click here if you want to book with a guest.</source> <target state="needs-translation">Klik her hvis du vil reservere med en gæst.</target> </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Booking plan</source> <target state="translated">Booking plan</target> </trans-unit>
       <trans-unit id="6">
-        <source>Click here if you want to create a booking plan.</source>
-        <target>__Click here if you want to create a booking plan.</target>
-      </trans-unit>
+        <source>Click here if you want to create a booking plan.</source> <target state="needs-translation">Klik her hvis du vil oprette en booking plan.</target> </trans-unit>
       <trans-unit id="7">
-        <source>Location</source>
-        <target>__Location</target>
-      </trans-unit>
+        <source>Location</source> <target state="needs-translation">Område</target> </trans-unit>
       <trans-unit id="8">
-        <source>Date</source>
-        <target>__Date</target>
-      </trans-unit>
+        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
       <trans-unit id="9">
-        <source>Time</source>
-        <target>__Time</target>
-      </trans-unit>
-      <trans-unit id="10">
-        <source>Field</source>
-        <target>__Field</target>
-      </trans-unit>
-      <trans-unit id="11">
-        <source>Booker</source>
-        <target>__Booker</target>
-      </trans-unit>
+        <source>Time</source> <target state="needs-translation">Tid</target> </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>Field</source> <target state="translated">Bane</target> </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Booker</source> <target state="translated">Bestiller</target> </trans-unit>
       <trans-unit id="12">
-        <source>Partner</source>
-        <target>__Partner</target>
-      </trans-unit>
+        <source>Partner</source> <target state="needs-translation">Makker</target> </trans-unit>
       <trans-unit id="13">
-        <source>Team</source>
-        <target>__Team</target>
-      </trans-unit>
+        <source>Team</source> <target state="needs-translation">Hold</target> </trans-unit>
       <trans-unit id="14">
-        <source>Information</source>
-        <target>__Information</target>
-      </trans-unit>
+        <source>Information</source> <target state="needs-translation">Information</target> </trans-unit>
       <trans-unit id="15">
-        <source>Bookings</source>
-        <target>__Bookings</target>
-      </trans-unit>
+        <source>Bookings</source> <target state="needs-translation">Reservationer</target> </trans-unit>
       <trans-unit id="16">
-        <source>Users</source>
-        <target>__Users</target>
-      </trans-unit>
-      <trans-unit id="17">
-        <source>Guest</source>
-        <target>__Guest</target>
-      </trans-unit>
+        <source>Users</source> <target state="needs-translation">Brugere</target> </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Guest</source> <target state="translated">Gæst</target> </trans-unit>
       <trans-unit id="18">
-        <source>You have no coming bookings.</source>
-        <target>__You have no coming bookings.</target>
-      </trans-unit>
+        <source>You have no coming bookings.</source> <target state="needs-translation">Du har ingen kommende reservationer.</target> </trans-unit>
       <trans-unit id="19">
-        <source>Your bookings</source>
-        <target>__Your bookings</target>
-      </trans-unit>
+        <source>Your bookings</source> <target state="needs-translation">Dine reservationer</target> </trans-unit>
       <trans-unit id="20">
-        <source>Action</source>
-        <target>__Action</target>
-      </trans-unit>
+        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
       <trans-unit id="21">
-        <source>Create field</source>
-        <target>__Create field</target>
-      </trans-unit>
+        <source>Create field</source> <target state="needs-translation">Opret bane</target> </trans-unit>
       <trans-unit id="22">
-        <source>Position</source>
-        <target>__Position</target>
-      </trans-unit>
+        <source>Position</source> <target state="needs-translation">Position</target> </trans-unit>
       <trans-unit id="23">
-        <source>There are no fields.</source>
-        <target>__There are no fields.</target>
-      </trans-unit>
+        <source>There are no fields.</source> <target state="needs-translation">Der er ingen baner.</target> </trans-unit>
       <trans-unit id="24">
-        <source>There is no fields in the current location, what location do you want to go to?</source>
-        <target>__There is no fields in the current location, what location do you want to go to?</target>
-      </trans-unit>
+        <source>There is no fields in the current location, what location do you want to go to?</source> <target state="needs-translation">Der er ingen baner i det nuværende område, hvor vil du gerne gå hen?</target> </trans-unit>
       <trans-unit id="25">
-        <source>Delete</source>
-        <target>__Delete</target>
-      </trans-unit>
+        <source>Delete</source> <target state="needs-translation">Slet</target> </trans-unit>
       <trans-unit id="26">
-        <source>Click here to cancel your booking.</source>
-        <target>__Click here to cancel your booking.</target>
-      </trans-unit>
+        <source>Click here to cancel your booking.</source> <target state="needs-translation">Klik her for at annullere din reservation.</target> </trans-unit>
       <trans-unit id="27">
-        <source>Cancel</source>
-        <target>__Cancel</target>
-      </trans-unit>
-      <trans-unit id="28">
-        <source>Booking Information</source>
-        <target>__Booking Information</target>
-      </trans-unit>
+        <source>Cancel</source> <target state="needs-translation">Anu</target> </trans-unit>
+      <trans-unit id="28" approved="yes">
+        <source>Booking Information</source> <target state="translated">Booking Information</target> </trans-unit>
       <trans-unit id="29">
-        <source>Price</source>
-        <target>__Price</target>
-      </trans-unit>
-      <trans-unit id="30">
-        <source>Players</source>
-        <target>__Players</target>
-      </trans-unit>
+        <source>Price</source> <target state="needs-translation">Pris</target> </trans-unit>
+      <trans-unit id="30" approved="yes">
+        <source>Players</source> <target state="translated">Spillere</target> </trans-unit>
       <trans-unit id="31">
-        <source>Confirm</source>
-        <target>__Confirm</target>
-      </trans-unit>
-      <trans-unit id="32">
-        <source>Click here to confirm your booking.</source>
-        <target>__Click here to confirm your booking.</target>
-      </trans-unit>
+        <source>Confirm</source> <target state="needs-translation">Bekræft</target> </trans-unit>
+      <trans-unit id="32" approved="yes">
+        <source>Click here to confirm your booking.</source> <target state="translated">Klik her for at bekræfte din reservation.</target> </trans-unit>
       <trans-unit id="33">
-        <source>Plan</source>
-        <target>__Plan</target>
-      </trans-unit>
+        <source>Plan</source> <target state="needs-translation">Plan</target> </trans-unit>
       <trans-unit id="34">
-        <source>Description</source>
-        <target>__Description</target>
-      </trans-unit>
+        <source>Description</source> <target state="needs-translation">Beskrivelse</target> </trans-unit>
       <trans-unit id="35">
-        <source>Create interval</source>
-        <target>__Create interval</target>
-      </trans-unit>
+        <source>Create interval</source> <target state="needs-translation">Opret interval</target> </trans-unit>
       <trans-unit id="36">
-        <source>Manage intervals</source>
-        <target>__Manage intervals</target>
-      </trans-unit>
+        <source>Manage intervals</source> <target state="needs-translation">Administrer intervaller</target> </trans-unit>
       <trans-unit id="37">
-        <source>Day</source>
-        <target>__Day</target>
-      </trans-unit>
+        <source>Day</source> <target state="needs-translation">Dag</target> </trans-unit>
       <trans-unit id="38">
-        <source>Start time</source>
-        <target>__Start time</target>
-      </trans-unit>
+        <source>Start time</source> <target state="needs-translation">Start tid</target> </trans-unit>
       <trans-unit id="39">
-        <source>Stop time</source>
-        <target>__Stop time</target>
-      </trans-unit>
+        <source>Stop time</source> <target state="needs-translation">Stop tid</target> </trans-unit>
       <trans-unit id="40">
-        <source>Valid from</source>
-        <target>__Valid from</target>
-      </trans-unit>
-      <trans-unit id="41">
-        <source>Valid to</source>
-        <target>__Valid to</target>
-      </trans-unit>
+        <source>Valid from</source> <target state="needs-translation">Gyldig fra</target> </trans-unit>
+      <trans-unit id="41" approved="yes">
+        <source>Valid to</source> <target state="translated">Gyldig til</target> </trans-unit>
       <trans-unit id="42">
-        <source>There are no intervals.</source>
-        <target>__There are no intervals.</target>
-      </trans-unit>
+        <source>There are no intervals.</source> <target state="needs-translation">Der er ingen intervaller.</target> </trans-unit>
       <trans-unit id="43">
-        <source>Monday</source>
-        <target>__Monday</target>
-      </trans-unit>
+        <source>Monday</source> <target state="needs-translation">Mandag</target> </trans-unit>
       <trans-unit id="44">
-        <source>Tuesday</source>
-        <target>__Tuesday</target>
-      </trans-unit>
+        <source>Tuesday</source> <target state="needs-translation">Tirsdag</target> </trans-unit>
       <trans-unit id="45">
-        <source>Wednesday</source>
-        <target>__Wednesday</target>
-      </trans-unit>
+        <source>Wednesday</source> <target state="needs-translation">Onsdag</target> </trans-unit>
       <trans-unit id="46">
-        <source>Tursday</source>
-        <target>__Tursday</target>
-      </trans-unit>
+        <source>Tursday</source> <target state="needs-translation">Torsdag</target> </trans-unit>
       <trans-unit id="47">
-        <source>Friday</source>
-        <target>__Friday</target>
-      </trans-unit>
+        <source>Friday</source> <target state="needs-translation">Fredag</target> </trans-unit>
       <trans-unit id="48">
-        <source>Saturday</source>
-        <target>__Saturday</target>
-      </trans-unit>
+        <source>Saturday</source> <target state="needs-translation">Lørdag</target> </trans-unit>
       <trans-unit id="49">
-        <source>Sunday</source>
-        <target>__Sunday</target>
-      </trans-unit>
+        <source>Sunday</source> <target state="needs-translation">Søndag</target> </trans-unit>
       <trans-unit id="50">
-        <source>Create plan</source>
-        <target>__Create plan</target>
-      </trans-unit>
+        <source>Create plan</source> <target state="needs-translation">Opret plan</target> </trans-unit>
       <trans-unit id="51">
-        <source>Name</source>
-        <target>__Name</target>
-      </trans-unit>
+        <source>Name</source> <target state="needs-translation">Navn</target> </trans-unit>
       <trans-unit id="52">
-        <source>Period start</source>
-        <target>__Period start</target>
-      </trans-unit>
+        <source>Period start</source> <target state="needs-translation">Periode start</target> </trans-unit>
       <trans-unit id="53">
-        <source>Period end</source>
-        <target>__Period end</target>
-      </trans-unit>
+        <source>Period end</source> <target state="needs-translation">Periode slut</target> </trans-unit>
       <trans-unit id="54">
-        <source>There are no plans.</source>
-        <target>__There are no plans.</target>
-      </trans-unit>
+        <source>There are no plans.</source> <target state="needs-translation">Der er ingen planer.</target> </trans-unit>
     </body>
   </file>
 </xliff>

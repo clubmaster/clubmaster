@@ -1,75 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Recent matches</source>
-        <target>__Recent matches</target>
-      </trans-unit>
+        <source>Recent matches</source> <target state="needs-translation">Seneste kampe</target> </trans-unit>
       <trans-unit id="2">
-        <source>Date</source>
-        <target>__Date</target>
-      </trans-unit>
+        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
       <trans-unit id="3">
-        <source>Team one</source>
-        <target>__Team one</target>
-      </trans-unit>
+        <source>Team one</source> <target state="needs-translation">Hold et</target> </trans-unit>
       <trans-unit id="4">
-        <source>Score</source>
-        <target>__Score</target>
-      </trans-unit>
+        <source>Score</source> <target state="needs-translation">Score</target> </trans-unit>
       <trans-unit id="5">
-        <source>Team two</source>
-        <target>__Team two</target>
-      </trans-unit>
+        <source>Team two</source> <target state="needs-translation">Hold to</target> </trans-unit>
       <trans-unit id="6">
-        <source>Action</source>
-        <target>__Action</target>
-      </trans-unit>
-      <trans-unit id="7">
-        <source>No matches has been played.</source>
-        <target>__No matches has been played.</target>
-      </trans-unit>
+        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>No matches has been played.</source> <target state="translated">Der er ikke spillet nogen kampe.</target> </trans-unit>
       <trans-unit id="8">
-        <source>Match Result</source>
-        <target>__Match Result</target>
-      </trans-unit>
+        <source>Match Result</source> <target state="needs-translation">Kamp Resultat</target> </trans-unit>
       <trans-unit id="9">
-        <source>This match is just to keep track of your wins and losses, it will not end up on any ranking list.</source>
-        <target>__This match is just to keep track of your wins and losses, it will not end up on any ranking list.</target>
-      </trans-unit>
+        <source>This match is just to keep track of your wins and losses, it will not end up on any ranking list.</source> <target state="needs-translation">Denne kamp er blot til at holde styr på vundne og tabte kampe den vil ikke komme på en rangliste.</target> </trans-unit>
       <trans-unit id="10">
-        <source>Insert match</source>
-        <target>__Insert match</target>
-      </trans-unit>
+        <source>Insert match</source> <target state="needs-translation">Insæt kamp</target> </trans-unit>
       <trans-unit id="11">
-        <source>Add comment</source>
-        <target>__Add comment</target>
-      </trans-unit>
-      <trans-unit id="12">
-        <source>Are you sure?</source>
-        <target>__Are you sure?</target>
-      </trans-unit>
+        <source>Add comment</source> <target state="needs-translation">Tilføj kommentar</target> </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Are you sure?</source> <target state="translated">Er du sikker?</target> </trans-unit>
       <trans-unit id="13">
-        <source>Delete match</source>
-        <target>__Delete match</target>
-      </trans-unit>
+        <source>Delete match</source> <target state="needs-translation">Slet kamp</target> </trans-unit>
       <trans-unit id="14">
-        <source>Comments</source>
-        <target>__Comments</target>
-      </trans-unit>
+        <source>Comments</source> <target state="needs-translation">Kommentarer</target> </trans-unit>
       <trans-unit id="15">
-        <source>Posted on %date% by %author%.</source>
-        <target>__Posted on %date% by %author%.</target>
-      </trans-unit>
+        <source>Posted on %date% by %author%.</source> <target state="needs-translation">Skrevet den %date% af %author%.</target> </trans-unit>
       <trans-unit id="16">
-        <source>There are no comments for this match.</source>
-        <target>__There are no comments for this match.</target>
-      </trans-unit>
+        <source>There are no comments for this match.</source> <target state="needs-translation">Der er ingen kommentarer til denne kamp.</target> </trans-unit>
       <trans-unit id="17">
-        <source>Match</source>
-        <target>__Match</target>
-      </trans-unit>
+        <source>Match</source> <target state="needs-translation">Kamp</target> </trans-unit>
     </body>
   </file>
 </xliff>

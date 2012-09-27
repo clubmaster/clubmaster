@@ -1,87 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="da" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Recent logs</source>
-        <target>__Recent logs</target>
-      </trans-unit>
+        <source>Recent logs</source> <target state="needs-translation">Seneste logs</target> </trans-unit>
       <trans-unit id="2">
-        <source>Read</source>
-        <target>__Read</target>
-      </trans-unit>
+        <source>Read</source> <target state="needs-translation">Læs</target> </trans-unit>
       <trans-unit id="3">
-        <source>User</source>
-        <target>__User</target>
-      </trans-unit>
+        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
       <trans-unit id="4">
-        <source>Message</source>
-        <target>__Message</target>
-      </trans-unit>
+        <source>Message</source> <target state="needs-translation">Besked</target> </trans-unit>
       <trans-unit id="5">
-        <source>Created at</source>
-        <target>__Created at</target>
-      </trans-unit>
+        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
       <trans-unit id="6">
-        <source>Unread</source>
-        <target>__Unread</target>
-      </trans-unit>
+        <source>Unread</source> <target state="needs-translation">Ulæst</target> </trans-unit>
       <trans-unit id="7">
-        <source>System</source>
-        <target>__System</target>
-      </trans-unit>
+        <source>System</source> <target state="needs-translation">System</target> </trans-unit>
       <trans-unit id="8">
-        <source>There are no logs.</source>
-        <target>__There are no logs.</target>
-      </trans-unit>
+        <source>There are no logs.</source> <target state="needs-translation">Der er ingen logs.</target> </trans-unit>
       <trans-unit id="9">
-        <source>Action Log</source>
-        <target>__Action Log</target>
-      </trans-unit>
+        <source>Action Log</source> <target state="needs-translation">Handlings Log</target> </trans-unit>
       <trans-unit id="10">
-        <source>Severity</source>
-        <target>__Severity</target>
-      </trans-unit>
+        <source>Severity</source> <target state="needs-translation">__Severity</target> </trans-unit>
       <trans-unit id="11">
-        <source>Action</source>
-        <target>__Action</target>
-      </trans-unit>
+        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
       <trans-unit id="12">
-        <source>Back to list</source>
-        <target>__Back to list</target>
-      </trans-unit>
+        <source>Back to list</source> <target state="needs-translation">Tilbage til listen</target> </trans-unit>
       <trans-unit id="13">
-        <source>Name: %name%</source>
-        <target>__Name: %name%</target>
-      </trans-unit>
+        <source>Name: %name%</source> <target state="needs-translation">Navn: %name%</target> </trans-unit>
       <trans-unit id="14">
-        <source>Created at: %date%</source>
-        <target>__Created at: %date%</target>
-      </trans-unit>
+        <source>Created at: %date%</source> <target state="needs-translation">Opretttet den: %date%</target> </trans-unit>
       <trans-unit id="15">
-        <source>Warning!</source>
-        <target>__Warning!</target>
-      </trans-unit>
+        <source>Warning!</source> <target state="needs-translation">Advarsel!</target> </trans-unit>
       <trans-unit id="16">
-        <source>Log</source>
-        <target>__Log</target>
-      </trans-unit>
-      <trans-unit id="17">
-        <source>PHP Log</source>
-        <target>__PHP Log</target>
-      </trans-unit>
+        <source>Log</source> <target state="needs-translation">Log</target> </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>PHP Log</source> <target state="translated">PHP Log</target> </trans-unit>
       <trans-unit id="18">
-        <source>Date</source>
-        <target>__Date</target>
-      </trans-unit>
-      <trans-unit id="19">
-        <source>Type</source>
-        <target>__Type</target>
-      </trans-unit>
-      <trans-unit id="20">
-        <source>The log is empty.</source>
-        <target>__The log is empty.</target>
-      </trans-unit>
+        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Type</source> <target state="translated">Type</target> </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>The log is empty.</source> <target state="translated">Loggen er tom.</target> </trans-unit>
     </body>
   </file>
 </xliff>
