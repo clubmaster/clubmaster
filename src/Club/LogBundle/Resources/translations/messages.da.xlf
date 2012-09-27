@@ -1,47 +1,87 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" datatype="plaintext" original="file.ext">
+  <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Recent logs</source> <target state="needs-translation">Seneste logs</target> </trans-unit>
+        <source>Recent logs</source>
+        <target>Seneste logs</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>Read</source> <target state="needs-translation">Læs</target> </trans-unit>
+        <source>Read</source>
+        <target>Læs</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Message</source> <target state="needs-translation">Besked</target> </trans-unit>
+        <source>Message</source>
+        <target>Besked</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Unread</source> <target state="needs-translation">Ulæst</target> </trans-unit>
+        <source>Unread</source>
+        <target>Ulæst</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>System</source> <target state="needs-translation">System</target> </trans-unit>
+        <source>System</source>
+        <target>System</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>There are no logs.</source> <target state="needs-translation">Der er ingen logs.</target> </trans-unit>
+        <source>There are no logs.</source>
+        <target>Der er ingen logs.</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Action Log</source> <target state="needs-translation">Handlings Log</target> </trans-unit>
+        <source>Action Log</source>
+        <target>Handlings Log</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>Severity</source> <target state="needs-translation">__Severity</target> </trans-unit>
+        <source>Severity</source>
+        <target>__Severity</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>Back to list</source> <target state="needs-translation">Tilbage til listen</target> </trans-unit>
+        <source>Back to list</source>
+        <target>Tilbage til listen</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>Name: %name%</source> <target state="needs-translation">Navn: %name%</target> </trans-unit>
+        <source>Name: %name%</source>
+        <target>Navn: %name%</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Created at: %date%</source> <target state="needs-translation">Opretttet den: %date%</target> </trans-unit>
+        <source>Created at: %date%</source>
+        <target>Opretttet den: %date%</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>Warning!</source> <target state="needs-translation">Advarsel!</target> </trans-unit>
+        <source>Warning!</source>
+        <target>Advarsel!</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>Log</source> <target state="needs-translation">Log</target> </trans-unit>
-      <trans-unit id="17" approved="yes">
-        <source>PHP Log</source> <target state="translated">PHP Log</target> </trans-unit>
+        <source>Log</source>
+        <target>Log</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>PHP Log</source>
+        <target>PHP Log</target>
+      </trans-unit>
       <trans-unit id="18">
-        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
-      <trans-unit id="19" approved="yes">
-        <source>Type</source> <target state="translated">Type</target> </trans-unit>
-      <trans-unit id="20" approved="yes">
-        <source>The log is empty.</source> <target state="translated">Loggen er tom.</target> </trans-unit>
+        <source>Date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>The log is empty.</source>
+        <target>Loggen er tom.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

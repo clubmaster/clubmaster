@@ -1,15 +1,23 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
-      <trans-unit id="1" approved="yes">
-        <source>Checkin</source> <target state="translated">Checkin</target> </trans-unit>
+      <trans-unit id="1">
+        <source>Checkin</source>
+        <target>Checkin</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>There are no checkins.</source> <target state="needs-translation">Der er ingen checkins.</target> </trans-unit>
+        <source>There are no checkins.</source>
+        <target>Der er ingen checkins.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

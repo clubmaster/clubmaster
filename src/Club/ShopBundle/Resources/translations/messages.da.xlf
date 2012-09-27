@@ -1,177 +1,347 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Review order</source> <target state="needs-translation">Revider ordre</target> </trans-unit>
+        <source>Review order</source>
+        <target>Revider ordre</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>Customer Information</source> <target state="needs-translation">Kunde Information</target> </trans-unit>
+        <source>Customer Information</source>
+        <target>Kunde Information</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>Company: %company%</source> <target state="needs-translation">Firma: %company%</target> </trans-unit>
+        <source>Company: %company%</source>
+        <target>Firma: %company%</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>CVR: %cvr%</source> <target state="needs-translation">CVR: %cvr%</target> </trans-unit>
+        <source>CVR: %cvr%</source>
+        <target>CVR: %cvr%</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>Name: %firstname% %lastname%</source> <target state="needs-translation">Navn: %firstname% %lastname%</target> </trans-unit>
+        <source>Name: %firstname% %lastname%</source>
+        <target>Navn: %firstname% %lastname%</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Street: %street%</source> <target state="needs-translation">Adresse: %street%</target> </trans-unit>
+        <source>Street: %street%</source>
+        <target>Adresse: %street%</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>Postal: %postal%</source> <target state="needs-translation">Postnummer: %postal%</target> </trans-unit>
+        <source>Postal: %postal%</source>
+        <target>Postnummer: %postal%</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>City: %city%</source> <target state="needs-translation">By: %city%</target> </trans-unit>
+        <source>City: %city%</source>
+        <target>By: %city%</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Country: %country%</source> <target state="needs-translation">Land: %country%</target> </trans-unit>
+        <source>Country: %country%</source>
+        <target>Land: %country%</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>Payment Information</source> <target state="needs-translation">Betalingsinformation</target> </trans-unit>
+        <source>Payment Information</source>
+        <target>Betalingsinformation</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Shipping Information</source> <target state="needs-translation">Fragt Information</target> </trans-unit>
+        <source>Shipping Information</source>
+        <target>Fragt Information</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>Confirm order</source> <target state="needs-translation">Bekræft ordre</target> </trans-unit>
+        <source>Confirm order</source>
+        <target>Bekræft ordre</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>Checkout</source> <target state="needs-translation">Checkout</target> </trans-unit>
+        <source>Checkout</source>
+        <target>Checkout</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Existing member</source> <target state="needs-translation">Eksisterende medlem</target> </trans-unit>
+        <source>Existing member</source>
+        <target>Eksisterende medlem</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>If you already have an account, please signin here.</source> <target state="needs-translation">Hvis du allerede har en konto, log ind her.</target> </trans-unit>
+        <source>If you already have an account, please signin here.</source>
+        <target>Hvis du allerede har en konto, log ind her.</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>Username</source> <target state="needs-translation">Brugernavn</target> </trans-unit>
+        <source>Username</source>
+        <target>Brugernavn</target>
+      </trans-unit>
       <trans-unit id="17">
-        <source>Password</source> <target state="needs-translation">Password</target> </trans-unit>
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
       <trans-unit id="18">
-        <source>Login</source> <target state="needs-translation">Log ind</target> </trans-unit>
+        <source>Login</source>
+        <target>Log ind</target>
+      </trans-unit>
       <trans-unit id="19">
-        <source>New member</source> <target state="needs-translation">Nyt medlem</target> </trans-unit>
+        <source>New member</source>
+        <target>Nyt medlem</target>
+      </trans-unit>
       <trans-unit id="20">
-        <source>If you do not have an account, please enter you details here.</source> <target state="needs-translation">Hvis du ikke har en konto, indtast venligst dine oplysninger her.</target> </trans-unit>
+        <source>If you do not have an account, please enter you details here.</source>
+        <target>Hvis du ikke har en konto, indtast venligst dine oplysninger her.</target>
+      </trans-unit>
       <trans-unit id="21">
-        <source>Personal Information</source> <target state="needs-translation">Personlig Information</target> </trans-unit>
+        <source>Personal Information</source>
+        <target>Personlig Information</target>
+      </trans-unit>
       <trans-unit id="22">
-        <source>Address Information</source> <target state="needs-translation">Adresse Information</target> </trans-unit>
+        <source>Address Information</source>
+        <target>Adresse Information</target>
+      </trans-unit>
       <trans-unit id="23">
-        <source>Email Information</source> <target state="needs-translation">Email Information</target> </trans-unit>
+        <source>Email Information</source>
+        <target>Email Information</target>
+      </trans-unit>
       <trans-unit id="24">
-        <source>Phone Information</source> <target state="needs-translation">Telefon Information</target> </trans-unit>
+        <source>Phone Information</source>
+        <target>Telefon Information</target>
+      </trans-unit>
       <trans-unit id="25">
-        <source>Create account</source> <target state="needs-translation">Opret konto</target> </trans-unit>
+        <source>Create account</source>
+        <target>Opret konto</target>
+      </trans-unit>
       <trans-unit id="26">
-        <source>View cart</source> <target state="needs-translation">Vis kurv</target> </trans-unit>
+        <source>View cart</source>
+        <target>Vis kurv</target>
+      </trans-unit>
       <trans-unit id="27">
-        <source>Empty cart</source> <target state="needs-translation">Tøm kurv</target> </trans-unit>
+        <source>Empty cart</source>
+        <target>Tøm kurv</target>
+      </trans-unit>
       <trans-unit id="28">
-        <source>Continue shopping</source> <target state="needs-translation">Forsæt indkøb</target> </trans-unit>
+        <source>Continue shopping</source>
+        <target>Forsæt indkøb</target>
+      </trans-unit>
       <trans-unit id="29">
-        <source>Use coupon</source> <target state="needs-translation">Brug kupon</target> </trans-unit>
+        <source>Use coupon</source>
+        <target>Brug kupon</target>
+      </trans-unit>
       <trans-unit id="30">
-        <source>Product name</source> <target state="needs-translation">Produktnavn</target> </trans-unit>
+        <source>Product name</source>
+        <target>Produktnavn</target>
+      </trans-unit>
       <trans-unit id="31">
-        <source>Unit price</source> <target state="needs-translation">Enhedspris</target> </trans-unit>
+        <source>Unit price</source>
+        <target>Enhedspris</target>
+      </trans-unit>
       <trans-unit id="32">
-        <source>Quantity</source> <target state="needs-translation">Antal</target> </trans-unit>
-      <trans-unit id="33" approved="yes">
-        <source>Summary</source> <target state="translated">Total</target> </trans-unit>
+        <source>Quantity</source>
+        <target>Antal</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Summary</source>
+        <target>Total</target>
+      </trans-unit>
       <trans-unit id="34">
-        <source>Your cart is empty.</source> <target state="needs-translation">Din kurv er tom.</target> </trans-unit>
+        <source>Your cart is empty.</source>
+        <target>Din kurv er tom.</target>
+      </trans-unit>
       <trans-unit id="35">
-        <source>Choose shipping</source> <target state="needs-translation">Vælg fragt</target> </trans-unit>
+        <source>Choose shipping</source>
+        <target>Vælg fragt</target>
+      </trans-unit>
       <trans-unit id="36">
-        <source>Create payment method</source> <target state="needs-translation">Opret betalingsmetode</target> </trans-unit>
+        <source>Create payment method</source>
+        <target>Opret betalingsmetode</target>
+      </trans-unit>
       <trans-unit id="37">
-        <source>Payment method</source> <target state="needs-translation">Betalingsmetode</target> </trans-unit>
+        <source>Payment method</source>
+        <target>Betalingsmetode</target>
+      </trans-unit>
       <trans-unit id="38">
-        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
       <trans-unit id="39">
-        <source>There are no payment methods.</source> <target state="needs-translation">Der er ingen betalingsmetoder.</target> </trans-unit>
+        <source>There are no payment methods.</source>
+        <target>Der er ingen betalingsmetoder.</target>
+      </trans-unit>
       <trans-unit id="40">
-        <source>Subscriptions</source> <target state="needs-translation">Abonnementer</target> </trans-unit>
+        <source>Subscriptions</source>
+        <target>Abonnementer</target>
+      </trans-unit>
       <trans-unit id="41">
-        <source>Active</source> <target state="needs-translation">Aktiv</target> </trans-unit>
+        <source>Active</source>
+        <target>Aktiv</target>
+      </trans-unit>
       <trans-unit id="42">
-        <source>Name</source> <target state="needs-translation">Navn</target> </trans-unit>
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
       <trans-unit id="43">
-        <source>Start date</source> <target state="needs-translation">Start dato</target> </trans-unit>
+        <source>Start date</source>
+        <target>Start dato</target>
+      </trans-unit>
       <trans-unit id="44">
-        <source>Expire date</source> <target state="needs-translation">Udløbsdato</target> </trans-unit>
+        <source>Expire date</source>
+        <target>Udløbsdato</target>
+      </trans-unit>
       <trans-unit id="45">
-        <source>Never</source> <target state="needs-translation">Aldrig</target> </trans-unit>
+        <source>Never</source>
+        <target>Aldrig</target>
+      </trans-unit>
       <trans-unit id="46">
-        <source>There is no subscriptions for this user.</source> <target state="needs-translation">Der er ingen abonnementer for denne bruger.</target> </trans-unit>
+        <source>There is no subscriptions for this user.</source>
+        <target>Der er ingen abonnementer for denne bruger.</target>
+      </trans-unit>
       <trans-unit id="47">
-        <source>Open orders</source> <target state="needs-translation">Åbne ordre</target> </trans-unit>
+        <source>Open orders</source>
+        <target>Åbne ordre</target>
+      </trans-unit>
       <trans-unit id="48">
-        <source>Order number</source> <target state="needs-translation">Ordre nummer</target> </trans-unit>
+        <source>Order number</source>
+        <target>Ordre nummer</target>
+      </trans-unit>
       <trans-unit id="49">
-        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
       <trans-unit id="50">
-        <source>Price</source> <target state="needs-translation">Pris</target> </trans-unit>
+        <source>Price</source>
+        <target>Pris</target>
+      </trans-unit>
       <trans-unit id="51">
-        <source>Status</source> <target state="needs-translation">Status</target> </trans-unit>
-      <trans-unit id="52" approved="yes">
-        <source>Created at</source> <target state="translated">Oprettet den</target> </trans-unit>
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="53">
-        <source>Updated at</source> <target state="needs-translation">Updateret den</target> </trans-unit>
+        <source>Updated at</source>
+        <target>Updateret den</target>
+      </trans-unit>
       <trans-unit id="54">
-        <source>There are no orders.</source> <target state="needs-translation">Der er ingen ordre.</target> </trans-unit>
+        <source>There are no orders.</source>
+        <target>Der er ingen ordre.</target>
+      </trans-unit>
       <trans-unit id="55">
-        <source>Your subscriptions</source> <target state="needs-translation">Vælg abonnementer</target> </trans-unit>
+        <source>Your subscriptions</source>
+        <target>Vælg abonnementer</target>
+      </trans-unit>
       <trans-unit id="56">
-        <source>Create product</source> <target state="needs-translation">Opret produkt</target> </trans-unit>
+        <source>Create product</source>
+        <target>Opret produkt</target>
+      </trans-unit>
       <trans-unit id="57">
-        <source>Product</source> <target state="needs-translation">Produkt</target> </trans-unit>
+        <source>Product</source>
+        <target>Produkt</target>
+      </trans-unit>
       <trans-unit id="58">
-        <source>There are no products.</source> <target state="needs-translation">Der er ingen produkter</target> </trans-unit>
+        <source>There are no products.</source>
+        <target>Der er ingen produkter</target>
+      </trans-unit>
       <trans-unit id="59">
-        <source>Create category</source> <target state="needs-translation">Opret kategori</target> </trans-unit>
+        <source>Create category</source>
+        <target>Opret kategori</target>
+      </trans-unit>
       <trans-unit id="60">
-        <source>You cannot add any products without a category.</source> <target state="needs-translation">Du kan ikke oprette nogen produkter uden en katogori.</target> </trans-unit>
-      <trans-unit id="61" approved="yes">
-        <source>Shop</source> <target state="translated">Butik</target> </trans-unit>
+        <source>You cannot add any products without a category.</source>
+        <target>Du kan ikke oprette nogen produkter uden en katogori.</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Shop</source>
+        <target>Butik</target>
+      </trans-unit>
       <trans-unit id="62">
-        <source>If you have a coupon, you can enter the key here, and we will add it to your cart.</source> <target state="needs-translation">Hvis du har en kupon, kan du indtaste nøglen her, og den vil blive tilføjet til kurven.</target> </trans-unit>
+        <source>If you have a coupon, you can enter the key here, and we will add it to your cart.</source>
+        <target>Hvis du har en kupon, kan du indtaste nøglen her, og den vil blive tilføjet til kurven.</target>
+      </trans-unit>
       <trans-unit id="63">
-        <source>Coupon</source> <target state="needs-translation">Kupon</target> </trans-unit>
+        <source>Coupon</source>
+        <target>Kupon</target>
+      </trans-unit>
       <trans-unit id="64">
-        <source>Category</source> <target state="needs-translation">Kategori</target> </trans-unit>
+        <source>Category</source>
+        <target>Kategori</target>
+      </trans-unit>
       <trans-unit id="65">
-        <source>Location</source> <target state="needs-translation">Område</target> </trans-unit>
+        <source>Location</source>
+        <target>Område</target>
+      </trans-unit>
       <trans-unit id="66">
-        <source>There are no categories.</source> <target state="needs-translation">Der er ingen katogorier.</target> </trans-unit>
+        <source>There are no categories.</source>
+        <target>Der er ingen katogorier.</target>
+      </trans-unit>
       <trans-unit id="67">
-        <source>Create shipping</source> <target state="needs-translation">Opret fragt</target> </trans-unit>
+        <source>Create shipping</source>
+        <target>Opret fragt</target>
+      </trans-unit>
       <trans-unit id="68">
-        <source>Shipping</source> <target state="needs-translation">Fragt</target> </trans-unit>
+        <source>Shipping</source>
+        <target>Fragt</target>
+      </trans-unit>
       <trans-unit id="69">
-        <source>There are no shipping.</source> <target state="needs-translation">Der er ingen fragt.</target> </trans-unit>
+        <source>There are no shipping.</source>
+        <target>Der er ingen fragt.</target>
+      </trans-unit>
       <trans-unit id="70">
-        <source>Create status</source> <target state="needs-translation">Opret status</target> </trans-unit>
+        <source>Create status</source>
+        <target>Opret status</target>
+      </trans-unit>
       <trans-unit id="71">
-        <source>Status name</source> <target state="needs-translation">Status navn</target> </trans-unit>
+        <source>Status name</source>
+        <target>Status navn</target>
+      </trans-unit>
       <trans-unit id="72">
-        <source>Paid</source> <target state="needs-translation">Betalt</target> </trans-unit>
+        <source>Paid</source>
+        <target>Betalt</target>
+      </trans-unit>
       <trans-unit id="73">
-        <source>Delivered</source> <target state="needs-translation">Leveret</target> </trans-unit>
+        <source>Delivered</source>
+        <target>Leveret</target>
+      </trans-unit>
       <trans-unit id="74">
-        <source>Cancelled</source> <target state="needs-translation">Annulleret</target> </trans-unit>
+        <source>Cancelled</source>
+        <target>Annulleret</target>
+      </trans-unit>
       <trans-unit id="75">
-        <source>Priority</source> <target state="needs-translation">Prioritet</target> </trans-unit>
+        <source>Priority</source>
+        <target>Prioritet</target>
+      </trans-unit>
       <trans-unit id="76">
-        <source>There are no statuses.</source> <target state="needs-translation">Der er ingen statuser.</target> </trans-unit>
+        <source>There are no statuses.</source>
+        <target>Der er ingen statuser.</target>
+      </trans-unit>
       <trans-unit id="77">
-        <source>Edit Product %product%</source> <target state="needs-translation">Rediger Produkt %product%</target> </trans-unit>
+        <source>Edit Product %product%</source>
+        <target>Rediger Produkt %product%</target>
+      </trans-unit>
       <trans-unit id="78">
-        <source>This is where you edit the different attributes for your product, if your product should have some special attributes.</source> <target state="needs-translation">Det er her du ændre de forskellige attributter for dit produkt, hvis produktet skal have nogen specielle attributter.</target> </trans-unit>
+        <source>This is where you edit the different attributes for your product, if your product should have some special attributes.</source>
+        <target>Det er her du ændre de forskellige attributter for dit produkt, hvis produktet skal have nogen specielle attributter.</target>
+      </trans-unit>
       <trans-unit id="79">
-        <source>Period subscription</source> <target state="needs-translation">Abonnements perioder</target> </trans-unit>
+        <source>Period subscription</source>
+        <target>Abonnements perioder</target>
+      </trans-unit>
       <trans-unit id="80">
-        <source>Time range subscription</source> <target>__Time range subscription</target> </trans-unit>
+        <source>Time range subscription</source>
+        <target>__Time range subscription</target>
+      </trans-unit>
       <trans-unit id="81">
-        <source>Other settings</source> <target>__Other settings</target> </trans-unit>
+        <source>Other settings</source>
+        <target>__Other settings</target>
+      </trans-unit>
       <trans-unit id="82">
-        <source>Click here to pay order.</source> <target>__Click here to pay order.</target> </trans-unit>
+        <source>Click here to pay order.</source>
+        <target>__Click here to pay order.</target>
+      </trans-unit>
       <trans-unit id="83">
-        <source>Products</source> <target>__Products</target> </trans-unit>
+        <source>Products</source>
+        <target>__Products</target>
+      </trans-unit>
       <trans-unit id="84">
-        <source>You have no products.</source> <target>__You have no products.</target> </trans-unit>
+        <source>You have no products.</source>
+        <target>__You have no products.</target>
+      </trans-unit>
       <trans-unit id="85">
-        <source>Purchase Log</source> <target>__Purchase Log</target> </trans-unit>
+        <source>Purchase Log</source>
+        <target>__Purchase Log</target>
+      </trans-unit>
       <trans-unit id="86">
         <source>Date</source>
         <target>__Date</target>

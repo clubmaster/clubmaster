@@ -1,43 +1,79 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
-      <trans-unit id="1" approved="yes">
-        <source>Installer</source> <target state="translated">Installer</target> </trans-unit>
+      <trans-unit id="1">
+        <source>Installer</source>
+        <target>Installer</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>ClubMaster Installation</source> <target state="needs-translation">ClubMaster Installation</target> </trans-unit>
+        <source>ClubMaster Installation</source>
+        <target>ClubMaster Installation</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>This is the installer of ClubMaster.</source> <target state="needs-translation">Dette er ClubMaster installationen.</target> </trans-unit>
+        <source>This is the installer of ClubMaster.</source>
+        <target>Dette er ClubMaster installationen.</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Location Information</source> <target state="needs-translation">Område Information</target> </trans-unit>
+        <source>Location Information</source>
+        <target>Område Information</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>When you have completed the following list of steps, you are ready to start using ClubMaster.</source> <target state="needs-translation">Når du har fuldført den følgende liste af opgaver er du klar til at bruge ClubMaster.</target> </trans-unit>
+        <source>When you have completed the following list of steps, you are ready to start using ClubMaster.</source>
+        <target>Når du har fuldført den følgende liste af opgaver er du klar til at bruge ClubMaster.</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Install database</source> <target state="needs-translation">Installer database</target> </trans-unit>
+        <source>Install database</source>
+        <target>Installer database</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>Administrator setup</source> <target state="needs-translation">Administrator opsætning</target> </trans-unit>
+        <source>Administrator setup</source>
+        <target>Administrator opsætning</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>Location setup</source> <target state="needs-translation">Område opsætning</target> </trans-unit>
+        <source>Location setup</source>
+        <target>Område opsætning</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Start installation</source> <target state="needs-translation">Start instal</target> </trans-unit>
+        <source>Start installation</source>
+        <target>Start instal</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>Personal Information</source> <target state="needs-translation">Personlig Information</target> </trans-unit>
+        <source>Personal Information</source>
+        <target>Personlig Information</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Account Information</source> <target state="needs-translation">Konto Information</target> </trans-unit>
-      <trans-unit id="12" approved="yes">
-        <source>Before you can continue your installation of ClubMaster, you will have to install the database.</source> <target state="translated">Før du kan gå videre med installationen af ClubMaster skal du først installere en database.</target> </trans-unit>
-      <trans-unit id="13" approved="yes">
-        <source>An error occur, please correct the problem and try again.</source> <target state="translated">Der er opstået en fejl, udbedre fejlen og prøve igen.</target> </trans-unit>
+        <source>Account Information</source>
+        <target>Konto Information</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Before you can continue your installation of ClubMaster, you will have to install the database.</source>
+        <target>Før du kan gå videre med installationen af ClubMaster skal du først installere en database.</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>An error occur, please correct the problem and try again.</source>
+        <target>Der er opstået en fejl, udbedre fejlen og prøve igen.</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Try again</source> <target state="needs-translation">Prøv igen</target> </trans-unit>
+        <source>Try again</source>
+        <target>Prøv igen</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>Congratulations</source> <target state="needs-translation">Tillykke</target> </trans-unit>
+        <source>Congratulations</source>
+        <target>Tillykke</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>Your installation has successful completed. You can not start use your new open source membership management system.</source> <target state="needs-translation">Din installation er gået godt. Du kan nu bruge dit nye open source medlemskartotek.</target> </trans-unit>
+        <source>Your installation has successful completed. You can not start use your new open source membership management system.</source>
+        <target>Din installation er gået godt. Du kan nu bruge dit nye open source medlemskartotek.</target>
+      </trans-unit>
       <trans-unit id="17">
-        <source>Member number</source> <target state="needs-translation">Medlemsnummer</target> </trans-unit>
+        <source>Member number</source>
+        <target>Medlemsnummer</target>
+      </trans-unit>
       <trans-unit id="18">
-        <source>Go to ClubMaster</source> <target state="needs-translation">Gå til ClubMaster</target> </trans-unit>
+        <source>Go to ClubMaster</source>
+        <target>Gå til ClubMaster</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
