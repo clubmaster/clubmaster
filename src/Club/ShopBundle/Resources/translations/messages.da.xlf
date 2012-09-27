@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="da" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
         <source>Review order</source> <target>Revider ordre</target> </trans-unit>
@@ -317,339 +317,173 @@
         <target>Abonnements perioder</target>
       </trans-unit>
       <trans-unit id="80">
-        <source>Time range subscription</source>
-        <target>__Time range subscription</target>
-      </trans-unit>
+        <source>Time range subscription</source> <target state="needs-translation">Tidsområde abonnement</target> </trans-unit>
       <trans-unit id="81">
-        <source>Other settings</source>
-        <target>__Other settings</target>
-      </trans-unit>
+        <source>Other settings</source> <target state="needs-translation">Andre indstillinger</target> </trans-unit>
       <trans-unit id="82">
-        <source>Click here to pay order.</source>
-        <target>__Click here to pay order.</target>
-      </trans-unit>
+        <source>Click here to pay order.</source> <target state="needs-translation">Klik her for at betale ordre.</target> </trans-unit>
       <trans-unit id="83">
-        <source>Products</source>
-        <target>__Products</target>
-      </trans-unit>
+        <source>Products</source> <target state="needs-translation">Produkter</target> </trans-unit>
       <trans-unit id="84">
-        <source>You have no products.</source>
-        <target>__You have no products.</target>
-      </trans-unit>
+        <source>You have no products.</source> <target state="needs-translation">Du har ingen produkter</target> </trans-unit>
       <trans-unit id="85">
-        <source>Purchase Log</source>
-        <target>__Purchase Log</target>
-      </trans-unit>
+        <source>Purchase Log</source> <target state="needs-translation">Betalingslog</target> </trans-unit>
       <trans-unit id="86">
-        <source>Date</source>
-        <target>__Date</target>
-      </trans-unit>
+        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
       <trans-unit id="87">
-        <source>Amount</source>
-        <target>__Amount</target>
-      </trans-unit>
-      <trans-unit id="88">
-        <source>Currency</source>
-        <target>__Currency</target>
-      </trans-unit>
+        <source>Amount</source> <target state="needs-translation">Beløb</target> </trans-unit>
+      <trans-unit id="88" approved="yes">
+        <source>Currency</source> <target state="translated">Valuta</target> </trans-unit>
       <trans-unit id="89">
-        <source>Accepted</source>
-        <target>__Accepted</target>
-      </trans-unit>
+        <source>Accepted</source> <target state="needs-translation">Accepteret</target> </trans-unit>
       <trans-unit id="90">
-        <source>Transaction</source>
-        <target>__Transaction</target>
-      </trans-unit>
+        <source>Transaction</source> <target state="needs-translation">Transaktion</target> </trans-unit>
       <trans-unit id="91">
-        <source>Order history</source>
-        <target>__Order history</target>
-      </trans-unit>
+        <source>Order history</source> <target state="needs-translation">Ordre historik</target> </trans-unit>
       <trans-unit id="92">
-        <source>Order status</source>
-        <target>__Order status</target>
-      </trans-unit>
+        <source>Order status</source> <target state="needs-translation">Ordre status</target> </trans-unit>
       <trans-unit id="93">
-        <source>Note</source>
-        <target>__Note</target>
-      </trans-unit>
+        <source>Note</source> <target state="needs-translation">Note</target> </trans-unit>
       <trans-unit id="94">
-        <source>Order</source>
-        <target>__Order</target>
-      </trans-unit>
+        <source>Order</source> <target state="needs-translation">Ordre</target> </trans-unit>
       <trans-unit id="95">
-        <source>You have not completed any orders.</source>
-        <target>__You have not completed any orders.</target>
-      </trans-unit>
+        <source>You have not completed any orders.</source> <target state="needs-translation">Du har ingen færdigbehandlet ordre.</target> </trans-unit>
       <trans-unit id="96">
-        <source>Customer</source>
-        <target>__Customer</target>
-      </trans-unit>
+        <source>Customer</source> <target state="needs-translation">Kunde</target> </trans-unit>
       <trans-unit id="97">
-        <source>Billing</source>
-        <target>__Billing</target>
-      </trans-unit>
+        <source>Billing</source> <target state="needs-translation">Betaling</target> </trans-unit>
       <trans-unit id="98">
-        <source>Company</source>
-        <target>__Company</target>
-      </trans-unit>
+        <source>Company</source> <target state="needs-translation">Firma</target> </trans-unit>
       <trans-unit id="99">
-        <source>CVR</source>
-        <target>__CVR</target>
-      </trans-unit>
-      <trans-unit id="100">
-        <source>Street</source>
-        <target>__Street</target>
-      </trans-unit>
+        <source>CVR</source> <target state="needs-translation">CVR</target> </trans-unit>
+      <trans-unit id="100" approved="yes">
+        <source>Street</source> <target state="translated">Adresse</target> </trans-unit>
       <trans-unit id="101">
-        <source>Postal</source>
-        <target>__Postal</target>
-      </trans-unit>
+        <source>Postal</source> <target state="needs-translation">Postnummer</target> </trans-unit>
       <trans-unit id="102">
-        <source>City</source>
-        <target>__City</target>
-      </trans-unit>
+        <source>City</source> <target state="needs-translation">By</target> </trans-unit>
       <trans-unit id="103">
-        <source>Country</source>
-        <target>__Country</target>
-      </trans-unit>
+        <source>Country</source> <target state="needs-translation">Land</target> </trans-unit>
       <trans-unit id="104">
-        <source>Subscription</source>
-        <target>__Subscription</target>
-      </trans-unit>
+        <source>Subscription</source> <target state="needs-translation">Abonnement</target> </trans-unit>
       <trans-unit id="105">
-        <source>No image</source>
-        <target>__No image</target>
-      </trans-unit>
+        <source>No image</source> <target state="needs-translation">Intet billede</target> </trans-unit>
       <trans-unit id="106">
-        <source>Put in cart</source>
-        <target>__Put in cart</target>
-      </trans-unit>
+        <source>Put in cart</source> <target state="needs-translation">Læg i kurv</target> </trans-unit>
       <trans-unit id="107">
-        <source>There is no products in this category.</source>
-        <target>__There is no products in this category.</target>
-      </trans-unit>
+        <source>There is no products in this category.</source> <target state="needs-translation">Der er ingen produkter i denne katogori.</target> </trans-unit>
       <trans-unit id="108">
-        <source>Categories</source>
-        <target>__Categories</target>
-      </trans-unit>
+        <source>Categories</source> <target state="needs-translation">Kategorier</target> </trans-unit>
       <trans-unit id="109">
-        <source>Type</source>
-        <target>__Type</target>
-      </trans-unit>
+        <source>Type</source> <target state="needs-translation">Type</target> </trans-unit>
       <trans-unit id="110">
-        <source>You do not have any subscriptions.</source>
-        <target>__You do not have any subscriptions.</target>
-      </trans-unit>
+        <source>You do not have any subscriptions.</source> <target state="needs-translation">Du har ingen abonnementer.</target> </trans-unit>
       <trans-unit id="111">
-        <source>Active subscriptions</source>
-        <target>__Active subscriptions</target>
-      </trans-unit>
+        <source>Active subscriptions</source> <target state="needs-translation">Aktive abonnementer</target> </trans-unit>
       <trans-unit id="112">
-        <source>Coming subscriptions</source>
-        <target>__Coming subscriptions</target>
-      </trans-unit>
+        <source>Coming subscriptions</source> <target state="needs-translation">Kommende abonnementer</target> </trans-unit>
       <trans-unit id="113">
-        <source>Expired subscriptions</source>
-        <target>__Expired subscriptions</target>
-      </trans-unit>
+        <source>Expired subscriptions</source> <target state="needs-translation">Udløbet abonnementer</target> </trans-unit>
       <trans-unit id="114">
-        <source>Day bought</source>
-        <target>__Day bought</target>
-      </trans-unit>
+        <source>Day bought</source> <target state="needs-translation">Købsdato</target> </trans-unit>
       <trans-unit id="115">
-        <source>Period</source>
-        <target>__Period</target>
-      </trans-unit>
+        <source>Period</source> <target state="needs-translation">Periode</target> </trans-unit>
       <trans-unit id="116">
-        <source>Auto renewal</source>
-        <target>__Auto renewal</target>
-      </trans-unit>
+        <source>Auto renewal</source> <target state="needs-translation">Auto fornyelse</target> </trans-unit>
       <trans-unit id="117">
-        <source>This subscription will automatically be renewed.</source>
-        <target>__This subscription will automatically be renewed.</target>
-      </trans-unit>
+        <source>This subscription will automatically be renewed.</source> <target state="needs-translation">Abonnementet vil automatisk blive fornyet.</target> </trans-unit>
       <trans-unit id="118">
-        <source>This subscription will not be automatically renewed.</source>
-        <target>__This subscription will not be automatically renewed.</target>
-      </trans-unit>
+        <source>This subscription will not be automatically renewed.</source> <target state="needs-translation">Abonnementet vil ikke automatisk blive fornyet.</target> </trans-unit>
       <trans-unit id="119">
-        <source>Booking</source>
-        <target>__Booking</target>
-      </trans-unit>
+        <source>Booking</source> <target state="needs-translation">Booking</target> </trans-unit>
       <trans-unit id="120">
-        <source>This subscription allow you to use bookings.</source>
-        <target>__This subscription allow you to use bookings.</target>
-      </trans-unit>
+        <source>This subscription allow you to use bookings.</source> <target state="needs-translation">Abonnementet tillader booking.</target> </trans-unit>
       <trans-unit id="121">
-        <source>This subscription does not allow you to use bookings.</source>
-        <target>__This subscription does not allow you to use bookings.</target>
-      </trans-unit>
+        <source>This subscription does not allow you to use bookings.</source> <target state="needs-translation">Abonnementet tillader ikke booking.</target> </trans-unit>
       <trans-unit id="122">
-        <source>Team</source>
-        <target>__Team</target>
-      </trans-unit>
+        <source>Team</source> <target state="needs-translation">Hold</target> </trans-unit>
       <trans-unit id="123">
-        <source>This subscription allow you to use teams.</source>
-        <target>__This subscription allow you to use teams.</target>
-      </trans-unit>
+        <source>This subscription allow you to use teams.</source> <target state="needs-translation">Abonnementet tillader brug af hold.</target> </trans-unit>
       <trans-unit id="124">
-        <source>This subscription does not allow you to use teams.</source>
-        <target>__This subscription does not allow you to use teams.</target>
-      </trans-unit>
+        <source>This subscription does not allow you to use teams.</source> <target state="needs-translation">Abonnementet tillader ikke brug af hold.</target> </trans-unit>
       <trans-unit id="125">
-        <source>Cancel subscription</source>
-        <target>__Cancel subscription</target>
-      </trans-unit>
+        <source>Cancel subscription</source> <target state="needs-translation">Annuller abonnement</target> </trans-unit>
       <trans-unit id="126">
-        <source>Click here to cancel this subscription.</source>
-        <target>__Click here to cancel this subscription.</target>
-      </trans-unit>
+        <source>Click here to cancel this subscription.</source> <target state="needs-translation">Klik her for at annullere abonnement.</target> </trans-unit>
       <trans-unit id="127">
-        <source>This subscription is valid in the following clubs.</source>
-        <target>__This subscription is valid in the following clubs.</target>
-      </trans-unit>
+        <source>This subscription is valid in the following clubs.</source> <target state="needs-translation">Dette abonnement er gyldigt i følgende klubber.</target> </trans-unit>
       <trans-unit id="128">
-        <source>Coupon log</source>
-        <target>__Coupon log</target>
-      </trans-unit>
+        <source>Coupon log</source> <target state="needs-translation">Kupon log</target> </trans-unit>
       <trans-unit id="129">
-        <source>Used at</source>
-        <target>__Used at</target>
-      </trans-unit>
+        <source>Used at</source> <target state="needs-translation">Brugt den</target> </trans-unit>
       <trans-unit id="130">
-        <source>Guest</source>
-        <target>__Guest</target>
-      </trans-unit>
+        <source>Guest</source> <target state="needs-translation">Gæst</target> </trans-unit>
       <trans-unit id="131">
-        <source>This coupon has never been used.</source>
-        <target>__This coupon has never been used.</target>
-      </trans-unit>
+        <source>This coupon has never been used.</source> <target state="needs-translation">Denne kupon har aldrig været brugt.</target> </trans-unit>
       <trans-unit id="132">
-        <source>Create coupon</source>
-        <target>__Create coupon</target>
-      </trans-unit>
+        <source>Create coupon</source> <target state="needs-translation">Opret kupon</target> </trans-unit>
       <trans-unit id="133">
-        <source>Value</source>
-        <target>__Value</target>
-      </trans-unit>
-      <trans-unit id="134">
-        <source>Max usage</source>
-        <target>__Max usage</target>
-      </trans-unit>
+        <source>Value</source> <target state="needs-translation">Værdi</target> </trans-unit>
+      <trans-unit id="134" approved="yes">
+        <source>Max usage</source> <target state="translated">Max brug</target> </trans-unit>
       <trans-unit id="135">
-        <source>Expires at</source>
-        <target>__Expires at</target>
-      </trans-unit>
+        <source>Expires at</source> <target state="needs-translation">Udløber den</target> </trans-unit>
       <trans-unit id="136">
-        <source>There are no coupons.</source>
-        <target>__There are no coupons.</target>
-      </trans-unit>
+        <source>There are no coupons.</source> <target state="needs-translation">Der er ingen kuponner.</target> </trans-unit>
       <trans-unit id="137">
-        <source>Orders</source>
-        <target>__Orders</target>
-      </trans-unit>
+        <source>Orders</source> <target state="needs-translation">Ordre</target> </trans-unit>
       <trans-unit id="138">
-        <source>Order #%number%</source>
-        <target>__Order #%number%</target>
-      </trans-unit>
+        <source>Order #%number%</source> <target state="needs-translation">Order #%number%</target> </trans-unit>
       <trans-unit id="139">
-        <source>Edit products</source>
-        <target>__Edit products</target>
-      </trans-unit>
+        <source>Edit products</source> <target state="needs-translation">Rediter produkter</target> </trans-unit>
       <trans-unit id="140">
-        <source>Search</source>
-        <target>__Search</target>
-      </trans-unit>
+        <source>Search</source> <target state="needs-translation">Søg</target> </trans-unit>
       <trans-unit id="141">
-        <source>Whats next</source>
-        <target>__Whats next</target>
-      </trans-unit>
+        <source>Whats next</source> <target state="needs-translation">Hvad er det næste?</target> </trans-unit>
       <trans-unit id="142">
-        <source>The order has been made.</source>
-        <target>__The order has been made.</target>
-      </trans-unit>
+        <source>The order has been made.</source> <target state="needs-translation">Ordren er oprettet.</target> </trans-unit>
       <trans-unit id="143">
-        <source>The order has been paid.</source>
-        <target>__The order has been paid.</target>
-      </trans-unit>
+        <source>The order has been paid.</source> <target state="needs-translation">Ordren er betalt.</target> </trans-unit>
       <trans-unit id="144">
-        <source>The order has not been paid.</source>
-        <target>__The order has not been paid.</target>
-      </trans-unit>
-      <trans-unit id="145">
-        <source>The order has been delivered.</source>
-        <target>__The order has been delivered.</target>
-      </trans-unit>
+        <source>The order has not been paid.</source> <target state="needs-translation">Ordren er ikke betalt.</target> </trans-unit>
+      <trans-unit id="145" approved="yes">
+        <source>The order has been delivered.</source> <target state="translated">Beskeden er blevet levereret</target> </trans-unit>
       <trans-unit id="146">
-        <source>The order has not been delivered.</source>
-        <target>__The order has not been delivered.</target>
-      </trans-unit>
+        <source>The order has not been delivered.</source> <target state="needs-translation">Ordren er ikke blevet leveret.</target> </trans-unit>
       <trans-unit id="147">
-        <source>The order has been cancelled.</source>
-        <target>__The order has been cancelled.</target>
-      </trans-unit>
+        <source>The order has been cancelled.</source> <target state="needs-translation">Ordren er blevet annulleret.</target> </trans-unit>
       <trans-unit id="148">
-        <source>The order has not been cancelled.</source>
-        <target>__The order has not been cancelled.</target>
-      </trans-unit>
+        <source>The order has not been cancelled.</source> <target state="needs-translation">Ordren er ikke annulleret.</target> </trans-unit>
       <trans-unit id="149">
-        <source>Create special</source>
-        <target>__Create special</target>
-      </trans-unit>
+        <source>Create special</source> <target state="needs-translation">Opret special</target> </trans-unit>
       <trans-unit id="150">
-        <source>There are no special prices.</source>
-        <target>__There are no special prices.</target>
-      </trans-unit>
+        <source>There are no special prices.</source> <target state="needs-translation">Der er ingen specielle priser.</target> </trans-unit>
       <trans-unit id="151">
-        <source>Price: %price%</source>
-        <target>__Price: %price%</target>
-      </trans-unit>
+        <source>Price: %price%</source> <target state="needs-translation">Pris: %price%</target> </trans-unit>
       <trans-unit id="152">
         <source>Description</source> <target state="needs-translation">Beskrivelse</target> </trans-unit>
-      <trans-unit id="153">
-        <source>Attributes</source>
-        <target>__Attributes</target>
-      </trans-unit>
+      <trans-unit id="153" approved="yes">
+        <source>Attributes</source> <target state="translated">Atributter</target> </trans-unit>
       <trans-unit id="154">
-        <source>Your subscription period is %start% - %expire%.</source>
-        <target>__Your subscription period is %start% - %expire%.</target>
-      </trans-unit>
+        <source>Your subscription period is %start% - %expire%.</source> <target state="needs-translation">Din abonnements periode er %start% - %expire%.</target> </trans-unit>
       <trans-unit id="155">
-        <source>Your subscription will give you access to use bookings.</source>
-        <target>__Your subscription will give you access to use bookings.</target>
-      </trans-unit>
+        <source>Your subscription will give you access to use bookings.</source> <target state="needs-translation">Dit abonnement tillader dig at bruge booking.</target> </trans-unit>
       <trans-unit id="156">
-        <source>Your subscription will give you access to use teams.</source>
-        <target>__Your subscription will give you access to use teams.</target>
-      </trans-unit>
+        <source>Your subscription will give you access to use teams.</source> <target state="needs-translation">Dit abonnement tillader dig at bruge hold.</target> </trans-unit>
       <trans-unit id="157">
-        <source>Your subscription will last &lt;b&gt;%time%&lt;/b&gt;.</source>
-        <target>__Your subscription will last &lt;b&gt;%time%&lt;/b&gt;.</target>
-      </trans-unit>
+        <source>Your subscription will last &lt;b&gt;%time%&lt;/b&gt;.</source> <target state="needs-translation">Dit abonnement er gyldigt til &lt;b&gt;%time%&lt;/b&gt;.</target> </trans-unit>
       <trans-unit id="158">
-        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source>
-        <target>__You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</target>
-      </trans-unit>
+        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source> <target state="needs-translation">Du vil modtage &lt;b&gt;%tickets% klip&lt;/b&gt;.</target> </trans-unit>
       <trans-unit id="159">
-        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source>
-        <target>__Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</target>
-      </trans-unit>
+        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source> <target state="needs-translation">Dit abonnement vil blive &lt;b&gt;automatisk fornyet&lt;/b&gt;.</target> </trans-unit>
       <trans-unit id="160">
-        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
-        <target>__You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</target>
-      </trans-unit>
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source> <target state="needs-translation">Du vil have mulighed for at tage &lt;b&gt;%pauses% pauser&lt;/b&gt; i medlemskabsperioden.</target> </trans-unit>
       <trans-unit id="161">
-        <source>This membership is active between &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt; in the day</source>
-        <target>__This membership is active between &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt; in the day</target>
-      </trans-unit>
+        <source>This membership is active between &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt; in the day</source> <target state="needs-translation">Dette abonnement er aktivt mellem &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt;</target> </trans-unit>
       <trans-unit id="162">
-        <source>This membership is active from &lt;b&gt;%start_time%&lt;/b&gt; in the day</source>
-        <target>__This membership is active from &lt;b&gt;%start_time%&lt;/b&gt; in the day</target>
-      </trans-unit>
+        <source>This membership is active from &lt;b&gt;%start_time%&lt;/b&gt; in the day</source> <target state="needs-translation">Dette abonnement er aktivt fra &lt;b&gt;%start_time%&lt;/b&gt;</target> </trans-unit>
       <trans-unit id="163">
-        <source>This membership is active until &lt;b&gt;%stop_time%&lt;/b&gt; in the day</source>
-        <target>__This membership is active until &lt;b&gt;%stop_time%&lt;/b&gt; in the day</target>
-      </trans-unit>
+        <source>This membership is active until &lt;b&gt;%stop_time%&lt;/b&gt; in the day</source> <target state="needs-translation">Dette medlemskab er aktivt indtil &lt;b&gt;%stop_time%&lt;/b&gt;</target> </trans-unit>
     </body>
   </file>
 </xliff>
