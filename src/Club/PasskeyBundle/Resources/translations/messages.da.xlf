@@ -4,51 +4,51 @@
     <body>
       <trans-unit id="1">
         <source>Passkey</source>
-        <target>__Passkey</target>
+        <target>Nøglekort</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Add user</source>
-        <target>__Add user</target>
+        <target>Opret bruger</target>
       </trans-unit>
       <trans-unit id="3">
         <source>Here you have to enter the member that has this key.</source>
-        <target>__Here you have to enter the member that has this key.</target>
+        <target>Her kan du indtaste det medlem som har denne nøgle.</target>
       </trans-unit>
       <trans-unit id="4">
         <source>Assign user</source>
-        <target>__Assign user</target>
+        <target>Tildel bruger</target>
       </trans-unit>
       <trans-unit id="5">
         <source>%name% is current assign to this key.</source>
-        <target>__%name% is current assign to this key.</target>
+        <target>%name% har for øjeblikket denne nøgle.</target>
       </trans-unit>
       <trans-unit id="6">
         <source>Reset user</source>
-        <target>__Reset user</target>
+        <target>Nulstil bruger</target>
       </trans-unit>
       <trans-unit id="7">
         <source>Create passkey</source>
-        <target>__Create passkey</target>
+        <target>Opret nøglekort</target>
       </trans-unit>
       <trans-unit id="8">
         <source>Key</source>
-        <target>__Key</target>
+        <target>Nøgle</target>
       </trans-unit>
       <trans-unit id="9">
         <source>User</source>
-        <target>__User</target>
+        <target>Bruger</target>
       </trans-unit>
       <trans-unit id="10">
         <source>Created at</source>
-        <target>__Created at</target>
+        <target>Oprettet den</target>
       </trans-unit>
       <trans-unit id="11">
         <source>Action</source>
-        <target>__Action</target>
+        <target>Handling</target>
       </trans-unit>
       <trans-unit id="12">
         <source>There are no passkeys.</source>
-        <target>__There are no passkeys.</target>
+        <target>Der er ingen nøgler.</target>
       </trans-unit>
     </body>
   </file>
