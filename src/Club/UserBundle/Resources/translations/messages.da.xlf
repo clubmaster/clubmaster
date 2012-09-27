@@ -1,415 +1,211 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="da" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Location config</source>
-        <target>__Location config</target>
-      </trans-unit>
-      <trans-unit id="2">
-        <source>If a location does not have any settings, it will relay on its parents.</source>
-        <target>__If a location does not have any settings, it will relay on its parents.</target>
-      </trans-unit>
-      <trans-unit id="3">
-        <source>If you have a long list of users you want to import, you can use this page.</source>
-        <target>__If you have a long list of users you want to import, you can use this page.</target>
-      </trans-unit>
+        <source>Location config</source> <target state="needs-translation">Område konfig</target> </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>If a location does not have any settings, it will relay on its parents.</source> <target state="translated">Hvis et område ingen indstilliger har, vil det nedavle.</target> </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>If you have a long list of users you want to import, you can use this page.</source> <target state="translated">Hvis du har en lang liste af brugere du vil importere kan du bruge denne side.</target> </trans-unit>
       <trans-unit id="4">
-        <source>Import</source>
-        <target>__Import</target>
-      </trans-unit>
+        <source>Import</source> <target state="needs-translation">Importér</target> </trans-unit>
       <trans-unit id="5">
-        <source>Explation</source>
-        <target>__Explation</target>
-      </trans-unit>
+        <source>Explation</source> <target state="needs-translation">Forklaring</target> </trans-unit>
       <trans-unit id="6">
-        <source>Member number</source>
-        <target>__Member number</target>
-      </trans-unit>
+        <source>Member number</source> <target state="needs-translation">Medlemsnummer</target> </trans-unit>
       <trans-unit id="7">
-        <source>If left blank user will get the next number in the line.</source>
-        <target>__If left blank user will get the next number in the line.</target>
-      </trans-unit>
+        <source>If left blank user will get the next number in the line.</source> <target state="needs-translation">Hvis feltet er tomt vil brugeren få det næste ledige nummer.</target> </trans-unit>
       <trans-unit id="8">
-        <source>Password</source>
-        <target>__Password</target>
-      </trans-unit>
+        <source>Password</source> <target state="needs-translation">Password</target> </trans-unit>
       <trans-unit id="9">
-        <source>If left blank set password to password, and user has to set it after first login.</source>
-        <target>__If left blank set password to password, and user has to set it after first login.</target>
-      </trans-unit>
+        <source>If left blank set password to password, and user has to set it after first login.</source> <target state="needs-translation">Hvis feltet er tomt, vil brugerens password være password og skal sættes ved første login.</target> </trans-unit>
       <trans-unit id="10">
-        <source>First name</source>
-        <target>__First name</target>
-      </trans-unit>
+        <source>First name</source> <target state="needs-translation">Fornavn</target> </trans-unit>
       <trans-unit id="11">
-        <source>Last name</source>
-        <target>__Last name</target>
-      </trans-unit>
+        <source>Last name</source> <target state="needs-translation">Efternavn</target> </trans-unit>
       <trans-unit id="12">
-        <source>Gender</source>
-        <target>__Gender</target>
-      </trans-unit>
-      <trans-unit id="13">
-        <source>Enter male or female.</source>
-        <target>__Enter male or female.</target>
-      </trans-unit>
+        <source>Gender</source> <target state="needs-translation">Køn</target> </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>Enter male or female.</source> <target state="translated">Indtast male eller female.</target> </trans-unit>
       <trans-unit id="14">
-        <source>Day of birth</source>
-        <target>__Day of birth</target>
-      </trans-unit>
+        <source>Day of birth</source> <target state="needs-translation">Fødselsdato</target> </trans-unit>
       <trans-unit id="15">
-        <source>The birthday syntax should be YYYY-MM-DD.</source>
-        <target>__The birthday syntax should be YYYY-MM-DD.</target>
-      </trans-unit>
+        <source>The birthday syntax should be YYYY-MM-DD.</source> <target state="needs-translation">Fødselsdags formatet skal være YYYY-MM-DD.</target> </trans-unit>
       <trans-unit id="16">
-        <source>Street</source>
-        <target>__Street</target>
-      </trans-unit>
+        <source>Street</source> <target state="needs-translation">Adresse</target> </trans-unit>
       <trans-unit id="17">
-        <source>Postal code</source>
-        <target>__Postal code</target>
-      </trans-unit>
+        <source>Postal code</source> <target state="needs-translation">Postnummer</target> </trans-unit>
       <trans-unit id="18">
-        <source>City</source>
-        <target>__City</target>
-      </trans-unit>
+        <source>City</source> <target state="needs-translation">By</target> </trans-unit>
       <trans-unit id="19">
-        <source>Country</source>
-        <target>__Country</target>
-      </trans-unit>
-      <trans-unit id="20">
-        <source>Enter country code like DK, GB, DE and so on.</source>
-        <target>__Enter country code like DK, GB, DE and so on.</target>
-      </trans-unit>
-      <trans-unit id="21">
-        <source>Phone number</source>
-        <target>__Phone number</target>
-      </trans-unit>
+        <source>Country</source> <target state="needs-translation">Land</target> </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Enter country code like DK, GB, DE and so on.</source> <target state="translated">Indtast landekode som DK, GB, DE og så videre.</target> </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Phone number</source> <target state="translated">Telefonnummer</target> </trans-unit>
       <trans-unit id="22">
-        <source>Email address</source>
-        <target>__Email address</target>
-      </trans-unit>
+        <source>Email address</source> <target state="needs-translation">E-mail adresse</target> </trans-unit>
       <trans-unit id="23">
-        <source>Errors occur</source>
-        <target>__Errors occur</target>
-      </trans-unit>
+        <source>Errors occur</source> <target state="needs-translation">Fejl opstået</target> </trans-unit>
       <trans-unit id="24">
-        <source>No imports has been made, because some error has occur. Correct the errors and try again.</source>
-        <target>__No imports has been made, because some error has occur. Correct the errors and try again.</target>
-      </trans-unit>
+        <source>No imports has been made, because some error has occur. Correct the errors and try again.</source> <target state="needs-translation">Importen er stoppet da der er opstået fejl. Udred fejlene og prøv igen.</target> </trans-unit>
       <trans-unit id="25">
-        <source>Line</source>
-        <target>__Line</target>
-      </trans-unit>
+        <source>Line</source> <target state="needs-translation">Linje</target> </trans-unit>
       <trans-unit id="26">
-        <source>Name</source>
-        <target>__Name</target>
-      </trans-unit>
+        <source>Name</source> <target state="needs-translation">Navn</target> </trans-unit>
       <trans-unit id="27">
-        <source>Error</source>
-        <target>__Error</target>
-      </trans-unit>
+        <source>Error</source> <target state="needs-translation">Fejl</target> </trans-unit>
       <trans-unit id="28">
-        <source>There are no errors during the import.</source>
-        <target>__There are no errors during the import.</target>
-      </trans-unit>
+        <source>There are no errors during the import.</source> <target state="needs-translation">Der er ingen fejl under importeringen.</target> </trans-unit>
       <trans-unit id="29">
-        <source>New users</source>
-        <target>__New users</target>
-      </trans-unit>
+        <source>New users</source> <target state="needs-translation">Nye brugere</target> </trans-unit>
       <trans-unit id="30">
-        <source>Number</source>
-        <target>__Number</target>
-      </trans-unit>
+        <source>Number</source> <target state="needs-translation">Nummer</target> </trans-unit>
       <trans-unit id="31">
-        <source>Created at</source>
-        <target>__Created at</target>
-      </trans-unit>
+        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
       <trans-unit id="32">
-        <source>Action</source>
-        <target>__Action</target>
-      </trans-unit>
+        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
       <trans-unit id="33">
-        <source>There are no users in the system.</source>
-        <target>__There are no users in the system.</target>
-      </trans-unit>
+        <source>There are no users in the system.</source> <target state="needs-translation">Der er ingen brugere i systemet.</target> </trans-unit>
       <trans-unit id="34">
-        <source>Create location</source>
-        <target>__Create location</target>
-      </trans-unit>
+        <source>Create location</source> <target state="needs-translation">Opret område</target> </trans-unit>
       <trans-unit id="35">
-        <source>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</source>
-        <target>__Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</target>
-      </trans-unit>
+        <source>Here is a list of all locations, they are build in a tree structure to illustrate how they are child and parents of each other.</source> <target state="needs-translation">Her er en liste over alle områder, de er bygget op som en træstruktur for at illustrer forholdet mellem områderne.</target> </trans-unit>
       <trans-unit id="36">
-        <source>If you want to change some configuration, you can change it for all child elements by change the root element configurations.</source>
-        <target>__If you want to change some configuration, you can change it for all child elements by change the root element configurations.</target>
-      </trans-unit>
+        <source>If you want to change some configuration, you can change it for all child elements by change the root element configurations.</source> <target state="needs-translation">Hvis du vil ændre nogen indstillinger kan du ændre det for rod elementet, og alle under elementer vil få samme indstillinger.</target> </trans-unit>
       <trans-unit id="37">
-        <source>User</source>
-        <target>__User</target>
-      </trans-unit>
+        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
       <trans-unit id="38">
-        <source>Enter your username and password.</source>
-        <target>__Enter your username and password.</target>
-      </trans-unit>
+        <source>Enter your username and password.</source> <target state="needs-translation">Indtast dit brugenavn og password.</target> </trans-unit>
       <trans-unit id="39">
-        <source>Username</source>
-        <target>__Username</target>
-      </trans-unit>
+        <source>Username</source> <target state="needs-translation">Brugernavn</target> </trans-unit>
       <trans-unit id="40">
-        <source>Sign In</source>
-        <target>__Sign In</target>
-      </trans-unit>
-      <trans-unit id="41">
-        <source>Forgot password?</source>
-        <target>__Forgot password?</target>
-      </trans-unit>
+        <source>Sign In</source> <target state="needs-translation">Log ind</target> </trans-unit>
+      <trans-unit id="41" approved="yes">
+        <source>Forgot password?</source> <target state="translated">Glemt password?</target> </trans-unit>
       <trans-unit id="42">
-        <source>Enter your username or email address, and you will receive a reset password email within a few minutes.</source>
-        <target>__Enter your username or email address, and you will receive a reset password email within a few minutes.</target>
-      </trans-unit>
+        <source>Enter your username or email address, and you will receive a reset password email within a few minutes.</source> <target state="needs-translation">Indtast dit brugernavn eller e-mail adresse, og du vil modtage en nulstil password e-mail indenfor få minutter.</target> </trans-unit>
       <trans-unit id="43">
-        <source>Username or email</source>
-        <target>__Username or email</target>
-      </trans-unit>
+        <source>Username or email</source> <target state="needs-translation">Brugernavn eller e-mail</target> </trans-unit>
       <trans-unit id="44">
-        <source>Send Password</source>
-        <target>__Send Password</target>
-      </trans-unit>
+        <source>Send Password</source> <target state="needs-translation">Send password</target> </trans-unit>
       <trans-unit id="45">
-        <source>Enter your new password below.</source>
-        <target>__Enter your new password below.</target>
-      </trans-unit>
+        <source>Enter your new password below.</source> <target state="needs-translation">Indtast dit password herunder.</target> </trans-unit>
       <trans-unit id="46">
-        <source>Members</source>
-        <target>__Members</target>
-      </trans-unit>
+        <source>Members</source> <target state="needs-translation">Medlemmer</target> </trans-unit>
       <trans-unit id="47">
-        <source>Search</source>
-        <target>__Search</target>
-      </trans-unit>
+        <source>Search</source> <target state="needs-translation">Søg</target> </trans-unit>
       <trans-unit id="48">
-        <source>Email: %email%</source>
-        <target>__Email: %email%</target>
-      </trans-unit>
+        <source>Email: %email%</source> <target state="needs-translation">E-mail: %email%</target> </trans-unit>
       <trans-unit id="49">
-        <source>Phone: %phone%</source>
-        <target>__Phone: %phone%</target>
-      </trans-unit>
+        <source>Phone: %phone%</source> <target state="needs-translation">Telefon: %phone%</target> </trans-unit>
       <trans-unit id="50">
-        <source>Locations</source>
-        <target>__Locations</target>
-      </trans-unit>
+        <source>Locations</source> <target state="needs-translation">Områder</target> </trans-unit>
       <trans-unit id="51">
-        <source>If you want to change your current location, just click on the location you want to go to.</source>
-        <target>__If you want to change your current location, just click on the location you want to go to.</target>
-      </trans-unit>
+        <source>If you want to change your current location, just click on the location you want to go to.</source> <target state="needs-translation">Hvis du vil skifte dit nuværende område kan du blot klikke på det område du vil gå til.</target> </trans-unit>
       <trans-unit id="52">
-        <source>Here you have some different settings that can make your profile more personal.</source>
-        <target>__Here you have some different settings that can make your profile more personal.</target>
-      </trans-unit>
+        <source>Here you have some different settings that can make your profile more personal.</source> <target state="needs-translation">Her kan du nogen indstillinger som kan gøre din profil mere personlig.</target> </trans-unit>
       <trans-unit id="53">
-        <source>User settings</source>
-        <target>__User settings</target>
-      </trans-unit>
+        <source>User settings</source> <target state="needs-translation">Bruger indstillinger</target> </trans-unit>
       <trans-unit id="54">
-        <source>Create currency</source>
-        <target>__Create currency</target>
-      </trans-unit>
+        <source>Create currency</source> <target state="needs-translation">Opret valuta</target> </trans-unit>
       <trans-unit id="55">
-        <source>Currency</source>
-        <target>__Currency</target>
-      </trans-unit>
+        <source>Currency</source> <target state="needs-translation">Valuta</target> </trans-unit>
       <trans-unit id="56">
-        <source>There are no currencies.</source>
-        <target>__There are no currencies.</target>
-      </trans-unit>
+        <source>There are no currencies.</source> <target state="needs-translation">Der er ingen valutaer.</target> </trans-unit>
       <trans-unit id="57">
-        <source>Edit</source>
-        <target>__Edit</target>
-      </trans-unit>
+        <source>Edit</source> <target state="needs-translation">Rediger</target> </trans-unit>
       <trans-unit id="58">
-        <source>Subscription</source>
-        <target>__Subscription</target>
-      </trans-unit>
+        <source>Subscription</source> <target state="needs-translation">Abonnement</target> </trans-unit>
       <trans-unit id="59">
-        <source>Order</source>
-        <target>__Order</target>
-      </trans-unit>
+        <source>Order</source> <target state="needs-translation">Ordre</target> </trans-unit>
       <trans-unit id="60">
-        <source>Group</source>
-        <target>__Group</target>
-      </trans-unit>
+        <source>Group</source> <target state="needs-translation">Gruppe</target> </trans-unit>
       <trans-unit id="61">
-        <source>Notes</source>
-        <target>__Notes</target>
-      </trans-unit>
+        <source>Notes</source> <target state="needs-translation">Noter</target> </trans-unit>
       <trans-unit id="62">
-        <source>Shop as</source>
-        <target>__Shop as</target>
-      </trans-unit>
-      <trans-unit id="63">
-        <source>Read</source>
-        <target>__Read</target>
-      </trans-unit>
+        <source>Shop as</source> <target state="needs-translation">Køb som</target> </trans-unit>
+      <trans-unit id="63" approved="yes">
+        <source>Read</source> <target state="translated">Læs</target> </trans-unit>
       <trans-unit id="64">
-        <source>Severity</source>
-        <target>__Severity</target>
-      </trans-unit>
+        <source>Severity</source> <target state="needs-translation">Vigtighed</target> </trans-unit>
       <trans-unit id="65">
-        <source>Message</source>
-        <target>__Message</target>
-      </trans-unit>
+        <source>Message</source> <target state="needs-translation">Besked</target> </trans-unit>
       <trans-unit id="66">
-        <source>Unread</source>
-        <target>__Unread</target>
-      </trans-unit>
+        <source>Unread</source> <target state="needs-translation">Ulæst</target> </trans-unit>
       <trans-unit id="67">
-        <source>There are no logs.</source>
-        <target>__There are no logs.</target>
-      </trans-unit>
+        <source>There are no logs.</source> <target state="needs-translation">Der er ingen logs.</target> </trans-unit>
       <trans-unit id="68">
-        <source>Create user</source>
-        <target>__Create user</target>
-      </trans-unit>
+        <source>Create user</source> <target state="needs-translation">Opret bruger</target> </trans-unit>
       <trans-unit id="69">
-        <source>Import users</source>
-        <target>__Import users</target>
-      </trans-unit>
+        <source>Import users</source> <target state="needs-translation">Importer brugere</target> </trans-unit>
       <trans-unit id="70">
-        <source>Export CSV</source>
-        <target>__Export CSV</target>
-      </trans-unit>
+        <source>Export CSV</source> <target state="needs-translation">Export CSV</target> </trans-unit>
       <trans-unit id="71">
-        <source>Phone</source>
-        <target>__Phone</target>
-      </trans-unit>
-      <trans-unit id="72">
-        <source>Email</source>
-        <target>__Email</target>
-      </trans-unit>
+        <source>Phone</source> <target state="needs-translation">Telefon</target> </trans-unit>
+      <trans-unit id="72" approved="yes">
+        <source>Email</source> <target state="translated">E-mail</target> </trans-unit>
       <trans-unit id="73">
-        <source>OK</source>
-        <target>__OK</target>
-      </trans-unit>
+        <source>OK</source> <target state="needs-translation">OK</target> </trans-unit>
       <trans-unit id="74">
-        <source>Personal Information</source>
-        <target>__Personal Information</target>
-      </trans-unit>
+        <source>Personal Information</source> <target state="needs-translation">Personlig Information</target> </trans-unit>
       <trans-unit id="75">
-        <source>Address Information</source>
-        <target>__Address Information</target>
-      </trans-unit>
+        <source>Address Information</source> <target state="needs-translation">Adresse Information</target> </trans-unit>
       <trans-unit id="76">
-        <source>Email Information</source>
-        <target>__Email Information</target>
-      </trans-unit>
+        <source>Email Information</source> <target state="needs-translation">E-mail Information</target> </trans-unit>
       <trans-unit id="77">
-        <source>Phone Information</source>
-        <target>__Phone Information</target>
-      </trans-unit>
+        <source>Phone Information</source> <target state="needs-translation">Telefon Information</target> </trans-unit>
       <trans-unit id="78">
-        <source>Version &lt;strong&gt;%version%&lt;/strong&gt;</source>
-        <target>__Version &lt;strong&gt;%version%&lt;/strong&gt;</target>
-      </trans-unit>
+        <source>Version &lt;strong&gt;%version%&lt;/strong&gt;</source> <target state="needs-translation">Version &lt;strong&gt;%version%&lt;/strong&gt;</target> </trans-unit>
       <trans-unit id="79">
-        <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source>
-        <target>__Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target>
-      </trans-unit>
+        <source>Location: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</source> <target state="needs-translation">Område: &lt;strong&gt;&lt;a href="%url%"&gt;%location%&lt;/a&gt;&lt;/strong&gt;</target> </trans-unit>
       <trans-unit id="80">
-        <source>Location: &lt;strong&gt;%location%&lt;/strong&gt;</source>
-        <target>__Location: &lt;strong&gt;%location%&lt;/strong&gt;</target>
-      </trans-unit>
+        <source>Location: &lt;strong&gt;%location%&lt;/strong&gt;</source> <target state="needs-translation">Område: &lt;strong&gt;%location%&lt;/strong&gt;</target> </trans-unit>
       <trans-unit id="81">
-        <source>Create note</source>
-        <target>__Create note</target>
-      </trans-unit>
+        <source>Create note</source> <target state="needs-translation">Opret notat</target> </trans-unit>
       <trans-unit id="82">
-        <source>Note</source>
-        <target>__Note</target>
-      </trans-unit>
+        <source>Note</source> <target state="needs-translation">Note</target> </trans-unit>
       <trans-unit id="83">
-        <source>There are no notes.</source>
-        <target>__There are no notes.</target>
-      </trans-unit>
+        <source>There are no notes.</source> <target state="needs-translation">Der er ingen noter.</target> </trans-unit>
       <trans-unit id="84">
-        <source>User filter</source>
-        <target>__User filter</target>
-      </trans-unit>
+        <source>User filter</source> <target state="needs-translation">Bruger filter</target> </trans-unit>
       <trans-unit id="85">
-        <source>Save changes</source>
-        <target>__Save changes</target>
-      </trans-unit>
-      <trans-unit id="86">
-        <source>Reset</source>
-        <target>__Reset</target>
-      </trans-unit>
+        <source>Save changes</source> <target state="needs-translation">Gem ændringer</target> </trans-unit>
+      <trans-unit id="86" approved="yes">
+        <source>Reset</source> <target state="translated">Nulstil</target> </trans-unit>
       <trans-unit id="87">
-        <source>Your password has been expired, please enter a new one below.</source>
-        <target>__Your password has been expired, please enter a new one below.</target>
-      </trans-unit>
+        <source>Your password has been expired, please enter a new one below.</source> <target state="needs-translation">Dit password er udløbet, indtast venligst et nyt herunder.</target> </trans-unit>
       <trans-unit id="88">
-        <source>Settings</source>
-        <target>__Settings</target>
-      </trans-unit>
+        <source>Settings</source> <target state="needs-translation">Indstillinger</target> </trans-unit>
       <trans-unit id="89">
-        <source>Subscriptions</source>
-        <target>__Subscriptions</target>
-      </trans-unit>
+        <source>Subscriptions</source> <target state="needs-translation">Abonnementer</target> </trans-unit>
       <trans-unit id="90">
-        <source>Login Log</source>
-        <target>__Login Log</target>
-      </trans-unit>
+        <source>Login Log</source> <target state="needs-translation">Log ind log</target> </trans-unit>
       <trans-unit id="91">
-        <source>Id</source>
-        <target>__Id</target>
-      </trans-unit>
+        <source>Id</source> <target state="needs-translation">Id</target> </trans-unit>
       <trans-unit id="92">
-        <source>Ip address</source>
-        <target>__Ip address</target>
-      </trans-unit>
+        <source>Ip address</source> <target state="needs-translation">IP-adresse</target> </trans-unit>
       <trans-unit id="93">
-        <source>Status</source>
-        <target>__Status</target>
-      </trans-unit>
+        <source>Status</source> <target state="needs-translation">Status</target> </trans-unit>
       <trans-unit id="94">
-        <source>Create group</source>
-        <target>__Create group</target>
-      </trans-unit>
+        <source>Create group</source> <target state="needs-translation">Opret gruppe</target> </trans-unit>
       <trans-unit id="95">
-        <source>There are no groups.</source>
-        <target>__There are no groups.</target>
-      </trans-unit>
+        <source>There are no groups.</source> <target state="needs-translation">Der er ingen grupper.</target> </trans-unit>
       <trans-unit id="96">
-        <source>Members of %group%</source>
-        <target>__Members of %group%</target>
-      </trans-unit>
+        <source>Members of %group%</source> <target state="needs-translation">Medlemmer af %group%</target> </trans-unit>
       <trans-unit id="97">
-        <source>There are no users in the group.</source>
-        <target>__There are no users in the group.</target>
-      </trans-unit>
+        <source>There are no users in the group.</source> <target state="needs-translation">Der er ingen brugere i gruppen.</target> </trans-unit>
       <trans-unit id="98">
-        <source>Group Information</source>
-        <target>__Group Information</target>
-      </trans-unit>
+        <source>Group Information</source> <target state="needs-translation">Gruppe Information</target> </trans-unit>
       <trans-unit id="99">
-        <source>Dynamic group</source>
-        <target>__Dynamic group</target>
-      </trans-unit>
+        <source>Dynamic group</source> <target state="needs-translation">Dynamisk gruppe</target> </trans-unit>
       <trans-unit id="100">
-        <source>Role Information</source>
-        <target>__Role Information</target>
-      </trans-unit>
+        <source>Role Information</source> <target state="needs-translation">Rolle Information</target> </trans-unit>
       <trans-unit id="101">
-        <source>Info: The members of this group will get all the roles that you select in this field.</source>
-        <target>__Info: The members of this group will get all the roles that you select in this field.</target>
-      </trans-unit>
+        <source>Info: The members of this group will get all the roles that you select in this field.</source> <target state="needs-translation">Info: Medlemmerne af denne gruppe vil få alle roller som du har valgt i dette felt.</target> </trans-unit>
       <trans-unit id="102">
-        <source>This is your filter, make your search here.</source>
-        <target>__This is your filter, make your search here.</target>
-      </trans-unit>
+        <source>This is your filter, make your search here.</source> <target state="needs-translation">Dette er dit filter, lav din søgning her.</target> </trans-unit>
     </body>
   </file>
 </xliff>
