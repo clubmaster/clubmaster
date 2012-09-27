@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Posted on %date% by %author%.</source>
+        <target>__Posted on %date% by %author%.</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>There are %comments% comments on this post.</source>
+        <target>__There are %comments% comments on this post.</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Post blog</source>
+        <target>__Post blog</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Blog</source>
+        <target>__Blog</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Create post</source>
+        <target>__Create post</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Author</source>
+        <target>__Author</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Title</source>
+        <target>__Title</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Updated at</source>
+        <target>__Updated at</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>There are no posts.</source>
+        <target>__There are no posts.</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Welcome</source>
+        <target>__Welcome</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>You are welcome to post anything to the other members here. The post will end up on the frontpage.</source>
+        <target>__You are welcome to post anything to the other members here. The post will end up on the frontpage.</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Comments</source>
+        <target>__Comments</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>There are no comments for this blog.</source>
+        <target>__There are no comments for this blog.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

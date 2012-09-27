@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Recent matches</source>
+        <target>__Recent matches</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Date</source>
+        <target>__Date</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Team one</source>
+        <target>__Team one</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Score</source>
+        <target>__Score</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Team two</source>
+        <target>__Team two</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>No matches has been played.</source>
+        <target>__No matches has been played.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Match Result</source>
+        <target>__Match Result</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>This match is just to keep track of your wins and losses, it will not end up on any ranking list.</source>
+        <target>__This match is just to keep track of your wins and losses, it will not end up on any ranking list.</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Insert match</source>
+        <target>__Insert match</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Add comment</source>
+        <target>__Add comment</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Are you sure?</source>
+        <target>__Are you sure?</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Delete match</source>
+        <target>__Delete match</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Comments</source>
+        <target>__Comments</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Posted on %date% by %author%.</source>
+        <target>__Posted on %date% by %author%.</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>There are no comments for this match.</source>
+        <target>__There are no comments for this match.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Match</source>
+        <target>__Match</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

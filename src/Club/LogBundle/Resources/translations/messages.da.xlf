@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Recent logs</source>
+        <target>__Recent logs</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Read</source>
+        <target>__Read</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>User</source>
+        <target>__User</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Message</source>
+        <target>__Message</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Unread</source>
+        <target>__Unread</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>System</source>
+        <target>__System</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>There are no logs.</source>
+        <target>__There are no logs.</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Action Log</source>
+        <target>__Action Log</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Severity</source>
+        <target>__Severity</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Back to list</source>
+        <target>__Back to list</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Name: %name%</source>
+        <target>__Name: %name%</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Created at: %date%</source>
+        <target>__Created at: %date%</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Warning!</source>
+        <target>__Warning!</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Log</source>
+        <target>__Log</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>PHP Log</source>
+        <target>__PHP Log</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Date</source>
+        <target>__Date</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Type</source>
+        <target>__Type</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>The log is empty.</source>
+        <target>__The log is empty.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

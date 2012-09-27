@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Create category</source>
+        <target>__Create category</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Name</source>
+        <target>__Name</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>There are no categories.</source>
+        <target>__There are no categories.</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Attended teams</source>
+        <target>__Attended teams</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Team</source>
+        <target>__Team</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Date</source>
+        <target>__Date</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Time</source>
+        <target>__Time</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>User has not attended any teams.</source>
+        <target>__User has not attended any teams.</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Your teams</source>
+        <target>__Your teams</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>You have no coming teams.</source>
+        <target>__You have no coming teams.</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Repetition Daily</source>
+        <target>__Repetition Daily</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Repetition Weekly</source>
+        <target>__Repetition Weekly</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Repetition Monthly</source>
+        <target>__Repetition Monthly</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Repetition Yearly</source>
+        <target>__Repetition Yearly</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Create schedule</source>
+        <target>__Create schedule</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Team name</source>
+        <target>__Team name</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>First date</source>
+        <target>__First date</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>End date</source>
+        <target>__End date</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Level</source>
+        <target>__Level</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>There are no schedules.</source>
+        <target>__There are no schedules.</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Attends</source>
+        <target>__Attends</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>User</source>
+        <target>__User</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>There are no participants.</source>
+        <target>__There are no participants.</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>There are no teams.</source>
+        <target>__There are no teams.</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Create level</source>
+        <target>__Create level</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>There are no levels.</source>
+        <target>__There are no levels.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

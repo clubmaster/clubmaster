@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Review order</source>
+        <target>__Review order</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Customer Information</source>
+        <target>__Customer Information</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Company: %company%</source>
+        <target>__Company: %company%</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>CVR: %cvr%</source>
+        <target>__CVR: %cvr%</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Name: %firstname% %lastname%</source>
+        <target>__Name: %firstname% %lastname%</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Street: %street%</source>
+        <target>__Street: %street%</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Postal: %postal%</source>
+        <target>__Postal: %postal%</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>City: %city%</source>
+        <target>__City: %city%</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Country: %country%</source>
+        <target>__Country: %country%</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Payment Information</source>
+        <target>__Payment Information</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Shipping Information</source>
+        <target>__Shipping Information</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Confirm order</source>
+        <target>__Confirm order</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Checkout</source>
+        <target>__Checkout</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Existing member</source>
+        <target>__Existing member</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>If you already have an account, please signin here.</source>
+        <target>__If you already have an account, please signin here.</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Username</source>
+        <target>__Username</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Password</source>
+        <target>__Password</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Login</source>
+        <target>__Login</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>New member</source>
+        <target>__New member</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>If you do not have an account, please enter you details here.</source>
+        <target>__If you do not have an account, please enter you details here.</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Personal Information</source>
+        <target>__Personal Information</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Address Information</source>
+        <target>__Address Information</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Email Information</source>
+        <target>__Email Information</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Phone Information</source>
+        <target>__Phone Information</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Create account</source>
+        <target>__Create account</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>View cart</source>
+        <target>__View cart</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Empty cart</source>
+        <target>__Empty cart</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Continue shopping</source>
+        <target>__Continue shopping</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>Use coupon</source>
+        <target>__Use coupon</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>Product name</source>
+        <target>__Product name</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>Unit price</source>
+        <target>__Unit price</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Quantity</source>
+        <target>__Quantity</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Summary</source>
+        <target>__Summary</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Your cart is empty.</source>
+        <target>__Your cart is empty.</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Choose shipping</source>
+        <target>__Choose shipping</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Create payment method</source>
+        <target>__Create payment method</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Payment method</source>
+        <target>__Payment method</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>There are no payment methods.</source>
+        <target>__There are no payment methods.</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Subscriptions</source>
+        <target>__Subscriptions</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Active</source>
+        <target>__Active</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>Name</source>
+        <target>__Name</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Start date</source>
+        <target>__Start date</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Expire date</source>
+        <target>__Expire date</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Never</source>
+        <target>__Never</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>There is no subscriptions for this user.</source>
+        <target>__There is no subscriptions for this user.</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Open orders</source>
+        <target>__Open orders</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Order number</source>
+        <target>__Order number</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>User</source>
+        <target>__User</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Price</source>
+        <target>__Price</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Status</source>
+        <target>__Status</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Updated at</source>
+        <target>__Updated at</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>There are no orders.</source>
+        <target>__There are no orders.</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Your subscriptions</source>
+        <target>__Your subscriptions</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Create product</source>
+        <target>__Create product</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Product</source>
+        <target>__Product</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>There are no products.</source>
+        <target>__There are no products.</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Create category</source>
+        <target>__Create category</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>You cannot add any products without a category.</source>
+        <target>__You cannot add any products without a category.</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Shop</source>
+        <target>__Shop</target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>If you have a coupon, you can enter the key here, and we will add it to your cart.</source>
+        <target>__If you have a coupon, you can enter the key here, and we will add it to your cart.</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Coupon</source>
+        <target>__Coupon</target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Category</source>
+        <target>__Category</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Location</source>
+        <target>__Location</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>There are no categories.</source>
+        <target>__There are no categories.</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Create shipping</source>
+        <target>__Create shipping</target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Shipping</source>
+        <target>__Shipping</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>There are no shipping.</source>
+        <target>__There are no shipping.</target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Create status</source>
+        <target>__Create status</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Status name</source>
+        <target>__Status name</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Paid</source>
+        <target>__Paid</target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Delivered</source>
+        <target>__Delivered</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Cancelled</source>
+        <target>__Cancelled</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Priority</source>
+        <target>__Priority</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>There are no statuses.</source>
+        <target>__There are no statuses.</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Edit Product %product%</source>
+        <target>__Edit Product %product%</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>This is where you edit the different attributes for your product, if your product should have some special attributes.</source>
+        <target>__This is where you edit the different attributes for your product, if your product should have some special attributes.</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Period subscription</source>
+        <target>__Period subscription</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Time range subscription</source>
+        <target>__Time range subscription</target>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Other settings</source>
+        <target>__Other settings</target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Click here to pay order.</source>
+        <target>__Click here to pay order.</target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Products</source>
+        <target>__Products</target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>You have no products.</source>
+        <target>__You have no products.</target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Purchase Log</source>
+        <target>__Purchase Log</target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Date</source>
+        <target>__Date</target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Amount</source>
+        <target>__Amount</target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Currency</source>
+        <target>__Currency</target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Accepted</source>
+        <target>__Accepted</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Transaction</source>
+        <target>__Transaction</target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Order history</source>
+        <target>__Order history</target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Order status</source>
+        <target>__Order status</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>Note</source>
+        <target>__Note</target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>Order</source>
+        <target>__Order</target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>You have not completed any orders.</source>
+        <target>__You have not completed any orders.</target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>Customer</source>
+        <target>__Customer</target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Billing</source>
+        <target>__Billing</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Company</source>
+        <target>__Company</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>CVR</source>
+        <target>__CVR</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Street</source>
+        <target>__Street</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Postal</source>
+        <target>__Postal</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>City</source>
+        <target>__City</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Country</source>
+        <target>__Country</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Subscription</source>
+        <target>__Subscription</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>No image</source>
+        <target>__No image</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Put in cart</source>
+        <target>__Put in cart</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>There is no products in this category.</source>
+        <target>__There is no products in this category.</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Categories</source>
+        <target>__Categories</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Type</source>
+        <target>__Type</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>You do not have any subscriptions.</source>
+        <target>__You do not have any subscriptions.</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Active subscriptions</source>
+        <target>__Active subscriptions</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Coming subscriptions</source>
+        <target>__Coming subscriptions</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Expired subscriptions</source>
+        <target>__Expired subscriptions</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Day bought</source>
+        <target>__Day bought</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Period</source>
+        <target>__Period</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Auto renewal</source>
+        <target>__Auto renewal</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>This subscription will automatically be renewed.</source>
+        <target>__This subscription will automatically be renewed.</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>This subscription will not be automatically renewed.</source>
+        <target>__This subscription will not be automatically renewed.</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Booking</source>
+        <target>__Booking</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>This subscription allow you to use bookings.</source>
+        <target>__This subscription allow you to use bookings.</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>This subscription does not allow you to use bookings.</source>
+        <target>__This subscription does not allow you to use bookings.</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>Team</source>
+        <target>__Team</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>This subscription allow you to use teams.</source>
+        <target>__This subscription allow you to use teams.</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>This subscription does not allow you to use teams.</source>
+        <target>__This subscription does not allow you to use teams.</target>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Cancel subscription</source>
+        <target>__Cancel subscription</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Click here to cancel this subscription.</source>
+        <target>__Click here to cancel this subscription.</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>This subscription is valid in the following clubs.</source>
+        <target>__This subscription is valid in the following clubs.</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Coupon log</source>
+        <target>__Coupon log</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Used at</source>
+        <target>__Used at</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Guest</source>
+        <target>__Guest</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>This coupon has never been used.</source>
+        <target>__This coupon has never been used.</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Create coupon</source>
+        <target>__Create coupon</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Value</source>
+        <target>__Value</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Max usage</source>
+        <target>__Max usage</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Expires at</source>
+        <target>__Expires at</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>There are no coupons.</source>
+        <target>__There are no coupons.</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Orders</source>
+        <target>__Orders</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Order #%number%</source>
+        <target>__Order #%number%</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Edit products</source>
+        <target>__Edit products</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Search</source>
+        <target>__Search</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Whats next</source>
+        <target>__Whats next</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>The order has been made.</source>
+        <target>__The order has been made.</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>The order has been paid.</source>
+        <target>__The order has been paid.</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>The order has not been paid.</source>
+        <target>__The order has not been paid.</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>The order has been delivered.</source>
+        <target>__The order has been delivered.</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>The order has not been delivered.</source>
+        <target>__The order has not been delivered.</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>The order has been cancelled.</source>
+        <target>__The order has been cancelled.</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>The order has not been cancelled.</source>
+        <target>__The order has not been cancelled.</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Create special</source>
+        <target>__Create special</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>There are no special prices.</source>
+        <target>__There are no special prices.</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Price: %price%</source>
+        <target>__Price: %price%</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Description</source>
+        <target>__Description</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Attributes</source>
+        <target>__Attributes</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Your subscription period is %start% - %expire%.</source>
+        <target>__Your subscription period is %start% - %expire%.</target>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>Your subscription will give you access to use bookings.</source>
+        <target>__Your subscription will give you access to use bookings.</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>Your subscription will give you access to use teams.</source>
+        <target>__Your subscription will give you access to use teams.</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Your subscription will last &lt;b&gt;%time%&lt;/b&gt;.</source>
+        <target>__Your subscription will last &lt;b&gt;%time%&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</source>
+        <target>__You will receive &lt;b&gt;%tickets% tickets&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</source>
+        <target>__Your subscription will be &lt;b&gt;automatically renewed&lt;/b&gt;.</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</source>
+        <target>__You will be able to take &lt;b&gt;%pauses% pauses&lt;/b&gt; during your membership period.</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>This membership is active between &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt; in the day</source>
+        <target>__This membership is active between &lt;b&gt;%start_time% - %stop_time%&lt;/b&gt; in the day</target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>This membership is active from &lt;b&gt;%start_time%&lt;/b&gt; in the day</source>
+        <target>__This membership is active from &lt;b&gt;%start_time%&lt;/b&gt; in the day</target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>This membership is active until &lt;b&gt;%stop_time%&lt;/b&gt; in the day</source>
+        <target>__This membership is active until &lt;b&gt;%stop_time%&lt;/b&gt; in the day</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

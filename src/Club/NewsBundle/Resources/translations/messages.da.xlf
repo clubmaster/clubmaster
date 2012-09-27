@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>News</source>
+        <target>__News</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Create ticker</source>
+        <target>__Create ticker</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Ticker</source>
+        <target>__Ticker</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Author</source>
+        <target>__Author</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>There are no tickers.</source>
+        <target>__There are no tickers.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>iCal format</source>
+        <target>iCal format</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Start date: %date%</source>
+        <target>Start dato: %date%</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Stop date: %date%</source>
+        <target>Stop dato: %date%</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>There are no planned events.</source>
+        <target>Der er ikke nogen planlagte begivenheder.</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Unattend</source>
+        <target>Afmeld</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Attend</source>
+        <target>Tilmeld</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Event</source>
+        <target>Begivenhed</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Create level</source>
+        <target>Opret niveau</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Attends</source>
+        <target>Tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Attends: %attends% / No limit</source>
+        <target>Tilmeldinger: %attends% / Ingen begrænsning</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Attends: %attends% / %limit%</source>
+        <target>Tilmeldinger: %attends% / %limit%</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>There are no events.</source>
+        <target>Der er ingen begivenheder.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>There are no attends at the time</source>
+        <target>Der er ingen tilmeldte for tiden</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

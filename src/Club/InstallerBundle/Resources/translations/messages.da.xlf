@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Installer</source>
+        <target>__Installer</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>ClubMaster Installation</source>
+        <target>__ClubMaster Installation</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>This is the installer of ClubMaster.</source>
+        <target>__This is the installer of ClubMaster.</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Location Information</source>
+        <target>__Location Information</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>When you have completed the following list of steps, you are ready to start using ClubMaster.</source>
+        <target>__When you have completed the following list of steps, you are ready to start using ClubMaster.</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Install database</source>
+        <target>__Install database</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Administrator setup</source>
+        <target>__Administrator setup</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Location setup</source>
+        <target>__Location setup</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Start installation</source>
+        <target>__Start installation</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Personal Information</source>
+        <target>__Personal Information</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Account Information</source>
+        <target>__Account Information</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Before you can continue your installation of ClubMaster, you will have to install the database.</source>
+        <target>__Before you can continue your installation of ClubMaster, you will have to install the database.</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>An error occur, please correct the problem and try again.</source>
+        <target>__An error occur, please correct the problem and try again.</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Try again</source>
+        <target>__Try again</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Congratulations</source>
+        <target>__Congratulations</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Your installation has successful completed. You can not start use your new open source membership management system.</source>
+        <target>__Your installation has successful completed. You can not start use your new open source membership management system.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Member number</source>
+        <target>__Member number</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Go to ClubMaster</source>
+        <target>__Go to ClubMaster</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

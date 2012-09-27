@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Create comment</source>
+        <target>__Create comment</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Play time</source>
+        <target>__Play time</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>User</source>
+        <target>__User</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Message</source>
+        <target>__Message</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Comments</source>
+        <target>__Comments</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Posted on %date% by %author%.</source>
+        <target>__Posted on %date% by %author%.</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>There are no comments for this request.</source>
+        <target>__There are no comments for this request.</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Create request</source>
+        <target>__Create request</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.</source>
+        <target>__If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>There are not requests in the players market.</source>
+        <target>__There are not requests in the players market.</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Market</source>
+        <target>__Market</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="da" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Add players to tournament</source>
+        <target>__Add players to tournament</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Add player</source>
+        <target>__Add player</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Here you can add players for this tournament.</source>
+        <target>__Here you can add players for this tournament.</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Seed</source>
+        <target>__Seed</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Name</source>
+        <target>__Name</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Tournament</source>
+        <target>__Tournament</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Created at</source>
+        <target>__Created at</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Action</source>
+        <target>__Action</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>There are no users in the tournament.</source>
+        <target>__There are no users in the tournament.</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Tournaments</source>
+        <target>__Tournaments</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Players</source>
+        <target>__Players</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Start</source>
+        <target>__Start</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>There are no tournaments.</source>
+        <target>__There are no tournaments.</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Unattend</source>
+        <target>__Unattend</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Attend</source>
+        <target>__Attend</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>You are attending this tournament.</source>
+        <target>__You are attending this tournament.</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Start date: %date%</source>
+        <target>__Start date: %date%</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Number of seeds: %seeds%</source>
+        <target>__Number of seeds: %seeds%</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Min/Max/Current attends: %min%/%max%/%curr%</source>
+        <target>__Min/Max/Current attends: %min%/%max%/%curr%</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Description</source>
+        <target>__Description</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Create tournament</source>
+        <target>__Create tournament</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Min</source>
+        <target>__Min</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Max</source>
+        <target>__Max</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Current</source>
+        <target>__Current</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Are you sure?</source>
+        <target>__Are you sure?</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
