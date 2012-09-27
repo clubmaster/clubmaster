@@ -1,63 +1,119 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Create category</source> <target state="needs-translation">Opret kategori</target> </trans-unit>
-      <trans-unit id="2" approved="yes">
-        <source>Name</source> <target state="translated">Navn</target> </trans-unit>
-      <trans-unit id="3" approved="yes">
-        <source>Created at</source> <target state="translated">Oprettet den</target> </trans-unit>
+        <source>Create category</source>
+        <target>Opret kategori</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>There are no categories.</source> <target state="needs-translation">Der er ingen kategorier.</target> </trans-unit>
+        <source>There are no categories.</source>
+        <target>Der er ingen kategorier.</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Attended teams</source> <target state="needs-translation">Deltagende hold</target> </trans-unit>
+        <source>Attended teams</source>
+        <target>Deltagende hold</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>Team</source> <target state="needs-translation">Hold</target> </trans-unit>
+        <source>Team</source>
+        <target>Hold</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>Date</source> <target state="needs-translation">Dato</target> </trans-unit>
+        <source>Date</source>
+        <target>Dato</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Time</source> <target state="needs-translation">Tid</target> </trans-unit>
+        <source>Time</source>
+        <target>Tid</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>User has not attended any teams.</source> <target state="needs-translation">Brugeren har ikke deltaget i nogen hold.</target> </trans-unit>
+        <source>User has not attended any teams.</source>
+        <target>Brugeren har ikke deltaget i nogen hold.</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Your teams</source> <target state="needs-translation">Dine hold</target> </trans-unit>
+        <source>Your teams</source>
+        <target>Dine hold</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>You have no coming teams.</source> <target state="needs-translation">Der er ingen kommende hold.</target> </trans-unit>
+        <source>You have no coming teams.</source>
+        <target>Der er ingen kommende hold.</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>Repetition Daily</source> <target state="needs-translation">Gentagende Daglig</target> </trans-unit>
+        <source>Repetition Daily</source>
+        <target>Gentagende Daglig</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Repetition Weekly</source> <target state="needs-translation">Gentagende Ugentlig</target> </trans-unit>
+        <source>Repetition Weekly</source>
+        <target>Gentagende Ugentlig</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>Repetition Monthly</source> <target state="needs-translation">Gentagende Månedlig</target> </trans-unit>
+        <source>Repetition Monthly</source>
+        <target>Gentagende Månedlig</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>Repetition Yearly</source> <target state="needs-translation">Gentagende Årlig</target> </trans-unit>
+        <source>Repetition Yearly</source>
+        <target>Gentagende Årlig</target>
+      </trans-unit>
       <trans-unit id="17">
-        <source>Create schedule</source> <target state="needs-translation">Opret skema</target> </trans-unit>
+        <source>Create schedule</source>
+        <target>Opret skema</target>
+      </trans-unit>
       <trans-unit id="18">
-        <source>Team name</source> <target state="needs-translation">Hold navn</target> </trans-unit>
+        <source>Team name</source>
+        <target>Hold navn</target>
+      </trans-unit>
       <trans-unit id="19">
-        <source>First date</source> <target state="needs-translation">Første dato</target> </trans-unit>
+        <source>First date</source>
+        <target>Første dato</target>
+      </trans-unit>
       <trans-unit id="20">
-        <source>End date</source> <target state="needs-translation">Sidste dato</target> </trans-unit>
+        <source>End date</source>
+        <target>Sidste dato</target>
+      </trans-unit>
       <trans-unit id="21">
-        <source>Level</source> <target state="needs-translation">Niveau</target> </trans-unit>
+        <source>Level</source>
+        <target>Niveau</target>
+      </trans-unit>
       <trans-unit id="22">
-        <source>There are no schedules.</source> <target state="needs-translation">Der er ingen skemaer.</target> </trans-unit>
+        <source>There are no schedules.</source>
+        <target>Der er ingen skemaer.</target>
+      </trans-unit>
       <trans-unit id="23">
-        <source>Attends</source> <target state="needs-translation">Deltagere</target> </trans-unit>
+        <source>Attends</source>
+        <target>Deltagere</target>
+      </trans-unit>
       <trans-unit id="24">
-        <source>User</source> <target state="needs-translation">Bruger</target> </trans-unit>
+        <source>User</source>
+        <target>Bruger</target>
+      </trans-unit>
       <trans-unit id="25">
-        <source>There are no participants.</source> <target state="needs-translation">Der er ingen deltagere.</target> </trans-unit>
+        <source>There are no participants.</source>
+        <target>Der er ingen deltagere.</target>
+      </trans-unit>
       <trans-unit id="26">
-        <source>There are no teams.</source> <target state="needs-translation">Der er ingen hold.</target> </trans-unit>
+        <source>There are no teams.</source>
+        <target>Der er ingen hold.</target>
+      </trans-unit>
       <trans-unit id="27">
-        <source>Create level</source> <target state="needs-translation">Opret niveau</target> </trans-unit>
+        <source>Create level</source>
+        <target>Opret niveau</target>
+      </trans-unit>
       <trans-unit id="28">
-        <source>There are no levels.</source> <target state="needs-translation">Der er ingen niveauer.</target> </trans-unit>
+        <source>There are no levels.</source>
+        <target>Der er ingen niveauer.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

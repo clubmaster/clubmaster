@@ -1,11 +1,15 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Weather</source> <target state="needs-translation">Vejret</target> </trans-unit>
+        <source>Weather</source>
+        <target>Vejret</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>Weather right now!</source> <target state="needs-translation">Vejret lige nu!</target> </trans-unit>
+        <source>Weather right now!</source>
+        <target>Vejret lige nu!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

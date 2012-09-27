@@ -1,57 +1,107 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Add players to tournament</source> <target state="needs-translation">Tilføj spiller til turnering</target> </trans-unit>
+        <source>Add players to tournament</source>
+        <target>Tilføj spiller til turnering</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>Add player</source> <target state="needs-translation">Tilføj spiller</target> </trans-unit>
+        <source>Add player</source>
+        <target>Tilføj spiller</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>Here you can add players for this tournament.</source> <target state="needs-translation">Her kan du tilføje spillere til turneringen.</target> </trans-unit>
+        <source>Here you can add players for this tournament.</source>
+        <target>Her kan du tilføje spillere til turneringen.</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Seed</source> <target state="needs-translation">Seed</target> </trans-unit>
+        <source>Seed</source>
+        <target>Seed</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>Name</source> <target state="needs-translation">Navn</target> </trans-unit>
+        <source>Name</source>
+        <target>Navn</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Tournament</source> <target state="needs-translation">Turnering</target> </trans-unit>
+        <source>Tournament</source>
+        <target>Turnering</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>There are no users in the tournament.</source> <target state="needs-translation">Der er ingen brugere i denne turnering.</target> </trans-unit>
+        <source>There are no users in the tournament.</source>
+        <target>Der er ingen brugere i denne turnering.</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>Tournaments</source> <target state="needs-translation">Turneringer</target> </trans-unit>
+        <source>Tournaments</source>
+        <target>Turneringer</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Players</source> <target state="needs-translation">Spillere</target> </trans-unit>
+        <source>Players</source>
+        <target>Spillere</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>Start</source> <target state="needs-translation">Start</target> </trans-unit>
+        <source>Start</source>
+        <target>Start</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>There are no tournaments.</source> <target state="needs-translation">Der er ingen turneringer.</target> </trans-unit>
+        <source>There are no tournaments.</source>
+        <target>Der er ingen turneringer.</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Unattend</source> <target state="needs-translation">Afmeld</target> </trans-unit>
+        <source>Unattend</source>
+        <target>Afmeld</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>Attend</source> <target state="needs-translation">Tilmeld</target> </trans-unit>
+        <source>Attend</source>
+        <target>Tilmeld</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>You are attending this tournament.</source> <target state="needs-translation">Du deltager denne turnering.</target> </trans-unit>
+        <source>You are attending this tournament.</source>
+        <target>Du deltager denne turnering.</target>
+      </trans-unit>
       <trans-unit id="17">
-        <source>Start date: %date%</source> <target state="needs-translation">Start dato: %date%</target> </trans-unit>
+        <source>Start date: %date%</source>
+        <target>Start dato: %date%</target>
+      </trans-unit>
       <trans-unit id="18">
-        <source>Number of seeds: %seeds%</source> <target state="needs-translation">Antal seedinger: %seeds%</target> </trans-unit>
+        <source>Number of seeds: %seeds%</source>
+        <target>Antal seedinger: %seeds%</target>
+      </trans-unit>
       <trans-unit id="19">
-        <source>Min/Max/Current attends: %min%/%max%/%curr%</source> <target state="needs-translation">Min/Max/Nuværende deltagere: %min%/%max%/%curr%</target> </trans-unit>
+        <source>Min/Max/Current attends: %min%/%max%/%curr%</source>
+        <target>Min/Max/Nuværende deltagere: %min%/%max%/%curr%</target>
+      </trans-unit>
       <trans-unit id="20">
-        <source>Description</source> <target state="needs-translation">Beskrivelse</target> </trans-unit>
+        <source>Description</source>
+        <target>Beskrivelse</target>
+      </trans-unit>
       <trans-unit id="21">
-        <source>Create tournament</source> <target state="needs-translation">Opret turnering</target> </trans-unit>
+        <source>Create tournament</source>
+        <target>Opret turnering</target>
+      </trans-unit>
       <trans-unit id="22">
-        <source>Min</source> <target state="needs-translation">Min</target> </trans-unit>
+        <source>Min</source>
+        <target>Min</target>
+      </trans-unit>
       <trans-unit id="23">
-        <source>Max</source> <target state="needs-translation">Max</target> </trans-unit>
+        <source>Max</source>
+        <target>Max</target>
+      </trans-unit>
       <trans-unit id="24">
-        <source>Current</source> <target state="needs-translation">Nuværende</target> </trans-unit>
+        <source>Current</source>
+        <target>Nuværende</target>
+      </trans-unit>
       <trans-unit id="25">
-        <source>Are you sure?</source> <target state="needs-translation">Er du sikker?</target> </trans-unit>
+        <source>Are you sure?</source>
+        <target>Er du sikker?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

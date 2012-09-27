@@ -1,37 +1,67 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Posted on %date% by %author%.</source> <target state="needs-translation">Skrevet den %date% af %author%.</target> </trans-unit>
+        <source>Posted on %date% by %author%.</source>
+        <target>Skrevet den %date% af %author%.</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>There are %comments% comments on this post.</source> <target state="needs-translation">Der er %comments% kommentarer på denne besked.</target> </trans-unit>
+        <source>There are %comments% comments on this post.</source>
+        <target>Der er %comments% kommentarer på denne besked.</target>
+      </trans-unit>
       <trans-unit id="3">
-        <source>Post blog</source> <target state="needs-translation">Skriv blog</target> </trans-unit>
+        <source>Post blog</source>
+        <target>Skriv blog</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Blog</source> <target state="needs-translation">Blog</target> </trans-unit>
+        <source>Blog</source>
+        <target>Blog</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>Create post</source> <target state="needs-translation">Opret besked</target> </trans-unit>
+        <source>Create post</source>
+        <target>Opret besked</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Author</source> <target state="needs-translation">Forfatter</target> </trans-unit>
+        <source>Author</source>
+        <target>Forfatter</target>
+      </trans-unit>
       <trans-unit id="7">
-        <source>Title</source> <target state="needs-translation">Titel</target> </trans-unit>
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>Created at</source> <target state="needs-translation">Oprettet den</target> </trans-unit>
+        <source>Created at</source>
+        <target>Oprettet den</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Updated at</source> <target state="needs-translation">Updateret den</target> </trans-unit>
+        <source>Updated at</source>
+        <target>Updateret den</target>
+      </trans-unit>
       <trans-unit id="10">
-        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
+        <source>Action</source>
+        <target>Handling</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>There are no posts.</source> <target state="needs-translation">Der er ingen beskeder.</target> </trans-unit>
+        <source>There are no posts.</source>
+        <target>Der er ingen beskeder.</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>Welcome</source> <target state="needs-translation">Velkommen</target> </trans-unit>
+        <source>Welcome</source>
+        <target>Velkommen</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>You are welcome to post anything to the other members here. The post will end up on the frontpage.</source> <target state="needs-translation">Du er velkommen til at skrive hvad som helst her til de andre medlemmer, din besked vil havne på forsiden.</target> </trans-unit>
-      <trans-unit id="14" approved="yes">
-        <source>Comments</source> <target state="translated">Kommentarer</target> </trans-unit>
+        <source>You are welcome to post anything to the other members here. The post will end up on the frontpage.</source>
+        <target>Du er velkommen til at skrive hvad som helst her til de andre medlemmer, din besked vil havne på forsiden.</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Comments</source>
+        <target>Kommentarer</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>There are no comments for this blog.</source> <target state="needs-translation">Der er ingen kommentarer for denne blog.</target> </trans-unit>
+        <source>There are no comments for this blog.</source>
+        <target>Der er ingen kommentarer for denne blog.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

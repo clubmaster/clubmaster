@@ -1,99 +1,191 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Are you sure?</source> <target state="needs-translation">Er du sikker?</target> </trans-unit>
+        <source>Are you sure?</source>
+        <target>Er du sikker?</target>
+      </trans-unit>
       <trans-unit id="2">
-        <source>Attends</source> <target state="needs-translation">Tilmeldinger</target> </trans-unit>
-      <trans-unit id="3" approved="yes">
-        <source>Save changes</source> <target state="translated">Gem ændringer</target> </trans-unit>
+        <source>Attends</source>
+        <target>Tilmeldinger</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Save changes</source>
+        <target>Gem ændringer</target>
+      </trans-unit>
       <trans-unit id="4">
-        <source>Well done!</source> <target state="needs-translation">Godt klaret!</target> </trans-unit>
+        <source>Well done!</source>
+        <target>Godt klaret!</target>
+      </trans-unit>
       <trans-unit id="5">
-        <source>Note</source> <target state="needs-translation">Notat</target> </trans-unit>
+        <source>Note</source>
+        <target>Notat</target>
+      </trans-unit>
       <trans-unit id="6">
-        <source>Edit</source> <target state="needs-translation">Rediger</target> </trans-unit>
-      <trans-unit id="7" approved="yes">
-        <source>Disabled</source> <target state="translated">Deaktiveret</target> </trans-unit>
+        <source>Edit</source>
+        <target>Rediger</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Disabled</source>
+        <target>Deaktiveret</target>
+      </trans-unit>
       <trans-unit id="8">
-        <source>Enabled</source> <target state="needs-translation">Aktiveret</target> </trans-unit>
+        <source>Enabled</source>
+        <target>Aktiveret</target>
+      </trans-unit>
       <trans-unit id="9">
-        <source>Run</source> <target state="needs-translation">Kør</target> </trans-unit>
-      <trans-unit id="10" approved="yes">
-        <source>Unattends</source> <target state="translated">Ikke tilmeldte</target> </trans-unit>
+        <source>Run</source>
+        <target>Kør</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Unattends</source>
+        <target>Ikke tilmeldte</target>
+      </trans-unit>
       <trans-unit id="11">
-        <source>Enable</source> <target state="needs-translation">Aktiver</target> </trans-unit>
+        <source>Enable</source>
+        <target>Aktiver</target>
+      </trans-unit>
       <trans-unit id="12">
-        <source>Copy</source> <target state="needs-translation">Kopi</target> </trans-unit>
+        <source>Copy</source>
+        <target>Kopi</target>
+      </trans-unit>
       <trans-unit id="13">
-        <source>Comment</source> <target state="needs-translation">Kommentar</target> </trans-unit>
+        <source>Comment</source>
+        <target>Kommentar</target>
+      </trans-unit>
       <trans-unit id="14">
-        <source>Ban</source> <target state="needs-translation">Forbyd</target> </trans-unit>
+        <source>Ban</source>
+        <target>Forbyd</target>
+      </trans-unit>
       <trans-unit id="15">
-        <source>Shop as</source> <target state="needs-translation">Køb som</target> </trans-unit>
+        <source>Shop as</source>
+        <target>Køb som</target>
+      </trans-unit>
       <trans-unit id="16">
-        <source>Heads up!</source> <target state="needs-translation">Opmærksom!</target> </trans-unit>
-      <trans-unit id="17" approved="yes">
-        <source>Config</source> <target state="translated">Konfig</target> </trans-unit>
-      <trans-unit id="18" approved="yes">
-        <source>Delete</source> <target state="translated">Slet</target> </trans-unit>
+        <source>Heads up!</source>
+        <target>Opmærksom!</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Config</source>
+        <target>Konfig</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Delete</source>
+        <target>Slet</target>
+      </trans-unit>
       <trans-unit id="19">
-        <source>Search</source> <target state="needs-translation">Søg</target> </trans-unit>
+        <source>Search</source>
+        <target>Søg</target>
+      </trans-unit>
       <trans-unit id="20">
-        <source>Payment</source> <target state="needs-translation">Betaling</target> </trans-unit>
+        <source>Payment</source>
+        <target>Betaling</target>
+      </trans-unit>
       <trans-unit id="21">
-        <source>Oh snap!</source> <target state="needs-translation">Åh nej!</target> </trans-unit>
+        <source>Oh snap!</source>
+        <target>Åh nej!</target>
+      </trans-unit>
       <trans-unit id="22">
-        <source>Attribute</source> <target state="needs-translation">Attribut</target> </trans-unit>
+        <source>Attribute</source>
+        <target>Attribut</target>
+      </trans-unit>
       <trans-unit id="23">
-        <source>Expire</source> <target state="needs-translation">Udløb</target> </trans-unit>
+        <source>Expire</source>
+        <target>Udløb</target>
+      </trans-unit>
       <trans-unit id="24">
-        <source>Plan</source> <target state="needs-translation">Plan</target> </trans-unit>
-      <trans-unit id="25" approved="yes">
-        <source>Process</source> <target state="translated">Proces</target> </trans-unit>
-      <trans-unit id="26" approved="yes">
-        <source>log out</source> <target state="translated">log ud</target> </trans-unit>
+        <source>Plan</source>
+        <target>Plan</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Process</source>
+        <target>Proces</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>log out</source>
+        <target>log ud</target>
+      </trans-unit>
       <trans-unit id="27">
-        <source>Checkin</source> <target state="needs-translation">Checkin</target> </trans-unit>
+        <source>Checkin</source>
+        <target>Checkin</target>
+      </trans-unit>
       <trans-unit id="28">
-        <source>Warning!</source> <target state="needs-translation">Advarsel!</target> </trans-unit>
+        <source>Warning!</source>
+        <target>Advarsel!</target>
+      </trans-unit>
       <trans-unit id="29">
-        <source>Paid</source> <target state="needs-translation">Betalt</target> </trans-unit>
+        <source>Paid</source>
+        <target>Betalt</target>
+      </trans-unit>
       <trans-unit id="30">
-        <source>Group</source> <target state="needs-translation">Gruppe</target> </trans-unit>
+        <source>Group</source>
+        <target>Gruppe</target>
+      </trans-unit>
       <trans-unit id="31">
-        <source>Login</source> <target state="needs-translation">Log ind</target> </trans-unit>
+        <source>Login</source>
+        <target>Log ind</target>
+      </trans-unit>
       <trans-unit id="32">
-        <source>Member number</source> <target state="needs-translation">Medlemsnummer</target> </trans-unit>
+        <source>Member number</source>
+        <target>Medlemsnummer</target>
+      </trans-unit>
       <trans-unit id="33">
-        <source>Password</source> <target state="needs-translation">Password</target> </trans-unit>
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
       <trans-unit id="34">
-        <source>Generate</source> <target state="needs-translation">Generer</target> </trans-unit>
+        <source>Generate</source>
+        <target>Generer</target>
+      </trans-unit>
       <trans-unit id="35">
-        <source>Subscription</source> <target state="needs-translation">Abonnement</target> </trans-unit>
+        <source>Subscription</source>
+        <target>Abonnement</target>
+      </trans-unit>
       <trans-unit id="36">
-        <source>Show</source> <target state="needs-translation">Vis</target> </trans-unit>
+        <source>Show</source>
+        <target>Vis</target>
+      </trans-unit>
       <trans-unit id="37">
-        <source>Not paid</source> <target state="needs-translation">Ikke betalt</target> </trans-unit>
+        <source>Not paid</source>
+        <target>Ikke betalt</target>
+      </trans-unit>
       <trans-unit id="38">
-        <source>Down</source> <target state="needs-translation">Ned</target> </trans-unit>
+        <source>Down</source>
+        <target>Ned</target>
+      </trans-unit>
       <trans-unit id="39">
-        <source>Players</source> <target state="needs-translation">Spillere</target> </trans-unit>
+        <source>Players</source>
+        <target>Spillere</target>
+      </trans-unit>
       <trans-unit id="40">
-        <source>Ledger</source> <target state="needs-translation">Kontobog</target> </trans-unit>
+        <source>Ledger</source>
+        <target>Kontobog</target>
+      </trans-unit>
       <trans-unit id="41">
-        <source>Page</source> <target state="needs-translation">Side</target> </trans-unit>
+        <source>Page</source>
+        <target>Side</target>
+      </trans-unit>
       <trans-unit id="42">
-        <source>Extend</source> <target state="needs-translation">Udvid</target> </trans-unit>
+        <source>Extend</source>
+        <target>Udvid</target>
+      </trans-unit>
       <trans-unit id="43">
-        <source>Up</source> <target state="needs-translation">Op</target> </trans-unit>
+        <source>Up</source>
+        <target>Op</target>
+      </trans-unit>
       <trans-unit id="44">
-        <source>Interval</source> <target state="needs-translation">Interval</target> </trans-unit>
+        <source>Interval</source>
+        <target>Interval</target>
+      </trans-unit>
       <trans-unit id="45">
-        <source>Disable</source> <target state="needs-translation">Deaktiver</target> </trans-unit>
+        <source>Disable</source>
+        <target>Deaktiver</target>
+      </trans-unit>
       <trans-unit id="46">
-        <source>Stop</source> <target state="needs-translation">Stop</target> </trans-unit>
+        <source>Stop</source>
+        <target>Stop</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
