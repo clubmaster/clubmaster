@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Review order</source>
-        <target>Revider ordre</target>
-      </trans-unit>
+        <source>Review order</source> <target>Revider ordre</target> </trans-unit>
       <trans-unit id="2">
         <source>Customer Information</source>
         <target>Kunde Information</target>
@@ -607,9 +605,7 @@
         <target>__Price: %price%</target>
       </trans-unit>
       <trans-unit id="152">
-        <source>Description</source>
-        <target>__Description</target>
-      </trans-unit>
+        <source>Description</source> <target state="needs-translation">Beskrivelse</target> </trans-unit>
       <trans-unit id="153">
         <source>Attributes</source>
         <target>__Attributes</target>
