@@ -1,123 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Message</source>
-        <target>__Message</target>
-      </trans-unit>
+        <source>Message</source> <target state="needs-translation">Besked</target> </trans-unit>
       <trans-unit id="2">
-        <source>Add user</source>
-        <target>__Add user</target>
-      </trans-unit>
+        <source>Add user</source> <target state="needs-translation">Tilføj bruger</target> </trans-unit>
       <trans-unit id="3">
-        <source>Add group</source>
-        <target>__Add group</target>
-      </trans-unit>
+        <source>Add group</source> <target state="needs-translation">Tilføj gruppe</target> </trans-unit>
       <trans-unit id="4">
-        <source>Add event</source>
-        <target>__Add event</target>
-      </trans-unit>
+        <source>Add event</source> <target state="needs-translation">Tilføj begivenhed</target> </trans-unit>
       <trans-unit id="5">
-        <source>Recipients</source>
-        <target>__Recipients</target>
-      </trans-unit>
+        <source>Recipients</source> <target state="needs-translation">Modtagere</target> </trans-unit>
       <trans-unit id="6">
-        <source>Type</source>
-        <target>__Type</target>
-      </trans-unit>
+        <source>Type</source> <target state="needs-translation">Type</target> </trans-unit>
       <trans-unit id="7">
-        <source>Recipient</source>
-        <target>__Recipient</target>
-      </trans-unit>
+        <source>Recipient</source> <target state="needs-translation">Modtager</target> </trans-unit>
       <trans-unit id="8">
-        <source>Action</source>
-        <target>__Action</target>
-      </trans-unit>
+        <source>Action</source> <target state="needs-translation">Handling</target> </trans-unit>
       <trans-unit id="9">
-        <source>There are no recipients.</source>
-        <target>__There are no recipients.</target>
-      </trans-unit>
+        <source>There are no recipients.</source> <target state="needs-translation">Der er ingen modtagere.</target> </trans-unit>
       <trans-unit id="10">
-        <source>Send message</source>
-        <target>__Send message</target>
-      </trans-unit>
+        <source>Send message</source> <target state="needs-translation">Send besked</target> </trans-unit>
       <trans-unit id="11">
-        <source>Create message</source>
-        <target>__Create message</target>
-      </trans-unit>
-      <trans-unit id="12">
-        <source>Created at</source>
-        <target>__Created at</target>
-      </trans-unit>
+        <source>Create message</source> <target state="needs-translation">Opret besked</target> </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Created at</source> <target state="translated">Oprettet den</target> </trans-unit>
       <trans-unit id="13">
-        <source>Subject</source>
-        <target>__Subject</target>
-      </trans-unit>
+        <source>Subject</source> <target state="needs-translation">Emne</target> </trans-unit>
       <trans-unit id="14">
-        <source>Sent at</source>
-        <target>__Sent at</target>
-      </trans-unit>
+        <source>Sent at</source> <target state="needs-translation">Sendt den</target> </trans-unit>
       <trans-unit id="15">
-        <source>Status</source>
-        <target>__Status</target>
-      </trans-unit>
+        <source>Status</source> <target state="needs-translation">Status</target> </trans-unit>
       <trans-unit id="16">
-        <source>Sent</source>
-        <target>__Sent</target>
-      </trans-unit>
+        <source>Sent</source> <target state="needs-translation">Sendt</target> </trans-unit>
       <trans-unit id="17">
-        <source>Queued</source>
-        <target>__Queued</target>
-      </trans-unit>
+        <source>Queued</source> <target state="needs-translation">Kø</target> </trans-unit>
       <trans-unit id="18">
-        <source>Draft</source>
-        <target>__Draft</target>
-      </trans-unit>
+        <source>Draft</source> <target state="needs-translation">Udkast</target> </trans-unit>
       <trans-unit id="19">
-        <source>No messages has been sent.</source>
-        <target>__No messages has been sent.</target>
-      </trans-unit>
+        <source>No messages has been sent.</source> <target state="needs-translation">Ingen beskeder er sendt.</target> </trans-unit>
       <trans-unit id="20">
-        <source>Attach file</source>
-        <target>__Attach file</target>
-      </trans-unit>
-      <trans-unit id="21">
-        <source>Upload Attachment</source>
-        <target>__Upload Attachment</target>
-      </trans-unit>
-      <trans-unit id="22">
-        <source>Attachments</source>
-        <target>__Attachments</target>
-      </trans-unit>
-      <trans-unit id="23">
-        <source>Here is a list of files which is attached to the message.</source>
-        <target>__Here is a list of files which is attached to the message.</target>
-      </trans-unit>
+        <source>Attach file</source> <target state="needs-translation">Vedhæft fil</target> </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Upload Attachment</source> <target state="translated">Opload Vedhæftning</target> </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>Attachments</source> <target state="translated">Vedhæftninger</target> </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Here is a list of files which is attached to the message.</source> <target state="translated">Her er en liste af filer som er vedhæftet denne mail.</target> </trans-unit>
       <trans-unit id="24">
-        <source>File name</source>
-        <target>__File name</target>
-      </trans-unit>
+        <source>File name</source> <target state="needs-translation">Filnavn</target> </trans-unit>
       <trans-unit id="25">
-        <source>File type</source>
-        <target>__File type</target>
-      </trans-unit>
+        <source>File type</source> <target state="needs-translation">Filtype</target> </trans-unit>
       <trans-unit id="26">
-        <source>File size</source>
-        <target>__File size</target>
-      </trans-unit>
+        <source>File size</source> <target state="needs-translation">Fil størrelse</target> </trans-unit>
       <trans-unit id="27">
-        <source>There are no attachments.</source>
-        <target>__There are no attachments.</target>
-      </trans-unit>
+        <source>There are no attachments.</source> <target state="needs-translation">Der er ingen vedhæftninger.</target> </trans-unit>
       <trans-unit id="28">
-        <source>Next</source>
-        <target>__Next</target>
-      </trans-unit>
+        <source>Next</source> <target state="needs-translation">Næste</target> </trans-unit>
       <trans-unit id="29">
-        <source>Sender</source>
-        <target>__Sender</target>
-      </trans-unit>
+        <source>Sender</source> <target state="needs-translation">Afsender</target> </trans-unit>
     </body>
   </file>
 </xliff>

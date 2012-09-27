@@ -1,27 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="da" datatype="plaintext" original="file.ext">
     <body>
       <trans-unit id="1">
-        <source>Register payment</source>
-        <target>__Register payment</target>
-      </trans-unit>
+        <source>Register payment</source> <target state="needs-translation">Registrer betaling</target> </trans-unit>
       <trans-unit id="2">
-        <source>Enter the amount the user has paid, and the system will automatically process the order.</source>
-        <target>__Enter the amount the user has paid, and the system will automatically process the order.</target>
-      </trans-unit>
+        <source>Enter the amount the user has paid, and the system will automatically process the order.</source> <target state="needs-translation">Indtast beløbet som brugeren har betalt, og systemet vil automatisk behandle ordren.</target> </trans-unit>
       <trans-unit id="3">
-        <source>You are about to make a split payment, the order will not be processed before the complete amount is paid.</source>
-        <target>__You are about to make a split payment, the order will not be processed before the complete amount is paid.</target>
-      </trans-unit>
+        <source>You are about to make a split payment, the order will not be processed before the complete amount is paid.</source> <target state="needs-translation">Du er ved at lave en splittet betaling, ordren vil ikke blive behandlet førend hele betalingen er modtaget.</target> </trans-unit>
       <trans-unit id="4">
-        <source>Please confirm the action.</source>
-        <target>__Please confirm the action.</target>
-      </trans-unit>
+        <source>Please confirm the action.</source> <target state="needs-translation">Bekræft venligst din handling.</target> </trans-unit>
       <trans-unit id="5">
-        <source>Confirm split payment</source>
-        <target>__Confirm split payment</target>
-      </trans-unit>
+        <source>Confirm split payment</source> <target state="needs-translation">Bekræft split betaling</target> </trans-unit>
     </body>
   </file>
 </xliff>
