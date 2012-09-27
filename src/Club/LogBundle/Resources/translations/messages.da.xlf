@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="10">
         <source>Severity</source>
-        <target>__Severity</target>
+        <target>Vigtighed</target>
       </trans-unit>
       <trans-unit id="11">
         <source>Action</source>
