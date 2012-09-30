@@ -58,6 +58,34 @@ class Event
     protected $stop_date;
 
     /**
+     * @ORM\Column(type="text")
+     *
+     * @var string $street
+     */
+    protected $street;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $postal_code
+     */
+    protected $postal_code;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $city
+     */
+    protected $city;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $country
+     */
+    protected $country;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var string $created_at
@@ -302,5 +330,120 @@ class Event
       }
 
       return $res;
+    }
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return Event
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set postal_code
+     *
+     * @param string $postalCode
+     * @return Event
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postal_code = $postalCode;
+    
+        return $this;
+    }
+
+    /**
+     * Get postal_code
+     *
+     * @return string 
+     */
+    public function getPostalCode()
+    {
+        return $this->postal_code;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Event
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Event
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Add attends
+     *
+     * @param Club\EventBundle\Entity\Attend $attends
+     * @return Event
+     */
+    public function addAttend(\Club\EventBundle\Entity\Attend $attends)
+    {
+        $this->attends[] = $attends;
+    
+        return $this;
+    }
+
+    /**
+     * Remove attends
+     *
+     * @param Club\EventBundle\Entity\Attend $attends
+     */
+    public function removeAttend(\Club\EventBundle\Entity\Attend $attends)
+    {
+        $this->attends->removeElement($attends);
     }
 }
