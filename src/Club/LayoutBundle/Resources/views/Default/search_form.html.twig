@@ -1,13 +1,10 @@
             {% if is_granted('ROLE_ADMIN') %}
             <div class="well">
-                <!-- Search -->
-                <h2>{% trans %}Search{% endtrans %}</h2>
+                <h3>{% trans %}Search{% endtrans %}</h3>
                 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search" class="form-search">
-                    <div class="input-prepend">
-                        <button type="submit" class="btn">{% trans %}Search{% endtrans %}</button>
-                        {{ form_widget(form.user, { 'attr':{ 'class':'span5 search-query'} }) }}
-                        {{ form_rest(form) }}
-                    </div>
+                    {{ form_widget(form.user, { 'attr':{ 'class':'span9 search-query'} }) }}
+                    <button type="submit" class="btn">Search</button>
+                    {{ form_rest(form) }}
                 </form>
             </div>
             {% endif %}
