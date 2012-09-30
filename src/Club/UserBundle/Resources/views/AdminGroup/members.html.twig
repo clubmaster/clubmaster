@@ -7,7 +7,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>{% trans %}Number{% endtrans %}</th>
       <th>{% trans %}Name{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
       <th class="action">{% trans %}Action{% endtrans %}</th>
@@ -15,14 +14,13 @@
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="3">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for user in group.users %}
     <tr>
-      <td>{{ user.memberNumber }}</td>
-      <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+      <td>{{ user.name }} ( {{ user.memberNumber }} )</td>
       <td>{{ user.createdAt|club_date }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_edit', { 'id':user.id })} %}
@@ -30,7 +28,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">{% trans %}There are no users in the group.{% endtrans %}</td>
+    <td colspan="3">{% trans %}There are no users in the group.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
