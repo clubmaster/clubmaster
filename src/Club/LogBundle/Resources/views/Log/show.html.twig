@@ -1,31 +1,29 @@
 {% extends "ClubLogBundle::base.html.twig" %}
 
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path("club_log_log_index") }}">{% trans %}Back to list{% endtrans %}</a>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-
 {% block body %}
-<div class="box-03 noimage box">
-
-  <h2 class="nomb">{{ log.severity }}</h2>
-  <p class="nomt low">
-  {% if log.user %}
-    {% trans with {'%name%':log.user.profile.name} %}Name: %name%{% endtrans %}
-  {% else %}
-    {% trans with {'%name%':'System'} %}Name: %name%{% endtrans %}
-  {% endif %}<br />
-  {% trans with {'%date%':log.createdAt|club_datetime} %}Created at: %date%{% endtrans %}
-  </p>
-
-  <h2>{% trans %}Message{% endtrans %}</h2>
-  <p>{{ log.log }}</p>
-
-</div> <!-- /box-03 -->
+<table class="table table-bordered">
+    <tr>
+        <th>{% trans %}Severity{% endtrans %}</th>
+        <td>{{ log.severity }}</td>
+    </tr>
+    <tr>
+        <th>{% trans %}Name{% endtrans %}</th>
+        <td>
+            {% if log.user %}
+                {% trans with {'%name%':log.user.profile.name} %}Name: %name%{% endtrans %}
+            {% else %}
+                {% trans with {'%name%':'System'} %}Name: %name%{% endtrans %}
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>{% trans %}Date{% endtrans %}</th>
+        <td>{{ log.createdAt|club_datetime }}</td>
+    </tr>
+    <tr>
+        <th>{% trans %}Message{% endtrans %}</th>
+        <td>{{ log.log }}</td>
+    </tr>
+</table>
 
 {% endblock %}

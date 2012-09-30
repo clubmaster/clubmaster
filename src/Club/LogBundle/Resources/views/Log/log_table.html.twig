@@ -5,11 +5,12 @@
       <th>{% trans %}User{% endtrans %}</th>
       <th>{% trans %}Message{% endtrans %}</th>
       <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -29,10 +30,13 @@
       </td>
       <td>{{ log.log }}</td>
       <td>{{ log.createdAt|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_log_log_show', {'id':log.id})} %}
+      </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="4">{% trans %}There are no logs.{% endtrans %}</td>
+    <td colspan="5">{% trans %}There are no logs.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>

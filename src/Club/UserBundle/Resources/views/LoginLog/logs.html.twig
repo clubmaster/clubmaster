@@ -17,7 +17,7 @@
   </tfoot>
   <tbody>
   {% for log in logs %}
-    <tr>
+    <tr class="{% if log.loginFailed %}error{% else %}success{% endif %}">
       <td>{{ log.id }}</td>
       <td>{{ log.username }}</td>
       <td>{{ log.ipAddress }}</td>
