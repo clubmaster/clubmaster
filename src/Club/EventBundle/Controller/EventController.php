@@ -16,11 +16,11 @@ class EventController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $events = $em->getRepository('ClubEventBundle:Event')->findAll();
+    $public = ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) ? true : false;
+    $events = $em->getRepository('ClubEventBundle:Event')->getComing($public);
 
     return array(
-      'events' => $events,
-      'user' => $this->getUser()
+      'events' => $events
     );
   }
 

@@ -7,7 +7,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            {% if event.isAttending(user) %}
+            {% if event.isAttending(app.user) %}
             <li><a href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a></li>
             {% else %}
             <li><a href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a></li>
@@ -20,16 +20,22 @@
 {% endblock %}
 
 {% block body %}
-<div class="box-03 event box">
-
-  <p class="nomt low">
-    {% trans with {'%date%':event.startDate|club_datetime} %}Start date: %date%{% endtrans %}<br />
-    {% trans with {'%date%':event.stopDate|club_datetime} %}Stop date: %date%{% endtrans %}<br />
-  </p>
-
-  <h2>{% trans %}Description{% endtrans %}</h2>
-  <p class="nomt low">{{ event.description|raw }}</p>
-
-</div> <!-- /box-03 -->
+<table class="table table-bordered">
+    <tr>
+        <th>{% trans %}Last subscription{% endtrans %}</th>
+        <td>{{ event.lastSubscribe|club_datetime }}</td>
+    </tr>
+    <tr>
+        <th>{% trans %}Period{% endtrans %}</th>
+        <td>{{ event.startDate|club_datetime }} - {{ event.stopDate|club_datetime }}</td>
+    </tr>
+    <tr>
+        <th>{% trans %}Location{% endtrans %}</th>
+        <td>{{ event.street }}, {{ event.postalCode }} {{ event.city }}, {{ event.country }}</td>
+    <tr>
+        <th>{% trans %}Description{% endtrans %}</th>
+        <td>{{ event.description|raw }}</td>
+    </tr>
+</table>
 
 {% endblock %}

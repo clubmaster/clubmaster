@@ -11,18 +11,29 @@
 {% endblock %}
 
 {% block body %}
-{% for event in events %}
-<div class="box-03 event box">
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}Event Name{% endtrans %}</th>
+            <th>{% trans %}Date{% endtrans %}</th>
+            <th>{% trans %}Action{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td><a href="{{ path('event_event_show', {'id':event.id}) }}"/>{{ event.eventName }}</a></td>
+            <td>{{ event.startDate|club_datetime }}</td>
+            <td>
+                {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('event_event_show', {'id':event.id})} %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">{% trans %}There are no planned events.{% endtrans %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-  <h2 class="nomb"><a href="{{ path('event_event_show', {'id':event.id}) }}"/>{{ event.eventName }}</a></h2>
-  <p class="nomt low">
-    {% trans with {'%date%':event.startDate|club_datetime } %}Start date: %date%{% endtrans %}<br />
-    {% trans with {'%date%': event.stopDate|club_datetime } %}Stop date: %date%{% endtrans %}<br />
-  </p>
-
-</div> <!-- /box-03 -->
-
-{% else %}
-    {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'There are no planned events.'|trans} %}
-{% endfor %}
 {% endblock %}
