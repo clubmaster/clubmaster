@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Read{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Message{% endtrans %}</th>
+      <th>{% trans %}Created at{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for log in logs %}
+    <tr class="{% if log.severity == 'informational' %}success{% else %}warning{% endif %}">
+      <td>
+        {% if not log.new %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/email_open.png') }}" title="{% trans %}Read{% endtrans %}" alt="{% trans %}Read{% endtrans %}" />
+        {% else %}<img src="{{ asset('bundles/clublayout/images/icons/16x16/email.png') }}" title="{% trans %}Unread{% endtrans %}" alt="{% trans %}Unread{% endtrans %}" />
+        {% endif %}
+      </td>
+      <td>
+      {% if log.user %}
+        {{ log.user.profile.name }}
+      {% else %}
+        {% trans %}System{% endtrans %}
+      {% endif %}
+      </td>
+      <td>{{ log.log }}</td>
+      <td>{{ log.createdAt|club_datetime }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">{% trans %}There are no logs.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
