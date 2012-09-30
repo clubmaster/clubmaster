@@ -1,21 +1,27 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}<div class="page-header"><h1>{{ event.eventName }}</h1></div>{% endblock %}
+
+{% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<p>
-{% if event.isAttending(user) %}
-<a href="{{ path('event_event_unattend', {'id':event.id}) }}" class="btn btn-danger">{% trans %}Unattend{% endtrans %}</a>
-{% else %}
-<a href="{{ path('event_event_attend', {'id':event.id}) }}" class="btn btn-success">{% trans %}Attend{% endtrans %}</a>
-{% endif %}
-</p>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            {% if event.isAttending(user) %}
+            <li><a href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a></li>
+            {% else %}
+            <li><a href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
 {% endif %}
 
-<h2>{{ event.eventName }}</h2>
+{% endblock %}
 
+{% block body %}
 <div class="box-03 event box">
 
-  <h2 class="nomb">{{ event.eventName }}</h2>
   <p class="nomt low">
     {% trans with {'%date%':event.startDate|club_datetime} %}Start date: %date%{% endtrans %}<br />
     {% trans with {'%date%':event.stopDate|club_datetime} %}Stop date: %date%{% endtrans %}<br />

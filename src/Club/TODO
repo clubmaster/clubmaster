@@ -3,6 +3,7 @@ when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 
 == NOTES TO LATER ==
+checkup on nemtilmeld.dk, seems to be an okay project to optimize events
 check doctrine:schema:validate if there is any problems
 on cancel order, is the delivered mail sent, that seems like a bug
 match integration facebook, share match

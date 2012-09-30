@@ -1,7 +1,6 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
@@ -10,9 +9,10 @@
         </ul>
     </div>
 </div>
+{% endblock %}
 
+{% block body %}
 <form method="post" action="{{ path('user') }}" class="form-horizontal">
 {% include "ClubUserBundle:User:form.html.twig" %}
 </form>
-
 {% endblock %}
