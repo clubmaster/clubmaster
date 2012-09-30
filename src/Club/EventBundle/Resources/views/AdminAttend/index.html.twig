@@ -1,12 +1,12 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
-{% block header %}<div class="page-header"><h1>Attends, {{ event.eventName }}</h1></div>{% endblock %}
+{% block header %}<div class="page-header"><h1>{% trans with {'%name%':event.eventName} %}Attends, %name%{% endtrans %}</h1></div>{% endblock %}
 
 {% block pagenav %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="">{% trans %}Print{% endtrans %}</a></li>
+            <li><a target="_open" href="{{ path('club_event_adminattend_print', {'id':event.id}) }}">{% trans %}Print{% endtrans %}</a></li>
         </ul>
     </div>
 </div>

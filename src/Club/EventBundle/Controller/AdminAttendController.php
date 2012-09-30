@@ -7,15 +7,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/event/attend")
  */
 class AdminAttendController extends Controller
 {
   /**
-   * @Route("/event/attend/{id}", name="admin_event_attend")
+   * @Route("/print/{id}")
    * @Template()
    */
-  public function indexAction(\Club\EventBundle\Entity\Event $event)
+  public function printAction(\Club\EventBundle\Entity\Event $event)
   {
     return array(
       'event' => $event
@@ -23,7 +23,7 @@ class AdminAttendController extends Controller
   }
 
   /**
-   * @Route("/event/attend/delete/{id}", name="admin_event_attend_delete")
+   * @Route("/delete/{id}", name="admin_event_attend_delete")
    */
   public function deleteAction(\Club\EventBundle\Entity\Attend $attend)
   {
@@ -34,6 +34,17 @@ class AdminAttendController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_event_attend',array('id'=>$attend->getEvent()->getId())));
+  }
+
+  /**
+   * @Route("/{id}", name="admin_event_attend")
+   * @Template()
+   */
+  public function indexAction(\Club\EventBundle\Entity\Event $event)
+  {
+    return array(
+      'event' => $event
+    );
   }
 
   protected function process($event)

@@ -1,0 +1,35 @@
+<html>
+<head>
+<style>
+table { width: 100%; }
+th { padding: 8px; background-color: #aeaeae; border: solid #000000 1px; text-align: left; }
+td { padding: 8px; }
+tr.even { background-color: #eaeaea; }
+td { border-top: solid #eaeaea 1px; }
+</style>
+</head>
+<body>
+<h1>{% trans with {'%name%':event.eventName} %}Attends, %name%{% endtrans %}</h1>
+
+<table cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <th width="30">&#160;</th>
+      <th>{% trans %}User{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i, attend in event.attends %}
+    <tr class="{{ cycle(['odd', 'even'], i) }}">
+      <td><input type="checkbox" /></td>
+      <td>{{ attend.user.profile.name }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="2">{% trans %}There are no attends at the time{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
