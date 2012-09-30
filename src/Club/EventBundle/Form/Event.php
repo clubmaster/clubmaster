@@ -21,6 +21,17 @@ class Event extends AbstractType
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'
     ));
+    $builder->add('last_subscribe', 'jquery_datetime', array(
+        'date_widget' => 'single_text',
+        'time_widget' => 'single_text'
+    ));
+    $builder->add('street');
+    $builder->add('postal_code');
+    $builder->add('city');
+    $builder->add('country', 'country');
+    $builder->add('public', 'checkbox',  array(
+        'help' => 'If the event should be visible for guests.'
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

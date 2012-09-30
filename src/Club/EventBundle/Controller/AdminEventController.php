@@ -21,7 +21,7 @@ class AdminEventController extends Controller
     $em = $this->getDoctrine()->getEntityManager();
     $events = $em->getRepository('ClubEventBundle:Event')->findBy(
         array(),
-        array('id' => 'DESC')
+        array('start_date' => 'DESC')
     );
 
     return array(
@@ -36,8 +36,6 @@ class AdminEventController extends Controller
   public function newAction($year, $month)
   {
     $event = new \Club\EventBundle\Entity\Event();
-    $event->setStartDate(new \DateTime());
-    $event->setStopDate(new \DateTime());
 
     $res = $this->process($event);
 

@@ -4,7 +4,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_event_adminevent_new') }}">{% trans %}Create level{% endtrans %}</a></li>
+            <li><a href="{{ path('club_event_adminevent_new') }}">{% trans %}Create event{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
@@ -16,7 +16,7 @@
     <tr>
       <th>{% trans %}Name{% endtrans %}</th>
       <th>{% trans %}Attends{% endtrans %}</th>
-      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Start date{% endtrans %}</th>
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -36,7 +36,7 @@
           {% trans with {'%attends%':event.attends|length,'%limit%':event.maxAttends} %}Attends: %attends% / %limit%{% endtrans %}<br />
         {% endif %}
       </td>
-      <td>{{ event.createdAt|club_datetime }}</td>
+      <td>{{ event.startDate|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_event_event_edit', { 'id':event.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_event_delete', { 'id':event.id })} %}

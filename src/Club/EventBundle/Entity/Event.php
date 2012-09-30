@@ -58,32 +58,46 @@ class Event
     protected $stop_date;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="datetime")
+     *
+     * @var string $last_subscribe
+     */
+    protected $last_subscribe;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string $street
      */
     protected $street;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $postal_code
      */
     protected $postal_code;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $city
      */
     protected $city;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @var string $country
      */
     protected $country;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var string $public
+     */
+    protected $public;
 
     /**
      * @ORM\Column(type="datetime")
@@ -287,6 +301,18 @@ class Event
 
     public function __construct()
     {
+        $this->setPublic(true);
+        $this->setStartDate(new \DateTime(date('Y-m-d 18:00:00')));
+        $this->setStopDate(new \DateTime(date('Y-m-d 22:00:00')));
+        $this->setLastSubscribe(new \DateTime(date('Y-m-d 00:00:00')));
+
+        $month = new \DateInterval('P1M');
+        $week = new \DateInterval('P1W');
+
+        $this->getStartDate()->add($month);
+        $this->getStopDate()->add($month);
+        $this->getStopDate()->add($month)->sub($week);
+
         $this->attends = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -320,6 +346,7 @@ class Event
         'attends' => array(),
         'start_date' => $this->getStartDate()->format('c'),
         'stop_date' => $this->getStopDate()->format('c'),
+        'last_subscribe' => $this->getLastSubscribe()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c')
       );
 
@@ -341,14 +368,14 @@ class Event
     public function setStreet($street)
     {
         $this->street = $street;
-    
+
         return $this;
     }
 
     /**
      * Get street
      *
-     * @return string 
+     * @return string
      */
     public function getStreet()
     {
@@ -364,14 +391,14 @@ class Event
     public function setPostalCode($postalCode)
     {
         $this->postal_code = $postalCode;
-    
+
         return $this;
     }
 
     /**
      * Get postal_code
      *
-     * @return string 
+     * @return string
      */
     public function getPostalCode()
     {
@@ -387,14 +414,14 @@ class Event
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -410,14 +437,14 @@ class Event
     public function setCountry($country)
     {
         $this->country = $country;
-    
+
         return $this;
     }
 
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -433,7 +460,7 @@ class Event
     public function addAttend(\Club\EventBundle\Entity\Attend $attends)
     {
         $this->attends[] = $attends;
-    
+
         return $this;
     }
 
@@ -445,5 +472,51 @@ class Event
     public function removeAttend(\Club\EventBundle\Entity\Attend $attends)
     {
         $this->attends->removeElement($attends);
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     * @return Event
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return boolean
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set last_subscribe
+     *
+     * @param \DateTime $lastSubscribe
+     * @return Event
+     */
+    public function setLastSubscribe($lastSubscribe)
+    {
+        $this->last_subscribe = $lastSubscribe;
+
+        return $this;
+    }
+
+    /**
+     * Get last_subscribe
+     *
+     * @return \DateTime
+     */
+    public function getLastSubscribe()
+    {
+        return $this->last_subscribe;
     }
 }
