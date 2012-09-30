@@ -1,7 +1,16 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
-<p><a class="btn btn-primary" href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a></p>
 
 <h2 class="nomb">{{ product.productName }}</h2>
 <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
