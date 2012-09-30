@@ -23,7 +23,7 @@
   {% for attend in event.attends %}
     <tr>
       <td>{{ event.eventName }}</td>
-      <td>{{ attend.user.profile.name }}</td>
+      <td>{{ attend.user.name }} ( {{ attend.user.memberNumber }} )</td>
       <td>{{ attend.createdAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_event_attend_delete', {'id':attend.id})} %}

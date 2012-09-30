@@ -5,7 +5,6 @@ when upgrading, set last_subscribe date to now()
 
 == NOTES TO LATER ==
 remove all box-03 styles
-export users in csv for events
 check doctrine:schema:validate if there is any problems
 on cancel order, is the delivered mail sent, that seems like a bug
 match integration facebook, share match

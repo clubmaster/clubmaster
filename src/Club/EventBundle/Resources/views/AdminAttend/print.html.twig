@@ -22,7 +22,7 @@ td { border-top: solid #eaeaea 1px; }
   {% for i, attend in event.attends %}
     <tr class="{{ cycle(['odd', 'even'], i) }}">
       <td><input type="checkbox" /></td>
-      <td>{{ attend.user.profile.name }}</td>
+      <td>{{ attend.user.name }} ( {{ attend.user.memberNumber }} )</td>
     </tr>
   {% else %}
   <tr>
