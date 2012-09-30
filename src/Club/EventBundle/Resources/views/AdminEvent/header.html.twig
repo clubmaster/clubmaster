@@ -1,0 +1,12 @@
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_event_event_edit', { 'id':event.id }) }}">{% trans %}Event{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_event_attend', { 'id':event.id }) }}">{% trans %}Attends{% endtrans %}</a></li>
+            <li><a target="_open" href="{{ path('club_event_adminattend_print', { 'id':event.id }) }}">{% trans %}Print{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
