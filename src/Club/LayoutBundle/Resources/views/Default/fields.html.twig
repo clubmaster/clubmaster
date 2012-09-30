@@ -49,7 +49,8 @@
     <script type="text/javascript" src="{{ asset('bundles/clublayout/tinymce/jscripts/tiny_mce/tiny_mce.js') }}"></script>
     <script type="text/javascript">
     tinyMCE.init({
-        mode : "textareas",
+        mode : "exact",
+        elements: "{{ id }}",
         theme : "simple",
         width: "80%",
         height: "300px"
