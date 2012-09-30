@@ -3,14 +3,10 @@
 {% block body %}
 <p><a class="btn btn-primary" href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a></p>
 
-<div class="box-03 noimage box">
-
-  <h2 class="nomb">{{ product.productName }}</h2>
-  <p class="nomt low">
-    {% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}<br />
-  </p>
-  <h2>{% trans %}Description{% endtrans %}</h2>
-  <p>{{ product.description|raw }}</p>
+<h2 class="nomb">{{ product.productName }}</h2>
+<p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
+<h2>{% trans %}Description{% endtrans %}</h2>
+<p>{{ product.description|raw }}</p>
 
   {% if product.productAttributes|length > 0 %}
   <h2>{% trans %}Attributes{% endtrans %}</h2>
@@ -46,7 +42,5 @@
 
   </ul>
   {% endif %}
-
-</div> <!-- /box-03 -->
 
 {% endblock %}

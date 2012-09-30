@@ -4,7 +4,6 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-remove all box-03 styles
 check doctrine:schema:validate if there is any problems
 on cancel order, is the delivered mail sent, that seems like a bug
 match integration facebook, share match
