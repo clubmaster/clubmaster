@@ -8,21 +8,23 @@
 
 {% block body %}
 
-<div class="box-03 noimage box">
-
-  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-  <p class="nomt low">
-    {% if user.profile.profileEmail %}
-      {% trans with {'%email%':user.profile.profileEmail.emailAddress} %}Email: %email%{% endtrans %}<br />
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<table class="table table-bordered">
+{% if user.profile.profileEmail %}
+    <tr>
+        <th>{% trans %}Email{% endtrans %}</th>
+        <td>{{ user.profile.profileEmail.emailAddress }}</td>
+    </tr>
     {% endif %}
     {% if user.profile.profilePhone %}
-      {% trans with {'%phone%':user.profile.profilePhone.phoneNumber} %}Phone: %phone%{% endtrans %}
+    <tr>
+        <th>{% trans %}Phone{% endtrans %}</th>
+        <td>{{ user.profile.profilePhone.phoneNumber }}</td>
+    </tr>
     {% endif %}
-  </p>
-  {% endif %}
+</table>
+{% endif %}
 
-  {{ output|raw }}
-
-</div> <!-- /box-03 -->
+{{ output|raw }}
 
 {% endblock %}
