@@ -31,6 +31,7 @@ class Event
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      *
      * @var string $description
      */

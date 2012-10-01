@@ -16,7 +16,7 @@ class MatchControllerTest extends WebTestCase
 
     public function testNew()
     {
-        $matches = 15;
+        $matches = 5;
 
         for ($i = 0; $i < $matches; $i++) {
             $crawler = $this->client->request('GET', '/en/match/match/new');

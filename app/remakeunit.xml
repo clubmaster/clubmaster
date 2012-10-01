@@ -20,6 +20,7 @@
             <directory>../src/*/MatchBundle/Tests/Installer</directory>
             <directory>../src/*/WelcomeBundle/Tests/Installer</directory>
             <directory>../src/*/RankingBundle/Tests/Installer</directory>
+            <directory>../src/*/EventBundle/Tests/Installer</directory>
             <file>src/Club/TeamBundle/Tests/Installer/0AdminTeamControllerTest.php</file>
             <file>src/Club/TeamBundle/Tests/Installer/1AdminScheduleControllerTest.php</file>
         </testsuite>
