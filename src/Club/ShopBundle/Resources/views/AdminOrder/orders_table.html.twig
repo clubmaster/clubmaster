@@ -26,7 +26,7 @@
       <td>{{ order.updatedAt|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_order_edit', { 'id':order.id })} %}
-        {% if not order.paid %}
+        {% if not order.paid and not order.cancelled %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_order_delete', { 'id':order.id })} %}
         {% include "ClubLayoutBundle:Default:payment_link.html.twig" with {'url':path('club_payment_cash_cash_register', { 'order_id':order.id })} %}
         {% endif %}

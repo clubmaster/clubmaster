@@ -24,6 +24,8 @@ class OrderAcceptedListener
     if (!$this->container->getParameter('club_mail.mail_on_order')) return false;
 
     $order = $event->getOrder();
+    if (!$order->getDelivered()) return;
+
     $email = $order->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {
