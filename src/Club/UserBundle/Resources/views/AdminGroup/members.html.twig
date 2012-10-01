@@ -1,9 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block header %}
+<div class="page-header"><h1>{% trans with {'%group%':group.groupName} %}Group, %group%{% endtrans %}</h1></div>
+{% endblock %}
+
 {% block body %}
-
-<h2>{% trans with {'%group%':group.groupName} %}Members of %group%{% endtrans %}</h2>
-
 <table class="table">
   <thead>
     <tr>
