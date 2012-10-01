@@ -3,6 +3,7 @@
 namespace Club\RankingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club\RankingBundle\Entity\Rule
@@ -26,6 +27,7 @@ class Rule
      * @var string $name
      *
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 

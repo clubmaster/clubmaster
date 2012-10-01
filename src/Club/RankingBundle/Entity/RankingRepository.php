@@ -64,7 +64,7 @@ class RankingRepository extends EntityRepository
         ->getQuery()
         ->getResult();
 
-    if (!$ranking) return false;
+    if (!$matches) return false;
 
     $ids = array();
     foreach ($matches as $match) {
