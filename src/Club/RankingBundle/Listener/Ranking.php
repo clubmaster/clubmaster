@@ -47,7 +47,8 @@ class Ranking
             }
         }
 
-        $this->em->flush();
+        if (count($matches) > 0)
+            $this->em->flush();
     }
 
     private function processMatch(\Club\RankingBundle\Entity\Match $match)
