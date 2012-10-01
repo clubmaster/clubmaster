@@ -1,17 +1,5 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
-{% block pagenav %}
-{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_match_match_new') }}">{% trans %}Insert match{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
-{% endif %}
-{% endblock %}
-
 {% block body %}
 
 {% for ranking in rankings %}
