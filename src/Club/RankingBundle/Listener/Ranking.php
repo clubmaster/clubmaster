@@ -19,8 +19,10 @@ class Ranking
             'match' => $event->getMatch()
         ));
 
-        $this->club_ranking->revokePoint($match);
-        $this->em->flush();
+        if ($match) {
+            $this->club_ranking->revokePoint($match);
+            $this->em->flush();
+        }
     }
 
     public function onMatchNew(\Club\MatchBundle\Event\FilterMatchEvent $event)
@@ -29,8 +31,10 @@ class Ranking
             'match' => $event->getMatch()
         ));
 
-        $this->processMatch($match);
-        $this->em->flush();
+        if ($match) {
+            $this->processMatch($match);
+            $this->em->flush();
+        }
     }
 
     public function onMatchTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
