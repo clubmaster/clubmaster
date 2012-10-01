@@ -4,7 +4,6 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-missing all translations in php files
 should be able to delete users from user members list
 autocomplete to add users to group
 check doctrine:schema:validate if there is any problems

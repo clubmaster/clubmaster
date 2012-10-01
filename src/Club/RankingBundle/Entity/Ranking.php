@@ -101,8 +101,7 @@ class Ranking
     protected $rule;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club\MatchBundle\Entity\Match")
-     * @ORM\JoinTable(name="club_ranking_matches")
+     * @ORM\OneToMany(targetEntity="Match")
      */
     protected $matches;
 
@@ -389,38 +388,5 @@ class Ranking
     public function removeUser(\Club\UserBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
-    }
-
-    /**
-     * Add matches
-     *
-     * @param Club\MatchBundle\Entity\Match $matches
-     * @return Ranking
-     */
-    public function addMatch(\Club\MatchBundle\Entity\Match $matches)
-    {
-        $this->matches[] = $matches;
-
-        return $this;
-    }
-
-    /**
-     * Remove matches
-     *
-     * @param Club\MatchBundle\Entity\Match $matches
-     */
-    public function removeMatch(\Club\MatchBundle\Entity\Match $matches)
-    {
-        $this->matches->removeElement($matches);
-    }
-
-    /**
-     * Get matches
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getMatches()
-    {
-        return $this->matches;
     }
 }
