@@ -6,7 +6,7 @@ club_facebook:
 club_ranking:
     resource: "@ClubRankingBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}
 
 club_weather:
     resource: "@ClubWeatherBundle/Controller/"
