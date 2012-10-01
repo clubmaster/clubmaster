@@ -13,8 +13,12 @@ class Field extends AbstractType
   {
     $builder->add('name');
     $builder->add('information');
-    $builder->add('open');
-    $builder->add('close');
+    $builder->add('open', 'jquery_date', array(
+        'widget' => 'single_text'
+    ));
+    $builder->add('close', 'jquery_date', array(
+        'widget' => 'single_text'
+    ));
     $builder->add('location');
   }
 
