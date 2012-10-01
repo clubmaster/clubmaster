@@ -1,9 +1,9 @@
-add fields on remake script
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
+find a way to have default country, event and create user
 see if there is a easier way to print page headers, stupid to print the html on all pages
 should be able to delete users from user members list
 autocomplete to add users to group

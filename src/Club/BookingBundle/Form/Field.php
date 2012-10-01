@@ -17,7 +17,8 @@ class Field extends AbstractType
         'widget' => 'single_text'
     ));
     $builder->add('close', 'jquery_date', array(
-        'widget' => 'single_text'
+        'widget' => 'single_text',
+        'required' => false
     ));
     $builder->add('location');
   }

@@ -27,7 +27,6 @@ if [ "${MYSQL_PASSWORD}" != "" ]; then
 fi
 
 mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
-mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_fields.sql
 
 phpunit -c app/remakeunit.xml
 
