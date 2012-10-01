@@ -101,7 +101,7 @@ class Ranking
     protected $rule;
 
     /**
-     * @ORM\OneToMany(targetEntity="Match", mappedBy="ranking")
+     * @ORM\OneToMany(targetEntity="Match", mappedBy="ranking", cascade={"persist"})
      */
     protected $matches;
 
@@ -396,10 +396,10 @@ class Ranking
      * @param Club\RankingBundle\Entity\Match $matches
      * @return Ranking
      */
-    public function addMatche(\Club\RankingBundle\Entity\Match $matches)
+    public function addMatch(\Club\RankingBundle\Entity\Match $matches)
     {
         $this->matches[] = $matches;
-    
+
         return $this;
     }
 
@@ -408,7 +408,7 @@ class Ranking
      *
      * @param Club\RankingBundle\Entity\Match $matches
      */
-    public function removeMatche(\Club\RankingBundle\Entity\Match $matches)
+    public function removeMatch(\Club\RankingBundle\Entity\Match $matches)
     {
         $this->matches->removeElement($matches);
     }
@@ -416,7 +416,7 @@ class Ranking
     /**
      * Get matches
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMatches()
     {

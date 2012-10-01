@@ -52,6 +52,12 @@ class Match
      */
     protected $updated_at;
 
+
+    public function __construct()
+    {
+        $this->setProcessed(false);
+    }
+
     /**
      * Get id
      *

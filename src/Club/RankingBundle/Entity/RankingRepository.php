@@ -65,8 +65,19 @@ class RankingRepository extends EntityRepository
         ->getQuery()
         ->getOneOrNullResult();
 
-    if (!$ranking) return $ranking;
+    if (!$ranking) return false;
 
-    return $ranking->getMatches();
+    $ids = array();
+    foreach ($ranking->getMatches() as $match) {
+        $ids[] = $match->getId();
+    }
+
+    return $this->_em->createQueryBuilder()
+        ->select('m')
+        ->from('ClubMatchBundle:Match', 'm')
+        ->where('m.id IN (:ids)')
+        ->setParameter('ids', $ids)
+        ->getQuery()
+        ->getResult();
   }
 }
