@@ -4,3 +4,10 @@
     {{ app.session.flash('warning') }}
 </div>
 {% endif %}
+
+{% if msg is defined %}
+<div class="alert alert-block">
+    <strong>{% trans %}Warning!{% endtrans %}</strong>
+    {{ msg }}
+</div>
+{% endif %}
