@@ -1,3 +1,6 @@
+on cancel order, is the delivered mail sent, that seems like a bug
+should be able to delete users from user members list
+autocomplete to add users to group
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
@@ -5,10 +8,7 @@ when upgrading, set last_subscribe date to start_date
 == NOTES TO LATER ==
 find a way to have default country, event and create user
 see if there is a easier way to print page headers, stupid to print the html on all pages
-should be able to delete users from user members list
-autocomplete to add users to group
 check doctrine:schema:validate if there is any problems
-on cancel order, is the delivered mail sent, that seems like a bug
 match integration facebook, share match
 add custom fields on profiles
 batch assign users to a league
