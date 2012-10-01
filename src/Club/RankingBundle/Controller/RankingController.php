@@ -32,8 +32,12 @@ class RankingController extends Controller
    */
   public function showAction(\Club\RankingBundle\Entity\Ranking $ranking)
   {
+      $em = $this->getDoctrine()->getEntityManager();
+      $matches = $em->getRepository('ClubRankingBundle:Ranking')->getRecentMatches($ranking, 10);
+
       return array(
-          'ranking' => $ranking
+          'ranking' => $ranking,
+          'matches' => $matches
       );
   }
 

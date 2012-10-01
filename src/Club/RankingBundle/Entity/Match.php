@@ -35,6 +35,7 @@ class Match
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\Match")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $match;
 

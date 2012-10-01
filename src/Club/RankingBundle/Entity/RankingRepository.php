@@ -45,37 +45,37 @@ class RankingRepository extends EntityRepository
 
   public function getByMatch(\Club\MatchBundle\Entity\Match $match)
   {
-      $ranking = $this->createQueryBuilder('r')
-          ->innerJoin('r.matches', 'm', 'with', 'm.id = :match_id')
+      return $this->createQueryBuilder('r')
+          ->join('r.matches', 'm', 'with', 'm.match = :match_id')
           ->setParameter('match_id', $match->getId())
           ->getQuery()
           ->getOneOrNullResult();
-
-      return $ranking;
   }
 
   public function getRecentMatches(\Club\RankingBundle\Entity\Ranking $ranking, $limit=10)
   {
-    $ranking = $this->createQueryBuilder('r')
-        ->select('r', 'm')
-        ->join('r.matches', 'm', 'with', 'r.id = :ranking_id')
+    $matches = $this->_em->createQueryBuilder()
+        ->select('m')
+        ->from('ClubRankingBundle:Match', 'm')
+        ->where('m.ranking = :ranking_id')
         ->orderBy('m.id', 'DESC')
         ->setMaxResults($limit)
         ->setParameter('ranking_id', $ranking->getId())
         ->getQuery()
-        ->getOneOrNullResult();
+        ->getResult();
 
     if (!$ranking) return false;
 
     $ids = array();
-    foreach ($ranking->getMatches() as $match) {
-        $ids[] = $match->getId();
+    foreach ($matches as $match) {
+        $ids[] = $match->getMatch()->getId();
     }
 
     return $this->_em->createQueryBuilder()
         ->select('m')
         ->from('ClubMatchBundle:Match', 'm')
         ->where('m.id IN (:ids)')
+        ->orderBy('m.id', 'DESC')
         ->setParameter('ids', $ids)
         ->getQuery()
         ->getResult();

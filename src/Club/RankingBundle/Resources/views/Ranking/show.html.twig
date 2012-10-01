@@ -40,6 +40,6 @@
 </table>
 
 {% render "ClubRankingBundle:Ranking:Top" with {'id':ranking.id, 'limit':50} %}
-{% render "ClubRankingBundle:Ranking:RecentMatches" with {'id':ranking.id, 'limit':50} %}
+{% include "ClubMatchBundle:Match:recent_matches.html.twig" %}
 
 {% endblock %}

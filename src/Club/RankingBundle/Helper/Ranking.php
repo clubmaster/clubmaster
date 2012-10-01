@@ -38,13 +38,13 @@ class Ranking
             }
 
             $this->em->persist($lt);
-            $this->em->flush();
         }
     }
 
-    public function revokePoint(\Club\MatchBundle\Entity\Match $match)
+    public function revokePoint(\Club\RankingBundle\Entity\Match $match)
     {
-        //if (!$match->getProcessed()) return;
+        if (!$match->getProcessed()) return;
+        $match = $match->getMatch();
 
         $ranking = $this->em->getRepository('ClubRankingBundle:Ranking')->getByMatch($match);
         if (!$ranking) return;

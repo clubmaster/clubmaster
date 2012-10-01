@@ -15,26 +15,42 @@ class Ranking
 
     public function onMatchDelete(\Club\MatchBundle\Event\FilterMatchEvent $event)
     {
-        $this->club_ranking->revokePoint($event->getMatch());
+        $match = $this->em->getRepository('ClubRankingBundle:Match')->findOneBy(array(
+            'match' => $event->getMatch()
+        ));
+
+        $this->club_ranking->revokePoint($match);
+        $this->em->flush();
     }
 
     public function onMatchNew(\Club\MatchBundle\Event\FilterMatchEvent $event)
     {
-        $this->processMatch($event->getMatch());
+        $match = $this->em->getRepository('ClubRankingBundle:Match')->findOneBy(array(
+            'match' => $event->getMatch()
+        ));
+
+        $this->processMatch($match);
+        $this->em->flush();
     }
 
     public function onMatchTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
     {
-        return;
-        $matches = $this->em->getRepository('ClubMatchBundle:Match')->getUnprocessed();
+        $matches = $this->em->getRepository('ClubRankingBundle:Match')->getUnprocessed();
 
         foreach ($matches as $match) {
-            $this->processMatch($match);
+            if (!$match->getProcessed()) {
+                $this->processMatch($match->getMatch());
+            }
         }
+
+        $this->em->flush();
     }
 
-    private function processMatch(\Club\MatchBundle\Entity\Match $match)
+    private function processMatch(\Club\RankingBundle\Entity\Match $match)
     {
-        $this->club_ranking->addPoint($match);
+        $this->club_ranking->addPoint($match->getMatch());
+
+        $match->setProcessed(true);
+        $this->em->persist($match);
     }
 }

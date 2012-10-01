@@ -12,16 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class MatchRepository extends EntityRepository
 {
-  public function getUnprocessed()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('m')
-      ->from('ClubMatchBundle:Match', 'm')
-      ->where('m.processed = false')
-      ->getQuery()
-      ->getResult();
-  }
-
   public function getRecentMatches(\Club\MatchBundle\Entity\League $league=null, $limit=10)
   {
     $qb = $this->_em->createQueryBuilder()

@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class MatchRepository extends EntityRepository
 {
+    public function getUnprocessed()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.processed = false')
+            ->getQuery()
+            ->getResult();
+    }
 }
