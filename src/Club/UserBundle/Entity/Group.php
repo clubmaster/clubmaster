@@ -440,4 +440,57 @@ class Group
     {
         return $this->created_at;
     }
+
+    /**
+     * Remove role
+     *
+     * @param Club\UserBundle\Entity\Role $role
+     */
+    public function removeRole(\Club\UserBundle\Entity\Role $role)
+    {
+        $this->role->removeElement($role);
+    }
+
+    /**
+     * Remove location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     */
+    public function removeLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location->removeElement($location);
+    }
+
+    /**
+     * Remove product
+     *
+     * @param Club\ShopBundle\Entity\Product $product
+     */
+    public function removeProduct(\Club\ShopBundle\Entity\Product $product)
+    {
+        $this->product->removeElement($product);
+    }
+
+    /**
+     * Add users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     * @return Group
+     */
+    public function addUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
 }

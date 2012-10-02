@@ -28,7 +28,7 @@
       <td>{{ user.name }} ( {{ user.memberNumber }} )</td>
       <td>{{ user.createdAt|club_date }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_user_edit', { 'id':user.id })} %}
+        {% include "ClubLayoutBundle:Default:group_unassign_link.html.twig" with {'url':path('club_user_admingroup_membersdelete', { 'id':group.id,'user_id':user.id })} %}
       </td>
     </tr>
   {% else %}

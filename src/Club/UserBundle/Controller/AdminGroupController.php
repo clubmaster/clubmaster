@@ -62,6 +62,26 @@ class AdminGroupController extends Controller
   }
 
   /**
+   * @Route("/members/delete/{id}/{user_id}")
+   * @Template()
+   */
+  public function membersDeleteAction(\Club\UserBundle\Entity\Group $group, $user_id)
+  {
+      $em = $this->getDoctrine()->getEntityManager();
+      $user = $em->find('ClubUserBundle:User', $user_id);
+
+      $group->removeUser($user);
+      $em->persist($group);
+      $em->flush();
+
+      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+      return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
+          'id' => $group->getId()
+      )));
+  }
+
+  /**
    * @Route("/members/{id}")
    * @Template()
    */
