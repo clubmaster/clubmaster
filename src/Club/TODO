@@ -1,3 +1,6 @@
+make a booking exception
+use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
+prices to book with guest, use normal checkout procedure
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
@@ -37,8 +40,6 @@ build new gravatar support
 add category priority regarding to account numbers
 admin user batch, select search
 jquery overlay form on booking
-use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
-prices to book with guest, use normal checkout procedure
 make a button to accept business terms
 bulk create order to users
 quick create intervals when creating the field

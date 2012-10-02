@@ -26,7 +26,7 @@
       <td>{{ booking.user }} - {{ booking.firstPartner }}</td>
       {% endif %}
       <td>
-        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_booking_booking_viewbooking', { 'id':booking.id })} %}
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_booking_booking_viewbooking', { 'booking_id':booking.id })} %}
       </td>
     </tr>
   {% else %}

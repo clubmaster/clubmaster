@@ -16,22 +16,13 @@ class BookingController extends Controller
     /**
      * @Template()
      * @Route("/book/review/{interval_id}/{date}")
+     * @Secure(roles="ROLE_USER")
      * @Method("POST")
      */
-    public function reviewAction($interval_id, $date)
+    public function reviewAction($interval_id, \DateTime $date)
     {
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans('You has to be logged in.'));
-
-            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-                'date' => $date,
-                'id' => $interval_id
-            )));
-        }
-
         $em = $this->getDoctrine()->getEntityManager();
 
-        $date = new \DateTime($date);
         $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
         $guest = $this->getRequest()->get('guest') ? 1 : 0;
 
@@ -66,19 +57,13 @@ class BookingController extends Controller
             )));
         }
 
-        $ret = array(
-            'guest' => $guest,
+        $this->get('club_booking.booking')->serialize();
+
+        return array(
             'booking' => $this->get('club_booking.booking')->getBooking(),
             'interval' => $interval,
             'price' => $this->get('club_booking.booking')->getPrice()
         );
-
-        if (isset($user))
-            $ret['user'] = $user;
-
-        $this->get('club_booking.booking')->serialize();
-
-        return $ret;
     }
 
     /**
@@ -91,12 +76,8 @@ class BookingController extends Controller
         $this->get('club_booking.booking')->unserialize();
         $em = $this->getDoctrine()->getEntityManager();
 
-        if ($this->get('club_booking.booking')->isValid()) {
-            $this->get('club_booking.booking')->save();
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your booking has been created'));
-        } else {
-            $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
-        }
+        $this->get('club_booking.booking')->save();
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your booking has been created'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array(
             'date' => $this->get('club_booking.booking')->getBooking()->getFirstDate()->format('Y-m-d')
