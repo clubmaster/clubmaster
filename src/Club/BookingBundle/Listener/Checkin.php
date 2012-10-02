@@ -41,7 +41,7 @@ class Checkin
       ->getResult();
 
     foreach ($bookings as $booking) {
-      $booking->setConfirmed(true);
+      $booking->setStatus(\Club\BookingBundle\Entity\Booking::CHECKIN);
       $this->em->persist($booking);
     }
 
