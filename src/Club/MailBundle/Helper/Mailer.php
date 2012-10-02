@@ -15,7 +15,14 @@ class Mailer
         $this->em = $container->get('doctrine.orm.entity_manager');
         $this->mailer = $container->get('mailer');
 
+        $this->init();
+    }
+
+    public function init()
+    {
         $this->message = \Swift_Message::newInstance();
+
+        return $this;
     }
 
     public function setDecorator($recipients)

@@ -28,6 +28,7 @@ class UserNewListener
 
     if ($email) {
       $this->clubmaster_mailer
+        ->init()
         ->setSubject('Welcome')
         ->setFrom()
         ->setTo($email->getEmailAddress())

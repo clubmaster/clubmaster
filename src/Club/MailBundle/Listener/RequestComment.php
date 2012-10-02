@@ -26,6 +26,7 @@ class RequestComment
 
     if ($email) {
       $this->clubmaster_mailer
+        ->init()
         ->setSubject('Player market comment')
         ->setFrom()
         ->setTo($email->getEmailAddress())
