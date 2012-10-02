@@ -15,7 +15,7 @@ class Checkin
 
   public function onCheckinUser(\Club\CheckinBundle\Event\FilterCheckinEvent $event)
   {
-    if ($this->container->getParameter('club_booking.auto_confirm')) return;
+    if (!$this->container->getParameter('club_booking.cancel_without_checkin')) return;
 
     $checkin = $event->getCheckin();
 

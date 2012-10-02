@@ -174,11 +174,11 @@ class Booking
 
     private function getConfirmStatus(\DateTime $start)
     {
-        $confirm = ($this->container->getParameter('club_booking.auto_confirm'))
+        $confirm = (!$this->container->getParameter('club_booking.cancel_without_checkin'))
             ? \Club\BookingBundle\Entity\Booking::CONFIRMED
             : \Club\BookingBundle\Entity\Booking::UNCONFIRMED;
 
-        if ($this->container->getParameter('club_booking.auto_confirm')) return $confirm;
+        if (!$this->container->getParameter('club_booking.auto_confirm')) return $confirm;
 
         $now = new \DateTime();
         $before = clone $start;
