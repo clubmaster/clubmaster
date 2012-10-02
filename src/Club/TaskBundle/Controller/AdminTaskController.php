@@ -27,7 +27,6 @@ class AdminTaskController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-
     $tasks = $em->getRepository('ClubTaskBundle:Task')->findAll();
 
     return array(

@@ -173,6 +173,8 @@ class BookingController extends Controller
         $this->get('club_booking.booking')->bindDelete($booking);
         if ($this->get('club_booking.booking')->isValid()) {
             $this->get('club_booking.booking')->remove();
+            $em->flush();
+
             $this->get('session')->setFlash('notice', $this->get('translator')->trans('Booking has been cancelled'));
         } else {
             $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());

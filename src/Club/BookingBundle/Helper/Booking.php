@@ -213,7 +213,6 @@ class Booking
         $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
 
         $this->em->remove($this->booking);
-        $this->em->flush();
     }
 
     protected function setError($error)

@@ -1,4 +1,3 @@
-remove all pending bookings every 15 minute
 make sure only one can have the field at the time
 validate booking confirm message, which name is listed where?
 when upgrading, remember to enable all products
