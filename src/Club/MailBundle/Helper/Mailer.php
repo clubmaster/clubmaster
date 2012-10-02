@@ -61,7 +61,7 @@ class Mailer
     public function setTo($to)
     {
         try {
-            $this->message->addTo($to);
+            $this->message->setTo($to);
         } catch (\Exception $e) {
             // we tried to set an invalid email address
         }
