@@ -56,12 +56,13 @@ class BookingListener
                 'user' => $user,
                 'booking' => $booking,
             )))
-            ->setDecorator($recipients);
+            ->setDecorator($recipients)
+            ;
 
 
         foreach ($recipients as $user) {
             $this->clubmaster_mailer
-                ->setTo($user->getProfile()->getProfileEmail()->getEmailAddress())
+                ->setTo($user->getEmail())
                 ->send();
         }
     }
