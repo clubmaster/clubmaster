@@ -349,4 +349,37 @@ class Booking
     {
         return $this->confirmed;
     }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Booking
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
 }
