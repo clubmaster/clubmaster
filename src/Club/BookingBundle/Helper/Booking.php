@@ -172,22 +172,16 @@ class Booking
             $this->booking->addUser($partner);
     }
 
-    private function getConfirmStatus(\DateTime $start)
+    public function getConfirmStatus(\DateTime $start)
     {
-        $confirm = (!$this->container->getParameter('club_booking.cancel_without_checkin'))
-            ? \Club\BookingBundle\Entity\Booking::CONFIRMED
-            : \Club\BookingBundle\Entity\Booking::UNCONFIRMED;
-
-        if (!$this->container->getParameter('club_booking.auto_confirm')) return $confirm;
-
         $now = new \DateTime();
         $before = clone $start;
         $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_before').'M');
         $before->sub($i);
 
         return ($now > $before)
-            ? \Club\BookingBundle\Entity\Booking::CONFIRMED
-            : \Club\BookingBundle\Entity\Booking::UNCONFIRMED;
+            ? \Club\BookingBundle\Entity\Booking::CHECKIN
+            : \Club\BookingBundle\Entity\Booking::CONFIRMED;
     }
 
     public function save()
