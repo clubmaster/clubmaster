@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Booking
 {
+    const CANCELLED     = 0;
+    const PENDING       = 1;
+    const CONFIRMED     = 2;
+    const CHECKIN       = 3;
+
     /**
      * @var integer $id
      *
@@ -42,6 +47,13 @@ class Booking
      * @ORM\Column(type="boolean")
      */
     protected $guest;
+
+    /**
+     * @var string $status
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $status;
 
     /**
      * @var boolean $confirmed
@@ -237,6 +249,7 @@ class Booking
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->status = 'pending';
     }
 
     /**

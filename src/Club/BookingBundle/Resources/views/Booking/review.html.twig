@@ -31,10 +31,20 @@
   </div>
 </fieldset>
 
+{% if price > 0 %}
+<fieldset>
+  <legend>{% trans %}Confirm{% endtrans %}</legend>
+    <p>{% trans %}Before the booking is confirmed, click here to buy.{% endtrans %}</p>
+    {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_buy'), 'button':'Buy'|trans} %}
+</fieldset>
+
+{% else %}
+
 <fieldset>
   <legend>{% trans %}Confirm{% endtrans %}</legend>
     <p>{% trans %}Click here to confirm your booking.{% endtrans %}</p>
     {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_confirm'), 'button':'Confirm'|trans} %}
 </fieldset>
+{% endif %}
 
 {% endblock %}

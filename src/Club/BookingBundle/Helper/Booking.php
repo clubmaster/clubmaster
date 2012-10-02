@@ -195,19 +195,19 @@ class Booking
         $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
         $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
 
-        if ($this->getPrice() > 0) {
-            $product = new \Club\ShopBundle\Entity\CartProduct();
-            $product->setPrice($this->container->getParameter('club_booking.guest_price'));
-            $product->setQuantity(1);
-            $product->setType('guest_booking');
-            $product->setProductName($this->translator->trans('Guest booking'));
-
-            $this->container->get('order')->createSimpleOrder($this->container->get('security.context')->getToken()->getUser(), $this->booking->getField()->getLocation());
-            $this->container->get('order')->addSimpleProduct($product);
-            $this->container->get('order')->save();
-        }
-
         return $this->booking;
+    }
+
+    public function addToCart()
+    {
+        $product = new \Club\ShopBundle\Entity\CartProduct();
+        $product->setPrice($this->container->getParameter('club_booking.guest_price'));
+        $product->setQuantity(1);
+        $product->setType('guest_booking');
+        $product->setProductName($this->translator->trans('Guest booking'));
+
+        $cart = $this->container->get('cart');
+        $cart->addToCart($product);
     }
 
     public function remove()

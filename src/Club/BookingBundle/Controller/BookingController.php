@@ -68,6 +68,21 @@ class BookingController extends Controller
 
     /**
      * @Template()
+     * @Route("/book/buy")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function buyAction()
+    {
+        $this->get('club_booking.booking')->unserialize();
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $this->get('club_booking.booking')->addToCart();
+
+        return $this->redirect($this->generateUrl('shop_checkout'));
+    }
+
+    /**
+     * @Template()
      * @Route("/book/confirm")
      * @Secure(roles="ROLE_USER")
      */
