@@ -23,7 +23,7 @@ class BookingRepository extends EntityRepository
       ->orWhere('(b.first_date >= :start and b.end_date >= :end and b.first_date < :end)')
       ->orWhere('(b.first_date >= :start and b.end_date <= :end and b.end_date >= :start)')
       ->orderBy('b.first_date')
-      ->setParamater('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+      ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
       ->setParameter('start', $start->format('Y-m-d H:i:s'))
       ->setParameter('end', $end->format('Y-m-d H:i:s'))
       ->leftJoin('b.field', 'f')

@@ -79,46 +79,24 @@ class AdminOrderController extends Controller
    * @Route("/edit/{id}", name="admin_shop_order_edit")
    * @Template()
    */
-  public function editAction($id)
+  public function editAction(\Club\ShopBundle\Entity\Order $order)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('ClubShopBundle:Order',$id);
-
-    /**
-    $form = $this->createForm(new \Club\ShopBundle\Form\Order(), $order);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-      if ($form->isValid()) {
-        $data = $form->getData();
-
-        $this->get('order')->setOrder($order);
-        $this->get('order')->changeStatus($data->getOrderStatus());
-
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-        return $this->redirect($this->generateUrl('admin_shop_order'));
-      }
-    }
-     */
 
     return array(
       'order' => $order
-      //,'form' => $form->createView()
     );
   }
 
   /**
    * @Route("/delete/{id}", name="admin_shop_order_delete")
    */
-  public function deleteAction($id)
+  public function deleteAction(\Club\ShopBundle\Entity\Order $order)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $order = $em->find('ClubShopBundle:Order',$id);
 
     $this->container->get('order')->setOrder($order);
-    $status = $em->getRepository('ClubShopBundle:OrderStatus')->getCancelled();
-    $this->container->get('order')->changeStatus($status);
+    $this->get('order')->setCancelled();
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your order has been cancelled'));
 
@@ -154,11 +132,10 @@ class AdminOrderController extends Controller
    * @Route("/product/edit/{id}")
    * @Template()
    */
-  public function productEditAction($id)
+  public function productEditAction(\Club\ShopBundle\Entity\Order $order)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $order = $em->find('ClubShopBundle:Order',$id);
     if ($order->getPaid() || $order->getCancelled() || $order->getDelivered()) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));
 
