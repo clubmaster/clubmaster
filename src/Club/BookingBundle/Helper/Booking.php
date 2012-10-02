@@ -2,6 +2,8 @@
 
 namespace Club\BookingBundle\Helper;
 
+use Club\BookingBundle\Exception\BookingException;
+
 class Booking
 {
     protected $em;
@@ -71,27 +73,27 @@ class Booking
             $this->validate($this->booking, $interval);
 
             if ($user == $partner)
-                throw new \Exception($this->translator->trans('You cannot book with yourself'));
+                throw new BookingException($this->translator->trans('You cannot book with yourself'));
 
             if (!$this->validateSubscription($partner, $interval))
-                throw new \Exception($this->translator->trans('Your partner must have an active membership'));
+                throw new BookingException($this->translator->trans('Your partner must have an active membership'));
 
             if (!$this->validateSubscriptionTime($partner, $interval))
-                throw new \Exception($this->translator->trans('Your partner is not allowed to book this time.'));
+                throw new BookingException($this->translator->trans('Your partner is not allowed to book this time.'));
 
             if (!$this->validateBookingPartnerDay($start_date, $user, $partner))
-                throw new \Exception($this->translator->trans('You cannot have more bookings with this partner this day'));
+                throw new BookingException($this->translator->trans('You cannot have more bookings with this partner this day'));
 
             if (!$this->validateBookingPartnerFuture($user, $partner))
-                throw new \Exception($this->translator->trans('You cannot have more bookings with this partner'));
+                throw new BookingException($this->translator->trans('You cannot have more bookings with this partner'));
 
             if (!$this->validateBookingDay($start_date, $partner))
-                throw new \Exception($this->translator->trans('Your partner cannot have more bookings this day'));
+                throw new BookingException($this->translator->trans('Your partner cannot have more bookings this day'));
 
             if (!$this->validateBookingFuture($partner))
-                throw new \Exception($this->translator->trans('Your partner cannot have more bookings'));
+                throw new BookingException($this->translator->trans('Your partner cannot have more bookings'));
 
-        } catch (\Exception $e) {
+        } catch (BookingException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -107,17 +109,17 @@ class Booking
             $this->validate($this->booking, $interval);
 
             if (!$this->container->getParameter('club_booking.enable_guest'))
-                throw new \Exception($this->translator->trans('Guest booking is not enabled'));
+                throw new BookingException($this->translator->trans('Guest booking is not enabled'));
 
             if (!$this->validateBookingGuestDay($start_date, $user))
-                throw new \Exception($this->translator->trans('You cannot have more guest bookings this day'));
+                throw new BookingException($this->translator->trans('You cannot have more guest bookings this day'));
 
             if (!$this->validateBookingGuestFuture($user))
-                throw new \Exception($this->translator->trans('You cannot have more guest bookings'));
+                throw new BookingException($this->translator->trans('You cannot have more guest bookings'));
 
             $this->setPrice($this->container->getParameter('club_booking.guest_price'));
 
-        } catch (\Exception $e) {
+        } catch (BookingException $e) {
             $this->setError($e->getMessage());
         }
     }
@@ -227,30 +229,30 @@ class Booking
     {
         try {
             if (!$this->validateIntervalDay($booking->getFirstDate(), $interval))
-                throw new \Exception($this->translator->trans('Interval does not exists that day'));
+                throw new BookingException($this->translator->trans('Interval does not exists that day'));
 
             if (!$this->validatePast($booking->getFirstDate(), $interval))
-                throw new \Exception($this->translator->trans('You cannot book in the past'));
+                throw new BookingException($this->translator->trans('You cannot book in the past'));
 
             if (!$this->validateFuture($booking->getFirstDate(), $interval))
-                throw new \Exception($this->translator->trans('You cannot book that much in the future'));
+                throw new BookingException($this->translator->trans('You cannot book that much in the future'));
 
             if (!$this->validateAvailable($booking->getFirstDate(), $interval))
-                throw new \Exception($this->translator->trans('Interval is not available'));
+                throw new BookingException($this->translator->trans('Interval is not available'));
 
             if (!$this->validateSubscription($booking->getUser(), $interval))
-                throw new \Exception($this->translator->trans('You do not have an active membership'));
+                throw new BookingException($this->translator->trans('You do not have an active membership'));
 
             if (!$this->validateSubscriptionTime($booking->getUser(), $interval))
-                throw new \Exception($this->translator->trans('You are not allowed to book this time'));
+                throw new BookingException($this->translator->trans('You are not allowed to book this time'));
 
             if (!$this->validateBookingDay($booking->getFirstDate(), $booking->getUser()))
-                throw new \Exception($this->translator->trans('You cannot have more bookings this day'));
+                throw new BookingException($this->translator->trans('You cannot have more bookings this day'));
 
             if (!$this->validateBookingFuture($booking->getUser()))
-                throw new \Exception($this->translator->trans('You cannot have more bookings'));
+                throw new BookingException($this->translator->trans('You cannot have more bookings'));
 
-        } catch (\Exception $e) {
+        } catch (BookingException $e) {
             $this->setError($e->getMessage());
         }
     }
