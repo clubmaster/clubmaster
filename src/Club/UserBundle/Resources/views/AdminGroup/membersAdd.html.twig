@@ -1,4 +1,8 @@
-{% extends "ClubRankingBundle::base.html.twig" %}
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block header %}
+<div class="page-header"><h1>{% trans with {'%group%':group.groupName} %}Group, %group%{% endtrans %}</h1></div>
+{% endblock %}
 
 {% block pagenav %}
 {% include "ClubUserBundle:AdminGroup:header.html.twig" %}
