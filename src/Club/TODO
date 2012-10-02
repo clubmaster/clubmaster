@@ -1,5 +1,4 @@
 make sure only one can have the field at the time
-validate booking confirm message, which name is listed where?
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
