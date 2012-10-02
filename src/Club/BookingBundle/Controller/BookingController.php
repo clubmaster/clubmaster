@@ -73,10 +73,12 @@ class BookingController extends Controller
      */
     public function buyAction()
     {
-        $this->get('club_booking.booking')->unserialize();
-        $em = $this->getDoctrine()->getEntityManager();
+        $b = $this->get('club_booking.booking');
+        $b->unserialize();
+        $b->setStatus(\Club\BookingBundle\Entity\Booking::PENDING);
 
-        $this->get('club_booking.booking')->addToCart();
+        $b->save();
+        $b->addToCart();
 
         return $this->redirect($this->generateUrl('shop_checkout'));
     }
@@ -88,7 +90,8 @@ class BookingController extends Controller
      */
     public function confirmAction()
     {
-        $this->get('club_booking.booking')->unserialize();
+        $b = $this->get('club_booking.booking');
+        $b->unserialize();
         $em = $this->getDoctrine()->getEntityManager();
 
         $this->get('club_booking.booking')->save();

@@ -1,3 +1,4 @@
+make sure we have removed all confirmed booking stuff
 use guest_allowed_unpaid, validate unpaid orders with product as of type, guest_booking
 prices to book with guest, use normal checkout procedure
 when upgrading, remember to enable all products

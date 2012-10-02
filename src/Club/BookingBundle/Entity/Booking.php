@@ -56,13 +56,6 @@ class Booking
     protected $status;
 
     /**
-     * @var boolean $confirmed
-     *
-     * @ORM\Column(type="boolean")
-     */
-    protected $confirmed;
-
-    /**
      * @var datetime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -190,7 +183,6 @@ class Booking
         'field_id' => $this->getField()->getId(),
         'user' => $this->getUser()->toArray('simple'),
         'guest' => $this->getGuest(),
-        'confirmed' => $this->getConfirmed(),
         'first_date' => $this->getFirstDate()->format('c'),
         'end_date' => $this->getEndDate()->format('c'),
         'created_at' => $this->getCreatedAt()->format('c'),
@@ -249,7 +241,7 @@ class Booking
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->status = 'pending';
+        $this->status = self::PENDING;
     }
 
     /**
@@ -331,26 +323,6 @@ class Booking
     }
 
     /**
-     * Set confirmed
-     *
-     * @param boolean $confirmed
-     */
-    public function setConfirmed($confirmed)
-    {
-        $this->confirmed = $confirmed;
-    }
-
-    /**
-     * Get confirmed
-     *
-     * @return boolean
-     */
-    public function getConfirmed()
-    {
-        return $this->confirmed;
-    }
-
-    /**
      * Set status
      *
      * @param string $status
@@ -359,14 +331,14 @@ class Booking
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {

@@ -166,9 +166,7 @@ class Booking
         $this->booking->setEndDate($stop_date);
         $this->booking->setField($field);
         $this->booking->setGuest($guest);
-
-        $confirm = $this->getConfirmStatus($start_date);
-        $this->booking->setConfirmed($confirm);
+        $this->booking->setStatus($this->getConfirmStatus($start_date));
 
         if ($partner)
             $this->booking->addUser($partner);
@@ -176,15 +174,20 @@ class Booking
 
     private function getConfirmStatus(\DateTime $start)
     {
-        $confirm = ($this->container->getParameter('club_booking.auto_confirm')) ? true : false;
-        if ($confirm) return $confirm;
+        $confirm = ($this->container->getParameter('club_booking.auto_confirm'))
+            ? \Club\BookingBundle\Entity\Booking::CONFIRMED
+            : \Club\BookingBundle\Entity\Booking::UNCONFIRMED;
+
+        if ($this->container->getParameter('club_booking.auto_confirm')) return $confirm;
 
         $now = new \DateTime();
         $before = clone $start;
         $i = new \DateInterval('PT'.$this->container->getParameter('club_booking.confirm_minutes_before').'M');
         $before->sub($i);
 
-        return ($now > $before) ? true : false;
+        return ($now > $before)
+            ? \Club\BookingBundle\Entity\Booking::CONFIRMED
+            : \Club\BookingBundle\Entity\Booking::UNCONFIRMED;
     }
 
     public function save()
@@ -204,7 +207,7 @@ class Booking
         $product->setPrice($this->container->getParameter('club_booking.guest_price'));
         $product->setQuantity(1);
         $product->setType('guest_booking');
-        $product->setProductName($this->translator->trans('Guest booking'));
+        $product->setProductName($this->translator->trans('Guest booking').', #'.$this->booking->getId());
 
         $cart = $this->container->get('cart');
         $cart->addToCart($product);
@@ -275,6 +278,11 @@ class Booking
     public function getBooking()
     {
         return $this->booking;
+    }
+
+    public function setStatus($status)
+    {
+        $this->booking->setStatus($status);
     }
 
     public function serialize()
