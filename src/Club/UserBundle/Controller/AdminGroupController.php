@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
 
 /**
- * @Route("/{_locale}/admin")
+ * @Route("/{_locale}/admin/group")
  */
 class AdminGroupController extends Controller
 {
   /**
-   * @Route("/group", name="admin_group")
+   * @Route("", name="admin_group")
    * @Template()
    */
   public function indexAction()
@@ -30,21 +30,50 @@ class AdminGroupController extends Controller
   }
 
   /**
-   * @Route("/group/members/{id}")
+   * @Route("/members/add/{id}")
    * @Template()
    */
-  public function membersAction($id)
+  public function membersAddAction(\Club\UserBundle\Entity\Group $group)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $group = $em->find('ClubUserBundle:Group', $id);
+    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
+    if ($this->getRequest()->getMethod() == 'POST') {
+        $form->bind($this->getRequest());
+        if ($form->isValid()) {
+            $user = $form->get('user')->getData();
+
+            $group->addUsers($user);
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+            return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
+                'id' => $group->getId()
+            )));
+        }
+    }
+
+    return array(
+        'group' => $group,
+        'form' => $form->createView()
+    );
+  }
+
+  /**
+   * @Route("/members/{id}")
+   * @Template()
+   */
+  public function membersAction(\Club\UserBundle\Entity\Group $group)
+  {
     return array(
       'group' => $group
     );
   }
 
   /**
-   * @Route("/group/new", name="admin_group_new")
+   * @Route("/new", name="admin_group_new")
    * @Template()
    */
   public function newAction()
@@ -64,13 +93,11 @@ class AdminGroupController extends Controller
   }
 
   /**
-   * @Route("/group/edit/{id}", name="admin_group_edit")
+   * @Route("/edit/{id}", name="admin_group_edit")
    * @Template()
    */
-  public function editAction($id)
+  public function editAction(\Club\UserBundle\Entity\Group $group)
   {
-    $em = $this->getDoctrine()->getEntityManager();
-    $group = $em->find('ClubUserBundle:Group',$id);
     $res = $this->process($group);
 
     if ($res instanceOf RedirectResponse)
@@ -84,7 +111,7 @@ class AdminGroupController extends Controller
   }
 
   /**
-   * @Route("/group/delete/{id}", name="admin_group_delete")
+   * @Route("/delete/{id}", name="admin_group_delete")
    */
   public function deleteAction($id)
   {

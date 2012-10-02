@@ -1,0 +1,18 @@
+{% extends "ClubRankingBundle::base.html.twig" %}
+
+{% block pagenav %}
+{% include "ClubUserBundle:AdminGroup:header.html.twig" %}
+{% endblock %}
+
+{% block body %}
+<form method="post" action="{{ path('club_user_admingroup_membersadd', {'id':group.id}) }}" class="form-horizontal">
+  <fieldset>
+    <legend>{% trans %}Add member{% endtrans %}</legend>
+
+    <p>{% trans %}Here you can add players for this tournament.{% endtrans %}</p>
+    {{ form_widget(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+  </fieldset>
+</form>
+
+{% endblock %}
