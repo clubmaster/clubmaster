@@ -39,7 +39,6 @@ class ClubBookingExtension extends Extension
         $container->setParameter('club_booking.booking_style', $config['booking_style']);
         $container->setParameter('club_booking.cancel_without_checkin', $config['cancel_without_checkin']);
         $container->setParameter('club_booking.guest_price', $config['guest_price']);
-        $container->setParameter('club_booking.guest_unpaid_allowed', $config['guest_unpaid_allowed']);
         $container->setParameter('club_booking.confirm_minutes_before', $config['confirm_minutes_before']);
         $container->setParameter('club_booking.confirm_minutes_after', $config['confirm_minutes_after']);
         $container->setParameter('club_booking.days_book_future', $config['days_book_future']);
