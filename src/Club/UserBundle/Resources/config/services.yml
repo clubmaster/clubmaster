@@ -19,8 +19,3 @@ services:
     club_user.application:
         class: Club\UserBundle\Helper\Application
         arguments: [@service_container]
-    club_user.data_transformer:
-        class: Club\UserBundle\Form\DataTransformer
-        arguments: [@doctrine.orm.entity_manager]
-        tags:
-            - { name: form.type, alias: user_selector }

@@ -53,13 +53,10 @@ class Plan
     protected $period_end;
 
     /**
-     * @var integer $day
+     * @var string $day
      *
-     * @ORM\Column(type="integer")
-     * @Assert\Choice(
-     *  choices = { "1","2","3","4","5","6","7" },
-     *  message = "Not a valid day"
-     * )
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $day;
 
@@ -278,7 +275,7 @@ class Plan
     /**
      * Set day
      *
-     * @param integer $day
+     * @param string $day
      */
     public function setDay($day)
     {
@@ -288,7 +285,7 @@ class Plan
     /**
      * Get day
      *
-     * @return integer
+     * @return string
      */
     public function getDay()
     {

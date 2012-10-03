@@ -3,13 +3,23 @@
 namespace Club\LayoutBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class DayType extends AbstractType
 {
+    private $translator;
+
     public function __construct($translator)
     {
         $this->translator = $translator;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $transformer = new StringToArrayTransformer();
+        $builder->addModelTransformer($transformer);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

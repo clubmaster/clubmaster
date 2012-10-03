@@ -59,6 +59,7 @@ class AdminPlanController extends Controller
     $plan->setUser($this->getUser());
     $plan->setPeriodStart($start);
     $plan->setPeriodEnd($end);
+
     $plan->setDay($start->format('N'));
 
     $form = $this->getForm($plan);
@@ -144,9 +145,9 @@ class AdminPlanController extends Controller
             'date_widget' => 'single_text',
             'time_widget' => 'single_text'
         ))
-        ->add('day', 'choice', array(
-            'choices' => $this->get('club_booking.interval')->getDays(),
-            'help' => 'Info: What day on the week should the plan be booked?'
+        ->add('day', 'day', array(
+            'help' => 'Info: What day on the week should the plan be booked?',
+            'multiple' => true
         ))
         ->add('first_time', 'time', array(
             'help' => 'Info: What time on the day will the plan be valid from?'

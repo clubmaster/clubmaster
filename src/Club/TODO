@@ -1,3 +1,4 @@
+add booking plan multiple days
 when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
@@ -17,7 +18,6 @@ enter result in cup
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 users should be able to create multiple emails, phone
-add booking plan multiple days
 more simple to book fields, if no payment, no need to confirm
 give warning if you try to make a booking plan above a booking
 make sure user only can use teams in member ship status period

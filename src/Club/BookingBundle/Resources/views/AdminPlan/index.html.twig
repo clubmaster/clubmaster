@@ -18,13 +18,12 @@
       <th>{% trans %}Period start{% endtrans %}</th>
       <th>{% trans %}Period end{% endtrans %}</th>
       <th>{% trans %}Time{% endtrans %}</th>
-      <th>{% trans %}Day{% endtrans %}</th>
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="6">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -34,7 +33,6 @@
       <td>{{ plan.periodStart|club_datetime }}</td>
       <td>{{ plan.periodEnd|club_datetime }}</td>
       <td>{{ plan.firstTime|club_time }} - {{ plan.endTime|club_time }}</td>
-      <td>{{ plan.day|club_day }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'id':plan.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'id':plan.id })} %}
@@ -42,7 +40,7 @@
     </tr>
   {% else %}
   <tr>
-    <td colspan="6">{% trans %}There are no plans.{% endtrans %}</td>
+    <td colspan="5">{% trans %}There are no plans.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
