@@ -5,7 +5,6 @@ when upgrading, set last_subscribe date to start_date
 == NOTES TO LATER ==
 make sure only one can have the field at the time
 dont show that many minutes in booking interval
-find a way to have default country, event and create user
 see if there is a easier way to print page headers, stupid to print the html on all pages
 check doctrine:schema:validate if there is any problems
 match integration facebook, share match
