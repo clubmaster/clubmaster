@@ -101,6 +101,11 @@ div#booking div.past:hover
   background-color: #e3e3e3;
 }
 
+div#booking div#bookings form
+{
+    margin: 0;
+}
+
 div#booking div#bookings div, div#booking div#intervals div
 {
   position: absolute;

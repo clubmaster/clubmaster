@@ -108,15 +108,13 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
 
     $("#bookings_plan").append(ret);
   }
-
-  return ret;
 }
 
 function initBookings(location, date, url, pixel_size, field_width, day_start)
 {
   $.getJSON(url+'api/bookings/'+location+"/"+getDate(date), function(json) {
     $.each(json.data, function() {
-      $("#bookings").append(makeBookedUrl(this, url, pixel_size, field_width, day_start));
+      makeBookedUrl(this, url, pixel_size, field_width, day_start);
     });
   });
 }
