@@ -8,7 +8,6 @@ make sure only one can have the field at the time
 dont show that many minutes in booking interval
 see if there is a easier way to print page headers, stupid to print the html on all pages
 check doctrine:schema:validate if there is any problems
-match integration facebook, share match
 add custom fields on profiles
 batch assign users to a league
 merge users
