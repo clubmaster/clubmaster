@@ -312,7 +312,7 @@ class Event
 
         $this->getStartDate()->add($month);
         $this->getStopDate()->add($month);
-        $this->getStopDate()->add($month)->sub($week);
+        $this->getLastSubscribe()->add($month)->sub($week);
 
         $this->attends = new \Doctrine\Common\Collections\ArrayCollection();
     }

@@ -28,7 +28,9 @@ class Event extends AbstractType
     $builder->add('street');
     $builder->add('postal_code');
     $builder->add('city');
-    $builder->add('country', 'country');
+    $builder->add('country', 'country', array(
+        'required' => false
+    ));
     $builder->add('public', 'checkbox',  array(
         'help' => 'If the event should be visible for guests.'
     ));

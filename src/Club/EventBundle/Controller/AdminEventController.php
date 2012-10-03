@@ -36,7 +36,6 @@ class AdminEventController extends Controller
   public function newAction($year, $month)
   {
     $event = new \Club\EventBundle\Entity\Event();
-    $event->setCountry($this->container->getParameter('club_user.default_country'));
 
     $res = $this->process($event);
 
