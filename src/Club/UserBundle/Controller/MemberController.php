@@ -5,6 +5,7 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/{_locale}/members")
@@ -14,6 +15,7 @@ class MemberController extends Controller
   /**
    * @Template()
    * @Route("/search")
+   * @Secure(roles="ROLE_USER")
    */
   public function searchAction()
   {
@@ -41,6 +43,7 @@ class MemberController extends Controller
   /**
    * @Template()
    * @Route("/{id}")
+   * @Secure(roles="ROLE_USER")
    */
   public function showAction(\Club\UserBundle\Entity\User $user)
   {
@@ -58,6 +61,7 @@ class MemberController extends Controller
    * @Template()
    * @Route("", defaults={"page" = 1 })
    * @Route("/page/{page}", name="club_user_members_page")
+   * @Secure(roles="ROLE_USER")
    */
   public function indexAction($page)
   {

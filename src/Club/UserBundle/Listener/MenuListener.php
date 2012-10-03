@@ -88,6 +88,8 @@ class MenuListener
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
+        if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
+
         $menu = array();
 
         $menu[11] = array(
