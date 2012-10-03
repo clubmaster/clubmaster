@@ -27,6 +27,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
           ->scalarNode('enabled')->isRequired()->end()
+          ->scalarNode('google_plus')->isRequired()->end()
+          ->scalarNode('facebook_like')->isRequired()->end()
+          ->scalarNode('facebook_api')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

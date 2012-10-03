@@ -35,6 +35,14 @@
   </tbody>
 </table>
 
+{% if google_plus %}
+{% include "ClubLayoutBundle:Default:google_plus.html.twig" %}
+{% endif %}
+
+{% if facebook_like %}
+{% include "ClubLayoutBundle:Default:facebook_like.html.twig" %}
+{% endif %}
+
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in match.matchComments %}
 

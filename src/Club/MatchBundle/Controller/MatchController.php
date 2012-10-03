@@ -93,7 +93,10 @@ class MatchController extends Controller
         $match = $em->find('ClubMatchBundle:Match',$id);
 
         return array(
-            'match' => $match
+            'match' => $match,
+            'google_plus' => $this->container->getParameter('club_match.google_plus'),
+            'facebook_like' => $this->container->getParameter('club_match.facebook_like'),
+            'facebook_api' => $this->container->getParameter('club_match.facebook_api')
         );
     }
 

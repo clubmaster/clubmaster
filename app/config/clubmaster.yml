@@ -41,6 +41,9 @@ club_event:
 
 club_match:
     enabled: true
+    google_plus: true
+    facebook_like: true
+    facebook_api: 485293888165235
 
 club_ranking:
     enabled: true
