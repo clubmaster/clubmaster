@@ -1,0 +1,24 @@
+<form method="post" action="{{ path }}" class="form-horizontal" {% if form is defined %}{{ form_enctype(form) }}{% endif %}>
+
+    <fieldset>
+        <legend>{% trans %}Event{% endtrans %}</legend>
+        {{ form_row(form.event_name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.max_attends) }}
+        {{ form_row(form.start_date) }}
+        {{ form_row(form.stop_date) }}
+        {{ form_row(form.last_subscribe) }}
+        {{ form_row(form.public) }}
+    </fieldset>
+
+    <fieldset>
+        <legend>{% trans %}Location{% endtrans %}</legend>
+        {{ form_row(form.street) }}
+        {{ form_row(form.postal_code) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.country) }}
+    </fieldset>
+
+    {{ form_rest(form) }}
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+</form>

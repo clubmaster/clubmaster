@@ -5,6 +5,6 @@
 {% block body %}
 
 {% include "ClubEventBundle:AdminEvent:header.html.twig" %}
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_event_event_edit', {'id':event.id}), 'novalidate':true} %}
+{% include "ClubEventBundle:AdminEvent:form.html.twig" with {'path':path('admin_event_event_edit', {'id':event.id}), 'novalidate':true} %}
 
 {% endblock %}
