@@ -35,13 +35,17 @@
   </tbody>
 </table>
 
+<div class="socialButtons">
 {% if google_plus %}
-{% include "ClubLayoutBundle:Default:google_plus.html.twig" %}
+<div>{% include "ClubLayoutBundle:Default:google_plus.html.twig" %}</div>
 {% endif %}
 
 {% if facebook_like %}
-{% include "ClubLayoutBundle:Default:facebook_like.html.twig" %}
+<div>{% include "ClubLayoutBundle:Default:facebook_like.html.twig" %}</div>
 {% endif %}
+</div>
+
+<div class="clearfix"></div>
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in match.matchComments %}
