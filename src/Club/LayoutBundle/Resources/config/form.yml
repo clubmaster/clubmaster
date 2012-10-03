@@ -33,3 +33,8 @@ services:
         class: Club\LayoutBundle\Form\BestOfSetType
         tags:
             - { name: "form.type", alias: "best_of_set" }
+    club_layout_form_day:
+        class: Club\LayoutBundle\Form\DayType
+        arguments: [@translator]
+        tags:
+            - { name: "form.type", alias: "day" }
