@@ -33,7 +33,7 @@ class AdminEventControllerTest extends WebTestCase
 
     public function testAttend()
     {
-        $crawler = $this->client->request('GET', '/en/event/event');
+        $crawler = $this->client->request('GET', '/en/event');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $link = $crawler->selectLink('Show')->link();

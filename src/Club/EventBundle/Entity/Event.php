@@ -520,4 +520,11 @@ class Event
     {
         return $this->last_subscribe;
     }
+
+    public function isOpen()
+    {
+        if ($this->getLastSubscribe() > new \DateTime()) return true;
+
+        return false;
+    }
 }
