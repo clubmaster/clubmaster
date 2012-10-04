@@ -6,11 +6,12 @@
       <th>{% trans %}Team{% endtrans %}</th>
       <th>{% trans %}Date{% endtrans %}</th>
       <th>{% trans %}Time{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="3">&#160;</td>
+      <td colspan="4">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
@@ -19,10 +20,13 @@
       <td>{{ schedule.teamCategory.teamName }}</td>
       <td>{{ schedule.firstDate|club_date }}</td>
       <td>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', {'id':schedule.id})} %}
+      </td>
     </tr>
   {% else %}
   <tr>
-    <td colspan="3">{% trans %}You have no coming teams.{% endtrans %}</td>
+    <td colspan="4">{% trans %}You have no coming teams.{% endtrans %}</td>
   </tr>
   {% endfor %}
   </tbody>
