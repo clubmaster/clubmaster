@@ -2,7 +2,12 @@
 
 {% block header %}
 <div class="page-header">
-    <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {{ user.name }} ({{ user.memberNumber }})</h1>
+    {% if user.profile.gender == 'male' %}
+        {% set image = 'bundles/clublayout/images/icons/32x32/user.png' %}
+    {% else %}
+        {% set image = 'bundles/clublayout/images/icons/32x32/user_female.png' %}
+    {% endif %}
+    <h1><img class="img-polaroid" src="{{ asset(image) }}" /> {{ user.name }} ({{ user.memberNumber }})</h1>
 </div>
 {% endblock %}
 
