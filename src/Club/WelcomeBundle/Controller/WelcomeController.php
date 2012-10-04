@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class WelcomeController extends Controller
 {
   /**
-   * @Route("/welcome")
+   * @Route("/{_locale}/welcome")
    * @Template()
    */
   public function indexAction()

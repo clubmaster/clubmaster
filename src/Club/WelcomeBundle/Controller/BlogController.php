@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
- * @Route("/welcome/blog")
+ * @Route("/{_locale}/welcome/blog")
  */
 class BlogController extends Controller
 {
@@ -161,7 +161,7 @@ class BlogController extends Controller
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('homepage'));
+        return $this->redirect($this->generateUrl('club_welcome_blog_index'));
       }
     }
 

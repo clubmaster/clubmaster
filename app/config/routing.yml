@@ -114,7 +114,6 @@ ClubDashboardBundle:
 ClubWelcomeBundle:
     resource: "@ClubWelcomeBundle/Controller/"
     type:     annotation
-    prefix:   /{_locale}/
 
 ClubFeedbackBundle:
     resource: "@ClubFeedbackBundle/Controller/"

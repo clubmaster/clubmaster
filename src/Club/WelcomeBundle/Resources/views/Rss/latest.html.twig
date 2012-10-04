@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+    <title>ClubMaster RSS - Latest</title>
+    <link>{{ url('homepage', {}, true) }}</link>
+    <description>Latest news from ClubMaster</description>
+    {% for item in blog %}
+
+    <item>
+        <title>{{ item.title }}</title>
+        <link>{{ url('club_welcome_blog_show', {'blog_id':item.id}) }}</link>
+        <guid>{{ url('club_welcome_blog_show', {'blog_id':item.id}) }}</guid>
+        <description>{{ item.messageUrlDecoded }}</description>
+        <pubDate>{{ item.createdAt|date(pubDate_format) }}</pubDate>
+    </item>
+    {% endfor %}
+</channel>
+
+</rss>
+

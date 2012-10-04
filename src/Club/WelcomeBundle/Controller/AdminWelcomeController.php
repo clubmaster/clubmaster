@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/admin")
+ * @Route("/{_locale}/admin")
  */
 class AdminWelcomeController extends Controller
 {

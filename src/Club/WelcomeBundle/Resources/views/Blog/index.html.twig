@@ -1,6 +1,23 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_welcome_blog_new') }}">{% trans %}Post blog{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block header %}
+<div class="page-header"><h1>{% trans %}Blog{% endtrans %}</h1></div>
+{% endblock %}
+
 {% block body %}
+<div style="float: right;"><a target="_open" href="{{ path('club_welcome_rss_latest') }}"><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/rss.png') }}" /></a></div>
 
 {% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
 

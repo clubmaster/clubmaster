@@ -217,4 +217,9 @@ class Blog
     {
         return $this->comments;
     }
+
+    public function getMessageUrlDecoded()
+    {
+        return urldecode($this->getMessage());
+    }
 }
