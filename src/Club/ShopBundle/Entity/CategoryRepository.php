@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function getRoot(\Club\UserBundle\Entity\Location $location)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.location = :location')
+            ->andWhere('c.category IS NULL')
+            ->setParameter('location', $location->getId())
+            ->getQuery()
+            ->getResult();
+    }
 }

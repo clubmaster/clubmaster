@@ -9,7 +9,7 @@
         <div class="span4">
                 <h3><img src="{{ asset('bundles/clublayout/images/icons/32x32/image.png') }}" />
                 <a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a></h3>
-                <p><strong>{{ item.activeProducts|length }} products in category</strong>. {{ item.description|truncate(40) }}</p>
+                <p><strong>{% trans with {'%products%':item.activeProducts|length} %}%products% products in category{% endtrans %}</strong>. {{ item.description|truncate(40) }}</p>
             </div>
 
     {% if loop.index is divisibleby(3) or loop.last %}

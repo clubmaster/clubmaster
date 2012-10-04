@@ -27,9 +27,7 @@ class ShopController extends Controller
       }
     }
 
-    $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
-      'location' => $location->getId()
-    ));
+    $categories = $em->getRepository('ClubShopBundle:Category')->getRoot($location);
 
     if (!count($categories)) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('There are no categories in this location, choose another location.'));
