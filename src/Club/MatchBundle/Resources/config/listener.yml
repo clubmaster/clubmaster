@@ -5,3 +5,8 @@ services:
     tags:
       - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender, priority: 50 }
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender, priority: 50 }
+  club.matchbundle.dashboard_listener:
+    class: Club\MatchBundle\Listener\DashboardListener
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: member.view, method: onMemberView }

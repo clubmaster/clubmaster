@@ -12,15 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class MatchRepository extends EntityRepository
 {
-  public function getRecentMatches(\Club\MatchBundle\Entity\League $league=null, $limit=10)
+  public function getLatest(\Club\UserBundle\Entity\User $user, $limit=10)
   {
-    $qb = $this->_em->createQueryBuilder()
-      ->select('m')
-      ->from('ClubMatchBundle:Match', 'm')
-      ->orderBy('m.id', 'DESC')
-      ->setMaxResults($limit);
-
-    return $qb
+    return $this->_em->createQueryBuilder()
+      ->select('tu')
+      ->from('ClubMatchBundle:TeamUser', 'tu')
+      ->where('tu.user = :user')
+      ->setParameter('user', $user->getId())
+      ->setMaxResults($limit)
       ->getQuery()
       ->getResult();
   }
