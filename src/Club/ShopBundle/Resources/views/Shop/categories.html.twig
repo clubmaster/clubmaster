@@ -1,23 +1,21 @@
 {% if categories|length > 0 %}
 <h3>{% trans %}Categories{% endtrans %}</h3>
 
-<div class="row-fluid">
-    {% for item in categories %}
+{% for item in categories %}
     {% if loop.index0 is divisibleby(3) %}
-    <ul class="thumbnails">
+
+    <div class="row-fluid">
     {% endif %}
-        <li class="span4">
-            <div class="thumbnail">
-                <h4><a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a> ({{ item.activeProducts|length }})</h4>
-                <p>{{ item.description|truncate(40) }}</p>
+        <div class="span4">
+                <h3><img src="{{ asset('bundles/clublayout/images/icons/32x32/image.png') }}" />
+                <a href="{{ path('shop_prod_view', {'id':item.id}) }}">{{ item.categoryName }}</a></h3>
+                <p><strong>{{ item.activeProducts|length }} products in category</strong>. {{ item.description|truncate(40) }}</p>
             </div>
-        </li>
 
     {% if loop.index is divisibleby(3) or loop.last %}
-    </ul>
+    </div>
     {% endif %}
-    {% endfor %}
-</div>
+{% endfor %}
 
 <hr>
 {% endif %}

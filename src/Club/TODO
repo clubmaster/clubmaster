@@ -3,12 +3,12 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-has to improve quick search form
 view recent matches from players that you have played within the last few months
-see if there is a easier way to print page headers, stupid to print the html on all pages
 translation checkout the entire system
 rethink the idea about the market
 ---
+see if there is a easier way to print page headers, stupid to print the html on all pages
+has to improve quick search form
 build a league system, with both single and doubles
 make sure only one can have the field at the time
 dont show that many minutes in booking interval
