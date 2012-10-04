@@ -15,7 +15,7 @@
   </tfoot>
   <tbody>
   {% for event in events %}
-    <tr>
+    <tr class="{% if event.isAttending(app.user) %}success{% else %}warning{% endif %}">
       <td>{{ event.startDate|club_datetime }} - {{ event.stopDate|club_datetime }}</td>
       <td>{{ event.eventName }}</td>
       <td>
