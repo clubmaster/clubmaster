@@ -1,0 +1,32 @@
+<h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/calendar.png') }}" /> {% trans %}Coming events{% endtrans %}</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Title{% endtrans %}</th>
+      <th class="action">{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="bg">
+      <td colspan="4">&#160;</td>
+    </tr>
+  </tfoot>
+  <tbody>
+  {% for event in events %}
+    <tr>
+      <td>{{ event.startDate|club_datetime }} - {{ event.stopDate|club_datetime }}</td>
+      <td>{{ event.eventName }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('event_event_show', { 'id':event.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="4">{% trans %}There is no coming events.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
