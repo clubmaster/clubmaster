@@ -4,10 +4,11 @@ when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
 view recent matches from players that you have played within the last few months
-rethink the idea about the market
+rethink the idea about the market, name could be exchange
 translation checkout the entire system
 ---
 see if there is a easier way to print page headers, stupid to print the html on all pages
+integrate twitter as well
 has to improve quick search form
 build a league system, with both single and doubles
 make sure only one can have the field at the time
