@@ -7,6 +7,7 @@ use Symfony\Component\EventDispatcher\Event;
 class FilterOutputEvent extends Event
 {
     protected $activities = array();
+    protected $output = '';
     protected $user;
 
     public function appendActivities($activity, $key)
@@ -38,5 +39,15 @@ class FilterOutputEvent extends Event
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function setOutput($output)
+    {
+        $this->output = $output;
+    }
+
+    public function getOutput()
+    {
+        return $this->output;
     }
 }
