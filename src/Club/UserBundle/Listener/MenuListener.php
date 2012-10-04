@@ -78,6 +78,10 @@ class MenuListener
                     array(
                         'name' => $this->translator->trans('Members'),
                         'route' => $this->router->generate('club_user_member_index')
+                    ),
+                    array(
+                        'name' => $this->translator->trans('Logout'),
+                        'route' => $this->router->generate('logout')
                     )
                 )
             );

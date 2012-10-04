@@ -1,7 +1,0 @@
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="well">
-                Logged in as <a href="{{ url('user') }}" class="navbar-link">{{ app.user }}</a>,
-                <a href="{{ path('logout') }}" id="logout">{% trans %}log out{% endtrans %}</a>
-            </div>
-            {% endif %}
-
