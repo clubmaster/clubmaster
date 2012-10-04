@@ -37,7 +37,9 @@
         <td><img src="{{ asset(item.type) }}" /></td>
         <td>{{ item.date|club_datetime }}</td>
         <td>{{ item.message }}</td>
-        <td>{% if item.like is defined %}{{ item.link }}{% endif %}</td>
+        <td>{% if item.link is defined %}
+            {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':item.link} %}
+        {% endif %}</td>
     </tr>
     {% else %}
 
@@ -46,7 +48,5 @@
     </tr>
     {% endfor %}
 </table>
-
-{{ output|raw }}
 
 {% endblock %}

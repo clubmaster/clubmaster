@@ -6,7 +6,6 @@ use Symfony\Component\EventDispatcher\Event;
 
 class FilterOutputEvent extends Event
 {
-    protected $output;
     protected $activities = array();
     protected $user;
 
@@ -27,18 +26,8 @@ class FilterOutputEvent extends Event
 
     public function getActivities()
     {
-        sort($this->activities);
+        ksort($this->activities);
         return $this->activities;
-    }
-
-    public function setOutput($output)
-    {
-        $this->output = $output;
-    }
-
-    public function getOutput()
-    {
-        return $this->output;
     }
 
     public function setUser($user)
