@@ -1,5 +1,9 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
+{% block header %}
+<div class="page-header"><h1><img src="{{ asset('bundles/clublayout/images/icons/32x32/transmit.png') }}" /> {% trans with {'%title%':blog.title} %}Blog, %title%{% endtrans %}</h1></div>
+{% endblock %}
+
 {% block body %}
 <h3>{{ blog.title }}</h3>
 <h6>{% trans with {'%date%':blog.createdAt|club_datetime,'%author%':blog.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>

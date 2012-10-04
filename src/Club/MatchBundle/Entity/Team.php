@@ -29,6 +29,13 @@ class Team
      */
     protected $users;
 
+    /**
+     * @var Club\MatchBundle\Entity\MatchTeam
+     *
+     * @ORM\OneToMany(targetEntity="MatchTeam", mappedBy="team")
+     */
+    protected $match_teams;
+
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
@@ -72,5 +79,48 @@ class Team
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Add match_teams
+     *
+     * @param Club\MatchBundle\Entity\MatchTeam $matchTeams
+     * @return Team
+     */
+    public function addMatchTeam(\Club\MatchBundle\Entity\MatchTeam $matchTeams)
+    {
+        $this->match_teams[] = $matchTeams;
+
+        return $this;
+    }
+
+    /**
+     * Remove match_teams
+     *
+     * @param Club\MatchBundle\Entity\MatchTeam $matchTeams
+     */
+    public function removeMatchTeam(\Club\MatchBundle\Entity\MatchTeam $matchTeams)
+    {
+        $this->match_teams->removeElement($matchTeams);
+    }
+
+    /**
+     * Get match_teams
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getMatchTeams()
+    {
+        return $this->match_teams;
     }
 }

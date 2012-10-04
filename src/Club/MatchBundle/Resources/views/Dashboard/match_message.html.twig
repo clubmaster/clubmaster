@@ -1,1 +1,1 @@
-{% trans with {'%name%':blog.user.name, '%title%':blog.title} %}%name% wrote a blog post: %title%{% endtrans %}
+{% trans with {'%team1%':match.teamOne.team.teamName,'%team2%':match.teamTwo.team.teamName,'%result%':match.displayResult} %}Played a match %team1% -  %team2% with %result%{% endtrans %}

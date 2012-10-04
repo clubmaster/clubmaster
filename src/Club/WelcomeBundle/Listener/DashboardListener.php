@@ -33,7 +33,7 @@ class DashboardListener
 
         $activity = array(
             'date' => $b->getCreatedAt(),
-            'type' => 'bundles/clublayout/images/icons/16x16/book.png',
+            'type' => 'bundles/clublayout/images/icons/16x16/transmit.png',
             'message' => $this->templating->render('ClubWelcomeBundle:Dashboard:blog_message.html.twig', array(
                 'blog' => $b
             )),

@@ -14,14 +14,34 @@ class MatchRepository extends EntityRepository
 {
   public function getLatest(\Club\UserBundle\Entity\User $user, $limit=10)
   {
-    return $this->_em->createQueryBuilder()
-      ->select('tu')
-      ->from('ClubMatchBundle:TeamUser', 'tu')
-      ->where('tu.user = :user')
+    $r = $this->_em->createQueryBuilder()
+      ->select('t, mt, m')
+      ->from('ClubMatchBundle:Team', 't')
+      ->join('t.users', 'u')
+      ->join('t.match_teams', 'mt')
+      ->join('mt.match', 'm')
+      ->where('u.id = :user')
       ->setParameter('user', $user->getId())
       ->setMaxResults($limit)
       ->getQuery()
       ->getResult();
+
+    if (!$r) return false;
+
+    $ids = array();
+    foreach ($r as $team) {
+        foreach ($team->getMatchTeams() as $match_team) {
+            $ids[] = $match_team->getMatch()->getId();
+        }
+    }
+
+    return $this->_em->createQueryBuilder()
+        ->select('m')
+        ->from('ClubMatchBundle:Match', 'm')
+        ->where('m.id IN (:ids)')
+        ->setPArameter('ids', $ids)
+        ->getQuery()
+        ->getResult();
   }
 
   public function getPaginator($results, $page)

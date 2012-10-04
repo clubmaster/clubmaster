@@ -28,15 +28,16 @@ class DashboardListener
     foreach ($matches as $m) {
 
         $activity = array(
-            'date' => $b->getCreatedAt(),
+            'date' => $m->getCreatedAt(),
             'type' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
-            'message' => $this->templating->render('ClubWelcomeBundle:Dashboard:blog_message.html.twig', array(
-                'blog' => $b
+            'message' => $this->templating->render('ClubMatchBundle:Dashboard:match_message.html.twig', array(
+                'match' => $m
+
             )),
-            'link' => $this->router->generate('club_welcome_blog_show', array('blog_id' => $b->getId()))
+            'link' => $this->router->generate('club_match_match_show', array('id' => $m->getId()))
         );
 
-        $event->appendActivities($activity, $b->getCreatedAt()->format('U'));
+        $event->appendActivities($activity, $m->getCreatedAt()->format('U'));
     }
   }
 }
