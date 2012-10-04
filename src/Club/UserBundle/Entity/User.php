@@ -788,4 +788,14 @@ class User implements AdvancedUserInterface, EquatableInterface
     {
         $this->schedules[] = $schedules;
     }
+
+    public function hasAdminPrivilege()
+    {
+        foreach ($this->getRoles() as $role) {
+            if (preg_match("/ADMIN/", $role))
+                return true;
+        }
+
+        return false;
+    }
 }
