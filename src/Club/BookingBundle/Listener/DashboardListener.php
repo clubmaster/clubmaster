@@ -21,22 +21,28 @@ class DashboardListener
   {
     if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
 
+    $user = $event->getUser();
+
     $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
-      'user' => $this->security_context->getToken()->getUser()->getId(),
+      'user' => $user->getId(),
       'attribute' => 'public_booking_activity'
     ));
     if ($s && !$s->getValue()) return;
     if (!$s && !$this->container->getParameter('club_booking.public_user_activity')) return;
 
-    $user = $event->getUser();
-    $output = $event->getOutput();
-
     $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getLatest($user);
-    $output .= $this->templating->render('ClubBookingBundle:Dashboard:member_table.html.twig', array(
-      'bookings' => $bookings
-    ));
 
-    $event->setOutput($output);
+    foreach ($bookings as $b) {
+        $activity = array(
+            'date' => $b->getFirstDate(),
+            'type' => 'bundles/clublayout/images/icons/16x16/time.png',
+            'message' => $this->templating->render('ClubBookingBundle:Dashboard:booking_message.html.twig', array(
+                'booking' => $b,
+                'user' => $user
+            ))
+        );
+        $event->appendActivities($activity, $b->getFirstDate()->format('U'));
+    }
   }
 
   public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)

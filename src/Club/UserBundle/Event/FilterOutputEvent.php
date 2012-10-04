@@ -6,27 +6,48 @@ use Symfony\Component\EventDispatcher\Event;
 
 class FilterOutputEvent extends Event
 {
-  protected $output;
-  protected $user;
+    protected $output;
+    protected $activities = array();
+    protected $user;
 
-  public function setOutput($output)
-  {
-    $this->output = $output;
-  }
+    public function appendActivities($activity, $key)
+    {
+        if (isset($this->activities[$key])) {
+            $key++;
+            $this->appendActivities($activity, $key);
+        } else {
+            $this->activities[$key] = $activity;
+        }
+    }
 
-  public function getOutput()
-  {
-    return $this->output;
-  }
+    public function setActivities($activities)
+    {
+        $this->activities = $activities;
+    }
 
-  public function setUser($user)
-  {
-    $this->user = $user;
-  }
+    public function getActivities()
+    {
+        sort($this->activities);
+        return $this->activities;
+    }
 
-  public function getUser()
-  {
-    return $this->user;
-  }
+    public function setOutput($output)
+    {
+        $this->output = $output;
+    }
 
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

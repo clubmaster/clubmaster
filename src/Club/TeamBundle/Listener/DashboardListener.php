@@ -22,14 +22,21 @@ class DashboardListener
     if (!$this->container->getParameter('club_team.public_user_activity')) return;
 
     $user = $event->getUser();
-    $output = $event->getOutput();
 
     $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getLatest($user);
-    $output .= $this->templating->render('ClubTeamBundle:Dashboard:member_table.html.twig', array(
-      'schedules' => $schedules
-    ));
 
-    $event->setOutput($output);
+    foreach ($schedules as $s) {
+
+        $activity = array(
+            'date' => $s->getFirstDate(),
+            'type' => 'bundles/clublayout/images/icons/16x16/book.png',
+            'message' => $this->templating->render('ClubTeamBundle:Dashboard:team_message.html.twig', array(
+                'schedule' => $s
+            ))
+        );
+
+        $event->appendActivities($activity, $s->getFirstDate()->format('U'));
+    }
   }
 
   public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)

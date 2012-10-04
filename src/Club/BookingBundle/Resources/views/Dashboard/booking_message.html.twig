@@ -1,0 +1,9 @@
+{% if booking.guest %}
+{% set opponent = 'Guest'|trans %}
+{% elseif booking.user == user %}
+{% set opponent = booking.firstPartner.name %}
+{% else %}
+{% set opponent = booking.user.name %}
+{% endif %}
+
+{% trans with {'%user%':opponent} %}Was playing with %user%{% endtrans %}

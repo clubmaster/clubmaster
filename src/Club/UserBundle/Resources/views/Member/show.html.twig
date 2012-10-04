@@ -8,7 +8,6 @@
 
 {% block body %}
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <table class="table table-bordered">
 {% if user.profile.profileEmail %}
     <tr>
@@ -23,7 +22,30 @@
     </tr>
     {% endif %}
 </table>
-{% endif %}
+
+<h1>{% trans %}Activities{% endtrans %}</h1>
+<table class="table">
+    <tr>
+        <th>{% trans %}Type{% endtrans %}</th>
+        <th>{% trans %}Date{% endtrans %}</th>
+        <th>{% trans %}Message{% endtrans %}</th>
+        <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+    {% for item in activities %}
+
+    <tr>
+        <td><img src="{{ asset(item.type) }}" /></td>
+        <td>{{ item.date|club_datetime }}</td>
+        <td>{{ item.message }}</td>
+        <td>{% if item.like is defined %}{{ item.link }}{% endif %}</td>
+    </tr>
+    {% else %}
+
+    <tr>
+        <td colspan="3">{% trans %}The user has no activities.{% endtrans %}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 {{ output|raw }}
 

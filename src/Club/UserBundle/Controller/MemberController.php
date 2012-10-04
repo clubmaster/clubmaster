@@ -53,7 +53,8 @@ class MemberController extends Controller
 
     return array(
       'user' => $user,
-      'output' => $event->getOutput()
+      'output' => $event->getOutput(),
+      'activities' => $event->getActivities()
     );
   }
 

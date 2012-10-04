@@ -53,7 +53,7 @@ class BookingListener
             ->setSubject($this->translator->trans('Booking cancel'))
             ->setFrom()
             ->setBody($this->templating->render('ClubMailBundle:Template:booking_cancel.html.twig',array(
-                'user' => $user,
+                'user' => $booking->getUser(),
                 'booking' => $booking,
             )))
             ->setDecorator($recipients)
