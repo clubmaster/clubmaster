@@ -25,9 +25,11 @@ class DashboardListener
     ));
 
     $orders = $this->em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$this->security_context->getToken()->getUser());
-    $output .= $this->templating->render('ClubShopBundle:Dashboard:order_table.html.twig', array(
-      'orders' => $orders
-    ));
+    if (count($orders) > 0) {
+        $output .= $this->templating->render('ClubShopBundle:Dashboard:order_table.html.twig', array(
+            'orders' => $orders
+        ));
+    }
 
     $event->setOutput($output);
   }
