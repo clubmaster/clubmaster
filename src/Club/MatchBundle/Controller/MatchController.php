@@ -96,9 +96,7 @@ class MatchController extends Controller
             'match' => $match,
             'google_plus' => $this->container->getParameter('club_match.google_plus'),
             'facebook_like' => $this->container->getParameter('club_match.facebook_like'),
-            'facebook_api' => $this->container->getParameter('club_match.facebook_api'),
-            'absolute_url' => $this->generateUrl('club_match_match_show', array('id' => $match->getId()), true),
-            'absolute_homepage' => $this->generateUrl('homepage', array(), true)
+            'facebook_api' => $this->container->getParameter('club_match.facebook_api')
         );
     }
 

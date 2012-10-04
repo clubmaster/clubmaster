@@ -9,10 +9,10 @@ Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
 {% block metatags %}
 <meta property="og:title" content="Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}"/>
 <meta property="og:type" content="sport" />
-<meta property="og:url" content="{{ absolute_url }}" />
-<meta property="og:site_name" content="{{ absolute_homepage }}" />
+<meta property="og:url" content="{{ url('club_match_match_show', {'id':match.id}) }}" />
+<meta property="og:site_name" content="{{ url('homepage') }}" />
 <meta property="fb:app_id" content="{{ facebook_api }}" />
-<meta property="og:image" content="{{ absolute_homepage}}{{ asset('bundles/clublayout/images/icons/32x32/medal_gold_1.png') }}" />
+<meta property="og:image" content="{{ url('homepage') }}{{ asset('bundles/clublayout/images/icons/32x32/medal_gold_1.png') }}" />
 {% endblock %}
 
 {% block after_body %}
