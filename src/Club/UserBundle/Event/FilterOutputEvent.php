@@ -26,7 +26,7 @@ class FilterOutputEvent extends Event
 
     public function getActivities()
     {
-        ksort($this->activities);
+        krsort($this->activities);
         return $this->activities;
     }
 
