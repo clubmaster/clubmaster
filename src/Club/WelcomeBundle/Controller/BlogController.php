@@ -24,6 +24,9 @@ class BlogController extends Controller
 
     return array(
       'blog' => $blog,
+      'google_plus' => $this->container->getParameter('club_welcome.google_plus'),
+      'facebook_like' => $this->container->getParameter('club_welcome.facebook_like'),
+      'facebook_api' => $this->container->getParameter('club_welcome.facebook_api')
     );
   }
 
