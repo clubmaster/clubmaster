@@ -17,7 +17,7 @@ class DashboardListener
     $this->templating = $container->get('templating');
   }
 
-  public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  public function onMemberView(\Club\UserBundle\Event\FilterActivityEvent $event)
   {
     if (!$this->container->getParameter('club_team.public_user_activity')) return;
 

@@ -19,7 +19,7 @@ class DashboardListener
     $this->router = $container->get('router');
   }
 
-  public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  public function onMemberView(\Club\UserBundle\Event\FilterActivityEvent $event)
   {
     $user = $event->getUser();
 

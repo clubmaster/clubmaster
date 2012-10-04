@@ -17,7 +17,7 @@ class DashboardListener
     $this->templating = $container->get('templating');
   }
 
-  public function onMemberView(\Club\UserBundle\Event\FilterOutputEvent $event)
+  public function onMemberView(\Club\UserBundle\Event\FilterActivityEvent $event)
   {
     if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
 
