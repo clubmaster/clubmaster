@@ -29,7 +29,7 @@ function makePastIntervalUrl(interval)
   return '<div class="past" id="interval_'+interval.id+'">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
-function setInterval(interval_id)
+function setBookingInterval(interval_id)
 {
     $('#interval_id').val(interval_id);
     $('#interval_id').closest('form').submit();
@@ -60,7 +60,7 @@ function makeIntervalUrl(interval)
   var start = Date.parse(interval.start_time);
   var end = Date.parse(interval.end_time);
 
-  return '<div class="future link" id="interval_'+interval.id+'" onclick="setInterval('+interval.id+');">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
+  return '<div class="future link" id="interval_'+interval.id+'" onclick="setBookingInterval('+interval.id+');">&#160;'+getTime(start)+'-'+getTime(end)+'</div>';
 }
 
 function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
