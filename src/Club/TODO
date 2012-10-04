@@ -4,12 +4,14 @@ when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
 view recent matches from players that you have played within the last few months
-make like buttons on blog posts
-build a league system, with both single and doubles
 add coming events to dashboard
+see if there is a easier way to print page headers, stupid to print the html on all pages
+translation checkout the entire system
+make like buttons on blog posts
+---
+build a league system, with both single and doubles
 make sure only one can have the field at the time
 dont show that many minutes in booking interval
-see if there is a easier way to print page headers, stupid to print the html on all pages
 check doctrine:schema:validate if there is any problems
 add custom fields on profiles
 batch assign users to a league
@@ -58,7 +60,6 @@ improve form design with bootstrap:
 better timesupport on booking schema, its on danish today
 change location could be a dropdown menu
 add paginator to:
-  - member list
   - group members
   - team attends
   - admin blog
