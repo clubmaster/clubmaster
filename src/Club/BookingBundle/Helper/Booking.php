@@ -36,17 +36,17 @@ class Booking
     {
         $this->booking = $booking;
 
-        if ($this->security_context->isGranted('ROLE_BOOKING_ADMIN'))
-            return;
-
-        if (!$this->booking->isOwner($this->security_context->getToken()->getUser()))
-            $this->setError($this->translator->trans('You do not have permissions to delete this booking'));
-
         if ($this->booking->getFirstDate() < new \DateTime()) {
             $this->setError($this->translator->trans('You cannot delete bookings in the past'));
 
             return;
         }
+
+        if ($this->security_context->isGranted('ROLE_BOOKING_ADMIN'))
+            return;
+
+        if (!$this->booking->isOwner($this->security_context->getToken()->getUser()))
+            $this->setError($this->translator->trans('You do not have permissions to delete this booking'));
 
         $now = new \DateTime();
         $diff = ($now->getTimestamp()-$this->booking->getCreatedAt()->getTimestamp());
