@@ -15,10 +15,6 @@ class MenuListener
     $this->translator = $translator;
   }
 
-  public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
-  {
-  }
-
   public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
   {
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
