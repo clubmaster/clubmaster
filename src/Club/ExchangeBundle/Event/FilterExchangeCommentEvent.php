@@ -6,15 +6,15 @@ use Symfony\Component\EventDispatcher\Event;
 
 class FilterExchangeCommentEvent extends Event
 {
-  protected $request_comment;
+  protected $exchange_comment;
 
-  public function __construct(\Club\ExchangeBundle\Entity\RequestComment $request_comment)
+  public function __construct(\Club\ExchangeBundle\Entity\ExchangeComment $exchange_comment)
   {
-    $this->request_comment = $request_comment;
+    $this->exchange_comment = $exchange_comment;
   }
 
-  public function getRequestComment()
+  public function getExchangeComment()
   {
-    return $this->request_comment;
+    return $this->exchange_comment;
   }
 }

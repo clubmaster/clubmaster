@@ -33,7 +33,7 @@
     <tr>
       <td>{{ item.playtime|club_ago }}</td>
       <td>{{ item.user.name }}</td>
-      <td>{{ item.requestComments|length }}</td>
+      <td>{{ item.exchangeComments|length }}</td>
       <td>
       {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('club_exchange_comment_index', { 'id':item.id })} %}
       {% if item.user == app.user %}
@@ -44,7 +44,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="4">{% trans %}There are not requests in the players market.{% endtrans %}</td>
+      <td colspan="4">{% trans %}There are not requests in the exchange.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>

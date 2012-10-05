@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Club\ExchangeBundle\Entity\Request
+ * Club\ExchangeBundle\Entity\Exchange
  *
- * @ORM\Table(name="club_exchange_request")
- * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\RequestRepository")
+ * @ORM\Table(name="club_exchange_exchange")
+ * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\ExchangeRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Request
+class Exchange
 {
     /**
      * @var integer $id
@@ -67,11 +67,11 @@ class Request
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="RequestComment", mappedBy="request")
+     * @ORM\OneToMany(targetEntity="ExchangeComment", mappedBy="exchange")
      *
-     * @var Club\ExchangeBundle\Entity\RequestComment
+     * @var Club\ExchangeBundle\Entity\ExchangeComment
      */
-    protected $request_comments;
+    protected $exchange_comments;
 
     public function __construct()
     {
@@ -189,23 +189,23 @@ class Request
     }
 
     /**
-     * Add request_comments
+     * Add exchange_comments
      *
-     * @param Club\ExchangeBundle\Entity\RequestComment $requestComments
+     * @param Club\ExchangeBundle\Entity\ExchangeComment $exchangeComments
      */
-    public function addRequestComment(\Club\ExchangeBundle\Entity\RequestComment $requestComments)
+    public function addExchangeComment(\Club\ExchangeBundle\Entity\ExchangeComment $exchangeComments)
     {
-        $this->request_comments[] = $requestComments;
+        $this->exchange_comments[] = $exchangeComments;
     }
 
     /**
-     * Get request_comments
+     * Get exchange_comments
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getRequestComments()
+    public function getExchangeComments()
     {
-        return $this->request_comments;
+        return $this->exchange_comments;
     }
 
     /**

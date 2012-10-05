@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Request extends AbstractType
+class Exchange extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -24,12 +24,12 @@ class Request extends AbstractType
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'Club\ExchangeBundle\Entity\Request'
+      'data_class' => 'Club\ExchangeBundle\Entity\Exchange'
     ));
   }
 
   public function getName()
   {
-    return 'request';
+    return 'exchange';
   }
 }

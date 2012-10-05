@@ -21,7 +21,7 @@ class ExchangeComment
 
   public function onExchangeCommentNew(\Club\ExchangeBundle\Event\FilterExchangeCommentEvent $event)
   {
-    $comment = $event->getRequestComment();
+    $comment = $event->getExchangeComment();
     $email = $comment->getUser()->getProfile()->getProfileEmail();
 
     if ($email) {

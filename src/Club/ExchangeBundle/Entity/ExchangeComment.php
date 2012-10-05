@@ -5,13 +5,13 @@ namespace Club\ExchangeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Club\ExchangeBundle\Entity\RequestComment
+ * Club\ExchangeBundle\Entity\ExchangeComment
  *
- * @ORM\Table(name="club_exchange_request_comment")
- * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\RequestCommentRepository")
+ * @ORM\Table(name="club_exchange_exchange_comment")
+ * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\ExchangeCommentRepository")
  * @ORM\HasLifeCycleCallbacks()
  */
-class RequestComment
+class ExchangeComment
 {
     /**
      * @var integer $id
@@ -44,10 +44,10 @@ class RequestComment
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Request")
+     * @ORM\ManyToOne(targetEntity="Exchange")
      * @ORM\JoinColumn(onDelete="cascade")
      */
-    protected $request;
+    protected $exchange;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
@@ -142,23 +142,23 @@ class RequestComment
     }
 
     /**
-     * Set request
+     * Set exchange
      *
-     * @param Club\ExchangeBundle\Entity\Request $request
+     * @param Club\ExchangeBundle\Entity\Exchange $exchange
      */
-    public function setRequest(\Club\ExchangeBundle\Entity\Request $request)
+    public function setExchange(\Club\ExchangeBundle\Entity\Exchange $exchange)
     {
-        $this->request = $request;
+        $this->exchange = $exchange;
     }
 
     /**
-     * Get request
+     * Get exchange
      *
-     * @return Club\ExchangeBundle\Entity\Request
+     * @return Club\ExchangeBundle\Entity\Exchange
      */
-    public function getRequest()
+    public function getExchange()
     {
-        return $this->request;
+        return $this->exchange;
     }
 
     /**

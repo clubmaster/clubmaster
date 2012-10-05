@@ -19,7 +19,7 @@ class ExchangeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $market = $em->getRepository('ClubExchangeBundle:Request')->getOpen();
+    $market = $em->getRepository('ClubExchangeBundle:Exchange')->getOpen();
 
     return array(
       'market' => $market
@@ -30,15 +30,15 @@ class ExchangeController extends Controller
    * @Route("/edit/{id}")
    * @Template()
    */
-  public function editAction(\Club\ExchangeBundle\Entity\Request $request)
+  public function editAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
   {
-    $form = $this->createForm(new \Club\ExchangeBundle\Form\Request(), $request);
+    $form = $this->createForm(new \Club\ExchangeBundle\Form\Exchange(), $exchange);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($request);
+        $em->persist($exchange);
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -48,7 +48,7 @@ class ExchangeController extends Controller
     }
 
     return array(
-      'request' => $request,
+      'exchange' => $exchange,
       'form' => $form->createView()
     );
   }
@@ -59,16 +59,16 @@ class ExchangeController extends Controller
    */
   public function newAction()
   {
-    $request = new \Club\ExchangeBundle\Entity\Request();
-    $request->setUser($this->getUser());
+    $exchange = new \Club\ExchangeBundle\Entity\Exchange();
+    $exchange->setUser($this->getUser());
 
-    $form = $this->createForm(new \Club\ExchangeBundle\Form\Request(), $request);
+    $form = $this->createForm(new \Club\ExchangeBundle\Form\Exchange(), $exchange);
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($request);
+        $em->persist($exchange);
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
@@ -86,12 +86,12 @@ class ExchangeController extends Controller
    * @Route("/delete/{id}")
    * @Template()
    */
-  public function deleteAction(\Club\ExchangeBundle\Entity\Request $request)
+  public function deleteAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $request->setClosed(true);
-    $em->persist($request);
+    $exchange->setClosed(true);
+    $em->persist($exchange);
     $em->flush();
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));

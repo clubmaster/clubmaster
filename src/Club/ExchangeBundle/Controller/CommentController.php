@@ -15,13 +15,13 @@ class CommentController extends Controller
    * @Route("/new/{id}")
    * @Template()
    */
-  public function newAction(\Club\ExchangeBundle\Entity\Request $request)
+  public function newAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
   {
-    $comment = new \Club\ExchangeBundle\Entity\RequestComment();
+    $comment = new \Club\ExchangeBundle\Entity\ExchangeComment();
     $comment->setUser($this->getUser());
-    $comment->setRequest($request);
+    $comment->setExchange($exchange);
 
-    $form = $this->createForm(new \Club\ExchangeBundle\Form\RequestComment(), $comment);
+    $form = $this->createForm(new \Club\ExchangeBundle\Form\ExchangeComment(), $comment);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
@@ -41,7 +41,7 @@ class CommentController extends Controller
     }
 
     return array(
-      'request' => $request,
+      'exchange' => $exchange,
       'form' => $form->createView()
     );
   }
@@ -50,10 +50,10 @@ class CommentController extends Controller
    * @Route("/{id}")
    * @Template()
    */
-  public function indexAction(\Club\ExchangeBundle\Entity\Request $request)
+  public function indexAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
   {
     return array(
-      'request' => $request,
+      'exchange' => $exchange,
     );
   }
 }

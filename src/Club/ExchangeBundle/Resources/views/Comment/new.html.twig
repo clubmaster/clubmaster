@@ -1,5 +1,5 @@
 {% extends "ClubExchangeBundle::base.html.twig" %}
 
 {% block body %}
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_exchange_comment_new', {'id':request.id})} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_exchange_comment_new', {'id':exchange.id})} %}
 {% endblock %}

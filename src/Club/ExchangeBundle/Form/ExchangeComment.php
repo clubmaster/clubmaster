@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RequestComment extends AbstractType
+class ExchangeComment extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,12 +20,12 @@ class RequestComment extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\ExchangeBundle\Entity\RequestComment'
+            'data_class' => 'Club\ExchangeBundle\Entity\ExchangeComment'
         ));
     }
 
     public function getName()
     {
-        return 'request_comment';
+        return 'exchange_comment';
     }
 }
