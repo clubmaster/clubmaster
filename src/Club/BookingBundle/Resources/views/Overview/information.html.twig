@@ -1,49 +1,34 @@
-<table class="table table-bordered">
-    <tr>
-        <th>{% trans %}Location{% endtrans %}</th>
-        <td>{{ interval.field.location.locationName }}</td>
-    </tr>
-    <tr>
-        <th>{% trans %}Date{% endtrans %}</th>
-        <td>{{ date|club_date }}</td>
-    </tr>
-    <tr>
-        <th>{% trans %}Time{% endtrans %}</th>
-        <td>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</td>
-    </tr>
-    <tr>
-        <th>{% trans %}Field{% endtrans %}</th>
-        <td>{{ interval.field.name }}</td>
-    </tr>
+<dl class="dl-horizontal">
+        <dt>{% trans %}Location{% endtrans %}</dt>
+        <dd>{{ interval.field.location.locationName }}</dd>
+        <dt>{% trans %}Date{% endtrans %}</dt>
+        <dd>{{ date|club_date }}</dd>
+        <dt>{% trans %}Time{% endtrans %}</dt>
+        <dd>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</dd>
+        <dt>{% trans %}Field{% endtrans %}</dt>
+        <dd>{{ interval.field.name }}</dd>
 
     {% if interval.booking %}
-    <tr>
-        <th>{% trans %}Booker{% endtrans %}</th>
-        <td>{{ interval.booking.user.name }}</td>
-    </tr>
+        <dt>{% trans %}Booker{% endtrans %}</dt>
+        <dd>{{ interval.booking.user.name }}</dd>
       {% if interval.booking.guest %}
-    <tr>
-        <th>{% trans %}Partner{% endtrans %}</th>
-        <td>Guest</td>
-    </tr>
+        <dt>{% trans %}Partner{% endtrans %}</dt>
+        <dd>Guest</dd>
       {% else %}
-    <tr>
-        <th>{% trans %}Partner{% endtrans %}</th>
-        <td>
+        <dt>{% trans %}Partner{% endtrans %}</dt>
+        <dd>
       {% for partner in interval.booking.users %}
         {{ partner.name }},
       {% endfor %}
-        </td>
+        </dd>
       {% endif %}
 
     {% elseif interval.schedule %}
-    <tr>
-        <th>{% trans %}Team{% endtrans %}</th>
-        <td>{{ interval.schedule.team.teamName }}</td>
-    </tr>
+        <dt>{% trans %}Team{% endtrans %}</dt>
+        <dd>{{ interval.schedule.team.teamName }}</dd>
 
     {% endif %}
-</table>
+</dl>
 
     {% if interval.field.information %}
       <h2>{% trans %}Information{% endtrans %}</h2>

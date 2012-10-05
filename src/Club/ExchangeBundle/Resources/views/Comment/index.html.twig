@@ -5,27 +5,16 @@
 {% endblock %}
 
 {% block body %}
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <th>{% trans %}Play time{% endtrans %}</th>
-      <td>{{ exchange.playtime|club_datetime }} ({{ exchange.playtime|club_ago }})</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Location{% endtrans %}</th>
-      <td>{{ exchange.location.locationName }}</td>
-    </tr>
-
-    <tr>
-      <th>{% trans %}User{% endtrans %}</th>
-      <td>{{ exchange.user.name }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Message{% endtrans %}</th>
-      <td>{{ exchange.message|raw }}</td>
-    </tr>
-  </tbody>
-</table>
+<dl class="dl-horizontal">
+      <dt>{% trans %}Play time{% endtrans %}</dt>
+      <dd>{{ exchange.playtime|club_datetime }} ({{ exchange.playtime|club_ago }})</dd>
+      <dt>{% trans %}Location{% endtrans %}</dt>
+      <dd>{{ exchange.location.locationName }}</dd>
+      <dt>{% trans %}User{% endtrans %}</dt>
+      <dd>{{ exchange.user.name }}</dd>
+      <dt>{% trans %}Message{% endtrans %}</dt>
+      <dd>{{ exchange.message|raw }}</dd>
+</dl>
 
 <h1 class="page-header">{% trans %}Comments{% endtrans %}</h1>
 {% for comment in comments %}

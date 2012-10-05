@@ -1,31 +1,16 @@
-    <table class="table table-bordered">
-        <tr>
-            <th>{% trans %}Company{% endtrans %}</th>
-            <td>{{ address.companyName }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}CVR{% endtrans %}</th>
-            <td>{{ address.cvr }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}Name{% endtrans %}</th>
-            <td>{{ address.firstName }} {{ address.lastName }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}Street{% endtrans %}</th>
-            <td>{{ address.street }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}Postal{% endtrans %}</th>
-            <td>{{ address.postalCode }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}City{% endtrans %}</th>
-            <td>{{ address.city }}</td>
-        </tr>
-        <tr>
-            <th>{% trans %}Country{% endtrans %}</th>
-            <td>{{ address.country }}</td>
-        </tr>
-</table>
-
+<dl class="dl-horizontal">
+            <dt>{% trans %}Company{% endtrans %}</dt>
+            <dd>{{ address.companyName }}</dd>
+            <dt>{% trans %}CVR{% endtrans %}</dt>
+            <dd>{{ address.cvr }}</dd>
+            <dt>{% trans %}Name{% endtrans %}</dt>
+            <dd>{{ address.firstName }} {{ address.lastName }}</dd>
+            <dt>{% trans %}Street{% endtrans %}</dt>
+            <dd>{{ address.street }}</dd>
+            <dt>{% trans %}Postal{% endtrans %}</dt>
+            <dd>{{ address.postalCode }}</dd>
+            <dt>{% trans %}City{% endtrans %}</dt>
+            <dd>{{ address.city }}</dd>
+            <dt>{% trans %}Country{% endtrans %}</dt>
+            <dd>{{ address.country }}</dd>
+</dl>

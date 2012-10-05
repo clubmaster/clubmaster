@@ -4,43 +4,29 @@
 
 <h2>{% trans %}Subscription{% endtrans %}</h2>
 
-<table class="table">
-  <tbody>
-    <tr>
-      <th>{% trans %}Day bought{% endtrans %}</th>
-      <td>{{ subscription.order.createdAt|club_datetime }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Price{% endtrans %}</th>
-      <td>{{ subscription.orderProduct.price|club_price }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Period{% endtrans %}</th>
-      <td>{{ subscription.startDate|club_datetime }} - {% if subscription.expireDate == '' %}{% trans %}Never{% endtrans %}{% else %}{{ subscription.expireDate|club_datetime }}{% endif %}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Auto renewal{% endtrans %}</th>
-      <td>
+<dl class="dl-horizontal">
+      <dt>{% trans %}Day bought{% endtrans %}</dt>
+      <dd>{{ subscription.order.createdAt|club_datetime }}</dd>
+      <dt>{% trans %}Price{% endtrans %}</dt>
+      <dd>{{ subscription.orderProduct.price|club_price }}</dd>
+      <dt>{% trans %}Period{% endtrans %}</dt>
+      <dd>{{ subscription.startDate|club_datetime }} - {% if subscription.expireDate == '' %}{% trans %}Never{% endtrans %}{% else %}{{ subscription.expireDate|club_datetime }}{% endif %}</dd>
+      <dt>{% trans %}Auto renewal{% endtrans %}</dt>
+      <dd>
         {% if subscription.hasAttribute('auto_renewal') %}{% trans %}This subscription will automatically be renewed.{% endtrans %}
         {% else %}{% trans %}This subscription will not be automatically renewed.{% endtrans %}{% endif %}
-      </td>
-    </tr>
-    <tr>
-      <th>{% trans %}Booking{% endtrans %}</th>
-      <td>
+      </dd>
+      <dt>{% trans %}Booking{% endtrans %}</dt>
+      <dd>
         {% if subscription.hasAttribute('booking') %}{% trans %}This subscription allow you to use bookings.{% endtrans %}
         {% else %}{% trans %}This subscription does not allow you to use bookings.{% endtrans %}{% endif %}
-      </td>
-    </tr>
-    <tr>
-      <th>{% trans %}Team{% endtrans %}</th>
-      <td>
+      </dd>
+      <dt>{% trans %}Team{% endtrans %}</dt>
+      <dd>
         {% if subscription.hasAttribute('team') %}{% trans %}This subscription allow you to use teams.{% endtrans %}
         {% else %}{% trans %}This subscription does not allow you to use teams.{% endtrans %}{% endif %}
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </dd>
+</dl>
 
 {% if subscription.type == 'ticket' %}
   {% include "ClubShopBundle:Subscription:tickets_table.html.twig" %}

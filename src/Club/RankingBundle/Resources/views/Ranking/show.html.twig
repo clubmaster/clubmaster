@@ -6,38 +6,24 @@
 {% include "ClubRankingBundle:Ranking:match_button.html.twig" %}
 
 <h4>{% trans %}Ranking info{% endtrans %}</h4>
-<table class="table">
-  <tbody>
-    <tr>
-      <th>{% trans %}Period{% endtrans %}</th>
-      <td>{{ ranking.startDate|club_date }} - {{ ranking.endDate|club_date }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Ranking type{% endtrans %}</th>
+<dl class="dl-horizontal">
+      <dt>{% trans %}Period{% endtrans %}</dt>
+      <dd>{{ ranking.startDate|club_date }} - {{ ranking.endDate|club_date }}</dd>
+      <dt>{% trans %}Ranking type{% endtrans %}</dt>
       {% if ranking.inviteOnly %}
-      <td>{% trans %}Invite only{% endtrans %}</td>
+      <dd>{% trans %}Invite only{% endtrans %}</dd>
       {% else %}
-      <td>{% trans %}Open for all{% endtrans %}</td>
+      <dd>{% trans %}Open for all{% endtrans %}</dd>
       {% endif %}
-    </tr>
-    <tr>
-      <th>{% trans %}Sets per match{% endtrans %}</th>
-      <td>{{ ranking.gameSet }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Point for victory{% endtrans %}</th>
-      <td>{{ ranking.rule.pointWon }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Point for defeat{% endtrans %}</th>
-      <td>{{ ranking.rule.pointLost }}</td>
-    </tr>
-    <tr>
-      <th>{% trans %}Matches with same opponent{% endtrans %}</th>
-      <td>{{ ranking.rule.samePlayer }}</td>
-    </tr>
-  </tbody>
-</table>
+      <dt>{% trans %}Sets per match{% endtrans %}</dt>
+      <dd>{{ ranking.gameSet }}</dd>
+      <dt>{% trans %}Point for victory{% endtrans %}</dt>
+      <dd>{{ ranking.rule.pointWon }}</dd>
+      <dt>{% trans %}Point for defeat{% endtrans %}</dt>
+      <dd>{{ ranking.rule.pointLost }}</dd>
+      <dt>{% trans %}Matches with same opponent{% endtrans %}</dt>
+      <dd>{{ ranking.rule.samePlayer }}</dd>
+</dl>
 
 {% render "ClubRankingBundle:Ranking:Top" with {'id':ranking.id, 'limit':50} %}
 {% include "ClubMatchBundle:Match:recent_matches.html.twig" %}
