@@ -36,4 +36,17 @@ class MenuListener
             $event->appendMenu($menu);
         }
     }
+
+    public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
+    {
+        $menu = array();
+        $menu[44] = array(
+            'name' => $this->translator->trans('Blog'),
+            'route' => $this->router->generate('club_welcome_blog_index'),
+            'image' => 'bundles/clublayout/images/icons/32x32/transmit.png',
+            'text' => 'Har du en oplysninger som kunne interessere klubmedlemmerne, eller vil du blot følge lidt med klik her.'
+        );
+
+        $event->appendMenu($menu);
+    }
 }

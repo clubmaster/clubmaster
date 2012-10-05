@@ -4,6 +4,7 @@ services:
     arguments: [@router, @security.context, @translator]
     tags:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.welcomebundle.dashboard_listener:
     class: Club\WelcomeBundle\Listener\DashboardListener
     arguments: [@service_container]
