@@ -102,7 +102,7 @@ club_mail:
 club_feedback:
     enabled: true
 
-club_request:
+club_exchange:
     enabled: true
 
 club_news:
@@ -114,9 +114,6 @@ club_checkin:
         - ::1
 
 club_layout:
-    #logo_path:
-    #logo_url:
-    #logo_title:
     title: ClubMaster
 
 club_weather:

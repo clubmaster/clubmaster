@@ -1,0 +1,40 @@
+{% extends "ClubExchangeBundle::base.html.twig" %}
+
+{% block pagenav %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_request_comment_new', {'id':request.id}) }}">{% trans %}Create comment{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<table class="table">
+  <tbody>
+    <tr>
+      <th>{% trans %}Play time{% endtrans %}</th>
+      <td>{{ request.playtime|club_datetime }}</td>
+    </tr>
+    <tr>
+      <th>{% trans %}User{% endtrans %}</th>
+      <td>{{ request.user.name }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>{% trans %}Message{% endtrans %}</h3>
+<p>{{ request.message|raw }}</p>
+
+<h4>{% trans %}Comments{% endtrans %}</h4>
+{% for comment in request.requestComments %}
+<p><span class="label label-03">{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</span></p>
+<p>{{ comment.comment|raw }}</p>
+{% else %}
+<p>{% trans %}There are no comments for this request.{% endtrans %}</p>
+{% endfor %}
+
+{% endblock %}

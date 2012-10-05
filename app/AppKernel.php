@@ -43,7 +43,7 @@ class AppKernel extends Kernel
             new Club\Account\EconomicBundle\ClubAccountEconomicBundle(),
             new Club\PaginatorBundle\ClubPaginatorBundle(),
             new Club\PasskeyBundle\ClubPasskeyBundle(),
-            new Club\RequestBundle\ClubRequestBundle(),
+            new Club\ExchangeBundle\ClubExchangeBundle(),
             new Club\TournamentBundle\ClubTournamentBundle(),
             new Club\NewsBundle\ClubNewsBundle(),
             new Club\WeatherBundle\ClubWeatherBundle(),

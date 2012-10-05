@@ -26,8 +26,8 @@ ClubTournamentBundle:
     type:     annotation
     prefix:   /{_locale}/
 
-ClubRequestBundle:
-    resource: "@ClubRequestBundle/Controller/"
+ClubExchangeBundle:
+    resource: "@ClubExchangeBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}/
 

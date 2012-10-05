@@ -1,0 +1,7 @@
+services:
+  club.request.menu_listener:
+    class: Club\ExchangeBundle\Listener\MenuListener
+    arguments: [@router, @security.context, @translator]
+    tags:
+      - { name: kernel.event_listener, event: top_menu.render, method: onTopMenuRender }
+      - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }

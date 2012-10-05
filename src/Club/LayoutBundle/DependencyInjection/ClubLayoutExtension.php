@@ -18,9 +18,6 @@ class ClubLayoutExtension extends Extension
     $loader->load('twig.yml');
     $loader->load('form.yml');
 
-    $container->setParameter('club_layout.logo_path', $config['logo_path']);
-    $container->setParameter('club_layout.logo_url', $config['logo_url']);
-    $container->setParameter('club_layout.logo_title', $config['logo_title']);
     $container->setParameter('club_layout.title', $config['title']);
   }
 }
