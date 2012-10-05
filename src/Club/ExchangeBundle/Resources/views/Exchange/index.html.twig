@@ -17,6 +17,7 @@
 <table class="table">
   <thead>
     <tr class="bg">
+      <th>{% trans %}Open{% endtrans %}</th>
       <th>{% trans %}Play time{% endtrans %}</th>
       <th>{% trans %}User{% endtrans %}</th>
       <th>{% trans %}Comments{% endtrans %}</th>
@@ -25,12 +26,13 @@
   <thead>
   <tfoot>
     <tr class="bg">
-      <td colspan="4">&#160;</td>
+      <td colspan="5">&#160;</td>
     </tr>
   </tfoot>
   <tbody>
   {% for item in market %}
-    <tr>
+    <tr class="{% if item.closed %}error{% else %}success{% endif %}">
+      <td>{% include "ClubLayoutBundle:Default:boolean_inverse.html.twig" with {'flag':item.closed} %}</td>
       <td><a href="{{ path('club_exchange_comment_index', {'id':item.id}) }}">{{ item.playtime|club_datetime }} ({{ item.playtime|club_ago }})</a></td>
       <td>{{ item.user.name }}</td>
       <td>{{ item.exchangeComments|length }}</td>
@@ -44,7 +46,7 @@
     </tr>
   {% else %}
     <tr>
-      <td colspan="4">{% trans %}There are not requests in the exchange.{% endtrans %}</td>
+      <td colspan="5">{% trans %}There are not requests in the exchange.{% endtrans %}</td>
     </tr>
   {% endfor %}
   </tbody>

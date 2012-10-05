@@ -19,7 +19,7 @@ class ExchangeController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $market = $em->getRepository('ClubExchangeBundle:Exchange')->getOpen();
+    $market = $em->getRepository('ClubExchangeBundle:Exchange')->getComing();
 
     return array(
       'market' => $market

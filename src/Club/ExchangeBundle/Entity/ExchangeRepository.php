@@ -12,13 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class ExchangeRepository extends EntityRepository
 {
-  public function getOpen()
+  public function getComing()
   {
     return $this->_em->createQueryBuilder()
       ->select('r')
       ->from('ClubExchangeBundle:Exchange', 'r')
       ->where('r.play_time > :date')
-      ->andWhere('r.closed = false')
       ->orderBy('r.play_time')
       ->setParameter('date', new \DateTime())
       ->getQuery()

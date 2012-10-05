@@ -2,13 +2,18 @@
 
 {% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if not exchange.closed %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
             <li><a href="{{ path('club_exchange_comment_new', {'id':exchange.id}) }}">{% trans %}Create comment{% endtrans %}</a></li>
+            {% if exchange.user == app.user %}
+            <li><a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" href="{{ path('club_exchange_comment_close', {'id':exchange.id}) }}">{% trans %}Close{% endtrans %}</a></li>
+            {% endif %}
         </ul>
     </div>
 </div>
+{% endif %}
 {% endif %}
 {% endblock %}
 
