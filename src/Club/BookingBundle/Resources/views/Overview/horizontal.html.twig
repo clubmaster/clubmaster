@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block body %}
-<h2>{{ date|club_date('full') }}</h2>
+<h2>{{ location.locationName}} <small>{{ date|club_date('full') }}</small></h2>
 
 <form method="POST" action="{{ path('club_booking_overview') }}">
 <p>
