@@ -67,6 +67,13 @@ class Exchange
     protected $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     *
+     * @var Club\UserBundle\Entity\Location
+     */
+    protected $location;
+
+    /**
      * @ORM\OneToMany(targetEntity="ExchangeComment", mappedBy="exchange")
      *
      * @var Club\ExchangeBundle\Entity\ExchangeComment
@@ -246,5 +253,38 @@ class Exchange
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set location
+     *
+     * @param Club\UserBundle\Entity\Location $location
+     * @return Exchange
+     */
+    public function setLocation(\Club\UserBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+    
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Club\UserBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Remove exchange_comments
+     *
+     * @param Club\ExchangeBundle\Entity\ExchangeComment $exchangeComments
+     */
+    public function removeExchangeComment(\Club\ExchangeBundle\Entity\ExchangeComment $exchangeComments)
+    {
+        $this->exchange_comments->removeElement($exchangeComments);
     }
 }

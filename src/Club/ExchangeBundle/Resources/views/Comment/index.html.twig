@@ -12,6 +12,11 @@
       <td>{{ exchange.playtime|club_datetime }} ({{ exchange.playtime|club_ago }})</td>
     </tr>
     <tr>
+      <th>{% trans %}Location{% endtrans %}</th>
+      <td>{{ exchange.location.locationName }}</td>
+    </tr>
+
+    <tr>
       <th>{% trans %}User{% endtrans %}</th>
       <td>{{ exchange.user.name }}</td>
     </tr>
