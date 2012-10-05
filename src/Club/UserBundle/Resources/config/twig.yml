@@ -1,0 +1,6 @@
+services:
+    club_user_twig_version:
+        class: Club\UserBundle\Twig\VersionExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
