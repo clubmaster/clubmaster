@@ -1,4 +1,3 @@
-{% if is_granted('ROLE_MEMBER_ADMIN') %}
 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search" class="navbar-search pull-right form-search">
     <div class="input-prepend">
         <button type="submit" class="btn">{% trans %}Search{% endtrans %}</button>
@@ -6,4 +5,3 @@
     </div>
     {{ form_rest(form) }}
 </form>
-{% endif %}
