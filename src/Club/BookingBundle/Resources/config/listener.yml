@@ -10,7 +10,7 @@ services:
     class: Club\BookingBundle\Listener\DashboardListener
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView, priority: 50 }
+      - { name: kernel.event_listener, event: dashboard.coming, method: onDashboardComing, priority: 50 }
       - { name: kernel.event_listener, event: member.view, method: onMemberView }
   club.booking.listener.checkin:
     class: Club\BookingBundle\Listener\Checkin

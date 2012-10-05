@@ -47,8 +47,7 @@ class MemberController extends Controller
    */
   public function showAction(\Club\UserBundle\Entity\User $user)
   {
-    $event = new \Club\UserBundle\Event\FilterActivityEvent();
-    $event->setUser($user);
+    $event = new \Club\UserBundle\Event\FilterActivityEvent($this->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onMemberView, $event);
 
     return array(

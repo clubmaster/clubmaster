@@ -9,6 +9,11 @@ class FilterActivityEvent extends Event
     protected $activities = array();
     protected $user;
 
+    public function __construct(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
     public function appendActivities($activity, $key)
     {
         if (isset($this->activities[$key])) {

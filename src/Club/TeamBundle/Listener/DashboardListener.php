@@ -21,10 +21,23 @@ class DashboardListener
   {
     if (!$this->container->getParameter('club_team.public_user_activity')) return;
 
-    $user = $event->getUser();
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getLatest($event->getUser());
+    $this->process($event, $schedules);
+  }
 
-    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getLatest($user);
+  public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
+  {
+    $start = new \DateTime();
+    $end = clone $start;
+    $end->add(new \DateInterval('P1M'));
 
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $event->getUser());
+
+    $this->process($event, $schedules);
+  }
+
+  private function process($event, $schedules)
+  {
     foreach ($schedules as $s) {
 
         $activity = array(
@@ -37,22 +50,5 @@ class DashboardListener
 
         $event->appendActivities($activity, $s->getFirstDate()->format('U'));
     }
-  }
-
-  public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
-  {
-    $output = $event->getOutput();
-
-    $start = new \DateTime();
-    $end = clone $start;
-    $end->add(new \DateInterval('P1M'));
-
-    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $event->getUser());
-
-    $output .= $this->templating->render('ClubTeamBundle:Dashboard:team_table.html.twig', array(
-      'schedules' => $schedules
-    ));
-
-    $event->setOutput($output);
   }
 }

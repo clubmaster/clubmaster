@@ -14,12 +14,15 @@ class DashboardController extends Controller
    */
   public function indexAction()
   {
-    $event = new \Club\UserBundle\Event\FilterOutputEvent();
-    $event->setUser($this->getUser());
+    $event = new \Club\UserBundle\Event\FilterOutputEvent($this->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onDashboardView, $event);
 
+    $event2 = new \Club\UserBundle\Event\FilterActivityEvent($this->getUser());
+    $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onDashboardComing, $event2);
+
     return array(
-      'output' => $event->getOutput()
+      'output' => $event->getOutput(),
+      'activities' => $event2->getActivities()
     );
   }
 }

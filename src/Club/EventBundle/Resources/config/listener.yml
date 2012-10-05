@@ -10,4 +10,4 @@ services:
     class: Club\EventBundle\Listener\DashboardListener
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
+      - { name: kernel.event_listener, event: dashboard.coming, method: onDashboardComing }

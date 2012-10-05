@@ -10,3 +10,4 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: member.view, method: onMemberView }
+      - { name: kernel.event_listener, event: dashboard.coming, method: onDashboardComing }

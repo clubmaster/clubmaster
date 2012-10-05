@@ -10,6 +10,11 @@ class FilterOutputEvent extends Event
     protected $output = '';
     protected $user;
 
+    public function __construct(\Club\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
     public function appendActivities($activity, $key)
     {
         if (isset($this->activities[$key])) {
@@ -29,11 +34,6 @@ class FilterOutputEvent extends Event
     {
         krsort($this->activities);
         return $this->activities;
-    }
-
-    public function setUser($user)
-    {
-        $this->user = $user;
     }
 
     public function getUser()

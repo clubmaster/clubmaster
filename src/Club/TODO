@@ -3,11 +3,7 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-add activity log to dashboard, all coming:
-    - events
-    - bookings
-    - teams
-    - exchange
+correct sorting in coming and old activities events
 translation checkout the entire system
 ---
 might be able to use <dl class="dl-horizontal"> in some lists

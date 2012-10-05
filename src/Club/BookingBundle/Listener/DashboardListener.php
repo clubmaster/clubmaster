@@ -31,31 +31,29 @@ class DashboardListener
     if (!$s && !$this->container->getParameter('club_booking.public_user_activity')) return;
 
     $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getLatest($user);
+    $this->process($event, $bookings);
+  }
 
+  public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
+  {
+    $start = new \DateTime();
+    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllFutureBookings($event->getUser(), $start);
+
+    $this->process($event, $bookings);
+  }
+
+  private function process($event, $bookings)
+  {
     foreach ($bookings as $b) {
         $activity = array(
             'date' => $b->getFirstDate(),
             'type' => 'bundles/clublayout/images/icons/16x16/time.png',
             'message' => $this->templating->render('ClubBookingBundle:Dashboard:booking_message.html.twig', array(
                 'booking' => $b,
-                'user' => $user
+                'user' => $event->getUser()
             ))
         );
         $event->appendActivities($activity, $b->getFirstDate()->format('U'));
     }
-  }
-
-  public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
-  {
-    $output = $event->getOutput();
-
-    $start = new \DateTime();
-
-    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllFutureBookings($event->getUser(), $start);
-    $output .= $this->templating->render('ClubBookingBundle:Dashboard:booking_table.html.twig', array(
-      'bookings' => $bookings
-    ));
-
-    $event->setOutput($output);
   }
 }

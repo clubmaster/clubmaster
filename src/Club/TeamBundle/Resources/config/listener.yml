@@ -25,7 +25,7 @@ services:
     class: Club\TeamBundle\Listener\DashboardListener
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: dashboard.view, method: onDashboardView }
+      - { name: kernel.event_listener, event: dashboard.coming, method: onDashboardComing }
       - { name: kernel.event_listener, event: member.view, method: onMemberView }
   club.team.listener.checkin:
     class: Club\TeamBundle\Listener\Checkin

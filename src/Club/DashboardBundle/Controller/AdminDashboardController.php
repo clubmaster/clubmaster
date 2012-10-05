@@ -19,7 +19,7 @@ class AdminDashboardController extends Controller
   {
     $em = $this->getDoctrine();
 
-    $event = new \Club\UserBundle\Event\FilterOutputEvent();
+    $event = new \Club\UserBundle\Event\FilterOutputEvent($this->getUser());
     $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onAdminDashboardView, $event);
 
     return array(
