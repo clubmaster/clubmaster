@@ -19,8 +19,18 @@ class MenuListener
   {
     if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
       $menu[0] = array(
-        'name' => $this->translator->trans('Dashboard'),
-        'route' => $this->router->generate('club_dashboard_dashboard_index')
+        'header' => $this->translator->trans('Dashboard'),
+        'route' => $this->router->generate('club_dashboard_dashboard_index'),
+        'items' => array(
+            array(
+                'name' => $this->translator->trans('Dashboard'),
+                'route' => $this->router->generate('club_dashboard_dashboard_index')
+            ),
+            array(
+                'name' => $this->translator->trans('Blog'),
+                'route' => $this->router->generate('club_welcome_blog_index')
+            )
+        )
       );
       $event->appendMenu($menu);
     }
