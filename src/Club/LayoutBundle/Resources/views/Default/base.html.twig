@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset=utf-8" />
-    <title>{% block title %}{% render "ClubLayoutBundle:Misc:Title" %}{% endblock %}</title>
+    <title>{% block title %}{{ club_title }}{% endblock %}</title>
     <meta name="description" content="ClubMaster is an open source management tool">
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +72,7 @@
 
             {% render "ClubLayoutBundle:Misc:Search" %}
 
-            {% block header %}<div class="page-header"><h1>ClubMaster</h1></div>{% endblock %}
+            {% block header %}<div class="page-header"><h1>{{ club_title }}</h1></div>{% endblock %}
             {% block pagenav %}{% endblock %}
 
             {% if is_granted('ROLE_ADMIN') %}

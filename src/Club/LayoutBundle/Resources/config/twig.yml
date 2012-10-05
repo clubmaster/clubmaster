@@ -9,3 +9,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: twig.extension }
+  club_layout_twig_application_extension:
+    class: Club\LayoutBundle\Twig\ApplicationExtension
+    arguments: [@service_container]
+    tags:
+      - { name: twig.extension }

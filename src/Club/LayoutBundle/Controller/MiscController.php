@@ -55,10 +55,4 @@ class MiscController extends Controller
             'logo_title' => $this->container->getParameter('club_layout.logo_title'),
         ));
     }
-
-    public function titleAction()
-    {
-        return new Response($this->container->getParameter('club_layout.title'));
-    }
-
 }
