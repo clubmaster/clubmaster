@@ -5,7 +5,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_request_comment_new', {'id':request.id}) }}">{% trans %}Create comment{% endtrans %}</a></li>
+            <li><a href="{{ path('club_exchange_comment_new', {'id':request.id}) }}">{% trans %}Create comment{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
@@ -17,7 +17,7 @@
   <tbody>
     <tr>
       <th>{% trans %}Play time{% endtrans %}</th>
-      <td>{{ request.playtime|club_datetime }}</td>
+      <td>{{ request.playtime|club_datetime }} ({{ request.playtime|club_ago }})</td>
     </tr>
     <tr>
       <th>{% trans %}User{% endtrans %}</th>

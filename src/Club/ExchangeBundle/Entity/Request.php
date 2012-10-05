@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Club\ExchangeBundle\Entity\Request
  *
- * @ORM\Table(name="club_request_request")
+ * @ORM\Table(name="club_exchange_request")
  * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\RequestRepository")
  * @ORM\HasLifecycleCallbacks()
  */

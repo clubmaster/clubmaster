@@ -14,7 +14,11 @@ class Request extends AbstractType
       'date_widget' => 'single_text',
       'time_widget' => 'single_text',
     ));
-    $builder->add('message');
+    $builder->add('message', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

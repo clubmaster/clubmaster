@@ -30,8 +30,8 @@ services:
     tags:
       - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
       - { name: kernel.event_listener, event: booking.cancel, method: onBookingCancel }
-  club.mailbundle.listener.request:
-    class: Club\MailBundle\Listener\RequestComment
+  club.mailbundle.listener.exchange:
+    class: Club\MailBundle\Listener\ExchangeComment
     arguments: [@service_container]
     tags:
-      - { name: kernel.event_listener, event: request.comment.new, method: onRequestCommentNew }
+      - { name: kernel.event_listener, event: exchange.comment.new, method: onExchangeCommentNew }

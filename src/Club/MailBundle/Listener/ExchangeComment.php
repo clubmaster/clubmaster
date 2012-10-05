@@ -2,7 +2,7 @@
 
 namespace Club\MailBundle\Listener;
 
-class RequestComment
+class ExchangeComment
 {
   protected $container;
   protected $em;
@@ -19,7 +19,7 @@ class RequestComment
     $this->clubmaster_mailer = $container->get('clubmaster_mailer');
   }
 
-  public function onRequestCommentNew(\Club\RequestBundle\Event\FilterRequestCommentEvent $event)
+  public function onExchangeCommentNew(\Club\ExchangeBundle\Event\FilterExchangeCommentEvent $event)
   {
     $comment = $event->getRequestComment();
     $email = $comment->getUser()->getProfile()->getProfileEmail();
@@ -27,10 +27,10 @@ class RequestComment
     if ($email) {
       $this->clubmaster_mailer
         ->init()
-        ->setSubject('Player market comment')
+        ->setSubject('Exchange comment')
         ->setFrom()
         ->setTo($email->getEmailAddress())
-        ->setBody($this->templating->render('ClubMailBundle:Template:request_comment.html.twig',array(
+        ->setBody($this->templating->render('ClubMailBundle:Template:exchange_comment.html.twig',array(
           'comment' => $comment
         )))
         ->send();

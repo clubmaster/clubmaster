@@ -18,8 +18,8 @@ class MenuListener
     public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
         $menu[22] = array(
-            'name' => $this->translator->trans('Market'),
-            'route' => $this->router->generate('club_exchange_playermarket_index')
+            'name' => $this->translator->trans('Exchange'),
+            'route' => $this->router->generate('club_exchange_exchange_index')
         );
 
         $event->appendMenu($menu);
@@ -30,8 +30,8 @@ class MenuListener
         $menu = array();
 
         $menu[17] = array(
-            'name' => $this->translator->trans('Market'),
-            'route' => $this->router->generate('club_exchange_playermarket_index'),
+            'name' => $this->translator->trans('Exchange'),
+            'route' => $this->router->generate('club_exchange_exchange_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/connect.png',
             'text' => 'Gå på opdagelse i spiller markedet, har kan du finde andre spillere som leder efter en makker som gerne vil ned at spille.'
         );

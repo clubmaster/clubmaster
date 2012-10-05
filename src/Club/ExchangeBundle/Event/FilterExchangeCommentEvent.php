@@ -4,7 +4,7 @@ namespace Club\ExchangeBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class FilterRequestCommentEvent extends Event
+class FilterExchangeCommentEvent extends Event
 {
   protected $request_comment;
 

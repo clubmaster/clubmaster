@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/playermarket/comment")
+ * @Route("/exchange/comment")
  */
 class CommentController extends Controller
 {
@@ -31,12 +31,12 @@ class CommentController extends Controller
         $em->persist($comment);
         $em->flush();
 
-        $event = new \Club\ExchangeBundle\Event\FilterRequestCommentEvent($comment);
-        $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onRequestCommentNew, $event);
+        $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment);
+        $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+        return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
       }
     }
 

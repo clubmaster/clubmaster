@@ -7,9 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/playermarket")
+ * @Route("/exchange")
  */
-class PlayerMarketController extends Controller
+class ExchangeController extends Controller
 {
   /**
    * @Route("")
@@ -43,7 +43,7 @@ class PlayerMarketController extends Controller
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+        return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
       }
     }
 
@@ -73,7 +73,7 @@ class PlayerMarketController extends Controller
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+        return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
       }
     }
 
@@ -96,6 +96,6 @@ class PlayerMarketController extends Controller
 
     $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-    return $this->redirect($this->generateUrl('club_request_playermarket_index'));
+    return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
   }
 }

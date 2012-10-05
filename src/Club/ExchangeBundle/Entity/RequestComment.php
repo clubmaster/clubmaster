@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Club\ExchangeBundle\Entity\RequestComment
  *
- * @ORM\Table(name="club_request_request_comment")
+ * @ORM\Table(name="club_exchange_request_comment")
  * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\RequestCommentRepository")
  * @ORM\HasLifeCycleCallbacks()
  */
