@@ -6,4 +6,8 @@
 {% set opponent = booking.user.name %}
 {% endif %}
 
+{% if booking.firstDate > date() %}
+{% trans with {'%user%':opponent} %}Is going to play with %user%{% endtrans %}
+{% else %}
 {% trans with {'%user%':opponent} %}Was playing with %user%{% endtrans %}
+{% endif %}

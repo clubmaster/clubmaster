@@ -1,1 +1,5 @@
+{% if schedule.firstDate > date() %}
+{% trans with {'%team%':schedule.teamCategory.teamName} %}Is attending %team%{% endtrans %}
+{% else %}
 {% trans with {'%team%':schedule.teamCategory.teamName} %}Was attending %team%{% endtrans %}
+{% endif %}

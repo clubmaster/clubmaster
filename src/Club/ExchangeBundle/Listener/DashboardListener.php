@@ -27,24 +27,7 @@ class DashboardListener
             10
         );
 
-        $this->process($event, $exchanges);
-    }
-
-    public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
-    {
-        $exchanges = $this->em->getRepository('ClubExchangeBundle:Exchange')->findBy(
-            array(),
-            array('id' => 'DESC'),
-            10
-        );
-
-        $this->process($event, $exchanges);
-    }
-
-    private function process($event, $exchanges)
-    {
         foreach ($exchanges as $e) {
-
             $activity = array(
                 'date' => $e->getCreatedAt(),
                 'type' => 'bundles/clublayout/images/icons/16x16/connect.png',
@@ -55,6 +38,24 @@ class DashboardListener
             );
 
             $event->appendActivities($activity, $e->getCreatedAt()->format('U'));
+        }
+    }
+
+    public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
+    {
+        $exchanges = $this->em->getRepository('ClubExchangeBundle:Exchange')->getComing();
+
+        foreach ($exchanges as $e) {
+            $activity = array(
+                'date' => $e->getPlayTime(),
+                'type' => 'bundles/clublayout/images/icons/16x16/connect.png',
+                'message' => $this->templating->render('ClubExchangeBundle:Dashboard:exchange_message.html.twig', array(
+                    'exchange' => $e
+                )),
+                'link' => $this->router->generate('club_exchange_comment_index', array('id' => $e->getId()))
+            );
+
+            $event->appendActivities($activity, $e->getPlayTime()->format('U'));
         }
     }
 }
