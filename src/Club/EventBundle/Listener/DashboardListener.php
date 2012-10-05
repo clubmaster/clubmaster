@@ -20,9 +20,7 @@ class DashboardListener
   public function onDashboardView(\Club\UserBundle\Event\FilterOutputEvent $event)
   {
     $output = $event->getOutput();
-
     $start = new \DateTime();
-
     $events = $this->em->getRepository('ClubEventBundle:Event')->getComing();
 
     if (!count($events)) return;

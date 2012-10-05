@@ -51,7 +51,7 @@ class DashboardListener
 
     $start = new \DateTime();
 
-    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllFutureBookings($this->security_context->getToken()->getUser(), $start);
+    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllFutureBookings($event->getUser(), $start);
     $output .= $this->templating->render('ClubBookingBundle:Dashboard:booking_table.html.twig', array(
       'bookings' => $bookings
     ));

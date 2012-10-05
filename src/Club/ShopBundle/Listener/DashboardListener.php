@@ -11,7 +11,7 @@ class DashboardListener
   public function __construct($em, $security_context, $templating)
   {
     $this->em = $em;
-    $this->security_context = $security_context;
+    $this->securty_context = $security_context;
     $this->templating = $templating;
   }
 
@@ -19,12 +19,12 @@ class DashboardListener
   {
     $output = $event->getOutput();
 
-    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->security_context->getToken()->getUser());
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($event->getUser());
     $output .= $this->templating->render('ClubShopBundle:Dashboard:subscription_table.html.twig', array(
       'subscriptions' => $subs
     ));
 
-    $orders = $this->em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$this->security_context->getToken()->getUser());
+    $orders = $this->em->getRepository('ClubShopBundle:Order')->getOpenOrders(10,$event->getUser());
     if (count($orders) > 0) {
         $output .= $this->templating->render('ClubShopBundle:Dashboard:order_table.html.twig', array(
             'orders' => $orders

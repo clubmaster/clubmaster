@@ -47,7 +47,7 @@ class DashboardListener
     $end = clone $start;
     $end->add(new \DateInterval('P1M'));
 
-    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $this->security_context->getToken()->getUser());
+    $schedules = $this->em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, $event->getUser());
 
     $output .= $this->templating->render('ClubTeamBundle:Dashboard:team_table.html.twig', array(
       'schedules' => $schedules
