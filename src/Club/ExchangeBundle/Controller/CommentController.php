@@ -53,7 +53,7 @@ class CommentController extends Controller
                 $em->persist($comment);
                 $em->flush();
 
-                $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment);
+                $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment, $this->getUser());
                 $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
 
                 $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));

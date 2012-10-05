@@ -1,12 +1,12 @@
-Dear {{ comment.exchange.user.profile.name }},
+Dear {name},
 
-You have a request in exchange at {{ comment.exchange.playTime|club_datetime }}.
+{{ comment.user.name }} has just added a comment to a exchange you are active in {{ comment.exchange.playTime|club_datetime }}.
 
-{{ comment.user.name }} has just responded to your request with:
-
+Comment:
 {{ comment.comment }}
 
-Please enter ClubMaster and answer the request.
+View the exchange here:
+{{ url('club_exchange_comment_index', {'id': comment.exchange.id}) }}
 
 Best regards,
 ClubMaster

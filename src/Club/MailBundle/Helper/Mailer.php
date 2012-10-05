@@ -7,6 +7,7 @@ class Mailer
     protected $em;
     protected $mailer;
     protected $container;
+    protected $logger;
     protected $message;
 
     public function __construct($container)
@@ -14,6 +15,7 @@ class Mailer
         $this->container = $container;
         $this->em = $container->get('doctrine.orm.entity_manager');
         $this->mailer = $container->get('mailer');
+        $this->logger = $container->get('logger');
 
         $this->init();
     }
@@ -70,7 +72,7 @@ class Mailer
         try {
             $this->message->setTo($to);
         } catch (\Exception $e) {
-            // we tried to set an invalid email address
+            $this->logger->err('Error! '.$e->getMessage());
         }
 
         return $this;
@@ -98,7 +100,7 @@ class Mailer
         try {
             $this->mailer->send($this->message);
         } catch (\Exception $e) {
-            // some error has occur, the email is not valid
+            $this->logger->err('Error! '.$e->getMessage());
         }
     }
 }

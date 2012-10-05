@@ -12,15 +12,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class ExchangeRepository extends EntityRepository
 {
-  public function getComing()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('r')
-      ->from('ClubExchangeBundle:Exchange', 'r')
-      ->where('r.play_time > :date')
-      ->orderBy('r.play_time')
-      ->setParameter('date', new \DateTime())
-      ->getQuery()
-      ->getResult();
-  }
+    public function getComing()
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('r')
+            ->from('ClubExchangeBundle:Exchange', 'r')
+            ->where('r.play_time > :date')
+            ->orderBy('r.play_time')
+            ->setParameter('date', new \DateTime())
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getUsers(\Club\ExchangeBundle\Entity\Exchange $exchange)
+    {
+        $users = array(
+            $exchange->getUser()->getId() => $exchange->getUser()
+        );
+
+        foreach ($exchange->getExchangeComments() as $comment) {
+            $users[$comment->getUser()->getId()] = $comment->getUser();
+        }
+
+        return $users;
+    }
 }

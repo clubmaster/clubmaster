@@ -3,6 +3,12 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
+add activity log to dashboard, all coming:
+    - events
+    - bookings
+    - teams
+    - exchange
+
 support for multiple locations?
 rethink the idea about the market, name could be exchange
 dont show that many minutes in booking interval
