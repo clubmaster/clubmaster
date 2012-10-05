@@ -51,13 +51,15 @@
     {% endblock %}
 
     <div class="container-fluid">
+
+      {% render "ClubLayoutBundle:Misc:Search" %}
+
       <div class="row-fluid">
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') or app.user.hasAdminPrivilege %}
         <div class="span3">
             {% block leftmenu %}
             {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
-            {% render "ClubLayoutBundle:Misc:Search" %}
             {% render "ClubMenuBundle:Default:leftMenu" %}
             {% endblock %}
         </div><!--/span-->

@@ -18,7 +18,9 @@
 
             {% endif %}
 
+            {% if not loop.last %}
             <li class="divider"></li>
+            {% endif %}
         {% endfor %}
 
     </ul>
