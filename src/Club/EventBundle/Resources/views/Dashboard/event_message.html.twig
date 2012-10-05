@@ -1,1 +1,5 @@
+{% if event.startDate > date() %}
 {% trans with {'%title%':event.eventName} %}Event is coming: %title%{% endtrans %}
+{% else %}
+{% trans with {'%title%':event.eventName} %}Attended event: %title%{% endtrans %}
+{% endif %}

@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class AttendRepository extends EntityRepository
 {
+    public function getAttended(\Club\UserBundle\Entity\User $user, $limit = 10)
+    {
+        $r = $this->createQueryBuilder('a')
+            ->select('a, e')
+            ->join('a.event', 'e')
+            ->where('a.user = :user')
+            ->andWhere('e.start_date < :date')
+            ->orderBy('e.start_date', 'DESC')
+            ->setMaxResults($limit)
+            ->setParameter('user', $user->getId())
+            ->setParameter('date', new \DateTime())
+            ->getQuery()
+            ->getResult();
+
+        $events = array();
+        foreach ($r as $attend) {
+            $events[] = $attend->getEvent();
+        }
+
+        return $events;
+    }
 }

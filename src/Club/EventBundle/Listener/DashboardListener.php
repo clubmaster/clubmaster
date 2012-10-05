@@ -19,13 +19,20 @@ class DashboardListener
         $this->router = $container->get('router');
     }
 
+    public function onMemberView(\Club\UserBundle\Event\FilterActivityEvent $event)
+    {
+        $events = $this->em->getRepository('ClubEventBundle:Attend')->getAttended($event->getUser());
+        $this->process($event, $events);
+    }
+
     public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
     {
-        $start = new \DateTime();
         $events = $this->em->getRepository('ClubEventBundle:Event')->getComing();
+        $this->process($event, $events);
+    }
 
-        if (!count($events)) return;
-
+    private function process($event, $events)
+    {
         foreach ($events as $e) {
             $activity = array(
                 'date' => $e->getStartDate(),
