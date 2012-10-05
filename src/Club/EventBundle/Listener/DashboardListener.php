@@ -8,6 +8,7 @@ class DashboardListener
     private $em;
     private $security_context;
     private $templating;
+    private $router;
 
     public function __construct($container)
     {
@@ -15,6 +16,7 @@ class DashboardListener
         $this->em = $container->get('doctrine.orm.entity_manager');
         $this->security_context = $container->get('security.context');
         $this->templating = $container->get('templating');
+        $this->router = $container->get('router');
     }
 
     public function onDashboardComing(\Club\UserBundle\Event\FilterActivityEvent $event)
@@ -28,6 +30,7 @@ class DashboardListener
             $activity = array(
                 'date' => $e->getStartDate(),
                 'type' => 'bundles/clublayout/images/icons/16x16/calendar.png',
+                'link' => $this->router->generate('event_event_show', array( 'id' => $e->getId() )),
                 'message' => $this->templating->render('ClubEventBundle:Dashboard:event_message.html.twig', array(
                     'event' => $e
                 ))
