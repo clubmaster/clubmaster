@@ -11,49 +11,59 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class CommentController extends Controller
 {
-  /**
-   * @Route("/new/{id}")
-   * @Template()
-   */
-  public function newAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
-  {
-    $comment = new \Club\ExchangeBundle\Entity\ExchangeComment();
-    $comment->setUser($this->getUser());
-    $comment->setExchange($exchange);
+    /**
+     * @Route("/new/{id}")
+     * @Template()
+     */
+    public function newAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
+    {
+        $comment = new \Club\ExchangeBundle\Entity\ExchangeComment();
+        $comment->setUser($this->getUser());
+        $comment->setExchange($exchange);
 
-    $form = $this->createForm(new \Club\ExchangeBundle\Form\ExchangeComment(), $comment);
+        $form = $this->createForm(new \Club\ExchangeBundle\Form\ExchangeComment(), $comment);
 
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-      if ($form->isValid()) {
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($comment);
-        $em->flush();
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($comment);
+                $em->flush();
 
-        $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment);
-        $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
+                $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment);
+                $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
 
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
-      }
+                return $this->redirect($this->generateUrl('club_exchange_comment_index', array(
+                    'id' => $exchange->getId()
+                )));
+            }
+        }
+
+        return array(
+            'exchange' => $exchange,
+            'form' => $form->createView()
+        );
     }
 
-    return array(
-      'exchange' => $exchange,
-      'form' => $form->createView()
-    );
-  }
+    /**
+     * @Route("/{id}")
+     * @Template()
+     */
+    public function indexAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
-  /**
-   * @Route("/{id}")
-   * @Template()
-   */
-  public function indexAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
-  {
-    return array(
-      'exchange' => $exchange,
-    );
-  }
+        $comments = $em->getRepository('ClubExchangeBundle:ExchangeComment')->findBy(
+            array('exchange' => $exchange->getId()),
+            array('id' => 'DESC')
+        );
+
+        return array(
+            'exchange' => $exchange,
+            'comments' => $comments
+        );
+    }
 }

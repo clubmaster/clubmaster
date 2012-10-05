@@ -31,7 +31,7 @@
   <tbody>
   {% for item in market %}
     <tr>
-      <td>{{ item.playtime|club_ago }}</td>
+      <td><a href="{{ path('club_exchange_comment_index', {'id':item.id}) }}">{{ item.playtime|club_datetime }} ({{ item.playtime|club_ago }})</a></td>
       <td>{{ item.user.name }}</td>
       <td>{{ item.exchangeComments|length }}</td>
       <td>
