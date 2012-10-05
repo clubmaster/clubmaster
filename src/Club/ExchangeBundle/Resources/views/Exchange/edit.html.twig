@@ -1,7 +1,9 @@
 {% extends "ClubExchangeBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubExchangeBundle:Exchange:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
-
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_exchange_exchange_edit', {'id':exchange.id})} %}
-
 {% endblock %}
