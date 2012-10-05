@@ -18,7 +18,7 @@ class LocationController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $locations = $em->getRepository('ClubUserBundle:Location')->findAll();
+    $locations = $em->getRepository('ClubUserBundle:Location')->getRoots();
 
     return array(
       'locations' => $locations

@@ -1,11 +1,23 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
-<h2>{% trans %}Locations{% endtrans %}</h2>
+{% block header %}<div class="page-header"><h1>Location</h1></div>{% endblock %}
 
+{% block body %}
 <p>{% trans %}If you want to change your current location, just click on the location you want to go to.{% endtrans %}</p>
+
+<ul>
 {% for location in locations %}
-  <p><a href="{{ path('club_user_location_switch', {'id':location.id}) }}">{{ location.locationName }}</a></p>
+    <li><a href="{{ path('club_user_location_switch', {'id':location.id}) }}">{{ location.locationName }}</a>
+
+    {% if location.childs|length > 0 %}
+        <ul>
+        {% for l1 in location.childs %}
+            <li><a href="{{ path('club_user_location_switch', {'id':l1.id}) }}">{{ l1.locationName }}</a>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </li>
 {% endfor %}
+</ul>
 
 {% endblock %}

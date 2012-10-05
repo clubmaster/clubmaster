@@ -14,9 +14,7 @@ class LocationRepository extends EntityRepository
 {
   public function getByIds($ids)
   {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
+    return $this->createQueryBuilder('l')
       ->where('l.id IN (:ids)')
       ->setParameter('ids',$ids)
       ->getQuery()
@@ -25,9 +23,7 @@ class LocationRepository extends EntityRepository
 
   public function findClubs()
   {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
+    return $this->createQueryBuilder('l')
       ->where('l.club = 1')
       ->getQuery()
       ->getResult();
@@ -35,9 +31,7 @@ class LocationRepository extends EntityRepository
 
   public function getFirstLocation()
   {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
+    return $this->createQueryBuilder('l')
       ->orderBy('l.id', 'ASC')
       ->setMaxResults(1)
       ->getQuery()
@@ -46,13 +40,10 @@ class LocationRepository extends EntityRepository
 
   public function getRoots()
   {
-    return $this->_em->createQueryBuilder()
-      ->select('l')
-      ->from('ClubUserBundle:Location','l')
+    return $this->createQueryBuilder('l')
       ->where('l.location IS NULL')
       ->orderBy('l.id', 'ASC')
       ->getQuery()
       ->getResult();
   }
-
 }

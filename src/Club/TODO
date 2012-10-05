@@ -8,7 +8,6 @@ add activity log to dashboard, all coming:
     - bookings
     - teams
     - exchange
-support for multiple locations?
 translation checkout the entire system
 ---
 might be able to use <dl class="dl-horizontal"> in some lists
