@@ -2388,6 +2388,63 @@
         <source>Need to play at least one set.</source>
         <target>Skal spille mindst et sæt.</target>
       </trans-unit>
+      <trans-unit id="636">
+        <source>Settings</source>
+        <target>Indstillinger</target>
+      </trans-unit>
+      <trans-unit id="637">
+        <source>Exchange</source>
+        <target>Børs</target>
+      </trans-unit>
+      <trans-unit id="638">
+        <source>second</source>
+        <target>sekund</target>
+      </trans-unit>
+      <trans-unit id="639">
+        <source>minute</source>
+        <target>minut</target>
+      </trans-unit>
+      <trans-unit id="640">
+        <source>hour</source>
+        <target>time</target>
+      </trans-unit>
+      <trans-unit id="641">
+        <source>day</source>
+        <target>dag</target>
+      </trans-unit>
+      <trans-unit id="642">
+        <source>week</source>
+        <target>uge</target>
+      </trans-unit>
+      <trans-unit id="643">
+        <source>month</source>
+        <target>måned</target>
+      </trans-unit>
+      <trans-unit id="644">
+        <source>year</source>
+        <target>år</target>
+      </trans-unit>
+      <trans-unit id="645">
+        <source>decade</source>
+        <target>årti</target>
+      </trans-unit>
+      <trans-unit id="646">
+        <source>Bad date</source>
+        <target>Forkert dato</target>
+      </trans-unit>
+      <trans-unit id="647">
+        <source>ago</source>
+        <target>siden</target>
+      </trans-unit>
+      <trans-unit id="648">
+        <source>from now</source>
+        <target>fra nu</target>
+      </trans-unit>
+      <trans-unit id="649">
+        <source>No date provided</source>
+        <target>Ingen dato modtaget</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

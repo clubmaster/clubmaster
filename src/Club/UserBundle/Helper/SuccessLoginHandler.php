@@ -24,15 +24,21 @@ class SuccessLoginHandler implements AuthenticationSuccessHandlerInterface
     {
         if ($this->security->isGranted('ROLE_SUPER_ADMIN'))
         {
-            $response = new RedirectResponse($this->router->generate('club_dashboard_admindashboard_index'));
+            $response = new RedirectResponse($this->router->generate('club_dashboard_admindashboard_index',
+                array('_locale' => $request->getLocale())
+            ));
         }
         elseif ($this->security->isGranted('ROLE_ADMIN'))
         {
-            $response = new RedirectResponse($this->router->generate('club_dashboard_admindashboard_index'));
+            $response = new RedirectResponse($this->router->generate('club_dashboard_admindashboard_index',
+                array('_locale' => $request->getLocale())
+            ));
         }
         elseif ($this->security->isGranted('ROLE_USER'))
         {
-            $response = new RedirectResponse($this->router->generate('club_dashboard_dashboard_index'));
+            $response = new RedirectResponse($this->router->generate('club_dashboard_dashboard_index',
+                array('_locale' => $request->getLocale())
+            ));
         }
 
         return $response;
