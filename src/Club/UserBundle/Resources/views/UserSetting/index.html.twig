@@ -1,7 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
+{% include "ClubUserBundle:User:header.html.twig" %}
+{% endblock %}
 
+{% block body %}
 <p>{% trans %}Here you have some different settings that can make your profile more personal.{% endtrans %}</p>
 
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_user_usersetting_index'),'legend':'User settings'|trans} %}
