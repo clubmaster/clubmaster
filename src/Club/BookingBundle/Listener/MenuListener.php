@@ -56,7 +56,7 @@ class MenuListener
             'name' => $this->translator->trans('Booking'),
             'route' => $this->router->generate('club_booking_overview'),
             'image' => 'bundles/clublayout/images/icons/32x32/time.png',
-            'text' => 'Velkommen til booking siden, her kan du finde og reservere dine kommende tider.'
+            'text' => $this->translator->trans('Click here to see the booking overview.')
         );
 
         $event->appendMenu($menu);

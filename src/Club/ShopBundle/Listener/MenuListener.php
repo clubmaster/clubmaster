@@ -83,7 +83,7 @@ class MenuListener
             'name' => $this->translator->trans('Shop'),
             'route' => $this->router->generate('shop'),
             'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
-            'text' => 'Gå op opdagelse i butikken, her finder du alt klubben tilbyder af abonnementer og services.'
+            'text' => $this->translator->trans('Talk a walk in our shop, you will find everything that the club offers of products and services.')
         );
         $event->appendMenu($menu);
     }

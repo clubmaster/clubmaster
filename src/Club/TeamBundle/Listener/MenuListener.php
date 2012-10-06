@@ -54,7 +54,7 @@ class MenuListener
           'name' => $this->translator->trans('Team'),
           'route' => $this->router->generate('club_team_team_index'),
           'image' => 'bundles/clublayout/images/icons/32x32/book.png',
-          'text' => 'Her kan du finde alle vores hold, gå på opdagelse og se hvad vi tilbyder.'
+          'text' => $this->translator->trans('Here you will find all the teams in the club, click and see what we can offer.')
       );
 
       $event->appendMenu($menu);

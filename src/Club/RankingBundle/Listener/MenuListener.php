@@ -59,7 +59,7 @@ class MenuListener
             'name' => $this->translator->trans('Ranking'),
             'route' => $this->router->generate('club_ranking_ranking_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/medal_gold_1.png',
-            'text' => 'Her finder du alle spillede kampe, se hvordan alle medlemmerne spiller mod hinanden, følg sejre og nederlag.'
+            'text' => $this->translator->trans('Here you can find all played matches, go on and see all played matches, see who defeated who.')
         );
 
         $event->appendMenu($menu);

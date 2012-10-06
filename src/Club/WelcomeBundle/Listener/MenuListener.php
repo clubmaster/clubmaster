@@ -44,7 +44,7 @@ class MenuListener
             'name' => $this->translator->trans('Blog'),
             'route' => $this->router->generate('club_welcome_blog_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/transmit.png',
-            'text' => 'Har du en oplysninger som kunne interessere klubmedlemmerne, eller vil du blot følge lidt med klik her.'
+            'text' => $this->translator->trans('Do you have any news that could interest all the other members in the club, feel free to share here.')
         );
 
         $event->appendMenu($menu);

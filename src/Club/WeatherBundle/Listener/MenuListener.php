@@ -23,7 +23,7 @@ class MenuListener
           'name' => $this->translator->trans('Weather'),
           'route' => $this->router->generate('club_weather_weather_index'),
           'image' => 'bundles/clublayout/images/icons/32x32/weather_sun.png',
-          'text' => 'Har du brug for at kontrollere vejret, for at finde det optimale tidspunkt at booke bane?'
+          'text' => $this->translator->trans('If you need to check out the weather forecast to find the best time to play, click here.')
       );
 
       $event->appendMenu($menu);

@@ -33,7 +33,7 @@ class MenuListener
             'name' => $this->translator->trans('Exchange'),
             'route' => $this->router->generate('club_exchange_exchange_index'),
             'image' => 'bundles/clublayout/images/icons/32x32/connect.png',
-            'text' => 'Gå på opdagelse i spiller markedet, har kan du finde andre spillere som leder efter en makker som gerne vil ned at spille.'
+            'text' => $this->translator->trans('Take a look in the exchange market, you can find other players that need a partner.')
         );
 
         $event->appendMenu($menu);

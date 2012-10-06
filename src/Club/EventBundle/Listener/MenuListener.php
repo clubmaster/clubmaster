@@ -51,7 +51,7 @@ class MenuListener
           'name' => $this->translator->trans('Events'),
           'route' => $this->router->generate('event_event'),
           'image' => 'bundles/clublayout/images/icons/32x32/calendar.png',
-          'text' => 'Hvad sker der i klubben, er der nogen grill arrangementer, er der nogen turneringer klik her og følg med.'
+          'text' => $this->translator->trans('What is going on in the club, are the any events? Click here to find out.')
       );
 
       $event->appendMenu($menu);
