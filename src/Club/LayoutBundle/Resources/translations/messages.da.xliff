@@ -2512,6 +2512,42 @@
         <source>Export CSV</source>
         <target>Eksporter CSV</target>
       </trans-unit>
+      <trans-unit id="667">
+          <source>What is going on in the club, are the any events? Click here to find out.</source>
+          <target>Hvad sker der i klubben, er der nogen kommende begivenheder? Klik her for at finde ud af det.</target>
+      </trans-unit>
+      <trans-unit id="668">
+          <source>Here is a list of all members, if you have to contact a specific player, click here.</source>
+          <target>Her er en liste over alle spillere, hvis du skal i kontakt med et bestemt medlem, klik her.</target>
+      </trans-unit>
+      <trans-unit id="669">
+          <source>Here you will find all the teams in the club, click and see what we can offer.</source>
+          <target>Her finder du alle hold i klubben, klik her for at se hvad vi kan tilbyde.</target>
+      </trans-unit>
+      <trans-unit id="670">
+          <source>Take a look in the exchange market, you can find other players that need a partner.</source>
+          <target>Gå på opdagelse i spiller børsen, her kan du finde andre spillere som mangler en makker.</target>
+      </trans-unit>
+      <trans-unit id="671">
+          <source>If you need to check out the weather forecast to find the best time to play, click here.</source>
+          <target>Hvis du skal se vejrudsigten for at finde det bedste tidspunkt at spille, klik her.</target>
+      </trans-unit>
+      <trans-unit id="672">
+          <source>Click here to see the booking overview.</source>
+          <target>Klik her for at komme til bookingsoversigten.</target>
+      </trans-unit>
+      <trans-unit id="673">
+          <source>Here you can find all played matches, go on and see all played matches, see who defeated who.</source>
+          <target>Her kan du finde alle spillede kampe, gå indenfor og se hvem der har vundet over hvem.</target>
+      </trans-unit>
+      <trans-unit id="674">
+          <source>Do you have any news that could interest all the other members in the club, feel free to share here.</source>
+          <target>Har du nogen nyheder der kunne være relevante for andre medlemmer, klik her og del dem.</target>
+      </trans-unit>
+      <trans-unit id="675">
+          <source>Talk a walk in our shop, you will find everything that the club offers of products and services.</source>
+          <target>Gå på opdagelse i butikken, her finder du alt hvad klubben tilbyder dig af produkter og ydelser.</target>
+      </trans-unit>
 
     </body>
   </file>
