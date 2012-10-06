@@ -2468,6 +2468,10 @@
         <source>Prev</source>
         <target>Forrige</target>
       </trans-unit>
+      <trans-unit id="656">
+        <source>Oh snap!</source>
+        <target>Åh nej!</target>
+      </trans-unit>
 
     </body>
   </file>

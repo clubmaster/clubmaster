@@ -11,14 +11,14 @@
       <dt>{% trans %}Location{% endtrans %}</dt>
       <dd>{{ exchange.location.locationName }}</dd>
       <dt>{% trans %}User{% endtrans %}</dt>
-      <dd>{{ exchange.user.name }}</dd>
+      <dd><a href="{{ path('club_user_member_show', {'id':exchange.user.id}) }}">{{ exchange.user.name }}</a></dd>
       <dt>{% trans %}Message{% endtrans %}</dt>
       <dd>{{ exchange.message|raw }}</dd>
 </dl>
 
 <h1 class="page-header">{% trans %}Comments{% endtrans %}</h1>
 {% for comment in comments %}
-<h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
+<h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name,'%link%':path('club_user_member_show', {'id':comment.user.id})} %}Posted on %date% by <a href="%link%">%author%</a>.{% endtrans %}</h6>
 <p>{{ comment.comment|raw }}</p>
 {% else %}
 <p>{% trans %}There are no comments for this exchange.{% endtrans %}</p>
