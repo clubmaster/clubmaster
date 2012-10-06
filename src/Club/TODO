@@ -3,6 +3,7 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
+recent activities, seems like the match pick matches from everyone
 translation checkout the entire system
 ---
 add a connected table, to make it quick to see hows connected, will make the activity log much easier and faster
