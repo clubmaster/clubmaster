@@ -31,7 +31,9 @@ class UserSettingController extends Controller
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
         $this->get('clubmaster.user')->updateUserSettings();
 
-        return $this->redirect($this->generateUrl('club_user_usersetting_index'));
+        return $this->redirect($this->generateUrl('club_user_usersetting_index',
+            array('_locale' => $this->getRequest()->getLocale())
+        ));
       }
     }
 
