@@ -14,7 +14,7 @@
             {% if sets > 2 %}{{ form_widget(form.user0set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
             {% if sets > 3 %}{{ form_widget(form.user0set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
             {% if sets > 4 %}{{ form_widget(form.user0set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            <span class="help-block">Info: Insert match result for user.</span>
+            <span class="help-block">{% trans %}Info: Insert match result for first user.{% endtrans %}</span>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
             {% if sets > 2 %}{{ form_widget(form.user1set2, {'attr': {'style':'width: 25px'} }) }}{% endif %}
             {% if sets > 3 %}{{ form_widget(form.user1set3, {'attr': {'style':'width: 25px'} }) }}{% endif %}
             {% if sets > 4 %}{{ form_widget(form.user1set4, {'attr': {'style':'width: 25px'} }) }}{% endif %}
-            <span class="help-block">Info: Insert match result for user.</span>
+            <span class="help-block">{% trans %}Info: Insert match result for second user.{% endtrans %}</span>
         </div>
     </div>
 

@@ -2472,6 +2472,46 @@
         <source>Oh snap!</source>
         <target>Åh nej!</target>
       </trans-unit>
+      <trans-unit id="657">
+        <source>Match Result</source>
+        <target>Kamp Resultat</target>
+      </trans-unit>
+      <trans-unit id="658">
+        <source>This match is just to keep track of your wins and losses, it will not end up on any ranking list.</source>
+        <target>Denne kamp er blot for at holde styr på dine sejre og nederlag, den vil ikke komme på rangliste.</target>
+      </trans-unit>
+      <trans-unit id="659">
+        <source>Info: Insert name of first user.</source>
+        <target>Info: Indsæt navn på første spiller.</target>
+      </trans-unit>
+      <trans-unit id="660">
+        <source>Info: Insert name of second user.</source>
+        <target>Info: Indsæt navn på anden spiller.</target>
+      </trans-unit>
+      <trans-unit id="661">
+        <source>Info: Insert match result for second user.</source>
+        <target>Info: Indsæt kamp resultat på anden spiller.</target>
+      </trans-unit>
+      <trans-unit id="662">
+        <source>Info: Insert match result for first user.</source>
+        <target>Info: Indsæt kamp resultat på første spiller.</target>
+      </trans-unit>
+      <trans-unit id="663">
+        <source>Result</source>
+        <target>Resultat</target>
+      </trans-unit>
+      <trans-unit id="664">
+        <source>Search</source>
+        <target>Søg</target>
+      </trans-unit>
+      <trans-unit id="665">
+        <source>Import users</source>
+        <target>Importer brugere</target>
+      </trans-unit>
+      <trans-unit id="666">
+        <source>Export CSV</source>
+        <target>Eksporter CSV</target>
+      </trans-unit>
 
     </body>
   </file>

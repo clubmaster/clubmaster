@@ -38,7 +38,8 @@ class Group extends AbstractType
     $builder->add('role', 'entity', array(
       'class' => 'ClubUserBundle:Role',
       'multiple' => true,
-      'required' => false
+      'required' => false,
+      'help' => 'Info: The members of this group will get all the roles that you select in this field.'
     ));
   }
 

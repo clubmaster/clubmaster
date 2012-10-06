@@ -243,11 +243,11 @@ class Match
     {
         $form = $this->form_factory->createBuilder('form', $res)
             ->add('user0', 'jquery_autocomplete', array(
-                'help' => 'Info: Insert name of first user.',
+                'help' => $this->translator->trans('Info: Insert name of first user.'),
                 'label' => 'Player'
             ))
             ->add('user1', 'jquery_autocomplete', array(
-                'help' => 'Info: Insert name of second user.',
+                'help' => $this->translator->trans('Info: Insert name of second user.'),
                 'label' => 'Player'
             ));
 
