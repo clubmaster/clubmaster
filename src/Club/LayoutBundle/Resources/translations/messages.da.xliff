@@ -2548,6 +2548,26 @@
           <source>Talk a walk in our shop, you will find everything that the club offers of products and services.</source>
           <target>Gå på opdagelse i butikken, her finder du alt hvad klubben tilbyder dig af produkter og ydelser.</target>
       </trans-unit>
+      <trans-unit id="676">
+          <source>Edit products</source>
+          <target>Rediger produkter</target>
+      </trans-unit>
+      <trans-unit id="677">
+          <source>Pay order</source>
+          <target>Betal ordre</target>
+      </trans-unit>
+      <trans-unit id="678">
+          <source>Deliver order</source>
+          <target>Lever ordre</target>
+      </trans-unit>
+      <trans-unit id="679">
+          <source>Cancel order</source>
+          <target>Annuller ordre</target>
+      </trans-unit>
+      <trans-unit id="680">
+          <source>Whats next</source>
+          <target>Næste hændelser</target>
+      </trans-unit>
 
     </body>
   </file>

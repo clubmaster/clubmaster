@@ -18,7 +18,7 @@
         <td>#2</td>
         <td>{% trans %}The order has not been paid.{% endtrans %}</td>
         {% if order.cancelled == false %}
-        <td><a class="btn" href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">Pay order</a></td>
+        <td><a class="btn" href="{{ path('club_payment_cash_cash_register', {'order_id':order.id}) }}">{% trans %}Pay order{% endtrans %}</a></td>
         {% else %}
         <td>&#160;</td>
         {% endif %}
@@ -36,7 +36,7 @@
         <td>#3</td>
         <td>{% trans %}The order has not been delivered.{% endtrans %}</td>
         {% if order.paid and order.cancelled == false %}
-        <td><a class="btn" href="{{ path('club_shop_adminorder_deliver', {'id':order.id}) }}">Deliver order</a></td>
+        <td><a class="btn" href="{{ path('club_shop_adminorder_deliver', {'id':order.id}) }}">{% trans %}Deliver order{% endtrans %}</a></td>
         {% else %}
         <td>&#160;</td>
         {% endif %}
@@ -53,7 +53,7 @@
     <tr class="warning">
         <td>#4</td>
         <td>{% trans %}The order has not been cancelled.{% endtrans %}</td>
-        <td><a class="btn" href="{{ path('admin_shop_order_delete', {'id':order.id}) }}">Cancel order</a></td>
+        <td><a class="btn" href="{{ path('admin_shop_order_delete', {'id':order.id}) }}">{% trans %}Cancel order{% endtrans %}</a></td>
     </tr>
     {% endif %}
 
