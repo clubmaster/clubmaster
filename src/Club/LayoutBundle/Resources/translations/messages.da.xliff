@@ -2444,6 +2444,22 @@
         <source>No date provided</source>
         <target>Ingen dato modtaget</target>
       </trans-unit>
+      <trans-unit id="650">
+        <source>Well done!</source>
+        <target>God klaret!</target>
+      </trans-unit>
+      <trans-unit id="651">
+        <source>Save changes</source>
+        <target>Gem ændringer</target>
+      </trans-unit>
+      <trans-unit id="652">
+        <source>Dateformat</source>
+        <target>Dato format</target>
+      </trans-unit>
+      <trans-unit id="653">
+        <source>Event Name</source>
+        <target>Begivenhed</target>
+      </trans-unit>
 
     </body>
   </file>

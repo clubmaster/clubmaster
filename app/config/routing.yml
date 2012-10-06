@@ -125,6 +125,14 @@ ClubMatchBundle:
     type:     annotation
     prefix:   /{_locale}/
 
+locapage:
+    pattern: /
+    defaults: { _controller: ClubWelcomeBundle:Welcome:index }
+
+localized:
+    pattern: /{_locale}
+    defaults: { _controller: ClubWelcomeBundle:Welcome:index }
+
 homepage:
     pattern: /
     defaults: { _controller: ClubWelcomeBundle:Welcome:index }

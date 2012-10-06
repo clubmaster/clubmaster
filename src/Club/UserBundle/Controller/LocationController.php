@@ -46,7 +46,7 @@ class LocationController extends Controller
 
     $url = ($this->get('session')->get('switch_location'))
       ? $this->get('session')->get('switch_location')
-      : $this->generateUrl('homepage');
+      : $this->generateUrl('localized', array( '_locale' => $this->getRequest()->getLocale() ));
 
     $this->get('session')->set('switch_location', null);
 
