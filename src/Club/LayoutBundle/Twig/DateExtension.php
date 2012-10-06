@@ -162,16 +162,6 @@ class DateExtension extends \Twig_Extension
         if(empty($date)) {
             return $this->translator->trans("No date provided");
         }
-        $periods = array(
-            $this->translator->trans("second"),
-            $this->translator->trans("minute"),
-            $this->translator->trans("hour"),
-            $this->translator->trans("day"),
-            $this->translator->trans("week"),
-            $this->translator->trans("month"),
-            $this->translator->trans("year"),
-            $this->translator->trans("decade")
-        );
         $lengths = array("60","60","24","7","4.35","12","10");
         $now = time();
         $unix_date = $date->format('U');
@@ -190,12 +180,21 @@ class DateExtension extends \Twig_Extension
         for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
             $difference /= $lengths[$j];
         }
-        $difference = round($difference);
-        if($difference != 1) {
-            $periods[$j].= "s";
-        }
+        $difference = (int) round($difference);
+
+        $periods = array(
+            $this->translator->transChoice("{1}second|]1,Inf]seconds", $difference),
+            $this->translator->transChoice("{1}minute|]1,Inf]minutes", $difference),
+            $this->translator->transChoice("{1}hour|]1,Inf]hours", $difference),
+            $this->translator->transChoice("{1}day|]1,Inf]days", $difference),
+            $this->translator->transChoice("{1}week|]1,Inf]weeks", $difference),
+            $this->translator->transChoice("{1}month|]1,Inf]months", $difference),
+            $this->translator->transChoice("{1}year|]1,Inf]years", $difference),
+            $this->translator->transChoice("{1}decade|]1,Inf]decades", $difference)
+        );
 
         return "$difference $periods[$j] {$tense}";
+
     }
 
     public function getName()

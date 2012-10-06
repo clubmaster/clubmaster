@@ -2397,36 +2397,36 @@
         <target>Børs</target>
       </trans-unit>
       <trans-unit id="638">
-        <source>second</source>
-        <target>sekund</target>
+          <source>{1}second|]1,Inf]seconds</source>
+          <target>{1}sekund|]1,Inf]sekunder</target>
       </trans-unit>
       <trans-unit id="639">
-        <source>minute</source>
-        <target>minut</target>
+          <source>{1}minute|]1,Inf]minutes</source>
+          <target>{1}minut|]1,Inf]minutter</target>
       </trans-unit>
       <trans-unit id="640">
-        <source>hour</source>
-        <target>time</target>
+          <source>{1}hour|]1,Inf]hours</source>
+          <target>{1}time|]1,Inf]timer</target>
       </trans-unit>
       <trans-unit id="641">
-        <source>day</source>
-        <target>dag</target>
+          <source>{1}day|]1,Inf]days</source>
+          <target>{1}dag|]1,Inf]dage</target>
       </trans-unit>
       <trans-unit id="642">
-        <source>week</source>
-        <target>uge</target>
+          <source>{1}week|]1,Inf]weeks</source>
+          <target>{1}uge|]1,Inf]uger</target>
       </trans-unit>
       <trans-unit id="643">
-        <source>month</source>
-        <target>måned</target>
+          <source>{1}month|]1,Inf]months</source>
+          <target>{1}måned|]1,Inf]måneder</target>
       </trans-unit>
       <trans-unit id="644">
-        <source>year</source>
-        <target>år</target>
+          <source>{1}year|]1,Inf]years</source>
+          <target>{1}år|]1,Inf]år</target>
       </trans-unit>
       <trans-unit id="645">
-        <source>decade</source>
-        <target>årti</target>
+          <source>{1}decade|]1,Inf]decades</source>
+          <target>{1}årti|]1,Inf]årtier</target>
       </trans-unit>
       <trans-unit id="646">
         <source>Bad date</source>
@@ -2459,6 +2459,14 @@
       <trans-unit id="653">
         <source>Event Name</source>
         <target>Begivenhed</target>
+      </trans-unit>
+      <trans-unit id="654">
+        <source>Posted on %date% by &lt;a href="%link%"&gt;%author%&lt;/a&gt;.</source>
+        <target>Skrevet den %date% af &lt;a href="%link%"&gt;%author%&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="655">
+        <source>Prev</source>
+        <target>Forrige</target>
       </trans-unit>
 
     </body>
