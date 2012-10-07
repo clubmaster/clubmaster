@@ -2576,6 +2576,14 @@
           <source>New article</source>
           <target>Opret artikel</target>
       </trans-unit>
+      <trans-unit id="683">
+          <source>Back to ranking</source>
+          <target>Tilbage til ranglister</target>
+      </trans-unit>
+      <trans-unit id="684">
+          <source>Create ranking</source>
+          <target>Opret rangliste</target>
+      </trans-unit>
 
     </body>
   </file>
