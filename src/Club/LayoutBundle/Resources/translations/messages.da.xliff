@@ -2568,7 +2568,10 @@
           <source>Whats next</source>
           <target>Næste hændelser</target>
       </trans-unit>
-
+      <trans-unit id="681">
+          <source>Profile</source>
+          <target>Profil</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

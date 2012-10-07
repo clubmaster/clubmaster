@@ -8,13 +8,28 @@
           </a>
           <a class="brand" href="{{ path('localized') }}"><img src="{{ asset('bundles/clublayout/images/logo_top.png') }}" /></a>
           <div class="nav-collapse collapse">
-             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-             <p class="navbar-text pull-right">
-                {% for item in menu_right %}
-                <a href="{{ item.route }}"><span>{{ item.name }}</span></a>
-                {% endfor %}
-             </p>
+             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+             <ul class="nav pull-right">
+                <li><a href="{{ path('club_dashboard_dashboard_index') }}"><img src="{{ asset('bundles/clublayout/images/icons/16x16/user.png') }}" /> {{ app.user.name }}</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('user') }}"><span>{% trans %}Profile{% endtrans %}</span></a></li>
+                        <li><a href="{{ path('club_user_location_index') }}"><span>{% trans %}Location{% endtrans %}</span></a></li>
+                        {% for item in menu_right %}
+                        <li><a href="{{ item.route }}"><span>{{ item.name }}</span></a></li>
+                        {% endfor %}
+                        <li class="divider"></li>
+                        <li><a href="{{ path('club_welcome_blog_index') }}">{% trans %}Blog{% endtrans %}</a></li>
+                        <li><a href="{{ path('logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+
+                    </ul>
+                </li>
+
+             </ul>
              {% endif %}
 
              <ul class="nav">

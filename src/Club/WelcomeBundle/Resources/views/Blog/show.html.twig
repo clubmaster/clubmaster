@@ -32,8 +32,17 @@ Blog: {{ blog.title }}
 <div class="page-header"><h1><img src="{{ asset('bundles/clublayout/images/icons/32x32/transmit.png') }}" /> {% trans with {'%title%':blog.title} %}Blog, %title%{% endtrans %}</h1></div>
 {% endblock %}
 
+{% block pagenav %}
+{% include "ClubWelcomeBundle:Blog:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <h3>{{ blog.title }}</h3>
+<p>{{ blog.message|raw }}</p>
+
+<hr>
+
+<h6>{% trans with {'%date%':blog.createdAt|club_datetime,'%author%':blog.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
 
 <div class="socialButtons">
 {% if google_plus %}
@@ -46,19 +55,6 @@ Blog: {{ blog.title }}
 </div>
 
 <div class="clearfix"></div>
-
-<h6>{% trans with {'%date%':blog.createdAt|club_datetime,'%author%':blog.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
-{% if blog.user == app.user %}
-{% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_blog_edit', {'id':blog.id})} %}
-{% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', {'id':blog.id})} %}
-{% endif %}
-
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-{% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_welcome_blog_comment', {'blog_id':blog.id})} %}
-{% endif %}
-<p>{{ blog.message|raw }}</p>
-
-<hr>
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in blog.comments %}

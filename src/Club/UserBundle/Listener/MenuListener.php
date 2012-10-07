@@ -69,25 +69,8 @@ class MenuListener
     {
         if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
             $menu[4] = array(
-                'header' => $this->translator->trans('Profile'),
-                'items' => array(
-                    array(
-                        'name' => $this->translator->trans('Profile'),
-                        'route' => $this->router->generate('user'),
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Members'),
-                        'route' => $this->router->generate('club_user_member_index')
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Location'),
-                        'route' => $this->router->generate('club_user_location_index')
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Logout'),
-                        'route' => $this->router->generate('logout')
-                    )
-                )
+                'name' => $this->translator->trans('Members'),
+                'route' => $this->router->generate('club_user_member_index')
             );
 
             $event->appendMenu($menu);
