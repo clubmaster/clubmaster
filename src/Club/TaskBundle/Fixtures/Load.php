@@ -27,11 +27,6 @@ class Load
         'method' => 'onGroupTask'
       ),
       array(
-        'name' => 'Cleanup logs',
-        'interval' => 'T1H',
-        'method' => 'onLogTask'
-      ),
-      array(
         'name' => 'Renewal memberships',
         'interval' => 'T1H',
         'method' => 'onAutoRenewalTask'

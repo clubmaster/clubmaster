@@ -2,7 +2,7 @@
 
 namespace Club\LogBundle\Listener;
 
-class CleanupLogListener
+class Cleanup
 {
   protected $em;
 
@@ -11,7 +11,12 @@ class CleanupLogListener
     $this->em = $em;
   }
 
-  public function onLogTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  public function onTaskCleanup(\Club\TaskBundle\Event\FilterTaskEvent $event)
+  {
+      $this->logs();
+  }
+
+  private function logs()
   {
     $res = $this->em->createQueryBuilder()
       ->delete('ClubLogBundle:Log','l')
