@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-04-20
-:Revision:  23
+:Date:      2012-10-07
+:Revision:  24
 
 
 Feedback
@@ -79,13 +79,19 @@ Follow the help provided by github.
 
 Get dependencies
 ~~~~~~~~~~~~~~~~
-To get all dependencies of the project, run the following command:
+ClubMaster uses the composer to get all dependencies, you can read more about that on getcomposer.org.
 
-php bin/vendors install
+Getting the composer enter the following command:
+
+$ curl -s https://getcomposer.org/installer | php
+
+Now you have the composer, install the dependencies:
+
+$ ./composer.phar install
 
 
-Initialize data
-~~~~~~~~~~~~~~~
+Initial test data
+~~~~~~~~~~~~~~~~~
 I have made a shell script to prepare the database schema, and load some test data. Just run the following script and see the onscreen magic :)
 
 ./bin/remake_schema.sh
@@ -113,11 +119,11 @@ Login
 As in the demo project, just log in with:
 
 Administrator user:
-username: 10
+username: 1
 password: 1234
 
 Normal user:
-username: 1
+username: 10
 password: 1234
 
 
