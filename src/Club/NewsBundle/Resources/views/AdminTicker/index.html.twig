@@ -1,8 +1,17 @@
-{% extends "ClubMatchBundle::base.html.twig" %}
+{% extends "ClubNewsBundle::base.html.twig" %}
+
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_news_adminticker_new') }}">{% trans %}Create ticker{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 
 {% block body %}
-<p class="box"><a href="{{ path('club_news_adminticker_new') }}" class="btn-create"><span>{% trans %}Create ticker{% endtrans %}</span></a></p>
-
+<p>{% trans %}All messages here will only appear in the bottom of the kiosk client.{% endtrans %}</p>
 <table class="table">
   <thead>
     <tr>

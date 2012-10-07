@@ -2596,6 +2596,26 @@
           <source>Field administration</source>
           <target>Bane administration</target>
       </trans-unit>
+      <trans-unit id="688">
+          <source>News</source>
+          <target>Nyheder</target>
+      </trans-unit>
+      <trans-unit id="689">
+          <source>News ticker</source>
+          <target>Nyhedsflash</target>
+      </trans-unit>
+      <trans-unit id="690">
+          <source>Create ticker</source>
+          <target>Opret flash</target>
+      </trans-unit>
+      <trans-unit id="691">
+          <source>Ticker</source>
+          <target>Flash</target>
+      </trans-unit>
+      <trans-unit id="692">
+          <source>All messages here will only appear in the bottom of the kiosk client.</source>
+          <target>Alle beskeder her til kun vises på booking skærmen.</target>
+      </trans-unit>
 
     </body>
   </file>
