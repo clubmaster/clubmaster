@@ -6,13 +6,12 @@ when upgrading, set last_subscribe date to start_date
 integrate twitter as well
 merge users
 delete users
-when creating a booking, make sure the field is not taken
 create overall ranking:
     - first win over player 50 xp, second 50/2 xp, third 50/3 xp
     - played match 5 xp
     - lost match -5 xp
 consider to give role to all with subscription to make it quick to select if player is active
-add images to blog
+add images to blog, find an image uploader script
 see if there is a easier way to print page headers, stupid to print the html on all pages
 build a league system, with both single and doubles
 check doctrine:schema:validate if there is any problems
