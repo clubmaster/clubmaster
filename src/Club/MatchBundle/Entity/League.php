@@ -405,4 +405,37 @@ class League
     {
         return $this->gender;
     }
+
+    /**
+     * Remove users
+     *
+     * @param Club\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Club\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Add matches
+     *
+     * @param Club\MatchBundle\Entity\Match $matches
+     * @return League
+     */
+    public function addMatche(\Club\MatchBundle\Entity\Match $matches)
+    {
+        $this->matches[] = $matches;
+    
+        return $this;
+    }
+
+    /**
+     * Remove matches
+     *
+     * @param Club\MatchBundle\Entity\Match $matches
+     */
+    public function removeMatche(\Club\MatchBundle\Entity\Match $matches)
+    {
+        $this->matches->removeElement($matches);
+    }
 }

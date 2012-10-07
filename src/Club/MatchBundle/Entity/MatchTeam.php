@@ -145,4 +145,14 @@ class MatchTeam
     {
         return $this->set_won;
     }
+
+    /**
+     * Remove match_team_set
+     *
+     * @param Club\MatchBundle\Entity\MatchTeamSet $matchTeamSet
+     */
+    public function removeMatchTeamSet(\Club\MatchBundle\Entity\MatchTeamSet $matchTeamSet)
+    {
+        $this->match_team_set->removeElement($matchTeamSet);
+    }
 }
