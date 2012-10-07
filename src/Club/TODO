@@ -3,21 +3,21 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-consider to give role to all with subscription to make it quick to select if player is active
+integrate twitter as well
+merge users
+delete users
+when creating a booking, make sure the field is not taken
 create overall ranking:
     - first win over player 50 xp, second 50/2 xp, third 50/3 xp
     - played match 5 xp
     - lost match -5 xp
+consider to give role to all with subscription to make it quick to select if player is active
 add images to blog
 see if there is a easier way to print page headers, stupid to print the html on all pages
-integrate twitter as well
 build a league system, with both single and doubles
-make sure only one can have the field at the time
 check doctrine:schema:validate if there is any problems
 add custom fields on profiles
 batch assign users to a league
-merge users
-delete users
 enter result in cup
 view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed

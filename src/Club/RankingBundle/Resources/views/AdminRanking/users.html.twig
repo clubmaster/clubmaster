@@ -4,7 +4,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_match_adminranking_index') }}">{% trans %}Back to ranking{% endtrans %}</a></li>
+            <li><a href="{{ path('club_ranking_adminranking_index') }}">{% trans %}Back to ranking{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
@@ -13,7 +13,7 @@
 {% block body %}
 <h2>{% trans %}Add players to ranking{% endtrans %}</h2>
 
-<form method="post" action="{{ path('club_match_adminranking_usersadd', {'id':league.id}) }}" class="form-horizontal">
+<form method="post" action="{{ path('club_ranking_adminranking_usersadd', {'id':ranking.id}) }}" class="form-horizontal">
   <fieldset>
     <legend>{% trans %}Add player{% endtrans %}</legend>
 
@@ -33,13 +33,13 @@
     </tr>
   </thead>
   <tbody>
-  {% for user in league.users %}
+  {% for user in ranking.users %}
     <tr>
       <td>{{ user.memberNumber }}</td>
       <td>{{ user.name }}</td>
-      <td>{{ league.name }}</td>
+      <td>{{ ranking.name }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_match_adminranking_usersdelete', { 'id':league.id, 'user_id':user.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_ranking_adminranking_usersdelete', { 'id':ranking.id, 'user_id':user.id })} %}
       </td>
     </tr>
   {% else %}
