@@ -75,6 +75,11 @@ class Load
         'name' => 'Booking cleanup',
         'interval' => 'T1M',
         'method' => 'onBookingCleanup'
+      ),
+      array(
+        'name' => 'Task cleanup',
+        'interval' => 'T1M',
+        'method' => 'onTaskCleanup'
       )
     );
 
