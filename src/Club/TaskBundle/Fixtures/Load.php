@@ -37,16 +37,6 @@ class Load
         'method' => 'onAutoRenewalTask'
       ),
       array(
-        'name' => 'Cleanup login logs',
-        'interval' => 'T1H',
-        'method' => 'onLoginAttemptTask'
-      ),
-      array(
-        'name' => 'Cleanup ban logs',
-        'interval' => 'T1H',
-        'method' => 'onBanTask'
-      ),
-      array(
         'name' => 'Send emails',
         'interval' => 'T1M',
         'method' => 'onMailTask'

@@ -5,11 +5,6 @@ services:
     tags:
       - { name: kernel.event_listener, event: group.task, method: onGroupTask }
       - { name: kernel.event_listener, event: group.edit, method: onGroupEdit }
-  club.userbundle.listener.login_attempt.listener:
-    class: Club\UserBundle\Listener\CleanupLoginAttemptListener
-    arguments: [@doctrine.orm.entity_manager]
-    tags:
-      - { name: kernel.event_listener, event: login_attempt.task, method: onLoginAttemptTask }
   club.userbundle.login_listener:
     class: Club\UserBundle\Listener\LoginListener
     arguments: [@service_container]
@@ -49,3 +44,8 @@ services:
       - { name: kernel.event_listener, event: match.new, method: onMatchNew }
       - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
       - { name: kernel.event_listener, event: blog_comment.new, method: onBlogCommentNew }
+  club.user.listener.cleanup:
+    class: Club\UserBundle\Listener\Cleanup
+    arguments: [@doctrine.orm.entity_manager]
+    tags:
+      - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
