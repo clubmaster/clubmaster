@@ -2572,6 +2572,11 @@
           <source>Profile</source>
           <target>Profil</target>
       </trans-unit>
+      <trans-unit id="682">
+          <source>New article</source>
+          <target>Opret artikel</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

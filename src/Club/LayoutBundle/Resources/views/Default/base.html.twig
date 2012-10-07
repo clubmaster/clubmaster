@@ -41,6 +41,12 @@
     {% block stylesheets %}{% endblock %}
     {% block javascripts %}{% endblock %}
     {% block metatags %}{% endblock %}
+    <script>
+        $(document).ready( function () {
+            $('input[autofocus]').trigger('focus');//force fire it on the autofocus element
+        });
+    </script>
+
 
 </head>
 <body>

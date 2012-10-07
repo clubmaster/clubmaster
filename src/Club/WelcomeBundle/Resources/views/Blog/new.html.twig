@@ -1,8 +1,10 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
+{% block header %}
+<div class="page-header"><h1><img src="{{ asset('bundles/clublayout/images/icons/32x32/transmit.png') }}" /> {% trans %}Blog{% endtrans %}</h1></div>
+{% endblock %}
+
 {% block body %}
-
 <p>{% trans %}You are welcome to post anything to the other members here. The post will end up on the frontpage.{% endtrans %}</p>
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_welcome_blog_new'), 'novalidate':true} %}
-
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_welcome_blog_new'), 'novalidate':true, 'legend':'New article'|trans} %}
 {% endblock %}
