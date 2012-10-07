@@ -2,11 +2,11 @@
 
 namespace Club\TaskBundle\Listener;
 
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class TaskListener
 {
-    protected $test=0;
     protected $em;
     protected $event_dispatcher;
     protected $logger;
@@ -21,9 +21,7 @@ class TaskListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         try {
-            if (!$this->test) {
-                $this->test = 1;
-            } else {
+            if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
                 return;
             }
 

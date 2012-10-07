@@ -16,9 +16,9 @@ class ResponseListener
 
   public function onKernelResponse(FilterResponseEvent $event)
   {
-    if (!preg_match("/^\/api/", $this->container->get('request')->getPathInfo()))
-
+    if (!preg_match("/^\/api/", $this->container->get('request')->getPathInfo())) {
       return;
+    }
 
     $response = $event->getResponse();
     $response->headers->set('Access-Control-Allow-Origin', '*');
