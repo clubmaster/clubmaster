@@ -58,7 +58,7 @@ class Special
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="specials")
      *
      * @var Club\ShopBundle\Entity\Product
      */

@@ -24,13 +24,13 @@ class Attend
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="attends")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="attends")
      * @ORM\JoinColumn(name="event_id", onDelete="cascade")
      */
     protected $event;

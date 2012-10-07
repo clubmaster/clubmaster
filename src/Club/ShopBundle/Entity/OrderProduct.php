@@ -56,7 +56,7 @@ class OrderProduct extends EconomicProduct
     protected $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Order", inversedBy="order_products")
      * @ORM\JoinColumn(name="order_id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Order

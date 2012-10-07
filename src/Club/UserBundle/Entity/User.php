@@ -123,7 +123,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     protected $location;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      * @ORM\JoinTable(name="club_user_user_role",
      *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}

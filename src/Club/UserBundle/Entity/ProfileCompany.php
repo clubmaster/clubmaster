@@ -34,7 +34,7 @@ class ProfileCompany
     protected $cvr;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Profile")
+     * @ORM\ManyToOne(targetEntity="Profile", inversedBy="profile_companies")
      * @var Club\UserBundle\Entity\Profile
      */
     protected $profile;

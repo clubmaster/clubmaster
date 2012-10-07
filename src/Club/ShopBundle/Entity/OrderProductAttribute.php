@@ -35,7 +35,7 @@ class OrderProductAttribute
     protected $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OrderProduct")
+     * @ORM\ManyToOne(targetEntity="OrderProduct", inversedBy="order_product_attributes")
      * @ORM\JoinColumn(name="order_product_id", onDelete="cascade")
      */
     protected $order_product;

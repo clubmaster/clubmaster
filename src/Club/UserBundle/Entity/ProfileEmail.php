@@ -39,7 +39,7 @@ class ProfileEmail
     protected $contact_type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Profile")
+     * @ORM\ManyToOne(targetEntity="Profile", inversedBy="profile_emails")
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Profile

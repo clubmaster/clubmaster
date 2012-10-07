@@ -74,7 +74,7 @@ class Field
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location", inversedBy="fields")
      * @Assert\NotBlank()
      */
     protected $location;
@@ -87,7 +87,7 @@ class Field
     /**
      * only in use for booking schema
      */
-    public $times;
+    protected $times;
 
     /**
      * Get id
@@ -238,11 +238,6 @@ class Field
     public function getIntervals()
     {
         return $this->intervals;
-    }
-
-    public function getTimes()
-    {
-      return $this->times;
     }
 
     public function setTimes(array $intervals)

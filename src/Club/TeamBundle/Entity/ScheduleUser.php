@@ -42,12 +42,12 @@ class ScheduleUser
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User", inversedBy="schedules")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\TeamBundle\Entity\Schedule")
+     * @ORM\ManyToOne(targetEntity="Club\TeamBundle\Entity\Schedule", inversedBy="users")
      */
     protected $schedule;
 

@@ -79,7 +79,7 @@ class PurchaseLog
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Order")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="purchase_log")
      *
      * @var Club\ShopBundle\Entity\Order
      */

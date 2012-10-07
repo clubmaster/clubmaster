@@ -28,7 +28,7 @@ class SubscriptionAttribute
     protected $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Subscription")
+     * @ORM\ManyToOne(targetEntity="Subscription", inversedBy="subscription_attributes")
      * @ORM\JoinColumn(name="subscription_id", onDelete="cascade")
      *
      * @var Club\ShopBundle\Entity\Subscription

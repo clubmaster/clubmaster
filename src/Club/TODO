@@ -14,7 +14,6 @@ consider to give role to all with subscription to make it quick to select if pla
 add images to blog, find an image uploader script
 see if there is a easier way to print page headers, stupid to print the html on all pages
 build a league system, with both single and doubles
-check doctrine:schema:validate if there is any problems
 add custom fields on profiles
 batch assign users to a league
 enter result in cup

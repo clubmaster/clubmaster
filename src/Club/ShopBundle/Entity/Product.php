@@ -77,7 +77,7 @@ class Product
     protected $variant_groups;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
      * @ORM\JoinTable(name="club_shop_category_product",
      *   joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}

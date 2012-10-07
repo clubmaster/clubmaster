@@ -72,7 +72,7 @@ class Interval
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Field")
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="intervals")
      * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $field;

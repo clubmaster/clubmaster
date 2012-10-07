@@ -41,7 +41,7 @@ class SubscriptionPause
     protected $expire_date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Subscription")
+     * @ORM\ManyToOne(targetEntity="Subscription", inversedBy="subscription_pauses")
      *
      * @var Club\ShopBundle\Entity\Subscription
      */

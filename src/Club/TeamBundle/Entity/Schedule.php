@@ -94,7 +94,7 @@ class Schedule
     protected $location;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Schedule")
+     * @ORM\ManyToOne(targetEntity="Schedule", inversedBy="schedules")
      * @ORM\JoinColumn(name="schedule_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $schedule;

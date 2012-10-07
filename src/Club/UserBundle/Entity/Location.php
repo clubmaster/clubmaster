@@ -71,7 +71,7 @@ class Location
     protected $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Location")
+     * @ORM\ManyToOne(targetEntity="Location", inversedBy="childs")
      *
      * @var Club\UserBundle\Entity\Location
      */

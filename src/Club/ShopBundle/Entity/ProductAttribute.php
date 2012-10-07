@@ -50,7 +50,7 @@ class ProductAttribute
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="product_attributes")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $product;

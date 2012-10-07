@@ -42,7 +42,7 @@ class SubscriptionTicket
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Subscription")
+     * @ORM\ManyToOne(targetEntity="Subscription", inversedBy="subscription_ticket")
      *
      * @var Club\ShopBundle\Entity\Subscription
      */
