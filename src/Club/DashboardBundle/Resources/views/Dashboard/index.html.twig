@@ -7,4 +7,7 @@
 <h2>{% trans %}Coming Activities{% endtrans %}</h2>
 {% include "ClubUserBundle:Dashboard:activities_table.html.twig" %}
 
+<h2>{% trans %}Recent Activities{% endtrans %}</h2>
+{% include "ClubUserBundle:Dashboard:activities_table.html.twig" with {'activities':recent} %}
+
 {% endblock %}

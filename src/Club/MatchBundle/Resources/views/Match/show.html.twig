@@ -53,11 +53,6 @@ Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
       <th>{% trans %}Team two{% endtrans %}</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="4">&#160;</td>
-    </tr>
-  </tfoot>
   <tbody>
     {% include "ClubMatchBundle:Match:match.html.twig" with {'nocomment':true} %}
   </tbody>

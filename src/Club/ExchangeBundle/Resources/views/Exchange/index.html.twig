@@ -25,11 +25,6 @@
       <th class="action">{% trans %}Action{% endtrans %}</th>
     </tr>
   <thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="6">&#160;</td>
-    </tr>
-  </tfoot>
   <tbody>
   {% for item in market %}
     <tr class="{% if item.closed %}error{% else %}success{% endif %}">

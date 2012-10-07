@@ -23,9 +23,13 @@ class DashboardController extends Controller
     $activities = $event2->getActivities();
     ksort($activities);
 
+    $event3 = new \Club\UserBundle\Event\FilterActivityEvent($this->getUser());
+    $this->get('event_dispatcher')->dispatch(\Club\DashboardBundle\Event\Events::onDashboardRecent, $event3);
+
     return array(
       'output' => $event->getOutput(),
-      'activities' => $activities
+      'activities' => $activities,
+      'recent' => $event3->getActivities()
     );
   }
 }

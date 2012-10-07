@@ -8,11 +8,6 @@
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr class="bg">
-      <td colspan="5">&#160;</td>
-    </tr>
-  </tfoot>
   <tbody>
   {% for log in logs %}
     <tr class="{% if log.severity == 'informational' %}success{% else %}warning{% endif %}">

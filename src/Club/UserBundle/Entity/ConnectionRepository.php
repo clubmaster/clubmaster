@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ConnectionRepository extends EntityRepository
 {
+    public function getDistinct(\Club\UserBundle\Entity\User $user)
+    {
+        $q = $this->createQueryBuilder('c')
+            ->where('c.user = :user')
+            ->groupBy('c.connection')
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+
+        return $q;
+    }
 }
