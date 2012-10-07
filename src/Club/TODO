@@ -3,7 +3,11 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
-recent activities, seems like the match pick matches from everyone
+consider to give role to all with subscription to make it quick to select if player is active
+create overall ranking:
+    - first win over player 50 xp, second 50/2 xp, third 50/3 xp
+    - played match 5 xp
+    - lost match -5 xp
 add images to blog
 view recent matches from players that you have played within the last few months
 see if there is a easier way to print page headers, stupid to print the html on all pages
