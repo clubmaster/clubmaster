@@ -4,9 +4,7 @@ when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
 recent activities, seems like the match pick matches from everyone
----
 add images to blog
-add a connected table, to make it quick to see hows connected, will make the activity log much easier and faster
 view recent matches from players that you have played within the last few months
 see if there is a easier way to print page headers, stupid to print the html on all pages
 integrate twitter as well
