@@ -21,7 +21,9 @@
 {% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset('bundles/clubbooking/css/booking_horizontal.css') }}" />
+    {% stylesheets "@ClubBookingBundle/Resources/public/css/booking_horizontal.css" %}
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}

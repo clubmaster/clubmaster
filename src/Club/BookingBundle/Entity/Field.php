@@ -245,6 +245,11 @@ class Field
       $this->times = $intervals;
     }
 
+    public function getTimes()
+    {
+        return $this->times;
+    }
+
     public function toArray()
     {
       $res = array(
