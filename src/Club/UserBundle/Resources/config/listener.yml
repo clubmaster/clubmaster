@@ -48,3 +48,4 @@ services:
     tags:
       - { name: kernel.event_listener, event: match.new, method: onMatchNew }
       - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
+      - { name: kernel.event_listener, event: blog_comment.new, method: onBlogCommentNew }

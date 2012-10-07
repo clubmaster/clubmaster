@@ -57,7 +57,7 @@ class LoginListener
             'attribute' => 'language'
         ));
 
-        $this->request->setLocale($s->getValue());
+        if ($s) $this->request->setLocale($s->getValue());
     }
 
     private function setLocation()

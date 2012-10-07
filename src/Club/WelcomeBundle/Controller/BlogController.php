@@ -51,6 +51,10 @@ class BlogController extends Controller
 
       if ($form->isValid()) {
         $em->persist($comment);
+
+        $event = new \Club\WelcomeBundle\Event\FilterCommentEvent($comment);
+        $this->get('event_dispatcher')->dispatch(\Club\WelcomeBundle\Event\Events::onBlogCommentNew, $event);
+
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));

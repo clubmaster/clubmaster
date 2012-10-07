@@ -46,4 +46,18 @@ class ConnectionListener
             }
         }
     }
+
+    public function onBlogCommentNew(\Club\WelcomeBundle\Event\FilterCommentEvent $event)
+    {
+        $comment = $event->getComment();
+
+        if ($comment->getUser() != $comment->getBlog()->getUser()) {
+            $c = new \Club\UserBundle\Entity\Connection();
+            $c->setUser($comment->getUser());
+            $c->setConnection($comment->getBlog()->getUser());
+            $c->setType('blog_comment');
+
+            $this->em->persist($c);
+        }
+    }
 }
