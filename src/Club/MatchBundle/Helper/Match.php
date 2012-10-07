@@ -9,6 +9,7 @@ class Match
     protected $translator;
     protected $form_factory;
     protected $event_dispatcher;
+    protected $security_context;
     protected $match;
     protected $error;
     protected $is_valid = true;
@@ -20,6 +21,7 @@ class Match
         $this->translator = $container->get('translator');
         $this->form_factory = $container->get('form.factory');
         $this->event_dispatcher = $container->get('event_dispatcher');
+        $this->security_context = $container->get('security.context');
     }
 
     public function bindMatch(array $data)
@@ -27,6 +29,7 @@ class Match
         $teams = 2;
 
         $this->match = new \Club\MatchBundle\Entity\Match();
+        $this->match->setUser($this->security_context->getToken()->getUser());
 
         $display = array();
         for ($i = 0; $i < $teams; $i++) {
@@ -85,6 +88,8 @@ class Match
 
         $event = new \Club\MatchBundle\Event\FilterMatchEvent($this->match);
         $this->event_dispatcher->dispatch(\Club\MatchBundle\Event\Events::onMatchNew, $event);
+
+        $this->em->flush();
     }
 
     private function validateSets($display, $sets)

@@ -42,3 +42,9 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
+  club.user.connection:
+    class: Club\UserBundle\Listener\ConnectionListener
+    arguments: [@doctrine.orm.entity_manager, @security.context]
+    tags:
+      - { name: kernel.event_listener, event: match.new, method: onMatchNew }
+      - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }

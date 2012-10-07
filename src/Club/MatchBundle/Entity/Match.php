@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_match_match")
  * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\MatchRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Match
 {
@@ -74,21 +74,10 @@ class Match
     protected $match_comments;
 
     /**
-     * @ORM\PrePersist()
+     * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
-    public function prePersist()
-    {
-      $this->setCreatedAt(new \DateTime());
-      $this->setUpdatedAt(new \DateTime());
-    }
+    protected $user;
 
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function preUpdate()
-    {
-      $this->setUpdatedAt(new \DateTime());
-    }
 
     /**
      * Get id
@@ -289,5 +278,65 @@ class Match
     public function getTournament()
     {
         return $this->tournament;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+      $this->setCreatedAt(new \DateTime());
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+      $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Remove match_teams
+     *
+     * @param Club\MatchBundle\Entity\MatchTeam $matchTeams
+     */
+    public function removeMatchTeam(\Club\MatchBundle\Entity\MatchTeam $matchTeams)
+    {
+        $this->match_teams->removeElement($matchTeams);
+    }
+
+    /**
+     * Remove match_comments
+     *
+     * @param Club\MatchBundle\Entity\MatchComment $matchComments
+     */
+    public function removeMatchComment(\Club\MatchBundle\Entity\MatchComment $matchComments)
+    {
+        $this->match_comments->removeElement($matchComments);
+    }
+
+    /**
+     * Set user
+     *
+     * @param Club\UserBundle\Entity\User $user
+     * @return Match
+     */
+    public function setUser(\Club\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Club\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
