@@ -25,6 +25,8 @@ if [ $? -ne 0 ]; then
   exit
 fi
 
+php app/console assetic:dump
+
 echo "Everything OK, continue to build package."
 mkdir ${BUILD_PATH}
 

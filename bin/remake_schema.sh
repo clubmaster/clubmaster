@@ -18,6 +18,7 @@ phpunit -c app/installunit.xml
 
 php app/console doctrine:schema:update --force
 php app/console assets:install web
+php app/console assetic:dump
 
 MYSQL_PASSWORD=""
 MYSQL_DATABASE=clubmaster
