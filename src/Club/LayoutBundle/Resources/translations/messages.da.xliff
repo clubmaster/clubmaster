@@ -2584,6 +2584,18 @@
           <source>Create ranking</source>
           <target>Opret rangliste</target>
       </trans-unit>
+      <trans-unit id="685">
+          <source>Matches</source>
+          <target>Kampe</target>
+      </trans-unit>
+      <trans-unit id="686">
+          <source>Booking plans</source>
+          <target>Booking planer</target>
+      </trans-unit>
+      <trans-unit id="687">
+          <source>Field administration</source>
+          <target>Bane administration</target>
+      </trans-unit>
 
     </body>
   </file>

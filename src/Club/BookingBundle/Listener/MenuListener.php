@@ -28,7 +28,7 @@ class MenuListener
                         'route' => $this->router->generate('club_booking_adminplan_index')
                     ),
                     array(
-                        'name' => $this->translator->trans('Fields administration'),
+                        'name' => $this->translator->trans('Field administration'),
                         'route' => $this->router->generate('club_booking_adminfield_index'),
                     )
                 )
