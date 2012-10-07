@@ -4,6 +4,7 @@ namespace Club\WelcomeBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class WelcomeController extends Controller
@@ -11,6 +12,7 @@ class WelcomeController extends Controller
     /**
      * @Route("/{_locale}/welcome")
      * @Template()
+     * @Cache(smaxage="30")
      */
     public function indexAction()
     {
@@ -33,5 +35,4 @@ class WelcomeController extends Controller
             '_locale' => $this->getRequest()->getLocale()
         )));
     }
-
 }
