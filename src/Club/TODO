@@ -4,7 +4,6 @@ when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
 need a way to tell current user logged in
-homepage should redirect to a localized page
 consider to give role to all with subscription to make it quick to select if player is active
 create overall ranking:
     - first win over player 50 xp, second 50/2 xp, third 50/3 xp
