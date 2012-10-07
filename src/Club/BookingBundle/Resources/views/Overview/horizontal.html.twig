@@ -2,7 +2,9 @@
 
 {% block javascripts %}
   {% include "ClubLayoutBundle:Default:ajax_calendar.html.twig" %}
-  <script src="{{ asset('bundles/clubbooking/js/booking_horizontal.js') }}" type="text/javascript"></script>
+  {% javascripts "@ClubBookingBundle/Resources/public/js/booking_horizontal.js" %}
+  <script src="{{ asset_url }}" type="text/javascript"></script>
+  {% endjavascripts %}
 
   <script>
   $(document).ready(function() {

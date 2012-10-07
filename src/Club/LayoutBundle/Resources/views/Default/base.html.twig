@@ -7,10 +7,13 @@
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/ui-lightness/jquery-ui-1.8.23.custom.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/clublayout/bootstrap/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/clublayout/bootstrap/css/bootstrap-responsive.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/clublayout/css/mystyle.css') }}" />
+    {% stylesheets
+        "@ClubLayoutBundle/Resources/public/css/ui-lightness/jquery-ui-1.8.23.custom.css"
+        "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap.min.css"
+        "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap-responsive.min.css"
+        "@ClubLayoutBundle/Resources/public/css/mystyle.css" %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -26,11 +29,11 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-1.8.0.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/iso8601.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/clublayout/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/clublayout/js/modernizr.custom.27457.js') }}"></script>
+    {% javascripts
+        "@ClubLayoutBundle/Resources/public/js/*"
+        "@ClubLayoutBundle/Resources/public/bootstrap/js/bootstrap.min.js" %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/clublayout/images/apple-touch-icon-144-precomposed.png') }}">

@@ -7,6 +7,8 @@ app/spool
 vendor/
 web/bundles
 web/uploads/
+web/js
+web/css
 composer.phar
 *.swp
 *~
