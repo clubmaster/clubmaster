@@ -31,7 +31,7 @@ In order to install ClubMaster, do the following:
 
 - Extract files to your server
 - Create the database
-- Locate the web/ folder in your browser, and follow onscreen installation
+- Locate the web/setup.php folder in your browser, and follow onscreen installation
 
 
 Upgrade
