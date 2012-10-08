@@ -82,10 +82,10 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
 
                         <ul class="symfony-install-continue">
                             <?php if (!count($majorProblems)): ?>
-                                <li><a href="index_dev.php/_configurator/">Configure your ClubMaster Application online</a></li>
+                                <li><a href="/_configurator">Configure your ClubMaster Application online</a></li>
                             <?php endif; ?>
                             <?php if (count($majorProblems) || count($minorProblems)): ?>
-                                <li><a href="config.php">Re-check configuration</a></li>
+                                <li><a href="setup.php">Re-check configuration</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>

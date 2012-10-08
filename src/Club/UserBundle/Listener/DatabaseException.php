@@ -7,21 +7,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DatabaseException
 {
-    private $container;
-    private $router;
-
-    public function __construct($container)
-    {
-        $this->container = $container;
-        $this->router = $container->get('router');
-    }
-
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-            $exception = $event->getException();
-            if (preg_match('/Doctrine\\\\DBAL\\\\DBALException/', get_class($exception))) {
+        $exception = $event->getException();
+        $class = get_class($exception);
+        if (preg_match('/(Doctrine\\\\DBAL\\\\DBALException|PDOException)/', $class)) {
+            if (preg_match("/(Unknown database|Base table or view not found)/", $exception->getMessage())) {
                 $response = new Response('Please visit the setup.php page.');
                 $event->setResponse($response);
             }
+        }
     }
 }
