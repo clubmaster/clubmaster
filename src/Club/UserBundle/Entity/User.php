@@ -93,6 +93,13 @@ class User implements AdvancedUserInterface, EquatableInterface
     protected $expired;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string $api_hash
+     */
+    protected $api_hash;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var date $created_at
@@ -178,6 +185,7 @@ class User implements AdvancedUserInterface, EquatableInterface
       $this->enabled = false;
       $this->locked = false;
       $this->expired = false;
+      $this->api_hash = hash('sha1',base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
       $this->roles = array();
     }
 
@@ -797,5 +805,78 @@ class User implements AdvancedUserInterface, EquatableInterface
         }
 
         return false;
+    }
+
+    /**
+     * Set api_hash
+     *
+     * @param string $apiHash
+     * @return User
+     */
+    public function setApiHash($apiHash)
+    {
+        $this->api_hash = $apiHash;
+
+        return $this;
+    }
+
+    /**
+     * Get api_hash
+     *
+     * @return string
+     */
+    public function getApiHash()
+    {
+        return $this->api_hash;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param Club\UserBundle\Entity\Role $roles
+     */
+    public function removeRole(\Club\UserBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Remove schedules
+     *
+     * @param Club\TeamBundle\Entity\ScheduleUser $schedules
+     */
+    public function removeSchedule(\Club\TeamBundle\Entity\ScheduleUser $schedules)
+    {
+        $this->schedules->removeElement($schedules);
+    }
+
+    /**
+     * Remove subscriptions
+     *
+     * @param Club\ShopBundle\Entity\Subscription $subscriptions
+     */
+    public function removeSubscription(\Club\ShopBundle\Entity\Subscription $subscriptions)
+    {
+        $this->subscriptions->removeElement($subscriptions);
+    }
+
+    /**
+     * Remove attends
+     *
+     * @param Club\EventBundle\Entity\Attend $attends
+     */
+    public function removeAttend(\Club\EventBundle\Entity\Attend $attends)
+    {
+        $this->attends->removeElement($attends);
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param Club\UserBundle\Entity\Group $groups
+     */
+    public function removeGroup(\Club\UserBundle\Entity\Group $groups)
+    {
+        $this->groups->removeElement($groups);
     }
 }
