@@ -13,4 +13,15 @@
 
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_user_usersetting_index'),'legend':'User settings'|trans} %}
 
+
+    <h1 class="page-header">{% trans %}User functions{% endtrans %}</h1>
+
+    <h3>{% trans %}Regenerate API key{% endtrans %}</h3>
+    <p>{% trans %}You have a secret key to keep your personal ical file secret, so its only you how have access to your account. If you for some reason lose this key, you can regenerate the key right here.{% endtrans %}</p>
+    <p>{% trans %}If you reset your key, remember to update your link to the calendar items.{% endtrans %}</p>
+
+    <div class="form-actions">
+        <a href="{{ path('club_user_user_regenerate') }}" {% include "ClubLayoutBundle:Default:confirm.html.twig" %} class="btn btn-primary">{% trans %}Regenerate key{% endtrans %}</a>
+    </div>
+
 {% endblock %}

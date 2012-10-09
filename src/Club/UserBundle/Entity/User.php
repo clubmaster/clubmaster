@@ -180,12 +180,12 @@ class User implements AdvancedUserInterface, EquatableInterface
       $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
       $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
       $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+      $this->salt = $this->generateKey();
       $this->algorithm = 'sha512';
       $this->enabled = false;
       $this->locked = false;
       $this->expired = false;
-      $this->api_hash = hash('sha1',base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+      $this->api_hash = $this->generateKey();
       $this->roles = array();
     }
 
@@ -878,5 +878,10 @@ class User implements AdvancedUserInterface, EquatableInterface
     public function removeGroup(\Club\UserBundle\Entity\Group $groups)
     {
         $this->groups->removeElement($groups);
+    }
+
+    public function generateKey()
+    {
+        return hash('sha1',base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
     }
 }

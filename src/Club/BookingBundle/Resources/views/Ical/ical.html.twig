@@ -2,6 +2,12 @@
 BEGIN:VEVENT
 DTSTART:{{ booking.firstDate|date('Ymd\THis') }}
 DTEND:{{ booking.endDate|date('Ymd\THis') }}
-SUMMARY:{{ booking.id }}
+{% if booking.guest %}
+SUMMARY:{{ booking.user.name }} - {% trans %}Guest{% endtrans %}
+
+{% else %}
+SUMMARY:{{ booking.user.name }} - {% for u in booking.users %}{{ u.name }}{% endfor %}
+
+{% endif %}
 END:VEVENT
 {% endfor %}

@@ -44,6 +44,23 @@ class UserController extends Controller
 
     /**
      * @Template()
+     * @Route("/hash/regenerate")
+     */
+    public function regenerateAction()
+    {
+        $user = $this->getUser();
+        $user->setApiHash($user->generateKey());
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        return $this->redirect($this->generateUrl('user'));
+    }
+
+    /**
+     * @Template()
      * @Route("/reset")
      */
     public function resetAction()
