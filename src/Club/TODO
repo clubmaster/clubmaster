@@ -3,6 +3,7 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
+personal ical files, with secret hash that should be able to regenerate
 integrate twitter as well
 merge users
 delete users
