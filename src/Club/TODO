@@ -4,6 +4,7 @@ when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
 personal ical files, with secret hash that should be able to regenerate
+import and export keys for system in ATK
 integrate twitter as well
 merge users
 delete users
