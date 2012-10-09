@@ -1,0 +1,7 @@
+{% for attend in events %}
+BEGIN:VEVENT
+DTSTART:{{ attend.event.startDate|date('Ymd\THis') }}
+DTEND:{{ attend.event.stopDate|date('Ymd\THis') }}
+SUMMARY:{{ attend.event.eventName }}
+END:VEVENT
+{% endfor %}

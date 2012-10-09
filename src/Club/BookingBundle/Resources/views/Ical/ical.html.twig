@@ -1,0 +1,7 @@
+{% for booking in bookings %}
+BEGIN:VEVENT
+DTSTART:{{ booking.firstDate|date('Ymd\THis') }}
+DTEND:{{ booking.endDate|date('Ymd\THis') }}
+SUMMARY:{{ booking.id }}
+END:VEVENT
+{% endfor %}

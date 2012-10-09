@@ -99,4 +99,16 @@ class BookingRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getAll(\Club\UserBundle\Entity\User $user)
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.users', 'u')
+            ->andWhere('b.status >= :status')
+            ->andWhere('(b.user = :user OR u.id = :user)')
+            ->setParameter('user', $user->getId())
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -28,3 +28,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: booking.cleanup, method: onBookingCleanup }
+  club.booking.listener.ical:
+    class: Club\BookingBundle\Listener\IcalListener
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: user.ical, method: onUserIcal }

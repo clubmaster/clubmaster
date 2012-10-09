@@ -1,11 +1,5 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//hacksw/handcal//NONSGML v1.0//EN
-{% for event in events %}
-BEGIN:VEVENT
-DTSTART:19970714T170000Z
-DTEND:19970715T035959Z
-SUMMARY:{{ event.eventName }}
-END:VEVENT
-{% endfor %}
+{{ output }}
 END:VCALENDAR

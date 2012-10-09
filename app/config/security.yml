@@ -40,6 +40,7 @@ security:
                 path: /logout
 
     access_control:
+        - { path: ^/(en|da)/user/ical, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(en|da)/admin/booking, roles: ROLE_BOOKING_ADMIN }
         - { path: ^/(en|da)/admin/event, roles: ROLE_EVENT_ADMIN }
         - { path: ^/(en|da)/admin, roles: ROLE_ADMIN }
