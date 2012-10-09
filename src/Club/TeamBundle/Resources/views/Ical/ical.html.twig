@@ -1,0 +1,7 @@
+{% for s in schedules %}
+BEGIN:VEVENT
+DTSTART:{{ s.schedule.firstDate|date('Ymd\THis') }}
+DTEND:{{ s.schedule.endDate|date('Ymd\THis') }}
+SUMMARY:{{ s.schedule.teamCategory.teamName }}
+END:VEVENT
+{% endfor %}
