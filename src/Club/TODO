@@ -3,6 +3,7 @@ when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 
 == NOTES TO LATER ==
+consider to remove the subscriptions menu item on /user
 personal ical files, with secret hash that should be able to regenerate
 import and export keys for system in ATK
 integrate twitter as well

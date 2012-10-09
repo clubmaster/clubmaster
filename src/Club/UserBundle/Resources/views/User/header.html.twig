@@ -4,6 +4,7 @@
             <li><a href="{{ path('user') }}">{% trans %}Edit{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_usersetting_index') }}">{% trans %}Settings{% endtrans %}</a></li>
             <li><a href="{{ path('shop_subscription') }}">{% trans %}Subscriptions{% endtrans %}</a></li>
+            <li><a target="_open" href="{{ path('club_user_user_ical', {'hash':app.user.apiHash}) }}">{% trans %}iCal{% endtrans %}</a></li>
         </ul>
     </div>
 </div>

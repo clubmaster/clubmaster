@@ -84,6 +84,19 @@ class UserController extends Controller
     );
   }
 
+  /**
+   * @Template()
+   * @Route("/ical/{hash}")
+   * @Secure(roles="ROLE_USER")
+   */
+  public function icalAction($hash)
+  {
+    return array(
+      'user' => $user,
+      'form' => $form->createView()
+    );
+  }
+
   protected function buildUser()
   {
     $user = $this->getUser();
