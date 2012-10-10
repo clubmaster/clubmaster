@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Club\ConfiguratorBundle\Configurator\Form;
+namespace Club\InstallerBundle\Form;
 
 use Club\ConfiguratorBundle\Configurator\Step\DoctrineStep;
 use Symfony\Component\Form\AbstractType;
@@ -42,6 +42,6 @@ class DoctrineStepType extends AbstractType
 
     public function getName()
     {
-        return 'distributionbundle_doctrine_step';
+        return 'config';
     }
 }
