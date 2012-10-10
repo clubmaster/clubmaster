@@ -4,7 +4,8 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
-the configuration does not work
+move configuration into the installer, no need to have 2 bundles for that.
+configurationbundle and installerbundle should be disabled after install
 consider to remove the subscriptions menu item on /user
 import and export keys for system in ATK
 integrate twitter as well
@@ -70,7 +71,6 @@ add paginator to:
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?
-configurationbundle and installerbundle should be disabled after install
 integration with pro-sec PROFI alarm system
 support multiple times on the same interval
 consider make guest book and coupon to products too, that will make the account_number much easier
