@@ -15,6 +15,14 @@ class Ticker extends AbstractType
                 'class' => 'big'
             )
         ));
+        $builder->add('start_date', 'jquery_datetime', array(
+            'date_widget' => 'single_text',
+            'time_widget' => 'single_text'
+        ));
+        $builder->add('end_date', 'jquery_datetime', array(
+            'date_widget' => 'single_text',
+            'time_widget' => 'single_text'
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

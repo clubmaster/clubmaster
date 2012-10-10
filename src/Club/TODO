@@ -4,6 +4,7 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
+make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 consider to remove the subscriptions menu item on /user
 import and export keys for system in ATK
 integrate twitter as well

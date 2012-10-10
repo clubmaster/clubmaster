@@ -20,11 +20,7 @@ class NewsController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $tickers = $em->getRepository('ClubNewsBundle:Ticker')->findBy(
-      array(),
-      array('id' => 'DESC'),
-      2
-    );
+    $tickers = $em->getRepository('ClubNewsBundle:Ticker')->getOpen();
 
     $res = array();
     foreach ($tickers as $ticker) {

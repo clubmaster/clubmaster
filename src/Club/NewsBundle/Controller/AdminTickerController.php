@@ -34,11 +34,13 @@ class AdminTickerController extends Controller
   {
     $start = new \DateTime(date('Y-m-d 00:00:00'));
     $end = clone $start;
-    $i = new \DateInterval('P1Y');
+    $i = new \DateInterval('P1M');
     $end->add($i);
 
     $user = $this->getUser();
     $ticker = new \Club\NewsBundle\Entity\Ticker();
+    $ticker->setStartDate($start);
+    $ticker->setEndDate($end);
     $ticker->setUser($user);
 
     $res = $this->process($ticker);

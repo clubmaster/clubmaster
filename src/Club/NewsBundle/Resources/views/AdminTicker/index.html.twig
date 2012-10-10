@@ -17,7 +17,7 @@
     <tr>
       <th>{% trans %}Ticker{% endtrans %}</th>
       <th>{% trans %}Author{% endtrans %}</th>
-      <th>{% trans %}Created at{% endtrans %}</th>
+      <th>{% trans %}Period{% endtrans %}</th>
       <th>{% trans %}Action{% endtrans %}</th>
     </tr>
   </thead>
@@ -26,7 +26,7 @@
     <tr>
       <td>{{ ticker.message }}</td>
       <td>{{ ticker.user.name }}</td>
-      <td>{{ ticker.createdAt|club_datetime }}</td>
+      <td>{{ ticker.startDate|club_datetime }} - {{ ticker.endDate|club_datetime }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_news_adminticker_edit', { 'id':ticker.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_news_adminticker_delete', { 'id':ticker.id })} %}

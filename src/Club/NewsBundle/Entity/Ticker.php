@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="club_news_ticker")
  * @ORM\Entity(repositoryClass="Club\NewsBundle\Entity\TickerRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ticker
 {
@@ -30,6 +30,20 @@ class Ticker
      * @Assert\NotBlank()
      */
     private $message;
+
+    /**
+     * @var datetime $start_date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $start_date;
+
+    /**
+     * @var datetime $end_date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $end_date;
 
     /**
      * @var datetime $created_at
@@ -170,5 +184,51 @@ class Ticker
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
+    }
+
+    /**
+     * Set start_date
+     *
+     * @param \DateTime $startDate
+     * @return Ticker
+     */
+    public function setStartDate($startDate)
+    {
+        $this->start_date = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get start_date
+     *
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set end_date
+     *
+     * @param \DateTime $endDate
+     * @return Ticker
+     */
+    public function setEndDate($endDate)
+    {
+        $this->end_date = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get end_date
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
     }
 }

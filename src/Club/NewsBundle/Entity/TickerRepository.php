@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class TickerRepository extends EntityRepository
 {
+    public function getOpen()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.start_date < :date')
+            ->andWhere('t.end_date > :date')
+            ->setParameter('date', new \DateTime())
+            ->getQuery()
+            ->getResult();
+    }
 }
