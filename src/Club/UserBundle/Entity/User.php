@@ -185,7 +185,7 @@ class User implements AdvancedUserInterface, EquatableInterface
       $this->enabled = false;
       $this->locked = false;
       $this->expired = false;
-      $this->api_hash = $this->generateKey();
+      $this->api_hash = hash('sha1', $this->generateKey());
       $this->roles = array();
     }
 
@@ -882,6 +882,6 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function generateKey()
     {
-        return hash('sha1',base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
 }
