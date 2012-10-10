@@ -4,6 +4,9 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
+check phpscheduleit for interval update
+give warning if you try to make a booking plan above a booking
+when team on booking view, you should be able to attend the team
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 import and export keys for system in ATK
 integrate twitter as well
@@ -24,7 +27,6 @@ view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 users should be able to create multiple emails, phone
 more simple to book fields, if no payment, no need to confirm
-give warning if you try to make a booking plan above a booking
 make sure user only can use teams in member ship status period
 add double in league
 make it a setting if all should be able to make events
