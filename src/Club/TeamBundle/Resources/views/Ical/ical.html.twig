@@ -1,7 +1,9 @@
 {% for s in schedules %}
 BEGIN:VEVENT
-DTSTART:{{ s.schedule.firstDate|date('Ymd\THis') }}
-DTEND:{{ s.schedule.endDate|date('Ymd\THis') }}
-SUMMARY:{{ s.schedule.teamCategory.teamName }}
+DTSTART:{{ s.schedule.firstDate|club_ical }}
+DTEND:{{ s.schedule.endDate|club_ical }}
+SUMMARY:{{ s.schedule.location.locationName }}, {{ s.schedule.teamCategory.teamName }}
+LOCATION:{{ s.schedule.location.locationString }}
+CATEGORIES:Team
 END:VEVENT
 {% endfor %}

@@ -527,4 +527,22 @@ class Event
 
         return false;
     }
+
+    public function getLocationString()
+    {
+        $res = '';
+
+        if ($this->getStreet()) $res .= $this->getStreet().', ';
+
+        if (strlen($this->getPostalCode()) || strlen($this->getCity())) {
+            if ($this->getPostalCode()) $res .= $this->getPostalCode().' ';
+            if ($this->getCity()) $res .= $this->getCity();
+
+            $res .= ', ';
+        }
+
+        if ($this->getCountry()) $res .= $this->getCountry();
+
+        return preg_replace("/, /", "", $res);
+    }
 }

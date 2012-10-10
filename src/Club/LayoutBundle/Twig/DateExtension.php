@@ -43,6 +43,7 @@ class DateExtension extends \Twig_Extension
             'club_time' => new \Twig_Filter_Method($this, 'getTime'),
             'club_day' => new \Twig_Filter_Method($this, 'getDay'),
             'club_ago' => new \Twig_Filter_Method($this, 'getAgo'),
+            'club_ical' => new \Twig_Filter_Method($this, 'getIcal'),
         );
     }
 
@@ -150,6 +151,11 @@ class DateExtension extends \Twig_Extension
     public function getAgo($value)
     {
         return $this->time_ago($value);
+    }
+
+    public function getIcal($value)
+    {
+        return 'TZID='.$this->timezone.':'.$value->format('Ymd\THis');
     }
 
     protected function intlExists()

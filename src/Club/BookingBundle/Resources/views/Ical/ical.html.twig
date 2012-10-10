@@ -1,7 +1,7 @@
 {% for booking in bookings %}
 BEGIN:VEVENT
-DTSTART:{{ booking.firstDate|date('Ymd\THis') }}
-DTEND:{{ booking.endDate|date('Ymd\THis') }}
+DTSTART:{{ booking.firstDate|club_ical }}
+DTEND:{{ booking.endDate|club_ical }}
 {% if booking.guest %}
 SUMMARY:{{ booking.user.name }} - {% trans %}Guest{% endtrans %}
 
@@ -9,5 +9,7 @@ SUMMARY:{{ booking.user.name }} - {% trans %}Guest{% endtrans %}
 SUMMARY:{{ booking.user.name }} - {% for u in booking.users %}{{ u.name }}{% endfor %}
 
 {% endif %}
+LOCATION:{{ booking.field.location.locationString }}
+CATEGORIES:Booking
 END:VEVENT
 {% endfor %}

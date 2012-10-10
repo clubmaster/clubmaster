@@ -1,7 +1,10 @@
 {% for attend in events %}
 BEGIN:VEVENT
-DTSTART:{{ attend.event.startDate|date('Ymd\THis') }}
-DTEND:{{ attend.event.stopDate|date('Ymd\THis') }}
+DTSTAMP:{{ attend.event.createdAt|club_ical }}
+DTSTART:{{ attend.event.startDate|club_ical }}
+DTEND:{{ attend.event.stopDate|club_ical }}
 SUMMARY:{{ attend.event.eventName }}
+LOCATION:{{ attend.event.locationString }}
+CATEGORIES:Event
 END:VEVENT
 {% endfor %}

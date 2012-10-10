@@ -121,7 +121,10 @@ class UserController extends Controller
             'output' => trim($output)
         ));
 
+        var_dump($response->getContent());die();
+
         $response->headers->set('Content-Type', 'text/calendar');
+        $response->headers->set('Content-Disposition', 'attachment;filename=personal.ics');
 
         return $response;
     }
