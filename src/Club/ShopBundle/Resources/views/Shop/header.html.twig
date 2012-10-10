@@ -6,7 +6,6 @@
             <li><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></li>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a href="{{ path('shop_order') }}">{% trans %}Order{% endtrans %}</a></li>
-            <li><a href="{{ path('shop_subscription') }}">{% trans %}Subscription{% endtrans %}</a></li>
             {% endif %}
 
         </ul>

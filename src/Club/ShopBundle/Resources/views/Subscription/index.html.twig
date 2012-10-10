@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{% include "ClubShopBundle:Shop:header.html.twig" %}
+{% include "ClubUserBundle:User:header.html.twig" %}
 
 <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard.png') }}" /> {% trans %}Active subscriptions{% endtrans %}</h2>
 {% include "ClubShopBundle:Subscription:subscription_table.html.twig" with {'subscriptions':active} %}
