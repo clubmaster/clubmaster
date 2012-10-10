@@ -37,7 +37,7 @@ class InstallerController extends Controller
             } catch (\Doctrine\DBAL\DBALException $e) {
             }
 
-            return $this->redirect($this->generateUrl('club_installer_installer_database'));
+            return $this->redirect($this->generateUrl('club_installer_installer_migrate'));
         }
 
         $config = unserialize($this->get('session')->get('installer'));
@@ -50,8 +50,8 @@ class InstallerController extends Controller
             'database_password' => $config->password,
             'mailer_transport' => 'smtp',
             'mailer_host' => 'localhost',
-            'mailer_user' => "",
-            'mailer_password' => "",
+            'mailer_user' => null,
+            'mailer_password' => null,
             'locale' => 'en',
             'secret' => $config->secret
         );

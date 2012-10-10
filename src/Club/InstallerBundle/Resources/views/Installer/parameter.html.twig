@@ -8,8 +8,8 @@
 <legend>{% trans %}parameters.yml{% endtrans %}</legend>
 <textarea class="big">{{ parameters }}</textarea>
 
-<form method="post" action="{{ path('club_installer_installer_parameter') }}">
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Check connection'|trans} %}
+<form method="post" action="{{ path('club_installer_installer_parameter') }}" class="form-horizontal">
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Install database'|trans} %}
 </form>
 
 {% endblock %}

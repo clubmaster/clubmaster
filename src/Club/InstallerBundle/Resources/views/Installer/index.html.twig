@@ -13,8 +13,10 @@
   <li>{% trans %}Location setup{% endtrans %}</li>
 </ul>
 
-<p>
-  <a href="{{ path("club_installer_installer_config") }}" class="btn">{% trans %}Start installation{% endtrans %}</a>
-</p>
+<form class="form-horizontal">
+    <div class="form-actions">
+        <a href="{{ path("club_installer_installer_config") }}" class="btn btn-primary">{% trans %}Start installation{% endtrans %}</a>
+    </div>
+</form>
 
 {% endblock %}

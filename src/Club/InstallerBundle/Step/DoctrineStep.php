@@ -54,7 +54,7 @@ class DoctrineStep
     {
         $this->name = 'clubmaster';
         $this->host = 'localhost';
-        $this->port = '3306';
+        $this->port = null;
         $this->user = 'root';
         $this->secret = hash('sha1', uniqid(mt_rand()));
     }
