@@ -4,6 +4,7 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
+booking plans all day, cannot fill more than just the booking window
 add jquery dropdown for times, has to be like: 00:00, 00:30, 01:00 and so on..
 add exceptions to team and plans
 check phpscheduleit for interval update

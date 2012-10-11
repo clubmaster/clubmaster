@@ -252,8 +252,8 @@ class Plan
         'type' => 'plan',
         'name' => $this->getName(),
         'description' => $this->getDescription(),
-        'first_date' => $this->getFirstTime()->format('c'),
-        'end_date' => $this->getEndTime()->format('c'),
+        'first_date' => $this->getStart()->format('c'),
+        'end_date' => $this->getEnd()->format('c'),
         'fields' => array()
       );
 
@@ -464,6 +464,9 @@ class Plan
      */
     public function getStart()
     {
+        if ($this->getAllDay()) {
+            $this->start->setTime(0,0,0);
+        }
         return $this->start;
     }
 
@@ -487,6 +490,10 @@ class Plan
      */
     public function getEnd()
     {
+        if ($this->getAllDay()) {
+            $this->end->setTime(23,59,59);
+        }
+
         return $this->end;
     }
 
@@ -544,5 +551,10 @@ class Plan
     public function getRepeating()
     {
         return $this->repeating;
+    }
+
+    public function getIcsUid()
+    {
+        return $this->getId().'_plan@clubmaster.org';
     }
 }

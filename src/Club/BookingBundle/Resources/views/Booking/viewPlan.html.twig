@@ -19,6 +19,17 @@
 
     <h3>{% trans %}Description{% endtrans %}</h3>
     <p>{{ plan.description }}</p>
+
+    {% if is_granted('ROLE_BOOKING_ADMIN') %}
+    <fieldset>
+        <legend>{% trans %}Delete{% endtrans %}</legend>
+
+        <p>{% trans %}Click here to cancel this booking plan.{% endtrans %}</p>
+
+        {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_exclude', {'id':plan.id,'date':date|date('Y-m-d')}), 'button':'Cancel'|trans} %}
+    </fieldset>
+    {% endif %}
+
   </div>
 </fieldset>
 

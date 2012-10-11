@@ -2,15 +2,8 @@ $(document).ready(function() {
     show_view();
 
     $('#plan_all_day').click(function() {
-        if ($(this).attr('checked')) {
-            $('#plan_start_time').hide();
-            $('#plan_end_time').hide();
-        } else {
-            $('#plan_start_time').show();
-            $('#plan_end_time').show();
-        }
+        show_view();
     });
-
     $('#plan_repeating').click(function() {
         show_view();
     });
@@ -54,6 +47,14 @@ function show_view()
     } else if (end_type == 'on') {
         $('#plan_plan_repeats_0_ends_after').closest('div.control-group').hide();
         $('#plan_plan_repeats_0_ends_on').closest('div.control-group').show();
+    }
+
+    if ($('#plan_all_day').attr('checked')) {
+        $('#plan_start_time').hide();
+        $('#plan_end_time').hide();
+    } else {
+        $('#plan_start_time').show();
+        $('#plan_end_time').show();
     }
 }
 

@@ -182,4 +182,32 @@ class BookingController extends Controller
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $booking->getFirstDate()->format('Y-m-d'))));
     }
+
+    /**
+     * @Template()
+     * @Route("/book/exclude/{id}/{date}")
+     * @Secure(roles="ROLE_BOOKING_ADMIN")
+     */
+    public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $date)
+    {
+        $date->setTime(
+            $plan->getStart()->format('H'),
+            $plan->getStart()->format('i'),
+            $plan->getStart()->format('s')
+        );
+
+        $exception = new \Club\BookingBundle\Entity\PlanRepeatException();
+        $exception->setExcludeDate($date);
+        $exception->setPlan($plan);
+        $exception->setUser($this->getUser());
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($exception);
+        $em->flush();
+
+        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+
+        return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $date->format('Y-m-d'))));
+    }
+
 }

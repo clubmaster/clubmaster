@@ -102,6 +102,11 @@ class PlanRepeat
      */
     protected $plan;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanRepeatException", mappedBy="plan")
+     */
+    protected $plan_repeat_exceptions;
+
 
     public function __construct()
     {
@@ -388,5 +393,128 @@ class PlanRepeat
     public function getEndsType()
     {
         return $this->ends_type;
+    }
+
+    public function getIcsFreq()
+    {
+        if (!$this->getPlan()->getRepeating()) {
+            return null;
+        }
+
+        // Build generic start
+        $ics = sprintf('FREQ=%s', strtoupper($this->getRepeats()));
+
+        // Build INTERVAL
+        if ($this->getRepeatEvery()) {
+            $ics .= sprintf(';INTERVAL=%d', $this->getRepeatEvery());
+        }
+
+        // Build ends
+        switch ($this->getEndsType()) {
+        case 'never':
+            break;
+        case 'after':
+            $ics .= sprintf(';COUNT=%d', $this->getEndsAfter());
+            break;
+        case 'on':
+            $ics .= sprintf(';UNTIL=%s', $this->getEndsOn()->format('Ymd\THis'));
+            break;
+        }
+
+        // Build generic for each type
+        switch ($this->getRepeats()) {
+        case 'hourly':
+            // nothing to do
+            break;
+        case 'daily':
+            // nothing to do
+            break;
+        case 'weekly':
+            $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+            $days = $transformer->transform($this->getRepeatOn());
+            $dates = '';
+            foreach ($days as $day) {
+                $dates .= $this->getDay($day);
+            }
+            $dates = preg_replace("/,$/", "", $dates);
+            $ics .= sprintf(';BYDAY=%s', $dates);
+        case 'monthly':
+            switch ($this->getRepeatBy()) {
+            case 'day_of_the_month':
+                $ics .= sprintf(';BYMONTHDAY=%d', $this->getPlan()->getStart()->format('d'));
+                break;
+            case 'day_of_the_week':
+                $day = $this->getDay($this->getPlan()->getStart()->format('N'));
+                $day = preg_replace("/,$/", "", $day);
+                $week_no = ceil($this->getPlan()->getStart()->format('d')/7);
+                $week_no = ($week_no < 4) ? $week_no : -1;
+                $ics .= sprintf(';BYDAY=%s;BYSETPOS=%s', $day, $week_no);
+                break;
+            }
+            break;
+        case 'yearly':
+            // nothing to do
+            break;
+        }
+
+        return $ics;
+    }
+
+    public function getIcsUid()
+    {
+        return $this->getPlan()->getId().'_'.$this->getId().'_plan_repeat@clubmaster.org';
+    }
+
+    private function getDay($day)
+    {
+        switch ($day) {
+        case '1':
+            return 'MO,';
+        case '2':
+            return 'TU,';
+        case '3':
+            return 'WE,';
+        case '4':
+            return 'TH,';
+        case '5':
+            return 'FR,';
+        case '6':
+            return 'SA,';
+        case '7':
+            return 'SU,';
+        }
+    }
+
+    /**
+     * Add plan_repeat_exceptions
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions
+     * @return PlanRepeat
+     */
+    public function addPlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions)
+    {
+        $this->plan_repeat_exceptions[] = $planRepeatExceptions;
+
+        return $this;
+    }
+
+    /**
+     * Remove plan_repeat_exceptions
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions
+     */
+    public function removePlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions)
+    {
+        $this->plan_repeat_exceptions->removeElement($planRepeatExceptions);
+    }
+
+    /**
+     * Get plan_repeat_exceptions
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPlanRepeatExceptions()
+    {
+        return $this->plan_repeat_exceptions;
     }
 }
