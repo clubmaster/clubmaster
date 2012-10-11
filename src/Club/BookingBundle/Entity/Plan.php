@@ -39,6 +39,34 @@ class Plan
     protected $description;
 
     /**
+     * @var date $repeat
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $repeat;
+
+    /**
+     * @var date $all_day
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $all_day;
+
+    /**
+     * @var date $start
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $start;
+
+    /**
+     * @var date $end
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $end;
+
+    /**
      * @var date $period_start
      *
      * @ORM\Column(type="datetime")
@@ -92,6 +120,11 @@ class Plan
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\User")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlanRepeat", mappedBy="plan")
+     */
+    protected $plan_repeats;
 
     /**
      * @ORM\ManyToMany(targetEntity="Field")
@@ -270,6 +303,8 @@ class Plan
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->start = new \DateTime(date('Y-m-d 12:00:00'));
+        $this->end = new \DateTime(date('Y-m-d 13:00:00'));
     }
 
     /**
@@ -370,5 +405,140 @@ class Plan
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set repeat
+     *
+     * @param boolean $repeat
+     * @return Plan
+     */
+    public function setRepeat($repeat)
+    {
+        $this->repeat = $repeat;
+
+        return $this;
+    }
+
+    /**
+     * Get repeat
+     *
+     * @return boolean
+     */
+    public function getRepeat()
+    {
+        return $this->repeat;
+    }
+
+    /**
+     * Set all_day
+     *
+     * @param boolean $allDay
+     * @return Plan
+     */
+    public function setAllDay($allDay)
+    {
+        $this->all_day = $allDay;
+
+        return $this;
+    }
+
+    /**
+     * Get all_day
+     *
+     * @return boolean
+     */
+    public function getAllDay()
+    {
+        return $this->all_day;
+    }
+
+    /**
+     * Remove fields
+     *
+     * @param Club\BookingBundle\Entity\Field $fields
+     */
+    public function removeField(\Club\BookingBundle\Entity\Field $fields)
+    {
+        $this->fields->removeElement($fields);
+    }
+
+    /**
+     * Set start
+     *
+     * @param \DateTime $start
+     * @return Plan
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    /**
+     * Get start
+     *
+     * @return \DateTime
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * Set end
+     *
+     * @param \DateTime $end
+     * @return Plan
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+
+        return $this;
+    }
+
+    /**
+     * Get end
+     *
+     * @return \DateTime
+     */
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * Add plan_repeats
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeat $planRepeats
+     * @return Plan
+     */
+    public function addPlanRepeat(\Club\BookingBundle\Entity\PlanRepeat $planRepeats)
+    {
+        $this->plan_repeats[] = $planRepeats;
+
+        return $this;
+    }
+
+    /**
+     * Remove plan_repeats
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeat $planRepeats
+     */
+    public function removePlanRepeat(\Club\BookingBundle\Entity\PlanRepeat $planRepeats)
+    {
+        $this->plan_repeats->removeElement($planRepeats);
+    }
+
+    /**
+     * Get plan_repeats
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPlanRepeats()
+    {
+        return $this->plan_repeats;
     }
 }

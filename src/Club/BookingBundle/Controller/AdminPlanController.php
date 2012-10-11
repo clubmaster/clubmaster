@@ -38,6 +38,8 @@ class AdminPlanController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = new \Club\BookingBundle\Entity\Plan();
+    $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
+    $plan->addPlanRepeat($repeat);
 
     if ($date != '') {
       $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
@@ -62,7 +64,7 @@ class AdminPlanController extends Controller
 
     $plan->setDay($start->format('N'));
 
-    $form = $this->getForm($plan);
+    $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
@@ -89,7 +91,7 @@ class AdminPlanController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
     $plan = $em->find('ClubBookingBundle:Plan',$id);
-    $form = $this->getForm($plan);
+    $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
@@ -124,43 +126,5 @@ class AdminPlanController extends Controller
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
-  }
-
-  private function getForm(\Club\BookingBundle\Entity\Plan $plan)
-  {
-    return $this->createFormBuilder($plan)
-        ->add('name', 'text', array(
-            'help' => 'Info: When is the first date the plan will be valid from?'
-        ))
-        ->add('description', 'textarea', array(
-            'help' => 'Info: When is the last day the plan will be valid?'
-        ))
-        ->add('period_start', 'jquery_datetime', array(
-            'help' => 'Info: When is the first date the plan will be valid from?',
-            'date_widget' => 'single_text',
-            'time_widget' => 'single_text'
-        ))
-        ->add('period_end', 'jquery_datetime', array(
-            'help' => 'Info: When is the last day the plan will be valid?',
-            'date_widget' => 'single_text',
-            'time_widget' => 'single_text'
-        ))
-        ->add('day', 'day', array(
-            'help' => 'Info: What day on the week should the plan be booked?',
-            'multiple' => true
-        ))
-        ->add('first_time', 'time', array(
-            'help' => 'Info: What time on the day will the plan be valid from?'
-        ))
-        ->add('end_time', 'time', array(
-            'help' => 'Info: What time on the day will the plan end?'
-        ))
-      ->add('fields', 'entity', array(
-        'class' => 'Club\BookingBundle\Entity\Field',
-        'multiple' => true,
-        'property' => 'formString',
-        'help' => 'Info: What fields should be booked for the plan?'
-      ))
-      ->getForm();
   }
 }
