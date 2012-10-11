@@ -2,11 +2,11 @@
 
     {{ form_row(form.name) }}
     {{ form_row(form.description) }}
+    {{ form_row(form.fields) }}
     {{ form_row(form.start) }}
     {{ form_row(form.end) }}
     {{ form_row(form.all_day) }}
-    {{ form_row(form.fields) }}
-    {{ form_row(form.repeat) }}
+    {{ form_row(form.repeating) }}
 
     <fieldset id="repeat_form">
     <legend>{% trans %}Repeat{% endtrans %}</legend>

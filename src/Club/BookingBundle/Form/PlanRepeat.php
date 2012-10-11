@@ -39,7 +39,8 @@ class PlanRepeat extends AbstractType
             'choices' => $repeats
         ));
         $builder->add('repeat_on', 'day', array(
-            'multiple' => 'true'
+            'multiple' => 'true',
+            'required' => false
         ));
         $builder->add('repeat_by', 'choice', array(
             'choices' => $repeat_by
@@ -48,14 +49,18 @@ class PlanRepeat extends AbstractType
             'choices' => $repeat_every
         ));
         $builder->add('starts_on', 'jquery_date', array(
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'required' => false
         ));
         $builder->add('ends_type', 'choice', array(
             'choices' => $ends_type
         ));
-        $builder->add('ends_after');
+        $builder->add('ends_after', 'integer', array(
+            'required' => false
+        ));
         $builder->add('ends_on', 'jquery_date', array(
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'required' => false
         ));
     }
 

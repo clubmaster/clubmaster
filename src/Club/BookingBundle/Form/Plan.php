@@ -15,6 +15,9 @@ class Plan extends AbstractType
             'help' => 'Info: When is the first date the plan will be valid from?'
         ));
         $builder->add('description', 'textarea', array(
+            'attr' => array(
+                'class' => 'big'
+            ),
             'help' => 'Info: When is the last day the plan will be valid?'
         ));
         $builder->add('start', 'datetime', array(
@@ -27,14 +30,18 @@ class Plan extends AbstractType
             'date_widget' => 'single_text',
             'time_widget' => 'single_text'
         ));
-        $builder->add('all_day');
+        $builder->add('all_day', 'checkbox', array(
+            'required' => false
+        ));
         $builder->add('fields', 'entity', array(
             'class' => 'Club\BookingBundle\Entity\Field',
             'multiple' => true,
             'property' => 'formString',
             'help' => 'Info: What fields should be booked for the plan?'
         ));
-        $builder->add('repeat');
+        $builder->add('repeating', 'checkbox', array(
+            'required' => false
+        ));
         $builder->add('plan_repeats', 'collection', array(
             'type' => new \Club\BookingBundle\Form\PlanRepeat()
         ));

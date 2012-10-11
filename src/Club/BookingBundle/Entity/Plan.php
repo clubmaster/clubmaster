@@ -35,18 +35,19 @@ class Plan
      * @var string $description
      *
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $description;
 
     /**
-     * @var date $repeat
+     * @var boolean $repeating
      *
      * @ORM\Column(type="boolean")
      */
-    protected $repeat;
+    protected $repeating;
 
     /**
-     * @var date $all_day
+     * @var boolean $all_day
      *
      * @ORM\Column(type="boolean")
      */
@@ -56,6 +57,7 @@ class Plan
      * @var date $start
      *
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     protected $start;
 
@@ -63,6 +65,7 @@ class Plan
      * @var date $end
      *
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     protected $end;
 
@@ -84,7 +87,6 @@ class Plan
      * @var string $day
      *
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank()
      */
     protected $day;
 
@@ -122,7 +124,8 @@ class Plan
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanRepeat", mappedBy="plan")
+     * @ORM\OneToMany(targetEntity="PlanRepeat", mappedBy="plan", cascade={"persist"})
+     * @Assert\Valid()
      */
     protected $plan_repeats;
 
@@ -409,29 +412,6 @@ class Plan
     }
 
     /**
-     * Set repeat
-     *
-     * @param boolean $repeat
-     * @return Plan
-     */
-    public function setRepeat($repeat)
-    {
-        $this->repeat = $repeat;
-
-        return $this;
-    }
-
-    /**
-     * Get repeat
-     *
-     * @return boolean
-     */
-    public function getRepeat()
-    {
-        return $this->repeat;
-    }
-
-    /**
      * Set all_day
      *
      * @param boolean $allDay
@@ -541,5 +521,28 @@ class Plan
     public function getPlanRepeats()
     {
         return $this->plan_repeats;
+    }
+
+    /**
+     * Set repeating
+     *
+     * @param boolean $repeating
+     * @return Plan
+     */
+    public function setRepeating($repeating)
+    {
+        $this->repeating = $repeating;
+
+        return $this;
+    }
+
+    /**
+     * Get repeating
+     *
+     * @return boolean
+     */
+    public function getRepeating()
+    {
+        return $this->repeating;
     }
 }

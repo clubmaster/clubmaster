@@ -98,6 +98,7 @@ class PlanRepeat
 
     /**
      * @ORM\ManyToOne(targetEntity="Plan")
+     * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $plan;
 

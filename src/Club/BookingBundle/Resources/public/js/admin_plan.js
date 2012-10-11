@@ -11,7 +11,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#plan_repeat').click(function() {
+    $('#plan_repeating').click(function() {
         show_view();
     });
     $('#plan_plan_repeats_0_repeats').change(function() {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 function show_view()
 {
-    var repeat = $('#plan_repeat').attr('checked');
+    var repeat = $('#plan_repeating').attr('checked');
     if (repeat) {
         $('#repeat_form').show();
     } else {
