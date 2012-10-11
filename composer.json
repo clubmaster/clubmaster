@@ -19,7 +19,8 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "clubmaster/quickpay": "master",
-        "clubmaster/economic": "master"
+        "clubmaster/economic": "master",
+        "sabre/vobject": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

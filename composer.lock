@@ -1,5 +1,5 @@
 {
-    "hash": "faabde0d5a05273319e259f505545974",
+    "hash": "a235b48bc36cd4ebb6d0f99bd2bd52aa",
     "packages": [
         {
             "name": "clubmaster/economic",
@@ -57,8 +57,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/clubmaster/ClubPaymentQuickpayBundle/zipball/1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b",
-                "reference": "1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b",
+                "url": "https://github.com/clubmaster/ClubPaymentQuickpayBundle/zipball/03019b2d6c043221b0ab0045ee8b985d8f5cfe4e",
+                "reference": "03019b2d6c043221b0ab0045ee8b985d8f5cfe4e",
                 "shasum": ""
             },
             "require": {
@@ -71,25 +71,7 @@
                 "psr-0": {
                     "Club\\Payment\\QuickpayBundle": ""
                 }
-            },
-            "license": [
-                "Beerware"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Holm Kristensen",
-                    "email": "hollo@hollo.dk",
-                    "homepage": "http://www.hollo.dk",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Quickpay payment gateway.",
-            "keywords": [
-                "payment",
-                "gateway",
-                "clubmaster",
-                "quickpay"
-            ]
+            }
         },
         {
             "name": "doctrine/common",
@@ -132,8 +114,7 @@
                 },
                 {
                     "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
+                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Roman Borschel",
@@ -146,7 +127,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -170,8 +151,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/dbal/zipball/219d96a1592e9e23087eb6861b4f8233d06c6463",
-                "reference": "219d96a1592e9e23087eb6861b4f8233d06c6463",
+                "url": "https://github.com/doctrine/dbal/zipball/fdc866a37959e43620e4f7ec519dc7dd8e30fc5b",
+                "reference": "fdc866a37959e43620e4f7ec519dc7dd8e30fc5b",
                 "shasum": ""
             },
             "require": {
@@ -202,8 +183,7 @@
                 },
                 {
                     "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
+                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Roman Borschel",
@@ -234,20 +214,20 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineBundle/zipball/e69a6fd75fa3979e35b7004e6da6e9aea3765997",
-                "reference": "e69a6fd75fa3979e35b7004e6da6e9aea3765997",
+                "url": "https://github.com/doctrine/DoctrineBundle/zipball/3600872919186e1a40e8fd556e65f6dca6337cc9",
+                "reference": "3600872919186e1a40e8fd556e65f6dca6337cc9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "doctrine/dbal": ">=2.2,<2.4-dev",
-                "symfony/framework-bundle": ">=2.1,<2.3-dev",
-                "symfony/doctrine-bridge": ">=2.1,<2.3-dev"
+                "symfony/framework-bundle": "2.1.*",
+                "symfony/doctrine-bridge": "2.1.*"
             },
             "require-dev": {
                 "doctrine/orm": ">=2.2,<2.4-dev",
-                "symfony/yaml": ">=2.1,<2.3-dev",
-                "symfony/validator": ">=2.1,<2.3-dev"
+                "symfony/validator": "2.1.*",
+                "symfony/yaml": "2.1.*"
             },
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
@@ -264,32 +244,7 @@
                 "psr-0": {
                     "Doctrine\\Bundle\\DoctrineBundle": ""
                 }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                }
-            ],
-            "description": "Symfony DoctrineBundle",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "orm",
-                "persistence",
-                "dbal"
-            ]
+            }
         },
         {
             "name": "doctrine/orm",
@@ -301,8 +256,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/doctrine2/zipball/564ec1ee2a6a439312ee9105a2a076af7c992e5b",
-                "reference": "564ec1ee2a6a439312ee9105a2a076af7c992e5b",
+                "url": "https://github.com/doctrine/doctrine2/zipball/ea2b28857830720460a345c80c6e7d3f6adae93a",
+                "reference": "ea2b28857830720460a345c80c6e7d3f6adae93a",
                 "shasum": ""
             },
             "require": {
@@ -342,8 +297,7 @@
                 },
                 {
                     "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
+                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Roman Borschel",
@@ -380,7 +334,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-02 15:50:26",
+            "time": "2012-01-01 10:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -422,7 +376,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 15:40:52",
+            "time": "2012-01-01 10:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -524,7 +478,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 16:32:49",
+            "time": "2012-01-01 11:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -594,27 +548,7 @@
                 "psr-0": {
                     "JMS\\SecurityExtraBundle": ""
                 }
-            },
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
-                }
-            ],
-            "description": "Enhances the Symfony2 Security Component by adding several new features",
-            "homepage": "http://jmsyst.com/bundles/JMSSecurityExtraBundle",
-            "keywords": [
-                "annotations",
-                "authorization",
-                "security",
-                "secure",
-                "expression"
-            ]
+            }
         },
         {
             "name": "kriswallsmith/assetic",
@@ -626,12 +560,12 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/zipball/e22c5e07e672bb0cf43127e97e9368b53abf4aa8",
-                "reference": "e22c5e07e672bb0cf43127e97e9368b53abf4aa8",
+                "url": "https://github.com/kriswallsmith/assetic/zipball/a6baab9b4c4361aca51bf90ee47c1586dff3cb0c",
+                "reference": "a6baab9b4c4361aca51bf90ee47c1586dff3cb0c",
                 "shasum": ""
             },
             "require": {
-                "symfony/process": ">=2.1.0,<2.3-dev",
+                "symfony/process": "2.1.*",
                 "php": ">=5.3.1"
             },
             "require-dev": {
@@ -739,6 +673,53 @@
             ]
         },
         {
+            "name": "sabre/vobject",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evert/sabre-vobject",
+                "reference": "2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/evert/sabre-vobject/zipball/2.0.2",
+                "reference": "2.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "time": "1349527003",
+            "bin": [
+                "bin/vobjectvalidate.php"
+            ],
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Sabre\\VObject": "lib/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "evert@rooftopsolutions.nl",
+                    "homepage": "http://www.rooftopsolutions.nl/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The VObject library for PHP allows you to easily parse and manipulate iCalendar and vCard objects",
+            "homepage": "https://github.com/evert/sabre-vobject",
+            "keywords": [
+                "iCalendar",
+                "VObject",
+                "vCard"
+            ]
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "2.1.x-dev",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -795,8 +776,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/bf2ea090d602e02b975d1bf1d8ffca8f02ef8bdb",
-                "reference": "bf2ea090d602e02b975d1bf1d8ffca8f02ef8bdb",
+                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/86a68df44eb50a64042d05a3f09548d2c21d4456",
+                "reference": "86a68df44eb50a64042d05a3f09548d2c21d4456",
                 "shasum": ""
             },
             "require": {
@@ -889,8 +870,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/swiftmailer/swiftmailer/zipball/22731e907f5ca288c9bfde6b54f3611ace0a6c39",
-                "reference": "22731e907f5ca288c9bfde6b54f3611ace0a6c39",
+                "url": "https://github.com/swiftmailer/swiftmailer/zipball/1e5482485f30a2431f9b8eb19a091eef4b57008c",
+                "reference": "1e5482485f30a2431f9b8eb19a091eef4b57008c",
                 "shasum": ""
             },
             "require": {
@@ -939,26 +920,26 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/zipball/5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
-                "reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
+                "url": "https://github.com/symfony/AsseticBundle/zipball/64345e86761444c35679e1aed424e1ed2370f0de",
+                "reference": "64345e86761444c35679e1aed424e1ed2370f0de",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "kriswallsmith/assetic": "1.1.*",
-                "symfony/framework-bundle": ">=2.1.0,<2.3-dev"
+                "symfony/framework-bundle": "2.1.*",
+                "kriswallsmith/assetic": "1.1.*"
             },
             "require-dev": {
-                "symfony/twig-bundle": ">=2.1.0,<2.3-dev",
-                "symfony/console": ">=2.1.0,<2.3-dev",
-                "symfony/class-loader": ">=2.1.0,<2.3-dev",
-                "symfony/yaml": ">=2.1.0,<2.3-dev",
-                "symfony/form": ">=2.1.0,<2.3-dev",
-                "symfony/dom-crawler": ">=2.1.0,<2.3-dev",
-                "symfony/css-selector": ">=2.1.0,<2.3-dev"
+                "symfony/twig-bundle": "2.1.*",
+                "symfony/console": "2.1.*",
+                "symfony/class-loader": "2.1.*",
+                "symfony/yaml": "2.1.*",
+                "symfony/form": "2.1.*",
+                "symfony/dom-crawler": "2.1.*",
+                "symfony/css-selector": "2.1.*"
             },
             "suggest": {
-                "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
+                "symfony/twig-bundle": "2.1.*"
             },
             "time": "1348938560",
             "type": "symfony-bundle",
@@ -1111,8 +1092,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/zipball/f152170899634d9ee66292dac177186cf4696408",
-                "reference": "f152170899634d9ee66292dac177186cf4696408",
+                "url": "https://github.com/symfony/symfony/zipball/7273311e1fb663ae7f5501f57a52ba9bd4db2ec3",
+                "reference": "7273311e1fb663ae7f5501f57a52ba9bd4db2ec3",
                 "shasum": ""
             },
             "require": {
@@ -1204,8 +1185,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig-extensions/zipball/v1.0.0-alpha",
-                "reference": "v1.0.0-alpha",
+                "url": "https://github.com/fabpot/Twig-extensions/zipball/f904575642b1213db69b4a98f08397e722ba1cae",
+                "reference": "f904575642b1213db69b4a98f08397e722ba1cae",
                 "shasum": ""
             },
             "require": {
@@ -1223,25 +1204,7 @@
                 "psr-0": {
                     "Twig_Extensions_": "lib/"
                 }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": null,
-                    "role": null
-                }
-            ],
-            "description": "Common additional features for Twig that do not directly belong in core",
-            "homepage": "https://github.com/fabpot/Twig-extensions",
-            "keywords": [
-                "debug",
-                "i18n",
-                "text"
-            ]
+            }
         },
         {
             "name": "twig/twig",
@@ -1253,8 +1216,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/5d7baaf767ec3b8f6599738e7c98bde6c25cf7c1",
-                "reference": "5d7baaf767ec3b8f6599738e7c98bde6c25cf7c1",
+                "url": "https://github.com/fabpot/Twig/zipball/b4d1d62b82e83c6fd3d5a6cd46a186de64275bb4",
+                "reference": "b4d1d62b82e83c6fd3d5a6cd46a186de64275bb4",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1261,7 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "sabre/vobject": 20
+    }
 }
