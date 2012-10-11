@@ -69,21 +69,21 @@ class Plan
     /**
      * @var date $period_start
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $period_start;
 
     /**
      * @var date $period_end
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $period_end;
 
     /**
      * @var string $day
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank()
      */
     protected $day;
@@ -91,14 +91,14 @@ class Plan
     /**
      * @var date $first_time
      *
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=true)
      */
     protected $first_time;
 
     /**
      * @var date $end_time
      *
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=true)
      */
     protected $end_time;
 
@@ -305,6 +305,7 @@ class Plan
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
         $this->start = new \DateTime(date('Y-m-d 12:00:00'));
         $this->end = new \DateTime(date('Y-m-d 13:00:00'));
+        $this->all_day = false;
     }
 
     /**
