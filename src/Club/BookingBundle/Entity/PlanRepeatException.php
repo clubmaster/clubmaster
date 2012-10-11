@@ -38,7 +38,7 @@ class PlanRepeatException
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Plan")
+     * @ORM\ManyToOne(targetEntity="Plan", inversedBy="plan_repeat_exceptions")
      * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $plan;

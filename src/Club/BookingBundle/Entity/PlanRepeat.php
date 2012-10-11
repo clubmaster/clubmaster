@@ -97,15 +97,10 @@ class PlanRepeat
     protected $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Plan")
+     * @ORM\ManyToOne(targetEntity="Plan", inversedBy="plan_repeats")
      * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $plan;
-
-    /**
-     * @ORM\OneToMany(targetEntity="PlanRepeatException", mappedBy="plan")
-     */
-    protected $plan_repeat_exceptions;
 
 
     public function __construct()
@@ -483,38 +478,5 @@ class PlanRepeat
         case '7':
             return 'SU,';
         }
-    }
-
-    /**
-     * Add plan_repeat_exceptions
-     *
-     * @param Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions
-     * @return PlanRepeat
-     */
-    public function addPlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions)
-    {
-        $this->plan_repeat_exceptions[] = $planRepeatExceptions;
-
-        return $this;
-    }
-
-    /**
-     * Remove plan_repeat_exceptions
-     *
-     * @param Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions
-     */
-    public function removePlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatException $planRepeatExceptions)
-    {
-        $this->plan_repeat_exceptions->removeElement($planRepeatExceptions);
-    }
-
-    /**
-     * Get plan_repeat_exceptions
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getPlanRepeatExceptions()
-    {
-        return $this->plan_repeat_exceptions;
     }
 }

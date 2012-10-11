@@ -130,6 +130,11 @@ class Plan
     protected $plan_repeats;
 
     /**
+     * @ORM\OneToMany(targetEntity="PlanRepeatException", mappedBy="plan")
+     */
+    protected $plan_repeat_exceptions;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Field")
      * @ORM\JoinTable(name="club_booking_plan_field",
      *   joinColumns={@ORM\JoinColumn(name="plan_id", referencedColumnName="id", onDelete="cascade")},
@@ -556,5 +561,38 @@ class Plan
     public function getIcsUid()
     {
         return $this->getId().'_plan@clubmaster.org';
+    }
+
+    /**
+     * Add plan_repeat_exceptions
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions
+     * @return Plan
+     */
+    public function addPlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions)
+    {
+        $this->plan_repeat_exceptions[] = $planRepeatExceptions;
+
+        return $this;
+    }
+
+    /**
+     * Remove plan_repeat_exceptions
+     *
+     * @param Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions
+     */
+    public function removePlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions)
+    {
+        $this->plan_repeat_exceptions->removeElement($planRepeatExceptions);
+    }
+
+    /**
+     * Get plan_repeat_exceptions
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getPlanRepeatExceptions()
+    {
+        return $this->plan_repeat_exceptions;
     }
 }
