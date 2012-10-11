@@ -4,8 +4,11 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
+add support for hourly parsing
+create controller to convert old booking plan to new
 add jquery dropdown for times, has to be like: 00:00, 00:30, 01:00 and so on..
-add exceptions to team and plans
+add exceptions to team
+add ics format for team handling
 check phpscheduleit for interval update
 give warning if you try to make a booking plan above a booking
 when team on booking view, you should be able to attend the team
