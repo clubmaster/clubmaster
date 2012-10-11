@@ -66,6 +66,11 @@ function makeIntervalUrl(interval)
 function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
 {
   var start = Date.parse(booking.first_date);
+
+  if (start < day_start) {
+      start = day_start
+  }
+
   var end = Date.parse(booking.end_date);
   var diff=(end-start)/1000/60;
   var day_diff=(start-day_start)/1000/60;
