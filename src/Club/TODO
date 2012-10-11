@@ -4,6 +4,7 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
+add exceptions to team and plans
 move configuration into the installer, no need to have 2 bundles for that.
 configurationbundle and installerbundle should be disabled after install
 consider to remove the subscriptions menu item on /user
