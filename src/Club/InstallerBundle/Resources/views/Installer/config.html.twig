@@ -1,0 +1,9 @@
+{% extends "ClubInstallerBundle::base.html.twig" %}
+
+{% block body %}
+
+<p>{% trans %}You will need a database connection, please configure it here.{% endtrans %}</p>
+
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_installer_installer_config')} %}
+
+{% endblock %}

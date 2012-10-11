@@ -1,0 +1,15 @@
+{% extends "ClubInstallerBundle::base.html.twig" %}
+
+{% block body %}
+
+<p>In order to continue you have to configure your parameters.yml file, that is the file which held the database connection.</p>
+<p>Please locate your app/parameters.yml file, and overwrite the file with the following data:</p>
+
+<legend>{% trans %}parameters.yml{% endtrans %}</legend>
+<textarea class="big">{{ parameters }}</textarea>
+
+<form method="post" action="{{ path('club_installer_installer_parameter') }}" class="form-horizontal">
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Install database'|trans} %}
+</form>
+
+{% endblock %}

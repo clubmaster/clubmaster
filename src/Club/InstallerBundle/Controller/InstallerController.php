@@ -6,149 +6,215 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * @Route("/installer")
  */
 class InstallerController extends Controller
 {
-  public function __construct()
-  {
-    $file = __DIR__.'/../../../../app/installer';
-    if (!file_exists($file))
-      die('The installer is not available.');
-  }
-
-  /**
-   * @Route("")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $this->get('session')->set('installer_user_id',null);
-    $this->get('session')->set('installer_location_id',null);
-
-    return array();
-  }
-
-  /**
-   * @Route("/step/1")
-   * @Template()
-   */
-  public function databaseAction()
-  {
-    return array();
-  }
-
-  /**
-   * @Route("/step/2")
-   * @Template()
-   */
-  public function administratorAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    if ($this->get('session')->get('installer_user_id')) {
-      $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
-    } else {
-      $user = $this->get('clubmaster.user')->get();
-      $user->getProfile()->setProfileAddress(null);
-      $user->getProfile()->setProfilePhone(null);
+    public function __construct()
+    {
+        $file = __DIR__.'/../../../../app/installer';
+        if (!file_exists($file))
+            die('The installer is not available.');
     }
 
-    $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
+    /**
+     * @Route("/parameter")
+     * @Template()
+     */
+    public function parameterAction()
+    {
+        if ($this->getRequest()->getMethod() == 'POST') {
+            try {
+                $em = $this->getDoctrine()->getEntityManager();
+                $user = $em->find('ClubUserBundle:User', 1);
 
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
+            } catch (\PDOException $e) {
+                // only if we have a PDO exception, which is connection error
+                $this->get('session')->setFlash('error', $e->getMessage());
+            } catch (\Doctrine\DBAL\DBALException $e) {
+            }
 
-      if ($form->isValid()) {
-        $group = $em->getRepository('ClubUserBundle:Group')->findOneBy(array(
-          'group_name' => 'Super Administrators'
-        ));
+            return $this->redirect($this->generateUrl('club_installer_installer_migrate'));
+        }
 
-        $group->addUsers($user);
+        $config = unserialize($this->get('session')->get('installer'));
+        $params = array(
+            'database_driver' => $config->driver,
+            'database_host' => $config->host,
+            'database_port' => $config->port,
+            'database_name' => $config->name,
+            'database_user' => $config->user,
+            'database_password' => $config->password,
+            'mailer_transport' => 'smtp',
+            'mailer_host' => 'localhost',
+            'mailer_user' => null,
+            'mailer_password' => null,
+            'locale' => 'en',
+            'secret' => $config->secret
+        );
 
-        $this->get('clubmaster.user')->save();
-
-        $this->get('session')->set('installer_user_id',$user->getId());
-
-        return $this->redirect($this->generateUrl('club_installer_installer_location'));
-      }
+        return array(
+            'parameters' => Yaml::dump(array('parameters' => $params))
+        );
     }
 
-    return array(
-      'form' => $form->createView()
-    );
-  }
+    /**
+     * @Route("/config")
+     * @Template()
+     */
+    public function configAction()
+    {
+        $config = new \Club\InstallerBundle\Step\DoctrineStep();
+        $form = $this->createForm(new \Club\InstallerBundle\Form\DoctrineStepType(), $config);
 
-  /**
-   * @Route("/step/3")
-   * @Template()
-   */
-  public function locationAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
 
-    $location_step = new \Club\InstallerBundle\Step\LocationStep();
-    $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location_step);
+            if ($form->isValid()) {
+                $this->get('session')->set('installer', serialize($config));
 
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
+                return $this->redirect($this->generateUrl('club_installer_installer_parameter'));
+            }
+        }
 
-      if ($form->isValid()) {
-        $location = new \Club\UserBundle\Entity\Location();
-        $location->setLocationName($location_step->location_name);
-        $location->setClub(true);
-        $em->persist($location);
-
-        $lc = new \Club\UserBundle\Entity\LocationConfig();
-        $lc->setConfig('default_currency');
-        $lc->setLocation($location);
-        $lc->setValue($location_step->currency->getId());
-        $em->persist($lc);
-        $lc = new \Club\UserBundle\Entity\LocationConfig();
-        $lc->setConfig('email_sender_address');
-        $lc->setLocation($location);
-        $lc->setValue('noreply@clubmaster.org');
-        $em->persist($lc);
-        $lc = new \Club\UserBundle\Entity\LocationConfig();
-        $lc->setConfig('email_sender_name');
-        $lc->setLocation($location);
-        $lc->setValue('ClubMaster Administrator');
-        $em->persist($lc);
-
-        $em->flush();
-
-        $this->get('session')->set('installer_location_id', $location->getId());
-
-        return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
-      }
+        return array(
+            'form' => $form->createView()
+        );
     }
 
-    return array(
-      'form' => $form->createView()
-    );
-  }
+    /**
+     * @Route("")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $this->get('session')->set('installer_user_id',null);
+        $this->get('session')->set('installer_location_id',null);
 
-  /**
-   * @Route("/step/4")
-   * @Template()
-   */
-  public function confirmAction()
-  {
-    return array();
-  }
+        return array();
+    }
 
-  /**
-   * @Route("/migrate")
-   * @Template()
-   */
-  public function migrateAction()
-  {
-    $this->get('club_installer.database')->migrate();
+    /**
+     * @Route("/step/1")
+     * @Template()
+     */
+    public function databaseAction()
+    {
+        return array();
+    }
 
-    $this->get('session')->setFlash('notice', 'Database was successful installed');
+    /**
+     * @Route("/step/2")
+     * @Template()
+     */
+    public function administratorAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
-    return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
-  }
+        if ($this->get('session')->get('installer_user_id')) {
+            $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
+        } else {
+            $user = $this->get('clubmaster.user')->get();
+            $user->getProfile()->setProfileAddress(null);
+            $user->getProfile()->setProfilePhone(null);
+        }
+
+        $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+                $group = $em->getRepository('ClubUserBundle:Group')->findOneBy(array(
+                    'group_name' => 'Super Administrators'
+                ));
+
+                $group->addUsers($user);
+
+                $this->get('clubmaster.user')->save();
+
+                $this->get('session')->set('installer_user_id',$user->getId());
+
+                return $this->redirect($this->generateUrl('club_installer_installer_location'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Route("/step/3")
+     * @Template()
+     */
+    public function locationAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $location_step = new \Club\InstallerBundle\Step\LocationStep();
+        $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location_step);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+                $location = new \Club\UserBundle\Entity\Location();
+                $location->setLocationName($location_step->location_name);
+                $location->setClub(true);
+                $em->persist($location);
+
+                $lc = new \Club\UserBundle\Entity\LocationConfig();
+                $lc->setConfig('default_currency');
+                $lc->setLocation($location);
+                $lc->setValue($location_step->currency->getId());
+                $em->persist($lc);
+                $lc = new \Club\UserBundle\Entity\LocationConfig();
+                $lc->setConfig('email_sender_address');
+                $lc->setLocation($location);
+                $lc->setValue('noreply@clubmaster.org');
+                $em->persist($lc);
+                $lc = new \Club\UserBundle\Entity\LocationConfig();
+                $lc->setConfig('email_sender_name');
+                $lc->setLocation($location);
+                $lc->setValue('ClubMaster Administrator');
+                $em->persist($lc);
+
+                $em->flush();
+
+                $this->get('session')->set('installer_location_id', $location->getId());
+
+                return $this->redirect($this->generateUrl('club_installer_installer_confirm'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Route("/step/4")
+     * @Template()
+     */
+    public function confirmAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/migrate")
+     * @Template()
+     */
+    public function migrateAction()
+    {
+        $this->get('club_installer.database')->migrate();
+
+        $this->get('session')->setFlash('notice', 'Database was successful installed');
+
+        return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+    }
 }

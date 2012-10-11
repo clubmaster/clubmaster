@@ -15,9 +15,15 @@ class InstallerControllerTest extends WebTestCase
     $crawler = $client->click($link);
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $link = $crawler->selectLink('Install database')->link();
-    $crawler = $client->click($link);
+    $form = $crawler->selectButton('Save')->form();
+    $crawler = $client->submit($form);
     $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $client->followRedirect();
+
+    $form = $crawler->selectButton('Install database')->form();
+    $crawler = $client->submit($form);
+    $this->assertEquals(302, $client->getResponse()->getStatusCode());
+    $crawler = $client->followRedirect();
     $crawler = $client->followRedirect();
 
     $form = $crawler->selectButton('Save')->form();

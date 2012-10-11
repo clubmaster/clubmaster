@@ -17,10 +17,6 @@ ClubInstallBundle:
     resource: "@ClubInstallerBundle/Controller/"
     type:     annotation
 
-ClubConfiguratorBundle:
-    resource: "@ClubConfiguratorBundle/Resources/config/routing/webconfigurator.xml"
-
-
 ClubTournamentBundle:
     resource: "@ClubTournamentBundle/Controller/"
     type:     annotation

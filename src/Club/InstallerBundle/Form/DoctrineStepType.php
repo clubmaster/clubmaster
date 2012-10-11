@@ -9,9 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Club\ConfiguratorBundle\Configurator\Form;
+namespace Club\InstallerBundle\Form;
 
-use Club\ConfiguratorBundle\Configurator\Step\DoctrineStep;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -25,7 +24,7 @@ class DoctrineStepType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('driver', 'choice', array('choices' => DoctrineStep::getDrivers()))
+            ->add('driver', 'choice', array('choices' => \Club\InstallerBundle\Step\DoctrineStep::getDrivers()))
             ->add('name', 'text', array('required' => false))
             ->add('host', 'text', array('required' => false))
             ->add('port', 'text', array('required' => false))
@@ -42,6 +41,6 @@ class DoctrineStepType extends AbstractType
 
     public function getName()
     {
-        return 'distributionbundle_doctrine_step';
+        return 'config';
     }
 }
