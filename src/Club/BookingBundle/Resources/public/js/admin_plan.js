@@ -61,7 +61,7 @@ function show_view()
 function view_hourly()
 {
     $('#plan_plan_repeats_0_repeat_on_hour').closest('div.control-group').show();
-    $('#plan_plan_repeats_0_repeat_on').closest('div.control-group').hide();
+    $('#plan_plan_repeats_0_repeat_on').closest('div.control-group').show();
     $('#plan_plan_repeats_0_repeat_by').closest('div.control-group').hide();
 }
 

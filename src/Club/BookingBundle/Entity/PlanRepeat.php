@@ -435,6 +435,17 @@ class PlanRepeat
             $s = preg_replace("/,$/", "", $s);
             $ics .= sprintf(';BYHOUR=%s', $s);
 
+            if (strlen($this->getRepeatOn()) > 0) {
+                $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+                $days = $transformer->transform($this->getRepeatOn());
+                $dates = '';
+                foreach ($days as $day) {
+                    $dates .= $this->getDay($day);
+                }
+                $dates = preg_replace("/,$/", "", $dates);
+            }
+
+            $ics .= sprintf(';BYDAY=%s', $dates);
             // nothing to do
             break;
         case 'daily':
