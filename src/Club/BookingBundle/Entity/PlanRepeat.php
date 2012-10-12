@@ -426,6 +426,15 @@ class PlanRepeat
         // Build generic for each type
         switch ($this->getRepeats()) {
         case 'hourly':
+            $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+            $hours = $transformer->transform($this->getRepeatOnHour());
+            $s = '';
+            foreach ($hours as $hour) {
+                $s .= $hour.',';
+            }
+            $s = preg_replace("/,$/", "", $s);
+            $ics .= sprintf(';BYHOUR=%s', $s);
+
             // nothing to do
             break;
         case 'daily':
