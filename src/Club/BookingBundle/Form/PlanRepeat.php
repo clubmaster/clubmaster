@@ -12,7 +12,6 @@ class PlanRepeat extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $repeats = array(
-            'hourly' => 'Hourly',
             'daily' => 'Daily',
             'weekly' => 'Weekly',
             'monthly' => 'Monthly',

@@ -425,15 +425,17 @@ class PlanRepeat
 
         // Build generic for each type
         switch ($this->getRepeats()) {
-        case 'hourly':
-            $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
-            $hours = $transformer->transform($this->getRepeatOnHour());
-            $s = '';
-            foreach ($hours as $hour) {
-                $s .= $hour.',';
+        case 'daily':
+            if (strlen($this->getRepeatOnHour()) > 0) {
+                $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+                $hours = $transformer->transform($this->getRepeatOnHour());
+                $s = '';
+                foreach ($hours as $hour) {
+                    $s .= $hour.',';
+                }
+                $s = preg_replace("/,$/", "", $s);
+                $ics .= sprintf(';BYHOUR=%s', $s);
             }
-            $s = preg_replace("/,$/", "", $s);
-            $ics .= sprintf(';BYHOUR=%s', $s);
 
             if (strlen($this->getRepeatOn()) > 0) {
                 $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
@@ -443,13 +445,8 @@ class PlanRepeat
                     $dates .= $this->getDay($day);
                 }
                 $dates = preg_replace("/,$/", "", $dates);
+                $ics .= sprintf(';BYDAY=%s', $dates);
             }
-
-            $ics .= sprintf(';BYDAY=%s', $dates);
-            // nothing to do
-            break;
-        case 'daily':
-            // nothing to do
             break;
         case 'weekly':
             $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
