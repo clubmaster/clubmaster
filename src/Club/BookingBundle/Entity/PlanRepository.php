@@ -111,7 +111,7 @@ EOF;
             foreach ($calendar->VEVENT as $event) {
                 preg_match("/^(\d+)_/", $event->UID, $o);
                 $plan_id = $o[1];
-                $plan = $this->_em->find('ClubBookingBundle:Plan', $plan_id);
+                $plan = clone $this->_em->find('ClubBookingBundle:Plan', $plan_id);
                 $plan->setStart($event->DTSTART->getDateTime());
                 $plan->setEnd($event->DTEND->getDateTime());
 
