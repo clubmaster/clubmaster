@@ -134,7 +134,7 @@ EOF;
         $plan = $repeat->getPlan();
 
         $exception = '';
-        foreach ($plan->getPlanRepeatExceptions() as $e) {
+        foreach ($plan->getPlanExceptions() as $e) {
             $exception .= 'EXDATE:'.$e->getExcludeDate()->format('Ymd\THis').PHP_EOL;
         }
 

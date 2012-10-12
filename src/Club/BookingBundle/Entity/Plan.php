@@ -130,9 +130,9 @@ class Plan
     protected $plan_repeats;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanRepeatException", mappedBy="plan")
+     * @ORM\OneToMany(targetEntity="PlanException", mappedBy="plan")
      */
-    protected $plan_repeat_exceptions;
+    protected $plan_exceptions;
 
     /**
      * @ORM\ManyToMany(targetEntity="Field")
@@ -564,35 +564,35 @@ class Plan
     }
 
     /**
-     * Add plan_repeat_exceptions
+     * Add plan_exceptions
      *
-     * @param Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions
+     * @param Club\BookingBundle\Entity\PlanException $planExceptions
      * @return Plan
      */
-    public function addPlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions)
+    public function addPlanException(\Club\BookingBundle\Entity\PlanException $planExceptions)
     {
-        $this->plan_repeat_exceptions[] = $planRepeatExceptions;
+        $this->plan_exceptions[] = $planExceptions;
 
         return $this;
     }
 
     /**
-     * Remove plan_repeat_exceptions
+     * Remove plan_exceptions
      *
-     * @param Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions
+     * @param Club\BookingBundle\Entity\PlanException $planExceptions
      */
-    public function removePlanRepeatException(\Club\BookingBundle\Entity\PlanRepeatExclude $planRepeatExceptions)
+    public function removePlanException(\Club\BookingBundle\Entity\PlanException $planExceptions)
     {
-        $this->plan_repeat_exceptions->removeElement($planRepeatExceptions);
+        $this->plan_exceptions->removeElement($planExceptions);
     }
 
     /**
-     * Get plan_repeat_exceptions
+     * Get plan_exceptions
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getPlanRepeatExceptions()
+    public function getPlanExceptions()
     {
-        return $this->plan_repeat_exceptions;
+        return $this->plan_exceptions;
     }
 }

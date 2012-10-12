@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Club\BookingBundle\Entity\PlanRepeatException
+ * Club\BookingBundle\Entity\PlanException
  *
- * @ORM\Table(name="club_booking_plan_repeat_exception")
- * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\PlanRepeatExceptionRepository")
+ * @ORM\Table(name="club_booking_plan_exception")
+ * @ORM\Entity(repositoryClass="Club\BookingBundle\Entity\PlanExceptionRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class PlanRepeatException
+class PlanException
 {
     /**
      * @var integer $id
@@ -38,7 +38,7 @@ class PlanRepeatException
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Plan", inversedBy="plan_repeat_exceptions")
+     * @ORM\ManyToOne(targetEntity="Plan", inversedBy="plan_exceptions")
      * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $plan;
@@ -111,7 +111,7 @@ class PlanRepeatException
      * Set exclude_date
      *
      * @param \DateTime $excludeDate
-     * @return PlanRepeatException
+     * @return PlanException
      */
     public function setExcludeDate($excludeDate)
     {
@@ -134,7 +134,7 @@ class PlanRepeatException
      * Set plan
      *
      * @param Club\BookingBundle\Entity\Plan $plan
-     * @return PlanRepeatException
+     * @return PlanException
      */
     public function setPlan(\Club\BookingBundle\Entity\Plan $plan = null)
     {
@@ -157,7 +157,7 @@ class PlanRepeatException
      * Set user
      *
      * @param Club\UserBundle\Entity\User $user
-     * @return PlanRepeatException
+     * @return PlanException
      */
     public function setUser(\Club\UserBundle\Entity\User $user = null)
     {

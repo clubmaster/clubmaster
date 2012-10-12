@@ -339,4 +339,14 @@ class Field
     {
       return $this->getLocation()->getLocationName().', '.$this->getName();
     }
+
+    /**
+     * Remove intervals
+     *
+     * @param Club\BookingBundle\Entity\Interval $intervals
+     */
+    public function removeInterval(\Club\BookingBundle\Entity\Interval $intervals)
+    {
+        $this->intervals->removeElement($intervals);
+    }
 }

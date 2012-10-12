@@ -196,7 +196,7 @@ class BookingController extends Controller
             $plan->getStart()->format('s')
         );
 
-        $exception = new \Club\BookingBundle\Entity\PlanRepeatException();
+        $exception = new \Club\BookingBundle\Entity\PlanException();
         $exception->setExcludeDate($date);
         $exception->setPlan($plan);
         $exception->setUser($this->getUser());

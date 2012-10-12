@@ -1,0 +1,21 @@
+<form method="post" action="{{ path }}" class="form-horizontal">
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.fields) }}
+    {{ form_row(form.start) }}
+    {{ form_row(form.end) }}
+    {{ form_row(form.all_day) }}
+    {{ form_row(form.repeating) }}
+
+    <fieldset id="repeat_form">
+    <legend>{% trans %}Repeat{% endtrans %}</legend>
+    {% for f in form.plan_repeats %}
+        {{ form_widget(f) }}
+    {% endfor %}
+    </fieldset>
+
+    {{ form_rest(form) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+</form>
