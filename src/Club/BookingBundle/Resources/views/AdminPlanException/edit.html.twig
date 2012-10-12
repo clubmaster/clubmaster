@@ -1,15 +1,5 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
-{% block pagenav %}
-{% include "ClubBookingBundle:AdminPlan:header.html.twig" %}
-{% endblock %}
-
-{% block javascripts %}
-{% javascripts "@ClubBookingBundle/Resources/public/js/admin_plan.js" %}
-<script src="{{ asset_url }}" type="text/javascript"></script>
-{% endjavascripts %}
-{% endblock %}
-
 {% block body %}
-{% include "ClubBookingBundle:AdminPlan:form.html.twig" with {'path':path('club_booking_adminplan_edit', {'id':plan.id})} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_adminplanexception_edit', {'id':exception.id})} %}
 {% endblock %}

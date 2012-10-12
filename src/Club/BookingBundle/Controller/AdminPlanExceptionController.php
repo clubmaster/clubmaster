@@ -11,54 +11,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class AdminPlanExceptionController extends Controller
 {
-
     /**
-     * @Route("/new", defaults={"date" = null, "interval_id" = null})
-     * @Route("/new/{date}/{interval_id}", name="club_booking_plan_pre")
+     * @Route("/new/{id}")
      * @Template()
      */
-    public function newAction($date, $interval_id)
+    public function newAction(\Club\BookingBundle\Entity\Plan $plan)
     {
-        $plan = new \Club\BookingBundle\Entity\Plan();
-        $plan->setUser($this->getUser());
+        $exception = new \Club\BookingBundle\Entity\PlanException();
+        $exception->setUser($this->getUser());
+        $exception->setPlan($plan);
 
-        $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
-        $repeat->setPlan($plan);
-        $plan->addPlanRepeat($repeat);
-
-
-        $em = $this->getDoctrine()->getEntityManager();
-        if ($date != '') {
-            $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
-
-            $start = new \DateTime($date.' 00:00:00');
-            $end = new \DateTime($date.' 23:59:59');
-
-            $t_start = new \DateTime(date('Y-m-d '.$interval->getStartTime()->format('H:i:s')));
-            $t_end = new \DateTime(date('Y-m-d '.$interval->getStopTime()->format('H:i:s')));
-            $plan->setStart($t_start);
-            $plan->setEnd($t_end);
-            $plan->addField($interval->getField());
-        }
-
-        $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
+        $form = $this->createForm(new \Club\BookingBundle\Form\PlanException, $exception);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
 
             if ($form->isValid()) {
-                $em->persist($plan);
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($exception);
                 $em->flush();
 
                 $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-                return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
-            } else {
+                return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
+                    'id' => $plan->getId()
+                )));
             }
         }
 
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'plan' => $plan
         );
     }
 
@@ -66,50 +49,46 @@ class AdminPlanExceptionController extends Controller
      * @Route("/edit/{id}")
      * @Template()
      */
-    public function editAction(\Club\BookingBundle\Entity\Plan $plan)
+    public function editAction(\Club\BookingBundle\Entity\PlanException $exception)
     {
-        if (!count($plan->getPlanRepeats())) {
-            $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
-            $repeat->setPlan($plan);
-            $plan->addPlanRepeat($repeat);
-        }
-
-        $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
+        $form = $this->createForm(new \Club\BookingBundle\Form\PlanException, $exception);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($plan);
+                $em->persist($exception);
                 $em->flush();
 
                 $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-                return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+                return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
+                    'id' => $exception->getPlan()->getId()
+                )));
             }
         }
 
         return array(
-            'plan' => $plan,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'exception' => $exception
         );
     }
 
     /**
      * @Route("/delete/{id}")
      */
-    public function deleteAction($id)
+    public function deleteAction(\Club\BookingBundle\Entity\PlanException $exception)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $plan = $em->find('ClubBookingBundle:Plan',$this->getRequest()->get('id'));
 
-        $em->remove($plan);
+        $em->remove($exception);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+        return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
+            'id' => $exception->getPlan()->getId()
+        )));
     }
 
     /**

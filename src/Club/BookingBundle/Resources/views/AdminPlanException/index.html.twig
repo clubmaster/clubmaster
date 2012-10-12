@@ -4,7 +4,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li><a href="{{ path('club_booking_adminplan_new') }}">{% trans %}Create plan{% endtrans %}</a></li>
+            <li><a href="{{ path('club_booking_adminplanexception_new', {'id':plan.id}) }}">{% trans %}Create exception{% endtrans %}</a></li>
         </ul>
     </div>
 </div>
@@ -25,8 +25,8 @@
       <td>{{ excep.plan.name }}</td>
       <td>{{ excep.excludeDate|club_datetime }}</td>
       <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplan_edit', { 'id':plan.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplan_delete', { 'id':plan.id })} %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminplanexception_edit', { 'id':excep.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminplanexception_delete', { 'id':excep.id })} %}
       </td>
     </tr>
   {% else %}
