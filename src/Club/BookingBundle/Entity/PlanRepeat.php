@@ -39,6 +39,13 @@ class PlanRepeat
     protected $repeat_on;
 
     /**
+     * @var string $repeat_on_hour
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $repeat_on_hour;
+
+    /**
      * @var string $repeat_by
      *
      * @ORM\Column(type="string")
@@ -478,5 +485,28 @@ class PlanRepeat
         case '7':
             return 'SU,';
         }
+    }
+
+    /**
+     * Set repeat_on_hour
+     *
+     * @param string $repeatOnHour
+     * @return PlanRepeat
+     */
+    public function setRepeatOnHour($repeatOnHour)
+    {
+        $this->repeat_on_hour = $repeatOnHour;
+
+        return $this;
+    }
+
+    /**
+     * Get repeat_on_hour
+     *
+     * @return string
+     */
+    public function getRepeatOnHour()
+    {
+        return $this->repeat_on_hour;
     }
 }

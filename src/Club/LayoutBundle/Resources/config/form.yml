@@ -38,3 +38,8 @@ services:
         arguments: [@translator]
         tags:
             - { name: "form.type", alias: "day" }
+    club_layout_form_hour:
+        class: Club\LayoutBundle\Form\HourType
+        arguments: [@translator]
+        tags:
+            - { name: "form.type", alias: "hour" }
