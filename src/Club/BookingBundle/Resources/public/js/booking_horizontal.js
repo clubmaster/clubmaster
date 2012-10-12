@@ -48,10 +48,11 @@ function setTeam(team_id, field_id)
     $('#team_id').closest('form').submit();
 }
 
-function setPlan(plan_id, field_id)
+function setPlan(plan_id, field_id, time)
 {
     $('#plan_id').val(plan_id);
     $('#plan_field_id').val(field_id);
+    $('#plan_time').val(time);
     $('#plan_id').closest('form').submit();
 }
 
@@ -108,7 +109,7 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
     $.each(booking.fields, function() {
       var left=$("#field_"+this.id).css('left');
 
-      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setPlan('+booking.id+','+this.id+')">&#160;'+booking.name+'</div>';
+      if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setPlan('+booking.id+','+this.id+',\''+getTime(date)+'\')">&#160;'+booking.name+'</div>';
     });
 
     $("#bookings_plan").append(ret);

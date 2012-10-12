@@ -143,15 +143,20 @@ class BookingController extends Controller
      * @Template()
      * @Route("/view/plan/{date}")
      */
-    public function viewPlanAction($date)
+    public function viewPlanAction(\DateTime $date)
     {
         $plan_id = $this->getRequest()->request->get('plan_id');
         $field_id = $this->getRequest()->request->get('field_id');
 
+        $date->setTime(
+            substr($this->getRequest()->request->get('time'),0,2),
+            substr($this->getRequest()->request->get('time'),3,2),
+            0
+        );
+
         $em = $this->getDoctrine()->getEntityManager();
         $plan = $em->find('ClubBookingBundle:Plan', $plan_id);
         $field = $em->find('ClubBookingBundle:Field', $field_id);
-        $date = new \DateTime($date.' 00:00:00');
 
         return array(
             'plan' => $plan,
@@ -185,19 +190,13 @@ class BookingController extends Controller
 
     /**
      * @Template()
-     * @Route("/book/exclude/{id}/{date}")
+     * @Route("/book/exclude/{id}/{datetime}")
      * @Secure(roles="ROLE_BOOKING_ADMIN")
      */
-    public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $date)
+    public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $datetime)
     {
-        $date->setTime(
-            $plan->getStart()->format('H'),
-            $plan->getStart()->format('i'),
-            $plan->getStart()->format('s')
-        );
-
         $exception = new \Club\BookingBundle\Entity\PlanException();
-        $exception->setExcludeDate($date);
+        $exception->setExcludeDate($datetime);
         $exception->setPlan($plan);
         $exception->setUser($this->getUser());
 
@@ -207,7 +206,7 @@ class BookingController extends Controller
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $date->format('Y-m-d'))));
+        return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
     }
 
 }
