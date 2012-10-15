@@ -28,7 +28,8 @@ class ClubWeatherExtension extends Extension
         }
 
         $container->setParameter('club_weather.enabled', $config['enabled']);
-        $container->setParameter('club_weather.city', $config['city']);
+        $container->setParameter('club_weather.latitude', $config['latitude']);
+        $container->setParameter('club_weather.longtitude', $config['longtitude']);
         $container->setParameter('club_weather.key', $config['key']);
     }
 }

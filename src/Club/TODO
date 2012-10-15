@@ -4,7 +4,6 @@ when upgrading, set last_subscribe date to start_date
 remove temporary sql file
 
 == NOTES TO LATER ==
-we have sunrice and sunset info in php, use it for weather module
 create controller to convert old booking plan to new
 add jquery dropdown for times, has to be like: 00:00, 00:30, 01:00 and so on..
 add exceptions to team

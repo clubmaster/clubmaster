@@ -2616,6 +2616,46 @@
           <source>All messages here will only appear in the bottom of the kiosk client.</source>
           <target>Alle beskeder her til kun vises på booking skærmen.</target>
       </trans-unit>
+      <trans-unit id="693">
+          <source>Temperature</source>
+          <target>Temperatur</target>
+      </trans-unit>
+      <trans-unit id="694">
+          <source>Wind</source>
+          <target>Vind</target>
+      </trans-unit>
+      <trans-unit id="695">
+          <source>Sunrise</source>
+          <target>Solopgang</target>
+      </trans-unit>
+      <trans-unit id="696">
+          <source>Sunset</source>
+          <target>Solnedgang</target>
+      </trans-unit>
+      <trans-unit id="697">
+          <source>Weather right now!</source>
+          <target>Vejret lige nu!</target>
+      </trans-unit>
+      <trans-unit id="698">
+          <source>The weather was last updated at %time%.</source>
+          <target>Vejret var sidst opdateret %time%.</target>
+      </trans-unit>
+      <trans-unit id="699">
+          <source>Current temperature: %temp%</source>
+          <target>Nuværende temperatur: %temp%&#176;</target>
+      </trans-unit>
+      <trans-unit id="700">
+          <source>Current wind: %speed% km/t, %dir%</source>
+          <target>Nuværende vind: %speed% km/t, %dir%</target>
+      </trans-unit>
+      <trans-unit id="701">
+          <source>Sunrise: %sunrise%, sunset: %sunset%</source>
+          <target>Solopgang: %sunrise%, solnedgang: %sunset%</target>
+      </trans-unit>
+      <trans-unit id="702">
+          <source>Weather</source>
+          <target>Vejret</target>
+      </trans-unit>
 
     </body>
   </file>
