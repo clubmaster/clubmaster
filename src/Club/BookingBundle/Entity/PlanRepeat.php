@@ -429,7 +429,8 @@ class PlanRepeat
             // nothing to do
             break;
         case 'daily':
-            // nothing to do
+            $ics .= $this->getByHour();
+
             break;
         case 'weekly':
             $ics .= $this->getByHour();
