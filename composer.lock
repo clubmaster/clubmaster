@@ -334,7 +334,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-01 10:50:26",
+            "time": "2012-01-01 09:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -376,7 +376,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-01 10:40:52",
+            "time": "2012-01-01 09:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -478,7 +478,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-01 11:32:49",
+            "time": "2012-01-01 10:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -678,18 +678,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/evert/sabre-vobject",
-                "reference": "2.0.2"
+                "reference": "688562efdc0baaa5903f71923b49696a7a38fd87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/evert/sabre-vobject/zipball/2.0.2",
-                "reference": "2.0.2",
+                "url": "https://github.com/evert/sabre-vobject/zipball/688562efdc0baaa5903f71923b49696a7a38fd87",
+                "reference": "688562efdc0baaa5903f71923b49696a7a38fd87",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1"
             },
-            "time": "1349527003",
+            "time": "1350231920",
             "bin": [
                 "bin/vobjectvalidate.php"
             ],
