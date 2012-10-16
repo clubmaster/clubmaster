@@ -2601,16 +2601,16 @@
           <target>Nyheder</target>
       </trans-unit>
       <trans-unit id="689">
-          <source>News ticker</source>
-          <target>Nyhedsflash</target>
+          <source>News announcement</source>
+          <target>Nyhedsannoncering</target>
       </trans-unit>
       <trans-unit id="690">
-          <source>Create ticker</source>
-          <target>Opret flash</target>
+          <source>Create announcement</source>
+          <target>Opret annoncering</target>
       </trans-unit>
       <trans-unit id="691">
-          <source>Ticker</source>
-          <target>Flash</target>
+          <source>Announcement</source>
+          <target>Annoncering</target>
       </trans-unit>
       <trans-unit id="692">
           <source>All messages here will only appear in the bottom of the kiosk client.</source>

@@ -1,0 +1,43 @@
+{% extends "ClubNewsBundle::base.html.twig" %}
+
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_news_adminannouncement_new') }}">{% trans %}Create announcement{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<p>{% trans %}All messages here will only appear in the bottom of the kiosk client.{% endtrans %}</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Announcement{% endtrans %}</th>
+      <th>{% trans %}Author{% endtrans %}</th>
+      <th>{% trans %}Period{% endtrans %}</th>
+      <th>{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for announcement in announcements %}
+    <tr>
+      <td>{{ announcement.message }}</td>
+      <td>{{ announcement.user.name }}</td>
+      <td>{{ announcement.startDate|club_datetime }} - {{ announcement.endDate|club_datetime }}</td>
+      <td>
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_news_adminannouncement_edit', { 'id':announcement.id })} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_news_adminannouncement_delete', { 'id':announcement.id })} %}
+      </td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="5">{% trans %}There are no announcements.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

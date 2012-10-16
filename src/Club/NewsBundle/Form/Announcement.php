@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Ticker extends AbstractType
+class Announcement extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -28,12 +28,12 @@ class Ticker extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\NewsBundle\Entity\Ticker'
+            'data_class' => 'Club\NewsBundle\Entity\Announcement'
         ));
     }
 
     public function getName()
     {
-        return 'ticker';
+        return 'announcement';
     }
 }

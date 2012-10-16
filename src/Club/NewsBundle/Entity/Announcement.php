@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Club\NewsBundle\Entity\Ticker
+ * Club\NewsBundle\Entity\Announcement
  *
- * @ORM\Table(name="club_news_ticker")
- * @ORM\Entity(repositoryClass="Club\NewsBundle\Entity\TickerRepository")
+ * @ORM\Table(name="club_news_announcement")
+ * @ORM\Entity(repositoryClass="Club\NewsBundle\Entity\AnnouncementRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Ticker
+class Announcement
 {
     /**
      * @var integer $id
@@ -190,7 +190,7 @@ class Ticker
      * Set start_date
      *
      * @param \DateTime $startDate
-     * @return Ticker
+     * @return Announcement
      */
     public function setStartDate($startDate)
     {
@@ -213,7 +213,7 @@ class Ticker
      * Set end_date
      *
      * @param \DateTime $endDate
-     * @return Ticker
+     * @return Announcement
      */
     public function setEndDate($endDate)
     {
