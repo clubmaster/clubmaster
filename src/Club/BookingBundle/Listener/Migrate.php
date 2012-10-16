@@ -15,6 +15,11 @@ class Migrate
 
     public function onVersionMigrate(\Club\InstallerBundle\Event\FilterVersionEvent $event)
     {
+        if ($event->getVersion()->getVersion() != '20121016161300') {
+            // fit to this version only
+            return;
+        }
+
         $repeats = $this->em->getRepository('ClubBookingBundle:PlanRepeat')->findAll();
         if (count($repeats) > 0) {
             // if we already has migrate our booking plans
@@ -24,35 +29,36 @@ class Migrate
         // FIXME, has to add the coming version
         $plans = $this->em->getRepository('ClubBookingBundle:Plan')->findAll();
 
-
         foreach ($plans as $plan) {
             $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
             $repeat->setPlan($plan);
             $repeat->setRepeats('weekly');
             $repeat->setRepeatOn($plan->getDay());
-            $repeat->setEndsType('after');
+            $repeat->setEndsType('on');
             $repeat->setEndsOn($plan->getPeriodEnd());
+            $repeat->setRepeatEvery(1);
 
-            $start = clone $this->getPeriodStart();
+            $start = clone $plan->getPeriodStart();
             $start->setTime(
-                $this->getFirstTime()->format('H'),
-                $this->getFirstTime()->format('i'),
-                $this->getFirstTime()->format('s')
+                $plan->getFirstTime()->format('H'),
+                $plan->getFirstTime()->format('i'),
+                $plan->getFirstTime()->format('s')
             );
 
-            $end = clone $this->getPeriodEnd();
+            $end = clone $plan->getPeriodStart();
             $end->setTime(
-                $this->getEndTime()->format('H'),
-                $this->getEndTime()->format('i'),
-                $this->getEndTime()->format('s')
+                $plan->getEndTime()->format('H'),
+                $plan->getEndTime()->format('i'),
+                $plan->getEndTime()->format('s')
             );
 
             $plan->setStart($start);
             $plan->setEnd($end);
+            $plan->setRepeating(true);
 
             $plan->addPlanRepeat($repeat);
         }
 
-        $em->persist($plan);
+        $this->em->persist($plan);
     }
 }
