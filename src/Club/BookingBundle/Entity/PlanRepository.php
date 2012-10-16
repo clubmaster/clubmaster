@@ -91,7 +91,7 @@ EOF;
     {
         $plans = $this->createQueryBuilder('p')
             ->join('p.fields', 'f')
-            ->join('p.plan_repeat', 'pr')
+            ->join('p.plan_repeats', 'pr')
             ->where('f.location = :location')
             ->andWhere('pr.ends_on > :date')
             ->setParameter('location', $location->getId())
