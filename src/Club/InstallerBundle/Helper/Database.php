@@ -24,12 +24,12 @@ class Database
             $conn->query($sql);
 
             $vers = new \Club\InstallerBundle\Entity\MigrationVersion();
-            $vers->setVersion($version);
+            $vers->setVersion($file['version']);
 
             $this->em->persist($vers);
 
             $event = new \Club\InstallerBundle\Event\FilterVersionEvent($vers);
-            $this->container->dispatch('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onVersionMigrate, $event);
+            $this->container->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onVersionMigrate, $event);
         }
 
         $this->em->flush();
