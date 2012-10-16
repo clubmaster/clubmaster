@@ -49,7 +49,3 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
-  club.user.listener.database_exception:
-    class: Club\UserBundle\Listener\DatabaseException
-    tags:
-      - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
