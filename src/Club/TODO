@@ -2,7 +2,6 @@ on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
 give warning if you try to make a booking plan above a booking
-when team on booking view, you should be able to attend the team
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 add exceptions to team
 add ics format for team handling
