@@ -5,7 +5,6 @@ remove temporary sql file
 
 == NOTES TO LATER ==
 create controller to convert old booking plan to new
-add jquery dropdown for times, has to be like: 00:00, 00:30, 01:00 and so on..
 add exceptions to team
 add ics format for team handling
 check phpscheduleit for interval update
