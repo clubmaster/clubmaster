@@ -7,7 +7,19 @@
   {% render "ClubRankingBundle:Ranking:Top" with {'id':ranking.id, 'limit':ranking_view_top} %}
 
 {% else %}
-  {% include "ClubLayoutBundle:Default:flash_warning.html.twig" with {'msg':'There are no rankings.'|trans} %}</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}Ranking{% endtrans %}</th>
+        </tr>
+    <thead>
+    <tbody>
+        <tr>
+            <td>{% trans %}There are no ranking.{% endtrans %}</td>
+        </tr>
+    </tbody>
+</table>
+
 {% endfor %}
 
 {% endblock %}

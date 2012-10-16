@@ -29,7 +29,7 @@ class MatchTeam
     private $set_won;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Match")
+     * @ORM\ManyToOne(targetEntity="Match", inversedBy="match_teams")
      * @ORM\JoinColumn(name="match_id", onDelete="cascade")
      *
      * @var Club\MatchBundle\Entity\Match
@@ -37,7 +37,7 @@ class MatchTeam
     protected $match;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="match_teams")
      * @ORM\JoinColumn(onDelete="cascade")
      *
      * @var Club\MatchBundle\Entity\Team

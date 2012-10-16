@@ -24,6 +24,7 @@ class DashboardListener
         $user = $event->getUser();
 
         $matches = $this->em->getRepository('ClubMatchBundle:Match')->getLatest($user);
+        if (!$matches) return;
 
         foreach ($matches as $m) {
 

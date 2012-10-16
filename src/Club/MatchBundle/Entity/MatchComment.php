@@ -46,7 +46,7 @@ class MatchComment
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Match")
+     * @ORM\ManyToOne(targetEntity="Match", inversedBy="match_comments")
      * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $match;

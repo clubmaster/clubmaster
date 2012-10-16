@@ -36,7 +36,7 @@ class MatchTeamSet
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MatchTeam")
+     * @ORM\ManyToOne(targetEntity="MatchTeam", inversedBy="match_team_set")
      * @ORM\JoinColumn(name="match_team_id", onDelete="cascade")
      *
      * @var Club\MatchBundle\Entity\MatchTeam

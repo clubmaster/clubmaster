@@ -3,7 +3,18 @@
 {% block body %}
 
 {% if schedules|length == 0 %}
-{% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'There are no teams.'|trans} %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}Team{% endtrans %}</th>
+        </tr>
+    <thead>
+    <tbody>
+        <tr>
+            <td>{% trans %}There are no teams.{% endtrans %}</td>
+        </tr>
+    </tbody>
+</table>
 
 {% else %}
 <table class="table">
