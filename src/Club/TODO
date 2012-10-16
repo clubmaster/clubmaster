@@ -1,4 +1,3 @@
-when upgrading, set last_subscribe date to start_date
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
