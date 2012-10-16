@@ -5,7 +5,6 @@ remove temporary sql file
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
-create controller to convert old booking plan to new
 add exceptions to team
 add ics format for team handling
 check phpscheduleit for interval update
