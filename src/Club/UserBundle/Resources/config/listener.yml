@@ -49,3 +49,8 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
+  club.user.listener.migrate:
+    class: Club\UserBundle\Listener\Migrate
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: version.migrate, method: onVersionMigrate }

@@ -57,8 +57,8 @@ class Migrate
             $plan->setRepeating(true);
 
             $plan->addPlanRepeat($repeat);
-        }
 
-        $this->em->persist($plan);
+            $this->em->persist($plan);
+        }
     }
 }

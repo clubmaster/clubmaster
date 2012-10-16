@@ -1,9 +1,8 @@
-when upgrading, remember to enable all products
-when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+all bookings are gone after upgrade :/
 give warning if you try to make a booking plan above a booking
 when team on booking view, you should be able to attend the team
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
