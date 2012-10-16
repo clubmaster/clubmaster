@@ -118,8 +118,9 @@ club_layout:
 
 club_weather:
     enabled: true
-    city: Aalborg,Denmark
     key: fdeb1d24d8174537121809
+    longtitude: 9.917771
+    latitude: 57.028811
 
 club_tournament:
     enabled: true

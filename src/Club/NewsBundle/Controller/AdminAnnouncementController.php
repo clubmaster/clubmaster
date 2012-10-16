@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * @Route("/admin/news")
  */
-class AdminTickerController extends Controller
+class AdminAnnouncementController extends Controller
 {
   /**
    * @Route("")
@@ -19,10 +19,10 @@ class AdminTickerController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $tickers = $em->getRepository('ClubNewsBundle:Ticker')->findAll();
+    $announcements = $em->getRepository('ClubNewsBundle:Announcement')->findAll();
 
     return array(
-      'tickers' => $tickers
+      'announcements' => $announcements
     );
   }
 
@@ -38,12 +38,12 @@ class AdminTickerController extends Controller
     $end->add($i);
 
     $user = $this->getUser();
-    $ticker = new \Club\NewsBundle\Entity\Ticker();
-    $ticker->setStartDate($start);
-    $ticker->setEndDate($end);
-    $ticker->setUser($user);
+    $announcement = new \Club\NewsBundle\Entity\Announcement();
+    $announcement->setStartDate($start);
+    $announcement->setEndDate($end);
+    $announcement->setUser($user);
 
-    $res = $this->process($ticker);
+    $res = $this->process($announcement);
 
     if ($res instanceOf RedirectResponse)
       return $res;
@@ -60,15 +60,15 @@ class AdminTickerController extends Controller
   public function editAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $ticker = $em->find('ClubNewsBundle:Ticker',$id);
+    $announcement = $em->find('ClubNewsBundle:Announcement',$id);
 
-    $res = $this->process($ticker);
+    $res = $this->process($announcement);
 
     if ($res instanceOf RedirectResponse)
       return $res;
 
     return array(
-      'ticker' => $ticker,
+      'announcement' => $announcement,
       'form' => $res->createView()
     );
   }
@@ -80,33 +80,33 @@ class AdminTickerController extends Controller
   {
     try {
       $em = $this->getDoctrine()->getEntityManager();
-      $ticker = $em->find('ClubNewsBundle:Ticker',$this->getRequest()->get('id'));
+      $announcement = $em->find('ClubNewsBundle:Announcement',$this->getRequest()->get('id'));
 
-      $em->remove($ticker);
+      $em->remove($announcement);
       $em->flush();
 
       $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete ticker which is already being used.'));
+      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete announcement which is already being used.'));
     }
 
-    return $this->redirect($this->generateUrl('club_news_adminticker_index'));
+    return $this->redirect($this->generateUrl('club_news_adminannouncement_index'));
   }
 
-  protected function process($ticker)
+  protected function process($announcement)
   {
-    $form = $this->createForm(new \Club\NewsBundle\Form\Ticker(), $ticker);
+    $form = $this->createForm(new \Club\NewsBundle\Form\Announcement(), $announcement);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($ticker);
+        $em->persist($announcement);
         $em->flush();
 
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
-        return $this->redirect($this->generateUrl('club_news_adminticker_index'));
+        return $this->redirect($this->generateUrl('club_news_adminannouncement_index'));
       }
     }
 

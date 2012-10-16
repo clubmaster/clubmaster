@@ -1,8 +1,10 @@
             <div class="span4">
-              <h2><img alt="{{ weather.weatherDesc.0.value }}" src="{{ weather.weatherIconUrl.0.value }}" /> {{ weather.date|club_date }}</h2>
+              <h2><img alt="{{ weather.weatherDesc.0.value }}" src="{{ weather.weatherIconUrl.0.value }}" /> {{ weather.date|club_date }} <small>{{ weather.date|club_day }}</small></h2>
               <p>
-                Temperature: {{ weather.tempMinC }}&deg; / {{ weather.tempMaxC }}&deg;<br>
-                Wind: {{ weather.windspeedKmph }} km/t, {{ weather.winddir16Point }}
+                {% trans %}Temperature{% endtrans %}: {{ weather.tempMinC }}&deg; / {{ weather.tempMaxC }}&deg;<br>
+                {% trans %}Wind{% endtrans %}: {{ weather.windspeedKmph }} km/t, {{ weather.winddir16Point }}
+                {% trans %}Sunrise{% endtrans %}: {{ weather.sunrise|club_time }}<br />
+                {% trans %}Sunset{% endtrans %}: {{ weather.sunset|club_time }}<br />
               </p>
             </div><!--/span-->
 

@@ -4,48 +4,92 @@ namespace Club\InstallerBundle\Helper;
 
 class Database
 {
-  private $container;
+    private $container;
+    private $em;
 
-  public function __construct($container)
-  {
-    $this->container = $container;
-  }
-
-  public function migrate()
-  {
-    $em = $this->container->get('doctrine.orm.entity_manager');
-    $conn = $this->container->get('database_connection');
-
-    $root = $this->container->get('kernel')->getRootDir();
-    $files = glob($root.'/database/mysql/*');
-    $res = array();
-    foreach ($files as $file) {
-      if (preg_match("/version(\d+)\.sql$/", $file, $r)) {
-        $res[$r[1]] = $file;
-      }
+    public function __construct($container)
+    {
+        $this->container = $container;
+        $this->em = $container->get('doctrine.orm.entity_manager');
     }
 
-    foreach ($res as $version => $file) {
-      try {
-        $r = $em->getRepository('ClubInstallerBundle:MigrationVersion')->findOneBy(array(
-          'version' => $version
+    public function migrate()
+    {
+        $conn = $this->container->get('database_connection');
+        $files = $this->getNotInstalled();
+
+        foreach ($files as $key => $file) {
+
+            $sql = file_get_contents($file['filename']);
+            $conn->query($sql);
+
+            $vers = new \Club\InstallerBundle\Entity\MigrationVersion();
+            $vers->setVersion($version);
+
+            $this->em->persist($vers);
+        }
+
+        $this->em->flush();
+
+        $this->container->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onFixturesInit);
+        $this->em->flush();
+    }
+
+    public function getCurrentVersion()
+    {
+        return $this->em->getRepository('ClubInstallerBundle:MigrationVersion')->getLatest();
+    }
+
+    public function getMigrations()
+    {
+        $files = $this->getMigrationFiles();
+
+        foreach ($files as $key=>$file) {
+            $files[$key]['is_upgraded'] = $this->isUpgraded($key);
+        }
+
+        return $files;
+    }
+
+    public function getNotInstalled()
+    {
+        $files = $this->getMigrations();
+        foreach ($files as $key => $file) {
+            if ($file['is_upgraded']) {
+                unset($files[$key]);
+            }
+        }
+
+        return $files;
+    }
+
+    private function isUpgraded($version)
+    {
+        $r = $this->em->getRepository('ClubInstallerBundle:MigrationVersion')->findOneBy(array(
+            'version' => $version
         ));
-      } catch (\Exception $e) {
-        $r = false;
-      }
 
-      if (!$r) {
-        $sql = file_get_contents($file);
-        $conn->query($sql);
+        if ($r) return true;
 
-        $vers = new \Club\InstallerBundle\Entity\MigrationVersion();
-        $vers->setVersion($version);
-
-        $em->persist($vers);
-      }
+        return false;
     }
 
-    $em->flush();
-    $this->container->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onFixturesInit);
-  }
+    private function getMigrationFiles()
+    {
+        $root = $this->container->get('kernel')->getRootDir();
+        $files = glob($root.'/database/mysql/*');
+
+        $res = array();
+        foreach ($files as $file) {
+            if (preg_match("/version(\d+)\.sql$/", $file, $r)) {
+                $res[$r[1]] = array(
+                    'filename' => $file,
+                    'version' => $r[1]
+                );
+            }
+        }
+        ksort($res);
+
+        return $res;
+    }
 }

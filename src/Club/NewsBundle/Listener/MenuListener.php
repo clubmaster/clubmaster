@@ -23,8 +23,8 @@ class MenuListener
                 'image' => 'bundles/clublayout/images/icons/16x16/newspaper.png',
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('News ticker'),
-                        'route' => $this->router->generate('club_news_adminticker_index')
+                        'name' => $this->translator->trans('Announcement'),
+                        'route' => $this->router->generate('club_news_adminannouncement_index')
                     )
                 )
             );

@@ -425,38 +425,17 @@ class PlanRepeat
 
         // Build generic for each type
         switch ($this->getRepeats()) {
+        case 'hourly':
+            // nothing to do
+            break;
         case 'daily':
-            if (strlen($this->getRepeatOnHour()) > 0) {
-                $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
-                $hours = $transformer->transform($this->getRepeatOnHour());
-                $s = '';
-                foreach ($hours as $hour) {
-                    $s .= $hour.',';
-                }
-                $s = preg_replace("/,$/", "", $s);
-                $ics .= sprintf(';BYHOUR=%s', $s);
-            }
-
-            if (strlen($this->getRepeatOn()) > 0) {
-                $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
-                $days = $transformer->transform($this->getRepeatOn());
-                $dates = '';
-                foreach ($days as $day) {
-                    $dates .= $this->getDay($day);
-                }
-                $dates = preg_replace("/,$/", "", $dates);
-                $ics .= sprintf(';BYDAY=%s', $dates);
-            }
+            $ics .= $this->getByHour();
             break;
         case 'weekly':
-            $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
-            $days = $transformer->transform($this->getRepeatOn());
-            $dates = '';
-            foreach ($days as $day) {
-                $dates .= $this->getDay($day);
-            }
-            $dates = preg_replace("/,$/", "", $dates);
-            $ics .= sprintf(';BYDAY=%s', $dates);
+            $ics .= $this->getByHour();
+            $ics .= $this->getByDay();
+
+            break;
         case 'monthly':
             switch ($this->getRepeatBy()) {
             case 'day_of_the_month':
@@ -525,5 +504,29 @@ class PlanRepeat
     public function getRepeatOnHour()
     {
         return $this->repeat_on_hour;
+    }
+
+    private function getByHour()
+    {
+        $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+        $hours = $transformer->transform($this->getRepeatOnHour());
+        $s = '';
+        foreach ($hours as $hour) {
+            $s .= $hour.',';
+        }
+        $s = preg_replace("/,$/", "", $s);
+        return sprintf(';BYHOUR=%s', $s);
+    }
+
+    private function getByDay()
+    {
+        $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+        $days = $transformer->transform($this->getRepeatOn());
+        $dates = '';
+        foreach ($days as $day) {
+            $dates .= $this->getDay($day);
+        }
+        $dates = preg_replace("/,$/", "", $dates);
+        return sprintf(';BYDAY=%s', $dates);
     }
 }

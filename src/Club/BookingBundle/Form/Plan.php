@@ -20,12 +20,12 @@ class Plan extends AbstractType
             ),
             'help' => 'Info: When is the last day the plan will be valid?'
         ));
-        $builder->add('start', 'datetime', array(
+        $builder->add('start', 'jquery_datetime', array(
             'help' => 'Info: What time on the day will the plan be valid from?',
             'date_widget' => 'single_text',
             'time_widget' => 'single_text'
         ));
-        $builder->add('end', 'datetime', array(
+        $builder->add('end', 'jquery_datetime', array(
             'help' => 'Info: What time on the day will the plan end?',
             'date_widget' => 'single_text',
             'time_widget' => 'single_text'

@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class MigrationVersionRepository extends EntityRepository
 {
+    public function getLatest()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.version', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

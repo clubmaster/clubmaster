@@ -2,11 +2,10 @@ when upgrading, remember to enable all products
 when upgrading, set last_login_time to when they bought last subscription
 when upgrading, set last_subscribe date to start_date
 remove temporary sql file
+on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
-add support for hourly parsing
 create controller to convert old booking plan to new
-add jquery dropdown for times, has to be like: 00:00, 00:30, 01:00 and so on..
 add exceptions to team
 add ics format for team handling
 check phpscheduleit for interval update
@@ -58,7 +57,6 @@ find a smart way to get default location, might be with the url
 add product on dynamic group
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
-booking plan, it should be possible to plan a booking plan a week on the same page
 payment has to be the same value, orders price in kr, purchase_log in øre
 improve form design with bootstrap:
   - date
@@ -102,4 +100,3 @@ not 2 schedules can have the same interval
 tag users on images
 print labels from a search
 find a way to alert if a touch client goes away
-has to find a way to explicit remove a bookingplan for a specified day
