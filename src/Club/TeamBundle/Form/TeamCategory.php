@@ -11,7 +11,11 @@ class TeamCategory extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('team_name');
-    $builder->add('description');
+    $builder->add('description', 'textarea', array(
+        'attr' => array(
+            'class' => 'big'
+        )
+    ));
     $builder->add('penalty');
   }
 
