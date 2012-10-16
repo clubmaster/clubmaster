@@ -1,0 +1,13 @@
+{% if announcements|length > 0 %}
+<div class="hero-unit">
+  <h1>{% trans %}Announcements!{% endtrans %}</h1>
+  {% for announcement in announcements %}
+    <blockquote>
+        <p>
+            {{ announcement.message }}<br />
+            <small>{{ announcement.startDate|club_datetime }}</small>
+        </p>
+    </blockquote>
+  {% endfor %}
+</div>
+{% endif %}

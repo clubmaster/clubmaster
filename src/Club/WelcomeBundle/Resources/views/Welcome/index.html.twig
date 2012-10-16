@@ -14,6 +14,7 @@
 
 {% block body %}
 
+{% include "ClubNewsBundle:Announcement:announcement.html.twig" %}
 {% render "ClubMenuBundle:Default:dashMenu" %}
 
 {% if welcome.content is defined %}

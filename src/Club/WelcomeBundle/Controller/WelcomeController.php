@@ -18,6 +18,8 @@ class WelcomeController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
+        $announcements = $em->getRepository('ClubNewsBundle:Announcement')->getOpen();
+
         $welcome = $em->getRepository('ClubWelcomeBundle:Welcome')->findOneBy(array(
             'location' => 1
         ));
@@ -25,7 +27,8 @@ class WelcomeController extends Controller
 
         return array(
             'welcome' => $welcome,
-            'posts' => $posts
+            'posts' => $posts,
+            'announcements' => $announcements
         );
     }
 
