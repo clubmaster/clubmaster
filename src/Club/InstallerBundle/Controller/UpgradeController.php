@@ -7,60 +7,42 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/installer")
+ * @Route("/upgrade")
  */
 class UpgradeController extends Controller
 {
-  /**
-   * @Route("/upgrade")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $configuration = $this->getMigrationsConfiguration();
+    /**
+     * @Route("")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $d = $this->get('club_installer.database');
 
-    return array(
-      'configuration' => $configuration
-    );
-  }
+        return array(
+            'current_version' => $d->getCurrentVersion()->getVersion(),
+            'migrations' => $d->getMigrations(),
+            'not_installed' => $d->getNotInstalled()
+        );
+    }
 
-  /**
-   * @Route("/upgrade/execute")
-   * @Template()
-   */
-  public function upgradeAction()
-  {
-    $this->migrate();
+    /**
+     * @Route("/migrate")
+     * @Template()
+     */
+    public function migrateAction()
+    {
+        $d = $this->get('club_installer.database');
 
-    return array();
-  }
+        try {
+            $d->migrate();
+            $this->get('session')->setFlash('notice', 'Your database is now upgraded.');
 
-  private function migrate()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
+        } catch (\Exception $e) {
+            $this->get('logger')->err($e->getMessage());
+            $this->get('session')->setFlash('error', $e->getMessage());
+        }
 
-    $configuration = $this->getMigrationsConfiguration();
-    $migration = new \Doctrine\DBAL\Migrations\Migration($configuration);
-
-    $to = $configuration->getLatestVersion();
-    $migrations = $configuration->getMigrations();
-    $migration->migrate($to);
-
-    $this->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onFixturesInit);
-  }
-
-  private function getMigrationsConfiguration()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-
-    $dir = $this->container->getParameter('doctrine_migrations.dir_name');
-    $configuration = new \Doctrine\DBAL\Migrations\Configuration\Configuration($em->getConnection());
-    $configuration->setMigrationsNamespace($this->container->getParameter('doctrine_migrations.namespace'));
-    $configuration->setMigrationsDirectory($dir);
-    $configuration->registerMigrationsFromDirectory($dir);
-    $configuration->setName($this->container->getParameter('doctrine_migrations.name'));
-    $configuration->setMigrationsTableName($this->container->getParameter('doctrine_migrations.table_name'));
-
-    return $configuration;
-  }
+        return $this->redirect($this->generateUrl('club_installer_upgrade_index'));
+    }
 }
