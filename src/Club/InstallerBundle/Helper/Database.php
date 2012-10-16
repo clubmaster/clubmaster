@@ -27,6 +27,9 @@ class Database
             $vers->setVersion($version);
 
             $this->em->persist($vers);
+
+            $event = new \Club\InstallerBundle\Event\FilterVersionEvent($vers);
+            $this->container->dispatch('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onVersionMigrate, $event);
         }
 
         $this->em->flush();

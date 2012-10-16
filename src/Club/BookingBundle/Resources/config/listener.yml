@@ -33,3 +33,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: user.ical, method: onUserIcal }
+  club.booking.listener.migrate:
+    class: Club\BookingBundle\Listener\Migrate
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: version.migrate, method: onVersionMigrate }

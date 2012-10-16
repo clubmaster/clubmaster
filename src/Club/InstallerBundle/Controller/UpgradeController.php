@@ -19,6 +19,10 @@ class UpgradeController extends Controller
     {
         $d = $this->get('club_installer.database');
 
+        $v = $this->getDoctrine()->getEntityManager()->find('ClubInstallerBundle:MigrationVersion', 2);
+        $event = new \Club\InstallerBundle\Event\FilterVersionEvent($v);
+        $this->get('event_dispatcher')->dispatch(\Club\InstallerBundle\Event\Events::onVersionMigrate, $event);
+
         return array(
             'current_version' => $d->getCurrentVersion()->getVersion(),
             'migrations' => $d->getMigrations(),
