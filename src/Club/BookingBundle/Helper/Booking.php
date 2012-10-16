@@ -320,7 +320,7 @@ class Booking
             foreach ($sub->getSubscriptionAttributes() as $attr) {
                 switch ($attr->getAttributeName()) {
                 case 'start_time':
-                    $start = clone $this->interval->getStartTime();
+                    $start = clone $interval->getStartTime();
                     $start->setDate(
                         date('Y'),
                         date('m'),
@@ -334,7 +334,7 @@ class Booking
 
                     break;
                 case 'stop_time':
-                    $end = clone $this->interval->getStopTime();
+                    $end = clone $interval->getStopTime();
                     $end->setDate(
                         date('Y'),
                         date('m'),
