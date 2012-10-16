@@ -41,14 +41,14 @@ class PlanRepeat
     /**
      * @var string $repeat_on_hour
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $repeat_on_hour;
 
     /**
      * @var string $repeat_by
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Choice(choices = {"day_of_the_month", "day_of_the_week"})
      */
     protected $repeat_by;
