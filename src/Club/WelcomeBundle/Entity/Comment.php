@@ -25,7 +25,7 @@ class Comment
     /**
      * @var Club\WelcomeBundle\Entity\Blog
      *
-     * @ORM\ManyToOne(targetEntity="Blog")
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="comments")
      */
     private $blog;
 
