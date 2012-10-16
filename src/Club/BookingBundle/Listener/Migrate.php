@@ -26,7 +26,6 @@ class Migrate
             return;
         }
 
-        // FIXME, has to add the coming version
         $plans = $this->em->getRepository('ClubBookingBundle:Plan')->findAll();
 
         foreach ($plans as $plan) {
@@ -59,6 +58,19 @@ class Migrate
             $plan->addPlanRepeat($repeat);
 
             $this->em->persist($plan);
+        }
+
+        $i = 0;
+        $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->findAll();
+        foreach ($bookings as $booking) {
+            $i++;
+            $booking->setStatus(2);
+            $this->em->persist($booking);
+
+            if ($i == 99) {
+                $this->em->flush();
+                $i = 0;
+            }
         }
     }
 }

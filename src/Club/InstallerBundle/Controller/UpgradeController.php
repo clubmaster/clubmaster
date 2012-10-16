@@ -17,6 +17,7 @@ class UpgradeController extends Controller
      */
     public function indexAction()
     {
+        $this->setIni();
         $d = $this->get('club_installer.database');
 
         return array(
@@ -32,6 +33,7 @@ class UpgradeController extends Controller
      */
     public function migrateAction()
     {
+        $this->setIni();
         $d = $this->get('club_installer.database');
 
         try {
@@ -44,5 +46,10 @@ class UpgradeController extends Controller
         }
 
         return $this->redirect($this->generateUrl('club_installer_upgrade_index'));
+    }
+
+    private function setIni()
+    {
+        ini_set('max_execution_time', 600);
     }
 }
