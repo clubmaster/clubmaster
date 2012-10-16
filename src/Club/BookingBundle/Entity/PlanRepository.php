@@ -49,8 +49,12 @@ class PlanRepository extends EntityRepository
     {
         $plans = $this->createQueryBuilder('p')
             ->join('p.fields', 'f')
+            ->join('p.plan_repeats', 'pr')
             ->where('f.id = :field')
+            ->andWhere('((pr.ends_type != :type) OR (pr.ends_type = :type AND pr.ends_on > :date))')
             ->setParameter('field', $field->getId())
+            ->setParameter('date', new \DateTime())
+            ->setParameter('type', 'on')
             ->getQuery()
             ->getResult();
 
@@ -87,8 +91,11 @@ EOF;
     {
         $plans = $this->createQueryBuilder('p')
             ->join('p.fields', 'f')
+            ->join('p.plan_repeat', 'pr')
             ->where('f.location = :location')
+            ->andWhere('pr.ends_on > :date')
             ->setParameter('location', $location->getId())
+            ->setParameter('date', new \DateTime())
             ->getQuery()
             ->getResult();
 
