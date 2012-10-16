@@ -44,7 +44,7 @@ class ExchangeComment
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Exchange")
+     * @ORM\ManyToOne(targetEntity="Exchange", inversedBy="exchange_comments")
      * @ORM\JoinColumn(onDelete="cascade")
      */
     protected $exchange;
