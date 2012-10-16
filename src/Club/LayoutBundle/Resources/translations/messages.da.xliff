@@ -2656,6 +2656,10 @@
           <source>Weather</source>
           <target>Vejret</target>
       </trans-unit>
+      <trans-unit id="703">
+          <source>Announcements!</source>
+          <target>Annonceringer!</target>
+      </trans-unit>
 
     </body>
   </file>
