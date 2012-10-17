@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-10-07
-:Revision:  24
+:Date:      2012-10-17
+:Revision:  25
 
 
 Feedback
@@ -90,11 +90,24 @@ Now you have the composer, install the dependencies:
 $ ./composer.phar install
 
 
+Configure database
+~~~~~~~~~~~~~~~~~~
+Edit the file app/config/parameters.yml to fit your needs.
+
+
 Initial test data
 ~~~~~~~~~~~~~~~~~
 I have made a shell script to prepare the database schema, and load some test data. Just run the following script and see the onscreen magic :)
 
 ./bin/remake_schema.sh
+
+
+Initial graphics
+~~~~~~~~~~~~~~~~
+If you for some reason has problem with the above script, you has to run the following just to init the graphics except and prepare the setup for the installer.
+
+php app/console assets:install
+php app/console doctrine:database:create
 
 
 Start coding
