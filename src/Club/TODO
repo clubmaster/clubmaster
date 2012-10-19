@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 add exceptions to team
