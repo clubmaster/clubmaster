@@ -32,7 +32,11 @@ class InstallerController extends Controller
             } catch (\Doctrine\DBAL\DBALException $e) {
             }
 
-            return $this->redirect($this->generateUrl('club_installer_installer_migrate'));
+            $response = $this->redirect($this->generateUrl('club_installer_installer_migrate'));
+
+            $this->get('club_installer.installer')->clearCache();
+
+            return $response;
         }
 
         $config = unserialize($this->get('session')->get('installer'));
@@ -218,13 +222,18 @@ class InstallerController extends Controller
      */
     public function migrateAction()
     {
-        $this->validateInstaller();
+        try {
+            $this->validateInstaller();
 
-        $this->get('club_installer.database')->migrate();
+            $this->get('club_installer.database')->migrate();
 
-        $this->get('session')->setFlash('notice', 'Database was successful installed');
+            $this->get('session')->setFlash('notice', 'Database was successful installed');
 
-        return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+            return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+        } catch (\Exception $e) {
+            $this->get('session')->setFlash('error', $e->getMessage());
+            return $this->redirect($this->generateUrl('club_installer_installer_parameter'));
+        }
     }
 
     private function validateInstaller()

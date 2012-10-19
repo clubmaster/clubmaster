@@ -51,20 +51,22 @@ find ${BUILD_PATH} -name .gitignore | xargs rm -rf
 
 touch ${BUILD_PATH}/app/installer
 
-cat > ${BUILD_PATH}/app/config/parameters.ini <<EOF
-[parameters]
-    database_driver   = pdo_mysql
-    database_host     = localhost
-    database_port     =
-    database_name     = clubmaster
-    database_user     = root
-    database_password =
-    mailer_transport  = sendmail
-    mailer_host       =
-    mailer_user       =
-    mailer_password   =
-    locale            = en
-    secret            = ThisTokenIsNotSoSecretChangeIt
+cat > ${BUILD_PATH}/app/config/parameters.yml <<EOF
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     clubmaster
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
 EOF
 
 cd /tmp

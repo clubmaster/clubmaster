@@ -19,4 +19,11 @@ class InstallerFile
 
         return false;
     }
+
+    public function clearCache()
+    {
+        $realCacheDir = $this->container->getParameter('kernel.cache_dir');
+        $this->container->get('cache_clearer')->clear($realCacheDir);
+        $this->container->get('filesystem')->remove($realCacheDir);
+    }
 }
