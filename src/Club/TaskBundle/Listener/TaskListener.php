@@ -7,12 +7,14 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class TaskListener
 {
+    protected $container;
     protected $em;
     protected $event_dispatcher;
     protected $logger;
 
-    public function __construct($em, $event_dispatcher, $logger)
+    public function __construct($container, $em, $event_dispatcher, $logger)
     {
+        $this->container = $container;
         $this->em = $em;
         $this->event_dispatcher = $event_dispatcher;
         $this->logger = $logger;
@@ -20,6 +22,10 @@ class TaskListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        if ($this->container->get('club_installer.installer')->installerOpen()) {
+            return;
+        }
+
         try {
             if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
                 return;

@@ -13,19 +13,14 @@ use Symfony\Component\Yaml\Yaml;
  */
 class InstallerController extends Controller
 {
-    public function __construct()
-    {
-        $file = __DIR__.'/../../../../app/installer';
-        if (!file_exists($file))
-            die('The installer is not available.');
-    }
-
     /**
      * @Route("/parameter")
      * @Template()
      */
     public function parameterAction()
     {
+        $this->validateInstaller();
+
         if ($this->getRequest()->getMethod() == 'POST') {
             try {
                 $em = $this->getDoctrine()->getEntityManager();
@@ -67,6 +62,8 @@ class InstallerController extends Controller
      */
     public function configAction()
     {
+        $this->validateInstaller();
+
         $config = new \Club\InstallerBundle\Step\DoctrineStep();
         $form = $this->createForm(new \Club\InstallerBundle\Form\DoctrineStepType(), $config);
 
@@ -91,6 +88,8 @@ class InstallerController extends Controller
      */
     public function indexAction()
     {
+        $this->validateInstaller();
+
         $this->get('session')->set('installer_user_id',null);
         $this->get('session')->set('installer_location_id',null);
 
@@ -103,6 +102,8 @@ class InstallerController extends Controller
      */
     public function databaseAction()
     {
+        $this->validateInstaller();
+
         return array();
     }
 
@@ -112,6 +113,8 @@ class InstallerController extends Controller
      */
     public function administratorAction()
     {
+        $this->validateInstaller();
+
         $em = $this->getDoctrine()->getEntityManager();
 
         if ($this->get('session')->get('installer_user_id')) {
@@ -153,6 +156,8 @@ class InstallerController extends Controller
      */
     public function locationAction()
     {
+        $this->validateInstaller();
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $location_step = new \Club\InstallerBundle\Step\LocationStep();
@@ -202,6 +207,8 @@ class InstallerController extends Controller
      */
     public function confirmAction()
     {
+        $this->validateInstaller();
+
         return array();
     }
 
@@ -211,10 +218,19 @@ class InstallerController extends Controller
      */
     public function migrateAction()
     {
+        $this->validateInstaller();
+
         $this->get('club_installer.database')->migrate();
 
         $this->get('session')->setFlash('notice', 'Database was successful installed');
 
         return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
+    }
+
+    private function validateInstaller()
+    {
+        if (!$this->container->get('club_installer.installer')->installerOpen()) {
+            throw new \Exception('Installer is not open');
+        }
     }
 }

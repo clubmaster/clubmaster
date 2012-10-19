@@ -1,7 +1,7 @@
 services:
   club.taskbundle.listener.task:
     class: Club\TaskBundle\Listener\TaskListener
-    arguments: [@doctrine.orm.entity_manager, @event_dispatcher, @logger]
+    arguments: [@service_container, @doctrine.orm.entity_manager, @event_dispatcher, @logger]
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
   club.task.fixtures.load:

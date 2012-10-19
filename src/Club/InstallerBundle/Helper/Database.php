@@ -68,13 +68,17 @@ class Database
 
     private function isUpgraded($version)
     {
-        $r = $this->em->getRepository('ClubInstallerBundle:MigrationVersion')->findOneBy(array(
-            'version' => $version
-        ));
+        try {
+            $r = $this->em->getRepository('ClubInstallerBundle:MigrationVersion')->findOneBy(array(
+                'version' => $version
+            ));
 
-        if ($r) return true;
+            if ($r) return true;
 
-        return false;
+            return false;
+        } catch (\Doctrine\DBAL\DBALException $e) {
+            return false;
+        }
     }
 
     private function getMigrationFiles()

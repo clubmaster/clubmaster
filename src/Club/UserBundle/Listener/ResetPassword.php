@@ -22,6 +22,10 @@ class ResetPassword
 
     public function onKernelRequest($event)
     {
+        if ($this->container->get('club_installer.installer')->installerOpen()) {
+            return;
+        }
+
         if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
             return;
         }
