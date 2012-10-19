@@ -23,6 +23,8 @@ class InstallerFile
     public function clearCache()
     {
         $realCacheDir = $this->container->getParameter('kernel.cache_dir');
-        $this->container->get('cache_clearer')->clear($realCacheDir);
+        unlink($realCacheDir.'/appDevDebugProjectContainer.php');
+
+        //$this->container->get('cache_clearer')->clear($realCacheDir);
     }
 }
