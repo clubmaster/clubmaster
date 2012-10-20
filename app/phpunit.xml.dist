@@ -15,16 +15,16 @@
 
     <testsuites>
         <testsuite name="ClubMaster Test Suite">
-            <directory>../src/*/DashboardBundle/Tests</directory>
-            <directory>../src/*/EventBundle/Tests</directory>
-            <directory>../src/*/FeedbackBundle/Tests</directory>
-            <directory>../src/*/LayoutBundle/Tests</directory>
-            <directory>../src/*/LogBundle/Tests</directory>
-            <directory>../src/*/MailBundle/Tests</directory>
-            <directory>../src/*/MenuBundle/Tests</directory>
-            <directory>../src/*/MessageBundle/Tests</directory>
+            <directory>../src/*//DashboardBundle/Tests/Controller</directory>
+            <directory>../src/*/EventBundle/Tests/Controller</directory>
+            <directory>../src/*/FeedbackBundle/Tests/Controller</directory>
+            <directory>../src/*/LayoutBundle/Tests/Controller</directory>
+            <directory>../src/*/LogBundle/Tests/Controller</directory>
+            <directory>../src/*/MailBundle/Tests/Controller</directory>
+            <directory>../src/*/MenuBundle/Tests/Controller</directory>
+            <directory>../src/*/MessageBundle/Tests/Controller</directory>
             <directory>../src/*/ShopBundle/Tests/Controller</directory>
-            <directory>../src/*/TaskBundle/Tests</directory>
+            <directory>../src/*/TaskBundle/Tests/Controller</directory>
             <directory>../src/*/TeamBundle/Tests/Controller</directory>
             <directory>../src/*/UserBundle/Tests/Controller</directory>
             <directory>../src/*/WeatherBundle/Tests/Controller</directory>

@@ -60,7 +60,11 @@ class EventController extends Controller
             } else {
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($attend);
-                $em->flush();
+
+                $errors = $this->get('validator')->validate($attend);
+                if (!count($errors)) {
+                    $em->flush();
+                }
 
                 $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
