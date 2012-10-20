@@ -15,7 +15,7 @@ class AdminEventControllerTest extends WebTestCase
 
   public function testIndex()
   {
-    $crawler = $this->client->request('GET', '/en/event/event');
+    $crawler = $this->client->request('GET', '/en/event');
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
   }
 

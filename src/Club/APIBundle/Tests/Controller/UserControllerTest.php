@@ -9,7 +9,7 @@ class UserControllerTest extends WebTestCase
   {
     $client = $this->apiLogin();
 
-    $crawler = $client->request('GET', '/api/users/teams/');
+    $crawler = $client->request('GET', '/api/users/teams');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 }

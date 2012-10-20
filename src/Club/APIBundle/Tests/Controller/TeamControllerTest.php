@@ -8,7 +8,7 @@ class TeamControllerTest extends WebTestCase
   public function testTeams()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/api/teams/');
+    $crawler = $client->request('GET', '/api/teams');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 

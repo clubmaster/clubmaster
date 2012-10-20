@@ -8,7 +8,7 @@ class EventControllerTest extends WebTestCase
   public function testEvents()
   {
     $client = static::createClient();
-    $crawler = $client->request('GET', '/api/events/');
+    $crawler = $client->request('GET', '/api/events');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
   }
 
