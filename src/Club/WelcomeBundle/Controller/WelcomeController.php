@@ -12,7 +12,6 @@ class WelcomeController extends Controller
     /**
      * @Route("/{_locale}/welcome")
      * @Template()
-     * @Cache(smaxage="30")
      */
     public function indexAction()
     {
