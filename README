@@ -3,7 +3,7 @@ ClubMaster
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
 :Date:      2012-10-20
-:Revision:  26
+:Revision:  27
 
 
 Feedback
@@ -36,6 +36,14 @@ In order to install ClubMaster, do the following:
 
 Upgrade
 -------
+To upgrade from a previously version of ClubMaster, do the following:
+
+- Backup the database
+- Backup the old files
+- Extract the new project in top of the old
+- Visit the page /upgrade, and follow the onscreen information
+
+[NOTE]
 In version 1.2 we will introduce a new way of migration that will go much easier than before, unfortunately that will result in no way to upgrade from version 1.1 to 1.2.
 
 
