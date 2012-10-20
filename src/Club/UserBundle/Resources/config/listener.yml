@@ -54,3 +54,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: version.migrate, method: onVersionMigrate }
+  club.user.listener.database_exception:
+    class: Club\UserBundle\Listener\DatabaseException
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
