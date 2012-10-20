@@ -15,7 +15,6 @@ class WeatherController extends Controller
     /**
      * @Route("")
      * @Template()
-     * @Cache(smaxage="3600")
      */
     public function indexAction()
     {
