@@ -5,6 +5,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
+if (!is_writeable('../app/cache') && is_file('setup.php')) {
+    header('Location: setup.php');
+    exit;
+}
 // Use APC for autoloading to improve performance
 // Change 'sf2' by the prefix you want in order to prevent key conflict with another application
 /*

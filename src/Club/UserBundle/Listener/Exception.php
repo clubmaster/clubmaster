@@ -5,7 +5,7 @@ namespace Club\UserBundle\Listener;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class DatabaseException
+class Exception
 {
     protected $router;
     protected $security;
@@ -27,10 +27,15 @@ class DatabaseException
         }
 
         $exception = $event->getException();
+        $class = get_class($exception);
 
-        if (get_class($exception) == 'PDOException' && preg_match("/Unknown database/", $exception->getMessage())) {
+        switch (true) {
+        case ($class == 'PDOException' && preg_match("/Unknown database/", $exception->getMessage())):
                 $response = new RedirectResponse($this->router->generate('club_installer_installer_index'));
                 $event->setResponse($response);
+                break;
         }
+
+        die('meh');
     }
 }
