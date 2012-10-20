@@ -14,7 +14,6 @@ class PlanRepository extends EntityRepository
 {
     public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\Location $location=null, \Club\BookingBundle\Entity\Field $field=null)
     {
-        die('meh');
         $qb = $this->_em->createQueryBuilder()
             ->select('p')
             ->from('ClubBookingBundle:Plan', 'p')

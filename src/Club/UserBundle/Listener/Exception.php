@@ -35,7 +35,5 @@ class Exception
                 $event->setResponse($response);
                 break;
         }
-
-        die('meh');
     }
 }
