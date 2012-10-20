@@ -2,13 +2,13 @@ on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
 create unique key on event attends
-validate that we have activated mod_rewrite
 add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 add exceptions to team
 add ics format for team handling
 check phpscheduleit for interval update
+check opencart for better shop experience
 import and export keys for system in ATK
 integrate twitter as well
 merge users
