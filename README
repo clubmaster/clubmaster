@@ -2,8 +2,8 @@ ClubMaster
 ==========
 :Author:    Michael Holm Kristensen
 :Email:     <hollo@hollo.dk>
-:Date:      2012-10-17
-:Revision:  25
+:Date:      2012-10-20
+:Revision:  26
 
 
 Feedback
@@ -121,10 +121,10 @@ Development where you have disabled a lot of caching, and get a nice web debuggi
 To load the different environments go the the one url or the other:
 
 Production:
-http://localhost/clubmaster/web/index.php
+http://localhost/clubmaster/web/app.php
 
 Development:
-http://localhost/clubmaster/web/index_dev.php
+http://localhost/clubmaster/web/app_dev.php
 
 
 Login
