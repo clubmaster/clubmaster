@@ -158,7 +158,9 @@
     <script>
     $(function() {
         if (!Modernizr.inputtypes.date) {
-            $( "#{{ id }}" ).datepicker();
+            $( "#{{ id }}" ).datepicker({
+                'dateFormat': 'yy-mm-dd'
+            });
         }
     });
     </script>
@@ -172,7 +174,9 @@
     <script>
     $(function() {
         if (!Modernizr.inputtypes.date) {
-            $( "#{{ id }}" ).datepicker();
+            $( "#{{ id }}" ).datepicker({
+                'dateFormat': 'yy-mm-dd'
+            });
         }
     });
     </script>
