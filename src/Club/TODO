@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+there is a problem with product edit, in adminorder
 create unique key on event attends
 add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
