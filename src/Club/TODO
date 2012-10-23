@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+there is a problem with product edit, in adminorder
 create unique key on event attends
 make it more visible with login credentials
 validate that we have activated mod_rewrite
