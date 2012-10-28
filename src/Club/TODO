@@ -75,7 +75,6 @@ add defaults during install:
 fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
-avoid try / catch on kernel.request listeners
 on admin interval manager, put a default interval in top, that will set the same for everyone
 login through booking page
 login through team attend page
