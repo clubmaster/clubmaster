@@ -56,8 +56,10 @@ class LogRepository extends EntityRepository
   public function getRecent($limit=10)
   {
     return $this->getQueryBuilder()
+      ->select('l,u,p')
       ->where('l.user IS NOT NULL')
-      ->leftJoin('l.user', 'u')
+      ->join('l.user', 'u')
+      ->join('u.profile', 'p')
       ->setMaxResults($limit)
       ->getQuery()
       ->getResult();

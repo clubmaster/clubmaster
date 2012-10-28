@@ -556,4 +556,15 @@ class UserRepository extends EntityRepository
 
       return new \Doctrine\ORM\Tools\Pagination\Paginator($query);
   }
+
+  public function getRecent($limit=10)
+  {
+    return $this->createQueryBuilder('u')
+      ->select('u,p')
+      ->join('u.profile', 'p')
+      ->setMaxResults($limit)
+      ->orderBy('u.id', 'DESC')
+      ->getQuery()
+      ->getResult();
+  }
 }

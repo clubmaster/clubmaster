@@ -40,9 +40,10 @@ class OrderRepository extends EntityRepository
 
   private function getQueryBuilder($filter = array())
   {
-    $qb = $this->_em->createQueryBuilder()
-      ->select('o')
-      ->from('ClubShopBundle:Order','o');
+    $qb = $this->createQueryBuilder('o')
+      ->select('o, u, p')
+      ->join('o.user', 'u')
+      ->join('u.profile', 'p');
 
     if (isset($filter['order_number'])) {
       $qb = $this->filterOrderNumber($qb,$filter['order_number']);

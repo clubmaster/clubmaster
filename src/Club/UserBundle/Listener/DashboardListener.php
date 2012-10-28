@@ -19,11 +19,7 @@ class DashboardListener
   {
     $output = $event->getOutput();
 
-    $users = $this->em->getRepository('ClubUserBundle:User')->findBy(
-      array(),
-      array('id' => 'DESC'),
-      10
-    );
+    $users = $this->em->getRepository('ClubUserBundle:User')->getRecent(10);
 
     $output .= $this->templating->render('ClubUserBundle:Dashboard:user_table.html.twig', array(
       'users' => $users
