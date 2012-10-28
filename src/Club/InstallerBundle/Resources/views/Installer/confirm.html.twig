@@ -1,6 +1,8 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'finish'} %}
+
 <h2>{% trans %}Congratulations{% endtrans %}</h2>
 
 <p>{% trans %}Your installation has successful completed. You can not start use your new open source membership management system.{% endtrans %}</p>

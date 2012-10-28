@@ -1,6 +1,8 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'database'} %}
+
 <h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
 <p>{% trans %}Before you can continue your installation of ClubMaster, you will have to install the database.{% endtrans %}</p>

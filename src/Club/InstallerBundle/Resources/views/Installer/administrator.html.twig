@@ -1,6 +1,8 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'administrator'} %}
+
 <h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
 <p>{% trans %}This is the installer of ClubMaster.{% endtrans %}</p>
@@ -9,19 +11,20 @@
   <fieldset>
     <legend>{% trans %}Personal Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.profile.first_name) }}</p>
-    <p>{{ form_row(form.profile.last_name) }}</p>
+    {{ form_row(form.member_number) }}
+    {{ form_row(form.profile.first_name) }}
+    {{ form_row(form.profile.last_name) }}
     {% for email in form.profile.profile_emails %}
-    <p>{{ form_row(email.email_address) }}</p>
+    {{ form_row(email.email_address) }}
     {% endfor %}
-    <p>{{ form_row(form.profile.gender) }}</p>
-    <p>{{ form_row(form.profile.day_of_birth) }}</p>
+    {{ form_row(form.profile.gender) }}
+    {{ form_row(form.profile.day_of_birth) }}
   </fieldset>
 
   <fieldset>
     <legend>{% trans %}Account Information{% endtrans %}</legend>
 
-    <p>{{ form_row(form.password) }}</p>
+    {{ form_row(form.password) }}
 
     {{ form_row(form._token) }}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}

@@ -1,6 +1,7 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'config'} %}
 
 <p>{% trans %}You will need a database connection, please configure it here.{% endtrans %}</p>
 

@@ -1,6 +1,8 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'location'} %}
+
 <h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
 
 <p>{% trans %}This is the installer of ClubMaster.{% endtrans %}</p>

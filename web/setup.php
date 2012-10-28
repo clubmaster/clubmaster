@@ -30,10 +30,6 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                     <div class="symfony-block-content">
                         <h1>Welcome!</h1>
                         <p>Welcome to ClubMaster configuration.</p>
-                        <p>
-                            This script will guide you through the basic configuration of your project.
-                            You can also do the same by editing the ‘<strong>app/config/parameters.yml</strong>’ file directly.
-                        </p>
 
                         <?php if (count($majorProblems)): ?>
                             <h2 class="ko">Major problems</h2>
