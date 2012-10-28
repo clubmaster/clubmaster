@@ -19,3 +19,6 @@ services:
     club_user.application:
         class: Club\UserBundle\Helper\Application
         arguments: [@service_container]
+    club_user.currency:
+        class: Club\UserBundle\Helper\Currency
+        arguments: [@doctrine.orm.entity_manager, @session]

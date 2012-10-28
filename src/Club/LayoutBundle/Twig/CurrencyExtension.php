@@ -31,10 +31,7 @@ class CurrencyExtension extends \Twig_Extension
 
       return $value;
 
-    $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(
-      'default_currency',
-      $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
-    );
+    $currency = $this->container->get('club_user.currency')->getCurrency();
 
     $this->locale = $this->container->get('request')->getLocale();
     $fmt = new \NumberFormatter($this->locale, \NumberFormatter::CURRENCY);
