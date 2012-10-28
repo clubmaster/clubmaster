@@ -57,12 +57,6 @@ add product on dynamic group
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
 payment has to be the same value, orders price in kr, purchase_log in øre
-improve form design with bootstrap:
-  - date
-  - datetime
-  - time
-  - input
-  - textarea
 better timesupport on booking schema, its on danish today
 add paginator to:
   - team attends
