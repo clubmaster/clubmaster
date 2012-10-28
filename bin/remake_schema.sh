@@ -20,14 +20,15 @@ php app/console doctrine:schema:update --force
 php app/console assets:install web
 php app/console assetic:dump
 
-MYSQL_PASSWORD=""
-MYSQL_DATABASE=clubmaster
+MYSQL_USERNAME=`grep database_user app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
+MYSQL_PASSWORD=`grep database_password app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
+MYSQL_DATABASE=`grep database_name app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
 
 if [ "${MYSQL_PASSWORD}" != "" ]; then
   MYSQL_PASSWORD="-p"${MYSQL_PASSWORD}
 fi
 
-mysql -u root ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
+mysql -u ${MYSQL_USERNAME} ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_data.sql
 
 phpunit -c app/remakeunit.xml
 
