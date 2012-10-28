@@ -60,17 +60,7 @@ class Migrate
             $this->em->persist($plan);
         }
 
-        $i = 0;
-        $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->findAll();
-        foreach ($bookings as $booking) {
-            $i++;
-            $booking->setStatus(2);
-            $this->em->persist($booking);
-
-            if ($i == 99) {
-                $this->em->flush();
-                $i = 0;
-            }
-        }
+        $dql = "UPDATE ClubBookingBundle:Booking b SET b.status=2";
+        $r = $this->em->createQuery($dql)->execute();
     }
 }
