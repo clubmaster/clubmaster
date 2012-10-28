@@ -43,7 +43,6 @@ rewrite active in user repository
 make feedback as a popdown form
 upload profile image for all members
 we might need a mailing list
-quick add users to group
 build new gravatar support
 add category priority regarding to account numbers
 admin user batch, select search
@@ -66,7 +65,6 @@ improve form design with bootstrap:
   - textarea
 better timesupport on booking schema, its on danish today
 add paginator to:
-  - group members
   - team attends
   - admin blog
   - team schedules

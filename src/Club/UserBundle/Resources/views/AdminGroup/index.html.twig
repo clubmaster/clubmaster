@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block body %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+
 <table class="table">
   <thead>
     <tr>
@@ -20,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for group in groups %}
+  {% for group in paginator %}
     <tr>
       <td>{{ group.groupName }} ( {{ group.users|length }} )</td>
       <td>{{ group.groupType }}</td>

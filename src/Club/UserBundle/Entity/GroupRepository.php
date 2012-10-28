@@ -55,4 +55,16 @@ class GroupRepository extends EntityRepository
       ->getQuery()
       ->getOneOrNullResult();
   }
+
+  public function getPaginator($results, $page)
+  {
+      $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+      $dql = "SELECT g FROM ClubUserBundle:Group g ORDER BY g.group_name DESC";
+      $query = $this->_em->createQuery($dql)
+          ->setFirstResult($offset)
+          ->setMaxResults($results);
+
+      return new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
+  }
 }
