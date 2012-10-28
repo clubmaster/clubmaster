@@ -33,6 +33,7 @@ assetic:
     bundles:
         - "ClubLayoutBundle"
         - "ClubBookingBundle"
+        - "ClubInstallerBundle"
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

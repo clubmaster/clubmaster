@@ -213,7 +213,12 @@ class InstallerController extends Controller
     {
         $this->validateInstaller();
 
-        return array();
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
+
+        return array(
+            'user' => $user
+        );
     }
 
     /**

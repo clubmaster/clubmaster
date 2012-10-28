@@ -1,8 +1,14 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
-{% block body %}
-{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'parameter'} %}
+{% block header %}
+<div class="page-header"><h1>ClubMaster Installation <small>Parameter</small></h1></div>
+{% endblock %}
 
+{% block pagenav %}
+{% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'parameter'} %}
+{% endblock %}
+
+{% block body %}
 <p>In order to continue you have to configure your parameters.yml file, that is the file which held the database connection.</p>
 <p>Please locate your app/config/parameters.yml file, and overwrite the file with the following data:</p>
 

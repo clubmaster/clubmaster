@@ -1,10 +1,83 @@
-{% extends "ClubLayoutBundle::base.html.twig" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8" />
+    <title>ClubMaster Installation</title>
+    <meta name="description" content="ClubMaster is an open source management tool">
+    <meta name="author" content="Michael Holm">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block topmenu %}{% endblock %}
-{% block leftmenu %}{% endblock %}
+    {% stylesheets
+        "@ClubLayoutBundle/Resources/public/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+        "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap.min.css"
+        "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap-responsive.min.css"
+        "@ClubLayoutBundle/Resources/public/css/mystyle.css" %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
 
-{% block header %}
-<div class="page-header">
-    <h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {% trans %}Installer{% endtrans %}</h1>
-</div>
-{% endblock %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% javascripts
+        "@ClubLayoutBundle/Resources/public/js/*"
+        "@ClubLayoutBundle/Resources/public/bootstrap/js/bootstrap.min.js" %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/clublayout/images/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/clublayout/images/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/clublayout/images/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/clublayout/images/apple-touch-icon-57-precomposed.png') }}">
+
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="{{ path('localized') }}"><img src="{{ asset('bundles/clublayout/images/logo_top.png') }}" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="row-fluid">
+
+        <div class="span12">
+
+            {% block header %}{% endblock %}
+
+            {% block pagenav %}{% endblock %}
+
+            {% include 'ClubLayoutBundle:Default:flash.html.twig' %}
+            {% block body %}{% endblock %}
+
+        </div>
+      </div><!--/row-fluid -->
+
+      <hr>
+      <footer>
+          <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
+      </footer>
+    </div><!--/container-fluid -->
+
+</body>
+</html>

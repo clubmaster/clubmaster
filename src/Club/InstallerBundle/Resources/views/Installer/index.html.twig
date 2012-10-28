@@ -1,23 +1,28 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}
+<div class="page-header"><h1>ClubMaster Installation</h1></div>
+{% endblock %}
+
+{% block pagenav %}
 {% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'welcome'} %}
+{% endblock %}
 
-<h2>{% trans %}ClubMaster Installation{% endtrans %}</h2>
+{% block body %}
+<p>This is the installer of ClubMaster.</p>
 
-<p>{% trans %}This is the installer of ClubMaster.{% endtrans %}</p>
-
-<p>{% trans %}When you have completed the following list of steps, you are ready to start using ClubMaster.{% endtrans %}</p>
+<p>When you have completed the following list of steps, you are ready to start using ClubMaster.</p>
 
 <ul>
-  <li>{% trans %}Install database{% endtrans %}</li>
-  <li>{% trans %}Administrator setup{% endtrans %}</li>
-  <li>{% trans %}Location setup{% endtrans %}</li>
+  <li>Configure database</li>
+  <li>Install database</li>
+  <li>Administrator setup</li>
+  <li>Location setup</li>
 </ul>
 
 <form class="form-horizontal">
     <div class="form-actions">
-        <a href="{{ path("club_installer_installer_config") }}" class="btn btn-primary">{% trans %}Start installation{% endtrans %}</a>
+        <a href="{{ path("club_installer_installer_config") }}" class="btn btn-primary">Start installation</a>
     </div>
 </form>
 

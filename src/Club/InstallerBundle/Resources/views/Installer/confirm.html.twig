@@ -1,17 +1,21 @@
 {% extends "ClubInstallerBundle::base.html.twig" %}
 
-{% block body %}
+{% block header %}
+<div class="page-header"><h1>ClubMaster Installation <small>Finish!</small></h1></div>
+{% endblock %}
+
+{% block pagenav %}
 {% include "ClubInstallerBundle:Installer:top.html.twig" with {'page':'finish'} %}
+{% endblock %}
 
-<h2>{% trans %}Congratulations{% endtrans %}</h2>
+{% block body %}
+<p>Your installation has successful completed. You can start use your new open source membership management system.</p>
 
-<p>{% trans %}Your installation has successful completed. You can not start use your new open source membership management system.{% endtrans %}</p>
-
-<h4>{% trans %}Member number{% endtrans %}: 1</h4>
+<h4>Member number: {{ user.memberNumber }}</h4>
 
 <form class="form-horizontal">
     <div class="form-actions">
-        <a href="{{ path('homepage') }}" class="btn btn-primary">{% trans %}Go to ClubMaster{% endtrans %}</a>
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Go to ClubMaster</a>
     </div>
 </form>
 
