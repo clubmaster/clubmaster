@@ -2,7 +2,6 @@ on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
 create unique key on event attends
-make it more visible with login credentials
 validate that we have activated mod_rewrite
 add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
