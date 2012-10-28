@@ -2692,6 +2692,10 @@
           <source>If you reset your key, remember to update your link to the calendar items.</source>
           <target>Hvis du nulstiller din nøgle, skal du huske at opdatere dine links til kalenderen.</target>
       </trans-unit>
+      <trans-unit id="712">
+          <source>Before the booking is confirmed, click here to buy.</source>
+          <target>Før din booking er bekræftet, skal du klikke her for at købe den.</target>
+      </trans-unit>
 
     </body>
   </file>
