@@ -27,7 +27,7 @@ class MessageAttachment
      *
      * @var string $file
      */
-    public $file;
+    protected $file;
 
     /**
      * @ORM\Column(type="string")
@@ -65,8 +65,8 @@ class MessageAttachment
     protected $file_hash;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Message")
-     * @ORM\JoinColumn(name="message_id", referencedColumnName="id", onDelete="cascade")
+     * @ORM\ManyToOne(targetEntity="Message", inversedBy="message_attachment")
+     * @ORM\JoinColumn(name="message_id", onDelete="cascade")
      *
      * @var Club\MessageBundle\Entity\Message
      */
@@ -80,6 +80,16 @@ class MessageAttachment
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
     }
 
     /**

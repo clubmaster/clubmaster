@@ -51,7 +51,7 @@ class TournamentGame
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\ManyToOne(targetEntity="Tournament", inversedBy="tournament_games")
      */
     private $tournament;
 

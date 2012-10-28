@@ -29,7 +29,7 @@ class Match
     protected $processed;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ranking")
+     * @ORM\ManyToOne(targetEntity="Ranking", inversedBy="matches")
      */
     protected $ranking;
 

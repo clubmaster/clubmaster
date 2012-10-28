@@ -46,7 +46,7 @@ class Attend
     /**
      * @var object $tournament
      *
-     * @ORM\ManyToOne(targetEntity="Tournament")
+     * @ORM\ManyToOne(targetEntity="Tournament", inversedBy="attends")
      */
     private $tournament;
 

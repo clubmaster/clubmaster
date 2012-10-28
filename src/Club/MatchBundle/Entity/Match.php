@@ -50,7 +50,7 @@ class Match
     protected $winner;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\League")
+     * @ORM\ManyToOne(targetEntity="Club\MatchBundle\Entity\League", inversedBy="matches")
      */
     protected $league;
 
@@ -326,14 +326,14 @@ class Match
     public function setUser(\Club\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return Club\UserBundle\Entity\User 
+     * @return Club\UserBundle\Entity\User
      */
     public function getUser()
     {

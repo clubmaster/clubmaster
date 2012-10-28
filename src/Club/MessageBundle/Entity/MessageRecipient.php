@@ -37,7 +37,7 @@ class MessageRecipient
     protected $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Message")
+     * @ORM\ManyToOne(targetEntity="Message", inversedBy="message_recipients")
      */
     protected $message;
 
