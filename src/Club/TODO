@@ -60,9 +60,7 @@ payment has to be the same value, orders price in kr, purchase_log in øre
 better timesupport on booking schema, its on danish today
 add paginator to:
   - team attends
-  - admin blog
   - team schedules
-  - checkins
 make readonly roles for members
 make teams without ability to attend the team, its for preassigned users only
 make a way to configure the touch screen client, ever cookie and configure through clubmaster?

@@ -12,18 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class CheckinRepository extends EntityRepository
 {
-  public function getUserInRange(\Club\UserBundle\Entity\User $user, \DateTime $first, \DateTime $last)
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('c')
-      ->from('ClubCheckinBundle:Checkin', 'c')
-      ->where('c.user = :user')
-      ->andWhere('c.created_at >= :first')
-      ->andWhere('c.created_at <= :last')
-      ->setParameter('user', $user->getId())
-      ->setParameter('first', $first)
-      ->setParameter('last', $last)
-      ->getQuery()
-      ->getResult();
-  }
+    public function getUserInRange(\Club\UserBundle\Entity\User $user, \DateTime $first, \DateTime $last)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('c')
+            ->from('ClubCheckinBundle:Checkin', 'c')
+            ->where('c.user = :user')
+            ->andWhere('c.created_at >= :first')
+            ->andWhere('c.created_at <= :last')
+            ->setParameter('user', $user->getId())
+            ->setParameter('first', $first)
+            ->setParameter('last', $last)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getPaginator($results, $page)
+    {
+        $offset = ($page < 1) ? 1 : ($page-1)*$results;
+
+        $dql = "SELECT c FROM ClubCheckinBundle:Checkin c ORDER BY c.id DESC";
+        $query = $this->_em->createQuery($dql)
+            ->setFirstResult($offset)
+            ->setMaxResults($results);
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($query, false);
+    }
 }

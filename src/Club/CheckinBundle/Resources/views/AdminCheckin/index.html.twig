@@ -1,6 +1,8 @@
 {% extends "ClubCheckinBundle::base.html.twig" %}
 
 {% block body %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+
 <table class="table">
   <thead>
     <tr>
@@ -9,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for checkin in checkins %}
+  {% for checkin in paginator %}
     <tr>
       <td>{{ checkin.user.profile.name }}</td>
       <td>{{ checkin.createdAt|club_datetime }}</td>

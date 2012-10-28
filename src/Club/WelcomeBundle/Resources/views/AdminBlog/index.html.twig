@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block body %}
+{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+
 <table class="table">
   <thead>
     <tr>
@@ -22,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for blog in blogs %}
+  {% for blog in paginator %}
     <tr>
       <td>{{ blog.user.name }}</td>
       <td>{{ blog.title }}</td>

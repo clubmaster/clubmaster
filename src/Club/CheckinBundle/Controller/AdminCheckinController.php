@@ -11,41 +11,43 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class AdminCheckinController extends Controller
 {
-  /**
-   * @Route("")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $checkins = $em->getRepository('ClubCheckinBundle:Checkin')->findBy(
-      array(),
-      array('id' => 'DESC'),
-      50
-    );
+    /**
+     * @Route("/checkin/{user_id}")
+     * @Template()
+     */
+    public function checkinAction($user_id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $em->find('ClubUserBundle:User', $user_id);
 
-    return array(
-      'checkins' => $checkins
-    );
-  }
+        $checkin = new \Club\CheckinBundle\Entity\Checkin();
+        $checkin->setUser($user);
 
-  /**
-   * @Route("/checkin/{user_id}")
-   * @Template()
-   */
-  public function checkinAction($user_id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $user = $em->find('ClubUserBundle:User', $user_id);
+        $em->persist($checkin);
+        $em->flush();
 
-    $checkin = new \Club\CheckinBundle\Entity\Checkin();
-    $checkin->setUser($user);
+        $this->get('session')->setFlash('notice', 'User has now checked in.');
 
-    $em->persist($checkin);
-    $em->flush();
+        return $this->redirect($this->generateUrl('club_checkin_admincheckin_index'));
+    }
 
-    $this->get('session')->setFlash('notice', 'User has now checked in.');
+    /**
+     * @Route("", defaults={"page" = 1})
+     * @Route("/{page}", name="club_checkin_admincheckin_offset")
+     * @Template()
+     */
+    public function indexAction($page)
+    {
+        $results = 35;
+        $em = $this->getDoctrine()->getEntityManager();
+        $paginator = $em->getRepository('ClubCheckinBundle:Checkin')->getPaginator($results, $page);
 
-    return $this->redirect($this->generateUrl('club_checkin_admincheckin_index'));
-  }
+        $nav = $this->get('club_paginator.paginator')
+            ->init($results, count($paginator), $page, 'club_checkin_admincheckin_offset');
+
+        return array(
+            'paginator' => $paginator,
+            'nav' => $nav
+        );
+    }
 }
