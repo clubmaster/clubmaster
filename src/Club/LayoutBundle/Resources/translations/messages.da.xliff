@@ -2660,6 +2660,38 @@
           <source>Announcements!</source>
           <target>Annonceringer!</target>
       </trans-unit>
+      <trans-unit id="704">
+          <source>Generate API key</source>
+          <target>Generer API nøgle</target>
+      </trans-unit>
+      <trans-unit id="705">
+          <source>You have not set an API key. Before you can use your ical file, you have to generate such key, press the button below.</source>
+          <target>Du har ikke sat en API nøgle. Før du kan bruge din ical fil, skal du først generete sådan en nøgle, tryk herunder.</target>
+      </trans-unit>
+      <trans-unit id="706">
+          <source>Generate key</source>
+          <target>Generer nøgle</target>
+      </trans-unit>
+      <trans-unit id="707">
+          <source>User functions</source>
+          <target>Bruger funktioner</target>
+      </trans-unit>
+      <trans-unit id="708">
+          <source>Regenerate API key</source>
+          <target>Regenerer API nøgle</target>
+      </trans-unit>
+      <trans-unit id="709">
+          <source>Regenerate key</source>
+          <target>Regenerer nøgle</target>
+      </trans-unit>
+      <trans-unit id="710">
+          <source>You have a secret key to keep your personal ical file secret, so its only you how have access to your account. If you for some reason lose this key, you can regenerate the key right here.</source>
+          <target>Du har en hemmelig nøgle for at sikre din personlige ical fil, det er kun dig som har adgang til denne. Hvis du af en eller anden årsar mister din fil, kan du til hver en tid lave en ny ved at trykke her.</target>
+      </trans-unit>
+      <trans-unit id="711">
+          <source>If you reset your key, remember to update your link to the calendar items.</source>
+          <target>Hvis du nulstiller din nøgle, skal du huske at opdatere dine links til kalenderen.</target>
+      </trans-unit>
 
     </body>
   </file>

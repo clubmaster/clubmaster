@@ -103,6 +103,15 @@ class UserController extends Controller
 
     /**
      * @Template()
+     * @Route("/ical")
+     */
+    public function icalMissingAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Template()
      * @Route("/ical/{hash}")
      */
     public function icalAction($hash)

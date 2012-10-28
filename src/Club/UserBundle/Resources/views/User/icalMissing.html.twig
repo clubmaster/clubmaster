@@ -1,0 +1,20 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block header %}
+<div class="page-header"><h1><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {{ app.user.name }}</h1></div>
+{% endblock %}
+
+{% block pagenav %}
+{% include "ClubUserBundle:User:header.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+<h1>{% trans %}Generate API key{% endtrans %}</h1>
+<p>{% trans %}You have not set an API key. Before you can use your ical file, you have to generate such key, press the button below.{% endtrans %}</p>
+
+<div class="form-actions">
+<a href="{{ path('club_user_user_regenerate') }}" {% include "ClubLayoutBundle:Default:confirm.html.twig" %} class="btn btn-primary">{% trans %}Generate key{% endtrans %}</a>
+</div>
+
+{% endblock %}
