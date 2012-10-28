@@ -9,3 +9,8 @@ services:
     arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
+  club.task.listener.migrate:
+    class: Club\TaskBundle\Listener\Migrate
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: version.migrate, method: onVersionMigrate }
