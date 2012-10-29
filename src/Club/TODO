@@ -1,6 +1,8 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+seems to miss the ajax loader image
+and need the css ui-lighten stuff
 create unique key on event attends
 validate that we have activated mod_rewrite
 add notes to some documentation on lockout
