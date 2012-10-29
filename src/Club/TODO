@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+onDashboardRecent, check if it still working
 create a booking will be confirmed when you complete the payment
 cancel a booking thats not confirmed should not receive a cancel mail
 seems to miss the ajax loader image
