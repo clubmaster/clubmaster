@@ -23,17 +23,19 @@ class Migrate
         $task = $this->em->getRepository('ClubTaskBundle:Task')->findOneBy(array(
             'method' => 'onLogTask'
         ));
-        $this->em->remove($task);
+	if ($task) $this->em->remove($task);
+
         $task = $this->em->getRepository('ClubTaskBundle:Task')->findOneBy(array(
             'method' => 'onLoginAttemptTask'
         ));
-        $this->em->remove($task);
+        if ($task) $this->em->remove($task);
+
         $task = $this->em->getRepository('ClubTaskBundle:Task')->findOneBy(array(
             'method' => 'onBanTask'
         ));
-        $this->em->remove($task);
+        if ($task) $this->em->remove($task);
 
-        $r = array(
+        $tasks = array(
             array(
                 'name' => 'Booking cleanup',
                 'interval' => 'T1M',

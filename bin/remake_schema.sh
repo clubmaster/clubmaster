@@ -24,6 +24,10 @@ MYSQL_USERNAME=`grep database_user app/config/parameters.yml | cut -d":" -f2 | s
 MYSQL_PASSWORD=`grep database_password app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
 MYSQL_DATABASE=`grep database_name app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
 
+if [ "${MYSQL_PASSWORD}" == "~" ]; then
+	MYSQL_PASSWORD=""
+fi
+
 if [ "${MYSQL_PASSWORD}" != "" ]; then
   MYSQL_PASSWORD="-p"${MYSQL_PASSWORD}
 fi
