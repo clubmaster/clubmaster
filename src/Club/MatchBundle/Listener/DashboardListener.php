@@ -49,20 +49,22 @@ class DashboardListener
         foreach ($connections as $conn) {
             $matches = $this->em->getRepository('ClubMatchBundle:Match')->getLatest($conn->getConnection());
 
-            foreach ($matches as $m) {
+	    if (is_array($matches)) {
+		    foreach ($matches as $m) {
 
-                $activity = array(
-                    'date' => $m->getCreatedAt(),
-                    'type' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
-                    'message' => $this->templating->render('ClubMatchBundle:Dashboard:match_message.html.twig', array(
-                        'match' => $m
+			    $activity = array(
+				    'date' => $m->getCreatedAt(),
+				    'type' => 'bundles/clublayout/images/icons/16x16/medal_gold_1.png',
+				    'message' => $this->templating->render('ClubMatchBundle:Dashboard:match_message.html.twig', array(
+					    'match' => $m
 
-                    )),
-                    'link' => $this->router->generate('club_match_match_show', array('id' => $m->getId()))
-                );
+				    )),
+				    'link' => $this->router->generate('club_match_match_show', array('id' => $m->getId()))
+			    );
 
-                $event->appendActivities($activity, $m->getCreatedAt()->format('U'));
-            }
+			    $event->appendActivities($activity, $m->getCreatedAt()->format('U'));
+		    }
+	    }
         }
     }
 }

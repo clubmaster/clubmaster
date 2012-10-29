@@ -2696,6 +2696,14 @@
           <source>Before the booking is confirmed, click here to buy.</source>
           <target>Før din booking er bekræftet, skal du klikke her for at købe den.</target>
       </trans-unit>
+      <trans-unit id="713">
+          <source>Coming Activities</source>
+          <target>Kommende Aktiviteter</target>
+      </trans-unit>
+      <trans-unit id="714">
+          <source>Recent Activities</source>
+          <target>Seneste Aktiviteter</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -39,7 +39,7 @@ class MatchRepository extends EntityRepository
         ->select('m')
         ->from('ClubMatchBundle:Match', 'm')
         ->where('m.id IN (:ids)')
-        ->setPArameter('ids', $ids)
+        ->setParameter('ids', $ids)
         ->getQuery()
         ->getResult();
   }

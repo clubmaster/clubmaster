@@ -1,6 +1,8 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+create a booking will be confirmed when you complete the payment
+cancel a booking thats not confirmed should not receive a cancel mail
 seems to miss the ajax loader image
 and need the css ui-lighten stuff
 create unique key on event attends
