@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+get booking plan by right credentials (non repeat, ends on)
 fix quick search, has to find also inactive members
 onDashboardRecent, check if it still working
 create a booking will be confirmed when you complete the payment
