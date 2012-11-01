@@ -1,6 +1,8 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+check repeat booking which ends on same day er de med
+click booking plan, pick wrong date
 fix quick search, has to find also inactive members
 onDashboardRecent, check if it still working
 create a booking will be confirmed when you complete the payment
