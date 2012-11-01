@@ -1,6 +1,8 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+the system has to clean out orders that is not processed
+the booking should never be expired, but only one can have status code 2, just in case of cash payment
 get booking plan by right credentials (non repeat, ends on)
 fix quick search, has to find also inactive members
 onDashboardRecent, check if it still working
