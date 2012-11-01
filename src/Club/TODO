@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+check if we can disable a module by ini_set, like disable the intl extension
 cannot cancel a guest booking order
 the system has to clean out orders that is not processed
 the booking should never be expired, but only one can have status code 2, just in case of cash payment
