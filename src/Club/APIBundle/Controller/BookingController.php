@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * @Route("/bookings")
@@ -76,6 +77,7 @@ class BookingController extends Controller
    * @Route("/{location_id}", defaults={"date" = null})
    * @Route("/{location_id}/{date}")
    * @Method("GET")
+   * @Cache(expires="now")
    */
   public function indexAction($location_id, $date)
   {
