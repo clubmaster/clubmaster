@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
           ->scalarNode('view_shop')->isRequired()->end()
           ->scalarNode('coupon_account_number')->isRequired()->end()
           ->scalarNode('guest_account_number')->isRequired()->end()
+          ->scalarNode('voucher_text')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

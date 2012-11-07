@@ -7,11 +7,13 @@ class Order
     private $order;
     private $em;
     private $event_dispatcher;
+    private $translator;
 
-    public function __construct($em, $event_dispatcher)
+    public function __construct($container)
     {
-        $this->em = $em;
-        $this->event_dispatcher = $event_dispatcher;
+        $this->container = $container;
+        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->event_dispatcher = $container->get('event_dispatcher');
     }
 
     public function setOrder(\Club\ShopBundle\Entity\Order $order)
@@ -310,9 +312,9 @@ class Order
                 $prod->setAccountNumber($prod->getProduct()->getAccountNumber());
             }
             $prod->setVoucherText(sprintf(
-                "Payment from %s, %s",
+                $this->container->getParameter('club_shop.voucher_text'),
                 $this->order->getUser()->getName(),
-                $prod->getProductName()
+                $this->order->getOrderNumber()
             ));
         }
 
