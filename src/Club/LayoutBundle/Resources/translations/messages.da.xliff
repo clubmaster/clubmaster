@@ -2704,6 +2704,82 @@
           <source>Recent Activities</source>
           <target>Seneste Aktiviteter</target>
       </trans-unit>
+      <trans-unit id="716">
+          <source>Fields</source>
+          <target>Baner</target>
+      </trans-unit>
+      <trans-unit id="717">
+          <source>Start</source>
+          <target>Start</target>
+      </trans-unit>
+      <trans-unit id="718">
+          <source>End</source>
+          <target>Slut</target>
+      </trans-unit>
+      <trans-unit id="719">
+          <source>All day</source>
+          <target>Hele dagen</target>
+      </trans-unit>
+      <trans-unit id="720">
+          <source>Repeating</source>
+          <target>Gentagende</target>
+      </trans-unit>
+      <trans-unit id="721">
+          <source>Repeats</source>
+          <target>Gentagelser</target>
+      </trans-unit>
+      <trans-unit id="722">
+          <source>Monthly</source>
+          <target>Månedlig</target>
+      </trans-unit>
+      <trans-unit id="723">
+          <source>Daily</source>
+          <target>Daglig</target>
+      </trans-unit>
+      <trans-unit id="724">
+          <source>Weekly</source>
+          <target>Ugentlig</target>
+      </trans-unit>
+      <trans-unit id="725">
+          <source>Yearly</source>
+          <target>Årlig</target>
+      </trans-unit>
+      <trans-unit id="726">
+          <source>Repeat on</source>
+          <target>Gentag den</target>
+      </trans-unit>
+      <trans-unit id="727">
+          <source>Day of the month</source>
+          <target>Dag i måneden</target>
+      </trans-unit>
+      <trans-unit id="728">
+          <source>Day of the week</source>
+          <target>Dag i ugen</target>
+      </trans-unit>
+      <trans-unit id="729">
+          <source>Starts on</source>
+          <target>Starter den</target>
+      </trans-unit>
+      <trans-unit id="730">
+          <source>Ends type</source>
+          <target>Slutter type</target>
+      </trans-unit>
+      <trans-unit id="731">
+          <source>Ends after</source>
+          <target>Slutter efter</target>
+      </trans-unit>
+      <trans-unit id="732">
+          <source>Ends on</source>
+          <target>Slutter den</target>
+      </trans-unit>
+      <trans-unit id="733">
+          <source>Ends never</source>
+          <target>Slutter aldrig</target>
+      </trans-unit>
+      <trans-unit id="734">
+          <source>Repeat</source>
+          <target>Gentag</target>
+      </trans-unit>
 
     </body>
   </file>
