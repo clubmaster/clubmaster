@@ -20,9 +20,11 @@ class Shop
                 if (preg_match("/#(\d+)$/", $product->getProductName(), $o)) {
                     $booking = $this->em->find('ClubBookingBundle:Booking', $o[1]);
 
-                    $status = $this->container->get('club_booking.booking')->getConfirmStatus($booking->getFirstDate());
-                    $booking->setStatus($status);
-                    $this->em->persist($booking);
+                    if ($booking) {
+                        $status = $this->container->get('club_booking.booking')->getConfirmStatus($booking->getFirstDate());
+                        $booking->setStatus($status);
+                        $this->em->persist($booking);
+                    }
                 }
             }
         }
