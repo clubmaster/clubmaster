@@ -8,18 +8,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubAccountEconomicBundle",
-                "reference": "961977b928f71e355aeb5266af7a9f2b6578870c"
+                "reference": "cb4b85e59df8d49b4d3bb2cea622b6a8657d6529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/clubmaster/ClubAccountEconomicBundle/zipball/961977b928f71e355aeb5266af7a9f2b6578870c",
-                "reference": "961977b928f71e355aeb5266af7a9f2b6578870c",
+                "url": "https://github.com/clubmaster/ClubAccountEconomicBundle/archive/cb4b85e59df8d49b4d3bb2cea622b6a8657d6529.zip",
+                "reference": "cb4b85e59df8d49b4d3bb2cea622b6a8657d6529",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1347445302",
+            "time": "1352808430",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
