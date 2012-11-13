@@ -1,6 +1,7 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
+save info on who has changed a order_staus_history
 cancel order if cancelling guest booking automatically
 check repeat booking which ends on same day er de med
 click booking plan, pick wrong date
