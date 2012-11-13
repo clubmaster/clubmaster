@@ -420,18 +420,14 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->setParameter('user', $user->getId())
             ->setParameter('start', $start)
@@ -454,7 +450,7 @@ class Booking
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('(b.user = :user OR u.id = :user)')
             ->setParameter('user', $user->getId())
             ->setParameter('date', $date)
@@ -473,18 +469,14 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
             ->setParameter('user', $user->getId())
@@ -508,7 +500,7 @@ class Booking
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
             ->setParameter('user', $user->getId())
@@ -529,19 +521,15 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->andWhere('u.id = :partner')
             ->andWhere('b.guest = :is_guest')
@@ -568,7 +556,7 @@ class Booking
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('b.user = :user')
             ->andWhere('u.id = :partner')
             ->andWhere('b.guest = :is_guest')
