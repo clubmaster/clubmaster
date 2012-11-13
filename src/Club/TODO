@@ -1,19 +1,20 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
-save info on who has changed a order_staus_history
 cancel order if cancelling guest booking automatically
 check repeat booking which ends on same day er de med
 click booking plan, pick wrong date
-stuff should not break if economic account number does not exists
-the system has to clean out orders that is not processed
-the booking should never be expired, but only one can have status code 2, just in case of cash payment
 get booking plan by right credentials (non repeat, ends on)
 fix quick search, has to find also inactive members
 create a booking will be confirmed when you complete the payment
 cancel a booking thats not confirmed should not receive a cancel mail
+add default booking view
 seems to miss the ajax loader image
 and need the css ui-lighten stuff
+save info on who has changed a order_staus_history
+stuff should not break if economic account number does not exists
+the system has to clean out orders that is not processed
+the booking should never be expired, but only one can have status code 2, just in case of cash payment
 create unique key on event attends
 validate that we have activated mod_rewrite
 add notes to some documentation on lockout
