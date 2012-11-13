@@ -55,7 +55,7 @@ class CartProduct
     protected $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Cart")
+     * @ORM\ManyToOne(targetEntity="Club\ShopBundle\Entity\Cart", inversedBy="cart_products")
      * @ORM\JoinColumn(name="cart_id", referencedColumnName="id", onDelete="cascade")
      *
      * @var Club\UserBundle\Entity\Cart

@@ -34,7 +34,7 @@ class CartProductAttribute
     protected $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CartProduct")
+     * @ORM\ManyToOne(targetEntity="CartProduct", inversedBy="cart_product_attributes")
      * @ORM\JoinColumn(name="cart_product_id", referencedColumnName="id", onDelete="cascade")
      */
     protected $cart_product;
