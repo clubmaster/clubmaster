@@ -38,7 +38,10 @@ class Shop
             if ($product->getType() == 'guest_booking') {
                 if (preg_match("/#(\d+)$/", $product->getProductName(), $o)) {
                     $booking = $this->em->find('ClubBookingBundle:Booking', $o[1]);
-                    $this->em->remove($booking);
+
+                    if ($booking) {
+                        $this->em->remove($booking);
+                    }
                 }
             }
         }
