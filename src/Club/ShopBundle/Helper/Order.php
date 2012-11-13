@@ -294,7 +294,7 @@ class Order
     {
         if ($this->order->getPaid()) return;
 
-        if ($this->order->getAmountLeft() == 0) {
+        if ($this->order->getAmountLeft() =< 0) {
             $status = $this->em->getRepository('ClubShopBundle:OrderStatus')->getPaid();
             $this->changeStatus($status);
         }

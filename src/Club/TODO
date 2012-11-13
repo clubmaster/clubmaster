@@ -6,7 +6,6 @@ cancel order if cancelling guest booking automatically
 check repeat booking which ends on same day er de med
 click booking plan, pick wrong date
 stuff should not break if economic account number does not exists
-if paid too much, not set as paid
 the system has to clean out orders that is not processed
 the booking should never be expired, but only one can have status code 2, just in case of cash payment
 get booking plan by right credentials (non repeat, ends on)
