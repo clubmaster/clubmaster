@@ -50,10 +50,10 @@ class PlanRepository extends EntityRepository
             ->join('p.fields', 'f')
             ->join('p.plan_repeats', 'pr')
             ->where('f.id = :field')
-            ->andWhere('((pr.ends_type != :type) OR (pr.ends_type = :type AND pr.ends_on > :date))')
+            //->andWhere('((pr.ends_type != :type) OR (pr.ends_type = :type AND pr.ends_on > :date))')
             ->setParameter('field', $field->getId())
-            ->setParameter('date', new \DateTime())
-            ->setParameter('type', 'on')
+            //->setParameter('date', new \DateTime())
+            //->setParameter('type', 'on')
             ->getQuery()
             ->getResult();
 
@@ -114,11 +114,26 @@ EOF;
         $plans = array();
         if (count($calendar->VEVENT)) {
             foreach ($calendar->VEVENT as $event) {
+
                 preg_match("/^(\d+)_/", $event->UID, $o);
                 $plan_id = $o[1];
-                $plan = clone $this->_em->find('ClubBookingBundle:Plan', $plan_id);
-                $plan->setStart($event->DTSTART->getDateTime());
-                $plan->setEnd($event->DTEND->getDateTime());
+                $plan = $this->_em->find('ClubBookingBundle:Plan', $plan_id);
+
+                $s = $plan->getStart();
+                $s->setDate(
+                    $event->DTSTART->getDateTime()->format('Y'),
+                    $event->DTSTART->getDateTime()->format('m'),
+                    $event->DTSTART->getDateTime()->format('d')
+                );
+                $e = $plan->getEnd();
+                $e->setDate(
+                    $event->DTEND->getDateTime()->format('Y'),
+                    $event->DTEND->getDateTime()->format('m'),
+                    $event->DTEND->getDateTime()->format('d')
+                );
+
+                $plan->setStart($s);
+                $plan->setEnd($e);
 
                 $plans[] = $plan;
             }
