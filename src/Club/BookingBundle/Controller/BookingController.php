@@ -148,13 +148,15 @@ class BookingController extends Controller
         $plan_id = $this->getRequest()->request->get('plan_id');
         $field_id = $this->getRequest()->request->get('field_id');
 
-	if (preg_match("/^\d{1,2}:\d{2}$/", $this->getRequest()->request->get('time'))) {
-		$date->setTime(
-			substr($this->getRequest()->request->get('time'),0,2),
-			substr($this->getRequest()->request->get('time'),3,2),
-			0
-		);
-	}
+        $time = $this->getRequest()->request->get('time');
+        if ($time && preg_match("/^\d{1,2}:\d{2}$/", $time)) {
+            list($hour,$min) = preg_split("/:/", $time);
+            $date->setTime(
+                $hour,
+                $min,
+                0
+            );
+        }
 
         $em = $this->getDoctrine()->getEntityManager();
         $plan = $em->find('ClubBookingBundle:Plan', $plan_id);
