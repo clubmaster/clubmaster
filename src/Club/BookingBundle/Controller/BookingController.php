@@ -199,18 +199,22 @@ class BookingController extends Controller
      */
     public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $datetime)
     {
-        $exception = new \Club\BookingBundle\Entity\PlanException();
-        $exception->setExcludeDate($datetime);
-        $exception->setPlan($plan);
-        $exception->setUser($this->getUser());
-
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($exception);
+
+        if (!$plan->getRepeating()) {
+            $em->remove($plan);
+        } else {
+            $exception = new \Club\BookingBundle\Entity\PlanException();
+            $exception->setExcludeDate($datetime);
+            $exception->setPlan($plan);
+            $exception->setUser($this->getUser());
+
+            $em->persist($exception);
+        }
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
     }
-
 }

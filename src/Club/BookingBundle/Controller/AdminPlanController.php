@@ -30,11 +30,11 @@ class AdminPlanController extends Controller
     }
 
     /**
-     * @Route("/new", defaults={"date" = null, "interval_id" = null})
+     * @Route("/new", defaults={"date" = false, "interval_id" = null})
      * @Route("/new/{date}/{interval_id}", name="club_booking_plan_pre")
      * @Template()
      */
-    public function newAction($date, $interval_id)
+    public function newAction($date, $interval_id=null)
     {
         $plan = new \Club\BookingBundle\Entity\Plan();
         $plan->setUser($this->getUser());
@@ -43,18 +43,27 @@ class AdminPlanController extends Controller
         $repeat->setPlan($plan);
         $plan->addPlanRepeat($repeat);
 
-
         $em = $this->getDoctrine()->getEntityManager();
-        if ($date != '') {
+
+        if ($date) {
+            $date = new \DateTime($date);
             $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
 
-            $start = new \DateTime($date.' 00:00:00');
-            $end = new \DateTime($date.' 23:59:59');
+            $start = clone $date;
+            $start->setTime(
+                $interval->getStartTime()->format('H'),
+                $interval->getStartTime()->format('i'),
+                $interval->getStartTime()->format('s')
+            );
+            $end = clone $date;
+            $end->setTime(
+                $interval->getStopTime()->format('H'),
+                $interval->getStopTime()->format('i'),
+                $interval->getStopTime()->format('s')
+            );
 
-            $t_start = new \DateTime(date('Y-m-d '.$interval->getStartTime()->format('H:i:s')));
-            $t_end = new \DateTime(date('Y-m-d '.$interval->getStopTime()->format('H:i:s')));
-            $plan->setStart($t_start);
-            $plan->setEnd($t_end);
+            $plan->setStart($start);
+            $plan->setEnd($end);
             $plan->addField($interval->getField());
         }
 
@@ -70,7 +79,6 @@ class AdminPlanController extends Controller
                 $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
-            } else {
             }
         }
 
