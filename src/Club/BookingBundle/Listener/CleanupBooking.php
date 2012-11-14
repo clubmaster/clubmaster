@@ -15,13 +15,6 @@ class CleanupBooking
 
     public function onBookingCleanup(\Club\TaskBundle\Event\FilterTaskEvent $event)
     {
-        $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getOldPending();
-
-        foreach ($bookings as $booking) {
-            $this->container->get('club_booking.booking')->setBooking($booking);
-            $this->container->get('club_booking.booking')->remove();
-        }
-
         if (!$this->container->getParameter('club_booking.cancel_without_checkin')) return;
 
         $after = new \DateTime();
@@ -39,8 +32,7 @@ class CleanupBooking
             ->getResult();
 
         foreach ($bookings as $booking) {
-            $this->container->get('club_booking.booking')->setBooking($booking);
-            $this->container->get('club_booking.booking')->remove();
+            $this->container->get('club_booking.booking')->cancel($booking);
         }
 
         $this->em->flush();

@@ -211,6 +211,15 @@ class Booking
         $cart->addToCart($product);
     }
 
+    public function cancel(\Club\BookingBundle\Entity\Booking $booking)
+    {
+        $booking->setStatus(\Club\BookingBundle\Entity\Booking::CANCELLED);
+        $this->em->persist($booking);
+
+        $event = new \Club\BookingBundle\Event\FilterBookingEvent($booking);
+        $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
+    }
+
     public function remove()
     {
         $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
@@ -431,9 +440,11 @@ class Booking
             ->where('b.end_date >= :start')
             ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('start', $start)
             ->setParameter('end', $end)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -454,8 +465,10 @@ class Booking
             ->leftJoin('b.users', 'u')
             ->where('b.end_date >= :date')
             ->andWhere('(b.user = :user OR u.id = :user)')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('date', $date)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -481,10 +494,12 @@ class Booking
             ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('is_guest', true)
             ->setParameter('start', $start)
             ->setParameter('end', $end)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -505,9 +520,11 @@ class Booking
             ->where('b.end_date >= :date')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('is_guest', true)
             ->setParameter('date', $date)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 

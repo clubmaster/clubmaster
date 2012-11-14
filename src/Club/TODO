@@ -5,8 +5,6 @@ cancel order if cancelling guest booking automatically
 check repeat booking which ends on same day er de med
 click booking plan, pick wrong date
 fix quick search, has to find also inactive members
-create a booking will be confirmed when you complete the payment
-cancel a booking thats not confirmed should not receive a cancel mail
 add default booking view
 seems to miss the ajax loader image
 and need the css ui-lighten stuff

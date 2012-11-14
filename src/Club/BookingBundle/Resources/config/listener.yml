@@ -22,7 +22,6 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: order.paid, method: onOrderPaid }
-      - { name: kernel.event_listener, event: order.cancelled, method: onOrderCancelled }
   club.booking.listener.cleanup:
     class: Club\BookingBundle\Listener\CleanupBooking
     arguments: [@service_container]
