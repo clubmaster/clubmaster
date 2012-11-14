@@ -12,48 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlanRepository extends EntityRepository
 {
-    public function getAllBetween(\DateTime $start, \DateTime $end, \Club\UserBundle\Entity\Location $location=null, \Club\BookingBundle\Entity\Field $field=null)
+    public function getQuery()
     {
-        $qb = $this->_em->createQueryBuilder()
-            ->select('p')
-            ->from('ClubBookingBundle:Plan', 'p')
-            ->leftJoin('p.fields', 'f')
-            ->where('p.day LIKE :day')
-            ->andWhere('p.period_start <= :period_start AND p.period_end >= :period_end')
-            ->andWhere('(p.first_time <= :start and p.end_time >= :end) OR (p.first_time <= :start and p.end_time <= :end and p.end_time >= :start) OR (p.first_time >= :start and p.end_time >= :end and p.first_time < :end) OR (p.end_time >= :start and p.end_time <= :end and p.end_time >= :start)')
-            ->setParameter('day', '%'.$start->format('N').'%')
-            ->setParameter('period_start', $start)
-            ->setParameter('period_end', $end)
-            ->setParameter('start', $start->format('H:i:s'))
-            ->setParameter('end', $end->format('H:i:s'));
+        $ends_on = new \DateTime();
+        $ends_on->modify('+1 day');
 
-        if ($location) {
-            $qb
-                ->andWhere('f.location = :location')
-                ->setParameter('location', $location->getId());
-        }
+        $qb = $this->createQueryBuilder('p')
+            ->join('p.fields', 'f')
+            ->join('p.plan_repeats', 'pr')
+            ->where('(p.repeating = false) OR (pr.ends_type <> :ends_type) OR (pr.ends_type = :ends_type AND pr.ends_on > :ends_on)')
+            ->setParameter('ends_type', 'on')
+            ->setParameter('ends_on', $ends_on);
 
-        if ($field) {
-            $qb
-                ->andWhere('f.id = :field')
-                ->setParameter('field', $field->getId());
-        }
+        return $qb;
 
-        return $qb
+    }
+
+    public function getICSByLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $plans = $this->getQuery()
+            ->andWhere('f.location = :location')
+            ->setParameter('location', $location->getId())
             ->getQuery()
             ->getResult();
+
+        return $this->getIcsFromPlans($plans);
     }
 
     public function getICSByField(\Club\BookingBundle\Entity\Field $field)
     {
-        $plans = $this->createQueryBuilder('p')
-            ->join('p.fields', 'f')
-            ->join('p.plan_repeats', 'pr')
-            ->where('f.id = :field')
-            //->andWhere('((pr.ends_type != :type) OR (pr.ends_type = :type AND pr.ends_on > :date))')
+        $plans = $this->getQuery()
+            ->andWhere('f.id = :field')
             ->setParameter('field', $field->getId())
-            //->setParameter('date', new \DateTime())
-            //->setParameter('type', 'on')
             ->getQuery()
             ->getResult();
 
@@ -84,19 +74,6 @@ END:VCALENDAR
 EOF;
 
         return $ics;
-    }
-
-    public function getICSByLocation(\Club\UserBundle\Entity\Location $location)
-    {
-        $plans = $this->createQueryBuilder('p')
-            ->join('p.fields', 'f')
-            ->join('p.plan_repeats', 'pr')
-            ->where('f.location = :location')
-            ->setParameter('location', $location->getId())
-            ->getQuery()
-            ->getResult();
-
-        return $this->getIcsFromPlans($plans);
     }
 
     public function getBetweenByField(\Club\BookingBundle\Entity\Field $field, \DateTime $start, \DateTime $end)

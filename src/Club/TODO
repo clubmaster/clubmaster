@@ -1,11 +1,9 @@
 on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
-fix all days plans
 cancel order if cancelling guest booking automatically
 check repeat booking which ends on same day er de med
 click booking plan, pick wrong date
-get booking plan by right credentials (non repeat, ends on)
 fix quick search, has to find also inactive members
 create a booking will be confirmed when you complete the payment
 cancel a booking thats not confirmed should not receive a cancel mail
