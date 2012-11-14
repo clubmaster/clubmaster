@@ -18,6 +18,7 @@ class PlanRepository extends EntityRepository
         $ends_on->modify('+1 day');
 
         $qb = $this->createQueryBuilder('p')
+            ->select('p,pr')
             ->join('p.fields', 'f')
             ->join('p.plan_repeats', 'pr')
             ->where('(p.repeating = false) OR (pr.ends_type <> :ends_type) OR (pr.ends_type = :ends_type AND pr.ends_on > :ends_on)')
@@ -25,7 +26,6 @@ class PlanRepository extends EntityRepository
             ->setParameter('ends_on', $ends_on);
 
         return $qb;
-
     }
 
     public function getICSByLocation(\Club\UserBundle\Entity\Location $location)

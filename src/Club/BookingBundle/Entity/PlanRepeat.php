@@ -508,6 +508,8 @@ class PlanRepeat
 
     private function getByHour()
     {
+        if (!$this->getRepeatOnHour()) return;
+
         $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
         $hours = $transformer->transform($this->getRepeatOnHour());
         $s = '';
