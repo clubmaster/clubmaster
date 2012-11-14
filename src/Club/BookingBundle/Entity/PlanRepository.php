@@ -12,10 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlanRepository extends EntityRepository
 {
-    public function getQuery()
+    public function getQuery(\DateTime $date)
     {
-        $ends_on = new \DateTime();
-        $ends_on->modify('+1 day');
+        $ends_on = clone $date;
+        $ends_on->modify('-1 day');
 
         $qb = $this->createQueryBuilder('p')
             ->select('p,pr')
@@ -28,9 +28,9 @@ class PlanRepository extends EntityRepository
         return $qb;
     }
 
-    public function getICSByLocation(\Club\UserBundle\Entity\Location $location)
+    public function getICSByLocation(\Club\UserBundle\Entity\Location $location, \DateTime $date)
     {
-        $plans = $this->getQuery()
+        $plans = $this->getQuery($date)
             ->andWhere('f.location = :location')
             ->setParameter('location', $location->getId())
             ->getQuery()
@@ -39,9 +39,9 @@ class PlanRepository extends EntityRepository
         return $this->getIcsFromPlans($plans);
     }
 
-    public function getICSByField(\Club\BookingBundle\Entity\Field $field)
+    public function getICSByField(\Club\BookingBundle\Entity\Field $field, \DateTime $date)
     {
-        $plans = $this->getQuery()
+        $plans = $this->getQuery($date)
             ->andWhere('f.id = :field')
             ->setParameter('field', $field->getId())
             ->getQuery()
@@ -78,7 +78,7 @@ EOF;
 
     public function getBetweenByField(\Club\BookingBundle\Entity\Field $field, \DateTime $start, \DateTime $end)
     {
-        $ics = $this->getICSByField($field);
+        $ics = $this->getICSByField($field, $start);
 
         return $this->getPlansFromIcs($ics, $start, $end);
     }
@@ -121,7 +121,7 @@ EOF;
 
     public function getBetweenByLocation(\Club\UserBundle\Entity\Location $location, \DateTime $start, \DateTime $end)
     {
-        $ics = $this->getICSByLocation($location);
+        $ics = $this->getICSByLocation($location, $start);
 
         return $this->getPlansFromIcs($ics, $start, $end);
     }

@@ -2,7 +2,6 @@ on nibe, rename ticker to announcements
 
 == NOTES TO LATER ==
 cancel order if cancelling guest booking automatically
-check repeat booking which ends on same day er de med
 fix quick search, has to find also inactive members
 add default booking view
 seems to miss the ajax loader image
