@@ -189,8 +189,10 @@ class Booking
         $this->em->persist($this->booking);
         $this->em->flush();
 
-        $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
-        $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
+        if ($this->booking->getStatus() >= \Club\BookingBundle\Entity\Booking::CONFIRMED) {
+            $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+            $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
+        }
 
         $this->em->flush();
 

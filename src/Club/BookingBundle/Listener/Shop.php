@@ -6,11 +6,15 @@ class Shop
 {
     private $container;
     private $em;
+    private $event_dispatcher;
+    private $club_booking;
 
     public function __construct($container)
     {
         $this->container = $container;
         $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->event_dispatcher = $container->get('event_dispatcher');
+        $this->club_booking = $container->get('club_booking.booking');
     }
 
     public function onOrderPaid(\Club\ShopBundle\Event\FilterOrderEvent $event)
@@ -23,13 +27,13 @@ class Shop
                     if ($booking) {
                         $status = $this->container->get('club_booking.booking')->getConfirmStatus($booking->getFirstDate());
                         $booking->setStatus($status);
-                        $this->em->persist($booking);
+
+                        $this->club_booking->setBooking($booking);
+                        $this->club_booking->save();
                     }
                 }
             }
         }
-
-        $this->em->flush();
     }
 
     public function onOrderCancelled(\Club\ShopBundle\Event\FilterOrderEvent $event)
@@ -40,7 +44,7 @@ class Shop
                     $booking = $this->em->find('ClubBookingBundle:Booking', $o[1]);
 
                     if ($booking) {
-                        $this->em->remove($booking);
+                        $this->club_booking->remove($booking);
                     }
                 }
             }
@@ -48,5 +52,4 @@ class Shop
 
         $this->em->flush();
     }
-
 }
