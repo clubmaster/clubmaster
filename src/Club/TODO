@@ -1,5 +1,3 @@
-on nibe, rename ticker to announcements
-
 == NOTES TO LATER ==
 check if we can disable a module by ini_set, like disable the intl extension
 cannot cancel a guest booking order
