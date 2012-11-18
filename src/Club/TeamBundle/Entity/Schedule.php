@@ -90,6 +90,7 @@ class Schedule
 
     /**
      * @ORM\ManyToOne(targetEntity="Club\UserBundle\Entity\Location")
+     * @Assert\NotBlank()
      */
     protected $location;
 
@@ -124,6 +125,7 @@ class Schedule
 
     /**
      * @ORM\ManyToOne(targetEntity="Level")
+     * @Assert\NotBlank()
      */
     protected $level;
 

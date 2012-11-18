@@ -58,6 +58,7 @@ club_shop:
     view_shop: true
     coupon_account_number: 1010
     guest_account_number: 1010
+    voucher_text: Payment from %s, order %s
 
 club_team:
     enabled: true

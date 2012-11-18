@@ -14,99 +14,98 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
  */
 class BookingController extends Controller
 {
-  /**
-   * @Route("/book/{date}/{interval_id}/{user_id}")
-   * @Route("/book/{date}/{interval_id}/guest", defaults={"guest"})
-   * @Method("POST")
-   * @Secure(roles="ROLE_USER")
-   */
-  public function bookAction($date, $interval_id, $user_id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
+    /**
+     * @Route("/book/{date}/{interval_id}/{user_id}")
+     * @Route("/book/{date}/{interval_id}/guest", defaults={"guest"})
+     * @Method("POST")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function bookAction($date, $interval_id, $user_id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
-    $date = new \DateTime($date);
-    $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
+        $date = new \DateTime($date);
+        $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
 
-    if ($user_id == 'guest') {
-      $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
-    } else {
-      $partner = $em->find('ClubUserBundle:User', $user_id);
-      $this->get('club_booking.booking')->bindUser($interval, $date, $this->getUser(), $partner);
+        if ($user_id == 'guest') {
+            $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
+        } else {
+            $partner = $em->find('ClubUserBundle:User', $user_id);
+            $this->get('club_booking.booking')->bindUser($interval, $date, $this->getUser(), $partner);
+        }
+
+        if (!$this->get('club_booking.booking')->isValid()) {
+            $res = array($this->get('club_booking.booking')->getError());
+            $response = new Response($this->get('club_api.encode')->encode($res), 403);
+
+            return $response;
+        }
+
+        $booking = $this->get('club_booking.booking')->save();
+
+        $response = new Response($this->get('club_api.encode')->encode($booking->toArray()));
+
+        return $response;
     }
 
-    if (!$this->get('club_booking.booking')->isValid()) {
-      $res = array($this->get('club_booking.booking')->getError());
-      $response = new Response($this->get('club_api.encode')->encode($res), 403);
+    /**
+     * @Route("/cancel/{id}")
+     * @Method("POST")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function cancelAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
-      return $response;
+        $booking = $em->find('ClubBookingBundle:Booking', $id);
+
+        $this->get('club_booking.booking')->bindDelete($booking);
+        if (!$this->get('club_booking.booking')->isValid()) {
+            $res = array($this->get('club_booking.booking')->getError());
+            $response = new Response($this->get('club_api.encode')->encode($res), 403);
+
+            return $response;
+        }
+        $this->get('club_booking.booking')->remove();
+
+        $response = new Response();
+
+        return $response;
     }
 
-    $booking = $this->get('club_booking.booking')->save();
+    /**
+     * @Route("/{location_id}", defaults={"date" = null})
+     * @Route("/{location_id}/{date}")
+     * @Method("GET")
+     */
+    public function indexAction($location_id, $date)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $location = $em->find('ClubUserBundle:Location', $location_id);
 
-    $response = new Response($this->get('club_api.encode')->encode($booking->toArray()));
+        $date = ($date == null) ? new \DateTime() : new \DateTime($date);
+        $start = clone $date;
+        $end = clone $date;
+        $start->setTime(23,59,59);
+        $end->setTime(0,0,0);
 
-    return $response;
-  }
+        $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
+        $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
+        $plans = $em->getRepository('ClubBookingBundle:Plan')->getBetweenByLocation($location, $end, $start);
 
-  /**
-   * @Route("/cancel/{id}")
-   * @Method("POST")
-   * @Secure(roles="ROLE_USER")
-   */
-  public function cancelAction($id)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
+        $res = array();
+        foreach ($bookings as $booking) {
+            $res[] = $booking->toArray();
+        }
+        foreach ($schedules as $schedule) {
+            $res[] = $schedule->toArray();
+        }
+        foreach ($plans as $plan) {
+            $res[] = $plan->toArray();
+        }
 
-    $booking = $em->find('ClubBookingBundle:Booking', $id);
+        $response = new Response($this->get('club_api.encode')->encode($res));
 
-    $this->get('club_booking.booking')->bindDelete($booking);
-    if (!$this->get('club_booking.booking')->isValid()) {
-      $res = array($this->get('club_booking.booking')->getError());
-      $response = new Response($this->get('club_api.encode')->encode($res), 403);
-
-      return $response;
+        return $response;
     }
-    $this->get('club_booking.booking')->remove();
-
-    $response = new Response();
-
-    return $response;
-  }
-
-  /**
-   * @Route("/{location_id}", defaults={"date" = null})
-   * @Route("/{location_id}/{date}")
-   * @Method("GET")
-   * @Cache(expires="now")
-   */
-  public function indexAction($location_id, $date)
-  {
-    $em = $this->getDoctrine()->getEntityManager();
-    $location = $em->find('ClubUserBundle:Location', $location_id);
-
-    $date = ($date == null) ? new \DateTime() : new \DateTime($date);
-    $start = clone $date;
-    $end = clone $date;
-    $start->setTime(23,59,59);
-    $end->setTime(0,0,0);
-
-    $bookings = $em->getRepository('ClubBookingBundle:Booking')->getAllByLocationDate($location, $date);
-    $schedules = $em->getRepository('ClubTeamBundle:Schedule')->getAllBetween($start, $end, null, $location);
-    $plans = $em->getRepository('ClubBookingBundle:Plan')->getBetweenByLocation($location, $end, $start);
-
-    $res = array();
-    foreach ($bookings as $booking) {
-      $res[] = $booking->toArray();
-    }
-    foreach ($schedules as $schedule) {
-      $res[] = $schedule->toArray();
-    }
-    foreach ($plans as $plan) {
-      $res[] = $plan->toArray();
-    }
-
-    $response = new Response($this->get('club_api.encode')->encode($res));
-
-    return $response;
-  }
 }

@@ -189,8 +189,10 @@ class Booking
         $this->em->persist($this->booking);
         $this->em->flush();
 
-        $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
-        $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
+        if ($this->booking->getStatus() >= \Club\BookingBundle\Entity\Booking::CONFIRMED) {
+            $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+            $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
+        }
 
         $this->em->flush();
 
@@ -207,6 +209,15 @@ class Booking
 
         $cart = $this->container->get('cart');
         $cart->addToCart($product);
+    }
+
+    public function cancel(\Club\BookingBundle\Entity\Booking $booking)
+    {
+        $booking->setStatus(\Club\BookingBundle\Entity\Booking::CANCELLED);
+        $this->em->persist($booking);
+
+        $event = new \Club\BookingBundle\Event\FilterBookingEvent($booking);
+        $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
     }
 
     public function remove()
@@ -420,22 +431,20 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('start', $start)
             ->setParameter('end', $end)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -454,10 +463,12 @@ class Booking
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('(b.user = :user OR u.id = :user)')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('date', $date)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -473,24 +484,22 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('is_guest', true)
             ->setParameter('start', $start)
             ->setParameter('end', $end)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -508,12 +517,14 @@ class Booking
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('b.user = :user')
             ->andWhere('b.guest = :is_guest')
+            ->andWhere('b.status >= :status')
             ->setParameter('user', $user->getId())
             ->setParameter('is_guest', true)
             ->setParameter('date', $date)
+            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
             ->getQuery()
             ->getSingleResult();
 
@@ -529,19 +540,15 @@ class Booking
         $start = clone $date;
         $end = clone $date;
 
-        if ($start->format('Ymd') == date('Ymd')) {
-            $start = new \DateTime();
-        } else {
-            $start->setTime(0,0,0);
-        }
+        $start->setTime(0,0,0);
         $end->setTime(23,59,59);
 
         $res = $this->em->createQueryBuilder()
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :start')
-            ->andWhere('b.first_date <= :end')
+            ->where('b.end_date >= :start')
+            ->andWhere('b.end_date <= :end')
             ->andWhere('b.user = :user')
             ->andWhere('u.id = :partner')
             ->andWhere('b.guest = :is_guest')
@@ -568,7 +575,7 @@ class Booking
             ->select('COUNT(b)')
             ->from('ClubBookingBundle:Booking', 'b')
             ->leftJoin('b.users', 'u')
-            ->where('b.first_date >= :date')
+            ->where('b.end_date >= :date')
             ->andWhere('b.user = :user')
             ->andWhere('u.id = :partner')
             ->andWhere('b.guest = :is_guest')

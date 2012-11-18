@@ -419,7 +419,7 @@ class PlanRepeat
             $ics .= sprintf(';COUNT=%d', $this->getEndsAfter());
             break;
         case 'on':
-            $ics .= sprintf(';UNTIL=%s', $this->getEndsOn()->format('Ymd\THis'));
+            $ics .= sprintf(';UNTIL=%s', $this->getEndsOn()->format('Ymd\T235959'));
             break;
         }
 
@@ -508,6 +508,8 @@ class PlanRepeat
 
     private function getByHour()
     {
+        if (!$this->getRepeatOnHour()) return;
+
         $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
         $hours = $transformer->transform($this->getRepeatOnHour());
         $s = '';

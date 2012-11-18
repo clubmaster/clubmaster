@@ -148,13 +148,15 @@ class BookingController extends Controller
         $plan_id = $this->getRequest()->request->get('plan_id');
         $field_id = $this->getRequest()->request->get('field_id');
 
-	if (preg_match("/^\d{1,2}:\d{2}$/", $this->getRequest()->request->get('time'))) {
-		$date->setTime(
-			substr($this->getRequest()->request->get('time'),0,2),
-			substr($this->getRequest()->request->get('time'),3,2),
-			0
-		);
-	}
+        $time = $this->getRequest()->request->get('time');
+        if ($time && preg_match("/^\d{1,2}:\d{2}$/", $time)) {
+            list($hour,$min) = preg_split("/:/", $time);
+            $date->setTime(
+                $hour,
+                $min,
+                0
+            );
+        }
 
         $em = $this->getDoctrine()->getEntityManager();
         $plan = $em->find('ClubBookingBundle:Plan', $plan_id);
@@ -197,18 +199,22 @@ class BookingController extends Controller
      */
     public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $datetime)
     {
-        $exception = new \Club\BookingBundle\Entity\PlanException();
-        $exception->setExcludeDate($datetime);
-        $exception->setPlan($plan);
-        $exception->setUser($this->getUser());
-
         $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($exception);
+
+        if (!$plan->getRepeating()) {
+            $em->remove($plan);
+        } else {
+            $exception = new \Club\BookingBundle\Entity\PlanException();
+            $exception->setExcludeDate($datetime);
+            $exception->setPlan($plan);
+            $exception->setUser($this->getUser());
+
+            $em->persist($exception);
+        }
         $em->flush();
 
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
     }
-
 }
