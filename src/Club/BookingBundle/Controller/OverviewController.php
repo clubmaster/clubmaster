@@ -74,7 +74,7 @@ class OverviewController extends Controller
             'location' => $location->getId()
         ));
 
-        if ($this->getUser()->getLocation() != $location) {
+        if ($this->getUser() && $this->getUser()->getLocation() != $location) {
             $this->getUser()->setLocation($location);
 
             $em->persist($this->getUser());
