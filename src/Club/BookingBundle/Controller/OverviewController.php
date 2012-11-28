@@ -84,7 +84,7 @@ class OverviewController extends Controller
         if (!count($fields))
             return $this->redirect($this->generateUrl('club_booking_location_index'));
 
-        return $this->render('ClubBookingBundle:Overview:'.$this->container->getParameter('club_booking.booking_style').'.html.twig', array(
+        return $this->render('ClubBookingBundle:Overview:horizontal.html.twig', array(
             'date' => $date,
             'nav' => $nav,
             'location' => $location,

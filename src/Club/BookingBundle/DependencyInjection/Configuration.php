@@ -36,7 +36,6 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('num_book_future')->isRequired()->end()
             ->scalarNode('cancel_minute_before')->isRequired()->end()
             ->scalarNode('cancel_minute_created')->isRequired()->end()
-            ->scalarNode('booking_style')->isRequired()->end()
             ->scalarNode('cancel_without_checkin')->isRequired()->end()
             ->scalarNode('guest_price')->isRequired()->end()
             ->scalarNode('confirm_minutes_before')->isRequired()->end()

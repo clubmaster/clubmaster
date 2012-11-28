@@ -87,7 +87,6 @@ club_booking:
     days_book_future_entire_day: true
     cancel_minute_before: 120
     cancel_minute_created: 5
-    booking_style: horizontal
     cancel_without_checkin: false
     confirm_minutes_before: 120
     confirm_minutes_after: 5
