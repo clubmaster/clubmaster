@@ -74,6 +74,13 @@ class OverviewController extends Controller
             'location' => $location->getId()
         ));
 
+        if ($this->getUser()->getLocation() != $location) {
+            $this->getUser()->setLocation($location);
+
+            $em->persist($this->getUser());
+            $em->flush();
+        }
+
         if (!count($fields))
             return $this->redirect($this->generateUrl('club_booking_location_index'));
 
