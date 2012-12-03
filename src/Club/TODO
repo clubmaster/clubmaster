@@ -1,4 +1,5 @@
 == NOTES TO LATER ==
+add stock in the webshop, but default to unlimited numbers
 check if we can disable a module by ini_set, like disable the intl extension
 cannot cancel a guest booking order
 the system has to clean out orders that is not processed
