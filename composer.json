@@ -21,7 +21,8 @@
         "kriswallsmith/assetic": "1.1.*@dev",
         "clubmaster/quickpay": "dev-master",
         "clubmaster/economic": "dev-master",
-        "sabre/vobject": "dev-master"
+        "sabre/vobject": "dev-master",
+        "clubmaster/formextra": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

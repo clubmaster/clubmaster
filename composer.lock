@@ -1,5 +1,5 @@
 {
-    "hash": "26f2b6e6cc56ce956c6bb02c167cac4b",
+    "hash": "c3e392858cd22b00697d240ee767b531",
     "packages": [
         {
             "name": "clubmaster/economic",
@@ -45,6 +45,45 @@
                 "clubmaster",
                 "economic",
                 "ledger"
+            ]
+        },
+        {
+            "name": "clubmaster/formextra",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/clubmaster/ClubFormExtraBundle.git",
+                "reference": "8258640b45e92e8f4fadb3457a8501ae23f833bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/clubmaster/ClubFormExtraBundle/archive/8258640b45e92e8f4fadb3457a8501ae23f833bc.zip",
+                "reference": "8258640b45e92e8f4fadb3457a8501ae23f833bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "2013-01-06 17:00:20",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Beerware"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Holm Kristensen",
+                    "email": "hollo@hollo.dk",
+                    "homepage": "http://www.hollo.dk",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "ClubMaster form extra.",
+            "keywords": [
+                "form",
+                "extra",
+                "clubmaster"
             ]
         },
         {
@@ -1367,6 +1406,7 @@
         "kriswallsmith/assetic": 20,
         "clubmaster/quickpay": 20,
         "clubmaster/economic": 20,
-        "sabre/vobject": 20
+        "sabre/vobject": 20,
+        "clubmaster/formextra": 20
     }
 }
