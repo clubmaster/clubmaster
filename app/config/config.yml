@@ -24,7 +24,7 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
-            - 'ClubLayoutBundle:Default:fields.html.twig'
+            - 'ClubFormExtraBundle:Default:fields.html.twig'
 
 # Assetic Configuration
 assetic:
