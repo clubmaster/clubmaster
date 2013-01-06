@@ -50,23 +50,29 @@
         {
             "name": "clubmaster/formextra",
             "version": "dev-master",
+            "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "git://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "8258640b45e92e8f4fadb3457a8501ae23f833bc"
+                "reference": "2bfd538b6cd8116ec4ef7020b3e1552dd865b9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/clubmaster/ClubFormExtraBundle/archive/8258640b45e92e8f4fadb3457a8501ae23f833bc.zip",
-                "reference": "8258640b45e92e8f4fadb3457a8501ae23f833bc",
+                "url": "https://github.com/clubmaster/ClubFormExtraBundle/archive/2bfd538b6cd8116ec4ef7020b3e1552dd865b9b5.zip",
+                "reference": "2bfd538b6cd8116ec4ef7020b3e1552dd865b9b5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2013-01-06 17:00:20",
+            "time": "2013-01-06 17:14:57",
             "type": "symfony-bundle",
             "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Club\\FormExtraBundle": ""
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Beerware"
