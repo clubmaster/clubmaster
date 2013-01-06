@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\LayoutBundle\Twig;
+namespace Club\FormExtraBundle\Twig;
 
 class ApplicationExtension extends \Twig_Extension
 {

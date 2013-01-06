@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\LayoutBundle\Form\DataTransformer;
+namespace Club\FormExtraBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;

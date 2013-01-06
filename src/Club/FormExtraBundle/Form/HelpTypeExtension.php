@@ -1,6 +1,6 @@
 <?php
 
-namespace Club\LayoutBundle\Form;
+namespace Club\FormExtraBundle\Form;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;

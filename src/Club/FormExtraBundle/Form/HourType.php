@@ -1,13 +1,13 @@
 <?php
 
-namespace Club\LayoutBundle\Form;
+namespace Club\FormExtraBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer;
+use Club\FormExtraBundle\Form\DataTransformer\StringToArrayTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DayType extends AbstractType
+class HourType extends AbstractType
 {
     private $translator;
 
@@ -24,16 +24,17 @@ class DayType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $d = new \DateTime('1970-01-01 00:00:00');
+        $i = new \DateInterval('PT1H');
+        $p = new \DatePeriod($d, $i, 23);
+
+        $choices = array();
+        foreach ($p as $date) {
+            $choices[$date->format('H')] = $date->format('H:00');
+        }
+
         $resolver->setDefaults(array(
-            'choices' => array(
-                '1' => $this->translator->trans('Monday'),
-                '2' => $this->translator->trans('Tuesday'),
-                '3' => $this->translator->trans('Wednesday'),
-                '4' => $this->translator->trans('Thursday'),
-                '5' => $this->translator->trans('Friday'),
-                '6' => $this->translator->trans('Saturday'),
-                '7' => $this->translator->trans('Sunday')
-            )
+            'choices' => $choices
         ));
     }
 
@@ -44,6 +45,6 @@ class DayType extends AbstractType
 
     public function getName()
     {
-        return 'day';
+        return 'hour';
     }
 }

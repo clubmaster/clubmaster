@@ -14,9 +14,7 @@ class ClubLayoutExtension extends Extension
     $configuration = new Configuration();
     $config = $this->processConfiguration($configuration, $configs);
 
-    $loader = new YamlFileLoader($container,new FileLocator(__DIR__.'/../Resources/config'));
-    $loader->load('twig.yml');
-    $loader->load('form.yml');
+    //$loader = new YamlFileLoader($container,new FileLocator(__DIR__.'/../Resources/config'));
 
     $container->setParameter('club_layout.title', $config['title']);
   }

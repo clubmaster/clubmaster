@@ -1,19 +1,19 @@
 <?php
 
-namespace Club\LayoutBundle\Form;
+namespace Club\FormExtraBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class JQueryDateTimeType extends AbstractType
+class JQueryDateType extends AbstractType
 {
     public function getParent()
     {
-        return 'datetime';
+        return 'date';
     }
 
     public function getName()
     {
-        return 'jquery_datetime';
+        return 'jquery_date';
     }
 }
