@@ -1,9 +1,9 @@
-{% if app.session.hasFlash('warning') %}
+{% for flashMessage in app.session.flashbag.get('warning') %}
 <div class="alert alert-block">
     <strong>{% trans %}Warning!{% endtrans %}</strong>
-    {{ app.session.flash('warning') }}
+    {{ flashMessage }}
 </div>
-{% endif %}
+{% endfor %}
 
 {% if msg is defined %}
 <div class="alert alert-block">
