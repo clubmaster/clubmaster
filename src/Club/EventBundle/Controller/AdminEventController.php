@@ -18,7 +18,7 @@ class AdminEventController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $events = $em->getRepository('ClubEventBundle:Event')->findBy(
         array(),
         array('start_date' => 'DESC')
@@ -71,7 +71,7 @@ class AdminEventController extends Controller
    */
   public function deleteAction(\Club\EventBundle\Entity\Event $event)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $em->remove($event);
     $em->flush();
 
@@ -92,7 +92,7 @@ class AdminEventController extends Controller
           $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAdd, $e);
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($event);
         $em->flush();
 

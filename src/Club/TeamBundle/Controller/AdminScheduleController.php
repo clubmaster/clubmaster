@@ -18,7 +18,7 @@ class AdminScheduleController extends Controller
    */
   public function indexAction($category_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $schedules = $em->getRepository('ClubTeamBundle:Schedule')->findBy(array(
       'team_category' => $category_id
@@ -39,7 +39,7 @@ class AdminScheduleController extends Controller
    */
   public function unattendAction($schedule_id, $id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
     $user = $em->find('ClubUserBundle:User', $id);
 
@@ -62,7 +62,7 @@ class AdminScheduleController extends Controller
    */
   public function participantAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
     return array(
@@ -77,7 +77,7 @@ class AdminScheduleController extends Controller
    */
   public function editChoiceAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
     return array(
@@ -91,7 +91,7 @@ class AdminScheduleController extends Controller
    */
   public function deleteChoiceAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
     return array(
@@ -105,7 +105,7 @@ class AdminScheduleController extends Controller
    */
   public function newAction($category_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubTeamBundle:TeamCategory', $category_id);
 
     $schedule = new \Club\TeamBundle\Entity\Schedule();
@@ -134,7 +134,7 @@ class AdminScheduleController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $res = $this->process($schedule);
@@ -162,7 +162,7 @@ class AdminScheduleController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     if ($schedule->getSchedule()) {
@@ -194,7 +194,7 @@ class AdminScheduleController extends Controller
    */
   public function deleteOnceAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     if (count($schedule->getSchedules())) {
@@ -227,7 +227,7 @@ class AdminScheduleController extends Controller
    */
   public function deleteFutureAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $parent = $this->getParent($schedule);
@@ -272,7 +272,7 @@ class AdminScheduleController extends Controller
    */
   public function deleteAllAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $parent = $this->getParent($schedule);
@@ -290,7 +290,7 @@ class AdminScheduleController extends Controller
    */
   public function editFutureAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $parent = $this->getParent($schedule);
@@ -357,7 +357,7 @@ class AdminScheduleController extends Controller
    */
   public function editAllAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
     $parent = $this->getParent($schedule);
@@ -413,7 +413,7 @@ class AdminScheduleController extends Controller
     $diff_first = $t1_first->diff($t2_first);
     $diff_end = $t1_end->diff($t2_end);
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $schedule->resetInstructors();
 
@@ -443,7 +443,7 @@ class AdminScheduleController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($schedule);
         $em->flush();
 
@@ -460,7 +460,7 @@ class AdminScheduleController extends Controller
 
   private function promoteParent(\Club\TeamBundle\Entity\Schedule $old_parent, \Club\TeamBundle\Entity\Schedule $schedule)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $schedule->setSchedule(null);
 
@@ -475,7 +475,7 @@ class AdminScheduleController extends Controller
 
   private function copyParent(\Club\TeamBundle\Entity\Schedule $old, \Club\TeamBundle\Entity\Schedule $schedule)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule->setSchedule(null);
 
     $rep = new \Club\TeamBundle\Entity\Repetition();
@@ -503,7 +503,7 @@ class AdminScheduleController extends Controller
 
   protected function deleteAll(\Club\TeamBundle\Entity\Schedule $schedule)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
     $repetition = $parent->getRepetition();

@@ -17,7 +17,7 @@ class CommentController extends Controller
      */
     public function closeAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $exchange->setClosed(true);
 
         $em->persist($exchange);
@@ -49,7 +49,7 @@ class CommentController extends Controller
             $form->bind($this->getRequest());
             if ($form->isValid()) {
 
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
                 $em->flush();
 
@@ -76,7 +76,7 @@ class CommentController extends Controller
      */
     public function indexAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $comments = $em->getRepository('ClubExchangeBundle:ExchangeComment')->findBy(
             array('exchange' => $exchange->getId()),

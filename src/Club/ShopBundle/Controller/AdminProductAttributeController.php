@@ -17,7 +17,7 @@ class AdminProductAttributeController extends Controller
      */
     public function indexAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $product = $em->find('ClubShopBundle:Product',$id);
         $form = $this->getForm($product);
@@ -57,7 +57,7 @@ class AdminProductAttributeController extends Controller
 
     private function getData($product)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $attribute = $this->get('club_shop.product')->getAttribute($product);
 
         return $attribute;
@@ -65,7 +65,7 @@ class AdminProductAttributeController extends Controller
 
     private function setData(\Club\ShopBundle\Entity\Product $product, $data)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         foreach ($data as $attribute => $value) {
 

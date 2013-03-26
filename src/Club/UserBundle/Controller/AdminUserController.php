@@ -17,7 +17,7 @@ class AdminUserController extends Controller
    */
   public function csvAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
     $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
@@ -103,7 +103,7 @@ class AdminUserController extends Controller
    */
   public function createAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $user = $this->get('clubmaster.user')->get();
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
@@ -132,7 +132,7 @@ class AdminUserController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $user = $em->find('ClubUserBundle:User',$id);
     $user = $this->buildUser($user);
@@ -164,7 +164,7 @@ class AdminUserController extends Controller
    */
   public function batchAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $ids = $this->getRequest()->get('ids');
 
     $form = $this->createForm(new \Club\UserBundle\Form\Batch());
@@ -202,7 +202,7 @@ class AdminUserController extends Controller
    */
   public function banAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
 
     $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
@@ -215,7 +215,7 @@ class AdminUserController extends Controller
    */
   public function shopAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $this->get('session')->set('cart_id',null);
@@ -232,7 +232,7 @@ class AdminUserController extends Controller
    */
   public function logAction(\Club\UserBundle\Entity\User $user)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $logs = $em->getRepository("ClubLogBundle:Log")->getByUser($user);
 
     return array(
@@ -247,7 +247,7 @@ class AdminUserController extends Controller
    */
   public function groupAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $form = $this->createForm(new \Club\UserBundle\Form\UserGroup(), $user);
@@ -293,7 +293,7 @@ class AdminUserController extends Controller
    */
   public function indexAction($page = null)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
 
@@ -326,7 +326,7 @@ class AdminUserController extends Controller
 
   protected function buildUser($user)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     if (!count($user->getProfile()->getProfileAddress())) {
       $address = new \Club\UserBundle\Entity\ProfileAddress();

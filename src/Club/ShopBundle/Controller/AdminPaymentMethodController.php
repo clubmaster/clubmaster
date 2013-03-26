@@ -18,7 +18,7 @@ class AdminPaymentMethodController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $payment_methods = $em->getRepository('ClubShopBundle:PaymentMethod')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class AdminPaymentMethodController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $payment_method = $em->find('ClubShopBundle:PaymentMethod',$id);
 
     $res = $this->process($payment_method);
@@ -70,7 +70,7 @@ class AdminPaymentMethodController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $payment_method = $em->find('ClubShopBundle:PaymentMethod',$this->getRequest()->get('id'));
 
     $em->remove($payment_method);
@@ -88,7 +88,7 @@ class AdminPaymentMethodController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($payment_method);
         $em->flush();
 

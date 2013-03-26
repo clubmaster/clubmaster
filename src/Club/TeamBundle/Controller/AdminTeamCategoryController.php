@@ -18,7 +18,7 @@ class AdminTeamCategoryController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $categories = $em->getRepository('ClubTeamBundle:TeamCategory')->findAll();
 
     return array(
@@ -51,7 +51,7 @@ class AdminTeamCategoryController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubTeamBundle:TeamCategory',$id);
 
     $res = $this->process($category);
@@ -71,7 +71,7 @@ class AdminTeamCategoryController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubTeamBundle:TeamCategory',$this->getRequest()->get('id'));
 
     $em->remove($category);
@@ -89,7 +89,7 @@ class AdminTeamCategoryController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($category);
         $em->flush();
 

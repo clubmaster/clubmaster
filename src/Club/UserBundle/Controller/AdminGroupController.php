@@ -27,7 +27,7 @@ class AdminGroupController extends Controller
                 $user = $form->get('user')->getData();
 
                 $group->addUsers($user);
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
@@ -51,7 +51,7 @@ class AdminGroupController extends Controller
      */
     public function membersDeleteAction(\Club\UserBundle\Entity\Group $group, $user_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->find('ClubUserBundle:User', $user_id);
 
         $group->removeUser($user);
@@ -119,7 +119,7 @@ class AdminGroupController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $group = $em->find('ClubUserBundle:Group',$id);
 
         $em->remove($group);
@@ -144,7 +144,7 @@ class AdminGroupController extends Controller
                 if ($group->getGender() == '')
                     $group->setGender(null);
 
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($group);
                 $em->flush();
 
@@ -169,7 +169,7 @@ class AdminGroupController extends Controller
     {
         $results = 20;
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubUserBundle:Group')->getPaginator($results, $page);
 
         $nav = $this->get('club_paginator.paginator')

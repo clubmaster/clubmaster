@@ -18,7 +18,7 @@ class AdminProductController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $categories = $em->getRepository('ClubShopBundle:Category')->findAll();
 
     if (!count($categories)) {
@@ -56,7 +56,7 @@ class AdminProductController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $product = $em->find('ClubShopBundle:Product',$id);
 
     $res = $this->process($product);
@@ -76,7 +76,7 @@ class AdminProductController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $product = $em->find('ClubShopBundle:Product',$this->getRequest()->get('id'));
 
     $em->remove($product);
@@ -103,7 +103,7 @@ class AdminProductController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($product);
         $em->flush();
 

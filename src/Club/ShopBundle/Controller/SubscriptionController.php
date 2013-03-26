@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
     $coming = $em->getRepository('ClubShopBundle:Subscription')->getComingSubscriptions($user);
@@ -57,7 +57,7 @@ class SubscriptionController extends Controller
    */
   public function stopAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription', $id);
 
     $this->get('subscription')->stopSubscription($subscription);
@@ -73,7 +73,7 @@ class SubscriptionController extends Controller
    */
   public function expireAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription', $id);
 
     $this->get('subscription')->expireSubscription($subscription);
@@ -88,7 +88,7 @@ class SubscriptionController extends Controller
    */
   public function pauseAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     $this->validateOwner($subscription);
@@ -104,7 +104,7 @@ class SubscriptionController extends Controller
    */
   public function resumeAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     $this->validateOwner($subscription);

@@ -28,7 +28,7 @@ class CheckoutController extends Controller
    */
   public function incrementAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
     $this->get('cart')->modifyQuantity($product);
@@ -41,7 +41,7 @@ class CheckoutController extends Controller
    */
   public function decrementAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
     $this->get('cart')->modifyQuantity($product,-1);
@@ -65,7 +65,7 @@ class CheckoutController extends Controller
 
       return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
     if (!count($shippings)) {
@@ -125,7 +125,7 @@ class CheckoutController extends Controller
    */
   public function paymentAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $payments = $this->get('shop_paymentmethod')->getAllArray();
 
     if (!count($payments))
@@ -190,7 +190,7 @@ class CheckoutController extends Controller
     }
 
     if ($cart) {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $shipping = $cart->getShipping();
 
       if ($shipping->getPrice() > 0) {
@@ -229,7 +229,7 @@ class CheckoutController extends Controller
    */
   public function signinAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $this->get('session')->set('_security.target_path', '/shop/login');
 
     $user = $this->get('clubmaster.user')->get();
@@ -265,7 +265,7 @@ class CheckoutController extends Controller
    */
   public function loginAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $carts = $em->getRepository('ClubShopBundle:Cart')->findBy(array(
       'user' => $this->getUser()->getId()
     ));

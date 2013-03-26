@@ -17,7 +17,7 @@ class RankingController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $rankings = $em->getRepository('ClubRankingBundle:Ranking')->findAll();
 
     return array(
@@ -32,7 +32,7 @@ class RankingController extends Controller
    */
   public function showAction(\Club\RankingBundle\Entity\Ranking $ranking)
   {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $matches = $em->getRepository('ClubRankingBundle:Ranking')->getRecentMatches($ranking, 10);
 
       return array(
@@ -47,7 +47,7 @@ class RankingController extends Controller
    */
   public function recentMatchesAction(\Club\RankingBundle\Entity\Ranking $ranking, $limit)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $matches = $em->getRepository('ClubRankingBundle:Ranking')->getRecentMatches($ranking, $limit);
 
     return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
@@ -61,7 +61,7 @@ class RankingController extends Controller
    */
   public function topAction($id, $limit)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $ranking = $em->find('ClubRankingBundle:Ranking', $id);
     $rank = $em->getRepository('ClubRankingBundle:Ranking')->getTop($ranking, $limit);

@@ -8,7 +8,7 @@ class MiscController extends Controller
 {
   public function locationBarAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
     $locations = $em->getRepository('ClubUserBundle:Location')->findAll();

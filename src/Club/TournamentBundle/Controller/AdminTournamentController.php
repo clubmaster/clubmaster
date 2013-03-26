@@ -18,7 +18,7 @@ class AdminTournamentController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tournaments = $em->getRepository('ClubTournamentBundle:Tournament')->findAll();
 
     return array(
@@ -57,7 +57,7 @@ class AdminTournamentController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tournament = $em->find('ClubTournamentBundle:Tournament',$id);
 
     $res = $this->process($tournament);
@@ -78,7 +78,7 @@ class AdminTournamentController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $tournament = $em->find('ClubTournamentBundle:Tournament',$this->getRequest()->get('id'));
 
       $em->remove($tournament);
@@ -99,7 +99,7 @@ class AdminTournamentController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($tournament);
         $em->flush();
 
@@ -118,7 +118,7 @@ class AdminTournamentController extends Controller
    */
   public function generateAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $bracket = $this->get('club_tournament.bracket')
       ->setUsers($em->getRepository('ClubTournamentBundle:Attend')->getSeeds($tournament))
@@ -138,7 +138,7 @@ class AdminTournamentController extends Controller
    */
   public function buildAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $bracket = $this->get('club_tournament.bracket')
       ->setUsers($em->getRepository('ClubTournamentBundle:Attend')->getSeeds($tournament))
@@ -146,7 +146,7 @@ class AdminTournamentController extends Controller
       ->shuffleUsers()
       ->getBracket();
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $tournament->setRounds(count($bracket));
     $tournament->setBuild(true);

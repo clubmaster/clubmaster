@@ -18,7 +18,7 @@ class MatchCommentController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $leagues = $em->getRepository('ClubMatchBundle:League')->getTopLists();
 
     return array(
@@ -32,7 +32,7 @@ class MatchCommentController extends Controller
    */
   public function newAction($match_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $match = $em->find('ClubMatchBundle:Match', $match_id);
 
     $comment = new \Club\MatchBundle\Entity\MatchComment();
@@ -87,7 +87,7 @@ class MatchCommentController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $league = $em->find('ClubMatchBundle:League',$this->getRequest()->get('id'));
 
       $em->remove($league);
@@ -108,7 +108,7 @@ class MatchCommentController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($league);
         $em->flush();
 

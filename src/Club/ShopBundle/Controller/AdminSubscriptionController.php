@@ -17,7 +17,7 @@ class AdminSubscriptionController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     return array(
@@ -31,7 +31,7 @@ class AdminSubscriptionController extends Controller
    */
   public function pauseAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     $this->get('subscription')->pauseSubscription($subscription);
@@ -47,7 +47,7 @@ class AdminSubscriptionController extends Controller
    */
   public function resumeAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     $this->get('subscription')->resumeSubscription($subscription);
@@ -62,7 +62,7 @@ class AdminSubscriptionController extends Controller
    */
   public function expireAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
     $this->get('subscription')->expireSubscription($subscription);

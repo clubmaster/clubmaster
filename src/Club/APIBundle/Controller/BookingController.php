@@ -22,7 +22,7 @@ class BookingController extends Controller
      */
     public function bookAction($date, $interval_id, $user_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $date = new \DateTime($date);
         $interval = $em->find('ClubBookingBundle:Interval',$interval_id);
@@ -55,7 +55,7 @@ class BookingController extends Controller
      */
     public function cancelAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $booking = $em->find('ClubBookingBundle:Booking', $id);
 
@@ -80,7 +80,7 @@ class BookingController extends Controller
      */
     public function indexAction($location_id, $date)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $location = $em->find('ClubUserBundle:Location', $location_id);
 
         $date = ($date == null) ? new \DateTime() : new \DateTime($date);

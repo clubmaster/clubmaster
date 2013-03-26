@@ -17,7 +17,7 @@ class LocationController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $locations = $em->getRepository('ClubBookingBundle:Field')->getLocationWithFields();
 
         return array(
@@ -30,7 +30,7 @@ class LocationController extends Controller
      */
     public function switchAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
         $location = $em->find('ClubUserBundle:Location',$id);

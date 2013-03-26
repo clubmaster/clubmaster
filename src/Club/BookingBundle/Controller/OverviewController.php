@@ -37,7 +37,7 @@ class OverviewController extends Controller
         $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
         $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $active = false;
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->getUser(), null, 'booking', null, $interval->getField()->getLocation());
@@ -66,7 +66,7 @@ class OverviewController extends Controller
         } else {
             $date = ($date == null) ? new \DateTime() : new \DateTime($date);
         }
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $nav = $this->getNav();
         $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));

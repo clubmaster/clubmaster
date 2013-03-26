@@ -14,7 +14,7 @@ class OrderController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
     $orders = $em->getRepository('ClubShopBundle:Order')->findBy(array(
@@ -32,7 +32,7 @@ class OrderController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
     $payments = $this->get('shop_paymentmethod')->getAll(
@@ -52,7 +52,7 @@ class OrderController extends Controller
    */
   public function cancelAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
     $this->validateOwner($order);

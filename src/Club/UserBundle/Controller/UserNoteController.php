@@ -18,7 +18,7 @@ class UserNoteController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $user_notes = $em->getRepository('ClubUserBundle:UserNote')->findBy(array(
@@ -37,7 +37,7 @@ class UserNoteController extends Controller
    */
   public function newAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User',$id);
 
     $user_note = new \Club\UserBundle\Entity\UserNote();
@@ -61,7 +61,7 @@ class UserNoteController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user_note = $em->find('ClubUserBundle:UserNote',$id);
     $res = $this->process($user_note);
 
@@ -80,7 +80,7 @@ class UserNoteController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user_note = $em->find('ClubUserBundle:UserNote',$id);
 
     $em->remove($user_note);
@@ -100,7 +100,7 @@ class UserNoteController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($user_note);
         $em->flush();
 

@@ -19,7 +19,7 @@ class MatchController extends Controller
    */
   public function newAction($tournament_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tournament = $em->find('ClubTournamentBundle:Tournament', $tournament_id);
 
     $res = array();

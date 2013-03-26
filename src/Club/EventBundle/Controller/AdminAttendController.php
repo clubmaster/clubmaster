@@ -27,7 +27,7 @@ class AdminAttendController extends Controller
    */
   public function deleteAction(\Club\EventBundle\Entity\Attend $attend)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $em->remove($attend);
     $em->flush();
 
@@ -54,7 +54,7 @@ class AdminAttendController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($event);
         $em->flush();
 

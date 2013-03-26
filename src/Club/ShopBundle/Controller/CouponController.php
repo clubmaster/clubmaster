@@ -24,7 +24,7 @@ class CouponController extends Controller
       if ($form->isValid()) {
         $data = $form->getData();
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
         if (!$coupon) {

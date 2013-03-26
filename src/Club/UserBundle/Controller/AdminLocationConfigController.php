@@ -17,7 +17,7 @@ class AdminLocationConfigController extends Controller
    */
   public function indexAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $location = $em->find('ClubUserBundle:Location',$id);
 
     $form = $this->getForm();
@@ -44,7 +44,7 @@ class AdminLocationConfigController extends Controller
 
   private function getData(\Club\UserBundle\Entity\Location $location)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $configs = array(
       'default_currency',
       'email_sender_address',
@@ -62,7 +62,7 @@ class AdminLocationConfigController extends Controller
 
   private function setData(\Club\UserBundle\Entity\Location $location, $data)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $config_repos = $em->getRepository('ClubUserBundle:LocationConfig');
 
     foreach ($data as $key=>$value) {

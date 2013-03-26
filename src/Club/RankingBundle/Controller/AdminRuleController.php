@@ -18,7 +18,7 @@ class AdminRuleController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $rules = $em->getRepository('ClubRankingBundle:Rule')->findAll();
 
     return array(
@@ -54,7 +54,7 @@ class AdminRuleController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $rule = $em->find('ClubRankingBundle:Rule',$id);
 
     $res = $this->process($rule);
@@ -75,7 +75,7 @@ class AdminRuleController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $rule = $em->find('ClubRankingBundle:Rule',$this->getRequest()->get('id'));
 
       $em->remove($rule);
@@ -96,7 +96,7 @@ class AdminRuleController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($rule);
         $em->flush();
 

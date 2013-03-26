@@ -17,7 +17,7 @@ class LoginLogController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $logs = $em->getRepository('ClubUserBundle:LoginAttempt')->findBy(
       array(),

@@ -19,7 +19,7 @@ class BlogController extends Controller
    */
   public function showAction($blog_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
 
     return array(
@@ -37,7 +37,7 @@ class BlogController extends Controller
    */
   public function commentAction($blog_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
 
     $comment = new \Club\WelcomeBundle\Entity\Comment();
@@ -99,7 +99,7 @@ class BlogController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog',$id);
     $this->validateOwnership($blog);
 
@@ -121,7 +121,7 @@ class BlogController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog',$this->getRequest()->get('id'));
     $this->validateOwnership($blog);
 
@@ -143,7 +143,7 @@ class BlogController extends Controller
   {
     $results = 5;
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
 
     $nav = $this->get('club_paginator.paginator')
@@ -162,7 +162,7 @@ class BlogController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($blog);
         $em->flush();
 

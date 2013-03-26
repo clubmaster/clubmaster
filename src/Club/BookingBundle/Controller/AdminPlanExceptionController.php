@@ -27,7 +27,7 @@ class AdminPlanExceptionController extends Controller
             $form->bind($this->getRequest());
 
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($exception);
                 $em->flush();
 
@@ -56,7 +56,7 @@ class AdminPlanExceptionController extends Controller
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($exception);
                 $em->flush();
 
@@ -79,7 +79,7 @@ class AdminPlanExceptionController extends Controller
      */
     public function deleteAction(\Club\BookingBundle\Entity\PlanException $exception)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $em->remove($exception);
         $em->flush();
@@ -97,7 +97,7 @@ class AdminPlanExceptionController extends Controller
      */
     public function indexAction(\Club\BookingBundle\Entity\Plan $plan)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         return array(
             'plan' => $plan

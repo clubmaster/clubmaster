@@ -18,7 +18,7 @@ class AdminRankingController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $rankings = $em->getRepository('ClubRankingBundle:Ranking')->findAll();
 
     return array(
@@ -59,7 +59,7 @@ class AdminRankingController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $ranking = $em->find('ClubRankingBundle:Ranking',$id);
 
     $res = $this->process($ranking);
@@ -80,7 +80,7 @@ class AdminRankingController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $ranking = $em->find('ClubRankingBundle:Ranking',$this->getRequest()->get('id'));
 
       $em->remove($ranking);
@@ -100,7 +100,7 @@ class AdminRankingController extends Controller
    */
   public function usersAddAction($id)
   {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
 
       $res = array();
       $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
@@ -136,7 +136,7 @@ class AdminRankingController extends Controller
    */
   public function usersDeleteAction($id, $user_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $ranking = $em->find('ClubRankingBundle:Ranking', $id);
     $user = $em->find('ClubUserBundle:User', $user_id);
@@ -158,7 +158,7 @@ class AdminRankingController extends Controller
    */
   public function usersAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
     $ranking = $em->find('ClubRankingBundle:Ranking', $id);
 
@@ -175,7 +175,7 @@ class AdminRankingController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($ranking);
         $em->flush();
 

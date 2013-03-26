@@ -23,7 +23,7 @@ class InstallerController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST') {
             try {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $user = $em->find('ClubUserBundle:User', 1);
 
             } catch (\PDOException $e) {
@@ -119,7 +119,7 @@ class InstallerController extends Controller
     {
         $this->validateInstaller();
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         if ($this->get('session')->get('installer_user_id')) {
             $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
@@ -162,7 +162,7 @@ class InstallerController extends Controller
     {
         $this->validateInstaller();
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $location_step = new \Club\InstallerBundle\Step\LocationStep();
         $form = $this->createForm(new \Club\InstallerBundle\Form\LocationStep(), $location_step);
@@ -213,7 +213,7 @@ class InstallerController extends Controller
     {
         $this->validateInstaller();
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
 
         return array(

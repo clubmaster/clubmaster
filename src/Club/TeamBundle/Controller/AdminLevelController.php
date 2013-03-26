@@ -18,7 +18,7 @@ class AdminLevelController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $levels = $em->getRepository('ClubTeamBundle:Level')->findAll();
 
     return array(
@@ -51,7 +51,7 @@ class AdminLevelController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $level = $em->find('ClubTeamBundle:Level',$id);
 
     $res = $this->process($level);
@@ -72,7 +72,7 @@ class AdminLevelController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $level = $em->find('ClubTeamBundle:Level',$this->getRequest()->get('id'));
 
       $em->remove($level);
@@ -93,7 +93,7 @@ class AdminLevelController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($level);
         $em->flush();
 

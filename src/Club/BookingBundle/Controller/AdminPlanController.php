@@ -17,7 +17,7 @@ class AdminPlanController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $plans = $em->getRepository('ClubBookingBundle:Plan')->findBy(
             array(),
@@ -43,7 +43,7 @@ class AdminPlanController extends Controller
         $repeat->setPlan($plan);
         $plan->addPlanRepeat($repeat);
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         if ($date) {
             $date = new \DateTime($date);
@@ -104,8 +104,8 @@ class AdminPlanController extends Controller
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($plan);
                 $em->flush();
 
@@ -126,7 +126,7 @@ class AdminPlanController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $plan = $em->find('ClubBookingBundle:Plan',$this->getRequest()->get('id'));
 
         $em->remove($plan);

@@ -17,7 +17,7 @@ class TournamentController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tournaments = $em->getRepository('ClubTournamentBundle:Tournament')->findAll();
 
     return array(
@@ -33,7 +33,7 @@ class TournamentController extends Controller
   {
     $attending = false;
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $attending = $em->getRepository('ClubTournamentBundle:Tournament')->isAttending($tournament, $this->getUser());
     }
 

@@ -17,7 +17,7 @@ class AdminPasskeyController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $passkeys = $em->getRepository('ClubPasskeyBundle:Passkey')->findAll();
 
     return array(
@@ -37,7 +37,7 @@ class AdminPasskeyController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $em->persist($passkey);
         $em->flush();
@@ -61,7 +61,7 @@ class AdminPasskeyController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
     $form = $this->createForm(new \Club\PasskeyBundle\Form\Passkey(), $passkey);
     $user_form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
@@ -69,7 +69,7 @@ class AdminPasskeyController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($passkey);
         $em->flush();
 
@@ -92,14 +92,14 @@ class AdminPasskeyController extends Controller
    */
   public function userAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $user = $form->get('user')->getData();
 
@@ -131,7 +131,7 @@ class AdminPasskeyController extends Controller
    */
   public function resetAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$this->getRequest()->get('id'));
     $passkey->setUser(null);
 
@@ -146,7 +146,7 @@ class AdminPasskeyController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$this->getRequest()->get('id'));
 
     $em->remove($passkey);

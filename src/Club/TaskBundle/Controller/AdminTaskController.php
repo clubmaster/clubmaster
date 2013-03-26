@@ -26,7 +26,7 @@ class AdminTaskController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tasks = $em->getRepository('ClubTaskBundle:Task')->findAll();
 
     return array(
@@ -39,7 +39,7 @@ class AdminTaskController extends Controller
    */
   public function disableAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setEnabled(0);
@@ -55,7 +55,7 @@ class AdminTaskController extends Controller
    */
   public function enableAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setEnabled(1);
@@ -71,7 +71,7 @@ class AdminTaskController extends Controller
    */
   public function runAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $task = $em->find('ClubTaskBundle:Task',$id);
     $task->setNextRunAt(new \DateTime());
@@ -91,7 +91,7 @@ class AdminTaskController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $task = $em->find('ClubTaskBundle:Task',$id);
 
     $form = $this->createForm(new \Club\TaskBundle\Form\Task, $task);

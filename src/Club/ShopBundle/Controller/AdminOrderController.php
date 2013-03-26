@@ -17,7 +17,7 @@ class AdminOrderController extends Controller
    */
   public function userAction(\Club\UserBundle\Entity\User $user)
   {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
 
       $orders = $em->getRepository('ClubShopBundle:Order')->findBy(
           array(
@@ -41,7 +41,7 @@ class AdminOrderController extends Controller
    */
   public function indexAction($page = null)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $form = $this->createForm(new \Club\ShopBundle\Form\OrderQuery);
 
@@ -81,7 +81,7 @@ class AdminOrderController extends Controller
    */
   public function editAction(\Club\ShopBundle\Entity\Order $order)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     return array(
       'order' => $order
@@ -93,7 +93,7 @@ class AdminOrderController extends Controller
    */
   public function deleteAction(\Club\ShopBundle\Entity\Order $order)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $this->container->get('order')->setOrder($order);
     $this->get('order')->setCancelled();
@@ -113,7 +113,7 @@ class AdminOrderController extends Controller
    */
   public function deliverAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $order = $em->find('ClubShopBundle:Order',$id);
 
     $status = $em->getRepository('ClubShopBundle:OrderStatus')->getDelivered();
@@ -134,7 +134,7 @@ class AdminOrderController extends Controller
    */
   public function productEditAction(\Club\ShopBundle\Entity\Order $order)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     if ($order->getPaid() || $order->getCancelled() || $order->getDelivered()) {
       $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));

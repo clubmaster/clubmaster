@@ -56,7 +56,7 @@
 
     {% block after_body %}{% endblock %}
     {% block topmenu %}
-    {% render "ClubMenuBundle:Default:topMenu" %}
+    {% render controller("ClubMenuBundle:Default:topMenu") %}
     {% endblock %}
 
     <div class="container-fluid">
@@ -67,7 +67,7 @@
         <div class="span3">
             {% block leftmenu %}
             {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
-            {% render "ClubMenuBundle:Default:leftMenu" %}
+            {% render controller("ClubMenuBundle:Default:leftMenu") %}
             {% endblock %}
         </div><!--/span-->
 
@@ -80,14 +80,14 @@
         {% endif %}
 
             {% if is_granted('ROLE_MEMBER_ADMIN') %}
-            {% render "ClubLayoutBundle:Misc:Search" %}
+            {% render controller("ClubLayoutBundle:Misc:Search") %}
             {% endif %}
 
             {% block header %}<div class="page-header"><h1>{{ club_title }}</h1></div>{% endblock %}
             {% block pagenav %}{% endblock %}
 
             {% if is_granted('ROLE_ADMIN') %}
-                {% block logger %}{% render "ClubLogBundle:Log:LogView" %}{% endblock %}
+                {% block logger %}{% render controller("ClubLogBundle:Log:LogView") %}{% endblock %}
             {% endif %}
 
             {% include 'ClubLayoutBundle:Default:flash.html.twig' %}

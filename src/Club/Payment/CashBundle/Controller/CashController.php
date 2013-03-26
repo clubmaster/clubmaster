@@ -19,7 +19,7 @@ class CashController extends Controller
      */
     public function registerAction($order_id, $allow_split = false)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $order = $em->find('ClubShopBundle:Order', $order_id);
 
         $payment = $em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
@@ -47,7 +47,7 @@ class CashController extends Controller
      */
     public function confirmAction($order_id, $amount)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $order = $em->find('ClubShopBundle:Order', $order_id);
 
         $log = new \Club\ShopBundle\Entity\PurchaseLog();
@@ -68,7 +68,7 @@ class CashController extends Controller
      */
     public function indexAction($order_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $order = $em->find('ClubShopBundle:Order', $order_id);
 
         return array(
@@ -101,7 +101,7 @@ class CashController extends Controller
                     )));
                 }
 
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($log);
                 $em->flush();
 

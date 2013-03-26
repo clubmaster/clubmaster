@@ -18,7 +18,7 @@ class AdminCategoryController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $categories = $em->getRepository('ClubShopBundle:Category')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class AdminCategoryController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubShopBundle:Category',$id);
 
     $res = $this->process($category);
@@ -70,7 +70,7 @@ class AdminCategoryController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubShopBundle:Category',$this->getRequest()->get('id'));
 
     $em->remove($category);
@@ -88,7 +88,7 @@ class AdminCategoryController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($category);
         $em->flush();
 

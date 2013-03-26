@@ -18,7 +18,7 @@ class AdminRepetitionController extends Controller
    */
   public function indexAction($schedule_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
 
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
@@ -43,7 +43,7 @@ class AdminRepetitionController extends Controller
    */
   public function newAction($schedule_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
 
     $repetition = new \Club\TeamBundle\Entity\Repetition();
@@ -100,7 +100,7 @@ class AdminRepetitionController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
     $schedule = $repetition->getSchedule();
 
@@ -151,7 +151,7 @@ class AdminRepetitionController extends Controller
    */
   public function editChoiceAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
 
     return array(
@@ -165,7 +165,7 @@ class AdminRepetitionController extends Controller
    */
   public function editFutureAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $repetition = $em->find('ClubTeamBundle:Repetition',$id);
     $schedule = $repetition->getSchedule();
 
@@ -231,7 +231,7 @@ class AdminRepetitionController extends Controller
 
   private function changeParent(\Club\TeamBundle\Entity\Repetition $repetition)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
     $old_rep = $parent->getRepetition();
@@ -256,7 +256,7 @@ class AdminRepetitionController extends Controller
    */
   public function editAllAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $repetition = $em->find('ClubTeamBundle:Repetition', $id);
     $schedule = $repetition->getSchedule();
 
@@ -275,7 +275,7 @@ class AdminRepetitionController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $repetition = $em->find('ClubTeamBundle:Repetition',$id);
 
     $em->remove($repetition);
@@ -294,7 +294,7 @@ class AdminRepetitionController extends Controller
       if ($this->getRequest()->get($form->getName()) != '') {
         $form->bind($this->getRequest());
         if ($form->isValid()) {
-          $em = $this->getDoctrine()->getEntityManager();
+          $em = $this->getDoctrine()->getManager();
           $em->persist($repetition);
           $is_new = ($repetition->getId()) ? false : true;
           $em->flush();
@@ -325,7 +325,7 @@ class AdminRepetitionController extends Controller
 
   private function copyParent(\Club\TeamBundle\Entity\Schedule $old, \Club\TeamBundle\Entity\Schedule $schedule)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule->setSchedule(null);
 
     $rep = new \Club\TeamBundle\Entity\Repetition();

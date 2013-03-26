@@ -18,7 +18,7 @@ class AdminMessageController extends Controller
    */
   public function indexAction($page = null)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $count = $em->getRepository('ClubMessageBundle:Message')->getCount();
     $nav = $this->get('club_paginator.paginator')
@@ -38,7 +38,7 @@ class AdminMessageController extends Controller
    */
   public function recipientAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $message = $em->find('ClubMessageBundle:Message',$id);
 
@@ -103,7 +103,7 @@ class AdminMessageController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $em->persist($message);
         $em->flush();
@@ -123,7 +123,7 @@ class AdminMessageController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $em->remove($message);
@@ -139,7 +139,7 @@ class AdminMessageController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
@@ -167,7 +167,7 @@ class AdminMessageController extends Controller
    */
   public function showAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
@@ -182,7 +182,7 @@ class AdminMessageController extends Controller
    */
   public function attachmentDeleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $attachment = $em->find('ClubMessageBundle:MessageAttachment',$id);
 
     $em->remove($attachment);
@@ -197,7 +197,7 @@ class AdminMessageController extends Controller
    */
   public function attachmentAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $attachment = new \Club\MessageBundle\Entity\MessageAttachment();
@@ -231,7 +231,7 @@ class AdminMessageController extends Controller
    */
   public function recipientFilterAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $qb = $em->createQueryBuilder()
@@ -274,7 +274,7 @@ class AdminMessageController extends Controller
    */
   public function recipientEventAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $form = $this->createFormBuilder($message)
@@ -307,7 +307,7 @@ class AdminMessageController extends Controller
    */
   public function recipientGroupAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $form = $this->createFormBuilder($message)
@@ -340,7 +340,7 @@ class AdminMessageController extends Controller
    */
   public function recipientUserDeleteAction($message_id, $id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$message_id);
 
     $user = $em->find('ClubUserBundle:User',$id);
@@ -357,7 +357,7 @@ class AdminMessageController extends Controller
    */
   public function recipientGroupDeleteAction($message_id, $id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$message_id);
 
     $group = $em->find('ClubUserBundle:Group',$id);
@@ -374,7 +374,7 @@ class AdminMessageController extends Controller
    */
   public function recipientEventDeleteAction($message_id, $id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$message_id);
 
     $event = $em->find('ClubEventBundle:Event',$id);
@@ -391,7 +391,7 @@ class AdminMessageController extends Controller
    */
   public function recipientFilterDeleteAction($message_id, $id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$message_id);
 
     $filter = $em->find('ClubUserBundle:Filter',$id);
@@ -408,7 +408,7 @@ class AdminMessageController extends Controller
    */
   public function recipientUserAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     $form = $this->createFormBuilder($message)
@@ -440,7 +440,7 @@ class AdminMessageController extends Controller
    */
   public function logAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     return array(
@@ -453,7 +453,7 @@ class AdminMessageController extends Controller
    */
   public function processAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $message = $em->find('ClubMessageBundle:Message',$id);
 
     if (!$message->getReady()) {
@@ -474,7 +474,7 @@ class AdminMessageController extends Controller
 
   private function getForm($message)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
     $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));

@@ -19,7 +19,7 @@ class MemberController extends Controller
    */
   public function searchAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -66,7 +66,7 @@ class MemberController extends Controller
   {
       $results = 50;
 
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
       $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);

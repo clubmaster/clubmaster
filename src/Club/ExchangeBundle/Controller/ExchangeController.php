@@ -17,7 +17,7 @@ class ExchangeController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $market = $em->getRepository('ClubExchangeBundle:Exchange')->getComing();
 
@@ -37,7 +37,7 @@ class ExchangeController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($exchange);
         $em->flush();
 
@@ -67,7 +67,7 @@ class ExchangeController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($exchange);
         $em->flush();
 
@@ -88,7 +88,7 @@ class ExchangeController extends Controller
    */
   public function deleteAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $exchange->setClosed(true);
     $em->persist($exchange);

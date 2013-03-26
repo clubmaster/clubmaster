@@ -17,7 +17,7 @@ class AdminTournamentAttendController extends Controller
    */
   public function newAction($tournament_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $res = array();
     $form = $this->getForm($res);
@@ -60,7 +60,7 @@ class AdminTournamentAttendController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($attend);
         $em->flush();
 
@@ -83,7 +83,7 @@ class AdminTournamentAttendController extends Controller
    */
   public function deleteAction(\Club\TournamentBundle\Entity\Attend $attend)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $em->remove($attend);
     $em->flush();
@@ -101,7 +101,7 @@ class AdminTournamentAttendController extends Controller
    */
   public function indexAction($tournament_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $tournament = $em->find('ClubTournamentBundle:Tournament', $tournament_id);
     $attends = $em->getRepository('ClubTournamentBundle:Attend')->getSeeds($tournament);
 

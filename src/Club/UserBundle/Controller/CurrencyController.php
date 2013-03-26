@@ -18,7 +18,7 @@ class CurrencyController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $currencies = $em->getRepository('ClubUserBundle:Currency')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class CurrencyController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $currency = $em->find('ClubUserBundle:Currency',$id);
     $res = $this->process($currency);
 
@@ -70,7 +70,7 @@ class CurrencyController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $currency = $em->find('ClubUserBundle:Currency',$id);
 
     $em->remove($currency);
@@ -86,7 +86,7 @@ class CurrencyController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($currency);
         $em->flush();
 

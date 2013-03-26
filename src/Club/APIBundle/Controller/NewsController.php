@@ -19,7 +19,7 @@ class NewsController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $announcements = $em->getRepository('ClubNewsBundle:Announcement')->getOpen();
 
     $res = array();

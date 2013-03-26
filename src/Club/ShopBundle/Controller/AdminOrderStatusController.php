@@ -18,7 +18,7 @@ class AdminOrderStatusController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $orderstatuses = $em->getRepository('ClubShopBundle:OrderStatus')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class AdminOrderStatusController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $orderstatus = $em->find('ClubShopBundle:OrderStatus',$id);
 
     $res = $this->process($orderstatus);
@@ -70,7 +70,7 @@ class AdminOrderStatusController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $orderstatus = $em->find('ClubShopBundle:OrderStatus',$this->getRequest()->get('id'));
 
     $em->remove($orderstatus);
@@ -88,7 +88,7 @@ class AdminOrderStatusController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($orderstatus);
         $em->flush();
 

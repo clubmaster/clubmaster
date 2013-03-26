@@ -26,7 +26,7 @@ class UserController extends Controller
             $form->bind($this->getRequest());
 
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
@@ -51,7 +51,7 @@ class UserController extends Controller
         $user = $this->getUser();
         $user->setApiHash($user->generateKey());
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
 
@@ -79,7 +79,7 @@ class UserController extends Controller
             $form->bind($this->getRequest());
 
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
 
                 $reset = $em->getRepository('ClubUserBundle:ResetPassword')->findOneBy(array(
@@ -116,7 +116,7 @@ class UserController extends Controller
      */
     public function icalAction($hash)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('ClubUserBundle:User')->findOneBy(array(
             'api_hash' => $hash
@@ -139,7 +139,7 @@ class UserController extends Controller
     protected function buildUser()
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         if (!$user->getProfile()->getProfileAddress()) {
             $address = new \Club\UserBundle\Entity\ProfileAddress();

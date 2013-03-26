@@ -14,7 +14,7 @@ class ShopController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
     if (!$location->getClub()) {
@@ -55,7 +55,7 @@ class ShopController extends Controller
    */
   public function categoryAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
       'category' => $id
@@ -74,7 +74,7 @@ class ShopController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $category = $em->find('ClubShopBundle:Category',$id);
 
     $em->remove($category);

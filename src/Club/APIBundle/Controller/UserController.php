@@ -23,7 +23,7 @@ class UserController extends Controller
   {
       $request = $this->getRequest();
       $query = ($request->get('query')) ? $request->get('query') : $query;
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
 
       $limit = $request->get('maxRows');
       if ($query == null) {
@@ -51,7 +51,7 @@ class UserController extends Controller
    */
   public function eventsAction($start, $end)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
     $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
@@ -76,7 +76,7 @@ class UserController extends Controller
    */
   public function teamsAction($start, $end)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
     $end = ($end == null) ? new \DateTime(date('Y-m-d 23:59:59', strtotime('+7 day'))) : new \DateTime($end.' 23:59:59');
@@ -103,7 +103,7 @@ class UserController extends Controller
 
       return new Response($this->get('club_api.encode')->encode('Wrong API key'), 403);
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $em->find('ClubUserBundle:User', $id);
 
     $response = new Response($this->get('club_api.encode')->encode($user->toArray()));

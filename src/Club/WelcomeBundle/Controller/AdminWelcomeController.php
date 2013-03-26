@@ -27,7 +27,7 @@ class AdminWelcomeController extends Controller
    */
   public function editAction($location_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $welcome = $em->getRepository('ClubWelcomeBundle:Welcome')->findOneBy(array(
       'location' => $location_id
     ));
@@ -58,7 +58,7 @@ class AdminWelcomeController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($welcome);
         $em->flush();
 

@@ -17,7 +17,7 @@ class AdminUserFilterController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $filter = $this->getActiveFilter();
 
         $form_filter = $this->buildFormFilter($filter);
@@ -45,7 +45,7 @@ class AdminUserFilterController extends Controller
      */
     public function resetAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $filter = $em->find('ClubUserBundle:Filter',$id);
         $em->getRepository('ClubUserBundle:Filter')->deleteAttributes($filter);
@@ -81,7 +81,7 @@ class AdminUserFilterController extends Controller
             }
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
     }
 
@@ -90,7 +90,7 @@ class AdminUserFilterController extends Controller
      */
     private function syncColumn($filter, $column, $value)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $attr = $em->getRepository('ClubUserBundle:FilterAttribute')->findOneBy(array(
             'filter' => $filter->getId(),
@@ -116,7 +116,7 @@ class AdminUserFilterController extends Controller
      */
     private function getActiveFilter()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $filter = $em->getRepository('ClubUserBundle:Filter')->findActive(
             $this->getUser()
@@ -130,7 +130,7 @@ class AdminUserFilterController extends Controller
      */
     private function buildFormFilter(\Club\UserBundle\Entity\Filter $filter)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $form_filter = new \Club\UserBundle\Filter\UserFilter();
 

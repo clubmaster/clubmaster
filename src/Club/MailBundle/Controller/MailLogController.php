@@ -23,7 +23,7 @@ class MailLogController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $logs = $em->getRepository('ClubMailBundle:Log')->findBy(
       array(),
@@ -42,7 +42,7 @@ class MailLogController extends Controller
    */
   public function showAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $log = $em->find('ClubMailBundle:Log',$id);
 
     return array(

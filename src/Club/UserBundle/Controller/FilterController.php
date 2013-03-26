@@ -15,7 +15,7 @@ class FilterController extends Controller
      */
     public function quickAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(new \Club\UserBundle\Form\Search());
 
         if ($this->getRequest()->getMethod() == 'POST') {

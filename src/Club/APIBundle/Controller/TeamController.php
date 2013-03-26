@@ -20,7 +20,7 @@ class TeamController extends Controller
    */
   public function attendAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
     $this->get('club_team.team')->bindAttend($schedule, $this->getUser());
@@ -46,7 +46,7 @@ class TeamController extends Controller
    */
   public function unattendAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
     $user = $this->getUser();
 
@@ -74,7 +74,7 @@ class TeamController extends Controller
    */
   public function indexAction($start, $end)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $res = array();
 
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');

@@ -17,7 +17,7 @@ class UserSettingController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $settings = $em->getRepository('ClubUserBundle:UserSetting')->getUserArray($this->getUser());
     $form = $this->getForm($settings);
@@ -44,7 +44,7 @@ class UserSettingController extends Controller
 
   protected function sync(array $data)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
     foreach ($data as $key=>$value) {

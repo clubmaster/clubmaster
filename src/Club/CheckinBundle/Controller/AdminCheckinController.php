@@ -17,7 +17,7 @@ class AdminCheckinController extends Controller
      */
     public function checkinAction($user_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->find('ClubUserBundle:User', $user_id);
 
         $checkin = new \Club\CheckinBundle\Entity\Checkin();
@@ -39,7 +39,7 @@ class AdminCheckinController extends Controller
     public function indexAction($page)
     {
         $results = 35;
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubCheckinBundle:Checkin')->getPaginator($results, $page);
 
         $nav = $this->get('club_paginator.paginator')

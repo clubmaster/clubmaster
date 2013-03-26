@@ -21,7 +21,7 @@ class BookingController extends Controller
      */
     public function reviewAction($interval_id, \DateTime $date)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
         $guest = $this->getRequest()->get('guest') ? 1 : 0;
@@ -92,7 +92,7 @@ class BookingController extends Controller
     {
         $b = $this->get('club_booking.booking');
         $b->unserialize();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $this->get('club_booking.booking')->save();
         $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your booking has been created'));
@@ -112,7 +112,7 @@ class BookingController extends Controller
             $booking_id = $this->getRequest()->request->get('booking_id');
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $booking = $em->find('ClubBookingBundle:Booking', $booking_id);
 
         return array(
@@ -129,7 +129,7 @@ class BookingController extends Controller
         $team_id = $this->getRequest()->request->get('team_id');
         $field_id = $this->getRequest()->request->get('field_id');
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $schedule = $em->find('ClubTeamBundle:Schedule', $team_id);
         $field = $em->find('ClubBookingBundle:Field', $field_id);
 
@@ -158,7 +158,7 @@ class BookingController extends Controller
             );
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $plan = $em->find('ClubBookingBundle:Plan', $plan_id);
         $field = $em->find('ClubBookingBundle:Field', $field_id);
 
@@ -175,7 +175,7 @@ class BookingController extends Controller
      */
     public function cancelAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $booking = $em->find('ClubBookingBundle:Booking', $id);
 
@@ -199,7 +199,7 @@ class BookingController extends Controller
      */
     public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $datetime)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         if (!$plan->getRepeating()) {
             $em->remove($plan);

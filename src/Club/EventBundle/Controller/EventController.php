@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $public = ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) ? true : false;
         $events = $em->getRepository('ClubEventBundle:Event')->getComing($public);
@@ -58,7 +58,7 @@ class EventController extends Controller
                     $this->get('session')->setFlash('error',$error->getMessage());
                 }
             } else {
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($attend);
 
                 $errors = $this->get('validator')->validate($attend);
@@ -85,7 +85,7 @@ class EventController extends Controller
             $this->get('session')->setFlash('error',$this->get('translator')->trans('Subscription to event is not open'));
         } else {
 
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $attend = $em->getRepository('ClubEventBundle:Attend')->findOneBy(array(
                 'user' => $this->getUser()->getId(),
                 'event' => $event->getId()
@@ -107,7 +107,7 @@ class EventController extends Controller
      */
     public function icalAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $events = $em->getRepository('ClubEventBundle:Event')->findAll();
 
         $response = $this->render('ClubEventBundle:Event:ical.ics.twig', array(

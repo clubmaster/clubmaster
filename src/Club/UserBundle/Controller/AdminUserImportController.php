@@ -72,7 +72,7 @@ class AdminUserImportController extends Controller
             ));
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
         $this->get('session')->setFlash('notice', sprintf('Added %s new users.', $this->added));
 
@@ -81,7 +81,7 @@ class AdminUserImportController extends Controller
 
     private function addUser(array $data)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $this->get('clubmaster.user')
             ->buildUser()
             ->get();

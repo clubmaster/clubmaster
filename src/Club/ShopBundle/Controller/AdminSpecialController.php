@@ -18,7 +18,7 @@ class AdminSpecialController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $specials = $em->getRepository('ClubShopBundle:Special')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class AdminSpecialController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $special = $em->find('ClubShopBundle:Special',$id);
 
     $res = $this->process($special);
@@ -70,7 +70,7 @@ class AdminSpecialController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $special = $em->find('ClubShopBundle:Special',$id);
 
     $em->remove($special);
@@ -88,7 +88,7 @@ class AdminSpecialController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($special);
         $em->flush();
 

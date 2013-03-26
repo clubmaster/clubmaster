@@ -18,7 +18,7 @@ class AdminCouponController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $coupons = $em->getRepository('ClubShopBundle:Coupon')->findAll();
 
     return array(
@@ -50,7 +50,7 @@ class AdminCouponController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $coupon = $em->find('ClubShopBundle:Coupon',$id);
 
     $res = $this->process($coupon);
@@ -70,7 +70,7 @@ class AdminCouponController extends Controller
    */
   public function expireAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $coupon = $em->find('ClubShopBundle:Coupon',$id);
 
     $coupon->setExpireAt(new \DateTime());
@@ -88,7 +88,7 @@ class AdminCouponController extends Controller
    */
   public function logAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $coupons = $em->getRepository('ClubShopBundle:CouponLog')->findBy(array(
       'coupon' => $id
     ));
@@ -105,7 +105,7 @@ class AdminCouponController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($coupon);
         $em->flush();
 

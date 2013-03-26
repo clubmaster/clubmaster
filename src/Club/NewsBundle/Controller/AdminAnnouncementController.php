@@ -18,7 +18,7 @@ class AdminAnnouncementController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $announcements = $em->getRepository('ClubNewsBundle:Announcement')->findAll();
 
     return array(
@@ -59,7 +59,7 @@ class AdminAnnouncementController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $announcement = $em->find('ClubNewsBundle:Announcement',$id);
 
     $res = $this->process($announcement);
@@ -79,7 +79,7 @@ class AdminAnnouncementController extends Controller
   public function deleteAction($id)
   {
     try {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $announcement = $em->find('ClubNewsBundle:Announcement',$this->getRequest()->get('id'));
 
       $em->remove($announcement);
@@ -100,7 +100,7 @@ class AdminAnnouncementController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($announcement);
         $em->flush();
 

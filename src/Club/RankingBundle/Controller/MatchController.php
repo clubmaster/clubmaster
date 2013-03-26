@@ -19,7 +19,7 @@ class MatchController extends Controller
      */
     public function newAction($ranking_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $ranking = $em->find('ClubRankingBundle:Ranking', $ranking_id);
 
         $res = array();

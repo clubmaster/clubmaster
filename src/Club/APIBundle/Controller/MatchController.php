@@ -18,7 +18,7 @@ class MatchController extends Controller
    */
   public function searchAction($id, $query)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $league = $em->find('ClubMatchBundle:League', $id);
 
     $res = array();

@@ -18,7 +18,7 @@ class AdminLocationController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $locations = $em->getRepository('ClubUserBundle:Location')->getRoots();
 
     return array(
@@ -50,7 +50,7 @@ class AdminLocationController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $location = $em->find('ClubUserBundle:Location',$id);
 
     $res = $this->process($location);
@@ -70,7 +70,7 @@ class AdminLocationController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $location = $em->find('ClubUserBundle:Location',$this->getRequest()->get('id'));
 
     $em->remove($location);
@@ -88,7 +88,7 @@ class AdminLocationController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($location);
         $em->flush();
 

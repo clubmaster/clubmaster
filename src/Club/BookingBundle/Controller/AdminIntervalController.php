@@ -18,7 +18,7 @@ class AdminIntervalController extends Controller
    */
   public function indexAction($field_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $field = $em->find('ClubBookingBundle:Field', $field_id);
     $intervals = $em->getRepository('ClubBookingBundle:Interval')->findValidByField($field);
@@ -35,7 +35,7 @@ class AdminIntervalController extends Controller
    */
   public function newAction($field_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $field = $em->find('ClubBookingBundle:Field', $field_id);
     $interval = new \Club\BookingBundle\Entity\Interval();
@@ -58,7 +58,7 @@ class AdminIntervalController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $interval = $em->find('ClubBookingBundle:Interval',$id);
 
     $res = $this->process($interval);
@@ -78,7 +78,7 @@ class AdminIntervalController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $interval = $em->find('ClubBookingBundle:Interval',$this->getRequest()->get('id'));
 
     $em->remove($interval);
@@ -96,7 +96,7 @@ class AdminIntervalController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($interval);
         $em->flush();
 
@@ -115,7 +115,7 @@ class AdminIntervalController extends Controller
    */
   public function manageAction($field_id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $field = $em->find('ClubBookingBundle:Field', $field_id);
 
     $date = new \DateTime('next monday');

@@ -19,7 +19,7 @@ class RssController extends Controller
    */
   public function latestAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $blog = $em->getRepository('ClubWelcomeBundle:Blog')->findBy(
         array(),
         array('id' => 'DESC'),

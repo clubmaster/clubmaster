@@ -18,7 +18,7 @@ class LogController extends Controller
    */
   public function indexAction($page = null)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
     $nav = $this->get('club_paginator.paginator')
@@ -38,7 +38,7 @@ class LogController extends Controller
    */
   public function showAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $log = $em->find('ClubLogBundle:Log',$id);
     $log->setNew(0);
@@ -61,7 +61,7 @@ class LogController extends Controller
     if (($res = $this->installerFileExists()))
       $logs[] = $this->get('translator')->trans('Remove installer file <strong>%path%</strong>', array('%path%' => $this->get('kernel')->getRootDir().'/installer'));
 
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $l = $em->getRepository('ClubLogBundle:Log')->findBy(array(
       'new' => 1,
       'severity' => 'critical'

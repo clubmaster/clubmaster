@@ -17,7 +17,7 @@ class MatchController extends Controller
      */
     public function recentAction($limit)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $matches = $em->getRepository('ClubMatchBundle:Match')->getRecentMatches(null, $limit);
 
         return $this->render('ClubMatchBundle:Match:recent_matches.html.twig', array(
@@ -32,7 +32,7 @@ class MatchController extends Controller
      */
     public function newAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $res = array();
         $res['user0'] = $this->getUser();
@@ -69,7 +69,7 @@ class MatchController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $match = $em->find('ClubMatchBundle:Match',$id);
 
         $em->remove($match);
@@ -89,7 +89,7 @@ class MatchController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $match = $em->find('ClubMatchBundle:Match',$id);
 
         return array(
@@ -107,7 +107,7 @@ class MatchController extends Controller
     public function indexAction($page)
     {
         $results = 35;
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubMatchBundle:Match')->getPaginator($results, $page);
 
         $nav = $this->get('club_paginator.paginator')

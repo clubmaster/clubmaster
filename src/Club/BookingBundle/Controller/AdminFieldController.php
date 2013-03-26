@@ -17,7 +17,7 @@ class AdminFieldController extends Controller
    */
   public function indexAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $fields = $em->getRepository('ClubBookingBundle:Field')->findBy(array(),array(
       'position' => 'ASC'
     ));
@@ -40,7 +40,7 @@ class AdminFieldController extends Controller
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $r = $em->getRepository('ClubBookingBundle:Field')->getNextPosition($field->getLocation());
         $field->setPosition($r);
@@ -67,14 +67,14 @@ class AdminFieldController extends Controller
    */
   public function editAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $field = $em->find('ClubBookingBundle:Field',$id);
     $form = $this->createForm(new \Club\BookingBundle\Form\Field(), $field);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($field);
         $em->flush();
 
@@ -95,7 +95,7 @@ class AdminFieldController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $field = $em->find('ClubBookingBundle:Field',$this->getRequest()->get('id'));
 
     $em->remove($field);
@@ -111,7 +111,7 @@ class AdminFieldController extends Controller
    */
   public function upAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $field = $em->find('ClubBookingBundle:Field',$this->getRequest()->get('id'));
 
     $old = $em->createQueryBuilder()
@@ -148,7 +148,7 @@ class AdminFieldController extends Controller
    */
   public function downAction($id)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $field = $em->find('ClubBookingBundle:Field',$this->getRequest()->get('id'));
 
     $old = $em->createQueryBuilder()

@@ -18,7 +18,7 @@ class FieldController extends Controller
    */
   public function modifiedAction()
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $fields = $em->getRepository('ClubBookingBundle:Field')->findAll();
 
@@ -52,7 +52,7 @@ class FieldController extends Controller
    */
   public function indexAction($location_id, $date)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
     $location = $em->find('ClubUserBundle:Location', $location_id);
 
     $date = ($date == null) ? new \DateTime() : new \DateTime($date);
