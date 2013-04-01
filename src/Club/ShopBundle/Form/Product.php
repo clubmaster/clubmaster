@@ -19,6 +19,7 @@ class Product extends AbstractType
     ));
     $builder->add('categories');
     $builder->add('account_number', 'text', array(
+        'required' => false,
         'help' => 'Account number in accounting program'
     ));
     $builder->add('active', 'checkbox', array(

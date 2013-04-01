@@ -2788,6 +2788,10 @@
           <source>Account number in accounting program</source>
           <target>Kontonummer i regnskabsprogram</target>
       </trans-unit>
+      <trans-unit id="737">
+          <source>In stock: %stock%</source>
+          <target>På lager: %stock%</target>
+      </trans-unit>
 
     </body>
   </file>

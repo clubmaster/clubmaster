@@ -1,3 +1,4 @@
+remmeber on migrate to set stock = '-1';
 == NOTES TO LATER ==
 add stock in the webshop, but default to unlimited numbers
 check if we can disable a module by ini_set, like disable the intl extension

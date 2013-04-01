@@ -80,6 +80,10 @@ class Cart
     public function addToCart($product)
     {
         if ($product instanceOf \Club\ShopBundle\Entity\Product) {
+            if ($product->getStock() == '0') {
+                throw new \Club\ShopBundle\Exception\NotInStockException('No more products left');
+            }
+
             $this->addProductToCart($product);
         } elseif ($product instanceOf \Club\ShopBundle\Entity\CartProduct) {
             $product->setCart($this->cart);

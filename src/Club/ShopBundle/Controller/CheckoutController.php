@@ -182,35 +182,40 @@ class CheckoutController extends Controller
    */
   public function processAction()
   {
-    $cart = $this->get('cart')->getCart();
-    if (!count($cart->getCartProducts())) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
+      try {
+          $cart = $this->get('cart')->getCart();
+          if (!count($cart->getCartProducts())) {
+              $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
 
-      return $this->redirect($this->generateUrl('shop'));
-    }
+              return $this->redirect($this->generateUrl('shop'));
+          }
 
-    if ($cart) {
-      $em = $this->getDoctrine()->getManager();
-      $shipping = $cart->getShipping();
+          if ($cart) {
+              $em = $this->getDoctrine()->getManager();
+              $shipping = $cart->getShipping();
 
-      if ($shipping->getPrice() > 0) {
-        $product = array(
-          'product_name' => $shipping->getShippingName(),
-          'price' => $shipping->getPrice(),
-          'type' => 'shipping'
-        );
-        $this->get('cart')->addToCart($product);
+              if ($shipping->getPrice() > 0) {
+                  $product = array(
+                      'product_name' => $shipping->getShippingName(),
+                      'price' => $shipping->getPrice(),
+                      'type' => 'shipping'
+                  );
+                  $this->get('cart')->addToCart($product);
+              }
+              $this->get('order')->convertToOrder($cart);
+              $order = $this->get('order')->getOrder();
+
+          } else {
+              return $this->redirect($this->generateUrl('shop'));
+          }
+
+          return $this->redirect($this->generateUrl($order->getPaymentMethod()->getController(), array(
+              'order_id' => $order->getId()
+          )));
+      } catch (\Exception $e) {
+          $this->get('session')->setFlash('error', $this->get('translator')->trans($e->getMessage()));
+          return $this->redirect($this->generateUrl('shop'));
       }
-      $this->get('order')->convertToOrder($cart);
-      $order = $this->get('order')->getOrder();
-
-    } else {
-      return $this->redirect($this->generateUrl('shop'));
-    }
-
-    return $this->redirect($this->generateUrl($order->getPaymentMethod()->getController(), array(
-      'order_id' => $order->getId()
-    )));
   }
 
   /**
