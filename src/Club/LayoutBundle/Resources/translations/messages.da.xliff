@@ -2780,6 +2780,14 @@
           <source>Repeat</source>
           <target>Gentag</target>
       </trans-unit>
+      <trans-unit id="735">
+          <source>Amount in stock, -1 if unlimited</source>
+          <target>Antag på lager, -1 hvis uendeligt</target>
+      </trans-unit>
+      <trans-unit id="736">
+          <source>Account number in accounting program</source>
+          <target>Kontonummer i regnskabsprogram</target>
+      </trans-unit>
 
     </body>
   </file>

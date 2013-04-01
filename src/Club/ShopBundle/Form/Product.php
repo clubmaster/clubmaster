@@ -14,8 +14,13 @@ class Product extends AbstractType
     $builder->add('product_name');
     $builder->add('description');
     $builder->add('price');
+    $builder->add('stock', 'integer', array(
+        'help' => 'Amount in stock, -1 if unlimited'
+    ));
     $builder->add('categories');
-    $builder->add('account_number');
+    $builder->add('account_number', 'text', array(
+        'help' => 'Account number in accounting program'
+    ));
     $builder->add('active', 'checkbox', array(
         'required' => false
     ));

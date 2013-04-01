@@ -51,6 +51,14 @@ class Product
     protected $account_number;
 
     /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     *
+     * @var float $stock
+     */
+    protected $stock;
+
+    /**
      * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
@@ -107,6 +115,7 @@ class Product
         $this->product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->type = 'product';
         $this->active = true;
+        $this->stock = '-1';
     }
 
     public function __toString()
@@ -438,5 +447,28 @@ class Product
     public function removeSpecial(\Club\ShopBundle\Entity\Special $specials)
     {
         $this->specials->removeElement($specials);
+    }
+
+    /**
+     * Set stock
+     *
+     * @param integer $stock
+     * @return Product
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get stock
+     *
+     * @return integer
+     */
+    public function getStock()
+    {
+        return $this->stock;
     }
 }
