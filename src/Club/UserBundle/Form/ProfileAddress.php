@@ -14,7 +14,7 @@ class ProfileAddress extends AbstractType
     $builder->add('postal_code');
     $builder->add('city');
     $builder->add('state');
-    $builder->add('country', 'country');
+    $builder->add('country', 'club_country');
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

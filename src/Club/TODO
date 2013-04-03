@@ -1,6 +1,4 @@
-remmeber on migrate to set stock = '-1';
 == NOTES TO LATER ==
-add stock in the webshop, but default to unlimited numbers
 check if we can disable a module by ini_set, like disable the intl extension
 cannot cancel a guest booking order
 the system has to clean out orders that is not processed
@@ -14,7 +12,6 @@ stuff should not break if economic account number does not exists
 the system has to clean out orders that is not processed
 the booking should never be expired, but only one can have status code 2, just in case of cash payment
 create unique key on event attends
-validate that we have activated mod_rewrite
 add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
