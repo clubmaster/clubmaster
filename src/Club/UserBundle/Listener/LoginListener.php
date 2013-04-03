@@ -24,6 +24,11 @@ class LoginListener
         $user = $this->security_context->getToken()->getUser();
         $user->setLastLoginTime(new \DateTime());
         $user->setLastLoginIp($this->request->getClientIp());
+
+        if (!strlen($user->getApiHash())) {
+            $user->setApiHash($user->generateKey());
+        }
+
         $this->em->persist($user);
 
         $login = new \Club\UserBundle\Entity\LoginAttempt();
