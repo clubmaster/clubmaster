@@ -18,7 +18,13 @@ if ($apc) {
     require_once __DIR__.'/../app/AppCache.php';
     $kernel = new AppCache($kernel);
 
-    $loader = new ApcClassLoader('sf2', $loader);
+    if (isset($_SERVER['HTTP_HOST'])) {
+        $prefix = $_SERVER['HTTP_HOST'];
+    } else {
+        $prefix = 'sf2';
+    }
+
+    $loader = new ApcClassLoader($prefix, $loader);
     $loader->register(true);
 } else {
     $kernel->loadClassCache();
