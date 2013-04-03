@@ -14,7 +14,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class ShopController extends Controller
 {
     /**
-     * @Route("")
+     * @Route("/")
      * @Method("GET")
      */
     public function indexAction()
