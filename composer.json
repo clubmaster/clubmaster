@@ -20,7 +20,7 @@
         "jms/di-extra-bundle": "1.3.*",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "dev-master",
-        "clubmaster/extra": "dev-master"
+        "clubmaster/extra": "dev-master",
         "clubmaster/quickpay": "dev-master",
         "clubmaster/economic": "dev-master",
         "sabre/vobject": "dev-master",
