@@ -59,7 +59,7 @@ class Product
     protected $price;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      *
      * @var integer $quantity
      */
