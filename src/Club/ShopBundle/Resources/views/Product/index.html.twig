@@ -14,7 +14,7 @@
 
 <h2 class="nomb">{{ product.productName }}</h2>
 <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
-{% if product.stock != '-1' %}<p>{% trans with {'%stock%':product.stock} %}In stock: %stock%{% endtrans %}</p>{% endif %}
+{% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}
 <h2>{% trans %}Description{% endtrans %}</h2>
 <p>{{ product.description|raw }}</p>
 

@@ -14,7 +14,7 @@ class Product extends AbstractType
     $builder->add('product_name');
     $builder->add('description');
     $builder->add('price');
-    $builder->add('stock', 'integer', array(
+    $builder->add('quantity', 'integer', array(
         'help' => 'Amount in stock, -1 if unlimited'
     ));
     $builder->add('categories');

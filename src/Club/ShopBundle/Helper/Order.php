@@ -246,14 +246,14 @@ class Order
         }
 
         switch (true) {
-        case $product->getProduct()->getStock() == '0':
+        case $product->getProduct()->getQuantity() == '0':
             throw new \Club\ShopBundle\Exception\NotInStockException('No more products left');
             break;
-        case $product->getProduct()->getStock() == '-1':
+        case $product->getProduct()->getQuantity() == '-1':
             break;
         default:
-            $stock = $product->getProduct()->getStock()-1;
-            $product->getProduct()->setStock($stock);
+            $quantity = $product->getProduct()->getQuantity()-1;
+            $product->getProduct()->setQuantity($quantity);
 
             $this->em->persist($product->getProduct());
         }
