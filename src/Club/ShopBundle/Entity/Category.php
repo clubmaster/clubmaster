@@ -229,4 +229,19 @@ class Category
         return $this->products;
     }
 
+    public function toArray()
+    {
+        $products = array();
+
+        foreach ($this->getProducts() as $product) {
+            $products[] = $product->toArray();
+        }
+
+        return array(
+            'id' => $this->getId(),
+            'category_name' => $this->getCategoryName(),
+            'description' => $this->getDescription(),
+            'products' => $products
+        );
+    }
 }

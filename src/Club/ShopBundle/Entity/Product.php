@@ -471,4 +471,15 @@ class Product
     {
         return $this->stock;
     }
+
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'product_name' => $this->getProductName(),
+            'description' => $this->getDescription(),
+            'price' => $this->getPrice(),
+            'active' => $this->getActive()
+        );
+    }
 }
