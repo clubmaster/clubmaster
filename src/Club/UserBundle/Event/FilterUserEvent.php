@@ -8,6 +8,7 @@ class FilterUserEvent extends Event
 {
     protected $user;
     protected $output;
+    protected $password;
 
     public function __construct(\Club\UserBundle\Entity\User $user)
     {
@@ -27,5 +28,15 @@ class FilterUserEvent extends Event
     public function getOutput()
     {
         return $this->output;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

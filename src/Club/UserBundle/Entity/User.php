@@ -158,6 +158,8 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     protected $groups;
 
+    protected $plaintext_password;
+
     public function __toString()
     {
       return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
@@ -226,12 +228,14 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     public function setPassword($password)
     {
-      if (strlen($password) > 0) {
-        $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
-        $password = $encoder->encodePassword($password,$this->getSalt());
+        $this->plaintext_password = $password;
 
-        $this->password = $password;
-      }
+        if (strlen($password) > 0) {
+            $encoder = new MessageDigestPasswordEncoder($this->getAlgorithm(),true,10);
+            $password = $encoder->encodePassword($password,$this->getSalt());
+
+            $this->password = $password;
+        }
     }
 
     /**
@@ -883,5 +887,10 @@ class User implements AdvancedUserInterface, EquatableInterface
     public function generateKey()
     {
         return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+
+    public function getPlaintextPassword()
+    {
+        return $this->plaintext_password;
     }
 }
