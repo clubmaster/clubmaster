@@ -29,9 +29,9 @@ class ProfileCompany
     /**
      * @ORM\Column(type="string")
      *
-     * @var string $cvr
+     * @var string $vat
      */
-    protected $cvr;
+    protected $vat;
 
     /**
      * @ORM\ManyToOne(targetEntity="Profile", inversedBy="profile_companies")
@@ -70,23 +70,23 @@ class ProfileCompany
     }
 
     /**
-     * Set cvr
+     * Set vat
      *
-     * @param string $cvr
+     * @param string $vat
      */
-    public function setCvr($cvr)
+    public function setVat($vat)
     {
-        $this->cvr = $cvr;
+        $this->vat = $vat;
     }
 
     /**
-     * Get cvr
+     * Get vat
      *
-     * @return string $cvr
+     * @return string $vat
      */
-    public function getCvr()
+    public function getVat()
     {
-        return $this->cvr;
+        return $this->vat;
     }
 
     /**

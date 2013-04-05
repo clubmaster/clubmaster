@@ -689,7 +689,7 @@
         <target>Firma</target>
       </trans-unit>
       <trans-unit id="208">
-        <source>CVR</source>
+        <source>VAT</source>
         <target>CVR</target>
       </trans-unit>
       <trans-unit id="209">
@@ -1573,8 +1573,8 @@
         <target>Firma: %company%</target>
       </trans-unit>
       <trans-unit id="430">
-        <source>CVR: %cvr%</source>
-        <target>CVR: %cvr%</target>
+        <source>VAT: %vat%</source>
+        <target>CVR: %vat%</target>
       </trans-unit>
       <trans-unit id="431">
         <source>Name: %firstname% %lastname%</source>

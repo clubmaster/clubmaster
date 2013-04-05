@@ -8,7 +8,7 @@
 
 <h3>{% trans %}Customer Information{% endtrans %}</h3>
 <p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
-{% trans with {'%cvr%':cart.customerAddress.companyName} %}CVR: %cvr%{% endtrans %}<br />
+{% trans with {'%vat%':cart.customerAddress.companyName} %}VAT: %vat%{% endtrans %}<br />
 {% trans with {'%firstname%':cart.customerAddress.firstName,'%lastname%':cart.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
 {% trans with {'%street%':cart.customerAddress.street} %}Street: %street%{% endtrans %}<br />
 {% trans with {'%postal%':cart.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />

@@ -28,11 +28,11 @@ class OrderAddress
     protected $company_name;
 
     /**
-     * @var string $cvr
+     * @var string $vat
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    protected $cvr;
+    protected $vat;
 
     /**
      * @var string $first_name
@@ -125,23 +125,23 @@ class OrderAddress
     }
 
     /**
-     * Set cvr
+     * Set vat
      *
-     * @param string $cvr
+     * @param string $vat
      */
-    public function setCvr($cvr)
+    public function setVat($vat)
     {
-        $this->cvr = $cvr;
+        $this->vat = $vat;
     }
 
     /**
-     * Get cvr
+     * Get vat
      *
-     * @return string $cvr
+     * @return string $vat
      */
-    public function getCvr()
+    public function getVat()
     {
-        return $this->cvr;
+        return $this->vat;
     }
 
     /**

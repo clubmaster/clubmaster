@@ -11,7 +11,7 @@ class CheckoutAddress extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('company_name');
-    $builder->add('cvr');
+    $builder->add('vat');
     $builder->add('first_name');
     $builder->add('last_name');
     $builder->add('street');
