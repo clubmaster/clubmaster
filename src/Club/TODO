@@ -1,7 +1,7 @@
-send message to search
 add payment to events
 
 == NOTES TO LATER ==
+create unique index (message_users, message_events, message_groups)
 cannot cancel a guest booking order
 the system has to clean out orders that is not processed
 the booking should never be expired, but only one can have status code 2, just in case of cash payment
