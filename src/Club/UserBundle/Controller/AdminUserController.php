@@ -13,6 +13,29 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminUserController extends Controller
 {
   /**
+   * @Route("/message/add/{id}")
+   * @Template()
+   */
+  public function messageAddAction(\Club\MessageBundle\Entity\Message $message)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
+    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);
+
+    foreach ($users as $u) {
+        $message->addUser($u);
+    }
+
+    $em->persist($message);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_edit', array(
+        'id' => $message->getId()
+    )));
+  }
+
+  /**
    * @Route("/message/compose")
    * @Template()
    */

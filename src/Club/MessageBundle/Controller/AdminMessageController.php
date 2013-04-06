@@ -73,16 +73,6 @@ class AdminMessageController extends Controller
         ))
       );
     }
-    foreach ($message->getFilters() as $filter) {
-      $lines[] = array(
-        'type' => 'Filter',
-        'message' => $filter->getFilterName(),
-        'path' => $this->generateUrl('club_message_adminmessage_recipientfilterdelete', array(
-          'message_id' => $message->getId(),
-          'id' => $filter->getId()
-        ))
-      );
-    }
 
     return array(
       'lines' => $lines,
@@ -96,8 +86,8 @@ class AdminMessageController extends Controller
    */
   public function newAction()
   {
-    $message = new \Club\MessageBundle\Entity\Message();
-    $form = $this->getForm($message);
+    $message = $this->get('club_message.message')->compose();
+    $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
@@ -226,49 +216,6 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/filter/{id}")
-   * @Template()
-   */
-  public function recipientFilterAction($id)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $message = $em->find('ClubMessageBundle:Message',$id);
-
-    $qb = $em->createQueryBuilder()
-      ->select('f')
-      ->from('ClubUserBundle:Filter', 'f')
-      ->where('f.user = :user')
-      ->setParameter('user', $this->getUser());
-
-    $form = $this->createFormBuilder($message)
-      ->add('filters', 'entity', array(
-        'class' => 'Club\UserBundle\Entity\Filter',
-        'multiple' => true,
-        'query_builder' => $qb
-      ))
-      ->getForm();
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-
-      if ($form->isValid()) {
-        $em->persist($message);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Filter has been added as recipient for the mail.'));
-
-        return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
-      }
-    }
-
-    return array(
-      'form' => $form->createView(),
-      'message' => $message
-    );
-
-  }
-
-  /**
    * @Route("/message/recipient/event/{id}")
    * @Template()
    */
@@ -386,23 +333,6 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/filter/delete/{message_id}/{id}")
-   * @Template()
-   */
-  public function recipientFilterDeleteAction($message_id, $id)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $message = $em->find('ClubMessageBundle:Message',$message_id);
-
-    $filter = $em->find('ClubUserBundle:Filter',$id);
-    $message->getFilters()->removeElement($filter);
-
-    $em->flush();
-
-    return $this->redirect($this->generateUrl('club_message_adminmessage_recipient',array('id' => $message->getId())));
-  }
-
-  /**
    * @Route("/message/recipient/user/{id}")
    * @Template()
    */
@@ -470,18 +400,5 @@ class AdminMessageController extends Controller
     }
 
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
-  }
-
-  private function getForm($message)
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
-    $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
-    $message->setUser($this->getUser());
-
-    $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
-
-    return $form;
   }
 }

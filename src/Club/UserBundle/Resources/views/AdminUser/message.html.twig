@@ -20,7 +20,7 @@
         <tr>
             <td>{{ message.subject }}</td>
             <td>{{ message.createdAt|club_datetime }}</td>
-            <td><a class="btn btn-small btn-primary">Add</a></td>
+            <td><a class="btn btn-small btn-primary" href="{{ path('club_user_adminuser_messageadd', {'id':message.id}) }}">Add</a></td>
         </tr>
         {% else %}
         <tr>
