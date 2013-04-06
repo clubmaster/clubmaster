@@ -12,36 +12,45 @@ use Doctrine\ORM\EntityRepository;
  */
 class MessageRepository extends EntityRepository
 {
-  public function getCount()
-  {
-    return count($this->getQueryBuilder()->getQuery()->getResult());
-  }
+    public function getCount()
+    {
+        return count($this->getQueryBuilder()->getQuery()->getResult());
+    }
 
-  public function getWithPagination($offset = 0, $limit = 0)
-  {
-    return $this->getQueryBuilder()
-      ->setFirstResult($offset)
-      ->setMaxResults($limit)
-      ->getQuery()
-      ->getResult();
-  }
+    public function getWithPagination($offset = 0, $limit = 0)
+    {
+        return $this->getQueryBuilder()
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 
-  private function getQueryBuilder()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('m')
-      ->from('ClubMessageBundle:Message','m')
-      ->orderBy('m.id','DESC');
-  }
+    private function getQueryBuilder()
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('m')
+            ->from('ClubMessageBundle:Message','m')
+            ->orderBy('m.id','DESC');
+    }
 
-  public function getAllReady()
-  {
-    return $this->_em->createQueryBuilder()
-      ->select('m')
-      ->from('ClubMessageBundle:Message','m')
-      ->where('m.ready = 1')
-      ->andWhere('m.processed = 0')
-      ->getQuery()
-      ->getResult();
-  }
+    public function getAllReady()
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('m')
+            ->from('ClubMessageBundle:Message','m')
+            ->where('m.ready = 1')
+            ->andWhere('m.processed = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getDrafts()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.processed = false')
+            ->orderBy('m.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -5,10 +5,26 @@ namespace Club\MessageBundle\Helper;
 class Message
 {
   protected $em;
+  protected $context;
 
-  public function __construct($em)
+  public function __construct($em, $context)
   {
     $this->em = $em;
+    $this->context = $context;
+  }
+
+  public function compose()
+  {
+      $message = new \Club\MessageBundle\Entity\Message();
+      $message->setSenderName(
+          $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name')
+      );
+      $message->setSenderAddress(
+          $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address')
+      );
+      $message->setUser($this->context->getToken()->getUser());
+
+      return $message;
   }
 
   public function migrateRecipients(\Club\MessageBundle\Entity\Message $message)

@@ -1,0 +1,33 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<p>You are about to send a message to your search result, what do you want to do?</p>
+<p>Compose a new message or send to an existing message?</p>
+
+<p><a class="btn btn-primary" href="{{ path('club_user_adminuser_messagecompose') }}">Compose new</a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}Subject{% endtrans %}</th>
+            <th>{% trans %}Created at{% endtrans %}</th>
+            <th>{% trans %}Actions{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.subject }}</td>
+            <td>{{ message.createdAt|club_datetime }}</td>
+            <td><a class="btn btn-small btn-primary">Add</a></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="2>{% trans %}There are no drafts messages.{% endtrans %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

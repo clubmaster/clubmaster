@@ -478,7 +478,6 @@ class AdminMessageController extends Controller
 
     $message->setSenderName($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_name'));
     $message->setSenderAddress($em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('email_sender_address'));
-    $message->setType('mail');
     $message->setUser($this->getUser());
 
     $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);

@@ -164,6 +164,7 @@ class Message
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->events = new \Doctrine\Common\Collections\ArrayCollection();
         $this->filters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->type = 'mail';
     }
 
     /**

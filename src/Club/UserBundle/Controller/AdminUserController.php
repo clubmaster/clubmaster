@@ -13,6 +13,48 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminUserController extends Controller
 {
   /**
+   * @Route("/message/compose")
+   * @Template()
+   */
+  public function messageComposeAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
+    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);
+
+    $message = $this->get('club_message.message')->compose();
+    $message->setSubject(sprintf('News, %s', date('Y-m-d')));
+    $message->setMessage('Dear members,');
+
+    foreach ($users as $u) {
+        $message->addUser($u);
+    }
+
+    $em->persist($message);
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('club_message_adminmessage_edit', array(
+        'id' => $message->getId()
+    )));
+  }
+
+  /**
+   * @Route("/message")
+   * @Template()
+   */
+  public function messageAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $messages = $em->getRepository('ClubMessageBundle:Message')->getDrafts();
+
+    return array(
+        'messages' => $messages
+    );
+  }
+
+  /**
    * @Route("/export/csv")
    */
   public function csvAction()
@@ -20,7 +62,7 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $filter = $em->getRepository('ClubUserBundle:Filter')->findActive($this->getUser());
-    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);;
+    $users = $em->getRepository('ClubUserBundle:User')->getUsersListWithPagination($filter);
 
     // field delimiter
     $fd = "\t";
