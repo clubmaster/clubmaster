@@ -7,13 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/booking")
+ * @Route("/booking/location")
  */
 class LocationController extends Controller
 {
     /**
      * @Template()
-     * @Route("/location")
+     * @Route("")
      */
     public function indexAction()
     {
@@ -26,20 +26,19 @@ class LocationController extends Controller
     }
 
     /**
-     * @Route("/location/{id}")
+     * @Route("/{id}")
      */
-    public function switchAction($id)
+    public function switchAction(\Club\UserBundle\Entity\Location $location)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $user = $this->getUser();
-        $location = $em->find('ClubUserBundle:Location',$id);
 
         $this->get('session')->set('location_id', $location->getId());
         $this->get('session')->set('location_name', $location->getLocationName());
 
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user->setLocation($location);
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
         }
