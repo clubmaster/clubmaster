@@ -23,7 +23,9 @@ class AdminIntervalController extends Controller
         );
 
         $form = $this->createFormBuilder($data)
-            ->add('same_layout_every_day', 'checkbox')
+            ->add('same_layout_every_day', 'checkbox', array(
+                'required' => false
+            ))
             ->getForm();
 
         $data_all = $this->getIntervalDefaultArray($field, 'all');
@@ -52,7 +54,6 @@ class AdminIntervalController extends Controller
                 $data = $form->getData();
 
                 $field->setSameLayoutEveryDay($data['same_layout_every_day']);
-                $em->persist($field);
 
                 if ($data['same_layout_every_day']) {
                     $form_all->bind($this->getRequest());
@@ -62,34 +63,84 @@ class AdminIntervalController extends Controller
 
                         $fl = json_encode(array('all' => $d));
                         if (md5($fl) != md5($field->getFieldLayout())) {
-                            $field->setFieldLayout($fl);
-                            $em->persist($field);
 
-                            $intervals = $em->getRepository('ClubBookingBundle:Interval')->findBy(array(
-                                'field' => $field->getId()
-                            ));
-                            foreach ($intervals as $interval) {
-                                $interval->setValidTo(new \DateTime());
-                                $em->persist($interval);
-                            }
+                            for ($day = 1; $day <= 7; $day++) {
+                                $intervals = preg_split("/\n/", $d['available_timeslots']);
+                                foreach ($intervals as $interval) {
+                                    $interval = trim($interval);
 
-                            $intervals = preg_split("/\n/", $d['available_timeslots']);
-                            foreach ($intervals as $interval) {
-                                $interval = trim($interval);
-
-                                for ($day = 1; $day < 7; $day++) {
                                     $this->buildInterval($field, $day, $interval);
                                 }
                             }
                         }
 
+                        $this->post($field, $fl);
                         $em->flush();
 
                         return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
                     }
-                } else {
-                }
+                } else { // not all in the same day
+                    $form_monday->bind($this->getRequest());
+                    $form_tuesday->bind($this->getRequest());
+                    $form_wednesday->bind($this->getRequest());
+                    $form_thursday->bind($this->getRequest());
+                    $form_friday->bind($this->getRequest());
+                    $form_saturday->bind($this->getRequest());
+                    $form_sunday->bind($this->getRequest());
 
+                    $fl = json_encode(array(
+                        'monday' => $form_monday->getData(),
+                        'tuesday' => $form_tuesday->getData(),
+                        'wednesday' => $form_wednesday->getData(),
+                        'thursday' => $form_thursday->getData(),
+                        'friday' => $form_friday->getData(),
+                        'saturday' => $form_saturday->getData(),
+                        'sunday' => $form_sunday->getData()
+                    ));
+
+                    if (md5($fl) != md5($field->getFieldLayout())) {
+                        die('meh');
+
+                            for ($day = 1; $day <= 7; $day++) {
+                                switch ($day) {
+                                case 1:
+                                    $d = $form_monday->getData();
+                                    break;
+                                case 2:
+                                    $d = $form_tuesday->getData();
+                                    break;
+                                case 3:
+                                    $d = $form_wednesday->getData();
+                                    break;
+                                case 4:
+                                    $d = $form_thursday->getData();
+                                    break;
+                                case 5:
+                                    $d = $form_friday->getData();
+                                    break;
+                                case 6:
+                                    $d = $form_saturday->getData();
+                                    break;
+                                case 7:
+                                    $d = $form_sunday->getData();
+                                    break;
+                                }
+
+                                $intervals = preg_split("/\n/", $d['available_timeslots']);
+                                foreach ($intervals as $interval) {
+                                    $interval = trim($interval);
+
+                                    $this->buildInterval($field, $day, $interval);
+                                }
+                            }
+                    }
+
+                    $this->post($field, $fl);
+                    $em->flush();
+
+                    return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
+
+                }
             }
         }
 
@@ -190,5 +241,22 @@ class AdminIntervalController extends Controller
         $em->persist($interval);
 
         return $interval;
+    }
+
+    protected function post(\Club\BookingBundle\Entity\Field $field, $fl)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $field->setFieldLayout($fl);
+        $em->persist($field);
+
+        $intervals = $em->getRepository('ClubBookingBundle:Interval')->findBy(array(
+            'valid_to' => null,
+            'field' => $field->getId()
+        ));
+        foreach ($intervals as $interval) {
+            $interval->setValidTo(new \DateTime());
+            $em->persist($interval);
+        }
     }
 }
