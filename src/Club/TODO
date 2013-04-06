@@ -1,4 +1,5 @@
 add payment to events
+create new order when subscription should be recreated
 
 == NOTES TO LATER ==
 create unique index (message_users, message_events, message_groups)
@@ -42,7 +43,6 @@ users should be able to create multiple emails, phone
 more simple to book fields, if no payment, no need to confirm
 make sure user only can use teams in member ship status period
 add double in league
-make it a setting if all should be able to make events
 search users on creating date
 be able to create product packages
 add images to products
@@ -84,14 +84,12 @@ add defaults during install:
 fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
-on admin interval manager, put a default interval in top, that will set the same for everyone
 login through booking page
 login through team attend page
 what will happen if interval access multiple days
 dynamic number of partners for a booking, from 0 to 888
 something is broken when creating more intervals on the same field, fix it
 find a way for family subscription
-price on event, has to be optional to use the club system, or pay on arrival
 bind coupon to specific product
 move all login pages to /user, or something simulair
 not 2 schedules can have the same interval
