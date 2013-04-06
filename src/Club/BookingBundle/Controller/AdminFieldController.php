@@ -18,9 +18,7 @@ class AdminFieldController extends Controller
   public function indexAction()
   {
     $em = $this->getDoctrine()->getManager();
-    $fields = $em->getRepository('ClubBookingBundle:Field')->findBy(array(),array(
-      'position' => 'ASC'
-    ));
+    $fields = $em->getRepository('ClubBookingBundle:Field')->getAll();
 
     return array(
       'fields' => $fields
@@ -51,7 +49,7 @@ class AdminFieldController extends Controller
         $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_admininterval_index', array(
-          'field_id' => $field->getId()
+          'id' => $field->getId()
         )));
       }
     }

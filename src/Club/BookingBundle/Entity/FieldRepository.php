@@ -144,4 +144,13 @@ class FieldRepository extends EntityRepository
       ->getQuery()
       ->getResult();
   }
+
+  public function getAll()
+  {
+      return $this->createQueryBuilder('f')
+          ->orderBy('f.location', 'ASC')
+          ->addOrderBy('f.position', 'ASC')
+          ->getQuery()
+          ->getResult();
+  }
 }
