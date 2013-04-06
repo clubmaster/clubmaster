@@ -18,7 +18,6 @@ give warning if you try to make a booking plan above a booking
 make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
 add exceptions to team
 add ics format for team handling
-check phpscheduleit for interval update
 check opencart for better shop experience
 check conventus to better booking system
 check tidyclub for better user system

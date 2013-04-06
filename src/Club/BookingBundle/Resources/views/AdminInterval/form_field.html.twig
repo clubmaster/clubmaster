@@ -1,0 +1,49 @@
+<div class="tab-pane {% if active is defined %}active{% endif %}" id="{{ day }}">
+    {{ form_row(form.available_timeslots, {'attr':{'class':'big'}}) }}
+
+    <p>Create slots every {{ form_widget(form.interval, {'attr':{'class':'input-mini'}}) }} minutes between {{ form_widget(form.open, {'attr':{'class':'input-mini'}}) }} and {{ form_widget(form.close, {'attr':{'class':'input-mini'}}) }}<br>
+    <span id="update_{{ day }}" class="btn btn-small">update</span></p>
+
+    {{ form_rest(form) }}
+</div>
+
+<script type="text/javascript">
+$("#update_{{ day }}").click(function() {
+    var interval = $("#{{ day }}_interval").val();
+
+    var n_open = $("#{{ day }}_open").val().split(":");
+    var open = new Date();
+    open.setHours(n_open[0]);
+    open.setMinutes(n_open[1]);
+    open.setSeconds(0);
+
+    var n_close = $("#{{ day }}_close").val().split(":");
+    var close = new Date();
+    close.setHours(n_close[0]);
+    close.setMinutes(n_close[1]);
+    close.setSeconds(0);
+
+    var available = '';
+    while (open.getTime() < close.getTime()) {
+        available += clubGet(open.getHours()) + ':' + clubGet(open.getMinutes());
+        available += '-';
+
+        var n = (open.getTime()+(interval*60*1000));
+        open.setTime(n);
+
+        available += clubGet(open.getHours()) + ':' + clubGet(open.getMinutes());
+        available += "\n";
+    }
+
+    $("#{{ day }}_available_timeslots").attr("value", available);
+});
+
+function clubGet(number)
+{
+    if (number < 10) {
+        return "0" + number;
+    } else {
+        return number;
+    }
+}
+</script>

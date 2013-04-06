@@ -2,52 +2,59 @@
 
 {% block body %}
 
-<form method="post" action="{{ path('club_booking_admininterval_manage', {'field_id':field.id}) }}" class="form-horizontal">
+{{ form_widget(form) }}
 
-<fieldset>
-  <legend>Generel Information</legend>
-  {{ form_row(form.start_date) }}
-</fieldset>
+<ul class="nav nav-tabs" id="interval">
+  <li class="active"><a href="#monday">Monday</a></li>
+  <li><a href="#tuesday">Tuesday</a></li>
+  <li><a href="#wednesday">Wednesday</a></li>
+  <li><a href="#thursday">Thursday</a></li>
+  <li><a href="#friday">Friday</a></li>
+  <li><a href="#saturday">Saturday</a></li>
+  <li><a href="#sunday">Sunday</a></li>
+</ul>
 
-<fieldset>
-  <legend>{% trans %}Monday{% endtrans %}</legend>
-  {{ form_widget(form.1) }}
-</fieldset>
+<div class="tab-content">
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'monday', 'form':form_monday, 'active':true} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'tuesday', 'form':form_tuesday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'wednesday', 'form':form_wednesday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'thursday', 'form':form_thursday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'friday', 'form':form_friday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'saturday', 'form':form_saturday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'sunday', 'form':form_sunday} %}
+</div>
 
-<fieldset>
-  <legend>{% trans %}Tuesday{% endtrans %}</legend>
-  {{ form_widget(form.2) }}
-</fieldset>
+<div class="same_layout">
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'all', 'form':form_all} %}
+</div>
 
-<fieldset>
-  <legend>{% trans %}Wednesday{% endtrans %}</legend>
-  {{ form_widget(form.3) }}
-</fieldset>
+<script>
 
-<fieldset>
-  <legend>{% trans %}Tursday{% endtrans %}</legend>
-  {{ form_widget(form.4) }}
-</fieldset>
+$(document).ready(function() {
+    setView();
+});
 
-<fieldset>
-  <legend>{% trans %}Friday{% endtrans %}</legend>
-  {{ form_widget(form.5) }}
-</fieldset>
+$("#form_same_layout_all_days").change(function() {
+    setView();
+});
 
-<fieldset>
-  <legend>{% trans %}Saturday{% endtrans %}</legend>
-  {{ form_widget(form.6) }}
-</fieldset>
+$('#interval a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
 
-<fieldset>
-  <legend>{% trans %}Sunday{% endtrans %}</legend>
-  {{ form_widget(form.7) }}
-</fieldset>
-
-{{ form_rest(form) }}
-
-{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
-</form>
+function setView()
+{
+    if ($("#form_same_layout_all_days").is(':checked')) {
+        $(".same_layout").show();
+        $(".tab-content").hide();
+        $(".nav-tabs").hide();
+    } else {
+        $(".same_layout").hide();
+        $(".tab-content").show();
+        $(".nav-tabs").show();
+    }
+}
+</script>
 
 {% endblock %}
