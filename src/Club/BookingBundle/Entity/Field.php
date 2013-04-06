@@ -60,6 +60,20 @@ class Field
     protected $close;
 
     /**
+     * @var string $field_layout
+     *
+     * @ORM\Column(type="text")
+     */
+    protected $field_layout;
+
+    /**
+     * @var boolean $same_layout_every_day
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $same_layout_every_day;
+
+    /**
      * @var datetime $created_at
      *
      * @ORM\Column(type="datetime")
@@ -218,6 +232,7 @@ class Field
     public function __construct()
     {
         $this->intervals = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->same_layout_every_day = true;
     }
 
     /**
@@ -348,5 +363,51 @@ class Field
     public function removeInterval(\Club\BookingBundle\Entity\Interval $intervals)
     {
         $this->intervals->removeElement($intervals);
+    }
+
+    /**
+     * Set same_layout_every_day
+     *
+     * @param boolean $sameLayoutEveryDay
+     * @return Field
+     */
+    public function setSameLayoutEveryDay($sameLayoutEveryDay)
+    {
+        $this->same_layout_every_day = $sameLayoutEveryDay;
+
+        return $this;
+    }
+
+    /**
+     * Get same_layout_every_day
+     *
+     * @return boolean
+     */
+    public function getSameLayoutEveryDay()
+    {
+        return $this->same_layout_every_day;
+    }
+
+    /**
+     * Set field_layout
+     *
+     * @param string $fieldLayout
+     * @return Field
+     */
+    public function setFieldLayout($fieldLayout)
+    {
+        $this->field_layout = $fieldLayout;
+
+        return $this;
+    }
+
+    /**
+     * Get field_layout
+     *
+     * @return string
+     */
+    public function getFieldLayout()
+    {
+        return $this->field_layout;
     }
 }

@@ -40,7 +40,7 @@ $(document).ready(function() {
     setView();
 });
 
-$("#form_same_layout_all_days").change(function() {
+$("#form_same_layout_every_day").change(function() {
     setView();
 });
 
@@ -51,7 +51,7 @@ $('#interval a').click(function (e) {
 
 function setView()
 {
-    if ($("#form_same_layout_all_days").is(':checked')) {
+    if ($("#form_same_layout_every_day").is(':checked')) {
         $(".same_layout").show();
         $(".tab-content").hide();
         $(".nav-tabs").hide();
