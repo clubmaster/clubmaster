@@ -30,6 +30,8 @@ class AdminUserController extends Controller
     $em->persist($message);
     $em->flush();
 
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
     return $this->redirect($this->generateUrl('club_message_adminmessage_edit', array(
         'id' => $message->getId()
     )));
