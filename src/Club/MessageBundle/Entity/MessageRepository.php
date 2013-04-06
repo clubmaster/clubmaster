@@ -12,33 +12,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class MessageRepository extends EntityRepository
 {
-    public function getCount()
+    public function getCount($type=null)
     {
-        return count($this->getQueryBuilder()->getQuery()->getResult());
+        return count($this->getQueryBuilder($type)->getQuery()->getResult());
     }
 
-    public function getWithPagination($offset = 0, $limit = 0)
+    public function getWithPagination($offset = 0, $limit = 0, $type=null)
     {
-        return $this->getQueryBuilder()
+        return $this->getQueryBuilder($type)
             ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
 
-    private function getQueryBuilder()
+    private function getQueryBuilder($type=null)
     {
-        return $this->_em->createQueryBuilder()
-            ->select('m')
-            ->from('ClubMessageBundle:Message','m')
+        $qb = $this
+            ->createQueryBuilder('m')
             ->orderBy('m.id','DESC');
+
+        if ($type == 'archive') {
+            $qb->where('m.processed = true');
+        }
+
+        return $qb;
     }
 
     public function getAllReady()
     {
-        return $this->_em->createQueryBuilder()
-            ->select('m')
-            ->from('ClubMessageBundle:Message','m')
+        return $this->_em->createQueryBuilder('m')
             ->where('m.ready = 1')
             ->andWhere('m.processed = 0')
             ->getQuery()

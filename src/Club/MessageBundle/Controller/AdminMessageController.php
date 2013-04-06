@@ -7,24 +7,39 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/message")
  */
 class AdminMessageController extends Controller
 {
   /**
-   * @Route("/message/page/{page}", name="club_message_adminmessage_index_page")
-   * @Route("/message")
+   * @Route("/")
    * @Template()
    */
   public function indexAction($page = null)
   {
     $em = $this->getDoctrine()->getManager();
 
-    $count = $em->getRepository('ClubMessageBundle:Message')->getCount();
-    $nav = $this->get('club_paginator.paginator')
-        ->init(20, $count, $page, 'club_message_adminmessage_index_page');
+    $messages = $em->getRepository('ClubMessageBundle:Message')->getDrafts();
 
-    $messages = $em->getRepository('ClubMessageBundle:Message')->getWithPagination($nav->getOffset(),$nav->getLimit());
+    return array(
+      'messages' => $messages
+    );
+  }
+
+  /**
+   * @Route("/archive/page/{page}", name="club_message_adminmessage_archive_page")
+   * @Route("/archive/")
+   * @Template()
+   */
+  public function archiveAction($page = null)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $count = $em->getRepository('ClubMessageBundle:Message')->getCount('archive');
+    $nav = $this->get('club_paginator.paginator')
+        ->init(20, $count, $page, 'club_message_adminmessage_archive_page');
+
+    $messages = $em->getRepository('ClubMessageBundle:Message')->getWithPagination($nav->getOffset(),$nav->getLimit(),'archive');
 
     return array(
       'messages' => $messages,
@@ -33,7 +48,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/{id}")
+   * @Route("/recipient/{id}")
    * @Template()
    */
   public function recipientAction($id)
@@ -81,7 +96,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/new")
+   * @Route("/new")
    * @Template()
    */
   public function newAction()
@@ -108,7 +123,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/delete/{id}")
+   * @Route("/delete/{id}")
    * @Template()
    */
   public function deleteAction($id)
@@ -124,7 +139,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/edit/{id}")
+   * @Route("/edit/{id}")
    * @Template()
    */
   public function editAction($id)
@@ -152,7 +167,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/show/{id}")
+   * @Route("/show/{id}")
    * @Template()
    */
   public function showAction($id)
@@ -168,7 +183,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/attachment/delete/{id}")
+   * @Route("/attachment/delete/{id}")
    */
   public function attachmentDeleteAction($id)
   {
@@ -182,7 +197,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/attachment/{id}")
+   * @Route("/attachment/{id}")
    * @Template()
    */
   public function attachmentAction($id)
@@ -216,7 +231,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/event/{id}")
+   * @Route("/recipient/event/{id}")
    * @Template()
    */
   public function recipientEventAction($id)
@@ -249,7 +264,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/group/{id}")
+   * @Route("/recipient/group/{id}")
    * @Template()
    */
   public function recipientGroupAction($id)
@@ -282,7 +297,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/user/delete/{message_id}/{id}")
+   * @Route("/recipient/user/delete/{message_id}/{id}")
    * @Template()
    */
   public function recipientUserDeleteAction($message_id, $id)
@@ -299,7 +314,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/group/delete/{message_id}/{id}")
+   * @Route("/recipient/group/delete/{message_id}/{id}")
    * @Template()
    */
   public function recipientGroupDeleteAction($message_id, $id)
@@ -316,7 +331,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/event/delete/{message_id}/{id}")
+   * @Route("/recipient/event/delete/{message_id}/{id}")
    * @Template()
    */
   public function recipientEventDeleteAction($message_id, $id)
@@ -333,7 +348,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/recipient/user/{id}")
+   * @Route("/recipient/user/{id}")
    * @Template()
    */
   public function recipientUserAction($id)
@@ -365,7 +380,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/log/{id}")
+   * @Route("/log/{id}")
    * @Template()
    */
   public function logAction($id)
@@ -379,7 +394,7 @@ class AdminMessageController extends Controller
   }
 
   /**
-   * @Route("/message/process/{id}")
+   * @Route("/process/{id}")
    */
   public function processAction($id)
   {
