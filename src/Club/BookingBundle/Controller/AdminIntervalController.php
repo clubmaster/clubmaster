@@ -13,107 +13,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminIntervalController extends Controller
 {
     /**
-     * @Route("/{field_id}")
+     * @Route("/{id}")
      * @Template()
      */
-    public function indexAction($field_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $field = $em->find('ClubBookingBundle:Field', $field_id);
-        $intervals = $em->getRepository('ClubBookingBundle:Interval')->findValidByField($field);
-
-        return array(
-            'intervals' => $intervals,
-            'field' => $field
-        );
-    }
-
-    /**
-     * @Route("/{field_id}/new")
-     * @Template()
-     */
-    public function newAction($field_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $field = $em->find('ClubBookingBundle:Field', $field_id);
-        $interval = new \Club\BookingBundle\Entity\Interval();
-        $interval->setField($field);
-        $res = $this->process($interval);
-
-        if ($res instanceOf RedirectResponse)
-
-            return $res;
-
-        return array(
-            'form' => $res->createView(),
-            'field' => $field
-        );
-    }
-
-    /**
-     * @Route("/edit/{id}")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $interval = $em->find('ClubBookingBundle:Interval',$id);
-
-        $res = $this->process($interval);
-
-        if ($res instanceOf RedirectResponse)
-
-            return $res;
-
-        return array(
-            'interval' => $interval,
-            'form' => $res->createView()
-        );
-    }
-
-    /**
-     * @Route("/delete/{id}")
-     */
-    public function deleteAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $interval = $em->find('ClubBookingBundle:Interval',$this->getRequest()->get('id'));
-
-        $em->remove($interval);
-        $em->flush();
-
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-        return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $interval->getField()->getId())));
-    }
-
-    protected function process($interval)
-    {
-        $form = $this->getForm($interval);
-
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($interval);
-                $em->flush();
-
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-                return $this->redirect($this->generateUrl('club_booking_admininterval_index', array('field_id' => $interval->getField()->getId())));
-            }
-        }
-
-        return $form;
-    }
-
-    /**
-     * @Route("/{field_id}/manage")
-     * @Template()
-     */
-    public function manageAction($field_id)
+    public function indexAction(\Club\BookingBundle\Entity\Field $field)
     {
         $data = array(
             'same_layout_all_days' => true
@@ -141,7 +44,23 @@ class AdminIntervalController extends Controller
         $form_saturday = $this->getIntervalForm($data_saturday, 'saturday');
         $form_sunday = $this->getIntervalForm($data_sunday, 'sunday');
 
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                if ($data['same_layout_all_days']) {
+                    $form_all->bind($this->getRequest());
+
+                    $d = $form_all->getData();
+                    var_dump($d);die();
+                } else {
+                }
+            }
+        }
+
         return array(
+            'field' => $field,
             'form' => $form->createView(),
             'form_all' => $form_all->createView(),
             'form_monday' => $form_monday->createView(),
@@ -152,26 +71,6 @@ class AdminIntervalController extends Controller
             'form_saturday' => $form_saturday->createView(),
             'form_sunday' => $form_sunday->createView(),
         );
-    }
-
-    protected function getForm($interval)
-    {
-        return $this->createFormBuilder($interval)
-            ->add('day', 'choice', array(
-                'choices' => $this->get('club_booking.interval')->getDays()
-            ))
-            ->add('start_time')
-            ->add('stop_time')
-            ->add('field')
-            ->add('valid_from', 'jquery_datetime', array(
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text'
-            ))
-            ->add('valid_to', 'jquery_datetime', array(
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text'
-            ))
-            ->getForm();
     }
 
     protected function getIntervalForm($data, $prefix)

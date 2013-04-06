@@ -1,50 +1,66 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_booking_admininterval_new', {'field_id':field.id}) }}">{% trans %}Create interval{% endtrans %}</a></li>
-            <li><a href="{{ path('club_booking_admininterval_manage', {'field_id':field.id}) }}">{% trans %}Manage intervals{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-
 {% block body %}
-<table class="table">
-  <thead>
-    <tr>
-      <th>{% trans %}Location{% endtrans %}</th>
-      <th>{% trans %}Field{% endtrans %}</th>
-      <th>{% trans %}Day{% endtrans %}</th>
-      <th>{% trans %}Start time{% endtrans %}</th>
-      <th>{% trans %}Stop time{% endtrans %}</th>
-      <th>{% trans %}Valid from{% endtrans %}</th>
-      <th>{% trans %}Valid to{% endtrans %}</th>
-      <th class="action">{% trans %}Action{% endtrans %}</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for interval in intervals %}
-    <tr>
-      <td>{{ interval.field.location }}</td>
-      <td>{{ interval.field }}</td>
-      <td>{{ interval.day|club_day }}</td>
-      <td>{{ interval.startTime|club_time }}</td>
-      <td>{{ interval.stopTime|club_time }}</td>
-      <td>{{ interval.validFrom|club_datetime }}</td>
-      <td>{{ interval.validTo|club_datetime }}</td>
-      <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_admininterval_edit', { 'id':interval.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_admininterval_delete', { 'id':interval.id })} %}
-      </td>
-    </tr>
-  {% else %}
-  <tr>
-    <td colspan="8">{% trans %}There are no intervals.{% endtrans %}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-</table>
+
+<form method="post" action="{{ path('club_booking_admininterval_index', {'id':field.id}) }}">
+
+{{ form_widget(form) }}
+
+<ul class="nav nav-tabs" id="interval">
+  <li class="active"><a href="#monday">Monday</a></li>
+  <li><a href="#tuesday">Tuesday</a></li>
+  <li><a href="#wednesday">Wednesday</a></li>
+  <li><a href="#thursday">Thursday</a></li>
+  <li><a href="#friday">Friday</a></li>
+  <li><a href="#saturday">Saturday</a></li>
+  <li><a href="#sunday">Sunday</a></li>
+</ul>
+
+<div class="tab-content">
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'monday', 'form':form_monday, 'active':true} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'tuesday', 'form':form_tuesday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'wednesday', 'form':form_wednesday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'thursday', 'form':form_thursday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'friday', 'form':form_friday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'saturday', 'form':form_saturday} %}
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'sunday', 'form':form_sunday} %}
+</div>
+
+<div class="same_layout">
+    {% include "ClubBookingBundle:AdminInterval:form_field.html.twig" with {'day':'all', 'form':form_all} %}
+</div>
+
+{% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+
+</form>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    setView();
+});
+
+$("#form_same_layout_all_days").change(function() {
+    setView();
+});
+
+$('#interval a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+
+function setView()
+{
+    if ($("#form_same_layout_all_days").is(':checked')) {
+        $(".same_layout").show();
+        $(".tab-content").hide();
+        $(".nav-tabs").hide();
+    } else {
+        $(".same_layout").hide();
+        $(".tab-content").show();
+        $(".nav-tabs").show();
+    }
+}
+</script>
+
 {% endblock %}

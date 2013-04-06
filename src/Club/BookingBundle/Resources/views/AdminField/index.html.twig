@@ -33,7 +33,7 @@
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_booking_adminfield_edit', { 'id':field.id })} %}
         {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_booking_adminfield_delete', { 'id':field.id })} %}
-        {% include "ClubLayoutBundle:Default:interval_link.html.twig" with {'url':path('club_booking_admininterval_index', { 'field_id':field.id })} %}
+        {% include "ClubLayoutBundle:Default:interval_link.html.twig" with {'url':path('club_booking_admininterval_index', { 'id':field.id })} %}
       </td>
     </tr>
   {% else %}
