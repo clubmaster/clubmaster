@@ -1,5 +1,4 @@
 create new order when subscription should be recreated
-cleanup shopping carts
 make sure quantity really works
 remake oneventattend event, add attend object instead
 
