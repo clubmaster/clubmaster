@@ -1,5 +1,7 @@
-add payment to events
 create new order when subscription should be recreated
+cleanup shopping carts
+make sure quantity really works
+remake oneventattend event, add attend object instead
 
 == NOTES TO LATER ==
 create unique index (message_users, message_events, message_groups)

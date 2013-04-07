@@ -245,17 +245,19 @@ class Order
             $this->em->persist($opa);
         }
 
-        switch (true) {
-        case $product->getProduct()->getQuantity() == '0':
-            throw new \Club\ShopBundle\Exception\NotInStockException('No more products left');
-            break;
-        case $product->getProduct()->getQuantity() == '-1':
-            break;
-        default:
-            $quantity = $product->getProduct()->getQuantity()-1;
-            $product->getProduct()->setQuantity($quantity);
+        if ($product->getProduct() instanceof \Club\ShopBundle\Entity\Product) {
+            switch (true) {
+            case $product->getProduct()->getQuantity() == '0':
+                throw new \Club\ShopBundle\Exception\NotInStockException('No more products left');
+                break;
+            case $product->getProduct()->getQuantity() == '-1':
+                break;
+            default:
+                $quantity = $product->getProduct()->getQuantity()-1;
+                $product->getProduct()->setQuantity($quantity);
 
-            $this->em->persist($product->getProduct());
+                $this->em->persist($product->getProduct());
+            }
         }
 
         $this->em->persist($op);
@@ -318,7 +320,7 @@ class Order
 
         $delivered = true;
         foreach ($this->order->getProducts() as $prod) {
-            if (!preg_match("/(subscription|guest_booking|coupon)/", $prod->getType())) $delivered = false;
+            if (!preg_match("/(subscription|guest_booking|event|coupon)/", $prod->getType())) $delivered = false;
 
             if ($prod->getProduct()) {
                 // use for economic bundle

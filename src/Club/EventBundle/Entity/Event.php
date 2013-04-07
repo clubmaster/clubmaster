@@ -38,6 +38,14 @@ class Event
     protected $description;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     *
+     * @var string $price
+     */
+    protected $price;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      *
      * @var string $max_attends
@@ -302,6 +310,7 @@ class Event
 
     public function __construct()
     {
+        $this->price = 0;
         $this->setPublic(true);
         $this->setStartDate(new \DateTime(date('Y-m-d 18:00:00')));
         $this->setStopDate(new \DateTime(date('Y-m-d 22:00:00')));
@@ -543,6 +552,29 @@ class Event
 
         if ($this->getCountry()) $res .= $this->getCountry();
 
-        return preg_replace("/, /", "", $res);
+        return preg_replace("/, $/", "", $res);
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     * @return Event
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

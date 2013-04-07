@@ -11,29 +11,61 @@
 {% endblock %}
 
 {% block body %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>{% trans %}Event Name{% endtrans %}</th>
-            <th>{% trans %}Date{% endtrans %}</th>
-            <th>{% trans %}Action{% endtrans %}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for event in events %}
-        <tr>
-            <td><a href="{{ path('event_event_show', {'id':event.id}) }}"/>{{ event.eventName }}</a></td>
-            <td>{{ event.startDate|club_datetime }}</td>
-            <td>
-                {% include "ClubLayoutBundle:Default:show_link.html.twig" with {'url':path('event_event_show', {'id':event.id})} %}
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="3">{% trans %}There are no planned events.{% endtrans %}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% for event in events %}
+
+<div class="well well-small">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="pull-left">
+                <div class="media-object calendar-header">
+                    <p>
+                        <span class="date">{{ event.startDate|date('d') }}</span><br />
+                        {{ event.startDate|date('M') }}<br />
+                        {{ event.startDate|date('Y') }}
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-left: 100px;">
+                <p class="lead">{{ event.eventName }}</p>
+                <p>{{ event.description|raw }}</p>
+
+                <table cellpadding="0" cellspading="0">
+                    <tr>
+                        <td>
+                            <strong>Time:</strong> {{ event.startDate|club_date('full') }} - at {{ event.startDate|club_time }} - {{ event.stopDate|club_time }}<br />
+                            <strong>Location:</strong> {{ event.locationString }}<br />
+                            <strong>Last subscribe:</strong> {{ event.lastSubscribe|club_datetime }}
+                        </td>
+                        <td width="30"></td>
+                        <td>
+                            <a target="_open" href="http://maps.google.com/?q={{ event.locationString }}"><img src="{{ asset('bundles/clublayout/images/icons/32x32/map.png') }}" /></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <hr>
+                {% if event.price == '0' %}
+                <p class="pull-left"><strong>Price:</strong> Free!</p>
+                {% else %}
+                <p class="pull-left"><strong>Price:</strong> {{ event.price|club_price }}</p>
+                {% endif %}
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and event.isOpen %}
+                    {% if event.isAttending(app.user) %}
+                        <a class="btn pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+                    {% else %}
+                        <a class="btn btn-primary pull-right" href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="well well-large"><strong>{% trans %}There are no planned events.{% endtrans %}</strong></div>
+{% endfor %}
 
 {% endblock %}

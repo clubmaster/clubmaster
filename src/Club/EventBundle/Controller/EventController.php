@@ -44,33 +44,29 @@ class EventController extends Controller
      */
     public function attendAction(\Club\EventBundle\Entity\Event $event)
     {
-        if (!$event->isOpen()) {
-            $this->get('session')->setFlash('error',$this->get('translator')->trans('Subscription to event is not open'));
-        } else {
+        try {
+            $this->get('club_event.event')->validateAttend($event, $this->getUser());
 
-            $attend = new \Club\EventBundle\Entity\Attend();
-            $attend->setUser($this->getUser());
-            $attend->setEvent($event);
+            if ($event->getPrice() > 0) {
+                $prod = new \Club\ShopBundle\Entity\CartProduct();
+                $prod->setPrice($event->getPrice());
+                $prod->setType('event');
+                $prod->setProductName(sprintf("Event: %s, #%d",
+                    $event->getEventName(),
+                    $event->getId()
+                ));
 
-            $errors = $this->get('validator')->validate($attend);
-            if (count($errors) > 0) {
-                foreach ($errors as $error) {
-                    $this->get('session')->setFlash('error',$error->getMessage());
-                }
+                $this->get('cart')->addToCart($prod);
+
+                return $this->redirect($this->generateUrl('shop_checkout'));
             } else {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($attend);
-
-                $errors = $this->get('validator')->validate($attend);
-                if (!count($errors)) {
-                    $em->flush();
-                }
-
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-
-                $e = new \Club\EventBundle\Event\FilterEventEvent($event);
-                $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
+                $this->get('club_event.event')->attend($event, $this->getUser());
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
             }
+        } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
+            $this->get('session')->getFlashBag()->add('error',$e->getMessage());
+        } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
+            $this->get('session')->getFlashBag()->add('error',$e->getMessage());
         }
 
         return $this->redirect($this->generateUrl('event_event'));

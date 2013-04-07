@@ -24,6 +24,7 @@ class ClubEventExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
+        $loader->load('services.yml');
         if ($config['enabled']) $loader->load('listener.yml');
 
         $container->setParameter('club_event.enabled', $config['enabled']);

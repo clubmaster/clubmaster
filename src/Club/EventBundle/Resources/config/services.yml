@@ -1,0 +1,4 @@
+services:
+    club_event.event:
+        class: Club\EventBundle\Helper\Event
+        arguments: [@service_container]

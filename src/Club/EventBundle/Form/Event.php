@@ -13,6 +13,7 @@ class Event extends AbstractType
     $builder->add('event_name');
     $builder->add('description', 'tinymce');
     $builder->add('max_attends');
+    $builder->add('price');
     $builder->add('start_date', 'jquery_datetime', array(
         'date_widget' => 'single_text',
         'time_widget' => 'single_text'

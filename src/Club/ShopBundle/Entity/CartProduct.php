@@ -69,6 +69,7 @@ class CartProduct
 
     public function __construct()
     {
+        $this->quantity = 1;
         $this->cart_product_attributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

@@ -36,6 +36,7 @@ class EventRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->where('e.start_date >= :start_date')
+            ->orderBy('e.start_date', 'ASC')
             ->setParameter('start_date', new \DateTime());
 
         if (!$public) {

@@ -8,12 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/event/event")
  */
 class AdminEventController extends Controller
 {
   /**
-   * @Route("/event/event", name="admin_event_event")
+   * @Route("", name="admin_event_event")
    * @Template()
    */
   public function indexAction()
@@ -30,7 +30,7 @@ class AdminEventController extends Controller
   }
 
   /**
-   * @Route("/event/event/new/{year}/{month}", defaults={"year" = null, "month" = null})
+   * @Route("/new/{year}/{month}", defaults={"year" = null, "month" = null})
    * @Template()
    */
   public function newAction($year, $month)
@@ -49,7 +49,7 @@ class AdminEventController extends Controller
   }
 
   /**
-   * @Route("/event/event/edit/{id}", name="admin_event_event_edit")
+   * @Route("/edit/{id}", name="admin_event_event_edit")
    * @Template()
    */
   public function editAction(\Club\EventBundle\Entity\Event $event)
@@ -67,7 +67,7 @@ class AdminEventController extends Controller
   }
 
   /**
-   * @Route("/event/event/delete/{id}", name="admin_event_event_delete")
+   * @Route("/delete/{id}", name="admin_event_event_delete")
    */
   public function deleteAction(\Club\EventBundle\Entity\Event $event)
   {
