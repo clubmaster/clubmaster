@@ -48,6 +48,16 @@ class Cart
                 $this->cart->setLocation($location);
                 $this->setUser();
 
+                if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+                    if ($this->token->getUser()->getProfile()->getProfileAddress()) {
+                        $this->setAddresses($this->token->getUser()->getProfile()->getProfileAddress());
+                    }
+                }
+
+                $shippings = $this->em->getRepository('ClubShopBundle:Shipping')->findAll();
+                $shipping = array_shift($shippings);
+                $this->cart->setShipping($shipping);
+
                 $this->save();
             }
 

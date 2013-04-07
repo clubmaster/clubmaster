@@ -6,11 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CheckoutShipping extends AbstractType
+class CartPayment extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('shipping');
+      $builder->add('payment_method', 'entity', array(
+          'class' => 'Club\ShopBundle\Entity\PaymentMethod',
+          'expanded' => true
+      ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -22,6 +25,6 @@ class CheckoutShipping extends AbstractType
 
   public function getName()
   {
-    return 'checkout_shipping';
+    return 'cart_payment';
   }
 }

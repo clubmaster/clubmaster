@@ -7,22 +7,30 @@
 {% endblock %}
 
 {% block body %}
-<div class="span5">
 
-    <form method="post" action="{{ path('login_check') }}">
+<div class="well">
+    <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
         <legend>{% trans %}Existing member{% endtrans %}</legend>
         <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
 
-        <p><label class="req" for="_username">{% trans %}Username{% endtrans %}</label><br /><input size="40" type="text" id="_username" name="_username" required="required" class="input-text" /></p>
-        <p><label class="req" for="_password">{% trans %}Password{% endtrans %}</label><br /><input size="40" type="password" id="_password" name="_password" required="required" class="input-text" /></p>
-
-        {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Login'|trans} %}
+        <div class="control-group">
+            <label class="control-label" for="_username">{% trans %}Username{% endtrans %}</label>
+            <div class="controls">
+                <input type="text" id="_username" name="_username" placeholder="{% trans %}Username{% endtrans %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="_password">{% trans %}Password{% endtrans %}</label>
+            <div class="controls">
+                <input type="password" id="_password" name="_password" placeholder="{% trans %}Password{% endtrans %}">
+                <input type="submit" value="{% trans %}Login{% endtrans %}" class="btn btn-primary" />
+            </div>
+        </div>
     </form>
-
 </div>
 
-<div class="span6">
-    <form method="POST" action="{{ path('club_shop_checkout_signin') }}">
+<div class="well">
+    <form method="POST" action="{{ path('club_shop_checkout_signin') }}" class="form-horizontal">
     <legend>{% trans %}New member{% endtrans %}</legend>
     <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
 

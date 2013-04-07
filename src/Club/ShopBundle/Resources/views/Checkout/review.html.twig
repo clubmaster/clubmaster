@@ -1,28 +1,42 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block body %}
-{% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'review'} %}
-
 <h3>{% trans %}Review order{% endtrans %}</h3>
+<p><a href="{{ path('shop_checkout') }}" class="btn">{% trans %}Edit order{% endtrans %}</a></p>
+
 {% include "ClubShopBundle:Checkout:cart_confirm.html.twig" %}
 
-<h3>{% trans %}Customer Information{% endtrans %}</h3>
-<p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
-{% trans with {'%vat%':cart.customerAddress.companyName} %}VAT: %vat%{% endtrans %}<br />
-{% trans with {'%firstname%':cart.customerAddress.firstName,'%lastname%':cart.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
-{% trans with {'%street%':cart.customerAddress.street} %}Street: %street%{% endtrans %}<br />
-{% trans with {'%postal%':cart.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
-{% trans with {'%city%':cart.customerAddress.city} %}City: %city%{% endtrans %}<br />
-{% trans with {'%country%':cart.customerAddress.country} %}Country: %country%{% endtrans %}</p>
+<div class="row-fluid">
+    <div class="span4">
+        <h3>{% trans %}Customer Information{% endtrans %}</h3>
+        <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit customer{% endtrans %}</a></p>
 
-<h3>{% trans %}Payment Information{% endtrans %}</h3>
-<p>{{ cart.paymentMethod }}</p>
+        <p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
+        {% trans with {'%vat%':cart.customerAddress.companyName} %}VAT: %vat%{% endtrans %}<br />
+        {% trans with {'%firstname%':cart.customerAddress.firstName,'%lastname%':cart.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
+        {% trans with {'%street%':cart.customerAddress.street} %}Street: %street%{% endtrans %}<br />
+        {% trans with {'%postal%':cart.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
+        {% trans with {'%city%':cart.customerAddress.city} %}City: %city%{% endtrans %}<br />
+        {% trans with {'%country%':cart.customerAddress.country} %}Country: %country%{% endtrans %}</p>
+    </div>
 
-<h3>{% trans %}Shipping Information{% endtrans %}</h3>
-<p>{{ cart.shipping }}</p>
+    <div class="span4">
+        <h3>{% trans %}Shipping Information{% endtrans %}</h3>
+        <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit shipping{% endtrans %}</a></p>
 
-<form method="POST" action="{{ path('shop_checkout_process') }}" class="form-horizontal">
-    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Confirm order'|trans} %}
-</form>
+        <p>{{ cart.shipping }}</p>
+    </div>
 
+    <div class="span4">
+        <h3>{% trans %}Payment Method{% endtrans %}</h3>
+
+        {% for payment in payments %}
+        <div class="well">
+            <h4>{{ payment.paymentMethodName }}</h4>
+            <a class="btn btn-primary" href="{{ path('shop_checkout_process', {'id':payment.id}) }}">{% trans %}Pay &raquo{% endtrans %}</a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
 {% endblock %}

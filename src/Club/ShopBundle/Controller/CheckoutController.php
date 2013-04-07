@@ -7,10 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
+/**
+ * @Route("/shop/checkout")
+ */
 class CheckoutController extends Controller
 {
     /**
-     * @Route("/shop/checkout", name="shop_checkout")
+     * @Route("", name="shop_checkout")
      * @Template()
      */
     public function indexAction()
@@ -24,7 +27,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/cart/increment/{id}")
+     * @Route("/increment/{id}")
      */
     public function incrementAction($id)
     {
@@ -37,7 +40,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/cart/decrement/{id}")
+     * @Route("/decrement/{id}")
      */
     public function decrementAction($id)
     {
@@ -50,10 +53,36 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/checkout/shipping", name="shop_checkout_shipping")
+     * @Route("/order", name="shop_checkout_order")
      * @Template()
      */
-    public function shippingAction()
+    public function orderAction()
+    {
+        $cart = $this->get('cart')->getCart();
+        $form = $this->createForm(new \Club\ShopBundle\Form\Cart, $cart);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($cart);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('shop_checkout_review'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Route("/review", name="shop_checkout_review")
+     * @Template()
+     */
+    public function reviewAction()
     {
         if (!count($this->get('cart')->getCart()->getCartProducts())) {
             $this->get('session')->setFlash('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
@@ -61,142 +90,29 @@ class CheckoutController extends Controller
             return $this->redirect($this->generateUrl('shop_checkout'));
         }
 
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'))
-
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
-
-        $em = $this->getDoctrine()->getManager();
-
-        $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
-        if (!count($shippings)) {
-            throw new Exception('You need to have a least one shipping method');
         }
 
-        if (count($shippings) == 1)
-            $this->get('cart')->setShipping($shippings[0]);
-
-        if (count($shippings) == 1 && $this->get('cart')->getCart()->getCustomerAddress())
-
-            return $this->redirect($this->generateUrl('shop_checkout_payment'));
-
-        $address = $this->get('cart')->getCart()->getCustomerAddress();
-        if (!$address)
-            $address = $this->getCustomerAddress($this->get('cart')->getCart());
-
-        $data = array();
-        $form1 = $this->createFormBuilder($data)
-            ->add('shipping', 'entity', array(
-                'class' => 'ClubShopBundle:Shipping',
-                'property' => 'shipping_name'
-            ))
-            ->getForm();
-
-        $form2 = $this->createForm(new \Club\ShopBundle\Form\CheckoutAddress(), $address);
-
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $error = false;
-
-            if ($this->getRequest()->get($form1->getName())) {
-                $form1->bind($this->getRequest());
-                if ($form1->isValid()) {
-
-                    $data = $form1->getData();
-                    $this->get('cart')->setShipping($data['shipping']);
-                } else {
-                    $error = true;
-                }
-            }
-            if ($this->getRequest()->get($form2->getName())) {
-                $form2->bind($this->getRequest());
-
-                if ($form2->isValid()) {
-                    $this->get('cart')->getCart()->setCustomerAddress($address);
-                    $this->get('cart')->getCart()->setShippingAddress($address);
-                    $this->get('cart')->getCart()->setBillingAddress($address);
-
-                    $em->persist($address);
-                    $em->flush();
-                } else {
-                    $error = true;
-                }
-            }
-
-            if (!$error) {
-                return $this->redirect($this->generateUrl('shop_checkout_payment'));
-            }
-        }
-
-        return array(
-            'form1' => $form1->createView(),
-            'form2' => $form2->createView(),
-            'active_page' => 'shipping'
-        );
-    }
-
-    /**
-     * @Route("/shop/checkout/payment", name="shop_checkout_payment")
-     * @Template()
-     */
-    public function paymentAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $payments = $this->get('shop_paymentmethod')->getAllArray();
-
-        if (!count($payments))
-            throw new Exception('You need to have at leats one payment method');
-
-        if (count($payments) == 1) {
-            $method = $em->find('ClubShopBundle:PaymentMethod', key($payments));
-            $this->get('cart')->setPayment($method);
-
-            return $this->redirect($this->generateUrl('shop_checkout_review'));
-        }
-
-        $form = $this->createFormBuilder()
-            ->add('payment_method', 'choice', array(
-                'choices' => $payments
-            ))
-            ->getForm();
-
+        $payments = $this->get('shop_paymentmethod')->getAll();
         $cart = $this->get('cart')->getCart();
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $r = $form->getData();
-                $method = $em->find('ClubShopBundle:PaymentMethod', $r['payment_method']);
-                $this->get('cart')->setPayment($method);
-
-                return $this->redirect($this->generateUrl('shop_checkout_review'));
-            }
-        }
-
         return array(
-            'form' => $form->createView(),
-            'cart' => $cart,
-            'active_page' => 'payment'
+            'payments' => $payments,
+            'cart' => $this->get('cart')->getCart()
         );
     }
 
     /**
-     * @Route("/shop/checkout/review", name="shop_checkout_review")
+     * @Route("/process/{id}", name="shop_checkout_process")
      * @Template()
      */
-    public function reviewAction()
-    {
-        return array(
-            'cart' => $this->get('cart')->getCart(),
-            'active_page' => 'review'
-        );
-    }
-
-    /**
-     * @Route("/shop/checkout/process", name="shop_checkout_process")
-     * @Template()
-     */
-    public function processAction()
+    public function processAction(\Club\ShopBundle\Entity\PaymentMethod $payment)
     {
         try {
+            $this->get('cart')->setPayment($payment);
+            $this->get('cart')->save();
+
             $cart = $this->get('cart')->getCart();
             if (!count($cart->getCartProducts())) {
                 $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
@@ -233,7 +149,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/cart/empty", name="shop_checkout_empty")
+     * @Route("/empty", name="shop_checkout_empty")
      */
     public function emptyCartAction()
     {
@@ -243,13 +159,13 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/signin")
+     * @Route("/signin")
      * @Template()
      */
     public function signinAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $this->get('session')->set('_security.target_path', '/shop/login');
+        $this->get('session')->set('_security.user.target_path', $this->generateUrl('club_shop_checkout_login', array(), true));
 
         $user = $this->get('clubmaster.user')->get();
         $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
@@ -278,7 +194,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/shop/login")
+     * @Route("/login")
      * @Template()
      * @Secure(roles="ROLE_USER")
      */
@@ -295,7 +211,7 @@ class CheckoutController extends Controller
         $this->get('cart')->setUser();
         $this->get('cart')->save();
 
-        return $this->redirect($this->generateUrl('shop_checkout'));
+        return $this->redirect($this->generateUrl('shop_checkout_review'));
     }
 
     protected function getCustomerAddress(\Club\ShopBundle\Entity\Cart $cart)

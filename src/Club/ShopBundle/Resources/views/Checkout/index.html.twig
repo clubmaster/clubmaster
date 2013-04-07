@@ -8,8 +8,6 @@
 
 {% block body %}
 
-{% include "ClubShopBundle:Checkout:checkouttop.html.twig" with {'page':'view'} %}
-
 <h3>{% trans %}View cart{% endtrans %}</h3>
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
@@ -19,7 +17,7 @@
   <a href="{{ path('shop_checkout_empty') }}" class="btn btn-danger">{% trans %}Empty cart{% endtrans %}</a>
   <a href="{{ path('shop') }}" class="btn btn-warning">{% trans %}Continue shopping{% endtrans %}</a>
   <a href="{{ path('club_shop_coupon_add') }}" class="btn btn-info">{% trans %}Use coupon{% endtrans %}</a>
-  <a href="{{ path('shop_checkout_shipping') }}" class="btn btn-primary">{% trans %}Checkout{% endtrans %}</a>
+  <a href="{{ path('shop_checkout_review') }}" class="btn btn-primary">{% trans %}Checkout{% endtrans %}</a>
 </p>
 
 {% endblock %}
