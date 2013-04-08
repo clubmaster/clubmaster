@@ -74,7 +74,7 @@ class AuthController extends Controller
         $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onPasswordReset, $event);
       }
 
-      $this->get('session')->setFlash('notice', $this->get('translator')->trans('You will receive an email within a few minutes.'));
+      $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('You will receive an email within a few minutes.'));
 
       $this->get('clubmaster_mailer')->flushQueue();
       return $this->redirect($this->generateUrl('homepage'));

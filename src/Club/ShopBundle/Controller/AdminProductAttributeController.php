@@ -28,14 +28,14 @@ class AdminProductAttributeController extends Controller
             if ($form->isValid()) {
                 $this->setData($product,$form->getData());
 
-                $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('admin_shop_product_attribute',array(
                     'id' => $id
                 )));
             } else {
                 foreach ($form->getErrors() as $error) {
-                    $this->get('session')->setFlash('error', $error->getMessage());
+                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
                 }
             }
         } else {

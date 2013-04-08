@@ -25,7 +25,7 @@ class FilterController extends Controller
                 return $this->redirect($this->generateUrl('admin_user_edit', array( 'id' => $user->getId() )));
             } else {
                 foreach ($form->get('user')->getErrors() as $error) {
-                    $this->get('session')->setFlash('error', $error->getMessage());
+                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
                 }
             }
         }

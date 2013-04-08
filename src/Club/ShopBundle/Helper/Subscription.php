@@ -18,7 +18,7 @@ class Subscription
   public function pauseSubscription($subscription)
   {
     if ($this->em->getRepository('ClubShopBundle:Subscription')->getAttributeForSubscription($subscription,'Lifetime')) {
-      $this->session->setFlash('error',$this->translator->trans('You cannot pause a lifetime membership.'));
+      $this->session->getFlashBag()->add('error',$this->translator->trans('You cannot pause a lifetime membership.'));
 
       return;
     }
@@ -26,7 +26,7 @@ class Subscription
     // validate that the user is allowed to pause
     $allowed = $this->em->getRepository('ClubShopBundle:Subscription')->getAllowedPauses($subscription);
     if (count($subscription->getSubscriptionPauses()) >= $allowed) {
-      $this->session->setFlash('error',$this->translator->trans('You cannot have anymore pauses.'));
+      $this->session->getFlashBag()->add('error',$this->translator->trans('You cannot have anymore pauses.'));
 
       return;
     }
@@ -42,7 +42,7 @@ class Subscription
 
     $this->em->flush();
 
-    $this->session->setFlash('notice',$this->translator->trans('Your subscription has been paused.'));
+    $this->session->getFlashBag()->add('notice',$this->translator->trans('Your subscription has been paused.'));
   }
 
   public function resumeSubscription($subscription)
@@ -59,7 +59,7 @@ class Subscription
     $this->em->persist($pause);
     $this->em->flush();
 
-    $this->session->setFlash('notice',$this->translator->trans('Your subscription is now resumed.'));
+    $this->session->getFlashBag()->add('notice',$this->translator->trans('Your subscription is now resumed.'));
   }
 
   public function stopSubscription($subscription)
@@ -102,7 +102,7 @@ class Subscription
     $left = $this->em->getRepository('ClubShopBundle:Subscription')->getTicketsLeft($subscription);
 
     if (($left-$tickets) < 0) {
-      $this->session->setFlash('error',$this->translator->trans('You do not have enough tickets.'));
+      $this->session->getFlashBag()->add('error',$this->translator->trans('You do not have enough tickets.'));
 
       return false;
 
@@ -118,6 +118,6 @@ class Subscription
     $this->em->persist($st);
     $this->em->flush();
 
-    $this->session->setFlash('notice',$this->translator->trans('The tickets has been removed from your account.'));
+    $this->session->getFlashBag()->add('notice',$this->translator->trans('The tickets has been removed from your account.'));
   }
 }

@@ -60,7 +60,7 @@ class TournamentController extends Controller
         ->validate()
         ->save();
     } catch (\Exception $e) {
-      $this->get('session')->setFlash('error', $e->getMessage());
+      $this->get('session')->getFlashBag()->add('error', $e->getMessage());
     }
 
     return $this->redirect($this->generateUrl('club_tournament_tournament_show', array('id' => $tournament->getId())));
@@ -76,7 +76,7 @@ class TournamentController extends Controller
       $this->get('club_tournament.tournament')
         ->removeUser($tournament, $this->getUser());
     } catch (\Exception $e) {
-      $this->get('session')->setFlash('error', $e->getMessage());
+      $this->get('session')->getFlashBag()->add('error', $e->getMessage());
     }
 
     return $this->redirect($this->generateUrl('club_tournament_tournament_show', array('id' => $tournament->getId())));

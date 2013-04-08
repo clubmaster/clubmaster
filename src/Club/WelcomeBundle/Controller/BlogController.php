@@ -57,7 +57,7 @@ class BlogController extends Controller
 
         $em->flush();
 
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_welcome_blog_show', array(
           'blog_id' => $blog->getId()
@@ -128,7 +128,7 @@ class BlogController extends Controller
     $em->remove($blog);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('homepage'));
   }
@@ -166,7 +166,7 @@ class BlogController extends Controller
         $em->persist($blog);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_welcome_blog_index'));
       }

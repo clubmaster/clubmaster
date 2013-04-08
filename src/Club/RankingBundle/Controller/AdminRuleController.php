@@ -81,9 +81,9 @@ class AdminRuleController extends Controller
       $em->remove($rule);
       $em->flush();
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete rule which is already being used.'));
+      $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete rule which is already being used.'));
     }
 
     return $this->redirect($this->generateUrl('club_ranking_adminrule_index'));
@@ -100,7 +100,7 @@ class AdminRuleController extends Controller
         $em->persist($rule);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_ranking_adminrule_index'));
       }

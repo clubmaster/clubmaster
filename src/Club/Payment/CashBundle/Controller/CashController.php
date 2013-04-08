@@ -108,7 +108,7 @@ class CashController extends Controller
                 $this->get('order')->setOrder($order);
                 $this->get('order')->makePayment($log);
 
-                $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
             }

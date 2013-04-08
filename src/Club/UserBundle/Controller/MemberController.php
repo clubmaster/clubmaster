@@ -32,7 +32,7 @@ class MemberController extends Controller
           $errors = $form->get('user')->getErrors();
 
           foreach ($errors as $error) {
-              $this->get('session')->setFlash('error', $error->getMessage());
+              $this->get('session')->getFlashBag()->add('error', $error->getMessage());
           }
       }
     }

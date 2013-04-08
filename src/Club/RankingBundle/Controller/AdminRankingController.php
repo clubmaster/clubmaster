@@ -86,9 +86,9 @@ class AdminRankingController extends Controller
       $em->remove($ranking);
       $em->flush();
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete ranking which is already being used.'));
+      $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete ranking which is already being used.'));
     }
 
     return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
@@ -119,10 +119,10 @@ class AdminRankingController extends Controller
           $em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($ranking, $team);
           $em->flush();
 
-          $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+          $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
       } else {
           foreach ($form->get('user')->getErrors() as $error) {
-              $this->get('session')->setFlash('error', $error->getMessage());
+              $this->get('session')->getFlashBag()->add('error', $error->getMessage());
           }
       }
 
@@ -145,7 +145,7 @@ class AdminRankingController extends Controller
     $em->persist($ranking);
     $em->flush();
 
-    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_ranking_adminranking_users', array(
       'id' => $id
@@ -179,7 +179,7 @@ class AdminRankingController extends Controller
         $em->persist($ranking);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
       }

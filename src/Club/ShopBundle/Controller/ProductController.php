@@ -32,7 +32,7 @@ class ProductController extends Controller
       $this->get('cart')->addToCart($product);
 
     } catch (\Exception $e) {
-      $this->get('session')->setFlash('error',$e->getMessage());
+      $this->get('session')->getFlashBag()->add('error',$e->getMessage());
     }
 
     return $this->redirect($this->generateUrl('shop_checkout'));

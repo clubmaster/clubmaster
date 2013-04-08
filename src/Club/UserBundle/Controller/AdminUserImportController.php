@@ -65,7 +65,7 @@ class AdminUserImportController extends Controller
         }
 
         if (count($this->errors) > 0) {
-            $this->get('session')->setFlash('error', 'There was problems importing users.');
+            $this->get('session')->getFlashBag()->add('error', 'There was problems importing users.');
 
             return $this->render('ClubUserBundle:AdminUserImport:errors.html.twig', array(
                 'errors' => $this->errors
@@ -74,7 +74,7 @@ class AdminUserImportController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();
-        $this->get('session')->setFlash('notice', sprintf('Added %s new users.', $this->added));
+        $this->get('session')->getFlashBag()->add('notice', sprintf('Added %s new users.', $this->added));
 
         return $this->redirect($this->generateUrl('club_user_adminuserimport_index'));
     }

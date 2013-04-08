@@ -28,7 +28,7 @@ class UserSettingController extends Controller
         $this->sync($form->getData());
 
         $em->flush();
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
         $this->get('clubmaster.user')->updateUserSettings();
 
         return $this->redirect($this->generateUrl('club_user_usersetting_index',

@@ -61,7 +61,7 @@ class SubscriptionController extends Controller
     $subscription = $em->find('ClubShopBundle:Subscription', $id);
 
     $this->get('subscription')->stopSubscription($subscription);
-    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Subscription will not be renewed'));
+    $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Subscription will not be renewed'));
 
     return $this->redirect($this->generateUrl('shop_subscription'));
   }

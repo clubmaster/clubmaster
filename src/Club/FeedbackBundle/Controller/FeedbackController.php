@@ -92,12 +92,12 @@ class FeedbackController extends Controller
       fclose($fp);
 
       if (strpos($res,'200 OK')) {
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message has been sent.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your message has been sent.'));
 
         return;
       }
     }
 
-    $this->get('session')->setFlash('error',$this->get('translator')->trans('There was a problem delivering your message.'));
+    $this->get('session')->getFlashBag()->add('error',$this->get('translator')->trans('There was a problem delivering your message.'));
   }
 }

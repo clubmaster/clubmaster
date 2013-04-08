@@ -31,7 +31,7 @@ class AdminPlanExceptionController extends Controller
                 $em->persist($exception);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
                     'id' => $plan->getId()
@@ -60,7 +60,7 @@ class AdminPlanExceptionController extends Controller
                 $em->persist($exception);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
                     'id' => $exception->getPlan()->getId()
@@ -84,7 +84,7 @@ class AdminPlanExceptionController extends Controller
         $em->remove($exception);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
             'id' => $exception->getPlan()->getId()

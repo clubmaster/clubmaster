@@ -133,7 +133,7 @@ class AdminMessageController extends Controller
 
     $em->remove($message);
     $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
   }
@@ -217,7 +217,7 @@ class AdminMessageController extends Controller
         $em->persist($attachment);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Attachment was added to the message.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Attachment was added to the message.'));
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_attachment',array('id'=>$message->getId())));
       }
@@ -250,7 +250,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Event has been added as recipient for the mail.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Event has been added as recipient for the mail.'));
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
@@ -283,7 +283,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Group has been added as recipient for the mail.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Group has been added as recipient for the mail.'));
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
@@ -367,7 +367,7 @@ class AdminMessageController extends Controller
         $em->persist($message);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('User has been added as recipient for the mail.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('User has been added as recipient for the mail.'));
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_recipient', array('id' => $message->getId())));
       }
@@ -411,7 +411,7 @@ class AdminMessageController extends Controller
       $em->persist($message);
       $em->flush();
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
+      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your message was queue for delivery.'));
     }
 
     return $this->redirect($this->generateUrl('club_message_adminmessage_index'));

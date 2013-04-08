@@ -42,9 +42,9 @@ class TeamController extends Controller
 
       $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $this->getUser());
       $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamAttend, $event);
-      $this->get('session')->setFlash('notice', 'You are now attending the team.');
+      $this->get('session')->getFlashBag()->add('notice', 'You are now attending the team.');
     } else {
-      $this->get('session')->setFlash('error', $this->get('club_team.team')->getError());
+      $this->get('session')->getFlashBag()->add('error', $this->get('club_team.team')->getError());
     }
 
     return $this->redirect($this->generateUrl('club_team_team_index'));
@@ -66,9 +66,9 @@ class TeamController extends Controller
 
       $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $user);
       $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
-      $this->get('session')->setFlash('notice', 'You are no longer on the team.');
+      $this->get('session')->getFlashBag()->add('notice', 'You are no longer on the team.');
     } else {
-      $this->get('session')->setFlash('error', $this->get('club_team.team')->getError());
+      $this->get('session')->getFlashBag()->add('error', $this->get('club_team.team')->getError());
     }
 
     return $this->redirect($this->generateUrl('club_team_team_index'));

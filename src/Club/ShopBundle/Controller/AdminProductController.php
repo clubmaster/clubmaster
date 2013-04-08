@@ -82,7 +82,7 @@ class AdminProductController extends Controller
     $em->remove($product);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_shop_product'));
   }
@@ -107,7 +107,7 @@ class AdminProductController extends Controller
         $em->persist($product);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_shop_product'));
       }

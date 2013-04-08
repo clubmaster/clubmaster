@@ -76,7 +76,7 @@ class AdminSpecialController extends Controller
     $em->remove($special);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_shop_adminspecial_index'));
   }
@@ -92,7 +92,7 @@ class AdminSpecialController extends Controller
         $em->persist($special);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_shop_adminspecial_index'));
       }

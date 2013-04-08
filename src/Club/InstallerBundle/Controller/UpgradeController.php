@@ -38,11 +38,11 @@ class UpgradeController extends Controller
 
         try {
             $d->migrate();
-            $this->get('session')->setFlash('notice', 'Your database is now upgraded.');
+            $this->get('session')->getFlashBag()->add('notice', 'Your database is now upgraded.');
 
         } catch (\Exception $e) {
             $this->get('logger')->err($e->getMessage());
-            $this->get('session')->setFlash('error', $e->getMessage());
+            $this->get('session')->getFlashBag()->add('error', $e->getMessage());
         }
 
         return $this->redirect($this->generateUrl('club_installer_upgrade_index'));

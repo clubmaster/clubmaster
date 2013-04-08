@@ -49,7 +49,7 @@ class AdminScheduleController extends Controller
     $event = new \Club\TeamBundle\Event\FilterScheduleEvent($schedule, $user);
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onTeamUnattend, $event);
 
-    $this->get('session')->setFlash('notice', 'User has been deleted from the team.');
+    $this->get('session')->getFlashBag()->add('notice', 'User has been deleted from the team.');
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_participant', array(
       'id' => $schedule_id
@@ -182,7 +182,7 @@ class AdminScheduleController extends Controller
     $em->remove($schedule);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -215,7 +215,7 @@ class AdminScheduleController extends Controller
     }
 
     $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -260,7 +260,7 @@ class AdminScheduleController extends Controller
       $em->flush();
     }
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -278,7 +278,7 @@ class AdminScheduleController extends Controller
     $parent = $this->getParent($schedule);
     $this->deleteAll($parent);
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -345,7 +345,7 @@ class AdminScheduleController extends Controller
     }
 
     $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -368,7 +368,7 @@ class AdminScheduleController extends Controller
     }
 
     $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
       'category_id' => $schedule->getTeamCategory()->getId()
@@ -447,7 +447,7 @@ class AdminScheduleController extends Controller
         $em->persist($schedule);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
           'category_id' => $schedule->getTeamCategory()->getId()

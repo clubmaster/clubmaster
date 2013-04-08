@@ -77,7 +77,7 @@ class AdminTeamCategoryController extends Controller
     $em->remove($category);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminteamcategory_index'));
   }
@@ -93,7 +93,7 @@ class AdminTeamCategoryController extends Controller
         $em->persist($category);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_team_adminteamcategory_index'));
       }

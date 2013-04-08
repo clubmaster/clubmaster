@@ -28,10 +28,10 @@ class CouponController extends Controller
         $coupon = $em->getRepository('ClubShopBundle:Coupon')->getCoupon($data['coupon_key']);
 
         if (!$coupon) {
-          $this->get('session')->setFlash('error',$this->get('translator')->trans('No such coupon.'));
+          $this->get('session')->getFlashBag()->add('error',$this->get('translator')->trans('No such coupon.'));
 
         } elseif (count($coupon->getCouponLog()) >= $coupon->getMaxUsage()) {
-          $this->get('session')->setFlash('error',$this->get('translator')->trans('Coupon use too many times'));
+          $this->get('session')->getFlashBag()->add('error',$this->get('translator')->trans('Coupon use too many times'));
         } else {
           $product = array(
             'product_name' => 'Coupon #'.$coupon->getCouponKey(),
@@ -43,7 +43,7 @@ class CouponController extends Controller
           $event = new \Club\ShopBundle\Event\FilterCouponEvent($coupon);
           $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
 
-          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your coupon has been added to the cart.'));
+          $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your coupon has been added to the cart.'));
         }
 
         return $this->redirect($this->generateUrl('shop_checkout'));

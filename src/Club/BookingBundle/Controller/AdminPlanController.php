@@ -76,7 +76,7 @@ class AdminPlanController extends Controller
                 $em->persist($plan);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
             }
@@ -109,7 +109,7 @@ class AdminPlanController extends Controller
                 $em->persist($plan);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
             }
@@ -132,7 +132,7 @@ class AdminPlanController extends Controller
         $em->remove($plan);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
     }

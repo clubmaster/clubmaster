@@ -85,9 +85,9 @@ class AdminAnnouncementController extends Controller
       $em->remove($announcement);
       $em->flush();
 
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
     } catch (\PDOException $e) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot delete announcement which is already being used.'));
+      $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete announcement which is already being used.'));
     }
 
     return $this->redirect($this->generateUrl('club_news_adminannouncement_index'));
@@ -104,7 +104,7 @@ class AdminAnnouncementController extends Controller
         $em->persist($announcement);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_news_adminannouncement_index'));
       }

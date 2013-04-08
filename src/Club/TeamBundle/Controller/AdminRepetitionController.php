@@ -223,7 +223,7 @@ class AdminRepetitionController extends Controller
     }
 
     $em->flush();
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
@@ -285,7 +285,7 @@ class AdminRepetitionController extends Controller
     $em->remove($repetition);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_team_adminrepetition_index', array(
       'category_id' => $repetition->getTeamCategory()->getId()
@@ -303,7 +303,7 @@ class AdminRepetitionController extends Controller
           $is_new = ($repetition->getId()) ? false : true;
           $em->flush();
 
-          $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+          $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
           $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
 

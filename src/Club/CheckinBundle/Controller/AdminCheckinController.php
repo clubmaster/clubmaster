@@ -26,7 +26,7 @@ class AdminCheckinController extends Controller
         $em->persist($checkin);
         $em->flush();
 
-        $this->get('session')->setFlash('notice', 'User has now checked in.');
+        $this->get('session')->getFlashBag()->add('notice', 'User has now checked in.');
 
         return $this->redirect($this->generateUrl('club_checkin_admincheckin_index'));
     }

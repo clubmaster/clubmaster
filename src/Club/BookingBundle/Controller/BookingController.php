@@ -36,7 +36,7 @@ class BookingController extends Controller
                 $user = $form->get('user')->getData();
             } else {
                 foreach ($form->get('user')->getErrors() as $error) {
-                    $this->get('session')->setFlash('error', $error->getMessage());
+                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
                 }
 
                 return $this->redirect($this->generateUrl('club_booking_overview_view', array(
@@ -49,7 +49,7 @@ class BookingController extends Controller
         }
 
         if (!$this->get('club_booking.booking')->isValid()) {
-            $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+            $this->get('session')->getFlashBag()->add('error', $this->get('club_booking.booking')->getError());
 
             return $this->redirect($this->generateUrl('club_booking_overview_view', array(
                 'id' => $interval->getId(),
@@ -95,7 +95,7 @@ class BookingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $this->get('club_booking.booking')->save();
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your booking has been created'));
+        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your booking has been created'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array(
             'date' => $this->get('club_booking.booking')->getBooking()->getFirstDate()->format('Y-m-d')
@@ -184,9 +184,9 @@ class BookingController extends Controller
             $this->get('club_booking.booking')->remove();
             $em->flush();
 
-            $this->get('session')->setFlash('notice', $this->get('translator')->trans('Booking has been cancelled'));
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Booking has been cancelled'));
         } else {
-            $this->get('session')->setFlash('error', $this->get('club_booking.booking')->getError());
+            $this->get('session')->getFlashBag()->add('error', $this->get('club_booking.booking')->getError());
         }
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $booking->getFirstDate()->format('Y-m-d'))));
@@ -213,7 +213,7 @@ class BookingController extends Controller
         }
         $em->flush();
 
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
     }

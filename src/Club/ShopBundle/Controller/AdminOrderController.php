@@ -58,7 +58,7 @@ class AdminOrderController extends Controller
 
           return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
 
-        $this->get('session')->setFlash('error', $this->get('translator')->trans('There is no order with this number'));
+        $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('There is no order with this number'));
       }
     }
 
@@ -98,7 +98,7 @@ class AdminOrderController extends Controller
     $this->container->get('order')->setOrder($order);
     $this->get('order')->setCancelled();
 
-    $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your order has been cancelled'));
+    $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your order has been cancelled'));
 
     return $this->redirect($this->generateUrl('admin_shop_order'));
   }
@@ -121,7 +121,7 @@ class AdminOrderController extends Controller
     $this->get('order')->setOrder($order);
     $this->get('order')->changeStatus($status);
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_shop_order_edit', array(
         'id' => $order->getId()
@@ -137,7 +137,7 @@ class AdminOrderController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     if ($order->getPaid() || $order->getCancelled() || $order->getDelivered()) {
-      $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));
+      $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot chance a order which has been processed'));
 
       return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
     }
@@ -154,7 +154,7 @@ class AdminOrderController extends Controller
         $em->persist($order);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
       }

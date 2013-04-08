@@ -38,9 +38,9 @@ class AdminTournamentAttendController extends Controller
           ->validate()
           ->save();
 
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
       } catch (\Exception $e) {
-        $this->get('session')->setFlash('error', $this->get('translator')->trans($e->getMessage()));
+        $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans($e->getMessage()));
       }
     }
 
@@ -64,7 +64,7 @@ class AdminTournamentAttendController extends Controller
         $em->persist($attend);
         $em->flush();
 
-        $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_tournament_admintournamentattend_index', array(
           'tournament_id' => $attend->getTournament()->getId()
@@ -88,7 +88,7 @@ class AdminTournamentAttendController extends Controller
     $em->remove($attend);
     $em->flush();
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('club_tournament_admintournamentattend_index', array(
       'tournament_id' => $attend->getTournament()->getId()

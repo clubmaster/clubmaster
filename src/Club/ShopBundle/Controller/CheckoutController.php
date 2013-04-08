@@ -88,7 +88,7 @@ class CheckoutController extends Controller
     public function reviewAction()
     {
         if (!count($this->get('cart')->getCart()->getCartProducts())) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
 
             return $this->redirect($this->generateUrl('shop_checkout'));
         }
@@ -128,7 +128,7 @@ class CheckoutController extends Controller
 
             $cart = $this->get('cart')->getCart();
             if (!count($cart->getCartProducts())) {
-                $this->get('session')->setFlash('error', $this->get('translator')->trans('This order has no products.'));
+                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('This order has no products.'));
 
                 return $this->redirect($this->generateUrl('shop'));
             }
@@ -156,7 +156,7 @@ class CheckoutController extends Controller
                 'order_id' => $order->getId()
             )));
         } catch (\Exception $e) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans($e->getMessage()));
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans($e->getMessage()));
             return $this->redirect($this->generateUrl('shop'));
         }
     }
@@ -188,7 +188,7 @@ class CheckoutController extends Controller
             if ($form->isValid()) {
 
                 $this->get('clubmaster.user')->save();
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your account has been created.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your account has been created.'));
 
                 $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
                     $user,

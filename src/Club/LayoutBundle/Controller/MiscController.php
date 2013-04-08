@@ -17,7 +17,7 @@ class MiscController extends Controller
                 $user = $form->get('user')->getData();
                 return $this->redirect($this->generateUrl('club_user_adminuser_edit', array( 'id' => $user->getId() )));
             } else {
-                $this->get('session')->setFlash('notice', 'No such user');
+                $this->get('session')->getFlashBag()->add('notice', 'No such user');
                 return $this->redirect($this->generateUrl('club_user_adminuser_index'));
             }
         }

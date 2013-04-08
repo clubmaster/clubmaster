@@ -182,7 +182,7 @@ class AdminUserController extends Controller
         $this->get('clubmaster.user')->cleanUser($user);
 
         $this->get('clubmaster.user')->save();
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_user'));
       }
@@ -214,7 +214,7 @@ class AdminUserController extends Controller
 
         $em->persist($user);
         $em->flush();
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_user'));
       }
@@ -258,7 +258,7 @@ class AdminUserController extends Controller
       }
 
       $em->flush();
-      $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
     }
 
     return $this->redirect($this->generateUrl('admin_user'));
@@ -272,7 +272,7 @@ class AdminUserController extends Controller
     $em = $this->getDoctrine()->getManager();
     $ban = $this->get('clubmaster.ban')->banUser($em->find('ClubUserBundle:User',$id));
 
-    $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
     return $this->redirect($this->generateUrl('admin_user'));
   }
@@ -329,7 +329,7 @@ class AdminUserController extends Controller
         }
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_user'));
       }

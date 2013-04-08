@@ -33,7 +33,7 @@ class CommentController extends Controller
     public function newAction(\Club\ExchangeBundle\Entity\Exchange $exchange)
     {
         if ($exchange->getClosed()) {
-            $this->get('session')->setFlash('error', $this->get('translator')->trans('You cannot comment a closed exchange.'));
+            $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot comment a closed exchange.'));
             return $this->redirect($this->generateUrl('club_exchange_comment_index', array(
                 'id' => $exchange->getId()
             )));
@@ -56,7 +56,7 @@ class CommentController extends Controller
                 $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment, $this->getUser());
                 $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
 
-                $this->get('session')->setFlash('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_exchange_comment_index', array(
                     'id' => $exchange->getId()

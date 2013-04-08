@@ -31,7 +31,7 @@ class AdminGroupController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
                     'id' => $group->getId()
@@ -58,7 +58,7 @@ class AdminGroupController extends Controller
         $em->persist($group);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
             'id' => $group->getId()
@@ -125,7 +125,7 @@ class AdminGroupController extends Controller
         $em->remove($group);
         $em->flush();
 
-        $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('admin_group'));
     }
@@ -151,7 +151,7 @@ class AdminGroupController extends Controller
                 $event = new \Club\UserBundle\Event\FilterGroupEvent($group);
                 $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onGroupEdit, $event);
 
-                $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
 
                 return $this->redirect($this->generateUrl('admin_group'));
             }

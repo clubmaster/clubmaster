@@ -78,7 +78,7 @@ class EventController extends Controller
     public function unattendAction(\Club\EventBundle\Entity\Event $event)
     {
         if (!$event->isOpen()) {
-            $this->get('session')->setFlash('error',$this->get('translator')->trans('Subscription to event is not open'));
+            $this->get('session')->getFlashBag()->add('error',$this->get('translator')->trans('Subscription to event is not open'));
         } else {
 
             $em = $this->getDoctrine()->getManager();
@@ -90,7 +90,7 @@ class EventController extends Controller
             $em->remove($attend);
             $em->flush();
 
-            $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
             $e = new \Club\EventBundle\Event\FilterAttendEvent($attend);
             $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);
         }
