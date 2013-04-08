@@ -22,16 +22,12 @@ class ResetPassword
 
     public function onKernelRequest($event)
     {
-        if ($this->container->get('club_installer.installer')->installerOpen()) {
+        switch (true) {
+        case $this->container->get('club_installer.installer')->installerOpen():
+        case HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType():
+        case preg_match("/user\/reset$/", $this->container->get('request')->getURI()):
             return;
         }
-
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
-            return;
-        }
-
-        $request = $this->container->get('request');
-        if (preg_match("/user\/reset$/", $request->getURI())) return;
 
         if ($this->security->getToken() && $this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
             $reset = $this->em->getRepository('ClubUserBundle:ResetPassword')->getByUser($this->security->getToken()->getUser());

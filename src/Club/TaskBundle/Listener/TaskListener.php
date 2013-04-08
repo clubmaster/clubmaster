@@ -22,12 +22,10 @@ class TaskListener
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if ($this->container->get('club_installer.installer')->installerOpen()) {
-            return;
-        }
-
         try {
-            if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+            switch (true) {
+            case $this->container->get('club_installer.installer')->installerOpen():
+            case HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType():
                 return;
             }
 
