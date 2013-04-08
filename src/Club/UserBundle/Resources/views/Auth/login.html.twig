@@ -3,34 +3,10 @@
 {% block body %}
         <div id="login-box">
 
-                <!-- Messages -->
                 {% include "ClubLayoutBundle:Default:flash.html.twig" %}
 
                 {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'Enter your username and password.'|trans} %}
 
-                <!-- Form -->
-                <form method="POST" action="{{ path('login_check') }}">
-                <table class="nom nostyle">
-                        <tr>
-                                <td style="width:200px;"><label for="login-user"><strong>{% trans %}Username{% endtrans %}</strong></label></td>
-                                <td><input type="text" style="width: 300px;" name="_username" class="input-text" id="login-user" /></td>
-                        </tr>
-                        <tr>
-                                <td><label for="login-pass"><strong>{% trans %}Password{% endtrans %}</strong></label></td>
-                                <td><input type="password" style="width: 300px;" name="_password" class="input-text" id="login-pass" /></td>
-                        </tr>
-                        <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="{% trans %}Sign In{% endtrans %} &raquo;" /></td>
-                        </tr>
-                        <tr>
-                                <td></td>
-                                <td>
-                                  <span class="f-right"><a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a></span><br />
-                                </td>
-                        </tr>
-                </table>
-                </form>
-
-        </div> <!-- /login-box -->
+                {% include "ClubUserBundle:Auth:login_form.html.twig" %}
 
 {% endblock %}
