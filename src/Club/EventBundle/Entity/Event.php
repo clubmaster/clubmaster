@@ -38,10 +38,10 @@ class Event
     protected $description;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
      *
-     * @var string $price
+     * @var float $price
      */
     protected $price;
 
@@ -559,7 +559,7 @@ class Event
     /**
      * Set price
      *
-     * @param string $price
+     * @param float $price
      * @return Event
      */
     public function setPrice($price)
@@ -572,7 +572,7 @@ class Event
     /**
      * Get price
      *
-     * @return string
+     * @return float
      */
     public function getPrice()
     {
