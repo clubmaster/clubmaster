@@ -41,7 +41,7 @@ class MessageRepository extends EntityRepository
 
     public function getAllReady()
     {
-        return $this->_em->createQueryBuilder('m')
+        return $this->createQueryBuilder('m')
             ->where('m.ready = 1')
             ->andWhere('m.processed = 0')
             ->getQuery()
