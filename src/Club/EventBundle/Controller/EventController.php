@@ -91,7 +91,7 @@ class EventController extends Controller
             $em->flush();
 
             $this->get('session')->setFlash('notice',$this->get('translator')->trans('Your changes are saved.'));
-            $e = new \Club\EventBundle\Event\FilterEventEvent($event);
+            $e = new \Club\EventBundle\Event\FilterAttendEvent($attend);
             $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);
         }
 

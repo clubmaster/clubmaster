@@ -4,28 +4,42 @@ namespace Club\LogBundle\Listener;
 
 class AttendEventListener
 {
-  protected $em;
-  protected $security_context;
+    protected $em;
 
-  public function __construct($em,$security_context)
-  {
-    $this->em = $em;
-    $this->security_context = $security_context;
-  }
+    public function __construct($em)
+    {
+        $this->em = $em;
+    }
 
-  public function onEventAttend(\Club\EventBundle\Event\FilterEventEvent $event)
-  {
-    $e = $event->getEvent();
-    $user = $this->security_context->getToken()->getUser();
+    public function onEventAttend(\Club\EventBundle\Event\FilterAttendEvent $event)
+    {
+        $e = $event->getAttend()->getEvent();
+        $user = $event->getAttend()->getUser();
 
-    $log = new \Club\LogBundle\Entity\Log();
-    $log->setEvent('onEventAttend');
-    $log->setSeverity('informational');
-    $log->setUser($user);
-    $log->setLogType('event');
-    $log->setLog('User attend to event: '.$e->getEventName());
+        $log = new \Club\LogBundle\Entity\Log();
+        $log->setEvent('onEventAttend');
+        $log->setSeverity('informational');
+        $log->setUser($user);
+        $log->setLogType('event');
+        $log->setLog('User attend to event: '.$e->getEventName());
 
-    $this->em->persist($log);
-    $this->em->flush();
-  }
+        $this->em->persist($log);
+        $this->em->flush();
+    }
+
+    public function onEventUnattend(\Club\EventBundle\Event\FilterAttendEvent $event)
+    {
+        $e = $event->getAttend()->getEvent();
+        $user = $event->getAttend()->getUser();
+
+        $log = new \Club\LogBundle\Entity\Log();
+        $log->setEvent('onEventUnattend');
+        $log->setSeverity('informational');
+        $log->setUser($user);
+        $log->setLogType('event');
+        $log->setLog('User unattend to event: '.$e->getEventName());
+
+        $this->em->persist($log);
+        $this->em->flush();
+    }
 }

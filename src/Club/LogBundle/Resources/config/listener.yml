@@ -22,13 +22,9 @@ services:
       - { name: kernel.event_listener, event: event.add, method: onEventAdd }
   club.logbundle.listener.on_event_attend_listener:
     class: Club\LogBundle\Listener\AttendEventListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: event.attend, method: onEventAttend }
-  club.logbundle.listener.on_event_unattend_listener:
-    class: Club\LogBundle\Listener\UnattendEventListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
-    tags:
       - { name: kernel.event_listener, event: event.unattend, method: onEventUnattend }
   club.logbundle.listener.cleanup:
     class: Club\LogBundle\Listener\Cleanup

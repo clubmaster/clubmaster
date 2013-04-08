@@ -127,6 +127,7 @@ class Event
      */
     protected $attends;
 
+
     public function __toString()
     {
       return $this->getEventName();

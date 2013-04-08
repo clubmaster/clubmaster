@@ -49,7 +49,7 @@ class Event
         $this->em->persist($this->attend);
         $this->em->flush();
 
-        $e = new \Club\EventBundle\Event\FilterEventEvent($event);
+        $e = new \Club\EventBundle\Event\FilterAttendEvent($this->attend);
         $this->event_dispatcher->dispatch(\Club\EventBundle\Event\Events::onEventAttend, $e);
     }
 }
