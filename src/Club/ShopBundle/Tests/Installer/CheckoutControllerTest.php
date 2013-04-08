@@ -71,15 +71,10 @@ class CheckoutControllerTest extends WebTestCase
 
     $link = $crawler->selectLink('Checkout')->link();
     $crawler = $this->client->click($link);
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
-
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    $crawler = $this->client->followRedirect();
 
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    $form = $crawler->selectButton('Confirm order')->form();
-    $crawler = $this->client->submit($form);
+    $link = $crawler->selectLink('Pay')->link();
+    $crawler = $this->client->click($link);
 
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
@@ -91,6 +86,10 @@ class CheckoutControllerTest extends WebTestCase
 
     $links = $crawler->selectLink('Edit')->links();
     $crawler = $this->client->click($links[0]);
+    if (!isset($links[0])) {
+        throw new \Exception('Order link not found');
+    }
+
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $link = $crawler->selectLink('Pay order')->link();

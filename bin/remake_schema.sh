@@ -16,7 +16,6 @@ php app/console doctrine:database:create
 
 phpunit -c app/installunit.xml
 
-php app/console doctrine:schema:update --force
 php app/console assets:install web
 php app/console assetic:dump
 
@@ -25,7 +24,7 @@ MYSQL_PASSWORD=`grep database_password app/config/parameters.yml | cut -d":" -f2
 MYSQL_DATABASE=`grep database_name app/config/parameters.yml | cut -d":" -f2 | sed "s/ //g"`
 
 if [ "${MYSQL_PASSWORD}" == "~" ]; then
-	MYSQL_PASSWORD=""
+  MYSQL_PASSWORD=""
 fi
 
 if [ "${MYSQL_PASSWORD}" != "" ]; then

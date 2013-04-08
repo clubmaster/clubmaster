@@ -36,10 +36,6 @@ class AdminEventControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/en/event');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $link = $crawler->selectLink('Show')->link();
-        $crawler = $this->client->click($link);
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
         $link = $crawler->selectLink('Attend')->link();
         $crawler = $this->client->click($link);
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
@@ -50,13 +46,8 @@ class AdminEventControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/en/event');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $link = $crawler->selectLink('Show')->link();
-        $crawler = $this->client->click($link);
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
         $link = $crawler->selectLink('Unattend')->link();
         $crawler = $this->client->click($link);
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
-
 }
