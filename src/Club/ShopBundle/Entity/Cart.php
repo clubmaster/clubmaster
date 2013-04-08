@@ -303,4 +303,14 @@ class Cart
     {
         return $this->session;
     }
+
+    /**
+     * Remove cart_products
+     *
+     * @param \Club\ShopBundle\Entity\CartProduct $cartProducts
+     */
+    public function removeCartProduct(\Club\ShopBundle\Entity\CartProduct $cartProducts)
+    {
+        $this->cart_products->removeElement($cartProducts);
+    }
 }

@@ -54,10 +54,6 @@ class Cart
                     }
                 }
 
-                $shippings = $this->em->getRepository('ClubShopBundle:Shipping')->findAll();
-                $shipping = array_shift($shippings);
-                $this->cart->setShipping($shipping);
-
                 $this->save();
             }
 
@@ -102,6 +98,17 @@ class Cart
             $this->addArrayToCart($product);
         }
 
+        $this->save();
+    }
+
+    public function calcCartPrice()
+    {
+        $price = 0;
+        foreach ($this->cart->getCartProducts() as $cart_prod) {
+            $price += $cart_prod->getQuantity()*$cart_prod->getPrice();
+        }
+
+        $this->cart->setPrice($price);
         $this->save();
     }
 
@@ -183,6 +190,25 @@ class Cart
     {
         $this->em->remove($this->cart);
         $this->em->flush();
+    }
+
+    public function updateShipping()
+    {
+        foreach ($this->cart->getCartProducts() as $cart_prod) {
+            if ($cart_prod->getType() == 'shipping') {
+                $this->em->remove($cart_prod);
+            }
+        }
+        $this->em->flush();
+
+        if ($this->cart->getShipping()->getPrice() > 0) {
+            $prod = new \Club\ShopBundle\Entity\CartProduct();
+            $prod->setType('shipping');
+            $prod->setPrice($this->cart->getShipping()->getPrice());
+            $prod->setProductName(sprintf('Shipping: %s', $this->cart->getShipping()->getShippingName()));
+
+            $this->addToCart($prod);
+        }
     }
 
     public function setShipping($shipping)

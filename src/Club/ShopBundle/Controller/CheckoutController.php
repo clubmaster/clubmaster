@@ -69,6 +69,9 @@ class CheckoutController extends Controller
                 $em->persist($cart);
                 $em->flush();
 
+                $this->get('cart')->updateShipping();
+                $this->get('cart')->calcCartPrice();
+
                 return $this->redirect($this->generateUrl('shop_checkout_review'));
             }
         }
@@ -92,6 +95,16 @@ class CheckoutController extends Controller
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
+        }
+
+        if (!$this->get('cart')->getCart()->getShipping()) {
+            $em = $this->getDoctrine()->getManager();
+            $shippings = $em->getRepository('ClubShopBundle:Shipping')->findAll();
+            $shipping = array_shift($shippings);
+            $this->get('cart')->getCart()->setShipping($shipping);
+            $this->get('cart')->updateShipping();
+
+            $this->get('cart')->save();
         }
 
         $payments = $this->get('shop_paymentmethod')->getAll();
