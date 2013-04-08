@@ -510,7 +510,7 @@ class PlanRepeat
     {
         if (!$this->getRepeatOnHour()) return;
 
-        $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+        $transformer = new \Club\FormExtraBundle\Form\DataTransformer\StringToArrayTransformer();
         $hours = $transformer->transform($this->getRepeatOnHour());
         $s = '';
         foreach ($hours as $hour) {
@@ -522,7 +522,7 @@ class PlanRepeat
 
     private function getByDay()
     {
-        $transformer = new \Club\LayoutBundle\Form\DataTransformer\StringToArrayTransformer();
+        $transformer = new \Club\FormExtraBundle\Form\DataTransformer\StringToArrayTransformer();
         $days = $transformer->transform($this->getRepeatOn());
         $dates = '';
         foreach ($days as $day) {
