@@ -4,38 +4,43 @@ namespace Club\MailBundle\Listener;
 
 class PasswordResetListener
 {
-  protected $container;
-  protected $em;
-  protected $templating;
-  protected $router;
-  protected $clubmaster_mailer;
+    protected $container;
+    protected $em;
+    protected $templating;
+    protected $router;
+    protected $clubmaster_mailer;
 
-  public function __construct($container)
-  {
-    $this->container = $container;
-    $this->em = $container->get('doctrine.orm.entity_manager');
-    $this->templating = $container->get('templating');
-    $this->router = $container->get('router');
-    $this->clubmaster_mailer = $container->get('clubmaster_mailer');
-  }
-
-  public function onPasswordReset(\Club\UserBundle\Event\FilterForgotPasswordEvent $event)
-  {
-    $user = $event->getForgotPassword()->getUser();
-    $email = $user->getProfile()->getProfileEmail();
-
-    if ($email) {
-      $this->clubmaster_mailer
-        ->init()
-        ->setSubject('Reset Password')
-        ->setFrom()
-        ->setTo($email->getEmailAddress())
-        ->setBody($this->templating->render('ClubMailBundle:Template:password_reset.html.twig',array(
-          'user' => $user,
-          'url' => $this->router->generate('auth_reset',array(
-            'hash' => $event->getForgotPassword()->getHash()),1)
-        )))
-        ->send();
+    public function __construct($container)
+    {
+        $this->container = $container;
+        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->templating = $container->get('templating');
+        $this->router = $container->get('router');
+        $this->clubmaster_mailer = $container->get('clubmaster_mailer');
     }
-  }
+
+    public function onPasswordReset(\Club\UserBundle\Event\FilterForgotPasswordEvent $event)
+    {
+        $user = $event->getForgotPassword()->getUser();
+        $email = $user->getProfile()->getProfileEmail();
+
+        if ($email) {
+            $this->clubmaster_mailer
+                ->init()
+                ->setSubject('Reset Password')
+                ->setFrom()
+                ->setTo($email->getEmailAddress())
+                ->setBody($this->templating->render('ClubMailBundle:Template:password_reset.html.twig',array(
+                    'user' => $user,
+                    'url' => $this->router->generate(
+                        'auth_reset',
+                        array(
+                            'hash' => $event->getForgotPassword()->getHash()
+                        ),
+                        true
+                    )
+                )))
+                ->send();
+        }
+    }
 }

@@ -35,3 +35,8 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: exchange.comment.new, method: onExchangeCommentNew }
+  club.mailbundle.listener.cleanup:
+    class: Club\MailBundle\Listener\Cleanup
+    arguments: [@service_container]
+    tags:
+      - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }

@@ -4,56 +4,27 @@ namespace Club\MailBundle\Listener;
 
 class MailSendListener
 {
-  protected $em;
-  protected $mailer;
-  protected $swiftmailer_transport_real;
-  protected $clubmaster_mailer;
-  protected $event_dispatcher;
-  protected $reporter;
+    protected $em;
+    protected $mailer;
+    protected $swiftmailer_transport_real;
+    protected $clubmaster_mailer;
+    protected $event_dispatcher;
+    protected $reporter;
 
-  public function __construct($em, $mailer, $swiftmailer_transport_real, $clubmaster_mailer, $event_dispatcher)
-  {
-    $this->em = $em;
-    $this->mailer = $mailer;
-    $this->swiftmailer_transport_real = $swiftmailer_transport_real;
-    $this->clubmaster_mailer = $clubmaster_mailer;
-    $this->event_dispatcher = $event_dispatcher;
+    public function __construct($em, $mailer, $swiftmailer_transport_real, $clubmaster_mailer, $event_dispatcher)
+    {
+        $this->em = $em;
+        $this->mailer = $mailer;
+        $this->swiftmailer_transport_real = $swiftmailer_transport_real;
+        $this->clubmaster_mailer = $clubmaster_mailer;
+        $this->event_dispatcher = $event_dispatcher;
 
-    $this->reporter = new \Club\MailBundle\Helper\SwiftReporter($em);
-    $this->mailer->registerPlugin(new \Swift_Plugins_ReporterPlugin($this->reporter));
-  }
-
-  public function onMailTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
-  {
-    $transport  = $this->mailer->getTransport();
-
-    if ($transport instanceof \Swift_Transport_SpoolTransport) {
-      try {
-        $spool = $transport->getSpool();
-        $spool->setMessageLimit(60);
-        $spool->setTimeLimit(60);
-        $sent = $spool->flushQueue($this->swiftmailer_transport_real);
-
-        if ($sent > 0) {
-          $event = new \Club\LogBundle\Event\FilterLogEvent(sprintf('Sent %s emails', $sent), 'onMailTask', 'mail', 'informational');
-          $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
-        }
-      } catch (\Exception $e) {
-        $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage(), 'onConnectionError', 'mail');
-        $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
-      }
+        $this->reporter = new \Club\MailBundle\Helper\SwiftReporter($em);
+        $this->mailer->registerPlugin(new \Swift_Plugins_ReporterPlugin($this->reporter));
     }
 
-    $this->cleanupLogs();
-  }
-
-  protected function cleanupLogs()
-  {
-    $q = $this->em->createQueryBuilder()
-      ->delete()
-      ->from('ClubMailBundle:Log', 'l')
-      ->where("l.created_at < DATE_SUB(CURRENT_DATE(), 1, 'MONTH')")
-      ->getQuery()
-      ->getResult();
-  }
+    public function onMailTask(\Club\TaskBundle\Event\FilterTaskEvent $event)
+    {
+        $this->clubmaster_mailer->flushQueue();
+    }
 }

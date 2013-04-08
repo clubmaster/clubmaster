@@ -9,6 +9,7 @@ class Mailer
     protected $container;
     protected $logger;
     protected $message;
+    protected $event_dispatcher;
 
     public function __construct($container)
     {
@@ -16,6 +17,7 @@ class Mailer
         $this->em = $container->get('doctrine.orm.entity_manager');
         $this->mailer = $container->get('mailer');
         $this->logger = $container->get('logger');
+        $this->event_dispatcher = $container->get('event_dispatcher');
 
         $this->init();
     }
@@ -101,6 +103,28 @@ class Mailer
             $this->mailer->send($this->message);
         } catch (\Exception $e) {
             $this->logger->err('Error! '.$e->getMessage());
+        }
+    }
+
+    public function flushQueue()
+    {
+        $transport  = $this->mailer->getTransport();
+
+        if ($transport instanceof \Swift_Transport_SpoolTransport) {
+            try {
+                $spool = $transport->getSpool();
+                $spool->setMessageLimit(60);
+                $spool->setTimeLimit(60);
+                $sent = $spool->flushQueue($this->container->get('swiftmailer.transport.real'));
+
+                if ($sent > 0) {
+                    $event = new \Club\LogBundle\Event\FilterLogEvent(sprintf('Sent %s emails', $sent), 'onMailTask', 'mail', 'informational');
+                    $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
+                }
+            } catch (\Exception $e) {
+                $event = new \Club\LogBundle\Event\FilterLogEvent($e->getMessage(), 'onConnectionError', 'mail');
+                $this->event_dispatcher->dispatch(\Club\MailBundle\Event\Events::onConnectionError, $event);
+            }
         }
     }
 }
