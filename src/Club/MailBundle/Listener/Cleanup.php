@@ -11,12 +11,15 @@ class Cleanup
         $this->em = $em;
     }
 
-    protected function onTaskCleanup()
+    public function onTaskCleanup(\Club\TaskBundle\Event\FilterTaskEvent $event)
     {
+        $date = new \DateTime();
+        $date->modify('-1 month');
+
         $this->em->createQueryBuilder()
-            ->delete()
-            ->from('ClubMailBundle:Log', 'l')
-            ->where("l.created_at < DATE_SUB(CURRENT_DATE(), 1, 'MONTH')")
+            ->delete('ClubMailBundle:Log', 'l')
+            ->where("l.created_at < :date")
+            ->setParameter('date', $date)
             ->getQuery()
             ->getResult();
     }

@@ -37,6 +37,6 @@ services:
       - { name: kernel.event_listener, event: exchange.comment.new, method: onExchangeCommentNew }
   club.mailbundle.listener.cleanup:
     class: Club\MailBundle\Listener\Cleanup
-    arguments: [@service_container]
+    arguments: [@doctrine.orm.entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
