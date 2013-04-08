@@ -1,24 +1,19 @@
 {% extends "ClubLayoutBundle:Default:base.html.twig" %}
 
 {% block body %}
-        <div id="login-box">
 
-                <!-- Messages -->
-                {% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'Enter your username or email address, and you will receive a reset password email within a few minutes.'|trans} %}
+{% include "ClubLayoutBundle:Default:flash_info.html.twig" with {'msg':'Enter your username or email address, and you will receive a reset password email within a few minutes.'|trans} %}
 
-                <!-- Form -->
-                <form method="POST" action="{{ path('auth_forgot') }}">
-                <table class="nom nostyle">
-                        <tr>
-                          <td style="width:200px;"><label for="login-user"><strong>{{ form_label(form.username,'Username or email'|trans) }}</strong></label></td>
-                          <td>{{ form_widget(form.username, {'attr': {'class':'input-text' }}) }}</td>
-                        </tr>
-                        <tr>
-                                <td colspan="2" class="t-right"><input type="submit" class="input-submit" value="{% trans %}Send Password{% endtrans %} &raquo;" /></td>
-                        </tr>
-                </table>
-                </form>
+<form method="POST" action="{{ path('auth_forgot') }}" class="form-horizontal">
+    {{ form_widget(form) }}
 
-        </div> <!-- /login-box -->
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">{% trans %}Send password{% endtrans %}</button>
+        </div>
+    </div>
+
+</form>
+
 
 {% endblock %}

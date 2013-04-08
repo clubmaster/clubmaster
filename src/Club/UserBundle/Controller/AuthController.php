@@ -40,7 +40,9 @@ class AuthController extends Controller
   public function forgotAction()
   {
     $form = $this->createFormBuilder()
-      ->add('username', 'text')
+        ->add('username', 'text', array(
+            'label' => 'Username or email'
+        ))
       ->getForm();
 
     if ($this->getRequest()->getMethod() == 'POST') {
