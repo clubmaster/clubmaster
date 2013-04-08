@@ -10,11 +10,6 @@ services:
     arguments: [@service_container]
     tags:
       - { name: kernel.event_listener, event: security.interactive_login }
-  club.userbundle.location:
-    class: Club\UserBundle\Listener\LocationListener
-    arguments: [@service_container]
-    tags:
-      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
   club.userbundle.reset_password:
     class: Club\UserBundle\Listener\ResetPassword
     arguments: [@service_container]

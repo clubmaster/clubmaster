@@ -28,7 +28,7 @@ class InstallerController extends Controller
 
             } catch (\PDOException $e) {
                 // only if we have a PDO exception, which is connection error
-                $this->get('session')->setFlash('error', $e->getMessage());
+                $this->get('session')->getFlashBag()->add('error', $e->getMessage());
             } catch (\Doctrine\DBAL\DBALException $e) {
             }
 
@@ -232,11 +232,11 @@ class InstallerController extends Controller
 
             $this->get('club_installer.database')->migrate();
 
-            $this->get('session')->setFlash('notice', 'Database was successful installed');
+            $this->get('session')->getFlashBag()->add('notice', 'Database was successful installed');
 
             return $this->redirect($this->generateUrl('club_installer_installer_administrator'));
         } catch (\Exception $e) {
-            $this->get('session')->setFlash('error', $e->getMessage());
+            $this->get('session')->getFlashBag()->add('error', $e->getMessage());
             return $this->redirect($this->generateUrl('club_installer_installer_parameter'));
         }
     }

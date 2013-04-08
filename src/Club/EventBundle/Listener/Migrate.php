@@ -20,15 +20,17 @@ class Migrate
             return;
         }
 
-        $events = $this->em->getRepository('ClubEventBundle:Event')->findAll();
+        try {
+            $events = $this->em->getRepository('ClubEventBundle:Event')->findAll();
 
-        foreach ($events as $event) {
-            $date = clone $event->getStartDate();
-            $date->modify('-1 week');
+            foreach ($events as $event) {
+                $date = clone $event->getStartDate();
+                $date->modify('-1 week');
 
-            $event->setLastSubscribe($date);
-            $this->em->persist($event);
-
+                $event->setLastSubscribe($date);
+                $this->em->persist($event);
+            }
+        } catch (\Exception $e) {
         }
     }
 }

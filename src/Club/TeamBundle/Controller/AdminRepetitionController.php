@@ -21,6 +21,10 @@ class AdminRepetitionController extends Controller
     $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
 
+    if (!$schedule) {
+        throw new \Exception('No such Schedule');
+    }
+
     $parent = ($schedule->getSchedule()) ? $schedule->getSchedule() : $schedule;
     $repetitions = $em->getRepository('ClubTeamBundle:Repetition')->findOneBy(array(
       'schedule' => $parent->getId()

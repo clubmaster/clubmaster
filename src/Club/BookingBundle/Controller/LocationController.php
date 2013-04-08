@@ -32,8 +32,7 @@ class LocationController extends Controller
     {
         $user = $this->getUser();
 
-        $this->get('session')->set('location_id', $location->getId());
-        $this->get('session')->set('location_name', $location->getLocationName());
+        $this->get('club_user.location')->setCurrent($location);
 
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user->setLocation($location);
