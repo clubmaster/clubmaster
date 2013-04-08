@@ -1,6 +1,8 @@
 {% extends "ClubDashboardBundle::base.html.twig" %}
 
 {% block body %}
+<p class="lead">{% trans with {'%member%':app.user.memberNumber} %}Hi and welcome member <strong>%member%</strong>.{% endtrans %}</p>
+<p>{% trans %}This is your private dashboard find all relevant informations for your account here.{% endtrans %}</p>
 
 {{ output|raw }}
 
