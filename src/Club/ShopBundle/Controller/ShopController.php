@@ -38,10 +38,10 @@ class ShopController extends Controller
         }
 
         $products = $em->getRepository('ClubShopBundle:Product')->findBy(
-            array(
-                'active' => true
-            ),
-            array(), 10);
+            array('active' => true),
+            array('priority' => 'DESC'),
+            10
+        );
 
         return array(
             'location' => $location,
@@ -54,19 +54,21 @@ class ShopController extends Controller
      * @Route("/shop/category/{id}",name="shop_prod_view")
      * @Template()
      */
-    public function categoryAction($id)
+    public function categoryAction(\Club\ShopBundle\Entity\Category $category)
     {
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
-            'category' => $id
+            'category' => $category->getId()
         ));
-        $category = $em->find('ClubShopBundle:Category',$id);
+
+        $products = $em->getRepository('ClubShopBundle:Product')->getByCategory($category);
 
         return array(
             'location' => $this->get('club_user.location')->getCurrent(),
             'categories' => $categories,
-            'category' => $category
+            'category' => $category,
+            'products' => $products
         );
     }
 

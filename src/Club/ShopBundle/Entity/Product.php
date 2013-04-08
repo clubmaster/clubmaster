@@ -66,6 +66,13 @@ class Product
     protected $quantity;
 
     /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer $priority
+     */
+    protected $priority;
+
+    /**
      * @ORM\ManyToMany(targetEntity="VariantGroup")
      * @ORM\JoinTable(name="club_shop_product_variantgroup",
      *   joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
@@ -108,6 +115,7 @@ class Product
         $this->type = 'product';
         $this->active = true;
         $this->quantity = '-1';
+        $this->priority = 10;
     }
 
     public function __toString()
@@ -450,5 +458,28 @@ class Product
             'price' => $this->getPrice(),
             'active' => $this->getActive()
         );
+    }
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Product
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 }
