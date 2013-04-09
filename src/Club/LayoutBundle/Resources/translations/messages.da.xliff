@@ -2792,6 +2792,10 @@
           <source>In stock: %stock%</source>
           <target>På lager: %stock%</target>
       </trans-unit>
+      <trans-unit id="738">
+          <source>Something when wrong in your order, please try again! If that does not help empty your cart and try again.</source>
+          <target>Noget gik galt med din ordre, prøv venligst igen! Hvis ikke det løser problemet, tøm din kurv og prøv igen.</target>
+      </trans-unit>
 
     </body>
   </file>

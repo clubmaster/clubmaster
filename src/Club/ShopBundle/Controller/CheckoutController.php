@@ -127,6 +127,13 @@ class CheckoutController extends Controller
             $this->get('cart')->save();
 
             $cart = $this->get('cart')->getCart();
+
+            $errors = $this->get('validator')->validate($cart);
+            if (count($errors)) {
+                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('Something when wrong in your order, please try again! If that does not help empty your cart and try again.'));
+                return $this->redirect($this->generateUrl('shop_checkout_review'));
+            }
+
             if (!count($cart->getCartProducts())) {
                 $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('This order has no products.'));
 
