@@ -21,7 +21,7 @@ services:
         arguments: [@service_container]
     club_user.currency:
         class: Club\UserBundle\Helper\Currency
-        arguments: [@doctrine.orm.entity_manager, @session]
+        arguments: [@doctrine.orm.entity_manager, @session, @club_user.location]
     club_user.location:
         class: Club\UserBundle\Helper\Location
         arguments: [@doctrine.orm.entity_manager, @session, @logger]

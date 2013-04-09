@@ -1,7 +1,7 @@
 services:
   cart:
     class: Club\ShopBundle\Helper\Cart
-    arguments: [@doctrine.orm.entity_manager,@session,@security.context]
+    arguments: [@doctrine.orm.entity_manager,@session,@security.context,@club_user.location]
   order:
     class: Club\ShopBundle\Helper\Order
     arguments: [@service_container]

@@ -69,7 +69,7 @@ class OverviewController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $nav = $this->getNav();
-        $location = $em->find('ClubUserBundle:Location', $this->get('session')->get('location_id'));
+        $location = $this->get('club_user.location')->getCurrent();
         $fields = $em->getRepository('ClubBookingBundle:Field')->findBy(array(
             'location' => $location->getId()
         ));

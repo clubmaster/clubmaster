@@ -1,5 +1,0 @@
-{% if locations|length > 1 %}
-  {% trans with {'%url%':path('club_user_location_index'),'%location%':location.locationName} %}Location: <strong><a href="%url%">%location%</a></strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-{% else %}
-  {% trans with {'%location%':location.locationName} %}Location: <strong>%location%</strong>{% endtrans %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-{% endif %}

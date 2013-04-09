@@ -6,12 +6,14 @@ class Currency
 {
     protected $em;
     protected $session;
+    protected $club_user_location;
     protected $currency;
 
-    public function __construct($em, $session)
+    public function __construct($em, $session, $club_user_location)
     {
         $this->em = $em;
         $this->session = $session;
+        $this->club_user_location = $club_user_location;
     }
 
     public function getCurrency()
@@ -19,7 +21,7 @@ class Currency
         if (!$this->currency) {
             $this->currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey(
                 'default_currency',
-                $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'))
+                $this->club_user_location->getCurrent()
             );
         }
 

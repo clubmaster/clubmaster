@@ -39,7 +39,6 @@ class Location
         $this->session->set('location_id', $location->getId());
         $this->session->set('location_name', $location->getLocationName());
 
-
         return true;
     }
 }

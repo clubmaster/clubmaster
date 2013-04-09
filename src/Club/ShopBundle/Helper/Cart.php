@@ -8,13 +8,15 @@ class Cart
     protected $session;
     protected $em;
     protected $security_context;
+    protected $club_user_location;
     protected $token;
 
-    public function __construct($em, $session, $security_context)
+    public function __construct($em, $session, $security_context, $club_user_location)
     {
         $this->session = $session;
         $this->em = $em;
         $this->security_context = $security_context;
+        $this->club_user_location = $club_user_location;
         $this->token = $security_context->getToken();
 
         if ($this->session->get('cart_id') != '') {
@@ -40,7 +42,7 @@ class Cart
                 $this->cart = new \Club\ShopBundle\Entity\Cart();
                 $this->cart->setSession($this->session->getId());
 
-                $location = $this->em->find('ClubUserBundle:Location', $this->session->get('location_id'));
+                $location = $this->club_user_location->getCurrent();
                 $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$location);
                 $this->cart->setCurrency($currency->getCode());
                 $this->cart->setCurrencyValue(1);
