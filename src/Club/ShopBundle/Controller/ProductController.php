@@ -29,7 +29,9 @@ class ProductController extends Controller
   public function cartAction(\Club\ShopBundle\Entity\Product $product)
   {
     try {
-      $this->get('cart')->addToCart($product);
+        $this->get('cart')
+            ->getCurrent()
+            ->addToCart($product);
 
     } catch (\Exception $e) {
       $this->get('session')->getFlashBag()->add('error',$e->getMessage());

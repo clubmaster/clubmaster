@@ -18,7 +18,9 @@ class CheckoutController extends Controller
      */
     public function indexAction()
     {
-        $cart = $this->get('cart')->getCart();
+        $cart = $this->get('cart')
+            ->getCurrent()
+            ->getCart();
 
         return array(
             'cart' => $cart,
@@ -34,7 +36,9 @@ class CheckoutController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
-        $this->get('cart')->modifyQuantity($product);
+        $this->get('cart')
+            ->getCurrent()
+            ->modifyQuantity($product);
 
         return $this->redirect($this->generateUrl('shop_checkout'));
     }
@@ -47,7 +51,9 @@ class CheckoutController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
-        $this->get('cart')->modifyQuantity($product,-1);
+        $this->get('cart')
+            ->getCurrent()
+            ->modifyQuantity($product,-1);
 
         return $this->redirect($this->generateUrl('shop_checkout'));
     }
@@ -58,7 +64,15 @@ class CheckoutController extends Controller
      */
     public function orderAction()
     {
-        $cart = $this->get('cart')->getCart();
+        $cart = $this->get('cart')
+            ->getCurrent()
+            ->getCart();
+
+        if (!$cart->getCustomerAddress()) {
+            $address = new \Club\ShopBundle\Entity\CartAddress();
+            $this->get('cart')->setAddresses($address);
+        }
+
         $form = $this->createForm(new \Club\ShopBundle\Form\Cart, $cart);
 
         if ($this->getRequest()->getMethod() == 'POST') {
@@ -87,7 +101,7 @@ class CheckoutController extends Controller
      */
     public function reviewAction()
     {
-        if (!count($this->get('cart')->getCart()->getCartProducts())) {
+        if (!count($this->get('cart')->getCurrent()->getCart()->getCartProducts())) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You need to add products to your cart before you can checkout.'));
 
             return $this->redirect($this->generateUrl('shop_checkout'));
@@ -95,6 +109,11 @@ class CheckoutController extends Controller
 
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
+        }
+
+        if (!$this->get('cart')->getCart()->getCustomerAddress()) {
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('You need to enter customer informations'));
+            return $this->redirect($this->generateUrl('shop_checkout_order'));
         }
 
         if (!$this->get('cart')->getCart()->getShipping()) {
@@ -123,7 +142,10 @@ class CheckoutController extends Controller
     public function processAction(\Club\ShopBundle\Entity\PaymentMethod $payment)
     {
         try {
-            $this->get('cart')->setPayment($payment);
+            $this->get('cart')
+                ->getCurrent()
+                ->setPayment($payment);
+
             $this->get('cart')->save();
 
             $cart = $this->get('cart')->getCart();
@@ -228,7 +250,10 @@ class CheckoutController extends Controller
             $em->remove($cart);
         }
 
-        $this->get('cart')->setUser();
+        $this->get('cart')
+            ->getCurrent()
+            ->setUser();
+
         $this->get('cart')->save();
 
         return $this->redirect($this->generateUrl('shop_checkout_review'));

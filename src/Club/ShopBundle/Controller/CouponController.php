@@ -39,7 +39,10 @@ class CouponController extends Controller
             'type' => 'coupon'
           );
 
-          $this->get('cart')->addToCart($product);
+          $this->get('cart')
+              ->getCurrent()
+              ->addToCart($product);
+
           $event = new \Club\ShopBundle\Event\FilterCouponEvent($coupon);
           $this->get('event_dispatcher')->dispatch(\Club\ShopBundle\Event\Events::onCouponUse, $event);
 

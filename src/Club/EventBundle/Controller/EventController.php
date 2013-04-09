@@ -56,7 +56,9 @@ class EventController extends Controller
                     $event->getId()
                 ));
 
-                $this->get('cart')->addToCart($prod);
+                $this->get('cart')
+                    ->getCurrent()
+                    ->addToCart($prod);
 
                 return $this->redirect($this->generateUrl('shop_checkout'));
             } else {

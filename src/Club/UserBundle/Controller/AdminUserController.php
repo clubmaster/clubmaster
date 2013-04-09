@@ -280,15 +280,14 @@ class AdminUserController extends Controller
   /**
    * @Route("/shop/{id}")
    */
-  public function shopAction($id)
+  public function shopAction(\Club\UserBundle\Entity\User $user)
   {
-    $em = $this->getDoctrine()->getManager();
-    $user = $em->find('ClubUserBundle:User',$id);
+    $this->get('cart')->emptyCart();
 
-    $this->get('session')->set('cart_id',null);
-    $cart = $this->get('cart');
-    $cart->getCart()->setUser($user);
-    $cart->setAddresses($user->getProfile()->getProfileAddress());
+    $cart = $this->get('cart')
+        ->getCurrent()
+        ->setUser($user)
+        ->save();
 
     return $this->redirect($this->generateUrl('shop'));
   }

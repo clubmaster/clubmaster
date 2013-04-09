@@ -208,7 +208,9 @@ class Booking
         $product->setProductName($this->translator->trans('Guest booking').', #'.$this->booking->getId());
 
         $cart = $this->container->get('cart');
-        $cart->addToCart($product);
+        $cart
+            ->getCurrent()
+            ->addToCart($product);
     }
 
     public function cancel(\Club\BookingBundle\Entity\Booking $booking)
