@@ -2796,6 +2796,10 @@
           <source>Something when wrong in your order, please try again! If that does not help empty your cart and try again.</source>
           <target>Noget gik galt med din ordre, prøv venligst igen! Hvis ikke det løser problemet, tøm din kurv og prøv igen.</target>
       </trans-unit>
+      <trans-unit id="739">
+          <source>You are already subscribed</source>
+          <target>Du er allerede tilmeldt</target>
+      </trans-unit>
 
     </body>
   </file>

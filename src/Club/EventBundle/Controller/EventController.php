@@ -67,8 +67,14 @@ class EventController extends Controller
             }
         } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
             $this->get('session')->getFlashBag()->add('error',$e->getMessage());
-        } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
+        } catch (\Club\EventBundle\Exception\EventException $e) {
             $this->get('session')->getFlashBag()->add('error',$e->getMessage());
+        } catch (\Doctrine\DBAL\DBALException $e) {
+            if (preg_match("/Duplicate entry/", $e->getMessage())) {
+                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You are already subscribed'));
+            } else {
+                throw $e;
+            }
         }
 
         return $this->redirect($this->generateUrl('event_event'));
@@ -98,6 +104,21 @@ class EventController extends Controller
         }
 
         return $this->redirect($this->generateUrl('event_event'));
+    }
+
+    /**
+     * @Route("/signin/{id}", name="event_event_signin")
+     * @Template()
+     */
+    public function signinAction(\Club\EventBundle\Entity\Event $event)
+    {
+        $this->get('session')->set('_security.user.target_path', $this->generateUrl(
+            'event_event_attend',
+            array('id' => $event->getId()),
+            true
+        ));
+
+        return $this->redirect($this->generateUrl('club_user_auth_signin'));
     }
 
     /**

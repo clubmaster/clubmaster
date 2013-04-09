@@ -51,11 +51,15 @@
                 <p class="pull-left"><strong>Price:</strong> {{ event.price|club_price }}</p>
                 {% endif %}
 
-                {% if is_granted('IS_AUTHENTICATED_FULLY') and event.isOpen %}
-                    {% if event.isAttending(app.user) %}
-                        <a class="btn pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+                {% if event.isOpen %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if event.isAttending(app.user) %}
+                            <a class="btn pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+                        {% else %}
+                            <a class="btn btn-primary pull-right" href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+                        {% endif %}
                     {% else %}
-                        <a class="btn btn-primary pull-right" href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+                        <a class="btn btn-primary pull-right" href="{{ path('event_event_signin', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
                     {% endif %}
                 {% endif %}
 

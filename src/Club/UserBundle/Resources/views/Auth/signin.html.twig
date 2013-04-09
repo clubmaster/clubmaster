@@ -1,0 +1,50 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+
+<div class="well">
+    <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
+        <legend>{% trans %}Existing member{% endtrans %}</legend>
+        <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
+
+        {% include "ClubUserBundle:Auth:login_form.html.twig" %}
+    </form>
+</div>
+
+<div class="well">
+    <form method="POST" action="{{ path('club_user_auth_signin') }}" class="form-horizontal">
+    <legend>{% trans %}New member{% endtrans %}</legend>
+    <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
+
+    <legend>{% trans %}Password{% endtrans %}</legend>
+    <p>{{ form_row(form.password) }}</p>
+
+    <legend>{% trans %}Personal Information{% endtrans %}</legend>
+
+    <p>{{ form_row(form.profile.first_name) }}</p>
+    <p>{{ form_row(form.profile.last_name) }}</p>
+    <p>{{ form_row(form.profile.gender) }}</p>
+    <p>{{ form_row(form.profile.day_of_birth) }}</p>
+
+    <legend>{% trans %}Address Information{% endtrans %}</legend>
+    <p>{{ form_row(form.profile.profile_address.street) }}</p>
+    <p>{{ form_row(form.profile.profile_address.postal_code) }}</p>
+    <p>{{ form_row(form.profile.profile_address.city) }}</p>
+    <p>{{ form_row(form.profile.profile_address.state) }}</p>
+    <p>{{ form_row(form.profile.profile_address.country) }}</p>
+
+    <legend>{% trans %}Email Information{% endtrans %}</legend>
+    {% for email in form.profile.profile_emails %}
+        <p>{{ form_row(email.email_address) }}</p>
+    {% endfor %}
+
+    <legend>{% trans %}Phone Information{% endtrans %}</legend>
+    <p>{{ form_row(form.profile.profile_phone.phone_number) }}</p>
+
+    {{ form_rest(form) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Create account'|trans} %}
+    </form>
+</div>
+
+{% endblock %}
