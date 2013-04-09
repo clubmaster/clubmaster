@@ -98,12 +98,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "eab9e131192e58ae34cb15253d47e196f31ff5fa"
+                "reference": "c38fce11e0463d0566afcff953f97c90ba68b5b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/eab9e131192e58ae34cb15253d47e196f31ff5fa",
-                "reference": "eab9e131192e58ae34cb15253d47e196f31ff5fa",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/c38fce11e0463d0566afcff953f97c90ba68b5b6",
+                "reference": "c38fce11e0463d0566afcff953f97c90ba68b5b6",
                 "shasum": ""
             },
             "require": {
@@ -121,10 +121,10 @@
             ],
             "authors": [
                 {
-                    "name": "Michael Holm",
+                    "name": "Michael Holm Kristensen",
                     "email": "hollo@hollo.dk",
                     "homepage": "http://www.hollo.dk",
-                    "role": "Developer"
+                    "role": "Maintainer"
                 }
             ],
             "description": "ClubMaster form extra.",
@@ -133,7 +133,7 @@
                 "extra",
                 "form"
             ],
-            "time": "2013-04-05 10:24:08"
+            "time": "2013-04-09 06:19:46"
         },
         {
             "name": "clubmaster/quickpay",
@@ -141,13 +141,13 @@
             "target-dir": "Club/Payment/QuickpayBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clubmaster/ClubPaymentQuickpayBundle",
-                "reference": "1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b"
+                "url": "https://github.com/clubmaster/ClubPaymentQuickpayBundle.git",
+                "reference": "b388c7c8464610c2f0989a96ba46f6716e916bab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubPaymentQuickpayBundle/zipball/1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b",
-                "reference": "1dbd95f2ee82c23dc7f5d6ec69f4e8a98b28428b",
+                "url": "https://api.github.com/repos/clubmaster/ClubPaymentQuickpayBundle/zipball/b388c7c8464610c2f0989a96ba46f6716e916bab",
+                "reference": "b388c7c8464610c2f0989a96ba46f6716e916bab",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "payment",
                 "quickpay"
             ],
-            "time": "2012-09-13 13:18:23"
+            "time": "2013-04-09 07:49:29"
         },
         {
             "name": "doctrine/annotations",
@@ -2020,16 +2020,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.12.2",
+            "version": "v1.12.3",
             "source": {
                 "type": "git",
-                "url": "git://github.com/fabpot/Twig.git",
-                "reference": "v1.12.2"
+                "url": "https://github.com/fabpot/Twig.git",
+                "reference": "v1.12.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/v1.12.2",
-                "reference": "v1.12.2",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/v1.12.3",
+                "reference": "v1.12.3",
                 "shasum": ""
             },
             "require": {
@@ -2065,7 +2065,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-02-09 18:21:53"
+            "time": "2013-04-08 12:40:11"
         }
     ],
     "packages-dev": [
