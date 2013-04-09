@@ -148,8 +148,10 @@ class AuthController extends Controller
                     'user'
                 );
                 $this->get('security.context')->setToken($token);
+                $url = $this->get('session')->get('_security.user.target_path');
+                $this->get('session')->set('_security.user.target_path', null);
 
-                return $this->redirect($this->get('session')->get('_security.user.target_path'));
+                return $this->redirect($url);
             }
         }
 

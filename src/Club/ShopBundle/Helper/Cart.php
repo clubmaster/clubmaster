@@ -197,12 +197,14 @@ class Cart
 
     public function emptyCart()
     {
-        $cart = $this->em->getRepository('ClubShopBundle:Cart')->findOneBy(
-            array('user' => $this->token->getUser()->getId())
-        );
+        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $cart = $this->em->getRepository('ClubShopBundle:Cart')->findOneBy(
+                array('user' => $this->token->getUser()->getId())
+            );
 
-        if ($cart) {
-            $this->em->remove($cart);
+            if ($cart) {
+                $this->em->remove($cart);
+            }
         }
 
         $carts = $this->em->getRepository('ClubShopBundle:Cart')->findBy(array(
