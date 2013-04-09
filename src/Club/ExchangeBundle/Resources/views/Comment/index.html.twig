@@ -13,7 +13,7 @@
       <dt>{% trans %}User{% endtrans %}</dt>
       <dd><a href="{{ path('club_user_member_show', {'id':exchange.user.id}) }}">{{ exchange.user.name }}</a></dd>
       <dt>{% trans %}Message{% endtrans %}</dt>
-      <dd>{{ exchange.message|raw }}</dd>
+      <dd>{{ exchange.message|nl2br }}</dd>
 </dl>
 
 <h1 class="page-header">{% trans %}Comments{% endtrans %}</h1>
