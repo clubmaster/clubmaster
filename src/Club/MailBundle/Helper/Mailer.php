@@ -10,6 +10,9 @@ class Mailer
     protected $logger;
     protected $message;
     protected $event_dispatcher;
+    protected $instant_mailer;
+
+    protected $spool = true;
 
     public function __construct($container)
     {
@@ -18,6 +21,7 @@ class Mailer
         $this->mailer = $container->get('mailer');
         $this->logger = $container->get('logger');
         $this->event_dispatcher = $container->get('event_dispatcher');
+        $this->instant_mailer = $container->get('club_mail.instant_mailer');
 
         $this->init();
     }
@@ -27,6 +31,18 @@ class Mailer
         $this->message = \Swift_Message::newInstance();
 
         return $this;
+    }
+
+    public function setSpool($spool)
+    {
+        $this->spool = $spool;
+
+        return $this;
+    }
+
+    public function getSpool()
+    {
+        return $this->spool;
     }
 
     public function setDecorator($recipients)
@@ -100,7 +116,11 @@ class Mailer
     public function send()
     {
         try {
-            $this->mailer->send($this->message);
+            if ($this->getSpool()) {
+                $this->mailer->send($this->message);
+            } else {
+                $this->instant_mailer->send($this->message);
+            }
         } catch (\Exception $e) {
             $this->logger->err('Error! '.$e->getMessage());
         }

@@ -27,6 +27,7 @@ class PasswordResetListener
         if ($email) {
             $this->clubmaster_mailer
                 ->init()
+                ->setSpool(false)
                 ->setSubject('Reset Password')
                 ->setFrom()
                 ->setTo($email->getEmailAddress())

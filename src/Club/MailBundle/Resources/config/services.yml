@@ -1,4 +1,7 @@
 services:
-  clubmaster_mailer:
-    class: Club\MailBundle\Helper\Mailer
-    arguments: [@service_container]
+    clubmaster_mailer:
+        class: Club\MailBundle\Helper\Mailer
+        arguments: [@service_container]
+    club_mail.instant_mailer:
+        class: %swiftmailer.class%
+        arguments: ["@?swiftmailer.transport.real"]

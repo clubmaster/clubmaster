@@ -76,7 +76,6 @@ class AuthController extends Controller
 
       $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('You will receive an email within a few minutes.'));
 
-      $this->get('clubmaster_mailer')->flushQueue();
       return $this->redirect($this->generateUrl('homepage'));
     }
 
