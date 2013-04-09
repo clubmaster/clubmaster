@@ -123,6 +123,7 @@ class Cart
 
     public function updateProductToCart(\Club\ShopBundle\Entity\CartProduct $cart_product)
     {
+        $cart_product->setCart($this->cart);
         $this->cart->addCartProduct($cart_product);
         $this->cart->setPrice($this->cart->getPrice()+$cart_product->getPrice());
     }
@@ -172,27 +173,32 @@ class Cart
         }
 
         if (!$trigger) {
-            $op = new \Club\ShopBundle\Entity\CartProduct();
-            $op->setCart($this->cart);
-            $op->setProduct($product);
-            $op->setProductName($product->getProductName());
-            $op->setPrice($product->getSpecialPrice());
-            $op->setQuantity(1);
-
-            $type = $product->getType();
-            $op->setType($type);
-
-            foreach ($product->getProductAttributes() as $attr) {
-                $opa = new \Club\ShopBundle\Entity\CartProductAttribute();
-                $opa->setCartProduct($op);
-                $opa->setValue($attr->getValue());
-                $opa->setAttributeName($attr->getAttribute());
-
-                $op->addCartProductAttribute($opa);
-            }
+            $op = $this->makeCartProduct($product);
 
             $this->updateProductToCart($op);
         }
+    }
+
+    public function makeCartProduct(\Club\ShopBundle\Entity\Product $product)
+    {
+        $op = new \Club\ShopBundle\Entity\CartProduct();
+        $op->setProduct($product);
+        $op->setProductName($product->getProductName());
+        $op->setPrice($product->getSpecialPrice());
+        $op->setQuantity(1);
+
+        $op->setType($product->getType());
+
+        foreach ($product->getProductAttributes() as $attr) {
+            $opa = new \Club\ShopBundle\Entity\CartProductAttribute();
+            $opa->setCartProduct($op);
+            $opa->setValue($attr->getValue());
+            $opa->setAttributeName($attr->getAttribute());
+
+            $op->addCartProductAttribute($opa);
+        }
+
+        return $op;
     }
 
     public function emptyCart()

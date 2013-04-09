@@ -1,7 +1,10 @@
 create new order when subscription should be recreated
 make free products
+add confirm payment terms on checkout
+make more dynamic product types without delivery
 
 == NOTES TO LATER ==
+make product attribute page more dynamic
 create unique index (message_users, message_events, message_groups)
 create validator for unique constraint attend ( user, event )
 cannot cancel a guest booking order

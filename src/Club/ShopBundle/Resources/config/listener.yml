@@ -11,7 +11,7 @@ services:
       - { name: kernel.event_listener, event: order.paid, method: onOrderPaid, priority: 10 }
   club.shopbundle.listener.auto_renewal.listener:
     class: Club\ShopBundle\Listener\AutoRenewalListener
-    arguments: [@doctrine.orm.entity_manager,@order]
+    arguments: [@doctrine.orm.entity_manager,@order,@cart]
     tags:
       - { name: kernel.event_listener, event: auto_renewal.task, method: onAutoRenewalTask }
   club.shopbundle.subscription_use_attend:
