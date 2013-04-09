@@ -1,4 +1,5 @@
 create new order when subscription should be recreated
+make free products
 
 == NOTES TO LATER ==
 create unique index (message_users, message_events, message_groups)

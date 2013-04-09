@@ -14,7 +14,9 @@ class Product extends AbstractType
     $builder->add('product_name');
     $builder->add('description');
     $builder->add('price');
-    $builder->add('priority');
+    $builder->add('priority', 'integer', array(
+        'help' => 'Where to list the product in shop view, higher rated higher.'
+    ));
     $builder->add('quantity', 'integer', array(
         'help' => 'Amount in stock, -1 if unlimited'
     ));
