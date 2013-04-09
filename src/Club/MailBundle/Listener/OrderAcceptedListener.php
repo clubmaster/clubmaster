@@ -31,6 +31,7 @@ class OrderAcceptedListener
     if ($email) {
       $this->clubmaster_mailer
         ->init()
+        ->setSpool(false)
         ->setSubject('Order '.$order->getOrderNumber())
         ->setFrom()
         ->setTo($email->getEmailAddress())
