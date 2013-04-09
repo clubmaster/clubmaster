@@ -206,33 +206,8 @@ class CheckoutController extends Controller
      */
     public function signinAction()
     {
-        $em = $this->getDoctrine()->getManager();
         $this->get('session')->set('_security.user.target_path', $this->generateUrl('club_shop_checkout_login', array(), true));
-
-        $user = $this->get('clubmaster.user')->get();
-        $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
-
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-
-                $this->get('clubmaster.user')->save();
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your account has been created.'));
-
-                $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
-                    $user,
-                    null,
-                    'user'
-                );
-                $this->get('security.context')->setToken($token);
-
-                return $this->redirect($this->generateUrl('club_shop_checkout_login'));
-            }
-        }
-
-        return array(
-            'form' => $form->createView()
-        );
+        return $this->redirect($this->generateUrl('club_user_auth_signin'));
     }
 
     /**
@@ -252,7 +227,7 @@ class CheckoutController extends Controller
 
         $this->get('cart')
             ->getCurrent()
-            ->setUser();
+            ->setUser($this->getUser());
 
         $this->get('cart')->save();
 

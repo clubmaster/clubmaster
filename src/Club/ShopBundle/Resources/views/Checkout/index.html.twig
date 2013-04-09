@@ -8,7 +8,9 @@
 
 {% block body %}
 
+{% if cart.user %}
 <p class="lead">{% trans with {'%name%':cart.user.name} %}Here is your cart %name%.{% endtrans %}</p>
+{% endif %}
 
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}

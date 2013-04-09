@@ -34,7 +34,12 @@ class Cart
             }
 
             if (!$this->cart) {
-                $this->buildCart($this->token->getUser());
+                if ($this->token->getUser() instanceof \Club\UserBundle\Entity\User) {
+                    $this->buildCart($this->token->getUser());
+                } else {
+                    $this->buildCart();
+                }
+
                 $this->save();
 
                 $this->session->set('cart_id', $this->cart->getId());
@@ -44,18 +49,19 @@ class Cart
         return $this;
     }
 
-    public function buildCart(\Club\UserBundle\Entity\User $user)
+    public function buildCart(\Club\UserBundle\Entity\User $user=null)
     {
-        $this->cart = new \Club\ShopBundle\Entity\Cart();
-        $this->cart->setSession($this->session->getId());
-
         $location = $this->club_user_location->getCurrent();
         $currency = $this->em->getRepository('ClubUserBundle:LocationConfig')->getObjectByKey('default_currency',$location);
+
+        $this->cart = new \Club\ShopBundle\Entity\Cart();
+        $this->cart->setSession($this->session->getId());
         $this->cart->setCurrency($currency->getCode());
-        $this->cart->setCurrencyValue(1);
-        $this->cart->setPrice(0);
         $this->cart->setLocation($location);
-        $this->setUser($user);
+
+        if ($user) {
+            $this->setUser($user);
+        }
 
         return $this;
     }

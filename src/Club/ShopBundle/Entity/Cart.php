@@ -119,6 +119,8 @@ class Cart
     public function __construct()
     {
       $this->cart_products = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->price = 0;
+      $this->currency_value = 1;
     }
 
     /**
