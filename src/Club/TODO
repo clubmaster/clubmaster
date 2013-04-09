@@ -1,6 +1,7 @@
 create new order when subscription should be recreated
 attend event without beeing logged in
 on quick search, check grazvidaz, get user does not exists
+fix if user without address shop, like user 700
 
 == NOTES TO LATER ==
 create unique index (message_users, message_events, message_groups)

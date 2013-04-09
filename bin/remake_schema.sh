@@ -41,3 +41,5 @@ sudo chown www-data:www-data app/cache app/logs
 rm app/installer
 mkdir -p web/uploads
 sudo chmod 777 -R web/uploads
+
+cp web/bundles/clublayout/bootstrap/img/* web/img/
