@@ -8,7 +8,8 @@
 
 {% block body %}
 
-<h3>{% trans %}View cart{% endtrans %}</h3>
+<p class="lead">{% trans with {'%name%':cart.user.name} %}Here is your cart %name%.{% endtrans %}</p>
+
 <div id="sf_admin_container">
 {% include "ClubShopBundle:Checkout:cart_form.html.twig" %}
 </div>
