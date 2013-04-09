@@ -15,16 +15,19 @@ class Migrate
 
     public function onVersionMigrate(\Club\InstallerBundle\Event\FilterVersionEvent $event)
     {
-        if ($event->getVersion()->getVersion() != '20121016161300') {
-            // fit to this version only
-            return;
-        }
+        try {
+            if ($event->getVersion()->getVersion() != '20121016161300') {
+                // fit to this version only
+                return;
+            }
 
-        $products = $this->em->getRepository('ClubShopBundle:Product')->findAll();
+            $products = $this->em->getRepository('ClubShopBundle:Product')->findAll();
 
-        foreach ($products as $product) {
-            $product->setActive(true);
-            $this->em->persist($product);
+            foreach ($products as $product) {
+                $product->setActive(true);
+                $this->em->persist($product);
+            }
+        } catch (\Exception $e) {
         }
     }
 }
