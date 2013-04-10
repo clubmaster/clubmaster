@@ -142,13 +142,10 @@ class CheckoutController extends Controller
     public function processAction(\Club\ShopBundle\Entity\PaymentMethod $payment)
     {
         try {
-            $this->get('cart')
+            $cart = $this->get('cart')
                 ->getCurrent()
-                ->setPayment($payment);
-
-            $this->get('cart')->save();
-
-            $cart = $this->get('cart')->getCart();
+                ->setPayment($payment)
+                ->getCart();
 
             $errors = $this->get('validator')->validate($cart);
             if (count($errors)) {
@@ -157,33 +154,24 @@ class CheckoutController extends Controller
             }
 
             if (!count($cart->getCartProducts())) {
-                $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('This order has no products.'));
-
-                return $this->redirect($this->generateUrl('shop'));
+                throw new \Exception($this->get('translator')->trans('This order has no products.'));
             }
 
-            if ($cart) {
-                $em = $this->getDoctrine()->getManager();
-                $shipping = $cart->getShipping();
-
-                if ($shipping->getPrice() > 0) {
-                    $product = array(
-                        'product_name' => $shipping->getShippingName(),
-                        'price' => $shipping->getPrice(),
-                        'type' => 'shipping'
-                    );
-                    $this->get('cart')->addToCart($product);
-                }
-                $this->get('order')->convertToOrder($cart);
-                $order = $this->get('order')->getOrder();
-
-            } else {
-                return $this->redirect($this->generateUrl('shop'));
+            if (!$cart) {
+                throw new \Exception($this->get('translator')->trans('No active cart'));
             }
 
-            return $this->redirect($this->generateUrl($order->getPaymentMethod()->getController(), array(
-                'order_id' => $order->getId()
-            )));
+            $order = $this->get('order')
+                ->convertToOrder($cart)
+                ->getOrder();
+
+            return $this->redirect($this->generateUrl(
+                $order->getPaymentMethod()->getController(),
+                array(
+                    'order_id' => $order->getId()
+                )
+            ));
+
         } catch (\Exception $e) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans($e->getMessage()));
             return $this->redirect($this->generateUrl('shop'));

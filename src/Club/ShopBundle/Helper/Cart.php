@@ -255,6 +255,8 @@ class Cart
     {
         $this->cart->setPaymentMethod($payment);
         $this->save();
+
+        return $this;
     }
 
     public function setCart($cart)

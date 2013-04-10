@@ -19,6 +19,8 @@ class Order
     public function setOrder(\Club\ShopBundle\Entity\Order $order)
     {
         $this->order = $order;
+
+        return $this;
     }
 
     public function createSimpleOrder(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\Location $location)
@@ -76,6 +78,8 @@ class Order
         $this->em->remove($cart);
 
         $this->save();
+
+        return $this;
     }
 
     public function getOrder()
