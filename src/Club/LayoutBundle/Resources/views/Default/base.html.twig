@@ -7,8 +7,8 @@
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="{{ asset('jquery-ui/css/ui-lightness/jquery-ui-1.10.2.custom.min.css') }}" />
     {% stylesheets
-        "@ClubLayoutBundle/Resources/public/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap.min.css"
         "@ClubLayoutBundle/Resources/public/bootstrap/css/bootstrap-responsive.min.css"
         "@ClubLayoutBundle/Resources/public/css/mystyle.css" %}
@@ -29,6 +29,8 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <script type="text/javascript" src="{{ asset('jquery-ui/js/jquery-1.9.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('jquery-ui/js/jquery-ui-1.10.2.custom.min.js') }}"></script>
     {% javascripts
         "@ClubLayoutBundle/Resources/public/js/*"
         "@ClubLayoutBundle/Resources/public/bootstrap/js/bootstrap.min.js" %}
