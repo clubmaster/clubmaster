@@ -1,19 +1,19 @@
 {
-    "hash": "b7f65db6051987595295a41551824039",
+    "hash": "0e59a42523655c946923e06263c73133",
     "packages": [
         {
             "name": "clubmaster/economic",
-            "version": "dev-master",
+            "version": "1.0",
             "target-dir": "Club/Account/EconomicBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clubmaster/ClubAccountEconomicBundle",
-                "reference": "cb4b85e59df8d49b4d3bb2cea622b6a8657d6529"
+                "url": "https://github.com/clubmaster/ClubAccountEconomicBundle.git",
+                "reference": "1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubAccountEconomicBundle/zipball/cb4b85e59df8d49b4d3bb2cea622b6a8657d6529",
-                "reference": "cb4b85e59df8d49b4d3bb2cea622b6a8657d6529",
+                "url": "https://api.github.com/repos/clubmaster/ClubAccountEconomicBundle/zipball/1.0",
+                "reference": "1.0",
                 "shasum": ""
             },
             "require": {
@@ -44,21 +44,21 @@
                 "gateway",
                 "ledger"
             ],
-            "time": "2012-11-13 12:07:10"
+            "time": "2013-04-16 21:39:22"
         },
         {
             "name": "clubmaster/extra",
-            "version": "dev-master",
+            "version": "1.0",
             "target-dir": "Club/ExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubExtraBundle.git",
-                "reference": "43c55599508409ee384d2be802665309842118fe"
+                "reference": "1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubExtraBundle/zipball/43c55599508409ee384d2be802665309842118fe",
-                "reference": "43c55599508409ee384d2be802665309842118fe",
+                "url": "https://api.github.com/repos/clubmaster/ClubExtraBundle/zipball/1.0",
+                "reference": "1.0",
                 "shasum": ""
             },
             "require": {
@@ -89,21 +89,21 @@
                 "extra",
                 "paginator"
             ],
-            "time": "2013-01-07 23:03:32"
+            "time": "2013-04-16 21:38:36"
         },
         {
             "name": "clubmaster/formextra",
-            "version": "dev-master",
+            "version": "1.0",
             "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "c38fce11e0463d0566afcff953f97c90ba68b5b6"
+                "reference": "1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/c38fce11e0463d0566afcff953f97c90ba68b5b6",
-                "reference": "c38fce11e0463d0566afcff953f97c90ba68b5b6",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/1.0",
+                "reference": "1.0",
                 "shasum": ""
             },
             "require": {
@@ -137,17 +137,17 @@
         },
         {
             "name": "clubmaster/quickpay",
-            "version": "dev-master",
+            "version": "1.0",
             "target-dir": "Club/Payment/QuickpayBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubPaymentQuickpayBundle.git",
-                "reference": "b388c7c8464610c2f0989a96ba46f6716e916bab"
+                "reference": "1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubPaymentQuickpayBundle/zipball/b388c7c8464610c2f0989a96ba46f6716e916bab",
-                "reference": "b388c7c8464610c2f0989a96ba46f6716e916bab",
+                "url": "https://api.github.com/repos/clubmaster/ClubPaymentQuickpayBundle/zipball/1.0",
+                "reference": "1.0",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "payment",
                 "quickpay"
             ],
-            "time": "2013-04-09 07:49:29"
+            "time": "2013-04-16 21:40:22"
         },
         {
             "name": "doctrine/annotations",
@@ -2078,11 +2078,7 @@
     "stability-flags": {
         "knplabs/knp-menu-bundle": 20,
         "knplabs/knp-menu": 20,
-        "clubmaster/extra": 20,
-        "clubmaster/quickpay": 20,
-        "clubmaster/economic": 20,
-        "sabre/vobject": 20,
-        "clubmaster/formextra": 20
+        "sabre/vobject": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -20,11 +20,11 @@
         "jms/di-extra-bundle": "1.3.*",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "dev-master",
-        "clubmaster/extra": "dev-master",
-        "clubmaster/quickpay": "dev-master",
-        "clubmaster/economic": "dev-master",
-        "sabre/vobject": "dev-master",
-        "clubmaster/formextra": "dev-master"
+        "clubmaster/extra": "1.*",
+        "clubmaster/quickpay": "1.*",
+        "clubmaster/economic": "1.*",
+        "clubmaster/formextra": "1.*",
+        "sabre/vobject": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
