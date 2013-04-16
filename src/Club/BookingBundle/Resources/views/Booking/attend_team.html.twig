@@ -7,7 +7,7 @@
     <form class="form-horizontal">
         <div class="form-actions">
         {% if app.user.attend(schedule) %}
-            <a href="path('club_team_team_unattend', { 'id':schedule.id }) }}" class="btn btn-error">{% trans %}Unattend{% endtrans %}</a>
+            <a href="{{ path('club_team_team_unattend', { 'id':schedule.id }) }}" class="btn btn-error">{% trans %}Unattend{% endtrans %}</a>
         {% else %}
             <a href="{{ path('club_team_team_attend', { 'id':schedule.id }) }}" class="btn btn-primary">{% trans %}Attend{% endtrans %}</a>
         {% endif %}
