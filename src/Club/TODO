@@ -1,11 +1,9 @@
 fix ExecutionContextInterface
-make it possible to attend teams on booking view, and see other subscribed to team
 create new order when subscription should be recreated
 add confirm payment terms on checkout
 make more dynamic product types without delivery
 make qr codes for events
 check wordpress for installer
-usage on teams does not really work
 
 == NOTES TO LATER ==
 make product attribute page more dynamic
