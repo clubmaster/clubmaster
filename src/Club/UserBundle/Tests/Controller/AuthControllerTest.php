@@ -11,7 +11,7 @@ class AuthControllerTest extends WebTestCase
     $crawler = $client->request('GET', '/en/auth/forgot');
     $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('Send Password')->form(array(
+    $form = $crawler->selectButton('Send password')->form(array(
       'form[username]' => '2',
     ));
     $crawler = $client->submit($form);

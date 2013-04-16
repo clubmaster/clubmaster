@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminMessageController extends Controller
 {
   /**
-   * @Route("/")
+   * @Route("")
    * @Template()
    */
   public function indexAction($page = null)
