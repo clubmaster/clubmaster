@@ -1,8 +1,11 @@
-<fieldset>
-  <legend>{% trans %}Delete{% endtrans %}</legend>
+<div class="row-fluid">
+    <div class="span6">
+        <div class="well">
 
-  <p>{% trans %}Click here to cancel your booking.{% endtrans %}</p>
+            <h3>{% trans %}Delete{% endtrans %}</h3>
+            <p>{% trans %}Click here to cancel your booking.{% endtrans %}</p>
+            {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_cancel', {'id':booking.id}), 'button':'Cancel'|trans} %}
 
-    {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_cancel', {'id':booking.id}), 'button':'Cancel'|trans} %}
-</fieldset>
-
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
-<dl class="dl-horizontal">
+<div class="well">
+    <h3>{% trans %}Booking Information{% endtrans %}</h3>
+    <dl class="dl-horizontal">
         <dt>{% trans %}Location{% endtrans %}</dt>
         <dd>{{ interval.field.location.locationName }}</dd>
         <dt>{% trans %}Date{% endtrans %}</dt>
@@ -8,31 +10,31 @@
         <dt>{% trans %}Field{% endtrans %}</dt>
         <dd>{{ interval.field.name }}</dd>
 
-    {% if interval.booking %}
+        {% if interval.booking %}
         <dt>{% trans %}Booker{% endtrans %}</dt>
         <dd>{{ interval.booking.user.name }}</dd>
-      {% if interval.booking.guest %}
+        {% if interval.booking.guest %}
         <dt>{% trans %}Partner{% endtrans %}</dt>
         <dd>Guest</dd>
-      {% else %}
+        {% else %}
         <dt>{% trans %}Partner{% endtrans %}</dt>
         <dd>
-      {% for partner in interval.booking.users %}
+        {% for partner in interval.booking.users %}
         {{ partner.name }},
-      {% endfor %}
+        {% endfor %}
         </dd>
-      {% endif %}
+        {% endif %}
 
-    {% elseif interval.schedule %}
+        {% elseif interval.schedule %}
         <dt>{% trans %}Team{% endtrans %}</dt>
         <dd>{{ interval.schedule.team.teamName }}</dd>
 
-    {% endif %}
-</dl>
+        {% endif %}
+    </dl>
 
     {% if interval.field.information %}
-      <h2>{% trans %}Information{% endtrans %}</h2>
+      <h3>{% trans %}Information{% endtrans %}</h3>
       <p>{{ interval.field.information }}</p>
     {% endif %}
 
-<hr>
+</div>
