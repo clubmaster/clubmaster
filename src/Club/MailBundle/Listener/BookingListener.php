@@ -27,6 +27,7 @@ class BookingListener
         $recipients = $this->getRecipients($booking);
 
         $this->clubmaster_mailer
+            ->setSpool(false)
             ->setSubject($this->translator->trans('Booking confirm'))
             ->setFrom()
             ->setBody($this->templating->render('ClubMailBundle:Template:booking_confirm.html.twig', array(
@@ -50,6 +51,7 @@ class BookingListener
         $recipients = $this->getRecipients($booking);
 
         $this->clubmaster_mailer
+            ->setSpool(false)
             ->setSubject($this->translator->trans('Booking cancel'))
             ->setFrom()
             ->setBody($this->templating->render('ClubMailBundle:Template:booking_cancel.html.twig',array(
