@@ -4,7 +4,7 @@ namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * Club\TeamBundle\Entity\ScheduleUser
@@ -134,21 +134,17 @@ class ScheduleUser
         return $this->schedule;
     }
 
-    public function isFull(ExecutionContext $context)
+    public function isFull(ExecutionContextInterface $context)
     {
       if (count($this->getSchedule()->getUsers()) >= $this->getSchedule()->getMaxAttend()) {
-        $property_path = $context->getPropertyPath() . '.users';
-        $context->setPropertyPath($property_path);
-        $context->addViolation('The team is already full!', array(), null);
+        $context->addViolationAt('users', 'The team is already full!', array(), null);
       }
     }
 
-    public function isExpired(ExecutionContext $context)
+    public function isExpired(ExecutionContextInterface $context)
     {
       if ($this->getSchedule()->getFirstDate()->getTimestamp() < time()) {
-        $property_path = $context->getPropertyPath() . '.users';
-        $context->setPropertyPath($property_path);
-        $context->addViolation('The team is already started!', array(), null);
+        $context->addViolationAt('users', 'The team is already started!', array(), null);
       }
     }
 

@@ -129,8 +129,10 @@ class Team
   {
     $c = clone $this->schedule->getFirstDate();
 
-    if ($c < new \DateTime())
+    if ($c < new \DateTime()) {
       $this->setError('You cannot attend in the past');
+      return;
+    }
 
     $r = $this->em->createQueryBuilder()
       ->select('su')
@@ -142,8 +144,10 @@ class Team
       ->getQuery()
       ->getOneOrNullResult();
 
-    if (count($r))
+    if (count($r)) {
       $this->setError('You are already on this team');
+      return;
+    }
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
@@ -158,8 +162,10 @@ class Team
       ->getQuery()
       ->getSingleResult();
 
-    if ($res[1] >= $this->container->getParameter('club_team.num_team_day'))
+    if ($res[1] >= $this->container->getParameter('club_team.num_team_day')) {
       $this->setError('You cannot attend more teams this day');
+      return;
+    }
 
     $res = $this->em->createQueryBuilder()
       ->select('COUNT(su)')
@@ -173,14 +179,21 @@ class Team
 
     if ($res[1] >= $this->container->getParameter('club_team.num_team_future')) {
       $this->setError('You cannot attend more teams');
-
       return;
     }
 
-    if (!$this->hasSubscription($this->user)) {
-      $this->setError('You do not have permission to use teams.');
+    $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->user, null, 'team');
+    if (!$subs) {
+        $this->setError('No subscription for teams');
+        return;
+    }
 
-      return;
+    foreach ($subs as $subscription) {
+        if ($subscription->getType() == 'ticket' && $subscription->getSubscriptionTicket()->getTickets() <= 0) {
+            $this->setError('No subscription for teams');
+
+            return;
+        }
     }
 
     $this->prepare();

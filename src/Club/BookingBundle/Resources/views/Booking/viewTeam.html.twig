@@ -2,21 +2,44 @@
 
 {% block body %}
 
-<fieldset>
-  <legend>{% trans %}Booking Information{% endtrans %}</legend>
-  <div class="list">
-    <p><label>{% trans %}Location{% endtrans %}</label>{{ field.location.locationName }}</p>
-    <p><label>{% trans %}Date{% endtrans %}</label>{{ schedule.firstDate|club_date }}</p>
-    <p><label>{% trans %}Time{% endtrans %}</label>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</p>
-    <p><label>{% trans %}Field{% endtrans %}</label>{{ field.name }}</p>
-    <p><label>{% trans %}Team{% endtrans %}</label>{{ schedule.teamCategory.teamName }}</p>
+<div class="well">
+  <h3>{% trans %}Booking Information{% endtrans %}</h3>
+    <dl class="dl-horizontal">
+        <dt>{% trans %}Location{% endtrans %}</dt>
+        <dd>{{ field.location.locationName }}</dd>
+
+        <dt>{% trans %}Date{% endtrans %}</dt>
+        <dd>{{ schedule.firstDate|club_date }}</dd>
+
+        <dt>{% trans %}Time{% endtrans %}</dt>
+        <dd>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</dd>
+
+        <dt>{% trans %}Field{% endtrans %}</dt>
+        <dd>{{ field.name }}</dd>
+
+        <dt>{% trans %}Team{% endtrans %}</dt>
+        <dd>{{ schedule.teamCategory.teamName }}</dd>
+
+        <dt>{% trans %}Attends{% endtrans %}</dt>
+        <dd>{{ schedule.users|length }} / {{ schedule.maxAttend }}</dd>
+
+    </dl>
 
     {% if field.information %}
       <h3>{% trans %}Information{% endtrans %}</h3>
       <p>{{ field.information }}</p>
     {% endif %}
-  </div>
-</fieldset>
+
+    {% if schedule.users|length > 0 %}
+        <h3>{% trans %}Attends{% endtrans %}</h3>
+        <dl class="dl-horizontal">
+        {% for user in schedule.users %}
+            <dd>{{ user.user.name }}</dd>
+        {% endfor %}
+        </dl>
+    {% endif %}
+
+</div>
 
 {% include "ClubBookingBundle:Booking:attend_team.html.twig" %}
 {% endblock %}

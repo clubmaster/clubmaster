@@ -384,21 +384,17 @@ class AdminScheduleController extends Controller
             return;
         }
 
-        $t1_first = clone $original
-            ->getFirstDate()
-            ->setDate(1970,1,1);
+        $t1_first = clone $original->getFirstDate();
+        $t1_first->setDate(1970,1,1);
 
-        $t2_first = clone $schedule
-            ->getFirstDate()
-            ->setDate(1970,1,1);
+        $t2_first = clone $schedule->getFirstDate();
+        $t2_first->setDate(1970,1,1);
 
-        $t1_end = clone $original
-            ->getEndDate()
-            ->setDate(1970,1,1);
+        $t1_end = clone $original->getEndDate();
+        $t1_end->setDate(1970,1,1);
 
-        $t2_end = clone $schedule
-            ->getEndDate()
-            ->setDate(1970,1,1);
+        $t2_end = clone $schedule->getEndDate();
+        $t2_end->setDate(1970,1,1);
 
         $diff_first = $t1_first->diff($t2_first);
         $diff_end = $t1_end->diff($t2_end);
