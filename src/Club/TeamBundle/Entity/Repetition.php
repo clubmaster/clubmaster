@@ -4,7 +4,7 @@ namespace Club\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * Club\TeamBundle\Entity\Repetition
@@ -354,14 +354,12 @@ class Repetition
       $this->setUpdatedAt(new \DateTime());
     }
 
-    public function isValid(ExecutionContext $context)
+    public function isValid(ExecutionContextInterface $context)
     {
       switch ($this->getType()) {
       case 'monthly':
         if ($this->getDayOfMonth() != true && $this->getWeek() == null) {
-          $property_path = $context->getPropertyPath() . '.day_of_month';
-          $context->setPropertyPath($property_path);
-          $context->addViolation('Choose either day of month or a day of week!', array(), null);
+          $context->addViolationAt('day_of_month', 'Choose either day of month or a day of week!', array(), null);
 
         }
         break;

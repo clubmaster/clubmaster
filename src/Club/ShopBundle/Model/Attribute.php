@@ -3,7 +3,7 @@
 namespace Club\ShopBundle\Model;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * @Assert\Callback(methods={"isValid"})
@@ -232,7 +232,7 @@ class Attribute
     return $this->booking;
   }
 
-  public function isValid(ExecutionContext $context)
+  public function isValid(ExecutionContextInterface $context)
   {
     if ($this->start_date == '' && $this->expire_date == '' && $this->time_interval == '')
       $context->addViolation('You has to specify a time for the subscription.', array(), null);
