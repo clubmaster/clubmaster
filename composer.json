@@ -18,8 +18,6 @@
         "sensio/generator-bundle": "2.2.*",
         "jms/security-extra-bundle": "1.4.*",
         "jms/di-extra-bundle": "1.3.*",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "knplabs/knp-menu": "dev-master",
         "clubmaster/extra": "1.*",
         "clubmaster/quickpay": "1.*",
         "clubmaster/economic": "1.*",
