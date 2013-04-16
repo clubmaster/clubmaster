@@ -461,6 +461,11 @@ class Schedule
       $this->instructors = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function resetFields()
+    {
+      $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set penalty
      *
