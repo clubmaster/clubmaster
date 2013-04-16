@@ -1,0 +1,21 @@
+1.3.1 (YYYY-MM-DD)
+    * Upgraded jquery
+    * Upgraded twitter bootstrap
+    * Upgraded symfony2
+    * Removed unused libraries
+    * Added ability to send mail immidiately
+    * Improved design of booking informations
+    * Fixed a bug with regeneration of teams with fields
+    * Added support for free products
+    * Improved checkout procedure
+    * Improved field administration
+    * Added sort of products in view
+    * Made member number visible to member
+    * Cleanup shopping carts after 2 weeks
+    * Added support for pay of events
+    * Added functionality to archive sent messages
+    * Added functionality to send messages to filter search
+    * Fixed a translation of VAT
+    * Added plaintext password on welcome mails
+    * Added products to API
+    * Added support for products in stock
