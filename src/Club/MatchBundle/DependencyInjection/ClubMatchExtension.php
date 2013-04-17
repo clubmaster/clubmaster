@@ -27,8 +27,5 @@ class ClubMatchExtension extends Extension
         if ($config['enabled']) $loader->load('listener.yml');
 
         $container->setParameter('club_match.enabled', $config['enabled']);
-        $container->setParameter('club_match.google_plus', $config['google_plus']);
-        $container->setParameter('club_match.facebook_like', $config['facebook_like']);
-        $container->setParameter('club_match.facebook_api', $config['facebook_api']);
     }
 }

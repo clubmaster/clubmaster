@@ -24,9 +24,5 @@ class ClubWelcomeExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener.yml');
-
-        $container->setParameter('club_welcome.google_plus', $config['google_plus']);
-        $container->setParameter('club_welcome.facebook_like', $config['facebook_like']);
-        $container->setParameter('club_welcome.facebook_api', $config['facebook_api']);
     }
 }
