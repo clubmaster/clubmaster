@@ -19,3 +19,4 @@
     * Added plaintext password on welcome mails
     * Added products to API
     * Added support for products in stock
+    * No more need to clear cache on new configuration
