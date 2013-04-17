@@ -3,6 +3,7 @@
 namespace Club\BookingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,13 +14,16 @@ class OverviewController extends Controller
 {
     /**
      * @Route("/interval/{date}")
+     * @Method("POST")
      */
-    public function intervalAction($date)
+    public function intervalAction(\DateTime $date)
     {
         $request = $this->getRequest();
-
-        $date = new \DateTime($date);
         $interval = $request->request->get('interval_id');
+
+        if (!$interval) {
+            throw $this->createNotFoundException('Page does not exists.');
+        }
 
         return $this->redirect($this->generateUrl('club_booking_overview_view', array(
             'date' => $date->format('Y-m-d'),
