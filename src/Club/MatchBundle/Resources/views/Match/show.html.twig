@@ -4,30 +4,6 @@
 Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
 {% endblock %}
 
-{% if facebook_like %}
-
-{% block metatags %}
-<meta property="og:title" content="Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}"/>
-<meta property="og:type" content="sport" />
-<meta property="og:url" content="{{ url('club_match_match_show', {'id':match.id}) }}" />
-<meta property="og:site_name" content="{{ url('homepage') }}" />
-<meta property="fb:app_id" content="{{ facebook_api }}" />
-<meta property="og:image" content="{{ url('homepage') }}{{ asset('bundles/clublayout/images/icons/32x32/medal_gold_1.png') }}" />
-{% endblock %}
-
-{% block after_body %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId={{ facebook_api }}";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-{% endblock %}
-
-{% endif %}
-
 {% block pagenav %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="navbar">
@@ -44,6 +20,7 @@ Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
 {% endblock %}
 
 {% block body %}
+
 <table class="table">
   <thead>
     <tr>
@@ -58,17 +35,7 @@ Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
   </tbody>
 </table>
 
-<div class="socialButtons">
-{% if google_plus %}
-<div>{% include "ClubLayoutBundle:Default:google_plus.html.twig" %}</div>
-{% endif %}
-
-{% if facebook_like %}
-<div>{% include "ClubLayoutBundle:Default:facebook_like.html.twig" %}</div>
-{% endif %}
-</div>
-
-<div class="clearfix"></div>
+{{ socialButtons() }}
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in match.matchComments %}

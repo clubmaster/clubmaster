@@ -1,8 +1,3 @@
-club_facebook:
-    resource: "@ClubFacebookBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 club_ranking:
     resource: "@ClubRankingBundle/Controller/"
     type:     annotation

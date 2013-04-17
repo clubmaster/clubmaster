@@ -124,7 +124,3 @@ club_weather:
 
 club_tournament:
     enabled: true
-
-club_facebook:
-    enabled: false
-    app_id: ~
