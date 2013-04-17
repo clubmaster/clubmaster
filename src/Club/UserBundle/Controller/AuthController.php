@@ -34,15 +34,6 @@ class AuthController extends Controller
     }
 
     /**
-     * @Route("/clear")
-     */
-    public function clearCache()
-    {
-        $url = $this->generateUrl('homepage');
-        $this->get('club_installer.installer')->clearCache($url);
-    }
-
-    /**
      * @Route("/{_locale}/auth/forgot", name="auth_forgot")
      * @Template()
      */

@@ -34,8 +34,6 @@ class InstallerController extends Controller
 
             $response = $this->redirect($this->generateUrl('club_installer_installer_migrate'));
 
-            $this->get('club_installer.installer')->clearCache();
-
             return $response;
         }
 

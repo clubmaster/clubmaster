@@ -19,20 +19,4 @@ class InstallerFile
 
         return false;
     }
-
-    public function clearCache($url)
-    {
-        $path = $this->container->getParameter('kernel.cache_dir');
-        $old_path = $this->container->getParameter('kernel.cache_dir').'_old';
-
-        if (is_dir($old_path)) {
-            $this->container->get('filesystem')->remove($old_path);
-        }
-
-        rename($path, $old_path);
-        $this->container->get('filesystem')->remove($old_path);
-
-        header('Location: '.$url);
-        exit;
-    }
 }
