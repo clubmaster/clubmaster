@@ -2,29 +2,20 @@ create new order when subscription should be recreated
 add confirm payment terms on checkout
 make more dynamic product types without delivery
 check wordpress for installer
-make sure the changes in clubmaster.yml will take affect
-
-== NOTES TO LATER ==
 make product attribute page more dynamic
 create unique index (message_users, message_events, message_groups)
 create validator for unique constraint attend ( user, event )
 cannot cancel a guest booking order
-the system has to clean out orders that is not processed
-the booking should never be expired, but only one can have status code 2, just in case of cash payment
 get booking plan by right credentials (non repeat, ends on)
 save info on who has changed a order_staus_history
 stuff should not break if economic account number does not exists
 the system has to clean out orders that is not processed
 the booking should never be expired, but only one can have status code 2, just in case of cash payment
-add notes to some documentation on lockout
 give warning if you try to make a booking plan above a booking
-make sure we somehow can create teams, that show up on booking screen, which users can participate in (max 4 players)
-add exceptions to team
 add ics format for team handling
 check opencart for better shop experience
 check conventus to better booking system
 check tidyclub for better user system
-import and export keys for system in ATK
 integrate twitter as well
 merge users
 delete users
@@ -32,9 +23,7 @@ create overall ranking:
     - first win over player 50 xp, second 50/2 xp, third 50/3 xp
     - played match 5 xp
     - lost match -5 xp
-consider to give role to all with subscription to make it quick to select if player is active
 add images to blog, find an image uploader script
-see if there is a easier way to print page headers, stupid to print the html on all pages
 build a league system, with both single and doubles
 add custom fields on profiles
 batch assign users to a league
@@ -43,7 +32,6 @@ view if the booking is confirmed on booking overview
 administrator should see which booking has been cancelled due to unconfirmed
 users should be able to create multiple emails, phone
 more simple to book fields, if no payment, no need to confirm
-make sure user only can use teams in member ship status period
 add double in league
 search users on creating date
 be able to create product packages
@@ -51,19 +39,12 @@ add images to products
 make action alerts, email when user book or whatever
 make a is_active boolean on user entity
 rewrite active in user repository
-make feedback as a popdown form
 upload profile image for all members
-we might need a mailing list
-build new gravatar support
 add category priority regarding to account numbers
-admin user batch, select search
 jquery overlay form on booking
-make a button to accept business terms
 bulk create order to users
-quick create intervals when creating the field
 make a quick way to remove all team penalties
 implement payment for booking
-find a smart way to get default location, might be with the url
 add product on dynamic group
 dynamic pick colors for booking, plan and teams
 pick different colors for different types of event in booking plan
@@ -83,7 +64,6 @@ use attribute class as product attribute converter
 add defaults during install:
   - categories
   - products
-fix constraints to delete a location
 add transaction on complete order
 add transaction on order change
 login through booking page
