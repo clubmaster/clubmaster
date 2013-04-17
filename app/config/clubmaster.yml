@@ -118,6 +118,6 @@ club_tournament:
     enabled: true
 
 club_extra:
-    facebook: true
-    twitter: true
-    google: true
+    #facebook: true
+    #twitter: true
+    #googleplus: true

@@ -48,17 +48,17 @@
         },
         {
             "name": "clubmaster/extra",
-            "version": "1.0",
+            "version": "1.1",
             "target-dir": "Club/ExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubExtraBundle.git",
-                "reference": "1.0"
+                "reference": "1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubExtraBundle/zipball/1.0",
-                "reference": "1.0",
+                "url": "https://api.github.com/repos/clubmaster/ClubExtraBundle/zipball/1.1",
+                "reference": "1.1",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 "extra",
                 "paginator"
             ],
-            "time": "2013-04-16 21:38:36"
+            "time": "2013-04-17 12:33:18"
         },
         {
             "name": "clubmaster/formextra",
@@ -1347,12 +1347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/evert/sabre-vobject.git",
-                "reference": "fe20656023c5ab1bf1e01089ecff85a03fc3bc64"
+                "reference": "94ca7af247c2fa08ade428aa2015b0c68fcdcb46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/evert/sabre-vobject/zipball/fe20656023c5ab1bf1e01089ecff85a03fc3bc64",
-                "reference": "fe20656023c5ab1bf1e01089ecff85a03fc3bc64",
+                "url": "https://api.github.com/repos/evert/sabre-vobject/zipball/94ca7af247c2fa08ade428aa2015b0c68fcdcb46",
+                "reference": "94ca7af247c2fa08ade428aa2015b0c68fcdcb46",
                 "shasum": ""
             },
             "require": {
@@ -1375,7 +1375,7 @@
                 {
                     "name": "Evert Pot",
                     "email": "evert@rooftopsolutions.nl",
-                    "homepage": "http://www.rooftopsolutions.nl/",
+                    "homepage": "http://evertpot.com/",
                     "role": "Developer"
                 }
             ],
@@ -1386,7 +1386,7 @@
                 "iCalendar",
                 "vCard"
             ],
-            "time": "2013-03-21 23:20:33"
+            "time": "2013-04-17 09:52:21"
         },
         {
             "name": "sensio/distribution-bundle",
