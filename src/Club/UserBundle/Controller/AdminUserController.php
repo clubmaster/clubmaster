@@ -366,7 +366,7 @@ class AdminUserController extends Controller
     $repository = $em->getRepository('ClubUserBundle:User');
     $usersCount = $repository->getUsersCount($filter);
 
-    $nav = $this->get('club_paginator.paginator')
+    $nav = $this->get('club_extra.paginator')
         ->init(50, $usersCount, $page, 'admin_user_page');
 
     $sort = $this->get('session')->get('admin_module:admin_user');
@@ -385,7 +385,6 @@ class AdminUserController extends Controller
       'sort_name' => key($order_by),
       'sort_type' => $order_by[key($order_by)],
       'users' => $users,
-      'nav' => $nav,
       'form' => $form->createView()
     );
   }

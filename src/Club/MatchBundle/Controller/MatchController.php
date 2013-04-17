@@ -110,12 +110,11 @@ class MatchController extends Controller
         $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubMatchBundle:Match')->getPaginator($results, $page);
 
-        $nav = $this->get('club_paginator.paginator')
+        $this->get('club_extra.paginator')
             ->init($results, count($paginator), $page, 'club_match_offset');
 
         return $this->render('ClubMatchBundle:Match:index.html.twig', array(
-            'matches' => $paginator,
-            'nav' => $nav
+            'matches' => $paginator
         ));
     }
 }

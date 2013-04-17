@@ -40,7 +40,6 @@ class AppKernel extends Kernel
             new Club\Payment\CashBundle\ClubPaymentCashBundle(),
             new Club\CheckinBundle\ClubCheckinBundle(),
             new Club\Account\EconomicBundle\ClubAccountEconomicBundle(),
-            new Club\PaginatorBundle\ClubPaginatorBundle(),
             new Club\PasskeyBundle\ClubPasskeyBundle(),
             new Club\ExchangeBundle\ClubExchangeBundle(),
             new Club\TournamentBundle\ClubTournamentBundle(),
@@ -49,6 +48,7 @@ class AppKernel extends Kernel
             new Club\RankingBundle\ClubRankingBundle(),
             new Club\FacebookBundle\ClubFacebookBundle(),
             new Club\FormExtraBundle\ClubFormExtraBundle(),
+            new Club\ExtraBundle\ClubExtraBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -21,14 +21,13 @@ class LogController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $logs_count = $em->getRepository('ClubLogBundle:Log')->getCount();
-    $nav = $this->get('club_paginator.paginator')
+    $nav = $this->get('club_extra.paginator')
         ->init(50, $logs_count, $page, 'club_log_log_index_page');
 
     $logs = $em->getRepository('ClubLogBundle:Log')->getWithPagination($nav->getOffset(), $nav->getLimit());
 
     return array(
-      'logs' => $logs,
-      'nav' => $nav,
+      'logs' => $logs
     );
   }
 

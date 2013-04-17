@@ -105,12 +105,11 @@ class AdminBlogController extends Controller
         $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
 
-        $nav = $this->get('club_paginator.paginator')
+        $this->get('club_extra.paginator')
             ->init($results, count($paginator), $page, 'club_welcome_adminblog_offset');
 
         return array(
-            'paginator' => $paginator,
-            'nav' => $nav
+            'paginator' => $paginator
         );
     }
 }

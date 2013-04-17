@@ -2,7 +2,7 @@ app/bootstrap.php.cache
 app/installer
 app/logs
 app/cache
-app/spool
+app/sessions
 vendor/
 web/bundles
 web/uploads/

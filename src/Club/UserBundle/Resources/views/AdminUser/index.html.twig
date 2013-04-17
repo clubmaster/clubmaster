@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 {% block body %}
 
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 <div>
 <form method="post" action="{{ path('admin_user_batch') }}">
 <table class="table">
@@ -79,5 +79,5 @@ $(document).ready(function() {
 </form>
 </div>
 
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 {% endblock %}

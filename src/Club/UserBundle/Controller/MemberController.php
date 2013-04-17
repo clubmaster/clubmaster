@@ -71,13 +71,12 @@ class MemberController extends Controller
 
       $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
 
-      $nav = $this->get('club_paginator.paginator')
+      $this->get('club_extra.paginator')
           ->init($results, count($paginator), $page, 'club_user_members_page');
 
       return array(
           'form' => $form->createView(),
-          'paginator' => $paginator,
-          'nav' => $nav
+          'paginator' => $paginator
       );
   }
 }

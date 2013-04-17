@@ -12,8 +12,8 @@
 </div>
 {% endif %}
 
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 {% include "ClubMatchBundle:Match:recent_matches.html.twig" %}
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 
 {% endblock %}

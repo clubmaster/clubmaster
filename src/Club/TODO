@@ -1,8 +1,8 @@
 create new order when subscription should be recreated
 add confirm payment terms on checkout
 make more dynamic product types without delivery
-make qr codes for events
 check wordpress for installer
+make sure the changes in clubmaster.yml will take affect
 
 == NOTES TO LATER ==
 make product attribute page more dynamic

@@ -1,4 +1,0 @@
-services:
-  club_paginator.paginator:
-    class: Club\PaginatorBundle\Helper\Paginator
-    arguments: [50, 7]

@@ -172,12 +172,11 @@ class AdminGroupController extends Controller
         $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubUserBundle:Group')->getPaginator($results, $page);
 
-        $nav = $this->get('club_paginator.paginator')
+        $this->get('club_extra.paginator')
             ->init($results, count($paginator), $page, 'club_user_admingroup_index');
 
         return array(
-            'paginator' => $paginator,
-            'nav' => $nav
+            'paginator' => $paginator
         );
     }
 }

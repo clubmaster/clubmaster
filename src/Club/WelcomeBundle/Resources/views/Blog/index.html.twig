@@ -19,12 +19,12 @@
 {% block body %}
 <div style="float: right;"><a target="_open" href="{{ path('club_welcome_rss_latest') }}"><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/rss.png') }}" /></a></div>
 
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 
 {% for post in paginator %}
 {% include "ClubWelcomeBundle:Welcome:blog.html.twig" %}
 {% endfor %}
 
-{% include "ClubPaginatorBundle:Paginator:paginator.html.twig" %}
+{{ club_paginator() }}
 
 {% endblock %}

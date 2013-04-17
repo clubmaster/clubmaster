@@ -20,12 +20,19 @@ class InstallerFile
         return false;
     }
 
-    public function clearCache()
+    public function clearCache($url)
     {
-        $realCacheDir = $this->container->getParameter('kernel.cache_dir');
-        $project_container = $this->container->getParameter('kernel.container_class');
+        $path = $this->container->getParameter('kernel.cache_dir');
+        $old_path = $this->container->getParameter('kernel.cache_dir').'_old';
 
-        $file = $realCacheDir.'/'.$project_container.'.php';
-        unlink($file);
+        if (is_dir($old_path)) {
+            $this->container->get('filesystem')->remove($old_path);
+        }
+
+        rename($path, $old_path);
+        $this->container->get('filesystem')->remove($old_path);
+
+        header('Location: '.$url);
+        exit;
     }
 }

@@ -42,12 +42,11 @@ class AdminCheckinController extends Controller
         $em = $this->getDoctrine()->getManager();
         $paginator = $em->getRepository('ClubCheckinBundle:Checkin')->getPaginator($results, $page);
 
-        $nav = $this->get('club_paginator.paginator')
+        $this->get('club_extra.paginator')
             ->init($results, count($paginator), $page, 'club_checkin_admincheckin_offset');
 
         return array(
-            'paginator' => $paginator,
-            'nav' => $nav
+            'paginator' => $paginator
         );
     }
 }

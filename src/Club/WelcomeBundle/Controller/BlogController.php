@@ -146,12 +146,11 @@ class BlogController extends Controller
     $em = $this->getDoctrine()->getManager();
     $paginator = $em->getRepository('ClubWelcomeBundle:Blog')->getPaginator($results, $page);
 
-    $nav = $this->get('club_paginator.paginator')
+    $this->get('club_extra.paginator')
         ->init($results, count($paginator), $page, 'welcome_blog_offset');
 
     return array(
-        'paginator' => $paginator,
-        'nav' => $nav
+        'paginator' => $paginator
     );
   }
 
