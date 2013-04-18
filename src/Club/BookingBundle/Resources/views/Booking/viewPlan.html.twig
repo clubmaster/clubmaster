@@ -2,13 +2,21 @@
 
 {% block body %}
 
-<fieldset>
-  <legend>{% trans %}Booking Information{% endtrans %}</legend>
-  <div class="list">
-    <p><label>{% trans %}Location{% endtrans %}</label>{{ field.location.locationName }}</p>
-    <p><label>{% trans %}Start date{% endtrans %}</label>{{ date|club_datetime }}</p>
-    <p><label>{% trans %}Field{% endtrans %}</label>{{ field.name }}</p>
-    <p><label>{% trans %}Plan{% endtrans %}</label>{{ plan.name }}</p>
+<div class="well">
+  <h3>{% trans %}Booking Information{% endtrans %}</h3>
+    <dl class="dl-horizontal">
+        <dt>{% trans %}Location{% endtrans %}</dt>
+        <dd>{{ field.location.locationName }}</dd>
+
+        <dt>{% trans %}Start date{% endtrans %}</dt>
+        <dd>{{ date|club_datetime }}</dd>
+
+        <dt>{% trans %}Field{% endtrans %}</dt>
+        <dd>{{ field.name }}</dd>
+
+        <dt>{% trans %}Plan{% endtrans %}</dt>
+        <dd>{{ plan.name }}</dd>
+    </dl>
 
     {% if field.information %}
       <h3>{% trans %}Information{% endtrans %}</h3>
@@ -18,6 +26,7 @@
     <h3>{% trans %}Description{% endtrans %}</h3>
     <p>{{ plan.description }}</p>
 
+</div>
     {% if is_granted('ROLE_BOOKING_ADMIN') %}
     <fieldset>
         <legend>{% trans %}Delete{% endtrans %}</legend>
@@ -27,8 +36,5 @@
         {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_exclude', {'id':plan.id,'datetime':date|date('Y-m-d H:i')}), 'button':'Cancel'|trans} %}
     </fieldset>
     {% endif %}
-
-  </div>
-</fieldset>
 
 {% endblock %}

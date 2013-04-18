@@ -1,3 +1,4 @@
+make a binding between currency and location, so we cannot delete current used curreny
 show all configuration items on a page
 add creditcard subscription
 check ATK, seems like deleted areas still exists in field administration
