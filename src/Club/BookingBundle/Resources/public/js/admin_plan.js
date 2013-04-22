@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 function show_view()
 {
-    var repeat = $('#plan_repeating').attr('checked');
+    var repeat = $('#plan_repeating').is(':checked');
     if (repeat) {
         $('#repeat_form').show();
     } else {
@@ -47,7 +47,7 @@ function show_view()
         $('#plan_plan_repeats_0_ends_on').closest('div.control-group').show();
     }
 
-    if ($('#plan_all_day').attr('checked')) {
+    if ($('#plan_all_day').is(':checked')) {
         $('#plan_start_time').hide();
         $('#plan_end_time').hide();
     } else {
