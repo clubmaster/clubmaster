@@ -22,3 +22,6 @@ services:
     club_user.location:
         class: Club\UserBundle\Helper\Location
         arguments: [@doctrine.orm.entity_manager, @session, @logger]
+    club_user.flash:
+        class: Club\UserBundle\Helper\Flash
+        arguments: [@session, @translator, @logger]

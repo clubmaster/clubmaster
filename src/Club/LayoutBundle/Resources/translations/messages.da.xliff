@@ -2800,6 +2800,10 @@
           <source>You are already subscribed</source>
           <target>Du er allerede tilmeldt</target>
       </trans-unit>
+      <trans-unit id="740">
+          <source>Operation did not finish, an error occur.</source>
+          <target>Der opstod en fejl, operationen blev ikke udført.</target>
+      </trans-unit>
 
     </body>
   </file>

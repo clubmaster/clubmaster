@@ -76,15 +76,19 @@ class AdminProductController extends Controller
    */
   public function deleteAction($id)
   {
-    $em = $this->getDoctrine()->getManager();
-    $product = $em->find('ClubShopBundle:Product',$this->getRequest()->get('id'));
+      try {
+          $em = $this->getDoctrine()->getManager();
+          $product = $em->find('ClubShopBundle:Product',$this->getRequest()->get('id'));
 
-    $em->remove($product);
-    $em->flush();
+          $em->remove($product);
+          $em->flush();
 
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+          $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+      } catch (\Doctrine\DBAL\DBALException $e) {
+          $this->get('club_user.flash')->addError($e->getMessage());
+      }
 
-    return $this->redirect($this->generateUrl('admin_shop_product'));
+      return $this->redirect($this->generateUrl('admin_shop_product'));
   }
 
   /**
