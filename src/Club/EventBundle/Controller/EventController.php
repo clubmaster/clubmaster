@@ -34,8 +34,7 @@ class EventController extends Controller
     public function showAction(\Club\EventBundle\Entity\Event $event)
     {
         return array(
-            'event' => $event,
-            'user' => $this->getUser()
+            'event' => $event
         );
     }
 
