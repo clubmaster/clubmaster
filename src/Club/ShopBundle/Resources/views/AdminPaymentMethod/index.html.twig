@@ -1,15 +1,5 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('admin_shop_payment_method_new') }}">{% trans %}Create payment method{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-
 {% block body %}
 <table class="table">
   <thead>
@@ -24,7 +14,6 @@
       <td>{{ payment_method.paymentMethodName }}</td>
       <td>
         {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_payment_method_edit', { 'id':payment_method.id })} %}
-        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_shop_payment_method_delete', { 'id':payment_method.id })} %}
       </td>
     </tr>
   {% else %}
