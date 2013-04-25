@@ -92,6 +92,21 @@ class AdminProductController extends Controller
   }
 
   /**
+   * @Route("/shop/product/users/{id}", name="admin_shop_product_users")
+   * @Template()
+   */
+  public function usersAction(\Club\ShopBundle\Entity\Product $product)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $users = $em->getRepository('ClubShopBundle:Product')->getUsersByProduct($product);
+
+    return array(
+        'product' => $product,
+        'users' => $users
+    );
+  }
+
+  /**
    * @Route("/shop/product/no_category")
    * @Template()
    */

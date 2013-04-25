@@ -1,0 +1,27 @@
+{% extends "ClubShopBundle::base.html.twig" %}
+
+{% block body %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Product{% endtrans %}</th>
+      <th>{% trans %}User{% endtrans %}</th>
+      <th>{% trans %}Date{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <td>{{ product.productName }}</td>
+      <td>{{ user.order.user.name }} ( {{ user.order.user.memberNumber }} )</td>
+      <td>{{ user.order.createdAt|club_datetime }}</td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}No one has bought this product.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

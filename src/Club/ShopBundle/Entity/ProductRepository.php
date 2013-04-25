@@ -23,4 +23,18 @@ class ProductRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getUsersByProduct(\Club\ShopBundle\Entity\Product $product)
+    {
+        return $this->_em->createQueryBuilder()
+            ->select('op, o, u')
+            ->from('ClubShopBundle:OrderProduct', 'op')
+            ->join('op.order', 'o')
+            ->join('o.user', 'u')
+            ->where('op.product = :product')
+            ->orderBy('o.id', 'DESC')
+            ->setParameter('product', $product->getId())
+            ->getQuery()
+            ->getResult();
+    }
 }
