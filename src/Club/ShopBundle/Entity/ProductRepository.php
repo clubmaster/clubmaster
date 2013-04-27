@@ -17,6 +17,7 @@ class ProductRepository extends EntityRepository
         return $this->createQueryBuilder('p')
             ->join('p.categories', 'c')
             ->where('c.id = :category')
+            ->andWhere('p.active = true')
             ->orderBy('p.priority', 'DESC')
             ->setMaxResults($limit)
             ->setParameter('category', $category)

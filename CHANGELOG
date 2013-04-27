@@ -22,3 +22,4 @@
     * No more need to clear cache on new configuration
     * Added twitter integration to share posts
     * Added features, you can see how has bought a product
+    * Only shop active products in category view
