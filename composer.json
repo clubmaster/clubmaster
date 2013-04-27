@@ -22,7 +22,7 @@
         "clubmaster/quickpay": "1.*",
         "clubmaster/economic": "1.*",
         "clubmaster/formextra": "1.*",
-        "sabre/vobject": "dev-master"
+        "sabre/vobject": "2.*"
     },
     "scripts": {
         "post-install-cmd": [
