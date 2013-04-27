@@ -1,3 +1,4 @@
+trash products
 add paginator in products view, now you can only view latest 10 products
 niels tried to add a produkt to basket, but got a message about no such product
 make a binding between currency and location, so we cannot delete current used curreny
