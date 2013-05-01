@@ -9,7 +9,7 @@ fi
 touch app/installer
 
 sudo rm -rf app/cache/*
-sudo chmod 777 app/logs app/cache app/sessions
+sudo chmod 777 app/logs app/cache
 
 php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
@@ -35,8 +35,8 @@ mysql -u ${MYSQL_USERNAME} ${MYSQL_PASSWORD} ${MYSQL_DATABASE} < app/sql/test_da
 
 phpunit -c app/remakeunit.xml
 
-sudo chmod 777 -R app/logs app/cache app/sessions
-sudo chown www-data:www-data app/cache app/logs app/sessions
+sudo chmod 777 -R app/logs app/cache
+sudo chown www-data:www-data app/cache app/logs
 
 rm app/installer
 mkdir -p web/uploads

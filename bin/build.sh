@@ -51,7 +51,6 @@ rm -rf ${BUILD_PATH}/bin
 rm -rf ${BUILD_PATH}/app/sql
 rm -rf ${BUILD_PATH}/app/cache/*
 rm -rf ${BUILD_PATH}/app/logs/*
-rm -rf ${BUILD_PATH}/app/sessions/*
 rm -rf ${BUILD_PATH}/composer.*
 rm -rf ${BUILD_PATH}/app/phpunit.xml.dist
 rm -rf ${BUILD_PATH}/web/uploads/*
