@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class PaymentMethod
 {
     /**
-     * @ORM\id
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *

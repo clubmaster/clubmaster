@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Currency
 {
     /**
-     * @ORM\id
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *

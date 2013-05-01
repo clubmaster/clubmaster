@@ -38,20 +38,24 @@ class InstallerController extends Controller
         }
 
         $config = unserialize($this->get('session')->get('installer'));
-        $params = array(
-            'database_driver' => $config->driver,
-            'database_host' => $config->host,
-            'database_port' => $config->port,
-            'database_name' => $config->name,
-            'database_user' => $config->user,
-            'database_password' => $config->password,
-            'mailer_transport' => 'smtp',
-            'mailer_host' => 'localhost',
-            'mailer_user' => null,
-            'mailer_password' => null,
-            'locale' => 'en',
-            'secret' => $config->secret
-        );
+        if ($config) {
+            $params = array(
+                'database_driver' => $config->driver,
+                'database_host' => $config->host,
+                'database_port' => $config->port,
+                'database_name' => $config->name,
+                'database_user' => $config->user,
+                'database_password' => $config->password,
+                'mailer_transport' => 'smtp',
+                'mailer_host' => 'localhost',
+                'mailer_user' => null,
+                'mailer_password' => null,
+                'locale' => 'en',
+                'secret' => $config->secret
+            );
+        } else {
+            $params = array();
+        }
 
         return array(
             'parameters' => Yaml::dump(array('parameters' => $params))
