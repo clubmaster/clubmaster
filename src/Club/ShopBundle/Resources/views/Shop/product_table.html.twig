@@ -1,5 +1,7 @@
 <h3>{% trans %}Products{% endtrans %}</h3>
 
+{{ club_paginator() }}
+
 <table class="table">
   <thead>
     <th>&#160;</th>
@@ -8,7 +10,7 @@
     <th class="action">{% trans %}Action{% endtrans %}</th>
   </thead>
   <tbody>
-    {% for product in products %}
+    {% for product in paginator %}
     <tr>
       <td><img src="{{ asset('bundles/clublayout/images/icons/32x32/page_white_camera.png') }}" title="{% trans %}No image{% endtrans %}" alt="{% trans %}No image{% endtrans %}" />
       <td><a href="{{ path('shop_product', {'id':product.id}) }}">{{ product.productName }}</a> <em>{{ product.description|truncate(200) }}</em></td>
@@ -22,3 +24,5 @@
     {% endfor %}
   </tbody>
 </table>
+
+{{ club_paginator() }}

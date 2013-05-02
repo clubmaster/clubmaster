@@ -5,8 +5,8 @@
 {% include "ClubShopBundle:Shop:header.html.twig" %}
 {% include "ClubShopBundle:Shop:categories.html.twig" %}
 
-{% if products %}
-  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'products':products} %}
+{% if paginator %}
+  {% include "ClubShopBundle:Shop:product_table.html.twig" with {'paginator':paginator} %}
 {% endif %}
 
 {% endblock %}

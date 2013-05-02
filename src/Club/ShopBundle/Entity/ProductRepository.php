@@ -61,4 +61,20 @@ class ProductRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getPaginator($limit = 10, $page = 0)
+    {
+        $offset = ($page < 1) ? 1 : ($page-1)*$limit;
+
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.status = :status')
+            ->andWhere('p.active = true')
+            ->orderBy('p.priority', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE);
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
+    }
+
 }
