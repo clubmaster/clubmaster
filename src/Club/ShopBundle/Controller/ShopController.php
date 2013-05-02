@@ -37,11 +37,7 @@ class ShopController extends Controller
             return $this->redirect($this->generateUrl('club_user_location_index'));
         }
 
-        $products = $em->getRepository('ClubShopBundle:Product')->findBy(
-            array('active' => true),
-            array('priority' => 'DESC'),
-            10
-        );
+        $products = $em->getRepository('ClubShopBundle:Product')->getActive();
 
         return array(
             'location' => $location,

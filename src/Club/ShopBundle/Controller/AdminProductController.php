@@ -25,7 +25,7 @@ class AdminProductController extends Controller
       return $this->forward('ClubShopBundle:AdminProduct:noCategory');
     }
 
-    $products = $em->getRepository('ClubShopBundle:Product')->findAll();
+    $products = $em->getRepository('ClubShopBundle:Product')->getAll();
 
     return array(
       'products' => $products
@@ -74,13 +74,13 @@ class AdminProductController extends Controller
   /**
    * @Route("/shop/product/delete/{id}", name="admin_shop_product_delete")
    */
-  public function deleteAction($id)
+  public function deleteAction(\Club\ShopBundle\Entity\Product $product)
   {
       try {
+          $product->setStatus(\Club\ShopBundle\Entity\Product::TRASHED);
           $em = $this->getDoctrine()->getManager();
-          $product = $em->find('ClubShopBundle:Product',$this->getRequest()->get('id'));
 
-          $em->remove($product);
+          $em->persist($product);
           $em->flush();
 
           $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));

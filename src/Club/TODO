@@ -1,5 +1,4 @@
 there is a problem when buying guestbooking and continue to shop, location id will not match
-trash products
 add paginator in products view, now you can only view latest 10 products
 make a binding between currency and location, so we cannot delete current used curreny
 add support for webcam access from browser, to upload profile images

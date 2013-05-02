@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Product
 {
+    const TRASHED   = 0;
+    const ACTIVE    = 1;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -68,6 +71,13 @@ class Product
     /**
      * @ORM\Column(type="integer")
      *
+     * @var integer $status
+     */
+    protected $status;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
      * @var integer $priority
      */
     protected $priority;
@@ -116,6 +126,7 @@ class Product
         $this->active = true;
         $this->quantity = '-1';
         $this->priority = 10;
+        $this->status = 1;
     }
 
     public function __toString()
@@ -456,7 +467,8 @@ class Product
             'product_name' => $this->getProductName(),
             'description' => $this->getDescription(),
             'price' => $this->getPrice(),
-            'active' => $this->getActive()
+            'active' => $this->getActive(),
+            'status' => $this->getStatus()
         );
     }
 
@@ -481,5 +493,28 @@ class Product
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Product
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

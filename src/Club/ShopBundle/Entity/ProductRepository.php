@@ -18,9 +18,11 @@ class ProductRepository extends EntityRepository
             ->join('p.categories', 'c')
             ->where('c.id = :category')
             ->andWhere('p.active = true')
+            ->andWhere('p.status = :status')
             ->orderBy('p.priority', 'DESC')
             ->setMaxResults($limit)
             ->setParameter('category', $category)
+            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
             ->getQuery()
             ->getResult();
     }
@@ -35,6 +37,27 @@ class ProductRepository extends EntityRepository
             ->where('op.product = :product')
             ->orderBy('o.id', 'DESC')
             ->setParameter('product', $product->getId())
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAll()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.status = :status')
+            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getActive($limit = 10)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.status = :status')
+            ->andWhere('p.active = true')
+            ->orderBy('p.priority', 'DESC')
+            ->setMaxResults($limit)
+            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
             ->getQuery()
             ->getResult();
     }
