@@ -58,7 +58,7 @@ class ShopController extends Controller
      */
     public function categoryAction(\Club\ShopBundle\Entity\Category $category, $page)
     {
-        $results = 20;
+        $results = 5;
 
         $em = $this->getDoctrine()->getManager();
 
@@ -69,7 +69,7 @@ class ShopController extends Controller
         $paginator = $em->getRepository('ClubShopBundle:Product')->getByCategory($category, $results, $page);
 
         $this->get('club_extra.paginator')
-            ->init($results, count($paginator), $page, 'shop_prod_view_offset');
+            ->init($results, count($paginator), $page, 'shop_prod_view_offset', array('id' => $category->getId()));
 
         return array(
             'location' => $this->get('club_user.location')->getCurrent(),

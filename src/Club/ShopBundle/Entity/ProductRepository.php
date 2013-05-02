@@ -14,12 +14,15 @@ class ProductRepository extends EntityRepository
 {
     public function getByCategory(\Club\ShopBundle\Entity\Category $category, $limit=10, $page = 0)
     {
+        $offset = ($page < 1) ? 1 : ($page-1)*$limit;
+
         $qb = $this->createQueryBuilder('p')
             ->join('p.categories', 'c')
             ->where('c.id = :category')
             ->andWhere('p.active = true')
             ->andWhere('p.status = :status')
             ->orderBy('p.priority', 'DESC')
+            ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->setParameter('category', $category)
             ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE);
