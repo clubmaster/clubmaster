@@ -5,7 +5,6 @@ namespace Club\TournamentBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/tournament/match")
@@ -15,10 +14,13 @@ class MatchController extends Controller
   /**
    * @Route("/new/{tournament_id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function newAction($tournament_id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $tournament = $em->find('ClubTournamentBundle:Tournament', $tournament_id);
 

@@ -5,7 +5,6 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/shop/checkout")
@@ -201,10 +200,14 @@ class CheckoutController extends Controller
     /**
      * @Route("/login")
      * @Template()
-     * @Secure(roles="ROLE_USER")
      */
     public function loginAction()
     {
+
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $carts = $em->getRepository('ClubShopBundle:Cart')->findBy(array(
             'user' => $this->getUser()->getId()

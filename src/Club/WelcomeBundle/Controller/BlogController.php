@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/{_locale}/welcome/blog")
@@ -30,10 +29,13 @@ class BlogController extends Controller
   /**
    * @Route("/comment/{blog_id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function commentAction($blog_id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog', $blog_id);
 
@@ -71,10 +73,13 @@ class BlogController extends Controller
   /**
    * @Route("/new")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function newAction()
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $blog = new \Club\WelcomeBundle\Entity\Blog();
     $blog->setUser($this->getUser());
 
@@ -92,10 +97,13 @@ class BlogController extends Controller
   /**
    * @Route("/edit/{id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function editAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog',$id);
     $this->validateOwnership($blog);
@@ -114,10 +122,13 @@ class BlogController extends Controller
 
   /**
    * @Route("/delete/{id}")
-   * @Secure(roles="ROLE_USER")
    */
   public function deleteAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $blog = $em->find('ClubWelcomeBundle:Blog',$this->getRequest()->get('id'));
     $this->validateOwnership($blog);

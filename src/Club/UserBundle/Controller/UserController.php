@@ -5,7 +5,6 @@ namespace Club\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/{_locale}/user")
@@ -15,10 +14,13 @@ class UserController extends Controller
     /**
      * @Template()
      * @Route("", name="user")
-     * @Secure(roles="ROLE_USER")
      */
     public function indexAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $user = $this->buildUser();
         $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 

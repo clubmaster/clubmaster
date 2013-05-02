@@ -5,7 +5,6 @@ namespace Club\TeamBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class TeamController extends Controller
 {
@@ -31,10 +30,13 @@ class TeamController extends Controller
     /**
      * @Route("/team/team/{id}/attend")
      * @Template()
-     * @Secure(roles="ROLE_USER")
      */
     public function attendAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
@@ -55,10 +57,13 @@ class TeamController extends Controller
     /**
      * @Route("/team/team/{id}/unattend")
      * @Template()
-     * @Secure(roles="ROLE_USER")
      */
     public function unattendAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $schedule = $em->find('ClubTeamBundle:Schedule', $id);
         $user = $this->getUser();

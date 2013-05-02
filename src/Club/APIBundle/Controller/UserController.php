@@ -3,7 +3,6 @@
 namespace Club\APIBundle\Controller;
 
 use Club\APIBundle\Controller\DefaultController as Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,10 +54,13 @@ class UserController extends Controller
    * @Route("/events/{start}", defaults={"end" = null})
    * @Route("/events/{start}/{end}")
    * @Method("GET")
-   * @Secure(roles="ROLE_USER")
    */
   public function eventsAction($start, $end)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
 
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');
@@ -80,10 +82,13 @@ class UserController extends Controller
    * @Route("/teams/{start}", defaults={"end" = null})
    * @Route("/teams/{start}/{end}")
    * @Method("GET")
-   * @Secure(roles="ROLE_USER")
    */
   public function teamsAction($start, $end)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
 
     $start = ($start == null) ? new \DateTime(date('Y-m-d 00:00:00')) : new \DateTime($start.' 00:00:00');

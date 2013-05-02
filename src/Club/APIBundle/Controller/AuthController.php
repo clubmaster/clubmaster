@@ -5,16 +5,18 @@ namespace Club\APIBundle\Controller;
 use Club\APIBundle\Controller\DefaultController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class AuthController extends Controller
 {
   /**
    * @Route("/auth")
-   * @Secure(roles="ROLE_USER")
    */
   public function authAction()
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $user = $this->getUser();
 
     if ($this->validateKey())

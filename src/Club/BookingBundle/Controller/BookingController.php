@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/booking")
@@ -16,11 +15,14 @@ class BookingController extends Controller
     /**
      * @Template()
      * @Route("/book/review/{interval_id}/{date}")
-     * @Secure(roles="ROLE_USER")
      * @Method("POST")
      */
     public function reviewAction($interval_id, \DateTime $date)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $interval = $em->find('ClubBookingBundle:Interval', $interval_id);
@@ -69,10 +71,13 @@ class BookingController extends Controller
     /**
      * @Template()
      * @Route("/book/buy")
-     * @Secure(roles="ROLE_USER")
      */
     public function buyAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $b = $this->get('club_booking.booking');
         $b->unserialize();
         $b->setStatus(\Club\BookingBundle\Entity\Booking::PENDING);
@@ -86,10 +91,13 @@ class BookingController extends Controller
     /**
      * @Template()
      * @Route("/book/confirm")
-     * @Secure(roles="ROLE_USER")
      */
     public function confirmAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $b = $this->get('club_booking.booking');
         $b->unserialize();
         $em = $this->getDoctrine()->getManager();
@@ -195,10 +203,13 @@ class BookingController extends Controller
     /**
      * @Template()
      * @Route("/book/exclude/{id}/{datetime}")
-     * @Secure(roles="ROLE_BOOKING_ADMIN")
      */
     public function excludeAction(\Club\BookingBundle\Entity\Plan $plan, \DateTime $datetime)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_BOOKING_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         if (!$plan->getRepeating()) {

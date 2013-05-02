@@ -6,7 +6,6 @@ use Club\APIBundle\Controller\DefaultController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/teams")
@@ -16,10 +15,13 @@ class TeamController extends Controller
   /**
    * @Route("/{id}/attend")
    * @Method("POST")
-   * @Secure(roles="ROLE_USER")
    */
   public function attendAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
 
@@ -42,10 +44,13 @@ class TeamController extends Controller
   /**
    * @Route("/{id}/unattend")
    * @Method("POST")
-   * @Secure(roles="ROLE_USER")
    */
   public function unattendAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $schedule = $em->find('ClubTeamBundle:Schedule', $id);
     $user = $this->getUser();

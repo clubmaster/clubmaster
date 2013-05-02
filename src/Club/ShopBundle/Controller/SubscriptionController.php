@@ -5,7 +5,6 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/shop/subscription")
@@ -15,11 +14,14 @@ class SubscriptionController extends Controller
   /**
    * @Route("", name="shop_subscription")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    *
    */
   public function indexAction()
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $user = $this->getUser();
 
@@ -38,10 +40,13 @@ class SubscriptionController extends Controller
   /**
    * @Route("/show/{id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function showAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine();
     $subscription = $em->getRepository('ClubShopBundle:Subscription')->find($id);
 
@@ -53,10 +58,13 @@ class SubscriptionController extends Controller
   /**
    * @Route("/stop/{id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function stopAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription', $id);
 
@@ -69,10 +77,13 @@ class SubscriptionController extends Controller
   /**
    * @Route("/expire/{id}")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function expireAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription', $id);
 
@@ -84,10 +95,13 @@ class SubscriptionController extends Controller
   /**
    * @Route("/pause/{id}", name="shop_subscription_pause")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function pauseAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 
@@ -100,10 +114,13 @@ class SubscriptionController extends Controller
   /**
    * @Route("/resume/{id}", name="shop_subscription_resume")
    * @Template()
-   * @Secure(roles="ROLE_USER")
    */
   public function resumeAction($id)
   {
+      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+      }
+
     $em = $this->getDoctrine()->getManager();
     $subscription = $em->find('ClubShopBundle:Subscription',$id);
 

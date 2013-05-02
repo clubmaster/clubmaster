@@ -6,7 +6,6 @@ use Club\APIBundle\Controller\DefaultController as Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
@@ -18,10 +17,13 @@ class BookingController extends Controller
      * @Route("/book/{date}/{interval_id}/{user_id}")
      * @Route("/book/{date}/{interval_id}/guest", defaults={"guest"})
      * @Method("POST")
-     * @Secure(roles="ROLE_USER")
      */
     public function bookAction($date, $interval_id, $user_id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $date = new \DateTime($date);
@@ -51,10 +53,13 @@ class BookingController extends Controller
     /**
      * @Route("/cancel/{id}")
      * @Method("POST")
-     * @Secure(roles="ROLE_USER")
      */
     public function cancelAction($id)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $booking = $em->find('ClubBookingBundle:Booking', $id);

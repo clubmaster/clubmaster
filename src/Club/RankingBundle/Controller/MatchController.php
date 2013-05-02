@@ -5,7 +5,6 @@ namespace Club\RankingBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * @Route("/ranking/match")
@@ -15,10 +14,14 @@ class MatchController extends Controller
     /**
      * @Route("/new/{ranking_id}")
      * @Template()
-     * @Secure(roles="ROLE_USER")
      */
     public function newAction($ranking_id)
     {
+
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
         $ranking = $em->find('ClubRankingBundle:Ranking', $ranking_id);
 
