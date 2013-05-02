@@ -1,4 +1,3 @@
-on setup.php fix blue-arrow and favico.ico
 there is a problem when buying guestbooking and continue to shop, location id will not match
 trash products
 add paginator in products view, now you can only view latest 10 products
