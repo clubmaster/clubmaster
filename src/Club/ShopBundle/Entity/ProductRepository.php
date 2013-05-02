@@ -12,9 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-    public function getByCategory(\Club\ShopBundle\Entity\Category $category, $limit=10)
+    public function getByCategory(\Club\ShopBundle\Entity\Category $category, $limit=10, $page = 0)
     {
-        return $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p')
             ->join('p.categories', 'c')
             ->where('c.id = :category')
             ->andWhere('p.active = true')
@@ -22,9 +22,9 @@ class ProductRepository extends EntityRepository
             ->orderBy('p.priority', 'DESC')
             ->setMaxResults($limit)
             ->setParameter('category', $category)
-            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
-            ->getQuery()
-            ->getResult();
+            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE);
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
 
     public function getUsersByProduct(\Club\ShopBundle\Entity\Product $product)

@@ -52,24 +52,30 @@ class ShopController extends Controller
     }
 
     /**
-     * @Route("/shop/category/{id}",name="shop_prod_view")
+     * @Route("/shop/category/{id}",name="shop_prod_view", defaults={"page" = 1})
+     * @Route("/shop/category/{id}/{page}", name="shop_prod_view_offset")
      * @Template()
      */
-    public function categoryAction(\Club\ShopBundle\Entity\Category $category)
+    public function categoryAction(\Club\ShopBundle\Entity\Category $category, $page)
     {
+        $results = 20;
+
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
             'category' => $category->getId()
         ));
 
-        $products = $em->getRepository('ClubShopBundle:Product')->getByCategory($category);
+        $paginator = $em->getRepository('ClubShopBundle:Product')->getByCategory($category, $results, $page);
+
+        $this->get('club_extra.paginator')
+            ->init($results, count($paginator), $page, 'shop_prod_view_offset');
 
         return array(
             'location' => $this->get('club_user.location')->getCurrent(),
             'categories' => $categories,
             'category' => $category,
-            'products' => $products
+            'paginator' => $paginator
         );
     }
 
