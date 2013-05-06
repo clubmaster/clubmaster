@@ -182,9 +182,8 @@ class UserRepository extends EntityRepository
     $this->has_joined_email = false;
     $this->has_joined_sub = false;
 
-    return $this->_em->createQueryBuilder()
+    return $this->createQueryBuilder('u')
       ->select('u, p')
-      ->from('ClubUserBundle:User','u')
       ->where('u.status = :status')
       ->leftJoin('u.profile','p')
       ->setParameter('status', \Club\UserBundle\Entity\User::ACTIVE)
@@ -542,17 +541,13 @@ class UserRepository extends EntityRepository
   {
       $offset = ($page < 1) ? 1 : ($page-1)*$results;
 
-      $dql = "SELECT u, p ".
-          "FROM Club\UserBundle\Entity\User u LEFT JOIN ".
-          "u.profile p ".
-          "WHERE u.last_login_time > :login_time ".
-          "ORDER BY p.first_name";
-
       $login_time = new \DateTime();
       $i = new \DateInterval('P1Y');
       $login_time->sub($i);
 
-      $query = $this->_em->createQuery($dql)
+      $query = $this->getQueryBuilder()
+          ->andWhere('u.last_login_time > :login_time')
+          ->orderBy('p.first_name')
           ->setParameter('login_time', $login_time)
           ->setFirstResult($offset)
           ->setMaxResults($results);
