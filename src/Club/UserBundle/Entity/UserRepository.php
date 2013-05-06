@@ -464,7 +464,7 @@ class UserRepository extends EntityRepository
       ->select('g')
       ->from('ClubUserBundle:Group', 'g')
       ->leftJoin('g.location','l')
-      ->where('g.group_type = :type')
+      ->andWhere('g.group_type = :type')
       ->andWhere('(g.gender IS NULL OR g.gender=:gender)')
       ->andWhere('(g.min_age IS NULL OR g.min_age <= :min_age)')
       ->andWhere('(g.max_age IS NULL OR g.max_age >= :max_age)')
@@ -485,13 +485,13 @@ class UserRepository extends EntityRepository
 
     if (isset($user['id']) && $user['id'] != '') {
       $qb
-        ->where('u.id = :id')
+        ->andWhere('u.id = :id')
         ->setParameter('id', $user['id']);
     } else {
 
       $user['query'] = isset($user['query']) ? $user['query'] : '';
       $qb
-        ->where('u.member_number = :number')
+        ->andWhere('u.member_number = :number')
         ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
         ->orderBy($sort, 'ASC')
         ->setParameter('number', $user['query'])
