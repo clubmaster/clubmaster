@@ -557,12 +557,10 @@ class UserRepository extends EntityRepository
 
   public function getRecent($limit=10)
   {
-    return $this->createQueryBuilder('u')
-      ->select('u,p')
-      ->join('u.profile', 'p')
-      ->setMaxResults($limit)
-      ->orderBy('u.id', 'DESC')
-      ->getQuery()
-      ->getResult();
+      return $this->getQueryBuilder()
+          ->setMaxResults($limit)
+          ->orderBy('u.id', 'DESC')
+          ->getQuery()
+          ->getResult();
   }
 }
