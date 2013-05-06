@@ -15,6 +15,15 @@ class Flash
         $this->log = $log;
     }
 
+    public function addNotice($message=null)
+    {
+        if (!strlen($message)) {
+            $message = $this->trans->trans('Your changes are saved.');
+        }
+
+        $this->session->getFlashBag()->add('notice', $message);
+    }
+
     public function addError($message)
     {
         $this->session->getFlashBag()->add('error', $this->trans->trans('Operation did not finish, an error occur.'));

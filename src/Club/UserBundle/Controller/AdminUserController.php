@@ -194,6 +194,24 @@ class AdminUserController extends Controller
   }
 
   /**
+   * @Route("/delete/{id}", name="admin_user_delete")
+   * @Template()
+   */
+  public function deleteAction(\Club\UserBundle\Entity\User $user)
+  {
+    $user->setEnabled(false);
+    $user->setStatus(\Club\UserBundle\Entity\User::TRASHED);
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($user);
+    $em->flush();
+
+    $this->get('club_user.flash')->addNotice();
+
+    return $this->redirect($this->generateUrl('admin_user'));
+  }
+
+  /**
    * @Route("/edit/{id}", name="admin_user_edit")
    * @Template()
    */

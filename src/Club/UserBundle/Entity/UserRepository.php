@@ -185,7 +185,10 @@ class UserRepository extends EntityRepository
     return $this->_em->createQueryBuilder()
       ->select('u, p')
       ->from('ClubUserBundle:User','u')
-      ->leftJoin('u.profile','p');
+      ->where('u.status = :status')
+      ->leftJoin('u.profile','p')
+      ->setParameter('status', \Club\UserBundle\Entity\User::ACTIVE)
+      ;
   }
 
   protected function filterName($qb,$value)
