@@ -14,4 +14,4 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    dev_email:         user@example.com
+    develop_email:     user@example.com

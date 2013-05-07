@@ -23,4 +23,4 @@ assetic:
     use_controller: true
 
 swiftmailer:
-    delivery_address: hollo@hollo.dk
+    delivery_address: %develop_email%
