@@ -1,3 +1,5 @@
+change default email for development config
+improve location for cart button
 when user has been deleted, you should no be able to see the user in ajax search, or see the users page
 there is a problem when buying guestbooking and continue to shop, location id will not match
 make a binding between currency and location, so we cannot delete current used curreny
