@@ -97,17 +97,17 @@
         },
         {
             "name": "clubmaster/formextra",
-            "version": "1.0",
+            "version": "1.1",
             "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "1.0"
+                "reference": "1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/1.0",
-                "reference": "1.0",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/1.1",
+                "reference": "1.1",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +137,7 @@
                 "extra",
                 "form"
             ],
-            "time": "2013-04-09 06:19:46"
+            "time": "2013-05-07 17:00:30"
         },
         {
             "name": "clubmaster/quickpay",
