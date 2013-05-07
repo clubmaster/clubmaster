@@ -21,7 +21,7 @@ class LoginListener
 
     public function onSecurityInteractiveLogin()
     {
-        $user = $this->security_context->getToken()->getUser();
+        $user = $this->em->find('ClubUserBundle:User', $this->security_context->getToken()->getUser()->getId());
         $user->setLastLoginTime(new \DateTime());
         $user->setLastLoginIp($this->request->getClientIp());
 
@@ -79,7 +79,7 @@ class LoginListener
 
             return;
 
-        $user = $this->security_context->getToken()->getUser();
+        $user = $this->em->find('ClubUserBundle:User', $this->security_context->getToken()->getUser()->getId());
 
         if ($user instanceOf \Club\UserBundle\Entity\User) {
             $user->setLocation($this->location);
