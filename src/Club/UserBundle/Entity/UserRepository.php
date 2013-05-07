@@ -491,7 +491,7 @@ class UserRepository extends EntityRepository
       $user['query'] = isset($user['query']) ? $user['query'] : '';
       $qb
         ->andWhere('u.member_number = :number')
-        ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
+        ->orWhere("u.status = :status AND CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
         ->orderBy($sort, 'ASC')
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
