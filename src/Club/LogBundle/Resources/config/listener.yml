@@ -1,48 +1,48 @@
 services:
   club.log.booking:
     class: Club\LogBundle\Listener\Booking
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
       - { name: kernel.event_listener, event: booking.cancel, method: onBookingCancel }
   club.logbundle.listener.on_shop_order_listener:
     class: Club\LogBundle\Listener\NewOrderListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: shop.order, method: onShopOrder }
   club.logbundle.listener.on_order_change_listener:
     class: Club\LogBundle\Listener\OrderChangeListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange }
   club.logbundle.listener.on_event_add_listener:
     class: Club\LogBundle\Listener\AddEventListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: event.add, method: onEventAdd }
   club.logbundle.listener.on_event_attend_listener:
     class: Club\LogBundle\Listener\AttendEventListener
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
     tags:
       - { name: kernel.event_listener, event: event.attend, method: onEventAttend }
       - { name: kernel.event_listener, event: event.unattend, method: onEventUnattend }
   club.logbundle.listener.cleanup:
     class: Club\LogBundle\Listener\Cleanup
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
   club.logbundle.listener.log_listener:
     class: Club\LogBundle\Listener\LogListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: connection.error, method: onConnectionError }
   club.logbundle.listener.task_listener:
     class: Club\LogBundle\Listener\TaskListener
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.error, method: onTaskError }
   club.log.dashboard_listener:
     class: Club\LogBundle\Listener\DashboardListener
-    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    arguments: [@doctrine.orm.default_entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView }
