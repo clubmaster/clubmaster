@@ -63,13 +63,6 @@ class OverviewController extends Controller
      */
     public function indexAction($date)
     {
-        var_dump($this->getUser());die();
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->find('ClubUserBundle:User', $this->getUser()->getId());
-        $em->persist($user);
-        $em->flush();
-        die('meh');
         $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST') {

@@ -25,7 +25,7 @@ class Booking
         $this->container = $container;
         $this->club_interval = $container->get('club_booking.interval');
         $this->security_context = $container->get('security.context');
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->session = $container->get('session');
         $this->translator = $container->get('translator');
         $this->event_dispatcher = $container->get('event_dispatcher');
