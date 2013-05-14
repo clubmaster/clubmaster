@@ -1,7 +1,7 @@
 services:
   club.userbundle.listener.group.recalc:
     class: Club\UserBundle\Listener\GroupRecalcListener
-    arguments: [@doctrine.orm.entity_manager,@security.context]
+    arguments: [@doctrine.orm.default_entity_manager,@security.context]
     tags:
       - { name: kernel.event_listener, event: group.task, method: onGroupTask }
       - { name: kernel.event_listener, event: group.edit, method: onGroupEdit }
@@ -24,24 +24,24 @@ services:
       - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.user.dashboard_listener:
     class: Club\UserBundle\Listener\DashboardListener
-    arguments: [@doctrine.orm.entity_manager, @security.context, @templating]
+    arguments: [@doctrine.orm.default_entity_manager, @security.context, @templating]
     tags:
       - { name: kernel.event_listener, event: admin_dashboard.view, method: onAdminDashboardView }
   club.user.fixtures.load:
     class: Club\UserBundle\Fixtures\Load
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
     tags:
       - { name: kernel.event_listener, event: fixtures.init, method: onFixturesInit }
   club.user.connection:
     class: Club\UserBundle\Listener\ConnectionListener
-    arguments: [@doctrine.orm.entity_manager, @security.context]
+    arguments: [@doctrine.orm.default_entity_manager, @security.context]
     tags:
       - { name: kernel.event_listener, event: match.new, method: onMatchNew }
       - { name: kernel.event_listener, event: booking.confirm, method: onBookingConfirm }
       - { name: kernel.event_listener, event: blog_comment.new, method: onBlogCommentNew }
   club.user.listener.cleanup:
     class: Club\UserBundle\Listener\Cleanup
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }
   club.user.listener.migrate:

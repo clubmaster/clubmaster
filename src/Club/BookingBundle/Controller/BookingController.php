@@ -121,6 +121,10 @@ class BookingController extends Controller
             $booking_id = $this->getRequest()->request->get('booking_id');
         }
 
+        if (!$booking_id) {
+            throw $this->createNotFoundException('The booking does not exist');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $booking = $em->find('ClubBookingBundle:Booking', $booking_id);
 

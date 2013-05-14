@@ -8,7 +8,7 @@ services:
       - { name: kernel.event_listener, event: dash_menu.render, method: onDashMenuRender }
   club.match.listener.ranking:
     class: Club\RankingBundle\Listener\Ranking
-    arguments: [@doctrine.orm.entity_manager, @club_ranking.ranking]
+    arguments: [@doctrine.orm.default_entity_manager, @club_ranking.ranking]
     tags:
       - { name: kernel.event_listener, event: match.task, method: onMatchTask }
       - { name: kernel.event_listener, event: match.new, method: onMatchNew }
