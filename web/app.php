@@ -5,31 +5,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
-if (!is_writeable('../app/cache') && is_file('setup.php')) {
-    header('Location: setup.php');
-    exit;
-}
+// Use APC for autoloading to improve performance.
+// Change 'sf2' to a unique prefix in order to prevent cache key conflicts
+// with other applications also using APC.
+/*
+$loader = new ApcClassLoader('sf2', $loader);
+$loader->register(true);
+*/
 
 require_once __DIR__.'/../app/AppKernel.php';
+//require_once __DIR__.'/../app/AppCache.php';
+
 $kernel = new AppKernel('prod', false);
-
-$apc = (function_exists('apc_cache_info')) ? true : false;
-if ($apc) {
-    require_once __DIR__.'/../app/AppCache.php';
-    $kernel = new AppCache($kernel);
-
-    if (isset($_SERVER['HTTP_HOST'])) {
-        $prefix = $_SERVER['HTTP_HOST'];
-    } else {
-        $prefix = 'sf2';
-    }
-
-    $loader = new ApcClassLoader($prefix, $loader);
-    $loader->register(true);
-} else {
-    $kernel->loadClassCache();
-}
-
+$kernel->loadClassCache();
+//$kernel = new AppCache($kernel);
+Request::enableHttpMethodParameterOverride();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
