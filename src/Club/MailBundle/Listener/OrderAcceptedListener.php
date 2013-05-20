@@ -13,7 +13,7 @@ class OrderAcceptedListener
   public function __construct($container)
   {
     $this->container = $container;
-    $this->em = $container->get('doctrine.orm.entity_manager');
+    $this->em = $container->get('doctrine.orm.default_entity_manager');
     $this->templating = $container->get('templating');
     $this->router = $container->get('router');
     $this->clubmaster_mailer = $container->get('clubmaster_mailer');

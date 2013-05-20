@@ -28,7 +28,7 @@ EOF
 
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+    $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
     $field_delimiter = "/\t/";
     $row_delimiter = "/\n/";

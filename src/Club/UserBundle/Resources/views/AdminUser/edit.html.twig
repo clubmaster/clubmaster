@@ -14,4 +14,10 @@
   {% include "ClubUserBundle:AdminUser:form.html.twig" %}
 </form>
 
+<hr>
+<div class="well">
+    <h3>{% trans %}Delete user{% endtrans %}</h3>
+    <p>{% trans %}Do you want to delete the user, this will remove the user entirely from the system. This is not the way to expire a membership, but remove an user which has been added by an accident.{% endtrans %}</p>
+
+    <p><a {% include "ClubLayoutBundle:Default:confirm.html.twig" %} href="{{ path('admin_user_delete', {'id':user.id}) }}" class="btn btn-danger">Delete user</a></p>
 {% endblock %}

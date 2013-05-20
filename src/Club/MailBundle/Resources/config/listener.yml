@@ -21,7 +21,7 @@ services:
       - { name: kernel.event_listener, event: order.change, method: onOrderChange, priority: 10 }
   club.mailbundle.listener.on_mail_task_listener:
     class: Club\MailBundle\Listener\MailSendListener
-    arguments: [@doctrine.orm.entity_manager, @mailer, @swiftmailer.transport.real, @clubmaster_mailer, @event_dispatcher]
+    arguments: [@doctrine.orm.default_entity_manager, @mailer, @swiftmailer.transport.real, @clubmaster_mailer, @event_dispatcher]
     tags:
       - { name: kernel.event_listener, event: mail.task, method: onMailTask }
   club.mailbundle.listener.booking_confirm_listener:
@@ -37,6 +37,6 @@ services:
       - { name: kernel.event_listener, event: exchange.comment.new, method: onExchangeCommentNew }
   club.mailbundle.listener.cleanup:
     class: Club\MailBundle\Listener\Cleanup
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
     tags:
       - { name: kernel.event_listener, event: task.cleanup, method: onTaskCleanup }

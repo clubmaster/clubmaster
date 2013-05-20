@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/booking")
@@ -118,6 +119,10 @@ class BookingController extends Controller
     {
         if ($this->getRequest()->getMethod() == 'POST') {
             $booking_id = $this->getRequest()->request->get('booking_id');
+        }
+
+        if (!$booking_id) {
+            throw $this->createNotFoundException('The booking does not exist');
         }
 
         $em = $this->getDoctrine()->getManager();

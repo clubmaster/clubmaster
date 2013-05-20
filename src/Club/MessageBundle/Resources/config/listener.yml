@@ -6,6 +6,6 @@ services:
       - { name: kernel.event_listener, event: left_menu.render, method: onLeftMenuRender }
   club.messagebundle.queue_process_listener:
     class: Club\MessageBundle\Listener\QueueProcessListener
-    arguments: [@doctrine.orm.entity_manager, @clubmaster_mailer]
+    arguments: [@doctrine.orm.default_entity_manager, @clubmaster_mailer]
     tags:
       - { name: kernel.event_listener, event: message.task, method: onMessageTask }

@@ -182,10 +182,12 @@ class UserRepository extends EntityRepository
     $this->has_joined_email = false;
     $this->has_joined_sub = false;
 
-    return $this->_em->createQueryBuilder()
+    return $this->createQueryBuilder('u')
       ->select('u, p')
-      ->from('ClubUserBundle:User','u')
-      ->leftJoin('u.profile','p');
+      ->where('u.status = :status')
+      ->leftJoin('u.profile','p')
+      ->setParameter('status', \Club\UserBundle\Entity\User::ACTIVE)
+      ;
   }
 
   protected function filterName($qb,$value)
@@ -461,7 +463,7 @@ class UserRepository extends EntityRepository
       ->select('g')
       ->from('ClubUserBundle:Group', 'g')
       ->leftJoin('g.location','l')
-      ->where('g.group_type = :type')
+      ->andWhere('g.group_type = :type')
       ->andWhere('(g.gender IS NULL OR g.gender=:gender)')
       ->andWhere('(g.min_age IS NULL OR g.min_age <= :min_age)')
       ->andWhere('(g.max_age IS NULL OR g.max_age >= :max_age)')
@@ -482,14 +484,14 @@ class UserRepository extends EntityRepository
 
     if (isset($user['id']) && $user['id'] != '') {
       $qb
-        ->where('u.id = :id')
+        ->andWhere('u.id = :id')
         ->setParameter('id', $user['id']);
     } else {
 
       $user['query'] = isset($user['query']) ? $user['query'] : '';
       $qb
-        ->where('u.member_number = :number')
-        ->orWhere("CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
+        ->andWhere('u.member_number = :number')
+        ->orWhere("u.status = :status AND CONCAT(CONCAT(p.first_name,' '), p.last_name) LIKE :query")
         ->orderBy($sort, 'ASC')
         ->setParameter('number', $user['query'])
         ->setParameter('query', '%'.$user['query'].'%');
@@ -539,17 +541,13 @@ class UserRepository extends EntityRepository
   {
       $offset = ($page < 1) ? 1 : ($page-1)*$results;
 
-      $dql = "SELECT u, p ".
-          "FROM Club\UserBundle\Entity\User u LEFT JOIN ".
-          "u.profile p ".
-          "WHERE u.last_login_time > :login_time ".
-          "ORDER BY p.first_name";
-
       $login_time = new \DateTime();
       $i = new \DateInterval('P1Y');
       $login_time->sub($i);
 
-      $query = $this->_em->createQuery($dql)
+      $query = $this->getQueryBuilder()
+          ->andWhere('u.last_login_time > :login_time')
+          ->orderBy('p.first_name')
           ->setParameter('login_time', $login_time)
           ->setFirstResult($offset)
           ->setMaxResults($results);
@@ -559,12 +557,10 @@ class UserRepository extends EntityRepository
 
   public function getRecent($limit=10)
   {
-    return $this->createQueryBuilder('u')
-      ->select('u,p')
-      ->join('u.profile', 'p')
-      ->setMaxResults($limit)
-      ->orderBy('u.id', 'DESC')
-      ->getQuery()
-      ->getResult();
+      return $this->getQueryBuilder()
+          ->setMaxResults($limit)
+          ->orderBy('u.id', 'DESC')
+          ->getQuery()
+          ->getResult();
   }
 }

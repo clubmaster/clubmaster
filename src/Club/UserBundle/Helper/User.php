@@ -13,7 +13,7 @@ class User
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->event_dispatcher = $container->get('event_dispatcher');
         $this->request = $container->get('request');
         $this->buildUser();

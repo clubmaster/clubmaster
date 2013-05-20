@@ -28,7 +28,7 @@ EOF
 
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+    $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
     $product = $em->find('ClubShopBundle:Product', $input->getArgument('product'));
     $location = $em->find('ClubUserBundle:Location', $input->getArgument('location'));
     $payment = $em->find('ClubShopBundle:PaymentMethod', 1);
