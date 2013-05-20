@@ -17,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("member_number")
  *
  */
-class User implements AdvancedUserInterface, EquatableInterface
+class User implements AdvancedUserInterface, EquatableInterface, \Serializable
 {
     const TRASHED = 0;
     const ACTIVE = 1;
@@ -630,13 +630,15 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function serialize()
     {
-      return serialize(array(
+      return json_encode(array(
         $this->password,
         $this->member_number,
         $this->salt,
         $this->enabled,
         $this->locked,
-        $this->expired
+        $this->expired,
+        $this->roles,
+        $this->id
       ));
     }
 
@@ -648,8 +650,10 @@ class User implements AdvancedUserInterface, EquatableInterface
         $this->salt,
         $this->enabled,
         $this->locked,
-        $this->expired
-      ) = unserialize($serialized);
+        $this->expired,
+        $this->roles,
+        $this->id
+      ) = json_decode($serialized);
     }
 
     /**

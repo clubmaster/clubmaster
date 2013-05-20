@@ -31,7 +31,9 @@ class DoctrineStep
     public $host;
 
     /**
-     * @Assert\Min(0)
+     * @Assert\Range(
+     *   min = 0
+     * )
      */
     public $port;
 
