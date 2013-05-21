@@ -15,6 +15,7 @@ class Migrate
 
     public function onVersionMigrate(\Club\InstallerBundle\Event\FilterVersionEvent $event)
     {
+        /*
         if ($event->getVersion()->getVersion() != '20121016161300') {
             // fit to this version only
             return;
@@ -34,5 +35,6 @@ class Migrate
 
             $this->em->persist($user);
         }
+         */
     }
 }

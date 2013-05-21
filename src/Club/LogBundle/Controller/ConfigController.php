@@ -17,6 +17,13 @@ class ConfigController extends Controller
      */
     public function indexAction($page = null)
     {
-        print_r($this->container->parameters);die();
+        $config = array();
+        foreach ($this->container->parameters as $key => $value) {
+            if (preg_match("/^club/", $key)) {
+                $config[$key] = $value;
+            }
+        }
+
+        var_dump($config);die();
     }
 }
