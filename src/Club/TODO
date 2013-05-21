@@ -1,3 +1,4 @@
+impersonate a user through the website, if you have the access
 auto submit form to quickpay
 improve location for cart button
 when user has been deleted, you should no be able to see the user in ajax search, or see the users page
