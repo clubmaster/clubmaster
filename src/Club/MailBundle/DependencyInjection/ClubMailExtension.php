@@ -23,5 +23,6 @@ class ClubMailExtension extends Extension
     $container->setParameter('club_mail.mail_on_welcome', $config['mail_on_welcome']);
     $container->setParameter('club_mail.mail_on_booking', $config['mail_on_booking']);
     $container->setParameter('club_mail.mail_on_order', $config['mail_on_order']);
+    $container->setParameter('club_mail.mail_on_order_confirm', $config['mail_on_order_confirm']);
   }
 }

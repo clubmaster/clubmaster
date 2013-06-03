@@ -21,7 +21,7 @@ class OrderNewListener
 
   public function onShopOrder(\Club\ShopBundle\Event\FilterOrderEvent $event)
   {
-    if (!$this->container->getParameter('club_mail.mail_on_order')) return false;
+    if (!$this->container->getParameter('club_mail.mail_on_order_confirm')) return false;
 
     $order = $event->getOrder();
     $email = $order->getUser()->getProfile()->getProfileEmail();

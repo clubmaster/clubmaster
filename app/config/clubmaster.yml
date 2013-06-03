@@ -90,6 +90,7 @@ club_mail:
     mail_on_welcome: true
     mail_on_booking: true
     mail_on_order: true
+    mail_on_order_confirm: true
 
 club_feedback:
     enabled: true
