@@ -36,7 +36,7 @@ class Event
         $errors = $this->validator->validate($this->attend);
         if (count($errors) > 0) {
             foreach ($errors as $error) {
-                throw new \Club\EventBundle\Exception\EventException($error->getMessage());
+                throw new EventException($error->getMessage());
             }
         }
 
