@@ -70,6 +70,12 @@ class ProductAttribute extends AbstractType
             'label' => 'Use team',
             'help' => 'Info: Is allowed to use teams?'
         ));
+        $builder->add('only_member', 'choice', array(
+            'required' => false,
+            'choices' => $bool,
+            'label' => 'Only for members',
+            'help' => 'Info: Has to have active membership to buy product.'
+        ));
         $builder->add('start_time', 'time', array(
             'required' => false,
             'label' => 'Start time',

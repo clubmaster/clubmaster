@@ -61,6 +61,8 @@ class Attribute
 
   public $team;
 
+  public $only_member;
+
   public function getNextDates()
   {
     if ($this->start_date && $this->expire_date && $this->auto_renewal == 'Y') {
@@ -220,6 +222,16 @@ class Attribute
   public function getTeam()
   {
     return $this->team;
+  }
+
+  public function setOnlyMember($only_member)
+  {
+      $this->only_member = $only_member;
+  }
+
+  public function getOnlyMember()
+  {
+      return $this->only_member;
   }
 
   public function setBooking($booking)
