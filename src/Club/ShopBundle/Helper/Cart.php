@@ -10,14 +10,16 @@ class Cart
     protected $security_context;
     protected $club_user_location;
     protected $token;
+    protected $club_user;
 
-    public function __construct($em, $session, $security_context, $club_user_location)
+    public function __construct($em, $session, $security_context, $club_user_location, $club_user)
     {
         $this->session = $session;
         $this->em = $em;
         $this->security_context = $security_context;
         $this->club_user_location = $club_user_location;
         $this->token = $security_context->getToken();
+        $this->club_user = $club_user;
     }
 
     public function getCurrent()
@@ -98,6 +100,8 @@ class Cart
             if ($product->getQuantity() == '0') {
                 throw new \Club\ShopBundle\Exception\NotInStockException('No more products left');
             }
+
+            $this->validateAttributes($product);
 
             $this->addProductToCart($product);
         } elseif ($product instanceOf \Club\ShopBundle\Entity\CartProduct) {
@@ -306,5 +310,19 @@ class Cart
         $address->setCountry($addr->getCountry());
 
         return $address;
+    }
+
+    private function validateAttributes(\Club\ShopBundle\Entity\Product $product)
+    {
+        foreach ($product->getProductAttributes() as $attr) {
+            switch ($attr->getAttribute()) {
+            case 'only_member':
+                if ($attr->getValue() && !$this->club_user->isMember($this->token->getUser())) {
+                    throw new \Exception('Cannot buy due to missing subscription');
+                }
+
+                break;
+            }
+        }
     }
 }

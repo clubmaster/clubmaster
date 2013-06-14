@@ -110,4 +110,13 @@ class User
             $profile->setProfilePhone(null);
         }
     }
+
+    public function isMember(\Club\UserBundle\Entity\User $user)
+    {
+        if (count($this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user)) > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

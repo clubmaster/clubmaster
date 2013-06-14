@@ -377,11 +377,15 @@ class Product
 
     public function getType()
     {
-      if (count($this->getProductAttributes()))
+        $type = 'product';
 
-        return 'subscription';
+        foreach ($this->getProductAttributes() as $attr) {
+            if ($attr->getAttribute() != 'only_member') {
+                $type = 'subscription';
+            }
+        }
 
-      return 'product';
+        return $type;
     }
 
     /**
