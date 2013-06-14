@@ -1,4 +1,10 @@
 <fieldset>
+  <legend>{% trans %}Product attributes{% endtrans %}</legend>
+  {{ form_row(form.only_member) }}
+
+</fieldset>
+
+<fieldset>
   <legend>{% trans %}Period subscription{% endtrans %}</legend>
 
   {{ form_row(form.time_interval) }}
@@ -12,13 +18,12 @@
 </fieldset>
 
 <fieldset>
-  <legend>{% trans %}Other settings{% endtrans %}</legend>
+  <legend>{% trans %}Subscription settings{% endtrans %}</legend>
   {{ form_row(form.ticket) }}
   {{ form_row(form.auto_renewal) }}
   {{ form_row(form.allowed_pauses) }}
   {{ form_row(form.booking) }}
   {{ form_row(form.team) }}
-  {{ form_row(form.only_member) }}
   {{ form_row(form.start_time) }}
   {{ form_row(form.stop_time) }}
   {{ form_row(form.location) }}
