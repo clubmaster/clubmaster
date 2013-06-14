@@ -80,5 +80,4 @@ class ProductRepository extends EntityRepository
 
         return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
-
 }

@@ -63,6 +63,15 @@ class Attribute
 
   public $only_member;
 
+  /**
+   * @Assert\Regex(
+   *   pattern="/^\d+$/",
+   *   match=true,
+   *   message="Not a number"
+   * )
+   */
+  public $amount_per_member;
+
   public function getNextDates()
   {
     if ($this->start_date && $this->expire_date && $this->auto_renewal == 'Y') {
@@ -232,6 +241,16 @@ class Attribute
   public function getOnlyMember()
   {
       return $this->only_member;
+  }
+
+  public function setAmountPerMember($amount_per_member)
+  {
+      $this->amount_per_member = $amount_per_member;
+  }
+
+  public function getAmountPerMember()
+  {
+      return $this->amount_per_member;
   }
 
   public function setBooking($booking)

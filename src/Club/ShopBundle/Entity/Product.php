@@ -380,7 +380,7 @@ class Product
         $type = 'product';
 
         foreach ($this->getProductAttributes() as $attr) {
-            if ($attr->getAttribute() != 'only_member') {
+            if (!preg_match("/(only_member|amount_per_member)/", $attr->getAttribute())) {
                 $type = 'subscription';
             }
         }

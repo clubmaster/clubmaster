@@ -21,11 +21,14 @@ class ProductAttribute extends AbstractType
         foreach ($res as $i) {
             $pauses[$i] = $i;
         }
-
+        $res = range(1,10);
+        $amount_per_member = array();
+        foreach ($res as $i) {
+            $amount_per_member[$i] = $i;
+        }
         $bool = array(
             1 => 'Yes'
         );
-
         $renewal = array(
             'A' => 'After expire',
             'Y' => 'Yearly',
@@ -75,6 +78,12 @@ class ProductAttribute extends AbstractType
             'choices' => $bool,
             'label' => 'Only for members',
             'help' => 'Info: Has to have active membership to buy product.'
+        ));
+        $builder->add('amount_per_member', 'choice', array(
+            'required' => false,
+            'choices' => $amount_per_member,
+            'label' => 'Amount per member',
+            'help' => 'Info: How many of this product can a member buy.'
         ));
         $builder->add('start_time', 'time', array(
             'required' => false,

@@ -317,8 +317,24 @@ class Cart
         foreach ($product->getProductAttributes() as $attr) {
             switch ($attr->getAttribute()) {
             case 'only_member':
-                if ($attr->getValue() && !$this->club_user->isMember($this->token->getUser())) {
+                if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+                    throw new \Exception('You have to be logged in to buy this product');
+                } elseif ($attr->getValue() && !$this->club_user->isMember($this->token->getUser())) {
                     throw new \Exception('Cannot buy due to missing subscription');
+                }
+
+                break;
+            case 'amount_per_member':
+                if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+                    throw new \Exception('You have to be logged in to buy this product');
+                }
+
+                if ($attr->getValue() > 0) {
+                    $bought = $this->em->getRepository('ClubShopBundle:OrderProduct')->getBoughtByUser($product, $this->token->getUser());
+
+                    if (count($bought) >= $attr->getValue()) {
+                        throw new \Exception('You cannot buy anymore of this product');
+                    }
                 }
 
                 break;
