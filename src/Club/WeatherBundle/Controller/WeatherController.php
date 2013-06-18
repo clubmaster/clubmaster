@@ -71,6 +71,10 @@ class WeatherController extends Controller
             $data = unserialize(file_get_contents($filename));
         }
 
+        if (!isset($data->data->weather)) {
+            throw new \Exception('Could not get data from weather service');
+        }
+
         $weather = $data->data->weather;
         foreach ($weather as $i => $w) {
             $weather[$i]->date = new \DateTime($w->date);
