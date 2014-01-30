@@ -1,3 +1,4 @@
+fix timezone, has to be bound to the field, and not the client
 build a map so admin can see where in the area the members is coming from
 make a binding between currency and location, so we cannot delete current used curreny
 Event/Helper, eventexception does not exists
