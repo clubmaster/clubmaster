@@ -7,22 +7,26 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 class ResponseListener
 {
-  protected $container;
+    protected $request;
 
-  public function __construct($container)
-  {
-    $this->container = $container;
-  }
-
-  public function onKernelResponse(FilterResponseEvent $event)
-  {
-    if (!preg_match("/^\/api/", $this->container->get('request')->getPathInfo())) {
-      return;
+    public function __construct($request)
+    {
+        $this->request = $request;
     }
 
-    $response = $event->getResponse();
-    $response->headers->set('Access-Control-Allow-Origin', '*');
-    $response->headers->set('WWW-Authenticate', null);
-    $event->setResponse($response);
-  }
+    public function onKernelResponse(FilterResponseEvent $event)
+    {
+        if (!$this->request->getCurrentRequest()) {
+            return;
+        }
+
+        if (!preg_match("/^\/api/", $this->request->getCurrentRequest()->getPathInfo())) {
+            return;
+        }
+
+        $response = $event->getResponse();
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('WWW-Authenticate', null);
+        $event->setResponse($response);
+    }
 }

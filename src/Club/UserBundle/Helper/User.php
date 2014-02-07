@@ -8,15 +8,14 @@ class User
     protected $em;
     protected $event_dispatcher;
     protected $user;
-    protected $request;
+    protected $requestStack;
 
     public function __construct($container)
     {
         $this->container = $container;
         $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->event_dispatcher = $container->get('event_dispatcher');
-        $this->request = $container->get('request');
-        $this->buildUser();
+        $this->requestStack = $container->get('request_stack');
     }
 
     public function buildUser()

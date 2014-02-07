@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class WelcomeController extends Controller
 {
@@ -31,10 +32,10 @@ class WelcomeController extends Controller
         );
     }
 
-    public function switchAction()
+    public function switchAction(Request $request)
     {
         return $this->redirect($this->generateUrl('localized', array(
-            '_locale' => $this->getRequest()->getLocale()
+            '_locale' => $request->getLocale()
         )));
     }
 }

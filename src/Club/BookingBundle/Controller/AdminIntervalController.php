@@ -99,7 +99,6 @@ class AdminIntervalController extends Controller
                     ));
 
                     if (md5($fl) != md5($field->getFieldLayout())) {
-                        die('meh');
 
                             for ($day = 1; $day <= 7; $day++) {
                                 switch ($day) {

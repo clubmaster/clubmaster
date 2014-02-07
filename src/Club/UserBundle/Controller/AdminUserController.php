@@ -156,7 +156,10 @@ class AdminUserController extends Controller
    */
   public function newAction()
   {
-    $user = $this->get('clubmaster.user')->get();
+      $user = $this->get('clubmaster.user')
+          ->buildUser()
+          ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     return array(
@@ -172,7 +175,10 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $user = $this->get('clubmaster.user')->get();
+    $user = $this->get('clubmaster.user')
+        ->buildUser()
+        ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
