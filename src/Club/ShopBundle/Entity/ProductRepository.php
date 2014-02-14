@@ -20,12 +20,11 @@ class ProductRepository extends EntityRepository
             ->join('p.categories', 'c')
             ->where('c.id = :category')
             ->andWhere('p.active = true')
-            ->andWhere('p.status = :status')
             ->orderBy('p.priority', 'DESC')
             ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->setParameter('category', $category)
-            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE);
+            ;
 
         return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
@@ -48,8 +47,7 @@ class ProductRepository extends EntityRepository
     public function getAll()
     {
         return $this->createQueryBuilder('p')
-            ->where('p.status = :status')
-            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
+            ->where('p.active = true')
             ->getQuery()
             ->getResult();
     }
@@ -57,11 +55,9 @@ class ProductRepository extends EntityRepository
     public function getActive($limit = 10)
     {
         return $this->createQueryBuilder('p')
-            ->where('p.status = :status')
-            ->andWhere('p.active = true')
+            ->where('p.active = true')
             ->orderBy('p.priority', 'DESC')
             ->setMaxResults($limit)
-            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE)
             ->getQuery()
             ->getResult();
     }
@@ -71,12 +67,11 @@ class ProductRepository extends EntityRepository
         $offset = ($page < 1) ? 1 : ($page-1)*$limit;
 
         $qb = $this->createQueryBuilder('p')
-            ->where('p.status = :status')
-            ->andWhere('p.active = true')
+            ->where('p.active = true')
             ->orderBy('p.priority', 'DESC')
             ->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->setParameter('status', \Club\ShopBundle\Entity\Product::ACTIVE);
+            ;
 
         return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
