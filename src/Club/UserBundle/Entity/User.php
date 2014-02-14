@@ -555,10 +555,16 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function getRoles()
     {
-      $roles = $this->roles->toArray();
+        $roles = array();
+
+        foreach ($this->roles as $r) {
+            $roles[] = $r->getRoleName();
+        }
 
       foreach ($this->getGroups() as $group) {
-        $roles = array_merge($roles, $group->getRole()->toArray());
+          foreach ($group->getRole() as $r) {
+              $roles[] = $r->getRoleName();
+          }
       }
 
       $roles[] = 'ROLE_USER';
