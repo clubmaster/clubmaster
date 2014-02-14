@@ -4,20 +4,22 @@ namespace Club\WelcomeBundle\Listener;
 
 class MenuListener
 {
+    private $container;
     private $router;
     private $security_context;
     private $translator;
 
-    public function __construct($router, $security_context, $translator)
+    public function __construct($container)
     {
-        $this->router = $router;
-        $this->security_context = $security_context;
-        $this->translator = $translator;
+        $this->container = $container;
+        $this->router = $this->container->get('router');
+        $this->security_context = $this->container->get('security.context');
+        $this->translator = $this->container->get('translator');
     }
 
     public function onLeftMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        if ($this->security_context->isGranted('ROLE_TEAM_ADMIN')) {
+        if ($this->security_context->isGranted('ROLE_ADMIN')) {
             $menu[29] = array(
                 'header' => 'CMS',
                 'image' => 'bundles/clublayout/images/icons/16x16/layout.png',
@@ -25,13 +27,16 @@ class MenuListener
                     array(
                         'name' => $this->translator->trans('Frontpage'),
                         'route' => $this->router->generate('club_welcome_adminwelcome_index')
-                    ),
-                    array(
-                        'name' => $this->translator->trans('Blog'),
-                        'route' => $this->router->generate('club_welcome_adminblog_index')
                     )
                 )
             );
+
+            if ($this->container->getParameter('club_welcome.enable_blog')) {
+                $menu[29]['items'][] = array(
+                    'name' => $this->translator->trans('Blog'),
+                    'route' => $this->router->generate('club_welcome_adminblog_index')
+                );
+            }
 
             $event->appendMenu($menu);
         }
@@ -40,12 +45,15 @@ class MenuListener
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
         $menu = array();
-        $menu[44] = array(
-            'name' => $this->translator->trans('Blog'),
-            'route' => $this->router->generate('club_welcome_blog_index'),
-            'image' => 'bundles/clublayout/images/icons/32x32/transmit.png',
-            'text' => $this->translator->trans('Do you have any news that could interest all the other members in the club, feel free to share here.')
-        );
+
+        if ($this->container->getParameter('club_welcome.enable_blog')) {
+            $menu[44] = array(
+                'name' => $this->translator->trans('Blog'),
+                'route' => $this->router->generate('club_welcome_blog_index'),
+                'image' => 'bundles/clublayout/images/icons/32x32/transmit.png',
+                'text' => $this->translator->trans('Do you have any news that could interest all the other members in the club, feel free to share here.')
+            );
+        }
 
         $event->appendMenu($menu);
     }

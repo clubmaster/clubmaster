@@ -26,6 +26,7 @@ class WelcomeController extends Controller
         $posts = $em->getRepository('ClubWelcomeBundle:Blog')->findBy(array(), array('id' => 'desc'), 3);
 
         return array(
+            'enable_blog' => $this->container->getParameter('club_welcome.enable_blog'),
             'welcome' => $welcome,
             'posts' => $posts,
             'announcements' => $announcements

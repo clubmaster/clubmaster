@@ -98,6 +98,9 @@ club_feedback:
 club_exchange:
     enabled: true
 
+club_welcome:
+    enable_blog: false
+
 club_news:
     enabled: true
 
