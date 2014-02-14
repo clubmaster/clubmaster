@@ -51,6 +51,12 @@ class WeatherController extends Controller
                 $this->container->getParameter('club_weather.latitude'),
                 $this->container->getParameter('club_weather.longtitude')
             );
+
+            if (!isset($data->data) || !isset($data->data->current_condition)) {
+                $this->get('session')->getFlashBag()->add('error', 'Problem fetching weather information');
+                return $this->redirect($this->generateUrl('homepage'));
+            }
+
             $data->data->current_condition[0]->sunrise = new \DateTime(date('Y-m-d H:i:s', $sun['sunrise']));
             $data->data->current_condition[0]->sunset = new \DateTime(date('Y-m-d H:i:s', $sun['sunset']));
             $data->data->current_condition[0]->observation_time = new \DateTime(date('Y-m-d H:i:s', strtotime($data->data->current_condition[0]->observation_time)));
