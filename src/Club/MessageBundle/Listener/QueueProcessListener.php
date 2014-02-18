@@ -21,6 +21,7 @@ class QueueProcessListener
       // init message
       $this->clubmaster_mailer
         ->setFrom($message->getSenderAddress(), $message->getSenderName())
+        ->setSubject($message->getSubject())
         ->setBody($message->getMessage(), 'text/html');
 
       foreach ($message->getMessageAttachment() as $attachment) {
