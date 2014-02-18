@@ -14,7 +14,7 @@ class AdminProfile extends AbstractType
     $builder->add('first_name');
     $builder->add('last_name');
     $builder->add('gender','gender');
-    $builder->add('day_of_birth', new JQueryBirthdayType(), array(
+    $builder->add('day_of_birth', 'jquery_birthday', array(
         'widget' => 'single_text'
     ));
     $builder->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress());

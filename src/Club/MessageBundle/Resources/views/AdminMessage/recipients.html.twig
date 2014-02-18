@@ -13,20 +13,20 @@
 {% endblock %}
 
 {% block body %}
-
-  <fieldset>
-    <legend>Sender</legend>
-
-    {{ form_row(form.sender_name) }}
-    {{ form_row(form.sender_address) }}
-
-  </fieldset>
-
-  <fieldset>
-    <legend>Message</legend>
-
-    {{ form_widget(form) }}
-
-  </fieldset>
-
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recipient in recipients %}
+        <tr>
+            <td>{{ recipient.user.name }}</td>
+            <td>{{ recipient.user.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

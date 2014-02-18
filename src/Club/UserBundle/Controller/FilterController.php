@@ -22,6 +22,7 @@ class FilterController extends Controller
             $form->bind($this->getRequest());
             if ($form->isValid()) {
                 $user = $form->get('user')->getData();
+
                 return $this->redirect($this->generateUrl('admin_user_edit', array( 'id' => $user->getId() )));
             } else {
                 foreach ($form->get('user')->getErrors() as $error) {
