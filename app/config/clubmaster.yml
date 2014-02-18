@@ -99,7 +99,7 @@ club_exchange:
     enabled: true
 
 club_welcome:
-    enable_blog: false
+    #enable_blog: true
 
 club_news:
     enabled: true
@@ -109,9 +109,6 @@ club_checkin:
         - 127.0.0.1
         - ::1
 
-club_layout:
-    title: ClubMaster
-
 club_weather:
     enabled: true
     key: fdeb1d24d8174537121809
@@ -120,6 +117,9 @@ club_weather:
 
 club_tournament:
     enabled: true
+
+club_form_extra:
+    #title: ClubMaster
 
 club_extra:
     #facebook: true
