@@ -31,6 +31,6 @@ class FilterController extends Controller
             }
         }
 
-        return $this->redirect($this->generateUrl('admin_user'));
+        return $this->redirect($this->generateUrl('club_user_adminuserfilter_index'));
     }
 }
