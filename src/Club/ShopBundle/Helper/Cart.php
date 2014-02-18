@@ -325,15 +325,27 @@ class Cart
 
                 break;
             case 'amount_per_member':
-                if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
-                    throw new \Exception('You have to be logged in to buy this product');
-                }
 
                 if ($attr->getValue() > 0) {
-                    $bought = $this->em->getRepository('ClubShopBundle:OrderProduct')->getBoughtByUser($product, $this->token->getUser());
 
-                    if (count($bought) >= $attr->getValue()) {
-                        throw new \Exception('You cannot buy anymore of this product');
+                    $cartProduct = $this->em->getRepository('ClubShopBundle:CartProduct')->getProductInCart(
+                        $product,
+                        $this->cart
+                    );
+
+                    if ($cartProduct && $cartProduct->getQuantity() >= $attr->getValue()) {
+                        throw new \Exception('Cannot buy more of this item');
+                    }
+
+                    if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                        $bought = $this->em->getRepository('ClubShopBundle:OrderProduct')->getBoughtByUser(
+                            $product,
+                            $this->token->getUser()
+                        );
+
+                        if (count($bought) >= $attr->getValue()) {
+                            throw new \Exception('You cannot buy anymore of this product');
+                        }
                     }
                 }
 
