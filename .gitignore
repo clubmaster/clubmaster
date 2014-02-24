@@ -9,7 +9,6 @@ web/bundles
 web/uploads/
 web/js
 web/css
-composer.lock
 composer.phar
 *.swp
 *~
