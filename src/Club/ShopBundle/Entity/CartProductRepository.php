@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class CartProductRepository extends EntityRepository
 {
+    public function getProductInCart(\Club\ShopBundle\Entity\Product $product, \Club\ShopBundle\Entity\Cart $cart)
+    {
+        return $this->createQueryBuilder('cp')
+            ->join('cp.cart', 'c')
+            ->join('cp.product', 'p')
+            ->where('c.id = :cart')
+            ->andWhere('p.id = :product')
+            ->setParameter('cart', $cart->getId())
+            ->setParameter('product', $product->getId())
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

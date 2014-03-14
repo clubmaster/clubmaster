@@ -8,15 +8,14 @@ class User
     protected $em;
     protected $event_dispatcher;
     protected $user;
-    protected $request;
+    protected $requestStack;
 
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->event_dispatcher = $container->get('event_dispatcher');
-        $this->request = $container->get('request');
-        $this->buildUser();
+        $this->requestStack = $container->get('request_stack');
     }
 
     public function buildUser()
@@ -109,5 +108,14 @@ class User
             $this->em->remove($profile->getProfilePhone());
             $profile->setProfilePhone(null);
         }
+    }
+
+    public function isMember(\Club\UserBundle\Entity\User $user)
+    {
+        if (count($this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user)) > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

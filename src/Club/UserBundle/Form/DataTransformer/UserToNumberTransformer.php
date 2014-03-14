@@ -57,13 +57,15 @@ class UserToNumberTransformer implements DataTransformerInterface
 
         if (null === $user) {
             try {
-            $user = $this->om
-                ->getRepository('ClubUserBundle:User')
-                ->getOneBySearch(array(
-                    'query' => $member_number
-                ));
+                $user = $this->om
+                    ->getRepository('ClubUserBundle:User')
+                    ->getOneBySearch(
+                        array( 'query' => $member_number ),
+                        'u.member_number',
+                        false
+                    );
             } catch (NonUniqueResultException $e) {
-                throw new TransformationFailedException($e->getMessage());
+                throw new TransformationFailedException('Too many matches for your search');
             }
 
             if (null === $user) {

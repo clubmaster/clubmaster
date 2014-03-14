@@ -12,17 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-    public function getByCategory(\Club\ShopBundle\Entity\Category $category, $limit=10)
+    public function getByCategory(\Club\ShopBundle\Entity\Category $category, $limit=10, $page = 0)
     {
-        return $this->createQueryBuilder('p')
+        $offset = ($page < 1) ? 1 : ($page-1)*$limit;
+
+        $qb = $this->createQueryBuilder('p')
             ->join('p.categories', 'c')
             ->where('c.id = :category')
             ->andWhere('p.active = true')
             ->orderBy('p.priority', 'DESC')
+            ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->setParameter('category', $category)
-            ->getQuery()
-            ->getResult();
+            ;
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
 
     public function getUsersByProduct(\Club\ShopBundle\Entity\Product $product)
@@ -33,9 +37,42 @@ class ProductRepository extends EntityRepository
             ->join('op.order', 'o')
             ->join('o.user', 'u')
             ->where('op.product = :product')
+            ->andWhere('o.paid = true')
             ->orderBy('o.id', 'DESC')
             ->setParameter('product', $product->getId())
             ->getQuery()
             ->getResult();
+    }
+
+    public function getAll()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = true')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getActive($limit = 10)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = true')
+            ->orderBy('p.priority', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getPaginator($limit = 10, $page = 0)
+    {
+        $offset = ($page < 1) ? 1 : ($page-1)*$limit;
+
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.active = true')
+            ->orderBy('p.priority', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ;
+
+        return new \Doctrine\ORM\Tools\Pagination\Paginator($qb, false);
     }
 }

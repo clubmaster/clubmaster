@@ -1,6 +1,6 @@
 services:
     club.apibundle.listener.response:
         class: Club\APIBundle\Listener\ResponseListener
-        arguments: [@service_container]
+        arguments: [@request_stack]
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: OnKernelResponse }

@@ -28,7 +28,7 @@ class MenuListener
                 'image' => 'bundles/clublayout/images/icons/16x16/house.png',
                 'items' => array(
                     array(
-                        'name' => $this->translator->trans('Members'),
+                        'name' => $this->translator->trans('Users'),
                         'route' => $this->router->generate('admin_user')
                     ),
                     array(

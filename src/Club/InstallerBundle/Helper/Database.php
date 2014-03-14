@@ -10,7 +10,7 @@ class Database
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
     }
 
     public function migrate()

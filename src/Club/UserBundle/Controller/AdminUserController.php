@@ -156,7 +156,10 @@ class AdminUserController extends Controller
    */
   public function newAction()
   {
-    $user = $this->get('clubmaster.user')->get();
+      $user = $this->get('clubmaster.user')
+          ->buildUser()
+          ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     return array(
@@ -172,7 +175,10 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $user = $this->get('clubmaster.user')->get();
+    $user = $this->get('clubmaster.user')
+        ->buildUser()
+        ->get();
+
     $form = $this->createForm(new \Club\UserBundle\Form\AdminUser(),$user);
 
     if ($this->getRequest()->getMethod() == 'POST') {
@@ -191,6 +197,24 @@ class AdminUserController extends Controller
     return $this->render('ClubUserBundle:AdminUser:new.html.twig', array(
       'form' => $form->createView()
     ));
+  }
+
+  /**
+   * @Route("/delete/{id}", name="admin_user_delete")
+   * @Template()
+   */
+  public function deleteAction(\Club\UserBundle\Entity\User $user)
+  {
+    $user->setEnabled(false);
+    $user->setStatus(\Club\UserBundle\Entity\User::TRASHED);
+
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($user);
+    $em->flush();
+
+    $this->get('club_user.flash')->addNotice();
+
+    return $this->redirect($this->generateUrl('admin_user'));
   }
 
   /**

@@ -24,7 +24,7 @@
                         </td>
                         <td width="30"></td>
                         <td>
-                            <a target="_open" href="http://maps.google.com/?q={{ event.locationString }}"><img src="{{ asset('bundles/clublayout/images/icons/32x32/map.png') }}" /></a>
+                            <a target="_open" href="http://maps.google.com/?q={{ event.locationString|url_encode }}"><img src="{{ asset('bundles/clublayout/images/icons/32x32/map.png') }}" /></a>
                         </td>
                     </tr>
                 </table>

@@ -17,7 +17,7 @@ class Event
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->trans = $container->get('translator');
         $this->validator = $container->get('validator');
         $this->event_dispatcher = $container->get('event_dispatcher');
@@ -36,7 +36,7 @@ class Event
         $errors = $this->validator->validate($this->attend);
         if (count($errors) > 0) {
             foreach ($errors as $error) {
-                throw new \Club\EventBundle\Exception\EventException($error->getMessage());
+                throw new EventException($error->getMessage());
             }
         }
 

@@ -15,7 +15,7 @@ class ResetPassword
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->security = $container->get('security.context');
         $this->router = $container->get('router');
     }

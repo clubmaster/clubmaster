@@ -25,7 +25,7 @@
       <dd>{{ ranking.rule.samePlayer }}</dd>
 </dl>
 
-{% render "ClubRankingBundle:Ranking:Top" with {'id':ranking.id, 'limit':50} %}
+{% render(controller("ClubRankingBundle:Ranking:Top", {'id':ranking.id, 'limit':50})) %}
 {% include "ClubMatchBundle:Match:recent_matches.html.twig" %}
 
 {% endblock %}

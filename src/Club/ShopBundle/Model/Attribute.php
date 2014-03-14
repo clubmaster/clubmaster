@@ -61,6 +61,17 @@ class Attribute
 
   public $team;
 
+  public $only_member;
+
+  /**
+   * @Assert\Regex(
+   *   pattern="/^\d+$/",
+   *   match=true,
+   *   message="Not a number"
+   * )
+   */
+  public $amount_per_member;
+
   public function getNextDates()
   {
     if ($this->start_date && $this->expire_date && $this->auto_renewal == 'Y') {
@@ -222,6 +233,26 @@ class Attribute
     return $this->team;
   }
 
+  public function setOnlyMember($only_member)
+  {
+      $this->only_member = $only_member;
+  }
+
+  public function getOnlyMember()
+  {
+      return $this->only_member;
+  }
+
+  public function setAmountPerMember($amount_per_member)
+  {
+      $this->amount_per_member = $amount_per_member;
+  }
+
+  public function getAmountPerMember()
+  {
+      return $this->amount_per_member;
+  }
+
   public function setBooking($booking)
   {
     $this->booking = $booking;
@@ -234,9 +265,6 @@ class Attribute
 
   public function isValid(ExecutionContextInterface $context)
   {
-    if ($this->start_date == '' && $this->expire_date == '' && $this->time_interval == '')
-      $context->addViolation('You has to specify a time for the subscription.', array(), null);
-
     if ($this->auto_renewal == 'Y' && $this->time_interval != '')
       $context->addViolation('You are not able to make yearly renewal with a time interval, choose a start date instead.', array(), null);
 

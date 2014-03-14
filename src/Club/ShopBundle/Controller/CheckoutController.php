@@ -5,6 +5,7 @@ namespace Club\ShopBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/shop/checkout")
@@ -25,21 +26,6 @@ class CheckoutController extends Controller
             'cart' => $cart,
             'active_page' => 'cart'
         );
-    }
-
-    /**
-     * @Route("/increment/{id}")
-     */
-    public function incrementAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
-        $this->get('cart')
-            ->getCurrent()
-            ->modifyQuantity($product);
-
-        return $this->redirect($this->generateUrl('shop_checkout'));
     }
 
     /**

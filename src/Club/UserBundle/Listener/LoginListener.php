@@ -2,28 +2,29 @@
 
 namespace Club\UserBundle\Listener;
 
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+
 class LoginListener
 {
     protected $container;
     protected $em;
     protected $security_context;
     protected $session;
-    protected $request;
 
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->security_context = $container->get('security.context');
         $this->session = $container->get('session');
-        $this->request = $this->container->get('request');
+        $this->requestStack = $container->get('request_stack');
     }
 
-    public function onSecurityInteractiveLogin()
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-        $user = $this->security_context->getToken()->getUser();
+        $user = $this->em->find('ClubUserBundle:User', $this->security_context->getToken()->getUser()->getId());
         $user->setLastLoginTime(new \DateTime());
-        $user->setLastLoginIp($this->request->getClientIp());
+        $user->setLastLoginIp($event->getRequest()->getClientIp());
 
         if (!strlen($user->getApiHash())) {
             $user->setApiHash($user->generateKey());
@@ -34,16 +35,16 @@ class LoginListener
         $login = new \Club\UserBundle\Entity\LoginAttempt();
         $login->setUsername($user->getUsername());
         $login->setSession(session_id());
-        $login->setIpAddress($this->request->getClientIp());
-        $login->setHostname(gethostbyaddr($this->request->getClientIp()));
+        $login->setIpAddress($event->getRequest()->getClientIp());
+        $login->setHostname(gethostbyaddr($event->getRequest()->getClientIp()));
         $login->setLoginFailed(0);
 
         $this->em->persist($login);
         $this->em->flush();
 
-        $this->setLocation();
-        $this->setLocale();
-        $this->checkin();
+        $this->setLocation($event);
+        $this->setLocale($event);
+        $this->checkin($event);
 
         $reset = $this->em->createQueryBuilder()
             ->select('r')
@@ -54,7 +55,7 @@ class LoginListener
             ->getOneOrNullResult();
     }
 
-    private function setLocale()
+    private function setLocale($event)
     {
         $user = $this->security_context->getToken()->getUser();
         $s = $this->em->getRepository('ClubUserBundle:UserSetting')->findOneBy(array(
@@ -62,10 +63,10 @@ class LoginListener
             'attribute' => 'language'
         ));
 
-        if ($s) $this->request->setLocale($s->getValue());
+        if ($s) $event->getRequest()->setLocale($s->getValue());
     }
 
-    private function setLocation()
+    private function setLocation($event)
     {
         if ($this->session->get('location_id')) return;
 
@@ -79,7 +80,7 @@ class LoginListener
 
             return;
 
-        $user = $this->security_context->getToken()->getUser();
+        $user = $this->em->find('ClubUserBundle:User', $this->security_context->getToken()->getUser()->getId());
 
         if ($user instanceOf \Club\UserBundle\Entity\User) {
             $user->setLocation($this->location);
@@ -88,12 +89,12 @@ class LoginListener
         }
     }
 
-    private function checkin()
+    private function checkin($event)
     {
         $allowed_ip = $this->container->getParameter('club_checkin.allowed_ip');
 
         foreach ($allowed_ip as $ip) {
-            if ($ip == $this->request->getClientIp()) {
+            if ($ip == $event->getRequest()->getClientIp()) {
                 $this->container->get('club_checkin.checkin')->checkin();
             }
         }

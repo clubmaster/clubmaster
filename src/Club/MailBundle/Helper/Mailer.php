@@ -17,7 +17,7 @@ class Mailer
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->mailer = $container->get('mailer');
         $this->logger = $container->get('logger');
         $this->event_dispatcher = $container->get('event_dispatcher');

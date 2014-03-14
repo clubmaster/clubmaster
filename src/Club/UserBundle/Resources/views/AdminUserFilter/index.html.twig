@@ -20,10 +20,11 @@
     {{ form_row(form.city) }}
     {{ form_row(form.country) }}
     {{ form_row(form.location) }}
-    {{ form_row(form.active) }}
     {{ form_row(form.has_ticket) }}
     {{ form_row(form.has_subscription) }}
-    {{ form_row(form.subscription_start) }}
+    <h4>{% trans %}Search for a subscription in the following period.{% endtrans %}</h4>
+    {{ form_row(form.subscription_from) }}
+    {{ form_row(form.subscription_to) }}
     {{ form_row(form._token) }}
 
     <div class="form-actions">

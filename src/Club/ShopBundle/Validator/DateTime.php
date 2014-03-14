@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class DateTime extends Constraint
 {
-  public $message = 'This value is not a valid format.';
+    public $message = 'This value is not a valid format.';
 }

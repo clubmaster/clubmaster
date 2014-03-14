@@ -1,7 +1,7 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
 {% block pagenav %}
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') and enable_blog %}
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
@@ -22,6 +22,7 @@
 <hr>
 {% endif %}
 
+{% if enable_blog %}
 <div class="page-header"><h1>{% trans %}Blog{% endtrans %}</h1></div>
 
 {% for post in posts %}
@@ -29,5 +30,6 @@
 {% endfor %}
 
 <a href="{{ path('club_welcome_blog_index') }}">&larr; Read older articles</a>
+{% endif %}
 
 {% endblock %}

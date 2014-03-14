@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('mail_on_welcome')->isRequired()->end()
             ->scalarNode('mail_on_booking')->isRequired()->end()
             ->scalarNode('mail_on_order')->isRequired()->end()
+            ->scalarNode('mail_on_order_confirm')->isRequired()->end()
           ->end();
 
         return $treeBuilder;

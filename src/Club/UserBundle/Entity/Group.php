@@ -480,7 +480,7 @@ class Group
     public function addUser(\Club\UserBundle\Entity\User $users)
     {
         $this->users[] = $users;
-    
+
         return $this;
     }
 

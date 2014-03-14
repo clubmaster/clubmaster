@@ -116,6 +116,7 @@ class Product
         $this->active = true;
         $this->quantity = '-1';
         $this->priority = 10;
+        $this->status = 1;
     }
 
     public function __toString()
@@ -366,11 +367,15 @@ class Product
 
     public function getType()
     {
-      if (count($this->getProductAttributes()))
+        $type = 'product';
 
-        return 'subscription';
+        foreach ($this->getProductAttributes() as $attr) {
+            if (!preg_match("/(only_member|amount_per_member)/", $attr->getAttribute())) {
+                $type = 'subscription';
+            }
+        }
 
-      return 'product';
+        return $type;
     }
 
     /**
@@ -456,7 +461,8 @@ class Product
             'product_name' => $this->getProductName(),
             'description' => $this->getDescription(),
             'price' => $this->getPrice(),
-            'active' => $this->getActive()
+            'active' => $this->getActive(),
+            'status' => $this->getStatus()
         );
     }
 

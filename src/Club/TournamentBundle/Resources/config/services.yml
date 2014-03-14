@@ -4,4 +4,4 @@ services:
     arguments: []
   club_tournament.tournament:
     class: Club\TournamentBundle\Helper\Tournament
-    arguments: [@doctrine.orm.entity_manager, @translator]
+    arguments: [@doctrine.orm.default_entity_manager, @translator]

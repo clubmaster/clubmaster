@@ -9,10 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ShopController extends Controller
 {
     /**
-     * @Route("/shop", name="shop")
+     * @Route("/shop", name="shop", defaults={"page" = 1})
+     * @Route("/shop/{page}", name="shop_offset")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,38 +38,44 @@ class ShopController extends Controller
             return $this->redirect($this->generateUrl('club_user_location_index'));
         }
 
-        $products = $em->getRepository('ClubShopBundle:Product')->findBy(
-            array('active' => true),
-            array('priority' => 'DESC'),
-            10
-        );
+        $results = 10;
+        $paginator = $em->getRepository('ClubShopBundle:Product')->getPaginator($results, $page);
+
+        $this->get('club_extra.paginator')
+            ->init($results, count($paginator), $page, 'shop_offset');
 
         return array(
             'location' => $location,
             'categories' => $categories,
-            'products' => $products
+            'paginator' => $paginator
         );
     }
 
     /**
-     * @Route("/shop/category/{id}",name="shop_prod_view")
+     * @Route("/shop/category/{id}",name="shop_prod_view", defaults={"page" = 1})
+     * @Route("/shop/category/{id}/{page}", name="shop_prod_view_offset")
      * @Template()
      */
-    public function categoryAction(\Club\ShopBundle\Entity\Category $category)
+    public function categoryAction(\Club\ShopBundle\Entity\Category $category, $page)
     {
+        $results = 5;
+
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('ClubShopBundle:Category')->findBy(array(
             'category' => $category->getId()
         ));
 
-        $products = $em->getRepository('ClubShopBundle:Product')->getByCategory($category);
+        $paginator = $em->getRepository('ClubShopBundle:Product')->getByCategory($category, $results, $page);
+
+        $this->get('club_extra.paginator')
+            ->init($results, count($paginator), $page, 'shop_prod_view_offset', array('id' => $category->getId()));
 
         return array(
             'location' => $this->get('club_user.location')->getCurrent(),
             'categories' => $categories,
             'category' => $category,
-            'products' => $products
+            'paginator' => $paginator
         );
     }
 

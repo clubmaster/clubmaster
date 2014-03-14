@@ -51,10 +51,6 @@ class Filter extends AbstractType
     $builder->add('country', 'club_country', array(
       'required' => false
     ));
-    $builder->add('active', 'choice', array(
-      'choices' => $yes,
-      'required' => false
-    ));
     $builder->add('has_ticket', 'choice', array(
       'choices' => $boolean,
       'required' => false
@@ -68,7 +64,11 @@ class Filter extends AbstractType
       'required' => false,
       'multiple' => true
     ));
-    $builder->add('subscription_start', 'jquery_date', array(
+    $builder->add('subscription_from', 'jquery_date', array(
+        'required' => false,
+        'widget' => 'single_text'
+    ));
+    $builder->add('subscription_to', 'jquery_date', array(
         'required' => false,
         'widget' => 'single_text'
     ));

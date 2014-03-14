@@ -19,6 +19,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements AdvancedUserInterface, EquatableInterface
 {
+    const TRASHED = 0;
+    const ACTIVE = 1;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -63,6 +66,13 @@ class User implements AdvancedUserInterface, EquatableInterface
      * @var boolean $enabled
      */
     protected $enabled;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var boolean $status
+     */
+    protected $status;
 
     /**
      * @ORM\Column(type="string")
@@ -184,7 +194,8 @@ class User implements AdvancedUserInterface, EquatableInterface
       $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
       $this->salt = $this->generateKey();
       $this->algorithm = 'sha512';
-      $this->enabled = false;
+      $this->enabled = true;
+      $this->status = self::ACTIVE;
       $this->locked = false;
       $this->expired = false;
       $this->api_hash = hash('sha1', $this->generateKey());
@@ -544,10 +555,16 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function getRoles()
     {
-      $roles = $this->roles->toArray();
+        $roles = array();
+
+        foreach ($this->roles as $r) {
+            $roles[] = $r->getRoleName();
+        }
 
       foreach ($this->getGroups() as $group) {
-        $roles = array_merge($roles, $group->getRole()->toArray());
+          foreach ($group->getRole() as $r) {
+              $roles[] = $r->getRoleName();
+          }
       }
 
       $roles[] = 'ROLE_USER';
@@ -609,7 +626,7 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function isEnabled()
     {
-      return true;
+        return $this->enabled;
     }
 
     public function getUsername()
@@ -892,5 +909,28 @@ class User implements AdvancedUserInterface, EquatableInterface
     public function getPlaintextPassword()
     {
         return $this->plaintext_password;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

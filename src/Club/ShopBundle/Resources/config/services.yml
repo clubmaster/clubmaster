@@ -1,16 +1,16 @@
 services:
   cart:
     class: Club\ShopBundle\Helper\Cart
-    arguments: [@doctrine.orm.entity_manager,@session,@security.context,@club_user.location]
+    arguments: [@doctrine.orm.default_entity_manager,@session,@security.context,@club_user.location,@clubmaster.user]
   order:
     class: Club\ShopBundle\Helper\Order
     arguments: [@service_container]
   subscription:
     class: Club\ShopBundle\Helper\Subscription
-    arguments: [@doctrine.orm.entity_manager,@session,@translator]
+    arguments: [@doctrine.orm.default_entity_manager,@session,@translator]
   club_shop.product:
     class: Club\ShopBundle\Helper\Product
-    arguments: [@doctrine.orm.entity_manager]
+    arguments: [@doctrine.orm.default_entity_manager]
   twig.extension.text:
     class: Twig_Extensions_Extension_Text
     tags:

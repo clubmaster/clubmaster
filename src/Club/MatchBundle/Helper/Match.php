@@ -17,7 +17,7 @@ class Match
     public function __construct($container)
     {
         $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->translator = $container->get('translator');
         $this->form_factory = $container->get('form.factory');
         $this->event_dispatcher = $container->get('event_dispatcher');

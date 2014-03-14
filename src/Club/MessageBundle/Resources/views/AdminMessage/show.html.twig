@@ -1,5 +1,17 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('club_message_adminmessage_index') }}">{% trans %}Messages{% endtrans %}</a></li>
+            <li><a href="{{ path('club_message_adminmessage_show', {'id':message.id}) }}">{% trans %}Show{% endtrans %}</a></li>
+            <li><a href="{{ path('club_message_adminmessage_recipients', {'id':message.id}) }}">{% trans %}Recipients{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
 
   <fieldset>

@@ -71,6 +71,8 @@ class AdminUserFilterController extends Controller
 
                 break;
             case 'subscription_start':
+            case 'subscription_from':
+            case 'subscription_to':
                 $value = ($value != '') ? serialize($value) : null;
                 $this->syncColumn($filter, $key, $value);
                 break;
@@ -142,6 +144,17 @@ class AdminUserFilterController extends Controller
                 if ($attribute->getValue() != '')
                     $form_filter->subscription_start = unserialize($attribute->getValue());
                 break;
+
+            case 'subscription_from':
+                if ($attribute->getValue() != '')
+                    $form_filter->subscription_from = unserialize($attribute->getValue());
+                break;
+
+            case 'subscription_to':
+                if ($attribute->getValue() != '')
+                    $form_filter->subscription_to = unserialize($attribute->getValue());
+                break;
+
             case 'location':
                 $res = new \Doctrine\Common\Collections\ArrayCollection();
                 $locations = $em->getRepository('ClubUserBundle:Location')->getByIds(explode(",", $attribute->getValue()));

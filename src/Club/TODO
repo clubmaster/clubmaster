@@ -1,8 +1,13 @@
-on setup.php fix blue-arrow and favico.ico
-there is a problem when buying guestbooking and continue to shop, location id will not match
-trash products
-add paginator in products view, now you can only view latest 10 products
+fix timezone, has to be bound to the field, and not the client
+build a map so admin can see where in the area the members is coming from
 make a binding between currency and location, so we cannot delete current used curreny
+Event/Helper, eventexception does not exists
+auto submit form to quickpay
+impersonate a user through the website, if you have the access
+auto submit form to quickpay
+improve location for cart button
+when user has been deleted, you should no be able to see the user in ajax search, or see the users page
+there is a problem when buying guestbooking and continue to shop, location id will not match
 add support for webcam access from browser, to upload profile images
 show all configuration items on a page
 add creditcard subscription

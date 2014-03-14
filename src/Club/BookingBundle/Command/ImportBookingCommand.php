@@ -84,7 +84,7 @@ EOF
       null,
       8);
 
-    $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+    $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
 
     $field_delimiter = "/\t/";
     $row_delimiter = "/\n/";

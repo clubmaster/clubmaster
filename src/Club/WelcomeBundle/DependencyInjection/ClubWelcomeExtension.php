@@ -24,5 +24,7 @@ class ClubWelcomeExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener.yml');
+
+        $container->setParameter('club_welcome.enable_blog', $config['enable_blog']);
     }
 }
