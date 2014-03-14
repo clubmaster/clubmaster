@@ -2804,6 +2804,10 @@
           <source>Operation did not finish, an error occur.</source>
           <target>Der opstod en fejl, operationen blev ikke udført.</target>
       </trans-unit>
+      <trans-unit id="741">
+          <source>Click on the name to change location.</source>
+          <target>Klik på navnet for at skifte lokation.</target>
+      </trans-unit>
 
     </body>
   </file>

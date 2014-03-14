@@ -132,7 +132,10 @@ class AuthController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->get('clubmaster.user')->get();
+        $user = $this->get('clubmaster.user')
+            ->buildUser()
+            ->get();
+
         $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
 
         if ($this->getRequest()->getMethod() == 'POST') {

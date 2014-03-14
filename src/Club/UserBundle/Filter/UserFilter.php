@@ -24,13 +24,13 @@ class UserFilter
 
   public $country;
 
-  public $active;
-
   public $has_ticket;
 
   public $has_subscription;
 
   public $location;
 
-  public $subscription_start;
+  public $subscription_from;
+
+  public $subscription_to;
 }

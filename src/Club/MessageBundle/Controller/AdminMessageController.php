@@ -56,8 +56,11 @@ class AdminMessageController extends Controller
 
         $message = $em->find('ClubMessageBundle:Message',$id);
 
+        $recipients = array();
         $lines = array();
         foreach ($message->getUsers() as $user) {
+            $recipients[$user->getEmail()] = true;
+
             $lines[] = array(
                 'type' => 'User',
                 'message' => $user->getProfile()->getName(),
@@ -68,6 +71,10 @@ class AdminMessageController extends Controller
             );
         }
         foreach ($message->getGroups() as $group) {
+            foreach ($group->getUsers() as $u) {
+                $recipients[$u->getEmail()] = true;
+            }
+
             $lines[] = array(
                 'type' => 'Group',
                 'message' => $group->getGroupName(),
@@ -78,6 +85,10 @@ class AdminMessageController extends Controller
             );
         }
         foreach ($message->getEvents() as $event) {
+            foreach ($event->getAttends() as $a) {
+                $recipients[$a->getUser()->getEmail()] = true;
+            }
+
             $lines[] = array(
                 'type' => 'Event',
                 'message' => $event->getEventName(),
@@ -88,9 +99,17 @@ class AdminMessageController extends Controller
             );
         }
 
+        $filesize = 0;
+        foreach ($message->getMessageAttachment() as $a) {
+            $filesize += $a->getFileSize();
+        }
+
         return array(
             'lines' => $lines,
-            'message' => $message
+            'message' => $message,
+            'recipients' => count($recipients),
+            'attachments' => count($message->getMessageAttachment()),
+            'filesize' => $filesize
         );
     }
 
@@ -169,15 +188,25 @@ class AdminMessageController extends Controller
      * @Route("/show/{id}")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(\Club\MessageBundle\Entity\Message $message)
     {
-        $em = $this->getDoctrine()->getManager();
-        $message = $em->find('ClubMessageBundle:Message',$id);
         $form = $this->createForm(new \Club\MessageBundle\Form\Message(), $message);
 
         return array(
             'message' => $message,
             'form' => $form->createView()
+        );
+    }
+
+    /**
+     * @Route("/recipients/{id}")
+     * @Template()
+     */
+    public function recipientsAction(\Club\MessageBundle\Entity\Message $message)
+    {
+        return array(
+            'message' => $message,
+            'recipients' => $message->getMessageRecipients()
         );
     }
 

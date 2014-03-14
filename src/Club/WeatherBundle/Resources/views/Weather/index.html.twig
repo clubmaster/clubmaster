@@ -1,24 +1,40 @@
 {% extends "ClubWeatherBundle::base.html.twig" %}
 
+{% block javascripts %}
+    <script type="text/javascript">
+        var currUrl = "{{ curr|raw }}";
+        var forecastUrl = "{{ forecastUrl|raw }}";
+        var units = "{{ units }}";
+        var degree = "{{ degree }}";
+    </script>
+
+    {% javascripts "@ClubWeatherBundle/Resources/public/js/weather.js" %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+div#overview { display: none }
+</style>
+{% endblock %}
+
 {% block body %}
-        <div class="span11">
+        <div class="span11" id="status">
+            <div class="hero-unit">
+                <h3>{% trans %}Fetching weather informations from openweathermap.org...{% endtrans %}</h3>
+            </div>
+        </div>
+
+        <div class="span11" id="overview">
           <div class="hero-unit">
-            <h1><img alt="{{ curr.weatherDesc.0.value }}" src="{{ curr.weatherIconUrl.0.value }}" /> {% trans %}Weather right now!{% endtrans %}</h1>
+            <h1><img id="curr-weather" alt="" src="" /> {% trans %}Weather right now!{% endtrans %}</h1>
             <p>
-                {% trans with {'%time%':curr.observation_time|club_datetime} %}The weather was last updated at %time%.{% endtrans %}<br>
-                {% trans with {'%temp%':curr.temp_C} %}Current temperature: %temp%{% endtrans %}<br>
-                {% trans with {'%speed%':curr.windspeedKmph, '%dir%':curr.winddir16Point} %}Current wind: %speed% km/t, %dir%{% endtrans %}<br />
-                {% trans with {'%sunrise%':curr.sunrise|club_time,'%sunset%':curr.sunset|club_time} %}Sunrise: %sunrise%, sunset: %sunset%{% endtrans %}
+                {% trans %}Location: <span id="curr-location"></span>{% endtrans %}<br>
+                {% trans with {'%degree%':degree} %}Current temperature: <span id="curr-temp"></span>&deg;%degree%{% endtrans %}<br>
+                {% trans %}Sunrise/sunset: <span id="curr-rise"></span>/<span id="curr-set"></span>{% endtrans %}<br>
+                {% trans with {'%units%':units} %}Current wind: <span id="curr-speed"></span>%units%, <span id="curr-dir"></span>{% endtrans %}<br />
             </p>
           </div>
-          <div class="row-fluid">
-            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.0} %}
-            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.1} %}
-            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.2} %}
-          </div><!--/row-->
-          <div class="row-fluid">
-            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.3} %}
-            {% include "ClubWeatherBundle:Weather:weather_table.html.twig" with {'weather':weather.4} %}
-          </div><!--/row-->
-        </div><!--/span-->
+       </div>
 {% endblock %}

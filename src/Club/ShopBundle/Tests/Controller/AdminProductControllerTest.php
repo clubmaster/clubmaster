@@ -36,14 +36,4 @@ class AdminProductControllerTest extends WebTestCase
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
   }
-
-  public function testDelete()
-  {
-    $crawler = $this->client->request('GET', '/en/admin/shop/product');
-    $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-    $links = $crawler->selectLink('Delete')->links();
-    $crawler = $this->client->click(end($links));
-    $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-  }
 }

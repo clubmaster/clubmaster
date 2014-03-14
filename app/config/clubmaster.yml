@@ -98,6 +98,9 @@ club_feedback:
 club_exchange:
     enabled: true
 
+club_welcome:
+    #enable_blog: true
+
 club_news:
     enabled: true
 
@@ -106,17 +109,19 @@ club_checkin:
         - 127.0.0.1
         - ::1
 
-club_layout:
-    title: ClubMaster
-
 club_weather:
     enabled: true
-    key: fdeb1d24d8174537121809
-    longtitude: 9.917771
-    latitude: 57.028811
+    appid: 2f57a52e713c92e62195a21efe934c0f
+    location: Aalborg,dk
+    #lonlat: 9.918700,57.048000
+    #cityid: 2624886 # http://openweathermap.org/help/city_list.txt
+    #units: metric
 
 club_tournament:
     enabled: true
+
+club_form_extra:
+    #title: ClubMaster
 
 club_extra:
     #facebook: true

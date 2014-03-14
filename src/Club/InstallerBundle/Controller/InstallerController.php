@@ -117,7 +117,7 @@ class InstallerController extends Controller
      * @Route("/step/2")
      * @Template()
      */
-    public function administratorAction()
+    public function administratorAction(Request $request)
     {
         $this->validateInstaller();
 
@@ -126,15 +126,18 @@ class InstallerController extends Controller
         if ($this->get('session')->get('installer_user_id')) {
             $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
         } else {
-            $user = $this->get('clubmaster.user')->get();
+            $user = $this->get('clubmaster.user')
+                ->buildUser()
+                ->get();
+
             $user->getProfile()->setProfileAddress(null);
             $user->getProfile()->setProfilePhone(null);
         }
 
         $form = $this->createForm(new \Club\InstallerBundle\Form\AdministratorStep(), $user);
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
 
             if ($form->isValid()) {
                 $group = $em->getRepository('ClubUserBundle:Group')->findOneBy(array(

@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrderProductRepository extends EntityRepository
 {
+    public function getBoughtByUser(\Club\ShopBundle\Entity\Product $product, \Club\UserBundle\Entity\User $user)
+    {
+        return $this->createQueryBuilder('op')
+            ->join('op.order', 'o')
+            ->join('o.user', 'u')
+            ->join('op.product', 'p')
+            ->where('u.id = :user')
+            ->andWhere('p.id = :product')
+            ->setParameter('user', $user->getId())
+            ->setParameter('product', $product->getId())
+            ->getQuery()
+            ->getResult();
+    }
 }

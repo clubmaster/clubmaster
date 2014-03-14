@@ -33,6 +33,23 @@ class AdminProductController extends Controller
   }
 
   /**
+   * @Route("/shop/product/archive", name="admin_shop_product_archive")
+   * @Template()
+   */
+  public function archiveAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $products = $em->getRepository('ClubShopBundle:Product')->findBy(array(
+        'active' => false
+    ));
+
+    return array(
+      'products' => $products
+    );
+  }
+
+  /**
    * @Route("/shop/product/new", name="admin_shop_product_new")
    * @Template()
    */
@@ -69,26 +86,6 @@ class AdminProductController extends Controller
       'product' => $product,
       'form' => $res->createView()
     );
-  }
-
-  /**
-   * @Route("/shop/product/delete/{id}", name="admin_shop_product_delete")
-   */
-  public function deleteAction(\Club\ShopBundle\Entity\Product $product)
-  {
-      try {
-          $product->setStatus(\Club\ShopBundle\Entity\Product::TRASHED);
-          $em = $this->getDoctrine()->getManager();
-
-          $em->persist($product);
-          $em->flush();
-
-          $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
-      } catch (\Doctrine\DBAL\DBALException $e) {
-          $this->get('club_user.flash')->addError($e->getMessage());
-      }
-
-      return $this->redirect($this->generateUrl('admin_shop_product'));
   }
 
   /**

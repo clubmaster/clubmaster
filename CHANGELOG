@@ -1,4 +1,13 @@
 1.3.2
+    * Upgraded to symfony 1.3.1
+    * Removed JQuery and Bootstrap and depend on CDN
+    * Added paginator to shop
+    * Added ability to trash users
+    * Added link to forgot password page
+    * Made it default that super users can switch to other users
+    * Added setting for sending mail order confirmation
+    * Added support for products can be bought from members only
+    * Added support for amounts of a products each member can buy
 
 1.3.1 (2013-05-01)
     * Upgraded jquery

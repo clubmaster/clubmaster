@@ -29,21 +29,6 @@ class CheckoutController extends Controller
     }
 
     /**
-     * @Route("/increment/{id}")
-     */
-    public function incrementAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $product = $em->getRepository('ClubShopBundle:CartProduct')->find($id);
-        $this->get('cart')
-            ->getCurrent()
-            ->modifyQuantity($product);
-
-        return $this->redirect($this->generateUrl('shop_checkout'));
-    }
-
-    /**
      * @Route("/decrement/{id}")
      */
     public function decrementAction($id)

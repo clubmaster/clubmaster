@@ -18,68 +18,64 @@ class WeatherController extends Controller
      */
     public function indexAction()
     {
-        $filename = $this->get('kernel')->getCacheDir().'/weather.json';
-        $refresh = true;
-        $renew = 3600;
+        $url = sprintf('http://api.openweathermap.org/data/2.5/weather?APPID=%s&mode=json&units=%s&lang=%s&',
+            urlencode($this->container->getParameter('club_weather.appid')),
+            urlencode($this->container->getParameter('club_weather.units')),
+            urlencode($this->container->getParameter('club_weather.locale'))
+        );
 
-        if (is_file($filename)) {
-            $stat = stat($filename);
+        $forecastUrl = sprintf('http://api.openweathermap.org/data/2.5/forecast/daily?APPID=%s&mode=json&units=%s&cnt=10&lang=%s&',
+            urlencode($this->container->getParameter('club_weather.appid')),
+            urlencode($this->container->getParameter('club_weather.units')),
+            urlencode($this->container->getParameter('club_weather.locale'))
+        );
 
-            if ($stat[9] > time()-$renew) {
-                $refresh = false;
-            }
-        }
-
-        if ($refresh) {
-            $q = sprintf('%s,%s',
-                round($this->container->getParameter('club_weather.latitude'),2),
-                round($this->container->getParameter('club_weather.longtitude'),2));
-            $key = $this->container->getParameter('club_weather.key');
-            $days = 5;
-            $host = 'http://free.worldweatheronline.com/feed/weather.ashx?q=%s&format=json&num_of_days=%s&key=%s';
-
-            $url = sprintf($host,
-                $q,
-                $days,
-                $key);
-
-            $r = file_get_contents($url);
-            $data = json_decode($r);
-
-            $sun = date_sun_info(
-                time(),
-                $this->container->getParameter('club_weather.latitude'),
-                $this->container->getParameter('club_weather.longtitude')
+        if ($this->container->getParameter('club_weather.location')) {
+            $url = sprintf($url.'q=%s',
+                urlencode($this->container->getParameter('club_weather.location'))
             );
-            $data->data->current_condition[0]->sunrise = new \DateTime(date('Y-m-d H:i:s', $sun['sunrise']));
-            $data->data->current_condition[0]->sunset = new \DateTime(date('Y-m-d H:i:s', $sun['sunset']));
-            $data->data->current_condition[0]->observation_time = new \DateTime(date('Y-m-d H:i:s', strtotime($data->data->current_condition[0]->observation_time)));
 
-            foreach ($data->data->weather as $w) {
-                $sun = date_sun_info(
-                    strtotime($w->date),
-                    $this->container->getParameter('club_weather.latitude'),
-                    $this->container->getParameter('club_weather.longtitude')
-                );
+            $forecastUrl = sprintf($forecastUrl.'q=%s',
+                urlencode($this->container->getParameter('club_weather.location'))
+            );
 
-                $w->sunrise = new \DateTime(date('Y-m-d H:i:s', $sun['sunrise']));
-                $w->sunset = new \DateTime(date('Y-m-d H:i:s', $sun['sunset']));
-            }
+        } elseif ($this->container->getParameter('club_weather.lonlat')) {
+            $r = preg_split("/,/", $this->container->getParameter('club_weather.lonlat'));
 
-            file_put_contents($filename, serialize($data));
-        } else {
-            $data = unserialize(file_get_contents($filename));
+            $url = sprintf($url.'lon=%s&lat=%s',
+                urlencode($r[0]),
+                urlencode($r[1])
+            );
+
+            $forecastUrl = sprintf($forecastUrl.'lat=%s&lon=%s',
+                urlencode($r[0]),
+                urlencode($r[1])
+            );
+
+        } elseif ($this->container->getParameter('club_weather.cityid')) {
+            $url = sprintf($url.'id=%s',
+                urlencode($this->container->getParameter('club_weather.cityid'))
+            );
+
+            $forecastUrl = sprintf($forecastUrl.'id=%s',
+                urlencode($this->container->getParameter('club_weather.cityid'))
+            );
+
         }
 
-        $weather = $data->data->weather;
-        foreach ($weather as $i => $w) {
-            $weather[$i]->date = new \DateTime($w->date);
-        }
+        $degree = ($this->container->getParameter('club_weather.units') == 'metric')
+            ? 'C'
+            : 'F';
+
+        $units = ($this->container->getParameter('club_weather.units') == 'metric')
+            ? 'm/s'
+            : 'ft/s';
 
         return array(
-            'curr' => $data->data->current_condition[0],
-            'request' => $data->data->request[0],
-            'weather' => $weather
+            'curr' => $url,
+            'forecastUrl' => $forecastUrl,
+            'degree' => $degree,
+            'units' => $units
         );
     }
 }

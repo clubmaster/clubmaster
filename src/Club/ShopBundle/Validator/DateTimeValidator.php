@@ -7,20 +7,16 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class DateTimeValidator extends ConstraintValidator
 {
-  public function isValid($value, Constraint $constraint)
-  {
-    if (!strlen($value))
+    public function validate($value, Constraint $constraint)
+    {
+        if (!strlen($value))
+            return true;
 
-      return true;
+        try {
+            $date = new \DateInterval('P'.$value);
 
-    try {
-      $date = new \DateInterval('P'.$value);
-    } catch (\Exception $e) {
-      $this->setMessage($constraint->message);
-
-      return false;
+        } catch (\Exception $e) {
+            $this->context->addViolation($constraint->message, array('%string%' => $value));
+        }
     }
-
-    return true;
-  }
 }

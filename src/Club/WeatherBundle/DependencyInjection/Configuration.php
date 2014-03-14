@@ -27,9 +27,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->scalarNode('enabled')->isRequired()->end()
-            ->scalarNode('latitude')->isRequired()->end()
-            ->scalarNode('longtitude')->isRequired()->end()
-            ->scalarNode('key')->isRequired()->end()
+            ->scalarNode('appid')->isRequired()->end()
+            ->scalarNode('location')->defaultNull()->end()
+            ->scalarNode('lonlat')->defaultNull()->end()
+            ->scalarNode('cityid')->defaultNull()->end()
+            ->scalarNode('units')->defaultValue('metric')->end()
+            ->scalarNode('locale')->defaultValue('en')->end()
             ->end();
 
         return $treeBuilder;

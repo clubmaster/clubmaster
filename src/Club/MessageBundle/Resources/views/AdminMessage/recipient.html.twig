@@ -44,4 +44,22 @@
 
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_message_adminmessage_process', {'id':message.id}), 'button':'Send message'|trans} %}
 
+<h3>{% trans %}Message Information{% endtrans %}</h3>
+<table class="table">
+    <tbody>
+        <tr>
+            <th width="200">Recipients</th>
+            <td>{{ recipients }}</td>
+        </tr>
+        <tr>
+            <th>Attachments</th>
+            <td>{{ attachments }}</td>
+        </tr>
+        <tr>
+            <th>Attachment size</th>
+            <td>{{ filesize|club_filesize }}</td>
+        </tr>
+    </tbody>
+</table>
+</table>
 {% endblock %}
