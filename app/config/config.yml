@@ -31,6 +31,7 @@ twig:
     form:
         resources:
             - 'ClubFormExtraBundle:Default:fields.html.twig'
+            - 'ClubLayoutBundle:Default:fields.html.twig'
 
 # Assetic Configuration
 assetic:

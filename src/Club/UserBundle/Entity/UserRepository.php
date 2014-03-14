@@ -124,6 +124,12 @@ class UserRepository extends EntityRepository
         case 'subscription_start':
           $qb = $this->filterSubscriptionStart($qb,$attr->getValue());
           break;
+        case 'subscription_from':
+          $qb = $this->filterSubscriptionFrom($qb,$attr->getValue());
+          break;
+        case 'subscription_to':
+          $qb = $this->filterSubscriptionTo($qb,$attr->getValue());
+          break;
         case 'location':
           $qb = $this->filterLocation($qb,explode(",", $attr->getValue()));
           break;
@@ -381,6 +387,42 @@ class UserRepository extends EntityRepository
         '(s.start_date >= :start_date and s.expire_date <= :end_date and s.expire_date >= :start_date)'
       );
       $qb->setParameter('start_date',$start);
+      $qb->setParameter('end_date',$end);
+    }
+
+    return $qb;
+  }
+
+  protected function filterSubscriptionFrom($qb,$value)
+  {
+    if ($value) {
+      $date = unserialize($value);
+      if (!$this->has_joined_sub) {
+        $qb->leftJoin('u.subscriptions','s');
+        $this->has_joined_sub = true;
+      }
+
+      $start = new \DateTime($date->format('Y-m-d 00:00:00'));
+
+      $qb->andWhere('s.expire_date >= :start_date');
+      $qb->setParameter('start_date',$start);
+    }
+
+    return $qb;
+  }
+
+  protected function filterSubscriptionTo($qb,$value)
+  {
+    if ($value) {
+      $date = unserialize($value);
+      if (!$this->has_joined_sub) {
+        $qb->leftJoin('u.subscriptions','s');
+        $this->has_joined_sub = true;
+      }
+
+      $end = new \DateTime($date->format('Y-m-d 23:59:59'));
+
+      $qb->andWhere('s.start_date <= :end_date');
       $qb->setParameter('end_date',$end);
     }
 
