@@ -26,8 +26,6 @@ class UserFilter
 
   public $has_ticket;
 
-  public $has_subscription;
-
   public $location;
 
   public $subscription_from;

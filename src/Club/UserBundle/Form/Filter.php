@@ -55,10 +55,6 @@ class Filter extends AbstractType
       'choices' => $boolean,
       'required' => false
     ));
-    $builder->add('has_subscription', 'choice', array(
-      'choices' => $boolean,
-      'required' => false
-    ));
     $builder->add('location', 'entity', array(
       'class' => 'Club\UserBundle\Entity\Location',
       'required' => false,
