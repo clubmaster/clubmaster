@@ -28,6 +28,8 @@ class UserFilter
 
   public $location;
 
+  public $bought;
+
   public $subscription_from;
 
   public $subscription_to;
