@@ -49,7 +49,7 @@
         <td>#4</td>
         <td colspan="2">{% trans %}The order has been cancelled.{% endtrans %}</td>
     </tr>
-    {% elseif order.delivered == false %}
+    {% else %}
     <tr class="warning">
         <td>#4</td>
         <td>{% trans %}The order has not been cancelled.{% endtrans %}</td>

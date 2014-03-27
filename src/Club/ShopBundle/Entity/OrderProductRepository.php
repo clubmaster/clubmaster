@@ -20,6 +20,7 @@ class OrderProductRepository extends EntityRepository
             ->join('op.product', 'p')
             ->where('u.id = :user')
             ->andWhere('p.id = :product')
+            ->andWhere('o.cancelled = false')
             ->setParameter('user', $user->getId())
             ->setParameter('product', $product->getId())
             ->getQuery()

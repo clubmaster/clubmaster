@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   {% for order in orders %}
-    <tr class="{% if order.delivered %}success{% else %}warning{% endif %}">
+    <tr class="{% if order.cancelled %}warning{% elseif order.delivered %}success{% else %}warning{% endif %}">
       <td>{{ order.orderNumber }}</td>
       <td>{{ order.user.profile.firstName }} {{ order.user.profile.lastName }}</td>
       <td>{{ order.price|club_price }}</td>

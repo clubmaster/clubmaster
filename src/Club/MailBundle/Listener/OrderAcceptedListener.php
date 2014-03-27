@@ -25,6 +25,7 @@ class OrderAcceptedListener
 
     $order = $event->getOrder();
     if (!$order->getDelivered()) return;
+    if ($order->getCancelled()) return;
 
     $email = $order->getUser()->getProfile()->getProfileEmail();
 
