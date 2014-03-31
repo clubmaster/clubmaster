@@ -9,6 +9,11 @@ services:
     arguments: [@doctrine.orm.default_entity_manager, @order]
     tags:
       - { name: kernel.event_listener, event: order.paid, method: onOrderPaid, priority: 10 }
+  club.shopbundle.listener.order_paid_listener:
+    class: Club\ShopBundle\Listener\OrderPaidListener
+    arguments: [@doctrine.orm.default_entity_manager, @order]
+    tags:
+      - { name: kernel.event_listener, event: order.paid, method: onOrderPaid, priority: 15 }
   club.shopbundle.listener.auto_renewal.listener:
     class: Club\ShopBundle\Listener\AutoRenewalListener
     arguments: [@doctrine.orm.default_entity_manager,@order,@cart]
