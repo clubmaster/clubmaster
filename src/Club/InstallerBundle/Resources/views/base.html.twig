@@ -7,9 +7,8 @@
     <meta name="author" content="Michael Holm">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ asset('jquery-ui/css/ui-lightness/jquery-ui-1.10.2.custom.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.min.css') }}" />
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     {% stylesheets "@ClubLayoutBundle/Resources/public/css/*" %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -28,9 +27,10 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="{{ asset('jquery-ui/js/jquery-1.9.1.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('jquery-ui/js/jquery-ui-1.10.2.custom.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
     {% javascripts "@ClubLayoutBundle/Resources/public/js/*" %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
