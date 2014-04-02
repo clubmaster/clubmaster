@@ -234,6 +234,22 @@ class Booking
     {
         $this->error = $error;
         $this->is_valid = false;
+
+        $partners = '';
+        foreach ($this->booking->getUsers() as $partner) {
+            $partners .= $partner->getId().', ';
+        }
+
+        $log = new \Club\LogBundle\Entity\Log();
+        $log->setEvent('onBookingError');
+        $log->setSeverity('informational');
+        $log->setLogType('booking');
+        $log->setLog(sprintf('Booking error: %s, with partners: %s', $error, $partners));
+
+        $log->setUser($this->security_context->getToken()->getUser());
+
+        $this->em->persist($log);
+        $this->em->flush();
     }
 
     protected function validate(\Club\BookingBundle\Entity\Booking $booking, \Club\BookingBundle\Entity\Interval $interval)

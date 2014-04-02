@@ -1,4 +1,12 @@
-1.3.2
+1.3.3 (2014-04-02)
+    * Show more products on each page
+    * Added booking errors to general log, debug to admins
+    * Does not count orders cancelled as a bought product
+    * Removed has_subscription entity in user filter
+    * Fixed bug, take quantity from product after purchase not after order has been planted
+    * Fixed stylesheet on installer page
+
+1.3.2 (2014-03-14)
     * Upgraded to symfony 1.3.1
     * Removed JQuery and Bootstrap and depend on CDN
     * Added paginator to shop

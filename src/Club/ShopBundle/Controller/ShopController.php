@@ -31,6 +31,14 @@ class ShopController extends Controller
 
         $categories = $em->getRepository('ClubShopBundle:Category')->getRoot($location);
 
+        $res = array();
+        foreach ($categories as $cat) {
+            if (count($cat->getActiveProducts())) {
+                $res[] = $cat;
+            }
+        }
+        $categories = $res;
+
         if (!count($categories)) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('There are no categories in this location, choose another location.'));
             $this->get('session')->set('switch_location', $this->generateUrl('shop'));
@@ -58,7 +66,7 @@ class ShopController extends Controller
      */
     public function categoryAction(\Club\ShopBundle\Entity\Category $category, $page)
     {
-        $results = 5;
+        $results = 20;
 
         $em = $this->getDoctrine()->getManager();
 

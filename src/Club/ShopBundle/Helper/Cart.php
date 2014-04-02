@@ -340,7 +340,7 @@ class Cart
                     if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                         $bought = $this->em->getRepository('ClubShopBundle:OrderProduct')->getBoughtByUser(
                             $product,
-                            $this->token->getUser()
+                            $this->cart->getUser()
                         );
 
                         if (count($bought) >= $attr->getValue()) {

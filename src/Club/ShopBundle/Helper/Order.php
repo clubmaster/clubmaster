@@ -258,7 +258,6 @@ class Order
                 break;
             default:
                 $quantity = $product->getProduct()->getQuantity()-1;
-                $product->getProduct()->setQuantity($quantity);
 
                 $this->em->persist($product->getProduct());
             }

@@ -2808,6 +2808,18 @@
           <source>Click on the name to change location.</source>
           <target>Klik på navnet for at skifte lokation.</target>
       </trans-unit>
+      <trans-unit id="742">
+          <source>Subscription from</source>
+          <target>Abonnement fra</target>
+      </trans-unit>
+      <trans-unit id="743">
+          <source>Subscription to</source>
+          <target>Abonnement til</target>
+      </trans-unit>
+      <trans-unit id="744">
+          <source>Search for a subscription in the following period.</source>
+          <target>Søg efter abonnement i den følgende periode.</target>
+      </trans-unit>
 
     </body>
   </file>

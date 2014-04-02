@@ -118,9 +118,6 @@ class UserRepository extends EntityRepository
         case 'has_ticket':
           $qb = $this->filterHasTicket($qb,$attr->getValue());
           break;
-        case 'has_subscription':
-          $qb = $this->filterHasSubscription($qb,$attr->getValue());
-          break;
         case 'subscription_start':
           $qb = $this->filterSubscriptionStart($qb,$attr->getValue());
           break;
