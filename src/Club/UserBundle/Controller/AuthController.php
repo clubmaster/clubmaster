@@ -137,6 +137,7 @@ class AuthController extends Controller
             ->get();
 
         $form = $this->createForm(new \Club\UserBundle\Form\User(), $user);
+        $formGuest = $this->createForm(new \Club\UserBundle\Form\GuestType(), $user);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -159,7 +160,8 @@ class AuthController extends Controller
         }
 
         return array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'formGuest' => $formGuest->createView()
         );
     }
 }
