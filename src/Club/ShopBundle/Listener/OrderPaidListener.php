@@ -18,7 +18,10 @@ class OrderPaidListener
         foreach ($order->getProducts() as $orderProduct) {
 
             $product = $orderProduct->getProduct();
-            $product->setQuantity($product->getQuantity()-$orderProduct->getQuantity());
+
+            if ($product instanceOf \Club\ShopBundle\Entity\Product) {
+                $product->setQuantity($product->getQuantity()-$orderProduct->getQuantity());
+            }
 
             $this->em->persist($product);
 
