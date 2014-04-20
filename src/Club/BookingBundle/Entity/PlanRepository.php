@@ -12,6 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlanRepository extends EntityRepository
 {
+    public function getActive()
+    {
+        $date = new \DateTime();
+        $date->modify('-7 day');
+
+        return $this->createQueryBuilder('p')
+            ->where('p.updated_at > :date')
+            ->orWhere('p.end > :now')
+            ->setParameter('date', $date)
+            ->setParameter('now', new \DateTime())
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function getQuery(\DateTime $date)
     {
         $ends_on = clone $date;
