@@ -2820,6 +2820,10 @@
           <source>Search for a subscription in the following period.</source>
           <target>Søg efter abonnement i den følgende periode.</target>
       </trans-unit>
+      <trans-unit id="745">
+          <source>Click on the icon above if you are a new member, and wants to join the club.</source>
+          <target>Klik på ikonet herover hvis du er nyt medlem, og vil melde dig ind i klubben.</target>
+      </trans-unit>
 
     </body>
   </file>
