@@ -14,14 +14,21 @@ class PlanRepository extends EntityRepository
 {
     public function getActive()
     {
-        $date = new \DateTime();
-        $date->modify('-7 day');
+        $past = new \DateTime();
+        $past->modify('-7 day');
 
         return $this->createQueryBuilder('p')
-            ->where('p.updated_at > :date')
+            ->join('p.plan_repeats', 'pr')
+            ->where('p.updated_at > :past')
             ->orWhere('p.end > :now')
-            ->setParameter('date', $date)
+            ->orWhere('p.repeating = true AND pr.ends_type = :never')
+            ->orWhere('p.repeating = true AND pr.ends_type = :after')
+            ->orWhere('(p.repeating = true AND pr.ends_type = :on AND pr.ends_on > :now)')
+            ->setParameter('past', $past)
             ->setParameter('now', new \DateTime())
+            ->setParameter('never', 'never')
+            ->setParameter('after', 'after')
+            ->setParameter('on', 'on')
             ->getQuery()
             ->getResult()
             ;
