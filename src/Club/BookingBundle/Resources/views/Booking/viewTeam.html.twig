@@ -30,7 +30,7 @@
       <p>{{ field.information }}</p>
     {% endif %}
 
-    {% if schedule.users|length > 0 %}
+    {% if public_teamlist and schedule.users|length > 0 %}
         <h3>{% trans %}Attends{% endtrans %}</h3>
         <dl class="dl-horizontal">
         {% for user in schedule.users %}
