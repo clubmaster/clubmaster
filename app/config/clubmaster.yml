@@ -64,6 +64,7 @@ club_team:
     num_team_future: 4
     penalty_product_name: 'Penalty for missed team'
     public_user_activity: true
+    #public_teamlist: false
 
 club_booking:
     enabled: true
