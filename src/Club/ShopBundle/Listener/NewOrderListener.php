@@ -27,7 +27,8 @@ class NewOrderListener
         if ($order->getAmountLeft() == 0) {
             $this->club_shop_order
                 ->setOrder($order)
-                ->setPaid();
+                ->setPaid()
+                ;
         }
     }
 }

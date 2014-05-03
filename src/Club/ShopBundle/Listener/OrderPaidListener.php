@@ -21,10 +21,8 @@ class OrderPaidListener
 
             if ($product instanceOf \Club\ShopBundle\Entity\Product) {
                 $product->setQuantity($product->getQuantity()-$orderProduct->getQuantity());
+                $this->em->persist($product);
             }
-
-            $this->em->persist($product);
-
         }
 
         $this->em->flush();
