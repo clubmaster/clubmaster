@@ -66,3 +66,6 @@ div.calendar-header {
 div.calendar-header span.date {
     font-size: 200%;
 }
+.pointer {
+    cursor: pointer;
+}
