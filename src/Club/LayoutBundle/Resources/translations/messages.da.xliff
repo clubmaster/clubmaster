@@ -2824,6 +2824,14 @@
           <source>Click on the icon above if you are a new member, and wants to join the club.</source>
           <target>Klik på ikonet herover hvis du er nyt medlem, og vil melde dig ind i klubben.</target>
       </trans-unit>
+      <trans-unit id="746">
+          <source>Pay as guest</source>
+          <target>Betal som gæst</target>
+      </trans-unit>
+      <trans-unit id="747">
+          <source>Click on the icon above if you want to make a once time purchage.</source>
+          <target>Klik på ikonet herover, hvis du ønsker at lave en engangsbetaling.</target>
+      </trans-unit>
 
     </body>
   </file>
