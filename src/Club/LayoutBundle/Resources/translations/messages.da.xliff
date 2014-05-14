@@ -2832,6 +2832,10 @@
           <source>Click on the icon above if you want to make a once time purchage.</source>
           <target>Klik på ikonet herover, hvis du ønsker at lave en engangsbetaling.</target>
       </trans-unit>
+      <trans-unit id="748">
+          <source>Enter you personal information here, to complete your purchase.</source>
+          <target>Indtast dine personlige informatio her, for at gennemføre betalingen.</target>
+      </trans-unit>
 
     </body>
   </file>
