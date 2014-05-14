@@ -147,6 +147,7 @@ class BookingController extends Controller
         $field = $em->find('ClubBookingBundle:Field', $field_id);
 
         return array(
+            'public_teamlist' => $this->container->getParameter('club_team.public_teamlist'),
             'schedule' => $schedule,
             'field' => $field
         );
