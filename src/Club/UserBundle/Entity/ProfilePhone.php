@@ -23,7 +23,7 @@ class ProfilePhone
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $phone_number
      */

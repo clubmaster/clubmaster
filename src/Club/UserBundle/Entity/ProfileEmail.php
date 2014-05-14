@@ -24,8 +24,8 @@ class ProfileEmail
     /**
      * @ORM\Column(type="string")
      * @Assert\Email()
-     * @Assert\Email(groups={"user"})
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\Email(groups={"user", "guest"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $email_address
      */

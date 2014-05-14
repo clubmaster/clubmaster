@@ -10,19 +10,19 @@ class GuestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('profile', new \Club\UserBundle\Form\Profile());
+        $builder->add('profile', new \Club\UserBundle\Form\ProfileGuest());
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Club\UserBundle\Entity\User',
-            'validation_groups' => 'user'
+            'validation_groups' => 'guest'
         ));
     }
 
     public function getName()
     {
-        return 'user';
+        return 'guest_user';
     }
 }

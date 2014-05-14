@@ -7,8 +7,13 @@ $(document).ready(function() {
     var invisible = '{{ asset('bundles/clublayout/images/icons/32x32/arrow_in.png') }}';
 
     $('#existing-member-box').show();
-    $('#new-member-box').hide();
-    $('#guest-box').hide();
+
+    {% if form.vars.valid %}
+        $('#new-member-box').hide();
+    {% endif %}
+    {% if formGuest.vars.valid %}
+        $('#guest-box').hide();
+    {% endif %}
 
     $('#click-new-member').click(function() {
         $('#new-member-box').toggle();
@@ -24,7 +29,14 @@ $(document).ready(function() {
     $('#click-guest').click(function() {
         $('#guest-box').toggle();
         $('#guest-box-invert').toggle();
+
+        if ($('#guest-box').is(':visible')) {
+            $('#guest-img').attr('src', invisible);
+        } else {
+            $('#guest-img').attr('src', visible);
+        }
     });
+
 });
 </script>
 {% endblock %}
@@ -96,8 +108,6 @@ $(document).ready(function() {
 
     <p>{{ form_row(formGuest.profile.first_name) }}</p>
     <p>{{ form_row(formGuest.profile.last_name) }}</p>
-    <p>{{ form_row(formGuest.profile.gender) }}</p>
-    <p>{{ form_row(formGuest.profile.day_of_birth) }}</p>
 
     <legend>{% trans %}Address Information{% endtrans %}</legend>
     <p>{{ form_row(formGuest.profile.profile_address.street) }}</p>

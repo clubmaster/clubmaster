@@ -50,12 +50,14 @@ class User
         return $this->user;
     }
 
-    public function save()
+    public function save($sendMail = true)
     {
       $this->em->persist($this->user);
       $this->em->flush();
 
       $event = new \Club\UserBundle\Event\FilterUserEvent($this->user);
+      $event->setSendMail($sendMail);
+
       $this->event_dispatcher->dispatch(\Club\UserBundle\Event\Events::onUserNew, $event);
     }
 
