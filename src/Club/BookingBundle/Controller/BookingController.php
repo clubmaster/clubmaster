@@ -62,6 +62,10 @@ class BookingController extends Controller
 
         $this->get('club_booking.booking')->serialize();
 
+        if ($this->get('club_booking.booking')->getPrice() == 0) {
+            return $this->redirect($this->generateUrl('club_booking_booking_confirm'));
+        }
+
         return array(
             'booking' => $this->get('club_booking.booking')->getBooking(),
             'interval' => $interval,
