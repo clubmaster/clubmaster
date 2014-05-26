@@ -4,6 +4,7 @@
     * Fixed create guest account
     * Fixed when using coupons, they cannot be persisted
     * Added option if teamlist is visible
+    * Fixed that export users, will break if any user does not have dob
 
 1.3.3 (2014-04-02)
     * Show more products on each page
