@@ -1,7 +1,7 @@
     <div class="span6">
         <div class="well">
 
-            {% if booking.user == app.user %}
+            {% if booking.user == app.user or is_granted('ROLE_BOOKING_ADMIN') %}
             <h3>{% trans %}Cancel booking{% endtrans %}</h3>
             <p>{% trans %}If you want to remove the booking click <b>Remove booking</b>.{% endtrans %}</p>
 

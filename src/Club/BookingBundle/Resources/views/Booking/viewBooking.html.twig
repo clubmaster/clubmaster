@@ -4,7 +4,7 @@
 
 {% include "ClubBookingBundle:Booking:information.html.twig" %}
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') and  (is_granted('ROLE_BOOKING_ADMIN') or booking.isOwner(app.user)) %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') and (is_granted('ROLE_BOOKING_ADMIN') or booking.isOwner(app.user)) %}
 <div class="rows">
     {% include "ClubBookingBundle:Booking:cancel_form.html.twig" %}
     {% if isParticipating %}
