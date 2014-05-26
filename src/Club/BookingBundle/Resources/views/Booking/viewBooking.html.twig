@@ -5,7 +5,24 @@
 {% include "ClubBookingBundle:Booking:information.html.twig" %}
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') and  (is_granted('ROLE_BOOKING_ADMIN') or booking.isOwner(app.user)) %}
-  {% include "ClubBookingBundle:Booking:cancel_form.html.twig" %}
+<div class="rows">
+    {% include "ClubBookingBundle:Booking:cancel_form.html.twig" %}
+    {% if isParticipating %}
+    {% include "ClubBookingBundle:Booking:morePlayers.html.twig" %}
+    {% else %}
+    {% include "ClubBookingBundle:Booking:addMe.html.twig" %}
+    {% endif %}
+</div>
+
+{% elseif isParticipating %}
+<div class="rows">
+    {% include "ClubBookingBundle:Booking:morePlayers.html.twig" %}
+</div>
+
+{% else %}
+<div class="rows">
+    {% include "ClubBookingBundle:Booking:addMe.html.twig" %}
+</div>
 
 {% endif %}
 
