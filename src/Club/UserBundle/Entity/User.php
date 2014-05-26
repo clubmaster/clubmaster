@@ -488,13 +488,20 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function toArray($type='full')
     {
+      $birth = $this->getProfile()->getDayOfBirth();
+      if ($birth) {
+          $birth = $birth->format('c');
+      } else {
+          $birth = null;
+      }
+
       $res = array(
         'id' => $this->getId(),
         'member_number' => $this->getMemberNumber(),
         'first_name' => $this->getProfile()->getFirstName(),
         'last_name' => $this->getProfile()->getLastName(),
         'gender' => $this->getProfile()->getGender(),
-        'day_of_birth' => $this->getProfile()->getDayOfBirth()->format('c'),
+        'day_of_birth' => $birth,
         'created_at' => $this->getCreatedAt()->format('c'),
         'updated_at' => $this->getUpdatedAt()->format('c')
       );
