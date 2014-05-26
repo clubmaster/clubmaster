@@ -1,13 +1,18 @@
     <div class="span6">
         <div class="well">
 
+            {% if booking.user == app.user %}
             <h3>{% trans %}Cancel booking{% endtrans %}</h3>
-            <p>{% trans %}If you want to remove the booking click <b>Remove booking</b>, else if you just want to unattend the booking simply click <b>Unattend</b>, remember that there has to be at least two players left to keep the booking, and you cannot unattend if you have created the booking.{% endtrans %}</p>
+            <p>{% trans %}If you want to remove the booking click <b>Remove booking</b>.{% endtrans %}</p>
 
             <a class="btn btn-primary" href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">{% trans %}Remove booking{% endtrans %}</a>
 
-            {% if app.user != booking.user %}
+            {% else %}
+            <h3>{% trans %}Cancel booking{% endtrans %}</h3>
+            <p>{% trans %}You can unattend this booking by clicking <b>Unattend</b>, the reservation will be destroyed if there is less that two players left. Also you cannot unattend if you have created the booking.{% endtrans %}</p>
+
             <a class="btn btn-primary" href="{{ path('club_booking_booking_unattend', {'id':booking.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+
             {% endif %}
 
         </div>

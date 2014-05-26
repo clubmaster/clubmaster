@@ -294,7 +294,7 @@ class BookingController extends Controller
             return $this->redirect($this->generateUrl('club_booking_booking_cancel', array('id' => $booking->getId())));
         }
 
-        return $this->redirect($this->generateUrl('club_booking_booking_view', array('id' => $booking->getId())));
+        return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array('booking_id' => $booking->getId())));
     }
 
     /**
@@ -304,8 +304,6 @@ class BookingController extends Controller
     public function cancelAction(Booking $booking)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $booking = $em->find('ClubBookingBundle:Booking', $id);
 
         $this->get('club_booking.booking')->bindDelete($booking);
         if ($this->get('club_booking.booking')->isValid()) {
