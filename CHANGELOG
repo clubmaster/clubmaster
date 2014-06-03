@@ -4,6 +4,8 @@
     * Fixed create guest account
     * Fixed when using coupons, they cannot be persisted
     * Added option if teamlist is visible
+    * Fixed that export users, will break if any user does not have dob
+    * Fixed crossdomain on weather bundle
     * Add more than 2 to a booking
     * Fixed we can search on never expiring users
     * Add that admin can see users future bookings

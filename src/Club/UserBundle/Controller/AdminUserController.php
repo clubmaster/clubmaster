@@ -115,12 +115,17 @@ class AdminUserController extends Controller
       $email = $profile->getProfileEmail();
       $phone = $profile->getProfilePhone();
 
+      $birth = $profile->getDayOfBirth();
+      if ($birth) {
+          $birth = $birth->format('Y-m-d');
+      }
+
       $r .=
         $td.$user->getMemberNumber().$td.$fd.
         $td.$profile->getFirstName().$td.$fd.
         $td.$profile->getLastName().$td.$fd.
         $td.$profile->getGender().$td.$fd.
-        $td.$profile->getDayOfBirth()->format('Y-m-d').$td.$fd;
+        $td.$birth.$td.$fd;
 
       if ($address) {
         $r .=
