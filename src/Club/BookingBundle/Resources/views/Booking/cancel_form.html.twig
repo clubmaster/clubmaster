@@ -1,11 +1,19 @@
-<div class="row-fluid">
     <div class="span6">
         <div class="well">
 
-            <h3>{% trans %}Delete{% endtrans %}</h3>
-            <p>{% trans %}Click here to cancel your booking.{% endtrans %}</p>
-            {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_cancel', {'id':booking.id}), 'button':'Cancel'|trans} %}
+            {% if booking.user == app.user or is_granted('ROLE_BOOKING_ADMIN') %}
+            <h3>{% trans %}Cancel booking{% endtrans %}</h3>
+            <p>{% trans %}If you want to remove the booking click <b>Remove booking</b>.{% endtrans %}</p>
+
+            <a class="btn btn-primary" href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">{% trans %}Remove booking{% endtrans %}</a>
+
+            {% else %}
+            <h3>{% trans %}Cancel booking{% endtrans %}</h3>
+            <p>{% trans %}You can unattend this booking by clicking <b>Unattend</b>, the reservation will be destroyed if there is less that two players left. Also you cannot unattend if you have created the booking.{% endtrans %}</p>
+
+            <a class="btn btn-primary" href="{{ path('club_booking_booking_unattend', {'id':booking.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+
+            {% endif %}
 
         </div>
     </div>
-</div>

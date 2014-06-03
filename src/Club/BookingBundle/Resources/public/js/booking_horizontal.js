@@ -85,12 +85,12 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
     if (booking.type == 'booking') {
         var left=$("#field_"+booking.field_id).css('left');
 
-        var book_str = booking.user.first_name+' '+booking.user.last_name+' - ';
+        var book_str = booking.user.first_name+' '+booking.user.last_name;
         if (booking.guest == true) {
-            book_str = book_str+'Guest';
+            book_str = book_str+' - Guest';
         } else {
             $.each(booking.users, function() {
-                book_str = book_str+this.first_name+' '+this.last_name;
+                book_str = book_str+' - '+this.first_name+' '+this.last_name;
             });
         }
 

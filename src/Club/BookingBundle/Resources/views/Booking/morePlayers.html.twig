@@ -1,0 +1,11 @@
+    <div class="span6">
+        <div class="well">
+        <h3>{% trans %}Booking{% endtrans %}</h3>
+        <form method="post" action="{{ path('club_booking_booking_addplayer', {'id':booking.id}) }}">
+        <p>{% trans %}You can add more players to this bookig here.{% endtrans %}</p>
+        {{ form_start(playerForm) }}
+        {{ form_widget(playerForm) }}
+        {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+        {{ form_end(playerForm) }}
+        </div>
+    </div>

@@ -6,6 +6,8 @@
     * Added option if teamlist is visible
     * Fixed that export users, will break if any user does not have dob
     * Fixed crossdomain on weather bundle
+    * Add more than 2 to a booking
+    * Fixed we can search on never expiring users
 
 1.3.3 (2014-04-02)
     * Show more products on each page
