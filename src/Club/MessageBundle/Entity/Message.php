@@ -53,6 +53,7 @@ class Message
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\Email
      *
      * @var string $sender_address
      */

@@ -8,6 +8,7 @@
     * Fixed crossdomain on weather bundle
     * Add more than 2 to a booking
     * Fixed we can search on never expiring users
+    * Add validation check for email is valid in message
 
 1.3.3 (2014-04-02)
     * Show more products on each page
