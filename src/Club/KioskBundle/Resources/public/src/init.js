@@ -1,7 +1,7 @@
 cmcl = { };
 cmcl.loadingcycles = 0;
 cmcl.ajax = {
-    base: 'http://demo.clubmaster.dk/api/',
+    base: apiUrl,
     api_key: 'THIS_IS_A_DEMO_KEY'
 };
 cmcl.booking = {};
@@ -16,7 +16,7 @@ cmcl.app = {
 }
 
 cmcl.data = {
-    location_id: 1,
+    location_id: defaultLocale,
     user: null,
     users: null,
     tickers: null,

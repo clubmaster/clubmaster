@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link href="{{ asset('bundles/clubkiosk/style.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('bundles/clubkiosk/keyboard.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('bundles/clubkiosk/smoothness.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/clubkiosk/loadmask.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/clubkiosk/li-scroller.css') }}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery-1.7.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.base64.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.keyboard.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.loadmask.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/date.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/danish.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery-ui-1.8.18.custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.ui.datepicker-da.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.idle-timer.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.li-scroller.1.0.js') }}"></script>
+
+<script>
+var defaultLocale = {{ defaultLocale }};
+var apiUrl = "{{ url('homepage') }}api/";
+</script>
+{% javascripts
+    '@ClubKioskBundle/Resources/public/src/init.js'
+    '@ClubKioskBundle/Resources/public/src/ajax.js'
+    '@ClubKioskBundle/Resources/public/src/page.js'
+    '@ClubKioskBundle/Resources/public/src/booking.js'
+    '@ClubKioskBundle/Resources/public/src/user.js'
+    '@ClubKioskBundle/Resources/public/src/ticker.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+$(function(){
+        $("ul#ticker01").liScroll();
+        });
+</script>
+</head>
+<body onload="cmcl.start();" onselectstart="return false;">
+
+<div class="tickeroverlay">
+    <ul id="ticker01">
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<app class="box vert pack-center">
+
+<!-- Pages div -->
+<div id="pages" class="box flex hori pack-center mar5">
+
+    <div id="page_booking" class="box vert pack-center full-width">
+        <div width="100%">
+            <div style="float: left; display: block;">
+                <p><span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor"><span id="clock_widget"></span></span></p>
+            </div>
+
+            <div style="float: right; display: block;">
+                <p>
+                <input style="text-align:center;" id="booking_date_picker" readonly="readonly" class="boxshadow ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                <span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor">Vælg dato på knappen.</span>
+                </p>
+            </div>
+        </div>
+
+        <div id="overflow" class="relative box flex vert">
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Button bar -->
+<div class="box hori pack-center mar5">
+    <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor">Velkommen <span id="auth_user"></span></span></p>
+    <button class="boxshadow" id='button_login'>Login</button>
+    <button id='button_logout'>Logout</button>
+</div>
+
+</app>
+
+<img id='refresh_image' style='position: absolute; bottom: 30px; right: 30px;' src="{{ asset('bundles/clubkiosk/images/refresh.png') }}" />
+
+<div id="login_dialog" title="Login Dialog">
+    <label class="box">Brugernavn</label>
+    <input class="box key" id='input_username' />
+    <label class="box">Password</label>
+    <input class="box key" id='input_password' type='password' />
+    <label id="login_dialog_error" class="box"></label>
+</div>
+
+<div id="interval_dialog" title="Interval Dialog">
+    <p class="interval_location">Location: <span></span></p>
+    <p class="interval_field">Field: <span></span></p>
+    <p class="interval_date">Date: <span></span></p>
+    <p class="interval_time">Time: <span></span></p>
+    <p class="interval_booker">Booker: <span></span></p>
+    <p class="interval_partner">Partner: <span></span></p>
+    <p class="interval_confirmed">Bekræftet: <span></span></p>
+</div>
+
+<div id="booking_dialog" title="Interval Dialog">
+    <p class="interval_location">Location: <span></span></p>
+    <p class="interval_field">Field: <span></span></p>
+    <p class="interval_date">Date: <span></span></p>
+    <p class="interval_time">Time: <span></span></p>
+    <p class="interval_booker">Booker: <span></span></p>
+    <p class="interval_partner">Partner: <span></span></p>
+    <p class="interval_confirmed">Bekræftet: <span></span></p>
+</div>
+
+<div id="user_search_dialog" title="Partner Søgning">
+    <label class="box">Søgefelt</label>
+    <input class="box key" style="width:250px;" id='input_search' />
+
+    <select id='search_results' style="width:250px;" size='6'></select>
+</div>
+
+<div id="error_dialog" title="Fejlbesked">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><div id="error_message">Fejl med internettet prøv igen...</div>
+</div>
+
+<div id="loadmask"></div>
+
+
+</body>
+</html>

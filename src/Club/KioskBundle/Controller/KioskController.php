@@ -10,10 +10,15 @@ class KioskController extends Controller
 {
     /**
      * @Route("/kiosk")
+     * @Route("/kiosk/index.html")
      * @Template()
      */
     public function indexAction()
     {
-        return array();
+        $defaultLocale = 1;
+
+        return array(
+            'defaultLocale' => $defaultLocale
+        );
     }
 }
