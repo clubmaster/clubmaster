@@ -18,7 +18,11 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('club_kiosk');
+        $rootNode = $treeBuilder->root('club_kiosk')
+            ->children()
+                ->scalarNode('default_location')->defaultValue(1)->end()
+            ->end()
+            ;
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

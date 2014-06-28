@@ -16,7 +16,7 @@ cmcl.app = {
 }
 
 cmcl.data = {
-    location_id: defaultLocale,
+    location_id: defaultLocation,
     user: null,
     users: null,
     tickers: null,

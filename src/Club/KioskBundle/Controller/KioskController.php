@@ -15,10 +15,8 @@ class KioskController extends Controller
      */
     public function indexAction()
     {
-        $defaultLocale = 1;
-
         return array(
-            'defaultLocale' => $defaultLocale
+            'defaultLocation' => $this->container->getParameter('club_kiosk.default_location')
         );
     }
 }

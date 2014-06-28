@@ -128,3 +128,6 @@ club_extra:
     #facebook: true
     #twitter: true
     #googleplus: true
+
+club_kiosk:
+    default_location: 1
