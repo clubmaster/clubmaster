@@ -40,6 +40,13 @@ class Plan
     protected $description;
 
     /**
+     * @var string $color
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $color;
+
+    /**
      * @var boolean $repeating
      *
      * @ORM\Column(type="boolean")
@@ -257,6 +264,7 @@ class Plan
         'type' => 'plan',
         'name' => $this->getName(),
         'description' => $this->getDescription(),
+        'color' => $this->getColor(),
         'first_date' => $this->getStart()->format('c'),
         'end_date' => $this->getEnd()->format('c'),
         'fields' => array()
@@ -594,5 +602,28 @@ class Plan
     public function getPlanExceptions()
     {
         return $this->plan_exceptions;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Plan
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

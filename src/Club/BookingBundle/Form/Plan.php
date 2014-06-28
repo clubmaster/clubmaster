@@ -14,6 +14,12 @@ class Plan extends AbstractType
         $builder->add('name', 'text', array(
             'help' => 'Info: When is the first date the plan will be valid from?'
         ));
+        $builder->add('color', 'colorpicker', array(
+            'attr' => array(
+                'class' => 'big'
+            ),
+            'help' => 'Info: When is the last day the plan will be valid?'
+        ));
         $builder->add('description', 'textarea', array(
             'attr' => array(
                 'class' => 'big'

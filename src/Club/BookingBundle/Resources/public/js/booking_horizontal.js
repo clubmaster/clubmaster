@@ -108,11 +108,25 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
     } else if (booking.type == 'plan') {
         $.each(booking.fields, function() {
             var left=$("#field_"+this.id).css('left');
+            var element_id = 'element_id_'+this.id+'-'+booking.id;
 
-            if (left) ret = ret+'<div class="link plan" style="height: '+height+'; top: '+top+'; left: '+left+'; width: '+width+';" onclick="setPlan('+booking.id+','+this.id+',\''+getTime(date)+'\')">&#160;'+booking.name+'</div>';
+            if (left) {
+                var ret = '<div id="'+element_id+'" onclick="setPlan('+booking.id+','+this.id+',\''+getTime(date)+'\')"></div>';
+
+                $("#bookings_plan").append(ret);
+
+                $('#'+element_id).css('top', top);
+                $('#'+element_id).css('height', height);
+                $('#'+element_id).css('left', left)
+                $('#'+element_id).css('width', width);
+                $('#'+element_id).css('background-color', booking.color);
+
+                $('#'+element_id).addClass('plan');
+                $('#'+element_id).addClass('link');
+
+                $('#'+element_id).html('&#160;'+booking.name);
+            }
         });
-
-        $("#bookings_plan").append(ret);
     }
 }
 
