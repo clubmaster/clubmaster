@@ -11,6 +11,7 @@
     * Add that admin can see users future bookings
     * Add color to booking plan
     * Upgraded symfony to 2.5.0
+    * Added kiosk to project
 
 1.3.3 (2014-04-02)
     * Show more products on each page
