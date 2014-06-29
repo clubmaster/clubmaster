@@ -142,8 +142,9 @@ cmcl.booking.updateBookings = function() {
                     }
                     intervalObject.data['booking'] = booking;
 
-                    if (booking.color !== 'undefined') {
+                    if (booking.color != null) {
                         intervalObject.element.css('background', '-webkit-linear-gradient(top, '+booking.color+' 75%,rgba(49,49,49,1) 95%,rgba(49,49,49,0.8) 100%');
+                        intervalObject.element.css('color', contrastingColor(booking.color.replace(/^#/, "")));
                     }
                 });
             });
@@ -274,3 +275,23 @@ cmcl.booking.updateDialogButton = function() {
         $(".ui-dialog-buttonpane button:contains('Book Bane')").button("disable");
     }
 };
+
+function contrastingColor(color) {
+    return (luma(color) >= 165) ? '000' : 'fff';
+}
+
+function luma(color) {
+    var rgb = (typeof color === 'string') ? hexToRGBArray(color) : color;
+    return (0.2126 * rgb[0]) + (0.7152 * rgb[1]) + (0.0722 * rgb[2]);
+}
+
+function hexToRGBArray(color) {
+    if (color.length === 3)
+        color = color.charAt(0) + color.charAt(0) + color.charAt(1) + color.charAt(1) + color.charAt(2) + color.charAt(2);
+    else if (color.length !== 6)
+        throw('Invalid hex color: ' + color);
+    var rgb = [];
+    for (var i = 0; i <= 2; i++)
+        rgb[i] = parseInt(color.substr(i * 2, 2), 16);
+    return rgb;
+}
