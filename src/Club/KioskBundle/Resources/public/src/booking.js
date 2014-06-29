@@ -126,18 +126,25 @@ cmcl.booking.updateBookings = function() {
             intervalObject.element.addClass(userBooking ? 'book-user' : 'book-normal');
             intervalObject.data['booking'] = booking;
         } else if(type === 'team' || type === 'plan') {
+
             $.each(booking.fields, function(index, field_booking) {
                 var fieldId = field_booking.id;
                 var intervalObjects = cmcl.booking.getAffectedIntervals(fieldId, new Date(booking.first_date), new Date(booking.end_date));
+                var elementId = 'element_id_'+field_booking.id+'_'+booking.id;
+
 
                 $.each(intervalObjects, function(index, intervalObject) {
                     intervalObject.element.addClass(type === 'team' ? 'book-team' : 'book-plan');
                     if (type == 'team') {
-                      intervalObject.element.html('<div style="margin: 5px"><span>'+booking.team_name+'</span></div>');
+                      intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.team_name+'</span></div>');
                     } else if (type == 'plan') {
-                      intervalObject.element.html('<div style="margin: 5px"><span>'+booking.name+'</span></div>');
+                      intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.name+'</span></div>');
                     }
                     intervalObject.data['booking'] = booking;
+
+                    if (booking.color !== 'undefined') {
+                        intervalObject.element.css('background', '-webkit-linear-gradient(top, '+booking.color+' 75%,rgba(49,49,49,1) 95%,rgba(49,49,49,0.8) 100%');
+                    }
                 });
             });
         }
