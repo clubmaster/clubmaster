@@ -1,44 +1,28 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="{{ asset('bundles/clubkiosk/style.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('bundles/clubkiosk/keyboard.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('bundles/clubkiosk/smoothness.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('bundles/clubkiosk/loadmask.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('bundles/clubkiosk/li-scroller.css') }}" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery-1.7.2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.base64.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.keyboard.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.loadmask.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/date.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/danish.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery-ui-1.8.18.custom.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.ui.datepicker-da.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.idle-timer.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/jquery.li-scroller.1.0.js') }}"></script>
-
-<script>
-var defaultLocation = {{ defaultLocation }};
-var apiUrl = "{{ url('homepage') }}api/";
-</script>
-{% javascripts
-    '@ClubKioskBundle/Resources/public/src/init.js'
-    '@ClubKioskBundle/Resources/public/src/ajax.js'
-    '@ClubKioskBundle/Resources/public/src/page.js'
-    '@ClubKioskBundle/Resources/public/src/booking.js'
-    '@ClubKioskBundle/Resources/public/src/user.js'
-    '@ClubKioskBundle/Resources/public/src/ticker.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-<script>
-$(function(){
-        $("ul#ticker01").liScroll();
-        });
-</script>
+<link href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/clubkiosk/plugins/Keyboard-master/css/keyboard.css') }}" rel="stylesheet" type="text/css" />
+{% stylesheets
+'@ClubKioskBundle/Resources/public/style.css'
+'@ClubKioskBundle/Resources/public/loadmask.css'
+'@ClubKioskBundle/Resources/public/li-scroller.css'
+%}
+<link href="{{ asset_url }}" rel="stylesheet">
+{% endstylesheets %}
+<style>
+body {
+  background-image: url({{ asset('bundles/clubkiosk/images/bg4.png') }});
+  background-repeat: repeat;
+}
+#loadmask {
+  background-image: url({{ asset('bundles/clubkiosk/images/loading.gif') }});
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>
 </head>
-<body onload="cmcl.start();" onselectstart="return false;">
+<body>
 
 <div class="tickeroverlay">
     <ul id="ticker01">
@@ -76,13 +60,13 @@ $(function(){
 <!-- Button bar -->
 <div class="box hori pack-center mar5">
     <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor">Velkommen <span id="auth_user"></span></span></p>
-    <button class="boxshadow" id='button_login'>Login</button>
-    <button id='button_logout'>Logout</button>
+    <button class="boxshadow" id='button_login'>Log ind</button>
+    <button id='button_logout'>Log ud</button>
 </div>
 
 </app>
 
-<img id='refresh_image' style='position: absolute; bottom: 30px; right: 30px;' src="{{ asset('bundles/clubkiosk/images/refresh.png') }}" />
+<img id='refresh_image' src="{{ asset('bundles/clubkiosk/images/refresh.png') }}" />
 
 <div id="login_dialog" title="Login Dialog">
     <label class="box">Brugernavn</label>
@@ -93,21 +77,21 @@ $(function(){
 </div>
 
 <div id="interval_dialog" title="Interval Dialog">
-    <p class="interval_location">Location: <span></span></p>
-    <p class="interval_field">Field: <span></span></p>
-    <p class="interval_date">Date: <span></span></p>
-    <p class="interval_time">Time: <span></span></p>
-    <p class="interval_booker">Booker: <span></span></p>
+    <p class="interval_location">Område: <span></span></p>
+    <p class="interval_field">Bane: <span></span></p>
+    <p class="interval_date">Dato: <span></span></p>
+    <p class="interval_time">Tid: <span></span></p>
+    <p class="interval_booker">Spiller: <span></span></p>
     <p class="interval_partner">Partner: <span></span></p>
     <p class="interval_confirmed">Bekræftet: <span></span></p>
 </div>
 
 <div id="booking_dialog" title="Interval Dialog">
-    <p class="interval_location">Location: <span></span></p>
-    <p class="interval_field">Field: <span></span></p>
-    <p class="interval_date">Date: <span></span></p>
-    <p class="interval_time">Time: <span></span></p>
-    <p class="interval_booker">Booker: <span></span></p>
+    <p class="interval_location">Område: <span></span></p>
+    <p class="interval_field">Bane: <span></span></p>
+    <p class="interval_date">Dato: <span></span></p>
+    <p class="interval_time">Tid: <span></span></p>
+    <p class="interval_booker">Spiller: <span></span></p>
     <p class="interval_partner">Partner: <span></span></p>
     <p class="interval_confirmed">Bekræftet: <span></span></p>
 </div>
@@ -125,6 +109,38 @@ $(function(){
 
 <div id="loadmask"></div>
 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/Keyboard-master/js/jquery.keyboard.min.js') }}"></script>
+<script>
+var defaultLocation = {{ defaultLocation }};
+var apiUrl = "{{ url('homepage') }}api/";
+$(document).ready(function() {
+    /*
+    $(document).bind("contextmenu",function(e){
+        return false;
+    });
+    */
 
+    cmcl.start();
+});
+</script>
+{% javascripts
+'@ClubKioskBundle/Resources/public/plugins/jquery.base64.js'
+'@ClubKioskBundle/Resources/public/plugins/jquery.loadmask.js'
+'@ClubKioskBundle/Resources/public/plugins/date.js'
+'@ClubKioskBundle/Resources/public/plugins/danish.js'
+'@ClubKioskBundle/Resources/public/plugins/jquery.ui.datepicker-da.js'
+'@ClubKioskBundle/Resources/public/plugins/jquery.idle-timer.js'
+'@ClubKioskBundle/Resources/public/plugins/jquery.li-scroller.1.0.js'
+'@ClubKioskBundle/Resources/public/src/init.js'
+'@ClubKioskBundle/Resources/public/src/ajax.js'
+'@ClubKioskBundle/Resources/public/src/page.js'
+'@ClubKioskBundle/Resources/public/src/booking.js'
+'@ClubKioskBundle/Resources/public/src/user.js'
+'@ClubKioskBundle/Resources/public/src/ticker.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
 </html>
