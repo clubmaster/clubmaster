@@ -23,6 +23,7 @@ class User extends AbstractType
   {
     $resolver->setDefaults(array(
       'data_class' => 'Club\UserBundle\Entity\User',
+      'cascade_validation' => true,
       'validation_groups' => 'user'
     ));
   }
