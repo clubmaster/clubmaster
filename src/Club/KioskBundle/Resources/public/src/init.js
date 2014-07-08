@@ -1,9 +1,12 @@
-cmcl = { };
+var cmcl = {};
+
 cmcl.loadingcycles = 0;
+
 cmcl.ajax = {
     base: apiUrl,
     api_key: 'THIS_IS_A_DEMO_KEY'
 };
+
 cmcl.booking = {};
 cmcl.ticker = {};
 cmcl.user = {};
@@ -27,6 +30,10 @@ cmcl.data = {
     intervalObjects: []
 };
 
+cmcl.reload = function() {
+    location.reload();
+};
+
 cmcl.start = function() {
     cmcl.attachListeners();
     cmcl.initJQueryWidgets();
@@ -42,6 +49,7 @@ cmcl.start = function() {
         cmcl.user.logout();
     });
     $.idleTimer(cmcl.app['timeout']*1000);
+    $('ul#ticker01').liScroll();
 
     // update bookings
     setInterval(function() {
@@ -63,11 +71,10 @@ cmcl.start = function() {
           cmcl.ajax.getTickers();
         }, 1800*1000);
 
-
-    $(".ui-widget-overlay").live("click", function() {  $("#interval_dialog").dialog("close"); } );
-    $(".ui-widget-overlay").live("click", function() {  $("#booking_dialog").dialog("close"); } );
-    $(".ui-widget-overlay").live("click", function() {  $("#login_dialog").dialog("close"); } );
-    $(".ui-widget-overlay").live("click", function() {  $("#user_search_dialog").dialog("close"); } );
+    $(document.body).on("click", ".ui-widget-overlay", function() {  $("#interval_dialog").dialog("close"); } );
+    $(document.body).on("click", ".ui-widget-overlay", function() {  $("#booking_dialog").dialog("close"); } );
+    $(document.body).on("click", ".ui-widget-overlay", function() {  $("#login_dialog").dialog("close"); } );
+    $(document.body).on("click", ".ui-widget-overlay", function() {  $("#user_search_dialog").dialog("close"); } );
 };
 
 Date.prototype.toYYYYMMDD = function() {
@@ -93,25 +100,72 @@ cmcl.attachListeners = function() {
     });
 
     $('#refresh_image').click(function() {
-        location.reload();
+        cmcl.reload();
     });
 
     window.onresize = cmcl.onresize;
 };
 
-
 cmcl.initJQueryWidgets = function() {
     // Setup virtual keyboard.
+
+    $.keyboard.keyaction = {
+        enter : function(kb) {
+            kb.accept();
+
+            if (kb.$el.attr('id') == 'input_password') {
+                cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
+            } else {
+                $('#input_password').focus();
+            }
+        }
+    };
+
     $('input.key').keyboard(
         {
-            layout: 'danish-qwerty',
+            display: {
+                'bksp'   : '\u2190',
+                'enter'  : 'return',
+                'default': '.?123',
+                'meta1'  : 'ABC',
+                'meta2'  : '#+=',
+                'accept' : '\u21d3'
+            },
+            layout: 'custom',
+            customLayout: {
+                'meta1': [
+                    'q w e r t y u i o p {bksp}',
+                    'a s d f g h j k l {enter}',
+                    '{s} z x c v b n m @ . {s}',
+                    '{default} {space} _ - {accept}'
+                ],
+                'shift': [
+                    'Q W E R T Y U I O P {bksp}',
+                    'A S D F G H J K L {enter}',
+                    '{s} Z X C V B N M @ . {s}',
+                    '{meta1} {space} _ - {accept}'
+                ],
+                'default': [
+                    '1 2 3 4 5 6 7 8 9 0 {bksp}',
+                    '` | { } % ^ * / \' {enter}',
+                    '{meta2} $ & ~ # = + . {meta2}',
+                    '{meta1} {space} ! ? {accept}'
+                ],
+                'meta2': [
+                    '[ ] { } \u2039 \u203a ^ * " , {bksp}',
+                    '\\ | / < > $ \u00a3 \u00a5 \u2022 {enter}',
+                    '{default} \u20ac & ~ # = + . {default}',
+                    '{meta1} {space} ! ? {accept}'
+                ]
+            },
             autoAccept: true,
+            usePreview: false,
+            initialFocus : true,
             position: {
                 of : $('app'),
                 my : 'center bottom',
                 at : 'center bottom'
             },
-            usePreview: false,
             visible: function(e, keyboard, el) {
                 if( !cmcl.keysbound &&  $('#input_search')[0] === el ) {
 
@@ -160,7 +214,11 @@ cmcl.initJQueryWidgets = function() {
         {
             autoOpen: false,
             modal: true,
-            position: 'top',
+            position: {
+                of : $('app'),
+                my : 'center top',
+                at : 'center top'
+            },
             resizable: false,
             draggable: false,
             buttons: {
@@ -179,7 +237,11 @@ cmcl.initJQueryWidgets = function() {
         {
             autoOpen: false,
             modal: true,
-            position: 'top',
+            position: {
+                of : $('app'),
+                my : 'center top',
+                at : 'center top'
+            },
             resizable: false,
             draggable: false,
             buttons: {
@@ -208,7 +270,11 @@ cmcl.initJQueryWidgets = function() {
         {
             autoOpen: false,
             modal: true,
-            position: 'top',
+            position: {
+                of : $('app'),
+                my : 'center top',
+                at : 'center top'
+            },
             resizable: false,
             draggable: false,
             buttons: {
@@ -223,7 +289,11 @@ cmcl.initJQueryWidgets = function() {
         {
             autoOpen: false,
             modal: true,
-            position: 'top',
+            position: {
+                of : $('app'),
+                my : 'center top',
+                at : 'center top'
+            },
             resizable: false,
             draggable: false,
             buttons: {
@@ -248,7 +318,11 @@ cmcl.initJQueryWidgets = function() {
         {
             autoOpen: false,
             modal: true,
-            position: 'top',
+            position: {
+                of : $('app'),
+                my : 'center top',
+                at : 'center top'
+            },
             resizable: false,
             draggable: false
         }

@@ -1,4 +1,3 @@
-
 cmcl.booking.initialize = function() {
   // Fetch initial data from server.
   cmcl.ajax.getUsers();
@@ -13,7 +12,12 @@ cmcl.booking.initialize = function() {
 cmcl.booking.updateFields = function() {
     var data = cmcl.data.fields[ cmcl.data.bookingdate.toYYYYMMDD() ],
         hourWidth = cmcl.app['min_width'];
-        hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
+
+    if (data.info == undefined) {
+        cmcl.reload();
+    }
+
+    hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
 
     $('#overflow').children().remove();
     cmcl.data.intervalObjects = [];
