@@ -1,0 +1,7 @@
+    <div class="span6">
+        <div class="well">
+        <h3>{% trans %}Booking{% endtrans %}</h3>
+        <p>{% trans %}You can participate in this booking as well, click on the button below.{% endtrans %}</p>
+        <a href="{{ path('club_booking_booking_addme', {'id':booking.id}) }}" class="btn btn-primary">{% trans %}Add me{% endtrans %}</a>
+        </div>
+    </div>

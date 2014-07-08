@@ -401,7 +401,7 @@ class UserRepository extends EntityRepository
 
       $start = new \DateTime($date->format('Y-m-d 00:00:00'));
 
-      $qb->andWhere('s.expire_date >= :start_date');
+      $qb->andWhere('(s.expire_date >= :start_date OR s.expire_date IS NULL)');
       $qb->setParameter('start_date',$start);
     }
 
@@ -419,7 +419,7 @@ class UserRepository extends EntityRepository
 
       $end = new \DateTime($date->format('Y-m-d 23:59:59'));
 
-      $qb->andWhere('s.start_date <= :end_date');
+      $qb->andWhere('(s.start_date <= :end_date OR s.expire_date IS NULL)');
       $qb->setParameter('end_date',$end);
     }
 

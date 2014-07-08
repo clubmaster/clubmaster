@@ -1,7 +1,7 @@
 services:
     club_booking.interval:
-        class: Club\BookingBundle\Helper\Interval
+        class: Club\BookingBundle\Helper\IntervalHelper
         arguments: [@doctrine.orm.default_entity_manager, @session]
     club_booking.booking:
-        class: Club\BookingBundle\Helper\Booking
+        class: Club\BookingBundle\Helper\BookingHelper
         arguments: [@service_container]

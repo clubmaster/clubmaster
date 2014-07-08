@@ -24,7 +24,7 @@ class ProfileAddress
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $street
      */
@@ -33,7 +33,7 @@ class ProfileAddress
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $postal_code
      */
@@ -42,7 +42,7 @@ class ProfileAddress
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $city
      */
@@ -58,7 +58,7 @@ class ProfileAddress
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      * @var string $country
      */
     protected $country;
@@ -66,7 +66,7 @@ class ProfileAddress
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\NotBlank(groups={"user"})
+     * @Assert\NotBlank(groups={"user", "guest"})
      *
      * @var string $contact_type
      */

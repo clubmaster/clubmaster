@@ -1,21 +1,68 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    var visible = '{{ asset('bundles/clublayout/images/icons/32x32/arrow_out.png') }}';
+    var invisible = '{{ asset('bundles/clublayout/images/icons/32x32/arrow_in.png') }}';
+
+    $('#existing-member-box').show();
+
+    {% if form.vars.valid %}
+        $('#new-member-box').hide();
+    {% endif %}
+    {% if formGuest.vars.valid %}
+        $('#guest-box').hide();
+    {% endif %}
+
+    $('#click-new-member').click(function() {
+        $('#new-member-box').toggle();
+        $('#new-member-box-invert').toggle();
+
+        if ($('#new-member-box').is(':visible')) {
+            $('#new-member-img').attr('src', invisible);
+        } else {
+            $('#new-member-img').attr('src', visible);
+        }
+    });
+
+    $('#click-guest').click(function() {
+        $('#guest-box').toggle();
+        $('#guest-box-invert').toggle();
+
+        if ($('#guest-box').is(':visible')) {
+            $('#guest-img').attr('src', invisible);
+        } else {
+            $('#guest-img').attr('src', visible);
+        }
+    });
+
+});
+</script>
+{% endblock %}
+
 {% block body %}
 
 <div class="well">
-    <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
         <legend>{% trans %}Existing member{% endtrans %}</legend>
-        <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
 
+        <div id="existing-member-box">
+        <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
+        <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
         {% include "ClubUserBundle:Auth:login_form.html.twig" %}
-    </form>
+        </form>
+        </div>
 </div>
 
 <div class="well">
-    <form method="POST" action="{{ path('club_user_auth_signin') }}" class="form-horizontal">
-    <legend>{% trans %}New member{% endtrans %}</legend>
-    <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
+    <legend class="pointer" id="click-new-member"><img id="new-member-img" src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_out.png') }}" /> {% trans %}New member{% endtrans %}</legend>
 
+    <div id="new-member-box-invert">
+        <p>{% trans %}Click on the icon above if you are a new member, and wants to join the club.{% endtrans %}</p>
+    </div>
+    <div id="new-member-box">
+    <p>{% trans %}If you do not have an account, please enter you details here.{% endtrans %}</p>
+    <form method="POST" action="{{ path('club_user_auth_signin') }}" class="form-horizontal">
     <legend>{% trans %}Password{% endtrans %}</legend>
     <p>{{ form_row(form.password) }}</p>
 
@@ -45,6 +92,43 @@
 
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Create account'|trans} %}
     </form>
+    </div>
+</div>
+
+<div class="well">
+    <legend class="pointer" id="click-guest"><img id="guest-img" src="{{ asset('bundles/clublayout/images/icons/32x32/arrow_out.png') }}" /> {% trans %}Pay as guest{% endtrans %}</legend>
+
+    <div id="guest-box-invert">
+        <p>{% trans %}Click on the icon above if you want to make a once time purchage.{% endtrans %}</p>
+    </div>
+    <div id="guest-box">
+    <p>{% trans %}Enter you personal information here, to complete your purchase.{% endtrans %}</p>
+    <form method="POST" action="{{ path('club_user_auth_signin') }}" class="form-horizontal">
+    <legend>{% trans %}Personal Information{% endtrans %}</legend>
+
+    <p>{{ form_row(formGuest.profile.first_name) }}</p>
+    <p>{{ form_row(formGuest.profile.last_name) }}</p>
+
+    <legend>{% trans %}Address Information{% endtrans %}</legend>
+    <p>{{ form_row(formGuest.profile.profile_address.street) }}</p>
+    <p>{{ form_row(formGuest.profile.profile_address.postal_code) }}</p>
+    <p>{{ form_row(formGuest.profile.profile_address.city) }}</p>
+    <p>{{ form_row(formGuest.profile.profile_address.state) }}</p>
+    <p>{{ form_row(formGuest.profile.profile_address.country) }}</p>
+
+    <legend>{% trans %}Email Information{% endtrans %}</legend>
+    {% for email in formGuest.profile.profile_emails %}
+        <p>{{ form_row(email.email_address) }}</p>
+    {% endfor %}
+
+    <legend>{% trans %}Phone Information{% endtrans %}</legend>
+    <p>{{ form_row(formGuest.profile.profile_phone.phone_number) }}</p>
+
+    {{ form_rest(formGuest) }}
+
+    {% include "ClubLayoutBundle:Default:submit_button.html.twig" with {'button':'Continue'|trans} %}
+    </form>
+    </div>
 </div>
 
 {% endblock %}

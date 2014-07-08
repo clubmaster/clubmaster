@@ -1,0 +1,35 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans %}Date{% endtrans %}</th>
+      <th>{% trans %}Players{% endtrans %}</th>
+      <th class="action">{% trans %}Action{% endtrans %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.firstDate|club_datetime }}</td>
+      <td>
+        {% if booking.guest %}{% trans %}With guest{% endtrans %}
+        {% else %}
+
+        {{ booking.user.name }} {% for user in booking.users %}
+            - {{ user.name }}
+        {% endfor %}
+        {% endif %}
+      </td>
+      <td><a href="{{ path('club_booking_booking_viewbooking', {'booking_id':booking.id}) }}">{% trans %}Visit booking{% endtrans %}</a></td>
+    </tr>
+  {% else %}
+  <tr>
+    <td colspan="3">{% trans %}There are no future bookings.{% endtrans %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

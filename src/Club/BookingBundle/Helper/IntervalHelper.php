@@ -2,7 +2,9 @@
 
 namespace Club\BookingBundle\Helper;
 
-class Interval
+use Club\BookingBundle\Entity\Interval;
+
+class IntervalHelper
 {
   protected $em;
   protected $session;
@@ -26,7 +28,7 @@ class Interval
     return $res;
   }
 
-  public function getVirtualInterval(\Club\BookingBundle\Entity\Interval $interval, $date)
+  public function getVirtualInterval(Interval $interval, $date)
   {
     $start = new \DateTime($date->format('Y-m-d').' '.$interval->getStartTime()->format('H:i:s'));
     $end = new \DateTime($date->format('Y-m-d').' '.$interval->getStopTime()->format('H:i:s'));

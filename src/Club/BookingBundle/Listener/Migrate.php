@@ -15,52 +15,5 @@ class Migrate
 
     public function onVersionMigrate(\Club\InstallerBundle\Event\FilterVersionEvent $event)
     {
-        if ($event->getVersion()->getVersion() != '20121016161300') {
-            // fit to this version only
-            return;
-        }
-
-        $repeats = $this->em->getRepository('ClubBookingBundle:PlanRepeat')->findAll();
-        if (count($repeats) > 0) {
-            // if we already has migrate our booking plans
-            return;
-        }
-
-        $plans = $this->em->getRepository('ClubBookingBundle:Plan')->findAll();
-
-        foreach ($plans as $plan) {
-            $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
-            $repeat->setPlan($plan);
-            $repeat->setRepeats('weekly');
-            $repeat->setRepeatOn($plan->getDay());
-            $repeat->setEndsType('on');
-            $repeat->setEndsOn($plan->getPeriodEnd());
-            $repeat->setRepeatEvery(1);
-
-            $start = clone $plan->getPeriodStart();
-            $start->setTime(
-                $plan->getFirstTime()->format('H'),
-                $plan->getFirstTime()->format('i'),
-                $plan->getFirstTime()->format('s')
-            );
-
-            $end = clone $plan->getPeriodStart();
-            $end->setTime(
-                $plan->getEndTime()->format('H'),
-                $plan->getEndTime()->format('i'),
-                $plan->getEndTime()->format('s')
-            );
-
-            $plan->setStart($start);
-            $plan->setEnd($end);
-            $plan->setRepeating(true);
-
-            $plan->addPlanRepeat($repeat);
-
-            $this->em->persist($plan);
-        }
-
-        $dql = "UPDATE ClubBookingBundle:Booking b SET b.status=2";
-        $r = $this->em->createQuery($dql)->execute();
     }
 }

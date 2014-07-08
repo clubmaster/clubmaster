@@ -9,6 +9,7 @@ class FilterUserEvent extends Event
     protected $user;
     protected $output;
     protected $password;
+    protected $sendMail = true;
 
     public function __construct(\Club\UserBundle\Entity\User $user)
     {
@@ -38,5 +39,15 @@ class FilterUserEvent extends Event
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setSendMail($sendMail)
+    {
+        $this->sendMail = $sendMail;
+    }
+
+    public function getSendMail()
+    {
+        return $this->sendMail;
     }
 }

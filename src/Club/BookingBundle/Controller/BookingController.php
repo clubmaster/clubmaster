@@ -7,12 +7,84 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+use Club\BookingBundle\Entity\Booking;
 
 /**
  * @Route("/booking")
  */
 class BookingController extends Controller
 {
+    /**
+     * @Template()
+     * @Route("/book/addme/{id}")
+     */
+    public function addMeAction(Booking $booking)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        $booking->addUser($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($booking);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array(
+            'booking_id' => $booking->getId()
+        )));
+    }
+
+    /**
+     * @Template()
+     * @Route("/book/addplayer/{id}")
+     * @Method("POST")
+     */
+    public function addplayerAction(Request $request, Booking $booking)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->getAddPlayerForm($booking);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $user = $form->get('user')->getData();
+        } else {
+            foreach ($form->get('user')->getErrors() as $error) {
+                $this->get('session')->getFlashBag()->add('error', $error->getMessage());
+            }
+
+            return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array(
+                'booking_id' => $booking->getId()
+            )));
+        }
+
+        $this->get('club_booking.booking')->bindAdditional($booking, $user);
+
+        if (!$this->get('club_booking.booking')->isValid()) {
+            $this->get('session')->getFlashBag()->add('error', $this->get('club_booking.booking')->getError());
+
+            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+                'id' => $interval->getId(),
+                'date' => $date->format('Y-m-d')
+            )));
+        }
+
+        $booking->addUser($user);
+
+        $em->persist($booking);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array(
+            'booking_id' => $booking->getId()
+        )));
+    }
+
     /**
      * @Template()
      * @Route("/book/review/{interval_id}/{date}")
@@ -61,6 +133,10 @@ class BookingController extends Controller
         }
 
         $this->get('club_booking.booking')->serialize();
+
+        if ($this->get('club_booking.booking')->getPrice() == 0) {
+            return $this->redirect($this->generateUrl('club_booking_booking_confirm'));
+        }
 
         return array(
             'booking' => $this->get('club_booking.booking')->getBooking(),
@@ -128,8 +204,24 @@ class BookingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $booking = $em->find('ClubBookingBundle:Booking', $booking_id);
 
+        $form = $this->getAddPlayerForm($booking);
+
+        $isParticipating = false;
+
+        if ($booking->getUser() == $this->getUser()) {
+            $isParticipating = true;
+        }
+
+        foreach ($booking->getUsers() as $user) {
+            if ($user == $this->getUser()) {
+                $isParticipating = true;
+            }
+        }
+
         return array(
-            'booking' => $booking
+            'booking' => $booking,
+            'isParticipating' => $isParticipating,
+            'playerForm' => $form->createView()
         );
     }
 
@@ -147,6 +239,7 @@ class BookingController extends Controller
         $field = $em->find('ClubBookingBundle:Field', $field_id);
 
         return array(
+            'public_teamlist' => $this->container->getParameter('club_team.public_teamlist'),
             'schedule' => $schedule,
             'field' => $field
         );
@@ -184,13 +277,33 @@ class BookingController extends Controller
 
     /**
      * @Template()
+     * @Route("/book/unattend/{id}")
+     */
+    public function unattendAction(Booking $booking)
+    {
+        $booking->removeUser($this->getUser());
+
+        if (count($booking->getUsers()) >= 1) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($booking);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Booking has been cancelled'));
+        } else {
+
+            return $this->redirect($this->generateUrl('club_booking_booking_cancel', array('id' => $booking->getId())));
+        }
+
+        return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array('booking_id' => $booking->getId())));
+    }
+
+    /**
+     * @Template()
      * @Route("/book/cancel/{id}")
      */
-    public function cancelAction($id)
+    public function cancelAction(Booking $booking)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $booking = $em->find('ClubBookingBundle:Booking', $id);
 
         $this->get('club_booking.booking')->bindDelete($booking);
         if ($this->get('club_booking.booking')->isValid()) {
@@ -232,5 +345,19 @@ class BookingController extends Controller
         $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
+    }
+
+    public function getAddPlayerForm(Booking $booking)
+    {
+        return $this->createForm(
+            new \Club\UserBundle\Form\UserAjax(),
+            array(),
+            array(
+                'method' => 'POST',
+                'action' => $this->generateUrl('club_booking_booking_addplayer', array(
+                    'id' => $booking->getId()
+                ))
+            )
+        );
     }
 }

@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     $.ajax({
-        url: currUrl
+        url: currUrl,
+        crossDomain: true
     }).done(function(data) {
         if (data.cod == "404") {
             $('h3#status').html('Error fetching weather informations...');
@@ -9,7 +10,6 @@ $(document).ready(function() {
             var sunrise = new Date(data.sys.sunrise*1000);
             var sunset = new Date(data.sys.sunset*1000);
 
-            console.log(data);
             $('img#curr-weather').attr('alt', data.weather[0].description);
             $('img#curr-weather').attr('src', 'http://openweathermap.org/img/w/'+data.weather[0].icon+'.png');
             $('span#curr-location').html(data.sys.country+', '+data.name);

@@ -3,8 +3,13 @@
 namespace Club\BookingBundle\Helper;
 
 use Club\BookingBundle\Exception\BookingException;
+use Club\UserBundle\Entity\User;
+use Club\UserBundle\Entity\Location;
+use Club\BookingBundle\Entity\Booking;
+use Club\BookingBundle\Entity\Interval;
+use Club\BookingBundle\Entity\Field;
 
-class Booking
+class BookingHelper
 {
     protected $em;
     protected $container;
@@ -32,7 +37,7 @@ class Booking
         $this->price = 0;
     }
 
-    public function bindDelete(\Club\BookingBundle\Entity\Booking $booking)
+    public function bindDelete(Booking $booking)
     {
         $this->booking = $booking;
 
@@ -62,7 +67,35 @@ class Booking
             )));
     }
 
-    public function bindUser(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+    public function bindAdditional(Booking $booking, User $user)
+    {
+        try {
+            if ($user == $booking->getUser()) {
+                throw new BookingException($this->translator->trans('You are already participating in the booking'));
+            }
+
+            foreach ($booking->getUsers() as $u) {
+                if ($user == $u) {
+                    throw new BookingException($this->translator->trans('You are already participating in the booking'));
+                }
+            }
+
+            if (!$this->_validateSubscription($user, $booking->getField()->getLocation())) {
+                throw new BookingException($this->translator->trans('You must have an active membership'));
+            }
+
+            if (!$this->validateBookingDay($booking->getFirstDate(), $user))
+                throw new BookingException($this->translator->trans('You cannot have more bookings this day'));
+
+            if (!$this->validateBookingFuture($user))
+                throw new BookingException($this->translator->trans('You cannot have more bookings'));
+
+        } catch (BookingException $e) {
+            $this->setError($e->getMessage());
+        }
+    }
+
+    public function bindUser(Interval $interval, \DateTime $date, User $user, User $partner=null)
     {
         $start_date = $this->getStartDate($date, $interval);
         $stop_date = $this->getStopDate($date, $interval);
@@ -98,7 +131,7 @@ class Booking
         }
     }
 
-    public function bindGuest(\Club\BookingBundle\Entity\Interval $interval, \DateTime $date, \Club\UserBundle\Entity\User $user)
+    public function bindGuest(Interval $interval, \DateTime $date, User $user)
     {
         $start_date = $this->getStartDate($date, $interval);
         $stop_date = $this->getStopDate($date, $interval);
@@ -134,7 +167,7 @@ class Booking
         return $this->is_valid;
     }
 
-    public function getStopDate(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    public function getStopDate(\DateTime $date, Interval $interval)
     {
         $d = clone $date;
         $d->setTime(
@@ -146,7 +179,7 @@ class Booking
         return $d;
     }
 
-    public function getStartDate(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    public function getStartDate(\DateTime $date, Interval $interval)
     {
         $d = clone $date;
         $d->setTime(
@@ -158,7 +191,7 @@ class Booking
         return $d;
     }
 
-    private function buildBooking(\Club\BookingBundle\Entity\Field $field, \DateTime $start_date, \DateTime $stop_date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner=null, $guest=false)
+    private function buildBooking(Field $field, \DateTime $start_date, \DateTime $stop_date, User $user, User $partner=null, $guest=false)
     {
         $this->booking = new \Club\BookingBundle\Entity\Booking();
         $this->booking->setUser($user);
@@ -252,7 +285,7 @@ class Booking
         $this->em->flush();
     }
 
-    protected function validate(\Club\BookingBundle\Entity\Booking $booking, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validate(Booking $booking, Interval $interval)
     {
         try {
             if (!$this->validateIntervalDay($booking->getFirstDate(), $interval))
@@ -328,9 +361,14 @@ class Booking
         $this->buildBooking($field, $b->getFirstDate(), $b->getEndDate(), $user, $partner, $b->getGuest());
     }
 
-    protected function validateSubscription(\Club\UserBundle\Entity\User $user, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validateSubscription(User $user, Interval $interval)
     {
-        $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $interval->getField()->getLocation());
+        return $this->_validateSubscription($user, $interval->getField()->getLocation());
+    }
+
+    protected function _validateSubscription(User $user, Location $location)
+    {
+        $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $location);
         if (!$subs)
 
             return false;
@@ -338,12 +376,12 @@ class Booking
         return true;
     }
 
-    protected function validateSubscriptionTime(\Club\UserBundle\Entity\User $user, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validateSubscriptionTime(User $user, Interval $interval)
     {
         $subs = $this->em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($user, null, 'booking', null, $interval->getField()->getLocation());
-        if (!$subs)
-
+        if (!$subs) {
             return false;
+        }
 
         foreach ($subs as $sub) {
             foreach ($sub->getSubscriptionAttributes() as $attr) {
@@ -383,7 +421,7 @@ class Booking
         return true;
     }
 
-    protected function validateIntervalDay(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validateIntervalDay(\DateTime $date, Interval $interval)
     {
         if ($date->format('N') != $interval->getDay())
 
@@ -392,7 +430,7 @@ class Booking
         return true;
     }
 
-    protected function validateFuture(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validateFuture(\DateTime $date, Interval $interval)
     {
         $c = clone $date;
         $c->setTime(
@@ -418,7 +456,7 @@ class Booking
         return true;
     }
 
-    protected function validatePast(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validatePast(\DateTime $date, Interval $interval)
     {
         $c = clone $date;
         $c->setTime(
@@ -434,7 +472,7 @@ class Booking
         return true;
     }
 
-    protected function validateAvailable(\DateTime $date, \Club\BookingBundle\Entity\Interval $interval)
+    protected function validateAvailable(\DateTime $date, Interval $interval)
     {
         $interval = $this->club_interval->getVirtualInterval($interval, $date);
         if (!$interval->getAvailable())
@@ -444,7 +482,7 @@ class Booking
         return true;
     }
 
-    protected function validateBookingDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
+    protected function validateBookingDay(\DateTime $date, User $user)
     {
         $start = clone $date;
         $end = clone $date;
@@ -473,7 +511,7 @@ class Booking
         return true;
     }
 
-    protected function validateBookingFuture(\Club\UserBundle\Entity\User $user)
+    protected function validateBookingFuture(User $user)
     {
         $date = new \DateTime();
 
@@ -497,7 +535,7 @@ class Booking
         return true;
     }
 
-    protected function validateBookingGuestDay(\DateTime $date, \Club\UserBundle\Entity\User $user)
+    protected function validateBookingGuestDay(\DateTime $date, User $user)
     {
         $start = clone $date;
         $end = clone $date;
@@ -528,7 +566,7 @@ class Booking
         return true;
     }
 
-    protected function validateBookingGuestFuture(\Club\UserBundle\Entity\User $user)
+    protected function validateBookingGuestFuture(User $user)
     {
         $date = new \DateTime();
 
@@ -553,7 +591,7 @@ class Booking
         return true;
     }
 
-    protected function validateBookingPartnerDay(\DateTime $date, \Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+    protected function validateBookingPartnerDay(\DateTime $date, User $user, User $partner)
     {
         $start = clone $date;
         $end = clone $date;
@@ -579,13 +617,12 @@ class Booking
             ->getSingleResult();
 
         if ($res[1] >= $this->container->getParameter('club_booking.num_book_same_partner_day'))
-
             return false;
 
         return true;
     }
 
-    protected function validateBookingPartnerFuture(\Club\UserBundle\Entity\User $user, \Club\UserBundle\Entity\User $partner)
+    protected function validateBookingPartnerFuture(User $user, User $partner)
     {
         $date = new \DateTime();
 
