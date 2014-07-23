@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class DocumentRepository extends EntityRepository
 {
+    public function getAllPublic()
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.user IS NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
