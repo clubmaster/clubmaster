@@ -1,3 +1,8 @@
+club_media:
+    resource: "@ClubMediaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 club_kiosk:
     resource: "@ClubKioskBundle/Controller/"
     type:     annotation
