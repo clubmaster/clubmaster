@@ -118,6 +118,9 @@ club_weather:
     #cityid: 2624886 # http://openweathermap.org/help/city_list.txt
     #units: metric
 
+club_media:
+    enabled: true
+
 club_tournament:
     enabled: true
 
