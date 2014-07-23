@@ -234,4 +234,14 @@ class Coupon
     {
         return $this->coupon_log;
     }
+
+    /**
+     * Remove coupon_log
+     *
+     * @param \Club\ShopBundle\Entity\CouponLog $couponLog
+     */
+    public function removeCouponLog(\Club\ShopBundle\Entity\CouponLog $couponLog)
+    {
+        $this->coupon_log->removeElement($couponLog);
+    }
 }

@@ -244,4 +244,14 @@ class Category
             'products' => $products
         );
     }
+
+    /**
+     * Remove products
+     *
+     * @param \Club\ShopBundle\Entity\Product $products
+     */
+    public function removeProduct(\Club\ShopBundle\Entity\Product $products)
+    {
+        $this->products->removeElement($products);
+    }
 }

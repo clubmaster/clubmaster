@@ -108,6 +108,13 @@ class Product
      */
     protected $specials;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Image", cascade={"all"})
+     * @Assert\Valid
+     */
+    protected $image;
+
+
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
@@ -487,5 +494,38 @@ class Product
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Club\ShopBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Club\ShopBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Club\ShopBundle\Entity\Image $image
+     * @return Product
+     */
+    public function setImage(\Club\ShopBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Club\ShopBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

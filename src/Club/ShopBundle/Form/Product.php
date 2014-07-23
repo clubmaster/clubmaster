@@ -9,36 +9,47 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Product extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('product_name');
-    $builder->add('description');
-    $builder->add('price');
-    $builder->add('priority', 'integer', array(
-        'help' => 'Where to list the product in shop view, higher rated higher.'
-    ));
-    $builder->add('quantity', 'integer', array(
-        'help' => 'Amount in stock, -1 if unlimited'
-    ));
-    $builder->add('categories');
-    $builder->add('account_number', 'text', array(
-        'required' => false,
-        'help' => 'Account number in accounting program'
-    ));
-    $builder->add('active', 'checkbox', array(
-        'required' => false
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('product_name')
+            ->add('description', 'textarea', array(
+                'required' => true,
+                'attr' => array(
+                    'rows' => 15
+                )
+            ))
+            ->add('price')
+            ->add('priority', 'integer', array(
+                'help' => 'Where to list the product in shop view, higher rated higher.'
+            ))
+            ->add('quantity', 'integer', array(
+                'help' => 'Amount in stock, -1 if unlimited'
+            ))
+            ->add('categories')
+            ->add('account_number', 'text', array(
+                'required' => false,
+                'help' => 'Account number in accounting program'
+            ))
+            ->add('active', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('image', new ImageType())
+            ;
+    }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\ShopBundle\Entity\Product'
-    ));
-  }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\ShopBundle\Entity\Product',
+            'attr' => array(
+                'class' => 'form-horizontal'
+            )
+        ));
+    }
 
-  public function getName()
-  {
-    return 'product';
-  }
+    public function getName()
+    {
+        return 'club_shop_product';
+    }
 }

@@ -1,3 +1,36 @@
-  {{ form_widget(form) }}
-  {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+{{ form_start(form) }}
 
+{{ form_row(form.product_name) }}
+{{ form_row(form.description) }}
+{{ form_row(form.price) }}
+{{ form_row(form.priority) }}
+{{ form_row(form.quantity) }}
+{{ form_row(form.categories) }}
+{{ form_row(form.account_number) }}
+{{ form_row(form.active) }}
+
+{% if form.image is defined %}
+{{ form_row(form.image.file, {'label':'Image'}) }}
+{% else %}
+<div class="control-group">
+    <label class="control-label"  for="club_shop_product_account_number">Current image</label>
+    <div class="controls">
+        <ul class="thumbnails">
+            <li class="span4">
+            <div class="thumbnail">
+                <p>
+                <a href="{{ asset(product.image.webPath) }}" target="_open"><img src="{{ asset(product.image.webPath) }}" width="200" /></a>
+                </p>
+                <a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}')" href="{{ path('admin_shop_product_image_remove', {'id':product.id}) }}" class="btn btn-danger">{% trans %}Delete{% endtrans %}</a>
+            </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+{% endif %}
+
+<div class="form-actions">
+    {{ form_widget(form.save, {'label':'Save changes'|trans}) }}
+</div>
+{{ form_end(form) }}
