@@ -17,7 +17,7 @@ cmcl.booking.updateFields = function() {
         cmcl.reload();
     }
 
-    hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
+    var hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
 
     $('#overflow').children().remove();
     cmcl.data.intervalObjects = [];
@@ -293,7 +293,7 @@ function hexToRGBArray(color) {
     if (color.length === 3)
         color = color.charAt(0) + color.charAt(0) + color.charAt(1) + color.charAt(1) + color.charAt(2) + color.charAt(2);
     else if (color.length !== 6)
-        throw('Invalid hex color: ' + color);
+        return 'b85959';
     var rgb = [];
     for (var i = 0; i <= 2; i++)
         rgb[i] = parseInt(color.substr(i * 2, 2), 16);
