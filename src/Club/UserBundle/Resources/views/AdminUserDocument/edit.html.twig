@@ -1,0 +1,5 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block body %}
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_user_note_edit', {'id':user_note.id})} %}
+{% endblock %}

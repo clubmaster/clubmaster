@@ -1,0 +1,41 @@
+{% extends "ClubUserBundle::base.html.twig" %}
+
+{% block pagenav %}
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{{ path('admin_user_edit', {'id':user.id}) }}">{% trans %}Edit user{% endtrans %}</a></li>
+            <li><a href="{{ path('admin_user_document_new', {'id':user.id}) }}">{% trans %}Upload document{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}File{% endtrans %}</th>
+            <th>{% trans %}Size{% endtrans %}</th>
+            <th class="action">{% trans %}Action{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+    <tr>
+        <td><a href="{{ asset(entity.webPath) }}" target="_open">{{ entity.name }}</a></td>
+        <td>{{ entity.size }}</td>
+        <td>
+            {% include "ClubLayoutBundle:Default:download_link.html.twig" with {'url':asset(entity.webPath)} %}
+            {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_user_document_delete', { 'user_id':user.id,'id':entity.id })} %}
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">{% trans %}There are no documents to this user.{% endtrans %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

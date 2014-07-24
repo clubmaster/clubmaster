@@ -109,18 +109,6 @@ cmcl.attachListeners = function() {
 cmcl.initJQueryWidgets = function() {
     // Setup virtual keyboard.
 
-    $.keyboard.keyaction = {
-        enter : function(kb) {
-            kb.accept();
-
-            if (kb.$el.attr('id') == 'input_password') {
-                cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
-            } else {
-                $('#input_password').focus();
-            }
-        }
-    };
-
     $('input.key').keyboard(
         {
             display: {
