@@ -98,17 +98,17 @@
         },
         {
             "name": "clubmaster/formextra",
-            "version": "1.17",
+            "version": "1.18",
             "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "ea8e76d4badae81b1408158a2151e05e00cdb0e0"
+                "reference": "bf38575314e585072c3c2842d69be64cc583403b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/ea8e76d4badae81b1408158a2151e05e00cdb0e0",
-                "reference": "ea8e76d4badae81b1408158a2151e05e00cdb0e0",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/bf38575314e585072c3c2842d69be64cc583403b",
+                "reference": "bf38575314e585072c3c2842d69be64cc583403b",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 "extra",
                 "form"
             ],
-            "time": "2014-06-28 20:20:44"
+            "time": "2014-07-25 10:23:54"
         },
         {
             "name": "clubmaster/quickpay",
