@@ -13,7 +13,7 @@ class Product extends AbstractType
     {
         $builder
             ->add('product_name')
-            ->add('description', 'textarea', array(
+            ->add('description', 'tinymce', array(
                 'required' => true,
                 'attr' => array(
                     'rows' => 15

@@ -12,54 +12,56 @@
 
 {% block body %}
 <div class="row" style="padding-left: 25px">
-    <div class="span8">
-        <h2 class="nomb">{{ product.productName }}</h2>
-        <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
-        {% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}
-
-        <h2>{% trans %}Description{% endtrans %}</h2>
-        <p>{{ product.description|raw }}</p>
-
-        {% if product.productAttributes|length > 0 %}
-        <h2>{% trans %}Attributes{% endtrans %}</h2>
-        <ul>
-            {% if attr.start_date and attr.expire_date %}
-            <li>{% trans with {'%start%':attr.nextStartDate|club_date,'%expire%':attr.nextExpireDate|club_date} %}Your subscription period is %start% - %expire%.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.booking %}
-            <li>{% trans %}Your subscription will give you access to use bookings.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.team %}
-            <li>{% trans %}Your subscription will give you access to use teams.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.time_interval %}
-            <li>{% trans with {'%time%':attr.time_interval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.ticket %}
-            <li>{% trans with {'%tickets%':attr.ticket} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.auto_renewal %}
-            <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.allowed_pauses %}
-            <li>{% trans with {'%pauses%':attr.allowed_pauses} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
-            {% endif %}
-            {% if attr.start_time and attr.stop_time %}
-            <li>{% trans with {'%start_time%':attr.start_time|club_time,'%stop_time%':attr.stop_time|club_time} %}This membership is active between <b>%start_time% - %stop_time%</b> in the day{% endtrans %}</li>
-            {% elseif attr.start_time %}
-            <li>{% trans with {'%start_time%':attr.start_time|club_time} %}This membership is active from <b>%start_time%</b> in the day{% endtrans %}</li>
-            {% elseif attr.stop_time %}
-            <li>{% trans with {'%stop_time%':attr.stop_time|club_time} %}This membership is active until <b>%stop_time%</b> in the day{% endtrans %}</li>
-            {% endif %}
-
-        </ul>
-        {% endif %}
-
-    </div>
     <div class="span4">
         {% if product.image %}
         <img src="{{ asset(product.image.webPath) }}" class="pull-right" />
         {% endif %}
     </div>
+    <div class="span8">
+        <h2 class="nomb">{{ product.productName }}</h2>
+        <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
+        {% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}
+
+        <a class="btn btn-primary" href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a>
+    </div>
 </div>
+<hr>
+<h2>{% trans %}Description{% endtrans %}</h2>
+<p>{{ product.description|raw }}</p>
+
+{% if product.productAttributes|length > 0 %}
+<h2>{% trans %}Attributes{% endtrans %}</h2>
+<ul>
+    {% if attr.start_date and attr.expire_date %}
+    <li>{% trans with {'%start%':attr.nextStartDate|club_date,'%expire%':attr.nextExpireDate|club_date} %}Your subscription period is %start% - %expire%.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.booking %}
+    <li>{% trans %}Your subscription will give you access to use bookings.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.team %}
+    <li>{% trans %}Your subscription will give you access to use teams.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.time_interval %}
+    <li>{% trans with {'%time%':attr.time_interval} %}Your subscription will last <b>%time%</b>.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.ticket %}
+    <li>{% trans with {'%tickets%':attr.ticket} %}You will receive <b>%tickets% tickets</b>.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.auto_renewal %}
+    <li>{% trans %}Your subscription will be <b>automatically renewed</b>.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.allowed_pauses %}
+    <li>{% trans with {'%pauses%':attr.allowed_pauses} %}You will be able to take <b>%pauses% pauses</b> during your membership period.{% endtrans %}</li>
+    {% endif %}
+    {% if attr.start_time and attr.stop_time %}
+    <li>{% trans with {'%start_time%':attr.start_time|club_time,'%stop_time%':attr.stop_time|club_time} %}This membership is active between <b>%start_time% - %stop_time%</b> in the day{% endtrans %}</li>
+    {% elseif attr.start_time %}
+    <li>{% trans with {'%start_time%':attr.start_time|club_time} %}This membership is active from <b>%start_time%</b> in the day{% endtrans %}</li>
+    {% elseif attr.stop_time %}
+    <li>{% trans with {'%stop_time%':attr.stop_time|club_time} %}This membership is active until <b>%stop_time%</b> in the day{% endtrans %}</li>
+    {% endif %}
+
+</ul>
+{% endif %}
+
 {% endblock %}
