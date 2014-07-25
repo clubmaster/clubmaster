@@ -12,7 +12,7 @@
     {% for document in entities %}
     <tr>
         <td><a href="{{ asset(document.webPath) }}" target="_open">{{ document.name }}</a>, <small>{{ document.type }}</small></td>
-        <td>{{ document.size }}</td>
+        <td>{{ document.size|club_filesize }}</td>
         <td>
             {% include "ClubLayoutBundle:Default:download_link.html.twig" with {'url':asset(document.webPath)} %}
         </td>

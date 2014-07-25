@@ -20,7 +20,7 @@
     {% for entity in entities %}
     <tr>
         <td><a target="_open" href="{{ asset(entity.webPath) }}">{{ entity.name }}</a></td>
-        <td>{{ entity.size }}</td>
+        <td>{{ entity.size|club_filesize }}</td>
         <td>{{ entity.type }}</td>
         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
         <td>
