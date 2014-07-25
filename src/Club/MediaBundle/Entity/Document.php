@@ -39,6 +39,13 @@ class Document
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="priority", type="integer")
+     */
+    private $priority = 50;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
@@ -329,5 +336,28 @@ class Document
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Document
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer 
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 }
