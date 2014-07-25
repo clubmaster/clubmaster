@@ -158,22 +158,13 @@ cmcl.initJQueryWidgets = function() {
                 if( !cmcl.keysbound &&  $('#input_search')[0] === el ) {
 
                     $("#input_search").getkeyboard().$allKeys.click( function() {
-                        var search = $('#input_search').val(),
-                            regExp = new RegExp(search, 'i');
-
-                        $('#search_results').children().remove();
-                        if(search) {
-                            $.each(cmcl.data.users, function(index, user) {
-                                var fullname = user.first_name + ' ' + user.last_name+' ('+user.member_number+')';
-                                if(regExp.test(fullname)) {
-                                    $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
-                                } else if (search == user.member_number) {
-                                    $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
-                                };
-                            });
-                        }
-                        cmcl.booking.updateDialogButton();
+                        cmcl.booking.searchMember();
                     });
+
+                    $("#input_search").on('keyup', function() {
+                        cmcl.booking.searchMember();
+                    });
+
                     cmcl.keysbound = true;
                 }
             }

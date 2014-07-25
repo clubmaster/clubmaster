@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Club\BookingBundle\Entity\Booking;
 
 /**
  * @Route("/bookings")
@@ -55,15 +56,13 @@ class BookingController extends Controller
      * @Route("/cancel/{id}")
      * @Method("POST")
      */
-    public function cancelAction($id)
+    public function cancelAction(Booking $booking)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
 
         $em = $this->getDoctrine()->getManager();
-
-        $booking = $em->find('ClubBookingBundle:Booking', $id);
 
         $this->get('club_booking.booking')->bindDelete($booking);
         if (!$this->get('club_booking.booking')->isValid()) {
@@ -73,8 +72,9 @@ class BookingController extends Controller
             return $response;
         }
         $this->get('club_booking.booking')->remove();
+        $em->flush();
 
-        $response = new Response();
+        $response = new Response('ok');
 
         return $response;
     }

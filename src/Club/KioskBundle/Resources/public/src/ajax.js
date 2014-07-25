@@ -11,10 +11,10 @@ cmcl.ajax.defaultError = function() {
 
 cmcl.ajax.login = function(username, password) {
 
-  $("#booking_dialog").dialog("close");
-  $("#interval_dialog").dialog("close");
+    $("#booking_dialog").dialog("close");
+    $("#interval_dialog").dialog("close");
 
-  var authValue = username + ':' + password;
+    var authValue = username + ':' + password;
     var authHeader = { 'Authorization': 'Basic ' + $.base64.encode(authValue), 'API_KEY': this.api_key };
     var success = function(json, textStatus, jqXHR) {
         $('#login_dialog').dialog('close');
@@ -43,9 +43,9 @@ cmcl.ajax.login = function(username, password) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            $('#login_dialog_error').text('Forkert brugernavn el. password');
-        })
+    .fail(function() {
+        $('#login_dialog_error').text('Forkert brugernavn el. password');
+    })
     ;
 };
 
@@ -65,9 +65,9 @@ cmcl.ajax.getTickers = function() {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
 
@@ -86,9 +86,9 @@ cmcl.ajax.getUsers = function() {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
 
@@ -107,9 +107,9 @@ cmcl.ajax.getLocations = function() {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
 
@@ -131,9 +131,9 @@ cmcl.ajax.getFields = function(locationid, date) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
 
@@ -153,9 +153,9 @@ cmcl.ajax.getBookings = function(locationid, date) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
 
@@ -178,16 +178,16 @@ cmcl.ajax.bookField = function(date, interval_id, user_id) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            $('#user_search_dialog').dialog('close');
-            if (jqXHR.status === 403) {
-                var message = $.parseJSON( jqXHR.responseText ).data;
-                $('#error_message').text(message);
-                $('#error_dialog').dialog('open');
-            } else {
-                cmcl.ajax.defaultError();
-            }
-        })
+    .fail(function() {
+        $('#user_search_dialog').dialog('close');
+        if (jqXHR.status === 403) {
+            var message = $.parseJSON( jqXHR.responseText ).data;
+            $('#error_message').text(message);
+            $('#error_dialog').dialog('open');
+        } else {
+            cmcl.ajax.defaultError();
+        }
+    })
     ;
 };
 
@@ -209,17 +209,17 @@ cmcl.ajax.bookFieldGuest = function(date, interval_id) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            $('#interval_dialog').dialog('close');
-            $('#booking_dialog').dialog('close');
-            if (jqXHR.status === 403) {
-                var message = $.parseJSON( jqXHR.responseText ).data;
-                $('#error_message').text(message);
-                $('#error_dialog').dialog('open');
-            } else {
-                cmcl.ajax.defaultError();
-            }
-        })
+    .fail(function() {
+        $('#interval_dialog').dialog('close');
+        $('#booking_dialog').dialog('close');
+        if (jqXHR.status === 403) {
+            var message = $.parseJSON( jqXHR.responseText ).data;
+            $('#error_message').text(message);
+            $('#error_dialog').dialog('open');
+        } else {
+            cmcl.ajax.defaultError();
+        }
+    })
     ;
 };
 
@@ -240,8 +240,8 @@ cmcl.ajax.cancelBooking = function(booking_id) {
         .always(function() {
             cmcl.ajax.always();
         })
-        .fail(function() {
-            cmcl.ajax.defaultError();
-        })
+    .fail(function() {
+        cmcl.ajax.defaultError();
+    })
     ;
 };
