@@ -5,6 +5,7 @@
     * Added, documents to individual users
     * Added, made product edit with tinymce description field
     * Fixed, strip html tags in product table list
+    * Fixed, upgraded to tinymce version 4.1
 
 1.3.4 (2014-07-08)
     * Fixed dont show cancelled orders when listing who has bought product
