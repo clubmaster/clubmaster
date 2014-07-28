@@ -45,7 +45,7 @@ body {
             <div style="float: right; display: block;">
                 <p>
                 <input style="text-align:center;" id="booking_date_picker" readonly="readonly" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
-                <br><small style="color: #000000">Vælg dato på knappen.</small>
+                <br><small style="color: #000000">{% trans %}Vælg dato på knappen.{% endtrans %}</small>
                 </p>
             </div>
         </div>
@@ -55,9 +55,9 @@ body {
 
 <!-- Button bar -->
 <div class="box hori pack-center mar5">
-    <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="bgcolor">Velkommen <span id="auth_user"></span></span></p>
-    <button id='button_login'>Log ind</button>
-    <button id='button_logout'>Log ud</button>
+    <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="bgcolor">{% trans %}Velkommen{% endtrans %} <span id="auth_user"></span></span></p>
+    <button id='button_login'>{% trans %}Log ind{% endtrans %}</button>
+    <button id='button_logout'>{% trans %}Log ud{% endtrans %}</button>
 </div>
 
 </app>
@@ -65,42 +65,42 @@ body {
 <img id='refresh_image' src="{{ asset('bundles/clubkiosk/images/refresh.png') }}" />
 
 <div id="login_dialog" title="Login Dialog">
-    <label class="box">Brugernavn</label>
+    <label class="box">{% trans %}Brugernavn{% endtrans %}</label>
     <input type="text" class="box key" id='input_username' />
-    <label class="box" style="padding-top: 20px;">Password</label>
+    <label class="box" style="padding-top: 20px;">{% trans %}Password{% endtrans %}</label>
     <input type="password" class="box key" id='input_password' type='password' />
     <label id="login_dialog_error" class="box"></label>
 </div>
 
 <div id="interval_dialog" title="Interval Dialog">
-    <p class="interval_location"><label>Område:</label> <span></span></p>
-    <p class="interval_field"><label>Bane:</label> <span></span></p>
-    <p class="interval_date"><label>Dato:</label> <span></span></p>
-    <p class="interval_time"><label>Tid:</label> <span></span></p>
-    <p class="interval_booker"><label>Spiller:</label> <span></span></p>
-    <p class="interval_partner"><label>Partner:</label> <span></span></p>
-    <p class="interval_confirmed"><label>Bekræftet:</label> <span></span></p>
+    <p class="interval_location"><label>{% trans %}Område:{% endtrans %}</label> <span></span></p>
+    <p class="interval_field"><label>{% trans %}Bane:{% endtrans %}</label> <span></span></p>
+    <p class="interval_date"><label>{% trans %}Dato:{% endtrans %}</label> <span></span></p>
+    <p class="interval_time"><label>{% trans %}Tid:{% endtrans %}</label> <span></span></p>
+    <p class="interval_booker"><label>{% trans %}Spiller:{% endtrans %}</label> <span></span></p>
+    <p class="interval_partner"><label>{% trans %}Partner:{% endtrans %}</label> <span></span></p>
+    <p class="interval_confirmed"><label>{% trans %}Bekræftet:{% endtrans %}</label> <span></span></p>
 </div>
 
 <div id="booking_dialog" title="Interval Dialog">
-    <p class="interval_location"><label>Område:</label> <span></span></p>
-    <p class="interval_field"><label>Bane:</label> <span></span></p>
-    <p class="interval_date"><label>Dato:</label> <span></span></p>
-    <p class="interval_time"><label>Tid:</label> <span></span></p>
-    <p class="interval_booker"><label>Spiller:</label> <span></span></p>
-    <p class="interval_partner"><label>Partner:</label> <span></span></p>
-    <p class="interval_confirmed"><label>Bekræftet:</label> <span></span></p>
+    <p class="interval_location"><label>{% trans %}Område:{% endtrans %}</label> <span></span></p>
+    <p class="interval_field"><label>{% trans %}Bane:{% endtrans %}</label> <span></span></p>
+    <p class="interval_date"><label>{% trans %}Dato:{% endtrans %}</label> <span></span></p>
+    <p class="interval_time"><label>{% trans %}Tid:{% endtrans %}</label> <span></span></p>
+    <p class="interval_booker"><label>{% trans %}Spiller:{% endtrans %}</label> <span></span></p>
+    <p class="interval_partner"><label>{% trans %}Partner:{% endtrans %}</label> <span></span></p>
+    <p class="interval_confirmed"><label>{% trans %}Bekræftet:{% endtrans %}</label> <span></span></p>
 </div>
 
 <div id="user_search_dialog" title="Partner Søgning">
-    <label class="box">Søgefelt</label>
+    <label class="box">{% trans %}Søgefelt{% endtrans %}</label>
     <input type="text" class="box key" id='input_search' />
 
     <select id='search_results' size='6'></select>
 </div>
 
 <div id="error_dialog" title="Fejlbesked">
-    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><div id="error_message">Fejl med internettet prøv igen...</div>
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><div id="error_message">{% trans %}Fejl med internettet prøv igen...{% endtrans %}</div>
 </div>
 
 <div id="loadmask"></div>
@@ -111,11 +111,11 @@ body {
 var defaultLocation = {{ defaultLocation }};
 var apiUrl = "{{ url('homepage') }}api/";
 $(document).ready(function() {
-    /*
+    {% if app.environment != 'dev' %}
     $(document).bind("contextmenu",function(e){
         return false;
     });
-    */
+    {% endif %}
 
     cmcl.start();
 });
