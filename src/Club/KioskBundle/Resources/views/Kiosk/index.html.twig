@@ -49,12 +49,8 @@ body {
                 </p>
             </div>
         </div>
-
-        <div id="overflow" class="relative box flex vert">
-
-        </div>
+        <div id="overflow" class="relative box flex vert"></div>
     </div>
-
 </div>
 
 <!-- Button bar -->
@@ -111,7 +107,6 @@ body {
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
-<script type="text/javascript" src="{{ asset('bundles/clubkiosk/plugins/Keyboard-master/js/jquery.keyboard.min.js') }}"></script>
 <script>
 var defaultLocation = {{ defaultLocation }};
 var apiUrl = "{{ url('homepage') }}api/";
@@ -128,6 +123,7 @@ $(document).ready(function() {
 {% javascripts
 '@ClubKioskBundle/Resources/public/plugins/jquery.base64.js'
 '@ClubKioskBundle/Resources/public/plugins/jquery.loadmask.js'
+'@ClubKioskBundle/Resources/public/plugins/Keyboard-master/js/jquery.keyboard.min.js'
 '@ClubKioskBundle/Resources/public/plugins/date.js'
 '@ClubKioskBundle/Resources/public/plugins/danish.js'
 '@ClubKioskBundle/Resources/public/plugins/jquery.ui.datepicker-da.js'

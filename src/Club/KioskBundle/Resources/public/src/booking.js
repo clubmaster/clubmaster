@@ -109,6 +109,9 @@ cmcl.booking.updateFields = function() {
     var diff = now.getTime()-start_time.getTime();
     diff = diff/1000/60/60;
     $('#overflow').scrollLeft((hourWidth*diff)-100);
+
+    $("div#overflow").append('<div id="timespan"></div>');
+    $("div#timespan").css('width', (hourWidth*diff));
 };
 
 

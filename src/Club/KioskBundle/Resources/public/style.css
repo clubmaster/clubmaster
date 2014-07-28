@@ -244,3 +244,11 @@ label {
     width: 100px;
     float: left;
 }
+#timespan {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.2;
+}
