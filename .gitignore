@@ -4,6 +4,7 @@ app/installer
 app/logs
 app/cache
 app/sessions
+app/Resources/ClubMailBundle/
 vendor/
 web/bundles
 web/uploads/
