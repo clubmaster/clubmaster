@@ -19,7 +19,7 @@ class Plan extends AbstractType
                 'class' => 'big',
                 'autocomplete' => 'off'
             ),
-            'help' => 'Info: When is the last day the plan will be valid?'
+            'help' => 'Info: Click to select color.'
         ));
         $builder->add('description', 'textarea', array(
             'attr' => array(
