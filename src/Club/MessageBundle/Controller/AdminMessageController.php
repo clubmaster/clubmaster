@@ -151,7 +151,8 @@ class AdminMessageController extends Controller
 
         $em->remove($message);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
     }

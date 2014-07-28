@@ -41,7 +41,7 @@ class ExchangeController extends Controller
         $em->persist($exchange);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
       }
@@ -71,7 +71,7 @@ class ExchangeController extends Controller
         $em->persist($exchange);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
       }
@@ -94,7 +94,7 @@ class ExchangeController extends Controller
     $em->persist($exchange);
     $em->flush();
 
-    $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+    $this->get('club_user.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_exchange_exchange_index'));
   }

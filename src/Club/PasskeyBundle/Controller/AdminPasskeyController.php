@@ -42,7 +42,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_edit', array(
           'id' => $passkey->getId()
@@ -73,7 +73,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
       }
@@ -107,7 +107,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
 
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
       } else {
@@ -136,7 +136,8 @@ class AdminPasskeyController extends Controller
     $passkey->setUser(null);
 
     $em->flush();
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    $this->get('club_user.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
   }
@@ -152,7 +153,7 @@ class AdminPasskeyController extends Controller
     $em->remove($passkey);
     $em->flush();
 
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('club_user.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
   }

@@ -82,7 +82,7 @@ class AdminProductController extends Controller
 
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->get('club_user.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('admin_shop_product'));
         }
@@ -125,7 +125,7 @@ class AdminProductController extends Controller
 
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->get('club_user.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('admin_shop_product'));
         }

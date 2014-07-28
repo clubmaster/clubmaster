@@ -51,7 +51,9 @@ class MatchController extends Controller
 
             if ($this->get('club_match.match')->isValid()) {
                 $this->get('club_match.match')->save();
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+                $this->get('club_user.flash')->addNotice();
+
 
                 return $this->redirect($this->generateUrl('club_match_match_index'));
             } else {
@@ -83,7 +85,8 @@ class MatchController extends Controller
         $this->get('event_dispatcher')->dispatch(\Club\MatchBundle\Event\Events::onMatchDelete, $event);
 
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_match_match_index'));
     }

@@ -84,7 +84,8 @@ class AdminTournamentController extends Controller
       $em->remove($tournament);
       $em->flush();
 
-      $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+      $this->get('club_user.flash')->addNotice();
+
     } catch (\PDOException $e) {
       $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete tournament which is already being used.'));
     }
@@ -103,7 +104,7 @@ class AdminTournamentController extends Controller
         $em->persist($tournament);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_tournament_admintournament_index'));
       }
@@ -177,7 +178,8 @@ class AdminTournamentController extends Controller
     }
 
     $em->flush();
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+    $this->get('club_user.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_tournament_admintournament_index'));
   }

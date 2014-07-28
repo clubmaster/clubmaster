@@ -33,7 +33,7 @@ class UserController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('club_user.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('user'));
             }
@@ -58,7 +58,8 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
+
         return $this->redirect($this->generateUrl('user'));
     }
 
@@ -92,7 +93,7 @@ class UserController extends Controller
 
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+                $this->get('club_user.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('user'));
             }

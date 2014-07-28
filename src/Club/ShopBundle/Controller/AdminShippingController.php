@@ -76,7 +76,7 @@ class AdminShippingController extends Controller
     $em->remove($shipping);
     $em->flush();
 
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('club_user.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_shop_shipping'));
   }
@@ -92,7 +92,7 @@ class AdminShippingController extends Controller
         $em->persist($shipping);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_user.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_shop_shipping'));
       }

@@ -16,7 +16,8 @@ class Plan extends AbstractType
         ));
         $builder->add('color', 'colorpicker', array(
             'attr' => array(
-                'class' => 'big'
+                'class' => 'big',
+                'autocomplete' => 'off'
             ),
             'help' => 'Info: When is the last day the plan will be valid?'
         ));
