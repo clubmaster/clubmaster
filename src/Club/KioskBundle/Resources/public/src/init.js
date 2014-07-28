@@ -8,6 +8,7 @@ cmcl.ajax = {
 };
 
 cmcl.booking = {};
+cmcl.dialogWidth = 500;
 cmcl.ticker = {};
 cmcl.user = {};
 cmcl.keysbound = false;
@@ -109,6 +110,20 @@ cmcl.attachListeners = function() {
 cmcl.initJQueryWidgets = function() {
     // Setup virtual keyboard.
 
+    /*
+    $.keyboard.keyaction = {
+        enter : function(kb) {
+            kb.accept();
+
+            if (kb.$el.attr('id') == 'input_password') {
+                cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
+            } else {
+                $('#input_password').focus();
+            }
+        }
+    };
+    */
+
     $('input.key').keyboard(
         {
             display: {
@@ -191,6 +206,7 @@ cmcl.initJQueryWidgets = function() {
     // Setup dialogs.
     $('#login_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -214,6 +230,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#user_search_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -247,6 +264,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#interval_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -266,6 +284,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#booking_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -295,6 +314,7 @@ cmcl.initJQueryWidgets = function() {
 
     $('#error_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {

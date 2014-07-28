@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="//code.jquery.com/ui/1.11.0/themes/{{ theme }}/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link href="{{ asset('bundles/clubkiosk/plugins/Keyboard-master/css/keyboard.css') }}" rel="stylesheet" type="text/css" />
 {% stylesheets
 '@ClubKioskBundle/Resources/public/style.css'
@@ -39,13 +39,13 @@ body {
     <div id="page_booking" class="box vert pack-center full-width">
         <div width="100%">
             <div style="float: left; display: block;">
-                <p><span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor"><span id="clock_widget"></span></span></p>
+                <p><button style="padding:5px; margin-left:5px;"><span id="clock_widget"></span></button></p>
             </div>
 
             <div style="float: right; display: block;">
                 <p>
-                <input style="text-align:center;" id="booking_date_picker" readonly="readonly" class="boxshadow ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
-                <span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor">Vælg dato på knappen.</span>
+                <input style="text-align:center;" id="booking_date_picker" readonly="readonly" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                <br><small style="color: #000000">Vælg dato på knappen.</small>
                 </p>
             </div>
         </div>
@@ -59,8 +59,8 @@ body {
 
 <!-- Button bar -->
 <div class="box hori pack-center mar5">
-    <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="boxshadow bgcolor">Velkommen <span id="auth_user"></span></span></p>
-    <button class="boxshadow" id='button_login'>Log ind</button>
+    <p id="auth_dialog"><span style="padding:5px; margin-left:5px;" class="bgcolor">Velkommen <span id="auth_user"></span></span></p>
+    <button id='button_login'>Log ind</button>
     <button id='button_logout'>Log ud</button>
 </div>
 
@@ -70,37 +70,37 @@ body {
 
 <div id="login_dialog" title="Login Dialog">
     <label class="box">Brugernavn</label>
-    <input class="box key" id='input_username' />
-    <label class="box">Password</label>
-    <input class="box key" id='input_password' type='password' />
+    <input type="text" class="box key" id='input_username' />
+    <label class="box" style="padding-top: 20px;">Password</label>
+    <input type="password" class="box key" id='input_password' type='password' />
     <label id="login_dialog_error" class="box"></label>
 </div>
 
 <div id="interval_dialog" title="Interval Dialog">
-    <p class="interval_location">Område: <span></span></p>
-    <p class="interval_field">Bane: <span></span></p>
-    <p class="interval_date">Dato: <span></span></p>
-    <p class="interval_time">Tid: <span></span></p>
-    <p class="interval_booker">Spiller: <span></span></p>
-    <p class="interval_partner">Partner: <span></span></p>
-    <p class="interval_confirmed">Bekræftet: <span></span></p>
+    <p class="interval_location"><label>Område:</label> <span></span></p>
+    <p class="interval_field"><label>Bane:</label> <span></span></p>
+    <p class="interval_date"><label>Dato:</label> <span></span></p>
+    <p class="interval_time"><label>Tid:</label> <span></span></p>
+    <p class="interval_booker"><label>Spiller:</label> <span></span></p>
+    <p class="interval_partner"><label>Partner:</label> <span></span></p>
+    <p class="interval_confirmed"><label>Bekræftet:</label> <span></span></p>
 </div>
 
 <div id="booking_dialog" title="Interval Dialog">
-    <p class="interval_location">Område: <span></span></p>
-    <p class="interval_field">Bane: <span></span></p>
-    <p class="interval_date">Dato: <span></span></p>
-    <p class="interval_time">Tid: <span></span></p>
-    <p class="interval_booker">Spiller: <span></span></p>
-    <p class="interval_partner">Partner: <span></span></p>
-    <p class="interval_confirmed">Bekræftet: <span></span></p>
+    <p class="interval_location"><label>Område:</label> <span></span></p>
+    <p class="interval_field"><label>Bane:</label> <span></span></p>
+    <p class="interval_date"><label>Dato:</label> <span></span></p>
+    <p class="interval_time"><label>Tid:</label> <span></span></p>
+    <p class="interval_booker"><label>Spiller:</label> <span></span></p>
+    <p class="interval_partner"><label>Partner:</label> <span></span></p>
+    <p class="interval_confirmed"><label>Bekræftet:</label> <span></span></p>
 </div>
 
 <div id="user_search_dialog" title="Partner Søgning">
     <label class="box">Søgefelt</label>
-    <input class="box key" style="width:250px;" id='input_search' />
+    <input type="text" class="box key" id='input_search' />
 
-    <select id='search_results' style="width:250px;" size='6'></select>
+    <select id='search_results' size='6'></select>
 </div>
 
 <div id="error_dialog" title="Fejlbesked">

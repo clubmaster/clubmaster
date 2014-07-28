@@ -13,7 +13,11 @@ cmcl.booking.updateFields = function() {
     var data = cmcl.data.fields[ cmcl.data.bookingdate.toYYYYMMDD() ],
         hourWidth = cmcl.app['min_width'];
 
-    if (data.info == undefined) {
+    if (data == "undefined") {
+        cmcl.reload();
+    }
+
+    if (data.info == "undefined") {
         cmcl.reload();
     }
 

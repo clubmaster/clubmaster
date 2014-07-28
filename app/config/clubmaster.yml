@@ -134,3 +134,4 @@ club_extra:
 
 club_kiosk:
     default_location: 1
+    jquery_theme: start

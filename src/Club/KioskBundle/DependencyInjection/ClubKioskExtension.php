@@ -26,5 +26,6 @@ class ClubKioskExtension extends Extension
         #$loader->load('services.yml');
 
         $container->setParameter('club_kiosk.default_location', $config['default_location']);
+        $container->setParameter('club_kiosk.jquery_theme', $config['jquery_theme']);
     }
 }

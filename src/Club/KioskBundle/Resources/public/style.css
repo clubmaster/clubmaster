@@ -229,3 +229,18 @@ img#refresh_image {
 .ui-keyboard-enter {
     width: 6em;
 }
+.ui-button-text {
+    font-size: 18px;
+}
+input[type=text],
+input[type=password],
+select
+{
+    width: 100%;
+    font-size: 18px;
+    background-color: #eaeaea;
+}
+label {
+    width: 100px;
+    float: left;
+}
