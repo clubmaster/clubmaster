@@ -16,10 +16,10 @@ class WelcomeController extends Controller
      */
     public function indexAction()
     {
-        $this->get('club_user.flash')->addInfo('blah');
-        $this->get('club_user.flash')->addWarning('blah');
-        $this->get('club_user.flash')->addError('blah');
-        $this->get('club_user.flash')->addNotice('blah');
+        $this->get('club_extra.flash')->addInfo('blah');
+        $this->get('club_extra.flash')->addWarning('blah');
+        $this->get('club_extra.flash')->addError('blah');
+        $this->get('club_extra.flash')->addNotice('blah');
 
         $em = $this->getDoctrine()->getManager();
 

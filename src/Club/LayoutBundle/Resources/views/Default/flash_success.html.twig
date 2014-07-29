@@ -1,6 +1,0 @@
-{% for flashMessage in app.session.flashbag.get('notice') %}
-<div class="alert alert-success">
-    <img src="{{ asset('bundles/clublayout/images/icons/32x32/accept_button.png') }}" />
-    {{ flashMessage }}
-</div>
-{% endfor %}
