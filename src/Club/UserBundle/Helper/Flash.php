@@ -15,6 +15,16 @@ class Flash
         $this->log = $log;
     }
 
+    public function addInfo($message)
+    {
+        $this->session->getFlashBag()->add('info', $message);
+    }
+
+    public function addWarning($message)
+    {
+        $this->session->getFlashBag()->add('warning', $message);
+    }
+
     public function addNotice($message=null)
     {
         if (!strlen($message)) {

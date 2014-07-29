@@ -16,6 +16,11 @@ class WelcomeController extends Controller
      */
     public function indexAction()
     {
+        $this->get('club_user.flash')->addInfo('blah');
+        $this->get('club_user.flash')->addWarning('blah');
+        $this->get('club_user.flash')->addError('blah');
+        $this->get('club_user.flash')->addNotice('blah');
+
         $em = $this->getDoctrine()->getManager();
 
         $announcements = $em->getRepository('ClubNewsBundle:Announcement')->getOpen();

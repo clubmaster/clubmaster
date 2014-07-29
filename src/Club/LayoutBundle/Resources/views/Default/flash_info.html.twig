@@ -1,13 +1,13 @@
 {% for flashMessage in app.session.flashbag.get('info') %}
 <div class="alert alert-info">
-    <strong>{% trans %}Heads up!{% endtrans %}</strong>
+    <img src="{{ asset('bundles/clublayout/images/icons/32x32/information.png') }}" />
     {{ flashMessage }}
 </div>
 {% endfor %}
 
 {% if msg is defined %}
 <div class="alert alert-info">
-    <strong>{% trans %}Heads up!{% endtrans %}</strong>
+    <img src="{{ asset('bundles/clublayout/images/icons/32x32/information.png') }}" />
     {{ msg }}
 </div>
 {% endif %}

@@ -1,13 +1,13 @@
 {% for flashMessage in app.session.flashbag.get('error') %}
 <div class="alert alert-error">
-    <strong>{% trans %}Oh snap!{% endtrans %}</strong>
+    <img src="{{ asset('bundles/clublayout/images/icons/32x32/exclamation.png') }}" />
     {{ flashMessage }}
 </div>
 {% endfor %}
 
 {% if msg is defined %}
 <div class="alert alert-error">
-    <strong>{% trans %}Oh snap!{% endtrans %}</strong>
+    <img src="{{ asset('bundles/clublayout/images/icons/32x32/exclamation.png') }}" />
     {{ msg }}
 </div>
 {% endif %}
