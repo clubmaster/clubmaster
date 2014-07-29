@@ -4,4 +4,5 @@ ALTER TABLE club_shop_image ADD created_at DATETIME NOT NULL;
 ALTER TABLE club_shop_product ADD image_id INT DEFAULT NULL;
 ALTER TABLE club_shop_product ADD CONSTRAINT FK_AACDEC773DA5256D FOREIGN KEY (image_id) REFERENCES club_shop_image (id);
 CREATE INDEX IDX_AACDEC773DA5256D ON club_shop_product (image_id);
-
+ALTER TABLE club_booking_plan ADD status VARCHAR(255) NOT NULL;
+ALTER TABLE club_media_document ADD priority INT NOT NULL;

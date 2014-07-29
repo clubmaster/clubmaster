@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "471686c7695efbb85485e6c726027294",
+    "hash": "1bbbaf7c94d57523ceac9e68dc022522",
     "packages": [
         {
             "name": "clubmaster/economic",
@@ -1035,26 +1035,36 @@
         },
         {
             "name": "sabre/vobject",
-            "version": "2.1.5",
+            "version": "3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-vobject.git",
-                "reference": "344a3560835b9f48ee51ee8cf4502b857b6e4772"
+                "reference": "a064447d7e76dc564ffcf3a830057c2f0c17bfbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-vobject/zipball/344a3560835b9f48ee51ee8cf4502b857b6e4772",
-                "reference": "344a3560835b9f48ee51ee8cf4502b857b6e4772",
+                "url": "https://api.github.com/repos/fruux/sabre-vobject/zipball/a064447d7e76dc564ffcf3a830057c2f0c17bfbd",
+                "reference": "a064447d7e76dc564ffcf3a830057c2f0c17bfbd",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": ">=5.3.1"
             },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
             "bin": [
-                "bin/vobjectvalidate.php"
+                "bin/vobject",
+                "bin/generate_vcards"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Sabre\\VObject": "lib/"
@@ -1067,8 +1077,8 @@
             "authors": [
                 {
                     "name": "Evert Pot",
-                    "email": "me@evertpot.com",
-                    "homepage": "http://evertpot.com/",
+                    "email": "evert@rooftopsolutions.nl",
+                    "homepage": "http://www.rooftopsolutions.nl/",
                     "role": "Developer"
                 }
             ],
@@ -1077,9 +1087,11 @@
             "keywords": [
                 "VObject",
                 "iCalendar",
+                "jCal",
+                "jCard",
                 "vCard"
             ],
-            "time": "2014-06-03 16:41:29"
+            "time": "2014-07-14 18:04:23"
         },
         {
             "name": "sensio/distribution-bundle",
