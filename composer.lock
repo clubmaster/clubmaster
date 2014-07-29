@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1bbbaf7c94d57523ceac9e68dc022522",
+    "hash": "b9f54848dddf00ffa1b2f039e6990279",
     "packages": [
         {
             "name": "clubmaster/economic",
@@ -98,17 +98,17 @@
         },
         {
             "name": "clubmaster/formextra",
-            "version": "1.19",
+            "version": "1.20",
             "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "d933a2f4f5082c9623b4bde2d9a573ebe39e3b56"
+                "reference": "be437984ffc8f15f42e302cd1495ef593462dde5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/d933a2f4f5082c9623b4bde2d9a573ebe39e3b56",
-                "reference": "d933a2f4f5082c9623b4bde2d9a573ebe39e3b56",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/be437984ffc8f15f42e302cd1495ef593462dde5",
+                "reference": "be437984ffc8f15f42e302cd1495ef593462dde5",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 "extra",
                 "form"
             ],
-            "time": "2014-07-29 15:40:25"
+            "time": "2014-07-29 16:10:28"
         },
         {
             "name": "clubmaster/quickpay",
