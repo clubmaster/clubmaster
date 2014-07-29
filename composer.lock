@@ -98,17 +98,17 @@
         },
         {
             "name": "clubmaster/formextra",
-            "version": "1.18",
+            "version": "1.19",
             "target-dir": "Club/FormExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/clubmaster/ClubFormExtraBundle.git",
-                "reference": "bf38575314e585072c3c2842d69be64cc583403b"
+                "reference": "d933a2f4f5082c9623b4bde2d9a573ebe39e3b56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/bf38575314e585072c3c2842d69be64cc583403b",
-                "reference": "bf38575314e585072c3c2842d69be64cc583403b",
+                "url": "https://api.github.com/repos/clubmaster/ClubFormExtraBundle/zipball/d933a2f4f5082c9623b4bde2d9a573ebe39e3b56",
+                "reference": "d933a2f4f5082c9623b4bde2d9a573ebe39e3b56",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 "extra",
                 "form"
             ],
-            "time": "2014-07-25 10:23:54"
+            "time": "2014-07-29 15:40:25"
         },
         {
             "name": "clubmaster/quickpay",
@@ -1353,20 +1353,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/98e197da54df1f966dd5e8a4992135703569c987",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
@@ -1397,7 +1398,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 10:06:38"
+            "time": "2014-07-25 09:58:17"
         },
         {
             "name": "symfony/monolog-bundle",
