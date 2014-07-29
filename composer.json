@@ -43,11 +43,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "bin": [
-        "Club/InstallerBundle/bin/remake_schema.sh",
-        "Club/InstallerBundle/bin/build.sh",
-        "Club/InstallerBundle/bin/update_translations.sh"
-    ],
     "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
