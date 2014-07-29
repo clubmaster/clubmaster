@@ -120,7 +120,7 @@ class AdminOrderController extends Controller
     $this->get('order')->setOrder($order);
     $this->get('order')->changeStatus($status);
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_shop_order_edit', array(
         'id' => $order->getId()
@@ -153,7 +153,7 @@ class AdminOrderController extends Controller
         $em->persist($order);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
       }

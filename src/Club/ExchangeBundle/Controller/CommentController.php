@@ -56,7 +56,7 @@ class CommentController extends Controller
                 $event = new \Club\ExchangeBundle\Event\FilterExchangeCommentEvent($comment, $this->getUser());
                 $this->get('event_dispatcher')->dispatch(\Club\ExchangeBundle\Event\Events::onExchangeCommentNew, $event);
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
 
                 return $this->redirect($this->generateUrl('club_exchange_comment_index', array(

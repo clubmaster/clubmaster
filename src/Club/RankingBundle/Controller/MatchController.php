@@ -47,7 +47,7 @@ class MatchController extends Controller
 
                     $this->get('club_match.match')->save();
 
-                    $this->get('club_user.flash')->addNotice();
+                    $this->get('club_extra.flash')->addNotice();
 
                     return $this->redirect($this->generateUrl('club_ranking_ranking_show', array(
                         'id' => $ranking->getId()

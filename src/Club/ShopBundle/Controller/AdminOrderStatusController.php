@@ -76,7 +76,7 @@ class AdminOrderStatusController extends Controller
     $em->remove($orderstatus);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_shop_adminorderstatus_index'));
   }
@@ -92,7 +92,7 @@ class AdminOrderStatusController extends Controller
         $em->persist($orderstatus);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_shop_adminorderstatus_index'));
       }

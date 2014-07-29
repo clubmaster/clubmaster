@@ -86,7 +86,7 @@ class UserNoteController extends Controller
     $em->remove($user_note);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_user_note',array(
       'id' => $user_note->getUser()->getId()
@@ -104,7 +104,7 @@ class UserNoteController extends Controller
         $em->persist($user_note);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_user_note', array(
           'id' => $user_note->getUser()->getId()

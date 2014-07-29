@@ -108,7 +108,7 @@ class CashController extends Controller
                 $this->get('order')->setOrder($order);
                 $this->get('order')->makePayment($log);
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('admin_shop_order_edit', array('id' => $order->getId())));
             }

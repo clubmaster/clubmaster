@@ -28,7 +28,7 @@ class UserSettingController extends Controller
         $this->sync($form->getData());
 
         $em->flush();
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         $this->get('clubmaster.user')->updateUserSettings();
 

@@ -75,7 +75,7 @@ class AdminEventController extends Controller
     $em->remove($event);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_event_event'));
   }
@@ -96,7 +96,7 @@ class AdminEventController extends Controller
         $em->persist($event);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_event_event'));
       }

@@ -47,7 +47,7 @@ class MatchCommentController extends Controller
         $em->persist($comment);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_match_match_show', array(
           'id' => $match->getId()
@@ -93,7 +93,7 @@ class MatchCommentController extends Controller
       $em->remove($league);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
     } catch (\PDOException $e) {
       $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete league which is already being used.'));
     }
@@ -112,7 +112,7 @@ class MatchCommentController extends Controller
         $em->persist($league);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_match_adminranking_index'));
       }

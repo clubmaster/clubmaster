@@ -80,7 +80,7 @@ class AdminPlanController extends Controller
             $em->persist($plan);
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
         }
@@ -115,7 +115,7 @@ class AdminPlanController extends Controller
             $em->persist($plan);
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
         }
@@ -136,7 +136,7 @@ class AdminPlanController extends Controller
         $em->remove($plan);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
     }
@@ -167,7 +167,7 @@ class AdminPlanController extends Controller
 
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
         }
 
         return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
@@ -178,7 +178,7 @@ class AdminPlanController extends Controller
         if (!$this->get('club_booking.plan')->isAvailable($plan)) {
             $plan->setStatus(Plan::STATUS_PENDING);
 
-            $this->get('club_user.flash')->addError($this->get('translator')->trans(
+            $this->get('club_extra.flash')->addError($this->get('translator')->trans(
                 'Plan is temporary inactive, you are about to overwrite some bookings, please take action, move the plan or delete the bookings'
             ));
 

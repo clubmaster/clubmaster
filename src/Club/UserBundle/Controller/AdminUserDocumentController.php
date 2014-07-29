@@ -72,7 +72,7 @@ class AdminUserDocumentController extends Controller
         $em->remove($entity);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_user_document',array(
             'id' => $user_id

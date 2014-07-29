@@ -152,7 +152,7 @@ class AdminMessageController extends Controller
         $em->remove($message);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_message_adminmessage_index'));
     }

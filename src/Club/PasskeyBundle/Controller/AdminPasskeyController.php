@@ -42,7 +42,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_edit', array(
           'id' => $passkey->getId()
@@ -73,7 +73,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
       }
@@ -107,7 +107,7 @@ class AdminPasskeyController extends Controller
         $em->persist($passkey);
 
         $em->flush();
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
       } else {
@@ -137,7 +137,7 @@ class AdminPasskeyController extends Controller
 
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
   }
@@ -153,7 +153,7 @@ class AdminPasskeyController extends Controller
     $em->remove($passkey);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_passkey_adminpasskey_index'));
   }

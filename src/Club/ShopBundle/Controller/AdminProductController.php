@@ -82,7 +82,7 @@ class AdminProductController extends Controller
 
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('admin_shop_product'));
         }
@@ -125,7 +125,7 @@ class AdminProductController extends Controller
 
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
 
             return $this->redirect($this->generateUrl('admin_shop_product'));
         }

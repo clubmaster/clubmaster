@@ -76,7 +76,7 @@ class AdminCategoryController extends Controller
     $em->remove($category);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_shop_category'));
   }
@@ -92,7 +92,7 @@ class AdminCategoryController extends Controller
         $em->persist($category);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_shop_category'));
       }

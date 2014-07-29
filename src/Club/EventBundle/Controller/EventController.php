@@ -63,7 +63,7 @@ class EventController extends Controller
             } else {
                 $this->get('club_event.event')->attend($event, $this->getUser());
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
             }
         } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
@@ -99,7 +99,7 @@ class EventController extends Controller
             $em->remove($attend);
             $em->flush();
 
-            $this->get('club_user.flash')->addNotice();
+            $this->get('club_extra.flash')->addNotice();
 
             $e = new \Club\EventBundle\Event\FilterAttendEvent($attend);
             $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);

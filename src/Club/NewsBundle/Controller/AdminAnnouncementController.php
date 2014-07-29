@@ -85,7 +85,7 @@ class AdminAnnouncementController extends Controller
       $em->remove($announcement);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
 
     } catch (\PDOException $e) {
       $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete announcement which is already being used.'));
@@ -105,7 +105,7 @@ class AdminAnnouncementController extends Controller
         $em->persist($announcement);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_news_adminannouncement_index'));
       }

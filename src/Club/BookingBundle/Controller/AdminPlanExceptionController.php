@@ -31,7 +31,7 @@ class AdminPlanExceptionController extends Controller
                 $em->persist($exception);
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
                     'id' => $plan->getId()
@@ -60,7 +60,7 @@ class AdminPlanExceptionController extends Controller
                 $em->persist($exception);
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
                     'id' => $exception->getPlan()->getId()
@@ -84,7 +84,7 @@ class AdminPlanExceptionController extends Controller
         $em->remove($exception);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_adminplanexception_index', array(
             'id' => $exception->getPlan()->getId()

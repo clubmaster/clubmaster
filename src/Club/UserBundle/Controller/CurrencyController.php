@@ -90,7 +90,7 @@ class CurrencyController extends Controller
         $em->persist($currency);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
 
         return $this->redirect($this->generateUrl('admin_currency'));

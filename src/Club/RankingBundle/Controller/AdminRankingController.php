@@ -86,7 +86,7 @@ class AdminRankingController extends Controller
       $em->remove($ranking);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
 
     } catch (\PDOException $e) {
       $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete ranking which is already being used.'));
@@ -120,7 +120,7 @@ class AdminRankingController extends Controller
           $em->getRepository('ClubRankingBundle:RankingEntry')->getTeam($ranking, $team);
           $em->flush();
 
-          $this->get('club_user.flash')->addNotice();
+          $this->get('club_extra.flash')->addNotice();
 
       } else {
           foreach ($form->get('user')->getErrors() as $error) {
@@ -147,7 +147,7 @@ class AdminRankingController extends Controller
     $em->persist($ranking);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_ranking_adminranking_users', array(
       'id' => $id
@@ -181,7 +181,7 @@ class AdminRankingController extends Controller
         $em->persist($ranking);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_ranking_adminranking_index'));
       }

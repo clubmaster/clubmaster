@@ -62,7 +62,7 @@ class AdminWelcomeController extends Controller
         $em->persist($welcome);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_welcome_adminwelcome_edit', array(
           'location_id' => $welcome->getLocation()->getId()

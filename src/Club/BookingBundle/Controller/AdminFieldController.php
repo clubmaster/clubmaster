@@ -46,7 +46,7 @@ class AdminFieldController extends Controller
         $em->persist($field);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_admininterval_index', array(
           'id' => $field->getId()
@@ -76,7 +76,7 @@ class AdminFieldController extends Controller
         $em->persist($field);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
       }
@@ -99,7 +99,7 @@ class AdminFieldController extends Controller
     $em->remove($field);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
   }
@@ -135,7 +135,7 @@ class AdminFieldController extends Controller
       $em->persist($old);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
     }
 
     return $this->redirect($this->generateUrl('club_booking_adminfield_index'));
@@ -172,7 +172,7 @@ class AdminFieldController extends Controller
       $em->persist($old);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
     }
 
     return $this->redirect($this->generateUrl('club_booking_adminfield_index'));

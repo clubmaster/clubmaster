@@ -31,7 +31,7 @@ class AdminGroupController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
                     'id' => $group->getId()
@@ -58,7 +58,7 @@ class AdminGroupController extends Controller
         $em->persist($group);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_user_admingroup_members', array(
             'id' => $group->getId()
@@ -125,7 +125,7 @@ class AdminGroupController extends Controller
         $em->remove($group);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_group'));
     }
@@ -151,7 +151,7 @@ class AdminGroupController extends Controller
                 $event = new \Club\UserBundle\Event\FilterGroupEvent($group);
                 $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onGroupEdit, $event);
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('admin_group'));
             }

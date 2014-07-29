@@ -182,7 +182,7 @@ class AdminScheduleController extends Controller
         $em->remove($schedule);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -216,7 +216,7 @@ class AdminScheduleController extends Controller
 
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -261,7 +261,7 @@ class AdminScheduleController extends Controller
             $em->flush();
         }
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -279,7 +279,7 @@ class AdminScheduleController extends Controller
         $parent = $this->getParent($schedule);
         $this->deleteAll($parent);
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -347,7 +347,7 @@ class AdminScheduleController extends Controller
 
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -371,7 +371,7 @@ class AdminScheduleController extends Controller
 
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
             'category_id' => $schedule->getTeamCategory()->getId()
@@ -437,7 +437,7 @@ class AdminScheduleController extends Controller
                 $em->persist($schedule);
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
                     'category_id' => $schedule->getTeamCategory()->getId()

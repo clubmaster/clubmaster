@@ -76,7 +76,7 @@ class AdminShippingController extends Controller
     $em->remove($shipping);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_shop_shipping'));
   }
@@ -92,7 +92,7 @@ class AdminShippingController extends Controller
         $em->persist($shipping);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_shop_shipping'));
       }

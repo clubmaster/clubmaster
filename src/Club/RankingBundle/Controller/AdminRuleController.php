@@ -81,7 +81,7 @@ class AdminRuleController extends Controller
       $em->remove($rule);
       $em->flush();
 
-      $this->get('club_user.flash')->addNotice();
+      $this->get('club_extra.flash')->addNotice();
 
     } catch (\PDOException $e) {
       $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete rule which is already being used.'));
@@ -101,7 +101,7 @@ class AdminRuleController extends Controller
         $em->persist($rule);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_ranking_adminrule_index'));
       }

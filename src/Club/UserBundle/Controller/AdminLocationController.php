@@ -76,7 +76,7 @@ class AdminLocationController extends Controller
     $em->remove($location);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_location'));
   }
@@ -92,7 +92,7 @@ class AdminLocationController extends Controller
         $em->persist($location);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_location'));
       }

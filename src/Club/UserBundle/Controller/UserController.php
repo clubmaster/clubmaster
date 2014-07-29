@@ -33,7 +33,7 @@ class UserController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('user'));
             }
@@ -58,7 +58,7 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
 
-        $this->get('club_user.flash')->addNotice();
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('user'));
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
 
                 $em->flush();
 
-                $this->get('club_user.flash')->addNotice();
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('user'));
             }

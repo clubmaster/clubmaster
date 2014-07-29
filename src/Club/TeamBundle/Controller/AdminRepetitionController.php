@@ -223,7 +223,7 @@ class AdminRepetitionController extends Controller
     }
 
     $em->flush();
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     $event = new \Club\TeamBundle\Event\FilterRepetitionEvent($repetition);
     $this->get('event_dispatcher')->dispatch(\Club\TeamBundle\Event\Events::onRepetitionChange, $event);
@@ -285,7 +285,7 @@ class AdminRepetitionController extends Controller
     $em->remove($repetition);
     $em->flush();
 
-    $this->get('club_user.flash')->addNotice();
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('club_team_adminrepetition_index', array(
       'category_id' => $repetition->getTeamCategory()->getId()
@@ -303,7 +303,7 @@ class AdminRepetitionController extends Controller
           $is_new = ($repetition->getId()) ? false : true;
           $em->flush();
 
-          $this->get('club_user.flash')->addNotice();
+          $this->get('club_extra.flash')->addNotice();
 
           $parent = ($repetition->getSchedule()->getSchedule()) ? $repetition->getSchedule()->getSchedule() : $repetition->getSchedule();
 
