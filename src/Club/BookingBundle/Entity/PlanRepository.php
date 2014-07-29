@@ -3,6 +3,10 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Club\UserBundle\Entity\Location;
+use Club\BookingBundle\Entity\Field;
+use Club\BookingBundle\Entity\Plan;
+use Club\BookingBundle\Entity\PlanRepeat;
 
 /**
  * PlanRepository
@@ -20,10 +24,12 @@ class PlanRepository extends EntityRepository
         return $this->createQueryBuilder('p')
             ->join('p.plan_repeats', 'pr')
             ->where('p.updated_at > :past')
+            ->andWhere('p.status = :active')
             ->orWhere('p.end > :now')
             ->orWhere('p.repeating = true AND pr.ends_type = :never')
             ->orWhere('p.repeating = true AND pr.ends_type = :after')
             ->orWhere('(p.repeating = true AND pr.ends_type = :on AND pr.ends_on > :now)')
+            ->setParameter('active', Plan::STATUS_ACTIVE)
             ->setParameter('past', $past)
             ->setParameter('now', new \DateTime())
             ->setParameter('never', 'never')
@@ -43,14 +49,16 @@ class PlanRepository extends EntityRepository
             ->select('p,pr')
             ->join('p.fields', 'f')
             ->join('p.plan_repeats', 'pr')
-            ->where('(p.repeating = false) OR (pr.ends_type <> :ends_type) OR (pr.ends_type = :ends_type AND pr.ends_on > :ends_on)')
+            ->where('p.status = :active')
+            ->andWhere('(p.repeating = false) OR (pr.ends_type <> :ends_type) OR (pr.ends_type = :ends_type AND pr.ends_on > :ends_on)')
+            ->setParameter('active', Plan::STATUS_ACTIVE)
             ->setParameter('ends_type', 'on')
             ->setParameter('ends_on', $ends_on);
 
         return $qb;
     }
 
-    public function getICSByLocation(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+    public function getICSByLocation(Location $location, \DateTime $date)
     {
         $plans = $this->getQuery($date)
             ->andWhere('f.location = :location')
@@ -61,7 +69,7 @@ class PlanRepository extends EntityRepository
         return $this->getIcsFromPlans($plans);
     }
 
-    public function getICSByField(\Club\BookingBundle\Entity\Field $field, \DateTime $date)
+    public function getICSByField(Field $field, \DateTime $date)
     {
         $plans = $this->getQuery($date)
             ->andWhere('f.id = :field')
@@ -72,8 +80,12 @@ class PlanRepository extends EntityRepository
         return $this->getIcsFromPlans($plans);
     }
 
-    public function getIcsFromPlans($plans)
+    public function getIcsFromPlans($plans, Plan $plan=null)
     {
+        if ($plan) {
+            $plans = array($plan);
+        }
+
         $ics = <<<EOF
 BEGIN:VCALENDAR
 VERSION:2.0
@@ -98,7 +110,7 @@ EOF;
         return $ics;
     }
 
-    public function getBetweenByField(\Club\BookingBundle\Entity\Field $field, \DateTime $start, \DateTime $end)
+    public function getBetweenByField(Field $field, \DateTime $start, \DateTime $end)
     {
         $ics = $this->getICSByField($field, $start);
 
@@ -141,20 +153,22 @@ EOF;
         return $plans;
     }
 
-    public function getBetweenByLocation(\Club\UserBundle\Entity\Location $location, \DateTime $start, \DateTime $end)
+    public function getBetweenByLocation(Location $location, \DateTime $start, \DateTime $end)
     {
         $ics = $this->getICSByLocation($location, $start);
 
         return $this->getPlansFromIcs($ics, $start, $end);
     }
 
-    private function addFreq(\Club\BookingBundle\Entity\PlanRepeat $repeat)
+    private function addFreq(PlanRepeat $repeat)
     {
         $plan = $repeat->getPlan();
 
         $exception = '';
-        foreach ($plan->getPlanExceptions() as $e) {
-            $exception .= 'EXDATE:'.$e->getExcludeDate()->format('Ymd\THis').PHP_EOL;
+        if (is_array($plan->getPlanExceptions())) {
+            foreach ($plan->getPlanExceptions() as $e) {
+                $exception .= 'EXDATE:'.$e->getExcludeDate()->format('Ymd\THis').PHP_EOL;
+            }
         }
 
         $ics = <<<EOF
@@ -173,7 +187,7 @@ EOF;
         return $ics;
     }
 
-    private function addEvent(\Club\BookingBundle\Entity\Plan $plan)
+    private function addEvent(Plan $plan)
     {
         $ics = <<<EOF
 BEGIN:VEVENT

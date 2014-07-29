@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Plan
 {
+    // use this if booking conflict has occur
+    const STATUS_PENDING = 1;
+
+    // everything is good
+    const STATUS_ACTIVE = 2;
+
+
     /**
      * @var integer $id
      *
@@ -22,6 +29,13 @@ class Plan
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string $status
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $status = self::STATUS_ACTIVE;
 
     /**
      * @var string $name
@@ -316,6 +330,7 @@ class Plan
     {
         return $this->period_end;
     }
+
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
@@ -625,5 +640,28 @@ class Plan
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Plan
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

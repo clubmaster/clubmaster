@@ -24,9 +24,13 @@ class Flash
         $this->session->getFlashBag()->add('notice', $message);
     }
 
-    public function addError($message)
+    public function addError($message=null)
     {
-        $this->session->getFlashBag()->add('error', $this->trans->trans('Operation did not finish, an error occur.'));
+        if (!strlen($message)) {
+            $message = $this->trans->trans('Operation did not finish, an error occur.');
+        }
+
+        $this->session->getFlashBag()->add('error', $message);
         $this->log->error($message);
     }
 }

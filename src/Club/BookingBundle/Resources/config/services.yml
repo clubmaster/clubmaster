@@ -5,3 +5,6 @@ services:
     club_booking.booking:
         class: Club\BookingBundle\Helper\BookingHelper
         arguments: [@service_container]
+    club_booking.plan:
+        class: Club\BookingBundle\Helper\PlanHelper
+        arguments: [@service_container]

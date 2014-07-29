@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Plan extends AbstractType
+class PlanType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -44,7 +44,10 @@ class Plan extends AbstractType
             'class' => 'Club\BookingBundle\Entity\Field',
             'multiple' => true,
             'property' => 'formString',
-            'help' => 'Info: What fields should be booked for the plan?'
+            'help' => 'Info: What fields should be booked for the plan?',
+            'attr' => array(
+                'size' => 6
+            )
         ));
         $builder->add('repeating', 'checkbox', array(
             'required' => false
