@@ -29,9 +29,9 @@ class AdminProductControllerTest extends WebTestCase
     $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('Save')->form(array(
-      'product[product_name]' => 'Test1234',
-      'product[description]' => 'Testing',
-      'product[price]' => '123'
+      'club_shop_product[product_name]' => 'Test1234',
+      'club_shop_product[description]' => 'Testing',
+      'club_shop_product[price]' => '123'
     ));
     $crawler = $this->client->submit($form);
     $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
