@@ -13,29 +13,29 @@
 
 {% block body %}
 <table class="table">
-  <thead>
+    <thead>
+        <tr>
+            <th>{% trans %}Product{% endtrans %}</th>
+            <th>{% trans %}Active{% endtrans %}</th>
+            <th class="action">{% trans %}Action{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
     <tr>
-      <th>{% trans %}Product{% endtrans %}</th>
-      <th>{% trans %}Active{% endtrans %}</th>
-      <th class="action">{% trans %}Action{% endtrans %}</th>
+        <td>{% if product.image %}<img style="height: 25px" src="{{ asset(product.image.webPath) }}" />{% endif %} <a href="{{ path('admin_shop_product_edit', {'id':product.id}) }}">{{ product.productName }}</a></td>
+        <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':product.active} %}</td>
+        <td>
+            {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
+            {% include "ClubLayoutBundle:Default:attribute_link.html.twig" with {'url':path('admin_shop_product_attribute', {'id':product.id})} %}
+            {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('admin_shop_product_users', {'id':product.id})} %}
+        </td>
     </tr>
-  </thead>
-  <tbody>
-  {% for product in products %}
+    {% else %}
     <tr>
-      <td>{{ product.productName }}</td>
-      <td>{% include "ClubLayoutBundle:Default:boolean.html.twig" with {'flag':product.active} %}</td>
-      <td>
-        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('admin_shop_product_edit', { 'id':product.id })} %}
-        {% include "ClubLayoutBundle:Default:attribute_link.html.twig" with {'url':path('admin_shop_product_attribute', {'id':product.id})} %}
-        {% include "ClubLayoutBundle:Default:attends_link.html.twig" with {'url':path('admin_shop_product_users', {'id':product.id})} %}
-      </td>
+        <td colspan="2">{% trans %}There are no products.{% endtrans %}</td>
     </tr>
-  {% else %}
-  <tr>
-    <td colspan="2">{% trans %}There are no products.{% endtrans %}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
+    {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

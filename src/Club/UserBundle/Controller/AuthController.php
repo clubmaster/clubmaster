@@ -31,6 +31,10 @@ class AuthController extends Controller
      */
     public function loginAction()
     {
+        $this->get('club_extra.flash')->addInfo($this->get('translator')
+            ->trans('Enter your username and password.')
+        );
+
         return array();
     }
 
@@ -80,6 +84,9 @@ class AuthController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
 
+        $this->get('club_extra.flash')->addInfo($this->get('translator')
+            ->trans('Enter your username or email address, and you will receive a reset password email within a few minutes.')
+        );
         return array(
             'form' => $form->createView()
         );

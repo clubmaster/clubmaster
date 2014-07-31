@@ -21,7 +21,7 @@
         "clubmaster/quickpay": "1.*",
         "clubmaster/economic": "1.*",
         "clubmaster/formextra": "1.*",
-        "sabre/vobject": "2.*"
+        "sabre/vobject": "3.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

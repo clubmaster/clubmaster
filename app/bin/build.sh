@@ -18,7 +18,7 @@ fi
 
 if [ ${unittest} -eq 1 ]; then
     echo "Testing remake_schema"
-    ./bin/remake_schema.sh
+    ./app/bin/remake_schema.sh
     if [ $? -ne 0 ]; then
         exit
     fi

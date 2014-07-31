@@ -16,7 +16,8 @@ class KioskController extends Controller
     public function indexAction()
     {
         return array(
-            'defaultLocation' => $this->container->getParameter('club_kiosk.default_location')
+            'defaultLocation' => $this->container->getParameter('club_kiosk.default_location'),
+            'theme' => $this->container->getParameter('club_kiosk.jquery_theme')
         );
     }
 }

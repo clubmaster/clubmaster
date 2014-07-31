@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('club_kiosk')
             ->children()
                 ->scalarNode('default_location')->defaultValue(1)->end()
+                ->scalarNode('jquery_theme')->defaultValue('smoothness')->end()
             ->end()
             ;
 

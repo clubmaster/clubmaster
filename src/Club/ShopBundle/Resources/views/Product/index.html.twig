@@ -11,16 +11,27 @@
 {% endblock %}
 
 {% block body %}
+<div class="row" style="padding-left: 25px">
+    <div class="span4">
+        {% if product.image %}
+        <img src="{{ asset(product.image.webPath) }}" class="pull-right" />
+        {% endif %}
+    </div>
+    <div class="span8">
+        <h2 class="nomb">{{ product.productName }}</h2>
+        <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
+        {% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}
 
-<h2 class="nomb">{{ product.productName }}</h2>
-<p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
-{% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}
+        <a class="btn btn-primary" href="{{ path("shop_product_cart",{"id":product.id}) }}">{% trans %}Put in cart{% endtrans %}</a>
+    </div>
+</div>
+<hr>
 <h2>{% trans %}Description{% endtrans %}</h2>
 <p>{{ product.description|raw }}</p>
 
-  {% if product.productAttributes|length > 0 %}
-  <h2>{% trans %}Attributes{% endtrans %}</h2>
-  <ul>
+{% if product.productAttributes|length > 0 %}
+<h2>{% trans %}Attributes{% endtrans %}</h2>
+<ul>
     {% if attr.start_date and attr.expire_date %}
     <li>{% trans with {'%start%':attr.nextStartDate|club_date,'%expire%':attr.nextExpireDate|club_date} %}Your subscription period is %start% - %expire%.{% endtrans %}</li>
     {% endif %}
@@ -50,7 +61,7 @@
     <li>{% trans with {'%stop_time%':attr.stop_time|club_time} %}This membership is active until <b>%stop_time%</b> in the day{% endtrans %}</li>
     {% endif %}
 
-  </ul>
-  {% endif %}
+</ul>
+{% endif %}
 
 {% endblock %}

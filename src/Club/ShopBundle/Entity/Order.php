@@ -599,4 +599,34 @@ class Order
     {
         return $this->cancelled;
     }
+
+    /**
+     * Remove order_status_history
+     *
+     * @param \Club\ShopBundle\Entity\OrderStatusHistory $orderStatusHistory
+     */
+    public function removeOrderStatusHistory(\Club\ShopBundle\Entity\OrderStatusHistory $orderStatusHistory)
+    {
+        $this->order_status_history->removeElement($orderStatusHistory);
+    }
+
+    /**
+     * Remove order_products
+     *
+     * @param \Club\ShopBundle\Entity\OrderProduct $orderProducts
+     */
+    public function removeOrderProduct(\Club\ShopBundle\Entity\OrderProduct $orderProducts)
+    {
+        $this->order_products->removeElement($orderProducts);
+    }
+
+    /**
+     * Remove purchase_log
+     *
+     * @param \Club\ShopBundle\Entity\PurchaseLog $purchaseLog
+     */
+    public function removePurchaseLog(\Club\ShopBundle\Entity\PurchaseLog $purchaseLog)
+    {
+        $this->purchase_log->removeElement($purchaseLog);
+    }
 }

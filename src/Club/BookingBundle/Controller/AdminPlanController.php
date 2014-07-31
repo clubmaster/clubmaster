@@ -5,6 +5,10 @@ namespace Club\BookingBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Club\BookingBundle\Entity\Plan;
+use Club\BookingBundle\Entity\PlanRepeat;
+use Club\BookingBundle\Form\PlanType;
 
 /**
  * @Route("/admin/booking/plan")
@@ -31,12 +35,12 @@ class AdminPlanController extends Controller
      * @Route("/new/{date}/{interval_id}", name="club_booking_plan_pre")
      * @Template()
      */
-    public function newAction($date, $interval_id=null)
+    public function newAction(Request $request, $date, $interval_id=null)
     {
-        $plan = new \Club\BookingBundle\Entity\Plan();
+        $plan = new Plan();
         $plan->setUser($this->getUser());
 
-        $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
+        $repeat = new PlanRepeat();
         $repeat->setPlan($plan);
         $plan->addPlanRepeat($repeat);
 
@@ -64,19 +68,21 @@ class AdminPlanController extends Controller
             $plan->addField($interval->getField());
         }
 
-        $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
+        $form = $this->createForm(new PlanType, $plan);
+        $form->handleRequest($request);
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
+        if ($form->isValid()) {
 
-            if ($form->isValid()) {
-                $em->persist($plan);
-                $em->flush();
+            $em->persist($plan);
+            $em->flush();
 
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->validateAvailable($plan);
+            $em->persist($plan);
+            $em->flush();
 
-                return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
-            }
+            $this->get('club_extra.flash')->addNotice();
+
+            return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
         }
 
         return array(
@@ -88,28 +94,30 @@ class AdminPlanController extends Controller
      * @Route("/edit/{id}")
      * @Template()
      */
-    public function editAction(\Club\BookingBundle\Entity\Plan $plan)
+    public function editAction(Request $request, Plan $plan)
     {
         if (!count($plan->getPlanRepeats())) {
-            $repeat = new \Club\BookingBundle\Entity\PlanRepeat();
+            $repeat = new PlanRepeat();
             $repeat->setPlan($plan);
             $plan->addPlanRepeat($repeat);
         }
 
-        $form = $this->createForm(new \Club\BookingBundle\Form\Plan, $plan);
+        $form = $this->createForm(new PlanType, $plan);
+        $form->handleRequest($request);
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($plan);
-                $em->flush();
+        if ($form->isValid()) {
 
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($plan);
+            $em->flush();
 
-                return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
-            }
+            $this->validateAvailable($plan);
+            $em->persist($plan);
+            $em->flush();
+
+            $this->get('club_extra.flash')->addNotice();
+
+            return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
         }
 
         return array(
@@ -121,16 +129,61 @@ class AdminPlanController extends Controller
     /**
      * @Route("/delete/{id}")
      */
-    public function deleteAction($id)
+    public function deleteAction(Plan $plan)
     {
         $em = $this->getDoctrine()->getManager();
-        $plan = $em->find('ClubBookingBundle:Plan',$this->getRequest()->get('id'));
 
         $em->remove($plan);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+    }
+
+    /**
+     * @Route("/overwrite/{id}")
+     */
+    public function overwriteAction(Plan $plan)
+    {
+        if ($plan->getStatus() == Plan::STATUS_PENDING) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $bookings = $this->get('club_booking.plan')
+                ->process($plan)
+                ->getBookings()
+                ;
+
+            foreach ($bookings as $booking) {
+                $this->get('club_booking.booking')
+                    ->setBooking($booking)
+                    ->remove()
+                    ;
+            }
+
+            $plan->setStatus(Plan::STATUS_ACTIVE);
+            $em->persist($plan);
+
+            $em->flush();
+
+            $this->get('club_extra.flash')->addNotice();
+        }
+
+        return $this->redirect($this->generateUrl('club_booking_adminplan_index'));
+    }
+
+    private function validateAvailable(Plan $plan)
+    {
+        if (!$this->get('club_booking.plan')->isAvailable($plan)) {
+            $plan->setStatus(Plan::STATUS_PENDING);
+
+            $this->get('club_extra.flash')->addError($this->get('translator')->trans(
+                'Plan is temporary inactive, you are about to overwrite some bookings, please take action, move the plan or delete the bookings'
+            ));
+
+        } else {
+            $plan->setStatus(Plan::STATUS_ACTIVE);
+        }
     }
 }

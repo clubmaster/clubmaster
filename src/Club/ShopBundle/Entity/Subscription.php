@@ -474,4 +474,44 @@ class Subscription
     {
         return $this->subscription_ticket;
     }
+
+    /**
+     * Remove subscription_attributes
+     *
+     * @param \Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes
+     */
+    public function removeSubscriptionAttribute(\Club\ShopBundle\Entity\SubscriptionAttribute $subscriptionAttributes)
+    {
+        $this->subscription_attributes->removeElement($subscriptionAttributes);
+    }
+
+    /**
+     * Remove subscription_ticket
+     *
+     * @param \Club\ShopBundle\Entity\SubscriptionTicket $subscriptionTicket
+     */
+    public function removeSubscriptionTicket(\Club\ShopBundle\Entity\SubscriptionTicket $subscriptionTicket)
+    {
+        $this->subscription_ticket->removeElement($subscriptionTicket);
+    }
+
+    /**
+     * Remove subscription_pauses
+     *
+     * @param \Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses
+     */
+    public function removeSubscriptionPause(\Club\ShopBundle\Entity\SubscriptionPause $subscriptionPauses)
+    {
+        $this->subscription_pauses->removeElement($subscriptionPauses);
+    }
+
+    /**
+     * Remove location
+     *
+     * @param \Club\UserBundle\Entity\Location $location
+     */
+    public function removeLocation(\Club\UserBundle\Entity\Location $location)
+    {
+        $this->location->removeElement($location);
+    }
 }

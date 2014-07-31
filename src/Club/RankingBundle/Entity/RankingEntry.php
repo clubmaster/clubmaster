@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_ranking_ranking_entry")
  * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\RankingEntryRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  *
  */
 class RankingEntry

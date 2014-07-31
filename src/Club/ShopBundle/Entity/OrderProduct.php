@@ -222,4 +222,14 @@ class OrderProduct extends EconomicProduct
     {
       return $this->getPrice()*$this->getQuantity();
     }
+
+    /**
+     * Remove order_product_attributes
+     *
+     * @param \Club\ShopBundle\Entity\OrderProductAttribute $orderProductAttributes
+     */
+    public function removeOrderProductAttribute(\Club\ShopBundle\Entity\OrderProductAttribute $orderProductAttributes)
+    {
+        $this->order_product_attributes->removeElement($orderProductAttributes);
+    }
 }

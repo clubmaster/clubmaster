@@ -423,6 +423,12 @@ class SymfonyRequirements extends RequirementCollection
             "Change the permissions of the \"<strong>$baseDir/logs/</strong>\" directory so that the web server can write into it."
         );
 
+        $this->addRequirement(
+            is_writable(__DIR__.'/../web/uploads'),
+            "web/uploads directory must be writable",
+            "Change the permissions of the \"<strong>web/uploads/</strong>\" directory so that the web server can write into it."
+        );
+
         $this->addPhpIniRequirement(
             'date.timezone', true, false,
             'date.timezone setting must be set',

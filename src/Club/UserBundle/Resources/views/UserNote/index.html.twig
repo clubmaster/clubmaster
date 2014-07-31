@@ -4,6 +4,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
+            <li><a href="{{ path('admin_user_edit', {'id':user.id}) }}">{% trans %}Edit user{% endtrans %}</a></li>
             <li><a href="{{ path('admin_user_note_new', {'id':user.id}) }}">{% trans %}Create note{% endtrans %}</a></li>
         </ul>
     </div>

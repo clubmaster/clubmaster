@@ -8,9 +8,9 @@ cmcl.ajax = {
 };
 
 cmcl.booking = {};
+cmcl.dialogWidth = 500;
 cmcl.ticker = {};
 cmcl.user = {};
-cmcl.keysbound = false;
 cmcl.app = {
   'timeout': 30,
   'refresh_overview': 600,
@@ -109,18 +109,6 @@ cmcl.attachListeners = function() {
 cmcl.initJQueryWidgets = function() {
     // Setup virtual keyboard.
 
-    $.keyboard.keyaction = {
-        enter : function(kb) {
-            kb.accept();
-
-            if (kb.$el.attr('id') == 'input_password') {
-                cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
-            } else {
-                $('#input_password').focus();
-            }
-        }
-    };
-
     $('input.key').keyboard(
         {
             display: {
@@ -136,14 +124,8 @@ cmcl.initJQueryWidgets = function() {
                 'meta1': [
                     'q w e r t y u i o p {bksp}',
                     'a s d f g h j k l {enter}',
-                    '{s} z x c v b n m @ . {s}',
+                    'z x c v b n m @ .',
                     '{default} {space} _ - {accept}'
-                ],
-                'shift': [
-                    'Q W E R T Y U I O P {bksp}',
-                    'A S D F G H J K L {enter}',
-                    '{s} Z X C V B N M @ . {s}',
-                    '{meta1} {space} _ - {accept}'
                 ],
                 'default': [
                     '1 2 3 4 5 6 7 8 9 0 {bksp}',
@@ -160,6 +142,8 @@ cmcl.initJQueryWidgets = function() {
             },
             autoAccept: true,
             usePreview: false,
+            enterNavigation: true,
+            tabNavigation: true,
             initialFocus : true,
             position: {
                 of : $('app'),
@@ -167,30 +151,24 @@ cmcl.initJQueryWidgets = function() {
                 at : 'center bottom'
             },
             visible: function(e, keyboard, el) {
-                if( !cmcl.keysbound &&  $('#input_search')[0] === el ) {
-
+                if($('#input_search')[0] === el ) {
                     $("#input_search").getkeyboard().$allKeys.click( function() {
-                        var search = $('#input_search').val(),
-                            regExp = new RegExp(search, 'i');
-
-                        $('#search_results').children().remove();
-                        if(search) {
-                            $.each(cmcl.data.users, function(index, user) {
-                                var fullname = user.first_name + ' ' + user.last_name+' ('+user.member_number+')';
-                                if(regExp.test(fullname)) {
-                                    $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
-                                } else if (search == user.member_number) {
-                                    $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
-                                };
-                            });
-                        }
-                        cmcl.booking.updateDialogButton();
+                        cmcl.booking.searchMember();
                     });
-                    cmcl.keysbound = true;
                 }
+
+                $("input").on("change", function() {
+                    if ($('#btn-login').is(':focus')) {
+                        cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
+                    }
+                });
             }
         }
     );
+
+    $("#input_search").on('keyup', function() {
+        cmcl.booking.searchMember();
+    });
 
     $('input:submit, button').button();
     $('#button_logout').hide();
@@ -212,6 +190,7 @@ cmcl.initJQueryWidgets = function() {
     // Setup dialogs.
     $('#login_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -221,11 +200,13 @@ cmcl.initJQueryWidgets = function() {
             },
             resizable: false,
             draggable: false,
-            buttons: {
-                "Login": function() {
+            buttons: [{
+                id: "btn-login",
+                text: "Login",
+                click: function() {
                     cmcl.ajax.login( $('#input_username').val(), $('#input_password').val() );
                 },
-            },
+            }],
             close: function() {
                 $('#input_username').val('');
                 $('#input_password').val('');
@@ -235,6 +216,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#user_search_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -268,6 +250,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#interval_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -287,6 +270,7 @@ cmcl.initJQueryWidgets = function() {
     );
     $('#booking_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {
@@ -316,6 +300,7 @@ cmcl.initJQueryWidgets = function() {
 
     $('#error_dialog').dialog(
         {
+            width: cmcl.dialogWidth,
             autoOpen: false,
             modal: true,
             position: {

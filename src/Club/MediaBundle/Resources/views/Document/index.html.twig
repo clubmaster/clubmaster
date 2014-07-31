@@ -1,0 +1,38 @@
+{% extends 'ClubMediaBundle::base.html.twig' %}
+
+{% block pagenav %}
+    {% include "ClubMediaBundle:Document:header.html.twig" %}
+{% endblock %}
+
+{% block body -%}
+<p>{% trans %}All the files you upload here will be public available to all members.{% endtrans %}</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans %}File{% endtrans %}</th>
+            <th>{% trans %}Size{% endtrans %}</th>
+            <th>{% trans %}Type{% endtrans %}</th>
+            <th>{% trans %}Created at{% endtrans %}</th>
+            <th>{% trans %}Actions{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+    <tr>
+        <td><a target="_open" href="{{ asset(entity.webPath) }}">{{ entity.name }}</a></td>
+        <td>{{ entity.size|club_filesize }}</td>
+        <td>{{ entity.type }}</td>
+        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <td>
+            {% include "ClubLayoutBundle:Default:download_link.html.twig" with {'url':asset(entity.webPath)} %}
+            {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('admin_media_document_delete', {'id':entity.id})} %}
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="5">{% trans %}There are no uploaded documents.{% endtrans %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

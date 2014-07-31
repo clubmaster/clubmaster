@@ -1,23 +1,27 @@
 cmcl.booking.initialize = function() {
-  // Fetch initial data from server.
-  cmcl.ajax.getUsers();
+    // Fetch initial data from server.
+    cmcl.ajax.getUsers();
 
-  // fetch locations
-  cmcl.ajax.getLocations();
+    // fetch locations
+    cmcl.ajax.getLocations();
 
-  // Fetch initial fields data from server.
-  cmcl.ajax.getFields(cmcl.data.location_id, cmcl.data.bookingdate );
+    // Fetch initial fields data from server.
+    cmcl.ajax.getFields(cmcl.data.location_id, cmcl.data.bookingdate );
 };
 
 cmcl.booking.updateFields = function() {
     var data = cmcl.data.fields[ cmcl.data.bookingdate.toYYYYMMDD() ],
         hourWidth = cmcl.app['min_width'];
 
-    if (data.info == undefined) {
+    if (data == "undefined") {
         cmcl.reload();
     }
 
-    hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
+    if (data.info == "undefined") {
+        cmcl.reload();
+    }
+
+    var hours = Math.ceil(new Date( new Date(data.info.end_time) - new Date(data.info.start_time) ).getHours());
 
     $('#overflow').children().remove();
     cmcl.data.intervalObjects = [];
@@ -32,22 +36,22 @@ cmcl.booking.updateFields = function() {
         $.each(field.intervals, function(index, interval) {
             var c_time = new Date(interval.start_time);
             if (start_time > c_time) {
-              start_time = c_time;
+                start_time = c_time;
             }
             intervals++;
         });
 
         if (intervals > max_intervals) {
-          max_intervals = intervals;
+            max_intervals = intervals;
         }
         intervals = 0;
     });
     if (max_intervals > 0) {
-      var width = $("div#overflow").width()-60;
-      var nf_width = width/max_intervals;
-      if (nf_width > cmcl.app['min_width']) {
-        hourWidth = nf_width;
-      }
+        var width = $("div#overflow").width()-60;
+        var nf_width = width/max_intervals;
+        if (nf_width > cmcl.app['min_width']) {
+            hourWidth = nf_width;
+        }
     }
 
     $.each(data.fields, function(index, field) {
@@ -73,7 +77,7 @@ cmcl.booking.updateFields = function() {
             var loggedIn = cmcl.data.user !== null;
             var intervalObject = {
                 element: intervalElement,
-                data: interval
+            data: interval
             };
 
             cmcl.data.intervalObjects.push(intervalObject);
@@ -93,18 +97,21 @@ cmcl.booking.updateFields = function() {
     });
 
     if (fields > 0) {
-      var height = $("div#overflow").height()-35;
-      var nf_height = height/fields;
-      if (nf_height > cmcl.app['min_height']) {
-        $(".field").css('height', (nf_height+1)+'px');
-        $(".interval_wrapper").css('height', nf_height+'px');
-      }
+        var height = $("div#overflow").height()-35;
+        var nf_height = height/fields;
+        if (nf_height > cmcl.app['min_height']) {
+            $(".field").css('height', (nf_height+1)+'px');
+            $(".interval_wrapper").css('height', nf_height+'px');
+        }
     }
 
     var now = new Date();
     var diff = now.getTime()-start_time.getTime();
     diff = diff/1000/60/60;
     $('#overflow').scrollLeft((hourWidth*diff)-100);
+
+    $("div#overflow").append('<div id="timespan"></div>');
+    $("div#timespan").css('width', (hourWidth*diff));
 };
 
 
@@ -121,9 +128,9 @@ cmcl.booking.updateBookings = function() {
             var partner = '';
 
             if (booking.guest) {
-              partner = 'Gæst';
+                partner = 'Gæst';
             } else if (booking.users) {
-              partner = booking.users[0].first_name+' '+booking.users[0].last_name;
+                partner = booking.users[0].first_name+' '+booking.users[0].last_name;
             }
             intervalObject.element.html('<div style="margin: 5px"><span>'+booking.user.first_name+' '+booking.user.last_name+' - '+partner+'</span></div>');
 
@@ -140,18 +147,18 @@ cmcl.booking.updateBookings = function() {
                 $.each(intervalObjects, function(index, intervalObject) {
                     intervalObject.element.addClass(type === 'team' ? 'book-team' : 'book-plan');
                     if (type == 'team') {
-                      intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.team_name+'</span></div>');
+                        intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.team_name+'</span></div>');
                     } else if (type == 'plan') {
-                      intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.name+'</span></div>');
+                        intervalObject.element.html('<div id="'+elementId+'" style="margin: 5px"><span>'+booking.name+'</span></div>');
                     }
                     intervalObject.data['booking'] = booking;
 
                     if (booking.color != null) {
                         intervalObject.element.css('background', '-webkit-linear-gradient(top, '+booking.color+' 75%,rgba(49,49,49,1) 95%,rgba(49,49,49,0.8) 100%');
-                        intervalObject.element.css('color', contrastingColor(booking.color.replace(/^#/, "")));
-                    }
-                });
-            });
+                            intervalObject.element.css('color', contrastingColor(booking.color.replace(/^#/, "")));
+                            }
+                            });
+                        });
         }
     });
 };
@@ -170,7 +177,7 @@ cmcl.booking.showBookingDialog = function(intervalObject) {
     var location_name = '';
     $.each(cmcl.data.locations, function(index, location) {
         if (location.id == cmcl.data.location_id) {
-          location_name = location.location_name;
+            location_name = location.location_name;
         }
     });
 
@@ -178,7 +185,7 @@ cmcl.booking.showBookingDialog = function(intervalObject) {
     var d = new Date();
     $.each(cmcl.data.fields[d.toString('yyyy-MM-dd')].fields, function(index, field) {
         if (field.id == data.field) {
-          field_name = field.name;
+            field_name = field.name;
         }
     });
 
@@ -188,61 +195,61 @@ cmcl.booking.showBookingDialog = function(intervalObject) {
     $('.interval_time span').text(start.toString('HH:mm')+' - '+end.toString('HH:mm'));
 
     if (data.booking) {
-      $('.interval_confirmed').hide();
-      $('.interval_booker').show();
+        $('.interval_confirmed').hide();
+        $('.interval_booker').show();
 
-      if (data.booking.type == 'booking') {
-        $('.interval_confirmed').show();
+        if (data.booking.type == 'booking') {
+            $('.interval_confirmed').show();
 
-        if (data.booking.confirmed) {
-          $('.interval_confirmed span').text('Ja');
-        } else {
-          $('.interval_confirmed span').text('Nej');
+            if (data.booking.confirmed) {
+                $('.interval_confirmed span').text('Ja');
+            } else {
+                $('.interval_confirmed span').text('Nej');
+            }
+
+            var userBooking = cmcl.data.user && (cmcl.data.user.id === data.booking.user.id || (data.booking.users && cmcl.data.user.id === data.booking.users[0].id)) && !past;
+            if (userBooking) {
+                $(".ui-dialog-buttonpane button:contains('Slet')").button("enable");
+            } else {
+                $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
+            }
+
+            $('.interval_partner').show();
+
+            $('.interval_booker span').text(data.booking.user.first_name+' '+data.booking.user.last_name);
+            if (data.booking.guest) {
+                $('.interval_partner span').text('Gæst');
+            } else if (data.booking.users) {
+                $('.interval_partner span').text(data.booking.users[0].first_name+' '+data.booking.users[0].last_name);
+            }
+        } else if (data.booking.type == 'team') {
+            $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
+            $('.interval_booker span').text(data.booking.team_name);
+            $('.interval_partner').hide();
+        } else if (data.booking.type == 'plan') {
+            $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
+            $('.interval_booker span').text(data.booking.name);
+            $('.interval_partner').hide();
         }
-
-        var userBooking = cmcl.data.user && (cmcl.data.user.id === data.booking.user.id || (data.booking.users && cmcl.data.user.id === data.booking.users[0].id)) && !past;
-        if (userBooking) {
-          $(".ui-dialog-buttonpane button:contains('Slet')").button("enable");
-        } else {
-          $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
-        }
-
-        $('.interval_partner').show();
-
-        $('.interval_booker span').text(data.booking.user.first_name+' '+data.booking.user.last_name);
-        if (data.booking.guest) {
-          $('.interval_partner span').text('Gæst');
-        } else if (data.booking.users) {
-          $('.interval_partner span').text(data.booking.users[0].first_name+' '+data.booking.users[0].last_name);
-        }
-      } else if (data.booking.type == 'team') {
-        $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
-        $('.interval_booker span').text(data.booking.team_name);
-        $('.interval_partner').hide();
-      } else if (data.booking.type == 'plan') {
-        $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
-        $('.interval_booker span').text(data.booking.name);
-        $('.interval_partner').hide();
-      }
     } else {
-      $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
-      $('.interval_booker').hide();
-      $('.interval_partner').hide();
-      $('.interval_confirmed').hide();
+        $(".ui-dialog-buttonpane button:contains('Slet')").button("disable");
+        $('.interval_booker').hide();
+        $('.interval_partner').hide();
+        $('.interval_confirmed').hide();
     }
 
     if (past || data.booking) {
-      $(".ui-dialog-buttonpane button:contains('Find medlem')").button("disable");
-      $(".ui-dialog-buttonpane button:contains('Book')").button("disable");
+        $(".ui-dialog-buttonpane button:contains('Find medlem')").button("disable");
+        $(".ui-dialog-buttonpane button:contains('Book')").button("disable");
     } else {
-      $(".ui-dialog-buttonpane button:contains('Find medlem')").button("enable");
-      $(".ui-dialog-buttonpane button:contains('Book')").button("enable");
+        $(".ui-dialog-buttonpane button:contains('Find medlem')").button("enable");
+        $(".ui-dialog-buttonpane button:contains('Book')").button("enable");
     }
 
     if (loggedIn) {
-      $('#booking_dialog').dialog('open');
+        $('#booking_dialog').dialog('open');
     } else {
-      $('#interval_dialog').dialog('open');
+        $('#interval_dialog').dialog('open');
     }
 };
 
@@ -258,18 +265,39 @@ cmcl.booking.getAffectedIntervals = function(fieldId, inStartTime, inEndTime) {
 
         if(data.field == fieldId) {
             if(
-               (inStartTime.compareTo(startTime) <= 0 && inEndTime.compareTo(endTime) >= 0) ||
-               (startTime.compareTo(inStartTime) == -1 && endTime.compareTo(inStartTime) == 1) ||
-               (startTime.compareTo(inEndTime) == -1 && endTime.compareTo(inEndTime) == 1)
-            ) {
-                foundElements.push(intervalObject);
-            }
+                (inStartTime.compareTo(startTime) <= 0 && inEndTime.compareTo(endTime) >= 0) ||
+                (startTime.compareTo(inStartTime) == -1 && endTime.compareTo(inStartTime) == 1) ||
+                (startTime.compareTo(inEndTime) == -1 && endTime.compareTo(inEndTime) == 1)
+              ) {
+                  foundElements.push(intervalObject);
+              }
         }
     });
 
     return foundElements;
 };
 
+
+cmcl.booking.searchMember = function() {
+    var search = $('#input_search').val(),
+        regExp = new RegExp(search, 'i');
+
+    $('#search_results').children().remove();
+
+    if(search) {
+        $.each(cmcl.data.users, function(index, user) {
+            var fullname = user.first_name + ' ' + user.last_name+' ('+user.member_number+')';
+
+            if(regExp.test(fullname)) {
+                $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
+            } else if (search == user.member_number) {
+                $('#search_results').append('<option value="' + user.id + '">' + fullname + '</option>');
+            };
+        });
+    }
+
+    cmcl.booking.updateDialogButton();
+}
 
 cmcl.booking.updateDialogButton = function() {
     var user_id = $('#search_results').val();
@@ -293,7 +321,7 @@ function hexToRGBArray(color) {
     if (color.length === 3)
         color = color.charAt(0) + color.charAt(0) + color.charAt(1) + color.charAt(1) + color.charAt(2) + color.charAt(2);
     else if (color.length !== 6)
-        throw('Invalid hex color: ' + color);
+        return 'b85959';
     var rgb = [];
     for (var i = 0; i <= 2; i++)
         rgb[i] = parseInt(color.substr(i * 2, 2), 16);

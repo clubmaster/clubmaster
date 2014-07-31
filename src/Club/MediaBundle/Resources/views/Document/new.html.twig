@@ -1,0 +1,18 @@
+{% extends 'ClubMediaBundle::base.html.twig' %}
+
+{% block pagenav %}
+    {% include "ClubMediaBundle:Document:header.html.twig" %}
+{% endblock %}
+
+{% block body -%}
+    {{ form_start(form) }}
+
+    {{ form_row(form.file) }}
+
+    <div class="form-actions">
+        {{ form_widget(form.save, {'label':'Save changes'|trans}) }}
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

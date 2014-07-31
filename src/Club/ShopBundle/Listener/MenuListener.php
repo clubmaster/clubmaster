@@ -77,14 +77,16 @@ class MenuListener
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        $menu = array();
+        if ($this->container->getParameter('club_shop.view_shop')) {
+            $menu = array();
 
-        $menu[45] = array(
-            'name' => $this->translator->trans('Shop'),
-            'route' => $this->router->generate('shop'),
-            'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
-            'text' => $this->translator->trans('Talk a walk in our shop, you will find everything that the club offers of products and services.')
-        );
-        $event->appendMenu($menu);
+            $menu[45] = array(
+                'name' => $this->translator->trans('Shop'),
+                'route' => $this->router->generate('shop'),
+                'image' => 'bundles/clublayout/images/icons/32x32/basket.png',
+                'text' => $this->translator->trans('Talk a walk in our shop, you will find everything that the club offers of products and services.')
+            );
+            $event->appendMenu($menu);
+        }
     }
 }

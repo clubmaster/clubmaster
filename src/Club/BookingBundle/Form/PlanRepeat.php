@@ -39,11 +39,17 @@ class PlanRepeat extends AbstractType
         ));
         $builder->add('repeat_on', 'day', array(
             'multiple' => 'true',
-            'required' => false
+            'required' => false,
+            'attr' => array(
+                'size' => 7
+            )
         ));
         $builder->add('repeat_on_hour', 'hour', array(
             'multiple' => 'true',
-            'required' => false
+            'required' => false,
+            'attr' => array(
+                'size' => 10
+            )
         ));
         $builder->add('repeat_by', 'choice', array(
             'choices' => $repeat_by

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="Club\ShopBundle\Entity\ProductAttributeRepository")
  * @ORM\Table(name="club_shop_product_attribute")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  *
  */
 class ProductAttribute
