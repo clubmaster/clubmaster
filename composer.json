@@ -17,12 +17,15 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0",
-        "sensio/generator-bundle": "~2.3",
         "clubmaster/extra": "1.*",
         "clubmaster/quickpay": "1.*",
         "clubmaster/economic": "1.*",
         "clubmaster/formextra": "1.*",
         "sabre/vobject": "3.*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
+        "incenteev/composer-parameter-handler": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [
