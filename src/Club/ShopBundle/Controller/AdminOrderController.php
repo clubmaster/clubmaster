@@ -30,6 +30,7 @@ class AdminOrderController extends Controller
       );
 
       return array(
+          'user' => $user,
           'orders' => $orders
       );
   }

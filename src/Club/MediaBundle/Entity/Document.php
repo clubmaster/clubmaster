@@ -19,6 +19,7 @@ class Document
 
     /**
      * @Assert\File
+     * @Assert\NotBlank
      */
     private $file;
 
@@ -354,7 +355,7 @@ class Document
     /**
      * Get priority
      *
-     * @return integer 
+     * @return integer
      */
     public function getPriority()
     {

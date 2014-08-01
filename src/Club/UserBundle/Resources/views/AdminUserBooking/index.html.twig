@@ -1,5 +1,9 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubUserBundle:AdminUser:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <table class="table">
   <thead>

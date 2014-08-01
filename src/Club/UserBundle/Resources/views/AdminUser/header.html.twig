@@ -1,7 +1,6 @@
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
             <li><a href="{{ path('admin_user_edit', { 'id':user.id }) }}">{% trans %}Edit{% endtrans %}</a></li>
             <li><a href="{{ path('admin_shop_subscription', { 'id':user.id }) }}">{% trans %}Subscription{% endtrans %}</a></li>
             <li><a href="{{ path('club_shop_adminorder_user', { 'id':user.id }) }}">{% trans %}Order{% endtrans %}</a></li>
@@ -13,6 +12,4 @@
             <li><a href="{{ path('admin_user_document', { 'id':user.id }) }}">{% trans %}Document{% endtrans %}</a></li>
         </ul>
     </div>
-</div>
-{% endblock %}
-
+</nav>

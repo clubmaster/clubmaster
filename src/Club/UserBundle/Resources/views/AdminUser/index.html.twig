@@ -15,9 +15,9 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
             <li><a href="{{ path('admin_user_new') }}">{% trans %}Create user{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuserfilter_index') }}">{% trans %}Search{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_adminuserimport_index') }}">{% trans %}Import users{% endtrans %}</a></li>
@@ -25,7 +25,7 @@ $(document).ready(function() {
             <li><a href="{{ path('club_user_adminuser_message') }}">{% trans %}Send message{% endtrans %}</a></li>
         </ul>
     </div>
-</div>
+</nav>
 {% endblock %}
 
 {% block body %}

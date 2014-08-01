@@ -1,8 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% include "ClubUserBundle:AdminUser:header.html.twig" %}
+{% endblock %}
+
+{% block body %}
 {% include "ClubLogBundle:Log:log_table.html.twig" %}
 
 {% endblock %}

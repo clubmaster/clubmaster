@@ -34,6 +34,11 @@ security:
                 login_path: /login
             logout:
                 path: /logout
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000
+                path:     /
+                domain:   ~
 
     access_control:
         - { path: ^/(en|da)/user/ical, roles: IS_AUTHENTICATED_ANONYMOUSLY }

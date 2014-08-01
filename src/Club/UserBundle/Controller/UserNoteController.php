@@ -71,6 +71,7 @@ class UserNoteController extends Controller
 
     return array(
       'user_note' => $user_note,
+      'user' => $user_note->getUser(),
       'form' => $res->createView()
     );
   }

@@ -1,3 +1,7 @@
+1.3.6
+    * Added, remember me functionality to login
+    * Updated, bootstrap from version 2 to version 3
+
 1.3.5 (2014-07-31)
     * Fixed, hide_show parameter also hides from dashboard
     * Added, product image

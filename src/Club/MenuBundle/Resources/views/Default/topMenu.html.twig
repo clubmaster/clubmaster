@@ -39,8 +39,8 @@
             </ul>
             {% endif %}
 
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <ul class="nav navbar-nav navbar-right">
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
                 <li><a href="{{ path('club_dashboard_dashboard_index') }}"><img src="{{ asset('bundles/clublayout/images/icons/16x16/user.png') }}" /> {{ app.user.name }}</a></li>
                 <li class="dropdown">
@@ -60,21 +60,45 @@
                 </ul>
                 </li>
 
-            </ul>
             {% else %}
-            <div class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right" role="form" method="POST" action="{{ path('login_check') }}">
-                    <div class="form-group">
-                        <input type="text" placeholder="Username" class="form-control" name="_username">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control" name="_password">
-                    </div>
-                    <button type="submit" class="btn btn-success">{% trans %}Login{% endtrans %}</button>
-                </form>
-            </div><!--/.navbar-collapse -->
+                <li class="dropdown" id="menuLogin">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+                <div class="dropdown-menu" style="padding:17px; width: 400px;">
+
+                    <form class="form-horizontal" role="form" method="POST" action="{{ path('login_check') }}">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">{% trans %}Username{% endtrans %}</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="{% trans %}Username{% endtrans %}" name="_username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">{% trans %}Password{% endtrans %}</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-success">{% trans %}Login{% endtrans %}</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                </li>
 
             {% endif %}
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>

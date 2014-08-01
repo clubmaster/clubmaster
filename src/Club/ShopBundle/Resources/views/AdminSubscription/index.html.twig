@@ -1,8 +1,10 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% include "ClubUserBundle:AdminUser:header.html.twig" %}
+{% endblock %}
+
+{% block body %}
 {% include "ClubShopBundle:AdminSubscription:subscription_table.html.twig" with {'user': user} %}
 
 {% endblock %}
