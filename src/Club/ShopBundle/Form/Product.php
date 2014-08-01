@@ -31,9 +31,6 @@ class Product extends AbstractType
                 'required' => false,
                 'help' => 'Account number in accounting program'
             ))
-            ->add('active', 'checkbox', array(
-                'required' => false
-            ))
             ->add('image', new ImageType())
             ;
     }

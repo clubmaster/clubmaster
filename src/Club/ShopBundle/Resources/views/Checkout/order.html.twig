@@ -4,13 +4,13 @@
 
 <form method="POST" action="{{ path('shop_checkout_order') }}" class="form-horizontal">
 
-    <div class="row-fluid">
-        <div class="span6">
+    <div class="row">
+        <div class="col-sm-6">
             <h3>Customer</h3>
             {{ form_widget(form.customer_address) }}
         </div>
 
-        <div class="span6">
+        <div class="col-sm-6">
             <h3>Shipping</h3>
             {{ form_row(form.shipping) }}
         </div>

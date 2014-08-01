@@ -39,11 +39,13 @@ $(document).ready(function() {
                 if (i > -1) {
                     if (i%3 == 0) {
                         lastInt = i;
-                        $('div#overview').append('<div class="row-fluid" id="weather-list-'+lastInt+'">');
+                        $('div#overview').append('<div class="row" id="weather-list-'+lastInt+'">');
                     }
 
                     var date = new Date(value.dt*1000);
-                    $('div#weather-list-'+lastInt).append('<div class="span4 well" id="weather-list-int-'+i+'">');
+
+                    $('div#weather-list-'+lastInt).append('<div class="col-sm-4" id="weather-list-well-'+i+'">');
+                    $('div#weather-list-well-'+i).append('<div class="well" id="weather-list-int-'+i+'">');
                     $('div#weather-list-int-'+i).append('<h2><img alt="'+value.weather[0].description+'" src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png" /> <small>'+getDay(date)+'</small></h2>');
                     $('div#weather-list-int-'+i).append('<p id="weather-list-p-'+i+'"></p>');
                     $('p#weather-list-p-'+i).append('Temperature: '+Math.round(value.temp.min)+degree+'/'+Math.round(value.temp.max)+degree+'<br>');

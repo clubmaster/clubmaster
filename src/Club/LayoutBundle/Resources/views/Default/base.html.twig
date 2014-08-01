@@ -1,105 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset=utf-8" />
-    <title>{% block title %}{{ club_title }}{% endblock %}</title>
-    <meta name="description" content="ClubMaster is an open source management tool">
-    <meta name="author" content="Michael Holm">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset=utf-8" />
+<title>{% block title %}{{ club_title }}{% endblock %}</title>
+<meta name="description" content="ClubMaster is an open source management tool">
+<meta name="author" content="Michael Holm">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    {% stylesheets "@ClubLayoutBundle/Resources/public/css/*" %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/black-tie/jquery-ui.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+{% stylesheets "@ClubLayoutBundle/Resources/public/css/*" %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    {% javascripts "@ClubLayoutBundle/Resources/public/js/*" %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/clublayout/images/apple-touch-icon-144-precomposed.png') }}">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/clublayout/images/apple-touch-icon-114-precomposed.png') }}">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/clublayout/images/apple-touch-icon-72-precomposed.png') }}">
+<link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/clublayout/images/apple-touch-icon-57-precomposed.png') }}">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/clublayout/images/apple-touch-icon-144-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/clublayout/images/apple-touch-icon-114-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/clublayout/images/apple-touch-icon-72-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/clublayout/images/apple-touch-icon-57-precomposed.png') }}">
-
-    {% block stylesheets %}{% endblock %}
-    {% block javascripts %}{% endblock %}
-    {% block metatags %}{% endblock %}
-    <script>
-        $(document).ready( function () {
-            $('input[autofocus]').trigger('focus');//force fire it on the autofocus element
-        });
-    </script>
-
+{% block stylesheets %}{% endblock %}
+{% block metatags %}{% endblock %}
 
 </head>
 <body>
 
-    {% block after_body %}{% endblock %}
-    {% block topmenu %}
-    {% render controller("ClubMenuBundle:Default:topMenu") %}
-    {% endblock %}
+{% block after_body %}{% endblock %}
+{% block topmenu %}
+{% render controller("ClubMenuBundle:Default:topMenu") %}
+{% endblock %}
 
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="row">
 
-      <div class="row-fluid">
-
-        {% if not is_granted('IS_AUTHENTICATED_FULLY') or app.user.hasAdminPrivilege %}
-        <div class="span3">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.hasAdminPrivilege %}
+        <div class="col-sm-3 col-md-2 sidebar">
             {% block leftmenu %}
-            {% include "ClubLayoutBundle:Default:login_form.html.twig" %}
             {% render controller("ClubMenuBundle:Default:leftMenu") %}
             {% endblock %}
-        </div><!--/span-->
+        </div>
 
-        <div class="span9">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
         {% else %}
 
-        <div class="span12">
+        <div class="col-xs-12">
 
         {% endif %}
 
-            {% if is_granted('ROLE_MEMBER_ADMIN') %}
-            {% render controller("ClubLayoutBundle:Misc:Search") %}
-            {% endif %}
+        {% if is_granted('ROLE_MEMBER_ADMIN') %}
+                {% render controller("ClubLayoutBundle:Misc:Search") %}
+        {% endif %}
 
-            {% block header %}<div class="page-header"><h1>{{ club_title }}</h1></div>{% endblock %}
-            {% block pagenav %}{% endblock %}
+        {% block header %}
+            <h1 class="page-header">
+                {% if club_pageimage != '' %}
+                <img class="img-polaroid" src="{{ asset(club_pageimage) }}" />
+                {% endif %}
+                {{ club_pageheader }}
+            </h1>
+        {% endblock %}
+        {% block pagenav %}{% endblock %}
 
-            {% if is_granted('ROLE_ADMIN') %}
-                {% block logger %}{% render controller("ClubLogBundle:Log:LogView") %}{% endblock %}
-            {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% block logger %}{% render controller("ClubLogBundle:Log:LogView") %}{% endblock %}
+        {% endif %}
 
-            {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
-            {% block body %}{% endblock %}
+        {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
+        {% block body %}{% endblock %}
 
-        </div>
-      </div><!--/row-fluid -->
+    </div>
+</div>
 
-      <hr>
-      <footer>
-          <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
-      </footer>
-    </div><!--/container-fluid -->
+<hr>
+<footer>
+    <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
+</footer>
 
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+{% javascripts "@ClubLayoutBundle/Resources/public/js/*" %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block javascripts %}{% endblock %}
 </body>
 </html>

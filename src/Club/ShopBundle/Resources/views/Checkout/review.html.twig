@@ -6,8 +6,8 @@
 
 {% include "ClubShopBundle:Checkout:cart_confirm.html.twig" %}
 
-<div class="row-fluid">
-    <div class="span4">
+<div class="row">
+    <div class="col-sm-4">
         <h3>{% trans %}Customer Information{% endtrans %}</h3>
         <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit customer{% endtrans %}</a></p>
 
@@ -20,14 +20,14 @@
         {% trans with {'%country%':cart.customerAddress.country} %}Country: %country%{% endtrans %}</p>
     </div>
 
-    <div class="span4">
+    <div class="col-sm-4">
         <h3>{% trans %}Shipping Information{% endtrans %}</h3>
         <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit shipping{% endtrans %}</a></p>
 
         <p>{{ cart.shipping }}</p>
     </div>
 
-    <div class="span4">
+    <div class="col-sm-4">
         <h3>{% trans %}Payment Method{% endtrans %}</h3>
 
         {% for payment in payments %}

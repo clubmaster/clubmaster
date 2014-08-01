@@ -1,5 +1,15 @@
+{% if url is defined %}
+{% if flag == 1 %}
+<a href="{{ url }} " onclick="return confirm('{% trans %}Are you sure?{% endtrans %}'"><img src="{{ asset('bundles/clublayout/images/icons/16x16/tick.png') }}" title="{% trans %}Enabled{% endtrans %}" alt="{% trans %}Enabled{% endtrans %}" /></a>
+{% else %}
+<a href="{{ url }} " onclick="return confirm('{% trans %}Are you sure?{% endtrans %}'"><img src="{{ asset('bundles/clublayout/images/icons/16x16/cancel.png') }}" title="{% trans %}Disabled{% endtrans %}" alt="{% trans %}Disabled{% endtrans %}" /></a>
+{% endif %}
+
+{% else %}
 {% if flag == 1 %}
 <img src="{{ asset('bundles/clublayout/images/icons/16x16/tick.png') }}" title="{% trans %}Enabled{% endtrans %}" alt="{% trans %}Enabled{% endtrans %}" />
 {% else %}
 <img src="{{ asset('bundles/clublayout/images/icons/16x16/cancel.png') }}" title="{% trans %}Disabled{% endtrans %}" alt="{% trans %}Disabled{% endtrans %}" />
+{% endif %}
+
 {% endif %}

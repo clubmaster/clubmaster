@@ -1,28 +1,21 @@
 {% if menu|length > 0 %}
-<div class="well sidebar-nav">
-    <ul class="nav nav-list">
+    {% for item in menu %}
+<ul class="nav nav-sidebar">
 
-        {% for item in menu %}
+    {% if item.header is defined %}
+    <li>{% if item.image is defined %}<img src="{{ asset(item.image) }}" /> {% endif %}{{ item.header }}</li>
+    {% else %}
+    <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
+    {% endif %}
 
-            {% if item.header is defined %}
-                <li class="nav-header">{% if item.image is defined %}<img src="{{ asset(item.image) }}" /> {% endif %}{{ item.header }}</li>
-            {% else %}
-                <li {% if item.active is defined %}class="active"{% endif %}><a href="{{ item.route }}">{{ item.name }}</a></li>
-            {% endif %}
+    {% if item.items is defined %}
 
-            {% if item.items is defined %}
+    {% for subitem in item.items %}
+    <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
+    {% endfor %}
 
-                {% for subitem in item.items %}
-                    <li><a href="{{ subitem.route }}">{{ subitem.name }}</a></li>
-                {% endfor %}
+    {% endif %}
 
-            {% endif %}
-
-            {% if not loop.last %}
-            <li class="divider"></li>
-            {% endif %}
-        {% endfor %}
-
-    </ul>
-</div><!--/.well -->
+</ul>
+{% endfor %}
 {% endif %}

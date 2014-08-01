@@ -1,16 +1,16 @@
 {% extends "ClubWeatherBundle::base.html.twig" %}
 
 {% block javascripts %}
-    <script type="text/javascript">
-        var currUrl = "{{ curr|raw }}";
-        var forecastUrl = "{{ forecastUrl|raw }}";
-        var units = "{{ units }}";
-        var degree = "{{ degree }}";
-    </script>
+<script type="text/javascript">
+var currUrl = "{{ curr|raw }}";
+var forecastUrl = "{{ forecastUrl|raw }}";
+var units = "{{ units }}";
+var degree = "{{ degree }}";
+</script>
 
-    {% javascripts "@ClubWeatherBundle/Resources/public/js/weather.js" %}
-    <script src="{{ asset_url }}" type="text/javascript"></script>
-    {% endjavascripts %}
+{% javascripts "@ClubWeatherBundle/Resources/public/js/weather.js" %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}
 {% endblock %}
 
 {% block stylesheets %}
@@ -20,21 +20,25 @@ div#overview { display: none }
 {% endblock %}
 
 {% block body %}
-        <div class="span11" id="status">
-            <div class="hero-unit">
-                <h3>{% trans %}Fetching weather informations from openweathermap.org...{% endtrans %}</h3>
-            </div>
+<div class="row">
+    <div class="col-xs-12" id="status">
+        <div class="hero-unit">
+            <h3>{% trans %}Fetching weather informations from openweathermap.org...{% endtrans %}</h3>
         </div>
+    </div>
+</div>
 
-        <div class="span11" id="overview">
-          <div class="hero-unit">
+<div class="row">
+    <div class="col-xs-12" id="overview">
+        <div class="hero-unit">
             <h1><img id="curr-weather" alt="" src="" /> {% trans %}Weather right now!{% endtrans %}</h1>
             <p>
-                {% trans %}Location: <span id="curr-location"></span>{% endtrans %}<br>
-                {% trans with {'%degree%':degree} %}Current temperature: <span id="curr-temp"></span>&deg;%degree%{% endtrans %}<br>
-                {% trans %}Sunrise/sunset: <span id="curr-rise"></span>/<span id="curr-set"></span>{% endtrans %}<br>
-                {% trans with {'%units%':units} %}Current wind: <span id="curr-speed"></span>%units%, <span id="curr-dir"></span>{% endtrans %}<br />
+            {% trans %}Location: <span id="curr-location"></span>{% endtrans %}<br>
+            {% trans with {'%degree%':degree} %}Current temperature: <span id="curr-temp"></span>&deg;%degree%{% endtrans %}<br>
+            {% trans %}Sunrise/sunset: <span id="curr-rise"></span>/<span id="curr-set"></span>{% endtrans %}<br>
+            {% trans with {'%units%':units} %}Current wind: <span id="curr-speed"></span>%units%, <span id="curr-dir"></span>{% endtrans %}<br />
             </p>
-          </div>
-       </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

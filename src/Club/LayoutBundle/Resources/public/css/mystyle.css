@@ -1,3 +1,7 @@
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 table.table th.action {
     width: 120px;
 }

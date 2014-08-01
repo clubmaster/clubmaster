@@ -1,5 +1,5 @@
-<div class="row-fluid">
-    <div class="span6">
+<div class="row">
+    <div class="col-sm-6">
         <div class="well">
         <h3>{% trans %}Booking{% endtrans %}</h3>
         <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="span6">
+    <div class="col-sm-6">
         <div class="well">
         <h3>{% trans %}Guest booking{% endtrans %}</h3>
         <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">

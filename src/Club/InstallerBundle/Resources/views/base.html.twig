@@ -59,21 +59,12 @@
 
     <div class="container-fluid">
 
-      <div class="row-fluid">
+        {% block header %}{% endblock %}
+        {% block pagenav %}{% endblock %}
+        {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
+        {% block body %}{% endblock %}
 
-        <div class="span12">
-
-            {% block header %}{% endblock %}
-
-            {% block pagenav %}{% endblock %}
-
-            {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
-            {% block body %}{% endblock %}
-
-        </div>
-      </div><!--/row-fluid -->
-
-      <hr>
+        <hr>
       <footer>
           <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
       </footer>

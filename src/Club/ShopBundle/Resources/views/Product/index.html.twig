@@ -12,12 +12,12 @@
 
 {% block body %}
 <div class="row" style="padding-left: 25px">
-    <div class="span4">
+    <div class="col-sm-4">
         {% if product.image %}
         <img src="{{ asset(product.image.webPath) }}" class="pull-right" />
         {% endif %}
     </div>
-    <div class="span8">
+    <div class="col-sm-8">
         <h2 class="nomb">{{ product.productName }}</h2>
         <p>{% trans with {'%price%':product.specialPrice|club_price} %}Price: %price%{% endtrans %}</p>
         {% if product.quantity != '-1' %}<p>{% trans with {'%stock%':product.quantity} %}In stock: %stock%{% endtrans %}</p>{% endif %}

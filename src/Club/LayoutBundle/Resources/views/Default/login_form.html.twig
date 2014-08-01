@@ -1,17 +1,15 @@
-            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="well">
-                <!-- Login form -->
-                <form method="post" action="{{ path('login_check') }}">
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+<!-- Login form -->
+<form method="post" action="{{ path('login_check') }}">
 
-                <fieldset>
-                    <legend>{% trans %}Login{% endtrans %}</legend>
-                    <p><input class="span12" type="text" name="_username" id="login_username" placeholder="{% trans %}Member number{% endtrans %}" autofocus /></p>
-                    <p><input class="span12" type="password" name="_password" placeholder="{% trans %}Password{% endtrans %}" /></p>
-                    <p><a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a></p>
-                    <p><button type="submit" class="btn btn-primary">{% trans %}Login{% endtrans %}</button></p>
-                </fieldset>
+    <fieldset>
+        <legend>{% trans %}Login{% endtrans %}</legend>
+        <p><input type="text" name="_username" id="login_username" placeholder="{% trans %}Member number{% endtrans %}" autofocus /></p>
+        <p><input type="password" name="_password" placeholder="{% trans %}Password{% endtrans %}" /></p>
+        <p><a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a></p>
+        <p><button type="submit" class="btn btn-primary">{% trans %}Login{% endtrans %}</button></p>
+    </fieldset>
 
-            </form>
-            </div>
-            {% endif %}
+</form>
+{% endif %}
 

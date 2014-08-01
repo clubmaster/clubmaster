@@ -1,9 +1,9 @@
 {% for item in menu %}
     {% if loop.index0 is divisibleby(3) %}
-      <div class="row-fluid">
+      <div class="row">
     {% endif %}
 
-        <div class="span4">
+        <div class="col-sm-4">
           <h3><img src="{{ asset(item.image) }}" />
           <a href="{{ item.route }}">{{ item.name }}</a></h3>
           <p>{{ item.text }}</p>

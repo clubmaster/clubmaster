@@ -277,7 +277,6 @@ cmcl.booking.getAffectedIntervals = function(fieldId, inStartTime, inEndTime) {
     return foundElements;
 };
 
-
 cmcl.booking.searchMember = function() {
     var search = $('#input_search').val(),
         regExp = new RegExp(search, 'i');

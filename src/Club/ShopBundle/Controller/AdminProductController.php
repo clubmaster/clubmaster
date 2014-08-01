@@ -11,12 +11,12 @@ use Club\ShopBundle\Entity\Product;
 use Club\ShopBundle\Form\ImageType;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/shop/product")
  */
 class AdminProductController extends Controller
 {
     /**
-     * @Route("/shop/product", name="admin_shop_product")
+     * @Route("", name="admin_shop_product")
      * @Template()
      */
     public function indexAction()
@@ -36,7 +36,7 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/archive", name="admin_shop_product_archive")
+     * @Route("/archive", name="admin_shop_product_archive")
      * @Template()
      */
     public function archiveAction()
@@ -53,7 +53,7 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/new", name="admin_shop_product_new")
+     * @Route("/new", name="admin_shop_product_new")
      * @Template()
      */
     public function newAction(Request $request)
@@ -94,7 +94,7 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/edit/{id}", name="admin_shop_product_edit")
+     * @Route("/edit/{id}", name="admin_shop_product_edit")
      * @Template()
      */
     public function editAction(Request $request, Product $product)
@@ -137,7 +137,37 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/users/{id}", name="admin_shop_product_users")
+     * @Route("/activate/{id}", name="admin_shop_product_activate")
+     * @Template()
+     */
+    public function activateAction(Product $product)
+    {
+        $product->setActive(true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($product);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_shop_product'));
+    }
+
+    /**
+     * @Route("/deactivate/{id}", name="admin_shop_product_deactivate")
+     * @Template()
+     */
+    public function deactivateAction(Product $product)
+    {
+        $product->setActive(false);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($product);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_shop_product'));
+    }
+
+    /**
+     * @Route("/users/{id}", name="admin_shop_product_users")
      * @Template()
      */
     public function usersAction(Product $product)
@@ -152,8 +182,7 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/image/remove/{id}", name="admin_shop_product_image_remove")
-     * @Template()
+     * @Route("/image/remove/{id}", name="admin_shop_product_image_remove")
      */
     public function imageRemoveAction(Product $product)
     {
@@ -172,7 +201,7 @@ class AdminProductController extends Controller
     }
 
     /**
-     * @Route("/shop/product/no_category")
+     * @Route("/no_category")
      * @Template()
      */
     public function noCategoryAction()

@@ -12,80 +12,92 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class MemberController extends Controller
 {
-  /**
-   * @Template()
-   * @Route("/search")
-   */
-  public function searchAction()
-  {
-      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-      }
+    /**
+     * @Template()
+     * @Route("/search")
+     */
+    public function searchAction()
+    {
+        $this->setHeader();
 
-    $em = $this->getDoctrine()->getManager();
-    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
 
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-      if ($form->isValid()) {
-          $user = $form->get('user')->getData();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
-          return $this->redirect($this->generateUrl('club_user_member_show', array('id' => $user->getId())));
-      } else {
-          $errors = $form->get('user')->getErrors();
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
+                $user = $form->get('user')->getData();
 
-          foreach ($errors as $error) {
-              $this->get('session')->getFlashBag()->add('error', $error->getMessage());
-          }
-      }
+                return $this->redirect($this->generateUrl('club_user_member_show', array('id' => $user->getId())));
+            } else {
+                $errors = $form->get('user')->getErrors();
+
+                foreach ($errors as $error) {
+                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
+                }
+            }
+        }
+
+        return $this->redirect($this->generateUrl('club_user_member_index'));
     }
 
-    return $this->redirect($this->generateUrl('club_user_member_index'));
-  }
+    /**
+     * @Template()
+     * @Route("/{id}")
+     */
+    public function showAction(\Club\UserBundle\Entity\User $user)
+    {
+        $this->setHeader();
 
-  /**
-   * @Template()
-   * @Route("/{id}")
-   */
-  public function showAction(\Club\UserBundle\Entity\User $user)
-  {
-      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-      }
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
 
-    $event = new \Club\UserBundle\Event\FilterActivityEvent($user);
-    $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onMemberView, $event);
+        $event = new \Club\UserBundle\Event\FilterActivityEvent($user);
+        $this->get('event_dispatcher')->dispatch(\Club\UserBundle\Event\Events::onMemberView, $event);
 
-    return array(
-      'user' => $user,
-      'activities' => $event->getActivities()
-    );
-  }
+        return array(
+            'user' => $user,
+            'activities' => $event->getActivities()
+        );
+    }
 
-  /**
-   * @Template()
-   * @Route("", defaults={"page" = 1 })
-   * @Route("/page/{page}", name="club_user_members_page")
-   */
-  public function indexAction($page)
-  {
-      if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-      }
+    /**
+     * @Template()
+     * @Route("", defaults={"page" = 1 })
+     * @Route("/page/{page}", name="club_user_members_page")
+     */
+    public function indexAction($page)
+    {
+        $this->setHeader();
 
-      $results = 50;
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
 
-      $em = $this->getDoctrine()->getManager();
-      $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $results = 50;
 
-      $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
 
-      $this->get('club_extra.paginator')
-          ->init($results, count($paginator), $page, 'club_user_members_page');
+        $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
 
-      return array(
-          'form' => $form->createView(),
-          'paginator' => $paginator
-      );
-  }
+        $this->get('club_extra.paginator')
+            ->init($results, count($paginator), $page, 'club_user_members_page');
+
+        return array(
+            'form' => $form->createView(),
+            'paginator' => $paginator
+        );
+    }
+
+    private function setHeader()
+    {
+        $this->get('club_extra.storage')->setPageImage('bundles/clublayout/images/icons/32x32/group.png');
+        $this->get('club_extra.storage')->setPageHeader($this->get('translator')->trans('Members'));
+    }
 }
