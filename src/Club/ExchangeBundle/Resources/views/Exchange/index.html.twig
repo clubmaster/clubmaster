@@ -1,19 +1,12 @@
 {% extends "ClubExchangeBundle::base.html.twig" %}
 
 {% block pagenav %}
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_exchange_exchange_new') }}">{% trans %}Create request{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
-{% endif %}
+{% include "ClubExchangeBundle:Exchange:header.html.twig" %}
 {% endblock %}
 
 {% block body %}
 <p>{% trans %}If you want to go play but dont have a partner, you can write in a timestamp here when you can play. Other can contact you and you can meet up and play a game.{% endtrans %}</p>
+
 <table class="table">
   <thead>
     <tr class="bg">

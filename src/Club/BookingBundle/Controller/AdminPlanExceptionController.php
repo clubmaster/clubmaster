@@ -70,7 +70,8 @@ class AdminPlanExceptionController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'exception' => $exception
+            'exception' => $exception,
+            'plan' => $exception->getPlan()
         );
     }
 

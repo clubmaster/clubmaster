@@ -1,13 +1,7 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_team_adminschedule_new', {'category_id':category.id}) }}">{% trans %}Create schedule{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubTeamBundle:AdminSchedule:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

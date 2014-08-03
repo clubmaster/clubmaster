@@ -1,5 +1,9 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubBookingBundle:AdminPlanException:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_adminplanexception_edit', {'id':exception.id})} %}
 {% endblock %}

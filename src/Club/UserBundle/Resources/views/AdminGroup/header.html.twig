@@ -1,10 +1,13 @@
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ path('admin_group_new') }}">{% trans %}Create group{% endtrans %}</a></li>
+            {% if group is defined %}
             <li><a href="{{ path('admin_group_edit', {'id':group.id}) }}">{% trans %}Edit{% endtrans %}</a></li>
             <li><a href="{{ path('club_user_admingroup_members', {'id':group.id}) }}">{% trans %}Members{% endtrans %}</a></li>
             {% if group.groupType == 'static' %}
             <li><a href="{{ path('club_user_admingroup_membersadd', {'id':group.id}) }}">{% trans %}Add user{% endtrans %}</a></li>
+            {% endif %}
             {% endif %}
         </ul>
     </div>

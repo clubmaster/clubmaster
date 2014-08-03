@@ -17,6 +17,8 @@
 </dl>
 
 <h1 class="page-header">{% trans %}Comments{% endtrans %}</h1>
+<a class="btn btn-success" href="{{ path('club_exchange_comment_new', {'id':exchange.id}) }}">{% trans %}Create comment{% endtrans %}</a>
+
 {% for comment in comments %}
 <h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name,'%link%':path('club_user_member_show', {'id':comment.user.id})} %}Posted on %date% by <a href="%link%">%author%</a>.{% endtrans %}</h6>
 <p>{{ comment.comment|raw }}</p>

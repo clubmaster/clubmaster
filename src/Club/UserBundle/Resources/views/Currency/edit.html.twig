@@ -1,5 +1,9 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubUserBundle:Currency:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('admin_currency_edit', {'id':currency.id})} %}
 {% endblock %}

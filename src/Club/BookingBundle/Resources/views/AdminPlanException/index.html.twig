@@ -1,13 +1,7 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_booking_adminplanexception_new', {'id':plan.id}) }}">{% trans %}Create exception{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubBookingBundle:AdminPlanException:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

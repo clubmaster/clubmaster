@@ -1,7 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
+{% include "ClubUserBundle:AdminGroup:header.html.twig" %}
+{% endblock %}
 
+{% block body %}
 <h2>{% trans %}Group{% endtrans %}</h2>
 <form method="post" action="{{ path('admin_group_new') }}" class="form-horizontal">
 {% include "ClubUserBundle:AdminGroup:form.html.twig" %}

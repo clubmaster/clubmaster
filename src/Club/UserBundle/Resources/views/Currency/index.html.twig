@@ -1,13 +1,7 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('admin_currency_new') }}">{% trans %}Create currency{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubUserBundle:Currency:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

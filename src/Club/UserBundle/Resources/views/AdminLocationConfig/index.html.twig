@@ -1,5 +1,9 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubUserBundle:AdminLocation:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <h2>{% trans %}Location config{% endtrans %}</h2>
 

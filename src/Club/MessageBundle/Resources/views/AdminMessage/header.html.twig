@@ -1,8 +1,13 @@
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
             <li><a href="{{ path('club_message_adminmessage_new') }}">{% trans %}Create message{% endtrans %}</a></li>
             <li><a href="{{ path('club_message_adminmessage_archive') }}">{% trans %}Archive{% endtrans %}</a></li>
+
+            {% if message is defined %}
+            <li><a href="{{ path('club_message_adminmessage_show', {'id':message.id}) }}">{% trans %}Show{% endtrans %}</a></li>
+            <li><a href="{{ path('club_message_adminmessage_recipients', {'id':message.id}) }}">{% trans %}Recipients{% endtrans %}</a></li>
+            {% endif %}
         </ul>
     </div>
 </div>

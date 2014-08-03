@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\TeamBundle\Entity\TeamCategory;
+use Club\TeamBundle\Entity\Schedule;
 
 /**
  * @Route("/admin")
@@ -129,13 +131,13 @@ class AdminScheduleController extends Controller
     }
 
     /**
-     * @Route("/team/team/schedule/edit/{id}")
+     * @Route("/team/team/schedule/edit/{id}/{category_id}")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction(Schedule $schedule, $category_id)
     {
         $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
+        $category = $em->find('ClubTeamBundle:TeamCategory', $category_id);
 
         $res = $this->process($schedule);
 
@@ -153,6 +155,7 @@ class AdminScheduleController extends Controller
 
         return array(
             'schedule' => $schedule,
+            'category' => $category,
             'form' => $res->createView()
         );
     }

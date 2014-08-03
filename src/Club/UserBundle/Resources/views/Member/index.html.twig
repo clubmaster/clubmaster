@@ -1,13 +1,15 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-  <div class="navbar-inner">
-    <form method="post" action="{{ path('club_user_member_search') }}" class="navbar-search pull-right">
-      {{ form_widget(form.user, {'attr': {'class':'search-query','placeholder':'Search'|trans}}) }}
-      {{ form_rest(form) }}
-    </form>
-  </div>
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <form method="post" action="{{ path('club_user_member_search') }}" class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                {{ form_widget(form.user, {'attr': {'class':'form-control search-query','placeholder':'Search'|trans}}) }}
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
 </div>
 {% endblock %}
 
@@ -15,24 +17,24 @@
 
 {{ club_paginator() }}
 <table class="table">
-  <thead>
+    <thead>
+        <tr>
+            <th width="150">{% trans %}Member number{% endtrans %}</th>
+            <th>{% trans %}Name{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in paginator %}
     <tr>
-      <th width="150">{% trans %}Member number{% endtrans %}</th>
-      <th>{% trans %}Name{% endtrans %}</th>
+        <td>{{ user.memberNumber }}</td>
+        <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.name }}</a></td>
     </tr>
-  </thead>
-  <tbody>
-  {% for user in paginator %}
+    {% else %}
     <tr>
-      <td>{{ user.memberNumber }}</td>
-      <td><a href="{{ path('club_user_member_show', {'id':user.id}) }}">{{ user.name }}</a></td>
+        <td colspan="2">{% trans %}There are no users in the system.{% endtrans %}</td>
     </tr>
-  {% else %}
-  <tr>
-    <td colspan="2">{% trans %}There are no users in the system.{% endtrans %}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
+    {% endfor %}
+    </tbody>
 </table>
 
 {{ club_paginator() }}

@@ -1,5 +1,9 @@
 {% extends "ClubMessageBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubMessageBundle:AdminMessage:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <form method="post" action="{{ path('club_message_adminmessage_new') }}" class="form-horizontal">
   {% include "ClubMessageBundle:AdminMessage:form.html.twig" %}

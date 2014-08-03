@@ -1,13 +1,7 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('admin_location_new') }}">{% trans %}Create location{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubUserBundle:AdminLocation:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

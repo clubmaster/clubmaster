@@ -1,5 +1,9 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubTeamBundle:AdminTeamCategory:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_team_adminteamcategory_new')} %}
 {% endblock %}
