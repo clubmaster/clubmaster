@@ -1,5 +1,9 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubEventBundle:AdminEvent:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubEventBundle:AdminEvent:form.html.twig" with {'path':path('club_event_adminevent_new'), 'novalidate':true}  %}
 {% endblock %}

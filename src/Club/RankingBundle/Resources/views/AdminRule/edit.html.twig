@@ -1,5 +1,9 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubRankingBundle:AdminRule:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_match_adminrule_edit', {'id':rule.id})} %}
+{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_ranking_adminrule_edit', {'id':rule.id})} %}
 {% endblock %}

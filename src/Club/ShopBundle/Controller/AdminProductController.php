@@ -206,6 +206,10 @@ class AdminProductController extends Controller
      */
     public function noCategoryAction()
     {
+        $this->get('club_extra.flash')->addError($this->get('translator')->trans(
+            'You cannot add any products without a category.'
+        ));
+
         return array();
     }
 }

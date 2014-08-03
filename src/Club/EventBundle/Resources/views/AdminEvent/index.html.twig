@@ -1,13 +1,7 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_event_adminevent_new') }}">{% trans %}Create event{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubEventBundle:AdminEvent:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

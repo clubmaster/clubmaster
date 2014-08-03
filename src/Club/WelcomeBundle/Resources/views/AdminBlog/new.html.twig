@@ -1,5 +1,9 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubWelcomeBundle:AdminBlog:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_welcome_adminblog_new'),'novalidate':true} %}
 {% endblock %}

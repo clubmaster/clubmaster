@@ -1,13 +1,7 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_shop_adminspecial_new') }}">{% trans %}Create special{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubShopBundle:AdminSpecial:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

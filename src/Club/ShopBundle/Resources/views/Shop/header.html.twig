@@ -1,15 +1,13 @@
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
 
             <li><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></li>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li><a href="{{ path('shop_order') }}">{% trans %}Order{% endtrans %}</a></li>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li><a href="{{ path('shop_order') }}">{% trans %}My orders{% endtrans %}</a></li>
             {% endif %}
 
         </ul>
     </div>
 </div>
-{% endblock %}
 

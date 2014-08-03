@@ -1,9 +1,9 @@
 {% extends "ClubEventBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
             <li><a href="{{ path('club_event_event_ical') }}">{% trans %}iCal format{% endtrans %}</a></li>
         </ul>
     </div>

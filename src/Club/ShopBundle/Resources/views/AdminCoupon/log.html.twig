@@ -1,5 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubShopBundle:AdminCoupon:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 <h2>{% trans %}Coupon log{% endtrans %}</h2>
 

@@ -1,15 +1,7 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('admin_shop_category_new') }}">{% trans %}Create category{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-
 {% block body %}
-{% include "ClubLayoutBundle:Default:flash_error.html.twig" with {'msg':'You cannot add any products without a category.'|trans} %}
+<p>{% trans %}You do not have a product category, you will have to add one before you can add products.{% endtrans %}</p>
+
+<a href="{{ path('admin_shop_category_new') }}" class="btn btn-success">{% trans %}Create category{% endtrans %}</a>
 {% endblock %}

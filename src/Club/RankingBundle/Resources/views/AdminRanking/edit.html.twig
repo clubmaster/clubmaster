@@ -1,5 +1,9 @@
 {% extends "ClubRankingBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubRankingBundle:AdminRanking:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_match_adminranking_edit', {'id':league.id})} %}
 {% endblock %}

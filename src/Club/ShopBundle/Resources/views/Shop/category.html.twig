@@ -1,17 +1,10 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('shop_checkout') }}">{% trans %}View cart{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubShopBundle:Shop:header.html.twig" %}
 {% endblock %}
 
 {% block body %}
-
 {% include "ClubShopBundle:Shop:categories.html.twig" %}
 
 {% if category %}

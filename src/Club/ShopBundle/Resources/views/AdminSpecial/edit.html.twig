@@ -1,5 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubShopBundle:AdminSpecial:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_shop_adminspecial_edit', {'id':special.id})} %}
 {% endblock %}

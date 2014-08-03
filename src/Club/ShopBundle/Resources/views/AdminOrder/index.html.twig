@@ -3,15 +3,18 @@
 {% block body %}
 <h2>{% trans %}Orders{% endtrans %}</h2>
 
-<!-- Actions -->
-<div class="navbar">
-  <div class="navbar-inner">
-    <form method="post" action="" class="navbar-search pull-right">
-        {{ form_widget(form.query, {'attr': {'class':'search-query'} }) }}
-        {{ form_rest(form) }}
-        <input type="submit" value="{% trans %}Search{% endtrans %}" />
-    </form>
-  </div>
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <form class="navbar-form navbar-right" role="search" method="POST">
+            <div class="form-group">
+                {{ form_widget(form.query, {'attr': {'class':'search-query form-control'} }) }}
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans %}Search{% endtrans %}</button>
+
+            {{ form_rest(form) }}
+        </form>
+
+    </div>
 </div>
 
 {% include "ClubShopBundle:AdminOrder:orders_table.html.twig" %}

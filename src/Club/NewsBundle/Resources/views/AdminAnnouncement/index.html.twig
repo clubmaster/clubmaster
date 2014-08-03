@@ -1,13 +1,7 @@
 {% extends "ClubNewsBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_news_adminannouncement_new') }}">{% trans %}Create announcement{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubNewsBundle:AdminAnnouncement:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

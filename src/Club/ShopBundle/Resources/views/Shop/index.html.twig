@@ -1,8 +1,10 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
-{% block body %}
-
+{% block pagenav %}
 {% include "ClubShopBundle:Shop:header.html.twig" %}
+{% endblock %}
+
+{% block body %}
 {% include "ClubShopBundle:Shop:categories.html.twig" %}
 
 {% if paginator %}

@@ -1,5 +1,9 @@
 {% extends "ClubBookingBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubBookingBundle:AdminPlan:header.html.twig" %}
+{% endblock %}
+
 {% block javascripts %}
 {% javascripts "@ClubBookingBundle/Resources/public/js/admin_plan.js" %}
 <script src="{{ asset_url }}" type="text/javascript"></script>

@@ -1,5 +1,9 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubShopBundle:AdminProduct:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubShopBundle:AdminProduct:form.html.twig" %}
 {% endblock %}

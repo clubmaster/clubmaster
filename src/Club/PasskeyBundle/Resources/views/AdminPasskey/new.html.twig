@@ -1,5 +1,9 @@
 {% extends "ClubPasskeyBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubPasskeyBundle:AdminPasskey:header.html.twig" %}
+{% endblock %}
+
 {% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_passkey_adminpasskey_new')} %}
 {% endblock %}

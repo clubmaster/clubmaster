@@ -1,0 +1,10 @@
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and enable_blog %}
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ path('club_welcome_blog_new') }}">{% trans %}Post blog{% endtrans %}</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
+

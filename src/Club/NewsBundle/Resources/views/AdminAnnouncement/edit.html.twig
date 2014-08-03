@@ -1,6 +1,10 @@
 {% extends "ClubNewsBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
+{% include "ClubNewsBundle:AdminAnnouncement:header.html.twig" %}
+{% endblock %}
 
+
+{% block body %}
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_news_adminannouncement_edit', {'id':announcement.id})} %}
 {% endblock %}

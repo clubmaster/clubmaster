@@ -1,13 +1,7 @@
 {% extends "ClubPasskeyBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_passkey_adminpasskey_new') }}">{% trans %}Create passkey{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubPasskeyBundle:AdminPasskey:header.html.twig" %}
 {% endblock %}
 
 {% block body %}

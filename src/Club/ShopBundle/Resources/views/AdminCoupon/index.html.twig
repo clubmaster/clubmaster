@@ -1,13 +1,7 @@
 {% extends "ClubShopBundle::base.html.twig" %}
 
 {% block pagenav %}
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li><a href="{{ path('club_shop_admincoupon_new') }}">{% trans %}Create coupon{% endtrans %}</a></li>
-        </ul>
-    </div>
-</div>
+{% include "ClubShopBundle:AdminCoupon:header.html.twig" %}
 {% endblock %}
 
 {% block body %}
