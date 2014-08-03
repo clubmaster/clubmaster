@@ -5,7 +5,7 @@ Blog: {{ blog.title }}
 {% endblock %}
 
 {% block header %}
-<div class="page-header"><h1><img src="{{ asset('bundles/clublayout/images/icons/32x32/transmit.png') }}" /> {% trans with {'%title%':blog.title} %}Blog, %title%{% endtrans %}</h1></div>
+<h1 class="page-header"><img src="{{ asset('bundles/clublayout/images/icons/32x32/transmit.png') }}" /> {% trans with {'%title%':blog.title} %}Blog, %title%{% endtrans %}</h1>
 {% endblock %}
 
 {% block pagenav %}

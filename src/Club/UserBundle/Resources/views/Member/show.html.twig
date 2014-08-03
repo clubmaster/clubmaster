@@ -1,14 +1,12 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
 {% block header %}
-<div class="page-header">
-    {% if user.profile.gender == 'male' %}
-        {% set image = 'bundles/clublayout/images/icons/32x32/user.png' %}
-    {% else %}
-        {% set image = 'bundles/clublayout/images/icons/32x32/user_female.png' %}
-    {% endif %}
-    <h1><img class="img-polaroid" src="{{ asset(image) }}" /> {{ user.name }} ({{ user.memberNumber }})</h1>
-</div>
+{% if user.profile.gender == 'male' %}
+    {% set image = 'bundles/clublayout/images/icons/32x32/user.png' %}
+{% else %}
+    {% set image = 'bundles/clublayout/images/icons/32x32/user_female.png' %}
+{% endif %}
+<h1 class="page-header"><img class="img-polaroid" src="{{ asset(image) }}" /> {{ user.name }} ({{ user.memberNumber }})</h1>
 {% endblock %}
 
 {% block body %}
