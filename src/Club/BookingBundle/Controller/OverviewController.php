@@ -43,7 +43,7 @@ class OverviewController extends Controller
         $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
         $em = $this->getDoctrine()->getManager();
         $active = false;
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->getUser(), null, 'booking', null, $interval->getField()->getLocation());
             $active = (!$subs) ? false : true;
         }

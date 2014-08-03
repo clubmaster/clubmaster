@@ -1,4 +1,4 @@
-{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 <!-- Login form -->
 <form method="post" action="{{ path('login_check') }}">
 

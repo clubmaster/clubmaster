@@ -24,7 +24,7 @@ class FeedbackController extends Controller
     );
 
     $feedback = new \Club\FeedbackBundle\Model\Feedback();
-    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       $user = $this->getUser();
       $feedback->name = $user->getProfile()->getName();
 

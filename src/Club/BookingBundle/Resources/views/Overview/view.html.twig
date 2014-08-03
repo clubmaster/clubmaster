@@ -3,7 +3,7 @@
 {% block body %}
 {% include "ClubBookingBundle:Overview:information.html.twig" %}
 
-{% if (is_granted('IS_AUTHENTICATED_FULLY')) and interval.available and active %}
+{% if (is_granted('IS_AUTHENTICATED_REMEMBERED')) and interval.available and active %}
   {% include "ClubBookingBundle:Overview:book_form.html.twig" %}
 {% endif %}
 

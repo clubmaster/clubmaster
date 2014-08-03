@@ -29,7 +29,7 @@ class Cart
         }
 
         if (!$this->cart) {
-            if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 $this->cart = $this->em->getRepository('ClubShopBundle:Cart')->findOneBy(
                     array('user' => $this->token->getUser()->getId())
                 );
@@ -70,7 +70,7 @@ class Cart
 
     public function setUser(\Club\UserBundle\Entity\User $user)
     {
-        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $this->cart->setUser($user);
 
             if ($user->getProfile()->getProfileAddress()) {
@@ -207,7 +207,7 @@ class Cart
 
     public function emptyCart()
     {
-        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $cart = $this->em->getRepository('ClubShopBundle:Cart')->findOneBy(
                 array('user' => $this->token->getUser()->getId())
             );
@@ -317,7 +317,7 @@ class Cart
         foreach ($product->getProductAttributes() as $attr) {
             switch ($attr->getAttribute()) {
             case 'only_member':
-                if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+                if (!$this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                     throw new \Exception('You have to be logged in to buy this product');
                 } elseif ($attr->getValue() && !$this->club_user->isMember($this->token->getUser())) {
                     throw new \Exception('Cannot buy due to missing subscription');

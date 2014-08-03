@@ -19,7 +19,7 @@ class EventController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $public = ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) ? true : false;
+        $public = ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) ? true : false;
         $events = $em->getRepository('ClubEventBundle:Event')->getComing($public);
 
         return array(

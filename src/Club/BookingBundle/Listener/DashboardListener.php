@@ -19,7 +19,7 @@ class DashboardListener
 
   public function onMemberView(\Club\UserBundle\Event\FilterActivityEvent $event)
   {
-    if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
+    if (!$this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) return;
 
     $user = $event->getUser();
 

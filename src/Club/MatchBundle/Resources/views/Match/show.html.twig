@@ -5,7 +5,7 @@ Match: {{ match.teamOne.team.teamName }} - {{ match.teamTwo.team.teamName }}
 {% endblock %}
 
 {% block pagenav %}
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 <div class="navbar navbar-default">
     <div class="container-fluid">
         <ul class="nav navbar-nav">

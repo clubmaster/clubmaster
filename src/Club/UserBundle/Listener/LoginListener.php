@@ -76,7 +76,7 @@ class LoginListener
         $this->session->set('location_id', $this->location->getId());
         $this->session->set('location_name', $this->location->getLocationName());
 
-        if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+        if (!$this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED'))
 
             return;
 

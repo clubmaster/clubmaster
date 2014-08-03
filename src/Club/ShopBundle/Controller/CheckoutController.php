@@ -92,7 +92,7 @@ class CheckoutController extends Controller
             return $this->redirect($this->generateUrl('shop_checkout'));
         }
 
-        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('club_shop_checkout_signin'));
         }
 

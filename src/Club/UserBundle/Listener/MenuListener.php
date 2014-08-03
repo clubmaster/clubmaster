@@ -67,7 +67,7 @@ class MenuListener
 
     public function onTopMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $menu[4] = array(
                 'name' => $this->translator->trans('Members'),
                 'route' => $this->router->generate('club_user_member_index')
@@ -79,7 +79,7 @@ class MenuListener
 
     public function onDashMenuRender(\Club\MenuBundle\Event\FilterMenuEvent $event)
     {
-        if (!$this->security_context->isGranted('IS_AUTHENTICATED_FULLY')) return;
+        if (!$this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED')) return;
 
         $menu = array();
 

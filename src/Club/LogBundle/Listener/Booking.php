@@ -23,7 +23,7 @@ class Booking
     $log->setLogType('booking');
     $log->setLog('Created a new booking');
 
-    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED'))
       $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);
@@ -40,7 +40,7 @@ class Booking
     $log->setLogType('booking');
     $log->setLog('Deleted a booking');
 
-    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED'))
       $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);

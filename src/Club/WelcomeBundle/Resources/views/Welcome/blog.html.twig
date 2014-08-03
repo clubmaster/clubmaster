@@ -7,7 +7,7 @@
 {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', {'id':post.id})} %}
 {% endif %}
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 {% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_welcome_blog_comment', {'blog_id':post.id})} %}
 {% endif %}
 <p>{{ post.message|raw }}</p>

@@ -20,7 +20,7 @@ class CouponListener
     $log = new \Club\ShopBundle\Entity\CouponLog();
     $log->setCoupon($coupon);
 
-    if ($this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+    if ($this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED'))
       $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);

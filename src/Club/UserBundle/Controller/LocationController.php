@@ -34,7 +34,7 @@ class LocationController extends Controller
 
         $this->get('club_user.location')->setCurrent($location);
 
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user->setLocation($location);
 
             $em = $this->getDoctrine()->getManager();

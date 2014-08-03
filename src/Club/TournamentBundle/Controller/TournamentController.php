@@ -32,7 +32,7 @@ class TournamentController extends Controller
   public function showAction(\Club\TournamentBundle\Entity\Tournament $tournament)
   {
     $attending = false;
-    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
       $em = $this->getDoctrine()->getManager();
       $attending = $em->getRepository('ClubTournamentBundle:Tournament')->isAttending($tournament, $this->getUser());
     }

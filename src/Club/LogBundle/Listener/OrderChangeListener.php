@@ -22,7 +22,7 @@ class OrderChangeListener
     $log->setLogType('shop');
     $log->setLog('Changed order status on order #'.$order->getId());
 
-    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_FULLY'))
+    if ($this->security_context->getToken() && $this->security_context->isGranted('IS_AUTHENTICATED_REMEMBERED'))
       $log->setUser($this->security_context->getToken()->getUser());
 
     $this->em->persist($log);

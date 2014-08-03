@@ -37,7 +37,7 @@
                 {% endif %}
 
                 {% if event.isOpen %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         {% if event.isAttending(app.user) %}
                             <a class="btn pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
                         {% else %}

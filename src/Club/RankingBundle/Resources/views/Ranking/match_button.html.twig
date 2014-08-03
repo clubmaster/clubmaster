@@ -1,4 +1,4 @@
-{% if is_granted('IS_AUTHENTICATED_FULLY') and ranking.isOpen %}
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and ranking.isOpen %}
 
 {% if (ranking.inviteOnly and ranking.canPlay(app.user)) or not ranking.inviteOnly %}
 <div class="navbar navbar-default">

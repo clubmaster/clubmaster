@@ -29,7 +29,7 @@ class ResetPassword
             return;
         }
 
-        if ($this->security->getToken() && $this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->security->getToken() && $this->security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $reset = $this->em->getRepository('ClubUserBundle:ResetPassword')->getByUser($this->security->getToken()->getUser());
 
             if ($reset) {

@@ -9,7 +9,7 @@
 
       </td>
       <td>{{ match.teamTwo.team.teamName }}</td>
-      {% if is_granted('IS_AUTHENTICATED_FULLY') and nocomment is not defined %}
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and nocomment is not defined %}
       <td>{% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_match_matchcomment_new', {'match_id':match.id})} %} ({{ match.matchComments|length }})</td>
       {% endif %}
     </tr>
