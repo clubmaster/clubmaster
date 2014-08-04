@@ -9,30 +9,51 @@ use Club\FormExtraBundle\Form\JQueryBirthdayType;
 
 class AdminProfile extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('first_name');
-    $builder->add('last_name');
-    $builder->add('gender','gender');
-    $builder->add('day_of_birth', 'jquery_birthday', array(
-        'widget' => 'single_text'
-    ));
-    $builder->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress());
-    $builder->add('profile_emails', 'collection', array(
-        'type' => new \Club\UserBundle\Form\AdminProfileEmail()
-    ));
-    $builder->add('profile_phone', new \Club\UserBundle\Form\AdminProfilePhone());
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $attr = array(
+            'class' => 'form-control'
+        );
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\UserBundle\Entity\Profile'
-    ));
-  }
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
 
-  public function getName()
-  {
-    return 'admin_profile';
-  }
+        $builder
+            ->add('first_name', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('last_name', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('gender','gender', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('day_of_birth', 'jquery_birthday', array(
+                'widget' => 'single_text',
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress())
+            ->add('profile_emails', 'collection', array(
+                'type' => new \Club\UserBundle\Form\AdminProfileEmail()
+            ))
+            ->add('profile_phone', new \Club\UserBundle\Form\AdminProfilePhone())
+        ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\UserBundle\Entity\Profile'
+        ));
+    }
+
+    public function getName()
+    {
+        return 'admin_profile';
+    }
 }

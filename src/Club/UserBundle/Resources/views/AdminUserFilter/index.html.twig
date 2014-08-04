@@ -1,5 +1,9 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
+{% block pagenav %}
+{% include "ClubUserBundle:AdminUser:publicHeader.html.twig" %}
+{% endblock %}
+
 {% block header %}
 <h1 class="page-header"><img class="img-polaroid" src="{{ asset('bundles/clublayout/images/icons/32x32/user.png') }}" /> {% trans %}User filter{% endtrans %}</h1>
 {% endblock %}

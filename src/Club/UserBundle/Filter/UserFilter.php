@@ -4,33 +4,33 @@ namespace Club\UserBundle\Filter;
 
 class UserFilter
 {
-  public $name;
+    public $name;
 
-  public $phone;
+    public $phone;
 
-  public $email_address;
+    public $email_address;
 
-  public $member_number;
+    public $member_number;
 
-  public $min_age;
+    public $min_age;
 
-  public $max_age;
+    public $max_age;
 
-  public $gender;
+    public $gender;
 
-  public $postal_code;
+    public $postal_code;
 
-  public $city;
+    public $city;
 
-  public $country;
+    public $country;
 
-  public $has_ticket;
+    public $has_ticket;
 
-  public $location;
+    public $location;
 
-  public $bought;
+    public $bought;
 
-  public $subscription_from;
+    public $subscription_from;
 
-  public $subscription_to;
+    public $subscription_to;
 }

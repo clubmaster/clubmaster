@@ -1,7 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
+{% include "ClubUserBundle:AdminUser:publicHeader.html.twig" %}
+{% endblock %}
 
+{% block body %}
 <p>You are about to send a message to your search result, what do you want to do?</p>
 <p>Compose a new message or send to an existing message?</p>
 

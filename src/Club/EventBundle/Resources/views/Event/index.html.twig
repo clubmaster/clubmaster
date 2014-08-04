@@ -11,12 +11,16 @@
 {% endblock %}
 
 {% block body %}
+<div class="row">
 {% for event in events %}
-
-{% include "ClubEventBundle:Event:entry.html.twig" %}
-
+    <div class="col-sm-6">
+        {% include "ClubEventBundle:Event:entry.html.twig" %}
+    </div>
 {% else %}
-<div class="well well-large"><strong>{% trans %}There are no planned events.{% endtrans %}</strong></div>
+    <div class="col-xs-12">
+    <div class="well well-large"><strong>{% trans %}There are no planned events.{% endtrans %}</strong></div>
+    </div>
 {% endfor %}
+</div>
 
 {% endblock %}

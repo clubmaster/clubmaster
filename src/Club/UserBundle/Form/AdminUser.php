@@ -10,14 +10,30 @@ class AdminUser extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('password', 'repeated', array(
-            'type' => 'password',
-            'first_name' => 'Password',
-            'second_name' => 'Password_again',
-            'required' => false
-        ));
-        $builder->add('member_number','text');
-        $builder->add('profile', new \Club\UserBundle\Form\AdminProfile());
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
+
+        $builder
+            ->add('password', 'repeated', array(
+                'type' => 'password',
+                'first_name' => 'Password',
+                'second_name' => 'Password_again',
+                'required' => false,
+                'options' => array(
+                    'attr' => $attr,
+                    'label_attr' => $label_attr
+                )
+            ))
+            ->add('member_number','text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('profile', new \Club\UserBundle\Form\AdminProfile())
+            ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -145,19 +145,34 @@ class AdminUserImportController extends Controller
             1 => 'Yes'
         );
 
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
+
         return $this->createFormBuilder()
-            ->add('user_file', 'file')
+            ->add('user_file', 'file', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
             ->add('skip_first_line', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
                 'choices' => $boolean
             ))
             ->add('field_delimiter', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
                 'choices' => array(
                     'tab' => 'TAB',
                     'comma' => 'comma'
                 ),
                 'required' => false
             ))
-            ->getForm();
+            ->getForm()
+            ;
     }
 
     protected function addErrors($errors)

@@ -1,7 +1,10 @@
 {% extends "ClubUserBundle::base.html.twig" %}
 
-{% block body %}
+{% block pagenav %}
+{% include "ClubUserBundle:AdminUser:publicHeader.html.twig" %}
+{% endblock %}
 
+{% block body %}
 <p>{% trans %}If you have a long list of users you want to import, you can use this page.{% endtrans %}</p>
 
 {% include "ClubLayoutBundle:Default:form.html.twig" with {'legend':'Import CSV','button':'Import'|trans, 'path':path('club_user_adminuserimport_import')} %}

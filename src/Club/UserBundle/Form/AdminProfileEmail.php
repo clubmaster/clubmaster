@@ -8,22 +8,34 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AdminProfileEmail extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('email_address', 'text', array(
-      'required' => false
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $attr = array(
+            'class' => 'form-control'
+        );
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\UserBundle\Entity\ProfileEmail'
-    ));
-  }
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
 
-  public function getName()
-  {
-    return 'admin_profile_email';
-  }
+        $builder
+            ->add('email_address', 'text', array(
+                'required' => false,
+                'label_attr' => $label_attr,
+                'attr' => $attr
+            ))
+            ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\UserBundle\Entity\ProfileEmail'
+        ));
+    }
+
+    public function getName()
+    {
+        return 'admin_profile_email';
+    }
 }

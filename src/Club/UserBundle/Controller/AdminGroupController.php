@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
+use Club\UserBundle\Form\GroupType;
 
 /**
  * @Route("/{_locale}/admin/group")
@@ -132,7 +133,7 @@ class AdminGroupController extends Controller
 
     protected function process($group)
     {
-        $form = $this->createForm(new \Club\UserBundle\Form\Group(), $group);
+        $form = $this->createForm(new GroupType(), $group);
 
         if ($this->getRequest()->getMethod() == 'POST') {
 
