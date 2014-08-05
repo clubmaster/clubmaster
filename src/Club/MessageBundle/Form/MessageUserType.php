@@ -1,49 +1,38 @@
 <?php
 
-namespace Club\MediaBundle\Form;
+namespace Club\MessageBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DocumentType extends AbstractType
+class MessageUserType extends AbstractType
 {
-        /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'file', array(
+            ->add('users', 'entity', array(
+                'class' => 'ClubUserBundle:User',
+                'multiple' => true,
                 'attr' => array(
-                    'form-control'
+                    'class' => 'form-control',
+                    'size' => 20
                 ),
                 'label_attr' => array(
                     'class' => 'col-sm-2'
                 )
-            ))
-            ;
+            ));
     }
 
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\MediaBundle\Entity\Document',
-            'attr' => array(
-                'class' => 'form-horizontal'
-            )
+            'data_class' => 'Club\MessageBundle\Entity\Message'
         ));
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
-        return 'club_mediabundle_document';
+        return 'message_users';
     }
 }

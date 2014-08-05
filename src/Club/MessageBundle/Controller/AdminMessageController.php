@@ -268,9 +268,7 @@ class AdminMessageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $message = $em->find('ClubMessageBundle:Message',$id);
 
-        $form = $this->createFormBuilder($message)
-            ->add('events')
-            ->getForm();
+        $form = $this->createForm(new \Club\MessageBundle\Form\MessageEventType, $message);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -301,9 +299,7 @@ class AdminMessageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $message = $em->find('ClubMessageBundle:Message',$id);
 
-        $form = $this->createFormBuilder($message)
-            ->add('groups')
-            ->getForm();
+        $form = $this->createForm(new \Club\MessageBundle\Form\MessageGroupType, $message);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -385,9 +381,7 @@ class AdminMessageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $message = $em->find('ClubMessageBundle:Message',$id);
 
-        $form = $this->createFormBuilder($message)
-            ->add('users')
-            ->getForm();
+        $form = $this->createForm(new \Club\MessageBundle\Form\MessageUserType, $message);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());

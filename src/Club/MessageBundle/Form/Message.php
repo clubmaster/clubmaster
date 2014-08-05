@@ -8,23 +8,44 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Message extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('sender_name');
-    $builder->add('sender_address');
-    $builder->add('subject');
-    $builder->add('message', 'tinymce');
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\MessageBundle\Entity\Message'
-    ));
-  }
+        $builder
+            ->add('sender_name', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('sender_address', 'email', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('subject', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('message', 'tinymce', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ;
+    }
 
-  public function getName()
-  {
-    return 'message';
-  }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\MessageBundle\Entity\Message'
+        ));
+    }
+
+    public function getName()
+    {
+        return 'message';
+    }
 }
