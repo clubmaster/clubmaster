@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\UserBundle\Entity\Group;
 use Club\UserBundle\Form\GroupType;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/{_locale}/admin/group")
@@ -20,7 +21,7 @@ class AdminGroupController extends Controller
      */
     public function membersAddAction(\Club\UserBundle\Entity\Group $group)
     {
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $form = $this->createForm(new UserAjax());
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());

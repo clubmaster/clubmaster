@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/admin/ranking")
@@ -104,7 +105,7 @@ class AdminRankingController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       $res = array();
-      $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+      $form = $this->createForm(new UserAjax());
 
       $form->bind($this->getRequest());
       if ($form->isValid()) {
@@ -161,7 +162,7 @@ class AdminRankingController extends Controller
   public function usersAction($id)
   {
     $em = $this->getDoctrine()->getManager();
-    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+    $form = $this->createForm(new UserAjax());
     $ranking = $em->find('ClubRankingBundle:Ranking', $id);
 
     return array(

@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/{_locale}/members")
@@ -25,7 +26,7 @@ class MemberController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $form = $this->createForm(new UserAjax());
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -82,7 +83,7 @@ class MemberController extends Controller
         $results = 50;
 
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $form = $this->createForm(new UserAjax());
 
         $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
 

@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/booking/overview")
@@ -40,7 +41,7 @@ class OverviewController extends Controller
         $date = new \DateTime($date);
         $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
-        $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+        $form = $this->createForm(new UserAjax());
         $em = $this->getDoctrine()->getManager();
         $active = false;
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {

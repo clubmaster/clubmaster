@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Club\BookingBundle\Entity\Booking;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/booking")
@@ -104,7 +105,7 @@ class BookingController extends Controller
         if ($guest) {
             $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
         } else {
-            $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+            $form = $this->createForm(new UserAjax());
             $form->bind($this->getRequest());
 
             if ($form->isValid()) {
@@ -350,7 +351,7 @@ class BookingController extends Controller
     public function getAddPlayerForm(Booking $booking)
     {
         return $this->createForm(
-            new \Club\UserBundle\Form\UserAjax(),
+            new UserAjax(),
             array(),
             array(
                 'method' => 'POST',

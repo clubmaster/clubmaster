@@ -5,6 +5,7 @@ namespace Club\PasskeyBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/admin/passkey")
@@ -64,7 +65,7 @@ class AdminPasskeyController extends Controller
     $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
     $form = $this->createForm(new \Club\PasskeyBundle\Form\Passkey(), $passkey);
-    $user_form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+    $user_form = $this->createForm(new UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
@@ -94,7 +95,7 @@ class AdminPasskeyController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $passkey = $em->find('ClubPasskeyBundle:Passkey',$id);
-    $form = $this->createForm(new \Club\UserBundle\Form\UserAjax());
+    $form = $this->createForm(new UserAjax());
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
