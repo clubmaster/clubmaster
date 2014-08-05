@@ -36,29 +36,46 @@ class PlanHelper
             return $this;
         }
 
-        $start = new \DateTime();
-        $end = new \DateTime();
-        $end->modify('+1 month');
-
-        $ics = $this->em->getRepository('ClubBookingBundle:Plan')->getIcsFromPlans(null, $plan);
-        $calendar = \Sabre\VObject\Reader::read($ics);
-        $calendar->expand($start, $end);
-
-        foreach ($calendar->VEVENT as $event) {
-
+        if (!$plan->getRepeating()) {
             foreach ($plan->getFields() as $field) {
-
-                $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllBetween(
-                    $event->DTSTART->getDateTime(),
-                    $event->DTEND->getDateTime(),
-                    $field
-                );
+                $bookings = $this->em->getRepository('ClubBookingBundle:Booking')
+                    ->getAllBetween(
+                        $plan->getStart(),
+                        $plan->getEnd(),
+                        $field
+                    );
 
                 if (count($bookings) > 0) {
-                    foreach ($bookings as $booking) {
-                        $this->bookings[] = $booking;
+                    $this->bookings[] = $bookings;
 
-                        $this->available = false;
+                    $this->available = false;
+                }
+            }
+        } else {
+            $start = new \DateTime();
+            $end = new \DateTime();
+            $end->modify('+1 month');
+
+            $ics = $this->em->getRepository('ClubBookingBundle:Plan')->getIcsFromPlans(null, $plan);
+            $calendar = \Sabre\VObject\Reader::read($ics);
+            $calendar->expand($start, $end);
+
+            foreach ($calendar->VEVENT as $event) {
+
+                foreach ($plan->getFields() as $field) {
+
+                    $bookings = $this->em->getRepository('ClubBookingBundle:Booking')->getAllBetween(
+                        $event->DTSTART->getDateTime(),
+                        $event->DTEND->getDateTime(),
+                        $field
+                    );
+
+                    if (count($bookings) > 0) {
+                        foreach ($bookings as $booking) {
+                            $this->bookings[] = $booking;
+
+                            $this->available = false;
+                        }
                     }
                 }
             }
