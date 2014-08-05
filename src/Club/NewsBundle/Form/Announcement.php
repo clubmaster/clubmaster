@@ -10,19 +10,34 @@ class Announcement extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('message', 'textarea', array(
-            'attr' => array(
-                'class' => 'big'
-            )
-        ));
-        $builder->add('start_date', 'jquery_datetime', array(
-            'date_widget' => 'single_text',
-            'time_widget' => 'single_text'
-        ));
-        $builder->add('end_date', 'jquery_datetime', array(
-            'date_widget' => 'single_text',
-            'time_widget' => 'single_text'
-        ));
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
+
+        $builder
+            ->add('message', 'textarea', array(
+                'attr' => array(
+                    'class' => $attr['class'],
+                    'rows' => 10
+                ),
+                'label_attr' => $label_attr
+            ))
+            ->add('start_date', 'jquery_datetime', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
+            ))
+            ->add('end_date', 'jquery_datetime', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
+            ))
+            ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

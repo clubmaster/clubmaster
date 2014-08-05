@@ -8,44 +8,84 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Event extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('event_name');
-    $builder->add('description', 'tinymce');
-    $builder->add('max_attends');
-    $builder->add('price');
-    $builder->add('start_date', 'jquery_datetime', array(
-        'date_widget' => 'single_text',
-        'time_widget' => 'single_text'
-    ));
-    $builder->add('stop_date', 'jquery_datetime', array(
-        'date_widget' => 'single_text',
-        'time_widget' => 'single_text'
-    ));
-    $builder->add('last_subscribe', 'jquery_datetime', array(
-        'date_widget' => 'single_text',
-        'time_widget' => 'single_text'
-    ));
-    $builder->add('street');
-    $builder->add('postal_code');
-    $builder->add('city');
-    $builder->add('country', 'club_country', array(
-        'required' => false
-    ));
-    $builder->add('public', 'checkbox',  array(
-        'help' => 'If the event should be visible for guests.'
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\EventBundle\Entity\Event'
-    ));
-  }
+        $builder
+            ->add('event_name', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('description', 'tinymce', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('max_attends', 'integer', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('price', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('start_date', 'jquery_datetime', array(
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('stop_date', 'jquery_datetime', array(
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('last_subscribe', 'jquery_datetime', array(
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'attr' => $attr,
+                'label_attr' => $label_attr
 
-  public function getName()
-  {
-    return 'event';
-  }
+            ))
+            ->add('street', 'textarea', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('postal_code', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('city', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('country', 'club_country', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'required' => false
+            ))
+            ->add('public', 'checkbox',  array(
+                'label_attr' => $label_attr,
+                'help' => 'If the event should be visible for guests.'
+            ))
+            ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\EventBundle\Entity\Event'
+        ));
+    }
+
+    public function getName()
+    {
+        return 'event';
+    }
 }

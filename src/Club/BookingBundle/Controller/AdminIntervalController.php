@@ -24,6 +24,9 @@ class AdminIntervalController extends Controller
 
         $form = $this->createFormBuilder($data)
             ->add('same_layout_every_day', 'checkbox', array(
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                ),
                 'required' => false
             ))
             ->getForm();

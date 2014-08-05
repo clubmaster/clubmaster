@@ -5,6 +5,9 @@ namespace Club\BookingBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Club\BookingBundle\Entity\Plan;
+use Club\BookingBundle\Entity\PlanException;
+use Club\BookingBundle\Form\PlanExceptionType;
 
 /**
  * @Route("/admin/booking/plan/exception")
@@ -15,13 +18,13 @@ class AdminPlanExceptionController extends Controller
      * @Route("/new/{id}")
      * @Template()
      */
-    public function newAction(\Club\BookingBundle\Entity\Plan $plan)
+    public function newAction(Plan $plan)
     {
-        $exception = new \Club\BookingBundle\Entity\PlanException();
+        $exception = new PlanException();
         $exception->setUser($this->getUser());
         $exception->setPlan($plan);
 
-        $form = $this->createForm(new \Club\BookingBundle\Form\PlanException, $exception);
+        $form = $this->createForm(new PlanExceptionType, $exception);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -49,9 +52,9 @@ class AdminPlanExceptionController extends Controller
      * @Route("/edit/{id}")
      * @Template()
      */
-    public function editAction(\Club\BookingBundle\Entity\PlanException $exception)
+    public function editAction(PlanException $exception)
     {
-        $form = $this->createForm(new \Club\BookingBundle\Form\PlanException, $exception);
+        $form = $this->createForm(new PlanExceptionTypexception);
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
@@ -78,7 +81,7 @@ class AdminPlanExceptionController extends Controller
     /**
      * @Route("/delete/{id}")
      */
-    public function deleteAction(\Club\BookingBundle\Entity\PlanException $exception)
+    public function deleteAction(PlanException $exception)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -96,7 +99,7 @@ class AdminPlanExceptionController extends Controller
      * @Route("/{id}")
      * @Template()
      */
-    public function indexAction(\Club\BookingBundle\Entity\Plan $plan)
+    public function indexAction(Plan $plan)
     {
         $em = $this->getDoctrine()->getManager();
 

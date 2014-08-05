@@ -7,14 +7,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PlanException extends AbstractType
+class PlanExceptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('exclude_date', 'jquery_datetime', array(
-            'date_widget' => 'single_text',
-            'time_widget' => 'single_text'
-        ));
+        $builder
+            ->add('exclude_date', 'jquery_datetime', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                ),
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -8,20 +8,28 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Passkey extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('key_identity');
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('key_identity', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ));
+    }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\PasskeyBundle\Entity\Passkey'
-    ));
-  }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\PasskeyBundle\Entity\Passkey'
+        ));
+    }
 
-  public function getName()
-  {
-    return 'passkey';
-  }
+    public function getName()
+    {
+        return 'passkey';
+    }
 }
