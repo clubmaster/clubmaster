@@ -1,52 +1,51 @@
 {% extends "ClubTeamBundle::base.html.twig" %}
 
 {% block body %}
-
 {% if schedules|length == 0 %}
 <table class="table">
     <thead>
         <tr>
             <th>{% trans %}Team{% endtrans %}</th>
         </tr>
-    <thead>
-    <tbody>
-        <tr>
-            <td>{% trans %}There are no teams.{% endtrans %}</td>
-        </tr>
-    </tbody>
-</table>
+        <thead>
+            <tbody>
+            <tr>
+                <td>{% trans %}There are no teams.{% endtrans %}</td>
+            </tr>
+            </tbody>
+        </table>
 
-{% else %}
-<table class="table">
-  <tbody>
-  {% set prev_date = '' %}
-  {% set date = '' %}
-  {% for schedule in schedules %}
-    {% set prev_date = date %}
-    {% set date = schedule.firstDate|club_date('full') %}
-
-    {% if date != prev_date %}
-    <tr>
-      <th colspan="4">{{ date }}</th>
-    </tr>
-    {% endif %}
-    <tr>
-      <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
-      <td>{{ schedule.teamCategory.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
-      <td>{{ schedule.location.locationName }}</td>
-      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-      <td>
-        {% if user.attend(schedule) %}
-          {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}
         {% else %}
-          {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('club_team_team_attend', { 'id':schedule.id })} %}
-        {% endif %}
-      </td>
-      {% endif %}
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+        <table class="table">
+            <tbody>
+            {% set prev_date = '' %}
+            {% set date = '' %}
+            {% for schedule in schedules %}
+            {% set prev_date = date %}
+            {% set date = schedule.firstDate|club_date('full') %}
 
-{% endif %}
-{% endblock %}
+            {% if date != prev_date %}
+            <tr>
+                <th class="success" colspan="4">{{ date }}</th>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>{{ schedule.firstDate|date('H:i') }} - {{ schedule.endDate|date('H:i') }}</td>
+                <td>{{ schedule.teamCategory.teamName }} ( {{ schedule.users|length }}/{{ schedule.maxAttend }} )</td>
+                <td>{{ schedule.location.locationName }}</td>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <td>
+                    {% if user.attend(schedule) %}
+                    {% include "ClubLayoutBundle:Default:unattend_link.html.twig" with {'url':path('club_team_team_unattend', { 'id':schedule.id })} %}
+                    {% else %}
+                    {% include "ClubLayoutBundle:Default:attend_link.html.twig" with {'url':path('club_team_team_attend', { 'id':schedule.id })} %}
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% endif %}
+        {% endblock %}
