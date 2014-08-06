@@ -73,3 +73,10 @@ div.calendar-header span.date {
 .pointer {
     cursor: pointer;
 }
+.weather-img {
+    width: 65px;
+    float: left;
+}
+.weather-body {
+    float: left;
+}

@@ -44,12 +44,14 @@ $(document).ready(function() {
 
                     var date = new Date(value.dt*1000);
 
-                    $('div#weather-list-'+lastInt).append('<div class="col-sm-4" id="weather-list-well-'+i+'">');
-                    $('div#weather-list-well-'+i).append('<div class="well" id="weather-list-int-'+i+'">');
-                    $('div#weather-list-int-'+i).append('<h2><img alt="'+value.weather[0].description+'" src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png" /> <small>'+getDay(date)+'</small></h2>');
-                    $('div#weather-list-int-'+i).append('<p id="weather-list-p-'+i+'"></p>');
-                    $('p#weather-list-p-'+i).append('Temperature: '+Math.round(value.temp.min)+degree+'/'+Math.round(value.temp.max)+degree+'<br>');
-                    $('p#weather-list-p-'+i).append('Wind: '+Math.round(value.speed)+units+', '+getDirection(value.deg)+'<br>');
+                    $('div#weather-list-'+lastInt).append('<div class="col-sm-4" id="weather-list-container-'+i+'">');
+                    $('div#weather-list-container-'+i).append('<div class="panel panel-info" id="weather-list-top-'+i+'">');
+                    $('div#weather-list-top-'+i).append('<div class="panel-heading" id="weather-list-heading-'+i+'">'+getDay(date));
+                    $('div#weather-list-top-'+i).append('<div class="panel-body" id="weather-list-body-'+i+'">');
+                    $('div#weather-list-body-'+i).append('<div class="weather-img"><img alt="'+value.weather[0].description+'" src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png" />');
+                    $('div#weather-list-body-'+i).append('<div class="weather-body" id="weather-list-body-body-'+i+'">');
+                    $('div#weather-list-body-body-'+i).append('Temperature: '+Math.round(value.temp.min)+degree+'/'+Math.round(value.temp.max)+degree+'<br>');
+                    $('div#weather-list-body-body-'+i).append('Wind: '+Math.round(value.speed)+units+', '+getDirection(value.deg)+'<br>');
                 }
 
                 i++;
@@ -93,7 +95,7 @@ function getDirection(deg)
             break;
 
         case ((deg > (i*2)-p) && (deg < (i*2)+p)):
-            sring = 'West';
+            string = 'West';
             break;
 
         case ((deg > (i*3)-p) && (deg < (i*3)+p)):
@@ -128,34 +130,85 @@ function getDay(date)
 {
     var string;
 
-    switch (true) {
-        case (date.getDay() == 0):
+    switch (date.getDay()) {
+        case 0:
             string = "Sunday";
             break;
 
-        case (date.getDay() == 1):
+        case 1:
             string = "Monday";
             break;
 
-        case (date.getDay() == 2):
+        case 2:
             string = "Tuesday";
             break;
 
-        case (date.getDay() == 3):
+        case 3:
             string = "Wednesday";
             break;
 
-        case (date.getDay() == 4):
+        case 4:
             string = "Thursday";
             break;
 
-        case (date.getDay() == 5):
+        case 5:
             string = "Friday";
             break;
 
-        case (date.getDay() == 6):
+        case 6:
             string = "Saturday";
             break;
+    }
+
+    switch (date.getMonth()) {
+        case 0:
+            string += ", Jan "+date.getDate();
+            break;
+
+        case 1:
+            string += ", Feb "+date.getDate();
+            break;
+
+        case 2:
+            string += ", Mar "+date.getDate();
+            break;
+
+        case 3:
+            string += ", Apr "+date.getDate();
+            break;
+
+        case 4:
+            string += ", May "+date.getDate();
+            break;
+
+        case 5:
+            string += ", Jun "+date.getDate();
+            break;
+
+        case 6:
+            string += ", Jul "+date.getDate();
+            break;
+
+        case 7:
+            string += ", Aug "+date.getDate();
+            break;
+
+        case 8:
+            string += ", Sep "+date.getDate();
+            break;
+
+        case 9:
+            string += ", Oct "+date.getDate();
+            break;
+
+        case 10:
+            string += ", Nov "+date.getDate();
+            break;
+
+        case 11:
+            string += ", Dec "+date.getDate();
+            break;
+
     }
 
     return string;

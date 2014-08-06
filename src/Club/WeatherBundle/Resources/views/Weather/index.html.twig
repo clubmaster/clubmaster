@@ -30,14 +30,20 @@ div#overview { display: none }
 
 <div class="row">
     <div class="col-xs-12" id="overview">
-        <div class="hero-unit">
-            <h1><img id="curr-weather" alt="" src="" /> {% trans %}Weather right now!{% endtrans %}</h1>
-            <p>
-            {% trans %}Location: <span id="curr-location"></span>{% endtrans %}<br>
-            {% trans with {'%degree%':degree} %}Current temperature: <span id="curr-temp"></span>&deg;%degree%{% endtrans %}<br>
-            {% trans %}Sunrise/sunset: <span id="curr-rise"></span>/<span id="curr-set"></span>{% endtrans %}<br>
-            {% trans with {'%units%':units} %}Current wind: <span id="curr-speed"></span>%units%, <span id="curr-dir"></span>{% endtrans %}<br />
-            </p>
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">{% trans %}Weather right now!{% endtrans %}</div>
+            <div class="panel-body">
+                <div class="weather-img">
+                    <img id="curr-weather" alt="" src="" />
+                </div>
+                <div class="weather-body">
+                    {% trans %}Location: <span id="curr-location"></span>{% endtrans %}<br>
+                    {% trans with {'%degree%':degree} %}Current temperature: <span id="curr-temp"></span>&deg;%degree%{% endtrans %}<br>
+                    {% trans %}Sunrise/sunset: <span id="curr-rise"></span>/<span id="curr-set"></span>{% endtrans %}<br>
+                    {% trans with {'%units%':units} %}Current wind: <span id="curr-speed"></span>%units%, <span id="curr-dir"></span>{% endtrans %}<br />
+                </div>
+            </div>
         </div>
     </div>
 </div>
