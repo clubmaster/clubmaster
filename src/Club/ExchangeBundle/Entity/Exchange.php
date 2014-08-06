@@ -264,14 +264,14 @@ class Exchange
     public function setLocation(\Club\UserBundle\Entity\Location $location = null)
     {
         $this->location = $location;
-    
+
         return $this;
     }
 
     /**
      * Get location
      *
-     * @return Club\UserBundle\Entity\Location 
+     * @return Club\UserBundle\Entity\Location
      */
     public function getLocation()
     {

@@ -12,7 +12,11 @@ class ExchangeComment extends AbstractType
     {
         $builder->add('comment', 'textarea', array(
             'attr' => array(
-                'class' => 'big'
+                'class' => 'form-control',
+                'rows' => 10
+            ),
+            'label_attr' => array(
+                'class' => 'col-sm-2'
             )
         ));
     }
