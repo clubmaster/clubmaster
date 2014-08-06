@@ -1,54 +1,61 @@
-<div class="well well-small">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="pull-left">
-                <div class="media-object calendar-header">
-                    <p>
-                        <span class="date">{{ event.startDate|date('d') }}</span><br />
-                        {{ event.startDate|date('M') }}<br />
-                        {{ event.startDate|date('Y') }}
-                    </p>
-                </div>
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">{{ event.eventName }}</div>
+    <div class="panel-body">
+
+        <div class="pull-left">
+            <div class="media-object calendar-header">
+                <p>
+                <span class="date">{{ event.startDate|date('d') }}</span><br />
+                {{ event.startDate|date('M') }}<br />
+                {{ event.startDate|date('Y') }}
+                </p>
             </div>
+        </div>
 
-            <div style="margin-left: 100px;">
-                <p class="lead">{{ event.eventName }}</p>
-                <p>{{ event.description|raw }}</p>
+        <div style="margin-left: 100px;">
+            <h4>{{ event.eventName }}</h4>
+            <p>{{ event.description|raw }}</p>
 
-                <table cellpadding="0" cellspading="0">
-                    <tr>
-                        <td>
-                            <strong>Time:</strong> {{ event.startDate|club_date('full') }} - at {{ event.startDate|club_time }} - {{ event.stopDate|club_time }}<br />
-                            <strong>Location:</strong> {{ event.locationString }}<br />
-                            <strong>Last subscribe:</strong> {{ event.lastSubscribe|club_datetime }}
-                        </td>
-                        <td width="30"></td>
-                        <td>
-                            <a target="_open" href="http://maps.google.com/?q={{ event.locationString|url_encode }}"><img src="{{ asset('bundles/clublayout/images/icons/32x32/map.png') }}" /></a>
-                        </td>
-                    </tr>
-                </table>
-
-                <hr>
-                {% if event.price == '0' %}
-                <p class="pull-left"><strong>Price:</strong> Free!</p>
-                {% else %}
-                <p class="pull-left"><strong>Price:</strong> {{ event.price|club_price }}</p>
-                {% endif %}
-
-                {% if event.isOpen %}
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        {% if event.isAttending(app.user) %}
-                            <a class="btn pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
-                        {% else %}
-                            <a class="btn btn-primary pull-right" href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+            <table cellpadding="0" cellspading="0">
+                <tr>
+                    <td>
+                        <strong>Time:</strong> {{ event.startDate|club_date('full') }} - at {{ event.startDate|club_time }} - {{ event.stopDate|club_time }}<br />
+                        {% if event.locationString != '' %}
+                        <strong>Location:</strong> {{ event.locationString }}<br />
                         {% endif %}
-                    {% else %}
-                        <a class="btn btn-primary pull-right" href="{{ path('event_event_signin', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+                        <strong>Last subscribe:</strong> {{ event.lastSubscribe|club_datetime }}
+                    </td>
+                    {% if event.locationString != '' %}
+                    <td width="30"></td>
+                    <td>
+                        <a target="_open" href="http://maps.google.com/?q={{ event.locationString|url_encode }}"><img src="{{ asset('bundles/clublayout/images/icons/32x32/map.png') }}" /></a>
+                    </td>
                     {% endif %}
-                {% endif %}
+                </tr>
+            </table>
 
-            </div>
+            <hr>
+            {% if event.price == '0' %}
+            <p class="pull-left"><strong>Price:</strong> Free!</p>
+            {% else %}
+            <p class="pull-left"><strong>Price:</strong> {{ event.price|club_price }}</p>
+            {% endif %}
+
+            {% if event.isOpen %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if event.isAttending(app.user) %}
+            <a class="btn btn-danger pull-right" href="{{ path('event_event_unattend', {'id':event.id}) }}">{% trans %}Unattend{% endtrans %}</a>
+            {% else %}
+            <a class="btn btn-primary pull-right" href="{{ path('event_event_attend', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+            {% endif %}
+            {% else %}
+            <a class="btn btn-primary pull-right" href="{{ path('event_event_signin', {'id':event.id}) }}">{% trans %}Attend{% endtrans %}</a>
+            {% endif %}
+            {% endif %}
+
         </div>
     </div>
 </div>
+
+
