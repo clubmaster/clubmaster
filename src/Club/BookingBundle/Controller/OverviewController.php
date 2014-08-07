@@ -6,7 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Club\UserBundle\Form\UserAjax;
+use Symfony\Component\HttpFoundation\Request;
+use Club\BookingBundle\Entity\Interval;
 
 /**
  * @Route("/booking/overview")
@@ -36,16 +37,26 @@ class OverviewController extends Controller
      * @Template()
      * @Route("/{date}/{id}")
      */
-    public function viewAction($date, \Club\BookingBundle\Entity\Interval $interval)
+    public function viewAction(Request $request, $date, Interval $interval)
     {
         $date = new \DateTime($date);
         $interval = $this->get('club_booking.interval')->getVirtualInterval($interval, $date);
 
-        $form = $this->createForm(new UserAjax());
+        $form = $this->get('club_user.form')->getAjaxForm();
+
         $em = $this->getDoctrine()->getManager();
         $active = false;
+
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $subs = $em->getRepository('ClubShopBundle:Subscription')->getActiveSubscriptions($this->getUser(), null, 'booking', null, $interval->getField()->getLocation());
+            $subs = $em->getRepository('ClubShopBundle:Subscription')
+                ->getActiveSubscriptions(
+                    $this->getUser(),
+                    null,
+                    'booking',
+                    null,
+                    $interval->getField()->getLocation()
+                );
+
             $active = (!$subs) ? false : true;
         }
 

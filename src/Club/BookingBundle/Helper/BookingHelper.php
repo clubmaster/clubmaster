@@ -71,6 +71,8 @@ class BookingHelper
     public function bindAdditional(Booking $booking, User $user)
     {
         try {
+            $this->booking = $booking;
+
             if ($user == $booking->getUser()) {
                 throw new BookingException($this->translator->trans('You are already participating in the booking'));
             }

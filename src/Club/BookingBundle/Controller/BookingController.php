@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Club\BookingBundle\Entity\Booking;
-use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/booking")
@@ -54,26 +53,27 @@ class BookingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $user = $form->get('user')->getData();
-        } else {
-            foreach ($form->get('user')->getErrors() as $error) {
-                $this->get('session')->getFlashBag()->add('error', $error->getMessage());
-            }
+            $user = $this->get('club_user.form')->getUser();
 
-            return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array(
-                'booking_id' => $booking->getId()
-            )));
+            if (!$user) {
+
+                return $this->redirect($this->generateUrl('club_booking_booking_viewbooking', array(
+                    'booking_id' => $booking->getId()
+                )));
+            }
         }
 
         $this->get('club_booking.booking')->bindAdditional($booking, $user);
 
         if (!$this->get('club_booking.booking')->isValid()) {
-            $this->get('session')->getFlashBag()->add('error', $this->get('club_booking.booking')->getError());
 
-            return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-                'id' => $interval->getId(),
-                'date' => $date->format('Y-m-d')
-            )));
+            $this->get('club_extra.flash')->addError(
+                $this->get('club_booking.booking')->getError()
+            );
+
+            return $this->redirect($this->generateUrl('club_booking_booking_viewbooking',
+                array('booking_id' => $booking->getId())
+            ));
         }
 
         $booking->addUser($user);
@@ -91,7 +91,7 @@ class BookingController extends Controller
      * @Route("/book/review/{interval_id}/{date}")
      * @Method("POST")
      */
-    public function reviewAction($interval_id, \DateTime $date)
+    public function reviewAction(Request $request, $interval_id, \DateTime $date)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
@@ -105,20 +105,21 @@ class BookingController extends Controller
         if ($guest) {
             $this->get('club_booking.booking')->bindGuest($interval, $date, $this->getUser());
         } else {
-            $form = $this->createForm(new UserAjax());
-            $form->bind($this->getRequest());
+            $userForm = $this->get('club_user.form');
+
+            $form = $userForm->getAjaxForm();
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $user = $form->get('user')->getData();
-            } else {
-                foreach ($form->get('user')->getErrors() as $error) {
-                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
-                }
+                $user = $userForm->getUser();
 
-                return $this->redirect($this->generateUrl('club_booking_overview_view', array(
-                    'id' => $interval->getId(),
-                    'date' => $date->format('Y-m-d')
-                )));
+                if (!$user) {
+
+                    return $this->redirect($this->generateUrl('club_booking_overview_view', array(
+                        'id' => $interval->getId(),
+                        'date' => $date->format('Y-m-d')
+                    )));
+                }
             }
 
             $this->get('club_booking.booking')->bindUser($interval, $date, $this->getUser(), $user);
@@ -350,15 +351,11 @@ class BookingController extends Controller
 
     public function getAddPlayerForm(Booking $booking)
     {
-        return $this->createForm(
-            new UserAjax(),
-            array(),
-            array(
-                'method' => 'POST',
-                'action' => $this->generateUrl('club_booking_booking_addplayer', array(
-                    'id' => $booking->getId()
-                ))
-            )
+        return $this->get('club_user.form')->getAjaxForm(
+            'active',
+            $this->generateUrl('club_booking_booking_addplayer', array(
+                'id' => $booking->getId()
+            ))
         );
     }
 }

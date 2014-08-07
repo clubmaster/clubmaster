@@ -3,12 +3,14 @@
 {% block pagenav %}
 <div class="navbar navbar-default">
     <div class="container-fluid">
-        <form method="post" action="{{ path('club_user_member_search') }}" class="navbar-form navbar-right" role="search">
+        {{ form_start(form, {'attr':{'class':'navbar-form navbar-right','role':'search'}}) }}
             <div class="form-group">
-                {{ form_widget(form.user, {'attr': {'class':'form-control search-query','placeholder':'Search'|trans}}) }}
+                <div id="scrollable-dropdown-menu">
+                    {{ form_widget(form.user, {'attr': {'class':'form-control search-query','placeholder':'Search'|trans}}) }}
+                </div>
             </div>
-            {{ form_rest(form) }}
-        </form>
+            {{ form_widget(form.search) }}
+        {{ form_end(form) }}
     </div>
 </div>
 {% endblock %}

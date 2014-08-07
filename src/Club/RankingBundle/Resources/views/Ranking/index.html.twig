@@ -3,8 +3,18 @@
 {% block body %}
 
 {% for ranking in rankings %}
-  <h3><a href="{{ path('club_ranking_ranking_show', {'id':ranking.id}) }}">{{ ranking.name }}</a></h3>
-  {% render(controller("ClubRankingBundle:Ranking:Top", {'id':ranking.id, 'limit':ranking_view_top})) %}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ ranking.name }}
+    </div>
+    <div class="panel-body">
+        <h3><a href="{{ path('club_ranking_ranking_show', {'id':ranking.id}) }}">{{ ranking.name }}</a></h3>
+        {% render(controller("ClubRankingBundle:Ranking:Top", {'id':ranking.id, 'limit':ranking_view_top})) %}
+    </div>
+
+</div>
+
 
 {% else %}
 <table class="table">

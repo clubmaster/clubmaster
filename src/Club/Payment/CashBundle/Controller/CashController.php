@@ -25,6 +25,7 @@ class CashController extends Controller
         $payment = $em->getRepository('ClubShopBundle:PaymentMethod')->findOneBy(array(
             'controller' => $this->container->getParameter('club_payment_cash.controller')
         ));
+
         $log = new \Club\ShopBundle\Entity\PurchaseLog();
         $log->setOrder($order);
         $log->setPaymentMethod($payment);
@@ -79,7 +80,15 @@ class CashController extends Controller
     private function getForm($log)
     {
         $form = $this->createFormBuilder($log)
-            ->add('amount')
+            ->add('amount', 'text', array(
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ))
             ->getForm();
 
         return $form;

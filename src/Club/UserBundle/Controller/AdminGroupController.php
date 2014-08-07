@@ -6,9 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Club\UserBundle\Entity\Group;
 use Club\UserBundle\Form\GroupType;
-use Club\UserBundle\Form\UserAjax;
 
 /**
  * @Route("/{_locale}/admin/group")
@@ -19,16 +19,19 @@ class AdminGroupController extends Controller
      * @Route("/members/add/{id}")
      * @Template()
      */
-    public function membersAddAction(\Club\UserBundle\Entity\Group $group)
+    public function membersAddAction(Request $request, Group $group)
     {
-        $form = $this->createForm(new UserAjax());
+        $userForm = $this->get('club_user.form');
+        $form = $userForm->getAjaxForm('all');
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $user = $form->get('user')->getData();
+        $form->handleRequest($request);
 
+        if ($form->isValid()) {
+            $user = $userForm->getUser();
+
+            if ($user) {
                 $group->addUsers($user);
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
@@ -51,7 +54,7 @@ class AdminGroupController extends Controller
      * @Route("/members/delete/{id}/{user_id}")
      * @Template()
      */
-    public function membersDeleteAction(\Club\UserBundle\Entity\Group $group, $user_id)
+    public function membersDeleteAction(Group $group, $user_id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->find('ClubUserBundle:User', $user_id);
@@ -71,7 +74,7 @@ class AdminGroupController extends Controller
      * @Route("/members/{id}")
      * @Template()
      */
-    public function membersAction(\Club\UserBundle\Entity\Group $group)
+    public function membersAction(Group $group)
     {
         return array(
             'group' => $group
@@ -102,7 +105,7 @@ class AdminGroupController extends Controller
      * @Route("/edit/{id}", name="admin_group_edit")
      * @Template()
      */
-    public function editAction(\Club\UserBundle\Entity\Group $group)
+    public function editAction(Group $group)
     {
         $res = $this->process($group);
 

@@ -6,7 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Club\UserBundle\Form\UserAjax;
+use Symfony\Component\HttpFoundation\Request;
+use Club\UserBundle\Entity\User;
 
 /**
  * @Route("/{_locale}/members")
@@ -17,7 +18,7 @@ class MemberController extends Controller
      * @Template()
      * @Route("/search")
      */
-    public function searchAction()
+    public function searchAction(Request $request)
     {
         $this->setHeader();
 
@@ -25,21 +26,19 @@ class MemberController extends Controller
             throw new AccessDeniedException();
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new UserAjax());
+        $userForm = $this->get('club_user.form');
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $user = $form->get('user')->getData();
+        $form = $userForm->getAjaxForm();
+        $form->handleRequest($request);
 
-                return $this->redirect($this->generateUrl('club_user_member_show', array('id' => $user->getId())));
-            } else {
-                $errors = $form->get('user')->getErrors();
+        if ($form->isValid()) {
+            $user = $userForm->getUser();
 
-                foreach ($errors as $error) {
-                    $this->get('session')->getFlashBag()->add('error', $error->getMessage());
-                }
+            if ($user) {
+
+                return $this->redirect($this->generateUrl(
+                    'club_user_member_show', array('id' => $user->getId())
+                ));
             }
         }
 
@@ -50,7 +49,7 @@ class MemberController extends Controller
      * @Template()
      * @Route("/{id}")
      */
-    public function showAction(\Club\UserBundle\Entity\User $user)
+    public function showAction(User $user)
     {
         $this->setHeader();
 
@@ -83,7 +82,7 @@ class MemberController extends Controller
         $results = 50;
 
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new UserAjax());
+        $form = $this->get('club_user.form')->getAjaxForm();
 
         $paginator = $em->getRepository('ClubUserBundle:User')->getPaginator($results, $page);
 

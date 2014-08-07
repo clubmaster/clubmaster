@@ -13,14 +13,7 @@ Blog: {{ blog.title }}
 {% endblock %}
 
 {% block body %}
-<h3>{{ blog.title }}</h3>
-<p>{{ blog.message|raw }}</p>
-
-<hr>
-
-<h6>{% trans with {'%date%':blog.createdAt|club_datetime,'%author%':blog.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
-
-{{ socialButtons() }}
+{% include "ClubWelcomeBundle:Welcome:blog.html.twig" with {'post':blog} %}
 
 <h4>{% trans %}Comments{% endtrans %}</h4>
 {% for comment in blog.comments %}

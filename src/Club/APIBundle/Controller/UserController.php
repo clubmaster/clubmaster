@@ -15,7 +15,7 @@ class UserController extends Controller
 {
   /**
    * @Route("", defaults={"query" = null})
-   * @Route("/search")
+   * @Route("/search", name="club_api_user_search")
    * @Route("/search/{query}")
    * @Method("GET")
    */
@@ -37,9 +37,14 @@ class UserController extends Controller
       if ($query == null) {
           $users = $em->getRepository('ClubUserBundle:User')->getBySearch(null,'u.member_number', $active, $limit);
       } else {
-          $users = $em->getRepository('ClubUserBundle:User')->getBySearch(array(
-              'query' => $query
-          ), 'u.member_number', $active, $limit);
+          $users = $em->getRepository('ClubUserBundle:User')->getBySearch(
+              array(
+                  'query' => $query
+              ),
+              'u.member_number',
+              $active,
+              $limit
+          );
       }
 
       $res = array();

@@ -1,17 +1,31 @@
-<h3><a href="{{ path('club_welcome_blog_show', {'blog_id':post.id}) }}">{{ post.title }}</a></h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ post.title }}
+    </div>
+    <div class="panel-body">
+        <h4>
+            <a href="{{ path('club_welcome_blog_show', {'blog_id':post.id}) }}">{{ post.title }}</a>,
+            <small>{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name,'%link%':path('club_user_member_show', {'id':post.user.id})} %}Posted on %date% by <a href="%link%">%author%</a>.{% endtrans %}</small>
+        </h4>
 
-<h6>{% trans with {'%date%':post.createdAt|club_datetime,'%author%':post.user.name,'%link%':path('club_user_member_show', {'id':post.user.id})} %}Posted on %date% by <a href="%link%">%author%</a>.{% endtrans %}</h6>
+        {% if post.user == app.user %}
+        {% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_blog_edit', {'id':post.id})} %}
+        {% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', {'id':post.id})} %}
+        {% endif %}
 
-{% if post.user == app.user %}
-{% include "ClubLayoutBundle:Default:edit_link.html.twig" with {'url':path('club_welcome_blog_edit', {'id':post.id})} %}
-{% include "ClubLayoutBundle:Default:delete_link.html.twig" with {'url':path('club_welcome_blog_delete', {'id':post.id})} %}
-{% endif %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_welcome_blog_comment', {'blog_id':post.id})} %}
+        {% endif %}
 
-{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-{% include "ClubLayoutBundle:Default:comment_link.html.twig" with {'url':path('club_welcome_blog_comment', {'blog_id':post.id})} %}
-{% endif %}
-<p>{{ post.message|raw }}</p>
+        <div class="row" style="padding: 20px 0">
+            <div class="col-sm-offset-1 col-sm-10">
+                <p>{{ post.message|raw }}</p>
+            </div>
+        </div>
 
-<i><a href="{{ path('club_welcome_blog_show', {'blog_id':post.id}) }}">{% trans with {'%comments%':post.comments|length} %}There are %comments% comments on this post.{% endtrans %}</a></i>
+        {{ socialButtons() }}
 
-<hr>
+        <i><a href="{{ path('club_welcome_blog_show', {'blog_id':post.id}) }}">{% trans with {'%comments%':post.comments|length} %}There are %comments% comments on this post.{% endtrans %}</a></i>
+
+    </div>
+</div>

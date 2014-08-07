@@ -171,34 +171,34 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function __toString()
     {
-      return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
+        return $this->getMemberNumber(). ' ('.$this->getProfile()->getName().')';
     }
 
     public function getEmail()
     {
-      if (!$this->getProfile()->getProfileEmail()) return false;
+        if (!$this->getProfile()->getProfileEmail()) return false;
 
-      return $this->getProfile()->getProfileEmail()->getEmailAddress();
+        return $this->getProfile()->getProfileEmail()->getEmailAddress();
     }
 
     public function getName()
     {
-      return $this->getProfile()->getName();
+        return $this->getProfile()->getName();
     }
 
     public function __construct()
     {
-      $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->salt = $this->generateKey();
-      $this->algorithm = 'sha512';
-      $this->enabled = true;
-      $this->status = self::ACTIVE;
-      $this->locked = false;
-      $this->expired = false;
-      $this->api_hash = hash('sha1', $this->generateKey());
-      $this->roles = array();
+        $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->salt = $this->generateKey();
+        $this->algorithm = 'sha512';
+        $this->enabled = true;
+        $this->status = self::ACTIVE;
+        $this->locked = false;
+        $this->expired = false;
+        $this->api_hash = hash('sha1', $this->generateKey());
+        $this->roles = array();
     }
 
     /**
@@ -460,12 +460,12 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function getSubscriptions()
     {
-      return $this->subscriptions;
+        return $this->subscriptions;
     }
 
     public function getGroups()
     {
-      return $this->groups;
+        return $this->groups;
     }
 
     /**
@@ -473,8 +473,8 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     public function prePersist()
     {
-      $this->setCreatedAt(new \DateTime());
-      $this->setUpdatedAt(new \DateTime());
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -482,81 +482,82 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     public function preUpdate()
     {
-      $this->setUpdatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public function toArray($type='full')
     {
-      $birth = $this->getProfile()->getDayOfBirth();
-      if ($birth) {
-          $birth = $birth->format('c');
-      } else {
-          $birth = null;
-      }
-
-      $res = array(
-        'id' => $this->getId(),
-        'member_number' => $this->getMemberNumber(),
-        'first_name' => $this->getProfile()->getFirstName(),
-        'last_name' => $this->getProfile()->getLastName(),
-        'gender' => $this->getProfile()->getGender(),
-        'day_of_birth' => $birth,
-        'created_at' => $this->getCreatedAt()->format('c'),
-        'updated_at' => $this->getUpdatedAt()->format('c')
-      );
-
-      if ($type == 'full') {
-        if ($this->getProfile()->getProfileAddress()) {
-          $res['street'] = $this->getProfile()->getProfileAddress()->getStreet();
-          $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
-          $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
-          $res['state'] = $this->getProfile()->getProfileAddress()->getState();
-          $res['country'] = $this->getProfile()->getProfileAddress()->getCountry();
+        $birth = $this->getProfile()->getDayOfBirth();
+        if ($birth) {
+            $birth = $birth->format('c');
+        } else {
+            $birth = null;
         }
 
-        if ($this->getProfile()->getProfilePhone()) {
-          $res['phone_number'] = $this->getProfile()->getProfilePhone()->getPhoneNumber();
+        $res = array(
+            'id' => $this->getId(),
+            'member_number' => $this->getMemberNumber(),
+            'first_name' => $this->getProfile()->getFirstName(),
+            'last_name' => $this->getProfile()->getLastName(),
+            'name' => $this->getName(),
+            'gender' => $this->getProfile()->getGender(),
+            'day_of_birth' => $birth,
+            'created_at' => $this->getCreatedAt()->format('c'),
+            'updated_at' => $this->getUpdatedAt()->format('c')
+        );
+
+        if ($type == 'full') {
+            if ($this->getProfile()->getProfileAddress()) {
+                $res['street'] = $this->getProfile()->getProfileAddress()->getStreet();
+                $res['postal_code'] = $this->getProfile()->getProfileAddress()->getPostalCode();
+                $res['city'] = $this->getProfile()->getProfileAddress()->getCity();
+                $res['state'] = $this->getProfile()->getProfileAddress()->getState();
+                $res['country'] = $this->getProfile()->getProfileAddress()->getCountry();
+            }
+
+            if ($this->getProfile()->getProfilePhone()) {
+                $res['phone_number'] = $this->getProfile()->getProfilePhone()->getPhoneNumber();
+            }
+
+            if ($this->getProfile()->getProfileEmail()) {
+                $res['email_address'] = $this->getProfile()->getProfileEmail()->getEmailAddress();
+            }
+
+            $res['subscriptions'] = array();
+            foreach ($this->getSubscriptions() as $sub) {
+                $o = array(
+                    'id' => $sub->getId(),
+                    'type' => $sub->getType(),
+                    'start_date' => $sub->getStartDate()->format('c'),
+                );
+
+                if ($sub->getExpireDate()) {
+                    $o['expire_date'] = $sub->getExpireDate()->format('c');
+                }
+
+                $res['subscriptions'][] = $o;
+            }
+
+            $res['groups'] = array();
+            foreach ($this->getGroups() as $group) {
+                $res['groups'][] = array(
+                    'id' => $group->getId(),
+                    'group_name' => $group->getGroupName()
+                );
+            }
         }
 
-        if ($this->getProfile()->getProfileEmail()) {
-          $res['email_address'] = $this->getProfile()->getProfileEmail()->getEmailAddress();
-        }
-
-        $res['subscriptions'] = array();
-        foreach ($this->getSubscriptions() as $sub) {
-          $o = array(
-            'id' => $sub->getId(),
-            'type' => $sub->getType(),
-            'start_date' => $sub->getStartDate()->format('c'),
-          );
-
-          if ($sub->getExpireDate()) {
-            $o['expire_date'] = $sub->getExpireDate()->format('c');
-          }
-
-          $res['subscriptions'][] = $o;
-        }
-
-        $res['groups'] = array();
-        foreach ($this->getGroups() as $group) {
-          $res['groups'][] = array(
-            'id' => $group->getId(),
-            'group_name' => $group->getGroupName()
-          );
-        }
-      }
-
-      return $res;
+        return $res;
     }
 
     public function addRole($role)
     {
-      $this->roles[] = $role;
+        $this->roles[] = $role;
     }
 
     public function getUserRoles()
     {
-      return $this->roles;
+        return $this->roles;
     }
 
     public function getRoles()
@@ -567,43 +568,43 @@ class User implements AdvancedUserInterface, EquatableInterface
             $roles[] = $r->getRoleName();
         }
 
-      foreach ($this->getGroups() as $group) {
-          foreach ($group->getRole() as $r) {
-              $roles[] = $r->getRoleName();
-          }
-      }
+        foreach ($this->getGroups() as $group) {
+            foreach ($group->getRole() as $r) {
+                $roles[] = $r->getRoleName();
+            }
+        }
 
-      $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';
 
-      return array_unique($roles);
+        return array_unique($roles);
     }
 
     public function isEqualTo(UserInterface $user)
     {
-      if (!$user instanceof User) {
-        return false;
-      }
+        if (!$user instanceof User) {
+            return false;
+        }
 
-      if ($this->password !== $user->getPassword()) {
-        return false;
-      }
-      if ($this->getSalt() !== $user->getSalt()) {
-        return false;
-      }
-      if ($this->isAccountNonExpired() !== $user->isAccountNonExpired()) {
-        return false;
-      }
-      if (!$this->locked !== $user->isAccountNonLocked()) {
-        return false;
-      }
-      if ($this->isCredentialsNonExpired() !== $user->isCredentialsNonExpired()) {
-        return false;
-      }
-      if ($this->enabled !== $user->isEnabled()) {
-        return false;
-      }
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+        if ($this->getSalt() !== $user->getSalt()) {
+            return false;
+        }
+        if ($this->isAccountNonExpired() !== $user->isAccountNonExpired()) {
+            return false;
+        }
+        if (!$this->locked !== $user->isAccountNonLocked()) {
+            return false;
+        }
+        if ($this->isCredentialsNonExpired() !== $user->isCredentialsNonExpired()) {
+            return false;
+        }
+        if ($this->enabled !== $user->isEnabled()) {
+            return false;
+        }
 
-      return true;
+        return true;
 
     }
 
@@ -613,21 +614,21 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function isAccountNonExpired()
     {
-      return true;
+        return true;
     }
 
     public function isAccountNonLocked()
     {
-      if ($this->getLocked() == 1)
+        if ($this->getLocked() == 1)
 
-        return false;
+            return false;
 
-      return true;
+        return true;
     }
 
     public function isCredentialsNonExpired()
     {
-      return true;
+        return true;
     }
 
     public function isEnabled()
@@ -637,31 +638,31 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function getUsername()
     {
-      return $this->getMemberNumber();
+        return $this->getMemberNumber();
     }
 
     public function serialize()
     {
-      return serialize(array(
-        $this->password,
-        $this->member_number,
-        $this->salt,
-        $this->enabled,
-        $this->locked,
-        $this->expired
-      ));
+        return serialize(array(
+            $this->password,
+            $this->member_number,
+            $this->salt,
+            $this->enabled,
+            $this->locked,
+            $this->expired
+        ));
     }
 
     public function unserialize($serialized)
     {
-      list(
-        $this->password,
-        $this->member_number,
-        $this->salt,
-        $this->enabled,
-        $this->locked,
-        $this->expired
-      ) = unserialize($serialized);
+        list(
+            $this->password,
+            $this->member_number,
+            $this->salt,
+            $this->enabled,
+            $this->locked,
+            $this->expired
+        ) = unserialize($serialized);
     }
 
     /**
@@ -716,11 +717,11 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function inGroup(\Club\UserBundle\Entity\Group $group)
     {
-      foreach ($this->getGroups() as $g) {
-        if ($group->getId() === $g->getId()) return true;
-      }
+        foreach ($this->getGroups() as $g) {
+            if ($group->getId() === $g->getId()) return true;
+        }
 
-      return false;
+        return false;
     }
 
     /**
@@ -750,7 +751,7 @@ class User implements AdvancedUserInterface, EquatableInterface
      */
     public function addGroups(\Club\UserBundle\Entity\Group $groups)
     {
-      $this->groups[] = $groups;
+        $this->groups[] = $groups;
     }
 
     /**
@@ -805,13 +806,13 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     public function isAttend(\Club\TeamBundle\Entity\Schedule $schedule)
     {
-      foreach ($this->getSchedules() as $sch) {
-        if ($schedule->getId() == $sch->getSchedule()->getId())
+        foreach ($this->getSchedules() as $sch) {
+            if ($schedule->getId() == $sch->getSchedule()->getId())
 
-          return true;
-      }
+                return true;
+        }
 
-      return false;
+        return false;
     }
 
     /**

@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
+<link rel="stylesheet" href="{{ asset('bundles/clubextra/css/style.css') }}" />
+<link rel="stylesheet" href="{{ asset('bundles/clubformextra/css/style.css') }}" />
+
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,6 +33,10 @@
 
 {% block stylesheets %}{% endblock %}
 {% block metatags %}{% endblock %}
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -57,10 +64,6 @@
 
         {% endif %}
 
-        {% if is_granted('ROLE_MEMBER_ADMIN') %}
-                {% render controller("ClubLayoutBundle:Misc:Search") %}
-        {% endif %}
-
         {% block header %}
             <h1 class="page-header">
                 {% if club_pageimage != '' %}
@@ -85,10 +88,6 @@
 <footer>
     <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
 </footer>
-
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 {% javascripts "@ClubLayoutBundle/Resources/public/js/*" %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
