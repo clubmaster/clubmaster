@@ -54,7 +54,7 @@ class RepetitionMonthly extends AbstractType
                 'choices' => $dailyRange
             ))
             ->add('day_of_month', 'checkbox', array(
-                'label_attr' => $label_attr
+                'required' => false
             ))
             ->add('week', 'choice', array(
                 'attr' => $attr,

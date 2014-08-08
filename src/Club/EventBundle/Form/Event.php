@@ -71,7 +71,6 @@ class Event extends AbstractType
                 'required' => false
             ))
             ->add('public', 'checkbox',  array(
-                'label_attr' => $label_attr,
                 'help' => 'If the event should be visible for guests.'
             ))
             ;

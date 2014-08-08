@@ -11,6 +11,13 @@ class PlanRepeat extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
+
         $repeats = array(
             'daily' => 'Daily',
             'weekly' => 'Weekly',
@@ -34,43 +41,63 @@ class PlanRepeat extends AbstractType
             $repeat_every[$i] = $i;
         }
 
-        $builder->add('repeats', 'choice', array(
-            'choices' => $repeats
-        ));
-        $builder->add('repeat_on', 'day', array(
-            'multiple' => 'true',
-            'required' => false,
-            'attr' => array(
-                'size' => 7
-            )
-        ));
-        $builder->add('repeat_on_hour', 'hour', array(
-            'multiple' => 'true',
-            'required' => false,
-            'attr' => array(
-                'size' => 10
-            )
-        ));
-        $builder->add('repeat_by', 'choice', array(
-            'choices' => $repeat_by
-        ));
-        $builder->add('repeat_every', 'choice', array(
-            'choices' => $repeat_every
-        ));
-        $builder->add('starts_on', 'jquery_date', array(
-            'widget' => 'single_text',
-            'required' => false
-        ));
-        $builder->add('ends_type', 'choice', array(
-            'choices' => $ends_type
-        ));
-        $builder->add('ends_after', 'integer', array(
-            'required' => false
-        ));
-        $builder->add('ends_on', 'jquery_date', array(
-            'widget' => 'single_text',
-            'required' => false
-        ));
+        $builder
+            ->add('repeats', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'choices' => $repeats
+            ))
+            ->add('repeat_on', 'day', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'multiple' => 'true',
+                'required' => false,
+                'attr' => array(
+                    'size' => 7
+                )
+            ))
+            ->add('repeat_on_hour', 'hour', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'multiple' => 'true',
+                'required' => false,
+                'attr' => array(
+                    'size' => 10
+                )
+            ))
+            ->add('repeat_by', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'choices' => $repeat_by
+            ))
+            ->add('repeat_every', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'choices' => $repeat_every
+            ))
+            ->add('starts_on', 'jquery_date', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'widget' => 'single_text',
+                'required' => false
+            ))
+            ->add('ends_type', 'choice', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'choices' => $ends_type
+            ))
+            ->add('ends_after', 'integer', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'required' => false
+            ))
+            ->add('ends_on', 'jquery_date', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'widget' => 'single_text',
+                'required' => false
+            ))
+            ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

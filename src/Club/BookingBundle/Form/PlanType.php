@@ -55,7 +55,6 @@ class PlanType extends AbstractType
                 'time_widget' => 'single_text'
             ))
             ->add('all_day', 'checkbox', array(
-                'label_attr' => $label_attr,
                 'required' => false
             ))
             ->add('fields', 'entity', array(
@@ -70,7 +69,6 @@ class PlanType extends AbstractType
                 )
             ))
             ->add('repeating', 'checkbox', array(
-                'label_attr' => $label_attr,
                 'required' => false
             ))
             ->add('plan_repeats', 'collection', array(
