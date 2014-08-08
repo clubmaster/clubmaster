@@ -50,3 +50,11 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block button_row -%}
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        {{- form_widget(form) -}}
+    </div>
+</div>
+{%- endblock button_row %}

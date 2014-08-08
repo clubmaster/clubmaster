@@ -37,13 +37,22 @@ class Announcement extends AbstractType
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ))
+            ->add('save', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn btn-primary'
+                )
+            ))
             ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\NewsBundle\Entity\Announcement'
+            'data_class' => 'Club\NewsBundle\Entity\Announcement',
+            'attr' => array(
+                'class' => 'form-horizontal',
+                'role' => 'form'
+            )
         ));
     }
 

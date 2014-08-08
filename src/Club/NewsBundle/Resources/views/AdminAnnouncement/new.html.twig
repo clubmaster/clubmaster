@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block body %}
-{% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_news_adminannouncement_new')} %}
+
+{{ form_start(form) }}
+{{ form_row(form.message) }}
+{{ form_row(form.start_date) }}
+{{ form_row(form.end_date) }}
+{{ form_row(form.save, {'label':'Save changes'|trans}) }}
+
+{{ form_end(form) }}
+
 {% endblock %}
