@@ -33,7 +33,6 @@ class Ranking extends AbstractType
                 'required' => false
             ))
             ->add('invite_only', 'checkbox', array(
-                'label_attr' => $label_attr,
                 'required' => false
             ))
             ->add('game_set', 'best_of_set', array(

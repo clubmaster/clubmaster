@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\ShopBundle\Entity\Shipping;
+use Club\ShopBundle\Form\ShippingType;
 
 /**
  * @Route("/admin")
@@ -32,7 +34,7 @@ class AdminShippingController extends Controller
    */
   public function newAction()
   {
-    $shipping = new \Club\ShopBundle\Entity\Shipping();
+    $shipping = new Shipping();
     $res = $this->process($shipping);
 
     if ($res instanceOf RedirectResponse)
@@ -83,7 +85,7 @@ class AdminShippingController extends Controller
 
   protected function process($shipping)
   {
-    $form = $this->createForm(new \Club\ShopBundle\Form\Shipping(), $shipping);
+    $form = $this->createForm(new ShippingType(), $shipping);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());

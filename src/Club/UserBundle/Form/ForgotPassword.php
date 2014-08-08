@@ -8,24 +8,34 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ForgotPassword extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('password', 'repeated', array(
-      'first_name' => 'Password',
-      'second_name' => 'Password_again',
-      'type' => 'password'
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('password', 'repeated', array(
+                'first_name' => 'Password',
+                'second_name' => 'Password_again',
+                'type' => 'password',
+                'options' => array(
+                    'attr' => array(
+                        'class' => 'form-control'
+                    ),
+                    'label_attr' => array(
+                        'class' => 'col-sm-2'
+                    )
+                )
+            ))
+            ;
+    }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\UserBundle\Entity\User'
-    ));
-  }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\UserBundle\Entity\User'
+        ));
+    }
 
-  public function getName()
-  {
-    return 'forgot_password';
-  }
+    public function getName()
+    {
+        return 'forgot_password';
+    }
 }

@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\ShopBundle\Entity\PaymentMethod;
+use Club\ShopBundle\Form\PaymentMethodType;
 
 /**
  * @Route("/admin")
@@ -32,7 +34,7 @@ class AdminPaymentMethodController extends Controller
    */
   public function newAction()
   {
-    $payment_method = new \Club\ShopBundle\Entity\PaymentMethod();
+    $payment_method = new PaymentMethod();
     $res = $this->process($payment_method);
 
     if ($res instanceOf RedirectResponse)
@@ -83,7 +85,7 @@ class AdminPaymentMethodController extends Controller
 
   protected function process($payment_method)
   {
-    $form = $this->createForm(new \Club\ShopBundle\Form\PaymentMethod(), $payment_method);
+    $form = $this->createForm(new PaymentMethodType(), $payment_method);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());

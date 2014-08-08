@@ -13,15 +13,14 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-{% stylesheets
-    "@ClubLayoutBundle/Resources/public/css/mystyle.css"
-    "@ClubLayoutBundle/Resources/public/css/dashboard.css"
-    %}
+{% stylesheets "@ClubLayoutBundle/Resources/public/css/signin.css" %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 
+<!--
 <link rel="stylesheet" href="{{ asset('bundles/clubextra/css/style.css') }}" />
 <link rel="stylesheet" href="{{ asset('bundles/clubformextra/css/style.css') }}" />
+-->
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -35,66 +34,22 @@
 <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/clublayout/images/apple-touch-icon-57-precomposed.png') }}">
 
 {% block stylesheets %}{% endblock %}
-{% block metatags %}{% endblock %}
-
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 
-{% block after_body %}{% endblock %}
 {% block topmenu %}
 {% render controller("ClubMenuBundle:Default:topMenu") %}
 {% endblock %}
 
 <div class="container-fluid">
-    <div class="row">
-
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.hasAdminPrivilege %}
-        <div class="col-sm-3 col-md-2 sidebar">
-            {% block leftmenu %}
-            {% render controller("ClubMenuBundle:Default:leftMenu") %}
-            {% endblock %}
-        </div>
-
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-        {% else %}
-
-        <div class="col-xs-12">
-
-        {% endif %}
-
-        {% block header %}
-            <h1 class="page-header">
-                {% if club_pageimage != '' %}
-                <img class="img-polaroid" src="{{ asset(club_pageimage) }}" />
-                {% endif %}
-                {{ club_pageheader }}
-            </h1>
-        {% endblock %}
-        {% block pagenav %}{% endblock %}
-
-        {% if is_granted('ROLE_ADMIN') %}
-            {% block logger %}{% render controller("ClubLogBundle:Log:LogView") %}{% endblock %}
-        {% endif %}
-
-        {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
-        {% block body %}{% endblock %}
-
-    </div>
+    {% include 'ClubFormExtraBundle:Default:flash.html.twig' %}
+    {% block body %}{% endblock %}
 </div>
 
-<hr>
-<footer>
-    <p><a href="http://www.clubmaster.org" target="_open">ClubMaster</a>, {{ club_version }}</p>
-</footer>
-
-{% javascripts "@ClubLayoutBundle/Resources/public/js/*" %}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 {% block javascripts %}{% endblock %}
 </body>

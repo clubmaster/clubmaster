@@ -6,98 +6,100 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\ShopBundle\Entity\Special;
+use Club\ShopBundle\Form\SpecialType;
 
 /**
  * @Route("/admin")
  */
 class AdminSpecialController extends Controller
 {
-  /**
-   * @Route("/shop/special")
-   * @Template()
-   */
-  public function indexAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-    $specials = $em->getRepository('ClubShopBundle:Special')->findAll();
-
-    return array(
-      'specials' => $specials
-    );
-  }
-
-  /**
-   * @Route("/shop/special/new")
-   * @Template()
-   */
-  public function newAction()
-  {
-    $special = new \Club\ShopBundle\Entity\Special();
-    $res = $this->process($special);
-
-    if ($res instanceOf RedirectResponse)
-
-      return $res;
-
-    return array(
-      'form' => $res->createView()
-    );
-  }
-
-  /**
-   * @Route("/shop/special/edit/{id}")
-   * @Template()
-   */
-  public function editAction($id)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $special = $em->find('ClubShopBundle:Special',$id);
-
-    $res = $this->process($special);
-
-    if ($res instanceOf RedirectResponse)
-
-      return $res;
-
-    return array(
-      'special' => $special,
-      'form' => $res->createView()
-    );
-  }
-
-  /**
-   * @Route("/shop/special/delete/{id}")
-   */
-  public function deleteAction($id)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $special = $em->find('ClubShopBundle:Special',$id);
-
-    $em->remove($special);
-    $em->flush();
-
-    $this->get('club_extra.flash')->addNotice();
-
-    return $this->redirect($this->generateUrl('club_shop_adminspecial_index'));
-  }
-
-  protected function process($special)
-  {
-    $form = $this->createForm(new \Club\ShopBundle\Form\Special(), $special);
-
-    if ($this->getRequest()->getMethod() == 'POST') {
-      $form->bind($this->getRequest());
-      if ($form->isValid()) {
+    /**
+     * @Route("/shop/special")
+     * @Template()
+     */
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
-        $em->persist($special);
+        $specials = $em->getRepository('ClubShopBundle:Special')->findAll();
+
+        return array(
+            'specials' => $specials
+        );
+    }
+
+    /**
+     * @Route("/shop/special/new")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $special = new Special();
+        $res = $this->process($special);
+
+        if ($res instanceOf RedirectResponse)
+
+            return $res;
+
+        return array(
+            'form' => $res->createView()
+        );
+    }
+
+    /**
+     * @Route("/shop/special/edit/{id}")
+     * @Template()
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $special = $em->find('ClubShopBundle:Special',$id);
+
+        $res = $this->process($special);
+
+        if ($res instanceOf RedirectResponse)
+
+            return $res;
+
+        return array(
+            'special' => $special,
+            'form' => $res->createView()
+        );
+    }
+
+    /**
+     * @Route("/shop/special/delete/{id}")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $special = $em->find('ClubShopBundle:Special',$id);
+
+        $em->remove($special);
         $em->flush();
 
         $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_shop_adminspecial_index'));
-      }
     }
 
-    return $form;
-  }
+    protected function process($special)
+    {
+        $form = $this->createForm(new SpecialType(), $special);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($special);
+                $em->flush();
+
+                $this->get('club_extra.flash')->addNotice();
+
+                return $this->redirect($this->generateUrl('club_shop_adminspecial_index'));
+            }
+        }
+
+        return $form;
+    }
 }

@@ -9,33 +9,55 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class Category extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('category_name');
-    $builder->add('description');
-    $builder->add('category','entity',array(
-      'class' => 'Club\ShopBundle\Entity\Category',
-      'required' => false
-    ));
-    $builder->add('location','entity',array(
-      'class' => 'Club\UserBundle\Entity\Location',
-      'required' => true,
-      'query_builder' => function(EntityRepository $er) {
-        return $er->createQueryBuilder('l')
-          ->where('l.club = 1');
-      }
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $attr = array(
+            'class' => 'form-control'
+        );
+        $label_attr = array(
+            'class' => 'col-sm-2'
+        );
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(array(
-      'data_class' => 'Club\ShopBundle\Entity\Category'
-    ));
-  }
+        $builder
+            ->add('category_name', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('description', 'textarea', array(
+                'attr' => array(
+                    'class' => $attr['class'],
+                    'rows' => 10
+                ),
+                'label_attr' => $label_attr
+            ))
+            ->add('category','entity',array(
+                'class' => 'Club\ShopBundle\Entity\Category',
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'required' => false
+            ))
+            ->add('location','entity',array(
+                'class' => 'Club\UserBundle\Entity\Location',
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'required' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('l')
+                        ->where('l.club = 1');
+                }
+            ))
+            ;
+    }
 
-  public function getName()
-  {
-    return 'category';
-  }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Club\ShopBundle\Entity\Category'
+        ));
+    }
+
+    public function getName()
+    {
+        return 'category';
+    }
 }

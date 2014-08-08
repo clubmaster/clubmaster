@@ -9,6 +9,7 @@
             </button>
             <a class="navbar-brand" href="{{ path('localized') }}"><img src="{{ asset('bundles/clublayout/images/logo_top.png') }}" /></a>
         </div>
+
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -90,6 +91,9 @@
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn btn-success">{% trans %}Login{% endtrans %}</button>
+                                <br>
+                                <a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a>
+
                             </div>
                         </div>
                     </form>

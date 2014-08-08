@@ -6,52 +6,109 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class AuthController extends Controller
 {
     /**
      * @Route("/login_check", name="login_check")
      */
-    public function loginCheck()
-    {
-    }
+    public function loginCheck() {}
 
     /**
      * @Route("/logout", name="logout")
-     * @Template()
      */
-    public function logoutAction()
-    {
-        return array();
-    }
+    public function logoutAction() {}
 
     /**
      * @Route("/login", name="login")
      * @Template()
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        $this->get('club_extra.flash')->addInfo($this->get('translator')
-            ->trans('Enter your username and password.')
-        );
+        $session = $request->getSession();
 
-        return array();
+        if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(
+                SecurityContextInterface::AUTHENTICATION_ERROR
+            );
+        } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
+        } else {
+            $error = '';
+        }
+
+        $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
+
+        $form = $this->get('form.factory')
+            ->createNamedBuilder('', 'form', null, array(
+                'attr' => array(
+                    'class' => 'form-signin',
+                    'role' => 'form'
+                ),
+                'csrf_protection' => false
+            ))
+            ->setMethod('POST')
+            ->setAction($this->generateUrl('login_check'))
+            ->add('_username', 'text', array(
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control',
+                    'autofocus' => true
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ))
+            ->add('_password', 'password', array(
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ))
+            ->add('_remember_me', 'checkbox', array(
+                'required' => false
+            ))
+            ->getForm()
+            ;
+
+        return array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+            'form'          => $form->createView()
+        );
     }
 
     /**
      * @Route("/{_locale}/auth/forgot", name="auth_forgot")
      * @Template()
      */
-    public function forgotAction()
+    public function forgotAction(Request $request)
     {
-        $form = $this->createFormBuilder()
+        $form = $this->createFormBuilder(null, array(
+            'attr' => array(
+                'class' => 'form-signin',
+                'role' => 'form'
+            )))
+            ->setMethod('post')
+            ->setAction($this->generateUrl('auth_forgot'))
             ->add('username', 'text', array(
-                'label' => 'Username or email'
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
             ))
             ->getForm();
 
-        if ($this->getRequest()->getMethod() == 'POST') {
-            $form->bind($this->getRequest());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
             $post = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
@@ -84,9 +141,6 @@ class AuthController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
 
-        $this->get('club_extra.flash')->addInfo($this->get('translator')
-            ->trans('Enter your username or email address, and you will receive a reset password email within a few minutes.')
-        );
         return array(
             'form' => $form->createView()
         );
@@ -96,7 +150,7 @@ class AuthController extends Controller
      * @Route("/{_locale}/auth/reset/{hash}", name="auth_reset")
      * @Template()
      */
-    public function resetPasswordAction($hash)
+    public function resetPasswordAction(Request $request, $hash)
     {
         $em = $this->getDoctrine()->getManager();
         $forgot = $em->getRepository('ClubUserBundle:ForgotPassword')->findOneByHash($hash);
@@ -107,22 +161,25 @@ class AuthController extends Controller
             } else {
                 $user = new \Club\UserBundle\Entity\User();
             }
-            $form = $this->createForm(new \Club\UserBundle\Form\ForgotPassword(), $user);
 
-            if ($this->getRequest()->getMethod() == 'POST') {
-                $form->bind($this->getRequest());
+            $form = $this->createForm(new \Club\UserBundle\Form\ForgotPassword(), $user, array(
+                'attr' => array(
+                    'class' => 'form-signin'
+                ),
+                'method' => 'POST'
+            ));
+            $form->handleRequest($request);
 
-                if ($form->isValid()) {
-                    $forgot->setExpireDate(new \DateTime());
+            if ($form->isValid()) {
+                $forgot->setExpireDate(new \DateTime());
 
-                    $em->persist($user);
-                    $em->persist($forgot);
-                    $em->flush();
+                $em->persist($user);
+                $em->persist($forgot);
+                $em->flush();
 
-                    $this->get('session')->set('notice','Your password has been set.');
+                $this->get('session')->set('notice','Your password has been set.');
 
-                    return $this->redirect($this->generateUrl('homepage'));
-                }
+                return $this->redirect($this->generateUrl('homepage'));
             }
 
             return array(

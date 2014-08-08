@@ -4,10 +4,9 @@ namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OrderStatus extends AbstractType
+class CouponType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,21 +17,26 @@ class OrderStatus extends AbstractType
             'class' => 'col-sm-2'
         );
 
+        $arr = array();
+        for ($i = 1; $i < 50; $i++) {
+            $arr[$i] = $i;
+        }
+
         $builder
-            ->add('status_name', 'text', array(
+            ->add('coupon_key', 'text', array(
                 'attr' => $attr,
                 'label_attr' => $label_attr
             ))
-            ->add('paid','checkbox',array(
-                'required' => false
+            ->add('value', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr)
+            )
+            ->add('max_usage','choice',array(
+                'attr' => $attr,
+                'label_attr' => $label_attr,
+                'choices' => $arr
             ))
-            ->add('delivered','checkbox',array(
-                'required' => false
-            ))
-            ->add('cancelled','checkbox',array(
-                'required' => false
-            ))
-            ->add('priority', 'integer', array(
+            ->add('expire_at', 'jquery_datetime', array(
                 'attr' => $attr,
                 'label_attr' => $label_attr
             ))
@@ -42,12 +46,12 @@ class OrderStatus extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\ShopBundle\Entity\OrderStatus'
+            'data_class' => 'Club\ShopBundle\Entity\Coupon'
         ));
     }
 
     public function getName()
     {
-        return 'order_status';
+        return 'coupon';
     }
 }

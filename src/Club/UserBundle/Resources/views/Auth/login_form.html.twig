@@ -1,22 +1,27 @@
-    <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="_username">{% trans %}Username{% endtrans %}</label>
-            <div class="controls">
-                <input type="text" id="_username" name="_username" placeholder="{% trans %}Username{% endtrans %}">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="_password">{% trans %}Password{% endtrans %}</label>
-            <div class="controls">
-                <input type="password" id="_password" name="_password" placeholder="{% trans %}Password{% endtrans %}">
-                <input type="submit" value="{% trans %}Sign In{% endtrans %}" class="btn btn-primary" />
+<div class="container">
+
+    {{ form_start(form) }}
+
+    <h2 class="form-signin-heading">{% trans %}Please sign in{% endtrans %}</h2>
+
+    <div class="panel panel-primary">
+        {{ form_row(form._username, {'attr':{'placeholder':'Member number'|trans}}) }}
+        {{ form_row(form._password, {'attr':{'placeholder':'Password'|trans}}) }}
+        {{ form_row(form._remember_me) }}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-lg btn-primary" type="submit">{% trans %}Sign in{% endtrans %}</button>
+
+                <div style="padding-top: 30px">
+                    <a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a>
+                </div>
+
             </div>
         </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <span><a href="{{ path('auth_forgot') }}">{% trans %}Forgot password?{% endtrans %}</a></span><br />
-            </div>
-        </div>
+        {{ form_end(form) }}
 
-    </form>
+        <div style="clear: both;"></div>
+
+    </div>
+</div>

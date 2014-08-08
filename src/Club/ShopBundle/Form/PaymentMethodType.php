@@ -4,10 +4,9 @@ namespace Club\ShopBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OrderStatus extends AbstractType
+class PaymentMethodType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,20 +18,23 @@ class OrderStatus extends AbstractType
         );
 
         $builder
-            ->add('status_name', 'text', array(
+            ->add('payment_method_name', 'text', array(
                 'attr' => $attr,
                 'label_attr' => $label_attr
             ))
-            ->add('paid','checkbox',array(
-                'required' => false
-            ))
-            ->add('delivered','checkbox',array(
-                'required' => false
-            ))
-            ->add('cancelled','checkbox',array(
-                'required' => false
+            ->add('controller', 'text', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
             ))
             ->add('priority', 'integer', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('success_page', 'tinymce', array(
+                'attr' => $attr,
+                'label_attr' => $label_attr
+            ))
+            ->add('error_page', 'tinymce', array(
                 'attr' => $attr,
                 'label_attr' => $label_attr
             ))
@@ -42,12 +44,12 @@ class OrderStatus extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Club\ShopBundle\Entity\OrderStatus'
+            'data_class' => 'Club\ShopBundle\Entity\PaymentMethod'
         ));
     }
 
     public function getName()
     {
-        return 'order_status';
+        return 'payment_method';
     }
 }

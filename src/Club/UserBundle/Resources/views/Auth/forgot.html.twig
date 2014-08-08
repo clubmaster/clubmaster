@@ -1,17 +1,29 @@
-{% extends "ClubLayoutBundle:Default:base.html.twig" %}
+{% extends "ClubLayoutBundle:Default:auth.html.twig" %}
 
 {% block body %}
 
-<form method="POST" action="{{ path('auth_forgot') }}" class="form-horizontal">
-    {{ form_widget(form) }}
+<div class="container">
 
-    <div class="control-group">
-        <div class="controls">
-            <button type="submit" class="btn btn-primary">{% trans %}Send password{% endtrans %}</button>
+    <h2 class="form-signin-heading">{% trans %}Forgot password{% endtrans %}</h2>
+    <p>{% trans %}Enter your member number or email addres, and you will receive a reset password email within a few minutes.{% endtrans %}</p>
+
+    <div class="panel panel-primary">
+
+        {{ form_start(form) }}
+        {{ form_row(form.username, {'label':'Member number'|trans,'attr':{'placeholder':'Email or member number'|trans}}) }}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-lg btn-primary" type="submit">{% trans %}Send password{% endtrans %}</button>
+            </div>
         </div>
+
+        {{ form_end(form) }}
+
+        <div style="clear: both;"></div>
+
     </div>
 
-</form>
-
+</div>
 
 {% endblock %}

@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Club\ShopBundle\Entity\Coupon;
+use Club\ShopBundle\Form\CouponType;
 
 /**
  * @Route("/admin")
@@ -32,7 +34,7 @@ class AdminCouponController extends Controller
    */
   public function newAction()
   {
-    $coupon = new \Club\ShopBundle\Entity\Coupon();
+    $coupon = new Coupon();
     $res = $this->process($coupon);
 
     if ($res instanceOf RedirectResponse)
@@ -100,7 +102,7 @@ class AdminCouponController extends Controller
 
   protected function process($coupon)
   {
-    $form = $this->createForm(new \Club\ShopBundle\Form\Coupon(), $coupon);
+    $form = $this->createForm(new CouponType(), $coupon);
 
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bind($this->getRequest());
