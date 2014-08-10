@@ -2,43 +2,52 @@
 
 {% block body %}
 
-<div class="well">
-  <h3>{% trans %}Booking Information{% endtrans %}</h3>
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Location{% endtrans %}</dt>
-        <dd>{{ field.location.locationName }}</dd>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Booking Information{% endtrans %}
+    </div>
 
-        <dt>{% trans %}Date{% endtrans %}</dt>
-        <dd>{{ schedule.firstDate|club_date }}</dd>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>{% trans %}Location{% endtrans %}</dt>
+            <dd>{{ field.location.locationName }}</dd>
 
-        <dt>{% trans %}Time{% endtrans %}</dt>
-        <dd>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</dd>
+            <dt>{% trans %}Date{% endtrans %}</dt>
+            <dd>{{ schedule.firstDate|club_date }}</dd>
 
-        <dt>{% trans %}Field{% endtrans %}</dt>
-        <dd>{{ field.name }}</dd>
+            <dt>{% trans %}Time{% endtrans %}</dt>
+            <dd>{{ schedule.firstDate|club_time }} - {{ schedule.endDate|club_time }}</dd>
 
-        <dt>{% trans %}Team{% endtrans %}</dt>
-        <dd>{{ schedule.teamCategory.teamName }}</dd>
+            <dt>{% trans %}Field{% endtrans %}</dt>
+            <dd>{{ field.name }}</dd>
 
-        <dt>{% trans %}Attends{% endtrans %}</dt>
-        <dd>{{ schedule.users|length }} / {{ schedule.maxAttend }}</dd>
+            <dt>{% trans %}Team{% endtrans %}</dt>
+            <dd>{{ schedule.teamCategory.teamName }}</dd>
 
-    </dl>
+            <dt>{% trans %}Attends{% endtrans %}</dt>
+            <dd>{{ schedule.users|length }} / {{ schedule.maxAttend }}</dd>
 
-    {% if field.information %}
-      <h3>{% trans %}Information{% endtrans %}</h3>
-      <p>{{ field.information }}</p>
-    {% endif %}
+        </dl>
 
-    {% if public_teamlist and schedule.users|length > 0 %}
+        {% if field.information %}
+        <hr>
+
+        <h3>{% trans %}Information{% endtrans %}</h3>
+        <p>{{ field.information }}</p>
+        {% endif %}
+
+
+        {% if public_teamlist and schedule.users|length > 0 %}
+        <hr>
+
         <h3>{% trans %}Attends{% endtrans %}</h3>
         <dl class="dl-horizontal">
-        {% for user in schedule.users %}
+            {% for user in schedule.users %}
             <dd>{{ user.user.name }}</dd>
-        {% endfor %}
+            {% endfor %}
         </dl>
-    {% endif %}
-
+        {% endif %}
+    </div>
 </div>
 
 {% include "ClubBookingBundle:Booking:attend_team.html.twig" %}

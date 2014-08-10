@@ -1,37 +1,49 @@
-<div class="well">
-    <h3>{% trans %}Booking Information{% endtrans %}</h3>
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Location{% endtrans %}</dt>
-        <dd>{{ booking.field.location.locationName }}</dd>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Booking Information{% endtrans %}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <dl class="dl-horizontal">
+                    <dt>{% trans %}Location{% endtrans %}</dt>
+                    <dd>{{ booking.field.location.locationName }}</dd>
 
-        <dt>{% trans %}Date{% endtrans %}</dt>
-        <dd>{{ booking.firstDate|club_date }}</dd>
+                    <dt>{% trans %}Date{% endtrans %}</dt>
+                    <dd>{{ booking.firstDate|club_date }}</dd>
 
-        <dt>{% trans %}Time{% endtrans %}</dt>
-        <dd>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</dd>
+                    <dt>{% trans %}Time{% endtrans %}</dt>
+                    <dd>{{ booking.firstDate|club_time }} - {{ booking.endDate|club_time }}</dd>
 
-        <dt>{% trans %}Field{% endtrans %}</dt>
-        <dd>{{ booking.field.name }}</dd>
-    </dl>
+                    <dt>{% trans %}Field{% endtrans %}</dt>
+                    <dd>{{ booking.field.name }}</dd>
+                </dl>
+            </div>
 
-    <h3>{% trans %}Players{% endtrans %}</h3>
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Booker{% endtrans %}</dt>
-        <dd><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }} ({{ booking.user.memberNumber }})</a></dd>
+            <div class="col-sm-6">
 
-        <dt>{% trans %}Partner{% endtrans %}</dt>
-        {% if booking.guest %}
-        <dd>{% trans %}Guest{% endtrans %}</dd>
-        {% else %}
-        {% for partner in booking.users %}
-        <dd><a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }} ({{ partner.memberNumber }})</a></dd>
-        {% endfor %}
+                <dl class="dl-horizontal">
+                    <dt>{% trans %}Booker{% endtrans %}</dt>
+                    <dd><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }} ({{ booking.user.memberNumber }})</a></dd>
+
+                    <dt>{% trans %}Partner{% endtrans %}</dt>
+
+                    {% for partner in booking.users %}
+                    <dd><a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }} ({{ partner.memberNumber }})</a></dd>
+                    {% endfor %}
+
+                    {% if booking.guest %}
+                    <dd>{% trans %}Guest{% endtrans %}</dd>
+                    {% endif %}
+
+                </dl>
+            </div>
+        </div>
+
+        <hr>
+        {% if booking.field.information %}
+        <h3>{% trans %}Information{% endtrans %}</h3>
+        <p>{{ booking.field.information }}</p>
         {% endif %}
-    </dl>
-
-    {% if booking.field.information %}
-    <h3>{% trans %}Information{% endtrans %}</h3>
-    <p>{{ booking.field.information }}</p>
-    {% endif %}
+    </div>
 </div>
-

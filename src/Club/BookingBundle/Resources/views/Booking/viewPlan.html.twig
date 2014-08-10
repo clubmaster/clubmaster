@@ -2,39 +2,54 @@
 
 {% block body %}
 
-<div class="well">
-  <h3>{% trans %}Booking Information{% endtrans %}</h3>
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Location{% endtrans %}</dt>
-        <dd>{{ field.location.locationName }}</dd>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Booking Information{% endtrans %}
+    </div>
 
-        <dt>{% trans %}Start date{% endtrans %}</dt>
-        <dd>{{ date|club_datetime }}</dd>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>{% trans %}Location{% endtrans %}</dt>
+            <dd>{{ field.location.locationName }}</dd>
 
-        <dt>{% trans %}Field{% endtrans %}</dt>
-        <dd>{{ field.name }}</dd>
+            <dt>{% trans %}Start date{% endtrans %}</dt>
+            <dd>{{ date|club_datetime }}</dd>
 
-        <dt>{% trans %}Plan{% endtrans %}</dt>
-        <dd>{{ plan.name }}</dd>
-    </dl>
+            <dt>{% trans %}Field{% endtrans %}</dt>
+            <dd>{{ field.name }}</dd>
 
-    {% if field.information %}
-      <h3>{% trans %}Information{% endtrans %}</h3>
-      <p>{{ field.information }}</p>
-    {% endif %}
+            <dt>{% trans %}Plan{% endtrans %}</dt>
+            <dd>{{ plan.name }}</dd>
+        </dl>
 
-    <h3>{% trans %}Description{% endtrans %}</h3>
-    <p>{{ plan.description }}</p>
+        {% if field.information %}
+        <hr>
+
+        <h3>{% trans %}Information{% endtrans %}</h3>
+        <p>{{ field.information|nl2br }}</p>
+        {% endif %}
+
+        <hr>
+
+        <h3>{% trans %}Description{% endtrans %}</h3>
+        <p>{{ plan.description|nl2br }}</p>
+    </div>
 
 </div>
-    {% if is_granted('ROLE_BOOKING_ADMIN') %}
-    <fieldset>
-        <legend>{% trans %}Delete{% endtrans %}</legend>
 
+{% if is_granted('ROLE_BOOKING_ADMIN') %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Delete{% endtrans %}
+    </div>
+
+    <div class="panel-body">
         <p>{% trans %}Click here to cancel this booking plan.{% endtrans %}</p>
 
         {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_exclude', {'id':plan.id,'datetime':date|date('Y-m-d H:i')}), 'button':'Cancel'|trans} %}
-    </fieldset>
-    {% endif %}
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock %}

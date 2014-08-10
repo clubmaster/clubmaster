@@ -5,8 +5,9 @@
 {% include "ClubBookingBundle:Booking:information.html.twig" %}
 
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and (is_granted('ROLE_BOOKING_ADMIN') or booking.isOwner(app.user)) %}
-<div class="rows">
+<div class="row">
     {% include "ClubBookingBundle:Booking:cancel_form.html.twig" %}
+
     {% if isParticipating %}
     {% include "ClubBookingBundle:Booking:morePlayers.html.twig" %}
     {% else %}
@@ -15,12 +16,12 @@
 </div>
 
 {% elseif isParticipating %}
-<div class="rows">
+<div class="row">
     {% include "ClubBookingBundle:Booking:morePlayers.html.twig" %}
 </div>
 
 {% else %}
-<div class="rows">
+<div class="row">
     {% include "ClubBookingBundle:Booking:addMe.html.twig" %}
 </div>
 

@@ -2,39 +2,50 @@
 
 {% block body %}
 
-<div class="well">
-    <h3>{% trans %}Booking Information{% endtrans %}</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Booking Information{% endtrans %}
+    </div>
 
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Location{% endtrans %}</dt>
-        <dd>{{ interval.field.location.locationName }}</dd>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <dl class="dl-horizontal">
+                    <dt>{% trans %}Location{% endtrans %}</dt>
+                    <dd>{{ interval.field.location.locationName }}</dd>
 
-        <dt>{% trans %}Date{% endtrans %}</dt>
-        <dd>{{ booking.firstDate|club_date('long') }}</dd>
+                    <dt>{% trans %}Date{% endtrans %}</dt>
+                    <dd>{{ booking.firstDate|club_date('long') }}</dd>
 
-        <dt>{% trans %}Time{% endtrans %}</dt>
-        <dd>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</dd>
+                    <dt>{% trans %}Time{% endtrans %}</dt>
+                    <dd>{{ interval.startTime|club_time }} - {{ interval.stopTime|club_time }}</dd>
 
-        <dt>{% trans %}Field{% endtrans %}</dt>
-        <dd>{{ interval.field.name }}</dd>
+                    <dt>{% trans %}Field{% endtrans %}</dt>
+                    <dd>{{ interval.field.name }}</dd>
 
-        <dt>{% trans %}Price{% endtrans %}</dt>
-        <dd>{{ price|club_price }}</dd>
-    </dl>
+                    <dt>{% trans %}Price{% endtrans %}</dt>
+                    <dd>{{ price|club_price }}</dd>
+                </dl>
+            </div>
+            <div class="col-sm-6">
+                <dl class="dl-horizontal">
+                    <dt>{% trans %}Booker{% endtrans %}</dt>
+                    <dd><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }} ({{ booking.user.memberNumber }})</a></dd>
 
-    <h3>{% trans %}Players{% endtrans %}</h3>
-    <dl class="dl-horizontal">
-        <dt>{% trans %}Booker{% endtrans %}</dt>
-        <dd><a href="{{ path('club_user_member_show', {'id':booking.user.id}) }}">{{ booking.user.name }} ({{ booking.user.memberNumber }})</a></dd>
+                    <dt>{% trans %}Partner{% endtrans %}</dt>
+                    {% if booking.guest %}
+                    <dd>{% trans %}Guest{% endtrans %}</dd>
+                    {% else %}
+                    {% for partner in booking.users %}
+                    <dd><a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }} ({{ partner.memberNumber }})</a></dd>
+                    {% endfor %}
+                    {% endif %}
+                </dl>
+            </div>
+        </div>
+    </div>
 
-    <dt>{% trans %}Partner{% endtrans %}</dt>
-    {% if booking.guest %}
-        <dd>{% trans %}Guest{% endtrans %}</dd>
-    {% else %}
-      {% for partner in booking.users %}
-        <dd><a href="{{ path('club_user_member_show', {'id':partner.id}) }}">{{ partner.name }} ({{ partner.memberNumber }})</a></dd>
-      {% endfor %}
-    {% endif %}
+    <hr>
 
     {% if interval.field.information %}
     <h3>{% trans %}Information{% endtrans %}</h3>
@@ -42,18 +53,22 @@
     {% endif %}
 </div>
 
-<div class="well">
-{% if price > 0 %}
-    <h3>{% trans %}Confirm{% endtrans %}</h3>
-    <p>{% trans %}Before the booking is confirmed, click here to buy.{% endtrans %}</p>
-    {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_buy'), 'button':'Buy'|trans} %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Confirm booking{% endtrans %}
+    </div>
 
-{% else %}
+    <div class="panel-body">
+        {% if price > 0 %}
+        <p>{% trans %}Before the booking is confirmed, click here to buy.{% endtrans %}</p>
+        {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_buy'), 'button':'Buy booking'|trans} %}
 
-    <h3>{% trans %}Confirm{% endtrans %}</h3>
-    <p>{% trans %}Click here to confirm your booking.{% endtrans %}</p>
-    {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_confirm'), 'button':'Confirm'|trans} %}
-{% endif %}
+        {% else %}
+
+        <p>{% trans %}Click here to confirm your booking.{% endtrans %}</p>
+        {% include "ClubLayoutBundle:Default:form.html.twig" with {'path':path('club_booking_booking_confirm'), 'button':'Confirm booking'|trans} %}
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 <form action="{{ path('club_user_filter_quick') }}" method="POST" id="search" class="navbar-search pull-right form-search">
     <div class="input-prepend">
-        <button type="submit" class="btn">{% trans %}Search{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Search{% endtrans %}</button>
         {{ form_widget(form.user, { 'attr':{ 'class':'col-sm-9 search-query'} }) }}
     </div>
     {{ form_rest(form) }}

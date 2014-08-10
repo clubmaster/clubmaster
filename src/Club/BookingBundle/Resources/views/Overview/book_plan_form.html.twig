@@ -1,9 +1,15 @@
-<div class="col-sm-6">
-    <div class="well">
-        <h3>{% trans %}Booking plan{% endtrans %}</h3>
-        <form method="get" action="{{ path('club_booking_plan_pre', {'date':date|date('Y-m-d'),'interval_id':interval.id}) }}">
-            <p>{% trans %}Click here if you want to create a booking plan.{% endtrans %}</p>
-            {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-        </form>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans %}Booking plan{% endtrans %}
+            </div>
+            <div class="panel-body">
+                <form method="get" action="{{ path('club_booking_plan_pre', {'date':date|date('Y-m-d'),'interval_id':interval.id}) }}">
+                    <p>{% trans %}Click here if you want to create a booking plan.{% endtrans %}</p>
+                    {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+                </form>
+            </div>
+        </div>
     </div>
 </div>

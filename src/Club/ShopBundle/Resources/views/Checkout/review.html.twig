@@ -2,41 +2,61 @@
 
 {% block body %}
 <h3>{% trans %}Review order{% endtrans %}</h3>
-<p><a href="{{ path('shop_checkout') }}" class="btn">{% trans %}Edit order{% endtrans %}</a></p>
+<p><a href="{{ path('shop_checkout') }}" class="btn btn-primary">{% trans %}Edit order{% endtrans %}</a></p>
 
 {% include "ClubShopBundle:Checkout:cart_confirm.html.twig" %}
 
 <div class="row">
     <div class="col-sm-4">
         <h3>{% trans %}Customer Information{% endtrans %}</h3>
-        <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit customer{% endtrans %}</a></p>
 
-        <p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
-        {% trans with {'%vat%':cart.customerAddress.companyName} %}VAT: %vat%{% endtrans %}<br />
-        {% trans with {'%firstname%':cart.customerAddress.firstName,'%lastname%':cart.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
-        {% trans with {'%street%':cart.customerAddress.street} %}Street: %street%{% endtrans %}<br />
-        {% trans with {'%postal%':cart.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
-        {% trans with {'%city%':cart.customerAddress.city} %}City: %city%{% endtrans %}<br />
-        {% trans with {'%country%':cart.customerAddress.country} %}Country: %country%{% endtrans %}</p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans %}Customer Information{% endtrans %}
+            </div>
+            <div class="panel-body">
+
+                <p><a href="{{ path('shop_checkout_order') }}" class="btn btn-info">{% trans %}Edit customer{% endtrans %}</a></p>
+
+                <p>{% trans with {'%company%':cart.customerAddress.companyName} %}Company: %company%{% endtrans %}<br />
+                {% trans with {'%vat%':cart.customerAddress.companyName} %}VAT: %vat%{% endtrans %}<br />
+                {% trans with {'%firstname%':cart.customerAddress.firstName,'%lastname%':cart.customerAddress.lastName} %}Name: %firstname% %lastname%{% endtrans %}<br />
+                {% trans with {'%street%':cart.customerAddress.street} %}Street: %street%{% endtrans %}<br />
+                {% trans with {'%postal%':cart.customerAddress.postalCode} %}Postal: %postal%{% endtrans %}<br />
+                {% trans with {'%city%':cart.customerAddress.city} %}City: %city%{% endtrans %}<br />
+                {% trans with {'%country%':cart.customerAddress.country} %}Country: %country%{% endtrans %}</p>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-4">
         <h3>{% trans %}Shipping Information{% endtrans %}</h3>
-        <p><a href="{{ path('shop_checkout_order') }}" class="btn">{% trans %}Edit shipping{% endtrans %}</a></p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans %}Shipping Information{% endtrans %}
+            </div>
+            <div class="panel-body">
+                <p><a href="{{ path('shop_checkout_order') }}" class="btn btn-info">{% trans %}Edit shipping{% endtrans %}</a></p>
 
-        <p>{{ cart.shipping }}</p>
+                <p>{% trans with {'%method%':cart.shipping} %}Current shipping: <b>%method%</b>{% endtrans %}</p>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-4">
         <h3>{% trans %}Payment Method{% endtrans %}</h3>
 
         {% for payment in payments %}
-        <div class="well">
-            <h4>{{ payment.paymentMethodName }}</h4>
-            <a class="btn btn-primary" href="{{ path('shop_checkout_process', {'id':payment.id}) }}">{% trans %}Pay &raquo{% endtrans %}</a>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {{ payment.paymentMethodName }}
+            </div>
+            <div class="panel-body">
+                <h4>{{ payment.paymentMethodName }}</h4>
+                <a class="btn btn-primary" href="{{ path('shop_checkout_process', {'id':payment.id}) }}">{% trans %}Use this payment &raquo{% endtrans %}</a>
+            </div>
         </div>
         {% endfor %}
-
     </div>
 </div>
 {% endblock %}

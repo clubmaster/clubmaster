@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Club\TeamBundle\Entity\TeamCategory;
 use Club\TeamBundle\Entity\Schedule;
+use Club\UserBundle\Entity\User;
 
 /**
  * @Route("/admin")
@@ -39,11 +40,10 @@ class AdminScheduleController extends Controller
      * @Route("/team/team/schedule/{schedule_id}/participant/{id}/unattend")
      * @Template()
      */
-    public function unattendAction($schedule_id, $id)
+    public function unattendAction($schedule_id, User $user)
     {
         $em = $this->getDoctrine()->getManager();
         $schedule = $em->find('ClubTeamBundle:Schedule', $schedule_id);
-        $user = $em->find('ClubUserBundle:User', $id);
 
         $schedule->getUsers()->removeElement($user);
         $em->flush();
@@ -62,11 +62,8 @@ class AdminScheduleController extends Controller
      * @Route("/team/team/schedule/{id}/participant")
      * @Template()
      */
-    public function participantAction($id)
+    public function participantAction(Schedule $schedule)
     {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule', $id);
-
         return array(
             'team' => $schedule->getTeamCategory()->getId(),
             'schedule' => $schedule
@@ -77,13 +74,13 @@ class AdminScheduleController extends Controller
      * @Route("/team/team/schedule/{id}/edit/choice")
      * @Template()
      */
-    public function editChoiceAction($id)
+    public function editChoiceAction(Schedule $schedule)
     {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule', $id);
+        $category = $schedule->getTeamCategory();
 
         return array(
-            'schedule' => $schedule
+            'schedule' => $schedule,
+            'category' => $category
         );
     }
 
@@ -91,11 +88,8 @@ class AdminScheduleController extends Controller
      * @Route("/team/team/schedule/{id}/delete/choice")
      * @Template()
      */
-    public function deleteChoiceAction($id)
+    public function deleteChoiceAction(Schedule $schedule)
     {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule', $id);
-
         return array(
             'schedule' => $schedule
         );
@@ -131,74 +125,11 @@ class AdminScheduleController extends Controller
     }
 
     /**
-     * @Route("/team/team/schedule/edit/{id}/{category_id}")
-     * @Template()
-     */
-    public function editAction(Schedule $schedule, $category_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $category = $em->find('ClubTeamBundle:TeamCategory', $category_id);
-
-        $res = $this->process($schedule);
-
-        if ($this->getRequest()->getMethod() == 'POST') {
-            if (count($schedule->getSchedules()) || $schedule->getSchedule())
-
-                return $this->redirect($this->generateUrl('club_team_adminschedule_editchoice', array(
-                    'id' => $schedule->getId(),
-                )));
-        }
-
-        if ($res instanceOf RedirectResponse)
-
-            return $res;
-
-        return array(
-            'schedule' => $schedule,
-            'category' => $category,
-            'form' => $res->createView()
-        );
-    }
-
-    /**
-     * @Route("/team/team/schedule/delete/{id}")
-     */
-    public function deleteAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
-
-        if ($schedule->getSchedule()) {
-            if (count($schedule->getSchedule()->getSchedules())) {
-                return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
-                    'id' => $id
-                )));
-            }
-        }
-
-        if (count($schedule->getSchedules()))
-
-            return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
-                'id' => $id
-            )));
-
-        $em->remove($schedule);
-        $em->flush();
-
-        $this->get('club_extra.flash')->addNotice();
-
-        return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
-            'category_id' => $schedule->getTeamCategory()->getId()
-        )));
-    }
-
-    /**
      * @Route("/team/team/schedule/delete/{id}/once")
      */
-    public function deleteOnceAction($id)
+    public function deleteOnceAction(Schedule $schedule)
     {
         $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
         if (count($schedule->getSchedules())) {
             foreach ($schedule->getSchedules() as $sch) {
@@ -229,10 +160,9 @@ class AdminScheduleController extends Controller
     /**
      * @Route("/team/team/schedule/delete/{id}/future")
      */
-    public function deleteFutureAction($id)
+    public function deleteFutureAction(Schedule $schedule)
     {
         $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
         $parent = $this->getParent($schedule);
 
@@ -274,11 +204,8 @@ class AdminScheduleController extends Controller
     /**
      * @Route("/team/team/schedule/delete/{id}/all")
      */
-    public function deleteAllAction($id)
+    public function deleteAllAction(Schedule $schedule)
     {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
-
         $parent = $this->getParent($schedule);
         $this->deleteAll($parent);
 
@@ -292,10 +219,9 @@ class AdminScheduleController extends Controller
     /**
      * @Route("/team/team/schedule/edit/{id}/future")
      */
-    public function editFutureAction($id)
+    public function editFutureAction(Schedule $schedule)
     {
         $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
         $parent = $this->getParent($schedule);
 
@@ -360,10 +286,9 @@ class AdminScheduleController extends Controller
     /**
      * @Route("/team/team/schedule/edit/{id}/all")
      */
-    public function editAllAction($id)
+    public function editAllAction(Schedule $schedule)
     {
         $em = $this->getDoctrine()->getManager();
-        $schedule = $em->find('ClubTeamBundle:Schedule',$id);
 
         $parent = $this->getParent($schedule);
         $this->updateSchedule($parent, $schedule);
@@ -372,6 +297,67 @@ class AdminScheduleController extends Controller
             $this->updateSchedule($sch, $schedule);
         }
 
+        $em->flush();
+
+        $this->get('club_extra.flash')->addNotice();
+
+        return $this->redirect($this->generateUrl('club_team_adminschedule_index', array(
+            'category_id' => $schedule->getTeamCategory()->getId()
+        )));
+    }
+
+    /**
+     * @Route("/team/team/schedule/edit/{id}/{category_id}")
+     * @Template()
+     */
+    public function editAction(Schedule $schedule, $category_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->find('ClubTeamBundle:TeamCategory', $category_id);
+
+        $res = $this->process($schedule);
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            if (count($schedule->getSchedules()) || $schedule->getSchedule())
+
+                return $this->redirect($this->generateUrl('club_team_adminschedule_editchoice', array(
+                    'id' => $schedule->getId(),
+                )));
+        }
+
+        if ($res instanceOf RedirectResponse)
+
+            return $res;
+
+        return array(
+            'schedule' => $schedule,
+            'category' => $category,
+            'form' => $res->createView()
+        );
+    }
+
+    /**
+     * @Route("/team/team/schedule/delete/{id}")
+     */
+    public function deleteAction(Schedule $schedule)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($schedule->getSchedule()) {
+            if (count($schedule->getSchedule()->getSchedules())) {
+                return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
+                    'id' => $id
+                )));
+            }
+        }
+
+        if (count($schedule->getSchedules()))
+
+            return $this->redirect($this->generateUrl('club_team_adminschedule_deletechoice', array(
+                'id' => $id
+            )));
+
+        $em->remove($schedule);
         $em->flush();
 
         $this->get('club_extra.flash')->addNotice();

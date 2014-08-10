@@ -285,7 +285,7 @@ class BookingController extends Controller
     {
         $booking->removeUser($this->getUser());
 
-        if (count($booking->getUsers()) >= 1) {
+        if (count($booking->getUsers()) >= 1 || $booking->getGuest()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($booking);
             $em->flush();

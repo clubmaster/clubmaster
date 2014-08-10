@@ -1,24 +1,31 @@
 <div class="row">
     <div class="col-sm-6">
-        <div class="well">
-        <h3>{% trans %}Booking{% endtrans %}</h3>
-        <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-        <p>{% trans %}Find your partner and complete your booking.{% endtrans %}</p>
-        {{ form_widget(form) }}
-        {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-        </form>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans %}Booking{% endtrans %}
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+                <p>{% trans %}Find your partner and complete your booking.{% endtrans %}</p>
+                {{ form_widget(form) }}
+                {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+                </form>
+            </div>
         </div>
     </div>
 
     <div class="col-sm-6">
-        <div class="well">
-        <h3>{% trans %}Guest booking{% endtrans %}</h3>
-        <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
-        <p>{% trans %}Click here if you want to book with a guest.{% endtrans %}</p>
-        <input type="hidden" name="guest" value="1" />
-        {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-        </form>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans %}Guest booking{% endtrans %}
+            </div>
+            <div class="panel-body">
+                <form method="post" action="{{ path('club_booking_booking_review', {'interval_id':interval.id, 'date':date|date('Y-m-d')}) }}">
+                <p>{% trans %}Click here if you want to book with a guest.{% endtrans %}</p>
+                <input type="hidden" name="guest" value="1" />
+                {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
+                </form>
+            </div>
         </div>
     </div>
 </div>
-

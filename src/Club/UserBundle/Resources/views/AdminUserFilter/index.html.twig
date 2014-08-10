@@ -30,7 +30,7 @@
 
     <div class="form-actions">
         <button {% if novalidate is defined %}formnovalidate="true"{% endif %} type="submit" class="btn btn-primary">{% if button is defined %}{{ button }}{% else %}{% trans %}Save changes{% endtrans %}{% endif %}</button>
-        <a class="btn" href="{{ path('club_user_adminuserfilter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
+        <a class="btn btn-info" href="{{ path('club_user_adminuserfilter_reset', {'id':filter.id}) }}">{% trans %}Reset{% endtrans %}</a>
     </div>
 
 

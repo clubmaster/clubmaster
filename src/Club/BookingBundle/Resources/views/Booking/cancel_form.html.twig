@@ -1,19 +1,27 @@
-    <div class="col-sm-6">
-        <div class="well">
+<div class="col-sm-6">
+    <div class="panel panel-primary">
 
-            {% if booking.user == app.user or is_granted('ROLE_BOOKING_ADMIN') %}
-            <h3>{% trans %}Cancel booking{% endtrans %}</h3>
+        {% if booking.user == app.user or is_granted('ROLE_BOOKING_ADMIN') %}
+        <div class="panel-heading">
+            {% trans %}Cancel booking{% endtrans %}
+        </div>
+        <div class="panel-body">
             <p>{% trans %}If you want to remove the booking click <b>Remove booking</b>.{% endtrans %}</p>
 
-            <a class="btn btn-primary" href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">{% trans %}Remove booking{% endtrans %}</a>
+            <a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" class="btn btn-danger" href="{{ path('club_booking_booking_cancel', {'id':booking.id}) }}">{% trans %}Remove booking{% endtrans %}</a>
+        </div>
 
-            {% else %}
-            <h3>{% trans %}Cancel booking{% endtrans %}</h3>
+        {% else %}
+        <div class="panel-heading">
+            {% trans %}Cancel booking{% endtrans %}
+        </div>
+        <div class="panel-body">
             <p>{% trans %}You can unattend this booking by clicking <b>Unattend</b>, the reservation will be destroyed if there is less that two players left. Also you cannot unattend if you have created the booking.{% endtrans %}</p>
 
-            <a class="btn btn-primary" href="{{ path('club_booking_booking_unattend', {'id':booking.id}) }}">{% trans %}Unattend{% endtrans %}</a>
-
-            {% endif %}
-
+            <a onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" class="btn btn-danger" href="{{ path('club_booking_booking_unattend', {'id':booking.id}) }}">{% trans %}Unattend{% endtrans %}</a>
         </div>
+
+        {% endif %}
+
     </div>
+</div>
