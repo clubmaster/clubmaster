@@ -77,9 +77,9 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
     var day_diff=(start-day_start)/1000/60;
     var ret = '';
 
-    var height=((diff*pixel_size)-6)+'px';
+    var height=((diff*pixel_size))+'px';
     var top=(day_diff*pixel_size)+'px';
-    var width=(field_width-1)+'px';
+    var width=(field_width)+'px';
     var date = Date.parse(booking.first_date);
 
     if (booking.type == 'booking') {
@@ -166,7 +166,7 @@ function initTable(location, date, url, hour_height, field_width)
             var top=0;
             while (startTime.getTime() < endTime.getTime()) {
                 times++;
-                $("#times").append('<div style="top: '+top+'px; height: '+hour_height+'px;">&#160;'+checkTime(startTime.getHours())+':'+checkTime(startTime.getMinutes())+'</div>');
+                $("#times").append('<div style="top: '+top+'px; height: '+hour_height+'px;text-align: center;">'+checkTime(startTime.getHours())+':'+checkTime(startTime.getMinutes())+'</div>');
                 startTime.setHours(startTime.getHours()+1);
                 top = top+hour_height;
             }
@@ -205,10 +205,10 @@ function initTable(location, date, url, hour_height, field_width)
                         $("#intervals").append(makeIntervalUrl(this));
                     }
                     $("div#interval_"+this.id).addClass('interval');
-                    $("div#interval_"+this.id).css('height', ((diff*pixel_size)-6)+'px');
+                    $("div#interval_"+this.id).css('height', ((diff*pixel_size)+1)+'px');
                     $("div#interval_"+this.id).css('top', (day_diff*pixel_size)+'px');
                     $("div#interval_"+this.id).css('left', left+'px');
-                    $("div#interval_"+this.id).css('width', ((field_width)-1)+'px');
+                    $("div#interval_"+this.id).css('width', ((field_width)+1)+'px');
 
                 });
 
