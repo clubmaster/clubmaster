@@ -6,10 +6,24 @@
 
 {{ output|raw }}
 
-<h2>{% trans %}Coming Activities{% endtrans %}</h2>
-{% include "ClubUserBundle:Dashboard:activities_table.html.twig" %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Coming Activities{% endtrans %}
+    </div>
+    <div class="panel-body">
+        <h2>{% trans %}Coming Activities{% endtrans %}</h2>
+        {% include "ClubUserBundle:Dashboard:activities_table.html.twig" %}
+    </div>
+</div>
 
-<h2>{% trans %}Recent Activities{% endtrans %}</h2>
-{% include "ClubUserBundle:Dashboard:activities_table.html.twig" with {'activities':recent} %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Recent Activities{% endtrans %}
+    </div>
+    <div class="panel-body">
+        <h2>{% trans %}Recent Activities{% endtrans %}</h2>
+        {% include "ClubUserBundle:Dashboard:activities_table.html.twig" with {'activities':recent} %}
+    </div>
+</div>
 
 {% endblock %}

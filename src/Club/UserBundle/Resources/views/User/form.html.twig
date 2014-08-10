@@ -1,26 +1,66 @@
-    <legend>{% trans %}Password{% endtrans %}</legend>
-    {{ form_row(form.password) }}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Password{% endtrans %}
+    </div>
+    <div class="panel-body">
+        {{ form_row(form.password) }}
+    </div>
+</div>
 
-    <legend>{% trans %}Personal Information{% endtrans %}</legend>
-    {{ form_row(form.profile.first_name) }}
-    {{ form_row(form.profile.last_name) }}
-    {{ form_row(form.profile.gender) }}
-    {{ form_row(form.profile.day_of_birth) }}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Personal Information{% endtrans %}
+    </div>
+    <div class="panel-body">
+        {{ form_row(form.profile.first_name) }}
+        {{ form_row(form.profile.last_name) }}
+        {{ form_row(form.profile.gender) }}
+        {{ form_row(form.profile.day_of_birth) }}
+    </div>
+</div>
 
-    <legend>{% trans %}Address Information{% endtrans %}</legend>
-    {{ form_row(form.profile.profile_address.street) }}
-    {{ form_row(form.profile.profile_address.postal_code) }}
-    {{ form_row(form.profile.profile_address.city) }}
-    {{ form_row(form.profile.profile_address.country) }}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Address Information{% endtrans %}
+    </div>
+    <div class="panel-body">
+        {{ form_row(form.profile.profile_address.street) }}
+        {{ form_row(form.profile.profile_address.postal_code) }}
+        {{ form_row(form.profile.profile_address.city) }}
+        {{ form_row(form.profile.profile_address.state) }}
+        {{ form_row(form.profile.profile_address.country) }}
+    </div>
+</div>
 
-    <legend>{% trans %}Email Information{% endtrans %}</legend>
-    {% for email in form.profile.profile_emails %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Email Information{% endtrans %}
+    </div>
+    <div class="panel-body">
+        {% for email in form.profile.profile_emails %}
         {{ form_row(email.email_address) }}
-    {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 
-    <legend>{% trans %}Phone Information{% endtrans %}</legend>
-    {{ form_row(form.profile.profile_phone.phone_number) }}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Phone Information{% endtrans %}
+    </div>
+    <div class="panel-body">
+        {{ form_row(form.profile.profile_phone.phone_number) }}
+    </div>
+</div>
 
-    {{ form_row(form._token) }}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Save{% endtrans %}
+    </div>
+    <div class="panel-body">
+        <p>{% trans %}Click here when you are finish editing your data.{% endtrans %}</p>
+    </div>
+
+    {{ form_rest(form) }}
     {% include "ClubLayoutBundle:Default:submit_button.html.twig" %}
-
+</div>

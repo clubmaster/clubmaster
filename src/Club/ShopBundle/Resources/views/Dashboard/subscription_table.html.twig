@@ -1,3 +1,9 @@
-<h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard.png') }}" /> {% trans %}Your subscriptions{% endtrans %}</h2>
-
-{% include "ClubShopBundle:Subscription:subscription_table.html.twig" %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {% trans %}Your subscriptions{% endtrans %}
+    </div>
+    <div class="panel-body">
+        <h2><img src="{{ asset('bundles/clublayout/images/icons/32x32/vcard.png') }}" /> {% trans %}Your subscriptions{% endtrans %}</h2>
+        {% include "ClubShopBundle:Subscription:subscription_table.html.twig" %}
+    </div>
+</div>
