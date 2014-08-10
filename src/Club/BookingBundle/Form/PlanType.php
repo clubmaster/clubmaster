@@ -41,14 +41,12 @@ class PlanType extends AbstractType
                 'help' => 'Info: When is the last day the plan will be valid?'
             ))
             ->add('start', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'help' => 'Info: What time on the day will the plan be valid from?',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ))
             ->add('end', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'help' => 'Info: What time on the day will the plan end?',
                 'date_widget' => 'single_text',

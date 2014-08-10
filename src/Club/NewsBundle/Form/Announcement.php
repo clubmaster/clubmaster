@@ -26,13 +26,11 @@ class Announcement extends AbstractType
                 'label_attr' => $label_attr
             ))
             ->add('start_date', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ))
             ->add('end_date', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'

@@ -37,8 +37,9 @@ class CouponType extends AbstractType
                 'choices' => $arr
             ))
             ->add('expire_at', 'jquery_datetime', array(
-                'attr' => $attr,
-                'label_attr' => $label_attr
+                'label_attr' => $label_attr,
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
             ))
             ;
     }

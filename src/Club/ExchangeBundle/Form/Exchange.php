@@ -24,7 +24,6 @@ class Exchange extends AbstractType
                 'label_attr' => $label_attr
             ))
             ->add('play_time', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',

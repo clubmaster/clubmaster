@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-<form method="post" action="{{ path('user') }}" class="form-horizontal">
+<form method="post" action="{{ path('user') }}" class="form-horizontal" role="form">
 {% include "ClubUserBundle:User:form.html.twig" %}
 </form>
 {% endblock %}

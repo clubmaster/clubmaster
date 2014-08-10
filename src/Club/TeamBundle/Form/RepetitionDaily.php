@@ -24,13 +24,11 @@ class RepetitionDaily extends AbstractType
 
         $builder
             ->add('first_date', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ))
             ->add('last_date', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'

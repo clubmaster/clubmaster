@@ -58,3 +58,21 @@
     </div>
 </div>
 {%- endblock button_row %}
+
+{% block date_widget -%}
+    {% if widget == 'single_text' %}
+        {{- block('form_widget_simple') -}}
+    {% else -%}
+        <div class="row">
+            <div class="col-xs-3">
+                {{ form_widget(form.day, {'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="col-xs-3">
+                {{ form_widget(form.month, {'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="col-xs-3">
+                {{ form_widget(form.year, {'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+    {%- endif %}
+{%- endblock date_widget %}

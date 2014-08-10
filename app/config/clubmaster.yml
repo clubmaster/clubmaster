@@ -126,6 +126,7 @@ club_tournament:
 
 club_form_extra:
     #title: ClubMaster
+    #datepicker_firstday: 1
 
 club_extra:
     #facebook: true

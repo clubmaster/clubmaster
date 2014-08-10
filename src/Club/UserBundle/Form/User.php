@@ -19,7 +19,7 @@ class User extends AbstractType
                 'options' => array(
                     'attr' => array(
                         'class' => 'form-control'
-                    )
+                    ),
                     'label_attr' => array(
                         'class' => 'col-sm-2'
                     )

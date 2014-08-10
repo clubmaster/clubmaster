@@ -41,15 +41,13 @@ class Ranking extends AbstractType
             ))
             ->add('start_date', 'jquery_datetime', array(
                 'date_widget' => 'single_text',
-                'attr' => $attr,
-                'label_attr' => $label_attr,
                 'time_widget' => 'single_text'
+                'label_attr' => $label_attr
             ))
             ->add('end_date', 'jquery_datetime', array(
                 'date_widget' => 'single_text',
-                'attr' => $attr,
-                'label_attr' => $label_attr,
                 'time_widget' => 'single_text'
+                'label_attr' => $label_attr
             ))
             ;
     }

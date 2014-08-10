@@ -13,9 +13,6 @@ class PlanExceptionType extends AbstractType
     {
         $builder
             ->add('exclude_date', 'jquery_datetime', array(
-                'attr' => array(
-                    'class' => 'form-control'
-                ),
                 'label_attr' => array(
                     'class' => 'col-sm-2'
                 ),

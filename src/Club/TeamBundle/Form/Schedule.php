@@ -35,7 +35,6 @@ class Schedule extends AbstractType
                 'label_attr' => $label_attr
             ))
             ->add('first_date', 'jquery_datetime', array(
-                'attr' => $attr,
                 'label_attr' => $label_attr,
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'

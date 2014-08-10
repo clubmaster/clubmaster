@@ -37,21 +37,17 @@ class Event extends AbstractType
             ->add('start_date', 'jquery_datetime', array(
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
-                'attr' => $attr,
                 'label_attr' => $label_attr
             ))
             ->add('stop_date', 'jquery_datetime', array(
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
-                'attr' => $attr,
                 'label_attr' => $label_attr
             ))
             ->add('last_subscribe', 'jquery_datetime', array(
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
-                'attr' => $attr,
                 'label_attr' => $label_attr
-
             ))
             ->add('street', 'textarea', array(
                 'attr' => $attr,

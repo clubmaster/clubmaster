@@ -32,9 +32,7 @@ class AdminProfile extends AbstractType
                 'attr' => $attr,
                 'label_attr' => $label_attr
             ))
-            ->add('day_of_birth', 'jquery_birthday', array(
-                'widget' => 'single_text',
-                'attr' => $attr,
+            ->add('day_of_birth', 'birthday', array(
                 'label_attr' => $label_attr
             ))
             ->add('profile_address', new \Club\UserBundle\Form\AdminProfileAddress())
