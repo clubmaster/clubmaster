@@ -82,7 +82,7 @@ class AdminUserImportController extends Controller
     private function addUser(array $data)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('clubmaster.user')
+        $user = $this->get('club_user.user')
             ->buildUser()
             ->get();
 
@@ -127,7 +127,7 @@ class AdminUserImportController extends Controller
             $p_email->setEmailAddress($data[11]);
         }
 
-        $this->get('clubmaster.user')->cleanUser($user);
+        $this->get('club_user.user')->cleanUser($user);
 
         $errors = $this->get('validator')->validate($user);
         if (count($errors)) {

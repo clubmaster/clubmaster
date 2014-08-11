@@ -5,12 +5,12 @@ services:
     success.login.handler:
         class: Club\UserBundle\Helper\SuccessLoginHandler
         arguments: [@router, @security.context]
-    clubmaster.version:
+    club_user.version:
         class: Club\UserBundle\Helper\Version
     clubmaster.ban:
         class: Club\UserBundle\Helper\Ban
         arguments: [@doctrine.orm.default_entity_manager, @security.context]
-    clubmaster.user:
+    club_user.user:
         class: Club\UserBundle\Helper\User
         arguments: [@service_container]
     club_user.reset_password:

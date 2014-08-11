@@ -47,10 +47,8 @@ $(document).ready(function() {
         <legend>{% trans %}Existing member{% endtrans %}</legend>
 
         <div id="existing-member-box">
-        <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
-        <form method="post" action="{{ path('login_check') }}" class="form-horizontal">
-        {% include "ClubUserBundle:Auth:login_form.html.twig" %}
-        </form>
+            <p>{% trans %}If you already have an account, please signin here.{% endtrans %}</p>
+            {% include "ClubUserBundle:Auth:login_form.html.twig" with {'form':formLogin} %}
         </div>
 </div>
 

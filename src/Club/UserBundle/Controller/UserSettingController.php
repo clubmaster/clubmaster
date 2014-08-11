@@ -30,7 +30,7 @@ class UserSettingController extends Controller
                 $em->flush();
                 $this->get('club_extra.flash')->addNotice();
 
-                $this->get('clubmaster.user')->updateUserSettings();
+                $this->get('club_user.user')->updateUserSettings();
 
                 return $this->redirect($this->generateUrl('club_user_usersetting_index',
                     array('_locale' => $this->getRequest()->getLocale())

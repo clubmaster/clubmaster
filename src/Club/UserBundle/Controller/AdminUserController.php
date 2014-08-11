@@ -161,7 +161,7 @@ class AdminUserController extends Controller
    */
   public function newAction()
   {
-      $user = $this->get('clubmaster.user')
+      $user = $this->get('club_user.user')
           ->buildUser()
           ->get();
 
@@ -180,7 +180,7 @@ class AdminUserController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $user = $this->get('clubmaster.user')
+    $user = $this->get('club_user.user')
         ->buildUser()
         ->get();
 
@@ -190,9 +190,9 @@ class AdminUserController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $this->get('clubmaster.user')->cleanUser($user);
+        $this->get('club_user.user')->cleanUser($user);
 
-        $this->get('clubmaster.user')->save();
+        $this->get('club_user.user')->save();
         $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_user'));
@@ -239,7 +239,7 @@ class AdminUserController extends Controller
       $form->bind($this->getRequest());
 
       if ($form->isValid()) {
-        $this->get('clubmaster.user')->cleanUser($user);
+        $this->get('club_user.user')->cleanUser($user);
 
         $em->persist($user);
         $em->flush();

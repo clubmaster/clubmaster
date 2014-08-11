@@ -126,7 +126,7 @@ class InstallerController extends Controller
         if ($this->get('session')->get('installer_user_id')) {
             $user = $em->find('ClubUserBundle:User',$this->get('session')->get('installer_user_id'));
         } else {
-            $user = $this->get('clubmaster.user')
+            $user = $this->get('club_user.user')
                 ->buildUser()
                 ->get();
 
@@ -146,7 +146,7 @@ class InstallerController extends Controller
 
                 $group->addUsers($user);
 
-                $this->get('clubmaster.user')->save();
+                $this->get('club_user.user')->save();
 
                 $this->get('session')->set('installer_user_id',$user->getId());
 

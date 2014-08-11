@@ -14,7 +14,7 @@ class VersionExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-            'club_version' => $this->container->get('clubmaster.version')->getVersion()
+            'club_version' => $this->container->get('club_user.version')->getVersion()
         );
     }
 

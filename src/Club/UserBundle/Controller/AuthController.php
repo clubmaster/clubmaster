@@ -41,40 +41,7 @@ class AuthController extends Controller
 
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
-        $form = $this->get('form.factory')
-            ->createNamedBuilder('', 'form', null, array(
-                'attr' => array(
-                    'class' => 'form-signin',
-                    'role' => 'form'
-                ),
-                'csrf_protection' => false
-            ))
-            ->setMethod('POST')
-            ->setAction($this->generateUrl('login_check'))
-            ->add('_username', 'text', array(
-                'required' => true,
-                'attr' => array(
-                    'class' => 'form-control',
-                    'autofocus' => true
-                ),
-                'label_attr' => array(
-                    'class' => 'col-sm-2'
-                )
-            ))
-            ->add('_password', 'password', array(
-                'required' => true,
-                'attr' => array(
-                    'class' => 'form-control'
-                ),
-                'label_attr' => array(
-                    'class' => 'col-sm-2'
-                )
-            ))
-            ->add('_remember_me', 'checkbox', array(
-                'required' => false
-            ))
-            ->getForm()
-            ;
+        $form = $this->get('club_user.user')->getLoginForm();
 
         return array(
             'last_username' => $lastUsername,
@@ -197,7 +164,7 @@ class AuthController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->get('clubmaster.user')
+        $user = $this->get('club_user.user')
             ->buildUser()
             ->get();
 
@@ -210,12 +177,12 @@ class AuthController extends Controller
         $userCreated = false;
 
         if ($form->isValid()) {
-            $this->get('clubmaster.user')->save();
+            $this->get('club_user.user')->save();
             $userCreated = true;
         }
 
         if ($formGuest->isValid()) {
-            $this->get('clubmaster.user')->save(false);
+            $this->get('club_user.user')->save(false);
             $userCreated = true;
         }
 
@@ -236,7 +203,8 @@ class AuthController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'formGuest' => $formGuest->createView()
+            'formGuest' => $formGuest->createView(),
+            'formLogin' => $this->get('club_user.user')->getLoginForm()->createView()
         );
     }
 }

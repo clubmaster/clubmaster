@@ -9,6 +9,8 @@ class User
     protected $event_dispatcher;
     protected $user;
     protected $requestStack;
+    protected $formFactory;
+    protected $router;
 
     public function __construct($container)
     {
@@ -16,6 +18,8 @@ class User
         $this->em = $container->get('doctrine.orm.default_entity_manager');
         $this->event_dispatcher = $container->get('event_dispatcher');
         $this->requestStack = $container->get('request_stack');
+        $this->formFactory = $container->get('form.factory');
+        $this->router = $container->get('router');
     }
 
     public function buildUser()
@@ -119,5 +123,43 @@ class User
         }
 
         return false;
+    }
+
+    public function getLoginForm()
+    {
+        return $this->formFactory
+            ->createNamedBuilder('', 'form', null, array(
+                'attr' => array(
+                    'class' => 'form-signin',
+                    'role' => 'form'
+                ),
+                'csrf_protection' => false
+            ))
+            ->setMethod('POST')
+            ->setAction($this->router->generate('login_check'))
+            ->add('_username', 'text', array(
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control',
+                    'autofocus' => true
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ))
+            ->add('_password', 'password', array(
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label_attr' => array(
+                    'class' => 'col-sm-2'
+                )
+            ))
+            ->add('_remember_me', 'checkbox', array(
+                'required' => false
+            ))
+            ->getForm()
+            ;
     }
 }
