@@ -3,6 +3,7 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Sabre\VObject\Component\VCalendar;
 use Club\UserBundle\Entity\Location;
 use Club\BookingBundle\Entity\Field;
 use Club\BookingBundle\Entity\Plan;
@@ -86,7 +87,7 @@ class PlanRepository extends EntityRepository
             $plans = array($plan);
         }
 
-        $vcalendar = new \Sabre\VObject\Component\VCalendar();
+        $vcalendar = new VCalendar();
 
         foreach ($plans as $plan) {
             $this->addEvent($plan, $vcalendar);
@@ -154,45 +155,62 @@ class PlanRepository extends EntityRepository
         return $this->getPlansFromVObject($vcalendar, $start, $end);
     }
 
-    private function getException()
+    private function addExceptions(Plan $plan, $vcalendar, $ev)
     {
-        /*
-        $exception = '';
         if (is_array($plan->getPlanExceptions())) {
+            $exDate = $vcalendar->createProperty('EXDATE');
+            $dates = array();
+
             foreach ($plan->getPlanExceptions() as $e) {
-                $exception .= 'EXDATE:'.$e->getExcludeDate()->format('Ymd\THis').PHP_EOL;
+                $dates[] = $e->getExcludeDate();
             }
+
+            $exDate->setDateTimes($dates);
+            $ev->add($exDate);
         }
-         */
     }
 
     private function addEvent(Plan $plan, $vcalendar)
     {
+        $dtStart = $vcalendar->createProperty('DTSTART');
+        $dtStart->setDateTime($plan->getStart());
+
+        $dtEnd = $vcalendar->createProperty('DTEND');
+        $dtEnd->setDateTime($plan->getEnd());
+
+        $dtStamp = $vcalendar->createProperty('DTSTAMP');
+        $dtStamp->setDateTime($plan->getCreatedAt());
+
         if ($plan->getRepeating()) {
             foreach ($plan->getPlanRepeats() as $repeat) {
-                $vcalendar->add('VEVENT', array(
-                    'UID' => $repeat->getIcsUid(),
-                    'DTSTAMP' => $plan->getCreatedAt(),
-                    'DTSTART' => $plan->getStart(),
-                    'DTEND' => $plan->getEnd(),
-                    'SUMMARY' => $plan->getName(),
-                    'RRULE' => $repeat->getIcsFreq(),
-                    'EXPDATE' => '123',
-                    'EXPDATE' => '123',
-                ));
+
+                $ev = $vcalendar->createComponent('VEVENT');
+
+                $ev->UID = $repeat->getIcsUid();
+                $ev->SUMMARY = $plan->getName();
+                $ev->RRULE = $repeat->getIcsFreq();
+                $ev->add($dtStart);
+                $ev->add($dtEnd);
+                $ev->add($dtStamp);
+
+                $this->addExceptions($plan, $vcalendar, $ev);
+
+                $vcalendar->add($ev);
             }
 
         } else {
 
-            $vcalendar->add('VEVENT', array(
-                'UID' => $plan->getIcsUid(),
-                'SUMMARY' => $plan->getName(),
-                'DTSTAMP' => $plan->getCreatedAt(),
-                'DTSTART' => $plan->getStart(),
-                'DTEND' => $plan->getEnd(),
-                'EXPDATE' => '123',
-                'EXPDATE' => '123',
-            ));
+            $ev = $vcalendar->createComponent('VEVENT');
+
+            $ev->UID = $plan->getIcsUid();
+            $ev->SUMMARY = $plan->getName();
+            $ev->add($dtStart);
+            $ev->add($dtEnd);
+            $ev->add($dtStamp);
+
+            $this->addExceptions($plan, $vcalendar, $ev);
+
+            $vcalendar->add($ev);
         }
     }
 }
