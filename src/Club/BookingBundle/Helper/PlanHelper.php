@@ -56,11 +56,10 @@ class PlanHelper
             $end = new \DateTime();
             $end->modify('+1 month');
 
-            $ics = $this->em->getRepository('ClubBookingBundle:Plan')->getIcsFromPlans(null, $plan);
-            $calendar = \Sabre\VObject\Reader::read($ics);
-            $calendar->expand($start, $end);
+            $vcalendar = $this->em->getRepository('ClubBookingBundle:Plan')->getVObjectFromPlans(null, $plan);
+            $vcalendar->expand($start, $end);
 
-            foreach ($calendar->VEVENT as $event) {
+            foreach ($vcalendar->VEVENT as $event) {
 
                 foreach ($plan->getFields() as $field) {
 

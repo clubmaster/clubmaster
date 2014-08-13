@@ -58,7 +58,7 @@ class PlanRepository extends EntityRepository
         return $qb;
     }
 
-    public function getICSByLocation(Location $location, \DateTime $date)
+    public function getVObjectByLocation(Location $location, \DateTime $date)
     {
         $plans = $this->getQuery($date)
             ->andWhere('f.location = :location')
@@ -66,10 +66,10 @@ class PlanRepository extends EntityRepository
             ->getQuery()
             ->getResult();
 
-        return $this->getIcsFromPlans($plans);
+        return $this->getVObjectFromPlans($plans);
     }
 
-    public function getICSByField(Field $field, \DateTime $date)
+    public function getVObjectByField(Field $field, \DateTime $date)
     {
         $plans = $this->getQuery($date)
             ->andWhere('f.id = :field')
@@ -77,10 +77,10 @@ class PlanRepository extends EntityRepository
             ->getQuery()
             ->getResult();
 
-        return $this->getIcsFromPlans($plans);
+        return $this->getVObjectFromPlans($plans);
     }
 
-    public function getIcsFromPlans($plans, Plan $plan=null)
+    public function getVObjectFromPlans($plans, Plan $plan=null)
     {
         if ($plan) {
             $plans = array($plan);
@@ -92,25 +92,23 @@ class PlanRepository extends EntityRepository
             $this->addEvent($plan, $vcalendar);
         }
 
-        print_r($vcalendar->serialize());die();
-        return $vcalendar->serialize();
+        return $vcalendar;
     }
 
     public function getBetweenByField(Field $field, \DateTime $start, \DateTime $end)
     {
-        $ics = $this->getICSByField($field, $start);
+        $vcalendar = $this->getVObjectByField($field, $start);
 
-        return $this->getPlansFromIcs($ics, $start, $end);
+        return $this->getPlansFromVObject($vcalendar, $start, $end);
     }
 
-    public function getPlansFromIcs($ics, \DateTime $start, \DateTime $end)
+    public function getPlansFromVObject($vcalendar, \DateTime $start, \DateTime $end)
     {
-        $calendar = \Sabre\VObject\Reader::read($ics);
-        $calendar->expand($start, $end);
+        $vcalendar->expand($start, $end);
 
         $plans = array();
-        if (count($calendar->VEVENT)) {
-            foreach ($calendar->VEVENT as $event) {
+        if (count($vcalendar->VEVENT)) {
+            foreach ($vcalendar->VEVENT as $event) {
 
                 $eventStart = $event->DTSTART->getDateTime();
                 $eventEnd = $event->DTEND->getDateTime();
@@ -151,9 +149,9 @@ class PlanRepository extends EntityRepository
 
     public function getBetweenByLocation(Location $location, \DateTime $start, \DateTime $end)
     {
-        $ics = $this->getICSByLocation($location, $start);
+        $vcalendar = $this->getVObjectByLocation($location, $start);
 
-        return $this->getPlansFromIcs($ics, $start, $end);
+        return $this->getPlansFromVObject($vcalendar, $start, $end);
     }
 
     private function getException()
