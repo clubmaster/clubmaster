@@ -86,28 +86,14 @@ class PlanRepository extends EntityRepository
             $plans = array($plan);
         }
 
-        $ics = <<<EOF
-BEGIN:VCALENDAR
-VERSION:2.0
-
-EOF;
+        $vcalendar = new \Sabre\VObject\Component\VCalendar();
 
         foreach ($plans as $plan) {
-            if ($plan->getRepeating()) {
-                foreach ($plan->getPlanRepeats() as $repeat) {
-                    $ics .= $this->addFreq($repeat);
-                }
-
-            } else {
-                $ics .= $this->addEvent($plan);
-            }
+            $this->addEvent($plan, $vcalendar);
         }
 
-        $ics .= <<<EOF
-END:VCALENDAR
-EOF;
-
-        return $ics;
+        print_r($vcalendar->serialize());die();
+        return $vcalendar->serialize();
     }
 
     public function getBetweenByField(Field $field, \DateTime $start, \DateTime $end)
@@ -126,27 +112,37 @@ EOF;
         if (count($calendar->VEVENT)) {
             foreach ($calendar->VEVENT as $event) {
 
-                preg_match("/^(\d+)_/", $event->UID, $o);
-                $plan_id = $o[1];
-                $plan = $this->_em->find('ClubBookingBundle:Plan', $plan_id);
+                $eventStart = $event->DTSTART->getDateTime();
+                $eventEnd = $event->DTEND->getDateTime();
 
-                $s = $plan->getStart();
-                $s->setDate(
-                    $event->DTSTART->getDateTime()->format('Y'),
-                    $event->DTSTART->getDateTime()->format('m'),
-                    $event->DTSTART->getDateTime()->format('d')
-                );
-                $e = $plan->getEnd();
-                $e->setDate(
-                    $event->DTEND->getDateTime()->format('Y'),
-                    $event->DTEND->getDateTime()->format('m'),
-                    $event->DTEND->getDateTime()->format('d')
-                );
+                switch (true) {
+                case ($eventEnd < $start):
+                case ($eventStart > $end):
+                    break;
+                default:
+                    preg_match("/^(\d+)_/", $event->UID, $o);
+                    $plan_id = $o[1];
+                    $plan = $this->_em->find('ClubBookingBundle:Plan', $plan_id);
 
-                $plan->setStart($s);
-                $plan->setEnd($e);
+                    $s = $plan->getStart();
+                    $s->setDate(
+                        $eventStart->format('Y'),
+                        $eventStart->format('m'),
+                        $eventStart->format('d')
+                    );
+                    $e = $plan->getEnd();
+                    $e->setDate(
+                        $eventEnd->format('Y'),
+                        $eventEnd->format('m'),
+                        $eventEnd->format('d')
+                    );
 
-                $plans[] = $plan;
+                    $plan->setStart($s);
+                    $plan->setEnd($e);
+
+                    $plans[] = $plan;
+                    break;
+                }
             }
         }
 
@@ -160,46 +156,45 @@ EOF;
         return $this->getPlansFromIcs($ics, $start, $end);
     }
 
-    private function addFreq(PlanRepeat $repeat)
+    private function getException()
     {
-        $plan = $repeat->getPlan();
-
+        /*
         $exception = '';
         if (is_array($plan->getPlanExceptions())) {
             foreach ($plan->getPlanExceptions() as $e) {
                 $exception .= 'EXDATE:'.$e->getExcludeDate()->format('Ymd\THis').PHP_EOL;
             }
         }
-
-        $ics = <<<EOF
-BEGIN:VEVENT
-UID:{$repeat->getIcsUid()}
-DTSTAMP:{$plan->getCreatedAt()->format('Ymd\THis')}
-DTSTART:{$plan->getStart()->format('Ymd\THis')}
-DTEND:{$plan->getEnd()->format('Ymd\THis')}
-SUMMARY:{$plan->getName()}
-RRULE:{$repeat->getIcsFreq()}
-{$exception}
-END:VEVENT
-
-EOF;
-
-        return $ics;
+         */
     }
 
-    private function addEvent(Plan $plan)
+    private function addEvent(Plan $plan, $vcalendar)
     {
-        $ics = <<<EOF
-BEGIN:VEVENT
-UID:{$plan->getIcsUid()}
-DTSTAMP:{$plan->getCreatedAt()->format('Ymd\THis')}
-DTSTART:{$plan->getStart()->format('Ymd\THis')}
-DTEND:{$plan->getEnd()->format('Ymd\THis')}
-SUMMARY:{$plan->getName()}
-END:VEVENT
+        if ($plan->getRepeating()) {
+            foreach ($plan->getPlanRepeats() as $repeat) {
+                $vcalendar->add('VEVENT', array(
+                    'UID' => $repeat->getIcsUid(),
+                    'DTSTAMP' => $plan->getCreatedAt(),
+                    'DTSTART' => $plan->getStart(),
+                    'DTEND' => $plan->getEnd(),
+                    'SUMMARY' => $plan->getName(),
+                    'RRULE' => $repeat->getIcsFreq(),
+                    'EXPDATE' => '123',
+                    'EXPDATE' => '123',
+                ));
+            }
 
-EOF;
+        } else {
 
-        return $ics;
+            $vcalendar->add('VEVENT', array(
+                'UID' => $plan->getIcsUid(),
+                'SUMMARY' => $plan->getName(),
+                'DTSTAMP' => $plan->getCreatedAt(),
+                'DTSTART' => $plan->getStart(),
+                'DTEND' => $plan->getEnd(),
+                'EXPDATE' => '123',
+                'EXPDATE' => '123',
+            ));
+        }
     }
 }
