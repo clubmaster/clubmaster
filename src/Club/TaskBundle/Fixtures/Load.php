@@ -33,7 +33,7 @@ class Load
             ),
             array(
                 'name' => 'Draw subscriptions',
-                'interval' => '1D',
+                'interval' => 'T5M',
                 'method' => 'onSubscriptionDrawTask'
             ),
             array(

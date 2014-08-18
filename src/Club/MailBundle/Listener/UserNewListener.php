@@ -42,7 +42,24 @@ class UserNewListener
                     'user' => $user,
                     'url' => $this->router->generate('homepage', array(), true)
                 )))
-                ->send();
+                ;
+
+            $attachments = $this->container->getParameter('club_user.welcome_mail_attachments');
+
+            if (is_array($attachments)) {
+                foreach ($attachments as $attach) {
+                    $filename = sprintf('%s/Resources/%s',
+                        $this->container->get('kernel')->getRootDir(),
+                        $attach
+                    );
+
+                    $this->clubmaster_mailer
+                        ->attachFile($filename)
+                        ;
+                }
+            }
+
+            $this->clubmaster_mailer->send();
         }
     }
 }

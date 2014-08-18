@@ -20,5 +20,6 @@ class ClubUserExtension extends Extension
     $loader->load('twig.yml');
 
     $container->setParameter('club_user.default_country', $config['default_country']);
+    $container->setParameter('club_user.welcome_mail_attachments', $config['welcome_mail_attachments']);
   }
 }
