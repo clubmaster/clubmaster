@@ -8,6 +8,7 @@ final class Events
     const onMailTask = 'mail.task';
     const onMessageTask = 'message.task';
     const onAutoRenewalTask = 'auto_renewal.task';
+    const onSubscriptionDrawTask = 'subscription_draw.task';
     const onTeamTask = 'team.task';
     const onTeamPenalty = 'team.penalty';
     const onTaskError = 'task.error';

@@ -53,6 +53,7 @@ class ShopController extends Controller
             ->init($results, count($paginator), $page, 'shop_offset');
 
         return array(
+            'hide_categories' => $this->container->getParameter('club_shop.hide_categories'),
             'location' => $location,
             'categories' => $categories,
             'paginator' => $paginator
@@ -80,6 +81,7 @@ class ShopController extends Controller
             ->init($results, count($paginator), $page, 'shop_prod_view_offset', array('id' => $category->getId()));
 
         return array(
+            'hide_categories' => $this->container->getParameter('club_shop.hide_categories'),
             'location' => $this->get('club_user.location')->getCurrent(),
             'categories' => $categories,
             'category' => $category,

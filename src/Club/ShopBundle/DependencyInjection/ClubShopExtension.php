@@ -22,5 +22,6 @@ class ClubShopExtension extends Extension
         $container->setParameter('club_shop.coupon_account_number', $config['coupon_account_number']);
         $container->setParameter('club_shop.guest_account_number', $config['guest_account_number']);
         $container->setParameter('club_shop.voucher_text', $config['voucher_text']);
+        $container->setParameter('club_shop.hide_categories', $config['hide_categories']);
     }
 }

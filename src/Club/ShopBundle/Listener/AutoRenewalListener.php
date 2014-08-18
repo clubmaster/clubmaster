@@ -2,6 +2,8 @@
 
 namespace Club\ShopBundle\Listener;
 
+use Club\Payment\QuickpayBundle\Entity\Draw;
+
 class AutoRenewalListener
 {
     protected $em;
@@ -23,6 +25,8 @@ class AutoRenewalListener
 
             $this->copySubscription($subscription);
             $this->em->persist($subscription);
+
+            $this->em->flush();
         }
 
         $sub_attrs = $this->em->getRepository('ClubShopBundle:SubscriptionAttribute')->getExpiredAutoSubscriptions('yearly');
@@ -36,14 +40,16 @@ class AutoRenewalListener
                 $this->copySubscription($subscription);
                 $this->em->persist($subscription);
             }
+
+            $this->em->flush();
         }
 
         $subscriptions = $this->em->getRepository('ClubShopBundle:Subscription')->getEmptyTicketAutoRenewalSubscriptions();
         foreach ($subscriptions as $subscription) {
             $this->copySubscription($subscription);
-        }
 
-        $this->em->flush();
+            $this->em->flush();
+        }
     }
 
     private function copySubscription($subscription)
@@ -63,5 +69,21 @@ class AutoRenewalListener
 
         $this->em->persist($attr);
         $this->em->persist($subscription);
+
+        $quickpay = $this->em->getRepository('ClubPaymentQuickpayBundle:Draw')->findOneBy(array(
+            'order' => $old_order
+        ));
+
+        if ($quickpay) {
+            $o = $this->order->getOrder();
+
+            $draw = new Draw();
+            $draw->setOrder($o);
+            $draw->setAmount($o->getPrice());
+            $draw->setCurrency($quickpay->getCurrency());
+            $draw->setTransaction($quickpay->getTransaction());
+
+            $this->em->persist($draw);
+        }
     }
 }
