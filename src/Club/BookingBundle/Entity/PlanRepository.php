@@ -146,7 +146,15 @@ EOF;
                 $plan->setStart($s);
                 $plan->setEnd($e);
 
-                $plans[] = $plan;
+                switch (true) {
+                case ($start > $plan->getEnd()):
+                case ($end < $plan->getStart()):
+                    break;
+
+                default:
+                    $plans[] = $plan;
+                    break;
+                }
             }
         }
 
