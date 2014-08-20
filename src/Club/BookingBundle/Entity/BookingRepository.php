@@ -3,6 +3,10 @@
 namespace Club\BookingBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Club\UserBundle\Entity\User;
+use Club\UserBundle\Entity\Location;
+use Club\BookingBundle\Entity\Booking;
+use Club\BookingBundle\Entity\Field;
 
 /**
  * BookingRepository
@@ -12,14 +16,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookingRepository extends EntityRepository
 {
-    public function getAllBetween(\DateTime $start, \DateTime $end, \Club\BookingBundle\Entity\Field $field)
+    public function getAllBetween(\DateTime $start, \DateTime $end, Field $field)
     {
-        return $this->_em->createQueryBuilder()
-            ->select('b')
-            ->from('ClubBookingBundle:Booking','b')
+        return $this->createQueryBuilder('b')
             ->where('(b.status >= :status) AND ((b.first_date <= :start AND b.end_date >= :end) OR (b.first_date <= :start AND b.end_date <= :end AND b.end_date >= :start) OR (b.first_date >= :start AND b.end_date >= :end AND b.first_date < :end) OR b.first_date >= :start AND b.end_date <= :end AND b.end_date >= :start)')
             ->orderBy('b.first_date')
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->setParameter('status', Booking::CONFIRMED)
             ->setParameter('start', $start->format('Y-m-d H:i:s'))
             ->setParameter('end', $end->format('Y-m-d H:i:s'))
             ->leftJoin('b.field', 'f')
@@ -29,7 +31,7 @@ class BookingRepository extends EntityRepository
             ->getResult();
     }
 
-    public function getAllByLocationDate(\Club\UserBundle\Entity\Location $location, \DateTime $date)
+    public function getAllByLocationDate(Location $location, \DateTime $date)
     {
         return $this->createQueryBuilder('b')
             ->leftJoin('b.field', 'f')
@@ -38,18 +40,18 @@ class BookingRepository extends EntityRepository
             ->andWhere('b.status >= :status')
             ->andWhere('b.first_date BETWEEN :start AND :stop')
             ->setParameter('location', $location->getId())
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->setParameter('status', Booking::CONFIRMED)
             ->setParameter('start', $date->format('Y-m-d 00:00:00'))
             ->setParameter('stop', $date->format('Y-m-d 23:59:59'))
             ->getQuery()
             ->getResult();
     }
 
-    public function getIntervals(\Club\BookingBundle\Entity\Booking $booking)
+    public function getIntervals(Booking $booking)
     {
     }
 
-    public function getAllFutureBookings(\Club\UserBundle\Entity\User $user, \DateTime $start)
+    public function getAllFutureBookings(User $user, \DateTime $start)
     {
         return $this->createQueryBuilder('b')
             ->leftJoin('b.users', 'u')
@@ -57,13 +59,13 @@ class BookingRepository extends EntityRepository
             ->andWhere('b.status >= :status')
             ->andWhere('(b.user = :user OR u.id = :user)')
             ->setParameter('user', $user->getId())
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->setParameter('status', Booking::CONFIRMED)
             ->setParameter('start', $start)
             ->getQuery()
             ->getResult();
     }
 
-    public function getLatest(\Club\UserBundle\Entity\User $user, $limit=10)
+    public function getLatest(User $user, $limit=10)
     {
         $date = new \DateTime();
 
@@ -75,7 +77,7 @@ class BookingRepository extends EntityRepository
             ->orderBy('b.first_date', 'DESC')
             ->setMaxResults($limit)
             ->setParameter('user', $user->getId())
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->setParameter('status', Booking::CONFIRMED)
             ->setParameter('date', $date)
             ->getQuery()
             ->getResult();
@@ -91,19 +93,19 @@ class BookingRepository extends EntityRepository
             ->where('b.created_at < :time')
             ->andWhere('b.status = :status')
             ->setParameter('time', $date)
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::PENDING)
+            ->setParameter('status', Booking::PENDING)
             ->getQuery()
             ->getResult();
     }
 
-    public function getAll(\Club\UserBundle\Entity\User $user)
+    public function getAll(User $user)
     {
         return $this->createQueryBuilder('b')
             ->leftJoin('b.users', 'u')
             ->andWhere('b.status >= :status')
             ->andWhere('(b.user = :user OR u.id = :user)')
             ->setParameter('user', $user->getId())
-            ->setParameter('status', \Club\BookingBundle\Entity\Booking::CONFIRMED)
+            ->setParameter('status', Booking::CONFIRMED)
             ->getQuery()
             ->getResult();
     }

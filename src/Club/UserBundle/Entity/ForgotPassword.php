@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="Club\UserBundle\Entity\ForgotPasswordRepository")
  * @ORM\Table(name="club_user_forgot_password")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class ForgotPassword
 {

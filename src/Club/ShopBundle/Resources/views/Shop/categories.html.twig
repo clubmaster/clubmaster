@@ -1,4 +1,4 @@
-{% if categories|length > 0 %}
+{% if hide_categories == false and categories|length > 0 %}
 <h3>{% trans %}Categories{% endtrans %}</h3>
 
 {% for item in categories %}

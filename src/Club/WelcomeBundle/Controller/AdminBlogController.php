@@ -65,7 +65,8 @@ class AdminBlogController extends Controller
             $em->remove($blog);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->get('club_extra.flash')->addNotice();
+
         } catch (\PDOException $e) {
             $this->get('session')->getFlashBag()->add('error', $this->get('translator')->trans('You cannot delete blog which is already being used.'));
         }
@@ -84,7 +85,7 @@ class AdminBlogController extends Controller
                 $em->persist($blog);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+                $this->get('club_extra.flash')->addNotice();
 
                 return $this->redirect($this->generateUrl('club_welcome_adminblog_index'));
             }

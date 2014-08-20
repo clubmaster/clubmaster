@@ -25,9 +25,11 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode
-          ->children()
-          ->scalarNode('default_country')->isRequired()->end()
-          ->end();
+            ->children()
+            ->scalarNode('default_country')->isRequired()->end()
+            ->variableNode('welcome_mail_attachments')->defaultValue(false)->end()
+            ->end()
+            ;
 
         return $treeBuilder;
     }

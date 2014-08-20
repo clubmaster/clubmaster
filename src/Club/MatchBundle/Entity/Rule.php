@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_match_rule")
  * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\RuleRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Rule
 {

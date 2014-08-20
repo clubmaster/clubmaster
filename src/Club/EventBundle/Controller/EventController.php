@@ -62,7 +62,9 @@ class EventController extends Controller
                 return $this->redirect($this->generateUrl('shop_checkout'));
             } else {
                 $this->get('club_event.event')->attend($event, $this->getUser());
-                $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+
+                $this->get('club_extra.flash')->addNotice();
+
             }
         } catch (\Club\EventBundle\Exception\AttendNotAvailableException $e) {
             $this->get('session')->getFlashBag()->add('error',$e->getMessage());
@@ -97,7 +99,8 @@ class EventController extends Controller
             $em->remove($attend);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+            $this->get('club_extra.flash')->addNotice();
+
             $e = new \Club\EventBundle\Event\FilterAttendEvent($attend);
             $this->get('event_dispatcher')->dispatch(\Club\EventBundle\Event\Events::onEventUnattend, $e);
         }

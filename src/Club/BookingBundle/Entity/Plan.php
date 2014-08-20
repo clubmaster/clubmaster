@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Plan
 {
+    // use this if booking conflict has occur
+    const STATUS_PENDING = 1;
+
+    // everything is good
+    const STATUS_ACTIVE = 2;
+
+
     /**
      * @var integer $id
      *
@@ -22,6 +29,13 @@ class Plan
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string $status
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $status = self::STATUS_ACTIVE;
 
     /**
      * @var string $name
@@ -38,6 +52,13 @@ class Plan
      * @Assert\NotBlank()
      */
     protected $description;
+
+    /**
+     * @var string $color
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $color;
 
     /**
      * @var boolean $repeating
@@ -257,6 +278,7 @@ class Plan
         'type' => 'plan',
         'name' => $this->getName(),
         'description' => $this->getDescription(),
+        'color' => $this->getColor(),
         'first_date' => $this->getStart()->format('c'),
         'end_date' => $this->getEnd()->format('c'),
         'fields' => array()
@@ -308,6 +330,7 @@ class Plan
     {
         return $this->period_end;
     }
+
     public function __construct()
     {
         $this->fields = new \Doctrine\Common\Collections\ArrayCollection();
@@ -594,5 +617,51 @@ class Plan
     public function getPlanExceptions()
     {
         return $this->plan_exceptions;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Plan
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Plan
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="club_ranking_ranking")
  * @ORM\Entity(repositoryClass="Club\RankingBundle\Entity\RankingRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ranking
 {

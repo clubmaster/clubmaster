@@ -1,3 +1,13 @@
+club_kiosk:
+    resource: "@ClubKioskBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+club_media:
+    resource: "@ClubMediaBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+
 club_ranking:
     resource: "@ClubRankingBundle/Controller/"
     type:     annotation

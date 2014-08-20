@@ -109,7 +109,7 @@ class AdminCouponController extends Controller
         $em->persist($coupon);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_shop_admincoupon_index'));
       }

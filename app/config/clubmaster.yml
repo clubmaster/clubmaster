@@ -4,6 +4,8 @@ parameters:
 
 club_user:
     default_country: DK
+    #welcome_mail_attachments:
+        #- shared/safe_image.png
 
 club_account_economic:
     enabled: false
@@ -24,13 +26,14 @@ club_payment_quickpay:
     controller: club_payment_quickpay_quickpay_index
     merchant: 89898978
     secret: 29p61DveBZ79c3144LW61lVz1qrwk2gfAFCxPyi5sn49m3Y3IRK5M6SN5d8a68u7
-    protocol: 4
+    protocol: 7
     language: en
     currency: DKK
     autocapture: 1
+    allow_subscription: true
     #cardtypelock:
     autofee: 0
-    quickpay_url: https://secure.quickpay.dk/form/
+    quickpay_url: https://secure.quickpay.dk/
     testmode: 1
 
 club_api:
@@ -48,6 +51,7 @@ club_ranking:
 
 club_shop:
     view_shop: true
+    hide_categories: false
     coupon_account_number: 1010
     guest_account_number: 1010
     voucher_text: Payment from %s, order %s
@@ -118,6 +122,9 @@ club_weather:
     #cityid: 2624886 # http://openweathermap.org/help/city_list.txt
     #units: metric
 
+club_media:
+    enabled: true
+
 club_tournament:
     enabled: true
 
@@ -128,3 +135,7 @@ club_extra:
     #facebook: true
     #twitter: true
     #googleplus: true
+
+club_kiosk:
+    default_location: 1
+    jquery_theme: start

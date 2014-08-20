@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
           ->scalarNode('coupon_account_number')->isRequired()->end()
           ->scalarNode('guest_account_number')->isRequired()->end()
           ->scalarNode('voucher_text')->isRequired()->end()
+          ->scalarNode('hide_categories')->defaultValue(false)->end()
           ->end();
 
         return $treeBuilder;

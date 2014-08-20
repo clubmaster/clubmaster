@@ -11,5 +11,5 @@
 {% endblock %}
 
 {% block body %}
-{% include "ClubLayoutBundle:Default:flash_error.html.twig" with {'msg':'You cannot add any products without a category.'|trans} %}
+<p>{% trans %}You cannot add any products without a category.{% endtrans %}</p>
 {% endblock %}

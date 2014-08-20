@@ -342,7 +342,7 @@ class BookingController extends Controller
         }
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('club_booking_overview_index', array('date' => $datetime->format('Y-m-d'))));
     }

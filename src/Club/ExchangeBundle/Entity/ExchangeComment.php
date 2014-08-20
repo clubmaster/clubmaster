@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="club_exchange_exchange_comment")
  * @ORM\Entity(repositoryClass="Club\ExchangeBundle\Entity\ExchangeCommentRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class ExchangeComment
 {

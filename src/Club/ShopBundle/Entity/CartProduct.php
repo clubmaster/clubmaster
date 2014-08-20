@@ -222,4 +222,14 @@ class CartProduct
     {
       return $this->getPrice()*$this->getQuantity();
     }
+
+    /**
+     * Remove cart_product_attributes
+     *
+     * @param \Club\ShopBundle\Entity\CartProductAttribute $cartProductAttributes
+     */
+    public function removeCartProductAttribute(\Club\ShopBundle\Entity\CartProductAttribute $cartProductAttributes)
+    {
+        $this->cart_product_attributes->removeElement($cartProductAttributes);
+    }
 }

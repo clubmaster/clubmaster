@@ -126,7 +126,6 @@ class User implements AdvancedUserInterface, EquatableInterface
     /**
      * @ORM\OneToOne(targetEntity="Profile", cascade={"persist"})
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", onDelete="cascade")
-     * @Assert\Valid
      *
      * @var Club\UserBundle\Entity\Profile
      */

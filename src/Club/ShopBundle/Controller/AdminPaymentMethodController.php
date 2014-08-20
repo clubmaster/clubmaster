@@ -76,7 +76,7 @@ class AdminPaymentMethodController extends Controller
     $em->remove($payment_method);
     $em->flush();
 
-    $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+    $this->get('club_extra.flash')->addNotice();
 
     return $this->redirect($this->generateUrl('admin_shop_payment_method'));
   }
@@ -92,7 +92,7 @@ class AdminPaymentMethodController extends Controller
         $em->persist($payment_method);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice',$this->get('translator')->trans('Your changes are saved.'));
+        $this->get('club_extra.flash')->addNotice();
 
         return $this->redirect($this->generateUrl('admin_shop_payment_method'));
       }

@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="club_match_league")
  * @ORM\Entity(repositoryClass="Club\MatchBundle\Entity\LeagueRepository")
- * @ORM\HasLifeCycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class League
 {

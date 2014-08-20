@@ -8,6 +8,7 @@ use Club\UserBundle\Entity\Location;
 use Club\BookingBundle\Entity\Booking;
 use Club\BookingBundle\Entity\Interval;
 use Club\BookingBundle\Entity\Field;
+use Club\BookingBundle\Event\FilterBookingEvent;
 
 class BookingHelper
 {
@@ -193,7 +194,7 @@ class BookingHelper
 
     private function buildBooking(Field $field, \DateTime $start_date, \DateTime $stop_date, User $user, User $partner=null, $guest=false)
     {
-        $this->booking = new \Club\BookingBundle\Entity\Booking();
+        $this->booking = new Booking();
         $this->booking->setUser($user);
         $this->booking->setFirstDate($start_date);
         $this->booking->setEndDate($stop_date);
@@ -222,8 +223,8 @@ class BookingHelper
         $this->em->persist($this->booking);
         $this->em->flush();
 
-        if ($this->booking->getStatus() >= \Club\BookingBundle\Entity\Booking::CONFIRMED) {
-            $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+        if ($this->booking->getStatus() >= Booking::CONFIRMED) {
+            $event = new FilterBookingEvent($this->booking);
             $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingConfirm, $event);
         }
 
@@ -251,13 +252,13 @@ class BookingHelper
         $booking->setStatus(\Club\BookingBundle\Entity\Booking::CANCELLED);
         $this->em->persist($booking);
 
-        $event = new \Club\BookingBundle\Event\FilterBookingEvent($booking);
+        $event = new FilterBookingEvent($booking);
         $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
     }
 
     public function remove()
     {
-        $event = new \Club\BookingBundle\Event\FilterBookingEvent($this->booking);
+        $event = new FilterBookingEvent($this->booking);
         $this->event_dispatcher->dispatch(\Club\BookingBundle\Event\Events::onBookingCancel, $event);
 
         $this->em->remove($this->booking);
@@ -325,6 +326,8 @@ class BookingHelper
     public function setBooking($booking)
     {
         $this->booking = $booking;
+
+        return $this;
     }
 
     public function getPrice()
