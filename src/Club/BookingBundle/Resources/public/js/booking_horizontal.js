@@ -120,6 +120,7 @@ function makeBookedUrl(booking, url, pixel_size, field_width, day_start)
                 $('#'+element_id).css('left', left)
                 $('#'+element_id).css('width', width);
                 $('#'+element_id).css('background-color', booking.color);
+                $('#'+element_id).css('color', '#'+contrastingColor(booking.color.replace(/^#/,"")));
 
                 $('#'+element_id).addClass('plan');
                 $('#'+element_id).addClass('link');
@@ -269,3 +270,23 @@ $(function() {
         $("#bookings").css('left', new_pos+'px');
     });
 });
+
+function contrastingColor(color) {
+    return (luma(color) >= 165) ? '000' : 'fff';
+}
+
+function luma(color) {
+    var rgb = (typeof color === 'string') ? hexToRGBArray(color) : color;
+    return (0.2126 * rgb[0]) + (0.7152 * rgb[1]) + (0.0722 * rgb[2]);
+}
+
+function hexToRGBArray(color) {
+    if (color.length === 3)
+        color = color.charAt(0) + color.charAt(0) + color.charAt(1) + color.charAt(1) + color.charAt(2) + color.charAt(2);
+    else if (color.length !== 6)
+        return 'b85959';
+    var rgb = [];
+    for (var i = 0; i <= 2; i++)
+        rgb[i] = parseInt(color.substr(i * 2, 2), 16);
+    return rgb;
+}

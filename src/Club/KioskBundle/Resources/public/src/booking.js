@@ -155,10 +155,10 @@ cmcl.booking.updateBookings = function() {
 
                     if (booking.color != null) {
                         intervalObject.element.css('background', '-webkit-linear-gradient(top, '+booking.color+' 75%,rgba(49,49,49,1) 95%,rgba(49,49,49,0.8) 100%');
-                            intervalObject.element.css('color', contrastingColor(booking.color.replace(/^#/, "")));
-                            }
-                            });
-                        });
+                        intervalObject.element.css('color', contrastingColor(booking.color.replace(/^#/, "")));
+                    }
+                });
+            });
         }
     });
 };
