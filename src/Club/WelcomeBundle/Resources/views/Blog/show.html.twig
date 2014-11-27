@@ -1,7 +1,7 @@
 {% extends "ClubWelcomeBundle::base.html.twig" %}
 
 {% block title %}
-Blog: {{ blog.title }}
+This Blog: {{ blog.title }}
 {% endblock %}
 
 {% block header %}
@@ -27,7 +27,7 @@ Blog: {{ blog.title }}
 <h6>{% trans with {'%date%':comment.createdAt|club_datetime,'%author%':comment.user.name} %}Posted on %date% by %author%.{% endtrans %}</h6>
 <p>{{ comment.comment|raw }}</p>
 {% else %}
-<p>{% trans %}There are no comments for this blog.{% endtrans %}</p>
+<p>{% trans %}There are no new comments for this blog.{% endtrans %}</p>
 {% endfor %}
 
 {% endblock %}
